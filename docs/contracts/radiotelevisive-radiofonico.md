@@ -51,7 +51,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2026-01-08 |
-| **Last review** | 2026-10-18 |
+| **Last review** | 2026-11-01 |
 | **Latest salary tranche** | 2027-06-01 |
 
 ## Review history
@@ -60,6 +60,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|---|---|
 | 2026-10-17 | claude-opus-5-5 (ai) | The minimi tabellari of the Settore radiofonico against the tables of the renewal published by Confindustria Radio Televisioni. | confirmed | The minimi of the 6 levels from 2026-01-01 to 2027-06-01 (PDF p. 2, text layer; the same tables are in the consolidated CCNL 2026, PDF pp. 74-75) match the file and move from assumed to verified.<br>The ruleset names this source, published by Confindustria Radio Televisioni, the employer signatory: source_type contracting_party instead of estimated. |
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | corrected | Art. 45 - Tredicesima mensilità (p. 76): "Nel caso di inizio del rapporto durante il corso dell’anno, il lavoratore avrà diritto a tanti dodicesimi dell'ammontare della tredicesima mensilità per quanti sono i mesi di servizio prestati nell’Azienda. Le frazioni di mese superiori a 15 giorni saranno da considerare mese intero.". Added: more_than 15 (the file applied the engine default, at least 15 days). |
+| 2026-11-01 | claude-opus-5-5 (ai) | The notice clause (Art. 64 - Preavviso di licenziamento e dimissioni, p. 86). | corrected | Notice bands by level and service checked against the PDF by a separate session (delegated search and independent verification): work_rules.notice. |
 
 ## Salary table
 

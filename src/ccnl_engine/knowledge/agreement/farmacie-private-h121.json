@@ -208,6 +208,27 @@
           "work_rules.leave_rules.permits[rol] 40",
           "work_rules.leave_rules.permits[rol].ramp"
         ]
+      },
+      {
+        "id": "2026-11-01-ai-notice",
+        "date": "2026-11-01",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The notice clause (Art. 73, p. 27).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://uiltucs.it/wp-content/uploads/2023/07/CCNL-per-i-Dipendenti-da-Farmacia-Privata-7-settembre-2021.pdf",
+            "sha256": "dfc1fc57234cb43fb5ab7a4a7e22d89c464b7784b344cedd288de560f170cea4"
+          }
+        ],
+        "findings": [
+          "Notice bands by level and service checked against the PDF by a separate session (delegated search and independent verification): work_rules.notice."
+        ],
+        "independence": "separate_session",
+        "checked": [
+          "work_rules.notice"
+        ]
       }
     ]
   },
@@ -1535,7 +1556,7 @@
     "effective_until": null,
     "source": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf",
     "verification_status": "unverified",
-    "source_hash": "ea7cc1100842da7c956f8f2bd8ace7bcd773f1348658c1fd9705f3f8f052c25d",
+    "source_hash": "101f93ca2d23565f7c3d17ecdc65ae32119ea93ff351aca9765a3d3c55e23f49",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1964,6 +1985,92 @@
           "effective_from": "2021-01-01"
         },
         "transformation": "Art. 44 b): 100% for the three days of carenza, 80% for days 4-20 and 100% from day 21 of the gross daily quota, stored as day_bands of the episode; comporto of 180 days in the calendar year (Art. 43), counted over every episode of the year. Read on 2026-10-30."
+      }
+    },
+    "notice": {
+      "bands": [
+        {
+          "levels": [
+            "Q1",
+            "Q2",
+            "Q3",
+            "1"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "months": 0,
+          "days": 90,
+          "categories": []
+        },
+        {
+          "levels": [
+            "2"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "months": 0,
+          "days": 60,
+          "categories": []
+        },
+        {
+          "levels": [
+            "3",
+            "4"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "months": 0,
+          "days": 45,
+          "categories": []
+        },
+        {
+          "levels": [
+            "5",
+            "6"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "months": 0,
+          "days": 15,
+          "categories": []
+        }
+      ],
+      "starts": "first_or_sixteenth",
+      "extra_months_included": true,
+      "tfr_base": false,
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "farmacie-private-h121-ccnl-testo",
+            "title": "Federfarma Filcams-Cgil / Fisascat-Cisl / Uiltucs-Uil Contratto Collettivo Nazionale di Lavoro per i dipendenti da farmacia privata - Testo ufficiale",
+            "kind": "associazione",
+            "url": "https://uiltucs.it/wp-content/uploads/2023/07/CCNL-per-i-Dipendenti-da-Farmacia-Privata-7-settembre-2021.pdf",
+            "published_on": "2021-09-07",
+            "sha256": "dfc1fc57234cb43fb5ab7a4a7e22d89c464b7784b344cedd288de560f170cea4"
+          },
+          "page": "27",
+          "section": "Art. 73",
+          "quote": "I termini di preavviso sono i seguenti:  \n- Quadri (Aree Q1 – Q2 – Q3): 90 giorni di calendario \n- primo livello: 90 giorni di calendario \n- secondo livello: 60 giorni di calendario \n- terzo e quarto livello: 45 giorni di calendario \n- quinto e sesto livello: 15 giorni di calendario \ne decorrono dalla metà o dalla fine di ciascun mese."
+        },
+        "transformation": "Bands proposed by a delegated search and checked band by band against the PDF by a separate session. The resignation bands are left out where halving gives a fraction of a month (the engine computes only the indemnity the employer owes on a dismissal); a start day the text does not set is read as the day after the notice; the ratei of the extra months and the TFR treatment are set only where the text states them.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-01T21:00:00Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-01T21:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-01-ai-notice"
+        }
       }
     }
   }

@@ -1207,7 +1207,7 @@
     "effective_until": null,
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "ef4cffba9585a0bb6eee741ab90390fa07180427bec880e5cb47352804ac065a",
+    "source_hash": "7d72374a87d50376da66671369ef5802d6fa183bb9a50d49d2649d4463f5263f",
     "published_at": "2026-09-07",
     "source_type": "official_primary"
   },
@@ -1831,6 +1831,82 @@
         },
         "note": "Job kept 18 months within the three years before the day (the CCNL sums 'le assenze per malattia verificatesi nel triennio precedente' the last episode): 540 days of 30-day months over a window of 3 years; 9 months (270 days) in full, 3 (days 271-360) at 90%, 6 (days 361-540) at 50%. The window ends on the sick day, not on the start of the last episode. The cut of the accessory pay of the first 10 days (D.L. 112/2008 art. 71 c. 1) is not modelled."
       }
+    },
+    "notice": {
+      "bands": [
+        {
+          "levels": [
+            "CEL",
+            "OPERATORE",
+            "COLLABORATORE",
+            "FUNZIONARIO",
+            "ELEVATA_PROFESSIONALITA"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "up_to_months": 60,
+          "months": 2,
+          "indemnity_months": "2"
+        },
+        {
+          "levels": [
+            "CEL",
+            "OPERATORE",
+            "COLLABORATORE",
+            "FUNZIONARIO",
+            "ELEVATA_PROFESSIONALITA"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "up_to_months": 120,
+          "months": 3,
+          "indemnity_months": "3"
+        },
+        {
+          "levels": [
+            "CEL",
+            "OPERATORE",
+            "COLLABORATORE",
+            "FUNZIONARIO",
+            "ELEVATA_PROFESSIONALITA"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "months": 4,
+          "indemnity_months": "4"
+        }
+      ],
+      "starts": "first_or_sixteenth",
+      "extra_months_included": false,
+      "tfr_base": null,
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "universita-aran-notice-text",
+            "title": "CCNL text with the notice clause (Art. 43, commi 1-4)",
+            "kind": "associazione",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2024/07/CCNL-UNIVERSITA-2006-09_Rev.pdf",
+            "sha256": "53f4287478134e36ad0ce7ec0b143160cab0b954aeee2da6dafde70ba2af5e2f"
+          },
+          "page": "32",
+          "section": "Art. 43, commi 1-4",
+          "quote": "anni di servizio                                 mesi di preavviso\n- fino a 5                                                         2\n- oltre 5 e fino a 10                                         3\n- oltre 10                                                         4\n\n2. In caso di dimissioni i termini di preavviso sono ridotti della metà.\n\n3. I termini di preavviso decorrono dal primo giorno o dal giorno 16 di ciascun mese."
+        },
+        "transformation": "Bands proposed by a delegated search and checked band by band against the PDF by a separate session. The resignation bands are left out where halving gives a fraction of a month (the engine computes only the indemnity the employer owes on a dismissal); a start day the text does not set is read as the day after the notice; the ratei of the extra months and the TFR treatment are set only where the text states them.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-01T21:00:00Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-01T21:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-01-ai-notice"
+        }
+      }
     }
   },
   "verification": {
@@ -1857,6 +1933,27 @@
         ],
         "findings": [
           "New file for the university staff of the comparto Istruzione e Ricerca, which the scuola file left out: tabellare of Tabella B2 by area, indennità di Ateneo of Tabella B3, overtime of Tabella B4, read on the ARAN texts."
+        ]
+      },
+      {
+        "id": "2026-11-01-ai-notice",
+        "date": "2026-11-01",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The notice clause (Art. 43, commi 1-4, p. 32).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2024/07/CCNL-UNIVERSITA-2006-09_Rev.pdf",
+            "sha256": "53f4287478134e36ad0ce7ec0b143160cab0b954aeee2da6dafde70ba2af5e2f"
+          }
+        ],
+        "findings": [
+          "Notice bands by level and service checked against the PDF by a separate session (delegated search and independent verification): work_rules.notice."
+        ],
+        "independence": "separate_session",
+        "checked": [
+          "work_rules.notice"
         ]
       }
     ]

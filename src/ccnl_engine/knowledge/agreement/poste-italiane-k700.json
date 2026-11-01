@@ -161,6 +161,27 @@
         "findings": [
           "Art. 67 - Tredicesima mensilità (p. 141): \"quanti sono i mesi di servizio prestati presso la Società, computando come mese intero la frazione di mese pari o superiore a 15 giorni.\". Match: at_least 15."
         ]
+      },
+      {
+        "id": "2026-11-01-ai-notice",
+        "date": "2026-11-01",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The notice clause (Art. 83 - Preavviso, p. 151).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.uilposte.it/wp-content/uploads/2025/01/CCNL-Posteitaliane-Uilposte2024.pdf",
+            "sha256": "84ca233b59d12f2026028da61615d216d540f7c94a72b04c85713ade1115a437"
+          }
+        ],
+        "findings": [
+          "Notice bands by level and service checked against the PDF by a separate session (delegated search and independent verification): work_rules.notice."
+        ],
+        "independence": "separate_session",
+        "checked": [
+          "work_rules.notice"
+        ]
       }
     ]
   },
@@ -1628,7 +1649,7 @@
     "effective_until": null,
     "source": "https://www.uilposte.it/wp-content/uploads/2025/01/CCNL-Posteitaliane-Uilposte2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "65bdbf22efb5a8eaabeb20d39cd811d7310f9ce4f098d15475ea10991ce2b979",
+    "source_hash": "ffa44607afdc450c7c58f1c6d1260700808229f384349e4e632e390b3dd09026",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1874,6 +1895,91 @@
           "effective_from": "2024-07-01"
         },
         "transformation": "Art. 41 I: comporto of 609 calendar days summed over the 48 months before each new episode; the whole fixed pay for 502 days in the same four years, nothing for the later days of the comporto. Stored as a cumulation of one band counted over a four-year window, the reduced rate zero. Read on 2026-10-30."
+      }
+    },
+    "notice": {
+      "bands": [
+        {
+          "levels": [
+            "F",
+            "E",
+            "D",
+            "C",
+            "B",
+            "A2",
+            "A1"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "up_to_months": 60,
+          "months": 2,
+          "days": 0,
+          "categories": []
+        },
+        {
+          "levels": [
+            "F",
+            "E",
+            "D",
+            "C",
+            "B",
+            "A2",
+            "A1"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "up_to_months": 120,
+          "months": 3,
+          "days": 0,
+          "categories": []
+        },
+        {
+          "levels": [
+            "F",
+            "E",
+            "D",
+            "C",
+            "B",
+            "A2",
+            "A1"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "months": 4,
+          "days": 0,
+          "categories": []
+        }
+      ],
+      "starts": "first_or_sixteenth",
+      "extra_months_included": false,
+      "tfr_base": null,
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-poste-italiane-2024",
+            "title": "CCNL Poste Italiane (non dirigente) 23/07/2024",
+            "kind": "tabella_retributiva",
+            "url": "https://www.uilposte.it/wp-content/uploads/2025/01/CCNL-Posteitaliane-Uilposte2024.pdf",
+            "sha256": "84ca233b59d12f2026028da61615d216d540f7c94a72b04c85713ade1115a437"
+          },
+          "page": "151",
+          "section": "Art. 83 - Preavviso",
+          "quote": "I termini di detto preavviso sono stabiliti come segue:\n anni di servizio   mesi di preavviso\n fino a 5    2\n oltre 5 e fino a 10   3\n oltre 10   4\nII. In caso di dimissioni i termini di preavviso sono ridotti alla metà.\nIII. I termini di preavviso decorrono dall’1 o dal 16 di ciascun mese."
+        },
+        "transformation": "Bands proposed by a delegated search and checked band by band against the PDF by a separate session. The resignation bands are left out where halving gives a fraction of a month (the engine computes only the indemnity the employer owes on a dismissal); a start day the text does not set is read as the day after the notice; the ratei of the extra months and the TFR treatment are set only where the text states them.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-01T21:00:00Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-01T21:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-01-ai-notice"
+        }
       }
     }
   }

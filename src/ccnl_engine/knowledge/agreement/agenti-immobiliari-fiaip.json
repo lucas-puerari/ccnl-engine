@@ -239,6 +239,27 @@
         "checked": [
           "parameters.una_tantum"
         ]
+      },
+      {
+        "id": "2026-11-01-ai-notice",
+        "date": "2026-11-01",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The notice clause (Art. 176 (table); art. 177 (indemnity); art. 178 (TFR); art. 181 (resignations), p. 102-104).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.ebnaip.it/download.aspx?file=/public/ccnl/1_CCNL_CONTRATTO_COLLETTIVO_NAZIONALE_LAVORO_2025.pdf",
+            "sha256": "560d16410d3e41dc0bfb00bfe2a40ef65f2cd900234aeaee92018ed9fa21ead5"
+          }
+        ],
+        "findings": [
+          "Notice bands by level and service checked against the PDF by a separate session (delegated search and independent verification): work_rules.notice."
+        ],
+        "independence": "separate_session",
+        "checked": [
+          "work_rules.notice"
+        ]
       }
     ]
   },
@@ -1677,6 +1698,178 @@
     "source": "https://www.fiaip.it/wp-content/uploads/2025/06/250519-Ipotesi-di-accordo-Fiaip-OOSS-firmata-1.pdf",
     "source_type": "contracting_party",
     "verification_status": "unverified",
-    "source_hash": "8df56bf84e2943eeca6b66ba164aaf71d760be7bd9fb34ee6eabaac4f39b510b"
+    "source_hash": "82bacf5a9063782f660927ca1c52f2c2371ebbe8c889335aae0827fed2b47100"
+  },
+  "work_rules": {
+    "notice": {
+      "bands": [
+        {
+          "levels": [
+            "Q",
+            "I"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "up_to_months": 60,
+          "days": 60
+        },
+        {
+          "levels": [
+            "Q",
+            "I"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "up_to_months": 120,
+          "days": 90
+        },
+        {
+          "levels": [
+            "Q",
+            "I"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "days": 120
+        },
+        {
+          "levels": [
+            "II",
+            "III"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "up_to_months": 60,
+          "days": 30
+        },
+        {
+          "levels": [
+            "II",
+            "III"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "up_to_months": 120,
+          "days": 45
+        },
+        {
+          "levels": [
+            "II",
+            "III"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "days": 60
+        },
+        {
+          "levels": [
+            "IV",
+            "V"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "up_to_months": 60,
+          "days": 20
+        },
+        {
+          "levels": [
+            "IV",
+            "V"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "up_to_months": 120,
+          "days": 30
+        },
+        {
+          "levels": [
+            "IV",
+            "V"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "days": 45
+        },
+        {
+          "levels": [
+            "VI"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "up_to_months": 60,
+          "days": 15
+        },
+        {
+          "levels": [
+            "VI"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "up_to_months": 120,
+          "days": 20
+        },
+        {
+          "levels": [
+            "VI"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "days": 20
+        }
+      ],
+      "starts": "first_or_sixteenth",
+      "extra_months_included": true,
+      "tfr_base": false,
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "agenti-immobiliari-fiaip-ccnl-testo",
+            "title": "Contratto Collettivo Nazionale di Lavoro per dipendenti da agenti immobiliari professionali e mandatari a titolo oneroso - Codice CNEL H0B1 - 19 maggio 2025 - Testo ufficiale",
+            "kind": "altro",
+            "url": "https://www.ebnaip.it/download.aspx?file=/public/ccnl/1_CCNL_CONTRATTO_COLLETTIVO_NAZIONALE_LAVORO_2025.pdf",
+            "published_on": "2025-05-19",
+            "sha256": "560d16410d3e41dc0bfb00bfe2a40ef65f2cd900234aeaee92018ed9fa21ead5"
+          },
+          "page": "102-104",
+          "section": "Art. 176 (table); art. 177 (indemnity); art. 178 (TFR); art. 181 (resignations)",
+          "quote": "I termini di preavviso, a decorrere dal primo o dal sedicesimo giorno di ciascun mese, sono i seguenti:\na) fino a cinque anni di servizio compiuti:\nLivelli Giorni di calendario\nQuadri e 1° 60\n2° e 3° 30\n4° e 5° 20\n6° 15\nb) oltre i cinque anni e fino a dieci anni di servizio compiuti:\nLivelli Giorni di calendario\nQuadri e 1° 90\n2° e 3° 45\n4° e 5 30\n6° 20\ne) oltre i dieci anni di servizio compiuti:\nLivelli Giorni di calendario\nQuadri e 1° 120\n2° e 3° 60\n4° e 5 45\n6° 20"
+        },
+        "transformation": "Bands proposed by a delegated search and checked band by band against the PDF by a separate session. The resignation bands are left out where halving gives a fraction of a month (the engine computes only the indemnity the employer owes on a dismissal); a start day the text does not set is read as the day after the notice; the ratei of the extra months and the TFR treatment are set only where the text states them.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-01T21:00:00Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-01T21:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-01-ai-notice"
+        }
+      }
+    }
   }
 }

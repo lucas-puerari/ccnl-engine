@@ -1233,7 +1233,7 @@
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=13",
     "verification_status": "unverified",
     "published_at": "2026-09-11",
-    "source_hash": "e10dbadd74849ef14aba4e155ea5a5c330ea115eba7828bf5e90ee064369e7c7",
+    "source_hash": "dfe1df5c2d5997931fa81b2df710a3905b3d6cf4792b8f4b91f7de1d2a585ab0",
     "source_type": "commercial_secondary"
   },
   "work_rules": {
@@ -1499,6 +1499,198 @@
           "effective_from": "2024-01-01"
         },
         "transformation": "Art. 103 b): 100% for the three days of carenza, 75% for days 4-20 and 100% from day 21 of the net daily pay, stored as day_bands of the episode; no employer integration for apprentices; comporto of 180 days in the calendar year (Art. 102), counted over every episode of the year. Read on 2026-10-30."
+      }
+    },
+    "notice": {
+      "bands": [
+        {
+          "levels": [
+            "Q",
+            "I"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "up_to_months": 60,
+          "months": 0,
+          "days": 60,
+          "categories": []
+        },
+        {
+          "levels": [
+            "Q",
+            "I"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "up_to_months": 120,
+          "months": 0,
+          "days": 90,
+          "categories": []
+        },
+        {
+          "levels": [
+            "Q",
+            "I"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "months": 0,
+          "days": 120,
+          "categories": []
+        },
+        {
+          "levels": [
+            "II",
+            "III"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "up_to_months": 60,
+          "months": 0,
+          "days": 30,
+          "categories": []
+        },
+        {
+          "levels": [
+            "II",
+            "III"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "up_to_months": 120,
+          "months": 0,
+          "days": 45,
+          "categories": []
+        },
+        {
+          "levels": [
+            "II",
+            "III"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "months": 0,
+          "days": 60,
+          "categories": []
+        },
+        {
+          "levels": [
+            "IV",
+            "V"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "up_to_months": 60,
+          "months": 0,
+          "days": 20,
+          "categories": []
+        },
+        {
+          "levels": [
+            "IV",
+            "V"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "up_to_months": 120,
+          "months": 0,
+          "days": 30,
+          "categories": []
+        },
+        {
+          "levels": [
+            "IV",
+            "V"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "months": 0,
+          "days": 45,
+          "categories": []
+        },
+        {
+          "levels": [
+            "VI"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "up_to_months": 60,
+          "months": 0,
+          "days": 15,
+          "categories": []
+        },
+        {
+          "levels": [
+            "VI"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "up_to_months": 120,
+          "months": 0,
+          "days": 20,
+          "categories": []
+        },
+        {
+          "levels": [
+            "VI"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "months": 0,
+          "days": 20,
+          "categories": []
+        }
+      ],
+      "starts": "first_or_sixteenth",
+      "extra_months_included": true,
+      "tfr_base": false,
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-cusi-sport-2024",
+            "title": "CCNL Impianti e Attività Sportive 2024–2026 (CUSI)",
+            "kind": "altro",
+            "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
+            "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
+          },
+          "page": "93-94",
+          "section": "Artt. 129–131 (and art. 136, p. 96)",
+          "quote": "I termini di preavviso, a decorrere dal primo o dal sedicesimo giorno di ciascun mese, sono i seguenti:"
+        },
+        "transformation": "Bands proposed by a delegated search and checked band by band against the PDF by a separate session. The resignation bands are left out where halving gives a fraction of a month (the engine computes only the indemnity the employer owes on a dismissal); a start day the text does not set is read as the day after the notice; the ratei of the extra months and the TFR treatment are set only where the text states them.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-01T21:00:00Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-01T21:00:00Z",
+          "verification_status": "verified"
+        }
       }
     }
   }

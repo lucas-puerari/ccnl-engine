@@ -1133,7 +1133,7 @@
     "effective_until": null,
     "source": "https://www.cislscuola.it/download/ccnl-formazione-professionale-2024-2027/",
     "verification_status": "verified",
-    "source_hash": "dced01d1f35e561cd0e8605d63b5752485f953fcfbde8bc9df9b28a8ffcf9f09",
+    "source_hash": "9311dfe47ea9882ffdb11e7330bab8083bc142e981503b116fdd44f6ffe410ef",
     "published_at": "2026-09-11",
     "source_type": "contracting_party"
   },
@@ -1320,6 +1320,88 @@
           "extraction_timestamp": "2026-09-11T00:00:00",
           "verification_status": "verified",
           "effective_from": "2024-01-01"
+        }
+      }
+    },
+    "notice": {
+      "bands": [
+        {
+          "levels": [
+            "I",
+            "II",
+            "III",
+            "IV",
+            "V",
+            "VI",
+            "VII",
+            "VIII",
+            "IX"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "months": 3,
+          "days": 0,
+          "indemnity_months": "3",
+          "categories": []
+        },
+        {
+          "levels": [
+            "I",
+            "II",
+            "III",
+            "IV"
+          ],
+          "causes": [
+            "resignation"
+          ],
+          "months": 2,
+          "days": 0,
+          "indemnity_months": "2",
+          "categories": []
+        },
+        {
+          "levels": [
+            "V",
+            "VI",
+            "VII",
+            "VIII",
+            "IX"
+          ],
+          "causes": [
+            "resignation"
+          ],
+          "months": 3,
+          "days": 0,
+          "indemnity_months": "3",
+          "categories": []
+        }
+      ],
+      "starts": "day_after",
+      "extra_months_included": false,
+      "tfr_base": null,
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "formazione-professionale-notice-text",
+            "title": "CCNL text with the notice clause (Art. 57)",
+            "kind": "associazione",
+            "url": "https://www.cislscuola.it/uploads/media/OS_CCNL-FP-2023-testo-fine-no-allegati_V181223.pdf",
+            "sha256": "4ebfebb1bc06c3a8f7c60f2d65a68b8f04dcc4188b695566a8c1b1fa0cd10095"
+          },
+          "page": "40",
+          "section": "Art. 57",
+          "quote": "2. Il termine di preavviso per il caso di licenziamento, una volta superato il periodo \ndi prova, è stabilito in 3 mesi; in caso di dimissioni tale termine è stabilito in 2 mese \nper i dipendenti inquadrati dal I al IV livello compreso, e in 3 mesi per i dipend enti \ninquadrati nei livelli superiori."
+        },
+        "transformation": "Bands proposed by a delegated search and checked band by band against the PDF by a separate session. The resignation bands are left out where halving gives a fraction of a month (the engine computes only the indemnity the employer owes on a dismissal); a start day the text does not set is read as the day after the notice; the ratei of the extra months and the TFR treatment are set only where the text states them.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-01T21:00:00Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-01T21:00:00Z",
+          "verification_status": "verified"
         }
       }
     }

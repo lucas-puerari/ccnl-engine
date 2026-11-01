@@ -53,7 +53,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2026-07-01 |
-| **Last review** | 2026-10-12 |
+| **Last review** | 2026-11-01 |
 | **Latest salary tranche** | 2027-01-01 |
 
 ## Review history
@@ -61,6 +61,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | Date | Reviewer | Scope | Outcome | Findings |
 |---|---|---|---|---|
 | 2026-10-12 | claude-opus-5-5 (ai) | Tabellare, indennità di Ateneo and overtime of the university staff, 2024-2027. | corrected | New file for the university staff of the comparto Istruzione e Ricerca, which the scuola file left out: tabellare of Tabella B2 by area, indennità di Ateneo of Tabella B3, overtime of Tabella B4, read on the ARAN texts. |
+| 2026-11-01 | claude-opus-5-5 (ai) | The notice clause (Art. 43, commi 1-4, p. 32). | corrected | Notice bands by level and service checked against the PDF by a separate session (delegated search and independent verification): work_rules.notice. |
 
 ## Salary table
 

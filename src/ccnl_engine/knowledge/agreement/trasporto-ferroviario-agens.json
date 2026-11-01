@@ -221,6 +221,27 @@
         "findings": [
           "Art. 31 (pp. 81-82): comporto of 12 months summed over 36 consecutive months, the net pay integrated to 100% for 9 months (days 1-3 included) and 80% for 3. The file kept 100% for 540 days of one illness: corrected to a cumulation over three years (274 days at 100% of the net pay, 80% up to 365)."
         ]
+      },
+      {
+        "id": "2026-11-01-ai-notice",
+        "date": "2026-11-01",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The notice clause (Art. 54, tabella Livelli professionali / Durata, p. 107).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2025/contratto_mobilita_area_af_22.05.2025.pdf",
+            "sha256": "07e476515e9517bf2ad8b89fa352b6ac9a9aee5d7764946755945cf9e929c224"
+          }
+        ],
+        "findings": [
+          "Notice bands by level and service checked against the PDF by a separate session (delegated search and independent verification): work_rules.notice."
+        ],
+        "independence": "separate_session",
+        "checked": [
+          "work_rules.notice"
+        ]
       }
     ]
   },
@@ -2475,7 +2496,7 @@
     "effective_until": "2026-12-31",
     "source": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2025/contratto_mobilita_area_af_22.05.2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "79284d681053128cf0d0d356bab7bd12c52f604849988b196393081933d893a7",
+    "source_hash": "51d6f4e48317f82d54c67c6597f064693f647e2f360486f7dd2d6b3375739b1e",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2656,6 +2677,91 @@
           "review_id": "2026-10-31-ai-sickness-comporto"
         },
         "note": "Not modelled: the comporto of 15 months, the extension paid 50%, when the illness in progress at its end lasts more than 40 days; the continuous hospital stays over 20 days left out of the comporto; the 30 months in 36 of the serious illnesses of p. 8 (100% for 18 months, 70% for 12); the absences of p. 10 (organ donation, pregnancy) left out of the 12 months."
+      }
+    },
+    "notice": {
+      "bands": [
+        {
+          "levels": [
+            "Q2",
+            "Q1",
+            "A"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "months": 4,
+          "days": 0,
+          "indemnity_months": "4",
+          "categories": []
+        },
+        {
+          "levels": [
+            "B3",
+            "B2",
+            "B1",
+            "C2",
+            "C1"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "months": 3,
+          "days": 0,
+          "indemnity_months": "3",
+          "categories": []
+        },
+        {
+          "levels": [
+            "D3",
+            "D2",
+            "D1",
+            "E3",
+            "E2",
+            "E1",
+            "F2",
+            "F1"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "months": 2,
+          "days": 0,
+          "indemnity_months": "2",
+          "categories": []
+        }
+      ],
+      "starts": "day_after",
+      "extra_months_included": false,
+      "tfr_base": null,
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-mobilita-area-af-2025-05-22",
+            "title": "CCNL della Mobilità/Area contrattuale Attività Ferroviarie del 22 maggio 2025 (OrSA Ferrovie)",
+            "kind": "associazione",
+            "url": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2025/contratto_mobilita_area_af_22.05.2025.pdf",
+            "published_on": "2025-05-22",
+            "sha256": "07e476515e9517bf2ad8b89fa352b6ac9a9aee5d7764946755945cf9e929c224"
+          },
+          "page": "107",
+          "section": "Art. 54, tabella Livelli professionali / Durata",
+          "quote": "Livelli professionali Durata \nQuadri - A 4 mesi \nB - C 3 mesi \nD-E-F 2 mesi"
+        },
+        "transformation": "Bands proposed by a delegated search and checked band by band against the PDF by a separate session. The resignation bands are left out where halving gives a fraction of a month (the engine computes only the indemnity the employer owes on a dismissal); a start day the text does not set is read as the day after the notice; the ratei of the extra months and the TFR treatment are set only where the text states them.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-01T21:00:00Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-01T21:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-01-ai-notice"
+        }
       }
     }
   }

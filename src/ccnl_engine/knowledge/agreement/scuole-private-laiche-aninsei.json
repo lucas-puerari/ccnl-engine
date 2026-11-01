@@ -1380,7 +1380,7 @@
     "effective_until": null,
     "source": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
     "verification_status": "unverified",
-    "source_hash": "aaddf72424f0df4b11657bb2580a79961839f684cc40c07b7c3af74fef2a81db",
+    "source_hash": "557554b18c50bb8543fe004947a115a7d58c3ecb0e3bbf5a15450e90d079310d",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1603,6 +1603,90 @@
           "extraction_timestamp": "2026-09-08T00:00:00",
           "verification_status": "unverified",
           "effective_from": "2024-01-01"
+        }
+      }
+    },
+    "notice": {
+      "bands": [
+        {
+          "levels": [
+            "I",
+            "II"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "up_to_months": 120,
+          "months": 1,
+          "indemnity_months": "1"
+        },
+        {
+          "levels": [
+            "I",
+            "II"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "months": 2,
+          "indemnity_months": "2"
+        },
+        {
+          "levels": [
+            "III",
+            "IV",
+            "V",
+            "VI",
+            "VII"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "months": 3,
+          "indemnity_months": "3"
+        },
+        {
+          "levels": [
+            "VIII_A",
+            "VIII_B"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "months": 4,
+          "indemnity_months": "4"
+        }
+      ],
+      "starts": "day_after",
+      "extra_months_included": false,
+      "tfr_base": null,
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "scuole-private-laiche-aninsei-ccnl-testo",
+            "title": "Contratto Collettivo Nazionale di Lavoro ANINSEI per il personale della scuola non statale 1° settembre 2024 - 31 dicembre 2027 (Testo ufficiale)",
+            "kind": "altro",
+            "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+            "published_on": "2024-06-15",
+            "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+          },
+          "page": "78",
+          "section": "Art. 57 - Preavviso di licenziamento e dimissioni",
+          "quote": "I termini di preavviso per il caso di licenziamento o dimissioni, una volta superato il periodo di prova, sono stabiliti come segue:  - I livello e II livello: mesi 1 fino a 10 anni di servizio; mesi 2 oltre 10 anni di servizio;  - III, IV, V, VI e VII livello: mesi 3  - VIII A e VIII B livello: mesi 4."
+        },
+        "transformation": "Bands proposed by a delegated search and checked band by band against the PDF by a separate session. The resignation bands are left out where halving gives a fraction of a month (the engine computes only the indemnity the employer owes on a dismissal); a start day the text does not set is read as the day after the notice; the ratei of the extra months and the TFR treatment are set only where the text states them.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-01T21:00:00Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-01T21:00:00Z",
+          "verification_status": "verified"
         }
       }
     }
