@@ -28,8 +28,8 @@ from ccnl_engine.sickness.cumulation.rules import (
     ShortAbsence,
     SicknessWorker,
 )
+from ccnl_engine.sickness.integration.condition.models import ShortAbsenceReduction
 from ccnl_engine.sickness.integration.models import (
-    ShortAbsenceReduction,
     SicknessCumulation,
     SicknessRules,
     SicknessSeniorityBand,
@@ -235,3 +235,27 @@ def test_one_illness_may_end_before_the_window(index: int, beyond: bool) -> None
     day = date(2026, 1, 1) + timedelta(days=index - 1)
 
     assert treatment.day(index, day).beyond_comporto is beyond
+
+
+@pytest.mark.parametrize(
+    ("fixed_term", "beyond_on_121"),
+    [(True, True), (False, False)],
+    ids=["fixed-term", "permanent"],
+)
+def test_a_fixed_term_worker_may_have_a_shorter_comporto(
+    fixed_term: bool, beyond_on_121: bool
+) -> None:
+    """Alimentari art. 47: 4 months (120 days) for a fixed-term contract.
+
+    The episode from 1 January 2026 has its 120th day on 30 April, the
+    121st on 1 May; the band's comporto (183) would keep it.
+    """
+    cumulation = _CUMULATION.model_copy(update={"fixed_term_comporto_days": 120})
+    rules = _RULES.model_copy(update={"cumulation": cumulation})
+    episode = _episode("long", date(2026, 1, 1), date(2026, 6, 30))
+    treatment = CumulativeTreatment(
+        rules, cumulation, episode, (), SicknessWorker(fixed_term=fixed_term)
+    )
+
+    assert not treatment.day(120, date(2026, 4, 30)).beyond_comporto
+    assert treatment.day(121, date(2026, 5, 1)).beyond_comporto is beyond_on_121

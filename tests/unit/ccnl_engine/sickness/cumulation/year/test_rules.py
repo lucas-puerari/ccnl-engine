@@ -12,7 +12,8 @@ from ccnl_engine.seniority.inputs import SeniorityFact, SenioritySource
 from ccnl_engine.sickness.comporto.models import ComportoBand, ComportoWindow
 from ccnl_engine.sickness.cumulation.rules import SicknessWorker
 from ccnl_engine.sickness.cumulation.year.rules import YearTreatment
-from ccnl_engine.sickness.integration.models import CarenzaByEvent, SicknessRules
+from ccnl_engine.sickness.integration.condition.models import CarenzaByEvent
+from ccnl_engine.sickness.integration.models import SicknessRules
 from ccnl_engine.sickness.models import SicknessEpisode
 
 _ONE = Decimal(1)

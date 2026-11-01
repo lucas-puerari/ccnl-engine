@@ -157,3 +157,11 @@ def test_metalmeccanica_cooperative_counts_three_years_like_federmeccanica() -> 
         (b.seniority_months_from, b.full_pay_days, b.comporto_days)
         for b in cumulation.bands
     ] == [(0, 122, 183), (36, 153, 274), (72, 214, 365)]
+
+
+def test_alimentari_caps_a_fixed_term_comporto_at_four_months() -> None:
+    """Art. 47, prima nota a verbale: 'limitata al periodo massimo di 4 mesi'."""
+    cumulation = _sickness("alimentari-federalimentare").cumulation
+    assert cumulation is not None
+
+    assert cumulation.fixed_term_comporto_days == 120

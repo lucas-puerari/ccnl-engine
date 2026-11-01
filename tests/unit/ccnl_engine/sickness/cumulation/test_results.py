@@ -22,8 +22,8 @@ from ccnl_engine.sickness.cumulation.rules import (
     CumulativeTreatment,
     SicknessWorker,
 )
+from ccnl_engine.sickness.integration.condition.models import ShortAbsenceReduction
 from ccnl_engine.sickness.integration.models import (
-    ShortAbsenceReduction,
     SicknessCumulation,
     SicknessRules,
     SicknessSeniorityBand,

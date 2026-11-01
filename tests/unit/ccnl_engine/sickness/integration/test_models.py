@@ -14,8 +14,8 @@ from decimal import Decimal
 import pytest
 from pydantic import ValidationError
 
+from ccnl_engine.sickness.integration.condition.models import ShortAbsenceReduction
 from ccnl_engine.sickness.integration.models import (
-    ShortAbsenceReduction,
     SicknessCumulation,
     SicknessRules,
     SicknessSeniorityBand,

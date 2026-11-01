@@ -12,7 +12,7 @@ episodes:
 - the comporto of one illness by the worker's seniority, in place of
   ``max_duration_days`` (ABI Art. 66 c. 1: 6 to 22 months);
 - the carenza: paid at a lower rate from the n-th event of the year
-  (:class:`~ccnl_engine.sickness.integration.models.CarenzaByEvent`).  A
+  (:class:`~ccnl_engine.sickness.integration.condition.models.CarenzaByEvent`).  A
   relapse continues its event; an event the CCNL exempts is not counted.
 
 The count reads the recorded episodes.  When the history is known only from
