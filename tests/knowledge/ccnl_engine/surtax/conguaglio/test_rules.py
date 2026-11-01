@@ -86,6 +86,7 @@ def _year(
         ccnl_id="commercio-confcommercio",
         level_code="4",
         seniority=new_hire(),
+        roles=frozenset(),
         employment_period=EmploymentPeriod(date(2020, 1, 1), ended_on),
         contract_type=Permanent(),
         pension_fund=NoPensionFund(),

@@ -42,7 +42,9 @@ if TYPE_CHECKING:
     from ccnl_engine import CompetenceYearResult, PeriodResult
     from ccnl_engine.results import CalculationDecision
 
-_COMMERCIO_4 = Employment(ccnl_id=COMMERCIO, level_code="4", contract_type=Permanent())
+_COMMERCIO_4 = Employment(
+    ccnl_id=COMMERCIO, level_code="4", contract_type=Permanent(), roles=frozenset()
+)
 #: The employer states the contractual funds of commercio (none paid), so
 #: only the surtax decides whether the result is final.
 _FUNDS_STATED = replace(EMPLOYER, contractual_funds=frozenset())

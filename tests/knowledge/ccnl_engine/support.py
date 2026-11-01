@@ -93,6 +93,7 @@ def regular_period(
                 ccnl_id=ccnl_id,
                 level_code=level_code,
                 seniority=new_hire(year),
+                roles=frozenset(),
                 tfr_fund=no_tfr_fund(year),
                 tfr_treasury_fund=False,
                 contract_type=Permanent(),

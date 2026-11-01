@@ -138,6 +138,7 @@ def _period(
         ccnl_id=worker.ccnl_id,
         level_code=worker.level_code,
         seniority=new_hire(),
+        roles=frozenset(),
         sector=worker.sector,
         tfr_treasury_fund=False,
         pension_fund=NoPensionFund(),

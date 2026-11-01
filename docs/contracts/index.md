@@ -1,5 +1,5 @@
 <!-- auto-generated -- run: uv run python scripts/documentation/coverage_matrix/generate.py -->
-<!-- generated: 2026-10-31 -->
+<!-- generated: 2026-11-01 -->
 
 # CCNL Coverage
 
@@ -216,7 +216,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 100 | A181 | [CCNL Sistemazioni Idraulico-Forestali e Idraulico-Agraria (Operai OTI)](sistemazioni-idraulico-forestali-operai.md) | sistemazioni idraulico-forestali e idraulico-agrarie — operai a tempo indeterminato | ~430 (operai OTI subset) | 2025 | ⚠️ | base_salary, inps_employer, seniority, territorial_supplement | 1 / 20 / 2 / 0 | 🧪 | 🤖 |
 | 101 | K411 | [CCNL Telecomunicazioni — Assotelecomunicazioni (Asstel)](telecomunicazioni-asstel.md) | telecomunicazioni | ~110k | 2025 | ⚠️ | inps_employer, seniority | 2 / 44 / 1 / 0 | 🧪 | 🤖 |
 | 102 | H012 | [CCNL Terziario Distribuzione e Servizi — Confesercenti](terziario-confesercenti.md) | Terziario distribuzione e servizi | ~230k | 2024 | ⚠️ | base_salary, leave, overtime, seniority, sickness, territorial_supplement, una_tantum | 92 / 2 / 0 / 0 | 👁 | 🤖✓ |
-| 103 | H011 | [CCNL Terziario, Distribuzione e Servizi (Confcommercio)](commercio-confcommercio.md) | terziario | ~800k | 2024 | ⚠️ | base_salary, leave, seniority, sickness | 78 / 2 / 0 / 0 | 🏭 | 🤖✓ |
+| 103 | H011 | [CCNL Terziario, Distribuzione e Servizi (Confcommercio)](commercio-confcommercio.md) | terziario | ~800k | 2024 | ⚠️ | base_salary, leave, seniority, sickness | 86 / 2 / 0 / 0 | 🏭 | 🤖✓ |
 | 104 | D018 | [CCNL Tessile-Abbigliamento-Moda PMI (Uniontessile-Confapi)](tessile-pmi-uniontessile.md) | tessile abbigliamento moda PMI | ~48k | 2025 | ⚠️ | base_salary, pension_fund_contribution | 38 / 0 / 5 / 1 | 🧪 | 🔍 |
 | 105 | I810 | [CCNL Trasporto Aereo — Gestori Aeroportuali](trasporto-aereo-assaeroporti.md) | trasporto aereo | ~40k | 2025 | ⚠️ | base_salary, seniority, sickness | 1 / 72 / 1 / 0 | 🧪 | 🤖 |
 | 106 | I911 | [CCNL Trasporto a Fune (Funivie Terrestri ed Aeree) - ANEF](funivie-anef.md) | Trasporto a fune | ~15k | 2025 | ⚠️ | base_salary, seniority | 0 / 47 / 1 / 1 | 🧪 | 🤖 |
