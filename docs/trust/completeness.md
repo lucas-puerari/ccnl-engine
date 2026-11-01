@@ -14,7 +14,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 0/132 CCNLs.** Bundle: 266 weak rules, 561 open limitations (561 with a monetary impact).
+**Complete: 0/132 CCNLs.** Bundle: 266 weak rules, 560 open limitations (560 with a monetary impact).
 
 ## Declared window
 
@@ -79,7 +79,7 @@ Future data, registered apart from the gaps: a contract whose validity ends insi
 | [comunicazione-artigianato-confartigianato](../contracts/comunicazione-artigianato-confartigianato.md) | `carta-grafica` | exploratory | — | 31 rows | 31 open requirements; 1 weak rule; 26 monetary limitations; 2 outside_input limitations; 21 non-native capabilities |
 | [concia-unic](../contracts/concia-unic.md) | `pelli-calzature` | reviewed | — | 23 rows | 23 open requirements; 20 monetary limitations; 1 outside_input limitation; 20 non-native capabilities |
 | [consorzi-agrari-assocap](../contracts/consorzi-agrari-assocap.md) | `agricoltura` | exploratory | — | 26 rows | 26 open requirements; 1 weak rule; 22 monetary limitations; 1 outside_input limitation; 21 non-native capabilities |
-| [consorzi-di-bonifica-snebi](../contracts/consorzi-di-bonifica-snebi.md) | `bonifica-forestazione` | exploratory | — | 28 rows | 28 open requirements; 2 weak rules; 23 monetary limitations; 1 outside_input limitation; 21 non-native capabilities |
+| [consorzi-di-bonifica-snebi](../contracts/consorzi-di-bonifica-snebi.md) | `bonifica-forestazione` | exploratory | — | 27 rows | 27 open requirements; 2 weak rules; 22 monetary limitations; 1 outside_input limitation; 21 non-native capabilities |
 | [contoterzismo-caiagromec](../contracts/contoterzismo-caiagromec.md) | `agricoltura` | exploratory | — | 24 rows | 24 open requirements; 1 weak rule; 21 monetary limitations; 20 non-native capabilities |
 | [cooperative-consorzi-agricoli](../contracts/cooperative-consorzi-agricoli.md) | `agricoltura` | exploratory | — | 27 rows | 27 open requirements; 25 monetary limitations; 21 non-native capabilities |
 | [cooperative-sociali](../contracts/cooperative-sociali.md) | `socio-sanitario` | reviewed | — | 25 rows | 25 open requirements; 21 monetary limitations; 2 outside_input limitations; 20 non-native capabilities |

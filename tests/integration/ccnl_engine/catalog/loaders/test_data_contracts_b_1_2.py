@@ -68,11 +68,13 @@ class TestLoadConsorziDiBonificaSnebi:
         val = ccnl.parameters.hourly_divisor.value_at(date(2026, 1, 1))
         assert val == Decimal("164.67")
 
-    def test_consorzi_di_bonifica_snebi_no_fixed_allowances(self) -> None:
-        """All levels have no fixed allowances (contingenza frozen at 0)."""
+    def test_consorzi_di_bonifica_snebi_only_the_quadri_allowance(self) -> None:
+        """Contingenza frozen at 0; the quadri take the Art. 78 allowance."""
         ccnl = load_ccnl("consorzi-di-bonifica-snebi")
         for lv in ccnl.levels:
-            assert lv.fixed_allowances == ()
+            codes = tuple(a.code for a in lv.fixed_allowances)
+            quadro = lv.code.startswith("AQ")
+            assert codes == (("IND_FUNZIONE_QUADRI",) if quadro else ()), lv.code
 
     def test_consorzi_di_bonifica_snebi_tax_sector(self) -> None:
         """Contract uses AGRICOLTURA tax sector."""
