@@ -1255,7 +1255,6 @@
     ],
     "agreement/sanita-privata-aiop-aris.json": [
       "sanita-privata-aiop-aris/frozen_individual_seniority",
-      "sanita-privata-aiop-aris/part_time_supplementary_rate",
       "sanita-privata-aiop-aris/shift_on_call_allowances",
       "sanita-privata-aiop-aris/statutory_ipca_adjustment"
     ],

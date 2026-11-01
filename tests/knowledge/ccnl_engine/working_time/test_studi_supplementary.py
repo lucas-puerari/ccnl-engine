@@ -78,3 +78,17 @@ def test_the_supplementary_pay_stays_out_of_the_tfr_base() -> None:
     with_hours = _tfr((OvertimeEvent(date(2026, 3, 10), Decimal(4), kind=_SUPPL),))
 
     assert with_hours <= plain
+
+
+def test_sanita_privata_pays_the_supplementary_hours_15_percent() -> None:
+    """Art. 22 (CCNL 8 October 2020, p. 25): 'una maggiorazione pari al 15%'."""
+    work = load_ccnl("sanita-privata-aiop-aris").work_rules
+    assert work is not None
+    assert work.time_supplements is not None
+    (band,) = [
+        b
+        for b in work.time_supplements.overtime_bands
+        if WorkKind.SUPPLEMENTARE in b.applies_to_kinds
+    ]
+
+    assert band.rate.value_at(date(2026, 3, 1)) == Decimal("0.15")

@@ -149,7 +149,7 @@
       },
       {
         "kind": "simplification",
-        "text": "PART-TIME SUPPLEMENTARY HOURS: supplementary work up to 40 hours a week is paid with an all-inclusive 10% (CCNL 5 February 2021, p. 58). The request has no kind for supplementary hours: an overtime event of a part-time worker takes the overtime bands unless the caller passes the multiplier.",
+        "text": "PART-TIME SUPPLEMENTARY HOURS: supplementary work up to 40 hours a week is paid with an all-inclusive 10% (CCNL 5 February 2021, p. 58), band OT_SUPPLEMENTARE selected by OvertimeKind.SUPPLEMENTARY. The higher rate of the hours past the yearly limit is not modelled: the request does not count the supplementary hours of the year.",
         "capability": "overtime",
         "monetary_impact": "yes",
         "limitation": {
@@ -157,7 +157,7 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Resolved: OvertimeKind.SUPPLEMENTARY selects the OT_SUPPLEMENTARE band of the CCNL rate (tests/integration/ccnl_engine/working_time/overtime/test_supplementary.py); the higher rate past the yearly limit is not modelled.",
+          "remediation": "Count the supplementary hours of the year and pay the higher rate past the yearly limit.",
           "status": "resolved"
         }
       },
@@ -3311,7 +3311,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
     "verification_status": "unverified",
-    "source_hash": "8c1af6d46758e9d490c4ed8a70825e93a4dd0c7e6aac33fb4af64829139643bc",
+    "source_hash": "68cdf69952b5a981190ec861669205bad5660d94ce1839f17d5ede5c1eabff6c",
     "published_at": "2026-09-08",
     "source_type": "contracting_party"
   },

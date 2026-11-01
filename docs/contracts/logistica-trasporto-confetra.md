@@ -158,11 +158,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Add a sixth-day kind to the overtime event and a 50% band, then remove this note.
 
 !!! note "logistica-trasporto-confetra/part_time_supplementary_rate · overtime · impact yes · resolved"
-    PART-TIME SUPPLEMENTARY HOURS: supplementary hours are paid with 18% of the hourly quota of the retribuzione globale, 40% past the annual limit (Art. 56, testo unico p. 71). The request has no kind for supplementary hours: an overtime event of a part-time worker takes the overtime bands unless the caller passes the multiplier.
+    PART-TIME SUPPLEMENTARY HOURS: supplementary hours are paid with 18% of the hourly quota of the retribuzione globale (Art. 56, testo unico p. 71), band OT_SUPPLEMENTARE selected by OvertimeKind.SUPPLEMENTARY. The 40% past the annual limit is not modelled: the request does not count the supplementary hours of the year.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Resolved: OvertimeKind.SUPPLEMENTARY selects the OT_SUPPLEMENTARE band of the CCNL rate (tests/integration/ccnl_engine/working_time/overtime/test_supplementary.py); the higher rate past the yearly limit is not modelled.
+    **Remediation:** Count the supplementary hours of the year and pay the higher rate past the yearly limit.
 
 !!! warning "logistica-trasporto-confetra/health_and_bilateral_funds · bilateral_funds · impact yes · open"
     HEALTH AND BILATERAL FUNDS: Sanilog (Art. 51, p. 64): 150 euro a year for each worker not in probation with a permanent contract or an apprenticeship, from the employer only, plus the 10% INPS solidarity contribution; Ebilog (Art. 52, p. 65): 3,50 euro a month from the employer and 0,50 euro from the worker, for 12 months, or an EAR of 8 euro a month paid to the worker by an employer outside the bilateral system. Not modelled.
