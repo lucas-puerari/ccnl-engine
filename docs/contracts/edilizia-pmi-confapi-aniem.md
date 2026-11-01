@@ -133,11 +133,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Model the impiegati in a file of their own with 14 monthly payments (Art. 63-64), as edilizia-ance-impiegati does.
 
 !!! warning "edilizia-pmi-confapi-aniem/operai_seniority_ape · seniority · impact yes · open"
-    SENIORITY: Art. 49 lists impiegati scatti biennali by category. Level 1 has no explicit Art. 49 amount; engine uses 8.22 (Impiegati 4a category, same as level 2) as an approximation. For operai (levels 1-4), seniority is governed by the Cassa Edile anzianita' professionale edile (APE) system; engine uses the Art. 49 impiegati amounts as an approximation.
+    SENIORITY: Art. 49 (testo armonizzato 15/04/2025, p. 87) gives the scatti to 'L'impiegato' only, by category; the operai accrue the Anzianità professionale edile of Art. 29 (p. 64) through the Fondo Unico APE, out of an employer contribution 'nella misura stabilita per ciascuna circoscrizione territoriale'. The engine pays no scatti to a worker stated as operaio (seniority excluded_categories); the territorial APE contribution is not modelled, a run of levels 1-4 that does not state the category still pays the Art. 49 amounts, and level 1 has no Art. 49 amount (8.22 of the Impiegati 4a is used).
 
-    **Applies when:** `seniority` applies; level in 1, 2, 3, 4.
+    **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Give the operai levels no scatti (APE paid by the Cassa Edile) and source the level 1 amount of Art. 49.
+    **Remediation:** Add the territorial APE contribution (Fondo Unico APE) as an employer cost and source the level 1 amount of Art. 49.
 
 !!! warning "edilizia-pmi-confapi-aniem/provincial_evr · territorial_supplement · impact unknown · open"
     EVR (Elemento Variabile della Retribuzione): conditional, company/territory-specific bonus. Not modelled.
