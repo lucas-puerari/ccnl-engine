@@ -61,7 +61,7 @@ formulas or caller-declared amounts.
 
 | Capability | Description | Scope | Layer | Implementation | Applies when | Handler | Facts | Variants | Label | Rules (v / d / a / m) |
 |---|---|---|---|---|---|---|---|---|---|---|
-| `base_salary` | Paga base contrattuale | core | gross | native | always | pipeline | — | — | simplified | 2226 / 3916 / 204 / 27 |
+| `base_salary` | Paga base contrattuale | core | gross | native | always | pipeline | — | — | simplified | 2234 / 3916 / 204 / 27 |
 | `seniority` | Scatti di anzianità | core | gross | native | decided | decision | `employment.seniority` | — | simplified | 24 / 96 / 13 / 0 |
 | `worker_category` | Categoria lavoratore (dichiarata o fissata dal livello) | core | gross | native | decided | decision | `employment.category` | — | implemented | none bundled |
 | `inps_employee` | Contributi INPS a carico dipendente | core | net | native | always | pipeline | — | — | simplified | 25 / 24 / 45 / 0 |
@@ -259,7 +259,7 @@ never grow.
 | 120 | [CCNL per i lavoratori addetti all'industria delle calzature](calzaturiero-assocalzaturifici.md) | ⚠️ | seniority | 0 / 38 / 1 / 1 |
 | 121 | [CCNL per i lavoratori addetti all'industria orafa, argentiera e della gioielleria (Federorafi)](orafi-argentieri-industria-federorafi.md) | ⚠️ | base_salary, seniority | 1 / 40 / 1 / 0 |
 | 122 | [CCNL per i lavoratori addetti alle industrie delle pelli e dei succedanei della pelle (Assopellettieri)](pelli-cuoio-industria-assopellettieri.md) | ⚠️ | base_salary, seniority | 0 / 35 / 1 / 1 |
-| 123 | [CCNL per i lavoratori dell'industria alimentare (Federalimentare)](alimentari-federalimentare.md) | ⚠️ | base_salary, bilateral_funds, overtime, sickness | 83 / 0 / 0 / 0 |
+| 123 | [CCNL per i lavoratori dell'industria alimentare (Federalimentare)](alimentari-federalimentare.md) | ⚠️ | base_salary, bilateral_funds, overtime, sickness | 91 / 0 / 0 / 0 |
 | 124 | [CCNL per i lavoratori dell'industria conciaria (UNIC)](concia-unic.md) | ⚠️ | leave, overtime, seniority | 57 / 1 / 0 / 0 |
 | 125 | [CCNL per i lavoratori dell'industria del legno, del sughero, del mobile, dell'arredamento e delle industrie affini (Federlegno-Arredo)](legno-arredamento-federlegno.md) | ⚠️ | base_salary, seniority | 1 / 88 / 1 / 0 |
 | 126 | [CCNL per i lavoratori dell'industria tessile, abbigliamento, moda (SMI)](tessile-smi.md) | ⚠️ | base_salary, seniority | 0 / 47 / 1 / 1 |
