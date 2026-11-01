@@ -87,7 +87,8 @@
               "Q"
             ]
           },
-          "remediation": "Model the Art. 162 Q function allowance (250 EUR x 12) as a role-gated allowance."
+          "remediation": "Resolved: level Q carries IND_FUNZIONE, 250.00 for 12 months, for the role responsabile_unita of Employment.roles.",
+          "status": "resolved"
         }
       },
       {
@@ -194,6 +195,27 @@
         "findings": [
           "Tabelle retributive of the signed ipotesi (p. 7, scan checked on the page image): the 28 minimi from 1/5/2025 to 1/5/2027 match the file and move from assumed to verified. The final text of the CCNL (Ebnaip copy, art. 162-163, PDF pp. 96-97) prints the same base at April 2025, increments and final amounts.",
           "The ruleset names the signed ipotesi published by FIAIP, the employer signatory: source_type contracting_party instead of estimated."
+        ]
+      },
+      {
+        "id": "2026-11-01-ai-quadri-function-allowance",
+        "date": "2026-11-01",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The indennità di funzione of the quadri, Art. 162 note (*) (p. 97).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.ebnaip.it/download.aspx?file=/public/ccnl/1_CCNL_CONTRATTO_COLLETTIVO_NAZIONALE_LAVORO_2025.pdf",
+            "sha256": "560d16410d3e41dc0bfb00bfe2a40ef65f2cd900234aeaee92018ed9fa21ead5"
+          }
+        ],
+        "findings": [
+          "Art. 162 note (*) (p. 97): 250.00 a month for 12 months to the quadri responsible for operational or local units: levels[Q].fixed_allowances[IND_FUNZIONE], role responsabile_unita, months_per_year 12."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels[Q].fixed_allowances[IND_FUNZIONE]"
         ]
       }
     ]
@@ -481,7 +503,50 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "IND_FUNZIONE",
+          "description": "Indennità di funzione dei quadri responsabili di unità operative o locali (Art. 162, nota *): 250,00 euro per 12 mensilità",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-05-01",
+                "valid_until": null,
+                "value": "250.00"
+              }
+            ]
+          },
+          "role": "responsabile_unita",
+          "months_per_year": 12,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "agenti-immobiliari-fiaip-ccnl-testo",
+                "title": "Contratto Collettivo Nazionale di Lavoro per dipendenti da agenti immobiliari professionali e mandatari a titolo oneroso - Codice CNEL H0B1 - 19 maggio 2025 - Testo ufficiale",
+                "kind": "altro",
+                "url": "https://www.ebnaip.it/download.aspx?file=/public/ccnl/1_CCNL_CONTRATTO_COLLETTIVO_NAZIONALE_LAVORO_2025.pdf",
+                "published_on": "2025-05-19",
+                "sha256": "560d16410d3e41dc0bfb00bfe2a40ef65f2cd900234aeaee92018ed9fa21ead5"
+              },
+              "page": "97",
+              "section": "Art. 162 Paga base nazionale conglobata, nota (*)",
+              "quote": "Ai quadri dipendenti da imprese di mediazione, nei casi di responsabilità di unità operative o di unità locali, è riconosciuta una indennità di funzione di € 250,00 mensili per 12 mensilità."
+            },
+            "transformation": "250.00 a month on the 12 monthly runs, no share in the extra months; reserved to the role responsabile_unita of Employment.roles (a quadro responsible for an operational or local unit). A continuous element, in the TFR base.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T11:00:00Z",
+              "effective_from": "2025-05-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T11:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-quadri-function-allowance"
+            }
+          }
+        }
+      ],
       "category": "quadro",
       "provenance": {
         "status": "assumed",
@@ -1530,6 +1595,6 @@
     "source": "https://www.fiaip.it/wp-content/uploads/2025/06/250519-Ipotesi-di-accordo-Fiaip-OOSS-firmata-1.pdf",
     "source_type": "contracting_party",
     "verification_status": "unverified",
-    "source_hash": "b02fca15393c92b18a936482bda2143385023a56acd727652d2e7e63738f45d5"
+    "source_hash": "413bd1d795dabe64512f58e97f3ada8a6eacd0d5896a4234933d1acbf0cfa104"
   }
 }

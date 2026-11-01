@@ -307,22 +307,6 @@
       }
     },
     {
-      "id": "quadri_function_allowance",
-      "institute": "base_salary",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "SIMPLIFICATION: Q indennità di funzione (Art. 162 footnote) not modelled. Amount: 250 EUR/month × 12 mensilità, for quadri with responsibility over operational or local units ('nei casi di responsabilità di unità operative o di unità locali'). The schema can express it (Allowance.role, Allowance.months_per_year); the conglobated file keeps fixed_allowances empty. employer_cost_annual may be understated by up to 3000 EUR/year for qualifying Q employees (review of 2026-10-30).",
-      "calculation": "ccnl/agenti-immobiliari-fiaip:coverage.notes",
-      "state": "absent",
-      "remediation": "Model the Art. 162 Q function allowance (250 EUR x 12) as a role-gated allowance.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "agenti-immobiliari-fiaip/quadri_function_allowance"
-        ]
-      }
-    },
-    {
       "id": "rule_additional_months_2025_05_01",
       "institute": "base_salary",
       "variant": "all",
