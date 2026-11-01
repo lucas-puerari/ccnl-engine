@@ -813,7 +813,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/edilizia-pmi-confapi-aniem",
       "ruleset_version": "2025.1",
-      "source_hash": "393082a2ef09670f364b7eb7038d05a470334b2aacc22932a15cbd6705e69826",
+      "source_hash": "e7c5e5f28ad171f076791917d3079ac0f709a47d98336d0ec0db9f538c227c47",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/edilizia-pmi-confapi-aniem.json.gz"
@@ -3344,7 +3344,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "31f276d5a8ff157cfcf81e9e41230fd3dffe29659a8a22f3ac281dee6e78adc3",
+      "source_hash": "12a041894564225590950e7fe216cf2c6216831ec490c26cee27dabc0eb97578",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/edilizia-pmi-confapi-aniem.json.gz",

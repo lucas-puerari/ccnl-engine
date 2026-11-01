@@ -1,4 +1,4 @@
-"""The scatti of Edilizia cooperative ANCPL belong to the impiegati.
+"""The scatti of Edilizia cooperative ANCPL and PMI ANIEM belong to the impiegati.
 
 Art. 83 (CCNL text 2000, p. 89): "l'impiegato ha diritto, per ogni biennio
 d'anzianità [...] a 1 scatto biennale per un massimo di 5 scatti"; the operai
@@ -34,13 +34,15 @@ from ccnl_engine.inputs import (
 _HIRED = date(2020, 1, 1)
 
 
-def _seniority(category: WorkerCategory) -> Decimal:
+def _seniority(
+    category: WorkerCategory, ccnl_id: str = "edilizia-cooperative-ancpl"
+) -> Decimal:
     result = PayrollEngine.bundled().calculate_period(
         PeriodInput(
             run=PayrollRun.regular(2026, 3),
             payment_date=date(2026, 3, 27),
             employment=Employment(
-                ccnl_id="edilizia-cooperative-ancpl",
+                ccnl_id=ccnl_id,
                 level_code="4",
                 contract_type=Permanent(),
                 employment_period=EmploymentPeriod(_HIRED, None),
@@ -66,3 +68,8 @@ def test_only_the_impiegato_accrues_the_scatti(
 ) -> None:
     """Art. 83 for the impiegato; the APE of the Cassa Edile for the operaio."""
     assert _seniority(category) == Decimal(amount)
+
+
+def test_aniem_gives_the_operai_no_scatti_either() -> None:
+    """Art. 49 (testo armonizzato 2025, p. 87): 'L'impiegato [...] ha diritto'."""
+    assert _seniority(WorkerCategory.OPERAIO, "edilizia-pmi-confapi-aniem") == 0

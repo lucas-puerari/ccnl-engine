@@ -261,12 +261,12 @@
     {
       "id": "operai_seniority_ape",
       "institute": "seniority",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "SENIORITY: Art. 49 lists impiegati scatti biennali by category. Level 1 has no explicit Art. 49 amount; engine uses 8.22 (Impiegati 4a category, same as level 2) as an approximation. For operai (levels 1-4), seniority is governed by the Cassa Edile anzianita' professionale edile (APE) system; engine uses the Art. 49 impiegati amounts as an approximation.",
+      "variant": "operaio",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "SENIORITY: Art. 49 (testo armonizzato 15/04/2025, p. 87) gives the scatti to 'L'impiegato' only, by category; the operai accrue the Anzianità professionale edile of Art. 29 (p. 64) through the Fondo Unico APE, out of an employer contribution 'nella misura stabilita per ciascuna circoscrizione territoriale'. The engine pays no scatti to a worker stated as operaio (seniority excluded_categories); the territorial APE contribution is not modelled, a run of levels 1-4 that does not state the category still pays the Art. 49 amounts, and level 1 has no Art. 49 amount (8.22 of the Impiegati 4a is used).",
       "calculation": "ccnl/edilizia-pmi-confapi-aniem:coverage.notes",
       "state": "absent",
-      "remediation": "Give the operai levels no scatti (APE paid by the Cassa Edile) and source the level 1 amount of Art. 49.",
+      "remediation": "Add the territorial APE contribution (Fondo Unico APE) as an employer cost and source the level 1 amount of Art. 49.",
       "origin": "seeded",
       "links": {
         "limitations": [

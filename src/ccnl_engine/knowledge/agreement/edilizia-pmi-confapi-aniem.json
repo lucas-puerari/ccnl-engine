@@ -97,21 +97,24 @@
       },
       {
         "kind": "simplification",
-        "text": "SENIORITY: Art. 49 lists impiegati scatti biennali by category. Level 1 has no explicit Art. 49 amount; engine uses 8.22 (Impiegati 4a category, same as level 2) as an approximation. For operai (levels 1-4), seniority is governed by the Cassa Edile anzianita' professionale edile (APE) system; engine uses the Art. 49 impiegati amounts as an approximation.",
+        "text": "SENIORITY: Art. 49 (testo armonizzato 15/04/2025, p. 87) gives the scatti to 'L'impiegato' only, by category; the operai accrue the Anzianità professionale edile of Art. 29 (p. 64) through the Fondo Unico APE, out of an employer contribution 'nella misura stabilita per ciascuna circoscrizione territoriale'. The engine pays no scatti to a worker stated as operaio (seniority excluded_categories); the territorial APE contribution is not modelled, a run of levels 1-4 that does not state the category still pays the Art. 49 amounts, and level 1 has no Art. 49 amount (8.22 of the Impiegati 4a is used).",
         "capability": "seniority",
         "monetary_impact": "yes",
         "limitation": {
           "variant": "operai_seniority_ape",
           "applies_when": {
-            "trigger": "run",
+            "trigger": "outside_input",
             "levels": [
               "1",
               "2",
               "3",
               "4"
+            ],
+            "worker_categories": [
+              "operaio"
             ]
           },
-          "remediation": "Give the operai levels no scatti (APE paid by the Cassa Edile) and source the level 1 amount of Art. 49."
+          "remediation": "Add the territorial APE contribution (Fondo Unico APE) as an employer cost and source the level 1 amount of Art. 49."
         }
       },
       {
@@ -222,6 +225,9 @@
     "seniority_increments": {
       "cadence_months": 24,
       "maximum_count": 5,
+      "excluded_categories": [
+        "operaio"
+      ],
       "provenance": {
         "status": "derived",
         "location": {
@@ -1771,7 +1777,7 @@
     "effective_until": null,
     "source": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf",
     "verification_status": "verified",
-    "source_hash": "393082a2ef09670f364b7eb7038d05a470334b2aacc22932a15cbd6705e69826",
+    "source_hash": "e7c5e5f28ad171f076791917d3079ac0f709a47d98336d0ec0db9f538c227c47",
     "published_at": "2026-09-18",
     "source_type": "contracting_party"
   },
