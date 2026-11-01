@@ -37,7 +37,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, inps_employer, seniority |
 
-7 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+6 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -45,7 +45,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 1 verified / 27 derived / 2 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 22 verified / 6 derived / 2 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -54,7 +54,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-12-04 |
-| **Last review** | 2026-10-18 |
+| **Last review** | 2026-11-01 |
 | **Latest salary tranche** | 2028-01-01 |
 
 ## Review history
@@ -62,6 +62,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | Date | Reviewer | Scope | Outcome | Findings |
 |---|---|---|---|---|
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | corrected | Art. 14 - Mensilità aggiuntive (13ª e 14ª) (p. 43): "dette mensilità aggiuntive sono frazionabili in dodicesimi nell’ipotesi di inizio o di cessazione del rapporto nel corso dell’anno. [...] La frazione di mese superiore a 15 giorni viene considerata come un mese intero.". Added: more_than 15 (the file applied the engine default, at least 15 days). |
+| 2026-11-01 | claude-opus-5-5 (ai) | Minimum pay of the impiegati forestali from 1 January 2026, 2027 and 2028 against the tables of the signed 2025 renewal (Allegati B, C, C1, scanned pages read as images). AI review only. | corrected | The 2026-2028 minimums now cite the TOTALE NAZIONALE CONGLOBATO of the signed tables (pp. 29-31) instead of a secondary site and the Art. 35 parameters.<br>The signed tables disagree on level 4 in 2026: p. 29 prints 1.618,07, p. 30 carries 1.617,94 as the pay of 1 January 2027 before the 39,54 increase that reaches 1.657,48. The 2026 table of p. 29 is used for 2026; the 2027 and 2028 totals are those printed. |
 
 ## Salary table
 
@@ -69,11 +70,11 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `I6Q` | Impiegato 6° livello — Quadro (Art. 36 CCNL) | € 2,095.91 | 2028-01-01 |
-| `I6` | Impiegato 6° livello | € 2,095.91 | 2028-01-01 |
-| `I5` | Impiegato 5° livello | € 1,827.07 | 2028-01-01 |
-| `I4` | Impiegato 4° livello | € 1,679.91 | 2028-01-01 |
-| `I3` | Impiegato 3° livello | € 1,579.56 | 2028-01-01 |
+| `I6Q` | Impiegato 6° livello — Quadro (Art. 36 CCNL) | € 2,096.06 | 2028-01-01 |
+| `I6` | Impiegato 6° livello | € 2,096.06 | 2028-01-01 |
+| `I5` | Impiegato 5° livello | € 1,827.20 | 2028-01-01 |
+| `I4` | Impiegato 4° livello | € 1,680.07 | 2028-01-01 |
+| `I3` | Impiegato 3° livello | € 1,579.55 | 2028-01-01 |
 | `I2` | Impiegato 2° livello | € 1,488.46 | 2028-01-01 |
 | `I1` | Impiegato 1° livello | € 1,376.66 | 2028-01-01 |
 
@@ -106,13 +107,6 @@ Destination levels: `I5`, `I6`, `I6Q`
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
-
-!!! warning "sistemazioni-idraulico-forestali-impiegati/derived_tranche_rounding · base_salary · impact yes · open"
-    Tranches 01/01/2027 and 01/01/2028 for impiegati derived from confirmed Art. 35 parametri (L1=100, L2=108, L3=115, L4=122, L5=133, L6=152) applied to 01/01/2026 base. Rounding wobble up to 0.15 EUR on L4-L6 compared to rounded CCNL tables.
-
-    **Applies when:** `base_salary` applies; level in I4, I5, I6; from 2027-01-01.
-
-    **Remediation:** Replace the parameter-derived 2027 and 2028 tranches with the rounded CCNL tables.
 
 !!! warning "sistemazioni-idraulico-forestali-impiegati/ind_funzione_transition_date · base_salary · impact unknown · open"
     IND_FUNZIONE quadri: modelled at 120.00 EUR/month from 2026-01-01 (current published value per lavoro-economia.it). The 2021 CCNL shows 103.00 from 01/08/2002; transition date to 120.00 not confirmed from 2025 rinnovo (PDF image-only).

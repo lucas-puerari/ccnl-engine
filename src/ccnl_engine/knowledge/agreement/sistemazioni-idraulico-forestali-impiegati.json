@@ -69,24 +69,6 @@
       },
       {
         "kind": "simplification",
-        "text": "Tranches 01/01/2027 and 01/01/2028 for impiegati derived from confirmed Art. 35 parametri (L1=100, L2=108, L3=115, L4=122, L5=133, L6=152) applied to 01/01/2026 base. Rounding wobble up to 0.15 EUR on L4-L6 compared to rounded CCNL tables.",
-        "capability": "base_salary",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "derived_tranche_rounding",
-          "applies_when": {
-            "levels": [
-              "I4",
-              "I5",
-              "I6"
-            ],
-            "effective_from": "2027-01-01"
-          },
-          "remediation": "Replace the parameter-derived 2027 and 2028 tranches with the rounded CCNL tables."
-        }
-      },
-      {
-        "kind": "simplification",
         "text": "Apprendistato: livelli I1 e I2 esclusi da destination_levels (engine requires at least 2 levels below minimum; I2 at order=2 cannot go 2 below). Only I3, I4, I5, I6, I6Q supported.",
         "capability": "base_salary",
         "monetary_impact": "no"
@@ -175,6 +157,28 @@
         "findings": [
           "Art. 14 - Mensilità aggiuntive (13ª e 14ª) (p. 43): \"dette mensilità aggiuntive sono frazionabili in dodicesimi nell’ipotesi di inizio o di cessazione del rapporto nel corso dell’anno. [...] La frazione di mese superiore a 15 giorni viene considerata come un mese intero.\". Added: more_than 15 (the file applied the engine default, at least 15 days)."
         ]
+      },
+      {
+        "id": "2026-11-01-ai-renewal-tables",
+        "date": "2026-11-01",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Minimum pay of the impiegati forestali from 1 January 2026, 2027 and 2028 against the tables of the signed 2025 renewal (Allegati B, C, C1, scanned pages read as images). AI review only.",
+        "outcome": "corrected",
+        "independence": "same_process",
+        "checked": [
+          "levels.base_salary"
+        ],
+        "sources": [
+          {
+            "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_idraulico-forestale-Accordo-di_rinnovo_2025.pdf",
+            "sha256": "d4349690b91ccd63f4d49dc573fbbe6a9aa04fa52e0f7a5efb60045d7f0b77d4"
+          }
+        ],
+        "findings": [
+          "The 2026-2028 minimums now cite the TOTALE NAZIONALE CONGLOBATO of the signed tables (pp. 29-31) instead of a secondary site and the Art. 35 parameters.",
+          "The signed tables disagree on level 4 in 2026: p. 29 prints 1.618,07, p. 30 carries 1.617,94 as the pay of 1 January 2027 before the 39,54 increase that reaches 1.657,48. The 2026 table of p. 29 is used for 2026; the 2027 and 2028 totals are those printed."
+        ]
       }
     ]
   },
@@ -190,21 +194,30 @@
             "valid_until": "2027-01-01",
             "value": "1325.73",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "lavoro-economia-it-a181",
-                  "title": "lavoro-economia.it CCNL A181 tabella retributiva impiegati",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/?c=9"
+                  "document_id": "ccnl-idraulico-forestale-rinnovo-2025",
+                  "title": "Accordo di rinnovo del CCNL per gli addetti ai lavori di sistemazione idraulico-forestale e idraulico-agraria, 2025 (FLAI-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_idraulico-forestale-Accordo-di_rinnovo_2025.pdf",
+                  "published_on": "2025-01-01",
+                  "sha256": "d4349690b91ccd63f4d49dc573fbbe6a9aa04fa52e0f7a5efb60045d7f0b77d4"
                 },
-                "section": "Tabella retributiva impiegati — 01/01/2026"
+                "page": "29",
+                "section": "Allegato B, IMPIEGATI FORESTALI, Tabella delle retribuzioni in vigore dall'1.01.2026, column TOTALE NAZIONALE CONGLOBATO",
+                "quote": "1° 1.325,73"
               },
+              "transformation": "The TOTALE NAZIONALE CONGLOBATO of level 1°: 1325.73.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-11T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T20:45:43Z",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-01T20:45:43Z",
+                "review_id": "2026-11-01-ai-renewal-tables"
               }
             }
           },
@@ -213,21 +226,30 @@
             "valid_until": "2028-01-01",
             "value": "1358.14",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "lavoro-economia-it-a181",
-                  "title": "lavoro-economia.it CCNL A181 tabella retributiva impiegati",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/?c=9"
+                  "document_id": "ccnl-idraulico-forestale-rinnovo-2025",
+                  "title": "Accordo di rinnovo del CCNL per gli addetti ai lavori di sistemazione idraulico-forestale e idraulico-agraria, 2025 (FLAI-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_idraulico-forestale-Accordo-di_rinnovo_2025.pdf",
+                  "published_on": "2025-01-01",
+                  "sha256": "d4349690b91ccd63f4d49dc573fbbe6a9aa04fa52e0f7a5efb60045d7f0b77d4"
                 },
-                "section": "Tabella retributiva impiegati — 01/01/2027 (derivata da parametri Art. 35 L1=100)"
+                "page": "30",
+                "section": "Allegato C, IMPIEGATI FORESTALI, Tabella delle retribuzioni in vigore dall'1.01.2027, column TOTALE NAZIONALE CONGLOBATO",
+                "quote": "1° 1.358,14"
               },
+              "transformation": "The TOTALE NAZIONALE CONGLOBATO of level 1°: 1358.14.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2027-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T20:45:43Z",
+                "verification_status": "verified",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-01T20:45:43Z",
+                "review_id": "2026-11-01-ai-renewal-tables"
               }
             }
           },
@@ -236,21 +258,30 @@
             "valid_until": null,
             "value": "1376.66",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "lavoro-economia-it-a181",
-                  "title": "lavoro-economia.it CCNL A181 tabella retributiva impiegati",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/?c=9"
+                  "document_id": "ccnl-idraulico-forestale-rinnovo-2025",
+                  "title": "Accordo di rinnovo del CCNL per gli addetti ai lavori di sistemazione idraulico-forestale e idraulico-agraria, 2025 (FLAI-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_idraulico-forestale-Accordo-di_rinnovo_2025.pdf",
+                  "published_on": "2025-01-01",
+                  "sha256": "d4349690b91ccd63f4d49dc573fbbe6a9aa04fa52e0f7a5efb60045d7f0b77d4"
                 },
-                "section": "Tabella retributiva impiegati — 01/01/2028 (derivata da parametri Art. 35 L1=100)"
+                "page": "31",
+                "section": "Allegato C1, IMPIEGATI FORESTALI, Tabella delle retribuzioni in vigore dall'1.01.2028, column TOTALE NAZIONALE CONGLOBATO",
+                "quote": "1° 1.376,66"
               },
+              "transformation": "The TOTALE NAZIONALE CONGLOBATO of level 1°: 1376.66.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2028-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T20:45:43Z",
+                "verification_status": "verified",
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-01T20:45:43Z",
+                "review_id": "2026-11-01-ai-renewal-tables"
               }
             }
           }
@@ -287,21 +318,30 @@
             "valid_until": "2027-01-01",
             "value": "1433.46",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "lavoro-economia-it-a181",
-                  "title": "lavoro-economia.it CCNL A181 tabella retributiva impiegati",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/?c=9"
+                  "document_id": "ccnl-idraulico-forestale-rinnovo-2025",
+                  "title": "Accordo di rinnovo del CCNL per gli addetti ai lavori di sistemazione idraulico-forestale e idraulico-agraria, 2025 (FLAI-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_idraulico-forestale-Accordo-di_rinnovo_2025.pdf",
+                  "published_on": "2025-01-01",
+                  "sha256": "d4349690b91ccd63f4d49dc573fbbe6a9aa04fa52e0f7a5efb60045d7f0b77d4"
                 },
-                "section": "Tabella retributiva impiegati — 01/01/2026"
+                "page": "29",
+                "section": "Allegato B, IMPIEGATI FORESTALI, Tabella delle retribuzioni in vigore dall'1.01.2026, column TOTALE NAZIONALE CONGLOBATO",
+                "quote": "2° 1.433,46"
               },
+              "transformation": "The TOTALE NAZIONALE CONGLOBATO of level 2°: 1433.46.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-11T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T20:45:43Z",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-01T20:45:43Z",
+                "review_id": "2026-11-01-ai-renewal-tables"
               }
             }
           },
@@ -310,21 +350,30 @@
             "valid_until": "2028-01-01",
             "value": "1468.46",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "lavoro-economia-it-a181",
-                  "title": "lavoro-economia.it CCNL A181 tabella retributiva impiegati",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/?c=9"
+                  "document_id": "ccnl-idraulico-forestale-rinnovo-2025",
+                  "title": "Accordo di rinnovo del CCNL per gli addetti ai lavori di sistemazione idraulico-forestale e idraulico-agraria, 2025 (FLAI-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_idraulico-forestale-Accordo-di_rinnovo_2025.pdf",
+                  "published_on": "2025-01-01",
+                  "sha256": "d4349690b91ccd63f4d49dc573fbbe6a9aa04fa52e0f7a5efb60045d7f0b77d4"
                 },
-                "section": "Tabella retributiva impiegati — 01/01/2027 (derivata da parametri Art. 35 L2=108)"
+                "page": "30",
+                "section": "Allegato C, IMPIEGATI FORESTALI, Tabella delle retribuzioni in vigore dall'1.01.2027, column TOTALE NAZIONALE CONGLOBATO",
+                "quote": "2° 1.468,46"
               },
+              "transformation": "The TOTALE NAZIONALE CONGLOBATO of level 2°: 1468.46.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2027-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T20:45:43Z",
+                "verification_status": "verified",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-01T20:45:43Z",
+                "review_id": "2026-11-01-ai-renewal-tables"
               }
             }
           },
@@ -333,21 +382,30 @@
             "valid_until": null,
             "value": "1488.46",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "lavoro-economia-it-a181",
-                  "title": "lavoro-economia.it CCNL A181 tabella retributiva impiegati",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/?c=9"
+                  "document_id": "ccnl-idraulico-forestale-rinnovo-2025",
+                  "title": "Accordo di rinnovo del CCNL per gli addetti ai lavori di sistemazione idraulico-forestale e idraulico-agraria, 2025 (FLAI-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_idraulico-forestale-Accordo-di_rinnovo_2025.pdf",
+                  "published_on": "2025-01-01",
+                  "sha256": "d4349690b91ccd63f4d49dc573fbbe6a9aa04fa52e0f7a5efb60045d7f0b77d4"
                 },
-                "section": "Tabella retributiva impiegati — 01/01/2028 (derivata da parametri Art. 35 L2=108)"
+                "page": "31",
+                "section": "Allegato C1, IMPIEGATI FORESTALI, Tabella delle retribuzioni in vigore dall'1.01.2028, column TOTALE NAZIONALE CONGLOBATO",
+                "quote": "2° 1.488,46"
               },
+              "transformation": "The TOTALE NAZIONALE CONGLOBATO of level 2°: 1488.46.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2028-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T20:45:43Z",
+                "verification_status": "verified",
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-01T20:45:43Z",
+                "review_id": "2026-11-01-ai-renewal-tables"
               }
             }
           }
@@ -382,69 +440,96 @@
           {
             "valid_from": "2026-01-01",
             "valid_until": "2027-01-01",
-            "value": "1520.99",
+            "value": "1520.98",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "lavoro-economia-it-a181",
-                  "title": "lavoro-economia.it CCNL A181 tabella retributiva impiegati",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/?c=9"
+                  "document_id": "ccnl-idraulico-forestale-rinnovo-2025",
+                  "title": "Accordo di rinnovo del CCNL per gli addetti ai lavori di sistemazione idraulico-forestale e idraulico-agraria, 2025 (FLAI-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_idraulico-forestale-Accordo-di_rinnovo_2025.pdf",
+                  "published_on": "2025-01-01",
+                  "sha256": "d4349690b91ccd63f4d49dc573fbbe6a9aa04fa52e0f7a5efb60045d7f0b77d4"
                 },
-                "section": "Tabella retributiva impiegati — 01/01/2026"
+                "page": "29",
+                "section": "Allegato B, IMPIEGATI FORESTALI, Tabella delle retribuzioni in vigore dall'1.01.2026, column TOTALE NAZIONALE CONGLOBATO",
+                "quote": "3° 1.520,98"
               },
+              "transformation": "The TOTALE NAZIONALE CONGLOBATO of level 3°: 1520.98.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-11T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T20:45:43Z",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-01T20:45:43Z",
+                "review_id": "2026-11-01-ai-renewal-tables"
               }
             }
           },
           {
             "valid_from": "2027-01-01",
             "valid_until": "2028-01-01",
-            "value": "1558.26",
+            "value": "1558.25",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "lavoro-economia-it-a181",
-                  "title": "lavoro-economia.it CCNL A181 tabella retributiva impiegati",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/?c=9"
+                  "document_id": "ccnl-idraulico-forestale-rinnovo-2025",
+                  "title": "Accordo di rinnovo del CCNL per gli addetti ai lavori di sistemazione idraulico-forestale e idraulico-agraria, 2025 (FLAI-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_idraulico-forestale-Accordo-di_rinnovo_2025.pdf",
+                  "published_on": "2025-01-01",
+                  "sha256": "d4349690b91ccd63f4d49dc573fbbe6a9aa04fa52e0f7a5efb60045d7f0b77d4"
                 },
-                "section": "Tabella retributiva impiegati — 01/01/2027 (derivata da parametri Art. 35 L3=115)"
+                "page": "30",
+                "section": "Allegato C, IMPIEGATI FORESTALI, Tabella delle retribuzioni in vigore dall'1.01.2027, column TOTALE NAZIONALE CONGLOBATO",
+                "quote": "3° 1.558,25"
               },
+              "transformation": "The TOTALE NAZIONALE CONGLOBATO of level 3°: 1558.25.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2027-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T20:45:43Z",
+                "verification_status": "verified",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-01T20:45:43Z",
+                "review_id": "2026-11-01-ai-renewal-tables"
               }
             }
           },
           {
             "valid_from": "2028-01-01",
             "valid_until": null,
-            "value": "1579.56",
+            "value": "1579.55",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "lavoro-economia-it-a181",
-                  "title": "lavoro-economia.it CCNL A181 tabella retributiva impiegati",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/?c=9"
+                  "document_id": "ccnl-idraulico-forestale-rinnovo-2025",
+                  "title": "Accordo di rinnovo del CCNL per gli addetti ai lavori di sistemazione idraulico-forestale e idraulico-agraria, 2025 (FLAI-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_idraulico-forestale-Accordo-di_rinnovo_2025.pdf",
+                  "published_on": "2025-01-01",
+                  "sha256": "d4349690b91ccd63f4d49dc573fbbe6a9aa04fa52e0f7a5efb60045d7f0b77d4"
                 },
-                "section": "Tabella retributiva impiegati — 01/01/2028 (derivata da parametri Art. 35 L3=115)"
+                "page": "31",
+                "section": "Allegato C1, IMPIEGATI FORESTALI, Tabella delle retribuzioni in vigore dall'1.01.2028, column TOTALE NAZIONALE CONGLOBATO",
+                "quote": "3° 1.579,55"
               },
+              "transformation": "The TOTALE NAZIONALE CONGLOBATO of level 3°: 1579.55.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2028-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T20:45:43Z",
+                "verification_status": "verified",
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-01T20:45:43Z",
+                "review_id": "2026-11-01-ai-renewal-tables"
               }
             }
           }
@@ -479,69 +564,97 @@
           {
             "valid_from": "2026-01-01",
             "valid_until": "2027-01-01",
-            "value": "1617.94",
+            "value": "1618.07",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "lavoro-economia-it-a181",
-                  "title": "lavoro-economia.it CCNL A181 tabella retributiva impiegati",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/?c=9"
+                  "document_id": "ccnl-idraulico-forestale-rinnovo-2025",
+                  "title": "Accordo di rinnovo del CCNL per gli addetti ai lavori di sistemazione idraulico-forestale e idraulico-agraria, 2025 (FLAI-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_idraulico-forestale-Accordo-di_rinnovo_2025.pdf",
+                  "published_on": "2025-01-01",
+                  "sha256": "d4349690b91ccd63f4d49dc573fbbe6a9aa04fa52e0f7a5efb60045d7f0b77d4"
                 },
-                "section": "Tabella retributiva impiegati — 01/01/2026"
+                "page": "29",
+                "section": "Allegato B, IMPIEGATI FORESTALI, Tabella delle retribuzioni in vigore dall'1.01.2026, column TOTALE NAZIONALE CONGLOBATO",
+                "quote": "4° 1.618,07"
               },
+              "transformation": "The TOTALE NAZIONALE CONGLOBATO of level 4°: 1618.07.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-11T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T20:45:43Z",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
-              }
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-01T20:45:43Z",
+                "review_id": "2026-11-01-ai-renewal-tables"
+              },
+              "note": "The signed tables disagree on level 4 in 2026: p. 29 prints 1.618,07, p. 30 carries 1.617,94 as the pay of 1 January 2027 before the 39,54 increase that reaches 1.657,48. The 2026 table of p. 29 is used for 2026; the 2027 and 2028 totals are those printed."
             }
           },
           {
             "valid_from": "2027-01-01",
             "valid_until": "2028-01-01",
-            "value": "1657.43",
+            "value": "1657.48",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "lavoro-economia-it-a181",
-                  "title": "lavoro-economia.it CCNL A181 tabella retributiva impiegati",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/?c=9"
+                  "document_id": "ccnl-idraulico-forestale-rinnovo-2025",
+                  "title": "Accordo di rinnovo del CCNL per gli addetti ai lavori di sistemazione idraulico-forestale e idraulico-agraria, 2025 (FLAI-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_idraulico-forestale-Accordo-di_rinnovo_2025.pdf",
+                  "published_on": "2025-01-01",
+                  "sha256": "d4349690b91ccd63f4d49dc573fbbe6a9aa04fa52e0f7a5efb60045d7f0b77d4"
                 },
-                "section": "Tabella retributiva impiegati — 01/01/2027 (derivata da parametri Art. 35 L4=122)"
+                "page": "30",
+                "section": "Allegato C, IMPIEGATI FORESTALI, Tabella delle retribuzioni in vigore dall'1.01.2027, column TOTALE NAZIONALE CONGLOBATO",
+                "quote": "4° 1.657,48"
               },
+              "transformation": "The TOTALE NAZIONALE CONGLOBATO of level 4°: 1657.48.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2027-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T20:45:43Z",
+                "verification_status": "verified",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-01T20:45:43Z",
+                "review_id": "2026-11-01-ai-renewal-tables"
               }
             }
           },
           {
             "valid_from": "2028-01-01",
             "valid_until": null,
-            "value": "1679.91",
+            "value": "1680.07",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "lavoro-economia-it-a181",
-                  "title": "lavoro-economia.it CCNL A181 tabella retributiva impiegati",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/?c=9"
+                  "document_id": "ccnl-idraulico-forestale-rinnovo-2025",
+                  "title": "Accordo di rinnovo del CCNL per gli addetti ai lavori di sistemazione idraulico-forestale e idraulico-agraria, 2025 (FLAI-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_idraulico-forestale-Accordo-di_rinnovo_2025.pdf",
+                  "published_on": "2025-01-01",
+                  "sha256": "d4349690b91ccd63f4d49dc573fbbe6a9aa04fa52e0f7a5efb60045d7f0b77d4"
                 },
-                "section": "Tabella retributiva impiegati — 01/01/2028 (derivata da parametri Art. 35 L4=122)"
+                "page": "31",
+                "section": "Allegato C1, IMPIEGATI FORESTALI, Tabella delle retribuzioni in vigore dall'1.01.2028, column TOTALE NAZIONALE CONGLOBATO",
+                "quote": "4° 1.680,07"
               },
+              "transformation": "The TOTALE NAZIONALE CONGLOBATO of level 4°: 1680.07.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2028-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T20:45:43Z",
+                "verification_status": "verified",
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-01T20:45:43Z",
+                "review_id": "2026-11-01-ai-renewal-tables"
               }
             }
           }
@@ -576,69 +689,96 @@
           {
             "valid_from": "2026-01-01",
             "valid_until": "2027-01-01",
-            "value": "1759.47",
+            "value": "1759.46",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "lavoro-economia-it-a181",
-                  "title": "lavoro-economia.it CCNL A181 tabella retributiva impiegati",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/?c=9"
+                  "document_id": "ccnl-idraulico-forestale-rinnovo-2025",
+                  "title": "Accordo di rinnovo del CCNL per gli addetti ai lavori di sistemazione idraulico-forestale e idraulico-agraria, 2025 (FLAI-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_idraulico-forestale-Accordo-di_rinnovo_2025.pdf",
+                  "published_on": "2025-01-01",
+                  "sha256": "d4349690b91ccd63f4d49dc573fbbe6a9aa04fa52e0f7a5efb60045d7f0b77d4"
                 },
-                "section": "Tabella retributiva impiegati — 01/01/2026"
+                "page": "29",
+                "section": "Allegato B, IMPIEGATI FORESTALI, Tabella delle retribuzioni in vigore dall'1.01.2026, column TOTALE NAZIONALE CONGLOBATO",
+                "quote": "5° 1.759,46"
               },
+              "transformation": "The TOTALE NAZIONALE CONGLOBATO of level 5°: 1759.46.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-11T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T20:45:43Z",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-01T20:45:43Z",
+                "review_id": "2026-11-01-ai-renewal-tables"
               }
             }
           },
           {
             "valid_from": "2027-01-01",
             "valid_until": "2028-01-01",
-            "value": "1802.44",
+            "value": "1802.57",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "lavoro-economia-it-a181",
-                  "title": "lavoro-economia.it CCNL A181 tabella retributiva impiegati",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/?c=9"
+                  "document_id": "ccnl-idraulico-forestale-rinnovo-2025",
+                  "title": "Accordo di rinnovo del CCNL per gli addetti ai lavori di sistemazione idraulico-forestale e idraulico-agraria, 2025 (FLAI-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_idraulico-forestale-Accordo-di_rinnovo_2025.pdf",
+                  "published_on": "2025-01-01",
+                  "sha256": "d4349690b91ccd63f4d49dc573fbbe6a9aa04fa52e0f7a5efb60045d7f0b77d4"
                 },
-                "section": "Tabella retributiva impiegati — 01/01/2027 (derivata da parametri Art. 35 L5=133)"
+                "page": "30",
+                "section": "Allegato C, IMPIEGATI FORESTALI, Tabella delle retribuzioni in vigore dall'1.01.2027, column TOTALE NAZIONALE CONGLOBATO",
+                "quote": "5° 1.802,57"
               },
+              "transformation": "The TOTALE NAZIONALE CONGLOBATO of level 5°: 1802.57.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2027-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T20:45:43Z",
+                "verification_status": "verified",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-01T20:45:43Z",
+                "review_id": "2026-11-01-ai-renewal-tables"
               }
             }
           },
           {
             "valid_from": "2028-01-01",
             "valid_until": null,
-            "value": "1827.07",
+            "value": "1827.20",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "lavoro-economia-it-a181",
-                  "title": "lavoro-economia.it CCNL A181 tabella retributiva impiegati",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/?c=9"
+                  "document_id": "ccnl-idraulico-forestale-rinnovo-2025",
+                  "title": "Accordo di rinnovo del CCNL per gli addetti ai lavori di sistemazione idraulico-forestale e idraulico-agraria, 2025 (FLAI-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_idraulico-forestale-Accordo-di_rinnovo_2025.pdf",
+                  "published_on": "2025-01-01",
+                  "sha256": "d4349690b91ccd63f4d49dc573fbbe6a9aa04fa52e0f7a5efb60045d7f0b77d4"
                 },
-                "section": "Tabella retributiva impiegati — 01/01/2028 (derivata da parametri Art. 35 L5=133)"
+                "page": "31",
+                "section": "Allegato C1, IMPIEGATI FORESTALI, Tabella delle retribuzioni in vigore dall'1.01.2028, column TOTALE NAZIONALE CONGLOBATO",
+                "quote": "5° 1.827,20"
               },
+              "transformation": "The TOTALE NAZIONALE CONGLOBATO of level 5°: 1827.20.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2028-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T20:45:43Z",
+                "verification_status": "verified",
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-01T20:45:43Z",
+                "review_id": "2026-11-01-ai-renewal-tables"
               }
             }
           }
@@ -675,21 +815,30 @@
             "valid_until": "2027-01-01",
             "value": "2018.65",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "lavoro-economia-it-a181",
-                  "title": "lavoro-economia.it CCNL A181 tabella retributiva impiegati",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/?c=9"
+                  "document_id": "ccnl-idraulico-forestale-rinnovo-2025",
+                  "title": "Accordo di rinnovo del CCNL per gli addetti ai lavori di sistemazione idraulico-forestale e idraulico-agraria, 2025 (FLAI-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_idraulico-forestale-Accordo-di_rinnovo_2025.pdf",
+                  "published_on": "2025-01-01",
+                  "sha256": "d4349690b91ccd63f4d49dc573fbbe6a9aa04fa52e0f7a5efb60045d7f0b77d4"
                 },
-                "section": "Tabella retributiva impiegati — 01/01/2026"
+                "page": "29",
+                "section": "Allegato B, IMPIEGATI FORESTALI, Tabella delle retribuzioni in vigore dall'1.01.2026, column TOTALE NAZIONALE CONGLOBATO",
+                "quote": "6° 2.018,65"
               },
+              "transformation": "The TOTALE NAZIONALE CONGLOBATO of level 6°: 2018.65.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-11T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T20:45:43Z",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-01T20:45:43Z",
+                "review_id": "2026-11-01-ai-renewal-tables"
               }
             }
           },
@@ -698,44 +847,62 @@
             "valid_until": "2028-01-01",
             "value": "2067.91",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "lavoro-economia-it-a181",
-                  "title": "lavoro-economia.it CCNL A181 tabella retributiva impiegati",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/?c=9"
+                  "document_id": "ccnl-idraulico-forestale-rinnovo-2025",
+                  "title": "Accordo di rinnovo del CCNL per gli addetti ai lavori di sistemazione idraulico-forestale e idraulico-agraria, 2025 (FLAI-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_idraulico-forestale-Accordo-di_rinnovo_2025.pdf",
+                  "published_on": "2025-01-01",
+                  "sha256": "d4349690b91ccd63f4d49dc573fbbe6a9aa04fa52e0f7a5efb60045d7f0b77d4"
                 },
-                "section": "Tabella retributiva impiegati — 01/01/2027 (derivata da parametri Art. 35 L6=152)"
+                "page": "30",
+                "section": "Allegato C, IMPIEGATI FORESTALI, Tabella delle retribuzioni in vigore dall'1.01.2027, column TOTALE NAZIONALE CONGLOBATO",
+                "quote": "6° 2.067,91"
               },
+              "transformation": "The TOTALE NAZIONALE CONGLOBATO of level 6°: 2067.91.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2027-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T20:45:43Z",
+                "verification_status": "verified",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-01T20:45:43Z",
+                "review_id": "2026-11-01-ai-renewal-tables"
               }
             }
           },
           {
             "valid_from": "2028-01-01",
             "valid_until": null,
-            "value": "2095.91",
+            "value": "2096.06",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "lavoro-economia-it-a181",
-                  "title": "lavoro-economia.it CCNL A181 tabella retributiva impiegati",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/?c=9"
+                  "document_id": "ccnl-idraulico-forestale-rinnovo-2025",
+                  "title": "Accordo di rinnovo del CCNL per gli addetti ai lavori di sistemazione idraulico-forestale e idraulico-agraria, 2025 (FLAI-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_idraulico-forestale-Accordo-di_rinnovo_2025.pdf",
+                  "published_on": "2025-01-01",
+                  "sha256": "d4349690b91ccd63f4d49dc573fbbe6a9aa04fa52e0f7a5efb60045d7f0b77d4"
                 },
-                "section": "Tabella retributiva impiegati — 01/01/2028 (derivata da parametri Art. 35 L6=152)"
+                "page": "31",
+                "section": "Allegato C1, IMPIEGATI FORESTALI, Tabella delle retribuzioni in vigore dall'1.01.2028, column TOTALE NAZIONALE CONGLOBATO",
+                "quote": "6° 2.096,06"
               },
+              "transformation": "The TOTALE NAZIONALE CONGLOBATO of level 6°: 2096.06.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2028-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T20:45:43Z",
+                "verification_status": "verified",
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-01T20:45:43Z",
+                "review_id": "2026-11-01-ai-renewal-tables"
               }
             }
           }
@@ -772,21 +939,30 @@
             "valid_until": "2027-01-01",
             "value": "2018.65",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "lavoro-economia-it-a181",
-                  "title": "lavoro-economia.it CCNL A181 tabella retributiva impiegati",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/?c=9"
+                  "document_id": "ccnl-idraulico-forestale-rinnovo-2025",
+                  "title": "Accordo di rinnovo del CCNL per gli addetti ai lavori di sistemazione idraulico-forestale e idraulico-agraria, 2025 (FLAI-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_idraulico-forestale-Accordo-di_rinnovo_2025.pdf",
+                  "published_on": "2025-01-01",
+                  "sha256": "d4349690b91ccd63f4d49dc573fbbe6a9aa04fa52e0f7a5efb60045d7f0b77d4"
                 },
-                "section": "Tabella retributiva impiegati — 01/01/2026 (livello 6°, stesso di I6)"
+                "page": "29",
+                "section": "Allegato B, IMPIEGATI FORESTALI, Tabella delle retribuzioni in vigore dall'1.01.2026, column TOTALE NAZIONALE CONGLOBATO",
+                "quote": "6° 2.018,65"
               },
+              "transformation": "The TOTALE NAZIONALE CONGLOBATO of level 6°: 2018.65.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-11T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T20:45:43Z",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-01T20:45:43Z",
+                "review_id": "2026-11-01-ai-renewal-tables"
               }
             }
           },
@@ -795,44 +971,62 @@
             "valid_until": "2028-01-01",
             "value": "2067.91",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "lavoro-economia-it-a181",
-                  "title": "lavoro-economia.it CCNL A181 tabella retributiva impiegati",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/?c=9"
+                  "document_id": "ccnl-idraulico-forestale-rinnovo-2025",
+                  "title": "Accordo di rinnovo del CCNL per gli addetti ai lavori di sistemazione idraulico-forestale e idraulico-agraria, 2025 (FLAI-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_idraulico-forestale-Accordo-di_rinnovo_2025.pdf",
+                  "published_on": "2025-01-01",
+                  "sha256": "d4349690b91ccd63f4d49dc573fbbe6a9aa04fa52e0f7a5efb60045d7f0b77d4"
                 },
-                "section": "Tabella retributiva impiegati — 01/01/2027 (derivata da parametri L6=152)"
+                "page": "30",
+                "section": "Allegato C, IMPIEGATI FORESTALI, Tabella delle retribuzioni in vigore dall'1.01.2027, column TOTALE NAZIONALE CONGLOBATO",
+                "quote": "6° 2.067,91"
               },
+              "transformation": "The TOTALE NAZIONALE CONGLOBATO of level 6°: 2067.91.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2027-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T20:45:43Z",
+                "verification_status": "verified",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-01T20:45:43Z",
+                "review_id": "2026-11-01-ai-renewal-tables"
               }
             }
           },
           {
             "valid_from": "2028-01-01",
             "valid_until": null,
-            "value": "2095.91",
+            "value": "2096.06",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "lavoro-economia-it-a181",
-                  "title": "lavoro-economia.it CCNL A181 tabella retributiva impiegati",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/?c=9"
+                  "document_id": "ccnl-idraulico-forestale-rinnovo-2025",
+                  "title": "Accordo di rinnovo del CCNL per gli addetti ai lavori di sistemazione idraulico-forestale e idraulico-agraria, 2025 (FLAI-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_idraulico-forestale-Accordo-di_rinnovo_2025.pdf",
+                  "published_on": "2025-01-01",
+                  "sha256": "d4349690b91ccd63f4d49dc573fbbe6a9aa04fa52e0f7a5efb60045d7f0b77d4"
                 },
-                "section": "Tabella retributiva impiegati — 01/01/2028 (derivata da parametri L6=152)"
+                "page": "31",
+                "section": "Allegato C1, IMPIEGATI FORESTALI, Tabella delle retribuzioni in vigore dall'1.01.2028, column TOTALE NAZIONALE CONGLOBATO",
+                "quote": "6° 2.096,06"
               },
+              "transformation": "The TOTALE NAZIONALE CONGLOBATO of level 6°: 2096.06.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2028-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T20:45:43Z",
+                "verification_status": "verified",
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-01T20:45:43Z",
+                "review_id": "2026-11-01-ai-renewal-tables"
               }
             }
           }
@@ -1120,7 +1314,7 @@
     "source": "https://www.lavoro-economia.it/?c=9",
     "verification_status": "unverified",
     "published_at": "2026-09-11",
-    "source_hash": "8e3269f83967cf55e60dec3e4940aa08fa68c557cdd281e84acefb308b37810e",
+    "source_hash": "0b49be62db0e93d96ca147be96e318fbb3fba32353ab937699f83bbcf98dbf9d",
     "source_type": "commercial_secondary"
   },
   "work_rules": {

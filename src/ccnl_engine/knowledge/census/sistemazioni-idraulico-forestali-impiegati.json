@@ -51,22 +51,6 @@
       }
     },
     {
-      "id": "derived_tranche_rounding",
-      "institute": "base_salary",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "Tranches 01/01/2027 and 01/01/2028 for impiegati derived from confirmed Art. 35 parametri (L1=100, L2=108, L3=115, L4=122, L5=133, L6=152) applied to 01/01/2026 base. Rounding wobble up to 0.15 EUR on L4-L6 compared to rounded CCNL tables.",
-      "calculation": "ccnl/sistemazioni-idraulico-forestali-impiegati:coverage.notes",
-      "state": "absent",
-      "remediation": "Replace the parameter-derived 2027 and 2028 tranches with the rounded CCNL tables.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "sistemazioni-idraulico-forestali-impiegati/derived_tranche_rounding"
-        ]
-      }
-    },
-    {
       "id": "disability_permit_tfr",
       "institute": "disability_permits",
       "variant": "all",

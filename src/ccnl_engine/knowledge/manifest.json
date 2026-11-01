@@ -1989,7 +1989,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/sistemazioni-idraulico-forestali-impiegati",
       "ruleset_version": "2026.1",
-      "source_hash": "8e3269f83967cf55e60dec3e4940aa08fa68c557cdd281e84acefb308b37810e",
+      "source_hash": "0b49be62db0e93d96ca147be96e318fbb3fba32353ab937699f83bbcf98dbf9d",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/sistemazioni-idraulico-forestali-impiegati.json.gz"
@@ -2006,7 +2006,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/sistemazioni-idraulico-forestali-operai",
       "ruleset_version": "2026.1",
-      "source_hash": "3eaf3ca2d662ec275c922db229323a55c7e86d34aeb268bd4035092a27d77391",
+      "source_hash": "fe4b2125de91332739e0e9f3ba548af446946731470908d59b0b0636342335f2",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/sistemazioni-idraulico-forestali-operai.json.gz"
@@ -4687,7 +4687,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "92017942778b81afdcdf6cf3a6e2c7d45f254092498d1c413d33055a2692c121",
+      "source_hash": "f8d8dc5a4ab2e4e27a171e3bfcb27c105016630b26892d24efe9c0bd32211204",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/sistemazioni-idraulico-forestali-impiegati.json.gz",

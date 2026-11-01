@@ -169,6 +169,28 @@
         "findings": [
           "Art. 14 - Mensilità aggiuntive (13ª e 14ª) (p. 43): \"dette mensilità aggiuntive sono frazionabili in dodicesimi nell’ipotesi di inizio o di cessazione del rapporto nel corso dell’anno. [...] La frazione di mese superiore a 15 giorni viene considerata come un mese intero.\". Added: more_than 15 (the file applied the engine default, at least 15 days)."
         ]
+      },
+      {
+        "id": "2026-11-01-ai-renewal-tables",
+        "date": "2026-11-01",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Minimum pay of the operai forestali con rapporto di lavoro a tempo indeterminato from 1 January 2026, 2027 and 2028 against the tables of the signed 2025 renewal (Allegati B, C, C1, scanned pages read as images). AI review only.",
+        "outcome": "corrected",
+        "independence": "same_process",
+        "checked": [
+          "levels.base_salary"
+        ],
+        "sources": [
+          {
+            "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_idraulico-forestale-Accordo-di_rinnovo_2025.pdf",
+            "sha256": "d4349690b91ccd63f4d49dc573fbbe6a9aa04fa52e0f7a5efb60045d7f0b77d4"
+          }
+        ],
+        "findings": [
+          "The 2026-2028 minimums now cite the TOTALE NAZIONALE CONGLOBATO of the signed tables (pp. 29-31) instead of a secondary site and the Art. 35 parameters.",
+          "Level 3 in 2027 and 2028 was 1 cent below the table (1.507,53 and 1.528,09) and level 4 in 2026 1 cent above (1.537,90)."
+        ]
       }
     ]
   },
@@ -184,21 +206,30 @@
             "valid_until": "2027-01-01",
             "value": "1325.73",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "redigo-info-a181-operai",
-                  "title": "redigo.info CCNL A181 tabella retributiva operai OTI",
-                  "kind": "tabella_retributiva",
-                  "url": "https://redigo.info/"
+                  "document_id": "ccnl-idraulico-forestale-rinnovo-2025",
+                  "title": "Accordo di rinnovo del CCNL per gli addetti ai lavori di sistemazione idraulico-forestale e idraulico-agraria, 2025 (FLAI-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_idraulico-forestale-Accordo-di_rinnovo_2025.pdf",
+                  "published_on": "2025-01-01",
+                  "sha256": "d4349690b91ccd63f4d49dc573fbbe6a9aa04fa52e0f7a5efb60045d7f0b77d4"
                 },
-                "section": "Tabella retributiva operai OTI — 01/01/2026"
+                "page": "29",
+                "section": "Allegato B, OPERAI FORESTALI CON RAPPORTO DI LAVORO A TEMPO INDETERMINATO, Tabella delle retribuzioni in vigore dall'1.01.2026, column TOTALE NAZIONALE CONGLOBATO",
+                "quote": "1 – COMUNE 1.325,73"
               },
+              "transformation": "The TOTALE NAZIONALE CONGLOBATO of level 1 – COMUNE: 1325.73.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-11T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T20:45:43Z",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-01T20:45:43Z",
+                "review_id": "2026-11-01-ai-renewal-tables"
               }
             }
           },
@@ -207,21 +238,30 @@
             "valid_until": "2028-01-01",
             "value": "1358.14",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "redigo-info-a181-operai",
-                  "title": "redigo.info CCNL A181 tabella retributiva operai OTI",
-                  "kind": "tabella_retributiva",
-                  "url": "https://redigo.info/"
+                  "document_id": "ccnl-idraulico-forestale-rinnovo-2025",
+                  "title": "Accordo di rinnovo del CCNL per gli addetti ai lavori di sistemazione idraulico-forestale e idraulico-agraria, 2025 (FLAI-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_idraulico-forestale-Accordo-di_rinnovo_2025.pdf",
+                  "published_on": "2025-01-01",
+                  "sha256": "d4349690b91ccd63f4d49dc573fbbe6a9aa04fa52e0f7a5efb60045d7f0b77d4"
                 },
-                "section": "Tabella retributiva operai OTI — 01/01/2027"
+                "page": "30",
+                "section": "Allegato C, OPERAI FORESTALI CON RAPPORTO DI LAVORO A TEMPO INDETERMINATO, Tabella delle retribuzioni in vigore dall'1.01.2027, column TOTALE NAZIONALE CONGLOBATO",
+                "quote": "1 – COMUNE 1.358,14"
               },
+              "transformation": "The TOTALE NAZIONALE CONGLOBATO of level 1 – COMUNE: 1358.14.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-11T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T20:45:43Z",
                 "verification_status": "verified",
-                "effective_from": "2027-01-01"
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-01T20:45:43Z",
+                "review_id": "2026-11-01-ai-renewal-tables"
               }
             }
           },
@@ -230,21 +270,30 @@
             "valid_until": null,
             "value": "1376.66",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "redigo-info-a181-operai",
-                  "title": "redigo.info CCNL A181 tabella retributiva operai OTI",
-                  "kind": "tabella_retributiva",
-                  "url": "https://redigo.info/"
+                  "document_id": "ccnl-idraulico-forestale-rinnovo-2025",
+                  "title": "Accordo di rinnovo del CCNL per gli addetti ai lavori di sistemazione idraulico-forestale e idraulico-agraria, 2025 (FLAI-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_idraulico-forestale-Accordo-di_rinnovo_2025.pdf",
+                  "published_on": "2025-01-01",
+                  "sha256": "d4349690b91ccd63f4d49dc573fbbe6a9aa04fa52e0f7a5efb60045d7f0b77d4"
                 },
-                "section": "Tabella retributiva operai OTI — 01/01/2028"
+                "page": "31",
+                "section": "Allegato C1, OPERAI FORESTALI CON RAPPORTO DI LAVORO A TEMPO INDETERMINATO, Tabella delle retribuzioni in vigore dall'1.01.2028, column TOTALE NAZIONALE CONGLOBATO",
+                "quote": "1 – COMUNE 1.376,66"
               },
+              "transformation": "The TOTALE NAZIONALE CONGLOBATO of level 1 – COMUNE: 1376.66.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-11T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T20:45:43Z",
                 "verification_status": "verified",
-                "effective_from": "2028-01-01"
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-01T20:45:43Z",
+                "review_id": "2026-11-01-ai-renewal-tables"
               }
             }
           }
@@ -281,21 +330,30 @@
             "valid_until": "2027-01-01",
             "value": "1436.16",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "redigo-info-a181-operai",
-                  "title": "redigo.info CCNL A181 tabella retributiva operai OTI",
-                  "kind": "tabella_retributiva",
-                  "url": "https://redigo.info/"
+                  "document_id": "ccnl-idraulico-forestale-rinnovo-2025",
+                  "title": "Accordo di rinnovo del CCNL per gli addetti ai lavori di sistemazione idraulico-forestale e idraulico-agraria, 2025 (FLAI-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_idraulico-forestale-Accordo-di_rinnovo_2025.pdf",
+                  "published_on": "2025-01-01",
+                  "sha256": "d4349690b91ccd63f4d49dc573fbbe6a9aa04fa52e0f7a5efb60045d7f0b77d4"
                 },
-                "section": "Tabella retributiva operai OTI — 01/01/2026"
+                "page": "29",
+                "section": "Allegato B, OPERAI FORESTALI CON RAPPORTO DI LAVORO A TEMPO INDETERMINATO, Tabella delle retribuzioni in vigore dall'1.01.2026, column TOTALE NAZIONALE CONGLOBATO",
+                "quote": "2 - QUALIFICATO 1.436,16"
               },
+              "transformation": "The TOTALE NAZIONALE CONGLOBATO of level 2 - QUALIFICATO: 1436.16.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-11T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T20:45:43Z",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-01T20:45:43Z",
+                "review_id": "2026-11-01-ai-renewal-tables"
               }
             }
           },
@@ -304,21 +362,30 @@
             "valid_until": "2028-01-01",
             "value": "1471.16",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "redigo-info-a181-operai",
-                  "title": "redigo.info CCNL A181 tabella retributiva operai OTI",
-                  "kind": "tabella_retributiva",
-                  "url": "https://redigo.info/"
+                  "document_id": "ccnl-idraulico-forestale-rinnovo-2025",
+                  "title": "Accordo di rinnovo del CCNL per gli addetti ai lavori di sistemazione idraulico-forestale e idraulico-agraria, 2025 (FLAI-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_idraulico-forestale-Accordo-di_rinnovo_2025.pdf",
+                  "published_on": "2025-01-01",
+                  "sha256": "d4349690b91ccd63f4d49dc573fbbe6a9aa04fa52e0f7a5efb60045d7f0b77d4"
                 },
-                "section": "Tabella retributiva operai OTI — 01/01/2027"
+                "page": "30",
+                "section": "Allegato C, OPERAI FORESTALI CON RAPPORTO DI LAVORO A TEMPO INDETERMINATO, Tabella delle retribuzioni in vigore dall'1.01.2027, column TOTALE NAZIONALE CONGLOBATO",
+                "quote": "2 - QUALIFICATO 1.471,16"
               },
+              "transformation": "The TOTALE NAZIONALE CONGLOBATO of level 2 - QUALIFICATO: 1471.16.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-11T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T20:45:43Z",
                 "verification_status": "verified",
-                "effective_from": "2027-01-01"
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-01T20:45:43Z",
+                "review_id": "2026-11-01-ai-renewal-tables"
               }
             }
           },
@@ -327,21 +394,30 @@
             "valid_until": null,
             "value": "1491.16",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "redigo-info-a181-operai",
-                  "title": "redigo.info CCNL A181 tabella retributiva operai OTI",
-                  "kind": "tabella_retributiva",
-                  "url": "https://redigo.info/"
+                  "document_id": "ccnl-idraulico-forestale-rinnovo-2025",
+                  "title": "Accordo di rinnovo del CCNL per gli addetti ai lavori di sistemazione idraulico-forestale e idraulico-agraria, 2025 (FLAI-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_idraulico-forestale-Accordo-di_rinnovo_2025.pdf",
+                  "published_on": "2025-01-01",
+                  "sha256": "d4349690b91ccd63f4d49dc573fbbe6a9aa04fa52e0f7a5efb60045d7f0b77d4"
                 },
-                "section": "Tabella retributiva operai OTI — 01/01/2028"
+                "page": "31",
+                "section": "Allegato C1, OPERAI FORESTALI CON RAPPORTO DI LAVORO A TEMPO INDETERMINATO, Tabella delle retribuzioni in vigore dall'1.01.2028, column TOTALE NAZIONALE CONGLOBATO",
+                "quote": "2 - QUALIFICATO 1.491,16"
               },
+              "transformation": "The TOTALE NAZIONALE CONGLOBATO of level 2 - QUALIFICATO: 1491.16.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-11T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T20:45:43Z",
                 "verification_status": "verified",
-                "effective_from": "2028-01-01"
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-01T20:45:43Z",
+                "review_id": "2026-11-01-ai-renewal-tables"
               }
             }
           }
@@ -378,67 +454,94 @@
             "valid_until": "2027-01-01",
             "value": "1471.55",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "redigo-info-a181-operai",
-                  "title": "redigo.info CCNL A181 tabella retributiva operai OTI",
-                  "kind": "tabella_retributiva",
-                  "url": "https://redigo.info/"
+                  "document_id": "ccnl-idraulico-forestale-rinnovo-2025",
+                  "title": "Accordo di rinnovo del CCNL per gli addetti ai lavori di sistemazione idraulico-forestale e idraulico-agraria, 2025 (FLAI-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_idraulico-forestale-Accordo-di_rinnovo_2025.pdf",
+                  "published_on": "2025-01-01",
+                  "sha256": "d4349690b91ccd63f4d49dc573fbbe6a9aa04fa52e0f7a5efb60045d7f0b77d4"
                 },
-                "section": "Tabella retributiva operai OTI — 01/01/2026"
+                "page": "29",
+                "section": "Allegato B, OPERAI FORESTALI CON RAPPORTO DI LAVORO A TEMPO INDETERMINATO, Tabella delle retribuzioni in vigore dall'1.01.2026, column TOTALE NAZIONALE CONGLOBATO",
+                "quote": "3 - QUAL. SUPER 1.471,55"
               },
+              "transformation": "The TOTALE NAZIONALE CONGLOBATO of level 3 - QUAL. SUPER: 1471.55.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-11T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T20:45:43Z",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-01T20:45:43Z",
+                "review_id": "2026-11-01-ai-renewal-tables"
               }
             }
           },
           {
             "valid_from": "2027-01-01",
             "valid_until": "2028-01-01",
-            "value": "1507.52",
+            "value": "1507.53",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "redigo-info-a181-operai",
-                  "title": "redigo.info CCNL A181 tabella retributiva operai OTI",
-                  "kind": "tabella_retributiva",
-                  "url": "https://redigo.info/"
+                  "document_id": "ccnl-idraulico-forestale-rinnovo-2025",
+                  "title": "Accordo di rinnovo del CCNL per gli addetti ai lavori di sistemazione idraulico-forestale e idraulico-agraria, 2025 (FLAI-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_idraulico-forestale-Accordo-di_rinnovo_2025.pdf",
+                  "published_on": "2025-01-01",
+                  "sha256": "d4349690b91ccd63f4d49dc573fbbe6a9aa04fa52e0f7a5efb60045d7f0b77d4"
                 },
-                "section": "Tabella retributiva operai OTI — 01/01/2027"
+                "page": "30",
+                "section": "Allegato C, OPERAI FORESTALI CON RAPPORTO DI LAVORO A TEMPO INDETERMINATO, Tabella delle retribuzioni in vigore dall'1.01.2027, column TOTALE NAZIONALE CONGLOBATO",
+                "quote": "3 - QUAL. SUPER 1.507,53"
               },
+              "transformation": "The TOTALE NAZIONALE CONGLOBATO of level 3 - QUAL. SUPER: 1507.53.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-11T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T20:45:43Z",
                 "verification_status": "verified",
-                "effective_from": "2027-01-01"
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-01T20:45:43Z",
+                "review_id": "2026-11-01-ai-renewal-tables"
               }
             }
           },
           {
             "valid_from": "2028-01-01",
             "valid_until": null,
-            "value": "1528.08",
+            "value": "1528.09",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "redigo-info-a181-operai",
-                  "title": "redigo.info CCNL A181 tabella retributiva operai OTI",
-                  "kind": "tabella_retributiva",
-                  "url": "https://redigo.info/"
+                  "document_id": "ccnl-idraulico-forestale-rinnovo-2025",
+                  "title": "Accordo di rinnovo del CCNL per gli addetti ai lavori di sistemazione idraulico-forestale e idraulico-agraria, 2025 (FLAI-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_idraulico-forestale-Accordo-di_rinnovo_2025.pdf",
+                  "published_on": "2025-01-01",
+                  "sha256": "d4349690b91ccd63f4d49dc573fbbe6a9aa04fa52e0f7a5efb60045d7f0b77d4"
                 },
-                "section": "Tabella retributiva operai OTI — 01/01/2028"
+                "page": "31",
+                "section": "Allegato C1, OPERAI FORESTALI CON RAPPORTO DI LAVORO A TEMPO INDETERMINATO, Tabella delle retribuzioni in vigore dall'1.01.2028, column TOTALE NAZIONALE CONGLOBATO",
+                "quote": "3 - QUAL. SUPER 1.528,09"
               },
+              "transformation": "The TOTALE NAZIONALE CONGLOBATO of level 3 - QUAL. SUPER: 1528.09.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-11T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T20:45:43Z",
                 "verification_status": "verified",
-                "effective_from": "2028-01-01"
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-01T20:45:43Z",
+                "review_id": "2026-11-01-ai-renewal-tables"
               }
             }
           }
@@ -473,23 +576,32 @@
           {
             "valid_from": "2026-01-01",
             "valid_until": "2027-01-01",
-            "value": "1537.91",
+            "value": "1537.90",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "redigo-info-a181-operai",
-                  "title": "redigo.info CCNL A181 tabella retributiva operai OTI",
-                  "kind": "tabella_retributiva",
-                  "url": "https://redigo.info/"
+                  "document_id": "ccnl-idraulico-forestale-rinnovo-2025",
+                  "title": "Accordo di rinnovo del CCNL per gli addetti ai lavori di sistemazione idraulico-forestale e idraulico-agraria, 2025 (FLAI-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_idraulico-forestale-Accordo-di_rinnovo_2025.pdf",
+                  "published_on": "2025-01-01",
+                  "sha256": "d4349690b91ccd63f4d49dc573fbbe6a9aa04fa52e0f7a5efb60045d7f0b77d4"
                 },
-                "section": "Tabella retributiva operai OTI — 01/01/2026"
+                "page": "29",
+                "section": "Allegato B, OPERAI FORESTALI CON RAPPORTO DI LAVORO A TEMPO INDETERMINATO, Tabella delle retribuzioni in vigore dall'1.01.2026, column TOTALE NAZIONALE CONGLOBATO",
+                "quote": "4 - SPECIALIZZ. 1.537,90"
               },
+              "transformation": "The TOTALE NAZIONALE CONGLOBATO of level 4 - SPECIALIZZ.: 1537.90.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-11T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T20:45:43Z",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-01T20:45:43Z",
+                "review_id": "2026-11-01-ai-renewal-tables"
               }
             }
           },
@@ -498,21 +610,30 @@
             "valid_until": "2028-01-01",
             "value": "1575.50",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "redigo-info-a181-operai",
-                  "title": "redigo.info CCNL A181 tabella retributiva operai OTI",
-                  "kind": "tabella_retributiva",
-                  "url": "https://redigo.info/"
+                  "document_id": "ccnl-idraulico-forestale-rinnovo-2025",
+                  "title": "Accordo di rinnovo del CCNL per gli addetti ai lavori di sistemazione idraulico-forestale e idraulico-agraria, 2025 (FLAI-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_idraulico-forestale-Accordo-di_rinnovo_2025.pdf",
+                  "published_on": "2025-01-01",
+                  "sha256": "d4349690b91ccd63f4d49dc573fbbe6a9aa04fa52e0f7a5efb60045d7f0b77d4"
                 },
-                "section": "Tabella retributiva operai OTI — 01/01/2027"
+                "page": "30",
+                "section": "Allegato C, OPERAI FORESTALI CON RAPPORTO DI LAVORO A TEMPO INDETERMINATO, Tabella delle retribuzioni in vigore dall'1.01.2027, column TOTALE NAZIONALE CONGLOBATO",
+                "quote": "4 - SPECIALIZZ. 1.575,50"
               },
+              "transformation": "The TOTALE NAZIONALE CONGLOBATO of level 4 - SPECIALIZZ.: 1575.50.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-11T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T20:45:43Z",
                 "verification_status": "verified",
-                "effective_from": "2027-01-01"
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-01T20:45:43Z",
+                "review_id": "2026-11-01-ai-renewal-tables"
               }
             }
           },
@@ -521,21 +642,30 @@
             "valid_until": null,
             "value": "1596.98",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "redigo-info-a181-operai",
-                  "title": "redigo.info CCNL A181 tabella retributiva operai OTI",
-                  "kind": "tabella_retributiva",
-                  "url": "https://redigo.info/"
+                  "document_id": "ccnl-idraulico-forestale-rinnovo-2025",
+                  "title": "Accordo di rinnovo del CCNL per gli addetti ai lavori di sistemazione idraulico-forestale e idraulico-agraria, 2025 (FLAI-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_idraulico-forestale-Accordo-di_rinnovo_2025.pdf",
+                  "published_on": "2025-01-01",
+                  "sha256": "d4349690b91ccd63f4d49dc573fbbe6a9aa04fa52e0f7a5efb60045d7f0b77d4"
                 },
-                "section": "Tabella retributiva operai OTI — 01/01/2028"
+                "page": "31",
+                "section": "Allegato C1, OPERAI FORESTALI CON RAPPORTO DI LAVORO A TEMPO INDETERMINATO, Tabella delle retribuzioni in vigore dall'1.01.2028, column TOTALE NAZIONALE CONGLOBATO",
+                "quote": "4 - SPECIALIZZ. 1.596,98"
               },
+              "transformation": "The TOTALE NAZIONALE CONGLOBATO of level 4 - SPECIALIZZ.: 1596.98.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-11T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T20:45:43Z",
                 "verification_status": "verified",
-                "effective_from": "2028-01-01"
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-01T20:45:43Z",
+                "review_id": "2026-11-01-ai-renewal-tables"
               }
             }
           }
@@ -572,21 +702,30 @@
             "valid_until": "2027-01-01",
             "value": "1633.33",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "redigo-info-a181-operai",
-                  "title": "redigo.info CCNL A181 tabella retributiva operai OTI",
-                  "kind": "tabella_retributiva",
-                  "url": "https://redigo.info/"
+                  "document_id": "ccnl-idraulico-forestale-rinnovo-2025",
+                  "title": "Accordo di rinnovo del CCNL per gli addetti ai lavori di sistemazione idraulico-forestale e idraulico-agraria, 2025 (FLAI-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_idraulico-forestale-Accordo-di_rinnovo_2025.pdf",
+                  "published_on": "2025-01-01",
+                  "sha256": "d4349690b91ccd63f4d49dc573fbbe6a9aa04fa52e0f7a5efb60045d7f0b77d4"
                 },
-                "section": "Tabella retributiva operai OTI — 01/01/2026"
+                "page": "29",
+                "section": "Allegato B, OPERAI FORESTALI CON RAPPORTO DI LAVORO A TEMPO INDETERMINATO, Tabella delle retribuzioni in vigore dall'1.01.2026, column TOTALE NAZIONALE CONGLOBATO",
+                "quote": "5 - SPEC. SUPER 1.633,33"
               },
+              "transformation": "The TOTALE NAZIONALE CONGLOBATO of level 5 - SPEC. SUPER: 1633.33.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-11T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T20:45:43Z",
                 "verification_status": "verified",
-                "effective_from": "2026-01-01"
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-01T20:45:43Z",
+                "review_id": "2026-11-01-ai-renewal-tables"
               }
             }
           },
@@ -595,21 +734,30 @@
             "valid_until": "2028-01-01",
             "value": "1673.19",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "redigo-info-a181-operai",
-                  "title": "redigo.info CCNL A181 tabella retributiva operai OTI",
-                  "kind": "tabella_retributiva",
-                  "url": "https://redigo.info/"
+                  "document_id": "ccnl-idraulico-forestale-rinnovo-2025",
+                  "title": "Accordo di rinnovo del CCNL per gli addetti ai lavori di sistemazione idraulico-forestale e idraulico-agraria, 2025 (FLAI-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_idraulico-forestale-Accordo-di_rinnovo_2025.pdf",
+                  "published_on": "2025-01-01",
+                  "sha256": "d4349690b91ccd63f4d49dc573fbbe6a9aa04fa52e0f7a5efb60045d7f0b77d4"
                 },
-                "section": "Tabella retributiva operai OTI — 01/01/2027"
+                "page": "30",
+                "section": "Allegato C, OPERAI FORESTALI CON RAPPORTO DI LAVORO A TEMPO INDETERMINATO, Tabella delle retribuzioni in vigore dall'1.01.2027, column TOTALE NAZIONALE CONGLOBATO",
+                "quote": "5 - SPEC. SUPER 1.673,19"
               },
+              "transformation": "The TOTALE NAZIONALE CONGLOBATO of level 5 - SPEC. SUPER: 1673.19.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-11T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T20:45:43Z",
                 "verification_status": "verified",
-                "effective_from": "2027-01-01"
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-01T20:45:43Z",
+                "review_id": "2026-11-01-ai-renewal-tables"
               }
             }
           },
@@ -618,21 +766,30 @@
             "valid_until": null,
             "value": "1695.97",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "redigo-info-a181-operai",
-                  "title": "redigo.info CCNL A181 tabella retributiva operai OTI",
-                  "kind": "tabella_retributiva",
-                  "url": "https://redigo.info/"
+                  "document_id": "ccnl-idraulico-forestale-rinnovo-2025",
+                  "title": "Accordo di rinnovo del CCNL per gli addetti ai lavori di sistemazione idraulico-forestale e idraulico-agraria, 2025 (FLAI-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_idraulico-forestale-Accordo-di_rinnovo_2025.pdf",
+                  "published_on": "2025-01-01",
+                  "sha256": "d4349690b91ccd63f4d49dc573fbbe6a9aa04fa52e0f7a5efb60045d7f0b77d4"
                 },
-                "section": "Tabella retributiva operai OTI — 01/01/2028"
+                "page": "31",
+                "section": "Allegato C1, OPERAI FORESTALI CON RAPPORTO DI LAVORO A TEMPO INDETERMINATO, Tabella delle retribuzioni in vigore dall'1.01.2028, column TOTALE NAZIONALE CONGLOBATO",
+                "quote": "5 - SPEC. SUPER 1.695,97"
               },
+              "transformation": "The TOTALE NAZIONALE CONGLOBATO of level 5 - SPEC. SUPER: 1695.97.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-11T00:00:00",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T20:45:43Z",
                 "verification_status": "verified",
-                "effective_from": "2028-01-01"
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-01T20:45:43Z",
+                "review_id": "2026-11-01-ai-renewal-tables"
               }
             }
           }
@@ -867,7 +1024,7 @@
     "source": "https://redigo.info/",
     "verification_status": "unverified",
     "published_at": "2026-09-11",
-    "source_hash": "3eaf3ca2d662ec275c922db229323a55c7e86d34aeb268bd4035092a27d77391",
+    "source_hash": "fe4b2125de91332739e0e9f3ba548af446946731470908d59b0b0636342335f2",
     "source_type": "commercial_secondary"
   },
   "work_rules": {
