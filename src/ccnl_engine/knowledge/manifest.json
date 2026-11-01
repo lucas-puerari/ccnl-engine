@@ -1785,7 +1785,7 @@
       "valid_to": "2029-12-31",
       "ruleset_id": "ccnl/pulizia-artigianato-confartigianato",
       "ruleset_version": "2025.1",
-      "source_hash": "d75764b6c51c48e0d1c4e85101fff5b5121dd6d08d00a0427657147fefe9bb73",
+      "source_hash": "05c85130e04cb9944a3e31ae6bf877102f93e00a66965ae7ea11118ac9e542ff",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/pulizia-artigianato-confartigianato.json.gz"
@@ -4430,7 +4430,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "b7b4692832b8950fefe1f1351204c589afae6553ca4070e757cc595486a2587f",
+      "source_hash": "af864670ac7d8fb1f6e30d80159fa1a11c44361119163152660cc81bad5b524a",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/pulizia-artigianato-confartigianato.json.gz",
