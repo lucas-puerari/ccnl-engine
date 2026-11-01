@@ -14,7 +14,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 0/133 CCNLs.** Bundle: 268 weak rules, 556 open limitations (556 with a monetary impact).
+**Complete: 0/133 CCNLs.** Bundle: 268 weak rules, 555 open limitations (555 with a monetary impact).
 
 ## Declared window
 
@@ -84,7 +84,7 @@ Future data, registered apart from the gaps: a contract whose validity ends insi
 | [contoterzismo-caiagromec](../contracts/contoterzismo-caiagromec.md) | `agricoltura` | exploratory | — | 24 rows | 24 open requirements; 1 weak rule; 21 monetary limitations; 20 non-native capabilities |
 | [cooperative-consorzi-agricoli](../contracts/cooperative-consorzi-agricoli.md) | `agricoltura` | exploratory | — | 27 rows | 27 open requirements; 25 monetary limitations; 21 non-native capabilities |
 | [cooperative-sociali](../contracts/cooperative-sociali.md) | `socio-sanitario` | reviewed | — | 24 rows | 24 open requirements; 20 monetary limitations; 2 outside_input limitations; 20 non-native capabilities |
-| [dirigenza-funzioni-centrali-aran](../contracts/dirigenza-funzioni-centrali-aran.md) | `dirigenza-pubblica` | exploratory | 2024-12-31 | 21 rows | 21 open requirements; 18 monetary limitations; 1 outside_input limitation; 19 non-native capabilities |
+| [dirigenza-funzioni-centrali-aran](../contracts/dirigenza-funzioni-centrali-aran.md) | `dirigenza-pubblica` | exploratory | 2024-12-31 | 20 rows | 20 open requirements; 17 monetary limitations; 1 outside_input limitation; 19 non-native capabilities |
 | [dirigenza-funzioni-locali-aran](../contracts/dirigenza-funzioni-locali-aran.md) | `dirigenza-pubblica` | exploratory | 2024-12-31 | 21 rows | 21 open requirements; 17 monetary limitations; 2 outside_input limitations; 19 non-native capabilities |
 | [dirigenza-istruzione-ricerca-aran](../contracts/dirigenza-istruzione-ricerca-aran.md) | `dirigenza-pubblica` | exploratory | 2024-12-31 | 21 rows | 21 open requirements; 19 monetary limitations; 20 non-native capabilities |
 | [dirigenza-sanitaria-area-sanita-aran](../contracts/dirigenza-sanitaria-area-sanita-aran.md) | `dirigenza-pubblica` | exploratory | 2024-12-31 | 22 rows | tables from 2026-03-01; 22 open requirements; 19 monetary limitations; 1 outside_input limitation; 20 non-native capabilities |

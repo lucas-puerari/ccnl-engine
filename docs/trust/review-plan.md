@@ -8,7 +8,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 
 | Group | CCNLs | Workers | Weak | Derived | Verified | Aggregator | Anchor |
 |---|---:|---:|---:|---:|---:|---:|---|
-| pubblica-amministrazione | 14 | 7 548 000 | 14 | 208 | 186 | 0 | `funzioni-centrali-aran` |
+| pubblica-amministrazione | 14 | 7 548 000 | 14 | 210 | 186 | 0 | `funzioni-centrali-aran` |
 | terziario | 43 | 4 977 055 | 51 | 1554 | 846 | 4 | `commercio-confcommercio`, `sanita-privata-aiop-aris` |
 | industria | 49 | 4 969 900 | 153 | 2122 | 1001 | 15 | `logistica-trasporto-confetra`, `metalmeccanico-federmeccanica` |
 | lavoro-domestico | 3 | 1 800 000 | 0 | 3 | 56 | 0 | `lavoro-domestico-non-convivente` |
@@ -32,7 +32,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | [`forze-polizia-ordinamento-civile`](../contracts/forze-polizia-ordinamento-civile.md) | 130 000 | exploratory | 2 | 70 | 0 | party or official | none | none |
 | [`dirigenza-sanitaria-medico-veterinaria-aran`](../contracts/dirigenza-sanitaria-medico-veterinaria-aran.md) | 100 000 | exploratory | 2 | 8 | 0 | party or official | none | none |
 | [`dirigenza-sanitaria-area-sanita-aran`](../contracts/dirigenza-sanitaria-area-sanita-aran.md) | 37 000 | exploratory | 0 | 10 | 0 | party or official | none | none |
-| [`dirigenza-funzioni-centrali-aran`](../contracts/dirigenza-funzioni-centrali-aran.md) | 30 000 | exploratory | 0 | 13 | 0 | party or official | none | none |
+| [`dirigenza-funzioni-centrali-aran`](../contracts/dirigenza-funzioni-centrali-aran.md) | 30 000 | exploratory | 0 | 15 | 0 | party or official | none | none |
 | [`dirigenza-funzioni-locali-aran`](../contracts/dirigenza-funzioni-locali-aran.md) | 13 000 | exploratory | 0 | 9 | 0 | party or official | none | none |
 | [`dirigenza-istruzione-ricerca-aran`](../contracts/dirigenza-istruzione-ricerca-aran.md) | 8 000 | exploratory | 0 | 13 | 0 | party or official | none | none |
 

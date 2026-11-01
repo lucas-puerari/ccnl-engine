@@ -259,22 +259,6 @@
       }
     },
     {
-      "id": "position_pay_fixed_part",
-      "institute": "base_salary",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = owed",
-      "rule": "Retribuzione di posizione parte fissa: prima fascia 42.598,20€/anno (Art. 23 c.5); seconda fascia 14.515,11€/anno (Art. 26 c.5). Variabile per incarico, non modellata (SIMPLIFICATION).",
-      "calculation": "ccnl/dirigenza-funzioni-centrali-aran:coverage.notes",
-      "state": "absent",
-      "remediation": "Model the retribuzione di posizione parte fissa (Art. 23 c.5, Art. 26 c.5) as a fixed allowance per fascia over 13 months.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "dirigenza-funzioni-centrali-aran/position_pay_fixed_part"
-        ]
-      }
-    },
-    {
       "id": "position_variable_and_result_pay",
       "institute": "base_salary",
       "variant": "all",

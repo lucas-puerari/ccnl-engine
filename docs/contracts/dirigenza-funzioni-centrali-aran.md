@@ -37,7 +37,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary |
 
-2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -45,7 +45,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 0 verified / 13 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 0 verified / 15 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -78,13 +78,6 @@ Latest effective values per level (monthly gross, EUR).
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
-
-!!! warning "dirigenza-funzioni-centrali-aran/position_pay_fixed_part · base_salary · impact yes · open"
-    Retribuzione di posizione parte fissa: prima fascia 42.598,20€/anno (Art. 23 c.5); seconda fascia 14.515,11€/anno (Art. 26 c.5). Variabile per incarico, non modellata (SIMPLIFICATION).
-
-    **Applies when:** `base_salary` applies.
-
-    **Remediation:** Model the retribuzione di posizione parte fissa (Art. 23 c.5, Art. 26 c.5) as a fixed allowance per fascia over 13 months.
 
 !!! warning "dirigenza-funzioni-centrali-aran/position_variable_and_result_pay · base_salary · impact yes · open"
     Due livelli (PRIMA_FASCIA / SECONDA_FASCIA) per lo stipendio tabellare. La retribuzione di posizione (fissa e variabile per incarico) e la retribuzione di risultato non sono modellate — out_of_scope strutturale per tutti i dirigenti PA. Il file cattura la componente stipendio tabellare che è uniforme per fascia.
