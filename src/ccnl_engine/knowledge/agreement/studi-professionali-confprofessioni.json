@@ -2432,7 +2432,7 @@
     "effective_until": null,
     "source": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
     "verification_status": "unverified",
-    "source_hash": "e5aa92e9b9113390bd23b35865d925814bf0705a31b18c5476f57f0ef3e68f76",
+    "source_hash": "d804f5762c0b97bb07e8a0605512f6208f84fa0c5fcf50367001cd97c0be74c3",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3016,6 +3016,348 @@
           "review_id": "2026-10-13-ai-production"
         }
       }
+    },
+    "notice": {
+      "bands": [
+        {
+          "levels": [
+            "Q",
+            "1"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "up_to_months": 60,
+          "days": 90
+        },
+        {
+          "levels": [
+            "Q",
+            "1"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "up_to_months": 120,
+          "days": 120
+        },
+        {
+          "levels": [
+            "Q",
+            "1"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "days": 150
+        },
+        {
+          "levels": [
+            "2"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "up_to_months": 60,
+          "days": 60
+        },
+        {
+          "levels": [
+            "2"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "up_to_months": 120,
+          "days": 90
+        },
+        {
+          "levels": [
+            "2"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "days": 120
+        },
+        {
+          "levels": [
+            "3S",
+            "3"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "up_to_months": 60,
+          "days": 30
+        },
+        {
+          "levels": [
+            "3S",
+            "3"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "up_to_months": 120,
+          "days": 40
+        },
+        {
+          "levels": [
+            "3S",
+            "3"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "days": 50
+        },
+        {
+          "levels": [
+            "4S",
+            "4"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "up_to_months": 60,
+          "days": 20
+        },
+        {
+          "levels": [
+            "4S",
+            "4"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "up_to_months": 120,
+          "days": 30
+        },
+        {
+          "levels": [
+            "4S",
+            "4"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "days": 40
+        },
+        {
+          "levels": [
+            "5"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "up_to_months": 60,
+          "days": 15
+        },
+        {
+          "levels": [
+            "5"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "up_to_months": 120,
+          "days": 20
+        },
+        {
+          "levels": [
+            "5"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "days": 25
+        },
+        {
+          "levels": [
+            "Q",
+            "1"
+          ],
+          "causes": [
+            "resignation"
+          ],
+          "up_to_months": 60,
+          "days": 75
+        },
+        {
+          "levels": [
+            "Q",
+            "1"
+          ],
+          "causes": [
+            "resignation"
+          ],
+          "up_to_months": 120,
+          "days": 105
+        },
+        {
+          "levels": [
+            "Q",
+            "1"
+          ],
+          "causes": [
+            "resignation"
+          ],
+          "days": 135
+        },
+        {
+          "levels": [
+            "2"
+          ],
+          "causes": [
+            "resignation"
+          ],
+          "up_to_months": 60,
+          "days": 60
+        },
+        {
+          "levels": [
+            "2"
+          ],
+          "causes": [
+            "resignation"
+          ],
+          "up_to_months": 120,
+          "days": 90
+        },
+        {
+          "levels": [
+            "2"
+          ],
+          "causes": [
+            "resignation"
+          ],
+          "days": 120
+        },
+        {
+          "levels": [
+            "3S",
+            "3"
+          ],
+          "causes": [
+            "resignation"
+          ],
+          "up_to_months": 60,
+          "days": 28
+        },
+        {
+          "levels": [
+            "3S",
+            "3"
+          ],
+          "causes": [
+            "resignation"
+          ],
+          "up_to_months": 120,
+          "days": 35
+        },
+        {
+          "levels": [
+            "3S",
+            "3"
+          ],
+          "causes": [
+            "resignation"
+          ],
+          "days": 42
+        },
+        {
+          "levels": [
+            "4S",
+            "4"
+          ],
+          "causes": [
+            "resignation"
+          ],
+          "up_to_months": 60,
+          "days": 15
+        },
+        {
+          "levels": [
+            "4S",
+            "4"
+          ],
+          "causes": [
+            "resignation"
+          ],
+          "up_to_months": 120,
+          "days": 25
+        },
+        {
+          "levels": [
+            "4S",
+            "4"
+          ],
+          "causes": [
+            "resignation"
+          ],
+          "days": 30
+        },
+        {
+          "levels": [
+            "5"
+          ],
+          "causes": [
+            "resignation"
+          ],
+          "up_to_months": 60,
+          "days": 10
+        },
+        {
+          "levels": [
+            "5"
+          ],
+          "causes": [
+            "resignation"
+          ],
+          "up_to_months": 120,
+          "days": 15
+        },
+        {
+          "levels": [
+            "5"
+          ],
+          "causes": [
+            "resignation"
+          ],
+          "days": 25
+        }
+      ],
+      "starts": "first_or_sixteenth",
+      "extra_months_included": true,
+      "tfr_base": false,
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-studi-professionali-2024-02-16",
+            "title": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024, testo integrale definitivo (Confprofessioni)",
+            "kind": "associazione",
+            "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+            "published_on": "2024-02-16",
+            "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
+          },
+          "page": "74-75",
+          "section": "Artt. 146 (termini di preavviso), 147 (indennità sostitutiva), 148 (trattamento di fine rapporto)",
+          "quote": "I termini di preavviso, intesi in giorni di calendario, in caso di dimissioni sono i seguenti [...] I termini di preavviso di cui sopra hanno inizio dal 1° o dal 16° giorno di ciascun mese. [...] una indennità equivalente all'importo della retribuzione globale di fatto corrispondente al periodo di cui all'articolo precedente comprensiva dei ratei di tredicesima mensilità e quattordicesima mensilità."
+        },
+        "transformation": "Two tables in calendar days by level and seniority (up to 5 years, 5 to 10, over 10), one for dismissal and one for resignation; the levels Quadri, I, II, III Super, III, IV Super, IV, V are the codes Q, 1, 2, 3S, 3, 4S, 4, 5. The indemnity carries the ratei of the 13th and 14th (Art. 147); Art. 148 lists the elements of the TFR base and not the indemnity, so it is out of it.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-01T18:00:00Z",
+          "effective_from": "2024-03-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-01T18:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-01-ai-notice"
+        }
+      }
     }
   },
   "verification": {
@@ -3273,6 +3615,27 @@
           "work_rules.leave_rules.permits[ex_festivita].day_hours 8",
           "work_rules.leave_rules.termination.permits_hourly true",
           "coverage.notes[LEAVE AT TERMINATION]"
+        ]
+      },
+      {
+        "id": "2026-11-01-ai-notice",
+        "date": "2026-11-01",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The notice of Artt. 146-148 (pp. 74-75).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+            "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
+          }
+        ],
+        "findings": [
+          "Artt. 146-148 (pp. 74-75): notice in calendar days by level and seniority for dismissal and resignation, from the 1st or the 16th, indemnity with the 13th and 14th ratei, out of the TFR base: work_rules.notice. Found by a delegated search and checked again on the PDF text."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.notice"
         ]
       }
     ],

@@ -244,6 +244,28 @@ def test_commercio_pays_the_days_with_the_extra_months_out_of_the_tfr() -> None:
     assert quota[1] - quota[0] == Decimal("16.13")
 
 
+def test_studi_pays_forty_calendar_days_with_the_extra_months() -> None:
+    """Studi professionali level 4, over ten years, dismissed on 10 March.
+
+    Art. 146 (Testo 2024, p. 75): 40 calendar days from the next 1st or
+    16th, 16 March to 24 April.  Art. 147: the retribuzione globale di
+    fatto of those days with the ratei of the 13th and 14th: (1595.42 + 3
+    scatti of 20.00) * 14 / 12 * 40 / 30 = 2575.10.
+    """
+    result = _run(
+        _notice(date(2026, 3, 10)), ccnl="studi-professionali-confprofessioni"
+    )
+
+    assert _indemnity(result) == Decimal("2575.10")
+    (due,) = (d for d in result.decisions if d.reason_code == "notice_indemnity_due")
+    assert (due.inputs["notice_first_day"], due.inputs["notice_last_day"]) == (
+        "2026-03-16",
+        "2026-04-24",
+    )
+    notice = {lim.id for lim in result.limitations if lim.id.startswith("notice")}
+    assert notice == {"notice_indemnity_day_measure"}
+
+
 def test_a_notice_fully_worked_owes_nothing() -> None:
     """Notice from 2 January to 16 March, last day 31 March."""
     result = _run(_notice(date(2026, 1, 1)), ended=date(2026, 3, 31))
