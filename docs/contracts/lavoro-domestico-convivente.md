@@ -127,12 +127,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Validate the hourly INPS bracket lookup for weekly hours up to 24 against the INPS domestic table.
 
-!!! warning "lavoro-domestico-convivente/board_lodging_substitute · base_salary · impact unknown · open"
-    The cash indennita sostitutiva of board and lodging is not paid for the days the convivente does not take them: ferie (Art. 17 c. 7), sospensioni extraferiali (Art. 18 c. 1), congedo matrimoniale (Art. 24 c. 2), malattia and infortunio outside hospital (Art. 27 c. 9, Art. 29 c. 7). The request carries no fact on whether board and lodging were taken, so the engine pays none.
+!!! note "lavoro-domestico-convivente/board_lodging_substitute · base_salary · impact unknown · resolved"
+    The cash indennita sostitutiva of board and lodging is not paid for the days the convivente does not take them: ferie (Art. 17 c. 7), sospensioni extraferiali (Art. 18 c. 1), congedo matrimoniale (Art. 24 c. 2), malattia and infortunio outside hospital (Art. 27 c. 9, Art. 29 c. 7). The request states those days with BoardLodgingEvent, and the engine pays the value in kind over 30 for each of them.
 
     **Applies when:** `base_salary` applies; run kind in regular, termination.
 
-    **Remediation:** Add a fact for the days without board and lodging and pay the Tabella F value for them.
+    **Remediation:** Resolved: BoardLodgingEvent states the days without board and lodging of the month; the engine pays the value in kind over 30 times the days (Art. 36 c. 3).
 
 !!! warning "lavoro-domestico-convivente/extra_month_hours · assistance_contribution · impact unknown · open"
     The INPS contributions of the tredicesima are paid on the hours of the year: INPS bands them on the paga oraria effettiva, which spreads the tredicesima over the hours, so the tredicesima run charges no INPS hours. The Cas.Sa.Colf contribution of Art. 54 c. 2 is charged on the contributable hours the run states, a tredicesima run too: no bundled source says whether the tredicesima carries hours of its own for it.

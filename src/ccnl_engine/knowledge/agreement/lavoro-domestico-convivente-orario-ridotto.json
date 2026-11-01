@@ -103,7 +103,7 @@
       },
       {
         "kind": "simplification",
-        "text": "The cash indennita sostitutiva of board and lodging is not paid for the days the convivente does not take them: ferie (Art. 17 c. 7), sospensioni extraferiali (Art. 18 c. 1), congedo matrimoniale (Art. 24 c. 2), malattia and infortunio outside hospital (Art. 27 c. 9, Art. 29 c. 7). The request carries no fact on whether board and lodging were taken, so the engine pays none.",
+        "text": "The cash indennita sostitutiva of board and lodging is not paid for the days the convivente does not take them: ferie (Art. 17 c. 7), sospensioni extraferiali (Art. 18 c. 1), congedo matrimoniale (Art. 24 c. 2), malattia and infortunio outside hospital (Art. 27 c. 9, Art. 29 c. 7). The request states those days with BoardLodgingEvent, and the engine pays the value in kind over 30 for each of them.",
         "capability": "base_salary",
         "monetary_impact": "unknown",
         "limitation": {
@@ -114,7 +114,8 @@
               "termination"
             ]
           },
-          "remediation": "Add a fact for the days without board and lodging and pay the Tabella F value for them."
+          "remediation": "Resolved: BoardLodgingEvent states the days without board and lodging of the month; the engine pays the value in kind over 30 times the days (Art. 36 c. 3).",
+          "status": "resolved"
         }
       },
       {
@@ -783,7 +784,7 @@
     "effective_until": null,
     "source": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
     "verification_status": "unverified",
-    "source_hash": "c8da8f937cb0d70f9cbe705626c64f248efb2442f62072ca53bafe3044cc4906",
+    "source_hash": "e515bad9c3f0062fd63188d49f4bfae25b283bd59decbb84aac9e1e8f7b1cc6a",
     "published_at": "2026-10-08",
     "source_type": "commercial_secondary"
   },

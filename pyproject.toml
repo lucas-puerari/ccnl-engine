@@ -396,6 +396,7 @@ source_paths = [
     "src/ccnl_engine/compensation/renewal_minimum/rules.py",
     "src/ccnl_engine/compensation/renewal_minimum/services.py",
     "src/ccnl_engine/compensation/second_level/rules.py",
+    "src/ccnl_engine/compensation/board/handlers.py",
     "src/ccnl_engine/working_time/hourly/policies.py",
     "src/ccnl_engine/working_time/hourly/services.py",
     "src/ccnl_engine/working_time/overtime/policies.py",

@@ -39,6 +39,7 @@ from ccnl_engine.event.facade import (
 )
 from ccnl_engine.event.types import WORK_EVENT_TYPES
 from ccnl_engine.events import (
+    BoardLodgingEvent,
     DisabilityPermitEvent,
     ExtraordinaryLeaveEvent,
     HourlyParentalLeaveEvent,
@@ -334,6 +335,7 @@ _FACTS_ONLY = frozenset({
     WorkInjuryEvent,
     FringeEvent,
     LeaveTakenEvent,
+    BoardLodgingEvent,
 })
 
 
