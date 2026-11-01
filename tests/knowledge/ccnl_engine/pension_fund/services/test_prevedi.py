@@ -145,7 +145,7 @@ def test_apprentice_operaio_pays_the_apprentice_rate() -> None:
             "2",
             WorkerCategory.OPERAIO,
             ccnl_id=_OPERAI,
-            contract_type=Apprentice(months_elapsed=6),
+            contract_type=Apprentice(months_elapsed=6, track="standard"),
         ),
         current_year=employment_only(),
         ordinary_hours_worked=ContributableHours(Decimal(150)),
@@ -222,7 +222,9 @@ def test_a_termination_owes_the_ratei_it_settles() -> None:
 
 def test_apprentice_owes_the_apprentice_amount() -> None:
     """An apprentice impiegato owes 10.00 whatever the level."""
-    employment = _employment(contract_type=Apprentice(months_elapsed=6))
+    employment = _employment(
+        contract_type=Apprentice(months_elapsed=6, track="standard")
+    )
     assert _contractual(_january(employment)) == Decimal("10.00")
 
 

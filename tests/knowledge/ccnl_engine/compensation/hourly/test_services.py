@@ -210,7 +210,9 @@ def test_apprentice_is_paid_the_reduced_hourly_elements() -> None:
     Riposi 4.95% of 1,270.97 = 62.91.
     """
     employment = replace(
-        _OPERAIO, level_code="2", contract_type=Apprentice(months_elapsed=6)
+        _OPERAIO,
+        level_code="2",
+        contract_type=Apprentice(months_elapsed=6, track="standard"),
     )
     result = _january(Decimal(173), employment)
 

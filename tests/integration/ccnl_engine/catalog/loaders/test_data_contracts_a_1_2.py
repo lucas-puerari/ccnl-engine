@@ -75,14 +75,29 @@ class TestLoadEdiliziaAnce:
         assert ccnl.parameters.seniority_increments.maximum_count == 0
 
     def test_edilizia_apprenticeship_standard_percentage(self) -> None:
-        """Apprenticeship: 1 track, levels 2-4, 72/72/78/78/85/90% then 100%."""
+        """Standard track: levels 2-4, 72/72/78/78/85/90% then 100%."""
         ccnl = load_ccnl("edilizia-ance")
-        (track,) = ccnl.apprenticeship
+        (track,) = (t for t in ccnl.apprenticeship if t.name == "standard")
         assert isinstance(track, ApprenticeshipPercentage)
         assert track.name == "standard"
         assert set(track.destination_levels) == {"2", "3", "4"}
         assert [p.percentage for p in track.periods] == _APPRENTICE_PCTS
         assert track.periods[-1].months_until is None
+
+    def test_edilizia_apprenticeship_artistic_works(self) -> None:
+        """Lavorazioni artistiche: 48 months, semesters 7 and 8 at 90%."""
+        ccnl = load_ccnl("edilizia-ance")
+        (track,) = (
+            t for t in ccnl.apprenticeship if t.name == "lavorazioni_artistiche"
+        )
+        assert isinstance(track, ApprenticeshipPercentage)
+        assert [p.percentage for p in track.periods] == [
+            *_APPRENTICE_PCTS[:-1],
+            Decimal("0.90"),
+            Decimal("0.90"),
+            Decimal(1),
+        ]
+        assert track.periods[-2].months_until == 48
 
 
 class TestLoadEdiliziaAnceImpiegati:

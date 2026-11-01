@@ -762,7 +762,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/edilizia-ance",
       "ruleset_version": "2026.2",
-      "source_hash": "7063996e2f5df6bf04fb69618c25b0eb7a9aa2dbfb06f0a1d0be5dfdac1e25c6",
+      "source_hash": "eb63f913d6600998d113b2a1fb2eb847a278b6a598298a32757b1182bf9a663b",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/edilizia-ance.json.gz"
@@ -3267,7 +3267,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "77deffc13b766e3562b7fb692345052651db25b529def20c7cf401044071532f",
+      "source_hash": "94eb7010589159295e606cfc33f50397d251d919ac2a366436be437c4f934e8e",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/edilizia-ance.json.gz",
