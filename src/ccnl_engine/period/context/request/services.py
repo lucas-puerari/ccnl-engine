@@ -13,6 +13,7 @@ from ccnl_engine.compensation.change.rules import MonthChange, blended, month_ch
 from ccnl_engine.compensation.element.services import _resolve_chain
 from ccnl_engine.compensation.hourly.services import upcoming_percentages
 from ccnl_engine.compensation.proration.services import run_proration
+from ccnl_engine.compensation.una_tantum.rules import UNA_TANTUM, una_tantum_events
 from ccnl_engine.employment.category.rules import resolve_worker_category
 from ccnl_engine.extra_month.liquidation.services import (
     run_settlements,
@@ -149,6 +150,10 @@ def build_context(
         chain, full_time = _with_change(
             request, contract, worker_category, change, (chain, full_time)
         )
+    una_tantum, met = una_tantum_events(request, contract.ccnl, payment.run_id.kind)
+    if met:
+        chain = replace(chain, limitations=(*chain.limitations, UNA_TANTUM))
+        request = replace(request, events=(*request.events, *una_tantum))
     schedule = resolve_withholding_schedule(request, payment, contract.ccnl, competence)
     opening = request.opening_state
     withholding = schedule.position(payment, opening.cash.paid_runs)

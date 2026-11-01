@@ -31,7 +31,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, bilateral_funds, pension_fund_contribution, seniority, una_tantum |
+| **Limits of this contract** | base_salary, bilateral_funds, pension_fund_contribution, seniority |
 
 7 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
@@ -59,6 +59,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|---|---|
 | 2026-10-17 | claude-opus-5-5 (ai) | The paga base nazionale conglobata of the seven levels against the signed ipotesi of 19 May 2025 and the final text of the CCNL 2025 (Ebnaip). | confirmed | Tabelle retributive of the signed ipotesi (p. 7, scan checked on the page image): the 28 minimi from 1/5/2025 to 1/5/2027 match the file and move from assumed to verified. The final text of the CCNL (Ebnaip copy, art. 162-163, PDF pp. 96-97) prints the same base at April 2025, increments and final amounts.<br>The ruleset names the signed ipotesi published by FIAIP, the employer signatory: source_type contracting_party instead of estimated. |
 | 2026-11-01 | claude-opus-5-5 (ai) | The indennità di funzione of the quadri, Art. 162 note (*) (p. 97). | corrected | Art. 162 note (*) (p. 97): 250.00 a month for 12 months to the quadri responsible for operational or local units: levels[Q].fixed_allowances[IND_FUNZIONE], role responsabile_unita, months_per_year 12. |
+| 2026-11-01 | claude-opus-5-5 (ai) | The una tantum of Art. 163 (pp. 97-98). | corrected | Art. 163 (pp. 97-98): two installments of the table (Q 149.47 ... IV 100.00 ... VI 87.28) from 1 September 2025 and 1 May 2026, full for a hire before 1 January 2024, by the months worked to 1 May 2025 for a hire from 1 January 2024: parameters.una_tantum[UT_2025]. |
 
 ## Salary table
 
@@ -128,12 +129,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Model the Art. 55 two-year specialist track once its intermediate classification is sourced.
 
-!!! warning "agenti-immobiliari-fiaip/una_tantum_2025_2026 · una_tantum · impact yes · open"
+!!! note "agenti-immobiliari-fiaip/una_tantum_2025_2026 · una_tantum · impact yes · resolved"
     SIMPLIFICATION: Una tantum payments (01/09/2025 and 01/05/2026) for employees hired before 01/01/2024 not modelled. One-time payments only; not part of ongoing monthly retribuzione.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Pay the 01/09/2025 and 01/05/2026 una tantum outside the engine for workers hired before 01/01/2024.
+    **Remediation:** Resolved: parameters.una_tantum holds the installments of 1 September 2025 and 1 May 2026, paid by the engine as arrears of the covered months.
 
 !!! warning "agenti-immobiliari-fiaip/fonte_pension_fund · pension_fund_contribution · impact yes · open"
     SIMPLIFICATION: Fondo Fon.Te. supplementary pension (Art. 15) not modelled. Voluntary adhesion. Employee: 0.55% of TFR-eligible retribuzione; employer: 1.55% + 0.05% quota associativa. employer_cost_annual understated by approximately 1.60% of annual retribuzione for adherents.
@@ -295,6 +296,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `contract_renewal_arrears` applies; the run takes the engine code path.
 
     **Remediation:** Add the deductions the worker declares as unused for each year of the arrears and reduce the tax by them, then resolve this limitation.
+
+!!! warning "una_tantum_readings · base_salary · impact unknown · open"
+    The una tantum of a renewal is paid from the CCNL data with readings no text read settles: a month of service in the covered period counts when the worker was employed at least 15 days of it, over the months of the period; a part time is paid in proportion to its hours; a run without the employment period is paid none; the share of the covered months of earlier years is taxed apart as arrears.
+
+    **Applies when:** `base_salary` applies; the run takes the engine code path.
+
+    **Remediation:** Source the counting of the months, the part time and the taxation of each una tantum from its agreement, then resolve this limitation.
 
 ### Without monetary impact
 

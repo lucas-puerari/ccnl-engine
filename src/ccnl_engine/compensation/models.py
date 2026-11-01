@@ -10,6 +10,7 @@ from pydantic import BaseModel, ConfigDict, Field, model_validator
 from ccnl_engine.agreement.validity.rules import TimeSeries
 from ccnl_engine.compensation.hourly.models import HourlyPay
 from ccnl_engine.compensation.renewal_minimum.models import RenewalAgreement
+from ccnl_engine.compensation.una_tantum.models import UnaTantum
 from ccnl_engine.employment.category.models import WorkerCategory
 from ccnl_engine.fund.assistance.models import AssistanceContribution
 from ccnl_engine.fund.health.models import ContractualFund
@@ -272,14 +273,11 @@ class CCNLParameters(BaseModel):
 
     ``accrual_rule`` is the CCNL threshold for counting a month of an
     extra-month window, ``None`` when the bundle has no sourced clause.
-    ``thirteenth_payment_day`` and ``fourteenth_payment_day`` are the days
-    the CCNL pays the tredicesima and the quattordicesima, ``None`` when the
-    bundle has no sourced clause.
-    ``assistance_contribution`` and ``contractual_fund_contribution`` are
-    the contributions the CCNL charges per paid hour and per month to a
-    fund, ``None`` when it charges none.
-    ``flat_pay_max_weekly_hours``: the ceiling up to which a regime pays its
-    minimum in full whatever the hours (lavoro domestico art. 14 c. 2: 30).
+    ``thirteenth_payment_day``, ``fourteenth_payment_day``: the days the CCNL
+    pays the extra months, ``None`` without a sourced clause.
+    ``assistance_contribution``, ``contractual_fund_contribution``: charged
+    per paid hour and per month to a fund, ``None`` when it charges none.
+    ``flat_pay_max_weekly_hours``: hours paid at the full minimum (domestic: 30).
     ``raccordo_element``: the ERC the CCNL pays with the tredicesima.
     ``enam_levels``: the levels whose permanent workers owe the contribution
     of the Gestione Assistenza Magistrale (ex ENAM, L. 93/1957 art. 3).
@@ -292,6 +290,7 @@ class CCNLParameters(BaseModel):
     pay it (``EmployerProfile.contractual_funds``).
     ``hourly_pay``: the worker categories paid by the hour worked and the
     percentages on those hours (the operai of the CCNL edilizia).
+    ``una_tantum``: the one-off amounts of its renewals for their vacancy.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -312,6 +311,7 @@ class CCNLParameters(BaseModel):
     hourly_pay: HourlyPay | None = None
     renewals: tuple[RenewalAgreement, ...] = ()
     health_funds: tuple[ContractualFund, ...] = ()
+    una_tantum: tuple[UnaTantum, ...] = ()
 
     @model_validator(mode="after")
     def _check_positive_params(self) -> Self:
