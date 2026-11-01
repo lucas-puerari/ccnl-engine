@@ -1,5 +1,5 @@
 {
-  "commit": "47c3eefa5f4f2cf131f37df83558753ab9fc1b14",
+  "commit": "72606977523a3a36a4b8cb9209b7b0597250bc4a",
   "date": "2026-11-01",
   "min_score": 93.0,
   "perimeter": [
@@ -138,6 +138,7 @@
     "src/ccnl_engine/compensation/second_level/rules.py",
     "src/ccnl_engine/compensation/board/handlers.py",
     "src/ccnl_engine/compensation/change/rules.py",
+    "src/ccnl_engine/compensation/una_tantum/rules.py",
     "src/ccnl_engine/working_time/hourly/policies.py",
     "src/ccnl_engine/working_time/hourly/services.py",
     "src/ccnl_engine/working_time/overtime/policies.py",
@@ -148,12 +149,12 @@
   ],
   "scores": {
     "core": {
-      "killed": 8861,
-      "survived": 247,
-      "other": 4,
+      "killed": 9071,
+      "survived": 259,
+      "other": 5,
       "not_checked": 0,
       "equivalent": 18,
-      "total": 9112,
+      "total": 9335,
       "score": 97.2,
       "minimum": 93.0
     },
@@ -298,13 +299,13 @@
       "minimum": 93.0
     },
     "src/ccnl_engine/variable_pay/arrears/handlers.py": {
-      "killed": 164,
-      "survived": 2,
+      "killed": 225,
+      "survived": 8,
       "other": 0,
       "not_checked": 0,
       "equivalent": 0,
-      "total": 166,
-      "score": 98.8,
+      "total": 233,
+      "score": 96.6,
       "minimum": 93.0
     },
     "src/ccnl_engine/termination/handlers.py": {
@@ -368,13 +369,13 @@
       "minimum": 93.0
     },
     "src/ccnl_engine/irpef/separate/rules.py": {
-      "killed": 29,
-      "survived": 0,
+      "killed": 44,
+      "survived": 2,
       "other": 0,
       "not_checked": 0,
       "equivalent": 0,
-      "total": 29,
-      "score": 100.0,
+      "total": 46,
+      "score": 95.7,
       "minimum": 93.0
     },
     "src/ccnl_engine/extra_month/settlement/services.py": {
@@ -1495,6 +1496,16 @@
       "equivalent": 0,
       "total": 156,
       "score": 99.4,
+      "minimum": 93.0
+    },
+    "src/ccnl_engine/compensation/una_tantum/rules.py": {
+      "killed": 134,
+      "survived": 4,
+      "other": 1,
+      "not_checked": 0,
+      "equivalent": 0,
+      "total": 139,
+      "score": 96.4,
       "minimum": 93.0
     },
     "src/ccnl_engine/working_time/hourly/policies.py": {

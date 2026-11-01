@@ -900,6 +900,22 @@
           "tfr_compensation_apprentice_guarantee_fund"
         ]
       }
+    },
+    {
+      "id": "una_tantum_readings",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "The una tantum of a renewal is paid from the CCNL data with readings no text read settles: a month of service in the covered period counts when the worker was employed at least 15 days of it, over the months of the period; a part time is paid in proportion to its hours; a run without the employment period is paid none; the share of the covered months of earlier years is taxed apart as arrears.",
+      "calculation": "ccnl_engine.compensation.una_tantum.rules.una_tantum_events; CCNL agenti immobiliari FIAIP 19 May 2025 art. 163 (pp. 97-98, sha256 560d16410d3e41dc0bfb00bfe2a40ef65f2cd900234aeaee92018ed9fa21ead5)",
+      "state": "unverified",
+      "remediation": "Source the counting of the months, the part time and the taxation of each una tantum from its agreement, then resolve this limitation.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "una_tantum_readings"
+        ]
+      }
     }
   ]
 }
