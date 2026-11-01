@@ -83,22 +83,6 @@
       }
     },
     {
-      "id": "long_week_divisor_195",
-      "institute": "workplace_injury",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "SIMPLIFICATION: Divisore orario. Art. 120 prevede 173 (40h) e 195 (45h). Solo il divisore 173 e modellato. Le assunzioni a 45h settimanali non sono gestite.",
-      "calculation": "ccnl/impianti-sportivi-sport:coverage.notes",
-      "state": "unverified",
-      "remediation": "Add the 195 divisor of the 45-hour week (Art. 120), set hourly_divisor_weekly_hours=40, and use the divisor of the stated week in the INAIL daily base.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "impianti-sportivi-sport/long_week_divisor_195"
-        ]
-      }
-    },
-    {
       "id": "maternity_daily_base",
       "institute": "maternity_leave",
       "variant": "all",

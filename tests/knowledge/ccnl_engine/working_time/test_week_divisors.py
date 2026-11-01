@@ -29,6 +29,7 @@ from ccnl_engine import (
     PeriodFacts,
     PeriodInput,
 )
+from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.errors import MissingRuleError
 from ccnl_engine.events import OvertimeEvent, OvertimeKind
 from ccnl_engine.inputs import (
@@ -40,6 +41,7 @@ from ccnl_engine.inputs import (
     WeeklyHours,
 )
 from ccnl_engine.pay_item.facade import OvertimeEarning
+from ccnl_engine.working_time.week.rules import with_week_divisor
 
 _HIRED = date(2025, 1, 1)
 _OVERTIME = OvertimeEvent(date(2026, 3, 10), Decimal(2), kind=OvertimeKind.WEEKDAY)
@@ -89,3 +91,12 @@ def test_a_week_without_a_divisor_is_not_derived(ccnl_id: str, level: str) -> No
     """38 hours: the CCNL sets no divisor, the caller states the rate."""
     with pytest.raises(MissingRuleError, match="38 hours"):
         _overtime(ccnl_id, level, 38)
+
+
+@pytest.mark.parametrize(("week", "divisor"), [(40, 173), (45, 195)])
+def test_the_sport_ccnl_divides_by_173_or_195(week: int, divisor: int) -> None:
+    """Impianti sportivi Art. 120 (CCNL 2024-2026, p. 90): 173 for 40, 195 for 45."""
+    ccnl = with_week_divisor(
+        load_ccnl("impianti-sportivi-sport"), WeeklyHours(Decimal(week))
+    )
+    assert ccnl.parameters.hourly_divisor.value_at(date(2026, 3, 1)) == divisor

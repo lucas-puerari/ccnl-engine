@@ -194,7 +194,7 @@ never grow.
 | 56 | [CCNL Grafica e Editoria Industria (AIEG-Acigraf)](grafica-editoria-aieg.md) | ⚠️ | base_salary, seniority | 2 / 70 / 1 / 0 |
 | 57 | [CCNL Gruppo ANAS](anas.md) | ⚠️ | seniority | 1 / 42 / 1 / 0 |
 | 58 | [CCNL Igiene Ambientale — Servizi Ambientali e di Igiene Urbana](igiene-ambientale-utilitalia.md) | ⚠️ | contractual_funds, inps_employer, pension_fund_contribution, seniority | 0 / 144 / 1 / 0 |
-| 59 | [CCNL Impianti e Attività Sportive Profit e No-profit](impianti-sportivi-sport.md) | ⚠️ | base_salary, overtime, sickness, workplace_injury | 0 / 32 / 1 / 1 |
+| 59 | [CCNL Impianti e Attività Sportive Profit e No-profit](impianti-sportivi-sport.md) | ⚠️ | base_salary, overtime, sickness | 0 / 32 / 1 / 1 |
 | 60 | [CCNL Impiegati e Tecnici Agricoli — Confagricoltura/CIA/Coldiretti](impiegati-tecnici-agricoli.md) | ⚠️ | base_salary, bilateral_funds, inps_employer | 7 / 8 / 1 / 1 |
 | 61 | [CCNL Industria Chimica e Farmaceutica (Federchimica-Farmindustria-Assistal)](chimica-farmaceutica-federchimica.md) | ⚠️ | base_salary, leave, overtime, sickness, workplace_injury | 116 / 6 / 0 / 0 |
 | 62 | [CCNL Industria Turistica (Federturismo Confindustria)](industria-turistica-federturismo.md) | ⚠️ | base_salary, seniority, trattamento_integrativo | 36 / 10 / 1 / 0 |
