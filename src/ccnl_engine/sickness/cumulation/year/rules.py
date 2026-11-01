@@ -31,7 +31,8 @@ from functools import cached_property
 from typing import TYPE_CHECKING
 
 from ccnl_engine.sickness.comporto.models import window_of
-from ccnl_engine.sickness.cumulation.rules import CcnlDay, window_start
+from ccnl_engine.sickness.cumulation.rules import CcnlDay
+from ccnl_engine.sickness.window.rules import window_start
 
 if TYPE_CHECKING:
     from collections.abc import Callable

@@ -31,7 +31,7 @@ from enum import StrEnum
 from typing import TYPE_CHECKING
 
 from ccnl_engine.compensation.proration.rules import payable_days
-from ccnl_engine.sickness.cumulation.rules import window_start
+from ccnl_engine.sickness.window.rules import window_start
 
 if TYPE_CHECKING:
     from collections.abc import Iterator

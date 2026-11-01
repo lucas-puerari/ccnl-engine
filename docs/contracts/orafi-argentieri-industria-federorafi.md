@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, seniority, sickness |
+| **Limits of this contract** | base_salary, seniority |
 
-3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -113,13 +113,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
 
     **Remediation:** Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.
-
-!!! warning "orafi-argentieri-industria-federorafi/sickness_single_illness_comporto · sickness · impact yes · open"
-    SICKNESS (Art. 35): a single illness keeps the job for 183, 244 or 305 days by seniority (61, 91 or 122 at full pay, the rest at 75%), several illnesses in the last three years for 274, 365 or 456 days. The engine counts every episode against the longer comporto of several illnesses, so a single illness past 183, 244 or 305 days is still integrated. The integration reaches the 'normale trattamento economico complessivo netto' but the measures are of the retribuzione globale: the engine applies them to the gross pay.
-
-    **Applies when:** `sickness` applies.
-
-    **Remediation:** Count the comporto of one illness apart from that of several illnesses and stop the integration at the shorter one, then resolve this limitation.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

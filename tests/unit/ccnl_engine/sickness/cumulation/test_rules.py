@@ -13,7 +13,7 @@ calendar by hand.
 
 from __future__ import annotations
 
-from datetime import date
+from datetime import date, timedelta
 from decimal import Decimal
 
 import pytest
@@ -27,7 +27,6 @@ from ccnl_engine.sickness.cumulation.rules import (
     CumulativeTreatment,
     ShortAbsence,
     SicknessWorker,
-    window_start,
 )
 from ccnl_engine.sickness.integration.models import (
     ShortAbsenceReduction,
@@ -36,6 +35,7 @@ from ccnl_engine.sickness.integration.models import (
     SicknessSeniorityBand,
 )
 from ccnl_engine.sickness.models import SicknessEpisode
+from ccnl_engine.sickness.window.rules import window_start
 
 _ONE = Decimal(1)
 _REDUCED = Decimal("0.80")
@@ -212,3 +212,26 @@ def test_the_first_three_days_of_a_fourth_short_absence_are_reduced() -> None:
     third = treatment.day(3, date(2026, 3, 4))
     assert third == CcnlDay(False, Decimal("0.66"), Decimal("0.66"))
     assert treatment.day(4, date(2026, 3, 5)).rate == _ONE
+
+
+@pytest.mark.parametrize(
+    ("index", "beyond"),
+    [(183, False), (184, True)],
+    ids=["last-day-of-the-illness", "first-day-past-it"],
+)
+def test_one_illness_may_end_before_the_window(index: int, beyond: bool) -> None:
+    """Orafi art. 35: 183 days of one illness within the 274 of the window.
+
+    The episode from 1 January 2026 has 183 days on 2 July: the window holds
+    them (183 of 274), the illness is past its own comporto from day 184.
+    """
+    band = _CUMULATION.bands[0].model_copy(
+        update={"comporto_days": 274, "single_comporto_days": 183}
+    )
+    cumulation = _CUMULATION.model_copy(update={"bands": (band,)})
+    rules = _RULES.model_copy(update={"cumulation": cumulation})
+    episode = _episode("long", date(2026, 1, 1), date(2026, 8, 31))
+    treatment = CumulativeTreatment(rules, cumulation, episode, (), SicknessWorker())
+    day = date(2026, 1, 1) + timedelta(days=index - 1)
+
+    assert treatment.day(index, day).beyond_comporto is beyond

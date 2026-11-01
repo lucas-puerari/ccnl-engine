@@ -301,6 +301,7 @@ source_paths = [
     "src/ccnl_engine/sickness/day/rules.py",
     "src/ccnl_engine/sickness/cumulation/rules.py",
     "src/ccnl_engine/sickness/cumulation/year/rules.py",
+    "src/ccnl_engine/sickness/window/rules.py",
     "src/ccnl_engine/sickness/cumulation/handlers.py",
     # The INPS-insured absences: the daily base, the days and hours paid,
     # and the indemnity of maternity, paternity and parental leave.

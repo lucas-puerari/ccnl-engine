@@ -132,3 +132,14 @@ def test_formazione_pays_two_tiers_over_eighteen_months() -> None:
         (1, 13, Decimal(1)),
         (13, 19, Decimal("0.75")),
     ]
+
+
+def test_orafi_ends_one_illness_before_the_three_years() -> None:
+    """Art. 35, p. 61: 183, 244 or 305 days of one illness; 274, 365, 456."""
+    rules = _sickness("orafi-argentieri-industria-federorafi")
+    assert rules.cumulation is not None
+
+    assert [
+        (b.seniority_months_from, b.single_comporto_days, b.comporto_days)
+        for b in rules.cumulation.bands
+    ] == [(0, 183, 274), (60, 244, 365), (120, 305, 456)]

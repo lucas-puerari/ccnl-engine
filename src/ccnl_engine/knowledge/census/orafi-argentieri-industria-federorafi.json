@@ -354,22 +354,6 @@
       }
     },
     {
-      "id": "sickness_single_illness_comporto",
-      "institute": "sickness",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "SICKNESS (Art. 35): a single illness keeps the job for 183, 244 or 305 days by seniority (61, 91 or 122 at full pay, the rest at 75%), several illnesses in the last three years for 274, 365 or 456 days. The engine counts every episode against the longer comporto of several illnesses, so a single illness past 183, 244 or 305 days is still integrated. The integration reaches the 'normale trattamento economico complessivo netto' but the measures are of the retribuzione globale: the engine applies them to the gross pay.",
-      "calculation": "ccnl/orafi-argentieri-industria-federorafi:coverage.notes",
-      "state": "absent",
-      "remediation": "Count the comporto of one illness apart from that of several illnesses and stop the integration at the shorter one, then resolve this limitation.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "orafi-argentieri-industria-federorafi/sickness_single_illness_comporto"
-        ]
-      }
-    },
-    {
       "id": "tfr_compensation_apprentice_guarantee_fund",
       "institute": "inps_employer",
       "variant": "apprentice",
