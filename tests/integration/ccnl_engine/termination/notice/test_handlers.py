@@ -40,6 +40,7 @@ from ccnl_engine.employment.period.inputs import TerminationCause
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.events import NoticeIndemnityEvent, TerminationTFREvent, WorkEvent
 from ccnl_engine.inputs import (
+    ContributableHours,
     EmploymentPeriod,
     FixedTerm,
     NoPensionFund,
@@ -264,6 +265,64 @@ def test_studi_pays_forty_calendar_days_with_the_extra_months() -> None:
     )
     notice = {lim.id for lim in result.limitations if lim.id.startswith("notice")}
     assert notice == {"notice_indemnity_day_measure"}
+
+
+def test_fipe_pays_the_normale_retribuzione_of_its_days() -> None:
+    """FIPE ristorazione collettiva level 4, over ten years, dismissed on 10 March.
+
+    Art. 208 (CCNL 8 February 2018, PDF p. 144): levels 4 and 5, over ten
+    years, 45 days, from the day after: 11 March to 24 April.  Art. 209: the
+    normale retribuzione of those days, no extra months: (1652.69 + 2 scatti
+    of 33.05) * 45 / 30 = 2578.19.
+    """
+    result = _run(
+        _notice(date(2026, 3, 10)),
+        ccnl="pubblici-esercizi-fipe-angem-ristorazione-collettiva",
+    )
+
+    assert _indemnity(result) == Decimal("2578.19")
+    (due,) = (d for d in result.decisions if d.reason_code == "notice_indemnity_due")
+    assert (due.inputs["notice_first_day"], due.inputs["notice_last_day"]) == (
+        "2026-03-11",
+        "2026-04-24",
+    )
+
+
+def test_an_edilizia_operaio_has_ten_calendar_days() -> None:
+    """Edilizia ANCE operaio level 2, over three years, dismissed on 10 March.
+
+    Art. 32 (CCNL 2010, p. 55): 10 calendar days from any day, 11 to 20
+    March; the pay of those days: (1307.31 + 516.43 + 10.33) * 10 / 30 =
+    611.36.
+    """
+    result = PayrollEngine.bundled().calculate_period(
+        PeriodInput(
+            run=PayrollRun.regular(2026, 3),
+            payment_date=date(2026, 3, 27),
+            employment=Employment(
+                ccnl_id="edilizia-ance",
+                level_code="2",
+                category=WorkerCategory.OPERAIO,
+                contract_type=Permanent(),
+                employment_period=EmploymentPeriod(_HIRED, _ACT, _D, False),
+                seniority=SeniorityFact.since(_HIRED, SenioritySource.EMPLOYER_RECORDS),
+                pension_fund=NoPensionFund(),
+                tfr_treasury_fund=False,
+            ),
+            employer=EmployerProfile(headcount=Headcount(20)),
+            facts=PeriodFacts(
+                ordinary_hours_worked=ContributableHours(Decimal(56)),
+                events=(_notice(_ACT),),
+            ),
+        )
+    )
+
+    assert _indemnity(result) == Decimal("611.36")
+    (due,) = (d for d in result.decisions if d.reason_code == "notice_indemnity_due")
+    assert (due.inputs["notice_first_day"], due.inputs["notice_last_day"]) == (
+        "2026-03-11",
+        "2026-03-20",
+    )
 
 
 def test_a_notice_fully_worked_owes_nothing() -> None:

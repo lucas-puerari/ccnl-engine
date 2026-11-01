@@ -2497,7 +2497,7 @@
     "effective_until": null,
     "source": "https://www.fipe.it/wp-content/uploads/2025/02/Tabelle-retributive-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "5b4b0cb8d31c09173a0d6e4d11e71c756d4c1ef2f9c933a28e3af52f77d3f4f6",
+    "source_hash": "1902b663dce0ec5cf19370afb2f4a155d941a4a874fc1b8b23deffd8aa454535",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2940,6 +2940,214 @@
       },
       "carenza_min_days": 5,
       "inps_regime": "pubblici_esercizi"
+    },
+    "notice": {
+      "bands": [
+        {
+          "levels": [
+            "Qa",
+            "Qb"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "up_to_months": 60,
+          "months": 4
+        },
+        {
+          "levels": [
+            "Qa",
+            "Qb"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "up_to_months": 120,
+          "months": 5
+        },
+        {
+          "levels": [
+            "Qa",
+            "Qb"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "months": 6
+        },
+        {
+          "levels": [
+            "1"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "up_to_months": 60,
+          "months": 2
+        },
+        {
+          "levels": [
+            "1"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "up_to_months": 120,
+          "months": 3
+        },
+        {
+          "levels": [
+            "1"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "months": 4
+        },
+        {
+          "levels": [
+            "2",
+            "3"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "up_to_months": 60,
+          "months": 1
+        },
+        {
+          "levels": [
+            "2",
+            "3"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "up_to_months": 120,
+          "days": 45
+        },
+        {
+          "levels": [
+            "2",
+            "3"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "months": 2
+        },
+        {
+          "levels": [
+            "4",
+            "5"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "up_to_months": 60,
+          "days": 20
+        },
+        {
+          "levels": [
+            "4",
+            "5"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "up_to_months": 120,
+          "days": 30
+        },
+        {
+          "levels": [
+            "4",
+            "5"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "days": 45
+        },
+        {
+          "levels": [
+            "6s",
+            "6",
+            "7"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "up_to_months": 60,
+          "days": 15
+        },
+        {
+          "levels": [
+            "6s",
+            "6",
+            "7"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "up_to_months": 120,
+          "days": 20
+        },
+        {
+          "levels": [
+            "6s",
+            "6",
+            "7"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "days": 20
+        }
+      ],
+      "starts": "day_after",
+      "extra_months_included": false,
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "fipe-ccnl-2018-02-08",
+            "title": "CCNL per i dipendenti da aziende dei settori Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo, 8 febbraio 2018 (scansione firmata)",
+            "kind": "associazione",
+            "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ccnl_ristorazione_2018.pdf",
+            "published_on": "2018-02-08",
+            "sha256": "32a2831b6ff1965adf82da1714f46ac6dc46102971012d6f646368837f72cf85"
+          },
+          "page": "143-144",
+          "section": "Artt. 208 (preavviso), 209 (indennità sostitutiva)",
+          "quote": "Tanto per il caso di licenziamento quanto per quello di dimissioni i termini di preavviso sono i seguenti: a) fino a 5 anni di servizio compiuti: livelli preavviso A e B quattro mesi 1 due mesi 2 e 3 un mese 4 e 5 20 giorni 6S, 6 e 7 15 giorni [...] Il datore di lavoro, in luogo del preavviso, potrà dare al personale licenziato, per l'intero periodo di preavviso stesso, la normale retribuzione"
+        },
+        "transformation": "One table for dismissal and resignation by level and service (up to 5 years, 5 to 10, over 10), in months or days; levels A and B are the quadri Qa and Qb. Art. 209 pays the normale retribuzione of the period, without the ratei of the extra months; no start day is set (day after the notice); the TFR treatment of the indemnity is not stated. Checked on the scanned page image.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-01T18:30:00Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-01T18:30:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-01-ai-notice",
+          "effective_from": "2018-02-08"
+        }
+      }
     }
   },
   "verification": {
@@ -3107,6 +3315,28 @@
         "checked": [
           "work_rules.leave_rules.termination.ferie_divisor 26",
           "work_rules.leave_rules.termination.permits_hourly true"
+        ]
+      },
+      {
+        "id": "2026-11-01-ai-notice",
+        "date": "2026-11-01",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The notice of Artt. 208-209 (PDF pp. 143-144), checked by a separate session on the rendered pages.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ccnl_ristorazione_2018.pdf",
+            "sha256": "32a2831b6ff1965adf82da1714f46ac6dc46102971012d6f646368837f72cf85"
+          }
+        ],
+        "findings": [
+          "Art. 208 (PDF pp. 143-144, sha256 32a2831b... matched, page images read): 15 bands, A e B / 1 / 2 e 3 / 4 e 5 / 6S, 6 e 7 over the three service bands, the same for dismissal and resignation, no start day: work_rules.notice.",
+          "Art. 209 (p. 144): the indemnity is the normale retribuzione of the period, extra_months_included false; the exception of Art. 179 for the pubblici esercizi does not concern this file."
+        ],
+        "independence": "separate_session",
+        "checked": [
+          "work_rules.notice"
         ]
       }
     ],
