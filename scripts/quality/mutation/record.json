@@ -1,5 +1,5 @@
 {
-  "commit": "ceeebe1f01e949349652cc653af8b9fa07b31dac",
+  "commit": "47c3eefa5f4f2cf131f37df83558753ab9fc1b14",
   "date": "2026-11-01",
   "min_score": 93.0,
   "perimeter": [
@@ -137,6 +137,7 @@
     "src/ccnl_engine/compensation/renewal_minimum/services.py",
     "src/ccnl_engine/compensation/second_level/rules.py",
     "src/ccnl_engine/compensation/board/handlers.py",
+    "src/ccnl_engine/compensation/change/rules.py",
     "src/ccnl_engine/working_time/hourly/policies.py",
     "src/ccnl_engine/working_time/hourly/services.py",
     "src/ccnl_engine/working_time/overtime/policies.py",
@@ -147,12 +148,12 @@
   ],
   "scores": {
     "core": {
-      "killed": 8706,
-      "survived": 246,
+      "killed": 8861,
+      "survived": 247,
       "other": 4,
       "not_checked": 0,
       "equivalent": 18,
-      "total": 8956,
+      "total": 9112,
       "score": 97.2,
       "minimum": 93.0
     },
@@ -1390,7 +1391,7 @@
       "killed": 105,
       "survived": 26,
       "other": 0,
-      "not_checked": 0,
+      "not_checked": 31,
       "equivalent": 0,
       "total": 131,
       "score": 80.2,
@@ -1484,6 +1485,16 @@
       "equivalent": 0,
       "total": 90,
       "score": 100.0,
+      "minimum": 93.0
+    },
+    "src/ccnl_engine/compensation/change/rules.py": {
+      "killed": 155,
+      "survived": 1,
+      "other": 0,
+      "not_checked": 0,
+      "equivalent": 0,
+      "total": 156,
+      "score": 99.4,
       "minimum": 93.0
     },
     "src/ccnl_engine/working_time/hourly/policies.py": {

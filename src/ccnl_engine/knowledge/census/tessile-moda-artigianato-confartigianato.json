@@ -131,6 +131,22 @@
       }
     },
     {
+      "id": "mid_month_level_change",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "A promotion on a day other than the first of a month splits the monthly pay of the run between the level before and the new level by the payable days of the CCNL daily quota on each side of the promotion, component by component; the hourly quotas of the month (overtime, permits, absences) read the same split chain whatever the day of the event. The CCNL texts read (Commercio and Terziario art. 118, DMO art. 102) give the new level from the promotion but not how its month is split.",
+      "calculation": "ccnl_engine.compensation.change.rules.blended; CCNL Terziario Confcommercio art. 118 (Testo Unico 30 July 2019, sha256 76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016)",
+      "state": "unverified",
+      "remediation": "Source how a month is split by a promotion inside it (a CCNL clause or an INPS or Ministry ruling) and price the events of the month at the terms of their day, then resolve this limitation.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "mid_month_level_change"
+        ]
+      }
+    },
+    {
       "id": "naspi_dismissal_exceptions",
       "institute": "naspi_dismissal",
       "variant": "all",

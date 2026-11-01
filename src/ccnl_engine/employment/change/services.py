@@ -11,19 +11,22 @@ c. 1, the part-time worker's pay proportional to the hours worked).
 
 from __future__ import annotations
 
+import calendar
 from datetime import date, timedelta
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.extra_month.models import absence_days
+from ccnl_engine.run.models import RunKind
 
 if TYPE_CHECKING:
     from collections.abc import Callable
 
     from ccnl_engine.employment.inputs import Employment
     from ccnl_engine.extra_month.models import ExtraMonthAccrual
+    from ccnl_engine.run.models import PayrollRun
 
-__all__ = ["hours_ratio", "in_force_on", "rateo_scale"]
+__all__ = ["hours_ratio", "in_force_on", "rateo_scale", "terms_day"]
 
 #: The employment from each date: the first entry is the employment of the
 #: plan, dated by the first day it can apply to.
@@ -44,6 +47,22 @@ def in_force_on(timeline: Timeline, day: date) -> Employment:
         if start <= day:
             current = employment
     return current
+
+
+def terms_day(run: PayrollRun) -> date:
+    """Return the day whose terms a run pays.
+
+    A regular or termination run pays its month at the terms of its last
+    day, whose promotion inside the month splits it
+    (:mod:`~ccnl_engine.compensation.change.rules`); an extra-month run at
+    the terms of the first day of its month.
+
+    Returns:
+        The last or the first day of the month of ``run``.
+    """
+    if run.run_kind in {RunKind.REGULAR, RunKind.TERMINATION}:
+        return date(run.year, run.month, calendar.monthrange(run.year, run.month)[1])
+    return date(run.year, run.month, 1)
 
 
 def hours_ratio(employment: Employment) -> Decimal:

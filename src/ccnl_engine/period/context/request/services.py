@@ -6,8 +6,10 @@ are invalid the same error is raised first on every call.
 
 from __future__ import annotations
 
+from dataclasses import replace
 from typing import TYPE_CHECKING
 
+from ccnl_engine.compensation.change.rules import MonthChange, blended, month_change
 from ccnl_engine.compensation.element.services import _resolve_chain
 from ccnl_engine.compensation.hourly.services import upcoming_percentages
 from ccnl_engine.compensation.proration.services import run_proration
@@ -93,6 +95,35 @@ def _base_chain(
     )
 
 
+def _with_change(
+    request: PeriodCalculationRequest,
+    contract: RunContract,
+    worker_category: WorkerCategory | None,
+    change: MonthChange,
+    chains: tuple[MonthlyPayChain, MonthlyPayChain],
+) -> tuple[MonthlyPayChain, MonthlyPayChain]:
+    """Return the chain and the full-time chain of a month split by a promotion.
+
+    The level before is priced with the seniority before the promotion.
+
+    Returns:
+        Each chain shared between the level before and the level of the run.
+    """
+    seniority = request.seniority
+    before = replace(
+        request,
+        seniority=None if seniority is None else replace(seniority, promotion=None),
+    )
+    old = replace(contract, level=contract.ccnl.level_by_code(change.from_level))
+    old_chain, _ = _base_chain(before, old, worker_category)
+    old_full, _ = _base_chain(before, old, worker_category, part_time=False)
+    chain, full_time = chains
+    return (
+        blended(old_chain, chain, change.share),
+        blended(old_full, full_time, change.share),
+    )
+
+
 def build_context(
     request: PeriodCalculationRequest,
     repo: KnowledgeRepository,
@@ -113,6 +144,11 @@ def build_context(
     full_time, _ = _base_chain(request, contract, worker_category, part_time=False)
     settlements = run_settlements(request, contract.ccnl)
     payment = resolve_payment(request)
+    change = month_change(request, contract.ccnl, payment.run_id.kind)
+    if change is not None:
+        chain, full_time = _with_change(
+            request, contract, worker_category, change, (chain, full_time)
+        )
     schedule = resolve_withholding_schedule(request, payment, contract.ccnl, competence)
     opening = request.opening_state
     withholding = schedule.position(payment, opening.cash.paid_runs)

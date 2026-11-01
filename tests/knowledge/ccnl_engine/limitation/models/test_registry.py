@@ -46,6 +46,7 @@ from ccnl_engine.assurance.ruleset.services import (
 from ccnl_engine.capability.loaders import (
     load_capability_catalog,
 )
+from ccnl_engine.compensation.change.rules import MID_MONTH_CHANGE
 from ccnl_engine.contribution.minimum_base.services import (
     EXEMPT_CATEGORY_FLOOR,
 )
@@ -147,6 +148,7 @@ def test_engine_limitations_are_raised_by_their_code() -> None:
         NASPI_EXCEPTIONS,
         SAME_KIND,
         AGRICULTURAL_DAYS,
+        MID_MONTH_CHANGE,
     }
     assert by_status[LimitationStatus.RESOLVED] == {
         _MIDPOINT,
