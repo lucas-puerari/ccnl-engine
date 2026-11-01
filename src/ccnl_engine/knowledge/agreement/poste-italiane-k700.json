@@ -112,18 +112,8 @@
         }
       },
       {
-        "kind": "simplification",
-        "text": "SIMPLIFICATION: Salary tranche 01/07/2024–31/08/2025 covered by one-time 'anticipo sui futuri miglioramenti economici' (lump sum, September 2024). Engine carries paga base at 2024-07-23 level (same as pre-renewal) for that window.",
-        "capability": "una_tantum",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "anticipo_lump_sum_2024",
-          "applies_when": {
-            "trigger": "run",
-            "effective_from": "2024-09-01"
-          },
-          "remediation": "Model the September 2024 anticipo sui futuri miglioramenti economici as an una tantum (or a caller event) and its absorption, or record a limitation for runs of September 2024."
-        }
+        "kind": "info",
+        "text": "ANTICIPO 2024 (Allegato 10, p. 178): the 'anticipo sui futuri miglioramenti economici' (A1 928.18 to F 571.47) for July 2024 to August 2025 is the una tantum ANTICIPO_2024, paid with the September 2024 pay to the permanent workers in service on 23 July 2024; the paga base keeps the pre-renewal amount for that window. The 'competenze contrattuali arretrate' of the same page (vacanza contrattuale of the first half of 2024, A1 397.79 to F 244.92, '1/12 per ogni mese di servizio') are not modelled: the share of a six-month period in twelfths is not settled by the text."
       },
       {
         "kind": "simplification",
@@ -136,6 +126,21 @@
             "trigger": "run"
           },
           "remediation": "Take the serious illness, disability or life-saving therapy of Art. 41 II as a fact of the episode and apply the 730 days at full pay."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "VACANZA CONTRATTUALE 2024 (Allegato 10, p. 178): the 'competenze contrattuali arretrate' for the first half of 2024 (A1 397.79 to F 244.92), paid with the September 2024 pay to the permanent workers in service on 23 July 2024 'nella misura di 1/12 per ogni mese di servizio', are not paid: twelfths of a six-month period leave the full amount unsettled.",
+        "capability": "una_tantum",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "vacanza_contrattuale_2024",
+          "applies_when": {
+            "trigger": "run",
+            "effective_from": "2024-09-01",
+            "effective_until": "2024-10-01"
+          },
+          "remediation": "Pay the arretrate of Allegato 10 once the share of the six months is settled (six twelfths or the whole amount)."
         }
       }
     ]
@@ -262,7 +267,55 @@
           "review_id": "2026-10-18-ai-accrual-rule"
         }
       }
-    }
+    },
+    "una_tantum": [
+      {
+        "code": "ANTICIPO_2024",
+        "covers_from": "2024-07-01",
+        "covers_until": "2025-08-31",
+        "month_min_days": 16,
+        "in_service_on": "2024-07-23",
+        "permanent_only": true,
+        "installments": [
+          {
+            "paid_in": "2024-09-01",
+            "amounts": {
+              "A1": "928.18",
+              "A2": "842.67",
+              "B": "744.59",
+              "C": "700.00",
+              "D": "675.94",
+              "E": "619.67",
+              "F": "571.47"
+            }
+          }
+        ],
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-poste-italiane-2024-uilposte",
+              "title": "CCNL Poste Italiane 2024-2027, 23 luglio 2024 (testo UILPoste)",
+              "kind": "associazione",
+              "url": "https://www.uilposte.it/wp-content/uploads/2025/01/CCNL-Posteitaliane-Uilposte2024.pdf",
+              "published_on": "2024-07-23",
+              "sha256": "84ca233b59d12f2026028da61615d216d540f7c94a72b04c85713ade1115a437"
+            },
+            "page": "178",
+            "section": "Allegato 10, Anticipo su futuri miglioramenti economici",
+            "quote": "A1 928,18 A2 842,67 B 744,59 C 700,00 D 675,94 E 619,67 F 571,47 Le somme sopraindicate, maturate pro quota per ogni mese di servizio o frazione di esso superiore a 15 giorni per il periodo dal 1 luglio 2024 al 31 agosto 2025, verranno corrisposte a titolo di anticipo sui futuri miglioramenti economici dei minimi contrattuali di cui alla tabella dell' Allegato 9 e saranno corrisposte esclusivamente al personale con contratto a tempo indeterminato in servizio alla data di sottoscrizione del presente CCNL. L'erogazione delle suddette somme avverrà con le competenze del mese di settembre 2024."
+          },
+          "transformation": "The anticipo of each level, for the 14 months from July 2024 to August 2025 (a fraction over 15 days counts), paid with the September 2024 pay to the permanent workers in service on 23 July 2024, the day of signature.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-01T22:20:38Z",
+            "verification_status": "unverified",
+            "effective_from": "2024-09-01"
+          }
+        }
+      }
+    ]
   },
   "apprenticeship": [
     {
@@ -1649,7 +1702,7 @@
     "effective_until": null,
     "source": "https://www.uilposte.it/wp-content/uploads/2025/01/CCNL-Posteitaliane-Uilposte2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "52a3c41c91b27d5afff009c5b3ad597e351e4dc40e6692df62489299af417ecb",
+    "source_hash": "4027c055cf523e4cd5bf493bd9e477399bceb119b115fe55ce83c61bd0289744",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

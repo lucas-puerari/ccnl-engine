@@ -26,6 +26,7 @@ from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.employment.inputs import Permanent
 from ccnl_engine.pay_item.rounding.policies import money
 from ccnl_engine.run.models import RunKind
 from ccnl_engine.run.types import PeriodId
@@ -78,7 +79,8 @@ def _arrears(
 
     Returns:
         One event for the share of the served months of earlier years and
-        one for the rest, each only when above zero.
+        one for the rest, each only when above zero; the rest refers to
+        the last served month, or to the payment month when earlier.
     """
     earlier = [m for m in served if m[0] < tax_year]
     before = money(amount * len(earlier) / len(served))
@@ -89,7 +91,8 @@ def _arrears(
             ArrearsEvent(paid, before, reference_period=PeriodId(year, month))
         )
     if amount - before:
-        year, month = served[-1]
+        # An advance paid before its period ends refers to the payment month.
+        year, month = min(served[-1], (paid.year, paid.month))
         events.append(
             ArrearsEvent(paid, amount - before, reference_period=PeriodId(year, month))
         )
@@ -125,6 +128,8 @@ def _installment(
     """
     period = request.employment_period
     if period is None or not _eligible(una, period):
+        return ()
+    if una.permanent_only and not isinstance(request.contract_type, Permanent):
         return ()
     days = una.month_min_days
     covered = _months(una.covers_from, una.covers_until, days)
