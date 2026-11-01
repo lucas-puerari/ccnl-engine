@@ -796,7 +796,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/edilizia-cooperative-ancpl",
       "ruleset_version": "2026.1",
-      "source_hash": "0b09717c42292d01539e9d5d979de23d70ba5f4a86da08300c931b864690c402",
+      "source_hash": "8989bc3bb215afab7020e4b7830bac7f5a71d651cb86c532d651f741183ec05e",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/edilizia-cooperative-ancpl.json.gz"
@@ -3324,7 +3324,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "3fb64a4a8a8ad57f2d1b700fbbf9fd8c9477bea635136716e1c4d3a7474fe73c",
+      "source_hash": "d3116562a8b2dd38495363904ab681bc69dcf92149f3cfd2796e5191433af570",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/edilizia-cooperative-ancpl.json.gz",
