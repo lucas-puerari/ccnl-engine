@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2026-02-23 |
-| **Last review** | 2026-10-17 |
+| **Last review** | 2026-11-01 |
 | **Latest salary tranche** | 2026-01-01 |
 
 ## Review history
@@ -60,6 +60,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-09-18 | maintainer (human) | Whole file. The values checked were not recorded. | confirmed | The review recorded no list of the documents it read. |
 | 2026-10-12 | claude-opus-5-5 (ai) | Salary tables, additional months, hourly and daily divisors, overtime, leave, sickness and seniority, against the CCNL of 16 November 2022 and of 23 February 2026. | corrected | Salary amounts confirmed (annual table over 12).<br>The first period started on 2022-11-16, the signing date; the new classification of Tabella G applies from 1 April 2023 (art. 13 c. 1).<br>Overtime is in art. 32 c. 5 of the CCNL 16.11.2022, not in the CCNL 2022-2024.<br>Sickness: comporto of 18 months with 9 months at 100%, 3 at 90% and 6 at 50% (art. 36), not 270 days at 100%.<br>Leave: 26 days for the first three years of a first public employment (art. 28 cc. 4-5).<br>The 2025-2027 renewal is an ipotesi of 21 July 2026, not in force. |
 | 2026-10-17 | claude-opus-5-5 (ai) | Periodic review due 2026-12-31: the tabellare of 2024 and of the conglobamento of 2026 against Tabella B of the CCNL of 23 February 2026, and the status of the 2025-2027 renewal. | confirmed | Tabella B (p. 83): the eight annual amounts of the four areas, from 1 January 2024 and from the conglobamento, over 12 give the monthly amounts of the file (for example 24.941,67 / 12 = 2.078,47). Match.<br>The 2025-2027 renewal is still an ipotesi of 21 July 2026 under the checks of art. 47 D.Lgs. 165/2001 on 2026-10-17; the limitation renewal_2025_2027_missing stays open with the status recorded. The next review is moved to 2027-01-31 to model it once signed.<br>No verified reference case is added: it needs a provider output (a payslip or an official example) whose request the engine can state; the two Funzioni Locali payslips replayed pay individual elements (posizione, ad personam, IVC) that no request input states, so only their base salary is compared. |
+| 2026-11-01 | claude-opus-5-5 (ai) | The notice clause (Art. 39, commi 1–4 e 9, p. 55–56). | corrected | Notice bands by level, category and service checked against the PDF by a separate session (delegated search and independent verification): work_rules.notice. |
 
 ## Salary table
 

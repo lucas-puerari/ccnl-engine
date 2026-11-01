@@ -6049,7 +6049,7 @@
     "effective_until": null,
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "92ff06b7c0487425f443d4bda11a389b7530bc22335fd7e9f4ef7fa20ed23600",
+    "source_hash": "f1cdf011b8d2f0a4b190b254f37b1df6c20dfc9bf63297bbb80b6ca28065cdb7",
     "published_at": "2026-09-07",
     "source_type": "official_primary"
   },
@@ -6156,6 +6156,85 @@
         },
         "note": "Job kept 18 months within the three years before the day (the CCNL sums 'le assenze per malattia verificatesi nel triennio precedente' the last episode): 540 days of 30-day months over a window of 3 years; 9 months (270 days) in full, 3 (days 271-360) at 90%, 6 (days 361-540) at 50%. The window ends on the sick day, not on the start of the last episode. The cut of the accessory pay of the first 10 days (D.L. 112/2008 art. 71 c. 1) is not modelled."
       }
+    },
+    "notice": {
+      "bands": [
+        {
+          "levels": [
+            "OPERATORE",
+            "ASSISTENTE",
+            "FUNZIONARIO",
+            "RICERCATORE",
+            "ELEVATA_QUALIFICAZIONE",
+            "DOCENTE_PRIMA_FASCIA"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "up_to_months": 60,
+          "months": 2
+        },
+        {
+          "levels": [
+            "OPERATORE",
+            "ASSISTENTE",
+            "FUNZIONARIO",
+            "RICERCATORE",
+            "ELEVATA_QUALIFICAZIONE",
+            "DOCENTE_PRIMA_FASCIA"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "up_to_months": 120,
+          "months": 3
+        },
+        {
+          "levels": [
+            "OPERATORE",
+            "ASSISTENTE",
+            "FUNZIONARIO",
+            "RICERCATORE",
+            "ELEVATA_QUALIFICAZIONE",
+            "DOCENTE_PRIMA_FASCIA"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "months": 4
+        }
+      ],
+      "starts": "day_after",
+      "extra_months_included": false,
+      "tfr_base": null,
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "afam-aran-notice-text",
+            "title": "CCNL text with the notice clause (Art. 16 CCNL 16 febbraio 2005, Termini di preavviso (raccolta ARAN 2017))",
+            "kind": "associazione",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2024/09/Afam_Raccolta-sistematica_Gennaio_2017.pdf",
+            "sha256": "2be9f6c0127f627e8f27b3668955df1e5c7bcab618243980163efda1f30a1d8b"
+          },
+          "page": "27",
+          "section": "Art. 16 CCNL 16 febbraio 2005, Termini di preavviso (raccolta ARAN 2017)",
+          "quote": "In tutti i casi in cui il presente contratto prevede la risoluzione del rapporto con preavviso o con corresponsione dell'indennità sostitutiva dello stesso, i relativi termini sono fissati come segue:\n- 2 mesi per dipendenti con anzianità di servizio fino a 5 anni;\n- 3 mesi per dipendenti con anzianità di servizio fino a 10 anni;\n- 4 mesi per dipendenti con anzianità di servizio oltre 10 anni."
+        },
+        "transformation": "Bands proposed by a delegated search and checked band by band against the PDF by a separate session. A start day the text does not set is read as the day after the notice; the ratei of the extra months and the TFR treatment are set only where the text states them.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-01T18:19:31Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-01T18:19:31Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-01-ai-notice-2"
+        }
+      }
     }
   },
   "verification": {
@@ -6203,6 +6282,27 @@
         ],
         "findings": [
           "The AFAM allowances were a limitation (afam_allowances_missing): RPD, RPR, CIA and the retribuzione di posizione are now paid, the 2024 amounts derived from the increments of the CCNL 2022-2024."
+        ]
+      },
+      {
+        "id": "2026-11-01-ai-notice-2",
+        "date": "2026-11-01",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The notice clause (Art. 16 CCNL 16 febbraio 2005, Termini di preavviso (raccolta ARAN 2017), p. 27).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2024/09/Afam_Raccolta-sistematica_Gennaio_2017.pdf",
+            "sha256": "2be9f6c0127f627e8f27b3668955df1e5c7bcab618243980163efda1f30a1d8b"
+          }
+        ],
+        "findings": [
+          "Notice bands by level, category and service checked against the PDF by a separate session (delegated search and independent verification): work_rules.notice."
+        ],
+        "independence": "separate_session",
+        "checked": [
+          "work_rules.notice"
         ]
       }
     ]

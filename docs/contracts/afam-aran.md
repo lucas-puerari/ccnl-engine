@@ -53,7 +53,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2026-07-01 |
-| **Last review** | 2026-10-12 |
+| **Last review** | 2026-11-01 |
 | **Latest salary tranche** | 2027-01-01 |
 
 ## Review history
@@ -62,6 +62,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|---|---|
 | 2026-10-12 | claude-opus-5-5 (ai) | Tabellare and seniority bands of the AFAM staff, 2024-2027. | corrected | New file for the AFAM staff of the comparto Istruzione e Ricerca: Tabella D2 of the CCNL 2022-2024 and 2025-2027, read on the ARAN texts. |
 | 2026-10-12 | claude-opus-5-5 (ai) | AFAM allowances, Tabelle D3-D6 of the CCNL 2022-2024 and 2025-2027. | corrected | The AFAM allowances were a limitation (afam_allowances_missing): RPD, RPR, CIA and the retribuzione di posizione are now paid, the 2024 amounts derived from the increments of the CCNL 2022-2024. |
+| 2026-11-01 | claude-opus-5-5 (ai) | The notice clause (Art. 16 CCNL 16 febbraio 2005, Termini di preavviso (raccolta ARAN 2017), p. 27). | corrected | Notice bands by level, category and service checked against the PDF by a separate session (delegated search and independent verification): work_rules.notice. |
 
 ## Salary table
 

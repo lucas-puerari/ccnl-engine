@@ -48,7 +48,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/afam-aran",
       "ruleset_version": "2026.2",
-      "source_hash": "92ff06b7c0487425f443d4bda11a389b7530bc22335fd7e9f4ef7fa20ed23600",
+      "source_hash": "f1cdf011b8d2f0a4b190b254f37b1df6c20dfc9bf63297bbb80b6ca28065cdb7",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/afam-aran.json.gz"
@@ -524,7 +524,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/concia-unic",
       "ruleset_version": "2026.1",
-      "source_hash": "3c168badd22c163af9548fb9a431d3a5b202d24bae2c57f21ea487402cd9db84",
+      "source_hash": "a9f40e0ace916247de73c7148c92332d6437f3c8060bd38cd32b01847b131717",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/concia-unic.json.gz"
@@ -1037,7 +1037,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/funzioni-centrali-aran",
       "ruleset_version": "2026.2",
-      "source_hash": "3acfe8db32018b5066cf62dd03851afcca57d1583e1c9e18f9b431404f1c2952",
+      "source_hash": "392056d2a16b80de8377d34fb4802fc4e88a8dfa87a6183bdb21502d3c2f6e32",
       "source_type": "institutional_secondary",
       "owner": "maintainer",
       "wheel_resource": "agreement/funzioni-centrali-aran.json.gz"
@@ -1054,7 +1054,7 @@
       "valid_to": "2024-12-31",
       "ruleset_id": "ccnl/funzioni-locali-aran",
       "ruleset_version": "2026.2",
-      "source_hash": "c12140fdbf807658717d9b79b2462785f015b8bfb3f10bfee7ab6bd96d31f96d",
+      "source_hash": "657c12bd17ce0f53820bfb7bd0933bf288a1d0ae8446cdee872bbf130ceb32b8",
       "source_type": "institutional_secondary",
       "owner": "maintainer",
       "wheel_resource": "agreement/funzioni-locali-aran.json.gz"
@@ -1156,7 +1156,7 @@
       "valid_to": "2027-12-31",
       "ruleset_id": "ccnl/impiegati-tecnici-agricoli",
       "ruleset_version": "2026.2",
-      "source_hash": "a1e7b7b1d675feb37327142e11acacd075254de0703da97b6249aa4eaa26fa57",
+      "source_hash": "dbd081a5373e2cad25ef018e4163035e8792fae21b0666bcb127be4feb647158",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/impiegati-tecnici-agricoli.json.gz"
@@ -1394,7 +1394,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/logistica-trasporto-confetra",
       "ruleset_version": "2026.2",
-      "source_hash": "47e6c136a34d6d85140432c0bb7f1c35651fab74f061008308ddb5c444a9b066",
+      "source_hash": "c162cd1c5c8e0b9833c995787762e4c54fe1232c14a574864fdb60331fd0b51c",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/logistica-trasporto-confetra.json.gz"
@@ -1870,7 +1870,7 @@
       "valid_to": "2024-12-31",
       "ruleset_id": "ccnl/sanita-aran",
       "ruleset_version": "2026.2",
-      "source_hash": "141cac3a64da52bd243a58405c5142bca145b7d3b9eb1e493d135268ef8dc114",
+      "source_hash": "eabcac08aa7000f4018c467990a09dc9384a8d49e1208c04a008c355e269d5ca",
       "source_type": "commercial_secondary",
       "owner": "maintainer",
       "wheel_resource": "agreement/sanita-aran.json.gz"

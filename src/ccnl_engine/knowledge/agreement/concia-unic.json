@@ -7,7 +7,7 @@
     "effective_until": null,
     "published_at": "2026-09-11",
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
-    "source_hash": "3c168badd22c163af9548fb9a431d3a5b202d24bae2c57f21ea487402cd9db84",
+    "source_hash": "a9f40e0ace916247de73c7148c92332d6437f3c8060bd38cd32b01847b131717",
     "verification_status": "verified",
     "source_type": "contracting_party"
   },
@@ -3526,6 +3526,160 @@
         "transformation": "Comporto 8, 10, 12 months (240, 300, 360 days of 30-day months) within 36 months (renewal p. 8: 'si intendono riferiti ad un arco temporale di 36 mesi'); pay (CNEL p. 77, art. 60 C): 'intera retribuzione netta' for 3, 4, 5 months and half for 5, 6, 7 more, so the half runs to the end of the comporto; on the net pay (net_basis). The treatment restarts after 'un periodo di quattro mesi senza alcuna assenza per malattia' (reset_after_days 120). Bands from 36 and 72 completed months for 'fino a 3 anni' and 'fino a 6 anni'. Malattie invalidanti (renewal p. 7): 'I termini sopra indicati sono aumentati rispettivamente di 2 mesi, 3 mesi e 4 mesi' (300, 390, 480 days, SicknessEpisode.serious_illness); hospital stays: 'non saranno tenuti in considerazione i periodi di ricovero ospedaliero di durata superiore a 5 giorni [...] continuativi di calendario fino ad un massimo di 60 complessivi' (SicknessEpisode.hospital_stays), counted over the 36-month window. Restart: 'Il trattamento economico suindicato ricomincia ex novo [...] dal 16° giorno di ricovero ospedaliero' (CNEL text p. 88, art. 60 C): from the 16th day of a stay the days count from one again (hospital_restart_day), within the episode. Restart also for an 'assenza per malattia iniziata dopo dodici mesi dal giorno in cui è cessato il diritto al trattamento economico del 100%' (art. 60 C, restart_after_full_pay_months 12); the 'giorni di controlli periodici rivolti ai lavoratori che hanno avuto esperienza oncologica' of a malattia invalidante are left out of the comporto (renewal p. 7, SicknessEpisode.periodic_check).",
         "note": "Scanned renewal, read by OCR and checked on the page images. Group 3 (operai) receive the INPS indemnity topped up to the net pay of group 1."
       }
+    },
+    "notice": {
+      "bands": [
+        {
+          "levels": [
+            "C1",
+            "C2",
+            "D1",
+            "D2",
+            "E1",
+            "E2",
+            "E3",
+            "F1"
+          ],
+          "categories": [
+            "operaio"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "up_to_months": 12,
+          "days": 6,
+          "starts": "day_after"
+        },
+        {
+          "levels": [
+            "C1",
+            "C2",
+            "D1",
+            "D2",
+            "E1",
+            "E2",
+            "E3",
+            "F1"
+          ],
+          "categories": [
+            "operaio"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "days": 15,
+          "starts": "day_after"
+        },
+        {
+          "levels": [
+            "A"
+          ],
+          "categories": [
+            "quadro"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "up_to_months": 60,
+          "months": 2
+        },
+        {
+          "levels": [
+            "A"
+          ],
+          "categories": [
+            "quadro"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "up_to_months": 120,
+          "months": 3
+        },
+        {
+          "levels": [
+            "A"
+          ],
+          "categories": [
+            "quadro"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "months": 4
+        },
+        {
+          "levels": [
+            "B1",
+            "B2"
+          ],
+          "categories": [
+            "impiegato"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "up_to_months": 60,
+          "months": 2
+        },
+        {
+          "levels": [
+            "B1",
+            "B2"
+          ],
+          "categories": [
+            "impiegato"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "up_to_months": 120,
+          "months": 3
+        },
+        {
+          "levels": [
+            "B1",
+            "B2"
+          ],
+          "categories": [
+            "impiegato"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "months": 4
+        }
+      ],
+      "starts": "first_or_sixteenth",
+      "extra_months_included": false,
+      "tfr_base": null,
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "concia-unic-notice-text",
+            "title": "CCNL text with the notice clause (Art. 83 (preavviso); Art. 26 (classificazione), PDF p. 51)",
+            "kind": "associazione",
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/148617",
+            "sha256": "e5f478479583edd9fd8614480cc5ee5d6dc130ad29271067522ed444c8bd9cde"
+          },
+          "page": "88",
+          "section": "Art. 83 (preavviso); Art. 26 (classificazione), PDF p. 51",
+          "quote": "Art. 83 - Preavviso di licenziamento e di dimissioni\nIl rapporto di lavoro a tempo indeterminato di un lavoratore non in prova non può essere risolto da nes-\nsuna delle due parti senza un periodo di preavviso i cui termini sono stabiliti come segue a seconda\ndell’anzianità e della qualifica a cui appartiene il lavoratore.\nIl periodo di preavviso non può coincidere con il periodo di ferie.\nLa parte che risolve il rapporto senza l’osservanza dei termini di preavviso di cui ai seguenti punti a), b),\nc), deve corrispondere all’altra un’indennità pari all’importo della retribuzione per il periodo di mancato\npreavviso. Il datore di lavoro ha diritto di ritenere su quanto sia da lui dovuto al lavoratore un importo\ncorrispondente alla retribuzione per il periodo di preavviso da questo eventualmente non prestato.\na) Lavoratori di cui al gruppo 3) dell’art. 26:\nil licenziamento o le dimissioni del lavoratore, non in prova, attuati non ai sensi dell’art. 21, possono\naver luogo in qualunque giorno della settimana, con preavviso di 6 giorni per anzianità ininterrotta fino\nad un anno e di 15 giorni per anzianità superiori.\nb) Lavoratori di cui al gruppo 2) dell’art. 26:\nil lavoratore di cui al gruppo 2) dell’art. 26 ha diritto ai seguenti termini di preavviso di licenziamento,\ncon decorrenza dalla metà o dalla fine di ciascun mese:\n\n\n                                                            Cat. C1ª                      Cat. D2ª\n     Anni di servizio\n                                                            (ex liv.5°)                   (ex liv.3°)\nfino a 5 anni compiuti                                       1 mese                       1/2 mese\noltre 5 anni e fino a 10 anni compiuti                     1 mese e 1/2                    1 mese\noltre 10 anni                                                2 mesi                      1 mese e 1/2\n\n\nIn caso di dimissioni i termini di cui sopra sono ridotti alla metà.\nc) Lavoratori di cui ai gruppi Q) e 1) dell’art. 26:\nIl lavoratore di cui ai gruppi Q) e 1) dell’art. 26 ha diritto ai seguenti termini di preavviso, con decorrenza\ndalla metà o dalla fine di ciascun mese:\n\n\n                                           Cat. A, B1ª e B2ª               Cat. C1ª            Altre Cat.\n     Anni di servizio\n                                           (ex liv.8°, 7° e 6°)            (ex liv.5°)       (ex altri livelli)\nfino a 5 anni compiuti                            2 mesi                  1 mese e 1/2           1 mese\noltre 5 anni e fino a 10 anni compiuti            3 mesi                    2 mesi            1 mese e 1/2\noltre 10 anni                                     4 mesi                    3 mesi               2 mesi\n\n\nIn caso di dimissioni i termini di cui sopra sono ridotti alla metà."
+        },
+        "transformation": "Bands proposed by a delegated search and checked band by band against the PDF by a separate session. A start day the text does not set is read as the day after the notice; the ratei of the extra months and the TFR treatment are set only where the text states them.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-01T18:19:31Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-01T18:19:31Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-01-ai-notice-2"
+        }
+      }
     }
   },
   "coverage": {
@@ -3718,6 +3872,27 @@
         ],
         "findings": [
           "The last special cases of art. 60 are modelled: the restart 12 months after the full pay ended and the periodic checks out of the comporto; the limitation sickness_special_cases is closed."
+        ]
+      },
+      {
+        "id": "2026-11-01-ai-notice-2",
+        "date": "2026-11-01",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The notice clause (Art. 83 (preavviso); Art. 26 (classificazione), PDF p. 51, p. 88).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/148617",
+            "sha256": "e5f478479583edd9fd8614480cc5ee5d6dc130ad29271067522ed444c8bd9cde"
+          }
+        ],
+        "findings": [
+          "Notice bands by level, category and service checked against the PDF by a separate session (delegated search and independent verification): work_rules.notice."
+        ],
+        "independence": "separate_session",
+        "checked": [
+          "work_rules.notice"
         ]
       }
     ],

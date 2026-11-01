@@ -26,12 +26,15 @@ from typing import TYPE_CHECKING
 import pytest
 
 from ccnl_engine.catalog.loaders import load_ccnl
+from ccnl_engine.employment.category.models import WorkerCategory
 from ccnl_engine.employment.period.inputs import TerminationCause
 
 if TYPE_CHECKING:
     from ccnl_engine.termination.notice.models import NoticeRules
 
 _D, _R = TerminationCause.DISMISSAL, TerminationCause.RESIGNATION
+_OPERAIO, _IMPIEGATO = WorkerCategory.OPERAIO, WorkerCategory.IMPIEGATO
+_QUADRO = WorkerCategory.QUADRO
 
 
 def _notice(ccnl_id: str) -> NoticeRules:
@@ -211,3 +214,56 @@ def test_the_cemento_areas(level: str, service: int, months: int, days: int) -> 
     assert band is not None
     assert (band.months, band.days, band.indemnity_months) == (months, days, None)
     assert rules.starts.value == "day_after"
+
+
+@pytest.mark.parametrize(
+    ("ccnl_id", "level", "service", "cause", "months", "days", "category"),
+    [
+        # AFAM, Funzioni centrali and locali, Sanità: 2, 3, 4 months by
+        # service up to five years, up to ten, over ten.
+        ("afam-aran", "ASSISTENTE", 60, _D, 2, 0, None),
+        ("afam-aran", "FUNZIONARIO", 121, _R, 4, 0, None),
+        ("funzioni-centrali-aran", "FUNZIONARI", 61, _D, 3, 0, None),
+        ("funzioni-locali-aran", "ISTRUTTORI", 121, _D, 4, 0, None),
+        ("sanita-aran", "OPERATORI", 120, _D, 3, 0, None),
+        # Logistica art. 36: Q 2m15d up to five years, the other impiegati
+        # levels 1m15d past five and up to ten.
+        ("logistica-trasporto-confetra", "Q", 60, _D, 2, 15, _QUADRO),
+        ("logistica-trasporto-confetra", "3", 61, _D, 1, 15, _IMPIEGATO),
+        # Concia art. 83: group-3 operai 6 days up to 12 months, then 15.
+        ("concia-unic", "C1", 12, _R, 0, 6, _OPERAIO),
+        ("concia-unic", "E2", 13, _D, 0, 15, _OPERAIO),
+        ("concia-unic", "B2", 121, _D, 4, 0, _IMPIEGATO),
+        # Impiegati tecnici agricoli: two months to resign up to level 3.
+        ("impiegati-tecnici-agricoli", "2", 1, _R, 2, 0, _IMPIEGATO),
+    ],
+)
+def test_the_second_batch_of_tables(
+    ccnl_id: str,
+    level: str,
+    service: int,
+    cause: TerminationCause,
+    months: int,
+    days: int,
+    category: WorkerCategory | None,
+) -> None:
+    """The band of the level, cause, service and category."""
+    band = _notice(ccnl_id).band(level, cause, service, category)
+
+    assert band is not None
+    assert (band.months, band.days) == (months, days)
+
+
+@pytest.mark.parametrize(
+    "ccnl_id", ["funzioni-centrali-aran", "funzioni-locali-aran", "sanita-aran"]
+)
+def test_the_aran_resignation_is_left_to_the_caller(ccnl_id: str) -> None:
+    """Half the dismissal terms: a fraction of a month in the middle band."""
+    level = load_ccnl(ccnl_id).levels[0].code
+    assert _notice(ccnl_id).band(level, _R, 61) is None
+
+
+def test_the_logistica_operai_levels_take_no_impiegato_band() -> None:
+    """Levels 4J and 6 hold operai only (art. 6)."""
+    rules = _notice("logistica-trasporto-confetra")
+    assert rules.band("6", _D, 61, _IMPIEGATO) is None
