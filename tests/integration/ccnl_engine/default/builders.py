@@ -436,6 +436,30 @@ DEFAULT_CASES: Mapping[str, tuple[DefaultCase, ...]] = {
             TfrFundBalance(2025, Decimal(2_000), revaluations=Decimal(0)), "advances"
         ),
     ),
+    "TfrFundBalance.advances_taxable": (
+        _fund_case(
+            TfrFundBalance(
+                2025,
+                Decimal(2_000),
+                Decimal(0),
+                Decimal(500),
+                advances_tax=Decimal(115),
+            ),
+            "advances_taxable",
+        ),
+    ),
+    "TfrFundBalance.advances_tax": (
+        _fund_case(
+            TfrFundBalance(
+                2025,
+                Decimal(2_000),
+                Decimal(0),
+                Decimal(500),
+                advances_taxable=Decimal(500),
+            ),
+            "advances_taxable",
+        ),
+    ),
     "OpeningBalances.tfr_quotas": (
         DefaultCase(
             _leaving(opening=_imported_quotas(())),

@@ -42,6 +42,8 @@ class _Fund:
     amount: Decimal
     revaluations: Decimal | None
     advances: Decimal | None
+    advances_taxable: Decimal | None = None
+    advances_tax: Decimal | None = None
 
 
 def _destination_gap(ctx: RunContext, run_to_pension_fund: bool) -> _Gap | None:
@@ -76,7 +78,13 @@ def _fund(ctx: RunContext, year: int, started_on: date) -> _Fund | None:
         return _Fund(_ZERO, _ZERO, _ZERO) if started_on.year == year else None
     if stated.year != year - 1:
         return None
-    return _Fund(stated.amount, stated.revaluations, stated.advances)
+    return _Fund(
+        stated.amount,
+        stated.revaluations,
+        stated.advances,
+        stated.advances_taxable,
+        stated.advances_tax,
+    )
 
 
 def _quotas_before(ctx: RunContext, started_on: date) -> Decimal | None:

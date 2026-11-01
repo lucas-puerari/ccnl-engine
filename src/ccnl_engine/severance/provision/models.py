@@ -57,17 +57,26 @@ class TfrFundBalance:
         advances: Advances paid out of the fund over the employment (art.
             2120 c. 6 c.c.), already deducted from ``amount``; ``None``
             when not known, ``0`` when none was paid.
+        advances_taxable: The taxable of those advances at their separate
+            taxation: their amount less the revaluations they held, already
+            taxed at the substitute rate (art. 19 c. 4 TUIR); ``None`` when
+            not known.
+        advances_tax: The IRPEF withheld on those advances, which the
+            termination takes back in the conguaglio of art. 19 c. 4 TUIR;
+            ``None`` when not known.
 
     Raises:
         InvalidInputError: When ``year`` is not an int from 1900, an amount
-            is not a non-negative Decimal in cents, or ``revaluations``
-            exceeds ``amount``.
+            is not a non-negative Decimal in cents, ``revaluations``
+            exceeds ``amount`` or ``advances_taxable`` exceeds ``advances``.
     """
 
     year: int
     amount: Decimal
     revaluations: Decimal | None = None
     advances: Decimal | None = None
+    advances_taxable: Decimal | None = None
+    advances_tax: Decimal | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
         require_int(self.year, "TfrFundBalance.year", feature=FEATURE, minimum=1900)
@@ -76,12 +85,21 @@ class TfrFundBalance:
         )
         _require_cents(self.amount, "TfrFundBalance.amount")
         _require_cents(self.revaluations, "TfrFundBalance.revaluations")
-        _require_cents(self.advances, "TfrFundBalance.advances")
+        for name in ("advances", "advances_taxable", "advances_tax"):
+            _require_cents(getattr(self, name), f"TfrFundBalance.{name}")
         if self.revaluations is not None and self.revaluations > self.amount:
             reject(
                 "TfrFundBalance.revaluations",
                 f"an amount within the fund ({self.amount})",
                 self.revaluations,
+                feature=FEATURE,
+            )
+        advances, taxable = self.advances, self.advances_taxable
+        if advances is not None and taxable is not None and taxable > advances:
+            reject(
+                "TfrFundBalance.advances_taxable",
+                f"an amount within the advances ({advances})",
+                taxable,
                 feature=FEATURE,
             )
 

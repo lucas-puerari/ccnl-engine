@@ -26,6 +26,7 @@ if TYPE_CHECKING:
 
 from ccnl_engine.severance.settlement.gap.models import (
     _ADVANCES,
+    _ADVANCES_OVERWITHHELD,
     _ADVANCES_UNKNOWN,
     _BEFORE_2001,
     _NO_RULES,
@@ -100,7 +101,49 @@ def _rate_gap(ctx: RunContext, fund: _Fund) -> _Gap | None:
         return _BEFORE_2001
     if fund.advances is None:
         return _ADVANCES_UNKNOWN
-    return _ADVANCES if fund.advances else None
+    stated = fund.advances_taxable is not None and fund.advances_tax is not None
+    return _ADVANCES if fund.advances and not stated else None
+
+
+def separate_tax(
+    run: tuple[RunContext, TfrSettlementRules | None, int | None],
+    fund: _Fund,
+    taxable: Decimal,
+    caller: Decimal | None,
+    inputs: dict[str, Decimal | str],
+) -> Decimal | _Gap:
+    """Return the separate tax of the TFR paid, recording how in ``inputs``.
+
+    The rate is the average rate of the TFR of the whole employment: the
+    taxable paid plus the taxable of the advances (art. 19 c. 4 TUIR:
+    "considerando l'importo accantonato, aumentato delle anticipazioni");
+    the tax of that whole, less the deduction of a short fixed term, less
+    the tax already withheld on the advances ("salvo conguaglio all'atto
+    della liquidazione definitiva"), is the tax of the payout.  A caller
+    rate is applied to the taxable paid alone.
+
+    Returns:
+        The tax, or the gap of advances taxed more than the whole TFR, whose
+        refund is not computed.
+    """
+    ctx, rules, months = run
+    if caller is not None or rules is None:
+        return max(_ZERO, money(max(taxable, _ZERO) * (caller or _ZERO)))
+    assert months is not None, "the months come with the rules"  # pragma: no mutate
+    advanced, withheld = fund.advances_taxable or _ZERO, fund.advances_tax or _ZERO
+    base = taxable + advanced
+    brackets = ctx.contract.year_rules.irpef_brackets
+    reference, rate = average_rate(base, months, brackets, rules)
+    deduction = fixed_term_deduction(ctx, rules, months)
+    inputs["reference_income"] = money(reference)
+    inputs["average_rate"] = rate
+    inputs["brackets_year"] = str(ctx.contract.year_rules.year)
+    inputs["fixed_term_deduction"] = deduction
+    if advanced or withheld:
+        inputs["advances_taxable"] = advanced
+        inputs["advances_tax"] = withheld
+    whole = max(_ZERO, money(max(base, _ZERO) * rate) - deduction)
+    return _ADVANCES_OVERWITHHELD if whole < withheld else whole - withheld
 
 
 def fixed_term_deduction(

@@ -24,6 +24,14 @@ def _dependent(fact: str, reason: str) -> FieldDefault:
     return requires_fact("family_deductions", fact, _REPORTED, reason)
 
 
+def _advances(field: str, fact: str) -> FieldDefault:
+    reason = f"unknown {field} of the fund: the separate tax of a TFR the engine "
+    reason += f"computes (art. 19 c. 4 TUIR) has a missing_fact {fact} blocker"
+    return requires_fact(
+        "termination_tfr", f"employment.tfr_fund.{field}", _REPORTED, reason
+    )
+
+
 #: Accounts of imported balances: zero is an account without movement.
 _ACCOUNTS = (
     "gross",
@@ -228,13 +236,11 @@ FACT_DEFAULTS: Mapping[str, FieldDefault] = {
         "engine computes (art. 19 c. 1 TUIR) has a missing_fact revaluations "
         "blocker",
     ),
-    "TfrFundBalance.advances": requires_fact(
-        "termination_tfr",
-        "employment.tfr_fund.advances",
-        _REPORTED,
-        "unknown advances paid out of the fund: the separate tax of a TFR the "
-        "engine computes has a missing_fact advances blocker",
+    "TfrFundBalance.advances": _advances("advances", "advances"),
+    "TfrFundBalance.advances_taxable": _advances(
+        "advances_taxable", "advances_taxable"
     ),
+    "TfrFundBalance.advances_tax": _advances("advances_tax", "advances_taxable"),
     "OpeningBalances.employment_spells": absence_is_fact(
         "the totals hold no earlier employment of the tax year: the next run "
         "adds the days of its own"
