@@ -72,17 +72,8 @@
         "text": "Headcount: 77,146 workers in 16,324 companies (INPS-CNEL archive, H121)."
       },
       {
-        "kind": "simplification",
-        "text": "SIMPLIFICATION: Farmacie Rurali Sussidiate (Tabella B) excluded. Rural pharmacies have lower base salaries; Tabella A (urban) is modelled only.",
-        "capability": "base_salary",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "rural_pharmacy_table",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Add the Tabella B pay of the Farmacie Rurali Sussidiate with a fact selecting it, or refuse such employers."
-        }
+        "kind": "info",
+        "text": "TABLE: Tabella A, the urban and non-subsidised rural pharmacies; the Farmacie rurali sussidiate (Tabella B) are the sibling farmacie-rurali-sussidiate-h121."
       },
       {
         "kind": "simplification",
@@ -1561,7 +1552,7 @@
     "effective_until": null,
     "source": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf",
     "verification_status": "unverified",
-    "source_hash": "d6a6bffdf35008a4a0692ce1f4efebe08079eb9a669f71d81b06cfa7e1623e6d",
+    "source_hash": "5b2f6ec5d9d61552e35b3e0040f419feb637f52d1a9889d4f105018df39c89e9",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

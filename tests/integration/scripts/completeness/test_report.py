@@ -191,7 +191,7 @@ def test_the_bundle_totals_match_the_evidence_snapshot() -> None:
     pending = sum(len(evidence.weak_rules.get(path, {})) for path in built.pending)
     assert built.weak_rules + pending == sum(map(len, evidence.weak_rules.values()))
     assert built.open_limitations == sum(map(len, evidence.open_limitations.values()))
-    assert len(built.rows) == 133
+    assert len(built.rows) == 134
     assert built.census_errors == ()
 
 
@@ -225,7 +225,7 @@ def test_check_and_strict_modes(
     assert page.is_file()
     assert report.main(["--check"]) == 0
     assert report.main(["--check", "--strict"]) == 1
-    assert "Complete: 0/133 CCNLs." in capsys.readouterr().out
+    assert "Complete: 0/134 CCNLs." in capsys.readouterr().out
 
 
 def test_a_census_error_fails_every_mode(
