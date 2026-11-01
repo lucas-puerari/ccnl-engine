@@ -89,6 +89,7 @@ class TestGetCcnl:
         assert set(exc_info.value.suggestions) == {
             "agenzie-viaggio-fiavet",
             "turismo-federalberghi",
+            "turismo-federalberghi-alberghi-minori",
         }
 
     def test_slug_of_a_shared_code_resolves(self) -> None:

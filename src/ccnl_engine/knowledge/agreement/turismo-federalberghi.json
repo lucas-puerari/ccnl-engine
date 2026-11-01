@@ -3077,17 +3077,8 @@
         }
       },
       {
-        "kind": "simplification",
-        "text": "Art. 152 c. 2 as replaced in 2024, p. 43: the lower paga base of 1-2 star hotels and campsites up to 1200 presenze (level 4 1,688.98 instead of 1,695.69 from May 2026).",
-        "capability": "base_salary",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "small_hotel_table",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Add an employer fact for the small-hotel table."
-        }
+        "kind": "info",
+        "text": "SUB-SECTOR: the lower paga base of Art. 152 c. 2 (renewal of 5 July 2024, p. 43) for the alberghi a una e due stelle and the campeggi up to 1200 presenze-licenza is the sibling turismo-federalberghi-alberghi-minori."
       },
       {
         "kind": "simplification",
@@ -3245,7 +3236,7 @@
     "effective_until": null,
     "source": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
     "verification_status": "unverified",
-    "source_hash": "2c07032fab1180be3b51a34d8054a673073a8aba9c00af85eb762914fb1f1305",
+    "source_hash": "3a4cd9571b5acd0983f247c7f44e0edac6a988724ace3cb05ded65496db1b2c5",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

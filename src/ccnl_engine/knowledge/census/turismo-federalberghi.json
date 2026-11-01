@@ -467,22 +467,6 @@
       }
     },
     {
-      "id": "small_hotel_table",
-      "institute": "base_salary",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Art. 152 c. 2 as replaced in 2024, p. 43: the lower paga base of 1-2 star hotels and campsites up to 1200 presenze (level 4 1,688.98 instead of 1,695.69 from May 2026).",
-      "calculation": "ccnl/turismo-federalberghi:coverage.notes",
-      "state": "absent",
-      "remediation": "Add an employer fact for the small-hotel table.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "turismo-federalberghi/small_hotel_table"
-        ]
-      }
-    },
-    {
       "id": "tfr_compensation_apprentice_guarantee_fund",
       "institute": "inps_employer",
       "variant": "apprentice",

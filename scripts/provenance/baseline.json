@@ -1361,6 +1361,20 @@
       "turismo-confesercenti/other_subsectors_tables",
       "turismo-confesercenti/tourism_special_supplement"
     ],
+    "agreement/turismo-federalberghi-alberghi-minori.json": [
+      "turismo-federalberghi-alberghi-minori/apprentice_net_cap",
+      "turismo-federalberghi-alberghi-minori/apprentice_seniority",
+      "turismo-federalberghi-alberghi-minori/apprenticeship_durations_unsourced",
+      "turismo-federalberghi-alberghi-minori/balneari_reduction_hours",
+      "turismo-federalberghi-alberghi-minori/extra_months_during_leave",
+      "turismo-federalberghi-alberghi-minori/extras_hourly_table",
+      "turismo-federalberghi-alberghi-minori/first_scatto_from_18",
+      "turismo-federalberghi-alberghi-minori/guarantee_element_2027",
+      "turismo-federalberghi-alberghi-minori/hires_2016_ramp",
+      "turismo-federalberghi-alberghi-minori/quadri_absorption",
+      "turismo-federalberghi-alberghi-minori/sickness_net_basis",
+      "turismo-federalberghi-alberghi-minori/tourism_special_supplement"
+    ],
     "agreement/turismo-federalberghi.json": [
       "turismo-federalberghi/apprentice_net_cap",
       "turismo-federalberghi/apprentice_seniority",
@@ -1373,7 +1387,6 @@
       "turismo-federalberghi/hires_2016_ramp",
       "turismo-federalberghi/quadri_absorption",
       "turismo-federalberghi/sickness_net_basis",
-      "turismo-federalberghi/small_hotel_table",
       "turismo-federalberghi/tourism_special_supplement"
     ],
     "agreement/uneba-uneba.json": [

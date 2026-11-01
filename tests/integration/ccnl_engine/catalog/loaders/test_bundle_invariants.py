@@ -69,9 +69,9 @@ def _outside(
     ]
 
 
-def test_the_bundle_holds_134_ccnls() -> None:
-    """Exactly 134 CCNL data files are bundled."""
-    assert len(_ALL_CCNL) == 134
+def test_the_bundle_holds_135_ccnls() -> None:
+    """Exactly 135 CCNL data files are bundled."""
+    assert len(_ALL_CCNL) == 135
 
 
 def test_every_ruleset_identity_names_its_ccnl() -> None:
