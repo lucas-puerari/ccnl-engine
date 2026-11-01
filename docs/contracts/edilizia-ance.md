@@ -53,7 +53,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-02-21 |
-| **Last review** | 2026-10-31 |
+| **Last review** | 2026-11-01 |
 | **Latest salary tranche** | 2027-03-01 |
 
 ## Review history
@@ -71,6 +71,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'confrontare lordo, netto e costo azienda con esempi indipendenti': a run of the engine against the cost table of the Ministry of Labour for the CCNL (D.Lgs. 36/2023 art. 41 c. 13). | flagged | Operaio di 1° livello, January 2026 (the tranche of the table of May 2025), 30 employees, 173 hours: minimo 6,17, ex contingenza 2,96 and EDR 0,06 an hour equal the monthly amounts over 173; riposi annui 4,95% and the Cassa Edile accrual 18,50% are the table's rates on minimo and contingenza; the employer INPS rate 34.28% (15-50 employees) matches. Match.<br>Deviations, with cause and decision: the EVR, the indennità territoriale di settore and the transport and meal indemnities are provincial and declared (NOT MODELLED AMOUNTS); the Cassa Edile contribution (5,47% in the table) was not declared: declared; INAIL 11% is not computed by the engine (documented). No independent net pay example: not compared. |
 | 2026-10-17 | claude-opus-5-5 (ai) | The rate of the supplementary hours of the part-time workers. | corrected | Art. 78 (pp. 90-91): the operai are paid the supplementary hours with the hourly quota raised by 20%, which 'avrà incidenza su tutti gli istituti retributivi legali e contrattuali, indiretti e differiti, compresi le contribuzioni e gli accantonamenti in Cassa Edile'. The 20% band is added; its incidence on the TFR and the Cassa Edile accruals is not modelled (the engine keeps an overtime pay out of the TFR base), so part_time_supplementary_rate stays open, narrowed to it. The 10% of the flexible clauses is not modelled either. |
 | 2026-10-31 | claude-opus-5-5 (ai) | The comporto and the sick pay of the CCNL counted over several illnesses (work_rules.sickness_rules), read on the signed text. | corrected | Art. 26 (pp. 50-51): the comporto is 270 days of one illness and 'nove mesi nell’arco di 20 mesi consecutivi' of several, 365 days and '12 mesi nell’arco di 24 mesi consecutivi' past three and a half years of seniority; coefficient (e) pays days 181-365. The file kept a comporto of 270 days of one illness: corrected to the windows of 20 and 24 months (comporto_windows) with one illness paid up to day 365. The coefficients were confirmed. |
+| 2026-11-01 | claude-opus-5-5 (ai) | The notice of the operai, Art. 32 (p. 55). | corrected | Art. 32 (p. 55): 7 calendar days up to three years, 10 beyond, from any day, indemnity at the pay of the period: work_rules.notice. Found by a delegated search, checked on the PDF text. |
 
 ## Salary table
 

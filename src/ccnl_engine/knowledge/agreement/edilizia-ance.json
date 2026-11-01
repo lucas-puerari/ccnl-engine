@@ -1639,7 +1639,7 @@
     "effective_until": null,
     "source": "https://ance.it/wp-content/uploads/allegati/Tabella_nuovi_minimi_orari-_CCNL_2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "6a8ab1ee372ca650097780bb9de8656fe0c6347f64fa1c45e68382372ef61470",
+    "source_hash": "7c16e2bbb6da97e594e325a44dc93326118e8bad6df642b27474323a2d164b7c",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1989,6 +1989,66 @@
           "review_id": "2026-10-31-ai-sickness-comporto"
         }
       }
+    },
+    "notice": {
+      "bands": [
+        {
+          "levels": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "up_to_months": 36,
+          "days": 7
+        },
+        {
+          "levels": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "days": 10
+        }
+      ],
+      "starts": "day_after",
+      "extra_months_included": false,
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-edilizia-industria-2010-fillea",
+            "title": "CCNL 19 aprile 2010 per i dipendenti delle imprese edili ed affini, testo completo (FILLEA CGIL)",
+            "kind": "associazione",
+            "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL_EDILIZIA_INDUSTRIA_2010_TESTO_COMPLETO.pdf",
+            "published_on": "2010-04-19",
+            "sha256": "ddd11bb850de2e7c642eb662b59e40e36c66e3a534162c505aa1c9a94ac5a00b"
+          },
+          "page": "55",
+          "section": "Art. 32 (preavviso degli operai)",
+          "quote": "possono aver luogo in qualunque giorno con un preavviso che, in considerazione delle particolari caratteristiche dell'industria edilizia, è stabilito in sette giorni di calendario, per gli operai con anzianità ininterrotta fino a tre anni, e in giorni dieci di calendario, per gli operai con anzianità ininterrotta di oltre tre anni. In mancanza di preavviso, il recedente è tenuto a versare all'altra parte una indennità calcolata ai sensi dell'art. 2118 del codice civile, equivalente all'importo della retribuzione che sarebbe spettata per il periodo di preavviso."
+        },
+        "transformation": "7 calendar days up to 36 months of uninterrupted seniority, 10 beyond, for every level and for dismissal and resignation alike, from any day; the indemnity is the pay of the period, without the ratei of the extra months, which the operai receive through the Cassa Edile.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-01T18:30:00Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-01T18:30:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-01-ai-notice",
+          "effective_from": "2010-01-01"
+        }
+      }
     }
   },
   "verification": {
@@ -2231,6 +2291,27 @@
         ],
         "findings": [
           "Art. 26 (pp. 50-51): the comporto is 270 days of one illness and 'nove mesi nell’arco di 20 mesi consecutivi' of several, 365 days and '12 mesi nell’arco di 24 mesi consecutivi' past three and a half years of seniority; coefficient (e) pays days 181-365. The file kept a comporto of 270 days of one illness: corrected to the windows of 20 and 24 months (comporto_windows) with one illness paid up to day 365. The coefficients were confirmed."
+        ]
+      },
+      {
+        "id": "2026-11-01-ai-notice",
+        "date": "2026-11-01",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The notice of the operai, Art. 32 (p. 55).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL_EDILIZIA_INDUSTRIA_2010_TESTO_COMPLETO.pdf",
+            "sha256": "ddd11bb850de2e7c642eb662b59e40e36c66e3a534162c505aa1c9a94ac5a00b"
+          }
+        ],
+        "findings": [
+          "Art. 32 (p. 55): 7 calendar days up to three years, 10 beyond, from any day, indemnity at the pay of the period: work_rules.notice. Found by a delegated search, checked on the PDF text."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.notice"
         ]
       }
     ],
