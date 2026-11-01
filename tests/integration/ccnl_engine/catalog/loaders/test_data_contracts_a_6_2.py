@@ -59,11 +59,16 @@ class TestLoadTrasportoAereoAssaeroporti:
         assert ccnl.parameters.hourly_divisor.value_at(date(2026, 9, 1)) == Decimal(173)
 
     def test_trasporto_aereo_assaeroporti_split_allowances(self) -> None:
-        """Every level carries CONTINGENZA and EDR fixed allowances."""
+        """Every level: CONTINGENZA, EDR and the two allowances by role."""
         ccnl = load_ccnl("trasporto-aereo-assaeroporti")
         for lv in ccnl.levels:
             codes = {fa.code for fa in lv.fixed_allowances}
-            assert codes == {"CONTINGENZA", "EDR"}, lv.code
+            assert codes == {
+                "CONTINGENZA",
+                "EDR",
+                "IND_MANEGGIO_DENARO",
+                "CONTRIBUTO_DPI",
+            }, lv.code
 
     def test_trasporto_aereo_assaeroporti_tax_sector(self) -> None:
         """Contract declares INDUSTRIA tax sector."""

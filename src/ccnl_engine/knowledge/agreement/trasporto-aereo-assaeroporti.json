@@ -81,7 +81,7 @@
       },
       {
         "kind": "simplification",
-        "text": "SUPPLEMENTARY ALLOWANCES. Role-conditional allowances (turno, campo, maneggio denaro, DPI) and the una tantum of EUR 500 (Art. G20, October 2025) are not modelled. All are attendance- or role-conditional or one-time payments.",
+        "text": "SUPPLEMENTARY ALLOWANCES. The daily allowances of presence (Art. G24: 2.73 or 3.97 EUR, 3 more from 1 July 2025; G25 turno 0.26; G26 campo 0.21 or 0.26) are not modelled: they need the days of presence. The una tantum of 500 EUR of Art. G20 is of July 2025, before the window of the engine. The indennità maneggio denaro (G27) and the DPI contribution (G37 ter) are modelled by role.",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
@@ -89,7 +89,7 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Model the role- and attendance-conditional allowances as roles, and the una tantum as a una tantum payment."
+          "remediation": "Model the daily allowances of presence of Artt. G24-G26 with the days of presence of the month, then resolve this limitation."
         }
       },
       {
@@ -504,6 +504,102 @@
               "effective_from": "2020-01-01"
             }
           }
+        },
+        {
+          "code": "IND_MANEGGIO_DENARO",
+          "description": "Indennità maneggio denaro, Art. G27: 10% of the minimo tabellare and the contingenza of the level",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": "2025-07-01",
+                "value": "119.59"
+              },
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": "2026-07-01",
+                "value": "125.27"
+              },
+              {
+                "valid_from": "2026-07-01",
+                "valid_until": "2027-07-01",
+                "value": "128.68"
+              },
+              {
+                "valid_from": "2027-07-01",
+                "valid_until": null,
+                "value": "131.52"
+              }
+            ]
+          },
+          "role": "cassiere",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-trasporto-aereo-assaeroporti-2020",
+                "title": "CCNL Trasporto Aereo – Parte Specifica Gestori (Assaeroporti) 2020",
+                "kind": "tabella_retributiva",
+                "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
+              },
+              "page": "42",
+              "section": "Art. G27 - Indennità maneggio denaro",
+              "quote": "Il dipendente la cui normale mansione consista nel maneggio di denaro e/o utilizzo di apparecchi elettronici per pagamenti e riscossioni, con responsabilità per errori, anche finanziari, ha diritto ad una indennità in misura pari al 10% del minimo tabellare mensile e dell'indennità di contingenza del livello di appartenenza. 2. Detta indennità non è frazionabile a giorno in presenza di mansione prevalente."
+            },
+            "transformation": "10% of the minimo tabellare (base_salary) and of the contingenza (509.83) of level 9 in force in each period, rounded to the cent; reserved to the role cassiere of Employment.roles (the worker whose normal duty is handling money). A continuous element of the pay.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T19:32:54Z",
+              "verification_status": "unverified",
+              "effective_from": "2025-01-01"
+            }
+          }
+        },
+        {
+          "code": "CONTRIBUTO_DPI",
+          "description": "Contributo per il lavaggio dei DPI, Art. G37 ter, where the firm offers no washing service",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": "2025-07-01",
+                "gap_kind": "not_applicable"
+              },
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": null,
+                "value": "10.00"
+              }
+            ]
+          },
+          "role": "lavaggio_dpi",
+          "tfr_relevant": false,
+          "months_per_year": 12,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-trasporto-aereo-assaeroporti-2020",
+                "title": "CCNL Trasporto Aereo – Parte Specifica Gestori (Assaeroporti) 2020",
+                "kind": "tabella_retributiva",
+                "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
+              },
+              "page": "47",
+              "section": "Art. G37 ter - Dispositivi di protezione individuale",
+              "quote": "Salvo che nelle Aziende in cui sia reso disponibile il servizio di lavaggio, a decorrere dal 1° luglio 2025 sarà riconosciuto un contributo di importo mensile pari ad euro 10 lordi, [...] che non inciderà in alcun modo sul calcolo di tutti gli istituti indiretti e differiti, contrattuali e legali."
+            },
+            "transformation": "10 EUR a month from 1 July 2025 to the worker who washes the DPI himself because the firm offers no washing service: the role lavaggio_dpi of Employment.roles. Out of every indirect and deferred institution: no TFR, no extra months.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T19:32:54Z",
+              "verification_status": "unverified",
+              "effective_from": "2025-07-01"
+            }
+          }
         }
       ],
       "provenance": {
@@ -687,6 +783,102 @@
               "extraction_timestamp": "2026-09-07T15:03:36",
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
+            }
+          }
+        },
+        {
+          "code": "IND_MANEGGIO_DENARO",
+          "description": "Indennità maneggio denaro, Art. G27: 10% of the minimo tabellare and the contingenza of the level",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": "2025-07-01",
+                "value": "137.84"
+              },
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": "2026-07-01",
+                "value": "145.00"
+              },
+              {
+                "valid_from": "2026-07-01",
+                "valid_until": "2027-07-01",
+                "value": "149.29"
+              },
+              {
+                "valid_from": "2027-07-01",
+                "valid_until": null,
+                "value": "152.87"
+              }
+            ]
+          },
+          "role": "cassiere",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-trasporto-aereo-assaeroporti-2020",
+                "title": "CCNL Trasporto Aereo – Parte Specifica Gestori (Assaeroporti) 2020",
+                "kind": "tabella_retributiva",
+                "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
+              },
+              "page": "42",
+              "section": "Art. G27 - Indennità maneggio denaro",
+              "quote": "Il dipendente la cui normale mansione consista nel maneggio di denaro e/o utilizzo di apparecchi elettronici per pagamenti e riscossioni, con responsabilità per errori, anche finanziari, ha diritto ad una indennità in misura pari al 10% del minimo tabellare mensile e dell'indennità di contingenza del livello di appartenenza. 2. Detta indennità non è frazionabile a giorno in presenza di mansione prevalente."
+            },
+            "transformation": "10% of the minimo tabellare (base_salary) and of the contingenza (513.95) of level 8 in force in each period, rounded to the cent; reserved to the role cassiere of Employment.roles (the worker whose normal duty is handling money). A continuous element of the pay.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T19:32:54Z",
+              "verification_status": "unverified",
+              "effective_from": "2025-01-01"
+            }
+          }
+        },
+        {
+          "code": "CONTRIBUTO_DPI",
+          "description": "Contributo per il lavaggio dei DPI, Art. G37 ter, where the firm offers no washing service",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": "2025-07-01",
+                "gap_kind": "not_applicable"
+              },
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": null,
+                "value": "10.00"
+              }
+            ]
+          },
+          "role": "lavaggio_dpi",
+          "tfr_relevant": false,
+          "months_per_year": 12,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-trasporto-aereo-assaeroporti-2020",
+                "title": "CCNL Trasporto Aereo – Parte Specifica Gestori (Assaeroporti) 2020",
+                "kind": "tabella_retributiva",
+                "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
+              },
+              "page": "47",
+              "section": "Art. G37 ter - Dispositivi di protezione individuale",
+              "quote": "Salvo che nelle Aziende in cui sia reso disponibile il servizio di lavaggio, a decorrere dal 1° luglio 2025 sarà riconosciuto un contributo di importo mensile pari ad euro 10 lordi, [...] che non inciderà in alcun modo sul calcolo di tutti gli istituti indiretti e differiti, contrattuali e legali."
+            },
+            "transformation": "10 EUR a month from 1 July 2025 to the worker who washes the DPI himself because the firm offers no washing service: the role lavaggio_dpi of Employment.roles. Out of every indirect and deferred institution: no TFR, no extra months.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T19:32:54Z",
+              "verification_status": "unverified",
+              "effective_from": "2025-07-01"
             }
           }
         }
@@ -874,6 +1066,102 @@
               "effective_from": "2020-01-01"
             }
           }
+        },
+        {
+          "code": "IND_MANEGGIO_DENARO",
+          "description": "Indennità maneggio denaro, Art. G27: 10% of the minimo tabellare and the contingenza of the level",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": "2025-07-01",
+                "value": "147.68"
+              },
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": "2026-07-01",
+                "value": "155.63"
+              },
+              {
+                "valid_from": "2026-07-01",
+                "valid_until": "2027-07-01",
+                "value": "160.40"
+              },
+              {
+                "valid_from": "2027-07-01",
+                "valid_until": null,
+                "value": "164.38"
+              }
+            ]
+          },
+          "role": "cassiere",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-trasporto-aereo-assaeroporti-2020",
+                "title": "CCNL Trasporto Aereo – Parte Specifica Gestori (Assaeroporti) 2020",
+                "kind": "tabella_retributiva",
+                "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
+              },
+              "page": "42",
+              "section": "Art. G27 - Indennità maneggio denaro",
+              "quote": "Il dipendente la cui normale mansione consista nel maneggio di denaro e/o utilizzo di apparecchi elettronici per pagamenti e riscossioni, con responsabilità per errori, anche finanziari, ha diritto ad una indennità in misura pari al 10% del minimo tabellare mensile e dell'indennità di contingenza del livello di appartenenza. 2. Detta indennità non è frazionabile a giorno in presenza di mansione prevalente."
+            },
+            "transformation": "10% of the minimo tabellare (base_salary) and of the contingenza (516.28) of level 7 in force in each period, rounded to the cent; reserved to the role cassiere of Employment.roles (the worker whose normal duty is handling money). A continuous element of the pay.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T19:32:54Z",
+              "verification_status": "unverified",
+              "effective_from": "2025-01-01"
+            }
+          }
+        },
+        {
+          "code": "CONTRIBUTO_DPI",
+          "description": "Contributo per il lavaggio dei DPI, Art. G37 ter, where the firm offers no washing service",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": "2025-07-01",
+                "gap_kind": "not_applicable"
+              },
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": null,
+                "value": "10.00"
+              }
+            ]
+          },
+          "role": "lavaggio_dpi",
+          "tfr_relevant": false,
+          "months_per_year": 12,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-trasporto-aereo-assaeroporti-2020",
+                "title": "CCNL Trasporto Aereo – Parte Specifica Gestori (Assaeroporti) 2020",
+                "kind": "tabella_retributiva",
+                "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
+              },
+              "page": "47",
+              "section": "Art. G37 ter - Dispositivi di protezione individuale",
+              "quote": "Salvo che nelle Aziende in cui sia reso disponibile il servizio di lavaggio, a decorrere dal 1° luglio 2025 sarà riconosciuto un contributo di importo mensile pari ad euro 10 lordi, [...] che non inciderà in alcun modo sul calcolo di tutti gli istituti indiretti e differiti, contrattuali e legali."
+            },
+            "transformation": "10 EUR a month from 1 July 2025 to the worker who washes the DPI himself because the firm offers no washing service: the role lavaggio_dpi of Employment.roles. Out of every indirect and deferred institution: no TFR, no extra months.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T19:32:54Z",
+              "verification_status": "unverified",
+              "effective_from": "2025-07-01"
+            }
+          }
         }
       ],
       "provenance": {
@@ -1057,6 +1345,102 @@
               "extraction_timestamp": "2026-09-07T15:03:36",
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
+            }
+          }
+        },
+        {
+          "code": "IND_MANEGGIO_DENARO",
+          "description": "Indennità maneggio denaro, Art. G27: 10% of the minimo tabellare and the contingenza of the level",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": "2025-07-01",
+                "value": "158.91"
+              },
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": "2026-07-01",
+                "value": "167.77"
+              },
+              {
+                "valid_from": "2026-07-01",
+                "valid_until": "2027-07-01",
+                "value": "173.09"
+              },
+              {
+                "valid_from": "2027-07-01",
+                "valid_until": null,
+                "value": "177.52"
+              }
+            ]
+          },
+          "role": "cassiere",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-trasporto-aereo-assaeroporti-2020",
+                "title": "CCNL Trasporto Aereo – Parte Specifica Gestori (Assaeroporti) 2020",
+                "kind": "tabella_retributiva",
+                "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
+              },
+              "page": "42",
+              "section": "Art. G27 - Indennità maneggio denaro",
+              "quote": "Il dipendente la cui normale mansione consista nel maneggio di denaro e/o utilizzo di apparecchi elettronici per pagamenti e riscossioni, con responsabilità per errori, anche finanziari, ha diritto ad una indennità in misura pari al 10% del minimo tabellare mensile e dell'indennità di contingenza del livello di appartenenza. 2. Detta indennità non è frazionabile a giorno in presenza di mansione prevalente."
+            },
+            "transformation": "10% of the minimo tabellare (base_salary) and of the contingenza (518.79) of level 6 in force in each period, rounded to the cent; reserved to the role cassiere of Employment.roles (the worker whose normal duty is handling money). A continuous element of the pay.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T19:32:54Z",
+              "verification_status": "unverified",
+              "effective_from": "2025-01-01"
+            }
+          }
+        },
+        {
+          "code": "CONTRIBUTO_DPI",
+          "description": "Contributo per il lavaggio dei DPI, Art. G37 ter, where the firm offers no washing service",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": "2025-07-01",
+                "gap_kind": "not_applicable"
+              },
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": null,
+                "value": "10.00"
+              }
+            ]
+          },
+          "role": "lavaggio_dpi",
+          "tfr_relevant": false,
+          "months_per_year": 12,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-trasporto-aereo-assaeroporti-2020",
+                "title": "CCNL Trasporto Aereo – Parte Specifica Gestori (Assaeroporti) 2020",
+                "kind": "tabella_retributiva",
+                "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
+              },
+              "page": "47",
+              "section": "Art. G37 ter - Dispositivi di protezione individuale",
+              "quote": "Salvo che nelle Aziende in cui sia reso disponibile il servizio di lavaggio, a decorrere dal 1° luglio 2025 sarà riconosciuto un contributo di importo mensile pari ad euro 10 lordi, [...] che non inciderà in alcun modo sul calcolo di tutti gli istituti indiretti e differiti, contrattuali e legali."
+            },
+            "transformation": "10 EUR a month from 1 July 2025 to the worker who washes the DPI himself because the firm offers no washing service: the role lavaggio_dpi of Employment.roles. Out of every indirect and deferred institution: no TFR, no extra months.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T19:32:54Z",
+              "verification_status": "unverified",
+              "effective_from": "2025-07-01"
             }
           }
         }
@@ -1244,6 +1628,102 @@
               "effective_from": "2020-01-01"
             }
           }
+        },
+        {
+          "code": "IND_MANEGGIO_DENARO",
+          "description": "Indennità maneggio denaro, Art. G27: 10% of the minimo tabellare and the contingenza of the level",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": "2025-07-01",
+                "value": "165.93"
+              },
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": "2026-07-01",
+                "value": "175.36"
+              },
+              {
+                "valid_from": "2026-07-01",
+                "valid_until": "2027-07-01",
+                "value": "181.02"
+              },
+              {
+                "valid_from": "2027-07-01",
+                "valid_until": null,
+                "value": "185.73"
+              }
+            ]
+          },
+          "role": "cassiere",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-trasporto-aereo-assaeroporti-2020",
+                "title": "CCNL Trasporto Aereo – Parte Specifica Gestori (Assaeroporti) 2020",
+                "kind": "tabella_retributiva",
+                "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
+              },
+              "page": "42",
+              "section": "Art. G27 - Indennità maneggio denaro",
+              "quote": "Il dipendente la cui normale mansione consista nel maneggio di denaro e/o utilizzo di apparecchi elettronici per pagamenti e riscossioni, con responsabilità per errori, anche finanziari, ha diritto ad una indennità in misura pari al 10% del minimo tabellare mensile e dell'indennità di contingenza del livello di appartenenza. 2. Detta indennità non è frazionabile a giorno in presenza di mansione prevalente."
+            },
+            "transformation": "10% of the minimo tabellare (base_salary) and of the contingenza (520.40) of level 5 in force in each period, rounded to the cent; reserved to the role cassiere of Employment.roles (the worker whose normal duty is handling money). A continuous element of the pay.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T19:32:54Z",
+              "verification_status": "unverified",
+              "effective_from": "2025-01-01"
+            }
+          }
+        },
+        {
+          "code": "CONTRIBUTO_DPI",
+          "description": "Contributo per il lavaggio dei DPI, Art. G37 ter, where the firm offers no washing service",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": "2025-07-01",
+                "gap_kind": "not_applicable"
+              },
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": null,
+                "value": "10.00"
+              }
+            ]
+          },
+          "role": "lavaggio_dpi",
+          "tfr_relevant": false,
+          "months_per_year": 12,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-trasporto-aereo-assaeroporti-2020",
+                "title": "CCNL Trasporto Aereo – Parte Specifica Gestori (Assaeroporti) 2020",
+                "kind": "tabella_retributiva",
+                "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
+              },
+              "page": "47",
+              "section": "Art. G37 ter - Dispositivi di protezione individuale",
+              "quote": "Salvo che nelle Aziende in cui sia reso disponibile il servizio di lavaggio, a decorrere dal 1° luglio 2025 sarà riconosciuto un contributo di importo mensile pari ad euro 10 lordi, [...] che non inciderà in alcun modo sul calcolo di tutti gli istituti indiretti e differiti, contrattuali e legali."
+            },
+            "transformation": "10 EUR a month from 1 July 2025 to the worker who washes the DPI himself because the firm offers no washing service: the role lavaggio_dpi of Employment.roles. Out of every indirect and deferred institution: no TFR, no extra months.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T19:32:54Z",
+              "verification_status": "unverified",
+              "effective_from": "2025-07-01"
+            }
+          }
         }
       ],
       "provenance": {
@@ -1427,6 +1907,102 @@
               "extraction_timestamp": "2026-09-07T15:03:36",
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
+            }
+          }
+        },
+        {
+          "code": "IND_MANEGGIO_DENARO",
+          "description": "Indennità maneggio denaro, Art. G27: 10% of the minimo tabellare and the contingenza of the level",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": "2025-07-01",
+                "value": "172.97"
+              },
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": "2026-07-01",
+                "value": "182.97"
+              },
+              {
+                "valid_from": "2026-07-01",
+                "valid_until": "2027-07-01",
+                "value": "188.97"
+              },
+              {
+                "valid_from": "2027-07-01",
+                "valid_until": null,
+                "value": "193.97"
+              }
+            ]
+          },
+          "role": "cassiere",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-trasporto-aereo-assaeroporti-2020",
+                "title": "CCNL Trasporto Aereo – Parte Specifica Gestori (Assaeroporti) 2020",
+                "kind": "tabella_retributiva",
+                "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
+              },
+              "page": "42",
+              "section": "Art. G27 - Indennità maneggio denaro",
+              "quote": "Il dipendente la cui normale mansione consista nel maneggio di denaro e/o utilizzo di apparecchi elettronici per pagamenti e riscossioni, con responsabilità per errori, anche finanziari, ha diritto ad una indennità in misura pari al 10% del minimo tabellare mensile e dell'indennità di contingenza del livello di appartenenza. 2. Detta indennità non è frazionabile a giorno in presenza di mansione prevalente."
+            },
+            "transformation": "10% of the minimo tabellare (base_salary) and of the contingenza (522.19) of level 4 in force in each period, rounded to the cent; reserved to the role cassiere of Employment.roles (the worker whose normal duty is handling money). A continuous element of the pay.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T19:32:54Z",
+              "verification_status": "unverified",
+              "effective_from": "2025-01-01"
+            }
+          }
+        },
+        {
+          "code": "CONTRIBUTO_DPI",
+          "description": "Contributo per il lavaggio dei DPI, Art. G37 ter, where the firm offers no washing service",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": "2025-07-01",
+                "gap_kind": "not_applicable"
+              },
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": null,
+                "value": "10.00"
+              }
+            ]
+          },
+          "role": "lavaggio_dpi",
+          "tfr_relevant": false,
+          "months_per_year": 12,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-trasporto-aereo-assaeroporti-2020",
+                "title": "CCNL Trasporto Aereo – Parte Specifica Gestori (Assaeroporti) 2020",
+                "kind": "tabella_retributiva",
+                "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
+              },
+              "page": "47",
+              "section": "Art. G37 ter - Dispositivi di protezione individuale",
+              "quote": "Salvo che nelle Aziende in cui sia reso disponibile il servizio di lavaggio, a decorrere dal 1° luglio 2025 sarà riconosciuto un contributo di importo mensile pari ad euro 10 lordi, [...] che non inciderà in alcun modo sul calcolo di tutti gli istituti indiretti e differiti, contrattuali e legali."
+            },
+            "transformation": "10 EUR a month from 1 July 2025 to the worker who washes the DPI himself because the firm offers no washing service: the role lavaggio_dpi of Employment.roles. Out of every indirect and deferred institution: no TFR, no extra months.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T19:32:54Z",
+              "verification_status": "unverified",
+              "effective_from": "2025-07-01"
             }
           }
         }
@@ -1614,6 +2190,102 @@
               "effective_from": "2020-01-01"
             }
           }
+        },
+        {
+          "code": "IND_MANEGGIO_DENARO",
+          "description": "Indennità maneggio denaro, Art. G27: 10% of the minimo tabellare and the contingenza of the level",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": "2025-07-01",
+                "value": "186.24"
+              },
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": "2026-07-01",
+                "value": "197.31"
+              },
+              {
+                "valid_from": "2026-07-01",
+                "valid_until": "2027-07-01",
+                "value": "203.96"
+              },
+              {
+                "valid_from": "2027-07-01",
+                "valid_until": null,
+                "value": "209.50"
+              }
+            ]
+          },
+          "role": "cassiere",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-trasporto-aereo-assaeroporti-2020",
+                "title": "CCNL Trasporto Aereo – Parte Specifica Gestori (Assaeroporti) 2020",
+                "kind": "tabella_retributiva",
+                "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
+              },
+              "page": "42",
+              "section": "Art. G27 - Indennità maneggio denaro",
+              "quote": "Il dipendente la cui normale mansione consista nel maneggio di denaro e/o utilizzo di apparecchi elettronici per pagamenti e riscossioni, con responsabilità per errori, anche finanziari, ha diritto ad una indennità in misura pari al 10% del minimo tabellare mensile e dell'indennità di contingenza del livello di appartenenza. 2. Detta indennità non è frazionabile a giorno in presenza di mansione prevalente."
+            },
+            "transformation": "10% of the minimo tabellare (base_salary) and of the contingenza (524.52) of level 3 in force in each period, rounded to the cent; reserved to the role cassiere of Employment.roles (the worker whose normal duty is handling money). A continuous element of the pay.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T19:32:54Z",
+              "verification_status": "unverified",
+              "effective_from": "2025-01-01"
+            }
+          }
+        },
+        {
+          "code": "CONTRIBUTO_DPI",
+          "description": "Contributo per il lavaggio dei DPI, Art. G37 ter, where the firm offers no washing service",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": "2025-07-01",
+                "gap_kind": "not_applicable"
+              },
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": null,
+                "value": "10.00"
+              }
+            ]
+          },
+          "role": "lavaggio_dpi",
+          "tfr_relevant": false,
+          "months_per_year": 12,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-trasporto-aereo-assaeroporti-2020",
+                "title": "CCNL Trasporto Aereo – Parte Specifica Gestori (Assaeroporti) 2020",
+                "kind": "tabella_retributiva",
+                "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
+              },
+              "page": "47",
+              "section": "Art. G37 ter - Dispositivi di protezione individuale",
+              "quote": "Salvo che nelle Aziende in cui sia reso disponibile il servizio di lavaggio, a decorrere dal 1° luglio 2025 sarà riconosciuto un contributo di importo mensile pari ad euro 10 lordi, [...] che non inciderà in alcun modo sul calcolo di tutti gli istituti indiretti e differiti, contrattuali e legali."
+            },
+            "transformation": "10 EUR a month from 1 July 2025 to the worker who washes the DPI himself because the firm offers no washing service: the role lavaggio_dpi of Employment.roles. Out of every indirect and deferred institution: no TFR, no extra months.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T19:32:54Z",
+              "verification_status": "unverified",
+              "effective_from": "2025-07-01"
+            }
+          }
         }
       ],
       "provenance": {
@@ -1797,6 +2469,102 @@
               "extraction_timestamp": "2026-09-07T15:03:36",
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
+            }
+          }
+        },
+        {
+          "code": "IND_MANEGGIO_DENARO",
+          "description": "Indennità maneggio denaro, Art. G27: 10% of the minimo tabellare and the contingenza of the level",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": "2025-07-01",
+                "value": "196.81"
+              },
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": "2026-07-01",
+                "value": "208.74"
+              },
+              {
+                "valid_from": "2026-07-01",
+                "valid_until": "2027-07-01",
+                "value": "215.90"
+              },
+              {
+                "valid_from": "2027-07-01",
+                "valid_until": null,
+                "value": "221.87"
+              }
+            ]
+          },
+          "role": "cassiere",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-trasporto-aereo-assaeroporti-2020",
+                "title": "CCNL Trasporto Aereo – Parte Specifica Gestori (Assaeroporti) 2020",
+                "kind": "tabella_retributiva",
+                "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
+              },
+              "page": "42",
+              "section": "Art. G27 - Indennità maneggio denaro",
+              "quote": "Il dipendente la cui normale mansione consista nel maneggio di denaro e/o utilizzo di apparecchi elettronici per pagamenti e riscossioni, con responsabilità per errori, anche finanziari, ha diritto ad una indennità in misura pari al 10% del minimo tabellare mensile e dell'indennità di contingenza del livello di appartenenza. 2. Detta indennità non è frazionabile a giorno in presenza di mansione prevalente."
+            },
+            "transformation": "10% of the minimo tabellare (base_salary) and of the contingenza (527.39) of level 2B in force in each period, rounded to the cent; reserved to the role cassiere of Employment.roles (the worker whose normal duty is handling money). A continuous element of the pay.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T19:32:54Z",
+              "verification_status": "unverified",
+              "effective_from": "2025-01-01"
+            }
+          }
+        },
+        {
+          "code": "CONTRIBUTO_DPI",
+          "description": "Contributo per il lavaggio dei DPI, Art. G37 ter, where the firm offers no washing service",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": "2025-07-01",
+                "gap_kind": "not_applicable"
+              },
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": null,
+                "value": "10.00"
+              }
+            ]
+          },
+          "role": "lavaggio_dpi",
+          "tfr_relevant": false,
+          "months_per_year": 12,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-trasporto-aereo-assaeroporti-2020",
+                "title": "CCNL Trasporto Aereo – Parte Specifica Gestori (Assaeroporti) 2020",
+                "kind": "tabella_retributiva",
+                "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
+              },
+              "page": "47",
+              "section": "Art. G37 ter - Dispositivi di protezione individuale",
+              "quote": "Salvo che nelle Aziende in cui sia reso disponibile il servizio di lavaggio, a decorrere dal 1° luglio 2025 sarà riconosciuto un contributo di importo mensile pari ad euro 10 lordi, [...] che non inciderà in alcun modo sul calcolo di tutti gli istituti indiretti e differiti, contrattuali e legali."
+            },
+            "transformation": "10 EUR a month from 1 July 2025 to the worker who washes the DPI himself because the firm offers no washing service: the role lavaggio_dpi of Employment.roles. Out of every indirect and deferred institution: no TFR, no extra months.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T19:32:54Z",
+              "verification_status": "unverified",
+              "effective_from": "2025-07-01"
             }
           }
         }
@@ -1984,6 +2752,102 @@
               "effective_from": "2020-01-01"
             }
           }
+        },
+        {
+          "code": "IND_MANEGGIO_DENARO",
+          "description": "Indennità maneggio denaro, Art. G27: 10% of the minimo tabellare and the contingenza of the level",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": "2025-07-01",
+                "value": "206.69"
+              },
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": "2026-07-01",
+                "value": "219.41"
+              },
+              {
+                "valid_from": "2026-07-01",
+                "valid_until": "2027-07-01",
+                "value": "227.05"
+              },
+              {
+                "valid_from": "2027-07-01",
+                "valid_until": null,
+                "value": "233.41"
+              }
+            ]
+          },
+          "role": "cassiere",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-trasporto-aereo-assaeroporti-2020",
+                "title": "CCNL Trasporto Aereo – Parte Specifica Gestori (Assaeroporti) 2020",
+                "kind": "tabella_retributiva",
+                "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
+              },
+              "page": "42",
+              "section": "Art. G27 - Indennità maneggio denaro",
+              "quote": "Il dipendente la cui normale mansione consista nel maneggio di denaro e/o utilizzo di apparecchi elettronici per pagamenti e riscossioni, con responsabilità per errori, anche finanziari, ha diritto ad una indennità in misura pari al 10% del minimo tabellare mensile e dell'indennità di contingenza del livello di appartenenza. 2. Detta indennità non è frazionabile a giorno in presenza di mansione prevalente."
+            },
+            "transformation": "10% of the minimo tabellare (base_salary) and of the contingenza (530.07) of level 2A in force in each period, rounded to the cent; reserved to the role cassiere of Employment.roles (the worker whose normal duty is handling money). A continuous element of the pay.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T19:32:54Z",
+              "verification_status": "unverified",
+              "effective_from": "2025-01-01"
+            }
+          }
+        },
+        {
+          "code": "CONTRIBUTO_DPI",
+          "description": "Contributo per il lavaggio dei DPI, Art. G37 ter, where the firm offers no washing service",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": "2025-07-01",
+                "gap_kind": "not_applicable"
+              },
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": null,
+                "value": "10.00"
+              }
+            ]
+          },
+          "role": "lavaggio_dpi",
+          "tfr_relevant": false,
+          "months_per_year": 12,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-trasporto-aereo-assaeroporti-2020",
+                "title": "CCNL Trasporto Aereo – Parte Specifica Gestori (Assaeroporti) 2020",
+                "kind": "tabella_retributiva",
+                "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
+              },
+              "page": "47",
+              "section": "Art. G37 ter - Dispositivi di protezione individuale",
+              "quote": "Salvo che nelle Aziende in cui sia reso disponibile il servizio di lavaggio, a decorrere dal 1° luglio 2025 sarà riconosciuto un contributo di importo mensile pari ad euro 10 lordi, [...] che non inciderà in alcun modo sul calcolo di tutti gli istituti indiretti e differiti, contrattuali e legali."
+            },
+            "transformation": "10 EUR a month from 1 July 2025 to the worker who washes the DPI himself because the firm offers no washing service: the role lavaggio_dpi of Employment.roles. Out of every indirect and deferred institution: no TFR, no extra months.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T19:32:54Z",
+              "verification_status": "unverified",
+              "effective_from": "2025-07-01"
+            }
+          }
         }
       ],
       "provenance": {
@@ -2167,6 +3031,102 @@
               "extraction_timestamp": "2026-09-07T15:03:36",
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
+            }
+          }
+        },
+        {
+          "code": "IND_MANEGGIO_DENARO",
+          "description": "Indennità maneggio denaro, Art. G27: 10% of the minimo tabellare and the contingenza of the level",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": "2025-07-01",
+                "value": "221.40"
+              },
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": "2026-07-01",
+                "value": "235.32"
+              },
+              {
+                "valid_from": "2026-07-01",
+                "valid_until": "2027-07-01",
+                "value": "243.67"
+              },
+              {
+                "valid_from": "2027-07-01",
+                "valid_until": null,
+                "value": "250.63"
+              }
+            ]
+          },
+          "role": "cassiere",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-trasporto-aereo-assaeroporti-2020",
+                "title": "CCNL Trasporto Aereo – Parte Specifica Gestori (Assaeroporti) 2020",
+                "kind": "tabella_retributiva",
+                "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
+              },
+              "page": "42",
+              "section": "Art. G27 - Indennità maneggio denaro",
+              "quote": "Il dipendente la cui normale mansione consista nel maneggio di denaro e/o utilizzo di apparecchi elettronici per pagamenti e riscossioni, con responsabilità per errori, anche finanziari, ha diritto ad una indennità in misura pari al 10% del minimo tabellare mensile e dell'indennità di contingenza del livello di appartenenza. 2. Detta indennità non è frazionabile a giorno in presenza di mansione prevalente."
+            },
+            "transformation": "10% of the minimo tabellare (base_salary) and of the contingenza (533.12) of level 1 in force in each period, rounded to the cent; reserved to the role cassiere of Employment.roles (the worker whose normal duty is handling money). A continuous element of the pay.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T19:32:54Z",
+              "verification_status": "unverified",
+              "effective_from": "2025-01-01"
+            }
+          }
+        },
+        {
+          "code": "CONTRIBUTO_DPI",
+          "description": "Contributo per il lavaggio dei DPI, Art. G37 ter, where the firm offers no washing service",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": "2025-07-01",
+                "gap_kind": "not_applicable"
+              },
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": null,
+                "value": "10.00"
+              }
+            ]
+          },
+          "role": "lavaggio_dpi",
+          "tfr_relevant": false,
+          "months_per_year": 12,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-trasporto-aereo-assaeroporti-2020",
+                "title": "CCNL Trasporto Aereo – Parte Specifica Gestori (Assaeroporti) 2020",
+                "kind": "tabella_retributiva",
+                "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
+              },
+              "page": "47",
+              "section": "Art. G37 ter - Dispositivi di protezione individuale",
+              "quote": "Salvo che nelle Aziende in cui sia reso disponibile il servizio di lavaggio, a decorrere dal 1° luglio 2025 sarà riconosciuto un contributo di importo mensile pari ad euro 10 lordi, [...] che non inciderà in alcun modo sul calcolo di tutti gli istituti indiretti e differiti, contrattuali e legali."
+            },
+            "transformation": "10 EUR a month from 1 July 2025 to the worker who washes the DPI himself because the firm offers no washing service: the role lavaggio_dpi of Employment.roles. Out of every indirect and deferred institution: no TFR, no extra months.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T19:32:54Z",
+              "verification_status": "unverified",
+              "effective_from": "2025-07-01"
             }
           }
         }
@@ -2354,6 +3314,102 @@
               "effective_from": "2020-01-01"
             }
           }
+        },
+        {
+          "code": "IND_MANEGGIO_DENARO",
+          "description": "Indennità maneggio denaro, Art. G27: 10% of the minimo tabellare and the contingenza of the level",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": "2025-07-01",
+                "value": "238.91"
+              },
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": "2026-07-01",
+                "value": "254.25"
+              },
+              {
+                "valid_from": "2026-07-01",
+                "valid_until": "2027-07-01",
+                "value": "263.45"
+              },
+              {
+                "valid_from": "2027-07-01",
+                "valid_until": null,
+                "value": "271.12"
+              }
+            ]
+          },
+          "role": "cassiere",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-trasporto-aereo-assaeroporti-2020",
+                "title": "CCNL Trasporto Aereo – Parte Specifica Gestori (Assaeroporti) 2020",
+                "kind": "tabella_retributiva",
+                "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
+              },
+              "page": "42",
+              "section": "Art. G27 - Indennità maneggio denaro",
+              "quote": "Il dipendente la cui normale mansione consista nel maneggio di denaro e/o utilizzo di apparecchi elettronici per pagamenti e riscossioni, con responsabilità per errori, anche finanziari, ha diritto ad una indennità in misura pari al 10% del minimo tabellare mensile e dell'indennità di contingenza del livello di appartenenza. 2. Detta indennità non è frazionabile a giorno in presenza di mansione prevalente."
+            },
+            "transformation": "10% of the minimo tabellare (base_salary) and of the contingenza (536.70) of level 1S in force in each period, rounded to the cent; reserved to the role cassiere of Employment.roles (the worker whose normal duty is handling money). A continuous element of the pay.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T19:32:54Z",
+              "verification_status": "unverified",
+              "effective_from": "2025-01-01"
+            }
+          }
+        },
+        {
+          "code": "CONTRIBUTO_DPI",
+          "description": "Contributo per il lavaggio dei DPI, Art. G37 ter, where the firm offers no washing service",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": "2025-07-01",
+                "gap_kind": "not_applicable"
+              },
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": null,
+                "value": "10.00"
+              }
+            ]
+          },
+          "role": "lavaggio_dpi",
+          "tfr_relevant": false,
+          "months_per_year": 12,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-trasporto-aereo-assaeroporti-2020",
+                "title": "CCNL Trasporto Aereo – Parte Specifica Gestori (Assaeroporti) 2020",
+                "kind": "tabella_retributiva",
+                "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
+              },
+              "page": "47",
+              "section": "Art. G37 ter - Dispositivi di protezione individuale",
+              "quote": "Salvo che nelle Aziende in cui sia reso disponibile il servizio di lavaggio, a decorrere dal 1° luglio 2025 sarà riconosciuto un contributo di importo mensile pari ad euro 10 lordi, [...] che non inciderà in alcun modo sul calcolo di tutti gli istituti indiretti e differiti, contrattuali e legali."
+            },
+            "transformation": "10 EUR a month from 1 July 2025 to the worker who washes the DPI himself because the firm offers no washing service: the role lavaggio_dpi of Employment.roles. Out of every indirect and deferred institution: no TFR, no extra months.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T19:32:54Z",
+              "verification_status": "unverified",
+              "effective_from": "2025-07-01"
+            }
+          }
         }
       ],
       "provenance": {
@@ -2499,7 +3555,7 @@
     "effective_until": "2027-12-31",
     "source": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
     "verification_status": "unverified",
-    "source_hash": "c505bbf475b9c57b8dd2e3e04d5623f5cfb0d7f30d1cc80c8d311764a0e2499a",
+    "source_hash": "43d7eccf412132171f4adf414bb3fe05f1c7aa21c9c6de0ed14b68060e5a6dde",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

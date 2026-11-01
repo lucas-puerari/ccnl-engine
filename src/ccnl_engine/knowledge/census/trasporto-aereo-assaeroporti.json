@@ -359,10 +359,10 @@
       "institute": "base_salary",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "SUPPLEMENTARY ALLOWANCES. Role-conditional allowances (turno, campo, maneggio denaro, DPI) and the una tantum of EUR 500 (Art. G20, October 2025) are not modelled. All are attendance- or role-conditional or one-time payments.",
+      "rule": "SUPPLEMENTARY ALLOWANCES. The daily allowances of presence (Art. G24: 2.73 or 3.97 EUR, 3 more from 1 July 2025; G25 turno 0.26; G26 campo 0.21 or 0.26) are not modelled: they need the days of presence. The una tantum of 500 EUR of Art. G20 is of July 2025, before the window of the engine. The indennità maneggio denaro (G27) and the DPI contribution (G37 ter) are modelled by role.",
       "calculation": "ccnl/trasporto-aereo-assaeroporti:coverage.notes",
       "state": "absent",
-      "remediation": "Model the role- and attendance-conditional allowances as roles, and the una tantum as a una tantum payment.",
+      "remediation": "Model the daily allowances of presence of Artt. G24-G26 with the days of presence of the month, then resolve this limitation.",
       "origin": "seeded",
       "links": {
         "limitations": [

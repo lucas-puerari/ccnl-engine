@@ -36,6 +36,8 @@ _DECLARED_GAPS: dict[tuple[str, SalaryGapKind, date], int] = {
     ("noleggio-autobus-conducente-anav", _NOT_APPLICABLE, date(2025, 7, 1)): 11,
     # Art. 51 bis: the element without second-level bargaining from 2027.
     ("alimentari-federalimentare", _NOT_APPLICABLE, date(2027, 1, 1)): 8,
+    # Art. G37 ter: the DPI contribution from 1 July 2025.
+    ("trasporto-aereo-assaeroporti", _NOT_APPLICABLE, date(2025, 7, 1)): 11,
 }
 
 
