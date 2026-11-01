@@ -2432,7 +2432,7 @@
     "effective_until": null,
     "source": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
     "verification_status": "unverified",
-    "source_hash": "3702b2cfbb085060af3ad8dda647180932bd9842a8617f0956e34ac0e4d14c97",
+    "source_hash": "20f813262de42ea450afb64a3080c4ed784d6a8e8eb7df0cf5e7501d01892f15",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3004,7 +3004,7 @@
           "section": "Art. 121 - Trattamento economico di malattia; Art. 120 (p. 65)",
           "quote": "75% (settantacinque per cento) della retribuzione di fatto dal 4º al 20º giorno; [...] 100% (cento per cento) della retribuzione di fatto dal 21º giorno in poi."
         },
-        "transformation": "Integration up to 100% of the gross retribuzione di fatto for days 1-3 (carenza), 75% for days 4-20 and 100% from day 21, stored as day_bands; comporto 180 days (Art. 120). Apprentices are covered (no exclusion). The comporto of Art. 120 sums the episodes of the 365 days before the last one: max_duration_days counts one episode, see the unmodelled note.",
+        "transformation": "Integration up to 100% of the gross retribuzione di fatto for days 1-3 (carenza), 75% for days 4-20 and 100% from day 21, stored as day_bands; comporto 180 days (Art. 120). Apprentices are covered (no exclusion). The comporto of Art. 120 sums the episodes of the 365 days before the last one: max_duration_days counts one episode, see the unmodelled note. Comporto of several illnesses (2026-11-01): the comporto sums the sick days of the 12 months before the day, up to 180 (the 'anno solare' the CCNL defines as 365 days back from the last illness, read as the 12 months before the day), on top of the 180 days of one illness. Source: https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf, p. 65, 66 (sha256 89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544): 'per anno solare si intende un periodo di 365 giorni partendo a ritroso dell’ultimo evento morboso.'",
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
@@ -3015,7 +3015,14 @@
           "verification_status": "verified",
           "review_id": "2026-10-13-ai-production"
         }
-      }
+      },
+      "comporto_windows": [
+        {
+          "seniority_months_from": 0,
+          "window_months": 12,
+          "comporto_days": 180
+        }
+      ]
     },
     "notice": {
       "bands": [

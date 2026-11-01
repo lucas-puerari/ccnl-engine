@@ -2948,7 +2948,7 @@
     "effective_until": null,
     "source": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
     "verification_status": "unverified",
-    "source_hash": "d2d7bde20f9ffae47a983e7a26d3c8cfa22a0c9da23b6b49ad5899a079764020",
+    "source_hash": "40ea2658a716dd5ea913ef3d693c735812e24addbcd695b970797d17512d9dee",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3221,7 +3221,7 @@
           "section": "Art. 71 - Trattamento economico di malattia e infortunio non sul lavoro",
           "quote": "dell’indennità di malattia a carico degli enti competenti fino al raggiungimento [...] del 100% della normale retribuzione fino al 180° giorno."
         },
-        "transformation": "Integration to 100% of the normale retribuzione from the first day to the 180th, carenza included; apprentices past the prova take the same treatment (Art. 28 M).",
+        "transformation": "Integration to 100% of the normale retribuzione from the first day to the 180th, carenza included; apprentices past the prova take the same treatment (Art. 28 M). Comporto of several illnesses (2026-11-01): the comporto sums the sick days of the 36 months before the day, up to 360 (12 months, as 30-day months), on top of the 180 days of one illness. Source: https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf, p. 104 (sha256 3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440): 'La conservazione del posto si ha per 12 mesi nell’arco dell’ultimo triennio.'",
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
@@ -3232,7 +3232,14 @@
           "verification_status": "verified",
           "review_id": "2026-10-13-ai-production"
         }
-      }
+      },
+      "comporto_windows": [
+        {
+          "seniority_months_from": 0,
+          "window_months": 36,
+          "comporto_days": 360
+        }
+      ]
     },
     "notice": {
       "bands": [

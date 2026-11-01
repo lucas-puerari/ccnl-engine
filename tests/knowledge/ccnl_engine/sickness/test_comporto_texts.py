@@ -1,7 +1,15 @@
 """The comporto of several illnesses, read off the clause of each CCNL.
 
-- CED Assoced (p. 96) and Ortofrutticoli (p. 17): 180 days "in un anno
-  solare", counted over the calendar year.
+- CED Assoced (p. 96), Ortofrutticoli (p. 17) and Scuole private laiche
+  Aninsei (p. 71): 180 days "in un anno solare", counted over the calendar
+  year.
+- Studi professionali (pp. 65-66): 180 days in the "anno solare" the CCNL
+  defines as "un periodo di 365 giorni partendo a ritroso dell'ultimo
+  evento morboso", the 12 months before the day.
+- Multiservizi (p. 22): "12 mesi di assenza nell'arco di 36 mesi
+  consecutivi"; Cooperative sociali (p. 104): "12 mesi nell'arco
+  dell'ultimo triennio"; 360 days of 30-day months.
+- Laterizi (p. 9): "425 giorni (14 mesi) di calendario su 912 (30 mesi)".
 - Panificazione Assipan (p. 58): 180 days "anche in caso di diverse
   malattie, nei 12 mesi precedenti".
 - Anaste (p. 52): more than 180 days "nell'arco del triennio precedente
@@ -30,7 +38,10 @@ def _sickness(ccnl_id: str) -> SicknessRules:
     return work.sickness_rules
 
 
-@pytest.mark.parametrize("ccnl_id", ["ced-assoced", "ortofrutticoli-agrumari"])
+@pytest.mark.parametrize(
+    "ccnl_id",
+    ["ced-assoced", "ortofrutticoli-agrumari", "scuole-private-laiche-aninsei"],
+)
 def test_the_comporto_of_the_calendar_year(ccnl_id: str) -> None:
     """180 days summed over the calendar year, no window."""
     rules = _sickness(ccnl_id)
@@ -43,6 +54,10 @@ def test_the_comporto_of_the_calendar_year(ccnl_id: str) -> None:
     ("ccnl_id", "months", "days"),
     [
         ("panificazione-assipan", 12, 180),
+        ("studi-professionali-confprofessioni", 12, 180),
+        ("multiservizi-anip", 36, 360),
+        ("cooperative-sociali", 36, 360),
+        ("laterizi-industria-f021", 30, 425),
         ("istituzioni-servizi-socio-assistenziali-anaste", 36, 180),
         ("uneba-uneba", 36, 365),
         ("dirigenza-funzioni-centrali-aran", 36, 540),
