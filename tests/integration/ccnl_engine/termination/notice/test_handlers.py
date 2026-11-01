@@ -72,6 +72,7 @@ def _run(
     fund: TfrFundBalance | None = None,
     cause: TerminationCause | None = _D,
     just: bool | None = False,
+    level: str | None = None,
 ) -> PeriodResult:
     return PayrollEngine.bundled().calculate_period(
         PeriodInput(
@@ -79,7 +80,8 @@ def _run(
             payment_date=date(2026, month, 27),
             employment=Employment(
                 ccnl_id=ccnl,
-                level_code="C3" if ccnl == "metalmeccanico-federmeccanica" else "4",
+                level_code=level
+                or ("C3" if ccnl == "metalmeccanico-federmeccanica" else "4"),
                 category=WorkerCategory.IMPIEGATO,
                 contract_type=(FixedTerm() if fixed_term else Permanent()),
                 employment_period=EmploymentPeriod(
@@ -322,6 +324,25 @@ def test_an_edilizia_operaio_has_ten_calendar_days() -> None:
     assert (due.inputs["notice_first_day"], due.inputs["notice_last_day"]) == (
         "2026-03-11",
         "2026-03-20",
+    )
+
+
+def test_dmo_pays_the_days_with_the_extra_months_out_of_the_tfr() -> None:
+    """DMO level IV, over ten years, dismissed on 10 March.
+
+    Art. 231 (Testo Unico, PDF p. 64): 45 calendar days from the next 1st or
+    16th, 16 March to 29 April.  Art. 232: the retribuzione di fatto of those
+    days with the 13th and 14th ratei: (1257.46 + 524.22 + 3 scatti of
+    20.66) * 14 / 12 * 45 / 30 = 3226.41; Art. 233 c. 3 keeps it out of the
+    TFR base.
+    """
+    result = _run(_notice(date(2026, 3, 10)), ccnl="dmo-federdistribuzione", level="IV")
+
+    assert _indemnity(result) == Decimal("3226.41")
+    (due,) = (d for d in result.decisions if d.reason_code == "notice_indemnity_due")
+    assert (due.inputs["notice_first_day"], due.inputs["notice_last_day"]) == (
+        "2026-03-16",
+        "2026-04-29",
     )
 
 
