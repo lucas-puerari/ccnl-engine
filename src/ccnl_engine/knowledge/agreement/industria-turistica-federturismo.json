@@ -1798,7 +1798,7 @@
     "effective_until": null,
     "source": "https://www.federturismo.it/it/documenti/documenti/12210-circolare-tabelle-retributive-ccnl-news-16-gennaio-2025/file.html",
     "verification_status": "unverified",
-    "source_hash": "4227653414fc6559d55cc887d111564f88bb86a36448befbd1e7f0a21997b486",
+    "source_hash": "084e091388a90162640250fe86970b06849e6e0e9a312719d7f94ef83dcf7d31",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2021,8 +2021,10 @@
           "extraction_timestamp": "2026-09-08T00:00:00",
           "verification_status": "unverified",
           "effective_from": "2023-01-01"
-        }
-      }
+        },
+        "transformation": "Comporto of several illnesses (2026-11-01): the comporto of 180 days counts the sick days of every episode of the calendar year. Source: https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/154401, p. 130 (sha256 2c01fa555644de38b31a327c517edd8f2888545a41a9b28f20eeccdecf0758fc): 'In caso di malattia accertata o di infortunio il personale che non sia in periodo di prova o di preavviso ha diritto alla conservazione del posto per un periodo di centottanta giorni per anno, intendendosi per tale il periodo compreso tra il 1° gennaio e il 31 dicembre. Ove il lavoratore si ammali o si infortuni più volte nel corso dell’anno i relativi periodi di assenza sono cumulabili agli effetti del raggiungimento del termine massimo di conservazione del posto di cui al precedente comma.'"
+      },
+      "comporto_calendar_year": true
     }
   }
 }

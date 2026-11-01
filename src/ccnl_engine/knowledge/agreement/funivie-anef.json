@@ -1496,7 +1496,7 @@
     "effective_until": null,
     "source": "https://www.funiviearabba.it/wp-content/uploads/2025/12/Sintesi-CCNL-ANEF.pdf",
     "verification_status": "unverified",
-    "source_hash": "ea1ea14d49b2b6cf3e120df8f3324399ceae354a3a35cdef38f33c388c5a8986",
+    "source_hash": "c4a2bc217a38a3844566b55ff54c834243ddca4ff2681c6fb6931ec99a7cff09",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1719,8 +1719,16 @@
           "extraction_timestamp": "2026-09-08T00:00:00",
           "verification_status": "unverified",
           "effective_from": "2022-01-01"
+        },
+        "transformation": "Comporto of several illnesses (2026-11-01): the comporto sums the sick days of the months before the day: from 0 months of seniority, 180 days in 24 months, on top of the 180 days of one illness. Source: https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105982, p. 25, 26 (sha256 d20eb8268311fb67a0b63fc06e7a44c295ca21fc1c98d5af3ef0d5a1d2b49208): 'Nel caso di interruzione del servizio dovuta a malattia, il lavoratore non in prova ha diritto alla conservazione del posto per un periodo di 180 (centottanta) giorni. Nel caso di più malattie il suddetto periodo di conservazione del posto si intende riferito alle assenze complessivamente verificatesi nei ventiquattro mesi precedenti ogni nuovo ultimo episodio morboso.'"
+      },
+      "comporto_windows": [
+        {
+          "seniority_months_from": 0,
+          "window_months": 24,
+          "comporto_days": 180
         }
-      }
+      ]
     }
   }
 }

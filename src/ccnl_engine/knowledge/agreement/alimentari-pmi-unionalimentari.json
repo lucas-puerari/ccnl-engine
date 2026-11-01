@@ -1576,7 +1576,7 @@
     "effective_until": null,
     "source": "https://www.unionalimentari.com/",
     "verification_status": "unverified",
-    "source_hash": "16fb880a01daf047904dbfc3a26d29d37a6eb51fa615d1a268a04165ed3e8944",
+    "source_hash": "9e5e26ac8b25b468ee50ae4bf24c7dad3868ffc3265813f1576f26ce04340fe2",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1763,8 +1763,21 @@
           "extraction_timestamp": "2026-09-08T00:00:00",
           "verification_status": "unverified",
           "effective_from": "2025-06-01"
+        },
+        "transformation": "Comporto of several illnesses (2026-11-01): the comporto sums the sick days of the months before the day: from 0 months of seniority, 180 days in 17 months; from 61 months of seniority, 365 days in 24 months, on top of the 180 days of one illness. Source: https://azstcnesa0002prodwe001.blob.core.windows.net/archivio-contratti/archivio%2F2016%2F%2F19480.pdf, p. 109 (sha256 d40dbecb3519c68abafdff076cdd07ea990d270187f47b2cdd2785fb5b604061): 'anzianità fino a 5 anni compiuti: 180 giorni di calendario; ... anzianità oltre 5 anni: 365 giorni di calendario. ... durante i 17 mesi antecedenti ... durante i 24 mesi antecedenti ... anche in caso di diverse malattie'"
+      },
+      "comporto_windows": [
+        {
+          "seniority_months_from": 0,
+          "window_months": 17,
+          "comporto_days": 180
+        },
+        {
+          "seniority_months_from": 61,
+          "window_months": 24,
+          "comporto_days": 365
         }
-      }
+      ]
     }
   }
 }
