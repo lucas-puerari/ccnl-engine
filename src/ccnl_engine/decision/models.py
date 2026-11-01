@@ -101,8 +101,7 @@ _SEVERITY: dict[CalculationStatus, int] = {
 }
 
 
-#: Public input field of each fact a missing-fact issue can name: the
-#: field the caller sets to resolve the issue.
+#: Public input field the caller sets to resolve each missing fact an issue names.
 PUBLIC_FACTS: Mapping[str, str] = MappingProxyType({
     "activity": "EmployerProfile.activity",
     "advances": "TfrFundBalance.advances",
@@ -122,6 +121,7 @@ PUBLIC_FACTS: Mapping[str, str] = MappingProxyType({
     "cigs_indotto": "EmployerProfile.cigs_indotto",
     "provincial_pay_element": "EmployerProfile.provincial_pay_element",
     "second_level_premium": "EmployerProfile.second_level_premium",
+    "subsector": "EmployerProfile.subsector",
     "inps_sector": "EmployerProfile.inps_sector",
     "just_cause": "EmploymentPeriod.just_cause",
     "full_time_weekly_hours": "Employment.full_time_weekly_hours",

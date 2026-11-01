@@ -26,7 +26,7 @@ from ccnl_engine.decision.models import (
     CalculationIssue,
     CalculationStatus,
 )
-from ccnl_engine.event.facade import AbsenceEvent
+from ccnl_engine.event.facade import AbsenceEvent, OvertimeEvent
 
 if TYPE_CHECKING:
     from ccnl_engine.period.context.services import RunContext
@@ -42,6 +42,7 @@ __all__ = [
     "provincial_issue",
     "roles_issue",
     "sector_issue",
+    "subsector_issue",
 ]
 
 FULL_TIME_FACT = "full_time_weekly_hours"
@@ -49,6 +50,7 @@ ROLES_FACT = "roles"
 NO_PAY_FACT = "no_pay_due"
 PROVINCIAL_FACT = "provincial_pay_element"
 PREMIUM_FACT = "second_level_premium"
+SUBSECTOR_FACT = "subsector"
 SECTOR_FACT = "inps_sector"
 
 
@@ -213,12 +215,39 @@ def sector_issue(ctx: RunContext) -> CalculationIssue | None:
     )
 
 
+def subsector_issue(ctx: RunContext) -> CalculationIssue | None:
+    """Return the missing-fact issue of the sub-sector bands left out.
+
+    Returns:
+        An incomplete issue naming ``subsector`` when the CCNL sets its
+        overtime bands by sub-sector, the employer does not state its own
+        and the run prices an overtime event from the bands, else ``None``.
+    """
+    priced = any(
+        isinstance(e, OvertimeEvent) and e.multiplier is None
+        for e in ctx.request.events
+    )
+    if not (ctx.contract.subsector_unknown and priced):
+        return None
+    return CalculationIssue(
+        code="subsector_unknown",
+        capability="overtime",
+        message=(
+            "the CCNL sets its overtime premiums by sub-sector and the "
+            "employer does not state its own: the overtime shown is priced "
+            "with the first table of the CCNL; state EmployerProfile.subsector"
+        ),
+        status=CalculationStatus.INCOMPLETE,
+        fact=SUBSECTOR_FACT,
+    )
+
+
 def fact_issues(ctx: RunContext) -> tuple[CalculationIssue | None, ...]:
     """Return the issues of the employment facts, in a fixed order.
 
     Returns:
-        The full time, no-pay, roles, provincial element, company premium
-        and INPS sector issues, each ``None`` when not raised.
+        The full time, no-pay, roles, provincial element, company premium,
+        INPS sector and sub-sector issues, each ``None`` when not raised.
     """
     return (
         full_time_issue(ctx),
@@ -227,4 +256,5 @@ def fact_issues(ctx: RunContext) -> tuple[CalculationIssue | None, ...]:
         provincial_issue(ctx),
         premium_issue(ctx),
         sector_issue(ctx),
+        subsector_issue(ctx),
     )

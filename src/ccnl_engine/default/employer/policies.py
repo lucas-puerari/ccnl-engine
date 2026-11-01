@@ -69,6 +69,14 @@ EMPLOYER_DEFAULTS: Mapping[str, FieldDefault] = {
         "level that pays one (Unionalimentari elemento di garanzia "
         "retributiva) has a missing_fact second_level_premium blocker",
     ),
+    "EmployerProfile.subsector": requires_fact(
+        "overtime",
+        "employer.subsector",
+        _REPORTED,
+        "the overtime of a CCNL that sets it by sub-sector (Alimentari art. "
+        "31) is priced with its first table, with a missing_fact subsector "
+        "blocker",
+    ),
     "EmployerProfile.inps_sector": requires_fact(
         "inps_employer",
         "employer.inps_sector",

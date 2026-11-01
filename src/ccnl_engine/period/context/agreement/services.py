@@ -26,12 +26,14 @@ from ccnl_engine.employment.context.models import (
 )
 from ccnl_engine.errors import InvalidInputError, UnknownLevelError
 from ccnl_engine.fund.solidarity.models import with_solidarity_tiers
+from ccnl_engine.working_time.subsector.rules import with_subsector
 from ccnl_engine.working_time.week.rules import with_week_divisor
 
 if TYPE_CHECKING:
     from ccnl_engine.agreement.facade import CCNL, TaxSector
     from ccnl_engine.capability.registry.models import CapabilityCatalog
     from ccnl_engine.compensation.models import Level
+    from ccnl_engine.employment.category.models import WorkerCategory
     from ccnl_engine.employment.fact.inputs import WeeklyHours
     from ccnl_engine.period.ports import KnowledgeRepository
     from ccnl_engine.period.requests import PeriodCalculationRequest
@@ -83,6 +85,7 @@ class RunContract:
     provincial_unknown: tuple[str, ...] = ()
     sector_unknown: tuple[TaxSector, ...] = ()
     premium_unknown: tuple[str, ...] = ()
+    subsector_unknown: bool = False
 
 
 def with_employer_sector(
@@ -124,6 +127,19 @@ def with_employer_sector(
     return ccnl.model_copy(update={"meta": sector_meta}), ()
 
 
+def _category(ccnl: CCNL, request: PeriodCalculationRequest) -> WorkerCategory | None:
+    """Return the category of the worker: stated, else fixed by the level.
+
+    Returns:
+        The category, ``None`` when neither states one or the level is
+        unknown (the run then raises on the level).
+    """
+    if request.category is not None:
+        return request.category
+    level = next((lv for lv in ccnl.levels if lv.code == request.level_code), None)
+    return None if level is None else level.category
+
+
 def load_contract(
     request: PeriodCalculationRequest, repo: KnowledgeRepository
 ) -> RunContract:
@@ -141,6 +157,9 @@ def load_contract(
         request.full_time_weekly_hours,
     )
     ccnl, sector_unknown = with_employer_sector(ccnl, request.employer.inps_sector)
+    ccnl, subsector_unknown = with_subsector(
+        ccnl, request.employer.subsector, _category(ccnl, request)
+    )
     tctx = TemporalContext.from_period(
         period_id.year, period_id.month, request.payment_date
     )
@@ -215,6 +234,7 @@ def load_contract(
         provincial_unknown,
         sector_unknown,
         premium_unknown,
+        subsector_unknown,
     )
 
 

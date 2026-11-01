@@ -1,6 +1,5 @@
 """Working-time and leave rule models for CCNL contracts."""
 
-from collections.abc import Sequence
 from decimal import Decimal
 from enum import StrEnum
 from typing import Literal, Self
@@ -8,7 +7,9 @@ from typing import Literal, Self
 from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 
 from ccnl_engine.agreement.validity.rules import TimeSeries
+from ccnl_engine.employment.category.models import WorkerCategory
 from ccnl_engine.provenance.source.rule.models import RuleProvenance
+from ccnl_engine.working_time.overlap.rules import bands_overlap
 from ccnl_engine.working_time.supplement.models import (
     HourlyBaseMethod,
     IndividualElementsRule,
@@ -54,12 +55,14 @@ class OvertimeBand(BaseModel):
     * ``indennita_per_shift``: supplement = rate * shift count (fixed EUR/shift).
 
     ``applies_to_kinds`` lists the :class:`WorkKind` values this band covers.
-    ``hour_threshold_per_day`` / ``hour_threshold_per_week`` optionally restrict
-    the band to hours *beyond* that threshold (straordinario, not supplementare).
+    ``hour_threshold_per_day`` / ``hour_threshold_per_week`` restrict the band
+    to the hours beyond them (straordinario, not supplementare).
     ``required_context_kinds``, when non-empty, makes this a conditional band:
     it is only applied when ALL listed kinds also have non-zero declared hours.
     ``levels``, when non-empty, restricts the band to those level codes (a
     PA table of hourly amounts by area); empty, it applies to every level.
+    ``subsectors`` (``EmployerProfile.subsector``) and ``categories`` restrict
+    it alike (Alimentari art. 31: tables by industry and category).
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -73,6 +76,8 @@ class OvertimeBand(BaseModel):
     applies_to_kinds: tuple[WorkKind, ...]
     required_context_kinds: tuple[WorkKind, ...] = ()
     levels: tuple[str, ...] = ()
+    subsectors: tuple[str, ...] = ()
+    categories: tuple[WorkerCategory, ...] = ()
     provenance: RuleProvenance | None = None
 
 
@@ -176,7 +181,7 @@ class TimeSupplements(BaseModel):
         collisions = {
             k: [b.code for b in found]
             for k, found in unconditional.items()
-            if _levels_overlap(found)
+            if bands_overlap(found)
         }
         if collisions:
             details = "; ".join(
@@ -208,27 +213,12 @@ class TimeSupplements(BaseModel):
         clashes = [
             f"{work}/{role}: {[b.code for b in found]}"
             for (work, role), found in groups.items()
-            if _levels_overlap(found)
+            if bands_overlap(found)
         ]
         if clashes:
             msg = "Ambiguous SupplementBand collisions: " + "; ".join(sorted(clashes))
             raise ValueError(msg)
         return bands
-
-
-def _levels_overlap(bands: Sequence[OvertimeBand | SupplementBand]) -> bool:
-    """Return whether two of ``bands`` can apply to the same level.
-
-    Returns:
-        ``True`` when two bands share a level or one names no level.
-    """
-    for i, band in enumerate(bands):
-        for other in bands[i + 1 :]:
-            if not band.levels or not other.levels:
-                return True
-            if set(band.levels) & set(other.levels):
-                return True
-    return False
 
 
 class TravelAllowanceBand(BaseModel):

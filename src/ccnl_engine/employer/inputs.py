@@ -17,6 +17,7 @@ from ccnl_engine.validators import (
     require_bool,
     require_instance,
     require_int,
+    require_str,
 )
 
 __all__ = [
@@ -96,6 +97,12 @@ class EmployerProfile:
             in its absence (Unionalimentari: elemento di garanzia
             retributiva).  ``None`` means not known: a level with such an
             element leaves it out and has a ``missing_fact`` blocker.
+        subsector: Sub-sector of the CCNL the employer belongs to, by the
+            code its time-supplement bands name (Alimentari art. 31:
+            ``"vini_liquori"``, ``"conserve_vegetali"``...).  ``None`` means
+            not known: on a CCNL whose bands differ by sub-sector the
+            overtime is priced with its first table and the run has a
+            ``missing_fact`` blocker.
         agricultural_zone: Zone of the land of an agricultural employer,
             which cuts its INPS contributions by 68% in a zona svantaggiata
             and 75% in a zona particolarmente svantaggiata (INPS circ.
@@ -123,7 +130,7 @@ class EmployerProfile:
             ``inps_sector`` not a :class:`TaxSector` value or
             ``public_life_insurance``, ``fis_reduction``,
             ``provincial_pay_element`` or ``second_level_premium`` is not a
-            bool.
+            bool, or ``subsector`` is not a non-blank string.
     """
 
     headcount: Headcount
@@ -133,6 +140,7 @@ class EmployerProfile:
     cigs_indotto: bool | None = None
     provincial_pay_element: bool | None = None
     second_level_premium: bool | None = None
+    subsector: str | None = None
     agricultural_zone: AgriculturalZone | None = None
     inps_sector: TaxSector | None = None
     contractual_funds: frozenset[str] | None = None
@@ -191,6 +199,13 @@ class EmployerProfile:
             check_second_level_elements(
                 self.second_level_elements, "EmployerProfile.second_level_elements"
             ),
+        )
+        require_str(
+            self.subsector,
+            "EmployerProfile.subsector",
+            feature=_FEATURE,
+            non_blank=True,
+            optional=True,
         )
         for name in (
             "fis_reduction",
