@@ -194,6 +194,9 @@ def required_series(
     prefix = "parameters.seniority_increments"
     if increments.apprentice_amount is not None:
         yield f"{prefix}.apprentice_amount", start, increments.apprentice_amount
+    if increments.apprentice_cohort is not None:
+        cohort = increments.apprentice_cohort.amount
+        yield f"{prefix}.apprentice_cohort.amount", start, cohort
     hourly = parameters.hourly_pay
     for percentage in () if hourly is None else hourly.percentages:
         path = f"parameters.hourly_pay.percentages[{percentage.code}]"

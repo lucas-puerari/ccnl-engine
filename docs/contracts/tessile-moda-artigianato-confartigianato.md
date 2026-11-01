@@ -39,9 +39,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, inps_employer, seniority |
+| **Limits of this contract** | base_salary, inps_employer |
 
-5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -121,13 +121,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Model the chimica-ceramica salary tables with a sub-sector input.
-
-!!! warning "tessile-moda-artigianato-confartigianato/apprentice_seniority_hire_date · seniority · impact yes · open"
-    APPRENTICE SENIORITY treated as uniform 6.00 EUR from 2025-01-01 regardless of hire date. Strictly, only workers hired after 17 Jul 2024 get 6.00 from Jan 2025; workers hired before that date remain at 5.16. For new hires this model is correct.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Model the 5.16 EUR apprentice increment for workers hired before 17 July 2024 with a hire-date input.
 
 !!! warning "tessile-moda-artigianato-confartigianato/level_category_unconfirmed · inps_employer · impact unknown · open"
     LEVEL CATEGORY: all levels left null (no primary-source text confirming operaio/impiegato split). The 2026-artigianato.json tier applies the impiegato rate (0.2471) for category='impiegato'/'quadro' vs. default 0.2693. Employer cost for higher levels (5, 6, 6S) may be slightly overestimated until categories are confirmed from primary CCNL text.
@@ -345,6 +338,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     APPRENTICESHIP: 3 gruppi (Art. 68 CNA PDF 2017, Section 7 retribution marked 'Omissis' in 2024 rinnovo = unchanged). Gruppo 1 (destination levels 4-6S, max 54 months), Gruppo 2 (destination level 3, max 42 months), Gruppo 3 (destination level 2, max 24 months). Level 1 has no apprenticeship track.
     
     Level 6S indennità di funzione (EUR 20.66) confirmed fixed across all four tranches. Verification 2026-09-09: web sources show L6S minimi (without indennità) as 1922.59/1975.32/2039.91/2112.41 (Jul 2024/Jan 2025/Oct 2025/Oct 2026); file stores 1943.25/1995.98/2060.57/2133.07 — difference exactly 20.66 EUR at every tranche (kitech.it Oct 2025 confirmation plus back-check against all 4 tranches). Indennità conglobata in base_salary (no separate fixed_allowances entry).
+    
+    APPRENTICE SENIORITY: 5.16 EUR a biennium (Art. 67, p. 78) until 2024, 6.00 from 1 January 2025 (renewal of 16 July 2024, p. 23, 'non rapportato alla percentuale di progressione retributiva'); the apprentices in service on 16 July 2024 keep the 5.16 (apprentice_cohort), read from the hire date of the employment.
     
     INPS: reuses 2026-artigianato.json (ARTIGIANATO sector).
     

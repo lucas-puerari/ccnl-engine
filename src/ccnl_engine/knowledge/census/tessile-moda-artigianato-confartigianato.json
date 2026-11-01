@@ -19,22 +19,6 @@
       }
     },
     {
-      "id": "apprentice_seniority_hire_date",
-      "institute": "seniority",
-      "variant": "apprentice",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "APPRENTICE SENIORITY treated as uniform 6.00 EUR from 2025-01-01 regardless of hire date. Strictly, only workers hired after 17 Jul 2024 get 6.00 from Jan 2025; workers hired before that date remain at 5.16. For new hires this model is correct.",
-      "calculation": "ccnl/tessile-moda-artigianato-confartigianato:coverage.notes",
-      "state": "absent",
-      "remediation": "Model the 5.16 EUR apprentice increment for workers hired before 17 July 2024 with a hire-date input.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "tessile-moda-artigianato-confartigianato/apprentice_seniority_hire_date"
-        ]
-      }
-    },
-    {
       "id": "arrears_unused_deductions",
       "institute": "contract_renewal_arrears",
       "variant": "all",

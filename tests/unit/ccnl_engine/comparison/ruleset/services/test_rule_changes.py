@@ -184,6 +184,21 @@ class TestDiffCcnlApprenticeAmount:
         assert app_changes[0].from_value == Decimal("5.00")
         assert app_changes[0].to_value == Decimal("6.00")
 
+    def test_apprentice_cohort_change_detected(self) -> None:
+        """The amount of the apprentice cohort is compared apart."""
+        data = make_ccnl_dict()
+        data["parameters"]["seniority_increments"]["apprentice_cohort"] = {
+            "in_service_on": "2024-07-16",
+            "amount": _two_period_series("5.16", "2025-01-01", "5.50"),
+        }
+        ccnl = CCNL.model_validate(data)
+        result = diff_ccnl(ccnl, date(2024, 1, 1), date(2025, 6, 1))
+        (change,) = [c for c in result.changes if "apprentice_cohort" in c.path]
+        assert (change.from_value, change.to_value) == (
+            Decimal("5.16"),
+            Decimal("5.50"),
+        )
+
 
 # ---------------------------------------------------------------------------
 # diff_ccnl — overtime band rate changes

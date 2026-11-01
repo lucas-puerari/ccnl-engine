@@ -123,21 +123,8 @@
         }
       },
       {
-        "kind": "simplification",
-        "text": "APPRENTICE SENIORITY treated as uniform 6.00 EUR from 2025-01-01 regardless of hire date. Strictly, only workers hired after 17 Jul 2024 get 6.00 from Jan 2025; workers hired before that date remain at 5.16. For new hires this model is correct.",
-        "capability": "seniority",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "apprentice_seniority_hire_date",
-          "applies_when": {
-            "trigger": "outside_input",
-            "contract_types": [
-              "apprentice"
-            ],
-            "effective_from": "2025-01-01"
-          },
-          "remediation": "Model the 5.16 EUR apprentice increment for workers hired before 17 July 2024 with a hire-date input."
-        }
+        "kind": "info",
+        "text": "APPRENTICE SENIORITY: 5.16 EUR a biennium (Art. 67, p. 78) until 2024, 6.00 from 1 January 2025 (renewal of 16 July 2024, p. 23, 'non rapportato alla percentuale di progressione retributiva'); the apprentices in service on 16 July 2024 keep the 5.16 (apprentice_cohort), read from the hire date of the employment."
       },
       {
         "kind": "simplification",
@@ -345,14 +332,98 @@
           {
             "valid_from": "2024-07-01",
             "valid_until": "2025-01-01",
-            "value": "5.16"
+            "value": "5.16",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "cna-ccnl-area-tessile-moda-chimica-ceramica",
+                  "title": "CCNL Area Tessile-Moda e Chimica-Ceramica artigianato, 14 dicembre 2017 (CNA)",
+                  "kind": "associazione",
+                  "url": "https://www.cna.it/wp-content/uploads/2021/01/CCNL-Area-Tessile-Moda-Chimica-Ceramica.pdf",
+                  "published_on": "2017-12-14",
+                  "sha256": "27240326b23f4e0ca597de9bb3029e83bf057d8ed3ef1183090c76bcbd712800"
+                },
+                "page": "78",
+                "section": "Art. 67 Aumenti periodici di anzianità, Settore Tessile, Abbigliamento, Calzaturiero e per il Settore Pulitintolavanderia",
+                "quote": "Apprendisti 5,16 euro"
+              },
+              "transformation": "The biennial increment of the apprentices before the 2024 renewal: 5.16.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T21:43:06Z",
+                "verification_status": "unverified",
+                "effective_from": "2024-07-01"
+              }
+            }
           },
           {
             "valid_from": "2025-01-01",
             "valid_until": null,
-            "value": "6.00"
+            "value": "6.00",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "filctem-ipotesi-accordo-tessile-moda-chimica-ceramica-2024",
+                  "title": "Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica, Roma 16 luglio 2024 (FILCTEM-CGIL, firmata)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240716_ARTIGIANI_Ipotesi%20Accordo%20CCNL%20Area%20Tessile-Moda-Chimica-Ceramica.pdf",
+                  "published_on": "2024-07-16",
+                  "sha256": "50f37650d8e6cce0a26461bdf96cf75a041a0855e7c1e3c1fa5d17c9122dc998"
+                },
+                "page": "23",
+                "section": "Regolamentazione dell'apprendistato professionalizzante, punto 14, Aumenti periodici di anzianità",
+                "quote": "A decorrere dal 1° gennaio 2025 gli apprendisti anche con rapporto in corso hanno diritto agli scatti di anzianità [...] L'importo dello scatto di anzianità maturato durante il periodo di apprendistato è di 6 euro, non rapportato alla percentuale di progressione retributiva."
+              },
+              "transformation": "6.00 from 1 January 2025.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T21:43:06Z",
+                "verification_status": "unverified",
+                "effective_from": "2025-01-01"
+              }
+            }
           }
         ]
+      },
+      "apprentice_cohort": {
+        "in_service_on": "2024-07-16",
+        "amount": {
+          "periods": [
+            {
+              "valid_from": "2024-07-01",
+              "valid_until": null,
+              "value": "5.16",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "filctem-ipotesi-accordo-tessile-moda-chimica-ceramica-2024",
+                    "title": "Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica, Roma 16 luglio 2024 (FILCTEM-CGIL, firmata)",
+                    "kind": "associazione",
+                    "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240716_ARTIGIANI_Ipotesi%20Accordo%20CCNL%20Area%20Tessile-Moda-Chimica-Ceramica.pdf",
+                    "published_on": "2024-07-16",
+                    "sha256": "50f37650d8e6cce0a26461bdf96cf75a041a0855e7c1e3c1fa5d17c9122dc998"
+                  },
+                  "page": "23",
+                  "section": "Regolamentazione dell'apprendistato professionalizzante, punto 14, Norma per i settori tessile, abbigliamento, calzaturiero e pulitintolavanderie",
+                  "quote": "Agli apprendisti in forza alla data di sottoscrizione del presente accordo di rinnovo continua a trovare applicazione la disciplina degli aumenti periodici di anzianità vigente alla data di assunzione."
+                },
+                "transformation": "The apprentices in service on 16 July 2024, the day of signature, keep the 5.16 of Art. 67 (CCNL text, p. 78).",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-01T21:43:06Z",
+                  "verification_status": "unverified",
+                  "effective_from": "2024-07-16"
+                }
+              }
+            }
+          ]
+        }
       },
       "provenance": {
         "status": "derived",
@@ -1605,7 +1676,7 @@
     "effective_until": null,
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
     "verification_status": "unverified",
-    "source_hash": "c1d4b9874a1a88bbc793a409e65ab29e3559b9e16be3f0d86df59e03ad526488",
+    "source_hash": "11b6c7ba77ea847931a5fdb161f89dd042a51d1e21025a6df98de54182c210d7",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

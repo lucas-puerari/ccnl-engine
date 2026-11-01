@@ -14,7 +14,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 0/134 CCNLs.** Bundle: 269 weak rules, 539 open limitations (539 with a monetary impact).
+**Complete: 0/134 CCNLs.** Bundle: 269 weak rules, 538 open limitations (538 with a monetary impact).
 
 ## Declared window
 
@@ -169,7 +169,7 @@ Future data, registered apart from the gaps: a contract whose validity ends insi
 | [tabacco-apti](../contracts/tabacco-apti.md) | `alimentare` | exploratory | — | 44 rows | 44 open requirements; 22 weak rules; 20 monetary limitations; 19 non-native capabilities |
 | [telecomunicazioni-asstel](../contracts/telecomunicazioni-asstel.md) | `ict-telecomunicazioni` | exploratory | — | 24 rows | 24 open requirements; 1 weak rule; 21 monetary limitations; 20 non-native capabilities |
 | [terziario-confesercenti](../contracts/terziario-confesercenti.md) | `commercio` | reviewed | 2027-03-31 | 29 rows | 29 open requirements; 21 monetary limitations; 6 outside_input limitations; 22 non-native capabilities |
-| [tessile-moda-artigianato-confartigianato](../contracts/tessile-moda-artigianato-confartigianato.md) | `tessile-moda` | exploratory | — | 27 rows | 27 open requirements; 1 weak rule; 22 monetary limitations; 2 outside_input limitations; 21 non-native capabilities |
+| [tessile-moda-artigianato-confartigianato](../contracts/tessile-moda-artigianato-confartigianato.md) | `tessile-moda` | exploratory | — | 26 rows | 26 open requirements; 1 weak rule; 22 monetary limitations; 1 outside_input limitation; 20 non-native capabilities |
 | [tessile-pmi-uniontessile](../contracts/tessile-pmi-uniontessile.md) | `tessile-moda` | exploratory | 2027-03-31 | 29 rows | 29 open requirements; 6 weak rules; 20 monetary limitations; 1 outside_input limitation; 19 non-native capabilities |
 | [tessile-smi](../contracts/tessile-smi.md) | `tessile-moda` | exploratory | — | 25 rows | 25 open requirements; 2 weak rules; 21 monetary limitations; 20 non-native capabilities |
 | [trasporto-aereo-assaeroporti](../contracts/trasporto-aereo-assaeroporti.md) | `trasporti-logistica` | exploratory | — | 27 rows | 27 open requirements; 1 weak rule; 23 monetary limitations; 1 outside_input limitation; 21 non-native capabilities |
