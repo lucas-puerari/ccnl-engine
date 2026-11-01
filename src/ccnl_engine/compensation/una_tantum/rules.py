@@ -10,11 +10,13 @@ of the income of the biennio (art. 17 c. 1 lett. b, art. 21 TUIR; Agenzia
 delle Entrate, risposte 367/2020 and 243/2021 on the una tantum of a
 renewal), the rest with the run.
 
-The texts read leave open how a month of service is counted and how a part
-time is paid; the engine counts a month in which the worker was employed at
-least 15 days, over the months of the covered period, and reduces a part
-time by its hours; a run whose employment period is not stated is paid
-none.  These readings are the engine limitation :data:`UNA_TANTUM`.
+A month of the covered period counts when the worker was employed at least
+the days of the una tantum (``month_min_days``, 15 when the text is
+silent), over the months of the period; a part time is reduced by its
+hours; the absences of a month do not reduce it, though a text may pay the
+months "di effettiva prestazione"; a run whose employment period is not
+stated is paid none.  These readings are the engine limitation
+:data:`UNA_TANTUM`.
 """
 
 from __future__ import annotations
@@ -31,6 +33,8 @@ from ccnl_engine.variable_pay.inputs import ArrearsEvent
 
 if TYPE_CHECKING:
     from ccnl_engine.agreement.facade import CCNL
+    from ccnl_engine.compensation.una_tantum.models import UnaTantum
+    from ccnl_engine.employment.period.inputs import EmploymentPeriod
     from ccnl_engine.period.requests import PeriodCalculationRequest
 
 __all__ = ["UNA_TANTUM", "una_tantum_events"]
@@ -41,11 +45,11 @@ _PAYING = frozenset({RunKind.REGULAR, RunKind.TERMINATION})
 _HALF_MONTH = 15
 
 
-def _months(first: date, last: date) -> list[tuple[int, int]]:
+def _months(first: date, last: date, days: int = _HALF_MONTH) -> list[tuple[int, int]]:
     """Return the months from ``first`` to ``last`` counted as served.
 
     Returns:
-        ``(year, month)`` of each month with at least 15 days from
+        ``(year, month)`` of each month with at least ``days`` days from
         ``first`` to ``last``, or all of them.
     """
     months: list[tuple[int, int]] = []
@@ -54,7 +58,7 @@ def _months(first: date, last: date) -> list[tuple[int, int]]:
         end = calendar.monthrange(year, month)[1]
         start = first.day if (year, month) == (first.year, first.month) else 1
         stop = last.day if (year, month) == (last.year, last.month) else end
-        if stop - start + 1 >= min(_HALF_MONTH, end):
+        if stop - start + 1 >= min(days, end):
             months.append((year, month))
         year, month = (year + 1, 1) if month == 12 else (year, month + 1)
     return months
@@ -92,6 +96,47 @@ def _arrears(
     return tuple(events)
 
 
+def _eligible(una: UnaTantum, period: EmploymentPeriod) -> bool:
+    """Return whether the employment can be owed ``una``.
+
+    Returns:
+        ``False`` for a hire after the covered period, or an employment not
+        in service on the day the una tantum requires.
+    """
+    if period.started_on > una.covers_until:
+        return False
+    day = una.in_service_on
+    return day is None or (
+        period.started_on <= day and (period.ended_on is None or period.ended_on >= day)
+    )
+
+
+def _installment(
+    request: PeriodCalculationRequest,
+    una: UnaTantum,
+    paid: date,
+    base: Decimal,
+) -> tuple[ArrearsEvent, ...]:
+    """Return the arrears of one installment of ``una`` the worker is owed.
+
+    Returns:
+        The arrears of its earlier years and of its year, none when the
+        employment is not eligible or served no month of the period.
+    """
+    period = request.employment_period
+    if period is None or not _eligible(una, period):
+        return ()
+    days = una.month_min_days
+    covered = _months(una.covers_from, una.covers_until, days)
+    first = max(period.started_on, una.covers_from)
+    last = min(period.ended_on or una.covers_until, una.covers_until)
+    served = _months(first, last, days) if first <= last else []
+    if not served:
+        return ()
+    amount = money(base * len(served) / len(covered) * _ratio(request))
+    return _arrears(paid, amount, served, request.payment_date.year)
+
+
 def una_tantum_events(
     request: PeriodCalculationRequest, ccnl: CCNL, run_kind: RunKind
 ) -> tuple[tuple[ArrearsEvent, ...], bool]:
@@ -111,14 +156,5 @@ def una_tantum_events(
             if (paid.year, paid.month) != (month.year, month.month) or base is None:
                 continue
             met = True
-            period = request.employment_period
-            if period is None or period.started_on > una.covers_until:
-                continue
-            covered = _months(una.covers_from, una.covers_until)
-            served = _months(max(period.started_on, una.covers_from), una.covers_until)
-            if not served:
-                continue
-            amount = money(base * len(served) / len(covered) * _ratio(request))
-            tax_year = request.payment_date.year
-            events.extend(_arrears(paid, amount, served, tax_year))
+            events.extend(_installment(request, una, paid, base))
     return tuple(events), met

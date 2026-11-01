@@ -1143,8 +1143,7 @@
       "noleggio-autobus-conducente-anav/apprentice_seniority",
       "noleggio-autobus-conducente-anav/salary_tables_from_proxy",
       "noleggio-autobus-conducente-anav/seniority_from_ic35",
-      "noleggio-autobus-conducente-anav/t0_table_back_calculated",
-      "noleggio-autobus-conducente-anav/una_tantum_2025_2026"
+      "noleggio-autobus-conducente-anav/t0_table_back_calculated"
     ],
     "agreement/occhiali-occhialeria-industria.json": [
       "occhiali-occhialeria-industria/apprentice_seniority",
