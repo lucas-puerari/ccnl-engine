@@ -1,6 +1,7 @@
 """Seniority increment models for CCNL contracts."""
 
 from collections.abc import Mapping
+from datetime import date
 from typing import Self
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
@@ -62,6 +63,26 @@ class SeniorityTier(BaseModel):
         return self
 
 
+class ApprenticeCohort(BaseModel):
+    """The apprentice increment kept by the apprentices of an earlier rule.
+
+    Tessile moda artigianato, renewal of 16 July 2024: "Agli apprendisti in
+    forza alla data di sottoscrizione del presente accordo di rinnovo
+    continua a trovare applicazione la disciplina degli aumenti periodici di
+    anzianità vigente alla data di assunzione".
+
+    Attributes:
+        in_service_on: Last hire date of the cohort: the day of signature.
+        amount: Increment of the cohort, in place of
+            :attr:`SeniorityIncrements.apprentice_amount`.
+    """
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    in_service_on: date
+    amount: TimeSeries
+
+
 class SeniorityIncrements(BaseModel):
     """Seniority increment (*scatti di anzianità*) rules for a CCNL.
 
@@ -79,7 +100,8 @@ class SeniorityIncrements(BaseModel):
     as the first cadence.
 
     ``apprentice_amount`` is the increment (if any) accrued during an
-    apprenticeship, replacing the level amount. Workers of an
+    apprenticeship, replacing the level amount; ``apprentice_cohort`` the
+    one of the apprentices hired by its day. Workers of an
     ``excluded_categories`` category accrue no increment (e.g. operai edili,
     who receive APE through the Cassa Edile instead).
     ``excluded_from_extra_months`` lists the extra months the increments do
@@ -99,6 +121,7 @@ class SeniorityIncrements(BaseModel):
     first_cadence_months_by_level: Mapping[str, int] = Field(default_factory=dict)
     maximum_count_by_level: Mapping[str, int] = Field(default_factory=dict)
     apprentice_amount: TimeSeries | None = None
+    apprentice_cohort: ApprenticeCohort | None = None
     excluded_categories: tuple[WorkerCategory, ...] = Field(default=())
     excluded_from_extra_months: tuple[ExtraMonthKind, ...] = Field(default=())
     amount_by_level_by_category: Mapping[WorkerCategory, Mapping[str, TimeSeries]] = (

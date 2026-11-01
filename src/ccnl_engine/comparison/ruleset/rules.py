@@ -127,6 +127,13 @@ def _seniority_rules(si: SeniorityIncrements) -> Iterator[DatedRule]:
             "EUR/month",
             si.apprentice_amount,
         )
+    if si.apprentice_cohort is not None:
+        yield DatedRule(
+            "parameters.seniority_increments.apprentice_cohort.amount",
+            "Seniority increment - apprentice cohort amount",
+            "EUR/month",
+            si.apprentice_cohort.amount,
+        )
 
 
 def _tier_rules(tier: SeniorityTier, index: int) -> Iterator[DatedRule]:

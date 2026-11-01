@@ -2091,7 +2091,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/tessile-moda-artigianato-confartigianato",
       "ruleset_version": "2026.2",
-      "source_hash": "c1d4b9874a1a88bbc793a409e65ab29e3559b9e16be3f0d86df59e03ad526488",
+      "source_hash": "11b6c7ba77ea847931a5fdb161f89dd042a51d1e21025a6df98de54182c210d7",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/tessile-moda-artigianato-confartigianato.json.gz"
@@ -4807,7 +4807,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "9809b10441cf91b22f7e5152ee548898f3a366104917bf3c5a0b9d11ccdd76b4",
+      "source_hash": "93c73042ca86924a14f93462623bdbeb9849176484f885955c4bf9025b92c3a5",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/tessile-moda-artigianato-confartigianato.json.gz",

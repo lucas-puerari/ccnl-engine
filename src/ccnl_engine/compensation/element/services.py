@@ -140,6 +140,7 @@ def _resolve_chain(
             seniority_months=seniority_months,
             roles=roles,
             worker_category=worker_category,
+            hired_on=hired_on,
         )
         if (
             seniority is not None
@@ -190,8 +191,12 @@ def _contract_chain(
     seniority_months: int | None,
     roles: frozenset[str],
     worker_category: WorkerCategory | None,
+    hired_on: date | None,
 ) -> tuple[MonthlyPayChain, ApprenticeshipScaling | None]:
     """Return the level or apprentice chain of the contract, full time.
+
+    An apprentice hired by the day of the CCNL apprentice cohort is paid
+    the increment of the cohort.
 
     Returns:
         The chain and the apprenticeship scaling, as :func:`_resolve_chain`.
@@ -199,6 +204,7 @@ def _contract_chain(
     count = _seniority_count(ccnl, level, seniority_months, worker_category)
     scaling: ApprenticeshipScaling | None = None
     if isinstance(contract_type, Apprentice):
+        ccnl = _cohort_rules(ccnl, hired_on)
         chain, pct, _ = _apprentice_chain(
             ccnl,
             level,
@@ -224,6 +230,22 @@ def _contract_chain(
             seniority_months=seniority_months,
         )
     return chain, scaling
+
+
+def _cohort_rules(ccnl: CCNL, hired_on: date | None) -> CCNL:
+    """Return the CCNL whose apprentice increment is the one of the worker.
+
+    Returns:
+        ``ccnl`` with the cohort amount as the apprentice amount when the
+        worker was hired by the cohort day; ``ccnl`` itself otherwise.
+    """
+    rules = ccnl.parameters.seniority_increments
+    cohort = rules.apprentice_cohort
+    if cohort is None or hired_on is None or hired_on > cohort.in_service_on:
+        return ccnl
+    kept = rules.model_copy(update={"apprentice_amount": cohort.amount})
+    parameters = ccnl.parameters.model_copy(update={"seniority_increments": kept})
+    return ccnl.model_copy(update={"parameters": parameters})
 
 
 def _reprices_at_next(ccnl: CCNL) -> bool:
