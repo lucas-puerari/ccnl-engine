@@ -73,3 +73,36 @@ def test_the_cashier_is_paid_five_percent_of_the_paga_base(
     """62.87 to the cassiere, nothing to a worker who holds no role."""
     assert _cassa(slug, level, frozenset({"cassiere"})) == [Decimal("62.87")]
     assert _cassa(slug, level, frozenset()) == []
+
+
+def _assaeroporti(roles: frozenset[str], code: str) -> list[Decimal]:
+    result = _ENGINE.calculate_period(
+        PeriodInput(
+            run=PayrollRun.regular(year=2026, month=1),
+            payment_date=date(2026, 1, 27),
+            employment=Employment(
+                ccnl_id="trasporto-aereo-assaeroporti",
+                level_code="9",
+                category=WorkerCategory.OPERAIO,
+                seniority=new_hire(),
+                roles=roles,
+                contract_type=Permanent(),
+                employment_period=EmploymentPeriod(date(2026, 1, 1)),
+            ),
+            employer=EmployerProfile(headcount=Headcount(20)),
+            facts=PeriodFacts(regione="IT-25", comune_belfiore="A005"),
+        )
+    )
+    return [i.amount for i in result.pay_items if code in i.item_id]
+
+
+def test_assaeroporti_money_handling_and_dpi_by_role() -> None:
+    """Art. G27: 10% of minimo and contingenza, (742.88 + 509.83) x 10% = 125.27.
+
+    Art. G37 ter: 10 EUR a month to the worker who washes the DPI himself.
+    """
+    assert _assaeroporti(frozenset({"cassiere"}), "IND_MANEGGIO") == [Decimal("125.27")]
+    assert _assaeroporti(frozenset(), "IND_MANEGGIO") == []
+    assert _assaeroporti(frozenset({"lavaggio_dpi"}), "CONTRIBUTO_DPI") == [
+        Decimal("10.00")
+    ]

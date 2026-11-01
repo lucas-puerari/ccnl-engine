@@ -42,7 +42,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 1 verified / 72 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 1 verified / 94 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -123,11 +123,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Confirm whether level 9 is excluded from Art. G23 seniority increments.
 
 !!! warning "trasporto-aereo-assaeroporti/role_conditional_allowances · base_salary · impact yes · open"
-    SUPPLEMENTARY ALLOWANCES. Role-conditional allowances (turno, campo, maneggio denaro, DPI) and the una tantum of EUR 500 (Art. G20, October 2025) are not modelled. All are attendance- or role-conditional or one-time payments.
+    SUPPLEMENTARY ALLOWANCES. The daily allowances of presence (Art. G24: 2.73 or 3.97 EUR, 3 more from 1 July 2025; G25 turno 0.26; G26 campo 0.21 or 0.26) are not modelled: they need the days of presence. The una tantum of 500 EUR of Art. G20 is of July 2025, before the window of the engine. The indennità maneggio denaro (G27) and the DPI contribution (G37 ter) are modelled by role.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Model the role- and attendance-conditional allowances as roles, and the una tantum as a una tantum payment.
+    **Remediation:** Model the daily allowances of presence of Artt. G24-G26 with the days of presence of the month, then resolve this limitation.
 
 !!! warning "trasporto-aereo-assaeroporti/art_g6_reclassification · base_salary · impact unknown · open"
     ART. G6 RECLASSIFICATION. A supplementary agreement of 23 March 2026 reportedly amended Art. G6 (professional classification). The amendment text was not retrieved; its effect on level codes and salary tables for as_of dates from 2026-03-01 onward is unverified. Hourly divisor taken from Art. G28 text; no official hourly-rate column available in the source for back-calculation cross-check.
