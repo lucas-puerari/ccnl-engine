@@ -81,7 +81,7 @@
       },
       {
         "kind": "simplification",
-        "text": "Apprenticeship (Art. 53 TU 2019, unchanged in 2024): sottoinquadramento, two levels below the destination for the first half and one level below for the second half; eligible destinations II-VI (Art. 62); durations II-V 36 months, VI 24 months (Art. 64). Track 'livelli_2_5' (18+18 months), track 'livello_6' (VII for the first 12 months; the second half stays at VII by the general one-level-below rule, lexplain.it reads it as VI: adopted the literal text). Art. 68 Tabella B profiles with 42/48-month durations and the farmacista di parafarmacia derogation (Accordo 31/10/2024) are profile-specific and not modelled.",
+        "text": "Apprenticeship (Art. 53 TU 2019, unchanged in 2024): sottoinquadramento, two levels below the destination for the first half and one level below for the second half; eligible destinations II-VI (Art. 62); durations II-V 36 months, VI 24 months (Art. 64). Track 'livelli_2_5' (18+18 months), track 'livello_6' (VII for the first 12 months; the second half stays at VII by the general one-level-below rule, lexplain.it reads it as VI: adopted the literal text). The Art. 68 Tabella B profiles (PDF pp. 82-83) are tracks 'tabella_b_48_mesi' (levels 2 and 3, 24+24 months) and 'tabella_b_42_mesi' (level 4, 21+21 months); an apprentice of levels 2, 3 and 4 states Apprentice.track ('livelli_2_5' for the 36 months). The farmacista di parafarmacia derogation (Accordo 31/10/2024) is not modelled: its text was not found.",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
@@ -89,7 +89,7 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Model the Art. 68 Tabella B profiles (42/48 months) and the farmacista di parafarmacia derogation as separate tracks or open a limitation."
+          "remediation": "Model the farmacista di parafarmacia apprenticeship of the Accordo 31/10/2024 once its text is found."
         }
       },
       {
@@ -3618,6 +3618,107 @@
           "levels_below": 0
         }
       ]
+    },
+    {
+      "type": "under_classification",
+      "name": "tabella_b_48_mesi",
+      "destination_levels": [
+        "2",
+        "3"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 24,
+          "levels_below": 2
+        },
+        {
+          "months_from": 24,
+          "months_until": 48,
+          "levels_below": 1
+        },
+        {
+          "months_from": 48,
+          "months_until": null,
+          "levels_below": 0
+        }
+      ],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "uiltucs-tu2019",
+            "title": "CCNL per i dipendenti da aziende del Terziario della Distribuzione e dei Servizi, Testo Unico 30 luglio 2019",
+            "kind": "associazione",
+            "url": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
+            "pages": [],
+            "published_on": "2019-07-30",
+            "jurisdiction": "it",
+            "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016"
+          },
+          "page": "76, 82-83",
+          "section": "Art. 53, Livelli di inquadramento professionale e trattamento economico; Art. 68, Qualifiche con durata fino a 5 anni, Tabella B",
+          "quote": "2 livelli inferiori a quello in cui è inquadrata la mansione professionale per cui è svolto l’apprendistato per la prima metà del periodo di apprendistato; 1 livello inferiore a quello in cui è inquadrata la mansione professionale per cui è svolto l’apprendistato per la seconda metà [...] una durata fino a 48 mesi [...] 48 mesi [...] inquadramento finale al II livello [...] inquadramento finale al III livello"
+        },
+        "transformation": "48 months for the Tabella B profiles ending at level II (estimatore nelle aziende di arte e antichità, collaudatore e/o accettatore) and at level III (macellaio specializzato provetto, disegnatore tecnico, figurista, vetrinista, the operai specializzati provetti of maintenance and non-food warehouses, the tecnici riparatori): two levels below the destination for 24 months, one below for 24 more; selected by Apprentice.track.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-01T21:29:10Z",
+          "verification_status": "unverified",
+          "effective_from": "2019-07-30"
+        }
+      }
+    },
+    {
+      "type": "under_classification",
+      "name": "tabella_b_42_mesi",
+      "destination_levels": [
+        "4"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 21,
+          "levels_below": 2
+        },
+        {
+          "months_from": 21,
+          "months_until": 42,
+          "levels_below": 1
+        },
+        {
+          "months_from": 42,
+          "months_until": null,
+          "levels_below": 0
+        }
+      ],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "uiltucs-tu2019",
+            "title": "CCNL per i dipendenti da aziende del Terziario della Distribuzione e dei Servizi, Testo Unico 30 luglio 2019",
+            "kind": "associazione",
+            "url": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
+            "pages": [],
+            "published_on": "2019-07-30",
+            "jurisdiction": "it",
+            "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016"
+          },
+          "page": "76, 82-83",
+          "section": "Art. 53, Livelli di inquadramento professionale e trattamento economico; Art. 68, Qualifiche con durata fino a 5 anni, Tabella B",
+          "quote": "2 livelli inferiori a quello in cui è inquadrata la mansione professionale per cui è svolto l’apprendistato per la prima metà del periodo di apprendistato; 1 livello inferiore a quello in cui è inquadrata la mansione professionale per cui è svolto l’apprendistato per la seconda metà [...] una durata fino a 48 mesi [...] specialista di macelleria, gastronomia, salumeria, pescheria, formaggi, pasticceria, anche con funzioni di vendita 42 mesi 200 ore per inquadramento finale al IV livello"
+        },
+        "transformation": "42 months for the Tabella B profiles ending at level IV (specialista di macelleria, gastronomia, salumeria, pescheria, formaggi, pasticceria): two levels below the destination for 21 months, one below for 21 more; selected by Apprentice.track.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-01T21:29:10Z",
+          "verification_status": "unverified",
+          "effective_from": "2019-07-30"
+        }
+      }
     }
   ],
   "ruleset": {
@@ -3627,7 +3728,7 @@
     "effective_until": null,
     "source": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
     "verification_status": "unverified",
-    "source_hash": "e89db698551cd0c3863309ccfda8e8b1b64d0b41b2a5925ce0e3930fdf8ec7f9",
+    "source_hash": "cd4942f1498202db1d1cd654d6e814543af34794d1656890079880c9e7d978e6",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

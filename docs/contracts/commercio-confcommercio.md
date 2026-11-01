@@ -113,16 +113,22 @@ Destination levels: `2`, `3`, `4`, `5`
 **livello_6** (type: `under_classification`)  
 Destination levels: `6`
 
+**tabella_b_48_mesi** (type: `under_classification`)  
+Destination levels: `2`, `3`
+
+**tabella_b_42_mesi** (type: `under_classification`)  
+Destination levels: `4`
+
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
 !!! warning "commercio-confcommercio/profile_specific_apprenticeship · base_salary · impact yes · open"
-    Apprenticeship (Art. 53 TU 2019, unchanged in 2024): sottoinquadramento, two levels below the destination for the first half and one level below for the second half; eligible destinations II-VI (Art. 62); durations II-V 36 months, VI 24 months (Art. 64). Track 'livelli_2_5' (18+18 months), track 'livello_6' (VII for the first 12 months; the second half stays at VII by the general one-level-below rule, lexplain.it reads it as VI: adopted the literal text). Art. 68 Tabella B profiles with 42/48-month durations and the farmacista di parafarmacia derogation (Accordo 31/10/2024) are profile-specific and not modelled.
+    Apprenticeship (Art. 53 TU 2019, unchanged in 2024): sottoinquadramento, two levels below the destination for the first half and one level below for the second half; eligible destinations II-VI (Art. 62); durations II-V 36 months, VI 24 months (Art. 64). Track 'livelli_2_5' (18+18 months), track 'livello_6' (VII for the first 12 months; the second half stays at VII by the general one-level-below rule, lexplain.it reads it as VI: adopted the literal text). The Art. 68 Tabella B profiles (PDF pp. 82-83) are tracks 'tabella_b_48_mesi' (levels 2 and 3, 24+24 months) and 'tabella_b_42_mesi' (level 4, 21+21 months); an apprentice of levels 2, 3 and 4 states Apprentice.track ('livelli_2_5' for the 36 months). The farmacista di parafarmacia derogation (Accordo 31/10/2024) is not modelled: its text was not found.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Model the Art. 68 Tabella B profiles (42/48 months) and the farmacista di parafarmacia derogation as separate tracks or open a limitation.
+    **Remediation:** Model the farmacista di parafarmacia apprenticeship of the Accordo 31/10/2024 once its text is found.
 
 !!! warning "commercio-confcommercio/apprentice_seniority · seniority · impact unknown · open"
     APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.

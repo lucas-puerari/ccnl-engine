@@ -1,9 +1,9 @@
-"""The Tabella B apprentices of DMO (Art. 61) and Terziario Confesercenti (Art. 68).
+"""The Tabella B apprentices of DMO, Terziario Confesercenti and Commercio.
 
 48 months for the profiles ending at levels II and III, 42 for those ending at
 level IV; "2 livelli inferiori [...] per la prima metà del periodo di
 apprendistato", "1 livello inferiore [...] per la seconda metà" (DMO Art. 46,
-Terziario Art. 53).
+Terziario and Commercio Art. 53).
 """
 
 from __future__ import annotations
@@ -66,3 +66,20 @@ def test_a_level_with_a_long_track_needs_the_track(slug: str) -> None:
     """Levels II, III and IV have two tracks: the profile picks one."""
     with pytest.raises(OutOfScopeError, match="several apprenticeship tracks"):
         _base(slug, "IV", 0, None)
+
+
+@pytest.mark.parametrize(
+    ("level", "track", "months", "paid_at"),
+    [
+        ("2", "tabella_b_48_mesi", 23, "4"),
+        ("3", "tabella_b_48_mesi", 24, "4"),
+        ("4", "tabella_b_42_mesi", 20, "6"),
+        ("4", "tabella_b_42_mesi", 42, "4"),
+    ],
+)
+def test_commercio_halves_the_long_profiles_too(
+    level: str, track: str, months: int, paid_at: str
+) -> None:
+    """Commercio Art. 68 (PDF pp. 82-83), its levels coded 2 to 7."""
+    slug = "commercio-confcommercio"
+    assert _base(slug, level, months, track) == _minimum(slug, paid_at)
