@@ -34,7 +34,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | assistance_contribution, base_salary, inps_employer, overtime, sickness |
+| **Limits of this contract** | assistance_contribution, base_salary, inps_employer, overtime |
 
 8 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
@@ -124,12 +124,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Resolved: the bands carry the comporto of an oncological illness (serious_comporto_days 15, 68 and 270 days, the periods of c. 4 raised by 50%), applied when the episode states SicknessEpisode.serious_illness; 45 x 1.5 = 67.5 is read as 68, the 68th day being still in part within the period.
 
-!!! warning "lavoro-domestico-convivente-orario-ridotto/sick_board_lodging · sickness · impact unknown · open"
-    Art. 27 c. 9: the conventional value of board and lodging is part of the sick pay only when the worker is not in hospital or in the employer's home. The request does not say where the worker is, so the engine pays the monthly pay as stated.
+!!! note "lavoro-domestico-convivente-orario-ridotto/sick_board_lodging · sickness · impact unknown · resolved"
+    Art. 27 c. 9: the conventional value of board and lodging is added to the sick pay only when the worker is not in hospital or in the employer's home. The sick pay is thirtieths of the cash monthly pay, without the value in kind; the sick days spent elsewhere are stated with BoardLodgingEvent, which pays that value in cash.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Add a fact for the days in hospital or in the employer's home and leave the board and lodging out of their sick pay.
+    **Remediation:** Resolved: the sick pay leaves the value in kind out, and BoardLodgingEvent pays it for the sick days outside hospital and the employer's home.
 
 !!! warning "lavoro-domestico-convivente-orario-ridotto/hours_within_arrangement · overtime · impact yes · open"
     Art. 14 c. 2: hours beyond the agreed ones within the agreed time arrangement are paid at the plain hourly retribuzione globale di fatto, only those outside it with the supplements of Art. 15. The request does not say where an hour falls, so the overtime bands of Art. 15 apply to every overtime hour stated.

@@ -34,7 +34,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | assistance_contribution, base_salary, inps_employer, seniority, sickness |
+| **Limits of this contract** | assistance_contribution, base_salary, inps_employer, seniority |
 
 9 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
@@ -148,12 +148,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Resolved: the bands carry the comporto of an oncological illness (serious_comporto_days 15, 68 and 270 days, the periods of c. 4 raised by 50%), applied when the episode states SicknessEpisode.serious_illness; 45 x 1.5 = 67.5 is read as 68, the 68th day being still in part within the period.
 
-!!! warning "lavoro-domestico-convivente/sick_board_lodging · sickness · impact unknown · open"
-    Art. 27 c. 9: the conventional value of board and lodging is part of the sick pay only when the worker is not in hospital or in the employer's home. The request does not say where the worker is, so the engine pays the monthly pay as stated.
+!!! note "lavoro-domestico-convivente/sick_board_lodging · sickness · impact unknown · resolved"
+    Art. 27 c. 9: the conventional value of board and lodging is added to the sick pay only when the worker is not in hospital or in the employer's home. The sick pay is thirtieths of the cash monthly pay, without the value in kind; the sick days spent elsewhere are stated with BoardLodgingEvent, which pays that value in cash.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Add a fact for the days in hospital or in the employer's home and leave the board and lodging out of their sick pay.
+    **Remediation:** Resolved: the sick pay leaves the value in kind out, and BoardLodgingEvent pays it for the sick days outside hospital and the employer's home.
 
 !!! warning "lavoro-domestico-convivente/annual_minimi_not_updated · base_salary · impact yes · open"
     ANNUAL MINIMI: the minimi of the CCNL are updated every year from 1 January by the Commissione nazionale (Art. 38, ISTAT variation of the consumer prices); the bundle holds the table of 2026. From 1 January 2027 the amounts are those of 2026 until the 2027 table is published and added, so a 2027 run is not payable.

@@ -337,22 +337,6 @@
           "provisional_ruleset"
         ]
       }
-    },
-    {
-      "id": "sick_board_lodging",
-      "institute": "sickness",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Art. 27 c. 9: the conventional value of board and lodging is part of the sick pay only when the worker is not in hospital or in the employer's home. The request does not say where the worker is, so the engine pays the monthly pay as stated.",
-      "calculation": "ccnl/lavoro-domestico-convivente-orario-ridotto:coverage.notes",
-      "state": "unverified",
-      "remediation": "Add a fact for the days in hospital or in the employer's home and leave the board and lodging out of their sick pay.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "lavoro-domestico-convivente-orario-ridotto/sick_board_lodging"
-        ]
-      }
     }
   ]
 }

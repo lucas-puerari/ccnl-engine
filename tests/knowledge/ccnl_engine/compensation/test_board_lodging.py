@@ -28,7 +28,7 @@ from ccnl_engine import (
     PeriodInput,
     PeriodResult,
 )
-from ccnl_engine.events import BoardLodgingEvent
+from ccnl_engine.events import BoardLodgingEvent, SicknessEpisode
 from ccnl_engine.inputs import (
     ContributableHours,
     EmploymentPeriod,
@@ -41,7 +41,7 @@ from ccnl_engine.inputs import (
 _ENGINE = PayrollEngine.bundled()
 
 
-def _march(ccnl_id: str, *events: BoardLodgingEvent) -> PeriodResult:
+def _march(ccnl_id: str, *events: BoardLodgingEvent | SicknessEpisode) -> PeriodResult:
     hours = WeeklyHours(Decimal(54 if ccnl_id.endswith("convivente") else 40))
     return _ENGINE.calculate_period(
         PeriodInput(
@@ -126,3 +126,24 @@ def test_february_has_28_days() -> None:
     """29 days do not fit February 2026."""
     with pytest.raises(InvalidInputError, match="at most 28"):
         BoardLodgingEvent(date(2026, 2, 9), 29)
+
+
+def test_sick_days_away_from_the_employer_add_the_value_in_kind() -> None:
+    """Art. 27 c. 9: sick 2-6 March at home, outside the employer's house.
+
+    The sick pay is thirtieths of the cash monthly pay, without the value
+    in kind (206.93 deducted, 144.85 paid, as in the sickness tests); the
+    five days without board and lodging add 5 x 6.66 = 33.30.
+    """
+    episode = SicknessEpisode("A", date(2026, 3, 2), date(2026, 3, 6))
+    sick = _march("lavoro-domestico-convivente", episode)
+    away = _march(
+        "lavoro-domestico-convivente", episode, BoardLodgingEvent(date(2026, 3, 2), 5)
+    )
+
+    def sickness(result: PeriodResult) -> Decimal:
+        items = (i.amount for i in result.pay_items if i.kind == "sickness_item")
+        return sum(items, Decimal(0))
+
+    assert sickness(sick) == sickness(away) == Decimal("144.85")
+    assert away.period_gross - sick.period_gross == Decimal("33.30")
