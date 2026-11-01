@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 53 verified / 1 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 53 verified / 2 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🟢 Verified | The confidence the ruleset declares as a whole |
 | **Readiness** | 👁 Reviewed | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -138,11 +138,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Accept the weekly schedule (days per week) and accrue 26 days on a six-day week, or record the limitation as rol_not_accrued does for ROL.
 
 !!! warning "studi-professionali-confprofessioni/part_time_supplementary · overtime · impact yes · open"
-    Art. 42: the lavoro supplementare of part-time at 40% of the quota oraria of the retribuzione di fatto, outside the deferred institutes and the TFR. OvertimeKind.SUPPLEMENTARY exists, but the file has no supplementary-hours band (review of 2026-10-30).
+    Art. 42 (text of 16 February 2024, p. 36): the lavoro supplementare of part-time is paid with the quota oraria of the retribuzione di fatto and a 40% maggiorazione (band OT_SUPPLEMENTARE); c. 4 leaves its pay out of 'ogni Istituto retributivo differito, compreso il Trattamento di fine rapporto', while the engine puts an overtime event in the TFR base.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Add the OT_SUPPLEMENTARE band (40%) of Art. 42.
+    **Remediation:** Leave the supplementary hours of Art. 42 out of the TFR base and of the deferred institutes.
 
 !!! warning "studi-professionali-confprofessioni/rolling_comporto_and_serious_illness · sickness · impact yes · open"
     Artt. 120-121: the comporto counted over the episodes of the 365 days before the last one, and the +90 days for serious illnesses paid 100% in months 7-8 and 70% in month 9.
