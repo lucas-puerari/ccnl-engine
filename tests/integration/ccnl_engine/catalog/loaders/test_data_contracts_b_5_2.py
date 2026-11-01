@@ -68,7 +68,7 @@ class TestLoadPuliziaArtigianatoConfartigianato:
         assert ccnl.parameters.hourly_divisor.value_at(date(2026, 7, 1)) == Decimal(173)
 
     def test_pulizia_artigianato_confartigianato_level1_ind_fun(self) -> None:
-        """Level 1 has IND_FUN allowance of 25.82 EUR; others have none."""
+        """Level 1 has IND_FUN allowance of 25.82 EUR; the others only the EDAR."""
         ccnl = load_ccnl("pulizia-artigianato-confartigianato")
         lv1 = next(lv for lv in ccnl.levels if lv.code == "1")
         codes = {fa.code for fa in lv1.fixed_allowances}
@@ -77,7 +77,7 @@ class TestLoadPuliziaArtigianatoConfartigianato:
         assert ind.monthly.value_at(date(2026, 7, 1)) == Decimal("25.82")
         for lv in ccnl.levels:
             if lv.code != "1":
-                assert lv.fixed_allowances == ()
+                assert [fa.code for fa in lv.fixed_allowances] == ["EDAR"]
 
     def test_pulizia_artigianato_confartigianato_tax_sector(self) -> None:
         """Artisan cleaning firms take the artigianato table."""

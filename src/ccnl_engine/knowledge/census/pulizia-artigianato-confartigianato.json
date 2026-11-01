@@ -83,22 +83,6 @@
       }
     },
     {
-      "id": "edar_2022_2024",
-      "institute": "base_salary",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "EDAR (Elemento Distinto e Aggiuntivo della Retribuzione): EUR 15.00 flat, 26 mesi da 1.11.2022, soli lavoratori in forza al 27.10.2022. Scaduto dic 2024. Non rientra in nessun istituto contrattuale incl. TFR. Non modellato.",
-      "calculation": "ccnl/pulizia-artigianato-confartigianato:coverage.notes",
-      "state": "absent",
-      "remediation": "Model l'EDAR di EUR 15 (1.11.2022-31.12.2024, solo lavoratori in forza al 27.10.2022, escluso dal TFR) come allowance gated by role, or record a limitation with effective_until 2025-01-01.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "pulizia-artigianato-confartigianato/edar_2022_2024"
-        ]
-      }
-    },
-    {
       "id": "extraordinary_leave_daily_base",
       "institute": "extraordinary_leave",
       "variant": "all",

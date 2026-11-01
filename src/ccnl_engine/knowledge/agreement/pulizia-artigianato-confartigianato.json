@@ -80,20 +80,6 @@
       },
       {
         "kind": "simplification",
-        "text": "EDAR (Elemento Distinto e Aggiuntivo della Retribuzione): EUR 15.00 flat, 26 mesi da 1.11.2022, soli lavoratori in forza al 27.10.2022. Scaduto dic 2024. Non rientra in nessun istituto contrattuale incl. TFR. Non modellato.",
-        "capability": "base_salary",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "edar_2022_2024",
-          "applies_when": {
-            "trigger": "outside_input",
-            "effective_from": "2022-11-01"
-          },
-          "remediation": "Model l'EDAR di EUR 15 (1.11.2022-31.12.2024, solo lavoratori in forza al 27.10.2022, escluso dal TFR) come allowance gated by role, or record a limitation with effective_until 2025-01-01."
-        }
-      },
-      {
-        "kind": "simplification",
         "text": "INDENNITÀ SPECIALE (tabella per-livello nel PDF: L1=126.55→131.55 EUR): corrisposta solo al personale addetto alla riscossione con responsabilità di bollette/fatture > EUR 4.648/giorno. Condizionale, non universale. Non modellata. Totale ilccnl.it lug 2026 = Paga Base conferma assenza di elementi obbligatori aggiuntivi.",
         "capability": "base_salary",
         "monetary_impact": "yes",
@@ -1194,6 +1180,51 @@
             },
             "note": null
           }
+        },
+        {
+          "code": "EDAR",
+          "description": "Elemento distinto e aggiuntivo della retribuzione, 15 EUR a month for 26 months from November 2022, art. 36 of the renewal",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-11-01",
+                "valid_until": "2025-01-01",
+                "value": "15.00"
+              },
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "gap_kind": "not_applicable"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "tfr_relevant": false,
+          "in_service_on": "2022-10-27",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "pulizia-artigianato-rinnovo-2022-10-27",
+                "title": "Accordo di rinnovo CCNL Pulizia artigianato, 27 ottobre 2022",
+                "kind": "associazione",
+                "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
+                "sha256": "037e5a830b9027e280d0a84285afe7c69190550e5704b236270ba6ebd62f6424"
+              },
+              "page": "27",
+              "section": "Art. 36 - Elemento Distinto e Aggiuntivo della Retribuzione",
+              "quote": "ai soli lavoratori in forza alla data di sottoscrizione del presente accordo verrà corrisposto mensilmente un Elemento Distinto e Aggiuntivo della Retribuzione pari a 15 euro per 26 mesi consecutivi a partire dall’1.11.2022. Tale importo, che ha natura temporanea, è riproporzionato in caso di rapporto di lavoro part-time; in caso di rapporto di apprendistato è erogato sulla base delle percentuali in atto nei relativi semestri. [...] ivi compreso il trattamento di fine rapporto."
+            },
+            "transformation": "15 EUR a month from November 2022 to December 2024 (26 months), to the workers in service on 27 October 2022, the date of signature (in_service_on); proportioned to part time and to the apprenticeship percentage like the pay; outside the TFR base and paid on the monthly payments only (months_per_year 12). Not in force from January 2025. The payment of the months left in one sum at a termination before December 2024 is not modelled (outside the window of the engine).",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T18:58:12Z",
+              "effective_from": "2022-11-01",
+              "verification_status": "unverified"
+            }
+          },
+          "apprenticeship_pct_relevant": true
         }
       ],
       "provenance": {
@@ -1593,7 +1624,53 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "EDAR",
+          "description": "Elemento distinto e aggiuntivo della retribuzione, 15 EUR a month for 26 months from November 2022, art. 36 of the renewal",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-11-01",
+                "valid_until": "2025-01-01",
+                "value": "15.00"
+              },
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "gap_kind": "not_applicable"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "tfr_relevant": false,
+          "in_service_on": "2022-10-27",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "pulizia-artigianato-rinnovo-2022-10-27",
+                "title": "Accordo di rinnovo CCNL Pulizia artigianato, 27 ottobre 2022",
+                "kind": "associazione",
+                "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
+                "sha256": "037e5a830b9027e280d0a84285afe7c69190550e5704b236270ba6ebd62f6424"
+              },
+              "page": "27",
+              "section": "Art. 36 - Elemento Distinto e Aggiuntivo della Retribuzione",
+              "quote": "ai soli lavoratori in forza alla data di sottoscrizione del presente accordo verrà corrisposto mensilmente un Elemento Distinto e Aggiuntivo della Retribuzione pari a 15 euro per 26 mesi consecutivi a partire dall’1.11.2022. Tale importo, che ha natura temporanea, è riproporzionato in caso di rapporto di lavoro part-time; in caso di rapporto di apprendistato è erogato sulla base delle percentuali in atto nei relativi semestri. [...] ivi compreso il trattamento di fine rapporto."
+            },
+            "transformation": "15 EUR a month from November 2022 to December 2024 (26 months), to the workers in service on 27 October 2022, the date of signature (in_service_on); proportioned to part time and to the apprenticeship percentage like the pay; outside the TFR base and paid on the monthly payments only (months_per_year 12). Not in force from January 2025. The payment of the months left in one sum at a termination before December 2024 is not modelled (outside the window of the engine).",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T18:58:12Z",
+              "effective_from": "2022-11-01",
+              "verification_status": "unverified"
+            }
+          },
+          "apprenticeship_pct_relevant": true
+        }
+      ],
       "provenance": {
         "status": "assumed",
         "location": {
@@ -1991,7 +2068,53 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "EDAR",
+          "description": "Elemento distinto e aggiuntivo della retribuzione, 15 EUR a month for 26 months from November 2022, art. 36 of the renewal",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-11-01",
+                "valid_until": "2025-01-01",
+                "value": "15.00"
+              },
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "gap_kind": "not_applicable"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "tfr_relevant": false,
+          "in_service_on": "2022-10-27",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "pulizia-artigianato-rinnovo-2022-10-27",
+                "title": "Accordo di rinnovo CCNL Pulizia artigianato, 27 ottobre 2022",
+                "kind": "associazione",
+                "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
+                "sha256": "037e5a830b9027e280d0a84285afe7c69190550e5704b236270ba6ebd62f6424"
+              },
+              "page": "27",
+              "section": "Art. 36 - Elemento Distinto e Aggiuntivo della Retribuzione",
+              "quote": "ai soli lavoratori in forza alla data di sottoscrizione del presente accordo verrà corrisposto mensilmente un Elemento Distinto e Aggiuntivo della Retribuzione pari a 15 euro per 26 mesi consecutivi a partire dall’1.11.2022. Tale importo, che ha natura temporanea, è riproporzionato in caso di rapporto di lavoro part-time; in caso di rapporto di apprendistato è erogato sulla base delle percentuali in atto nei relativi semestri. [...] ivi compreso il trattamento di fine rapporto."
+            },
+            "transformation": "15 EUR a month from November 2022 to December 2024 (26 months), to the workers in service on 27 October 2022, the date of signature (in_service_on); proportioned to part time and to the apprenticeship percentage like the pay; outside the TFR base and paid on the monthly payments only (months_per_year 12). Not in force from January 2025. The payment of the months left in one sum at a termination before December 2024 is not modelled (outside the window of the engine).",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T18:58:12Z",
+              "effective_from": "2022-11-01",
+              "verification_status": "unverified"
+            }
+          },
+          "apprenticeship_pct_relevant": true
+        }
+      ],
       "provenance": {
         "status": "assumed",
         "location": {
@@ -2389,7 +2512,53 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "EDAR",
+          "description": "Elemento distinto e aggiuntivo della retribuzione, 15 EUR a month for 26 months from November 2022, art. 36 of the renewal",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-11-01",
+                "valid_until": "2025-01-01",
+                "value": "15.00"
+              },
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "gap_kind": "not_applicable"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "tfr_relevant": false,
+          "in_service_on": "2022-10-27",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "pulizia-artigianato-rinnovo-2022-10-27",
+                "title": "Accordo di rinnovo CCNL Pulizia artigianato, 27 ottobre 2022",
+                "kind": "associazione",
+                "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
+                "sha256": "037e5a830b9027e280d0a84285afe7c69190550e5704b236270ba6ebd62f6424"
+              },
+              "page": "27",
+              "section": "Art. 36 - Elemento Distinto e Aggiuntivo della Retribuzione",
+              "quote": "ai soli lavoratori in forza alla data di sottoscrizione del presente accordo verrà corrisposto mensilmente un Elemento Distinto e Aggiuntivo della Retribuzione pari a 15 euro per 26 mesi consecutivi a partire dall’1.11.2022. Tale importo, che ha natura temporanea, è riproporzionato in caso di rapporto di lavoro part-time; in caso di rapporto di apprendistato è erogato sulla base delle percentuali in atto nei relativi semestri. [...] ivi compreso il trattamento di fine rapporto."
+            },
+            "transformation": "15 EUR a month from November 2022 to December 2024 (26 months), to the workers in service on 27 October 2022, the date of signature (in_service_on); proportioned to part time and to the apprenticeship percentage like the pay; outside the TFR base and paid on the monthly payments only (months_per_year 12). Not in force from January 2025. The payment of the months left in one sum at a termination before December 2024 is not modelled (outside the window of the engine).",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T18:58:12Z",
+              "effective_from": "2022-11-01",
+              "verification_status": "unverified"
+            }
+          },
+          "apprenticeship_pct_relevant": true
+        }
+      ],
       "provenance": {
         "status": "assumed",
         "location": {
@@ -2787,7 +2956,53 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "EDAR",
+          "description": "Elemento distinto e aggiuntivo della retribuzione, 15 EUR a month for 26 months from November 2022, art. 36 of the renewal",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-11-01",
+                "valid_until": "2025-01-01",
+                "value": "15.00"
+              },
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "gap_kind": "not_applicable"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "tfr_relevant": false,
+          "in_service_on": "2022-10-27",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "pulizia-artigianato-rinnovo-2022-10-27",
+                "title": "Accordo di rinnovo CCNL Pulizia artigianato, 27 ottobre 2022",
+                "kind": "associazione",
+                "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
+                "sha256": "037e5a830b9027e280d0a84285afe7c69190550e5704b236270ba6ebd62f6424"
+              },
+              "page": "27",
+              "section": "Art. 36 - Elemento Distinto e Aggiuntivo della Retribuzione",
+              "quote": "ai soli lavoratori in forza alla data di sottoscrizione del presente accordo verrà corrisposto mensilmente un Elemento Distinto e Aggiuntivo della Retribuzione pari a 15 euro per 26 mesi consecutivi a partire dall’1.11.2022. Tale importo, che ha natura temporanea, è riproporzionato in caso di rapporto di lavoro part-time; in caso di rapporto di apprendistato è erogato sulla base delle percentuali in atto nei relativi semestri. [...] ivi compreso il trattamento di fine rapporto."
+            },
+            "transformation": "15 EUR a month from November 2022 to December 2024 (26 months), to the workers in service on 27 October 2022, the date of signature (in_service_on); proportioned to part time and to the apprenticeship percentage like the pay; outside the TFR base and paid on the monthly payments only (months_per_year 12). Not in force from January 2025. The payment of the months left in one sum at a termination before December 2024 is not modelled (outside the window of the engine).",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T18:58:12Z",
+              "effective_from": "2022-11-01",
+              "verification_status": "unverified"
+            }
+          },
+          "apprenticeship_pct_relevant": true
+        }
+      ],
       "provenance": {
         "status": "assumed",
         "location": {
@@ -3185,7 +3400,53 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "EDAR",
+          "description": "Elemento distinto e aggiuntivo della retribuzione, 15 EUR a month for 26 months from November 2022, art. 36 of the renewal",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-11-01",
+                "valid_until": "2025-01-01",
+                "value": "15.00"
+              },
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "gap_kind": "not_applicable"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "tfr_relevant": false,
+          "in_service_on": "2022-10-27",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "pulizia-artigianato-rinnovo-2022-10-27",
+                "title": "Accordo di rinnovo CCNL Pulizia artigianato, 27 ottobre 2022",
+                "kind": "associazione",
+                "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
+                "sha256": "037e5a830b9027e280d0a84285afe7c69190550e5704b236270ba6ebd62f6424"
+              },
+              "page": "27",
+              "section": "Art. 36 - Elemento Distinto e Aggiuntivo della Retribuzione",
+              "quote": "ai soli lavoratori in forza alla data di sottoscrizione del presente accordo verrà corrisposto mensilmente un Elemento Distinto e Aggiuntivo della Retribuzione pari a 15 euro per 26 mesi consecutivi a partire dall’1.11.2022. Tale importo, che ha natura temporanea, è riproporzionato in caso di rapporto di lavoro part-time; in caso di rapporto di apprendistato è erogato sulla base delle percentuali in atto nei relativi semestri. [...] ivi compreso il trattamento di fine rapporto."
+            },
+            "transformation": "15 EUR a month from November 2022 to December 2024 (26 months), to the workers in service on 27 October 2022, the date of signature (in_service_on); proportioned to part time and to the apprenticeship percentage like the pay; outside the TFR base and paid on the monthly payments only (months_per_year 12). Not in force from January 2025. The payment of the months left in one sum at a termination before December 2024 is not modelled (outside the window of the engine).",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T18:58:12Z",
+              "effective_from": "2022-11-01",
+              "verification_status": "unverified"
+            }
+          },
+          "apprenticeship_pct_relevant": true
+        }
+      ],
       "provenance": {
         "status": "assumed",
         "location": {
@@ -3583,7 +3844,53 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "EDAR",
+          "description": "Elemento distinto e aggiuntivo della retribuzione, 15 EUR a month for 26 months from November 2022, art. 36 of the renewal",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-11-01",
+                "valid_until": "2025-01-01",
+                "value": "15.00"
+              },
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "gap_kind": "not_applicable"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "tfr_relevant": false,
+          "in_service_on": "2022-10-27",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "pulizia-artigianato-rinnovo-2022-10-27",
+                "title": "Accordo di rinnovo CCNL Pulizia artigianato, 27 ottobre 2022",
+                "kind": "associazione",
+                "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
+                "sha256": "037e5a830b9027e280d0a84285afe7c69190550e5704b236270ba6ebd62f6424"
+              },
+              "page": "27",
+              "section": "Art. 36 - Elemento Distinto e Aggiuntivo della Retribuzione",
+              "quote": "ai soli lavoratori in forza alla data di sottoscrizione del presente accordo verrà corrisposto mensilmente un Elemento Distinto e Aggiuntivo della Retribuzione pari a 15 euro per 26 mesi consecutivi a partire dall’1.11.2022. Tale importo, che ha natura temporanea, è riproporzionato in caso di rapporto di lavoro part-time; in caso di rapporto di apprendistato è erogato sulla base delle percentuali in atto nei relativi semestri. [...] ivi compreso il trattamento di fine rapporto."
+            },
+            "transformation": "15 EUR a month from November 2022 to December 2024 (26 months), to the workers in service on 27 October 2022, the date of signature (in_service_on); proportioned to part time and to the apprenticeship percentage like the pay; outside the TFR base and paid on the monthly payments only (months_per_year 12). Not in force from January 2025. The payment of the months left in one sum at a termination before December 2024 is not modelled (outside the window of the engine).",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T18:58:12Z",
+              "effective_from": "2022-11-01",
+              "verification_status": "unverified"
+            }
+          },
+          "apprenticeship_pct_relevant": true
+        }
+      ],
       "provenance": {
         "status": "assumed",
         "location": {
@@ -3623,7 +3930,7 @@
     "source": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
     "verification_status": "unverified",
     "published_at": "2026-09-12",
-    "source_hash": "d75764b6c51c48e0d1c4e85101fff5b5121dd6d08d00a0427657147fefe9bb73",
+    "source_hash": "05c85130e04cb9944a3e31ae6bf877102f93e00a66965ae7ea11118ac9e542ff",
     "source_type": "commercial_secondary"
   },
   "work_rules": {
