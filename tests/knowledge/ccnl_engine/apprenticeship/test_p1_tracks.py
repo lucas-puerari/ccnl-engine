@@ -60,14 +60,13 @@ def test_artisan_impiegati_by_semester() -> None:
 @pytest.mark.parametrize(
     "slug",
     [
-        "sanita-privata-aiop-aris",
         "logistica-trasporto-confetra",
         "metalmeccanico-federmeccanica",
         "edilizia-ance",
     ],
 )
 def test_part_time_supplementary_rate_is_declared(slug: str) -> None:
-    """The request cannot state supplementary hours apart from overtime."""
+    """The higher rate past the yearly limit, or the incidence, stays declared."""
     ccnl = load_ccnl(slug)
     variants = {n.limitation.variant for n in ccnl.coverage.notes if n.limitation}
 

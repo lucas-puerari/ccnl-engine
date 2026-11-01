@@ -1953,17 +1953,8 @@
         "text": "APPRENTICESHIP (CCNL 8 October 2020, apprendistato professionalizzante, point 14, p. 31): 85% of the pay of the qualifica da conseguire, then 90%, by the length of the contract: months 1-9 and 10-12 for up to 18 months (the text does not state months 13-18, which keep 90%), 1-12 and 13-24 for up to 24 months, 1-18 and 19-36 for up to 36 months. Three tracks: set Apprentice.track. Apprentices accrue no seniority 'a nessun fine'."
       },
       {
-        "kind": "simplification",
-        "text": "PART-TIME SUPPLEMENTARY HOURS: the ore supplementari of a part-time worker are paid with 15% of the retribuzione oraria globale (Art. 22, CCNL 8 October 2020, p. 25). OvertimeKind.SUPPLEMENTARY exists, but the file has no supplementary-hours band: the event takes the overtime bands unless the caller passes the multiplier (review of 2026-10-30).",
-        "capability": "overtime",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "part_time_supplementary_rate",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Add the supplementary-hours band (15%) of Art. 22."
-        }
+        "kind": "info",
+        "text": "PART-TIME SUPPLEMENTARY HOURS: the ore supplementari of a part-time worker take a 15% maggiorazione of the retribuzione oraria globale (Art. 22, CCNL 8 October 2020, p. 25), band OT_SUPPLEMENTARE for OvertimeKind.SUPPLEMENTARY."
       }
     ]
   },
@@ -1974,7 +1965,7 @@
     "effective_until": null,
     "source": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
     "verification_status": "unverified",
-    "source_hash": "e78a0c993a2eba4ceff2a08a2a444e3fafc6a4663d41b2897d0c1be01b4c2a4d",
+    "source_hash": "a548ec3fc2c21710b8fef51e6b58f8837dccad9c5af76e93606ebb905fd819a7",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2155,6 +2146,48 @@
               "verified_by": "claude-opus-5-5",
               "verified_at": "2026-10-15T09:07:44Z",
               "review_id": "2026-10-15-ai-overtime"
+            }
+          }
+        },
+        {
+          "code": "OT_SUPPLEMENTARE",
+          "description": "Ore supplementari del part-time, maggiorazione del 15% (Art. 22)",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2020-10-08",
+                "valid_until": null,
+                "value": "0.15",
+                "provenance": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "supplementare"
+          ],
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-case-di-cura-private-2020-10-08",
+                "title": "CCNL personale non medico IRCCS e strutture sanitarie ospedaliere AIOP-ARIS, 8 ottobre 2020",
+                "kind": "associazione",
+                "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
+                "published_on": "2020-10-08",
+                "sha256": "183c5c0a01c9a113fd08efffed8132b4e598e4db574f6aed402afb7be880a442"
+              },
+              "page": "25",
+              "section": "Art. 22, Rapporto di lavoro a tempo parziale",
+              "quote": "Le ore supplementari saranno retribuite con una maggiorazione pari al 15% della retribuzione oraria globale dovuta di cui all'art. 58."
+            },
+            "transformation": "15% of the hourly base, the hours paid on top.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T23:40:32Z",
+              "verification_status": "unverified",
+              "effective_from": "2020-10-08"
             }
           }
         }

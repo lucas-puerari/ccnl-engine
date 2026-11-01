@@ -157,7 +157,7 @@
       },
       {
         "kind": "simplification",
-        "text": "PART-TIME SUPPLEMENTARY HOURS: supplementary hours are paid with 18% of the hourly quota of the retribuzione globale, 40% past the annual limit (Art. 56, testo unico p. 71). The request has no kind for supplementary hours: an overtime event of a part-time worker takes the overtime bands unless the caller passes the multiplier.",
+        "text": "PART-TIME SUPPLEMENTARY HOURS: supplementary hours are paid with 18% of the hourly quota of the retribuzione globale (Art. 56, testo unico p. 71), band OT_SUPPLEMENTARE selected by OvertimeKind.SUPPLEMENTARY. The 40% past the annual limit is not modelled: the request does not count the supplementary hours of the year.",
         "capability": "overtime",
         "monetary_impact": "yes",
         "limitation": {
@@ -165,7 +165,7 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Resolved: OvertimeKind.SUPPLEMENTARY selects the OT_SUPPLEMENTARE band of the CCNL rate (tests/integration/ccnl_engine/working_time/overtime/test_supplementary.py); the higher rate past the yearly limit is not modelled.",
+          "remediation": "Count the supplementary hours of the year and pay the higher rate past the yearly limit.",
           "status": "resolved"
         }
       },
@@ -2622,7 +2622,7 @@
     "effective_until": null,
     "source": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
     "verification_status": "unverified",
-    "source_hash": "197fc40f296e3d1297ec416e2d8fda75808bf77b8b7222d1cb17261390d4a847",
+    "source_hash": "6da3fb8ce9ba8e8d9fa92bb417a6d08369c9d2823528901e601c4ef414103962",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
