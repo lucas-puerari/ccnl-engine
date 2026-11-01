@@ -127,8 +127,9 @@ def separate_tax(
         refund is not computed.
     """
     ctx, rules, months = run
-    if caller is not None or rules is None or months is None:
+    if caller is not None or rules is None:
         return max(_ZERO, money(max(taxable, _ZERO) * (caller or _ZERO)))
+    assert months is not None, "the months come with the rules"  # pragma: no mutate
     advanced, withheld = fund.advances_taxable or _ZERO, fund.advances_tax or _ZERO
     base = taxable + advanced
     brackets = ctx.contract.year_rules.irpef_brackets

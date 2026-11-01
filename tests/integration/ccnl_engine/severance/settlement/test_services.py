@@ -284,7 +284,26 @@ def test_the_advances_are_taxed_again_with_the_whole_tfr() -> None:
     assert separate.inputs["taxable"] == taxable
     assert separate.inputs["advances_taxable"] == Decimal("7800.00")
     assert separate.inputs["advances_tax"] == Decimal("1900.00")
+    assert separate.inputs["brackets_year"] == "2026"
     assert _ledger(result, AccountKind.SEPARATE_TAX) == separate.amount
+
+
+def test_advances_withheld_as_much_as_the_whole_tax_leave_none_to_pay() -> None:
+    """Withheld exactly the tax of the whole TFR: the payout bears none.
+
+    Without any tax withheld the payout bears the tax of the whole; with
+    that tax withheld on the advances, nothing is left and the tax is final.
+    """
+    nothing_withheld = replace(_ADVANCED, advances_tax=Decimal(0))
+    _, whole = _settlement(_run(tfr_fund=nothing_withheld))
+    assert whole.amount is not None
+    assert whole.inputs["advances_taxable"] == Decimal("7800.00")
+    assert whole.inputs["advances_tax"] == Decimal(0)
+
+    _, separate = _settlement(
+        _run(tfr_fund=replace(_ADVANCED, advances_tax=whole.amount))
+    )
+    assert (separate.status, separate.amount) == (CalculationStatus.FINAL, Decimal(0))
 
 
 def test_advances_taxed_above_the_whole_tfr_leave_the_tax_open() -> None:
@@ -491,6 +510,19 @@ def test_a_tfr_paid_to_a_pension_fund_is_not_computed() -> None:
             {
                 "tfr_fund": TfrFundBalance(
                     2025, Decimal("100.00"), Decimal(0), Decimal("50.00")
+                )
+            },
+            "required_fact_missing",
+            "advances_taxable",
+        ),
+        (
+            {
+                "tfr_fund": TfrFundBalance(
+                    2025,
+                    Decimal("100.00"),
+                    Decimal(0),
+                    Decimal("50.00"),
+                    advances_taxable=Decimal("50.00"),
                 )
             },
             "required_fact_missing",
