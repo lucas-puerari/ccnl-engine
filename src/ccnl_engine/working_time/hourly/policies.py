@@ -96,13 +96,13 @@ class HourlyBase:
 
 
 def _components(
-    chain: MonthlyPayChain, method: HourlyBaseMethod
+    chain: MonthlyPayChain, method: HourlyBaseMethod, excluded: tuple[str, ...]
 ) -> tuple[tuple[str, Decimal], ...]:
     """Return the monthly pay elements ``method`` names, from ``chain``.
 
     Returns:
-        The base salary, then the seniority, then each cash allowance, as
-        far as the method reaches.
+        The base salary, then the seniority, then each cash allowance not
+        ``excluded``, as far as the method reaches.
     """
     found: list[tuple[str, Decimal]] = [("base_salary", chain.base)]
     if method is HourlyBaseMethod.MINIMO_TABELLARE:
@@ -112,7 +112,7 @@ def _components(
         found.extend(
             (a.code, v)
             for a, v in chain.allowances
-            if not a.in_kind and not a.individual
+            if not a.in_kind and not a.individual and a.code not in excluded
         )
     return tuple(found)
 
@@ -237,7 +237,7 @@ class HourlyTerms:
             reject_underived(field, feature, day, parts)
         _, chain, supplements, divisor = parts
         named = method or supplements.hourly_base_method
-        components = _components(chain, named)
+        components = _components(chain, named, supplements.hourly_base_excluded)
         individual = _individual(chain)
         state = "none"
         if individual:

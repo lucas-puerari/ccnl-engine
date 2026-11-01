@@ -84,7 +84,7 @@ does not report its gap as well.
 
 A `derived` rule (taken from a cited document location, with no recorded
 human check) lowers the evidence axis but does not block on its own. Only
-<!-- trust:rules-verified -->2648<!-- /trust:rules-verified --> payable rules of
+<!-- trust:rules-verified -->2653<!-- /trust:rules-verified --> payable rules of
 the bundle are `verified`, so requiring `verified` would block almost every
 result; the evidence axis keeps the difference visible instead.
 

@@ -1394,7 +1394,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/logistica-trasporto-confetra-viaggiante",
       "ruleset_version": "2026.2",
-      "source_hash": "e19945a1edf579c09e896b67d5b6c4bb03b503713cbf48ad6e1ddf990c48affc",
+      "source_hash": "688b6579994ea543797955baa9c2b562aa47f84143a72f38e6a954611aaaf0e1",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/logistica-trasporto-confetra-viaggiante.json.gz"
@@ -1411,7 +1411,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/logistica-trasporto-confetra",
       "ruleset_version": "2026.2",
-      "source_hash": "c162cd1c5c8e0b9833c995787762e4c54fe1232c14a574864fdb60331fd0b51c",
+      "source_hash": "197fc40f296e3d1297ec416e2d8fda75808bf77b8b7222d1cb17261390d4a847",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/logistica-trasporto-confetra.json.gz"
@@ -3987,7 +3987,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "c8cd32406a46ff4353e5a7b24b9becc271d92a1ca788ab1c49580581d69dc943",
+      "source_hash": "ddef84be854d9b3e18267a13924e33acce2a7dc9072e53a36605ca48fa1d82dd",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/logistica-trasporto-confetra-viaggiante.json.gz",
