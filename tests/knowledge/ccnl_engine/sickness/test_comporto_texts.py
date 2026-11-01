@@ -10,6 +10,9 @@
   consecutivi"; Cooperative sociali (p. 104): "12 mesi nell'arco
   dell'ultimo triennio"; 360 days of 30-day months.
 - Laterizi (p. 9): "425 giorni (14 mesi) di calendario su 912 (30 mesi)".
+- Federcasa (art. 51, p. 47): 12 months, over "un arco temporale pari a tre
+  anni" for a non-continuous absence, the hospital stays left out of the
+  window only.
 - Panificazione Assipan (p. 58): 180 days "anche in caso di diverse
   malattie, nei 12 mesi precedenti".
 - Anaste (p. 52): more than 180 days "nell'arco del triennio precedente
@@ -77,3 +80,13 @@ def test_the_comporto_summed_over_a_window(
     assert (window.seniority_months_from, window.window_months) == (0, months)
     assert window.comporto_days == days
     assert not rules.comporto_calendar_year
+
+
+def test_federcasa_leaves_the_hospital_stays_out_of_its_window() -> None:
+    """12 months of one illness, 12 in three years without hospital days."""
+    rules = _sickness("federcasa")
+    (window,) = rules.comporto_windows
+
+    assert rules.max_duration_days == 360
+    assert (window.window_months, window.comporto_days) == (36, 360)
+    assert window.hospital_excluded
