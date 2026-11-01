@@ -366,7 +366,7 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Add the deductions the worker declares as unused for each year of the arrears and reduce the tax by them, then resolve this limitation.
 
 !!! warning "una_tantum_readings · base_salary · impact unknown · open"
-    The una tantum of a renewal is paid from the CCNL data with readings no text read settles: a month of service in the covered period counts when the worker was employed at least 15 days of it, over the months of the period; a part time is paid in proportion to its hours; a run without the employment period is paid none; the share of the covered months of earlier years is taxed apart as arrears.
+    The una tantum of a renewal is paid from the CCNL data with readings no text read settles in full: a month of service in the covered period counts with the days of the una tantum (15 when the text is silent), over the months of the period; the absences of a month do not reduce it, though a text may pay the months 'di effettiva prestazione'; a part time is paid in proportion to its hours; a run without the employment period is paid none; the share of the covered months of earlier years is taxed apart as arrears.
 
     **Applies when:** `base_salary` applies; the run takes the engine code path.
 

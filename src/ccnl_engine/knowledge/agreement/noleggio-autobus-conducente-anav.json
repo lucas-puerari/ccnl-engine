@@ -109,7 +109,8 @@
         "monetary_impact": "yes",
         "limitation": {
           "variant": "una_tantum_2025_2026",
-          "remediation": "Pay the 600 EUR una tantum outside the engine or model it as an event."
+          "remediation": "Resolved: parameters.una_tantum holds the installments of June 2025 and January 2026, paid by the engine as arrears of the covered months.",
+          "status": "resolved"
         }
       },
       {
@@ -190,6 +191,27 @@
         ],
         "findings": [
           "Articolo 48 - Tredicesima mensilità, comma 2 (p. 81): \"il lavoratore non in prova avrà diritto a tanti dodicesimi dell'ammontare della tredicesima mensilità per quanti sono i mesi di servizio prestato. Le frazioni di mese non superiori ai 14 giorni non saranno calcolate, mentre saranno considerate come mese intero se superiori ai 14 giorni.\". Added: more_than 14 (the file applied the engine default, at least 15 days)."
+        ]
+      },
+      {
+        "id": "2026-11-01-ai-una-tantum",
+        "date": "2026-11-01",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The una tantum of the renewal of 23 May 2025 (p. 1, OCR).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://anav.it/wp-content/uploads/2025/05/accordo-nazionale-di-rinnovo-del-ccnl-noleggio-autobus-con-conducente-e-le-relativie-attivita-correlate-23-maggio-2025.pdf",
+            "sha256": "a66db54eb020e05893f2685b5beb4b279fde605e0213ca48b7aa0b9c590cc093"
+          }
+        ],
+        "findings": [
+          "Renewal of 23 May 2025, p. 1: 600 EUR at C2 in two installments (June 2025, January 2026) for 1 January 2024 to 31 May 2025, staff in service on 23 May 2025, months with more than 15 days, part time by hours, outside the TFR: parameters.una_tantum[UT_2025]."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "parameters.una_tantum"
         ]
       }
     ]
@@ -373,7 +395,76 @@
         },
         "note": "Quote read by OCR of a scanned PDF."
       }
-    }
+    },
+    "una_tantum": [
+      {
+        "code": "UT_2025",
+        "covers_from": "2024-01-01",
+        "covers_until": "2025-05-31",
+        "month_min_days": 16,
+        "in_service_on": "2025-05-23",
+        "installments": [
+          {
+            "paid_in": "2025-06-01",
+            "amounts": {
+              "C4": "223.88",
+              "C3": "279.85",
+              "C2": "300.00",
+              "C1": "340.30",
+              "B3": "347.01",
+              "B2": "362.69",
+              "B1": "380.60",
+              "A2": "420.90",
+              "A1": "447.76",
+              "Q2": "447.76",
+              "Q1": "447.76"
+            }
+          },
+          {
+            "paid_in": "2026-01-01",
+            "amounts": {
+              "C4": "223.88",
+              "C3": "279.85",
+              "C2": "300.00",
+              "C1": "340.30",
+              "B3": "347.01",
+              "B2": "362.69",
+              "B1": "380.60",
+              "A2": "420.90",
+              "A1": "447.76",
+              "Q2": "447.76",
+              "Q1": "447.76"
+            }
+          }
+        ],
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "anav-accordo-rinnovo-2025-05-23",
+              "title": "Accordo nazionale di rinnovo del CCNL noleggio autobus con conducente, 23 maggio 2025 (scansione firmata, copia ANAV)",
+              "kind": "associazione",
+              "url": "https://anav.it/wp-content/uploads/2025/05/accordo-nazionale-di-rinnovo-del-ccnl-noleggio-autobus-con-conducente-e-le-relativie-attivita-correlate-23-maggio-2025.pdf",
+              "sha256": "a66db54eb020e05893f2685b5beb4b279fde605e0213ca48b7aa0b9c590cc093"
+            },
+            "page": "1",
+            "section": "Una Tantum",
+            "quote": "A integrale copertura del periodo dal 1° gennaio 2024 al 31 maggio 2025, al personale in forza alla data di sottoscrizione del presente accordo [...] viene riconosciuta la somma una tantum di 600 euro lordi (seicento) al livello C2 da riparametrare secondo la vigente scala parametrale (100 — 200). La predetta somma è corrisposta in due rate di eguale importo, rispettivamente con le retribuzioni dei mesi di giugno 2025 e di gennaio 2026."
+          },
+          "transformation": "Each installment is 300 EUR x the parameter of the level / 134 (C2), rounded to the cent: the scale of the base_salary transformations of this file (C4 100, C3 125, C2 134, C1 152, B3 155, B2 162, B1 170, A2 188, A1, Q2, Q1 200). Paid to the staff in service on 23 May 2025, the signing date, by the months of the period with more than 15 days of service ('computando come mese intero la frazione superiore ai 15 giorni'), part time by its hours, outside the TFR base ('non rientra nella base di computo del T.F.R'). The scanned page was read by OCR.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-01T17:00:00Z",
+            "effective_from": "2024-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-01T17:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-01-ai-una-tantum"
+          }
+        }
+      }
+    ]
   },
   "apprenticeship": [
     {
@@ -3712,7 +3803,7 @@
     "effective_until": "2026-12-31",
     "source": "https://anav.it/wp-content/uploads/2025/05/accordo-nazionale-di-rinnovo-del-ccnl-noleggio-autobus-con-conducente-e-le-relativie-attivita-correlate-23-maggio-2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "e8830d220bf2ab5f81167cde37f7961fb25966040309cbc1d44d2717b4730483",
+    "source_hash": "71a971b67dd3ea13c97985ba38656131360f2bbc30ab2cdf08d79721b7b95692",
     "published_at": "2026-09-18",
     "source_type": "contracting_party"
   }

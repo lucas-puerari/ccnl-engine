@@ -53,6 +53,10 @@ class UnaTantum(BaseModel):
         code: Identifier of the una tantum in the CCNL.
         covers_from: First day of the vacancy it pays for.
         covers_until: Last day of the vacancy it pays for.
+        month_min_days: Days of service that make a month of the covered
+            period (ANAV: "la frazione superiore ai 15 giorni", 16).
+        in_service_on: Day the worker must be in service on (the signing
+            of the agreement), ``None`` when the text sets none.
         installments: Its payments, in date order.
         provenance: The clause.
     """
@@ -62,6 +66,8 @@ class UnaTantum(BaseModel):
     code: str = Field(min_length=1)
     covers_from: date
     covers_until: date
+    month_min_days: int = Field(default=15, ge=1, le=31)
+    in_service_on: date | None = None
     installments: tuple[UnaTantumInstallment, ...] = Field(min_length=1)
     provenance: RuleProvenance
 

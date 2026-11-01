@@ -180,3 +180,80 @@ def test_a_month_counts_from_its_fifteenth_day(
 ) -> None:
     """15 days of a first or last month make a month, 14 do not."""
     assert _months(first, last) == months
+
+
+_ANAV = load_ccnl("noleggio-autobus-conducente-anav")
+
+
+def _january_2026(hired: date) -> PeriodCalculationRequest:
+    return cast(
+        "PeriodCalculationRequest",
+        SimpleNamespace(
+            period_id=PeriodId(year=2026, month=1),
+            payment_date=date(2026, 1, 27),
+            level_code="C2",
+            employment_period=EmploymentPeriod(hired),
+            weekly_hours=None,
+            full_time_weekly_hours=None,
+        ),
+    )
+
+
+@pytest.mark.parametrize(
+    ("hired", "amounts"),
+    [
+        # Renewal of 23 May 2025: 300.00 at C2 for January 2024 - May 2025.
+        (date(2023, 1, 1), ["300.00"]),
+        # 16 days of March 2024 are "superiore ai 15 giorni": 15 of 17 months.
+        (date(2024, 3, 16), ["264.71"]),
+        # 15 days are not: 14 of 17 months.
+        (date(2024, 3, 17), ["247.06"]),
+        # Not in service on 23 May 2025, the signing.
+        (date(2025, 5, 26), []),
+    ],
+)
+def test_anav_pays_the_months_above_fifteen_days_to_the_staff_in_service(
+    hired: date, amounts: list[str]
+) -> None:
+    """The second installment, January 2026, all of earlier years."""
+    events, _ = una_tantum_events(_january_2026(hired), _ANAV, RunKind.REGULAR)
+    assert [str(e.amount) for e in events] == amounts
+    assert all(e.reference_period == PeriodId(2025, 5) for e in events)
+
+
+def test_an_employment_ended_before_the_signing_is_owed_nothing() -> None:
+    """In service until 30 April 2025: not in force on 23 May 2025."""
+    request = cast(
+        "PeriodCalculationRequest",
+        SimpleNamespace(**{
+            **vars(_january_2026(date(2023, 1, 1))),
+            "employment_period": EmploymentPeriod(date(2023, 1, 1), date(2025, 4, 30)),
+        }),
+    )
+    assert una_tantum_events(request, _ANAV, RunKind.REGULAR) == ((), True)
+
+
+def test_a_fixed_term_ended_within_the_period_counts_its_months() -> None:
+    """FIAIP has no service day: in service to 31 October 2024, 10 of 16."""
+    request = cast(
+        "PeriodCalculationRequest",
+        SimpleNamespace(**{
+            **vars(_may_2026(date(2024, 1, 1))),
+            "employment_period": EmploymentPeriod(date(2024, 1, 1), date(2024, 10, 31)),
+        }),
+    )
+    events, _ = una_tantum_events(request, _FIAIP, RunKind.REGULAR)
+    assert [e.amount for e in events] == [Decimal("62.50")]
+
+
+def test_an_employment_ended_on_the_signing_day_is_in_service() -> None:
+    """In force on 23 May 2025, its last day: 23 days of May count, 17 of 17."""
+    request = cast(
+        "PeriodCalculationRequest",
+        SimpleNamespace(**{
+            **vars(_january_2026(date(2023, 1, 1))),
+            "employment_period": EmploymentPeriod(date(2023, 1, 1), date(2025, 5, 23)),
+        }),
+    )
+    events, _ = una_tantum_events(request, _ANAV, RunKind.REGULAR)
+    assert [e.amount for e in events] == [Decimal("300.00")]
