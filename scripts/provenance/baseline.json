@@ -851,7 +851,6 @@
       "dmo-federdistribuzione/commission_guarantee",
       "dmo-federdistribuzione/employment_support_contract",
       "dmo-federdistribuzione/health_and_bilateral_funds",
-      "dmo-federdistribuzione/long_apprenticeship_profiles",
       "dmo-federdistribuzione/ordinary_hours_premiums",
       "dmo-federdistribuzione/provincial_elements_missing",
       "dmo-federdistribuzione/sales_operators",
@@ -1320,7 +1319,6 @@
     "agreement/terziario-confesercenti.json": [
       "terziario-confesercenti/apprentice_seniority",
       "terziario-confesercenti/apprentice_sickness",
-      "terziario-confesercenti/long_apprenticeship_profiles",
       "terziario-confesercenti/lump_sum_2024_2025",
       "terziario-confesercenti/permit_deadline_payout",
       "terziario-confesercenti/provincial_third_elements",

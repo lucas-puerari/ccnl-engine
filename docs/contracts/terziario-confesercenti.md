@@ -33,7 +33,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, leave, overtime, seniority, sickness, territorial_supplement, una_tantum |
 
-14 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+13 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -106,6 +106,12 @@ Destination levels: `II`, `III`, `IV`, `V`
 **sesto-livello** (type: `under_classification`)  
 Destination levels: `VI`
 
+**tabella_b_48_mesi** (type: `under_classification`)  
+Destination levels: `II`, `III`
+
+**tabella_b_42_mesi** (type: `under_classification`)  
+Destination levels: `IV`
+
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
@@ -172,13 +178,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Model the apprentice sickness of Art. 54.
-
-!!! warning "terziario-confesercenti/long_apprenticeship_profiles · base_salary · impact yes · open"
-    Art. 68 Tabella B: the 42 and 48 month apprenticeship profiles. The una tantum of the Protocollo 12/12/2022 (EUR 200 + 150 at level IV with the January and March 2023 pay) is historic.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Add the 42 and 48 month tracks.
 
 !!! warning "terziario-confesercenti/rol_schedule_absorption · leave · impact yes · open"
     LEAVE, WEEKLY SCHEDULE (Artt. 133-134): an employer on a 39-hour week absorbs 36 hours of ROL, on a 38-hour week 72 hours (16 of ex festività and 56 of ROL), and the grandi magazzini, supermercati, cash&carry and ipermercati on a 38-hour average absorb 72 hours of ROL. The engine accrues the hours of a 40-hour week (Art. 133 a).
@@ -376,6 +375,10 @@ Each simplification below is a model limitation of the registry. An open limitat
     Apprenticeship type b (professionalizzante). Durations (Art. 64): II-V 36 months, VI 24 months; half-period 18 and 12 months. The 42 and 48 month profiles of Art. 68 Tabella B are in the unmodelled note.
     
     TERZO ELEMENTO NAZIONALE (Art. 215, TU p. 157): EUR 2.07 a month due only in the provinces where no provincial third element is in force (Art. 214); paid when EmployerProfile.provincial_pay_element is false, left out with a missing_fact blocker when it is not stated.
+    
+    APPRENTICESHIP PROFILES OF TABELLA B (Art. 68): 48 months for the listed profiles ending at levels II and III (track tabella_b_48_mesi), 42 months for those ending at level IV (tabella_b_42_mesi), two levels below for the first half and one below for the second. An apprentice of levels II, III and IV states Apprentice.track: standard for the 36 months of the other profiles.
+    
+    The una tantum of the Protocollo 12/12/2022 (EUR 200 + 150 at level IV with the January and March 2023 pay) is historic.
     
     HOURLY RATE AND SUPPLEMENTS (Testo Unico 12 December 2019, unchanged by the 2024 renewal, artt. 149-157, 206-211): without a caller value the engine derives the hourly base (the normale retribuzione of art. 206 over 168), the 15% on ordinary night hours from 22 to 6 (art. 151), the 30% on festività hours paid as straordinario festivo (art. 155 with art. 149), the 30% on ordinary Sunday hours (art. 153; 10% at the motorway fuel stations of art. 157, role impianto_carburante_autostradale: Employment.roles must be stated) and the 30% on the hours of the weekly rest day (art. 156). Art. 155 also pays the festività hours themselves: the engine posts the 30% only and the run is provisional. Second-level agreements may replace the Sunday and night rules (art. 153). Not derived: the divisors 182 and 195 of the 42- and 45-hour weeks; shift work, left to second-level bargaining.
     
