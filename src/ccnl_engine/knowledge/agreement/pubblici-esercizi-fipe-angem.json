@@ -145,20 +145,8 @@
         }
       },
       {
-        "kind": "simplification",
-        "text": "APPRENTICESHIP PROFILES: art. 72 c. 2 gives 48 months to named profiles of levels 2 and 3 and 42 months to named profiles of level 4, and art. 68 c. 1 pays 95% in their fourth year. The profile is not an input: the engine pays them the 36-month track, 100% from month 37 instead of 95%.",
-        "capability": "base_salary",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "apprenticeship_long_profiles",
-          "applies_when": {
-            "trigger": "path",
-            "contract_types": [
-              "apprentice"
-            ]
-          },
-          "remediation": "Let the caller state the art. 72 c. 2 profile and add the 42 and 48 month tracks with the 95% fourth year."
-        }
+        "kind": "info",
+        "text": "APPRENTICESHIP PROFILES: art. 72 c. 2 (PDF p. 75) gives 48 months to named profiles of levels 2 and 3 and 42 months to named profiles of level 4, and art. 68 c. 1 (p. 74) pays them 95% in the fourth year: tracks professionalizzante_48_mesi and professionalizzante_42_mesi. An apprentice of levels 2, 3 and 4 states Apprentice.track: professionalizzante for the 36 months of the other profiles."
       },
       {
         "kind": "simplification",
@@ -2747,6 +2735,123 @@
           "percentage": "1.00"
         }
       ]
+    },
+    {
+      "type": "percentage",
+      "name": "professionalizzante_48_mesi",
+      "destination_levels": [
+        "2",
+        "3"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "percentage": "0.80"
+        },
+        {
+          "months_from": 12,
+          "months_until": 24,
+          "percentage": "0.85"
+        },
+        {
+          "months_from": 24,
+          "months_until": 36,
+          "percentage": "0.90"
+        },
+        {
+          "months_from": 36,
+          "months_until": 48,
+          "percentage": "0.95"
+        },
+        {
+          "months_from": 48,
+          "months_until": null,
+          "percentage": "1.00"
+        }
+      ],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-ristorazione-2018-confcommercio-milano",
+            "title": "CCNL Pubblici esercizi, ristorazione collettiva e commerciale e turismo, 8 febbraio 2018 (Confcommercio Milano)",
+            "kind": "associazione",
+            "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ccnl_ristorazione_2018.pdf",
+            "published_on": "2018-02-08",
+            "sha256": "32a2831b6ff1965adf82da1714f46ac6dc46102971012d6f646368837f72cf85"
+          },
+          "page": "74-75",
+          "section": "Art. 68 c. 1, Retribuzione; Art. 72 c. 2, Durata del contratto di apprendistato professionalizzante",
+          "quote": "primo anno 80% - secondo anno 85% - terzo anno 90% - quarto anno 95% [...] La retribuzione degli apprendisti al 95% si applica nei casi in cui la durata massima del contratto di apprendistato professionalizzante sia superiore a 36 mesi [...] Per le figure professionali di seguito elencate [...] la durata massima è fissata in quarantotto mesi. 2° livello — durata massima 48 mesi [...] 3° livello - durata massima 48 mesi"
+        },
+        "transformation": "48 months for the profiles of level 2 (capo cuoco, capo laboratorio gelateria / pasticceria, capo barista / capo barman / primo barman, capo banconiere di pasticceria) and of level 3 (cuoco unico, primo pasticcere, primo barman, barman unico): 80, 85 and 90% in the first three years and 95% until month 48, of the pay of the destination level; selected by Apprentice.track.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-01T21:06:15Z",
+          "verification_status": "unverified",
+          "effective_from": "2018-02-08"
+        }
+      }
+    },
+    {
+      "type": "percentage",
+      "name": "professionalizzante_42_mesi",
+      "destination_levels": [
+        "4"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "percentage": "0.80"
+        },
+        {
+          "months_from": 12,
+          "months_until": 24,
+          "percentage": "0.85"
+        },
+        {
+          "months_from": 24,
+          "months_until": 36,
+          "percentage": "0.90"
+        },
+        {
+          "months_from": 36,
+          "months_until": 42,
+          "percentage": "0.95"
+        },
+        {
+          "months_from": 42,
+          "months_until": null,
+          "percentage": "1.00"
+        }
+      ],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-ristorazione-2018-confcommercio-milano",
+            "title": "CCNL Pubblici esercizi, ristorazione collettiva e commerciale e turismo, 8 febbraio 2018 (Confcommercio Milano)",
+            "kind": "associazione",
+            "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ccnl_ristorazione_2018.pdf",
+            "published_on": "2018-02-08",
+            "sha256": "32a2831b6ff1965adf82da1714f46ac6dc46102971012d6f646368837f72cf85"
+          },
+          "page": "74-75",
+          "section": "Art. 68 c. 1, Retribuzione; Art. 72 c. 2, Durata del contratto di apprendistato professionalizzante",
+          "quote": "primo anno 80% - secondo anno 85% - terzo anno 90% - quarto anno 95% [...] La retribuzione degli apprendisti al 95% si applica nei casi in cui la durata massima del contratto di apprendistato professionalizzante sia superiore a 36 mesi [...] 4° livello — durata massima 42 mesi gastronomo gelatiere pizzaiolo"
+        },
+        "transformation": "42 months for the profiles of level 4 (gastronomo, gelatiere, pizzaiolo): 80, 85 and 90% in the first three years and 95% until month 42, of the pay of the destination level; selected by Apprentice.track.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-01T21:06:15Z",
+          "verification_status": "unverified",
+          "effective_from": "2018-02-08"
+        }
+      }
     }
   ],
   "ruleset": {
@@ -2756,7 +2861,7 @@
     "effective_until": null,
     "source": "https://www.fipe.it/wp-content/uploads/2025/02/Tabelle-retributive-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "659b998942ab38f662a4cce2a7ff0e010212e66708ac70600de36ae13d215d45",
+    "source_hash": "9dd821b18f2d5a756904b79747b98bc725bc6472a8cdddb9f04f026b4118a2e5",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
