@@ -33,7 +33,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, bilateral_funds, overtime, sickness |
 
-6 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 91 verified / 0 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 153 verified / 0 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🟢 Verified | The confidence the ruleset declares as a whole |
 | **Readiness** | 👁 Reviewed | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -63,6 +63,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-01 | claude-opus-5-5 (ai) | The notice of Art. 72 (PDF pp. 149-150). | corrected | Art. 72 (pp. 149-150): impiegati by level and service from the middle or end of the month, operai 12/20 days from any day, intermedi apart (not modelled), indemnity at the pay of the period: work_rules.notice. Found by a delegated search, checked again on the PDF text. |
 | 2026-11-01 | claude-opus-5-5 (ai) | The premio di campagna of Art. 51 ter (PDF p. 120). | corrected | Art. 51 ter: the monthly premio di campagna by level of the seasonal workers on tomatoes and fresh peas, 142.57 to 61.99, found by a delegated search and read again in the PDF text layer: levels[].fixed_allowances[PREMIO_CAMPAGNA]. |
 | 2026-11-01 | claude-opus-5-5 (ai) | The trattamento economico per mancata contrattazione di secondo livello of Art. 51 bis (PDF p. 119). | corrected | Art. 51 bis: paid from 1 January 2027 on 12 months, 75.55 (1S) to 32.85 (6), out of the TFR, by the firms without the premio per obiettivi: levels[].fixed_allowances[MANCATA_CONTRATTAZIONE]. The note read a start of 1 January 2023 for the first column; the clause pays from 2027. |
+| 2026-11-01 | claude-opus-5-5 (ai) | The overtime tables of Art. 31 by sub-sector (PDF pp. 87-90). | corrected | Art. 31: day, weekday night and holiday overtime of the eleven further sub-sector tables, operai and impiegati columns, read in the PDF text layer: work_rules.time_supplements.overtime_bands; the first table's bands now name their four sub-sectors. |
 
 ## Salary table
 
@@ -112,13 +113,6 @@ Destination levels: `5`
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
-
-!!! warning "alimentari-federalimentare/overtime_subsector_tables · overtime · impact yes · open"
-    OVERTIME (Art. 31): the engine holds the first table (Carni, Dolciari, Alimenti zootecnici, Lattiero-caseari: 45% day, 50% night, 60% holiday). The other sub-sector tables (vini-liquori, bevande, acque minerali, distillatori, birra, conserve vegetali, alimentari varie, risiera, molitoria e pastificazione, conserve ittiche, avicoli, involucri) set other night and holiday rates, and most of them a higher column for intermedi and impiegati (up to 70% night, 90% holiday). The base of Art. 31 excludes the IAR and the EDR: the caller states OvertimeEvent.hourly_rate.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Model the Art. 31 table of each sub-sector with its operai and impiegati columns.
 
 !!! warning "alimentari-federalimentare/sickness_disabled_fixed_term · sickness · impact yes · open"
     SICKNESS (Art. 47): the 100% and 50% bands of the net normal pay and the comporto of 186 days in 17 months (up to 5 years) and 365 days in 24 months (over 5) are counted over the sickness of every episode in the window. Not modelled: the 90 more days of comporto for disabled workers (L. 68/99); the fixed-term limit (4 months, integration no longer than the INPS indemnity); the apprentice's normal pay for at most six months a year (Art. 21). The net pay is computed by grossing up the INPS indemnity by the worker's INPS rate, as for the Commercio file.
@@ -334,6 +328,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     APPRENTICESHIP under_classification (Art. 21 A, CCNL 1 March 2024): two levels below in the first period, one below in the second, the destination in the third, with the periods of the Durata table: levels 3, 3A, 2 at 10/12/14 months, level 4 at 6/14/16, level 1 at 10/10/16; level 5 at 24 months, at the destination from the second period (month 6), the first period at level 6 being the reading of 'two levels below' kept. Level 6 and 1S are not destinations. First-level and alta formazione apprenticeships are not modelled.
     
     ADDITIONAL MONTHS: 14, the tredicesima paid at Christmas and the quattordicesima (Art. 54).
+    
+    OVERTIME (Art. 31): the overtime rates above 40 hours (day, weekday night, holiday) of each sub-sector table, by EmployerProfile.subsector (carni, dolciari, alimenti_zootecnici, lattiero_caseari, vini_liquori, bevande_gassate, acque_minerali, distillatori, birra_malto, conserve_vegetali, alimentari_varie, risiera, molitoria_pastificazione, conserve_ittiche, avicoli) and category (the operai column, the impiegati column for impiegati and quadri). The intermedi, the involucri of p. 287 and the non-overtime rows (night not in shifts, shifts, Sunday with compensatory rest) are not modelled: the caller states those rates.
     
     SENIORITY: five biennial increments (Art. 53); the per-level amounts of the table 'Importi singolo scatto dal 1/8/1998' are consolidated and not recalculated, in force for the whole ruleset. Apprentices accrue none; on confirmation half the apprenticeship counts (Art. 21).
     

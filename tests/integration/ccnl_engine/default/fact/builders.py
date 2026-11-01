@@ -24,6 +24,7 @@ from ccnl_engine.events import (
     LeaveHours,
     MaternityLeaveEvent,
     NoticeIndemnityEvent,
+    OvertimeEvent,
     ParentalLeaveEvent,
     ParentalLeaveTaken,
     PaternityLeaveEvent,
@@ -227,6 +228,29 @@ def _unionalimentari_employer(
     return replace(request, employer=employer)
 
 
+def _alimentari_employer(
+    january: Callable[[Employment], PeriodInput], subsector: str | None
+) -> PeriodInput:
+    """Return an Alimentari run with overtime priced by the sub-sector bands.
+
+    Returns:
+        The January request with ``subsector`` stated or not.
+    """
+    alimentari = replace(
+        CONCIA_D2,
+        category=WorkerCategory.OPERAIO,
+        ccnl_id="alimentari-federalimentare",
+        level_code="4",
+    )
+    request = january(alimentari)
+    employer = replace(request.employer, subsector=subsector)
+    overtime = OvertimeEvent(
+        event_date=date(2026, 1, 14), hours=Decimal(2), hourly_rate=Decimal(12)
+    )
+    facts = replace(request.facts, events=(overtime,))
+    return replace(request, employer=employer, facts=facts)
+
+
 def _logistica_employer(
     january: Callable[[Employment], PeriodInput], sector: TaxSector | None
 ) -> PeriodInput:
@@ -358,6 +382,14 @@ def employer_cases[C](
                 "second_level_premium",
             )
             for stated in (False, True)
+        ),
+        "EmployerProfile.subsector": tuple(
+            case(
+                _alimentari_employer(january, stated),
+                _alimentari_employer(january, None),
+                "subsector",
+            )
+            for stated in ("carni", "vini_liquori")
         ),
         "EmployerProfile.inps_sector": tuple(
             case(

@@ -211,22 +211,6 @@
       }
     },
     {
-      "id": "overtime_subsector_tables",
-      "institute": "overtime",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "OVERTIME (Art. 31): the engine holds the first table (Carni, Dolciari, Alimenti zootecnici, Lattiero-caseari: 45% day, 50% night, 60% holiday). The other sub-sector tables (vini-liquori, bevande, acque minerali, distillatori, birra, conserve vegetali, alimentari varie, risiera, molitoria e pastificazione, conserve ittiche, avicoli, involucri) set other night and holiday rates, and most of them a higher column for intermedi and impiegati (up to 70% night, 90% holiday). The base of Art. 31 excludes the IAR and the EDR: the caller states OvertimeEvent.hourly_rate.",
-      "calculation": "ccnl/alimentari-federalimentare:coverage.notes",
-      "state": "absent",
-      "remediation": "Model the Art. 31 table of each sub-sector with its operai and impiegati columns.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "alimentari-federalimentare/overtime_subsector_tables"
-        ]
-      }
-    },
-    {
       "id": "parental_daily_base",
       "institute": "parental_leave",
       "variant": "all",

@@ -1,5 +1,5 @@
 {
-  "commit": "9f77bb0873349d7ab8080bad3361b1293bf209fc",
+  "commit": "37684e39e6737cdc08cf807263c8dc30b0e8f43b",
   "date": "2026-11-01",
   "min_score": 93.0,
   "perimeter": [
@@ -143,6 +143,8 @@
     "src/ccnl_engine/working_time/hourly/policies.py",
     "src/ccnl_engine/working_time/hourly/services.py",
     "src/ccnl_engine/working_time/overtime/policies.py",
+    "src/ccnl_engine/working_time/overlap/rules.py",
+    "src/ccnl_engine/working_time/subsector/rules.py",
     "src/ccnl_engine/working_time/services.py",
     "src/ccnl_engine/working_time/standby/handlers.py",
     "src/ccnl_engine/working_time/supplement/policies.py",
@@ -150,12 +152,12 @@
   ],
   "scores": {
     "core": {
-      "killed": 9151,
-      "survived": 266,
+      "killed": 9274,
+      "survived": 268,
       "other": 5,
       "not_checked": 0,
       "equivalent": 18,
-      "total": 9422,
+      "total": 9547,
       "score": 97.1,
       "minimum": 93.0
     },
@@ -1440,13 +1442,13 @@
       "minimum": 88.5
     },
     "src/ccnl_engine/compensation/provincial_element/services.py": {
-      "killed": 22,
-      "survived": 3,
+      "killed": 30,
+      "survived": 0,
       "other": 0,
       "not_checked": 0,
       "equivalent": 0,
-      "total": 25,
-      "score": 88.0,
+      "total": 30,
+      "score": 100.0,
       "minimum": 88.0
     },
     "src/ccnl_engine/compensation/raccordo/services.py": {
@@ -1548,6 +1550,26 @@
       "total": 289,
       "score": 87.2,
       "minimum": 87.1
+    },
+    "src/ccnl_engine/working_time/overlap/rules.py": {
+      "killed": 27,
+      "survived": 2,
+      "other": 0,
+      "not_checked": 0,
+      "equivalent": 0,
+      "total": 29,
+      "score": 93.1,
+      "minimum": 93.0
+    },
+    "src/ccnl_engine/working_time/subsector/rules.py": {
+      "killed": 96,
+      "survived": 0,
+      "other": 0,
+      "not_checked": 0,
+      "equivalent": 0,
+      "total": 96,
+      "score": 100.0,
+      "minimum": 93.0
     },
     "src/ccnl_engine/working_time/services.py": {
       "killed": 158,

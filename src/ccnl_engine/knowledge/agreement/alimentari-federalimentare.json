@@ -68,19 +68,6 @@
       },
       {
         "kind": "simplification",
-        "text": "OVERTIME (Art. 31): the engine holds the first table (Carni, Dolciari, Alimenti zootecnici, Lattiero-caseari: 45% day, 50% night, 60% holiday). The other sub-sector tables (vini-liquori, bevande, acque minerali, distillatori, birra, conserve vegetali, alimentari varie, risiera, molitoria e pastificazione, conserve ittiche, avicoli, involucri) set other night and holiday rates, and most of them a higher column for intermedi and impiegati (up to 70% night, 90% holiday). The base of Art. 31 excludes the IAR and the EDR: the caller states OvertimeEvent.hourly_rate.",
-        "capability": "overtime",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "overtime_subsector_tables",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Model the Art. 31 table of each sub-sector with its operai and impiegati columns."
-        }
-      },
-      {
-        "kind": "simplification",
         "text": "SICKNESS (Art. 47): the 100% and 50% bands of the net normal pay and the comporto of 186 days in 17 months (up to 5 years) and 365 days in 24 months (over 5) are counted over the sickness of every episode in the window. Not modelled: the 90 more days of comporto for disabled workers (L. 68/99); the fixed-term limit (4 months, integration no longer than the INPS indemnity); the apprentice's normal pay for at most six months a year (Art. 21). The net pay is computed by grossing up the INPS indemnity by the worker's INPS rate, as for the Commercio file.",
         "capability": "sickness",
         "monetary_impact": "yes",
@@ -143,6 +130,10 @@
           },
           "remediation": "Model the contributions per worker, with a fact for an employer that pays the worker the alternative element instead, then remove this note."
         }
+      },
+      {
+        "kind": "info",
+        "text": "OVERTIME (Art. 31): the overtime rates above 40 hours (day, weekday night, holiday) of each sub-sector table, by EmployerProfile.subsector (carni, dolciari, alimenti_zootecnici, lattiero_caseari, vini_liquori, bevande_gassate, acque_minerali, distillatori, birra_malto, conserve_vegetali, alimentari_varie, risiera, molitoria_pastificazione, conserve_ittiche, avicoli) and category (the operai column, the impiegati column for impiegati and quadri). The intermedi, the involucri of p. 287 and the non-overtime rows (night not in shifts, shifts, Sunday with compensatory rest) are not modelled: the caller states those rates."
       }
     ]
   },
@@ -3949,7 +3940,7 @@
     "effective_until": null,
     "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "6e05a0be5f7170a9529abfb1c99b7ccbbd84a98e90c2065239fae0dba16bbba4",
+    "source_hash": "e027d8e05e376c1d900357014b44a9f1f2df61364d0c57f05920ed99de8a7349",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3999,7 +3990,13 @@
               "verification_status": "verified",
               "review_id": "2026-10-13-ai-production"
             }
-          }
+          },
+          "subsectors": [
+            "carni",
+            "dolciari",
+            "alimenti_zootecnici",
+            "lattiero_caseari"
+          ]
         },
         {
           "code": "OT_NOTTURNO",
@@ -4043,7 +4040,13 @@
               "verification_status": "verified",
               "review_id": "2026-10-13-ai-production"
             }
-          }
+          },
+          "subsectors": [
+            "carni",
+            "dolciari",
+            "alimenti_zootecnici",
+            "lattiero_caseari"
+          ]
         },
         {
           "code": "OT_FESTIVO",
@@ -4086,6 +4089,3132 @@
               "verified_at": "2026-10-13T07:32:46Z",
               "verification_status": "verified",
               "review_id": "2026-10-13-ai-production"
+            }
+          },
+          "subsectors": [
+            "carni",
+            "dolciari",
+            "alimenti_zootecnici",
+            "lattiero_caseari"
+          ]
+        },
+        {
+          "code": "OT_DIURNO_VINI_LIQUORI_OPERAI",
+          "description": "Straordinario diurno feriale, Industria dei vini-liquori, Operai",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "0.45"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "subsectors": [
+            "vini_liquori"
+          ],
+          "categories": [
+            "operaio"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "87-90",
+              "section": "Art. 31 - Tabelle delle maggiorazioni, Industria dei vini-liquori, column Operai",
+              "quote": "Industria dei vini-liquori [...] 1) Lavoro oltre le 40 ore settimanali diurno 45%"
+            },
+            "transformation": "Base: the retribuzione mensile di fatto (minimo, ex contingenza, scatti, superminimo) divided by 173 (Art. 31); the premiums do not cumulate. Rate of the Operai column of the table 'Industria dei vini-liquori' for the sub-sector code 'vini_liquori'; the intermedi, a category the engine does not hold, are not modelled.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T17:28:20Z",
+              "effective_from": "2023-12-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T17:28:20Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-overtime-subsectors"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO_VINI_LIQUORI_OPERAI",
+          "description": "Straordinario feriale notturno, Industria dei vini-liquori, Operai",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "0.50"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night"
+          ],
+          "subsectors": [
+            "vini_liquori"
+          ],
+          "categories": [
+            "operaio"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "87-90",
+              "section": "Art. 31 - Tabelle delle maggiorazioni, Industria dei vini-liquori, column Operai",
+              "quote": "Industria dei vini-liquori [...] 6) Lavoro oltre le 40 ore settimanali feriale notturno 50%"
+            },
+            "transformation": "Base: the retribuzione mensile di fatto (minimo, ex contingenza, scatti, superminimo) divided by 173 (Art. 31); the premiums do not cumulate. Rate of the Operai column of the table 'Industria dei vini-liquori' for the sub-sector code 'vini_liquori'; the intermedi, a category the engine does not hold, are not modelled.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T17:28:20Z",
+              "effective_from": "2023-12-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T17:28:20Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-overtime-subsectors"
+            }
+          }
+        },
+        {
+          "code": "OT_FESTIVO_VINI_LIQUORI_OPERAI",
+          "description": "Straordinario festivo, Industria dei vini-liquori, Operai",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "0.60"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "holiday"
+          ],
+          "subsectors": [
+            "vini_liquori"
+          ],
+          "categories": [
+            "operaio"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "87-90",
+              "section": "Art. 31 - Tabelle delle maggiorazioni, Industria dei vini-liquori, column Operai",
+              "quote": "Industria dei vini-liquori [...] 3) Lavoro oltre le 40 ore settimanali festivo (oltre 8 ore) 60%"
+            },
+            "transformation": "Base: the retribuzione mensile di fatto (minimo, ex contingenza, scatti, superminimo) divided by 173 (Art. 31); the premiums do not cumulate. Rate of the Operai column of the table 'Industria dei vini-liquori' for the sub-sector code 'vini_liquori'; the intermedi, a category the engine does not hold, are not modelled.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T17:28:20Z",
+              "effective_from": "2023-12-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T17:28:20Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-overtime-subsectors"
+            }
+          }
+        },
+        {
+          "code": "OT_DIURNO_VINI_LIQUORI_IMPIEGATI",
+          "description": "Straordinario diurno feriale, Industria dei vini-liquori, Intermedi e Impiegati",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "0.45"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "subsectors": [
+            "vini_liquori"
+          ],
+          "categories": [
+            "impiegato",
+            "quadro"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "87-90",
+              "section": "Art. 31 - Tabelle delle maggiorazioni, Industria dei vini-liquori, column Intermedi e Impiegati",
+              "quote": "Industria dei vini-liquori [...] 1) Lavoro oltre le 40 ore settimanali diurno 45%"
+            },
+            "transformation": "Base: the retribuzione mensile di fatto (minimo, ex contingenza, scatti, superminimo) divided by 173 (Art. 31); the premiums do not cumulate. Rate of the Intermedi e Impiegati column of the table 'Industria dei vini-liquori' for the sub-sector code 'vini_liquori'; the intermedi, a category the engine does not hold, are not modelled.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T17:28:20Z",
+              "effective_from": "2023-12-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T17:28:20Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-overtime-subsectors"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO_VINI_LIQUORI_IMPIEGATI",
+          "description": "Straordinario feriale notturno, Industria dei vini-liquori, Intermedi e Impiegati",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "0.70"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night"
+          ],
+          "subsectors": [
+            "vini_liquori"
+          ],
+          "categories": [
+            "impiegato",
+            "quadro"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "87-90",
+              "section": "Art. 31 - Tabelle delle maggiorazioni, Industria dei vini-liquori, column Intermedi e Impiegati",
+              "quote": "Industria dei vini-liquori [...] 6) Lavoro oltre le 40 ore settimanali feriale notturno 70%"
+            },
+            "transformation": "Base: the retribuzione mensile di fatto (minimo, ex contingenza, scatti, superminimo) divided by 173 (Art. 31); the premiums do not cumulate. Rate of the Intermedi e Impiegati column of the table 'Industria dei vini-liquori' for the sub-sector code 'vini_liquori'; the intermedi, a category the engine does not hold, are not modelled.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T17:28:20Z",
+              "effective_from": "2023-12-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T17:28:20Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-overtime-subsectors"
+            }
+          }
+        },
+        {
+          "code": "OT_FESTIVO_VINI_LIQUORI_IMPIEGATI",
+          "description": "Straordinario festivo, Industria dei vini-liquori, Intermedi e Impiegati",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "0.90"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "holiday"
+          ],
+          "subsectors": [
+            "vini_liquori"
+          ],
+          "categories": [
+            "impiegato",
+            "quadro"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "87-90",
+              "section": "Art. 31 - Tabelle delle maggiorazioni, Industria dei vini-liquori, column Intermedi e Impiegati",
+              "quote": "Industria dei vini-liquori [...] 3) Lavoro oltre le 40 ore settimanali festivo (oltre 8 ore) 90%"
+            },
+            "transformation": "Base: the retribuzione mensile di fatto (minimo, ex contingenza, scatti, superminimo) divided by 173 (Art. 31); the premiums do not cumulate. Rate of the Intermedi e Impiegati column of the table 'Industria dei vini-liquori' for the sub-sector code 'vini_liquori'; the intermedi, a category the engine does not hold, are not modelled.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T17:28:20Z",
+              "effective_from": "2023-12-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T17:28:20Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-overtime-subsectors"
+            }
+          }
+        },
+        {
+          "code": "OT_DIURNO_BEVANDE_GASSATE_OPERAI",
+          "description": "Straordinario diurno feriale, Industria delle bevande gassate, Operai e Intermedi",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "0.45"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "subsectors": [
+            "bevande_gassate"
+          ],
+          "categories": [
+            "operaio"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "87-90",
+              "section": "Art. 31 - Tabelle delle maggiorazioni, Industria delle bevande gassate, column Operai e Intermedi",
+              "quote": "Industria delle bevande gassate [...] 1) Lavoro oltre le 40 ore settimanali diurno 45%"
+            },
+            "transformation": "Base: the retribuzione mensile di fatto (minimo, ex contingenza, scatti, superminimo) divided by 173 (Art. 31); the premiums do not cumulate. Rate of the Operai e Intermedi column of the table 'Industria delle bevande gassate' for the sub-sector code 'bevande_gassate'; the intermedi, a category the engine does not hold, are not modelled.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T17:28:20Z",
+              "effective_from": "2023-12-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T17:28:20Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-overtime-subsectors"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO_BEVANDE_GASSATE_OPERAI",
+          "description": "Straordinario feriale notturno, Industria delle bevande gassate, Operai e Intermedi",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "0.40"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night"
+          ],
+          "subsectors": [
+            "bevande_gassate"
+          ],
+          "categories": [
+            "operaio"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "87-90",
+              "section": "Art. 31 - Tabelle delle maggiorazioni, Industria delle bevande gassate, column Operai e Intermedi",
+              "quote": "Industria delle bevande gassate [...] 6) Lavoro oltre le 40 ore settimanali notturno (feriale) 40%"
+            },
+            "transformation": "Base: the retribuzione mensile di fatto (minimo, ex contingenza, scatti, superminimo) divided by 173 (Art. 31); the premiums do not cumulate. Rate of the Operai e Intermedi column of the table 'Industria delle bevande gassate' for the sub-sector code 'bevande_gassate'; the intermedi, a category the engine does not hold, are not modelled.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T17:28:20Z",
+              "effective_from": "2023-12-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T17:28:20Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-overtime-subsectors"
+            }
+          }
+        },
+        {
+          "code": "OT_FESTIVO_BEVANDE_GASSATE_OPERAI",
+          "description": "Straordinario festivo, Industria delle bevande gassate, Operai e Intermedi",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "0.45"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "holiday"
+          ],
+          "subsectors": [
+            "bevande_gassate"
+          ],
+          "categories": [
+            "operaio"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "87-90",
+              "section": "Art. 31 - Tabelle delle maggiorazioni, Industria delle bevande gassate, column Operai e Intermedi",
+              "quote": "Industria delle bevande gassate [...] 3) Lavoro oltre le 40 ore settimanali festivo (oltre 8 ore) 45%"
+            },
+            "transformation": "Base: the retribuzione mensile di fatto (minimo, ex contingenza, scatti, superminimo) divided by 173 (Art. 31); the premiums do not cumulate. Rate of the Operai e Intermedi column of the table 'Industria delle bevande gassate' for the sub-sector code 'bevande_gassate'; the intermedi, a category the engine does not hold, are not modelled.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T17:28:20Z",
+              "effective_from": "2023-12-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T17:28:20Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-overtime-subsectors"
+            }
+          }
+        },
+        {
+          "code": "OT_DIURNO_BEVANDE_GASSATE_IMPIEGATI",
+          "description": "Straordinario diurno feriale, Industria delle bevande gassate, Impiegati",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "0.45"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "subsectors": [
+            "bevande_gassate"
+          ],
+          "categories": [
+            "impiegato",
+            "quadro"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "87-90",
+              "section": "Art. 31 - Tabelle delle maggiorazioni, Industria delle bevande gassate, column Impiegati",
+              "quote": "Industria delle bevande gassate [...] 1) Lavoro oltre le 40 ore settimanali diurno 45%"
+            },
+            "transformation": "Base: the retribuzione mensile di fatto (minimo, ex contingenza, scatti, superminimo) divided by 173 (Art. 31); the premiums do not cumulate. Rate of the Impiegati column of the table 'Industria delle bevande gassate' for the sub-sector code 'bevande_gassate'; the intermedi, a category the engine does not hold, are not modelled.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T17:28:20Z",
+              "effective_from": "2023-12-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T17:28:20Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-overtime-subsectors"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO_BEVANDE_GASSATE_IMPIEGATI",
+          "description": "Straordinario feriale notturno, Industria delle bevande gassate, Impiegati",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "0.60"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night"
+          ],
+          "subsectors": [
+            "bevande_gassate"
+          ],
+          "categories": [
+            "impiegato",
+            "quadro"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "87-90",
+              "section": "Art. 31 - Tabelle delle maggiorazioni, Industria delle bevande gassate, column Impiegati",
+              "quote": "Industria delle bevande gassate [...] 6) Lavoro oltre le 40 ore settimanali notturno (feriale) 60%"
+            },
+            "transformation": "Base: the retribuzione mensile di fatto (minimo, ex contingenza, scatti, superminimo) divided by 173 (Art. 31); the premiums do not cumulate. Rate of the Impiegati column of the table 'Industria delle bevande gassate' for the sub-sector code 'bevande_gassate'; the intermedi, a category the engine does not hold, are not modelled.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T17:28:20Z",
+              "effective_from": "2023-12-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T17:28:20Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-overtime-subsectors"
+            }
+          }
+        },
+        {
+          "code": "OT_FESTIVO_BEVANDE_GASSATE_IMPIEGATI",
+          "description": "Straordinario festivo, Industria delle bevande gassate, Impiegati",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "0.80"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "holiday"
+          ],
+          "subsectors": [
+            "bevande_gassate"
+          ],
+          "categories": [
+            "impiegato",
+            "quadro"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "87-90",
+              "section": "Art. 31 - Tabelle delle maggiorazioni, Industria delle bevande gassate, column Impiegati",
+              "quote": "Industria delle bevande gassate [...] 3) Lavoro oltre le 40 ore settimanali festivo (oltre 8 ore) 80%"
+            },
+            "transformation": "Base: the retribuzione mensile di fatto (minimo, ex contingenza, scatti, superminimo) divided by 173 (Art. 31); the premiums do not cumulate. Rate of the Impiegati column of the table 'Industria delle bevande gassate' for the sub-sector code 'bevande_gassate'; the intermedi, a category the engine does not hold, are not modelled.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T17:28:20Z",
+              "effective_from": "2023-12-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T17:28:20Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-overtime-subsectors"
+            }
+          }
+        },
+        {
+          "code": "OT_DIURNO_ACQUE_MINERALI_OPERAI",
+          "description": "Straordinario diurno feriale, Industria delle acque minerali e bibite in acque minerali, Operai e Intermedi",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "0.45"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "subsectors": [
+            "acque_minerali"
+          ],
+          "categories": [
+            "operaio"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "87-90",
+              "section": "Art. 31 - Tabelle delle maggiorazioni, Industria delle acque minerali e bibite in acque minerali, column Operai e Intermedi",
+              "quote": "Industria delle acque minerali e bibite in acque minerali [...] 1) Lavoro oltre le 40 ore settimanali diurno 45%"
+            },
+            "transformation": "Base: the retribuzione mensile di fatto (minimo, ex contingenza, scatti, superminimo) divided by 173 (Art. 31); the premiums do not cumulate. Rate of the Operai e Intermedi column of the table 'Industria delle acque minerali e bibite in acque minerali' for the sub-sector code 'acque_minerali'; the intermedi, a category the engine does not hold, are not modelled.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T17:28:20Z",
+              "effective_from": "2023-12-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T17:28:20Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-overtime-subsectors"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO_ACQUE_MINERALI_OPERAI",
+          "description": "Straordinario feriale notturno, Industria delle acque minerali e bibite in acque minerali, Operai e Intermedi",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "0.48"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night"
+          ],
+          "subsectors": [
+            "acque_minerali"
+          ],
+          "categories": [
+            "operaio"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "87-90",
+              "section": "Art. 31 - Tabelle delle maggiorazioni, Industria delle acque minerali e bibite in acque minerali, column Operai e Intermedi",
+              "quote": "Industria delle acque minerali e bibite in acque minerali [...] 6) Lavoro oltre le 40 ore settimanali feriale notturno 48%"
+            },
+            "transformation": "Base: the retribuzione mensile di fatto (minimo, ex contingenza, scatti, superminimo) divided by 173 (Art. 31); the premiums do not cumulate. Rate of the Operai e Intermedi column of the table 'Industria delle acque minerali e bibite in acque minerali' for the sub-sector code 'acque_minerali'; the intermedi, a category the engine does not hold, are not modelled.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T17:28:20Z",
+              "effective_from": "2023-12-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T17:28:20Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-overtime-subsectors"
+            }
+          }
+        },
+        {
+          "code": "OT_FESTIVO_ACQUE_MINERALI_OPERAI",
+          "description": "Straordinario festivo, Industria delle acque minerali e bibite in acque minerali, Operai e Intermedi",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "0.60"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "holiday"
+          ],
+          "subsectors": [
+            "acque_minerali"
+          ],
+          "categories": [
+            "operaio"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "87-90",
+              "section": "Art. 31 - Tabelle delle maggiorazioni, Industria delle acque minerali e bibite in acque minerali, column Operai e Intermedi",
+              "quote": "Industria delle acque minerali e bibite in acque minerali [...] 3) Lavoro oltre le 40 ore settimanali festivo (oltre 8 ore) 60%"
+            },
+            "transformation": "Base: the retribuzione mensile di fatto (minimo, ex contingenza, scatti, superminimo) divided by 173 (Art. 31); the premiums do not cumulate. Rate of the Operai e Intermedi column of the table 'Industria delle acque minerali e bibite in acque minerali' for the sub-sector code 'acque_minerali'; the intermedi, a category the engine does not hold, are not modelled.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T17:28:20Z",
+              "effective_from": "2023-12-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T17:28:20Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-overtime-subsectors"
+            }
+          }
+        },
+        {
+          "code": "OT_DIURNO_ACQUE_MINERALI_IMPIEGATI",
+          "description": "Straordinario diurno feriale, Industria delle acque minerali e bibite in acque minerali, Impiegati",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "0.45"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "subsectors": [
+            "acque_minerali"
+          ],
+          "categories": [
+            "impiegato",
+            "quadro"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "87-90",
+              "section": "Art. 31 - Tabelle delle maggiorazioni, Industria delle acque minerali e bibite in acque minerali, column Impiegati",
+              "quote": "Industria delle acque minerali e bibite in acque minerali [...] 1) Lavoro oltre le 40 ore settimanali diurno 45%"
+            },
+            "transformation": "Base: the retribuzione mensile di fatto (minimo, ex contingenza, scatti, superminimo) divided by 173 (Art. 31); the premiums do not cumulate. Rate of the Impiegati column of the table 'Industria delle acque minerali e bibite in acque minerali' for the sub-sector code 'acque_minerali'; the intermedi, a category the engine does not hold, are not modelled.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T17:28:20Z",
+              "effective_from": "2023-12-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T17:28:20Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-overtime-subsectors"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO_ACQUE_MINERALI_IMPIEGATI",
+          "description": "Straordinario feriale notturno, Industria delle acque minerali e bibite in acque minerali, Impiegati",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "0.65"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night"
+          ],
+          "subsectors": [
+            "acque_minerali"
+          ],
+          "categories": [
+            "impiegato",
+            "quadro"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "87-90",
+              "section": "Art. 31 - Tabelle delle maggiorazioni, Industria delle acque minerali e bibite in acque minerali, column Impiegati",
+              "quote": "Industria delle acque minerali e bibite in acque minerali [...] 6) Lavoro oltre le 40 ore settimanali feriale notturno 65%"
+            },
+            "transformation": "Base: the retribuzione mensile di fatto (minimo, ex contingenza, scatti, superminimo) divided by 173 (Art. 31); the premiums do not cumulate. Rate of the Impiegati column of the table 'Industria delle acque minerali e bibite in acque minerali' for the sub-sector code 'acque_minerali'; the intermedi, a category the engine does not hold, are not modelled.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T17:28:20Z",
+              "effective_from": "2023-12-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T17:28:20Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-overtime-subsectors"
+            }
+          }
+        },
+        {
+          "code": "OT_FESTIVO_ACQUE_MINERALI_IMPIEGATI",
+          "description": "Straordinario festivo, Industria delle acque minerali e bibite in acque minerali, Impiegati",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "0.90"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "holiday"
+          ],
+          "subsectors": [
+            "acque_minerali"
+          ],
+          "categories": [
+            "impiegato",
+            "quadro"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "87-90",
+              "section": "Art. 31 - Tabelle delle maggiorazioni, Industria delle acque minerali e bibite in acque minerali, column Impiegati",
+              "quote": "Industria delle acque minerali e bibite in acque minerali [...] 3) Lavoro oltre le 40 ore settimanali festivo (oltre 8 ore) 90%"
+            },
+            "transformation": "Base: the retribuzione mensile di fatto (minimo, ex contingenza, scatti, superminimo) divided by 173 (Art. 31); the premiums do not cumulate. Rate of the Impiegati column of the table 'Industria delle acque minerali e bibite in acque minerali' for the sub-sector code 'acque_minerali'; the intermedi, a category the engine does not hold, are not modelled.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T17:28:20Z",
+              "effective_from": "2023-12-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T17:28:20Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-overtime-subsectors"
+            }
+          }
+        },
+        {
+          "code": "OT_DIURNO_DISTILLATORI_OPERAI",
+          "description": "Straordinario diurno feriale, Industria dei distillatori, Operai",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "0.45"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "subsectors": [
+            "distillatori"
+          ],
+          "categories": [
+            "operaio"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "87-90",
+              "section": "Art. 31 - Tabelle delle maggiorazioni, Industria dei distillatori, column Operai",
+              "quote": "Industria dei distillatori [...] 1) Lavoro oltre le 40 ore settimanali diurno 45%"
+            },
+            "transformation": "Base: the retribuzione mensile di fatto (minimo, ex contingenza, scatti, superminimo) divided by 173 (Art. 31); the premiums do not cumulate. Rate of the Operai column of the table 'Industria dei distillatori' for the sub-sector code 'distillatori'; the intermedi, a category the engine does not hold, are not modelled.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T17:28:20Z",
+              "effective_from": "2023-12-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T17:28:20Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-overtime-subsectors"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO_DISTILLATORI_OPERAI",
+          "description": "Straordinario feriale notturno, Industria dei distillatori, Operai",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "0.40"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night"
+          ],
+          "subsectors": [
+            "distillatori"
+          ],
+          "categories": [
+            "operaio"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "87-90",
+              "section": "Art. 31 - Tabelle delle maggiorazioni, Industria dei distillatori, column Operai",
+              "quote": "Industria dei distillatori [...] 10) Lavoro oltre le 40 ore settimanali notturno 40%"
+            },
+            "transformation": "Base: the retribuzione mensile di fatto (minimo, ex contingenza, scatti, superminimo) divided by 173 (Art. 31); the premiums do not cumulate. Rate of the Operai column of the table 'Industria dei distillatori' for the sub-sector code 'distillatori'; the intermedi, a category the engine does not hold, are not modelled.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T17:28:20Z",
+              "effective_from": "2023-12-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T17:28:20Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-overtime-subsectors"
+            }
+          }
+        },
+        {
+          "code": "OT_FESTIVO_DISTILLATORI_OPERAI",
+          "description": "Straordinario festivo, Industria dei distillatori, Operai",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "0.60"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "holiday"
+          ],
+          "subsectors": [
+            "distillatori"
+          ],
+          "categories": [
+            "operaio"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "87-90",
+              "section": "Art. 31 - Tabelle delle maggiorazioni, Industria dei distillatori, column Operai",
+              "quote": "Industria dei distillatori [...] 3) Lavoro oltre le 40 ore settimanali festivo (oltre 8 ore) 60%"
+            },
+            "transformation": "Base: the retribuzione mensile di fatto (minimo, ex contingenza, scatti, superminimo) divided by 173 (Art. 31); the premiums do not cumulate. Rate of the Operai column of the table 'Industria dei distillatori' for the sub-sector code 'distillatori'; the intermedi, a category the engine does not hold, are not modelled.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T17:28:20Z",
+              "effective_from": "2023-12-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T17:28:20Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-overtime-subsectors"
+            }
+          }
+        },
+        {
+          "code": "OT_DIURNO_DISTILLATORI_IMPIEGATI",
+          "description": "Straordinario diurno feriale, Industria dei distillatori, Impiegati",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "0.45"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "subsectors": [
+            "distillatori"
+          ],
+          "categories": [
+            "impiegato",
+            "quadro"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "87-90",
+              "section": "Art. 31 - Tabelle delle maggiorazioni, Industria dei distillatori, column Impiegati",
+              "quote": "Industria dei distillatori [...] 1) Lavoro oltre le 40 ore settimanali diurno 45%"
+            },
+            "transformation": "Base: the retribuzione mensile di fatto (minimo, ex contingenza, scatti, superminimo) divided by 173 (Art. 31); the premiums do not cumulate. Rate of the Impiegati column of the table 'Industria dei distillatori' for the sub-sector code 'distillatori'; the intermedi, a category the engine does not hold, are not modelled.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T17:28:20Z",
+              "effective_from": "2023-12-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T17:28:20Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-overtime-subsectors"
+            }
+          }
+        },
+        {
+          "code": "OT_FESTIVO_DISTILLATORI_IMPIEGATI",
+          "description": "Straordinario festivo, Industria dei distillatori, Impiegati",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "0.60"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "holiday"
+          ],
+          "subsectors": [
+            "distillatori"
+          ],
+          "categories": [
+            "impiegato",
+            "quadro"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "87-90",
+              "section": "Art. 31 - Tabelle delle maggiorazioni, Industria dei distillatori, column Impiegati",
+              "quote": "Industria dei distillatori [...] 3) Lavoro oltre le 40 ore settimanali festivo (oltre 8 ore) 60%"
+            },
+            "transformation": "Base: the retribuzione mensile di fatto (minimo, ex contingenza, scatti, superminimo) divided by 173 (Art. 31); the premiums do not cumulate. Rate of the Impiegati column of the table 'Industria dei distillatori' for the sub-sector code 'distillatori'; the intermedi, a category the engine does not hold, are not modelled.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T17:28:20Z",
+              "effective_from": "2023-12-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T17:28:20Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-overtime-subsectors"
+            }
+          }
+        },
+        {
+          "code": "OT_DIURNO_BIRRA_MALTO_OPERAI",
+          "description": "Straordinario diurno feriale, Industria della birra e del malto, Operai e Intermedi",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "0.45"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "subsectors": [
+            "birra_malto"
+          ],
+          "categories": [
+            "operaio"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "87-90",
+              "section": "Art. 31 - Tabelle delle maggiorazioni, Industria della birra e del malto, column Operai e Intermedi",
+              "quote": "Industria della birra e del malto [...] 1) Lavoro oltre le 40 ore settimanali diurno 45%"
+            },
+            "transformation": "Base: the retribuzione mensile di fatto (minimo, ex contingenza, scatti, superminimo) divided by 173 (Art. 31); the premiums do not cumulate. Rate of the Operai e Intermedi column of the table 'Industria della birra e del malto' for the sub-sector code 'birra_malto'; the intermedi, a category the engine does not hold, are not modelled.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T17:28:20Z",
+              "effective_from": "2023-12-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T17:28:20Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-overtime-subsectors"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO_BIRRA_MALTO_OPERAI",
+          "description": "Straordinario feriale notturno, Industria della birra e del malto, Operai e Intermedi",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "0.50"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night"
+          ],
+          "subsectors": [
+            "birra_malto"
+          ],
+          "categories": [
+            "operaio"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "87-90",
+              "section": "Art. 31 - Tabelle delle maggiorazioni, Industria della birra e del malto, column Operai e Intermedi",
+              "quote": "Industria della birra e del malto [...] 6) Lavoro oltre le 40 ore settimanali feriale notturno 50%"
+            },
+            "transformation": "Base: the retribuzione mensile di fatto (minimo, ex contingenza, scatti, superminimo) divided by 173 (Art. 31); the premiums do not cumulate. Rate of the Operai e Intermedi column of the table 'Industria della birra e del malto' for the sub-sector code 'birra_malto'; the intermedi, a category the engine does not hold, are not modelled.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T17:28:20Z",
+              "effective_from": "2023-12-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T17:28:20Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-overtime-subsectors"
+            }
+          }
+        },
+        {
+          "code": "OT_FESTIVO_BIRRA_MALTO_OPERAI",
+          "description": "Straordinario festivo, Industria della birra e del malto, Operai e Intermedi",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "0.60"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "holiday"
+          ],
+          "subsectors": [
+            "birra_malto"
+          ],
+          "categories": [
+            "operaio"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "87-90",
+              "section": "Art. 31 - Tabelle delle maggiorazioni, Industria della birra e del malto, column Operai e Intermedi",
+              "quote": "Industria della birra e del malto [...] 3) Lavoro oltre le 40 ore settimanali festivo (oltre 8 ore) 60%"
+            },
+            "transformation": "Base: the retribuzione mensile di fatto (minimo, ex contingenza, scatti, superminimo) divided by 173 (Art. 31); the premiums do not cumulate. Rate of the Operai e Intermedi column of the table 'Industria della birra e del malto' for the sub-sector code 'birra_malto'; the intermedi, a category the engine does not hold, are not modelled.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T17:28:20Z",
+              "effective_from": "2023-12-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T17:28:20Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-overtime-subsectors"
+            }
+          }
+        },
+        {
+          "code": "OT_DIURNO_BIRRA_MALTO_IMPIEGATI",
+          "description": "Straordinario diurno feriale, Industria della birra e del malto, Impiegati",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "0.45"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "subsectors": [
+            "birra_malto"
+          ],
+          "categories": [
+            "impiegato",
+            "quadro"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "87-90",
+              "section": "Art. 31 - Tabelle delle maggiorazioni, Industria della birra e del malto, column Impiegati",
+              "quote": "Industria della birra e del malto [...] 1) Lavoro oltre le 40 ore settimanali diurno 45%"
+            },
+            "transformation": "Base: the retribuzione mensile di fatto (minimo, ex contingenza, scatti, superminimo) divided by 173 (Art. 31); the premiums do not cumulate. Rate of the Impiegati column of the table 'Industria della birra e del malto' for the sub-sector code 'birra_malto'; the intermedi, a category the engine does not hold, are not modelled.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T17:28:20Z",
+              "effective_from": "2023-12-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T17:28:20Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-overtime-subsectors"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO_BIRRA_MALTO_IMPIEGATI",
+          "description": "Straordinario feriale notturno, Industria della birra e del malto, Impiegati",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "0.65"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night"
+          ],
+          "subsectors": [
+            "birra_malto"
+          ],
+          "categories": [
+            "impiegato",
+            "quadro"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "87-90",
+              "section": "Art. 31 - Tabelle delle maggiorazioni, Industria della birra e del malto, column Impiegati",
+              "quote": "Industria della birra e del malto [...] 6) Lavoro oltre le 40 ore settimanali feriale notturno 65%"
+            },
+            "transformation": "Base: the retribuzione mensile di fatto (minimo, ex contingenza, scatti, superminimo) divided by 173 (Art. 31); the premiums do not cumulate. Rate of the Impiegati column of the table 'Industria della birra e del malto' for the sub-sector code 'birra_malto'; the intermedi, a category the engine does not hold, are not modelled.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T17:28:20Z",
+              "effective_from": "2023-12-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T17:28:20Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-overtime-subsectors"
+            }
+          }
+        },
+        {
+          "code": "OT_FESTIVO_BIRRA_MALTO_IMPIEGATI",
+          "description": "Straordinario festivo, Industria della birra e del malto, Impiegati",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "0.90"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "holiday"
+          ],
+          "subsectors": [
+            "birra_malto"
+          ],
+          "categories": [
+            "impiegato",
+            "quadro"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "87-90",
+              "section": "Art. 31 - Tabelle delle maggiorazioni, Industria della birra e del malto, column Impiegati",
+              "quote": "Industria della birra e del malto [...] 3) Lavoro oltre le 40 ore settimanali festivo (oltre 8 ore) 90%"
+            },
+            "transformation": "Base: the retribuzione mensile di fatto (minimo, ex contingenza, scatti, superminimo) divided by 173 (Art. 31); the premiums do not cumulate. Rate of the Impiegati column of the table 'Industria della birra e del malto' for the sub-sector code 'birra_malto'; the intermedi, a category the engine does not hold, are not modelled.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T17:28:20Z",
+              "effective_from": "2023-12-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T17:28:20Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-overtime-subsectors"
+            }
+          }
+        },
+        {
+          "code": "OT_DIURNO_CONSERVE_VEGETALI_OPERAI",
+          "description": "Straordinario diurno feriale, Industria delle conserve vegetali, Operai",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "0.45"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "subsectors": [
+            "conserve_vegetali"
+          ],
+          "categories": [
+            "operaio"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "87-90",
+              "section": "Art. 31 - Tabelle delle maggiorazioni, Industria delle conserve vegetali, column Operai",
+              "quote": "Industria delle conserve vegetali [...] 1) Lavoro oltre le 40 ore settimanali diurno 45%"
+            },
+            "transformation": "Base: the retribuzione mensile di fatto (minimo, ex contingenza, scatti, superminimo) divided by 173 (Art. 31); the premiums do not cumulate. Rate of the Operai column of the table 'Industria delle conserve vegetali' for the sub-sector code 'conserve_vegetali'; the intermedi, a category the engine does not hold, are not modelled.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T17:28:20Z",
+              "effective_from": "2023-12-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T17:28:20Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-overtime-subsectors"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO_CONSERVE_VEGETALI_OPERAI",
+          "description": "Straordinario feriale notturno, Industria delle conserve vegetali, Operai",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "0.50"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night"
+          ],
+          "subsectors": [
+            "conserve_vegetali"
+          ],
+          "categories": [
+            "operaio"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "87-90",
+              "section": "Art. 31 - Tabelle delle maggiorazioni, Industria delle conserve vegetali, column Operai",
+              "quote": "Industria delle conserve vegetali [...] 6) Lavoro oltre le 40 ore settimanali notturno 50%"
+            },
+            "transformation": "Base: the retribuzione mensile di fatto (minimo, ex contingenza, scatti, superminimo) divided by 173 (Art. 31); the premiums do not cumulate. Rate of the Operai column of the table 'Industria delle conserve vegetali' for the sub-sector code 'conserve_vegetali'; the intermedi, a category the engine does not hold, are not modelled.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T17:28:20Z",
+              "effective_from": "2023-12-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T17:28:20Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-overtime-subsectors"
+            }
+          }
+        },
+        {
+          "code": "OT_FESTIVO_CONSERVE_VEGETALI_OPERAI",
+          "description": "Straordinario festivo, Industria delle conserve vegetali, Operai",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "0.60"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "holiday"
+          ],
+          "subsectors": [
+            "conserve_vegetali"
+          ],
+          "categories": [
+            "operaio"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "87-90",
+              "section": "Art. 31 - Tabelle delle maggiorazioni, Industria delle conserve vegetali, column Operai",
+              "quote": "Industria delle conserve vegetali [...] 3) Lavoro oltre le 40 ore settimanali festivo (oltre 8 ore) 60%"
+            },
+            "transformation": "Base: the retribuzione mensile di fatto (minimo, ex contingenza, scatti, superminimo) divided by 173 (Art. 31); the premiums do not cumulate. Rate of the Operai column of the table 'Industria delle conserve vegetali' for the sub-sector code 'conserve_vegetali'; the intermedi, a category the engine does not hold, are not modelled.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T17:28:20Z",
+              "effective_from": "2023-12-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T17:28:20Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-overtime-subsectors"
+            }
+          }
+        },
+        {
+          "code": "OT_DIURNO_CONSERVE_VEGETALI_IMPIEGATI",
+          "description": "Straordinario diurno feriale, Industria delle conserve vegetali, Intermedi e Impiegati",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "0.45"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "subsectors": [
+            "conserve_vegetali"
+          ],
+          "categories": [
+            "impiegato",
+            "quadro"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "87-90",
+              "section": "Art. 31 - Tabelle delle maggiorazioni, Industria delle conserve vegetali, column Intermedi e Impiegati",
+              "quote": "Industria delle conserve vegetali [...] 1) Lavoro oltre le 40 ore settimanali diurno 45%"
+            },
+            "transformation": "Base: the retribuzione mensile di fatto (minimo, ex contingenza, scatti, superminimo) divided by 173 (Art. 31); the premiums do not cumulate. Rate of the Intermedi e Impiegati column of the table 'Industria delle conserve vegetali' for the sub-sector code 'conserve_vegetali'; the intermedi, a category the engine does not hold, are not modelled.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T17:28:20Z",
+              "effective_from": "2023-12-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T17:28:20Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-overtime-subsectors"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO_CONSERVE_VEGETALI_IMPIEGATI",
+          "description": "Straordinario feriale notturno, Industria delle conserve vegetali, Intermedi e Impiegati",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "0.50"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night"
+          ],
+          "subsectors": [
+            "conserve_vegetali"
+          ],
+          "categories": [
+            "impiegato",
+            "quadro"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "87-90",
+              "section": "Art. 31 - Tabelle delle maggiorazioni, Industria delle conserve vegetali, column Intermedi e Impiegati",
+              "quote": "Industria delle conserve vegetali [...] 6) Lavoro oltre le 40 ore settimanali notturno 50%"
+            },
+            "transformation": "Base: the retribuzione mensile di fatto (minimo, ex contingenza, scatti, superminimo) divided by 173 (Art. 31); the premiums do not cumulate. Rate of the Intermedi e Impiegati column of the table 'Industria delle conserve vegetali' for the sub-sector code 'conserve_vegetali'; the intermedi, a category the engine does not hold, are not modelled.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T17:28:20Z",
+              "effective_from": "2023-12-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T17:28:20Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-overtime-subsectors"
+            }
+          }
+        },
+        {
+          "code": "OT_FESTIVO_CONSERVE_VEGETALI_IMPIEGATI",
+          "description": "Straordinario festivo, Industria delle conserve vegetali, Intermedi e Impiegati",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "0.65"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "holiday"
+          ],
+          "subsectors": [
+            "conserve_vegetali"
+          ],
+          "categories": [
+            "impiegato",
+            "quadro"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "87-90",
+              "section": "Art. 31 - Tabelle delle maggiorazioni, Industria delle conserve vegetali, column Intermedi e Impiegati",
+              "quote": "Industria delle conserve vegetali [...] 3) Lavoro oltre le 40 ore settimanali festivo (oltre 8 ore) 65%"
+            },
+            "transformation": "Base: the retribuzione mensile di fatto (minimo, ex contingenza, scatti, superminimo) divided by 173 (Art. 31); the premiums do not cumulate. Rate of the Intermedi e Impiegati column of the table 'Industria delle conserve vegetali' for the sub-sector code 'conserve_vegetali'; the intermedi, a category the engine does not hold, are not modelled.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T17:28:20Z",
+              "effective_from": "2023-12-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T17:28:20Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-overtime-subsectors"
+            }
+          }
+        },
+        {
+          "code": "OT_DIURNO_ALIMENTARI_VARIE_OPERAI",
+          "description": "Straordinario diurno feriale, Industrie alimentari varie, Operai e Intermedi",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "0.45"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "subsectors": [
+            "alimentari_varie"
+          ],
+          "categories": [
+            "operaio"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "87-90",
+              "section": "Art. 31 - Tabelle delle maggiorazioni, Industrie alimentari varie, column Operai e Intermedi",
+              "quote": "Industrie alimentari varie [...] 1) Lavoro oltre le 40 ore settimanali diurno 45%"
+            },
+            "transformation": "Base: the retribuzione mensile di fatto (minimo, ex contingenza, scatti, superminimo) divided by 173 (Art. 31); the premiums do not cumulate. Rate of the Operai e Intermedi column of the table 'Industrie alimentari varie' for the sub-sector code 'alimentari_varie'; the intermedi, a category the engine does not hold, are not modelled.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T17:28:20Z",
+              "effective_from": "2023-12-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T17:28:20Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-overtime-subsectors"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO_ALIMENTARI_VARIE_OPERAI",
+          "description": "Straordinario feriale notturno, Industrie alimentari varie, Operai e Intermedi",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "0.60"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night"
+          ],
+          "subsectors": [
+            "alimentari_varie"
+          ],
+          "categories": [
+            "operaio"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "87-90",
+              "section": "Art. 31 - Tabelle delle maggiorazioni, Industrie alimentari varie, column Operai e Intermedi",
+              "quote": "Industrie alimentari varie [...] 6) Lavoro oltre le 40 ore settimanali notturno 60%"
+            },
+            "transformation": "Base: the retribuzione mensile di fatto (minimo, ex contingenza, scatti, superminimo) divided by 173 (Art. 31); the premiums do not cumulate. Rate of the Operai e Intermedi column of the table 'Industrie alimentari varie' for the sub-sector code 'alimentari_varie'; the intermedi, a category the engine does not hold, are not modelled.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T17:28:20Z",
+              "effective_from": "2023-12-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T17:28:20Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-overtime-subsectors"
+            }
+          }
+        },
+        {
+          "code": "OT_FESTIVO_ALIMENTARI_VARIE_OPERAI",
+          "description": "Straordinario festivo, Industrie alimentari varie, Operai e Intermedi",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "0.60"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "holiday"
+          ],
+          "subsectors": [
+            "alimentari_varie"
+          ],
+          "categories": [
+            "operaio"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "87-90",
+              "section": "Art. 31 - Tabelle delle maggiorazioni, Industrie alimentari varie, column Operai e Intermedi",
+              "quote": "Industrie alimentari varie [...] 3) Lavoro oltre le 40 ore settimanali festivo (oltre 8 ore) 60%"
+            },
+            "transformation": "Base: the retribuzione mensile di fatto (minimo, ex contingenza, scatti, superminimo) divided by 173 (Art. 31); the premiums do not cumulate. Rate of the Operai e Intermedi column of the table 'Industrie alimentari varie' for the sub-sector code 'alimentari_varie'; the intermedi, a category the engine does not hold, are not modelled.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T17:28:20Z",
+              "effective_from": "2023-12-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T17:28:20Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-overtime-subsectors"
+            }
+          }
+        },
+        {
+          "code": "OT_DIURNO_ALIMENTARI_VARIE_IMPIEGATI",
+          "description": "Straordinario diurno feriale, Industrie alimentari varie, Impiegati",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "0.45"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "subsectors": [
+            "alimentari_varie"
+          ],
+          "categories": [
+            "impiegato",
+            "quadro"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "87-90",
+              "section": "Art. 31 - Tabelle delle maggiorazioni, Industrie alimentari varie, column Impiegati",
+              "quote": "Industrie alimentari varie [...] 1) Lavoro oltre le 40 ore settimanali diurno 45%"
+            },
+            "transformation": "Base: the retribuzione mensile di fatto (minimo, ex contingenza, scatti, superminimo) divided by 173 (Art. 31); the premiums do not cumulate. Rate of the Impiegati column of the table 'Industrie alimentari varie' for the sub-sector code 'alimentari_varie'; the intermedi, a category the engine does not hold, are not modelled.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T17:28:20Z",
+              "effective_from": "2023-12-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T17:28:20Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-overtime-subsectors"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO_ALIMENTARI_VARIE_IMPIEGATI",
+          "description": "Straordinario feriale notturno, Industrie alimentari varie, Impiegati",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "0.65"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night"
+          ],
+          "subsectors": [
+            "alimentari_varie"
+          ],
+          "categories": [
+            "impiegato",
+            "quadro"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "87-90",
+              "section": "Art. 31 - Tabelle delle maggiorazioni, Industrie alimentari varie, column Impiegati",
+              "quote": "Industrie alimentari varie [...] 6) Lavoro oltre le 40 ore settimanali notturno 65%"
+            },
+            "transformation": "Base: the retribuzione mensile di fatto (minimo, ex contingenza, scatti, superminimo) divided by 173 (Art. 31); the premiums do not cumulate. Rate of the Impiegati column of the table 'Industrie alimentari varie' for the sub-sector code 'alimentari_varie'; the intermedi, a category the engine does not hold, are not modelled.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T17:28:20Z",
+              "effective_from": "2023-12-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T17:28:20Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-overtime-subsectors"
+            }
+          }
+        },
+        {
+          "code": "OT_FESTIVO_ALIMENTARI_VARIE_IMPIEGATI",
+          "description": "Straordinario festivo, Industrie alimentari varie, Impiegati",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "0.90"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "holiday"
+          ],
+          "subsectors": [
+            "alimentari_varie"
+          ],
+          "categories": [
+            "impiegato",
+            "quadro"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "87-90",
+              "section": "Art. 31 - Tabelle delle maggiorazioni, Industrie alimentari varie, column Impiegati",
+              "quote": "Industrie alimentari varie [...] 3) Lavoro oltre le 40 ore settimanali festivo (oltre 8 ore) 90%"
+            },
+            "transformation": "Base: the retribuzione mensile di fatto (minimo, ex contingenza, scatti, superminimo) divided by 173 (Art. 31); the premiums do not cumulate. Rate of the Impiegati column of the table 'Industrie alimentari varie' for the sub-sector code 'alimentari_varie'; the intermedi, a category the engine does not hold, are not modelled.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T17:28:20Z",
+              "effective_from": "2023-12-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T17:28:20Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-overtime-subsectors"
+            }
+          }
+        },
+        {
+          "code": "OT_DIURNO_RISIERA_OPERAI",
+          "description": "Straordinario diurno feriale, Industria risiera, Operai e Intermedi",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "0.45"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "subsectors": [
+            "risiera"
+          ],
+          "categories": [
+            "operaio"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "87-90",
+              "section": "Art. 31 - Tabelle delle maggiorazioni, Industria risiera, column Operai e Intermedi",
+              "quote": "Industria risiera [...] 1) Lavoro oltre le 40 ore settimanali diurno 45%"
+            },
+            "transformation": "Base: the retribuzione mensile di fatto (minimo, ex contingenza, scatti, superminimo) divided by 173 (Art. 31); the premiums do not cumulate. Rate of the Operai e Intermedi column of the table 'Industria risiera' for the sub-sector code 'risiera'; the intermedi, a category the engine does not hold, are not modelled.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T17:28:20Z",
+              "effective_from": "2023-12-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T17:28:20Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-overtime-subsectors"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO_RISIERA_OPERAI",
+          "description": "Straordinario feriale notturno, Industria risiera, Operai e Intermedi",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "0.55"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night"
+          ],
+          "subsectors": [
+            "risiera"
+          ],
+          "categories": [
+            "operaio"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "87-90",
+              "section": "Art. 31 - Tabelle delle maggiorazioni, Industria risiera, column Operai e Intermedi",
+              "quote": "Industria risiera [...] 6) Lavoro oltre le 40 ore settimanali feriale notturno 55%"
+            },
+            "transformation": "Base: the retribuzione mensile di fatto (minimo, ex contingenza, scatti, superminimo) divided by 173 (Art. 31); the premiums do not cumulate. Rate of the Operai e Intermedi column of the table 'Industria risiera' for the sub-sector code 'risiera'; the intermedi, a category the engine does not hold, are not modelled.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T17:28:20Z",
+              "effective_from": "2023-12-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T17:28:20Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-overtime-subsectors"
+            }
+          }
+        },
+        {
+          "code": "OT_FESTIVO_RISIERA_OPERAI",
+          "description": "Straordinario festivo, Industria risiera, Operai e Intermedi",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "0.60"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "holiday"
+          ],
+          "subsectors": [
+            "risiera"
+          ],
+          "categories": [
+            "operaio"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "87-90",
+              "section": "Art. 31 - Tabelle delle maggiorazioni, Industria risiera, column Operai e Intermedi",
+              "quote": "Industria risiera [...] 3) Lavoro oltre le 40 ore settimanali festivo (oltre 8 ore) 60%"
+            },
+            "transformation": "Base: the retribuzione mensile di fatto (minimo, ex contingenza, scatti, superminimo) divided by 173 (Art. 31); the premiums do not cumulate. Rate of the Operai e Intermedi column of the table 'Industria risiera' for the sub-sector code 'risiera'; the intermedi, a category the engine does not hold, are not modelled.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T17:28:20Z",
+              "effective_from": "2023-12-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T17:28:20Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-overtime-subsectors"
+            }
+          }
+        },
+        {
+          "code": "OT_DIURNO_RISIERA_IMPIEGATI",
+          "description": "Straordinario diurno feriale, Industria risiera, Impiegati",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "0.45"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "subsectors": [
+            "risiera"
+          ],
+          "categories": [
+            "impiegato",
+            "quadro"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "87-90",
+              "section": "Art. 31 - Tabelle delle maggiorazioni, Industria risiera, column Impiegati",
+              "quote": "Industria risiera [...] 1) Lavoro oltre le 40 ore settimanali diurno 45%"
+            },
+            "transformation": "Base: the retribuzione mensile di fatto (minimo, ex contingenza, scatti, superminimo) divided by 173 (Art. 31); the premiums do not cumulate. Rate of the Impiegati column of the table 'Industria risiera' for the sub-sector code 'risiera'; the intermedi, a category the engine does not hold, are not modelled.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T17:28:20Z",
+              "effective_from": "2023-12-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T17:28:20Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-overtime-subsectors"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO_RISIERA_IMPIEGATI",
+          "description": "Straordinario feriale notturno, Industria risiera, Impiegati",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "0.65"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night"
+          ],
+          "subsectors": [
+            "risiera"
+          ],
+          "categories": [
+            "impiegato",
+            "quadro"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "87-90",
+              "section": "Art. 31 - Tabelle delle maggiorazioni, Industria risiera, column Impiegati",
+              "quote": "Industria risiera [...] 6) Lavoro oltre le 40 ore settimanali feriale notturno 65%"
+            },
+            "transformation": "Base: the retribuzione mensile di fatto (minimo, ex contingenza, scatti, superminimo) divided by 173 (Art. 31); the premiums do not cumulate. Rate of the Impiegati column of the table 'Industria risiera' for the sub-sector code 'risiera'; the intermedi, a category the engine does not hold, are not modelled.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T17:28:20Z",
+              "effective_from": "2023-12-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T17:28:20Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-overtime-subsectors"
+            }
+          }
+        },
+        {
+          "code": "OT_FESTIVO_RISIERA_IMPIEGATI",
+          "description": "Straordinario festivo, Industria risiera, Impiegati",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "0.90"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "holiday"
+          ],
+          "subsectors": [
+            "risiera"
+          ],
+          "categories": [
+            "impiegato",
+            "quadro"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "87-90",
+              "section": "Art. 31 - Tabelle delle maggiorazioni, Industria risiera, column Impiegati",
+              "quote": "Industria risiera [...] 3) Lavoro oltre le 40 ore settimanali festivo (oltre 8 ore) 90%"
+            },
+            "transformation": "Base: the retribuzione mensile di fatto (minimo, ex contingenza, scatti, superminimo) divided by 173 (Art. 31); the premiums do not cumulate. Rate of the Impiegati column of the table 'Industria risiera' for the sub-sector code 'risiera'; the intermedi, a category the engine does not hold, are not modelled.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T17:28:20Z",
+              "effective_from": "2023-12-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T17:28:20Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-overtime-subsectors"
+            }
+          }
+        },
+        {
+          "code": "OT_DIURNO_MOLITORIA_PASTIFICAZIONE_OPERAI",
+          "description": "Straordinario diurno feriale, Industria molitoria e della pastificazione, Operai e Intermedi",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "0.45"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "subsectors": [
+            "molitoria_pastificazione"
+          ],
+          "categories": [
+            "operaio"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "87-90",
+              "section": "Art. 31 - Tabelle delle maggiorazioni, Industria molitoria e della pastificazione, column Operai e Intermedi",
+              "quote": "Industria molitoria e della pastificazione [...] 1) Lavoro oltre le 40 ore settimanali diurno 45%"
+            },
+            "transformation": "Base: the retribuzione mensile di fatto (minimo, ex contingenza, scatti, superminimo) divided by 173 (Art. 31); the premiums do not cumulate. Rate of the Operai e Intermedi column of the table 'Industria molitoria e della pastificazione' for the sub-sector code 'molitoria_pastificazione'; the intermedi, a category the engine does not hold, are not modelled.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T17:28:20Z",
+              "effective_from": "2023-12-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T17:28:20Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-overtime-subsectors"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO_MOLITORIA_PASTIFICAZIONE_OPERAI",
+          "description": "Straordinario feriale notturno, Industria molitoria e della pastificazione, Operai e Intermedi",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "0.50"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night"
+          ],
+          "subsectors": [
+            "molitoria_pastificazione"
+          ],
+          "categories": [
+            "operaio"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "87-90",
+              "section": "Art. 31 - Tabelle delle maggiorazioni, Industria molitoria e della pastificazione, column Operai e Intermedi",
+              "quote": "Industria molitoria e della pastificazione [...] 6) Lavoro oltre le 40 ore settimanali notturno (operai e intermedi); 7) Lavoro oltre le 40 ore settimanali feriale notturno (impiegati) 50%"
+            },
+            "transformation": "Base: the retribuzione mensile di fatto (minimo, ex contingenza, scatti, superminimo) divided by 173 (Art. 31); the premiums do not cumulate. Rate of the Operai e Intermedi column of the table 'Industria molitoria e della pastificazione' for the sub-sector code 'molitoria_pastificazione'; the intermedi, a category the engine does not hold, are not modelled.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T17:28:20Z",
+              "effective_from": "2023-12-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T17:28:20Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-overtime-subsectors"
+            }
+          }
+        },
+        {
+          "code": "OT_FESTIVO_MOLITORIA_PASTIFICAZIONE_OPERAI",
+          "description": "Straordinario festivo, Industria molitoria e della pastificazione, Operai e Intermedi",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "0.55"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "holiday"
+          ],
+          "subsectors": [
+            "molitoria_pastificazione"
+          ],
+          "categories": [
+            "operaio"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "87-90",
+              "section": "Art. 31 - Tabelle delle maggiorazioni, Industria molitoria e della pastificazione, column Operai e Intermedi",
+              "quote": "Industria molitoria e della pastificazione [...] 3) Lavoro oltre le 40 ore settimanali festivo (oltre 8 ore) 55%"
+            },
+            "transformation": "Base: the retribuzione mensile di fatto (minimo, ex contingenza, scatti, superminimo) divided by 173 (Art. 31); the premiums do not cumulate. Rate of the Operai e Intermedi column of the table 'Industria molitoria e della pastificazione' for the sub-sector code 'molitoria_pastificazione'; the intermedi, a category the engine does not hold, are not modelled.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T17:28:20Z",
+              "effective_from": "2023-12-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T17:28:20Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-overtime-subsectors"
+            }
+          }
+        },
+        {
+          "code": "OT_DIURNO_MOLITORIA_PASTIFICAZIONE_IMPIEGATI",
+          "description": "Straordinario diurno feriale, Industria molitoria e della pastificazione, Impiegati",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "0.45"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "subsectors": [
+            "molitoria_pastificazione"
+          ],
+          "categories": [
+            "impiegato",
+            "quadro"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "87-90",
+              "section": "Art. 31 - Tabelle delle maggiorazioni, Industria molitoria e della pastificazione, column Impiegati",
+              "quote": "Industria molitoria e della pastificazione [...] 1) Lavoro oltre le 40 ore settimanali diurno 45%"
+            },
+            "transformation": "Base: the retribuzione mensile di fatto (minimo, ex contingenza, scatti, superminimo) divided by 173 (Art. 31); the premiums do not cumulate. Rate of the Impiegati column of the table 'Industria molitoria e della pastificazione' for the sub-sector code 'molitoria_pastificazione'; the intermedi, a category the engine does not hold, are not modelled.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T17:28:20Z",
+              "effective_from": "2023-12-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T17:28:20Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-overtime-subsectors"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO_MOLITORIA_PASTIFICAZIONE_IMPIEGATI",
+          "description": "Straordinario feriale notturno, Industria molitoria e della pastificazione, Impiegati",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "0.65"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night"
+          ],
+          "subsectors": [
+            "molitoria_pastificazione"
+          ],
+          "categories": [
+            "impiegato",
+            "quadro"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "87-90",
+              "section": "Art. 31 - Tabelle delle maggiorazioni, Industria molitoria e della pastificazione, column Impiegati",
+              "quote": "Industria molitoria e della pastificazione [...] 6) Lavoro oltre le 40 ore settimanali notturno (operai e intermedi); 7) Lavoro oltre le 40 ore settimanali feriale notturno (impiegati) 65%"
+            },
+            "transformation": "Base: the retribuzione mensile di fatto (minimo, ex contingenza, scatti, superminimo) divided by 173 (Art. 31); the premiums do not cumulate. Rate of the Impiegati column of the table 'Industria molitoria e della pastificazione' for the sub-sector code 'molitoria_pastificazione'; the intermedi, a category the engine does not hold, are not modelled.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T17:28:20Z",
+              "effective_from": "2023-12-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T17:28:20Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-overtime-subsectors"
+            }
+          }
+        },
+        {
+          "code": "OT_FESTIVO_MOLITORIA_PASTIFICAZIONE_IMPIEGATI",
+          "description": "Straordinario festivo, Industria molitoria e della pastificazione, Impiegati",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "0.90"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "holiday"
+          ],
+          "subsectors": [
+            "molitoria_pastificazione"
+          ],
+          "categories": [
+            "impiegato",
+            "quadro"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "87-90",
+              "section": "Art. 31 - Tabelle delle maggiorazioni, Industria molitoria e della pastificazione, column Impiegati",
+              "quote": "Industria molitoria e della pastificazione [...] 3) Lavoro oltre le 40 ore settimanali festivo (oltre 8 ore) 90%"
+            },
+            "transformation": "Base: the retribuzione mensile di fatto (minimo, ex contingenza, scatti, superminimo) divided by 173 (Art. 31); the premiums do not cumulate. Rate of the Impiegati column of the table 'Industria molitoria e della pastificazione' for the sub-sector code 'molitoria_pastificazione'; the intermedi, a category the engine does not hold, are not modelled.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T17:28:20Z",
+              "effective_from": "2023-12-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T17:28:20Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-overtime-subsectors"
+            }
+          }
+        },
+        {
+          "code": "OT_DIURNO_CONSERVE_ITTICHE_OPERAI",
+          "description": "Straordinario diurno feriale, Industria conserve ittiche, Operai e Intermedi",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "0.45"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "subsectors": [
+            "conserve_ittiche"
+          ],
+          "categories": [
+            "operaio"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "87-90",
+              "section": "Art. 31 - Tabelle delle maggiorazioni, Industria conserve ittiche, column Operai e Intermedi",
+              "quote": "Industria conserve ittiche [...] 1) Lavoro oltre le 40 ore settimanali diurno 45%"
+            },
+            "transformation": "Base: the retribuzione mensile di fatto (minimo, ex contingenza, scatti, superminimo) divided by 173 (Art. 31); the premiums do not cumulate. Rate of the Operai e Intermedi column of the table 'Industria conserve ittiche' for the sub-sector code 'conserve_ittiche'; the intermedi, a category the engine does not hold, are not modelled.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T17:28:20Z",
+              "effective_from": "2023-12-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T17:28:20Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-overtime-subsectors"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO_CONSERVE_ITTICHE_OPERAI",
+          "description": "Straordinario feriale notturno, Industria conserve ittiche, Operai e Intermedi",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "0.45"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night"
+          ],
+          "subsectors": [
+            "conserve_ittiche"
+          ],
+          "categories": [
+            "operaio"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "87-90",
+              "section": "Art. 31 - Tabelle delle maggiorazioni, Industria conserve ittiche, column Operai e Intermedi",
+              "quote": "Industria conserve ittiche [...] 6) Lavoro oltre le 40 ore settimanali feriale notturno 45%"
+            },
+            "transformation": "Base: the retribuzione mensile di fatto (minimo, ex contingenza, scatti, superminimo) divided by 173 (Art. 31); the premiums do not cumulate. Rate of the Operai e Intermedi column of the table 'Industria conserve ittiche' for the sub-sector code 'conserve_ittiche'; the intermedi, a category the engine does not hold, are not modelled.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T17:28:20Z",
+              "effective_from": "2023-12-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T17:28:20Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-overtime-subsectors"
+            }
+          }
+        },
+        {
+          "code": "OT_FESTIVO_CONSERVE_ITTICHE_OPERAI",
+          "description": "Straordinario festivo, Industria conserve ittiche, Operai e Intermedi",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "0.50"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "holiday"
+          ],
+          "subsectors": [
+            "conserve_ittiche"
+          ],
+          "categories": [
+            "operaio"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "87-90",
+              "section": "Art. 31 - Tabelle delle maggiorazioni, Industria conserve ittiche, column Operai e Intermedi",
+              "quote": "Industria conserve ittiche [...] 3) Lavoro oltre le 40 ore settimanali festivo (oltre 8 ore) 50%"
+            },
+            "transformation": "Base: the retribuzione mensile di fatto (minimo, ex contingenza, scatti, superminimo) divided by 173 (Art. 31); the premiums do not cumulate. Rate of the Operai e Intermedi column of the table 'Industria conserve ittiche' for the sub-sector code 'conserve_ittiche'; the intermedi, a category the engine does not hold, are not modelled.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T17:28:20Z",
+              "effective_from": "2023-12-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T17:28:20Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-overtime-subsectors"
+            }
+          }
+        },
+        {
+          "code": "OT_DIURNO_CONSERVE_ITTICHE_IMPIEGATI",
+          "description": "Straordinario diurno feriale, Industria conserve ittiche, Impiegati",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "0.45"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "subsectors": [
+            "conserve_ittiche"
+          ],
+          "categories": [
+            "impiegato",
+            "quadro"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "87-90",
+              "section": "Art. 31 - Tabelle delle maggiorazioni, Industria conserve ittiche, column Impiegati",
+              "quote": "Industria conserve ittiche [...] 1) Lavoro oltre le 40 ore settimanali diurno 45%"
+            },
+            "transformation": "Base: the retribuzione mensile di fatto (minimo, ex contingenza, scatti, superminimo) divided by 173 (Art. 31); the premiums do not cumulate. Rate of the Impiegati column of the table 'Industria conserve ittiche' for the sub-sector code 'conserve_ittiche'; the intermedi, a category the engine does not hold, are not modelled.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T17:28:20Z",
+              "effective_from": "2023-12-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T17:28:20Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-overtime-subsectors"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO_CONSERVE_ITTICHE_IMPIEGATI",
+          "description": "Straordinario feriale notturno, Industria conserve ittiche, Impiegati",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "0.50"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night"
+          ],
+          "subsectors": [
+            "conserve_ittiche"
+          ],
+          "categories": [
+            "impiegato",
+            "quadro"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "87-90",
+              "section": "Art. 31 - Tabelle delle maggiorazioni, Industria conserve ittiche, column Impiegati",
+              "quote": "Industria conserve ittiche [...] 6) Lavoro oltre le 40 ore settimanali feriale notturno 50%"
+            },
+            "transformation": "Base: the retribuzione mensile di fatto (minimo, ex contingenza, scatti, superminimo) divided by 173 (Art. 31); the premiums do not cumulate. Rate of the Impiegati column of the table 'Industria conserve ittiche' for the sub-sector code 'conserve_ittiche'; the intermedi, a category the engine does not hold, are not modelled.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T17:28:20Z",
+              "effective_from": "2023-12-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T17:28:20Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-overtime-subsectors"
+            }
+          }
+        },
+        {
+          "code": "OT_FESTIVO_CONSERVE_ITTICHE_IMPIEGATI",
+          "description": "Straordinario festivo, Industria conserve ittiche, Impiegati",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "0.65"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "holiday"
+          ],
+          "subsectors": [
+            "conserve_ittiche"
+          ],
+          "categories": [
+            "impiegato",
+            "quadro"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "87-90",
+              "section": "Art. 31 - Tabelle delle maggiorazioni, Industria conserve ittiche, column Impiegati",
+              "quote": "Industria conserve ittiche [...] 3) Lavoro oltre le 40 ore settimanali festivo (oltre 8 ore) 65%"
+            },
+            "transformation": "Base: the retribuzione mensile di fatto (minimo, ex contingenza, scatti, superminimo) divided by 173 (Art. 31); the premiums do not cumulate. Rate of the Impiegati column of the table 'Industria conserve ittiche' for the sub-sector code 'conserve_ittiche'; the intermedi, a category the engine does not hold, are not modelled.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T17:28:20Z",
+              "effective_from": "2023-12-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T17:28:20Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-overtime-subsectors"
+            }
+          }
+        },
+        {
+          "code": "OT_DIURNO_AVICOLI",
+          "description": "Straordinario diurno feriale, Industria della macellazione e lavorazione delle specie avicole",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "0.45"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "subsectors": [
+            "avicoli"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "87-90",
+              "section": "Art. 31 - Tabelle delle maggiorazioni, Industria della macellazione e lavorazione delle specie avicole",
+              "quote": "Industria della macellazione e lavorazione delle specie avicole [...] 1) Lavoro oltre le 40 ore settimanali diurno 45%"
+            },
+            "transformation": "Base: the retribuzione mensile di fatto (minimo, ex contingenza, scatti, superminimo) divided by 173 (Art. 31); the premiums do not cumulate. Rate of the Operai, Intermedi e Impiegati column of the table 'Industria della macellazione e lavorazione delle specie avicole' for the sub-sector code 'avicoli'; the intermedi, a category the engine does not hold, are not modelled.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T17:28:20Z",
+              "effective_from": "2023-12-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T17:28:20Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-overtime-subsectors"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO_AVICOLI",
+          "description": "Straordinario feriale notturno, Industria della macellazione e lavorazione delle specie avicole",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "0.65"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night"
+          ],
+          "subsectors": [
+            "avicoli"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "87-90",
+              "section": "Art. 31 - Tabelle delle maggiorazioni, Industria della macellazione e lavorazione delle specie avicole",
+              "quote": "Industria della macellazione e lavorazione delle specie avicole [...] 7) Lavoro oltre le 40 ore settimanali feriale notturno 65%"
+            },
+            "transformation": "Base: the retribuzione mensile di fatto (minimo, ex contingenza, scatti, superminimo) divided by 173 (Art. 31); the premiums do not cumulate. Rate of the Operai, Intermedi e Impiegati column of the table 'Industria della macellazione e lavorazione delle specie avicole' for the sub-sector code 'avicoli'; the intermedi, a category the engine does not hold, are not modelled.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T17:28:20Z",
+              "effective_from": "2023-12-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T17:28:20Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-overtime-subsectors"
+            }
+          }
+        },
+        {
+          "code": "OT_FESTIVO_AVICOLI",
+          "description": "Straordinario festivo, Industria della macellazione e lavorazione delle specie avicole",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "0.90"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "holiday"
+          ],
+          "subsectors": [
+            "avicoli"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "87-90",
+              "section": "Art. 31 - Tabelle delle maggiorazioni, Industria della macellazione e lavorazione delle specie avicole",
+              "quote": "Industria della macellazione e lavorazione delle specie avicole [...] 3) Lavoro oltre le 40 ore settimanali festivo (oltre 8 ore) 90%"
+            },
+            "transformation": "Base: the retribuzione mensile di fatto (minimo, ex contingenza, scatti, superminimo) divided by 173 (Art. 31); the premiums do not cumulate. Rate of the Operai, Intermedi e Impiegati column of the table 'Industria della macellazione e lavorazione delle specie avicole' for the sub-sector code 'avicoli'; the intermedi, a category the engine does not hold, are not modelled.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T17:28:20Z",
+              "effective_from": "2023-12-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T17:28:20Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-overtime-subsectors"
             }
           }
         }
@@ -4578,6 +7707,27 @@
         "independence": "same_process",
         "checked": [
           "levels[].fixed_allowances[MANCATA_CONTRATTAZIONE]"
+        ]
+      },
+      {
+        "id": "2026-11-01-ai-overtime-subsectors",
+        "date": "2026-11-01",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The overtime tables of Art. 31 by sub-sector (PDF pp. 87-90).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+            "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+          }
+        ],
+        "findings": [
+          "Art. 31: day, weekday night and holiday overtime of the eleven further sub-sector tables, operai and impiegati columns, read in the PDF text layer: work_rules.time_supplements.overtime_bands; the first table's bands now name their four sub-sectors."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.time_supplements.overtime_bands"
         ]
       }
     ],

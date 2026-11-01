@@ -14,7 +14,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 0/133 CCNLs.** Bundle: 268 weak rules, 548 open limitations (548 with a monetary impact).
+**Complete: 0/133 CCNLs.** Bundle: 268 weak rules, 547 open limitations (547 with a monetary impact).
 
 ## Declared window
 
@@ -54,7 +54,7 @@ Future data, registered apart from the gaps: a contract whose validity ends insi
 | [agenti-immobiliari-fiaip](../contracts/agenti-immobiliari-fiaip.md) | `servizi-immobiliari` | exploratory | — | 26 rows | 26 open requirements; 2 weak rules; 21 monetary limitations; 1 outside_input limitation; 20 non-native capabilities |
 | [agenzie-marittime-i481](../contracts/agenzie-marittime-i481.md) | `trasporti-logistica` | exploratory | — | 25 rows | 25 open requirements; 1 weak rule; 22 monetary limitations; 20 non-native capabilities |
 | [agenzie-viaggio-fiavet](../contracts/agenzie-viaggio-fiavet.md) | `turismo` | exploratory | — | 23 rows | 23 open requirements; 1 weak rule; 19 monetary limitations; 1 outside_input limitation; 20 non-native capabilities |
-| [alimentari-federalimentare](../contracts/alimentari-federalimentare.md) | `alimentare` | reviewed | — | 26 rows | 26 open requirements; 20 monetary limitations; 4 outside_input limitations; 20 non-native capabilities |
+| [alimentari-federalimentare](../contracts/alimentari-federalimentare.md) | `alimentare` | reviewed | — | 25 rows | 25 open requirements; 20 monetary limitations; 3 outside_input limitations; 20 non-native capabilities |
 | [alimentari-pmi-unionalimentari](../contracts/alimentari-pmi-unionalimentari.md) | `alimentare` | exploratory | — | 22 rows | 22 open requirements; 1 weak rule; 19 monetary limitations; 19 non-native capabilities |
 | [alimentaristi-cooperative-e016](../contracts/alimentaristi-cooperative-e016.md) | `alimentare` | exploratory | — | 24 rows | 24 open requirements; 1 weak rule; 21 monetary limitations; 20 non-native capabilities |
 | [anas](../contracts/anas.md) | `trasporti-logistica` | exploratory | — | 24 rows | tables from 2026-03-01; 24 open requirements; 1 weak rule; 21 monetary limitations; 19 non-native capabilities |
