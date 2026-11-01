@@ -1,6 +1,6 @@
 <!-- auto-generated; run: uv run python scripts/documentation/capability_matrix/generate.py -->
 
-<!-- generated: 2026-10-31 -->
+<!-- generated: 2026-11-01 -->
 
 # Capability Matrix
 
@@ -61,7 +61,7 @@ formulas or caller-declared amounts.
 
 | Capability | Description | Scope | Layer | Implementation | Applies when | Handler | Facts | Variants | Label | Rules (v / d / a / m) |
 |---|---|---|---|---|---|---|---|---|---|---|
-| `base_salary` | Paga base contrattuale | core | gross | native | always | pipeline | — | — | simplified | 2205 / 3807 / 203 / 26 |
+| `base_salary` | Paga base contrattuale | core | gross | native | always | pipeline | — | — | simplified | 2213 / 3807 / 203 / 26 |
 | `seniority` | Scatti di anzianità | core | gross | native | decided | decision | `employment.seniority` | — | simplified | 24 / 95 / 13 / 0 |
 | `worker_category` | Categoria lavoratore (dichiarata o fissata dal livello) | core | gross | native | decided | decision | `employment.category` | — | implemented | none bundled |
 | `inps_employee` | Contributi INPS a carico dipendente | core | net | native | always | pipeline | — | — | simplified | 25 / 24 / 45 / 0 |
@@ -238,7 +238,7 @@ never grow.
 | 100 | [CCNL Sistemazioni Idraulico-Forestali e Idraulico-Agraria (Operai OTI)](sistemazioni-idraulico-forestali-operai.md) | ⚠️ | base_salary, inps_employer, seniority, territorial_supplement | 1 / 20 / 2 / 0 |
 | 101 | [CCNL Telecomunicazioni — Assotelecomunicazioni (Asstel)](telecomunicazioni-asstel.md) | ⚠️ | inps_employer, seniority | 2 / 44 / 1 / 0 |
 | 102 | [CCNL Terziario Distribuzione e Servizi — Confesercenti](terziario-confesercenti.md) | ⚠️ | base_salary, leave, overtime, seniority, sickness, territorial_supplement, una_tantum | 92 / 2 / 0 / 0 |
-| 103 | [CCNL Terziario, Distribuzione e Servizi (Confcommercio)](commercio-confcommercio.md) | ⚠️ | base_salary, leave, seniority, sickness | 78 / 2 / 0 / 0 |
+| 103 | [CCNL Terziario, Distribuzione e Servizi (Confcommercio)](commercio-confcommercio.md) | ⚠️ | base_salary, leave, seniority, sickness | 86 / 2 / 0 / 0 |
 | 104 | [CCNL Tessile-Abbigliamento-Moda PMI (Uniontessile-Confapi)](tessile-pmi-uniontessile.md) | ⚠️ | base_salary, pension_fund_contribution | 38 / 0 / 5 / 1 |
 | 105 | [CCNL Trasporto Aereo — Gestori Aeroportuali](trasporto-aereo-assaeroporti.md) | ⚠️ | base_salary, seniority, sickness | 1 / 72 / 1 / 0 |
 | 106 | [CCNL Trasporto a Fune (Funivie Terrestri ed Aeree) - ANEF](funivie-anef.md) | ⚠️ | base_salary, seniority | 0 / 47 / 1 / 1 |
