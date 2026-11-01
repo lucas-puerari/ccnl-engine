@@ -116,7 +116,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/alimentari-federalimentare",
       "ruleset_version": "2026.2",
-      "source_hash": "0b2dae241b3f4688d867cf26ebaac6ebc06fec4f1ee176209ae263c0024674be",
+      "source_hash": "eface514133c520953aabfd117932e522c7b61977890b25f4fb32f44c15a03ef",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/alimentari-federalimentare.json.gz"
@@ -2470,7 +2470,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "5d8b767c9aaf0221b0ad8d06f4e21f330394b268e7f402faebfd7d7fa427867a",
+      "source_hash": "7c879662d8bbb215a02abd606b8eebfcc028761d1ba40e254fe9058ae7c4ca8e",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/alimentari-federalimentare.json.gz",
