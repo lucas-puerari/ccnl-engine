@@ -133,7 +133,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/alimentari-pmi-unionalimentari",
       "ruleset_version": "2026.2",
-      "source_hash": "9e5e26ac8b25b468ee50ae4bf24c7dad3868ffc3265813f1576f26ce04340fe2",
+      "source_hash": "baf0dd84e2545507de472722ab2e7de4218fcf4831ad64a30f8f4612fd36e8ce",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/alimentari-pmi-unionalimentari.json.gz"
@@ -490,7 +490,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/commercio-confcommercio",
       "ruleset_version": "2026.2",
-      "source_hash": "15e7b1bdfa7ee949ef7a953b4baf5f0d3a94b4549ff3a267c143ac1ec46077c4",
+      "source_hash": "e89db698551cd0c3863309ccfda8e8b1b64d0b41b2a5925ce0e3930fdf8ec7f9",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/commercio-confcommercio.json.gz"
@@ -728,7 +728,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/dmo-federdistribuzione",
       "ruleset_version": "2026.2",
-      "source_hash": "88878166c3f3d57d6ec36a47621a58172916bf8a20327d0233dd1b6c52da10d6",
+      "source_hash": "86a15a571b758f05d58ebfb277f79486a9496214314eaa7f3eecd157d90f5bf2",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/dmo-federdistribuzione.json.gz"
@@ -2057,7 +2057,7 @@
       "valid_to": "2027-03-31",
       "ruleset_id": "ccnl/terziario-confesercenti",
       "ruleset_version": "2026.2",
-      "source_hash": "afd57d8ba9f9b0327c1679efa329be82145d61c2e83d92c649287af13f61c6d5",
+      "source_hash": "1b2be1786813aa46560723c5aa6bf8c02869224193b675ed07aa1e0d15bf7c14",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/terziario-confesercenti.json.gz"
@@ -2490,7 +2490,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "ab7343f5272ba1005e5ea238bfd0340d798f2a9f0db59e71187786147b41c656",
+      "source_hash": "84954c27f3aae9c5d8a38c798867f9f6271da40aa5f21639c914ff0270c25f77",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/alimentari-pmi-unionalimentari.json.gz",

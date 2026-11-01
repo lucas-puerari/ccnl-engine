@@ -33,7 +33,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary |
 
-3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 1 verified / 44 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 1 verified / 53 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -102,13 +102,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `base_salary` applies; from 2027-04-01.
 
     **Remediation:** Add tranche 3 (01/04/2027) and tranche 4 (01/01/2028) once Unionalimentari clarifies the per-level amounts.
-
-!!! warning "alimentari-pmi-unionalimentari/egr_increase_2027 · base_salary · impact yes · open"
-    SIMPLIFICATION: EGR (elemento di garanzia retributiva) increase of EUR 10 at parametro 137 from 01/01/2027 not modeled — amount per level not yet in a confirmed per-level table.
-
-    **Applies when:** `base_salary` applies; from 2027-01-01.
-
-    **Remediation:** Add the EGR increase from 01/01/2027 once a confirmed per-level table is available.
 
 !!! note "sickness_inps_daily_base · sickness · impact unknown · resolved"
     The INPS share of a sick day is computed on the INPS daily base of the episode, on the days INPS pays (the weekdays of an operaio, every day but the national holidays on a Sunday of an impiegato, point 7.3 of INPS circ. 134368/1981): the retribuzione media globale giornaliera of the month before the illness (INPS circ. 134368/1981 point 11; circ. 55/2024 Allegato 1), whole or partial month, impiegato or operaio, or for the lavoratori dello spettacolo the average pay of the last 40 daily contributions, capped for a fixed-term worker (INPS circ. 132/2021 par. 2.4). The base is a fact of the payroll history the episode states (SicknessEpisode.inps_base).

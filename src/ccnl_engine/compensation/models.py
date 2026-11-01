@@ -3,7 +3,7 @@
 from datetime import date
 from decimal import Decimal
 from enum import StrEnum
-from typing import Self
+from typing import Literal, Self
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
@@ -58,15 +58,15 @@ class Allowance(BaseModel):
     of seniority: the allowance is included only below it (the RPD of the
     AFAM docenti, by band of anzianità di servizio).
 
-    ``part_time_proportionable=False`` marks allowances that must be paid at
-    their full contractual value regardless of the worker's part-time fraction
-    (e.g. fixed-amount welfare contributions or presence-based indennità that
-    Italian CCNL explicitly exclude from proportional reduction). Defaults to
-    ``True`` so all existing allowances remain proportionable.
+    ``part_time_proportionable=False`` marks allowances paid at their full
+    contractual value whatever the part-time fraction (fixed welfare
+    contributions, presence-based indennità the CCNL do not reduce).
 
-    ``replaced_by_provincial_element=True`` marks a national element paid
-    only where no provincial element replaces it (Commercio Art. 215, terzo
-    elemento): ``EmployerProfile.provincial_pay_element`` decides it.
+    ``replaced_by`` names what replaces a national element paid only in its
+    absence: ``provincial_element`` (Commercio Art. 215, terzo elemento),
+    decided by ``EmployerProfile.provincial_pay_element``;
+    ``second_level_premium`` (Unionalimentari, elemento di garanzia
+    retributiva), decided by ``EmployerProfile.second_level_premium``.
 
     ``in_kind=True`` marks the conventional value of a benefit the employer
     provides in kind (the board and lodging of a live-in domestic worker,
@@ -86,7 +86,7 @@ class Allowance(BaseModel):
     apprenticeship_pct_relevant: bool = True
     part_time_proportionable: bool = True
     in_kind: bool = False
-    replaced_by_provincial_element: bool = False
+    replaced_by: Literal["provincial_element", "second_level_premium"] | None = None
     service_months_threshold: int | None = Field(default=None, ge=0)
     service_months_until: int | None = Field(default=None, ge=1)
     in_service_on: date | None = None

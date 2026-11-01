@@ -5,6 +5,7 @@ from __future__ import annotations
 from types import MappingProxyType
 from typing import TYPE_CHECKING
 
+from ccnl_engine.default.employer.policies import EMPLOYER_DEFAULTS
 from ccnl_engine.default.event.policies import EVENT_DEFAULTS
 from ccnl_engine.default.fact.policies import FACT_DEFAULTS
 from ccnl_engine.default.period.policies import PERIOD_DEFAULTS
@@ -22,6 +23,7 @@ __all__ = ["INPUT_DEFAULTS"]
 #: Classification of every defaulted public input field, keyed ``Type.field``.
 INPUT_DEFAULTS: Mapping[str, FieldDefault] = MappingProxyType({
     **REQUEST_DEFAULTS,
+    **EMPLOYER_DEFAULTS,
     **FACT_DEFAULTS,
     **PERIOD_DEFAULTS,
     **EVENT_DEFAULTS,

@@ -1063,7 +1063,7 @@
             },
             "note": "Verified on 2026-10-14: valid from 2023-04-01, the earliest date a bundled source states the amount: Art. 215 of the Testo Unico of 30 July 2019 is in force on that date and the renewal of 22 March 2024 does not amend it (its text, read by OCR on 14 October 2026, does not cite Art. 215). The 1993 start of the frozen contingenza is not stated by any bundled source, and no salary of the bundle starts before 2024."
           },
-          "replaced_by_provincial_element": true
+          "replaced_by": "provincial_element"
         },
         {
           "code": "IND_FUNZIONE",
@@ -1437,7 +1437,7 @@
             },
             "note": "Verified on 2026-10-14: valid from 2023-04-01, the earliest date a bundled source states the amount: Art. 215 of the Testo Unico of 30 July 2019 is in force on that date and the renewal of 22 March 2024 does not amend it (its text, read by OCR on 14 October 2026, does not cite Art. 215). The 1993 start of the frozen contingenza is not stated by any bundled source, and no salary of the bundle starts before 2024."
           },
-          "replaced_by_provincial_element": true
+          "replaced_by": "provincial_element"
         },
         {
           "code": "IND_CASSA",
@@ -1771,7 +1771,7 @@
             },
             "note": "Verified on 2026-10-14: valid from 2023-04-01, the earliest date a bundled source states the amount: Art. 215 of the Testo Unico of 30 July 2019 is in force on that date and the renewal of 22 March 2024 does not amend it (its text, read by OCR on 14 October 2026, does not cite Art. 215). The 1993 start of the frozen contingenza is not stated by any bundled source, and no salary of the bundle starts before 2024."
           },
-          "replaced_by_provincial_element": true
+          "replaced_by": "provincial_element"
         },
         {
           "code": "IND_CASSA",
@@ -2105,7 +2105,7 @@
             },
             "note": "Verified on 2026-10-14: valid from 2023-04-01, the earliest date a bundled source states the amount: Art. 215 of the Testo Unico of 30 July 2019 is in force on that date and the renewal of 22 March 2024 does not amend it (its text, read by OCR on 14 October 2026, does not cite Art. 215). The 1993 start of the frozen contingenza is not stated by any bundled source, and no salary of the bundle starts before 2024."
           },
-          "replaced_by_provincial_element": true
+          "replaced_by": "provincial_element"
         },
         {
           "code": "IND_CASSA",
@@ -2439,7 +2439,7 @@
             },
             "note": "Verified on 2026-10-14: valid from 2023-04-01, the earliest date a bundled source states the amount: Art. 215 of the Testo Unico of 30 July 2019 is in force on that date and the renewal of 22 March 2024 does not amend it (its text, read by OCR on 14 October 2026, does not cite Art. 215). The 1993 start of the frozen contingenza is not stated by any bundled source, and no salary of the bundle starts before 2024."
           },
-          "replaced_by_provincial_element": true
+          "replaced_by": "provincial_element"
         },
         {
           "code": "IND_CASSA",
@@ -2773,7 +2773,7 @@
             },
             "note": "Verified on 2026-10-14: valid from 2023-04-01, the earliest date a bundled source states the amount: Art. 215 of the Testo Unico of 30 July 2019 is in force on that date and the renewal of 22 March 2024 does not amend it (its text, read by OCR on 14 October 2026, does not cite Art. 215). The 1993 start of the frozen contingenza is not stated by any bundled source, and no salary of the bundle starts before 2024."
           },
-          "replaced_by_provincial_element": true
+          "replaced_by": "provincial_element"
         },
         {
           "code": "IND_CASSA",
@@ -3107,7 +3107,7 @@
             },
             "note": "Verified on 2026-10-14: valid from 2023-04-01, the earliest date a bundled source states the amount: Art. 215 of the Testo Unico of 30 July 2019 is in force on that date and the renewal of 22 March 2024 does not amend it (its text, read by OCR on 14 October 2026, does not cite Art. 215). The 1993 start of the frozen contingenza is not stated by any bundled source, and no salary of the bundle starts before 2024."
           },
-          "replaced_by_provincial_element": true
+          "replaced_by": "provincial_element"
         },
         {
           "code": "IND_CASSA",
@@ -3441,7 +3441,7 @@
             },
             "note": "Verified on 2026-10-14: valid from 2023-04-01, the earliest date a bundled source states the amount: Art. 215 of the Testo Unico of 30 July 2019 is in force on that date and the renewal of 22 March 2024 does not amend it (its text, read by OCR on 14 October 2026, does not cite Art. 215). The 1993 start of the frozen contingenza is not stated by any bundled source, and no salary of the bundle starts before 2024."
           },
-          "replaced_by_provincial_element": true
+          "replaced_by": "provincial_element"
         },
         {
           "code": "ALTRI_ELEMENTI",
@@ -3627,7 +3627,7 @@
     "effective_until": null,
     "source": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
     "verification_status": "unverified",
-    "source_hash": "15e7b1bdfa7ee949ef7a953b4baf5f0d3a94b4549ff3a267c143ac1ec46077c4",
+    "source_hash": "e89db698551cd0c3863309ccfda8e8b1b64d0b41b2a5925ce0e3930fdf8ec7f9",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

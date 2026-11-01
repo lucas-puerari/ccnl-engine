@@ -208,6 +208,25 @@ def _commercio_employer(
     return replace(request, employer=employer)
 
 
+def _unionalimentari_employer(
+    january: Callable[[Employment], PeriodInput], premium: bool | None
+) -> PeriodInput:
+    """Return an Unionalimentari run whose level pays the EGR.
+
+    Returns:
+        The January request with ``second_level_premium`` set to ``premium``.
+    """
+    alimentari = replace(
+        CONCIA_D2,
+        category=None,
+        ccnl_id="alimentari-pmi-unionalimentari",
+        level_code="4",
+    )
+    request = january(alimentari)
+    employer = replace(request.employer, second_level_premium=premium)
+    return replace(request, employer=employer)
+
+
 def _logistica_employer(
     january: Callable[[Employment], PeriodInput], sector: TaxSector | None
 ) -> PeriodInput:
@@ -329,6 +348,14 @@ def employer_cases[C](
                 _commercio_employer(january, stated),
                 _commercio_employer(january, None),
                 "provincial_pay_element",
+            )
+            for stated in (False, True)
+        ),
+        "EmployerProfile.second_level_premium": tuple(
+            case(
+                _unionalimentari_employer(january, stated),
+                _unionalimentari_employer(january, None),
+                "second_level_premium",
             )
             for stated in (False, True)
         ),

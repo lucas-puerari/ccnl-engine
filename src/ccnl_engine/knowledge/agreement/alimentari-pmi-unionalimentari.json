@@ -92,19 +92,6 @@
           },
           "remediation": "Add tranche 3 (01/04/2027) and tranche 4 (01/01/2028) once Unionalimentari clarifies the per-level amounts."
         }
-      },
-      {
-        "kind": "simplification",
-        "text": "SIMPLIFICATION: EGR (elemento di garanzia retributiva) increase of EUR 10 at parametro 137 from 01/01/2027 not modeled — amount per level not yet in a confirmed per-level table.",
-        "capability": "base_salary",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "egr_increase_2027",
-          "applies_when": {
-            "effective_from": "2027-01-01"
-          },
-          "remediation": "Add the EGR increase from 01/01/2027 once a confirmed per-level table is available."
-        }
       }
     ]
   },
@@ -451,6 +438,55 @@
               "effective_from": "2020-01-01"
             }
           }
+        },
+        {
+          "code": "EGR",
+          "description": "Elemento di garanzia retributiva, paid by the firms that pay no premio per obiettivi, on 12 months",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2011-01-01",
+                "valid_until": "2023-11-01",
+                "value": "36.93"
+              },
+              {
+                "valid_from": "2023-11-01",
+                "valid_until": "2027-01-01",
+                "value": "41.97"
+              },
+              {
+                "valid_from": "2027-01-01",
+                "valid_until": null,
+                "value": "58.76"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "tfr_relevant": false,
+          "replaced_by": "second_level_premium",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "unionalimentari-circolare-2025-05-28",
+                "title": "Unionalimentari Confapi, circolare illustrativa dell'accordo di rinnovo del 28 maggio 2025",
+                "kind": "associazione",
+                "url": "https://www.unionalimentari.com/wp-content/uploads/2025/06/Circolare-illustrativa-accordo-28-maggio-2025.pdf",
+                "sha256": "85fbb0242738a0d34e7549a302c9c4002b5ff257146b3c3aeee10b8a945b7ba6"
+              },
+              "page": "8",
+              "section": "Elemento di garanzia retributiva",
+              "quote": "Le imprese che non riescano ad individuare parametri da migliorare e/o obiettivi da raggiungere, in sostituzione del premio per obiettivi di cui sopra erogheranno gli importi di cui alla tabella allegata, a titolo di elemento di garanzia retributiva, i cui importi: • sono assorbiti, fino a concorrenza, da eventuali erogazioni svolgenti funzione analoga agli istituti di cui sopra. • sono erogati per 12 mensilità e sono comprensivi dell’incidenza su tutti gli istituti contrattuali e di legge, compreso il T.F.R. [...] Q° 36,93 41,97 58,76"
+            },
+            "transformation": "Level Q: 36.93 from 1 January 2011, 41.97 from 1 November 2023, 58.76 from 1 January 2027 (columns 'dal 1.1.2011 al 31.10.2023', 'dal 1.11.2023', 'dal 1.1.2027'), on 12 monthly payments, out of the TFR base as its amount already holds the TFR. Owed only where the firm pays no premio per obiettivi (EmployerProfile.second_level_premium false); a payment with the same function absorbs it, and the caller then states second_level_premium true. Read in the text layer of the circular, a communication of the employer association.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T16:54:44Z",
+              "effective_from": "2011-01-01",
+              "verification_status": "unverified"
+            }
+          }
         }
       ],
       "provenance": {
@@ -586,6 +622,55 @@
               "extraction_timestamp": "2026-09-07T15:03:36",
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
+            }
+          }
+        },
+        {
+          "code": "EGR",
+          "description": "Elemento di garanzia retributiva, paid by the firms that pay no premio per obiettivi, on 12 months",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2011-01-01",
+                "valid_until": "2023-11-01",
+                "value": "36.93"
+              },
+              {
+                "valid_from": "2023-11-01",
+                "valid_until": "2027-01-01",
+                "value": "41.97"
+              },
+              {
+                "valid_from": "2027-01-01",
+                "valid_until": null,
+                "value": "58.76"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "tfr_relevant": false,
+          "replaced_by": "second_level_premium",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "unionalimentari-circolare-2025-05-28",
+                "title": "Unionalimentari Confapi, circolare illustrativa dell'accordo di rinnovo del 28 maggio 2025",
+                "kind": "associazione",
+                "url": "https://www.unionalimentari.com/wp-content/uploads/2025/06/Circolare-illustrativa-accordo-28-maggio-2025.pdf",
+                "sha256": "85fbb0242738a0d34e7549a302c9c4002b5ff257146b3c3aeee10b8a945b7ba6"
+              },
+              "page": "8",
+              "section": "Elemento di garanzia retributiva",
+              "quote": "Le imprese che non riescano ad individuare parametri da migliorare e/o obiettivi da raggiungere, in sostituzione del premio per obiettivi di cui sopra erogheranno gli importi di cui alla tabella allegata, a titolo di elemento di garanzia retributiva, i cui importi: • sono assorbiti, fino a concorrenza, da eventuali erogazioni svolgenti funzione analoga agli istituti di cui sopra. • sono erogati per 12 mensilità e sono comprensivi dell’incidenza su tutti gli istituti contrattuali e di legge, compreso il T.F.R. [...] 1° 36,93 41,97 58,76"
+            },
+            "transformation": "Level 1: 36.93 from 1 January 2011, 41.97 from 1 November 2023, 58.76 from 1 January 2027 (columns 'dal 1.1.2011 al 31.10.2023', 'dal 1.11.2023', 'dal 1.1.2027'), on 12 monthly payments, out of the TFR base as its amount already holds the TFR. Owed only where the firm pays no premio per obiettivi (EmployerProfile.second_level_premium false); a payment with the same function absorbs it, and the caller then states second_level_premium true. Read in the text layer of the circular, a communication of the employer association.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T16:54:44Z",
+              "effective_from": "2011-01-01",
+              "verification_status": "unverified"
             }
           }
         }
@@ -725,6 +810,55 @@
               "effective_from": "2020-01-01"
             }
           }
+        },
+        {
+          "code": "EGR",
+          "description": "Elemento di garanzia retributiva, paid by the firms that pay no premio per obiettivi, on 12 months",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2011-01-01",
+                "valid_until": "2023-11-01",
+                "value": "32.11"
+              },
+              {
+                "valid_from": "2023-11-01",
+                "valid_until": "2027-01-01",
+                "value": "36.49"
+              },
+              {
+                "valid_from": "2027-01-01",
+                "valid_until": null,
+                "value": "51.09"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "tfr_relevant": false,
+          "replaced_by": "second_level_premium",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "unionalimentari-circolare-2025-05-28",
+                "title": "Unionalimentari Confapi, circolare illustrativa dell'accordo di rinnovo del 28 maggio 2025",
+                "kind": "associazione",
+                "url": "https://www.unionalimentari.com/wp-content/uploads/2025/06/Circolare-illustrativa-accordo-28-maggio-2025.pdf",
+                "sha256": "85fbb0242738a0d34e7549a302c9c4002b5ff257146b3c3aeee10b8a945b7ba6"
+              },
+              "page": "8",
+              "section": "Elemento di garanzia retributiva",
+              "quote": "Le imprese che non riescano ad individuare parametri da migliorare e/o obiettivi da raggiungere, in sostituzione del premio per obiettivi di cui sopra erogheranno gli importi di cui alla tabella allegata, a titolo di elemento di garanzia retributiva, i cui importi: • sono assorbiti, fino a concorrenza, da eventuali erogazioni svolgenti funzione analoga agli istituti di cui sopra. • sono erogati per 12 mensilità e sono comprensivi dell’incidenza su tutti gli istituti contrattuali e di legge, compreso il T.F.R. [...] 2° 32,11 36,49 51,09"
+            },
+            "transformation": "Level 2: 32.11 from 1 January 2011, 36.49 from 1 November 2023, 51.09 from 1 January 2027 (columns 'dal 1.1.2011 al 31.10.2023', 'dal 1.11.2023', 'dal 1.1.2027'), on 12 monthly payments, out of the TFR base as its amount already holds the TFR. Owed only where the firm pays no premio per obiettivi (EmployerProfile.second_level_premium false); a payment with the same function absorbs it, and the caller then states second_level_premium true. Read in the text layer of the circular, a communication of the employer association.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T16:54:44Z",
+              "effective_from": "2011-01-01",
+              "verification_status": "unverified"
+            }
+          }
         }
       ],
       "provenance": {
@@ -860,6 +994,55 @@
               "extraction_timestamp": "2026-09-07T15:03:36",
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
+            }
+          }
+        },
+        {
+          "code": "EGR",
+          "description": "Elemento di garanzia retributiva, paid by the firms that pay no premio per obiettivi, on 12 months",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2011-01-01",
+                "valid_until": "2023-11-01",
+                "value": "26.49"
+              },
+              {
+                "valid_from": "2023-11-01",
+                "valid_until": "2027-01-01",
+                "value": "30.10"
+              },
+              {
+                "valid_from": "2027-01-01",
+                "valid_until": null,
+                "value": "42.14"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "tfr_relevant": false,
+          "replaced_by": "second_level_premium",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "unionalimentari-circolare-2025-05-28",
+                "title": "Unionalimentari Confapi, circolare illustrativa dell'accordo di rinnovo del 28 maggio 2025",
+                "kind": "associazione",
+                "url": "https://www.unionalimentari.com/wp-content/uploads/2025/06/Circolare-illustrativa-accordo-28-maggio-2025.pdf",
+                "sha256": "85fbb0242738a0d34e7549a302c9c4002b5ff257146b3c3aeee10b8a945b7ba6"
+              },
+              "page": "8",
+              "section": "Elemento di garanzia retributiva",
+              "quote": "Le imprese che non riescano ad individuare parametri da migliorare e/o obiettivi da raggiungere, in sostituzione del premio per obiettivi di cui sopra erogheranno gli importi di cui alla tabella allegata, a titolo di elemento di garanzia retributiva, i cui importi: • sono assorbiti, fino a concorrenza, da eventuali erogazioni svolgenti funzione analoga agli istituti di cui sopra. • sono erogati per 12 mensilità e sono comprensivi dell’incidenza su tutti gli istituti contrattuali e di legge, compreso il T.F.R. [...] 3° 26,49 30,10 42,14"
+            },
+            "transformation": "Level 3: 26.49 from 1 January 2011, 30.10 from 1 November 2023, 42.14 from 1 January 2027 (columns 'dal 1.1.2011 al 31.10.2023', 'dal 1.11.2023', 'dal 1.1.2027'), on 12 monthly payments, out of the TFR base as its amount already holds the TFR. Owed only where the firm pays no premio per obiettivi (EmployerProfile.second_level_premium false); a payment with the same function absorbs it, and the caller then states second_level_premium true. Read in the text layer of the circular, a communication of the employer association.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T16:54:44Z",
+              "effective_from": "2011-01-01",
+              "verification_status": "unverified"
             }
           }
         }
@@ -999,6 +1182,55 @@
               "effective_from": "2020-01-01"
             }
           }
+        },
+        {
+          "code": "EGR",
+          "description": "Elemento di garanzia retributiva, paid by the firms that pay no premio per obiettivi, on 12 months",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2011-01-01",
+                "valid_until": "2023-11-01",
+                "value": "23.28"
+              },
+              {
+                "valid_from": "2023-11-01",
+                "valid_until": "2027-01-01",
+                "value": "26.46"
+              },
+              {
+                "valid_from": "2027-01-01",
+                "valid_until": null,
+                "value": "37.04"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "tfr_relevant": false,
+          "replaced_by": "second_level_premium",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "unionalimentari-circolare-2025-05-28",
+                "title": "Unionalimentari Confapi, circolare illustrativa dell'accordo di rinnovo del 28 maggio 2025",
+                "kind": "associazione",
+                "url": "https://www.unionalimentari.com/wp-content/uploads/2025/06/Circolare-illustrativa-accordo-28-maggio-2025.pdf",
+                "sha256": "85fbb0242738a0d34e7549a302c9c4002b5ff257146b3c3aeee10b8a945b7ba6"
+              },
+              "page": "8",
+              "section": "Elemento di garanzia retributiva",
+              "quote": "Le imprese che non riescano ad individuare parametri da migliorare e/o obiettivi da raggiungere, in sostituzione del premio per obiettivi di cui sopra erogheranno gli importi di cui alla tabella allegata, a titolo di elemento di garanzia retributiva, i cui importi: • sono assorbiti, fino a concorrenza, da eventuali erogazioni svolgenti funzione analoga agli istituti di cui sopra. • sono erogati per 12 mensilità e sono comprensivi dell’incidenza su tutti gli istituti contrattuali e di legge, compreso il T.F.R. [...] 4° 23,28 26,46 37,04"
+            },
+            "transformation": "Level 4: 23.28 from 1 January 2011, 26.46 from 1 November 2023, 37.04 from 1 January 2027 (columns 'dal 1.1.2011 al 31.10.2023', 'dal 1.11.2023', 'dal 1.1.2027'), on 12 monthly payments, out of the TFR base as its amount already holds the TFR. Owed only where the firm pays no premio per obiettivi (EmployerProfile.second_level_premium false); a payment with the same function absorbs it, and the caller then states second_level_premium true. Read in the text layer of the circular, a communication of the employer association.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T16:54:44Z",
+              "effective_from": "2011-01-01",
+              "verification_status": "unverified"
+            }
+          }
         }
       ],
       "provenance": {
@@ -1134,6 +1366,55 @@
               "extraction_timestamp": "2026-09-07T15:03:36",
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
+            }
+          }
+        },
+        {
+          "code": "EGR",
+          "description": "Elemento di garanzia retributiva, paid by the firms that pay no premio per obiettivi, on 12 months",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2011-01-01",
+                "valid_until": "2023-11-01",
+                "value": "20.88"
+              },
+              {
+                "valid_from": "2023-11-01",
+                "valid_until": "2027-01-01",
+                "value": "23.73"
+              },
+              {
+                "valid_from": "2027-01-01",
+                "valid_until": null,
+                "value": "33.22"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "tfr_relevant": false,
+          "replaced_by": "second_level_premium",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "unionalimentari-circolare-2025-05-28",
+                "title": "Unionalimentari Confapi, circolare illustrativa dell'accordo di rinnovo del 28 maggio 2025",
+                "kind": "associazione",
+                "url": "https://www.unionalimentari.com/wp-content/uploads/2025/06/Circolare-illustrativa-accordo-28-maggio-2025.pdf",
+                "sha256": "85fbb0242738a0d34e7549a302c9c4002b5ff257146b3c3aeee10b8a945b7ba6"
+              },
+              "page": "8",
+              "section": "Elemento di garanzia retributiva",
+              "quote": "Le imprese che non riescano ad individuare parametri da migliorare e/o obiettivi da raggiungere, in sostituzione del premio per obiettivi di cui sopra erogheranno gli importi di cui alla tabella allegata, a titolo di elemento di garanzia retributiva, i cui importi: • sono assorbiti, fino a concorrenza, da eventuali erogazioni svolgenti funzione analoga agli istituti di cui sopra. • sono erogati per 12 mensilità e sono comprensivi dell’incidenza su tutti gli istituti contrattuali e di legge, compreso il T.F.R. [...] 5° 20,88 23,73 33,22"
+            },
+            "transformation": "Level 5: 20.88 from 1 January 2011, 23.73 from 1 November 2023, 33.22 from 1 January 2027 (columns 'dal 1.1.2011 al 31.10.2023', 'dal 1.11.2023', 'dal 1.1.2027'), on 12 monthly payments, out of the TFR base as its amount already holds the TFR. Owed only where the firm pays no premio per obiettivi (EmployerProfile.second_level_premium false); a payment with the same function absorbs it, and the caller then states second_level_premium true. Read in the text layer of the circular, a communication of the employer association.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T16:54:44Z",
+              "effective_from": "2011-01-01",
+              "verification_status": "unverified"
             }
           }
         }
@@ -1273,6 +1554,55 @@
               "effective_from": "2020-01-01"
             }
           }
+        },
+        {
+          "code": "EGR",
+          "description": "Elemento di garanzia retributiva, paid by the firms that pay no premio per obiettivi, on 12 months",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2011-01-01",
+                "valid_until": "2023-11-01",
+                "value": "19.27"
+              },
+              {
+                "valid_from": "2023-11-01",
+                "valid_until": "2027-01-01",
+                "value": "21.90"
+              },
+              {
+                "valid_from": "2027-01-01",
+                "valid_until": null,
+                "value": "30.66"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "tfr_relevant": false,
+          "replaced_by": "second_level_premium",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "unionalimentari-circolare-2025-05-28",
+                "title": "Unionalimentari Confapi, circolare illustrativa dell'accordo di rinnovo del 28 maggio 2025",
+                "kind": "associazione",
+                "url": "https://www.unionalimentari.com/wp-content/uploads/2025/06/Circolare-illustrativa-accordo-28-maggio-2025.pdf",
+                "sha256": "85fbb0242738a0d34e7549a302c9c4002b5ff257146b3c3aeee10b8a945b7ba6"
+              },
+              "page": "8",
+              "section": "Elemento di garanzia retributiva",
+              "quote": "Le imprese che non riescano ad individuare parametri da migliorare e/o obiettivi da raggiungere, in sostituzione del premio per obiettivi di cui sopra erogheranno gli importi di cui alla tabella allegata, a titolo di elemento di garanzia retributiva, i cui importi: • sono assorbiti, fino a concorrenza, da eventuali erogazioni svolgenti funzione analoga agli istituti di cui sopra. • sono erogati per 12 mensilità e sono comprensivi dell’incidenza su tutti gli istituti contrattuali e di legge, compreso il T.F.R. [...] 6° 19,27 21,90 30,66"
+            },
+            "transformation": "Level 6: 19.27 from 1 January 2011, 21.90 from 1 November 2023, 30.66 from 1 January 2027 (columns 'dal 1.1.2011 al 31.10.2023', 'dal 1.11.2023', 'dal 1.1.2027'), on 12 monthly payments, out of the TFR base as its amount already holds the TFR. Owed only where the firm pays no premio per obiettivi (EmployerProfile.second_level_premium false); a payment with the same function absorbs it, and the caller then states second_level_premium true. Read in the text layer of the circular, a communication of the employer association.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T16:54:44Z",
+              "effective_from": "2011-01-01",
+              "verification_status": "unverified"
+            }
+          }
         }
       ],
       "provenance": {
@@ -1408,6 +1738,55 @@
               "extraction_timestamp": "2026-09-07T15:03:36",
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
+            }
+          }
+        },
+        {
+          "code": "EGR",
+          "description": "Elemento di garanzia retributiva, paid by the firms that pay no premio per obiettivi, on 12 months",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2011-01-01",
+                "valid_until": "2023-11-01",
+                "value": "17.66"
+              },
+              {
+                "valid_from": "2023-11-01",
+                "valid_until": "2027-01-01",
+                "value": "20.07"
+              },
+              {
+                "valid_from": "2027-01-01",
+                "valid_until": null,
+                "value": "28.10"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "tfr_relevant": false,
+          "replaced_by": "second_level_premium",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "unionalimentari-circolare-2025-05-28",
+                "title": "Unionalimentari Confapi, circolare illustrativa dell'accordo di rinnovo del 28 maggio 2025",
+                "kind": "associazione",
+                "url": "https://www.unionalimentari.com/wp-content/uploads/2025/06/Circolare-illustrativa-accordo-28-maggio-2025.pdf",
+                "sha256": "85fbb0242738a0d34e7549a302c9c4002b5ff257146b3c3aeee10b8a945b7ba6"
+              },
+              "page": "8",
+              "section": "Elemento di garanzia retributiva",
+              "quote": "Le imprese che non riescano ad individuare parametri da migliorare e/o obiettivi da raggiungere, in sostituzione del premio per obiettivi di cui sopra erogheranno gli importi di cui alla tabella allegata, a titolo di elemento di garanzia retributiva, i cui importi: • sono assorbiti, fino a concorrenza, da eventuali erogazioni svolgenti funzione analoga agli istituti di cui sopra. • sono erogati per 12 mensilità e sono comprensivi dell’incidenza su tutti gli istituti contrattuali e di legge, compreso il T.F.R. [...] 7° 17,66 20,07 28,10"
+            },
+            "transformation": "Level 7: 17.66 from 1 January 2011, 20.07 from 1 November 2023, 28.10 from 1 January 2027 (columns 'dal 1.1.2011 al 31.10.2023', 'dal 1.11.2023', 'dal 1.1.2027'), on 12 monthly payments, out of the TFR base as its amount already holds the TFR. Owed only where the firm pays no premio per obiettivi (EmployerProfile.second_level_premium false); a payment with the same function absorbs it, and the caller then states second_level_premium true. Read in the text layer of the circular, a communication of the employer association.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T16:54:44Z",
+              "effective_from": "2011-01-01",
+              "verification_status": "unverified"
             }
           }
         }
@@ -1547,6 +1926,55 @@
               "effective_from": "2020-01-01"
             }
           }
+        },
+        {
+          "code": "EGR",
+          "description": "Elemento di garanzia retributiva, paid by the firms that pay no premio per obiettivi, on 12 months",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2011-01-01",
+                "valid_until": "2023-11-01",
+                "value": "16.06"
+              },
+              {
+                "valid_from": "2023-11-01",
+                "valid_until": "2027-01-01",
+                "value": "18.25"
+              },
+              {
+                "valid_from": "2027-01-01",
+                "valid_until": null,
+                "value": "25.55"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "tfr_relevant": false,
+          "replaced_by": "second_level_premium",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "unionalimentari-circolare-2025-05-28",
+                "title": "Unionalimentari Confapi, circolare illustrativa dell'accordo di rinnovo del 28 maggio 2025",
+                "kind": "associazione",
+                "url": "https://www.unionalimentari.com/wp-content/uploads/2025/06/Circolare-illustrativa-accordo-28-maggio-2025.pdf",
+                "sha256": "85fbb0242738a0d34e7549a302c9c4002b5ff257146b3c3aeee10b8a945b7ba6"
+              },
+              "page": "8",
+              "section": "Elemento di garanzia retributiva",
+              "quote": "Le imprese che non riescano ad individuare parametri da migliorare e/o obiettivi da raggiungere, in sostituzione del premio per obiettivi di cui sopra erogheranno gli importi di cui alla tabella allegata, a titolo di elemento di garanzia retributiva, i cui importi: • sono assorbiti, fino a concorrenza, da eventuali erogazioni svolgenti funzione analoga agli istituti di cui sopra. • sono erogati per 12 mensilità e sono comprensivi dell’incidenza su tutti gli istituti contrattuali e di legge, compreso il T.F.R. [...] 8° 16,06 18,25 25,55"
+            },
+            "transformation": "Level 8: 16.06 from 1 January 2011, 18.25 from 1 November 2023, 25.55 from 1 January 2027 (columns 'dal 1.1.2011 al 31.10.2023', 'dal 1.11.2023', 'dal 1.1.2027'), on 12 monthly payments, out of the TFR base as its amount already holds the TFR. Owed only where the firm pays no premio per obiettivi (EmployerProfile.second_level_premium false); a payment with the same function absorbs it, and the caller then states second_level_premium true. Read in the text layer of the circular, a communication of the employer association.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T16:54:44Z",
+              "effective_from": "2011-01-01",
+              "verification_status": "unverified"
+            }
+          }
         }
       ],
       "provenance": {
@@ -1576,7 +2004,7 @@
     "effective_until": null,
     "source": "https://www.unionalimentari.com/",
     "verification_status": "unverified",
-    "source_hash": "9e5e26ac8b25b468ee50ae4bf24c7dad3868ffc3265813f1576f26ce04340fe2",
+    "source_hash": "baf0dd84e2545507de472722ab2e7de4218fcf4831ad64a30f8f4612fd36e8ce",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
