@@ -3,11 +3,11 @@
 
 # CCNL Coverage
 
-**6 production, 17 reviewed, 111 exploratory.**
+**6 production, 17 reviewed, 112 exploratory.**
 Only a `production` contract is paid in `operational` mode; the others
 are for simulation (see [Readiness](../trust/readiness.md)).
 
-134 bundled contract configurations in all, private and public sector,
+135 bundled contract configurations in all, private and public sector,
 including ARAN public-sector agreements and one Presidential Decree
 (DPR 53/2025[^2]). The table is generated from the data: search it, or use
 `search_ccnls()` from Python.
@@ -225,30 +225,31 @@ on unverified sources, or be well sourced and not cleared for production.
 | 108 | I911 | [CCNL Trasporto a Fune (Funivie Terrestri ed Aeree) - ANEF](funivie-anef.md) | Trasporto a fune | ~15k | 2025 | ⚠️ | base_salary, seniority | 0 / 47 / 1 / 1 | 🧪 | 🤖 |
 | 109 | H058 | [CCNL Turismo (Assoturismo-Confesercenti)](turismo-confesercenti.md) | turismo — alberghi, campeggi, pubblici esercizi, agenzie di viaggi | — | 2024 | ⚠️ | base_salary, seniority, trattamento_integrativo | 0 / 57 / 1 / 0 | 🧪 | 🤖 |
 | 110 | H052 | [CCNL Turismo — Federalberghi/Faita](turismo-federalberghi.md) | Turismo | ~220k | 2024 | ⚠️ | base_salary, leave, seniority, sickness, trattamento_integrativo | 78 / 1 / 0 / 0 | 🏭 | 🤖✓ |
-| 111 | B132 | [CCNL Vetro (Industrie) — Settori Meccanizzati (Prime Lavorazioni)](vetro-meccanizzato-assovetro.md) | vetro industria — settori meccanizzati | ~28k | 2026 | ⚠️ | base_salary, seniority | 0 / 0 / 35 / 1 | 🧪 | 🔍 |
-| 112 | HV17 | [CCNL Vigilanza Privata e Servizi Fiduciari FEDERDAT — GPG](vigilanza-privata-federdat-gpg.md) | vigilanza privata — guardie particolari giurate (GPG) | ~45k | 2023 | ⚠️ | seniority | 0 / 48 / 1 / 1 | 🧪 | 🤖 |
-| 113 | HV17 | [CCNL Vigilanza Privata e Servizi Fiduciari FEDERDAT — SF](vigilanza-privata-federdat-sf.md) | vigilanza privata — servizi fiduciari (SF) | ~40k | 2023 | ⚠️ | seniority | 0 / 46 / 2 / 1 | 🧪 | 🤖 |
-| 114 | H0B1 | [CCNL per i dipendenti da agenti immobiliari professionali e mandatari a titolo oneroso](agenti-immobiliari-fiaip.md) | agenzie immobiliari | — | 2025 | ⚠️ | base_salary, bilateral_funds, pension_fund_contribution, seniority | 29 / 1 / 2 / 0 | 🧪 | 🤖 |
-| 115 | IC91 | [CCNL per i dipendenti da autoscuole, scuole nautiche e studi di consulenza automobilistica](autoscuole-unasca.md) | autoscuole e consulenza automobilistica | — | 2023 | ⚠️ | seniority | 1 / 32 / 1 / 0 | 🧪 | 🤖 |
-| 116 | H05Y | [CCNL per i dipendenti da aziende dei settori Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo](pubblici-esercizi-fipe-angem.md) | turismo | ~350k | — | ⚠️ | base_salary, leave, overtime, seniority, sickness, trattamento_integrativo | 68 / 4 / 0 / 0 | 🏭 | 🤖✓ |
-| 117 | H05Y | [CCNL per i dipendenti da aziende dei settori Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo - Ristorazione collettiva (aziende dell'art. 1 c. 1 par. II)](pubblici-esercizi-fipe-angem-ristorazione-collettiva.md) | turismo | ~350k | — | ⚠️ | base_salary, bilateral_funds, overtime, seniority, trattamento_integrativo | 62 / 6 / 0 / 0 | 🏭 | 🤖✓ |
-| 118 | E042 | [CCNL per i dipendenti dalle aziende di lavorazione della foglia di tabacco secco allo stato sciolto](tabacco-apti.md) | lavorazione foglia di tabacco | ~2k | 2025 | ⚠️ | pension_fund_contribution, seniority | 37 / 0 / 22 / 0 | 🧪 | 🔍 |
-| 119 | H442 | [CCNL per i dipendenti degli studi e delle attività professionali (Confprofessioni)](studi-professionali-confprofessioni.md) | terziario | ~350k | — | ⚠️ | base_salary, leave, overtime, seniority, sickness | 53 / 1 / 0 / 0 | 👁 | 🤖✓ |
-| 120 | K521 | [CCNL per i dipendenti delle imprese artigiane esercenti servizi di pulizia, disinfezione, disinfestazione, derattizzazione e sanificazione](pulizia-artigianato-confartigianato.md) | pulizia artigianato | ~84505 | 2025 | ⚠️ | base_salary, bilateral_funds, holiday_work, inps_employer, leave, night_work, overtime, seniority | 58 / 7 / 29 / 0 | 🧪 | 🤖 |
-| 121 | D121 | [CCNL per i lavoratori addetti all'industria delle calzature](calzaturiero-assocalzaturifici.md) | industria | ~75k | — | ⚠️ | seniority | 0 / 38 / 1 / 1 | 🧪 | 🤖 |
-| 122 | C021 | [CCNL per i lavoratori addetti all'industria orafa, argentiera e della gioielleria (Federorafi)](orafi-argentieri-industria-federorafi.md) | industria | ~18k | — | ⚠️ | seniority | 25 / 40 / 1 / 0 | 🧪 | 🤖 |
-| 123 | D111 | [CCNL per i lavoratori addetti alle industrie delle pelli e dei succedanei della pelle (Assopellettieri)](pelli-cuoio-industria-assopellettieri.md) | industria | ~17k | — | ⚠️ | base_salary, seniority | 0 / 35 / 1 / 1 | 🧪 | 🤖 |
-| 124 | E012 | [CCNL per i lavoratori dell'industria alimentare (Federalimentare)](alimentari-federalimentare.md) | industria | ~145k | — | ⚠️ | base_salary, bilateral_funds, overtime, sickness | 153 / 0 / 0 / 0 | 👁 | 🤖✓ |
-| 125 | B101 | [CCNL per i lavoratori dell'industria conciaria (UNIC)](concia-unic.md) | industria | ~22.6k | — | ⚠️ | leave, overtime, seniority | 57 / 1 / 0 / 0 | 👁 | 🤖✓ |
-| 126 | F051 | [CCNL per i lavoratori dell'industria del legno, del sughero, del mobile, dell'arredamento e delle industrie affini (Federlegno-Arredo)](legno-arredamento-federlegno.md) | industria | ~90k | — | ⚠️ | base_salary, seniority | 1 / 88 / 1 / 0 | 🧪 | 🤖 |
-| 127 | D014 | [CCNL per i lavoratori dell'industria tessile, abbigliamento, moda (SMI)](tessile-smi.md) | industria | ~160k | — | ⚠️ | base_salary, seniority | 0 / 47 / 1 / 1 | 🧪 | 🤖 |
-| 128 | J271 | [CCNL per i lavoratori delle Banche di Credito Cooperativo, Casse Rurali ed Artigiane](bcc-credito-cooperativo.md) | credito | ~33k | — | ⚠️ | base_salary, inps_employer, seniority | 36 / 7 / 0 / 0 | 🧪 | 🤖 |
-| 129 | K051 | [CCNL per i lavoratori delle imprese produttrici, distributrici di energia elettrica (Elettricita Futura)](elettrico-elettricita-futura.md) | industria | ~60k | — | ⚠️ | seniority | 57 / 21 / 1 / 0 | 🧪 | 🤖 |
-| 130 | J241 | [CCNL per i lavoratori dipendenti dalle aziende di credito (ABI)](bancari-abi.md) | credito | ~270k | 2023 | ⚠️ | base_salary, inps_employer, overtime, seniority, sickness | 43 / 2 / 0 / 0 | 🧪 | 🤖 |
-| 131 | K461 | [CCNL per i lavoratori dipendenti delle aziende termali](aziende-termali-federterme.md) | turismo termale | — | — | ⚠️ | base_salary, bilateral_funds, inps_employer, seniority, trattamento_integrativo | 0 / 65 / 1 / 0 | 🧪 | 🤖 |
-| 132 | J121 | [CCNL per il personale dipendente non dirigente delle imprese di assicurazione (ANIA)](assicurazioni-ania.md) | assicurazioni | ~45k | 2026 | ⚠️ | base_salary, inps_employer, seniority | 0 / 30 / 1 / 1 | 🧪 | 🤖 |
-| 133 | N/A | [DPR 24 marzo 2025, n. 53 — Forze di Polizia ad ordinamento civile (Triennio 2022-2024)](forze-polizia-ordinamento-civile.md) | Pubblica Sicurezza — Forze di Polizia ad ordinamento civile | ~130k | 2025 | ⚠️ | base_salary, seniority | 0 / 70 / 1 / 1 | 🧪 | 🤖 |
-| 134 | H008 | [Distribuzione Moderna Organizzata — Federdistribuzione](dmo-federdistribuzione.md) | terziario | ~460k | — | ⚠️ | base_salary, bilateral_funds, overtime, seniority, sickness, territorial_supplement | 88 / 3 / 0 / 0 | 👁 | 🤖✓ |
+| 111 | H052 | [CCNL Turismo — Federalberghi/Faita - Alberghi a una e due stelle e campeggi minori](turismo-federalberghi-alberghi-minori.md) | Turismo | ~220k | 2024 | ⚠️ | base_salary, leave, seniority, sickness, trattamento_integrativo | 18 / 51 / 0 / 0 | 🧪 | 🤖 |
+| 112 | B132 | [CCNL Vetro (Industrie) — Settori Meccanizzati (Prime Lavorazioni)](vetro-meccanizzato-assovetro.md) | vetro industria — settori meccanizzati | ~28k | 2026 | ⚠️ | base_salary, seniority | 0 / 0 / 35 / 1 | 🧪 | 🔍 |
+| 113 | HV17 | [CCNL Vigilanza Privata e Servizi Fiduciari FEDERDAT — GPG](vigilanza-privata-federdat-gpg.md) | vigilanza privata — guardie particolari giurate (GPG) | ~45k | 2023 | ⚠️ | seniority | 0 / 48 / 1 / 1 | 🧪 | 🤖 |
+| 114 | HV17 | [CCNL Vigilanza Privata e Servizi Fiduciari FEDERDAT — SF](vigilanza-privata-federdat-sf.md) | vigilanza privata — servizi fiduciari (SF) | ~40k | 2023 | ⚠️ | seniority | 0 / 46 / 2 / 1 | 🧪 | 🤖 |
+| 115 | H0B1 | [CCNL per i dipendenti da agenti immobiliari professionali e mandatari a titolo oneroso](agenti-immobiliari-fiaip.md) | agenzie immobiliari | — | 2025 | ⚠️ | base_salary, bilateral_funds, pension_fund_contribution, seniority | 29 / 1 / 2 / 0 | 🧪 | 🤖 |
+| 116 | IC91 | [CCNL per i dipendenti da autoscuole, scuole nautiche e studi di consulenza automobilistica](autoscuole-unasca.md) | autoscuole e consulenza automobilistica | — | 2023 | ⚠️ | seniority | 1 / 32 / 1 / 0 | 🧪 | 🤖 |
+| 117 | H05Y | [CCNL per i dipendenti da aziende dei settori Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo](pubblici-esercizi-fipe-angem.md) | turismo | ~350k | — | ⚠️ | base_salary, leave, overtime, seniority, sickness, trattamento_integrativo | 68 / 4 / 0 / 0 | 🏭 | 🤖✓ |
+| 118 | H05Y | [CCNL per i dipendenti da aziende dei settori Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo - Ristorazione collettiva (aziende dell'art. 1 c. 1 par. II)](pubblici-esercizi-fipe-angem-ristorazione-collettiva.md) | turismo | ~350k | — | ⚠️ | base_salary, bilateral_funds, overtime, seniority, trattamento_integrativo | 62 / 6 / 0 / 0 | 🏭 | 🤖✓ |
+| 119 | E042 | [CCNL per i dipendenti dalle aziende di lavorazione della foglia di tabacco secco allo stato sciolto](tabacco-apti.md) | lavorazione foglia di tabacco | ~2k | 2025 | ⚠️ | pension_fund_contribution, seniority | 37 / 0 / 22 / 0 | 🧪 | 🔍 |
+| 120 | H442 | [CCNL per i dipendenti degli studi e delle attività professionali (Confprofessioni)](studi-professionali-confprofessioni.md) | terziario | ~350k | — | ⚠️ | base_salary, leave, overtime, seniority, sickness | 53 / 1 / 0 / 0 | 👁 | 🤖✓ |
+| 121 | K521 | [CCNL per i dipendenti delle imprese artigiane esercenti servizi di pulizia, disinfezione, disinfestazione, derattizzazione e sanificazione](pulizia-artigianato-confartigianato.md) | pulizia artigianato | ~84505 | 2025 | ⚠️ | base_salary, bilateral_funds, holiday_work, inps_employer, leave, night_work, overtime, seniority | 58 / 7 / 29 / 0 | 🧪 | 🤖 |
+| 122 | D121 | [CCNL per i lavoratori addetti all'industria delle calzature](calzaturiero-assocalzaturifici.md) | industria | ~75k | — | ⚠️ | seniority | 0 / 38 / 1 / 1 | 🧪 | 🤖 |
+| 123 | C021 | [CCNL per i lavoratori addetti all'industria orafa, argentiera e della gioielleria (Federorafi)](orafi-argentieri-industria-federorafi.md) | industria | ~18k | — | ⚠️ | seniority | 25 / 40 / 1 / 0 | 🧪 | 🤖 |
+| 124 | D111 | [CCNL per i lavoratori addetti alle industrie delle pelli e dei succedanei della pelle (Assopellettieri)](pelli-cuoio-industria-assopellettieri.md) | industria | ~17k | — | ⚠️ | base_salary, seniority | 0 / 35 / 1 / 1 | 🧪 | 🤖 |
+| 125 | E012 | [CCNL per i lavoratori dell'industria alimentare (Federalimentare)](alimentari-federalimentare.md) | industria | ~145k | — | ⚠️ | base_salary, bilateral_funds, overtime, sickness | 153 / 0 / 0 / 0 | 👁 | 🤖✓ |
+| 126 | B101 | [CCNL per i lavoratori dell'industria conciaria (UNIC)](concia-unic.md) | industria | ~22.6k | — | ⚠️ | leave, overtime, seniority | 57 / 1 / 0 / 0 | 👁 | 🤖✓ |
+| 127 | F051 | [CCNL per i lavoratori dell'industria del legno, del sughero, del mobile, dell'arredamento e delle industrie affini (Federlegno-Arredo)](legno-arredamento-federlegno.md) | industria | ~90k | — | ⚠️ | base_salary, seniority | 1 / 88 / 1 / 0 | 🧪 | 🤖 |
+| 128 | D014 | [CCNL per i lavoratori dell'industria tessile, abbigliamento, moda (SMI)](tessile-smi.md) | industria | ~160k | — | ⚠️ | base_salary, seniority | 0 / 47 / 1 / 1 | 🧪 | 🤖 |
+| 129 | J271 | [CCNL per i lavoratori delle Banche di Credito Cooperativo, Casse Rurali ed Artigiane](bcc-credito-cooperativo.md) | credito | ~33k | — | ⚠️ | base_salary, inps_employer, seniority | 36 / 7 / 0 / 0 | 🧪 | 🤖 |
+| 130 | K051 | [CCNL per i lavoratori delle imprese produttrici, distributrici di energia elettrica (Elettricita Futura)](elettrico-elettricita-futura.md) | industria | ~60k | — | ⚠️ | seniority | 57 / 21 / 1 / 0 | 🧪 | 🤖 |
+| 131 | J241 | [CCNL per i lavoratori dipendenti dalle aziende di credito (ABI)](bancari-abi.md) | credito | ~270k | 2023 | ⚠️ | base_salary, inps_employer, overtime, seniority, sickness | 43 / 2 / 0 / 0 | 🧪 | 🤖 |
+| 132 | K461 | [CCNL per i lavoratori dipendenti delle aziende termali](aziende-termali-federterme.md) | turismo termale | — | — | ⚠️ | base_salary, bilateral_funds, inps_employer, seniority, trattamento_integrativo | 0 / 65 / 1 / 0 | 🧪 | 🤖 |
+| 133 | J121 | [CCNL per il personale dipendente non dirigente delle imprese di assicurazione (ANIA)](assicurazioni-ania.md) | assicurazioni | ~45k | 2026 | ⚠️ | base_salary, inps_employer, seniority | 0 / 30 / 1 / 1 | 🧪 | 🤖 |
+| 134 | N/A | [DPR 24 marzo 2025, n. 53 — Forze di Polizia ad ordinamento civile (Triennio 2022-2024)](forze-polizia-ordinamento-civile.md) | Pubblica Sicurezza — Forze di Polizia ad ordinamento civile | ~130k | 2025 | ⚠️ | base_salary, seniority | 0 / 70 / 1 / 1 | 🧪 | 🤖 |
+| 135 | H008 | [Distribuzione Moderna Organizzata — Federdistribuzione](dmo-federdistribuzione.md) | terziario | ~460k | — | ⚠️ | base_salary, bilateral_funds, overtime, seniority, sickness, territorial_supplement | 88 / 3 / 0 / 0 | 👁 | 🤖✓ |
 
 [^2]: DPR 53/2025 -- Compensation for Forze di Polizia ad ordinamento civile is set by Presidential Decree, not a CNEL-registered agreement. D.P.R. 24 marzo 2025, n. 53 (GU n. 91, 18 April 2025, SO).
 [^3]: Approximate estimates of the represented population. Contracts can cover overlapping populations, so the figures do not add up. Sources: CNEL, INPS, Ministero del Lavoro, CCNL renewal communications.

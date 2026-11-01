@@ -14,7 +14,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 0/134 CCNLs.** Bundle: 269 weak rules, 538 open limitations (538 with a monetary impact).
+**Complete: 0/135 CCNLs.** Bundle: 269 weak rules, 549 open limitations (549 with a monetary impact).
 
 ## Declared window
 
@@ -175,7 +175,8 @@ Future data, registered apart from the gaps: a contract whose validity ends insi
 | [trasporto-aereo-assaeroporti](../contracts/trasporto-aereo-assaeroporti.md) | `trasporti-logistica` | exploratory | — | 27 rows | 27 open requirements; 1 weak rule; 23 monetary limitations; 1 outside_input limitation; 21 non-native capabilities |
 | [trasporto-ferroviario-agens](../contracts/trasporto-ferroviario-agens.md) | `trasporti-logistica` | exploratory | 2026-12-31 | 25 rows | 25 open requirements; 1 weak rule; 22 monetary limitations; 21 non-native capabilities |
 | [turismo-confesercenti](../contracts/turismo-confesercenti.md) | `turismo` | exploratory | — | 26 rows | 26 open requirements; 1 weak rule; 21 monetary limitations; 2 outside_input limitations; 21 non-native capabilities |
-| [turismo-federalberghi](../contracts/turismo-federalberghi.md) | `turismo` | production | — | 33 rows | 33 open requirements; 21 monetary limitations; 10 outside_input limitations; 23 non-native capabilities |
+| [turismo-federalberghi](../contracts/turismo-federalberghi.md) | `turismo` | production | — | 32 rows | 32 open requirements; 21 monetary limitations; 9 outside_input limitations; 23 non-native capabilities |
+| [turismo-federalberghi-alberghi-minori](../contracts/turismo-federalberghi-alberghi-minori.md) | `turismo` | exploratory | — | 32 rows | 32 open requirements; 21 monetary limitations; 9 outside_input limitations; 23 non-native capabilities |
 | [uneba-uneba](../contracts/uneba-uneba.md) | `socio-sanitario` | exploratory | — | 24 rows | 24 open requirements; 1 weak rule; 20 monetary limitations; 1 outside_input limitation; 20 non-native capabilities |
 | [universita-aran](../contracts/universita-aran.md) | `pubblico-impiego` | exploratory | — | 26 rows | 26 open requirements; 5 weak rules; 18 monetary limitations; 1 outside_input limitation; 19 non-native capabilities |
 | [universita-tecnologi-aran](../contracts/universita-tecnologi-aran.md) | `pubblico-impiego` | exploratory | — | 23 rows | tables from 2026-03-01; 23 open requirements; 1 weak rule; 19 monetary limitations; 1 outside_input limitation; 20 non-native capabilities |

@@ -1,0 +1,518 @@
+{
+  "schema_version": 1,
+  "ccnl_id": "turismo-federalberghi-alberghi-minori",
+  "requirements": [
+    {
+      "id": "apprentice_net_cap",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Art. 58 c. 3: the net cap of the apprentice pay.",
+      "calculation": "ccnl/turismo-federalberghi-alberghi-minori:coverage.notes",
+      "state": "absent",
+      "remediation": "Cap the apprentice net pay.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "turismo-federalberghi-alberghi-minori/apprentice_net_cap"
+        ]
+      }
+    },
+    {
+      "id": "apprentice_seniority",
+      "institute": "seniority",
+      "variant": "apprentice",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "APPRENTICE SENIORITY: art. 158 c.1 (2010 text, p. 140) grants the six scatti 'a tutto il personale' and art. 58 pays the apprentice a percentage of the normale retribuzione of the qualified worker, which art. 148 defines with the scatti: apprentices accrue the level amount. The engine pays no increment during the apprenticeship; the run is affected when the apprentice has matured increments.",
+      "calculation": "ccnl/turismo-federalberghi-alberghi-minori:coverage.notes",
+      "state": "unverified",
+      "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "turismo-federalberghi-alberghi-minori/apprentice_seniority"
+        ]
+      }
+    },
+    {
+      "id": "apprenticeship_durations_unsourced",
+      "institute": "base_salary",
+      "variant": "apprentice",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "APPRENTICESHIP DURATIONS: the durations of the professionalizzante come from the accord of 17 April 2012 as amended in 2014, of which no signed or CNEL copy was found (only aggregator copies); the percentages of art. 58 are verified. Every apprentice run carries this limitation.",
+      "calculation": "ccnl/turismo-federalberghi-alberghi-minori:coverage.notes",
+      "state": "absent",
+      "remediation": "Read a signed copy of the accord of 17 April 2012 and its 2014 amendment.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "turismo-federalberghi-alberghi-minori/apprenticeship_durations_unsourced"
+        ]
+      }
+    },
+    {
+      "id": "arrears_unused_deductions",
+      "institute": "contract_renewal_arrears",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "The engine computes the rate of the separate taxation of arrears from PriorYearTaxFacts.net_income_biennio (art. 21 cc. 1, 3 TUIR) but does not reduce the tax by the deductions of artt. 12 and 13 cc. 1-2 the worker did not use in the years the arrears refer to (art. 21 c. 4): the request does not state them, so the tax may be overstated.",
+      "calculation": "ccnl_engine.variable_pay.arrears.handlers._handle_arrears; art. 21 TUIR (Normattiva, text in force from 31-12-2024 to 31-12-2026, page sha256 9638f2c5aec6e3615193a672b6d07c3cd31083640b1c890b73022aa9951745f1)",
+      "state": "absent",
+      "remediation": "Add the deductions the worker declares as unused for each year of the arrears and reduce the tax by them, then resolve this limitation.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "arrears_unused_deductions"
+        ]
+      }
+    },
+    {
+      "id": "balneari_reduction_hours",
+      "institute": "leave",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "LEAVE, STABILIMENTI BALNEARI (Art. 111 c.2): 108 hours of reduction a year instead of 104. The engine accrues the 104 hours of alberghi, pubblici esercizi, campeggi, alberghi diurni and agenzie di viaggi.",
+      "calculation": "ccnl/turismo-federalberghi-alberghi-minori:coverage.notes",
+      "state": "absent",
+      "remediation": "Add an employer fact for the comparto and accrue 108 hours for the stabilimenti balneari.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "turismo-federalberghi-alberghi-minori/balneari_reduction_hours"
+        ]
+      }
+    },
+    {
+      "id": "disability_permit_tfr",
+      "institute": "disability_permits",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "The days of permit under L. 104/1992 art. 33 c. 3 keep the TFR base, as payroll practice holds; art. 2120 c. 3 c.c. keeps in the TFR base only the absences of art. 2110 c.c. and the wage integration, and no primary source read says the permits are among them, so the TFR quota of a month with permits may be overstated.",
+      "calculation": "ccnl_engine.absence.insured.permit.handlers._handle_disability_permit; D.Lgs. 151/2001 artt. 43-44 (Normattiva, text in force on 2026-10-30, page sha256 6bd9b8071e8c852ec96f3cdfdd2ee236d75a9bbb9ea0ef5d058d9315dd9c7888); art. 2120 c. 3 c.c.",
+      "state": "unverified",
+      "remediation": "Source the TFR treatment of the permit days (an INPS or Ministry ruling, or case law of the Cassazione) and apply it, then resolve this limitation.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "disability_permit_tfr"
+        ]
+      }
+    },
+    {
+      "id": "extra_months_during_leave",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Artt. 160 c. 4 and 161 c. 6: the ratei of the tredicesima and quattordicesima during maternity, paternity and parental leave. The caller can suspend the accrual of an absence (AbsenceEvent.suspends_accrual); the engine does not apply the CCNL rule itself (review of 2026-10-30).",
+      "calculation": "ccnl/turismo-federalberghi-alberghi-minori:coverage.notes",
+      "state": "absent",
+      "remediation": "Accrue the ratei during the leaves.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "turismo-federalberghi-alberghi-minori/extra_months_during_leave"
+        ]
+      }
+    },
+    {
+      "id": "extraordinary_leave_daily_base",
+      "institute": "extraordinary_leave",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "The daily indemnity of the extraordinary leave is the last monthly pay of fixed and continuous items times the monthly payments of a year, over 365 days (366 in a leap year), as INPS circ. 64/2001 par. 4 sets for a month worked full time. For a vertical part time the circular divides the pay of the month by its paid days, rest days included, which the request does not state: the engine applies the full-time measure, so the indemnity of a vertical or mixed part time may be misstated.",
+      "calculation": "ccnl_engine.absence.insured.extraordinary.handlers._handle_extraordinary_leave; INPS circ. 64/2001 par. 4 ('la retribuzione del mese preso a riferimento (comprensiva della quota parte di tredicesima mensilità, ecc.), se il mese è lavorato a tempo pieno, va moltiplicata per 12 e divisa per 365 giorni (366 se le assenze cadono in un anno bisestile) [...] Se invece nel mese preso a riferimento l'attività è stata svolta in regime di contratto di lavoro a part time verticale, la retribuzione percepita nel mese stesso va divisa per il numero dei giorni retribuiti, compresi quelli festivi o comunque di riposo'; INPS content fragment sha256 de3751ac274d81141df627d3c95b220fbf6bcbafed78fefa4f94871a755c427e); D.Lgs. 151/2001 art. 42 c. 5-ter",
+      "state": "unverified",
+      "remediation": "Take the paid days of the month before the leave of a vertical or mixed part time as a fact of the leave and divide its pay by them, then resolve this limitation.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "extraordinary_leave_daily_base"
+        ]
+      }
+    },
+    {
+      "id": "extras_hourly_table",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Art. 155 c. 3, p. 44: the hourly table of the extra workers.",
+      "calculation": "ccnl/turismo-federalberghi-alberghi-minori:coverage.notes",
+      "state": "absent",
+      "remediation": "Add the extras hourly table.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "turismo-federalberghi-alberghi-minori/extras_hourly_table"
+        ]
+      }
+    },
+    {
+      "id": "first_scatto_from_18",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Art. 158 c. 2-3: the first scatto counted from age 18 and from the month after the triennium.",
+      "calculation": "ccnl/turismo-federalberghi-alberghi-minori:coverage.notes",
+      "state": "absent",
+      "remediation": "Count the first scatto from age 18.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "turismo-federalberghi-alberghi-minori/first_scatto_from_18"
+        ]
+      }
+    },
+    {
+      "id": "guarantee_element_2027",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Art. 13 c. 10, pp. 11-12: the elemento economico di garanzia paid with the November 2027 pay without an integrative agreement by 31 October 2026 (A and B 186, 1-3 158, 4-5 140, 6s-7 112).",
+      "calculation": "ccnl/turismo-federalberghi-alberghi-minori:coverage.notes",
+      "state": "absent",
+      "remediation": "Model the 2027 guarantee element as a conditional allowance.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "turismo-federalberghi-alberghi-minori/guarantee_element_2027"
+        ]
+      }
+    },
+    {
+      "id": "hires_2016_ramp",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Verbale of 30 November 2016: the lower ramp of the hires of 14 November 2016. The caller pays these amounts as variable items.",
+      "calculation": "ccnl/turismo-federalberghi-alberghi-minori:coverage.notes",
+      "state": "absent",
+      "remediation": "Model the 2016 ramp.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "turismo-federalberghi-alberghi-minori/hires_2016_ramp"
+        ]
+      }
+    },
+    {
+      "id": "maternity_daily_base",
+      "institute": "maternity_leave",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "The INPS maternity indemnity of an operaia, or of a leave whose month before was not worked in full, is computed on the pay of the run over 30 with the rateo of the extra months, not on the pay of the month before the leave: art. 23 c. 5 D.Lgs. 151/2001 divides the pay of an operaia by the days worked or paid (or by the hours, when fewer than the contract), and the divisor of her daily rateo of the 13th is not settled by a primary source. The base of another worker over a whole month is computed from MaternityLeaveEvent.maternity_base_pay.",
+      "calculation": "ccnl_engine.absence.insured.base.rules.leave_base; D.Lgs. 151/2001 art. 23 (Normattiva, text in force on 2026-10-30, page sha256 f5d5e1ff3028f8249597c78f9371063f0de7790676054b5f0207c974bc50bc04)",
+      "state": "unverified",
+      "remediation": "Source the daily rateo of an operaia (an INPS circular on art. 23 c. 5) and compute her base and that of a month not worked in full, then resolve this limitation.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "maternity_daily_base"
+        ]
+      }
+    },
+    {
+      "id": "mid_month_level_change",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "A promotion on a day other than the first of a month splits the monthly pay of the run between the level before and the new level by the payable days of the CCNL daily quota on each side of the promotion, component by component; the hourly quotas of the month (overtime, permits, absences) read the same split chain whatever the day of the event. The CCNL texts read (Commercio and Terziario art. 118, DMO art. 102) give the new level from the promotion but not how its month is split.",
+      "calculation": "ccnl_engine.compensation.change.rules.blended; CCNL Terziario Confcommercio art. 118 (Testo Unico 30 July 2019, sha256 76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016)",
+      "state": "unverified",
+      "remediation": "Source how a month is split by a promotion inside it (a CCNL clause or an INPS or Ministry ruling) and price the events of the month at the terms of their day, then resolve this limitation.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "mid_month_level_change"
+        ]
+      }
+    },
+    {
+      "id": "naspi_dismissal_exceptions",
+      "institute": "naspi_dismissal",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "The NASpI contribution of the end of an employment is read from the cause, the just cause and the contract type alone. The request states none of the cases that change it: a resignation in the protected period of maternity and a mutual agreement before the labour office or on a transfer over 50 km owe it (INPS circ. 44/2013 par. 1); a collective dismissal without union agreement owes it three times (L. 92/2012 art. 2 c. 35); the changes of contractor with a social clause and the closures of a construction site of c. 34, and the reductions agreed under artt. 4 and 24 L. 223/1991, leave it out; the service counts the fixed-term periods before the open-ended contract and leaves out the leave of art. 42 c. 5 D.Lgs. 151/2001 only through EmploymentPeriod.started_on.",
+      "calculation": "ccnl_engine.termination.naspi.services.naspi_dismissal; L. 92/2012 art. 2 cc. 31-35 (Normattiva, sha256 b73a86474e09ecb4a31eadfc49e86999fb944a8d787598c73f840a5f29fb31a6); INPS circ. 44/2013 (sha256 921fa38bef69508119c546fd0179ceff3e272224bd4ddea8f2e2949e09c89f07)",
+      "state": "unverified",
+      "remediation": "Add the facts of these cases to the end of the employment (EmploymentPeriod) and apply them, then resolve this limitation.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "naspi_dismissal_exceptions"
+        ]
+      }
+    },
+    {
+      "id": "notice_indemnity_day_measure",
+      "institute": "termination_notice",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "A CCNL that sets the notice in calendar days measures the indemnity on the pay of those days: the engine takes a calendar day as a 30th of the monthly pay; Commercio art. 209 refers the monthly pay to all the days of the calendar month, but its art. 210 sets the daily quota at 1/26 'in tutti i casi', so the indemnity may be understated.",
+      "calculation": "ccnl_engine.termination.notice.handlers._handle_notice_indemnity; CCNL Terziario Confcommercio 30 luglio 2019 artt. 209-210, 248 (sha256 76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016)",
+      "state": "unverified",
+      "remediation": "Source the daily measure of the notice indemnity of the CCNL (an interpretation of the parties or case law) and apply it, then resolve this limitation.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "notice_indemnity_day_measure"
+        ]
+      }
+    },
+    {
+      "id": "notice_indemnity_extra_months",
+      "institute": "termination_notice",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "The indemnity is the monthly pays of the CCNL band on the monthly pay of art. 2121 c.c.; the 13th and 14th the notice would have accrued are not added, although art. 2121 counts 'ogni altro compenso di carattere continuativo', so the indemnity may be understated.",
+      "calculation": "ccnl_engine.termination.notice.handlers._handle_notice_indemnity; art. 2121 c.c. (Normattiva, page sha256 209f2f9e1b21f1c41b8d413496e3a5abf062616cf6d87f22c01625cbe3bf408f)",
+      "state": "absent",
+      "remediation": "Source whether the indemnity carries the rateo of the extra months (CCNL clause or case law) and add it, then resolve this limitation.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "notice_indemnity_extra_months"
+        ]
+      }
+    },
+    {
+      "id": "notice_indemnity_partial",
+      "institute": "termination_notice",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "A notice partly worked pays the share of its calendar days left of the indemnity the CCNL band gives in monthly pays; the CCNL clause read (Federmeccanica Sez. Quarta Tit. VIII Art. 1) states the indemnity of the whole notice only, and practice also measures the rest by 30ths or 26ths of the monthly pay.",
+      "calculation": "ccnl_engine.termination.notice.handlers._handle_notice_indemnity; art. 2118 c. 2 c.c. (Normattiva, page sha256 4452820aa5b54831d6c7295a8e1ac8035d9ea4babba3db388188c6101ab4cc3f)",
+      "state": "unverified",
+      "remediation": "Source how the CCNL or case law measures the indemnity of a notice partly worked and apply it, then resolve this limitation.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "notice_indemnity_partial"
+        ]
+      }
+    },
+    {
+      "id": "parental_daily_base",
+      "institute": "parental_leave",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "The INPS indemnity of the parental leave of an operaio or operaia, or of a leave whose month before was not worked in full, is computed on the pay of the run over 30 with the rateo of the extra months, not on the pay of the month before the leave: art. 34 c. 1 D.Lgs. 151/2001 applies art. 23, whose c. 5 divides the pay of a manual worker by the days worked or paid (or by the hours) with a daily rateo no primary source settles. The base of another worker over a whole month is computed from ParentalLeaveEvent.parental_base_pay.",
+      "calculation": "ccnl_engine.absence.insured.base.rules.leave_base; D.Lgs. 151/2001 art. 34 (Normattiva, text in force on 2026-10-30, page sha256 aaf521a98f84e5d33cad1deee74452d789e5c58ec3d1ede4567453d7b7bd3967) and art. 23",
+      "state": "unverified",
+      "remediation": "Source the daily rateo of a manual worker under art. 23 c. 5 and compute his base and that of a month not worked in full, then resolve this limitation.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "parental_daily_base"
+        ]
+      }
+    },
+    {
+      "id": "parental_extra_month_share",
+      "institute": "parental_leave",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "The days of parental leave accrue the 13th and the other extra months in full at the employer's charge (art. 34 c. 5 D.Lgs. 151/2001: the leave does not reduce them), while the INPS indemnity is computed on a base that already holds their daily rateo (art. 23 c. 2, INPS circ. 122/2022): no source read settles whether the employer's extra month is reduced by the share INPS pays, so the rateo of a month on leave may be overstated.",
+      "calculation": "ccnl_engine.absence.insured.parental.handlers._handle_parental_leave; D.Lgs. 151/2001 art. 34 c. 5 (Normattiva, text in force on 2026-10-30, page sha256 aaf521a98f84e5d33cad1deee74452d789e5c58ec3d1ede4567453d7b7bd3967) and art. 23 c. 2",
+      "state": "unverified",
+      "remediation": "Source how the extra months of a parental leave are split between INPS and the employer and net the INPS share from the employer's rateo, then resolve this limitation.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "parental_extra_month_share"
+        ]
+      }
+    },
+    {
+      "id": "parental_hourly_ccnl_rule",
+      "institute": "parental_leave",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "A parental leave by the hour takes half the average daily hours a day and counts two such days as one day of leave, the general criterion of art. 32 c. 1-ter D.Lgs. 151/2001 (INPS circ. 152/2015 par. 2.2); a collective agreement, also of the company, that sets other hours to a day of leave or other rules of cumulation prevails, and the bundle holds none.",
+      "calculation": "ccnl_engine.absence.insured.parental.hourly.handlers._handle_hourly_parental; INPS circ. 152/2015 (sha256 6e74e62dd50378c23117df7aaca509ab9b8b93e60f99cad23e9c64982fd3734e) par. 2.2; INPS msg. 6704/2015 (sha256 df53a5985edfad727f8f7fcab3c2e21ee70181181ef35194935394157ef12204)",
+      "state": "unverified",
+      "remediation": "Source the collective rules on the leave by the hour of the CCNL (hours of a day of leave, cumulation) and apply them, then resolve this limitation.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "parental_hourly_ccnl_rule"
+        ]
+      }
+    },
+    {
+      "id": "parental_income_condition",
+      "institute": "parental_leave",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "The days of parental leave beyond the indemnified months (three of each parent and three of the couple, nine of a sole parent) are paid nothing: art. 34 c. 3 D.Lgs. 151/2001 pays them 30% when the parent's income is below 2.5 times the trattamento minimo di pensione, an income test and a yearly amount the engine does not model.",
+      "calculation": "ccnl_engine.absence.insured.parental.rules.allocate; D.Lgs. 151/2001 art. 34 (Normattiva, text in force on 2026-10-30, page sha256 aaf521a98f84e5d33cad1deee74452d789e5c58ec3d1ede4567453d7b7bd3967)",
+      "state": "unverified",
+      "remediation": "Source the yearly trattamento minimo and the income the test reads, take the income as a fact of the leave and pay the further days at 30% when the condition holds, then resolve this limitation.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "parental_income_condition"
+        ]
+      }
+    },
+    {
+      "id": "parental_month_split",
+      "institute": "parental_leave",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "When a counter of the parental leave (a rate band or the indemnified months) ends inside a calendar month of the leave that is not of thirty days, the engine pays the days of that month in order, one day of counter each and the last day what is left of the thirty: INPS counts the calendar month as one month (FAQ congedo parentale 2024, n. 10) but no source says which of its days fall in which band.",
+      "calculation": "ccnl_engine.absence.insured.parental.rules.allocate; INPS FAQ congedo parentale 2024 n. 10 (pdf sha256 f3f4d4f68b1db21e9f3c7589c5fa2e584a398c055031c4bb1e6481a897f4461f)",
+      "state": "unverified",
+      "remediation": "Source how INPS splits a calendar month between two rates of the parental leave and apply it, then resolve this limitation.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "parental_month_split"
+        ]
+      }
+    },
+    {
+      "id": "paternity_daily_base",
+      "institute": "paternity_leave",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "The INPS indemnity of the compulsory paternity leave of an operaio, or of a leave whose month before was not worked in full, is computed on the pay of the run over 30 with the rateo of the extra months, not on the pay of the month before the leave: art. 29 D.Lgs. 151/2001 applies art. 23, whose c. 5 divides the pay of a manual worker by the days worked or paid (or by the hours) with a daily rateo no primary source settles. The base of another worker over a whole month is computed from PaternityLeaveEvent.paternity_base_pay.",
+      "calculation": "ccnl_engine.absence.insured.base.rules.leave_base; D.Lgs. 151/2001 artt. 23 and 29 (Normattiva, text in force on 2026-10-30, page sha256 f5d5e1ff3028f8249597c78f9371063f0de7790676054b5f0207c974bc50bc04 and 3bfcc58c0e6f305f8971925b355d864c9bdf203e187fe40503c0df2aeca8a94a)",
+      "state": "unverified",
+      "remediation": "Source the daily rateo of a manual worker under art. 23 c. 5 and compute his base and that of a month not worked in full, then resolve this limitation.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "paternity_daily_base"
+        ]
+      }
+    },
+    {
+      "id": "personal_withholding_same_kind",
+      "institute": "personal_withholdings",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "Two garnishments of the same kind, or two salary assignments, share the measure of their kind (a fifth, or the tenth or seventh of the agente della riscossione) in the order of notification: art. 545 c. 4 c.p.c. sets 'un quinto per i tributi ... ed in eguale misura per ogni altro credito' and art. 5 DPR 180/1950 a cessione 'fino al quinto', but no text read says how two orders of the same kind split the measure, so the later order may be under- or overstated.",
+      "calculation": "ccnl_engine.personal_withholding.services.same_kind_paths; art. 545 c.p.c. (Normattiva, page sha256 1fa0acce41c8fa68d80eba137bd4fcbe903016fa97ac4df183cc0ce55897ce66); art. 5 DPR 180/1950 (Normattiva, page sha256 461c2014ffdc7d93ddc0761877b9cd4b4964c256165ef252412a3c38a78a4919)",
+      "state": "unverified",
+      "remediation": "Source how the employer splits the measure between two orders of the same kind (art. 499 c.p.c. on the intervention of creditors, case law of the Cassazione) and apply it, then resolve this limitation.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "personal_withholding_same_kind"
+        ]
+      }
+    },
+    {
+      "id": "provisional_inps_ruleset",
+      "institute": "inps_employer",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "The run reads an INPS ruleset marked provisional: the INPS circulars of its year are not published yet, so the rates, the massimale and the minimale (and the hourly contributions of domestic work) are those of the year before, carried over. The indexed amounts change every January: the carried-over values understate them.",
+      "calculation": "ccnl_engine.assurance.ruleset.services.provisional_paths (INPS ruleset of the run)",
+      "state": "unverified",
+      "remediation": "Replace each provisional INPS ruleset of the year with the values of the INPS circulars of the year, drop its provisional flag, then resolve this limitation.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "provisional_inps_ruleset"
+        ]
+      }
+    },
+    {
+      "id": "provisional_ruleset",
+      "institute": "irpef",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.",
+      "calculation": "ccnl_engine.assurance.ruleset.services.provisional_paths (tax ruleset of the run)",
+      "state": "unverified",
+      "remediation": "Replace each provisional ruleset of the year with the values of its published sources, drop its provisional flag, then resolve this limitation.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "provisional_ruleset"
+        ]
+      }
+    },
+    {
+      "id": "quadri_absorption",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Art. 145: the absorption of the Quadri allowance into individual treatments.",
+      "calculation": "ccnl/turismo-federalberghi-alberghi-minori:coverage.notes",
+      "state": "absent",
+      "remediation": "Model the absorption of Art. 145.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "turismo-federalberghi-alberghi-minori/quadri_absorption"
+        ]
+      }
+    },
+    {
+      "id": "sickness_net_basis",
+      "institute": "sickness",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "SICKNESS (art. 228, 2010 text p. 184): the CCNL integrates up to a share of the net daily pay without saying how the net pay is computed; the engine grosses up the INPS indemnity by the worker's INPS rate, as for the Commercio file. Day 1 of the carenza is the worker's when the illness lasts three days or less (c.5): the engine pays all three days. For fixed-term and seasonal workers no integration is due past the end of the contract (c.2).",
+      "calculation": "ccnl/turismo-federalberghi-alberghi-minori:coverage.notes",
+      "state": "absent",
+      "remediation": "Model the net daily pay of art. 228, the unpaid first day of a short illness and the end of a fixed-term contract.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "turismo-federalberghi-alberghi-minori/sickness_net_basis"
+        ]
+      }
+    },
+    {
+      "id": "tfr_compensation_apprentice_guarantee_fund",
+      "institute": "inps_employer",
+      "variant": "apprentice",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "An apprentice whose TFR goes to a pension fund or to the Fondo Tesoreria takes the 0.28-point relief of D.L. 203/2005 art. 8, but not the exemption from the 0.20% Fondo di garanzia contribution of D.Lgs. 252/2005 art. 10 c. 2: no source found says whether the apprentice rate (10% of L. 296/2006 art. 1 c. 773 plus NASpI and the integration funds) holds a Fondo di garanzia share to exempt. The employer contributions of the run may be overstated by 0.20% of the INPS base.",
+      "calculation": "ccnl_engine.severance.relief.services; INPS messaggio n. 5859 of 7 March 2008, par. 3 (art. 8 relief of apprentices); INPS circ. 70/2007 par. 6 (Fondo di garanzia exemption, rates 0.20% and 0.40%)",
+      "state": "absent",
+      "remediation": "Find an INPS source on the Fondo di garanzia share of the apprentice rate, then exempt it with the other workers or record that none is due.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "tfr_compensation_apprentice_guarantee_fund"
+        ]
+      }
+    },
+    {
+      "id": "tourism_special_supplement",
+      "institute": "trattamento_integrativo",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "TRATTAMENTO INTEGRATIVO SPECIALE (L. 199/2025 art. 1 cc. 18-20, Gazzetta Ufficiale text, https://www.gazzettaufficiale.it/atto/serie_generale/caricaArticolo?art.codiceRedazionale=26A00149&art.dataPubblicazioneGazzetta=2026-01-21&art.flagTipoArticolo=0&art.idArticolo=1&art.idGruppo=1&art.idSottoArticolo=1&art.idSottoArticolo1=10&art.progressivo=1&art.versione=1, page sha256 e05f6f864509f87e7488cdae075fe3a1f2632f6f4577b87ee05479a1ed193c1d): from 1 January to 30 September 2026 the workers of the esercizi di somministrazione di alimenti e bevande (L. 287/1991 art. 5) and of the 'comparto del turismo, ivi inclusi gli stabilimenti termali', with employment income of 2025 not above 40,000 EUR, receive 'un trattamento integrativo speciale, che non concorre alla formazione del reddito, pari al 15 per cento delle retribuzioni lorde corrisposte in relazione al lavoro notturno e alle prestazioni di lavoro straordinario [...] effettuate nei giorni festivi'. The employer pays it 'su richiesta del lavoratore' (c. 20), a fact the request has no field for: the engine does not pay it, so the net pay of a worker who asked for it is understated.",
+      "calculation": "ccnl/turismo-federalberghi-alberghi-minori:coverage.notes",
+      "state": "absent",
+      "remediation": "Add the worker's request of c. 20 to the request, pay 15% of the night and holiday overtime pay of the run as a credit, then remove this note.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "turismo-federalberghi-alberghi-minori/tourism_special_supplement"
+        ]
+      }
+    },
+    {
+      "id": "una_tantum_readings",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "The una tantum of a renewal is paid from the CCNL data with readings no text read settles in full: a month of service in the covered period counts with the days of the una tantum (15 when the text is silent), over the months of the period; the absences of a month do not reduce it, though a text may pay the months 'di effettiva prestazione'; a part time is paid in proportion to its hours; a run without the employment period is paid none; the share of the covered months of earlier years is taxed apart as arrears.",
+      "calculation": "ccnl_engine.compensation.una_tantum.rules.una_tantum_events; CCNL agenti immobiliari FIAIP 19 May 2025 art. 163 (pp. 97-98, sha256 560d16410d3e41dc0bfb00bfe2a40ef65f2cd900234aeaee92018ed9fa21ead5)",
+      "state": "unverified",
+      "remediation": "Source the counting of the months, the part time and the taxation of each una tantum from its agreement, then resolve this limitation.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "una_tantum_readings"
+        ]
+      }
+    }
+  ]
+}

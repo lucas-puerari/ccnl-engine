@@ -34,7 +34,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, leave, seniority, sickness, trattamento_integrativo |
 
-13 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+12 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -127,13 +127,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `sickness` applies.
 
     **Remediation:** Model the net daily pay of art. 228, the unpaid first day of a short illness and the end of a fixed-term contract.
-
-!!! warning "turismo-federalberghi/small_hotel_table · base_salary · impact yes · open"
-    Art. 152 c. 2 as replaced in 2024, p. 43: the lower paga base of 1-2 star hotels and campsites up to 1200 presenze (level 4 1,688.98 instead of 1,695.69 from May 2026).
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Add an employer fact for the small-hotel table.
 
 !!! warning "turismo-federalberghi/guarantee_element_2027 · base_salary · impact yes · open"
     Art. 13 c. 10, pp. 11-12: the elemento economico di garanzia paid with the November 2027 pay without an integrative agreement by 31 October 2026 (A and B 186, 1-3 158, 4-5 140, 6s-7 112).
@@ -376,6 +369,8 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 ??? note "Coverage notes"
     CNEL code H052 is shared with CCNL Agenzie di Viaggio Fiavet: the engine allows duplicates.
+    
+    SUB-SECTOR: the lower paga base of Art. 152 c. 2 (renewal of 5 July 2024, p. 43) for the alberghi a una e due stelle and the campeggi up to 1200 presenze-licenza is the sibling turismo-federalberghi-alberghi-minori.
     
     HOURLY RATE AND SUPPLEMENTS (artt. 148, 151, 216, 220 of the 2010 text): without a caller value the engine derives the hourly base (the art. 148 retribuzione over 172), the 25% on ordinary night hours from 24 to 6 (art. 216 c.1; 12% for the role qualifica_notturna, c.2: Employment.roles must be stated) and the 20% on the hours worked on a festività (art. 220). The night window of the lavoratori notturni (23:30-6:30, art. 218) only changes which hours the caller declares. Art. 220 also pays the festività hours themselves on top of the monthly pay: the engine posts the 20% only and the run is provisional. Not derived: the Sunday allowance of art. 126 (10% of the hourly paga base and contingenza: the bundle does not record that base_salary holds exactly those two voci), holiday overtime (art. 219 sets no rate). The divisors 190 and 192 of the 44- and 45-hour weeks are derived from Employment.full_time_weekly_hours; another week than 40, 44 or 45 is not derived.
     

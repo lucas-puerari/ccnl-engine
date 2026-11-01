@@ -211,7 +211,7 @@ read their `scope` and `findings` instead.
 ## Current status
 
 Distribution across the
-<!-- trust:ccnl-total -->134<!-- /trust:ccnl-total --> bundled CCNL rulesets,
+<!-- trust:ccnl-total -->135<!-- /trust:ccnl-total --> bundled CCNL rulesets,
 generated from the data by `scripts/documentation/trust_count/generate.py` (CI fails when
 it drifts):
 
@@ -219,7 +219,7 @@ it drifts):
 
 | Readiness | CCNL rulesets |
 |---|---:|
-| `exploratory` | 111 |
+| `exploratory` | 112 |
 | `reviewed` | 17 |
 | `production` | 6 |
 
@@ -241,7 +241,7 @@ hold an entry in the review log, and
 <!-- trust:reviewed-confidence-verified -->17<!-- /trust:reviewed-confidence-verified -->
 set `verification.confidence = "verified"` (step 5 of the criteria above).
 A per-value review is recorded only by the provenance status `verified` of a
-payable rule, and <!-- trust:rules-verified -->2713<!-- /trust:rules-verified -->
+payable rule, and <!-- trust:rules-verified -->2731<!-- /trust:rules-verified -->
 payable rules of the bundle have it (see
 [Provenance](provenance.md#provenance-status)).
 
