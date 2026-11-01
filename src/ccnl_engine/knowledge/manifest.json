@@ -422,7 +422,7 @@
       "valid_to": "2028-12-31",
       "ruleset_id": "ccnl/chimica-affini-pmi-unionchimica",
       "ruleset_version": "2026.2",
-      "source_hash": "e150900c38ea7da85d44193cbc80eb5dfdbd260ba458c4e5cae23e0536c0cddb",
+      "source_hash": "5d80712713e90c7a36635486d84ad86d3e5aeb186873b6d5ad427a28d006ab77",
       "source_type": "institutional_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/chimica-affini-pmi-unionchimica.json.gz"
@@ -2813,7 +2813,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "d3e5987cc1af86c1b0ada054dcd1e033a71170436ff726bb69bd86ab647f1e76",
+      "source_hash": "43bbde2a73ef1c6ce762ec1ef6b6082fb80e6387d210113f66770c8ad3af5dee",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/chimica-affini-pmi-unionchimica.json.gz",

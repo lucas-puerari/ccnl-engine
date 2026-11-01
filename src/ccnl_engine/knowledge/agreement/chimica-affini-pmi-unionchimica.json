@@ -72,19 +72,6 @@
         "text": "SENIORITY: biennale (24 months), maximum 5 scatti. Per-level EUR amounts from kitech.it Jan 2026 table: A=10.33, B=11.88, C=12.91, D=13.94, E=15.49, F=18.08, G=20.66, H=23.24."
       },
       {
-        "kind": "simplification",
-        "text": "SINGLE TRANCHE ONLY. Only the 1 January 2026 tranche is modelled. The 4 subsequent tranches (Apr 2027, Dec 2027, Jun 2028, Dec 2028) are not accessible from primary source at time of extraction. Update with official amounts when the renewal text becomes available.",
-        "capability": "base_salary",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "tranches_2027_2028",
-          "applies_when": {
-            "effective_from": "2027-04-01"
-          },
-          "remediation": "Add the April 2027, December 2027, June 2028 and December 2028 tranches from the renewal text."
-        }
-      },
-      {
         "kind": "info",
         "text": "CHIMICA-CONCIA SUB-SECTOR SCOPE. Unionchimica Confapi covers three sub-sectors with different hourly divisors: Chimica-Concia (175), Plastica-Gomma (169), Abrasivi-Ceramica-Vetro (173). Only Chimica-Concia (divisor 175) is modelled — deliberate scope choice. The level codes and salary amounts are identical across all sub-sectors; only the hourly divisor differs."
       },
@@ -331,7 +318,7 @@
         "periods": [
           {
             "valid_from": "2026-01-01",
-            "valid_until": null,
+            "valid_until": "2027-04-01",
             "value": "1690.69",
             "provenance": {
               "status": "derived",
@@ -354,6 +341,122 @@
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-18T11:51:45Z",
                 "effective_from": "2026-01-01",
+                "verification_status": "unverified"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-04-01",
+            "valid_until": "2027-12-01",
+            "value": "1732.50",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
+                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "kind": "associazione",
+                  "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
+                  "published_on": "2026-03-02",
+                  "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
+                },
+                "page": "18",
+                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' to '01/04/2027', row A",
+                "quote": "A 100,00 1.648,62 € 42,07 € 41,81 € 17,56 € 50,17 € 13,38 € 165,00 €"
+              },
+              "transformation": "1690.69 (minimo from 01/01/2026) + the increases to 01/04/2027 (41.81) = 1732.50. The tranches are added as printed: their sum differs by one cent from the 'Aumento a regime' column on rows A, B, F and H.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T22:00:00Z",
+                "effective_from": "2027-04-01",
+                "verification_status": "unverified"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": "2028-06-01",
+            "value": "1750.06",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
+                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "kind": "associazione",
+                  "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
+                  "published_on": "2026-03-02",
+                  "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
+                },
+                "page": "18",
+                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' to '01/12/2027', row A",
+                "quote": "A 100,00 1.648,62 € 42,07 € 41,81 € 17,56 € 50,17 € 13,38 € 165,00 €"
+              },
+              "transformation": "1690.69 (minimo from 01/01/2026) + the increases to 01/12/2027 (41.81 + 17.56) = 1750.06. The tranches are added as printed: their sum differs by one cent from the 'Aumento a regime' column on rows A, B, F and H.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T22:00:00Z",
+                "effective_from": "2027-12-01",
+                "verification_status": "unverified"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-06-01",
+            "valid_until": "2028-12-01",
+            "value": "1800.23",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
+                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "kind": "associazione",
+                  "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
+                  "published_on": "2026-03-02",
+                  "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
+                },
+                "page": "18",
+                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' to '01/06/2028', row A",
+                "quote": "A 100,00 1.648,62 € 42,07 € 41,81 € 17,56 € 50,17 € 13,38 € 165,00 €"
+              },
+              "transformation": "1690.69 (minimo from 01/01/2026) + the increases to 01/06/2028 (41.81 + 17.56 + 50.17) = 1800.23. The tranches are added as printed: their sum differs by one cent from the 'Aumento a regime' column on rows A, B, F and H.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T22:00:00Z",
+                "effective_from": "2028-06-01",
+                "verification_status": "unverified"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-12-01",
+            "valid_until": null,
+            "value": "1813.61",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
+                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "kind": "associazione",
+                  "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
+                  "published_on": "2026-03-02",
+                  "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
+                },
+                "page": "18",
+                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' to '01/12/2028', row A",
+                "quote": "A 100,00 1.648,62 € 42,07 € 41,81 € 17,56 € 50,17 € 13,38 € 165,00 €"
+              },
+              "transformation": "1690.69 (minimo from 01/01/2026) + the increases to 01/12/2028 (41.81 + 17.56 + 50.17 + 13.38) = 1813.61. The tranches are added as printed: their sum differs by one cent from the 'Aumento a regime' column on rows A, B, F and H.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T22:00:00Z",
+                "effective_from": "2028-12-01",
                 "verification_status": "unverified"
               }
             }
@@ -389,7 +492,7 @@
         "periods": [
           {
             "valid_from": "2026-01-01",
-            "valid_until": null,
+            "valid_until": "2027-04-01",
             "value": "1830.43",
             "provenance": {
               "status": "derived",
@@ -412,6 +515,122 @@
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-18T11:51:45Z",
                 "effective_from": "2026-01-01",
+                "verification_status": "unverified"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-04-01",
+            "valid_until": "2027-12-01",
+            "value": "1878.58",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
+                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "kind": "associazione",
+                  "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
+                  "published_on": "2026-03-02",
+                  "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
+                },
+                "page": "18",
+                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' to '01/04/2027', row B",
+                "quote": "B 115,15 1.781,99 € 48,44 € 48,15 € 20,22 € 57,78 € 15,41 € 189,99 €"
+              },
+              "transformation": "1830.43 (minimo from 01/01/2026) + the increases to 01/04/2027 (48.15) = 1878.58. The tranches are added as printed: their sum differs by one cent from the 'Aumento a regime' column on rows A, B, F and H.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T22:00:00Z",
+                "effective_from": "2027-04-01",
+                "verification_status": "unverified"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": "2028-06-01",
+            "value": "1898.80",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
+                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "kind": "associazione",
+                  "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
+                  "published_on": "2026-03-02",
+                  "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
+                },
+                "page": "18",
+                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' to '01/12/2027', row B",
+                "quote": "B 115,15 1.781,99 € 48,44 € 48,15 € 20,22 € 57,78 € 15,41 € 189,99 €"
+              },
+              "transformation": "1830.43 (minimo from 01/01/2026) + the increases to 01/12/2027 (48.15 + 20.22) = 1898.80. The tranches are added as printed: their sum differs by one cent from the 'Aumento a regime' column on rows A, B, F and H.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T22:00:00Z",
+                "effective_from": "2027-12-01",
+                "verification_status": "unverified"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-06-01",
+            "valid_until": "2028-12-01",
+            "value": "1956.58",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
+                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "kind": "associazione",
+                  "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
+                  "published_on": "2026-03-02",
+                  "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
+                },
+                "page": "18",
+                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' to '01/06/2028', row B",
+                "quote": "B 115,15 1.781,99 € 48,44 € 48,15 € 20,22 € 57,78 € 15,41 € 189,99 €"
+              },
+              "transformation": "1830.43 (minimo from 01/01/2026) + the increases to 01/06/2028 (48.15 + 20.22 + 57.78) = 1956.58. The tranches are added as printed: their sum differs by one cent from the 'Aumento a regime' column on rows A, B, F and H.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T22:00:00Z",
+                "effective_from": "2028-06-01",
+                "verification_status": "unverified"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-12-01",
+            "valid_until": null,
+            "value": "1971.99",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
+                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "kind": "associazione",
+                  "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
+                  "published_on": "2026-03-02",
+                  "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
+                },
+                "page": "18",
+                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' to '01/12/2028', row B",
+                "quote": "B 115,15 1.781,99 € 48,44 € 48,15 € 20,22 € 57,78 € 15,41 € 189,99 €"
+              },
+              "transformation": "1830.43 (minimo from 01/01/2026) + the increases to 01/12/2028 (48.15 + 20.22 + 57.78 + 15.41) = 1971.99. The tranches are added as printed: their sum differs by one cent from the 'Aumento a regime' column on rows A, B, F and H.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T22:00:00Z",
+                "effective_from": "2028-12-01",
                 "verification_status": "unverified"
               }
             }
@@ -447,7 +666,7 @@
         "periods": [
           {
             "valid_from": "2026-01-01",
-            "valid_until": null,
+            "valid_until": "2027-04-01",
             "value": "2033.35",
             "provenance": {
               "status": "derived",
@@ -470,6 +689,122 @@
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-18T11:51:45Z",
                 "effective_from": "2026-01-01",
+                "verification_status": "unverified"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-04-01",
+            "valid_until": "2027-12-01",
+            "value": "2088.59",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
+                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "kind": "associazione",
+                  "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
+                  "published_on": "2026-03-02",
+                  "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
+                },
+                "page": "18",
+                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' to '01/04/2027', row C",
+                "quote": "C 132,12 1.977,77 € 55,58 € 55,24 € 23,20 € 66,29 € 17,68 € 217,99 €"
+              },
+              "transformation": "2033.35 (minimo from 01/01/2026) + the increases to 01/04/2027 (55.24) = 2088.59. The tranches are added as printed: their sum differs by one cent from the 'Aumento a regime' column on rows A, B, F and H.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T22:00:00Z",
+                "effective_from": "2027-04-01",
+                "verification_status": "unverified"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": "2028-06-01",
+            "value": "2111.79",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
+                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "kind": "associazione",
+                  "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
+                  "published_on": "2026-03-02",
+                  "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
+                },
+                "page": "18",
+                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' to '01/12/2027', row C",
+                "quote": "C 132,12 1.977,77 € 55,58 € 55,24 € 23,20 € 66,29 € 17,68 € 217,99 €"
+              },
+              "transformation": "2033.35 (minimo from 01/01/2026) + the increases to 01/12/2027 (55.24 + 23.20) = 2111.79. The tranches are added as printed: their sum differs by one cent from the 'Aumento a regime' column on rows A, B, F and H.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T22:00:00Z",
+                "effective_from": "2027-12-01",
+                "verification_status": "unverified"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-06-01",
+            "valid_until": "2028-12-01",
+            "value": "2178.08",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
+                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "kind": "associazione",
+                  "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
+                  "published_on": "2026-03-02",
+                  "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
+                },
+                "page": "18",
+                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' to '01/06/2028', row C",
+                "quote": "C 132,12 1.977,77 € 55,58 € 55,24 € 23,20 € 66,29 € 17,68 € 217,99 €"
+              },
+              "transformation": "2033.35 (minimo from 01/01/2026) + the increases to 01/06/2028 (55.24 + 23.20 + 66.29) = 2178.08. The tranches are added as printed: their sum differs by one cent from the 'Aumento a regime' column on rows A, B, F and H.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T22:00:00Z",
+                "effective_from": "2028-06-01",
+                "verification_status": "unverified"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-12-01",
+            "valid_until": null,
+            "value": "2195.76",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
+                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "kind": "associazione",
+                  "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
+                  "published_on": "2026-03-02",
+                  "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
+                },
+                "page": "18",
+                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' to '01/12/2028', row C",
+                "quote": "C 132,12 1.977,77 € 55,58 € 55,24 € 23,20 € 66,29 € 17,68 € 217,99 €"
+              },
+              "transformation": "2033.35 (minimo from 01/01/2026) + the increases to 01/12/2028 (55.24 + 23.20 + 66.29 + 17.68) = 2195.76. The tranches are added as printed: their sum differs by one cent from the 'Aumento a regime' column on rows A, B, F and H.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T22:00:00Z",
+                "effective_from": "2028-12-01",
                 "verification_status": "unverified"
               }
             }
@@ -505,7 +840,7 @@
         "periods": [
           {
             "valid_from": "2026-01-01",
-            "valid_until": null,
+            "valid_until": "2027-04-01",
             "value": "2267.00",
             "provenance": {
               "status": "derived",
@@ -528,6 +863,122 @@
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-18T11:51:45Z",
                 "effective_from": "2026-01-01",
+                "verification_status": "unverified"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-04-01",
+            "valid_until": "2027-12-01",
+            "value": "2326.86",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
+                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "kind": "associazione",
+                  "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
+                  "published_on": "2026-03-02",
+                  "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
+                },
+                "page": "18",
+                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' to '01/04/2027', row D",
+                "quote": "D 143,64 2.206,00 € 61,00 € 59,86 € 25,14 € 71,84 € 19,16 € 237,00 €"
+              },
+              "transformation": "2267.00 (minimo from 01/01/2026) + the increases to 01/04/2027 (59.86) = 2326.86. The tranches are added as printed: their sum differs by one cent from the 'Aumento a regime' column on rows A, B, F and H.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T22:00:00Z",
+                "effective_from": "2027-04-01",
+                "verification_status": "unverified"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": "2028-06-01",
+            "value": "2352.00",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
+                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "kind": "associazione",
+                  "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
+                  "published_on": "2026-03-02",
+                  "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
+                },
+                "page": "18",
+                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' to '01/12/2027', row D",
+                "quote": "D 143,64 2.206,00 € 61,00 € 59,86 € 25,14 € 71,84 € 19,16 € 237,00 €"
+              },
+              "transformation": "2267.00 (minimo from 01/01/2026) + the increases to 01/12/2027 (59.86 + 25.14) = 2352.00. The tranches are added as printed: their sum differs by one cent from the 'Aumento a regime' column on rows A, B, F and H.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T22:00:00Z",
+                "effective_from": "2027-12-01",
+                "verification_status": "unverified"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-06-01",
+            "valid_until": "2028-12-01",
+            "value": "2423.84",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
+                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "kind": "associazione",
+                  "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
+                  "published_on": "2026-03-02",
+                  "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
+                },
+                "page": "18",
+                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' to '01/06/2028', row D",
+                "quote": "D 143,64 2.206,00 € 61,00 € 59,86 € 25,14 € 71,84 € 19,16 € 237,00 €"
+              },
+              "transformation": "2267.00 (minimo from 01/01/2026) + the increases to 01/06/2028 (59.86 + 25.14 + 71.84) = 2423.84. The tranches are added as printed: their sum differs by one cent from the 'Aumento a regime' column on rows A, B, F and H.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T22:00:00Z",
+                "effective_from": "2028-06-01",
+                "verification_status": "unverified"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-12-01",
+            "valid_until": null,
+            "value": "2443.00",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
+                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "kind": "associazione",
+                  "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
+                  "published_on": "2026-03-02",
+                  "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
+                },
+                "page": "18",
+                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' to '01/12/2028', row D",
+                "quote": "D 143,64 2.206,00 € 61,00 € 59,86 € 25,14 € 71,84 € 19,16 € 237,00 €"
+              },
+              "transformation": "2267.00 (minimo from 01/01/2026) + the increases to 01/12/2028 (59.86 + 25.14 + 71.84 + 19.16) = 2443.00. The tranches are added as printed: their sum differs by one cent from the 'Aumento a regime' column on rows A, B, F and H.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T22:00:00Z",
+                "effective_from": "2028-12-01",
                 "verification_status": "unverified"
               }
             }
@@ -563,7 +1014,7 @@
         "periods": [
           {
             "valid_from": "2026-01-01",
-            "valid_until": null,
+            "valid_until": "2027-04-01",
             "value": "2444.03",
             "provenance": {
               "status": "derived",
@@ -586,6 +1037,122 @@
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-18T11:51:45Z",
                 "effective_from": "2026-01-01",
+                "verification_status": "unverified"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-04-01",
+            "valid_until": "2027-12-01",
+            "value": "2507.13",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
+                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "kind": "associazione",
+                  "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
+                  "published_on": "2026-03-02",
+                  "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
+                },
+                "page": "18",
+                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' to '01/04/2027', row E",
+                "quote": "E 150,91 2.380,54 € 63,49 € 63,10 € 26,50 € 75,72 € 20,19 € 249,00 €"
+              },
+              "transformation": "2444.03 (minimo from 01/01/2026) + the increases to 01/04/2027 (63.10) = 2507.13. The tranches are added as printed: their sum differs by one cent from the 'Aumento a regime' column on rows A, B, F and H.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T22:00:00Z",
+                "effective_from": "2027-04-01",
+                "verification_status": "unverified"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": "2028-06-01",
+            "value": "2533.63",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
+                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "kind": "associazione",
+                  "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
+                  "published_on": "2026-03-02",
+                  "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
+                },
+                "page": "18",
+                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' to '01/12/2027', row E",
+                "quote": "E 150,91 2.380,54 € 63,49 € 63,10 € 26,50 € 75,72 € 20,19 € 249,00 €"
+              },
+              "transformation": "2444.03 (minimo from 01/01/2026) + the increases to 01/12/2027 (63.10 + 26.50) = 2533.63. The tranches are added as printed: their sum differs by one cent from the 'Aumento a regime' column on rows A, B, F and H.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T22:00:00Z",
+                "effective_from": "2027-12-01",
+                "verification_status": "unverified"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-06-01",
+            "valid_until": "2028-12-01",
+            "value": "2609.35",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
+                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "kind": "associazione",
+                  "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
+                  "published_on": "2026-03-02",
+                  "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
+                },
+                "page": "18",
+                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' to '01/06/2028', row E",
+                "quote": "E 150,91 2.380,54 € 63,49 € 63,10 € 26,50 € 75,72 € 20,19 € 249,00 €"
+              },
+              "transformation": "2444.03 (minimo from 01/01/2026) + the increases to 01/06/2028 (63.10 + 26.50 + 75.72) = 2609.35. The tranches are added as printed: their sum differs by one cent from the 'Aumento a regime' column on rows A, B, F and H.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T22:00:00Z",
+                "effective_from": "2028-06-01",
+                "verification_status": "unverified"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-12-01",
+            "valid_until": null,
+            "value": "2629.54",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
+                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "kind": "associazione",
+                  "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
+                  "published_on": "2026-03-02",
+                  "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
+                },
+                "page": "18",
+                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' to '01/12/2028', row E",
+                "quote": "E 150,91 2.380,54 € 63,49 € 63,10 € 26,50 € 75,72 € 20,19 € 249,00 €"
+              },
+              "transformation": "2444.03 (minimo from 01/01/2026) + the increases to 01/12/2028 (63.10 + 26.50 + 75.72 + 20.19) = 2629.54. The tranches are added as printed: their sum differs by one cent from the 'Aumento a regime' column on rows A, B, F and H.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T22:00:00Z",
+                "effective_from": "2028-12-01",
                 "verification_status": "unverified"
               }
             }
@@ -653,7 +1220,7 @@
         "periods": [
           {
             "valid_from": "2026-01-01",
-            "valid_until": null,
+            "valid_until": "2027-04-01",
             "value": "2703.06",
             "provenance": {
               "status": "derived",
@@ -676,6 +1243,122 @@
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-18T11:51:45Z",
                 "effective_from": "2026-01-01",
+                "verification_status": "unverified"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-04-01",
+            "valid_until": "2027-12-01",
+            "value": "2769.70",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
+                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "kind": "associazione",
+                  "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
+                  "published_on": "2026-03-02",
+                  "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
+                },
+                "page": "18",
+                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' to '01/04/2027', row F",
+                "quote": "F 159,39 2.636,01 € 67,05 € 66,64 € 27,99 € 79,97 € 21,33 € 262,99 €"
+              },
+              "transformation": "2703.06 (minimo from 01/01/2026) + the increases to 01/04/2027 (66.64) = 2769.70. The tranches are added as printed: their sum differs by one cent from the 'Aumento a regime' column on rows A, B, F and H.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T22:00:00Z",
+                "effective_from": "2027-04-01",
+                "verification_status": "unverified"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": "2028-06-01",
+            "value": "2797.69",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
+                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "kind": "associazione",
+                  "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
+                  "published_on": "2026-03-02",
+                  "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
+                },
+                "page": "18",
+                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' to '01/12/2027', row F",
+                "quote": "F 159,39 2.636,01 € 67,05 € 66,64 € 27,99 € 79,97 € 21,33 € 262,99 €"
+              },
+              "transformation": "2703.06 (minimo from 01/01/2026) + the increases to 01/12/2027 (66.64 + 27.99) = 2797.69. The tranches are added as printed: their sum differs by one cent from the 'Aumento a regime' column on rows A, B, F and H.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T22:00:00Z",
+                "effective_from": "2027-12-01",
+                "verification_status": "unverified"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-06-01",
+            "valid_until": "2028-12-01",
+            "value": "2877.66",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
+                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "kind": "associazione",
+                  "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
+                  "published_on": "2026-03-02",
+                  "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
+                },
+                "page": "18",
+                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' to '01/06/2028', row F",
+                "quote": "F 159,39 2.636,01 € 67,05 € 66,64 € 27,99 € 79,97 € 21,33 € 262,99 €"
+              },
+              "transformation": "2703.06 (minimo from 01/01/2026) + the increases to 01/06/2028 (66.64 + 27.99 + 79.97) = 2877.66. The tranches are added as printed: their sum differs by one cent from the 'Aumento a regime' column on rows A, B, F and H.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T22:00:00Z",
+                "effective_from": "2028-06-01",
+                "verification_status": "unverified"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-12-01",
+            "valid_until": null,
+            "value": "2898.99",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
+                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "kind": "associazione",
+                  "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
+                  "published_on": "2026-03-02",
+                  "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
+                },
+                "page": "18",
+                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' to '01/12/2028', row F",
+                "quote": "F 159,39 2.636,01 € 67,05 € 66,64 € 27,99 € 79,97 € 21,33 € 262,99 €"
+              },
+              "transformation": "2703.06 (minimo from 01/01/2026) + the increases to 01/12/2028 (66.64 + 27.99 + 79.97 + 21.33) = 2898.99. The tranches are added as printed: their sum differs by one cent from the 'Aumento a regime' column on rows A, B, F and H.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T22:00:00Z",
+                "effective_from": "2028-12-01",
                 "verification_status": "unverified"
               }
             }
@@ -743,7 +1426,7 @@
         "periods": [
           {
             "valid_from": "2026-01-01",
-            "valid_until": null,
+            "valid_until": "2027-04-01",
             "value": "2973.58",
             "provenance": {
               "status": "derived",
@@ -766,6 +1449,122 @@
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-18T11:51:45Z",
                 "effective_from": "2026-01-01",
+                "verification_status": "unverified"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-04-01",
+            "valid_until": "2027-12-01",
+            "value": "3046.05",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
+                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "kind": "associazione",
+                  "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
+                  "published_on": "2026-03-02",
+                  "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
+                },
+                "page": "18",
+                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' to '01/04/2027', row G",
+                "quote": "G 173,33 2.900,66 € 72,92 € 72,47 € 30,44 € 86,97 € 23,19 € 285,99 €"
+              },
+              "transformation": "2973.58 (minimo from 01/01/2026) + the increases to 01/04/2027 (72.47) = 3046.05. The tranches are added as printed: their sum differs by one cent from the 'Aumento a regime' column on rows A, B, F and H.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T22:00:00Z",
+                "effective_from": "2027-04-01",
+                "verification_status": "unverified"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": "2028-06-01",
+            "value": "3076.49",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
+                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "kind": "associazione",
+                  "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
+                  "published_on": "2026-03-02",
+                  "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
+                },
+                "page": "18",
+                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' to '01/12/2027', row G",
+                "quote": "G 173,33 2.900,66 € 72,92 € 72,47 € 30,44 € 86,97 € 23,19 € 285,99 €"
+              },
+              "transformation": "2973.58 (minimo from 01/01/2026) + the increases to 01/12/2027 (72.47 + 30.44) = 3076.49. The tranches are added as printed: their sum differs by one cent from the 'Aumento a regime' column on rows A, B, F and H.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T22:00:00Z",
+                "effective_from": "2027-12-01",
+                "verification_status": "unverified"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-06-01",
+            "valid_until": "2028-12-01",
+            "value": "3163.46",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
+                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "kind": "associazione",
+                  "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
+                  "published_on": "2026-03-02",
+                  "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
+                },
+                "page": "18",
+                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' to '01/06/2028', row G",
+                "quote": "G 173,33 2.900,66 € 72,92 € 72,47 € 30,44 € 86,97 € 23,19 € 285,99 €"
+              },
+              "transformation": "2973.58 (minimo from 01/01/2026) + the increases to 01/06/2028 (72.47 + 30.44 + 86.97) = 3163.46. The tranches are added as printed: their sum differs by one cent from the 'Aumento a regime' column on rows A, B, F and H.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T22:00:00Z",
+                "effective_from": "2028-06-01",
+                "verification_status": "unverified"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-12-01",
+            "valid_until": null,
+            "value": "3186.65",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
+                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "kind": "associazione",
+                  "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
+                  "published_on": "2026-03-02",
+                  "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
+                },
+                "page": "18",
+                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' to '01/12/2028', row G",
+                "quote": "G 173,33 2.900,66 € 72,92 € 72,47 € 30,44 € 86,97 € 23,19 € 285,99 €"
+              },
+              "transformation": "2973.58 (minimo from 01/01/2026) + the increases to 01/12/2028 (72.47 + 30.44 + 86.97 + 23.19) = 3186.65. The tranches are added as printed: their sum differs by one cent from the 'Aumento a regime' column on rows A, B, F and H.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T22:00:00Z",
+                "effective_from": "2028-12-01",
                 "verification_status": "unverified"
               }
             }
@@ -833,7 +1632,7 @@
         "periods": [
           {
             "valid_from": "2026-01-01",
-            "valid_until": null,
+            "valid_until": "2027-04-01",
             "value": "3168.51",
             "provenance": {
               "status": "derived",
@@ -856,6 +1655,122 @@
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-10-18T11:51:45Z",
                 "effective_from": "2026-01-01",
+                "verification_status": "unverified"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-04-01",
+            "valid_until": "2027-12-01",
+            "value": "3243.27",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
+                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "kind": "associazione",
+                  "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
+                  "published_on": "2026-03-02",
+                  "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
+                },
+                "page": "18",
+                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' to '01/04/2027', row H",
+                "quote": "H 178,79 3.093,29 € 75,22 € 74,76 € 31,40 € 89,71 € 23,92 € 295,00 €"
+              },
+              "transformation": "3168.51 (minimo from 01/01/2026) + the increases to 01/04/2027 (74.76) = 3243.27. The tranches are added as printed: their sum differs by one cent from the 'Aumento a regime' column on rows A, B, F and H.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T22:00:00Z",
+                "effective_from": "2027-04-01",
+                "verification_status": "unverified"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": "2028-06-01",
+            "value": "3274.67",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
+                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "kind": "associazione",
+                  "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
+                  "published_on": "2026-03-02",
+                  "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
+                },
+                "page": "18",
+                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' to '01/12/2027', row H",
+                "quote": "H 178,79 3.093,29 € 75,22 € 74,76 € 31,40 € 89,71 € 23,92 € 295,00 €"
+              },
+              "transformation": "3168.51 (minimo from 01/01/2026) + the increases to 01/12/2027 (74.76 + 31.40) = 3274.67. The tranches are added as printed: their sum differs by one cent from the 'Aumento a regime' column on rows A, B, F and H.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T22:00:00Z",
+                "effective_from": "2027-12-01",
+                "verification_status": "unverified"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-06-01",
+            "valid_until": "2028-12-01",
+            "value": "3364.38",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
+                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "kind": "associazione",
+                  "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
+                  "published_on": "2026-03-02",
+                  "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
+                },
+                "page": "18",
+                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' to '01/06/2028', row H",
+                "quote": "H 178,79 3.093,29 € 75,22 € 74,76 € 31,40 € 89,71 € 23,92 € 295,00 €"
+              },
+              "transformation": "3168.51 (minimo from 01/01/2026) + the increases to 01/06/2028 (74.76 + 31.40 + 89.71) = 3364.38. The tranches are added as printed: their sum differs by one cent from the 'Aumento a regime' column on rows A, B, F and H.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T22:00:00Z",
+                "effective_from": "2028-06-01",
+                "verification_status": "unverified"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-12-01",
+            "valid_until": null,
+            "value": "3388.30",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
+                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "kind": "associazione",
+                  "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
+                  "published_on": "2026-03-02",
+                  "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
+                },
+                "page": "18",
+                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' to '01/12/2028', row H",
+                "quote": "H 178,79 3.093,29 € 75,22 € 74,76 € 31,40 € 89,71 € 23,92 € 295,00 €"
+              },
+              "transformation": "3168.51 (minimo from 01/01/2026) + the increases to 01/12/2028 (74.76 + 31.40 + 89.71 + 23.92) = 3388.30. The tranches are added as printed: their sum differs by one cent from the 'Aumento a regime' column on rows A, B, F and H.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T22:00:00Z",
+                "effective_from": "2028-12-01",
                 "verification_status": "unverified"
               }
             }
@@ -977,7 +1892,7 @@
     "effective_until": "2028-12-31",
     "source": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "e150900c38ea7da85d44193cbc80eb5dfdbd260ba458c4e5cae23e0536c0cddb",
+    "source_hash": "5d80712713e90c7a36635486d84ad86d3e5aeb186873b6d5ad427a28d006ab77",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },
