@@ -1,0 +1,2118 @@
+{
+  "schema_version": "0.6",
+  "meta": {
+    "ccnl_id": "farmacie-rurali-sussidiate-h121",
+    "name": "CCNL Dipendenti delle Farmacie Private - Farmacie rurali sussidiate",
+    "cnel_code": "H121",
+    "sector": "Farmacie private",
+    "family": {
+      "id": "farmacie",
+      "reason": "Private pharmacies, rural subsidised pharmacies (Tabella B).",
+      "related": []
+    },
+    "tax_sector": "terziario",
+    "agreement_date": "2021-09-07",
+    "signatories": [
+      "FEDERFARMA",
+      "FILCAMS-CGIL",
+      "FISASCAT-CISL",
+      "UILTUCS"
+    ],
+    "sources": [
+      {
+        "document_id": "mnlf-it-documenti-contrattocollettivonazionaledilavorodeidipendentidafarmaciapri",
+        "title": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf",
+        "kind": "altro",
+        "url": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf",
+        "pages": [],
+        "published_on": "2021-09-07"
+      }
+    ],
+    "extraction": {
+      "method": "ai",
+      "model": "claude-sonnet-4-6",
+      "extraction_timestamp": "2026-09-05",
+      "verification_status": "unverified",
+      "effective_from": null
+    },
+    "workers_estimate": "~60k"
+  },
+  "coverage": {
+    "notes": [
+      {
+        "kind": "info",
+        "text": "Salary model: split. base_salary = retribuzione base nazionale conglobata (Tabella A, Art. 58). fixed_allowances = contingenza (per-level, frozen since 1977 per settore commercio) + EDR 10.33 (all levels, accordo 31/07/1992) + ISQ (Q levels, Tabella C)."
+      },
+      {
+        "kind": "info",
+        "text": "Divisore convenzionale 173 confirmed from Art. 57 of primary CCNL text."
+      },
+      {
+        "kind": "info",
+        "text": "Additional months: 14. Art. 62 (13a mensilita) and Art. 63 (14a mensilita) confirmed from primary source."
+      },
+      {
+        "kind": "info",
+        "text": "Seniority: 15 scatti biennali (Art. 53). Amounts from Tabella D (1.2.1996 column) of primary CCNL PDF."
+      },
+      {
+        "kind": "info",
+        "text": "Contract expired 31/08/2024 (Art. 102). No successor signed as of 2026-09-09 (INPS-CNEL spreadsheet updated 25/07/2026 shows Periodo finale=null for H121). Tables valid open-ended under ultrattività."
+      },
+      {
+        "kind": "info",
+        "text": "SIMPLIFICATION resolved: The CCNL rinnovo 07/09/2021 (Tabella A confirmed from UILTUCS primary PDF) established ONE salary tranche from 01/11/2021 — not three separate tranches. Increases vs. Dec 2012 base: Q1=+89.97, Q2=+150.00 (incl. 70 Area Q2), Q3=+80.00, L1=+80.00, L2=+70.98, L3=+67.39, L4=+62.65, L5=+57.72, L6=+53.90. These are fully modelled in this file. The '3 tranches / +113 EUR' figure cited in some secondary sources refers to the separate CCNL farmacie speciali/municipalizzate (Assofarm H122), not this contract."
+      },
+      {
+        "kind": "info",
+        "text": "Apprenticeship from Accordo 14 giugno 2012 (Allegato II). Farmacista collaboratore (dest 1o) stays at level 1o for all 36 months. Commesso/Magazziniere/Contabile (dest 4o): months 0-12 at level 6o, months 13-36 at level 5o."
+      },
+      {
+        "kind": "info",
+        "text": "Headcount: 77,146 workers in 16,324 companies (INPS-CNEL archive, H121)."
+      },
+      {
+        "kind": "info",
+        "text": "TABLE: the paga base of the Farmacie rurali sussidiate (Tabella B, PDF p. 67); every other rule is that of farmacie-private-h121 (Tabella A, the urban and non-subsidised rural pharmacies)."
+      },
+      {
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: ISQ for Q2 and Q3 modelled at flat 100 EUR (the 2+ anni tier per Tabella C). Workers with 12+ anni receive 130 EUR (delta 30 EUR/month, max ~360 EUR/yr). The 12-year tier is not modelled, although an allowance can be gated on service months (service_months_threshold) (review of 2026-10-30)",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "isq_twelve_year_tier",
+          "applies_when": {
+            "trigger": "run",
+            "levels": [
+              "Q2",
+              "Q3"
+            ]
+          },
+          "remediation": "Check whether the 12 anni of Tabella C count service or time in the quadro qualification; if service, split the ISQ of Q2/Q3 into a 100 EUR allowance with service_months_until=144 and a 130 EUR one with service_months_threshold=144 (Employment.seniority), otherwise add a worker fact for the qualification time."
+        }
+      },
+      {
+        "kind": "info",
+        "text": "SIMPLIFICATION: Tabella D groups Q2, Q3, and 1o into a single scatto amount of 25.30 EUR. Q1 uses 25.82 EUR."
+      },
+      {
+        "kind": "simplification",
+        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
+        "capability": "seniority",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "apprentice_seniority",
+          "applies_when": {
+            "trigger": "path",
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
+        }
+      }
+    ]
+  },
+  "verification": {
+    "confidence": "unverified",
+    "readiness": "exploratory",
+    "verified_cases": 0,
+    "reviews": [
+      {
+        "id": "2026-10-18-ai-accrual-rule",
+        "date": "2026-10-18",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. (copied from farmacie-private-h121: covers the rules the two tables share, not the paga base of Tabella B)",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://uiltucs.it/wp-content/uploads/2023/07/CCNL-per-i-Dipendenti-da-Farmacia-Privata-7-settembre-2021.pdf",
+            "sha256": "dfc1fc57234cb43fb5ab7a4a7e22d89c464b7784b344cedd288de560f170cea4"
+          }
+        ],
+        "findings": [
+          "Titolo XVIII - Anzianità di servizio, Art. 51 (p. 23): \"Le frazioni di anno sono computate a tutti gli effetti contrattuali per dodicesimi, computando come mese intero le frazioni di mese superiori a 15 giorni.\". Added: more_than 15 (the file applied the engine default, at least 15 days)."
+        ]
+      },
+      {
+        "id": "2026-10-31-ai-leave-termination",
+        "date": "2026-10-31",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The basis of the indemnity for the leave not taken at the end of the employment, read in the CCNL of 7 September 2021 (Artt. 24, 26, 28, 29, 55, 57). (copied from farmacie-private-h121: covers the rules the two tables share, not the paga base of Tabella B)",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://uiltucs.it/wp-content/uploads/2023/07/CCNL-per-i-Dipendenti-da-Farmacia-Privata-7-settembre-2021.pdf",
+            "sha256": "dfc1fc57234cb43fb5ab7a4a7e22d89c464b7784b344cedd288de560f170cea4"
+          }
+        ],
+        "findings": [
+          "Art. 57 (p. 24): the daily quota of the retribuzione di fatto is the monthly pay divided by 26 and the hourly quota by 173: work_rules.leave_rules.termination; the accrual of the leave is not modelled, so the basis is not used yet."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.leave_rules.termination.ferie_divisor 26",
+          "work_rules.leave_rules.termination.permits_hourly true"
+        ]
+      },
+      {
+        "id": "2026-10-31-ai-leave-accrual",
+        "date": "2026-10-31",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The measure and accrual of the ferie, the ex festività and the permits read in the CCNL of 7 September 2021 (Artt. 24, 26, 29, 51). (copied from farmacie-private-h121: covers the rules the two tables share, not the paga base of Tabella B)",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://uiltucs.it/wp-content/uploads/2023/07/CCNL-per-i-Dipendenti-da-Farmacia-Privata-7-settembre-2021.pdf",
+            "sha256": "dfc1fc57234cb43fb5ab7a4a7e22d89c464b7784b344cedd288de560f170cea4"
+          }
+        ],
+        "findings": [
+          "Art. 26 (p. 17): 26 working days of ferie for every worker; the 28 days after 36 months of the earlier pay-table source are not in the text: entitlement_tiers corrected to one tier of 26.",
+          "Art. 29 (p. 17): twelfths of the ferie per month of effective service: work_rules.leave_rules.ferie_accrual.",
+          "Art. 24 (p. 16): 32 hours of ex festività and 40 further hours of permits a year: work_rules.leave_rules.permits.",
+          "Art. 24 (p. 16): the 40 hours of a hire from 1 November 2021 by a pharmacy of up to 40 employees at 0%, 50% after three years, 100% after six: permits[rol].ramp with headcount_max 40."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.leave_rules.default_annual_days 26",
+          "work_rules.leave_rules.entitlement_tiers",
+          "work_rules.leave_rules.ferie_accrual",
+          "work_rules.leave_rules.permits[ex_festivita] 32",
+          "work_rules.leave_rules.permits[rol] 40",
+          "work_rules.leave_rules.permits[rol].ramp"
+        ]
+      },
+      {
+        "id": "2026-11-01-ai-notice",
+        "date": "2026-11-01",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The notice clause (Art. 73, p. 27). (copied from farmacie-private-h121: covers the rules the two tables share, not the paga base of Tabella B)",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://uiltucs.it/wp-content/uploads/2023/07/CCNL-per-i-Dipendenti-da-Farmacia-Privata-7-settembre-2021.pdf",
+            "sha256": "dfc1fc57234cb43fb5ab7a4a7e22d89c464b7784b344cedd288de560f170cea4"
+          }
+        ],
+        "findings": [
+          "Notice bands by level and service checked against the PDF by a separate session (delegated search and independent verification): work_rules.notice."
+        ],
+        "independence": "separate_session",
+        "checked": [
+          "work_rules.notice"
+        ]
+      }
+    ]
+  },
+  "parameters": {
+    "hourly_divisor": {
+      "periods": [
+        {
+          "valid_from": "2021-11-01",
+          "valid_until": null,
+          "value": 173
+        }
+      ]
+    },
+    "additional_months": {
+      "periods": [
+        {
+          "valid_from": "2021-11-01",
+          "valid_until": null,
+          "value": 14,
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
+        }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 24,
+      "maximum_count": 15,
+      "amount_by_level": {
+        "Q1": {
+          "periods": [
+            {
+              "valid_from": "2021-11-01",
+              "valid_until": null,
+              "value": "25.82"
+            }
+          ]
+        },
+        "Q2": {
+          "periods": [
+            {
+              "valid_from": "2021-11-01",
+              "valid_until": null,
+              "value": "25.30"
+            }
+          ]
+        },
+        "Q3": {
+          "periods": [
+            {
+              "valid_from": "2021-11-01",
+              "valid_until": null,
+              "value": "25.30"
+            }
+          ]
+        },
+        "1": {
+          "periods": [
+            {
+              "valid_from": "2021-11-01",
+              "valid_until": null,
+              "value": "25.30"
+            }
+          ]
+        },
+        "2": {
+          "periods": [
+            {
+              "valid_from": "2021-11-01",
+              "valid_until": null,
+              "value": "23.24"
+            }
+          ]
+        },
+        "3": {
+          "periods": [
+            {
+              "valid_from": "2021-11-01",
+              "valid_until": null,
+              "value": "22.72"
+            }
+          ]
+        },
+        "4": {
+          "periods": [
+            {
+              "valid_from": "2021-11-01",
+              "valid_until": null,
+              "value": "20.65"
+            }
+          ]
+        },
+        "5": {
+          "periods": [
+            {
+              "valid_from": "2021-11-01",
+              "valid_until": null,
+              "value": "20.14"
+            }
+          ]
+        },
+        "6": {
+          "periods": [
+            {
+              "valid_from": "2021-11-01",
+              "valid_until": null,
+              "value": "19.62"
+            }
+          ]
+        }
+      },
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
+            "title": "contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
+            "kind": "associazione",
+            "url": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf"
+          },
+          "section": "Scatti di anzianità"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "more_than",
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "farmacie-private-h121-ccnl-testo",
+            "title": "Federfarma Filcams-Cgil / Fisascat-Cisl / Uiltucs-Uil Contratto Collettivo Nazionale di Lavoro per i dipendenti da farmacia privata - Testo ufficiale",
+            "kind": "associazione",
+            "url": "https://uiltucs.it/wp-content/uploads/2023/07/CCNL-per-i-Dipendenti-da-Farmacia-Privata-7-settembre-2021.pdf",
+            "published_on": "2021-09-07",
+            "sha256": "dfc1fc57234cb43fb5ab7a4a7e22d89c464b7784b344cedd288de560f170cea4"
+          },
+          "page": "23",
+          "section": "Titolo XVIII - Anzianità di servizio, Art. 51",
+          "quote": "Le frazioni di anno sono computate a tutti gli effetti contrattuali per dodicesimi, computando come mese intero le frazioni di mese superiori a 15 giorni."
+        },
+        "transformation": "Fractions of a month of more than 15 days count as a whole month.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-18T13:00:00Z",
+          "effective_from": "2021-11-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-18T13:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-18-ai-accrual-rule"
+        }
+      }
+    }
+  },
+  "apprenticeship": [
+    {
+      "type": "under_classification",
+      "name": "farmacista_collaboratore",
+      "destination_levels": [
+        "1"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": null,
+          "levels_below": 0
+        }
+      ]
+    },
+    {
+      "type": "under_classification",
+      "name": "professionalizzante",
+      "destination_levels": [
+        "4"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "levels_below": 2
+        },
+        {
+          "months_from": 12,
+          "months_until": null,
+          "levels_below": 1
+        }
+      ]
+    }
+  ],
+  "levels": [
+    {
+      "code": "Q1",
+      "order": 9,
+      "description": "Area Q1 - Direttore responsabile di farmacia",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2021-11-01",
+            "valid_until": null,
+            "value": "1602.21",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "farmacie-private-ccnl-2021",
+                  "title": "CCNL Dipendenti delle Farmacie Private 7 settembre 2021 (testo con le Tabelle A, B e C)",
+                  "kind": "associazione",
+                  "url": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf",
+                  "sha256": "b6798989a01293d9629dc61f8cb56faeb07f4f5eb4d447526b911c761ac40214"
+                },
+                "page": "67",
+                "section": "Tabella B - Retribuzioni delle Farmacie rurali sussidiate, column 'Nuova paga base dal 01/11/2021', row Q1",
+                "quote": "Area Q1 1.515,84 86,37 1602,21 536,07 10,33 130,00 2.278,61"
+              },
+              "transformation": "The paga base of Tabella B from 1 November 2021: 1602.21. Contingenza, EDR and ISQ are those of Tabella A, kept from farmacie-private-h121.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T19:11:50Z",
+                "effective_from": "2021-11-01",
+                "verification_status": "unverified"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "contingenza",
+          "description": "Indennità di contingenza (settore commercio)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-11-01",
+                "valid_until": null,
+                "value": "536.07"
+              }
+            ]
+          },
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
+                "title": "contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
+                "kind": "associazione",
+                "url": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf"
+              },
+              "section": "Tabella retributiva"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-07T15:03:36",
+              "verification_status": "unverified",
+              "effective_from": "2020-01-01"
+            }
+          }
+        },
+        {
+          "code": "edr",
+          "description": "Elemento Distinto della Retribuzione (accordo 31/07/1992)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-11-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
+            ]
+          },
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
+                "title": "contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
+                "kind": "associazione",
+                "url": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf"
+              },
+              "section": "Tabella retributiva"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-07T15:03:36",
+              "verification_status": "unverified",
+              "effective_from": "2020-01-01"
+            },
+            "transformation": "Paid on 13 monthly payments (2026-11-01): Art. 54 e), p. 24 of the CCNL of 7 September 2021 (https://uiltucs.it/wp-content/uploads/2023/07/CCNL-per-i-Dipendenti-da-Farmacia-Privata-7-settembre-2021.pdf, sha256 dfc1fc57234cb43fb5ab7a4a7e22d89c464b7784b344cedd288de560f170cea4): 'l’elemento distinto della retribuzione (E.D.R.) di € 10,33, di cui all’accordo sul costo del lavoro del 31 luglio 1992 da corrispondersi per 13 mensilità.'"
+          },
+          "months_per_year": 13
+        },
+        {
+          "code": "isq",
+          "description": "Indennità Speciale Quadri (Art. 3 CCNL)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-11-01",
+                "valid_until": null,
+                "value": "130.00"
+              }
+            ]
+          },
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
+                "title": "contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
+                "kind": "associazione",
+                "url": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf"
+              },
+              "section": "Tabella retributiva"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-07T15:03:36",
+              "verification_status": "unverified",
+              "effective_from": "2020-01-01"
+            }
+          }
+        }
+      ],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
+            "title": "contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
+            "kind": "associazione",
+            "url": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "Q2",
+      "order": 8,
+      "description": "Area Q2 - Farmacista collaboratore specializzato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2021-11-01",
+            "valid_until": null,
+            "value": "1439.22",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "farmacie-private-ccnl-2021",
+                  "title": "CCNL Dipendenti delle Farmacie Private 7 settembre 2021 (testo con le Tabelle A, B e C)",
+                  "kind": "associazione",
+                  "url": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf",
+                  "sha256": "b6798989a01293d9629dc61f8cb56faeb07f4f5eb4d447526b911c761ac40214"
+                },
+                "page": "67",
+                "section": "Tabella B - Retribuzioni delle Farmacie rurali sussidiate, column 'Nuova paga base dal 01/11/2021', row Q2",
+                "quote": "Area Q2 + 2 anni (*) 1.295,22 144,00 1439,22 530,45 10,33 100,00 2.080,00"
+              },
+              "transformation": "The paga base of Tabella B from 1 November 2021: 1439.22. Contingenza, EDR and ISQ are those of Tabella A, kept from farmacie-private-h121.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T19:11:50Z",
+                "effective_from": "2021-11-01",
+                "verification_status": "unverified"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "contingenza",
+          "description": "Indennità di contingenza (settore commercio)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-11-01",
+                "valid_until": null,
+                "value": "530.45"
+              }
+            ]
+          },
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
+                "title": "contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
+                "kind": "associazione",
+                "url": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf"
+              },
+              "section": "Tabella retributiva"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-07T15:03:36",
+              "verification_status": "unverified",
+              "effective_from": "2020-01-01"
+            }
+          }
+        },
+        {
+          "code": "edr",
+          "description": "Elemento Distinto della Retribuzione (accordo 31/07/1992)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-11-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
+            ]
+          },
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
+                "title": "contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
+                "kind": "associazione",
+                "url": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf"
+              },
+              "section": "Tabella retributiva"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-07T15:03:36",
+              "verification_status": "unverified",
+              "effective_from": "2020-01-01"
+            },
+            "transformation": "Paid on 13 monthly payments (2026-11-01): Art. 54 e), p. 24 of the CCNL of 7 September 2021 (https://uiltucs.it/wp-content/uploads/2023/07/CCNL-per-i-Dipendenti-da-Farmacia-Privata-7-settembre-2021.pdf, sha256 dfc1fc57234cb43fb5ab7a4a7e22d89c464b7784b344cedd288de560f170cea4): 'l’elemento distinto della retribuzione (E.D.R.) di € 10,33, di cui all’accordo sul costo del lavoro del 31 luglio 1992 da corrispondersi per 13 mensilità.'"
+          },
+          "months_per_year": 13
+        },
+        {
+          "code": "isq",
+          "description": "Indennità Speciale Quadri - 100 EUR (2+ anni in Area Q, Tabella C)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-11-01",
+                "valid_until": null,
+                "value": "100.00"
+              }
+            ]
+          },
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
+                "title": "contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
+                "kind": "associazione",
+                "url": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf"
+              },
+              "section": "Tabella retributiva"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-07T15:03:36",
+              "verification_status": "unverified",
+              "effective_from": "2020-01-01"
+            }
+          }
+        }
+      ],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
+            "title": "contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
+            "kind": "associazione",
+            "url": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "Q3",
+      "order": 7,
+      "description": "Area Q3 - Farmacista collaboratore con 24+ mesi in qualifica",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2021-11-01",
+            "valid_until": null,
+            "value": "1372.02",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "farmacie-private-ccnl-2021",
+                  "title": "CCNL Dipendenti delle Farmacie Private 7 settembre 2021 (testo con le Tabelle A, B e C)",
+                  "kind": "associazione",
+                  "url": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf",
+                  "sha256": "b6798989a01293d9629dc61f8cb56faeb07f4f5eb4d447526b911c761ac40214"
+                },
+                "page": "67",
+                "section": "Tabella B - Retribuzioni delle Farmacie rurali sussidiate, column 'Nuova paga base dal 01/11/2021', row Q3",
+                "quote": "Area Q3 + 2 anni (*) 1.295,22 76,80 1372,02 530,45 10,33 100,00 2.012,80"
+              },
+              "transformation": "The paga base of Tabella B from 1 November 2021: 1372.02. Contingenza, EDR and ISQ are those of Tabella A, kept from farmacie-private-h121.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T19:11:50Z",
+                "effective_from": "2021-11-01",
+                "verification_status": "unverified"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "contingenza",
+          "description": "Indennità di contingenza (settore commercio)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-11-01",
+                "valid_until": null,
+                "value": "530.45"
+              }
+            ]
+          },
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
+                "title": "contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
+                "kind": "associazione",
+                "url": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf"
+              },
+              "section": "Tabella retributiva"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-07T15:03:36",
+              "verification_status": "unverified",
+              "effective_from": "2020-01-01"
+            }
+          }
+        },
+        {
+          "code": "edr",
+          "description": "Elemento Distinto della Retribuzione (accordo 31/07/1992)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-11-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
+            ]
+          },
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
+                "title": "contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
+                "kind": "associazione",
+                "url": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf"
+              },
+              "section": "Tabella retributiva"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-07T15:03:36",
+              "verification_status": "unverified",
+              "effective_from": "2020-01-01"
+            },
+            "transformation": "Paid on 13 monthly payments (2026-11-01): Art. 54 e), p. 24 of the CCNL of 7 September 2021 (https://uiltucs.it/wp-content/uploads/2023/07/CCNL-per-i-Dipendenti-da-Farmacia-Privata-7-settembre-2021.pdf, sha256 dfc1fc57234cb43fb5ab7a4a7e22d89c464b7784b344cedd288de560f170cea4): 'l’elemento distinto della retribuzione (E.D.R.) di € 10,33, di cui all’accordo sul costo del lavoro del 31 luglio 1992 da corrispondersi per 13 mensilità.'"
+          },
+          "months_per_year": 13
+        },
+        {
+          "code": "isq",
+          "description": "Indennità Speciale Quadri - 100 EUR (2+ anni in Area Q, Tabella C)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-11-01",
+                "valid_until": null,
+                "value": "100.00"
+              }
+            ]
+          },
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
+                "title": "contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
+                "kind": "associazione",
+                "url": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf"
+              },
+              "section": "Tabella retributiva"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-07T15:03:36",
+              "verification_status": "unverified",
+              "effective_from": "2020-01-01"
+            }
+          }
+        }
+      ],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
+            "title": "contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
+            "kind": "associazione",
+            "url": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "1",
+      "order": 6,
+      "description": "1o livello - Farmacista collaboratore",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2021-11-01",
+            "valid_until": null,
+            "value": "1372.02",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "farmacie-private-ccnl-2021",
+                  "title": "CCNL Dipendenti delle Farmacie Private 7 settembre 2021 (testo con le Tabelle A, B e C)",
+                  "kind": "associazione",
+                  "url": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf",
+                  "sha256": "b6798989a01293d9629dc61f8cb56faeb07f4f5eb4d447526b911c761ac40214"
+                },
+                "page": "67",
+                "section": "Tabella B - Retribuzioni delle Farmacie rurali sussidiate, column 'Nuova paga base dal 01/11/2021', row 1",
+                "quote": "1° 1.295,22 76,80 1372,02 530,45 10,33 1.912,80"
+              },
+              "transformation": "The paga base of Tabella B from 1 November 2021: 1372.02. Contingenza, EDR and ISQ are those of Tabella A, kept from farmacie-private-h121.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T19:11:50Z",
+                "effective_from": "2021-11-01",
+                "verification_status": "unverified"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "contingenza",
+          "description": "Indennità di contingenza (settore commercio)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-11-01",
+                "valid_until": null,
+                "value": "530.45"
+              }
+            ]
+          },
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
+                "title": "contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
+                "kind": "associazione",
+                "url": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf"
+              },
+              "section": "Tabella retributiva"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-07T15:03:36",
+              "verification_status": "unverified",
+              "effective_from": "2020-01-01"
+            }
+          }
+        },
+        {
+          "code": "edr",
+          "description": "Elemento Distinto della Retribuzione (accordo 31/07/1992)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-11-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
+            ]
+          },
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
+                "title": "contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
+                "kind": "associazione",
+                "url": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf"
+              },
+              "section": "Tabella retributiva"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-07T15:03:36",
+              "verification_status": "unverified",
+              "effective_from": "2020-01-01"
+            },
+            "transformation": "Paid on 13 monthly payments (2026-11-01): Art. 54 e), p. 24 of the CCNL of 7 September 2021 (https://uiltucs.it/wp-content/uploads/2023/07/CCNL-per-i-Dipendenti-da-Farmacia-Privata-7-settembre-2021.pdf, sha256 dfc1fc57234cb43fb5ab7a4a7e22d89c464b7784b344cedd288de560f170cea4): 'l’elemento distinto della retribuzione (E.D.R.) di € 10,33, di cui all’accordo sul costo del lavoro del 31 luglio 1992 da corrispondersi per 13 mensilità.'"
+          },
+          "months_per_year": 13
+        }
+      ],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
+            "title": "contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
+            "kind": "associazione",
+            "url": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "2",
+      "order": 5,
+      "description": "2o livello - Lavoratori di concetto con funzioni di coordinamento",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2021-11-01",
+            "valid_until": null,
+            "value": "1167.28",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "farmacie-private-ccnl-2021",
+                  "title": "CCNL Dipendenti delle Farmacie Private 7 settembre 2021 (testo con le Tabelle A, B e C)",
+                  "kind": "associazione",
+                  "url": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf",
+                  "sha256": "b6798989a01293d9629dc61f8cb56faeb07f4f5eb4d447526b911c761ac40214"
+                },
+                "page": "67",
+                "section": "Tabella B - Retribuzioni delle Farmacie rurali sussidiate, column 'Nuova paga base dal 01/11/2021', row 2",
+                "quote": "2° 1.099,14 68,14 1167,28 521,63 10,33 1.699,24"
+              },
+              "transformation": "The paga base of Tabella B from 1 November 2021: 1167.28. Contingenza, EDR and ISQ are those of Tabella A, kept from farmacie-private-h121.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T19:11:50Z",
+                "effective_from": "2021-11-01",
+                "verification_status": "unverified"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "contingenza",
+          "description": "Indennità di contingenza (settore commercio)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-11-01",
+                "valid_until": null,
+                "value": "521.63"
+              }
+            ]
+          },
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
+                "title": "contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
+                "kind": "associazione",
+                "url": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf"
+              },
+              "section": "Tabella retributiva"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-07T15:03:36",
+              "verification_status": "unverified",
+              "effective_from": "2020-01-01"
+            }
+          }
+        },
+        {
+          "code": "edr",
+          "description": "Elemento Distinto della Retribuzione (accordo 31/07/1992)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-11-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
+            ]
+          },
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
+                "title": "contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
+                "kind": "associazione",
+                "url": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf"
+              },
+              "section": "Tabella retributiva"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-07T15:03:36",
+              "verification_status": "unverified",
+              "effective_from": "2020-01-01"
+            },
+            "transformation": "Paid on 13 monthly payments (2026-11-01): Art. 54 e), p. 24 of the CCNL of 7 September 2021 (https://uiltucs.it/wp-content/uploads/2023/07/CCNL-per-i-Dipendenti-da-Farmacia-Privata-7-settembre-2021.pdf, sha256 dfc1fc57234cb43fb5ab7a4a7e22d89c464b7784b344cedd288de560f170cea4): 'l’elemento distinto della retribuzione (E.D.R.) di € 10,33, di cui all’accordo sul costo del lavoro del 31 luglio 1992 da corrispondersi per 13 mensilità.'"
+          },
+          "months_per_year": 13
+        }
+      ],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
+            "title": "contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
+            "kind": "associazione",
+            "url": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "3",
+      "order": 4,
+      "description": "3o livello - Lavoratori di concetto con conoscenze tecniche",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2021-11-01",
+            "valid_until": null,
+            "value": "1084.97",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "farmacie-private-ccnl-2021",
+                  "title": "CCNL Dipendenti delle Farmacie Private 7 settembre 2021 (testo con le Tabelle A, B e C)",
+                  "kind": "associazione",
+                  "url": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf",
+                  "sha256": "b6798989a01293d9629dc61f8cb56faeb07f4f5eb4d447526b911c761ac40214"
+                },
+                "page": "67",
+                "section": "Tabella B - Retribuzioni delle Farmacie rurali sussidiate, column 'Nuova paga base dal 01/11/2021', row 3",
+                "quote": "3° 1.020,27 64,70 1084,97 519,00 10,33 1.614,30"
+              },
+              "transformation": "The paga base of Tabella B from 1 November 2021: 1084.97. Contingenza, EDR and ISQ are those of Tabella A, kept from farmacie-private-h121.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T19:11:50Z",
+                "effective_from": "2021-11-01",
+                "verification_status": "unverified"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "contingenza",
+          "description": "Indennità di contingenza (settore commercio)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-11-01",
+                "valid_until": null,
+                "value": "519.00"
+              }
+            ]
+          },
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
+                "title": "contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
+                "kind": "associazione",
+                "url": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf"
+              },
+              "section": "Tabella retributiva"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-07T15:03:36",
+              "verification_status": "unverified",
+              "effective_from": "2020-01-01"
+            }
+          }
+        },
+        {
+          "code": "edr",
+          "description": "Elemento Distinto della Retribuzione (accordo 31/07/1992)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-11-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
+            ]
+          },
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
+                "title": "contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
+                "kind": "associazione",
+                "url": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf"
+              },
+              "section": "Tabella retributiva"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-07T15:03:36",
+              "verification_status": "unverified",
+              "effective_from": "2020-01-01"
+            },
+            "transformation": "Paid on 13 monthly payments (2026-11-01): Art. 54 e), p. 24 of the CCNL of 7 September 2021 (https://uiltucs.it/wp-content/uploads/2023/07/CCNL-per-i-Dipendenti-da-Farmacia-Privata-7-settembre-2021.pdf, sha256 dfc1fc57234cb43fb5ab7a4a7e22d89c464b7784b344cedd288de560f170cea4): 'l’elemento distinto della retribuzione (E.D.R.) di € 10,33, di cui all’accordo sul costo del lavoro del 31 luglio 1992 da corrispondersi per 13 mensilità.'"
+          },
+          "months_per_year": 13
+        }
+      ],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
+            "title": "contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
+            "kind": "associazione",
+            "url": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "4",
+      "order": 3,
+      "description": "4o livello - Lavoratori con compiti operativi e conoscenze tecnico-pratiche",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2021-11-01",
+            "valid_until": null,
+            "value": "976.33",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "farmacie-private-ccnl-2021",
+                  "title": "CCNL Dipendenti delle Farmacie Private 7 settembre 2021 (testo con le Tabelle A, B e C)",
+                  "kind": "associazione",
+                  "url": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf",
+                  "sha256": "b6798989a01293d9629dc61f8cb56faeb07f4f5eb4d447526b911c761ac40214"
+                },
+                "page": "67",
+                "section": "Tabella B - Retribuzioni delle Farmacie rurali sussidiate, column 'Nuova paga base dal 01/11/2021', row 4",
+                "quote": "4° 916,18 60,15 976,33 515,40 10,33 1.502,06"
+              },
+              "transformation": "The paga base of Tabella B from 1 November 2021: 976.33. Contingenza, EDR and ISQ are those of Tabella A, kept from farmacie-private-h121.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T19:11:50Z",
+                "effective_from": "2021-11-01",
+                "verification_status": "unverified"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "contingenza",
+          "description": "Indennità di contingenza (settore commercio)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-11-01",
+                "valid_until": null,
+                "value": "515.40"
+              }
+            ]
+          },
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
+                "title": "contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
+                "kind": "associazione",
+                "url": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf"
+              },
+              "section": "Tabella retributiva"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-07T15:03:36",
+              "verification_status": "unverified",
+              "effective_from": "2020-01-01"
+            }
+          }
+        },
+        {
+          "code": "edr",
+          "description": "Elemento Distinto della Retribuzione (accordo 31/07/1992)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-11-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
+            ]
+          },
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
+                "title": "contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
+                "kind": "associazione",
+                "url": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf"
+              },
+              "section": "Tabella retributiva"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-07T15:03:36",
+              "verification_status": "unverified",
+              "effective_from": "2020-01-01"
+            },
+            "transformation": "Paid on 13 monthly payments (2026-11-01): Art. 54 e), p. 24 of the CCNL of 7 September 2021 (https://uiltucs.it/wp-content/uploads/2023/07/CCNL-per-i-Dipendenti-da-Farmacia-Privata-7-settembre-2021.pdf, sha256 dfc1fc57234cb43fb5ab7a4a7e22d89c464b7784b344cedd288de560f170cea4): 'l’elemento distinto della retribuzione (E.D.R.) di € 10,33, di cui all’accordo sul costo del lavoro del 31 luglio 1992 da corrispondersi per 13 mensilità.'"
+          },
+          "months_per_year": 13
+        }
+      ],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
+            "title": "contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
+            "kind": "associazione",
+            "url": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "5",
+      "order": 2,
+      "description": "5o livello - Lavoratori qualificati con normali conoscenze",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2021-11-01",
+            "valid_until": null,
+            "value": "863.01",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "farmacie-private-ccnl-2021",
+                  "title": "CCNL Dipendenti delle Farmacie Private 7 settembre 2021 (testo con le Tabelle A, B e C)",
+                  "kind": "associazione",
+                  "url": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf",
+                  "sha256": "b6798989a01293d9629dc61f8cb56faeb07f4f5eb4d447526b911c761ac40214"
+                },
+                "page": "67",
+                "section": "Tabella B - Retribuzioni delle Farmacie rurali sussidiate, column 'Nuova paga base dal 01/11/2021', row 5",
+                "quote": "5° 807,60 55,41 863,01 512,07 10,33 1.385,41"
+              },
+              "transformation": "The paga base of Tabella B from 1 November 2021: 863.01. Contingenza, EDR and ISQ are those of Tabella A, kept from farmacie-private-h121.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T19:11:50Z",
+                "effective_from": "2021-11-01",
+                "verification_status": "unverified"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "contingenza",
+          "description": "Indennità di contingenza (settore commercio)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-11-01",
+                "valid_until": null,
+                "value": "512.07"
+              }
+            ]
+          },
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
+                "title": "contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
+                "kind": "associazione",
+                "url": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf"
+              },
+              "section": "Tabella retributiva"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-07T15:03:36",
+              "verification_status": "unverified",
+              "effective_from": "2020-01-01"
+            }
+          }
+        },
+        {
+          "code": "edr",
+          "description": "Elemento Distinto della Retribuzione (accordo 31/07/1992)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-11-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
+            ]
+          },
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
+                "title": "contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
+                "kind": "associazione",
+                "url": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf"
+              },
+              "section": "Tabella retributiva"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-07T15:03:36",
+              "verification_status": "unverified",
+              "effective_from": "2020-01-01"
+            },
+            "transformation": "Paid on 13 monthly payments (2026-11-01): Art. 54 e), p. 24 of the CCNL of 7 September 2021 (https://uiltucs.it/wp-content/uploads/2023/07/CCNL-per-i-Dipendenti-da-Farmacia-Privata-7-settembre-2021.pdf, sha256 dfc1fc57234cb43fb5ab7a4a7e22d89c464b7784b344cedd288de560f170cea4): 'l’elemento distinto della retribuzione (E.D.R.) di € 10,33, di cui all’accordo sul costo del lavoro del 31 luglio 1992 da corrispondersi per 13 mensilità.'"
+          },
+          "months_per_year": 13
+        }
+      ],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
+            "title": "contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
+            "kind": "associazione",
+            "url": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "6",
+      "order": 1,
+      "description": "6o livello - Lavoratori di pulizia e operazioni semplici",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2021-11-01",
+            "valid_until": null,
+            "value": "775.49",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "farmacie-private-ccnl-2021",
+                  "title": "CCNL Dipendenti delle Farmacie Private 7 settembre 2021 (testo con le Tabelle A, B e C)",
+                  "kind": "associazione",
+                  "url": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf",
+                  "sha256": "b6798989a01293d9629dc61f8cb56faeb07f4f5eb4d447526b911c761ac40214"
+                },
+                "page": "67",
+                "section": "Tabella B - Retribuzioni delle Farmacie rurali sussidiate, column 'Nuova paga base dal 01/11/2021', row 6",
+                "quote": "6° 723,75 51,74 775,49 509,11 10,33 1.294,93"
+              },
+              "transformation": "The paga base of Tabella B from 1 November 2021: 775.49. Contingenza, EDR and ISQ are those of Tabella A, kept from farmacie-private-h121.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T19:11:50Z",
+                "effective_from": "2021-11-01",
+                "verification_status": "unverified"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "contingenza",
+          "description": "Indennità di contingenza (settore commercio)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-11-01",
+                "valid_until": null,
+                "value": "509.11"
+              }
+            ]
+          },
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
+                "title": "contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
+                "kind": "associazione",
+                "url": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf"
+              },
+              "section": "Tabella retributiva"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-07T15:03:36",
+              "verification_status": "unverified",
+              "effective_from": "2020-01-01"
+            }
+          }
+        },
+        {
+          "code": "edr",
+          "description": "Elemento Distinto della Retribuzione (accordo 31/07/1992)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-11-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
+            ]
+          },
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
+                "title": "contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
+                "kind": "associazione",
+                "url": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf"
+              },
+              "section": "Tabella retributiva"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-07T15:03:36",
+              "verification_status": "unverified",
+              "effective_from": "2020-01-01"
+            },
+            "transformation": "Paid on 13 monthly payments (2026-11-01): Art. 54 e), p. 24 of the CCNL of 7 September 2021 (https://uiltucs.it/wp-content/uploads/2023/07/CCNL-per-i-Dipendenti-da-Farmacia-Privata-7-settembre-2021.pdf, sha256 dfc1fc57234cb43fb5ab7a4a7e22d89c464b7784b344cedd288de560f170cea4): 'l’elemento distinto della retribuzione (E.D.R.) di € 10,33, di cui all’accordo sul costo del lavoro del 31 luglio 1992 da corrispondersi per 13 mensilità.'"
+          },
+          "months_per_year": 13
+        }
+      ],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
+            "title": "contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
+            "kind": "associazione",
+            "url": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    }
+  ],
+  "ruleset": {
+    "id": "ccnl/farmacie-rurali-sussidiate-h121",
+    "version": "2026.2",
+    "effective_from": "2021-11-01",
+    "effective_until": null,
+    "source": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf",
+    "verification_status": "unverified",
+    "source_hash": "9a3a4316d40d1e0d3eb34e2f15b9acd5cd2da4bce50d3ab412c8e4c80bdcb9b7",
+    "published_at": "2026-11-01",
+    "source_type": "contracting_party"
+  },
+  "work_rules": {
+    "time_supplements": {
+      "hourly_base_method": "minimo_tabellare",
+      "overtime_bands": [
+        {
+          "code": "OT_DIURNO",
+          "description": "Straordinario feriale diurno",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2021-01-01",
+                "value": 0.2,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-farmacie-private-2021",
+                "title": "CCNL Farmacie Private (MNLF / Federfarma) 2021",
+                "kind": "tabella_retributiva",
+                "url": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf"
+              },
+              "section": "Art. straordinario — maggiorazione 20%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2021-01-01"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO",
+          "description": "Straordinario feriale notturno",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2021-01-01",
+                "value": 0.4,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night"
+          ],
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-farmacie-private-2021",
+                "title": "CCNL Farmacie Private (MNLF / Federfarma) 2021",
+                "kind": "tabella_retributiva",
+                "url": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf"
+              },
+              "section": "Art. straordinario — maggiorazione 40%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2021-01-01"
+            }
+          }
+        },
+        {
+          "code": "OT_FESTIVO",
+          "description": "Straordinario festivo",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2021-01-01",
+                "value": 0.3,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "holiday"
+          ],
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-farmacie-private-2021",
+                "title": "CCNL Farmacie Private (MNLF / Federfarma) 2021",
+                "kind": "tabella_retributiva",
+                "url": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf"
+              },
+              "section": "Art. straordinario — maggiorazione 30%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2021-01-01"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO_FESTIVO",
+          "description": "Straordinario notturno festivo",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2021-01-01",
+                "value": 0.75,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night_holiday"
+          ],
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-farmacie-private-2021",
+                "title": "CCNL Farmacie Private (MNLF / Federfarma) 2021",
+                "kind": "tabella_retributiva",
+                "url": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf"
+              },
+              "section": "Art. straordinario — maggiorazione 75%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2021-01-01"
+            }
+          }
+        }
+      ]
+    },
+    "absence_rules": {
+      "daily_divisor_method": "by_26",
+      "daily_hours": null,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-farmacie-private-2021",
+            "title": "CCNL Farmacie Private (MNLF / Federfarma) 2021",
+            "kind": "tabella_retributiva",
+            "url": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf"
+          },
+          "section": "Art. orario — divisore mensile standard"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2021-01-01"
+        }
+      }
+    },
+    "leave_rules": {
+      "default_annual_days": "26",
+      "entitlement_tiers": [
+        {
+          "service_months_min": 0,
+          "annual_days": "26"
+        }
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "farmacie-private-h121-ccnl-testo",
+            "title": "Federfarma Filcams-Cgil / Fisascat-Cisl / Uiltucs-Uil Contratto Collettivo Nazionale di Lavoro per i dipendenti da farmacia privata - Testo ufficiale",
+            "kind": "associazione",
+            "url": "https://uiltucs.it/wp-content/uploads/2023/07/CCNL-per-i-Dipendenti-da-Farmacia-Privata-7-settembre-2021.pdf",
+            "published_on": "2021-09-07",
+            "sha256": "dfc1fc57234cb43fb5ab7a4a7e22d89c464b7784b344cedd288de560f170cea4"
+          },
+          "page": "17",
+          "section": "Art. 26 - Ferie",
+          "quote": "Il personale di cui al presente contratto ha diritto ad un periodo di ferie annuali nella misura di 26 giorni lavorativi, fermo restando che la settimana lavorativa - quale che sia la distribuzione dell’orario di lavoro settimanale - è comunque considerata di sei giorni lavorativi dal lunedì al sabato agli effetti del computo delle ferie."
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-10-31T17:00:00Z",
+          "effective_from": "2021-09-07",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-10-31T17:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-10-31-ai-leave-accrual"
+        },
+        "transformation": "26 working days for every worker. The 28 days after 36 months of service the file took from a pay-table source are not in the text: Art. 26 states one measure, with no seniority tier."
+      },
+      "termination": {
+        "ferie_divisor": "26",
+        "permits_hourly": true,
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "farmacie-private-h121-ccnl-testo",
+              "title": "Federfarma Filcams-Cgil / Fisascat-Cisl / Uiltucs-Uil Contratto Collettivo Nazionale di Lavoro per i dipendenti da farmacia privata - Testo ufficiale",
+              "kind": "associazione",
+              "url": "https://uiltucs.it/wp-content/uploads/2023/07/CCNL-per-i-Dipendenti-da-Farmacia-Privata-7-settembre-2021.pdf",
+              "published_on": "2021-09-07",
+              "sha256": "dfc1fc57234cb43fb5ab7a4a7e22d89c464b7784b344cedd288de560f170cea4"
+            },
+            "page": "24",
+            "section": "Art. 57",
+            "quote": "La quota oraria di retribuzione, sia normale che di fatto, si ottiene dividendo l’importo mensile per il divisore convenzionale 173 per il personale la cui durata normale di lavoro è di 40 ore settimanali. La quota giornaliera della retribuzione, sia normale che di fatto, si ottiene dividendo l’importo mensile per il divisore convenzionale 26, fatto salvo quanto previsto dall’art. 44, 2° comma del presente contratto."
+          },
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-10-31T15:00:00Z",
+            "effective_from": "2021-09-07",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-10-31T15:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-10-31-ai-leave-termination"
+          },
+          "transformation": "Ferie: residual days x monthly pay / 26. No clause on the end of the employment names a divisor: Art. 28 pays the ferie at the retribuzione di fatto and Art. 29 grants the twelfths at the end of the employment; the daily quota of that retribuzione is the monthly pay / 26 of Art. 57 (the exception of Art. 44 c.2 is the daily quota of sickness and injury), and the 26 days of ferie are working days of a six-day week (Art. 26). Permits: residual hours x monthly pay / 173, the hourly quota of the same article, the measure Art. 24 (p. 16) uses for the permits not taken in the year ('saranno pagati con la retribuzione di fatto di cui all’art. 55 in atto al momento della scadenza'), the reading adopted for Commercio. The ferie and permits it pays accrue under Artt. 24, 26 and 29 (work_rules.leave_rules)."
+        }
+      },
+      "ferie_accrual": {
+        "month_credit": null,
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "farmacie-private-h121-ccnl-testo",
+              "title": "Federfarma Filcams-Cgil / Fisascat-Cisl / Uiltucs-Uil Contratto Collettivo Nazionale di Lavoro per i dipendenti da farmacia privata - Testo ufficiale",
+              "kind": "associazione",
+              "url": "https://uiltucs.it/wp-content/uploads/2023/07/CCNL-per-i-Dipendenti-da-Farmacia-Privata-7-settembre-2021.pdf",
+              "published_on": "2021-09-07",
+              "sha256": "dfc1fc57234cb43fb5ab7a4a7e22d89c464b7784b344cedd288de560f170cea4"
+            },
+            "page": "17",
+            "section": "Art. 29",
+            "quote": "In caso di licenziamento o di dimissioni, spetteranno al lavoratore tanti dodicesimi del periodo di ferie quanti sono i mesi di effettivo servizio prestato per l’anno di competenza."
+          },
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-10-31T17:00:00Z",
+            "effective_from": "2021-09-07",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-10-31T17:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-10-31-ai-leave-accrual"
+          },
+          "note": "Twelfths of the 26 days per month of effective service. The text does not say how a month served in part counts for the ferie (the fifteen-day rule of Art. 51 is the seniority): month_credit is left open, so a partial month accrues nothing and the balance is marked inexact."
+        }
+      },
+      "permits": [
+        {
+          "bucket": "ex_festivita",
+          "annual_hours": [
+            {
+              "hours": "32"
+            }
+          ],
+          "month_credit": null,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "farmacie-private-h121-ccnl-testo",
+                "title": "Federfarma Filcams-Cgil / Fisascat-Cisl / Uiltucs-Uil Contratto Collettivo Nazionale di Lavoro per i dipendenti da farmacia privata - Testo ufficiale",
+                "kind": "associazione",
+                "url": "https://uiltucs.it/wp-content/uploads/2023/07/CCNL-per-i-Dipendenti-da-Farmacia-Privata-7-settembre-2021.pdf",
+                "published_on": "2021-09-07",
+                "sha256": "dfc1fc57234cb43fb5ab7a4a7e22d89c464b7784b344cedd288de560f170cea4"
+              },
+              "page": "16",
+              "section": "Art. 24 - permessi in sostituzione delle festività abolite",
+              "quote": "Gruppi di 4 o di 8 ore di permesso individuale retribuito verranno fruiti dai lavoratori in sostituzione delle 4 festività abolite dal combinato disposto della legge 5 marzo 1977, n. 54 e del D.P.R. 28 dicembre 1985, n. 792."
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-31T17:00:00Z",
+              "effective_from": "2021-09-07",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-31T17:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-10-31-ai-leave-accrual"
+            },
+            "transformation": "32 hours = the 4 abolished festivities times a working day of 8 hours: the clause grants the hours in groups of 4 or 8 in place of the 4 festivities and states no total. Accrued in full by every worker (the ramp of the hires from 1 November 2021 keeps 'il godimento delle ore di permesso di cui al primo comma'). The text read states no month rule for these hours (the Nota a verbale defines the 'prestazioni lavorative ridotte' without a clause on their twelfths): a partial month accrues nothing and the balance is marked inexact."
+          }
+        },
+        {
+          "bucket": "rol",
+          "annual_hours": [
+            {
+              "hours": "40"
+            }
+          ],
+          "month_credit": null,
+          "ramp": {
+            "hired_after": "2021-10-31",
+            "headcount_max": 40,
+            "steps": [
+              {
+                "service_months_min": 0,
+                "share": "0"
+              },
+              {
+                "service_months_min": 36,
+                "share": "0.5"
+              },
+              {
+                "service_months_min": 72,
+                "share": "1"
+              }
+            ],
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "farmacie-private-h121-ccnl-testo",
+                  "title": "Federfarma Filcams-Cgil / Fisascat-Cisl / Uiltucs-Uil Contratto Collettivo Nazionale di Lavoro per i dipendenti da farmacia privata - Testo ufficiale",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2023/07/CCNL-per-i-Dipendenti-da-Farmacia-Privata-7-settembre-2021.pdf",
+                  "published_on": "2021-09-07",
+                  "sha256": "dfc1fc57234cb43fb5ab7a4a7e22d89c464b7784b344cedd288de560f170cea4"
+                },
+                "page": "16",
+                "section": "Art. 24 - assunti dal 1° novembre 2021",
+                "quote": "Per tutti i lavoratori assunti dal 1° novembre 2021 dai titolari di Farmacie fino a 40 dipendenti, fermo restando il godimento delle ore di permesso di cui al primo comma, le ulteriori ore di permesso di cui al quarto comma pari 40 ore, verranno riconosciute in misura pari al 50%, decorsi tre anni dall’assunzione e in misura pari al 100% decorsi sei anni dall’assunzione."
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-10-31T17:00:00Z",
+                "effective_from": "2021-09-07",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-10-31T17:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-10-31-ai-leave-accrual"
+              },
+              "transformation": "Hires from 1 November 2021 (hired_after 31 October 2021) of an employer with up to 40 employees: share 0 for the first 36 months, 0.5 from 36, 1 from 72. The service at other pharmacies documented at the hire, which the clause counts, and the count from the first hire of a converted apprenticeship or fixed term (next paragraph of Art. 24) are not modelled: the employment start is the hire."
+            }
+          },
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "farmacie-private-h121-ccnl-testo",
+                "title": "Federfarma Filcams-Cgil / Fisascat-Cisl / Uiltucs-Uil Contratto Collettivo Nazionale di Lavoro per i dipendenti da farmacia privata - Testo ufficiale",
+                "kind": "associazione",
+                "url": "https://uiltucs.it/wp-content/uploads/2023/07/CCNL-per-i-Dipendenti-da-Farmacia-Privata-7-settembre-2021.pdf",
+                "published_on": "2021-09-07",
+                "sha256": "dfc1fc57234cb43fb5ab7a4a7e22d89c464b7784b344cedd288de560f170cea4"
+              },
+              "page": "16",
+              "section": "Art. 24 - ulteriori permessi",
+              "quote": "Con le stesse modalità saranno fruiti ulteriori gruppi di permessi, per complessive 40 ore annuali, salvo restando l’assorbimento fino a concorrenza di eventuali trattamenti non previsti nel presente contratto in materia di riduzione, permessi e ferie."
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-31T17:00:00Z",
+              "effective_from": "2021-09-07",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-31T17:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-10-31-ai-leave-accrual"
+            },
+            "note": "40 hours a year for any employer. Part time: 'detti permessi competono proporzionalmente all’orario contrattuale individuale' (Art. 24). No month rule stated: a partial month accrues nothing and the balance is marked inexact."
+          }
+        }
+      ]
+    },
+    "sickness_rules": {
+      "carenza_integration_rate": "1",
+      "full_pay_integration_rate": "1",
+      "max_duration_days": 180,
+      "day_bands": [
+        {
+          "day_from": 4,
+          "day_until": 21,
+          "integration_rate": "0.80"
+        },
+        {
+          "day_from": 21,
+          "day_until": null,
+          "integration_rate": "1"
+        }
+      ],
+      "comporto_calendar_year": true,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-farmacie-private-2021",
+            "title": "CCNL Farmacie Private (MNLF / Federfarma) 2021",
+            "kind": "tabella_retributiva",
+            "url": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf",
+            "sha256": "b6798989a01293d9629dc61f8cb56faeb07f4f5eb4d447526b911c761ac40214"
+          },
+          "section": "Artt. 43-44",
+          "quote": "Durante la malattia o infortunio il lavoratore non in prova ha diritto alla conservazione del posto per un periodo massimo di 180 giorni in un anno solare [...] 1. il 100% della quota giornaliera della retribuzione di fatto per i primi 3 giorni (periodo di carenza); 2. l’80% della quota giornaliera della retribuzione di fatto per i giorni dal 4° al 20°; 3. il 100% della quota giornaliera della retribuzione di fatto per i giorni dal 21° in poi."
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2021-01-01"
+        },
+        "transformation": "Art. 44 b): 100% for the three days of carenza, 80% for days 4-20 and 100% from day 21 of the gross daily quota, stored as day_bands of the episode; comporto of 180 days in the calendar year (Art. 43), counted over every episode of the year. Read on 2026-10-30."
+      }
+    },
+    "notice": {
+      "bands": [
+        {
+          "levels": [
+            "Q1",
+            "Q2",
+            "Q3",
+            "1"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "months": 0,
+          "days": 90,
+          "categories": []
+        },
+        {
+          "levels": [
+            "2"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "months": 0,
+          "days": 60,
+          "categories": []
+        },
+        {
+          "levels": [
+            "3",
+            "4"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "months": 0,
+          "days": 45,
+          "categories": []
+        },
+        {
+          "levels": [
+            "5",
+            "6"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "months": 0,
+          "days": 15,
+          "categories": []
+        }
+      ],
+      "starts": "first_or_sixteenth",
+      "extra_months_included": true,
+      "tfr_base": false,
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "farmacie-private-h121-ccnl-testo",
+            "title": "Federfarma Filcams-Cgil / Fisascat-Cisl / Uiltucs-Uil Contratto Collettivo Nazionale di Lavoro per i dipendenti da farmacia privata - Testo ufficiale",
+            "kind": "associazione",
+            "url": "https://uiltucs.it/wp-content/uploads/2023/07/CCNL-per-i-Dipendenti-da-Farmacia-Privata-7-settembre-2021.pdf",
+            "published_on": "2021-09-07",
+            "sha256": "dfc1fc57234cb43fb5ab7a4a7e22d89c464b7784b344cedd288de560f170cea4"
+          },
+          "page": "27",
+          "section": "Art. 73",
+          "quote": "I termini di preavviso sono i seguenti:  \n- Quadri (Aree Q1 – Q2 – Q3): 90 giorni di calendario \n- primo livello: 90 giorni di calendario \n- secondo livello: 60 giorni di calendario \n- terzo e quarto livello: 45 giorni di calendario \n- quinto e sesto livello: 15 giorni di calendario \ne decorrono dalla metà o dalla fine di ciascun mese."
+        },
+        "transformation": "Bands proposed by a delegated search and checked band by band against the PDF by a separate session. The resignation bands are left out where halving gives a fraction of a month (the engine computes only the indemnity the employer owes on a dismissal); a start day the text does not set is read as the day after the notice; the ratei of the extra months and the TFR treatment are set only where the text states them.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-01T12:51:22Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-01T12:51:22Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-01-ai-notice"
+        }
+      }
+    }
+  }
+}

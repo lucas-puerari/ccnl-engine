@@ -128,6 +128,9 @@
     "agreement/farmacie-private-h121.json": {
       "additional_months[2021-11-01]": "assumed"
     },
+    "agreement/farmacie-rurali-sussidiate-h121.json": {
+      "additional_months[2021-11-01]": "assumed"
+    },
     "agreement/federcasa.json": {
       "additional_months[2024-12-01]": "assumed"
     },
@@ -930,8 +933,11 @@
     ],
     "agreement/farmacie-private-h121.json": [
       "farmacie-private-h121/apprentice_seniority",
-      "farmacie-private-h121/isq_twelve_year_tier",
-      "farmacie-private-h121/rural_pharmacy_table"
+      "farmacie-private-h121/isq_twelve_year_tier"
+    ],
+    "agreement/farmacie-rurali-sussidiate-h121.json": [
+      "farmacie-rurali-sussidiate-h121/apprentice_seniority",
+      "farmacie-rurali-sussidiate-h121/isq_twelve_year_tier"
     ],
     "agreement/federcasa.json": [
       "federcasa/ivc_renewal_gap",

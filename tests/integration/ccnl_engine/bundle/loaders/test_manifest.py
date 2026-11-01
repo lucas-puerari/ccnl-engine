@@ -83,7 +83,7 @@ def test_the_path_states_the_dataset_year_and_scope() -> None:
 def test_a_dataset_lists_its_resources_in_path_order() -> None:
     """The loaders find every resource of a dataset through the manifest."""
     agreements = resources("agreement")
-    assert len(agreements) == 133
+    assert len(agreements) == 134
     assert [r.path for r in agreements] == sorted(r.path for r in agreements)
     assert agreements[0].name == agreements[0].path.rsplit("/", 1)[-1]
     years = {r.year for r in resources("sector")}

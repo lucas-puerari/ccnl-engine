@@ -338,22 +338,6 @@
       }
     },
     {
-      "id": "rural_pharmacy_table",
-      "institute": "base_salary",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "SIMPLIFICATION: Farmacie Rurali Sussidiate (Tabella B) excluded. Rural pharmacies have lower base salaries; Tabella A (urban) is modelled only.",
-      "calculation": "ccnl/farmacie-private-h121:coverage.notes",
-      "state": "absent",
-      "remediation": "Add the Tabella B pay of the Farmacie Rurali Sussidiate with a fact selecting it, or refuse such employers.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "farmacie-private-h121/rural_pharmacy_table"
-        ]
-      }
-    },
-    {
       "id": "tfr_compensation_apprentice_guarantee_fund",
       "institute": "inps_employer",
       "variant": "apprentice",

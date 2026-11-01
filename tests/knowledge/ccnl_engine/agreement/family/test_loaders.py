@@ -11,11 +11,11 @@ from collections import defaultdict
 from ccnl_engine.agreement.family.loaders import load_family_catalog
 from ccnl_engine.catalog.loaders import list_contracts, load_ccnl
 
-_BUNDLED = 133
+_BUNDLED = 134
 
 
 def test_every_bundled_ccnl_names_a_family_of_the_catalog() -> None:
-    """133/133 CCNLs carry a family id the catalog holds, with a reason."""
+    """134/134 CCNLs carry a family id the catalog holds, with a reason."""
     known = load_family_catalog().by_id
     contracts = list_contracts()
 
