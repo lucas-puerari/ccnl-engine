@@ -1,5 +1,5 @@
 {
-  "commit": "c56a0a1e24163720ed1780470fdbb710f7f0113a",
+  "commit": "ceeebe1f01e949349652cc653af8b9fa07b31dac",
   "date": "2026-11-01",
   "min_score": 93.0,
   "perimeter": [
@@ -136,6 +136,7 @@
     "src/ccnl_engine/compensation/renewal_minimum/rules.py",
     "src/ccnl_engine/compensation/renewal_minimum/services.py",
     "src/ccnl_engine/compensation/second_level/rules.py",
+    "src/ccnl_engine/compensation/board/handlers.py",
     "src/ccnl_engine/working_time/hourly/policies.py",
     "src/ccnl_engine/working_time/hourly/services.py",
     "src/ccnl_engine/working_time/overtime/policies.py",
@@ -146,12 +147,12 @@
   ],
   "scores": {
     "core": {
-      "killed": 8536,
+      "killed": 8706,
       "survived": 246,
       "other": 4,
       "not_checked": 0,
       "equivalent": 18,
-      "total": 8786,
+      "total": 8956,
       "score": 97.2,
       "minimum": 93.0
     },
@@ -1076,13 +1077,13 @@
       "minimum": 77.0
     },
     "src/ccnl_engine/severance/settlement/fund/services.py": {
-      "killed": 46,
+      "killed": 53,
       "survived": 5,
       "other": 0,
-      "not_checked": 3,
+      "not_checked": 0,
       "equivalent": 0,
-      "total": 51,
-      "score": 90.2,
+      "total": 58,
+      "score": 91.4,
       "minimum": 87.7
     },
     "src/ccnl_engine/severance/settlement/posting/services.py": {
@@ -1096,23 +1097,23 @@
       "minimum": 91.6
     },
     "src/ccnl_engine/severance/settlement/services.py": {
-      "killed": 236,
-      "survived": 38,
+      "killed": 201,
+      "survived": 33,
       "other": 0,
       "not_checked": 0,
       "equivalent": 0,
-      "total": 274,
-      "score": 86.1,
+      "total": 234,
+      "score": 85.9,
       "minimum": 84.5
     },
     "src/ccnl_engine/severance/settlement/tax/rules.py": {
-      "killed": 97,
+      "killed": 177,
       "survived": 3,
       "other": 0,
       "not_checked": 0,
       "equivalent": 0,
-      "total": 100,
-      "score": 97.0,
+      "total": 180,
+      "score": 98.3,
       "minimum": 93.0
     },
     "src/ccnl_engine/tax_credit/decision/rules.py": {
@@ -1474,6 +1475,16 @@
       "total": 85,
       "score": 64.7,
       "minimum": 64.7
+    },
+    "src/ccnl_engine/compensation/board/handlers.py": {
+      "killed": 90,
+      "survived": 0,
+      "other": 0,
+      "not_checked": 0,
+      "equivalent": 0,
+      "total": 90,
+      "score": 100.0,
+      "minimum": 93.0
     },
     "src/ccnl_engine/working_time/hourly/policies.py": {
       "killed": 119,

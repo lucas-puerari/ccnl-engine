@@ -35,22 +35,6 @@
       }
     },
     {
-      "id": "board_lodging_substitute",
-      "institute": "base_salary",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "The cash indennita sostitutiva of board and lodging is not paid for the days the convivente does not take them: ferie (Art. 17 c. 7), sospensioni extraferiali (Art. 18 c. 1), congedo matrimoniale (Art. 24 c. 2), malattia and infortunio outside hospital (Art. 27 c. 9, Art. 29 c. 7). The request carries no fact on whether board and lodging were taken, so the engine pays none.",
-      "calculation": "ccnl/lavoro-domestico-convivente-orario-ridotto:coverage.notes",
-      "state": "unverified",
-      "remediation": "Add a fact for the days without board and lodging and pay the Tabella F value for them.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "lavoro-domestico-convivente-orario-ridotto/board_lodging_substitute"
-        ]
-      }
-    },
-    {
       "id": "disability_permit_tfr",
       "institute": "disability_permits",
       "variant": "all",

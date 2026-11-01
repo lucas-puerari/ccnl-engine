@@ -167,6 +167,17 @@
       "description": "Riposi giornalieri D.Lgs. 151/2001 artt. 39-41: indennità INPS pari all'intera retribuzione delle ore, anticipata dal datore"
     },
     {
+      "feature": "board_lodging",
+      "layer": "work_rules",
+      "implementation": "native",
+      "applies_when": "event",
+      "handler": "event",
+      "evidence": "derived",
+      "variants": [],
+      "required_facts": [],
+      "description": "Indennità sostitutiva di vitto e alloggio del lavoratore domestico convivente per i giorni in cui non ne usufruisce (CCNL lavoro domestico artt. 17, 18, 24, 27, 29, 36): valore mensile in natura / 30 x giorni"
+    },
+    {
       "feature": "termination_notice",
       "layer": "work_rules",
       "implementation": "native",

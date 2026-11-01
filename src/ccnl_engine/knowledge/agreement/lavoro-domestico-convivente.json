@@ -139,7 +139,7 @@
       },
       {
         "kind": "simplification",
-        "text": "The cash indennita sostitutiva of board and lodging is not paid for the days the convivente does not take them: ferie (Art. 17 c. 7), sospensioni extraferiali (Art. 18 c. 1), congedo matrimoniale (Art. 24 c. 2), malattia and infortunio outside hospital (Art. 27 c. 9, Art. 29 c. 7). The request carries no fact on whether board and lodging were taken, so the engine pays none.",
+        "text": "The cash indennita sostitutiva of board and lodging is not paid for the days the convivente does not take them: ferie (Art. 17 c. 7), sospensioni extraferiali (Art. 18 c. 1), congedo matrimoniale (Art. 24 c. 2), malattia and infortunio outside hospital (Art. 27 c. 9, Art. 29 c. 7). The request states those days with BoardLodgingEvent, and the engine pays the value in kind over 30 for each of them.",
         "capability": "base_salary",
         "monetary_impact": "unknown",
         "limitation": {
@@ -150,7 +150,8 @@
               "termination"
             ]
           },
-          "remediation": "Add a fact for the days without board and lodging and pay the Tabella F value for them."
+          "remediation": "Resolved: BoardLodgingEvent states the days without board and lodging of the month; the engine pays the value in kind over 30 times the days (Art. 36 c. 3).",
+          "status": "resolved"
         }
       },
       {
@@ -1418,7 +1419,7 @@
     "effective_until": null,
     "source": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "6cf5b28523e9b16e7e15a1d9d8d43d7868d40e2280591e579807b43ddb594960",
+    "source_hash": "e904f5dbc62376419023a6925ebe1f53cd8fafe6faecf24719b04c7384b74de0",
     "published_at": "2026-10-07",
     "source_type": "commercial_secondary"
   },

@@ -55,13 +55,14 @@ on unverified sources, or be well sourced and not cleared for production.
 - ✅ `contractual_funds` (native)
 - ✅ `assistance_contribution` (native)
 
-**Scenario features: computed when the request declares the event, the fact or the termination** (28):
+**Scenario features: computed when the request declares the event, the fact or the termination** (29):
 
 - ✅ `maternity_leave` (native)
 - ✅ `paternity_leave` (native)
 - ✅ `parental_leave` (native)
 - ✅ `disability_permits` (native)
 - ✅ `nursing_rests` (native)
+- ✅ `board_lodging` (native)
 - ✅ `termination_notice` (native)
 - ✅ `extraordinary_leave` (native)
 - ✅ `workplace_injury` (native)

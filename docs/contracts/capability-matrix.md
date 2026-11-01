@@ -56,7 +56,7 @@ formulas or caller-declared amounts.
 | Scope | native | caller_supplied | partial | unsupported |
 |---|---:|---:|---:|---:|
 | core | 22 | 0 | 0 | 0 |
-| scenario | 16 | 10 | 2 | 0 |
+| scenario | 17 | 10 | 2 | 0 |
 | outside_input | 0 | 0 | 0 | 6 |
 
 | Capability | Description | Scope | Layer | Implementation | Applies when | Handler | Facts | Variants | Label | Rules (v / d / a / m) |
@@ -74,6 +74,7 @@ formulas or caller-declared amounts.
 | `parental_leave` | Congedo parentale: indennità INPS al 30% o all'80% anticipata dal datore | scenario | work_rules | native | event | event | — | inps_indemnity | implemented | 0 / 1 / 0 / 0 |
 | `disability_permits` | Permessi L. 104/1992: indennità INPS pari all'intera retribuzione dei giorni, anticipata dal datore | scenario | work_rules | native | event | event | — | inps_indemnity | implemented | 0 / 1 / 0 / 0 |
 | `nursing_rests` | Riposi giornalieri D.Lgs. 151/2001 artt. 39-41: indennità INPS pari all'intera retribuzione delle ore, anticipata dal datore | scenario | work_rules | native | event | event | — | inps_indemnity | implemented | none bundled |
+| `board_lodging` | Indennità sostitutiva di vitto e alloggio del lavoratore domestico convivente per i giorni in cui non ne usufruisce (CCNL lavoro domestico artt. 17, 18, 24, 27, 29, 36): valore mensile in natura / 30 x giorni | scenario | work_rules | native | event | event | — | — | implemented | none bundled |
 | `termination_notice` | Preavviso: indennità sostitutiva del preavviso non lavorato (art. 2118 c.c.), dovuta dal datore, sulla tabella CCNL; tassazione separata con l'aliquota del TFR (art. 19 c. 2 TUIR) | scenario | work_rules | native | event | event | — | notice_indemnity | implemented | none bundled |
 | `extraordinary_leave` | Congedo straordinario art. 42 c. 5 D.Lgs. 151/2001: indennità INPS sull'ultima retribuzione entro il massimale annuo, anticipata dal datore | scenario | work_rules | native | event | event | — | inps_indemnity | implemented | 0 / 1 / 0 / 0 |
 | `workplace_injury` | Infortunio sul lavoro: giorno dell'evento, carenza, indennità INAIL e integrazione CCNL | scenario | work_rules | native | event | event | — | injury_day_and_carenza, inail_indemnity, ccnl_top_up | verified | 1 / 0 / 0 / 0 |

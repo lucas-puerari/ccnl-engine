@@ -23,10 +23,12 @@ from ccnl_engine.absence.insured.parental.hourly.handlers import (
 from ccnl_engine.absence.insured.paternity.handlers import _handle_paternity_leave
 from ccnl_engine.absence.insured.permit.handlers import _handle_disability_permit
 from ccnl_engine.absence.insured.rest.handlers import _handle_nursing_rest
+from ccnl_engine.compensation.board.handlers import _handle_board_lodging
 from ccnl_engine.event.facade import (
     AbsenceEvent,
     ArrearsEvent,
     BilateralFundEvent,
+    BoardLodgingEvent,
     BonusEvent,
     DisabilityPermitEvent,
     ExtraordinaryLeaveEvent,
@@ -102,4 +104,5 @@ _HANDLER_REGISTRY: dict[type, _EventHandlerFn] = {
     NoticeIndemnityEvent: _handle_notice_indemnity,
     ExtraordinaryLeaveEvent: _handle_extraordinary_leave,
     WorkInjuryEvent: _handle_work_injury,
+    BoardLodgingEvent: _handle_board_lodging,
 }
