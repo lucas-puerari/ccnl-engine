@@ -374,6 +374,13 @@ lett. a and 19 c. 1 TUIR, text in force until 31 December 2026):
   rate, posted on `separate_tax` with the severance remittance code. The
   offices reliquidate it later on the average rate of the five years
   before: that is not a payroll amount.
+- **Advances** (art. 19 c. 4 TUIR): the rate is the one of the whole TFR,
+  "l'importo accantonato, aumentato delle anticipazioni": the taxable of
+  the advances (`tfr_fund.advances_taxable`, their amount less the
+  revaluations they held) joins the taxable for the reference income and
+  the tax, and the tax already withheld on them (`tfr_fund.advances_tax`)
+  is taken back: tax = (taxable + advances taxable) x rate - deduction -
+  tax withheld. The inputs add `advances_taxable` and `advances_tax`.
 
 The run records two `termination_tfr` decisions, the payout (`tfr_due`)
 and the tax (`average_rate`), with the inputs above (`fund`,
@@ -397,7 +404,8 @@ and stays final.
 | Public TFS or TFR at INPS (`tfr_at_inps`), pension fund TFR (`pension_fund_tfr`) | not computed | not computed |
 | No `employment_period`, no `tfr_fund` of the year before (an employment of the year without one has an empty fund), unknown quotas of the year (balances of that year imported without `tfr_quotas`, or a regular month of the year not closed) | not computed, `missing_fact` | not computed |
 | `tfr_fund.revaluations` not stated on a non-empty fund | posted | `missing_fact` `revaluations` |
-| `tfr_fund.advances` not stated, or advances paid (art. 19 c. 4, `advances_not_modelled`) | posted | not computed |
+| `tfr_fund.advances` not stated, or advances paid without `advances_taxable` and `advances_tax` | posted | `missing_fact` `advances` or `advances_taxable` |
+| Tax withheld on the advances above the tax of the whole TFR: the refund is not computed (`advances_refund_not_modelled`) | posted | not computed |
 | Employment started before 1 January 2001: the TFR accrued up to 2000 keeps the earlier rules (D.Lgs. 47/2000 art. 11 c. 1, `tfr_before_2001_not_modelled`) | posted | not computed |
 | A year without settlement rules (from 2027, D.Lgs. 117/2026), or a run paid in another tax year than the termination's (`rule_not_in_bundle`) | posted | not computed |
 
