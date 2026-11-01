@@ -261,6 +261,13 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Source how the employer splits the measure between two orders of the same kind (art. 499 c.p.c. on the intervention of creditors, case law of the Cassazione) and apply it, then resolve this limitation.
 
+!!! warning "mid_month_level_change · base_salary · impact unknown · open"
+    A promotion on a day other than the first of a month splits the monthly pay of the run between the level before and the new level by the payable days of the CCNL daily quota on each side of the promotion, component by component; the hourly quotas of the month (overtime, permits, absences) read the same split chain whatever the day of the event. The CCNL texts read (Commercio and Terziario art. 118, DMO art. 102) give the new level from the promotion but not how its month is split.
+
+    **Applies when:** `base_salary` applies; the run takes the engine code path.
+
+    **Remediation:** Source how a month is split by a promotion inside it (a CCNL clause or an INPS or Ministry ruling) and price the events of the month at the terms of their day, then resolve this limitation.
+
 ## Sources
 
 | Document | Kind | Date | URL |

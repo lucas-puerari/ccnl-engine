@@ -22,7 +22,7 @@ from ccnl_engine.collection.validators import (
 )
 from ccnl_engine.employer.inputs import EmployerProfile
 from ccnl_engine.employment.change.inputs import EmploymentChange, timeline
-from ccnl_engine.employment.change.services import Timeline, in_force_on
+from ccnl_engine.employment.change.services import Timeline, in_force_on, terms_day
 from ccnl_engine.employment.inputs import Employment
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.irpef.declaration.inputs import PriorYearTaxFacts
@@ -102,11 +102,11 @@ class CompetenceYearPlan:
             month.  A date before the first day of the run month is
             rejected.
         employment_changes: Changes of level, weekly hours or category
-            during :attr:`year`, each from the first day of a month, in date
-            order (a list is accepted).  The runs of a month price the
-            employment in force on its first day; the extra months pay the
-            level in force when they are paid, and each stretch of their
-            rateo at the hours it was accrued at.
+            during :attr:`year`, one a month in date order (a list is
+            accepted), from the first day, or any day for a promotion: its
+            month pays each level for its days (see ``compensation.change``).
+            The extra months pay the level in force when they are paid, and
+            each stretch of their rateo at the hours it was accrued at.
         opening_state: State the first run opens with, read by
             ``calculate_competence_year``.  ``None`` is the zero state, the
             fact only for an employment whose stated start falls in
@@ -261,12 +261,12 @@ class CompetenceYearPlan:
         return self._timeline
 
     def employment_for(self, run: PayrollRun) -> Employment:
-        """Return the employment in force on the first day of ``run``'s month.
+        """Return the employment of ``run``.
 
         Returns:
-            :attr:`employment` with the changes dated on or before that day.
+            :attr:`employment` with the changes up to :func:`terms_day`.
         """
-        return in_force_on(self._timeline, date(run.year, run.month, 1))
+        return in_force_on(self._timeline, terms_day(run))
 
     def facts_for(self, run: PayrollRun) -> PeriodFacts:
         """Return the facts of ``run``.

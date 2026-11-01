@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from dataclasses import replace
 from datetime import date, datetime
 from decimal import Decimal
 
@@ -13,6 +14,8 @@ from ccnl_engine.employment.fact.inputs import WeeklyHours
 from ccnl_engine.employment.inputs import Employment, Permanent
 from ccnl_engine.employment.period.inputs import EmploymentPeriod
 from ccnl_engine.errors import InvalidInputError
+from ccnl_engine.seniority.inputs import SeniorityPromotion
+from tests.knowledge.ccnl_engine.seniority.builders import new_hire
 
 _EMPLOYMENT = Employment(
     ccnl_id="commercio-confcommercio",
@@ -72,20 +75,65 @@ def test_the_timeline_dates_each_employment() -> None:
 @pytest.mark.parametrize(
     ("days", "reason"),
     [
-        ((date(2026, 3, 15),), "first day of a month"),
+        ((date(2026, 3, 15),), "needs Employment.seniority"),
         ((date(2027, 1, 1),), "competence year"),
         ((date(2026, 5, 1), date(2026, 3, 1)), "later month"),
+        ((date(2026, 3, 1), date(2026, 3, 20)), "later month"),
         ((date(2026, 11, 1),), "within the employment period"),
     ],
 )
 def test_a_change_the_plan_cannot_apply_is_rejected(
     days: tuple[date, ...], reason: str
 ) -> None:
-    """Mid-month, another year, out of order or after the end."""
-    changes = [EmploymentChange(d, level_code="3") for d in days]
+    """Mid-month without seniority, another year, two in a month, after the end."""
+    changes = [EmploymentChange(d, level_code=f"{3 - i}") for i, d in enumerate(days)]
 
     with pytest.raises(InvalidInputError, match=reason):
         timeline(_EMPLOYMENT, changes, 2026, "p")
+
+
+_SENIOR = replace(_EMPLOYMENT, seniority=new_hire(2025))
+
+
+@pytest.mark.parametrize(
+    ("change", "reason"),
+    [
+        (
+            EmploymentChange(date(2026, 3, 15), weekly_hours=WeeklyHours(Decimal(20))),
+            "weekly hours must fall on the first day",
+        ),
+        (
+            EmploymentChange(
+                date(2026, 3, 15), level_code="3", weekly_hours=WeeklyHours(Decimal(20))
+            ),
+            "weekly hours must fall on the first day",
+        ),
+        (EmploymentChange(date(2026, 3, 15), level_code="4"), "must change the level"),
+        (
+            EmploymentChange(date(2026, 3, 15), category=WorkerCategory.IMPIEGATO),
+            "must change the level",
+        ),
+    ],
+)
+def test_only_a_promotion_falls_inside_a_month(
+    change: EmploymentChange, reason: str
+) -> None:
+    """Hours, the same level or a category alone change from the first day."""
+    with pytest.raises(InvalidInputError, match=reason):
+        timeline(_SENIOR, [change], 2026, "p")
+
+
+def test_a_promotion_inside_a_month_is_recorded_on_the_seniority() -> None:
+    """The level before and the day of the promotion split its month."""
+    ((day, employment),) = timeline(
+        _SENIOR, [EmploymentChange(date(2026, 3, 16), level_code="3")], 2026, "p"
+    )
+    assert employment.seniority is not None
+    assert (day, employment.level_code, employment.seniority.promotion) == (
+        date(2026, 3, 16),
+        "3",
+        SeniorityPromotion(date(2026, 3, 16), "4"),
+    )
 
 
 def test_a_change_on_the_hire_day_is_rejected() -> None:

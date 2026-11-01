@@ -130,9 +130,11 @@ def timeline(
 
     The changes are rejected with
     :class:`~ccnl_engine.errors.InvalidInputError` when one is not an
-    :class:`EmploymentChange`, the dates are not strictly increasing, or a
-    change falls on a day other than the first of a month, outside ``year``
-    or outside the employment period (on its first day included).
+    :class:`EmploymentChange`, the dates are not strictly increasing, a
+    change falls outside ``year`` or outside the employment period (on its
+    first day included), or a change on a day other than the first of a
+    month states weekly hours or keeps the level: only a promotion splits a
+    month (:mod:`~ccnl_engine.compensation.change.rules`).
     """
     item = items_of_type(EmploymentChange, feature=_FEATURE)
     validated = tuple_of(changes, path, item, feature=_FEATURE)
@@ -140,7 +142,7 @@ def timeline(
     current = employment
     previous: date | None = None
     for i, change in enumerate(validated):
-        _check_date(change.effective_on, previous, employment, year, f"{path}[{i}]")
+        _check_date(change, previous, current, year, f"{path}[{i}]")
         previous = change.effective_on
         current = change.applied_to(current)
         in_force.append((change.effective_on, current))
@@ -148,25 +150,47 @@ def timeline(
 
 
 def _check_date(
-    day: date, previous: date | None, employment: Employment, year: int, path: str
+    change: EmploymentChange,
+    previous: date | None,
+    employment: Employment,
+    year: int,
+    path: str,
 ) -> None:
     """Reject a change date the plan cannot apply.
 
     Raises:
         InvalidInputError: On the conditions listed in :func:`timeline`.
     """
-    problem = None
-    if day.day != 1:
-        problem = "must fall on the first day of a month"
-    elif day.year != year:
+    day, problem = change.effective_on, None
+    if day.year != year:
         problem = f"must fall in the competence year {year}"
-    elif previous is not None and day <= previous:
+    elif previous is not None and (day.year, day.month) <= (
+        previous.year,
+        previous.month,
+    ):
         problem = "must fall in a later month than the previous change"
     else:
         problem = _outside_employment(day, employment)
+    if problem is None and day.day != 1:
+        problem = _inside_month(change, employment)
     if problem is not None:
         msg = f"employment change on {day.isoformat()} {problem}"
         raise InvalidInputError(msg, field=f"{path}.effective_on", feature=_FEATURE)
+
+
+def _inside_month(change: EmploymentChange, employment: Employment) -> str | None:
+    """Return why ``change`` cannot fall inside a month, if so.
+
+    Returns:
+        The reason, or ``None`` for a promotion recorded on the seniority.
+    """
+    if change.weekly_hours is not None:
+        return "of the weekly hours must fall on the first day of a month"
+    if change.level_code in {None, employment.level_code}:
+        return "inside a month must change the level (a promotion)"
+    if employment.seniority is None:
+        return "inside a month needs Employment.seniority, which records it"
+    return None
 
 
 def _outside_employment(day: date, employment: Employment) -> str | None:
