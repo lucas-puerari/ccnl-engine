@@ -203,7 +203,7 @@ is `False` on its closing state). See
 ## Model limitations
 
 A known simplification of the model is data, not a comment. The registry has
-<!-- trust:limitations-total -->580<!-- /trust:limitations-total --> `ModelLimitation`
+<!-- trust:limitations-total -->579<!-- /trust:limitations-total --> `ModelLimitation`
 entries: one per `simplification` note of a CCNL file that can move an
 amount, and <!-- trust:limitations-engine -->28<!-- /trust:limitations-engine -->
 engine limitations of code paths several CCNLs share
@@ -220,10 +220,10 @@ limits, the `rulesets` and dates it affects, a `monetary_impact` (`yes`,
 `no`, `unknown`), a `status` (`open`, `resolved`), its `source` and a
 `remediation`.
 
-The <!-- trust:simplification-notes -->606<!-- /trust:simplification-notes -->
+The <!-- trust:simplification-notes -->605<!-- /trust:simplification-notes -->
 simplification notes of the bundle each state their impact on what the engine
 computes from the bundle:
-<!-- trust:simplification-yes -->297<!-- /trust:simplification-yes --> `yes`,
+<!-- trust:simplification-yes -->296<!-- /trust:simplification-yes --> `yes`,
 <!-- trust:simplification-unknown -->255<!-- /trust:simplification-unknown --> `unknown`
 and <!-- trust:simplification-no -->54<!-- /trust:simplification-no --> `no` (the
 engine refuses the case, or takes the value from the caller). A file whose
@@ -246,7 +246,7 @@ classifies it by obligation:
 - an engine limitation applies only when the run takes its code path, and the
   run records the traversal (an apprentice in a midpoint period of a CCNL
   whose midpoint components are unsourced);
-- <!-- trust:limitations-outside-input -->206<!-- /trust:limitations-outside-input -->
+- <!-- trust:limitations-outside-input -->205<!-- /trust:limitations-outside-input -->
   limitations depend on a fact the request cannot express (a hire date before
   a transitional regime, a fund the worker joins, a sector section): they are
   documented on the contract page and never recorded on a run. An amount

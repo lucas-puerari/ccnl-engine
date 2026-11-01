@@ -116,17 +116,8 @@
         "text": "BILATERAL CONTRIBUTION: EBIPRO and CADIPROF are paid with a unified contribution of EUR 29 a month for 12 months, EUR 2 of it by the worker (Art. 13), modelled as the contractual funds cadiprof (20 EUR, health fund) and ebipro (7 + 2 EUR); an employer outside the bilateral system owes the worker 43 EUR for 14 months instead. The CADIPROF enrolment of EUR 24 (Art. 16) stays a caller BilateralFundEvent."
       },
       {
-        "kind": "simplification",
-        "text": "Art. 42 (text of 16 February 2024, p. 36): the lavoro supplementare of part-time is paid with the quota oraria of the retribuzione di fatto and a 40% maggiorazione (band OT_SUPPLEMENTARE); c. 4 leaves its pay out of 'ogni Istituto retributivo differito, compreso il Trattamento di fine rapporto', while the engine puts an overtime event in the TFR base.",
-        "capability": "overtime",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "part_time_supplementary",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Leave the supplementary hours of Art. 42 out of the TFR base and of the deferred institutes."
-        }
+        "kind": "info",
+        "text": "PART-TIME SUPPLEMENTARY HOURS (Art. 42, text of 16 February 2024, p. 36): the quota oraria of the retribuzione di fatto with a 40% maggiorazione (band OT_SUPPLEMENTARE). C. 4 leaves that pay out of 'ogni Istituto retributivo differito, compreso il Trattamento di fine rapporto': an overtime event enters neither the TFR base nor the extra months of the engine."
       },
       {
         "kind": "simplification",
@@ -2432,7 +2423,7 @@
     "effective_until": null,
     "source": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
     "verification_status": "unverified",
-    "source_hash": "fc789f09c1de75ec80d9385b369cac48194756e5ed1aad883015d36f33e870cb",
+    "source_hash": "c297400117eca5c263b9ab08eb5b9f137fb367b56ca59663de4a7ef323ff101a",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
