@@ -346,6 +346,56 @@ def test_dmo_pays_the_days_with_the_extra_months_out_of_the_tfr() -> None:
     )
 
 
+_ALIMENTARI_MONTHLY = (
+    Decimal("1445.65") + Decimal("519.99") + Decimal("10.33") + Decimal("78.84")
+) + 5 * Decimal("26.83")
+
+
+@pytest.mark.parametrize(
+    ("category", "first", "last", "days"),
+    [
+        # Impiegato over 7 years: 50 days from the middle or end of month.
+        (WorkerCategory.IMPIEGATO, "2026-03-16", "2026-05-04", 50),
+        # Operaio over 4 years: 20 days from any day.
+        (WorkerCategory.OPERAIO, "2026-03-11", "2026-03-30", 20),
+    ],
+)
+def test_alimentari_sets_the_notice_by_category(
+    category: WorkerCategory, first: str, last: str, days: int
+) -> None:
+    """Alimentari level 4, hired 2016, dismissed on 10 March (Art. 72, pp. 149-150).
+
+    The retribuzione of the period: (1445.65 + 519.99 + 10.33 + 78.84 + 5
+    scatti of 26.83) / 30 per day, 3648.27 for 50 days, 1459.31 for 20.
+    """
+    result = PayrollEngine.bundled().calculate_period(
+        PeriodInput(
+            run=PayrollRun.regular(2026, 3),
+            payment_date=date(2026, 3, 27),
+            employment=Employment(
+                ccnl_id="alimentari-federalimentare",
+                level_code="4",
+                category=category,
+                contract_type=Permanent(),
+                employment_period=EmploymentPeriod(_HIRED, _ACT, _D, False),
+                seniority=SeniorityFact.since(_HIRED, SenioritySource.EMPLOYER_RECORDS),
+                pension_fund=NoPensionFund(),
+                tfr_treasury_fund=False,
+            ),
+            employer=EmployerProfile(headcount=Headcount(20)),
+            facts=PeriodFacts(events=(_notice(_ACT),)),
+        )
+    )
+
+    expected = (_ALIMENTARI_MONTHLY * days / 30).quantize(Decimal("0.01"))
+    assert _indemnity(result) == expected
+    (due,) = (d for d in result.decisions if d.reason_code == "notice_indemnity_due")
+    assert (due.inputs["notice_first_day"], due.inputs["notice_last_day"]) == (
+        first,
+        last,
+    )
+
+
 def test_a_notice_fully_worked_owes_nothing() -> None:
     """Notice from 2 January to 16 March, last day 31 March."""
     result = _run(_notice(date(2026, 1, 1)), ended=date(2026, 3, 31))
@@ -386,7 +436,7 @@ def test_the_cause_decides_who_owes(
             "fact",
         ),
         (
-            {"ccnl": "alimentari-federalimentare"},
+            {"ccnl": "edilizia-ance-impiegati"},
             _notice(date(2026, 3, 10)),
             "notice_rule_missing",
             "rule",

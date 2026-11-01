@@ -15,6 +15,7 @@ from typing import Self
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
+from ccnl_engine.employment.category.models import WorkerCategory
 from ccnl_engine.employment.period.inputs import TerminationCause
 from ccnl_engine.provenance.source.rule.models import RuleProvenance
 
@@ -47,6 +48,11 @@ class NoticeBand(BaseModel):
         indemnity_months: Monthly pays owed for a notice not given;
             ``None`` when the CCNL measures the indemnity on the pay of the
             calendar days of notice.
+        categories: The worker categories the band applies to; empty for
+            every category (Alimentari art. 72 sets apart impiegati,
+            intermedi and operai of the same level).
+        starts: The day the notice of the band starts from, when it is not
+            the one of the CCNL (Alimentari: the operai from any day).
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -57,6 +63,23 @@ class NoticeBand(BaseModel):
     months: int = Field(default=0, ge=0)
     days: int = Field(default=0, ge=0)
     indemnity_months: Decimal | None = Field(default=None, gt=Decimal(0))
+    categories: tuple[WorkerCategory, ...] = ()
+    starts: NoticeStart | None = None
+
+    def applies(
+        self, level: str, cause: TerminationCause, category: WorkerCategory | None
+    ) -> bool:
+        """Return whether the band covers ``level``, ``cause`` and ``category``.
+
+        Returns:
+            ``True`` for its levels and causes, and for its categories or
+            any category when it names none.
+        """
+        return (
+            level in self.levels
+            and cause in self.causes
+            and (not self.categories or category in self.categories)
+        )
 
     @model_validator(mode="after")
     def _has_length(self) -> Self:
@@ -91,42 +114,74 @@ class NoticeRules(BaseModel):
 
     @model_validator(mode="after")
     def _ordered(self) -> Self:
-        keys = {(lv, c) for b in self.bands for lv in b.levels for c in b.causes}
-        for level, cause in sorted(keys):
+        for level, cause, category in _ladders(self.bands):
             ceilings = [
-                b.up_to_months
-                for b in self.bands
-                if level in b.levels and cause in b.causes
+                b.up_to_months for b in self.bands if b.applies(level, cause, category)
             ]
-            bounded = [c for c in ceilings if c is not None]
-            if (
-                bounded != sorted(set(bounded))
-                or ceilings[-1:] != [None]
-                or (ceilings.count(None) != 1)
-            ):
+            if not _grows(ceilings):
                 msg = (
-                    f"the notice bands of level {level} on {cause.value} must "
-                    "grow in service, each ceiling once, the last open-ended"
+                    f"the notice bands of level {level} ({category}) on "
+                    f"{cause.value} must grow in service, each ceiling once, "
+                    "the last open-ended"
                 )
                 raise ValueError(msg)
         return self
 
     def band(
-        self, level: str, cause: TerminationCause, months_of_service: int
+        self,
+        level: str,
+        cause: TerminationCause,
+        months_of_service: int,
+        category: WorkerCategory | None = None,
     ) -> NoticeBand | None:
-        """Return the band of ``level`` and ``cause`` for a length of service.
+        """Return the band of ``level``, ``cause`` and ``category`` for a service.
 
         Returns:
             The first band whose ceiling the service does not exceed;
-            ``None`` when the CCNL sets no notice for the level or cause.
+            ``None`` when the CCNL sets no notice for the level, the cause or
+            the category (an unknown category matches only the bands that
+            name none).
         """
         return next(
             (
                 b
                 for b in self.bands
-                if level in b.levels
-                and cause in b.causes
+                if b.applies(level, cause, category)
                 and (b.up_to_months is None or months_of_service <= b.up_to_months)
             ),
             None,
         )
+
+
+def _ladders(
+    bands: tuple[NoticeBand, ...],
+) -> list[tuple[str, TerminationCause, WorkerCategory | None]]:
+    """Return each level, cause and category whose bands make one ladder.
+
+    Returns:
+        The keys in a stable order; a band that names no category joins the
+        ladder of every category another band names.
+    """
+    named = {k for b in bands for k in b.categories}
+    keys = {
+        (level, cause, category)
+        for b in bands
+        for level in b.levels
+        for cause in b.causes
+        for category in (b.categories or named or (None,))
+    }
+    return sorted(keys, key=str)
+
+
+def _grows(ceilings: list[int | None]) -> bool:
+    """Return whether the ceilings grow, each once, to one open end.
+
+    Returns:
+        ``True`` for distinct growing ceilings closed by a single ``None``.
+    """
+    bounded = [c for c in ceilings if c is not None]
+    return (
+        bounded == sorted(set(bounded))
+        and ceilings[-1:] == [None]
+        and ceilings.count(None) == 1
+    )

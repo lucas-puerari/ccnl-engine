@@ -3263,7 +3263,7 @@
     "effective_until": null,
     "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "02636141f8650658b0f7428b2d87445bd11bab75ff721b1bb77ed018b9155446",
+    "source_hash": "b7a900541db5b33ecaef511844fca1a40f9ac8e136cec144bfee89a3a8141f26",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3521,6 +3521,247 @@
           "review_id": "2026-10-13-ai-production"
         }
       }
+    },
+    "notice": {
+      "bands": [
+        {
+          "levels": [
+            "1S",
+            "1"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "categories": [
+            "impiegato",
+            "quadro"
+          ],
+          "up_to_months": 36,
+          "days": 90
+        },
+        {
+          "levels": [
+            "1S",
+            "1"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "categories": [
+            "impiegato",
+            "quadro"
+          ],
+          "up_to_months": 84,
+          "days": 120
+        },
+        {
+          "levels": [
+            "1S",
+            "1"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "categories": [
+            "impiegato",
+            "quadro"
+          ],
+          "days": 150
+        },
+        {
+          "levels": [
+            "2"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "categories": [
+            "impiegato"
+          ],
+          "up_to_months": 36,
+          "days": 40
+        },
+        {
+          "levels": [
+            "2"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "categories": [
+            "impiegato"
+          ],
+          "up_to_months": 84,
+          "days": 60
+        },
+        {
+          "levels": [
+            "2"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "categories": [
+            "impiegato"
+          ],
+          "days": 90
+        },
+        {
+          "levels": [
+            "3",
+            "3A"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "categories": [
+            "impiegato"
+          ],
+          "up_to_months": 36,
+          "days": 30
+        },
+        {
+          "levels": [
+            "3",
+            "3A"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "categories": [
+            "impiegato"
+          ],
+          "up_to_months": 84,
+          "days": 45
+        },
+        {
+          "levels": [
+            "3",
+            "3A"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "categories": [
+            "impiegato"
+          ],
+          "days": 60
+        },
+        {
+          "levels": [
+            "4",
+            "5",
+            "6"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "categories": [
+            "impiegato"
+          ],
+          "up_to_months": 36,
+          "days": 20
+        },
+        {
+          "levels": [
+            "4",
+            "5",
+            "6"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "categories": [
+            "impiegato"
+          ],
+          "up_to_months": 84,
+          "days": 40
+        },
+        {
+          "levels": [
+            "4",
+            "5",
+            "6"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "categories": [
+            "impiegato"
+          ],
+          "days": 50
+        },
+        {
+          "levels": [
+            "1",
+            "2",
+            "3",
+            "3A",
+            "4",
+            "5",
+            "6"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "up_to_months": 48,
+          "days": 12,
+          "categories": [
+            "operaio"
+          ],
+          "starts": "day_after"
+        },
+        {
+          "levels": [
+            "1",
+            "2",
+            "3",
+            "3A",
+            "4",
+            "5",
+            "6"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "days": 20,
+          "categories": [
+            "operaio"
+          ],
+          "starts": "day_after"
+        }
+      ],
+      "starts": "first_or_sixteenth",
+      "extra_months_included": false,
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-industria-alimentare-2024-03-01",
+            "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+            "kind": "associazione",
+            "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+            "published_on": "2024-03-01",
+            "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+          },
+          "page": "149-150",
+          "section": "Art. 72 - Preavviso di licenziamento e di dimissioni",
+          "quote": "Per gli impiegati che hanno superato il periodo di prova, i termini di preavviso per il caso di licenziamento sono stabiliti come segue [...] Giorni di calendario 1° Super e 1° 90 120 150 2° 40 60 90 3° e 3°A 30 45 60 Altri 20 40 50 Per il caso di dimissioni, i termini anzidetti sono ridotti alla metà. I termini di disdetta decorrono dalla metà o dalla fine di ciascun mese. [...] Il licenziamento dell'operaio non in prova o le sue dimissioni potranno aver luogo in qualunque giorno della settimana, con un preavviso di: - giorni 12 di calendario, per gli operai con anzianità ininterrotta fino a 4 anni compiuti; - giorni 20 di calendario, per gli operai con anzianità ininterrotta oltre i 4 anni compiuti."
+        },
+        "transformation": "Calendar days. Impiegati (and the quadri of 1° Super) on dismissal by level and service, below 3 years, 3 to 7, over 7: the exact anniversary is read in the lower band (up_to_months 36 and 84), from the middle or the end of the month; their resignation (halved, down to 22.5 days) is not modelled, as the engine computes only the indemnity the employer owes. Operai of any level, 12 days up to 4 years and 20 beyond, from any day, dismissal and resignation alike. The intermedi (2° 30/55/70, 3°A 15/30/45 days) are not modelled: the engine has no intermedio category. The indemnity is the retribuzione of the period (no extra months); the TFR treatment is not stated. The tables for birra e malto and macellazione avicola (pp. 150-151) are not modelled.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-01T20:00:00Z",
+          "effective_from": "2023-12-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-01T20:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-01-ai-notice"
+        }
+      }
     }
   },
   "verification": {
@@ -3588,6 +3829,27 @@
           "Art. 54 (PDF p. 123): tredicesima and quattordicesima of the monthly pay, in twelfths for a hire within the year; the EDR is paid on 13 mensilità, so the quattordicesima leaves it out, as the engine does. Art. 54 states neither the accrual period nor the payment month of the quattordicesima of the impiegati: the engine and the oracle read them from the gratifica speciale of the operai (PDF p. 215: paid with the June pay, accrued from 1 July to 30 June), an interpretation, not a statement of Art. 54.",
           "Hand oracle (tests/knowledge/ccnl_engine/period/sector, scenarios alimentari-year and alimentari-june): a 3rd level impiegato hired on 1 January 2026 by an employer with 50 employees; every payment and the year (gross, contributions, tax, net, TFR, employer cost) match the engine to the cent.",
           "Triage: overtime_subsector_tables (the overtime percentages of the subsector tables) and sickness_half_pay_and_comporto (half pay and the comporto) change pay only on runs with overtime or sickness events; each needs an engine change and stays open for a separate pull request."
+        ]
+      },
+      {
+        "id": "2026-11-01-ai-notice",
+        "date": "2026-11-01",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The notice of Art. 72 (PDF pp. 149-150).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+            "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+          }
+        ],
+        "findings": [
+          "Art. 72 (pp. 149-150): impiegati by level and service from the middle or end of the month, operai 12/20 days from any day, intermedi apart (not modelled), indemnity at the pay of the period: work_rules.notice. Found by a delegated search, checked again on the PDF text."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.notice"
         ]
       }
     ],

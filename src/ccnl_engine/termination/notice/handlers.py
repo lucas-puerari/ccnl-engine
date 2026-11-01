@@ -149,7 +149,9 @@ def _band(
             fact="seniority",
         )
     months = terms.seniority.months_at(event.received_on)
-    band = terms.rules.band(terms.level, TerminationCause.DISMISSAL, months)
+    band = terms.rules.band(
+        terms.level, TerminationCause.DISMISSAL, months, terms.category
+    )
     if band is None:
         return _issue(
             "notice_band_missing",
@@ -231,7 +233,7 @@ def _handle_notice_indemnity(
     band, months = found
     rules = terms.rules
     assert rules is not None, "a band comes from the CCNL notice"  # pragma: no mutate
-    period = notice_period(band, event.received_on, rules.starts)
+    period = notice_period(band, event.received_on, band.starts or rules.starts)
     unworked = period.unworked_days(ended)
     pays = band.indemnity_months
     if pays is None:
