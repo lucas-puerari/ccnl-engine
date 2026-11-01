@@ -139,7 +139,8 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Add the 195 divisor of the 45-hour week (Art. 120), set hourly_divisor_weekly_hours=40, and use the divisor of the stated week in the INAIL daily base."
+          "remediation": "Resolved: work_rules.time_supplements.week_divisors holds 195 for a full_time_weekly_hours of 45 (Art. 120 lett. b, p. 90).",
+          "status": "resolved"
         }
       },
       {
@@ -1232,12 +1233,43 @@
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=13",
     "verification_status": "unverified",
     "published_at": "2026-09-11",
-    "source_hash": "daa3421ce884f04959fc14800bdcf70ba454a51fd72dee1c0c7224c7f0e759dc",
+    "source_hash": "e10dbadd74849ef14aba4e155ea5a5c330ea115eba7828bf5e90ee064369e7c7",
     "source_type": "commercial_secondary"
   },
   "work_rules": {
     "time_supplements": {
       "hourly_base_method": "minimo_tabellare",
+      "hourly_divisor_weekly_hours": 40,
+      "week_divisors": [
+        {
+          "weekly_hours": 45,
+          "divisor": "195",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-cusi-sport-2024",
+                "title": "CCNL Impianti e Attività Sportive 2024–2026 (CUSI)",
+                "kind": "altro",
+                "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
+                "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
+              },
+              "page": "90",
+              "section": "Art. 120 – Quota oraria, lett. b)",
+              "quote": "b) 195, per il personale la cui durata di lavoro è di 45 ore settimanali"
+            },
+            "transformation": "The hourly divisor of an employment whose full-time week (Employment.full_time_weekly_hours) is 45 hours; lett. a) gives 173 for 40 hours, the divisor of parameters.hourly_divisor (Art. 64, p. 66: normal week of 40 hours).",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T13:00:00Z",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T13:00:00Z",
+              "verification_status": "verified"
+            }
+          }
+        }
+      ],
       "overtime_bands": [
         {
           "code": "OT_DIURNO",

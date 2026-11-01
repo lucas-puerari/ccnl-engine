@@ -14,7 +14,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 0/132 CCNLs.** Bundle: 266 weak rules, 565 open limitations (565 with a monetary impact).
+**Complete: 0/132 CCNLs.** Bundle: 266 weak rules, 564 open limitations (564 with a monetary impact).
 
 ## Declared window
 
@@ -112,7 +112,7 @@ Future data, registered apart from the gaps: a contract whose validity ends insi
 | [gomma-plastica-federazione-gomma-plastica](../contracts/gomma-plastica-federazione-gomma-plastica.md) | `chimica` | exploratory | — | 23 rows | 23 open requirements; 2 weak rules; 19 monetary limitations; 20 non-native capabilities |
 | [grafica-editoria-aieg](../contracts/grafica-editoria-aieg.md) | `carta-grafica` | exploratory | — | 21 rows | 21 open requirements; 1 weak rule; 17 monetary limitations; 1 outside_input limitation; 20 non-native capabilities |
 | [igiene-ambientale-utilitalia](../contracts/igiene-ambientale-utilitalia.md) | `energia-utilities` | exploratory | — | 24 rows | tables from 2026-02-01; 24 open requirements; 1 weak rule; 21 monetary limitations; 21 non-native capabilities |
-| [impianti-sportivi-sport](../contracts/impianti-sportivi-sport.md) | `sport` | exploratory | — | 28 rows | 28 open requirements; 2 weak rules; 21 monetary limitations; 3 outside_input limitations; 21 non-native capabilities |
+| [impianti-sportivi-sport](../contracts/impianti-sportivi-sport.md) | `sport` | exploratory | — | 27 rows | 27 open requirements; 2 weak rules; 21 monetary limitations; 2 outside_input limitations; 20 non-native capabilities |
 | [impiegati-tecnici-agricoli](../contracts/impiegati-tecnici-agricoli.md) | `agricoltura` | exploratory | — | 23 rows | 23 open requirements; 2 weak rules; 19 monetary limitations; 20 non-native capabilities |
 | [industria-turistica-federturismo](../contracts/industria-turistica-federturismo.md) | `turismo` | exploratory | — | 24 rows | 24 open requirements; 1 weak rule; 20 monetary limitations; 1 outside_input limitation; 21 non-native capabilities |
 | [informatica-pmi-unimatica](../contracts/informatica-pmi-unimatica.md) | `ict-telecomunicazioni` | exploratory | — | 20 rows | 20 open requirements; 1 weak rule; 16 monetary limitations; 1 outside_input limitation; 20 non-native capabilities |

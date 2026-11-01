@@ -31,7 +31,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, overtime, sickness, workplace_injury |
+| **Limits of this contract** | base_salary, overtime, sickness |
 
 9 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
@@ -128,12 +128,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Add the day bands of Art. 103 (75% on days 4-20, 100% from day 21) to sickness_rules.day_bands, then resolve this limitation.
 
-!!! warning "impianti-sportivi-sport/long_week_divisor_195 · workplace_injury · impact unknown · open"
+!!! note "impianti-sportivi-sport/long_week_divisor_195 · workplace_injury · impact unknown · resolved"
     SIMPLIFICATION: Divisore orario. Art. 120 prevede 173 (40h) e 195 (45h). Solo il divisore 173 e modellato. Le assunzioni a 45h settimanali non sono gestite.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Add the 195 divisor of the 45-hour week (Art. 120), set hourly_divisor_weekly_hours=40, and use the divisor of the stated week in the INAIL daily base.
+    **Remediation:** Resolved: work_rules.time_supplements.week_divisors holds 195 for a full_time_weekly_hours of 45 (Art. 120 lett. b, p. 90).
 
 !!! warning "impianti-sportivi-sport/night_overtime_cumulation · overtime · impact unknown · open"
     SIMPLIFICATION: Cumulo notturno. Art. 83 ult. comma: 'Le varie maggiorazioni previste dal presente articolo non sono cumulabili tra loro' — esclude la cumulabilita tra i soli supplementi interni all'Art. 83 (15%/20%/30%/50%). Il supplemento del 10% di Art. 84 e un articolo separato e non e esplicitamente escluso dalla cumulabilita. Il motore applica entrambi alle ore notturne straordinarie (60% totale). Se le parti intendono il 50% inclusivo del 10%, il motore sovrastima di 10 punti sulle ore OT notturne.
