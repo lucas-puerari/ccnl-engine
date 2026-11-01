@@ -1615,7 +1615,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/orafi-argentieri-industria-federorafi",
       "ruleset_version": "2026.2",
-      "source_hash": "281856a69795fe9bcbf1981abcaaec83532d172bca4e8f156f004b08cc8fd23f",
+      "source_hash": "8d07401488803d0b756c76a62733a594d5295553dd265d012ed0257b6e384f43",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/orafi-argentieri-industria-federorafi.json.gz"
@@ -4230,7 +4230,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "78547dddc5f226475dccaa8f560637951f39964ee7f8afc4aeb2789aa98b13f6",
+      "source_hash": "8df290793fca20cb285fb1e01ccd3a8662517d6af2515035c4b041b1df9a6f09",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/orafi-argentieri-industria-federorafi.json.gz",

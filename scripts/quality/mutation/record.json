@@ -1,5 +1,5 @@
 {
-  "commit": "72606977523a3a36a4b8cb9209b7b0597250bc4a",
+  "commit": "16c316b1921cef36117c8b249a5ba6e77fec1acf",
   "date": "2026-11-01",
   "min_score": 93.0,
   "perimeter": [
@@ -49,6 +49,7 @@
     "src/ccnl_engine/sickness/day/rules.py",
     "src/ccnl_engine/sickness/cumulation/rules.py",
     "src/ccnl_engine/sickness/cumulation/year/rules.py",
+    "src/ccnl_engine/sickness/window/rules.py",
     "src/ccnl_engine/sickness/cumulation/handlers.py",
     "src/ccnl_engine/absence/insured/rules.py",
     "src/ccnl_engine/absence/insured/base/rules.py",
@@ -149,13 +150,13 @@
   ],
   "scores": {
     "core": {
-      "killed": 9071,
-      "survived": 259,
+      "killed": 9151,
+      "survived": 266,
       "other": 5,
       "not_checked": 0,
       "equivalent": 18,
-      "total": 9335,
-      "score": 97.2,
+      "total": 9422,
+      "score": 97.1,
       "minimum": 93.0
     },
     "src/ccnl_engine/contribution/rules.py": {
@@ -459,13 +460,13 @@
       "minimum": 93.0
     },
     "src/ccnl_engine/termination/notice/handlers.py": {
-      "killed": 340,
-      "survived": 11,
+      "killed": 341,
+      "survived": 13,
       "other": 0,
       "not_checked": 0,
       "equivalent": 0,
-      "total": 351,
-      "score": 96.9,
+      "total": 354,
+      "score": 96.3,
       "minimum": 93.0
     },
     "src/ccnl_engine/termination/notice/settlement/services.py": {
@@ -589,23 +590,33 @@
       "minimum": 93.0
     },
     "src/ccnl_engine/sickness/cumulation/rules.py": {
-      "killed": 323,
-      "survived": 19,
+      "killed": 262,
+      "survived": 18,
       "other": 0,
       "not_checked": 0,
       "equivalent": 0,
-      "total": 342,
-      "score": 94.4,
+      "total": 280,
+      "score": 93.6,
       "minimum": 93.0
     },
     "src/ccnl_engine/sickness/cumulation/year/rules.py": {
-      "killed": 71,
-      "survived": 0,
+      "killed": 104,
+      "survived": 1,
       "other": 0,
       "not_checked": 0,
       "equivalent": 0,
-      "total": 71,
-      "score": 100.0,
+      "total": 105,
+      "score": 99.0,
+      "minimum": 93.0
+    },
+    "src/ccnl_engine/sickness/window/rules.py": {
+      "killed": 66,
+      "survived": 1,
+      "other": 0,
+      "not_checked": 0,
+      "equivalent": 0,
+      "total": 67,
+      "score": 98.5,
       "minimum": 93.0
     },
     "src/ccnl_engine/sickness/cumulation/handlers.py": {
@@ -689,13 +700,13 @@
       "minimum": 93.0
     },
     "src/ccnl_engine/absence/insured/services.py": {
-      "killed": 69,
+      "killed": 72,
       "survived": 2,
       "other": 0,
       "not_checked": 0,
       "equivalent": 0,
-      "total": 71,
-      "score": 97.2,
+      "total": 74,
+      "score": 97.3,
       "minimum": 93.0
     },
     "src/ccnl_engine/absence/insured/handlers.py": {
@@ -749,13 +760,13 @@
       "minimum": 93.0
     },
     "src/ccnl_engine/absence/insured/extraordinary/handlers.py": {
-      "killed": 133,
+      "killed": 141,
       "survived": 4,
       "other": 0,
       "not_checked": 0,
       "equivalent": 0,
-      "total": 137,
-      "score": 97.1,
+      "total": 145,
+      "score": 97.2,
       "minimum": 93.0
     },
     "src/ccnl_engine/absence/insured/permit/handlers.py": {
@@ -1389,13 +1400,13 @@
       "minimum": 93.0
     },
     "src/ccnl_engine/compensation/element/services.py": {
-      "killed": 105,
-      "survived": 26,
+      "killed": 122,
+      "survived": 40,
       "other": 0,
-      "not_checked": 31,
+      "not_checked": 0,
       "equivalent": 0,
-      "total": 131,
-      "score": 80.2,
+      "total": 162,
+      "score": 75.3,
       "minimum": 80.1
     },
     "src/ccnl_engine/compensation/hourly/services.py": {
@@ -1499,13 +1510,13 @@
       "minimum": 93.0
     },
     "src/ccnl_engine/compensation/una_tantum/rules.py": {
-      "killed": 134,
-      "survived": 4,
+      "killed": 164,
+      "survived": 8,
       "other": 1,
       "not_checked": 0,
       "equivalent": 0,
-      "total": 139,
-      "score": 96.4,
+      "total": 173,
+      "score": 94.8,
       "minimum": 93.0
     },
     "src/ccnl_engine/working_time/hourly/policies.py": {

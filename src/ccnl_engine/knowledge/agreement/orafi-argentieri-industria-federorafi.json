@@ -129,19 +129,6 @@
           },
           "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
         }
-      },
-      {
-        "kind": "simplification",
-        "text": "SICKNESS (Art. 35): a single illness keeps the job for 183, 244 or 305 days by seniority (61, 91 or 122 at full pay, the rest at 75%), several illnesses in the last three years for 274, 365 or 456 days. The engine counts every episode against the longer comporto of several illnesses, so a single illness past 183, 244 or 305 days is still integrated. The integration reaches the 'normale trattamento economico complessivo netto' but the measures are of the retribuzione globale: the engine applies them to the gross pay.",
-        "capability": "sickness",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "sickness_single_illness_comporto",
-          "applies_when": {
-            "trigger": "run"
-          },
-          "remediation": "Count the comporto of one illness apart from that of several illnesses and stop the integration at the shorter one, then resolve this limitation."
-        }
       }
     ]
   },
@@ -1389,7 +1376,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2022/01/20211223-CCNL-Orafi-ipotesi-di-rinnovo-apprendistato-firmato.pdf",
     "verification_status": "unverified",
-    "source_hash": "281856a69795fe9bcbf1981abcaaec83532d172bca4e8f156f004b08cc8fd23f",
+    "source_hash": "8d07401488803d0b756c76a62733a594d5295553dd265d012ed0257b6e384f43",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1604,17 +1591,20 @@
           {
             "seniority_months_from": 0,
             "full_pay_days": 61,
-            "comporto_days": 274
+            "comporto_days": 274,
+            "single_comporto_days": 183
           },
           {
             "seniority_months_from": 60,
             "full_pay_days": 91,
-            "comporto_days": 365
+            "comporto_days": 365,
+            "single_comporto_days": 244
           },
           {
             "seniority_months_from": 120,
             "full_pay_days": 122,
-            "comporto_days": 456
+            "comporto_days": 456,
+            "single_comporto_days": 305
           }
         ],
         "short_absences": {
@@ -1650,7 +1640,7 @@
           "verification_status": "unverified",
           "effective_from": "2017-05-01"
         },
-        "transformation": "Art. 35: bands from 0, 60 and 120 completed months of seniority; the sick days of the three years before the day are summed (comma 9: 'nei tre anni precedenti ogni nuovo ultimo episodio morboso'), paid 100% of the retribuzione globale for 61, 91 or 122 days and 75% up to the comporto of 274, 365 or 456 days. Hospital stays over 10 consecutive days paid in full, at most 61 days ('I periodi di ricovero ospedaliero di durata superiore a 10 giorni continuativi sono retribuiti con l'intera retribuzione globale [...] fino ad un massimo di 61 giorni'). From the fourth absence of at most 7 days of the calendar year, its first three days at 66%, from the fifth at 50%. Read on 2026-10-30."
+        "transformation": "Art. 35: bands from 0, 60 and 120 completed months of seniority; the sick days of the three years before the day are summed (comma 9: 'nei tre anni precedenti ogni nuovo ultimo episodio morboso'), paid 100% of the retribuzione globale for 61, 91 or 122 days and 75% up to the comporto of 274, 365 or 456 days. Hospital stays over 10 consecutive days paid in full, at most 61 days ('I periodi di ricovero ospedaliero di durata superiore a 10 giorni continuativi sono retribuiti con l'intera retribuzione globale [...] fino ad un massimo di 61 giorni'). From the fourth absence of at most 7 days of the calendar year, its first three days at 66%, from the fifth at 50%. Read on 2026-10-30. The comporto of one illness (2026-11-01), Art. 35, PDF p. 61: 'a) 183 giorni di calendario per anzianità di servizio fino a 5 anni compiuti; b) 244 giorni di calendario per anzianità di servizio oltre i 5 anni e fino ai 10 anni compiuti; c) 305 giorni di calendario per anzianità di servizio oltre i 10 anni', before the 274, 365 or 456 days of several illnesses in three years: single_comporto_days of each band."
       }
     }
   }

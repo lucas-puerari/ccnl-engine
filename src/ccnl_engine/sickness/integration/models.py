@@ -96,6 +96,8 @@ class SicknessSeniorityBand(BaseModel):
         serious_comporto_days: Comporto of a serious illness the CCNL
             extends (Concia art. 60 B: 2, 3, 4 months more), ``None``
             when it does not.
+        single_comporto_days: Comporto of one illness and the relapses it
+            continues, shorter than the window's (Orafi art. 35: 183 of 274).
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -104,6 +106,7 @@ class SicknessSeniorityBand(BaseModel):
     full_pay_days: int = Field(ge=1)
     comporto_days: int = Field(ge=1)
     serious_comporto_days: int | None = Field(default=None, ge=1)
+    single_comporto_days: int | None = Field(default=None, ge=1)
     window_months: int | None = Field(default=None, ge=1)
     steps: tuple[SicknessDayBand, ...] = ()
 

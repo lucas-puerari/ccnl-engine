@@ -21,7 +21,6 @@ from ccnl_engine.sickness.cumulation.results import cumulation_report
 from ccnl_engine.sickness.cumulation.rules import (
     CumulativeTreatment,
     SicknessWorker,
-    window_start,
 )
 from ccnl_engine.sickness.integration.models import (
     SicknessCumulation,
@@ -30,6 +29,7 @@ from ccnl_engine.sickness.integration.models import (
     SicknessSeniorityBand,
 )
 from ccnl_engine.sickness.models import SicknessEpisode
+from ccnl_engine.sickness.window.rules import window_start
 
 _ONE = Decimal(1)
 _HALF = Decimal("0.5")

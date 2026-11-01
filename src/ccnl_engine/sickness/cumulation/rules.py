@@ -25,12 +25,13 @@ read the episodes the state records; what the days before
 
 from __future__ import annotations
 
-import calendar
 from dataclasses import dataclass, field
 from datetime import date, timedelta
 from decimal import Decimal
 from functools import cached_property
 from typing import TYPE_CHECKING
+
+from ccnl_engine.sickness.window.rules import months_after, window_start
 
 if TYPE_CHECKING:
     from ccnl_engine.seniority.inputs import SeniorityFact
@@ -46,7 +47,6 @@ __all__ = [
     "CumulativeTreatment",
     "ShortAbsence",
     "SicknessWorker",
-    "window_start",
 ]
 
 _ONE = Decimal(1)
@@ -96,21 +96,6 @@ class ShortAbsence:
     unknown: bool = False
 
 
-def window_start(day: date, years: int, months: int = 0) -> date:
-    """Return the first day of the ``years`` and ``months`` that end on ``day``.
-
-    Returns:
-        The day after the same day ``years`` and ``months`` earlier, or
-        after the last day of that month when it is shorter (28 February
-        for a 29 February that year lacks).
-    """
-    total = (day.year - years) * 12 + day.month - 1 - months
-    year, month = divmod(total, 12)
-    last = calendar.monthrange(year, month + 1)[1]
-    anchor = date(year, month + 1, min(day.day, last))
-    return anchor + timedelta(days=1)
-
-
 def _restarts(episode: SicknessEpisode, ended: date | None, months: int | None) -> bool:
     """Return whether ``episode`` starts the treatment anew.
 
@@ -119,19 +104,7 @@ def _restarts(episode: SicknessEpisode, ended: date | None, months: int | None) 
     """
     if months is None or ended is None:
         return False
-    return episode.started_on >= _months_after(ended, months)
-
-
-def _months_after(day: date, months: int) -> date:
-    """Return the day ``months`` calendar months after ``day``.
-
-    Returns:
-        The same day of the month, the last of a shorter month.
-    """
-    month = day.month - 1 + months
-    year, month = day.year + month // 12, month % 12 + 1
-    last = calendar.monthrange(year, month)[1]
-    return date(year, month, min(day.day, last))
+    return episode.started_on >= months_after(ended, months)
 
 
 def _stay_overlap(stay: tuple[date, date], first: date, last: date) -> int:
@@ -358,14 +331,15 @@ class CumulativeTreatment:
         """Return the CCNL treatment of ``day``.
 
         Args:
-            index: Episode day index of the INPS relapse chain; the
-                cumulation counts its own days instead.
+            index: Day of the illness and the relapses it continues, against
+                the comporto of one illness when the band sets one.
             day: The sick day.
 
         Returns:
-            Whether the day is past the comporto, and its rates.
+            Whether the day is past the comporto of the window or of the
+            illness, and its rates.
         """
-        del index
+        single = self.band.single_comporto_days
         count = self.chain_days(day)
         rate = self._rate(count, day)
         short = self.cumulation.short_absences
@@ -373,7 +347,8 @@ class CumulativeTreatment:
         if (day - self.episode.started_on).days < first_days:
             rate = min(rate, self.short.rate)
         return CcnlDay(
-            beyond_comporto=self.comporto_count(day) > self.comporto_limit(),
+            beyond_comporto=self.comporto_count(day) > self.comporto_limit()
+            or (single is not None and index > single),
             rate=rate,
             carenza_rate=min(self.rules.carenza_integration_rate, rate),
         )
