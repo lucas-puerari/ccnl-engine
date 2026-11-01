@@ -62,7 +62,7 @@ jobs:
         run: uv run python scripts/quality/mutation/check.py --min-score 93.0
 
       - name: Upload mutation results
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a  # v7
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9  # v7
         if: always()
         with:
           name: mutation-results
@@ -121,7 +121,7 @@ jobs:
           --changed-since "origin/$BASE_REF" --min-score 93.0
 
       - name: Upload the score record
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a  # v7
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9  # v7
         if: always() && steps.select.outputs.globs != ''
         with:
           name: mutation-diff-score
