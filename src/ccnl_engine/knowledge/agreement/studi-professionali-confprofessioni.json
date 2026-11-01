@@ -117,7 +117,7 @@
       },
       {
         "kind": "simplification",
-        "text": "Art. 42: the lavoro supplementare of part-time at 40% of the quota oraria of the retribuzione di fatto, outside the deferred institutes and the TFR. OvertimeKind.SUPPLEMENTARY exists, but the file has no supplementary-hours band (review of 2026-10-30).",
+        "text": "Art. 42 (text of 16 February 2024, p. 36): the lavoro supplementare of part-time is paid with the quota oraria of the retribuzione di fatto and a 40% maggiorazione (band OT_SUPPLEMENTARE); c. 4 leaves its pay out of 'ogni Istituto retributivo differito, compreso il Trattamento di fine rapporto', while the engine puts an overtime event in the TFR base.",
         "capability": "overtime",
         "monetary_impact": "yes",
         "limitation": {
@@ -125,7 +125,7 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Add the OT_SUPPLEMENTARE band (40%) of Art. 42."
+          "remediation": "Leave the supplementary hours of Art. 42 out of the TFR base and of the deferred institutes."
         }
       },
       {
@@ -2432,7 +2432,7 @@
     "effective_until": null,
     "source": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
     "verification_status": "unverified",
-    "source_hash": "20f813262de42ea450afb64a3080c4ed784d6a8e8eb7df0cf5e7501d01892f15",
+    "source_hash": "fc789f09c1de75ec80d9385b369cac48194756e5ed1aad883015d36f33e870cb",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2673,6 +2673,49 @@
               "verification_status": "verified",
               "review_id": "2026-10-13-ai-production"
             }
+          }
+        },
+        {
+          "code": "OT_SUPPLEMENTARE",
+          "description": "Lavoro supplementare del part-time, maggiorazione forfetaria del 40% (Art. 42)",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-02-16",
+                "valid_until": null,
+                "value": "0.40",
+                "provenance": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "supplementare"
+          ],
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-studi-professionali-2024-02-16",
+                "title": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024, testo integrale definitivo (Confprofessioni)",
+                "kind": "associazione",
+                "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+                "published_on": "2024-02-16",
+                "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
+              },
+              "page": "36",
+              "section": "Art. 42 c. 3-4, Lavoro supplementare",
+              "quote": "Le ore di lavoro supplementare verranno retribuite con la quota oraria della retribuzione di fatto e la maggiorazione forfetaria convenzionalmente determinata nella misura del 40%, da calcolare sulla suddetta quota oraria della retribuzione."
+            },
+            "transformation": "40% of the hourly base, the hours paid on top.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T23:20:10Z",
+              "verification_status": "unverified",
+              "effective_from": "2024-02-16"
+            },
+            "note": "The same words are in Art. 42 of the text of 10 April 2026 (p. 74)."
           }
         }
       ],
