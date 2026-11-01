@@ -19,22 +19,6 @@
       }
     },
     {
-      "id": "campaign_premium",
-      "institute": "base_salary",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Art. 51 ter: the premio di campagna of the conserve vegetali.",
-      "calculation": "ccnl/alimentari-federalimentare:coverage.notes",
-      "state": "absent",
-      "remediation": "Model the premio di campagna for the conserve vegetali.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "alimentari-federalimentare/campaign_premium"
-        ]
-      }
-    },
-    {
       "id": "disability_permit_tfr",
       "institute": "disability_permits",
       "variant": "all",

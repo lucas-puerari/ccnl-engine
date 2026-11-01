@@ -107,19 +107,6 @@
       },
       {
         "kind": "simplification",
-        "text": "Art. 51 ter: the premio di campagna of the conserve vegetali.",
-        "capability": "base_salary",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "campaign_premium",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Model the premio di campagna for the conserve vegetali."
-        }
-      },
-      {
-        "kind": "simplification",
         "text": "Art. 31: the premiums on ordinary night, shift night, holiday and Sunday work.",
         "capability": "overtime",
         "monetary_impact": "yes",
@@ -757,6 +744,47 @@
               "review_id": "2026-10-13-ai-production"
             }
           }
+        },
+        {
+          "code": "PREMIO_CAMPAGNA",
+          "description": "Premio di campagna of the seasonal workers on tomatoes and fresh peas (conserve vegetali), Art. 51 ter",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "61.99"
+              }
+            ]
+          },
+          "role": "stagionale_campagna",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "120",
+              "section": "Art. 51 ter - Premio di campagna (conserve vegetali)",
+              "quote": "viene corrisposto – salvo che la contrattazione aziendale di secondo livello o specifici accordi di settore sottoscritti dalle Parti stipulanti interessate (Anicav, Unionfood e OO.SS.) non dispongono diversamente – un premio di campagna per i soli lavoratori stagionali addetti ai processi di lavorazione e trasformazione del pomodoro e piselli freschi. L’importo mensile di tale premio è riportato nella seguente tabella: [...] 6 61,99"
+            },
+            "transformation": "61.99 EUR a month for level 6, paid with the role 'stagionale_campagna' (a seasonal worker on the processing of tomatoes and fresh peas). Where company or sector bargaining is exercised the premium flows into the variable premium and the caller leaves the role out. The clause sets no other condition: the monthly amount is paid like the other allowances of the level.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T15:47:45Z",
+              "effective_from": "2023-12-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T15:47:45Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-campaign-premium"
+            }
+          }
         }
       ],
       "provenance": {
@@ -1073,6 +1101,47 @@
               "verified_at": "2026-10-13T07:32:46Z",
               "verification_status": "verified",
               "review_id": "2026-10-13-ai-production"
+            }
+          }
+        },
+        {
+          "code": "PREMIO_CAMPAGNA",
+          "description": "Premio di campagna of the seasonal workers on tomatoes and fresh peas (conserve vegetali), Art. 51 ter",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "68.19"
+              }
+            ]
+          },
+          "role": "stagionale_campagna",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "120",
+              "section": "Art. 51 ter - Premio di campagna (conserve vegetali)",
+              "quote": "viene corrisposto – salvo che la contrattazione aziendale di secondo livello o specifici accordi di settore sottoscritti dalle Parti stipulanti interessate (Anicav, Unionfood e OO.SS.) non dispongono diversamente – un premio di campagna per i soli lavoratori stagionali addetti ai processi di lavorazione e trasformazione del pomodoro e piselli freschi. L’importo mensile di tale premio è riportato nella seguente tabella: [...] 5 68,19"
+            },
+            "transformation": "68.19 EUR a month for level 5, paid with the role 'stagionale_campagna' (a seasonal worker on the processing of tomatoes and fresh peas). Where company or sector bargaining is exercised the premium flows into the variable premium and the caller leaves the role out. The clause sets no other condition: the monthly amount is paid like the other allowances of the level.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T15:47:45Z",
+              "effective_from": "2023-12-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T15:47:45Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-campaign-premium"
             }
           }
         }
@@ -1393,6 +1462,47 @@
               "review_id": "2026-10-13-ai-production"
             }
           }
+        },
+        {
+          "code": "PREMIO_CAMPAGNA",
+          "description": "Premio di campagna of the seasonal workers on tomatoes and fresh peas (conserve vegetali), Art. 51 ter",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "74.38"
+              }
+            ]
+          },
+          "role": "stagionale_campagna",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "120",
+              "section": "Art. 51 ter - Premio di campagna (conserve vegetali)",
+              "quote": "viene corrisposto – salvo che la contrattazione aziendale di secondo livello o specifici accordi di settore sottoscritti dalle Parti stipulanti interessate (Anicav, Unionfood e OO.SS.) non dispongono diversamente – un premio di campagna per i soli lavoratori stagionali addetti ai processi di lavorazione e trasformazione del pomodoro e piselli freschi. L’importo mensile di tale premio è riportato nella seguente tabella: [...] 4 74,38"
+            },
+            "transformation": "74.38 EUR a month for level 4, paid with the role 'stagionale_campagna' (a seasonal worker on the processing of tomatoes and fresh peas). Where company or sector bargaining is exercised the premium flows into the variable premium and the caller leaves the role out. The clause sets no other condition: the monthly amount is paid like the other allowances of the level.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T15:47:45Z",
+              "effective_from": "2023-12-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T15:47:45Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-campaign-premium"
+            }
+          }
         }
       ],
       "provenance": {
@@ -1709,6 +1819,47 @@
               "verified_at": "2026-10-13T07:32:46Z",
               "verification_status": "verified",
               "review_id": "2026-10-13-ai-production"
+            }
+          }
+        },
+        {
+          "code": "PREMIO_CAMPAGNA",
+          "description": "Premio di campagna of the seasonal workers on tomatoes and fresh peas (conserve vegetali), Art. 51 ter",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "80.58"
+              }
+            ]
+          },
+          "role": "stagionale_campagna",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "120",
+              "section": "Art. 51 ter - Premio di campagna (conserve vegetali)",
+              "quote": "viene corrisposto – salvo che la contrattazione aziendale di secondo livello o specifici accordi di settore sottoscritti dalle Parti stipulanti interessate (Anicav, Unionfood e OO.SS.) non dispongono diversamente – un premio di campagna per i soli lavoratori stagionali addetti ai processi di lavorazione e trasformazione del pomodoro e piselli freschi. L’importo mensile di tale premio è riportato nella seguente tabella: [...] 3 80,58"
+            },
+            "transformation": "80.58 EUR a month for level 3, paid with the role 'stagionale_campagna' (a seasonal worker on the processing of tomatoes and fresh peas). Where company or sector bargaining is exercised the premium flows into the variable premium and the caller leaves the role out. The clause sets no other condition: the monthly amount is paid like the other allowances of the level.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T15:47:45Z",
+              "effective_from": "2023-12-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T15:47:45Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-campaign-premium"
             }
           }
         }
@@ -2029,6 +2180,47 @@
               "review_id": "2026-10-13-ai-production"
             }
           }
+        },
+        {
+          "code": "PREMIO_CAMPAGNA",
+          "description": "Premio di campagna of the seasonal workers on tomatoes and fresh peas (conserve vegetali), Art. 51 ter",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "89.88"
+              }
+            ]
+          },
+          "role": "stagionale_campagna",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "120",
+              "section": "Art. 51 ter - Premio di campagna (conserve vegetali)",
+              "quote": "viene corrisposto – salvo che la contrattazione aziendale di secondo livello o specifici accordi di settore sottoscritti dalle Parti stipulanti interessate (Anicav, Unionfood e OO.SS.) non dispongono diversamente – un premio di campagna per i soli lavoratori stagionali addetti ai processi di lavorazione e trasformazione del pomodoro e piselli freschi. L’importo mensile di tale premio è riportato nella seguente tabella: [...] 3A 89,88"
+            },
+            "transformation": "89.88 EUR a month for level 3A, paid with the role 'stagionale_campagna' (a seasonal worker on the processing of tomatoes and fresh peas). Where company or sector bargaining is exercised the premium flows into the variable premium and the caller leaves the role out. The clause sets no other condition: the monthly amount is paid like the other allowances of the level.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T15:47:45Z",
+              "effective_from": "2023-12-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T15:47:45Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-campaign-premium"
+            }
+          }
         }
       ],
       "provenance": {
@@ -2347,6 +2539,47 @@
               "review_id": "2026-10-13-ai-production"
             }
           }
+        },
+        {
+          "code": "PREMIO_CAMPAGNA",
+          "description": "Premio di campagna of the seasonal workers on tomatoes and fresh peas (conserve vegetali), Art. 51 ter",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "102.28"
+              }
+            ]
+          },
+          "role": "stagionale_campagna",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "120",
+              "section": "Art. 51 ter - Premio di campagna (conserve vegetali)",
+              "quote": "viene corrisposto – salvo che la contrattazione aziendale di secondo livello o specifici accordi di settore sottoscritti dalle Parti stipulanti interessate (Anicav, Unionfood e OO.SS.) non dispongono diversamente – un premio di campagna per i soli lavoratori stagionali addetti ai processi di lavorazione e trasformazione del pomodoro e piselli freschi. L’importo mensile di tale premio è riportato nella seguente tabella: [...] 2 102,28"
+            },
+            "transformation": "102.28 EUR a month for level 2, paid with the role 'stagionale_campagna' (a seasonal worker on the processing of tomatoes and fresh peas). Where company or sector bargaining is exercised the premium flows into the variable premium and the caller leaves the role out. The clause sets no other condition: the monthly amount is paid like the other allowances of the level.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T15:47:45Z",
+              "effective_from": "2023-12-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T15:47:45Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-campaign-premium"
+            }
+          }
         }
       ],
       "provenance": {
@@ -2663,6 +2896,47 @@
               "verified_at": "2026-10-13T07:32:46Z",
               "verification_status": "verified",
               "review_id": "2026-10-13-ai-production"
+            }
+          }
+        },
+        {
+          "code": "PREMIO_CAMPAGNA",
+          "description": "Premio di campagna of the seasonal workers on tomatoes and fresh peas (conserve vegetali), Art. 51 ter",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "123.97"
+              }
+            ]
+          },
+          "role": "stagionale_campagna",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "120",
+              "section": "Art. 51 ter - Premio di campagna (conserve vegetali)",
+              "quote": "viene corrisposto – salvo che la contrattazione aziendale di secondo livello o specifici accordi di settore sottoscritti dalle Parti stipulanti interessate (Anicav, Unionfood e OO.SS.) non dispongono diversamente – un premio di campagna per i soli lavoratori stagionali addetti ai processi di lavorazione e trasformazione del pomodoro e piselli freschi. L’importo mensile di tale premio è riportato nella seguente tabella: [...] 1 123,97"
+            },
+            "transformation": "123.97 EUR a month for level 1, paid with the role 'stagionale_campagna' (a seasonal worker on the processing of tomatoes and fresh peas). Where company or sector bargaining is exercised the premium flows into the variable premium and the caller leaves the role out. The clause sets no other condition: the monthly amount is paid like the other allowances of the level.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T15:47:45Z",
+              "effective_from": "2023-12-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T15:47:45Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-campaign-premium"
             }
           }
         }
@@ -3024,6 +3298,47 @@
               "review_id": "2026-10-13-ai-production"
             }
           }
+        },
+        {
+          "code": "PREMIO_CAMPAGNA",
+          "description": "Premio di campagna of the seasonal workers on tomatoes and fresh peas (conserve vegetali), Art. 51 ter",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "142.57"
+              }
+            ]
+          },
+          "role": "stagionale_campagna",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "120",
+              "section": "Art. 51 ter - Premio di campagna (conserve vegetali)",
+              "quote": "viene corrisposto – salvo che la contrattazione aziendale di secondo livello o specifici accordi di settore sottoscritti dalle Parti stipulanti interessate (Anicav, Unionfood e OO.SS.) non dispongono diversamente – un premio di campagna per i soli lavoratori stagionali addetti ai processi di lavorazione e trasformazione del pomodoro e piselli freschi. L’importo mensile di tale premio è riportato nella seguente tabella: [...] 1S 142,57"
+            },
+            "transformation": "142.57 EUR a month for level 1S, paid with the role 'stagionale_campagna' (a seasonal worker on the processing of tomatoes and fresh peas). Where company or sector bargaining is exercised the premium flows into the variable premium and the caller leaves the role out. The clause sets no other condition: the monthly amount is paid like the other allowances of the level.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T15:47:45Z",
+              "effective_from": "2023-12-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T15:47:45Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-campaign-premium"
+            }
+          }
         }
       ],
       "category": "quadro",
@@ -3263,7 +3578,7 @@
     "effective_until": null,
     "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "0b2dae241b3f4688d867cf26ebaac6ebc06fec4f1ee176209ae263c0024674be",
+    "source_hash": "eface514133c520953aabfd117932e522c7b61977890b25f4fb32f44c15a03ef",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3850,6 +4165,27 @@
         "independence": "same_process",
         "checked": [
           "work_rules.notice"
+        ]
+      },
+      {
+        "id": "2026-11-01-ai-campaign-premium",
+        "date": "2026-11-01",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The premio di campagna of Art. 51 ter (PDF p. 120).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+            "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+          }
+        ],
+        "findings": [
+          "Art. 51 ter: the monthly premio di campagna by level of the seasonal workers on tomatoes and fresh peas, 142.57 to 61.99, found by a delegated search and read again in the PDF text layer: levels[].fixed_allowances[PREMIO_CAMPAGNA]."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels[].fixed_allowances[PREMIO_CAMPAGNA]"
         ]
       }
     ],
