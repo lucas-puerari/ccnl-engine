@@ -15,6 +15,7 @@ least 15 days is a whole month.
 
 from __future__ import annotations
 
+from dataclasses import replace
 from datetime import date
 from decimal import ROUND_HALF_UP, Decimal
 from typing import TYPE_CHECKING, Any
@@ -33,6 +34,7 @@ from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.employment.fact.inputs import PublicEndOfService
 from ccnl_engine.employment.inputs import FixedTerm
 from ccnl_engine.employment.period.inputs import EmploymentPeriod
+from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.events import TerminationTFREvent
 from ccnl_engine.inputs import (
     InpsBaseYtd,
@@ -247,6 +249,62 @@ def test_a_reference_income_above_the_first_bracket_takes_its_average_rate() -> 
     assert separate.amount == _money(taxable * rate)
 
 
+_ADVANCED = TfrFundBalance(
+    2025,
+    Decimal("20000.00"),
+    Decimal("500.00"),
+    Decimal("8000.00"),
+    advances_taxable=Decimal("7800.00"),
+    advances_tax=Decimal("1900.00"),
+)
+
+
+def test_the_advances_are_taxed_again_with_the_whole_tfr() -> None:
+    """Art. 19 c. 4 TUIR: the rate on the TFR "aumentato delle anticipazioni".
+
+    The fund of the reference case paid an advance of EUR 8,000.00, of which
+    EUR 7,800.00 taxable, with EUR 1,900.00 withheld.  The rate is the one of
+    taxable + 7,800.00 over the 73 months; the tax of that whole less the
+    1,900.00 already withheld is the tax of the payout.
+    """
+    result = _run(tfr_fund=_ADVANCED)
+    due, separate = _settlement(result)
+    quota = due.inputs["run_quota"]
+    assert isinstance(quota, Decimal)
+    taxable = Decimal("19500.00") + quota
+    whole = taxable + Decimal("7800.00")
+    reference = whole * 12 / (Decimal(73) / 12)
+    rate = _irpef_2026(reference) / reference
+
+    assert (separate.status, separate.reason_code) == (
+        CalculationStatus.FINAL,
+        "average_rate",
+    )
+    assert separate.amount == _money(whole * rate) - Decimal("1900.00")
+    assert separate.inputs["taxable"] == taxable
+    assert separate.inputs["advances_taxable"] == Decimal("7800.00")
+    assert separate.inputs["advances_tax"] == Decimal("1900.00")
+    assert _ledger(result, AccountKind.SEPARATE_TAX) == separate.amount
+
+
+def test_advances_taxed_above_the_whole_tfr_leave_the_tax_open() -> None:
+    """A refund of the conguaglio is not computed: no tax is withheld."""
+    fund = replace(_ADVANCED, advances_tax=Decimal("9000.00"))
+    _, separate = _settlement(_run(tfr_fund=fund))
+
+    assert (separate.status, separate.reason_code, separate.amount) == (
+        CalculationStatus.INCOMPLETE,
+        "advances_refund_not_modelled",
+        None,
+    )
+
+
+def test_the_taxable_of_the_advances_cannot_exceed_them() -> None:
+    """The taxable is the advances less their revaluations."""
+    with pytest.raises(InvalidInputError, match="advances_taxable"):
+        replace(_ADVANCED, advances_taxable=Decimal("8000.01"))
+
+
 def test_a_worker_hired_in_the_year_is_paid_a_final_tfr() -> None:
     """No fund before the year: nothing to revalue, the payout is final."""
     result = _run(
@@ -435,8 +493,8 @@ def test_a_tfr_paid_to_a_pension_fund_is_not_computed() -> None:
                     2025, Decimal("100.00"), Decimal(0), Decimal("50.00")
                 )
             },
-            "advances_not_modelled",
-            None,
+            "required_fact_missing",
+            "advances_taxable",
         ),
         # Hired in 1995: the TFR accrued up to 31 December 2000 keeps the
         # rules before D.Lgs. 47/2000 (art. 11 c. 1), which are not modelled.

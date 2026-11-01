@@ -45,7 +45,6 @@ from ccnl_engine.decision.models import (
     CalculationStatus,
 )
 from ccnl_engine.employment.fact.inputs import PublicEndOfService
-from ccnl_engine.pay_item.rounding.policies import money
 from ccnl_engine.severance.settlement.decision.services import (
     _issues,
     _payout_decision,
@@ -69,8 +68,8 @@ from ccnl_engine.severance.settlement.posting.services import _postings
 from ccnl_engine.severance.settlement.tax.rules import (
     _tax_gap,
     average_rate,
-    fixed_term_deduction,
     months_of_service,
+    separate_tax,
 )
 from ccnl_engine.termination.inputs import TerminationTFREvent
 
@@ -219,30 +218,22 @@ def _with_tax(
         and the tax in its inputs, or with the gap of the tax.
     """
     ctx, rules = run
-    gap = _tax_gap(ctx, fund, months, event)
-    if gap is not None:
+    taxable = fund.amount - (fund.revaluations or _ZERO) + quotas
+    inputs = {**settlement.inputs, "revaluations_taxed": fund.revaluations or _ZERO}
+    inputs["taxable"] = taxable
+    tax: Decimal | _Gap | None = _tax_gap(ctx, fund, months, event)
+    if tax is None:
+        tax = separate_tax(
+            (ctx, rules, months), fund, taxable, event.separate_tax_rate, inputs
+        )
+    if isinstance(tax, _Gap):
         return TfrSettlement(
             settlement.payout,
             None,
             settlement.revaluation_pending,
-            tax_gap=gap,
+            tax_gap=tax,
             inputs=settlement.inputs,
         )
-    taxable = fund.amount - (fund.revaluations or _ZERO) + quotas
-    inputs = {**settlement.inputs, "revaluations_taxed": fund.revaluations or _ZERO}
-    inputs["taxable"] = taxable
-    caller, deduction = event.separate_tax_rate, _ZERO
-    if caller is not None or rules is None or months is None:
-        rate = caller or _ZERO
-    else:
-        brackets = ctx.contract.year_rules.irpef_brackets
-        reference, rate = average_rate(taxable, months, brackets, rules)
-        inputs["reference_income"] = money(reference)
-        inputs["average_rate"] = rate
-        inputs["brackets_year"] = str(ctx.contract.year_rules.year)
-        deduction = fixed_term_deduction(ctx, rules, months)
-        inputs["fixed_term_deduction"] = deduction
-    tax = max(_ZERO, money(max(taxable, _ZERO) * rate) - deduction)
     inputs["tax"] = tax
     return TfrSettlement(
         settlement.payout,

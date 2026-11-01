@@ -85,9 +85,16 @@ _ADVANCES_UNKNOWN = _Gap(
     "advances",
 )
 _ADVANCES = _Gap(
-    "advances_not_modelled",
+    "required_fact_missing",
     "advances were paid out of the TFR fund: the conguaglio of their tax (art. "
-    "19 c. 4 TUIR) is not computed; state the rate",
+    "19 c. 4 TUIR) needs their taxable and the tax withheld on them: set "
+    "TfrFundBalance.advances_taxable and advances_tax, or state the rate",
+    "advances_taxable",
+)
+_ADVANCES_OVERWITHHELD = _Gap(
+    "advances_refund_not_modelled",
+    "the tax withheld on the advances exceeds the tax of the whole TFR (art. 19 "
+    "c. 4 TUIR): the refund of the conguaglio is not computed; state the rate",
 )
 _BEFORE_2001 = _Gap(
     "tfr_before_2001_not_modelled",

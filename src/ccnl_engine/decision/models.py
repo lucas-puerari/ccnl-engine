@@ -106,6 +106,7 @@ _SEVERITY: dict[CalculationStatus, int] = {
 PUBLIC_FACTS: Mapping[str, str] = MappingProxyType({
     "activity": "EmployerProfile.activity",
     "advances": "TfrFundBalance.advances",
+    "advances_taxable": "TfrFundBalance.advances_taxable",
     "agricultural_zone": "EmployerProfile.agricultural_zone",
     "agreement_signed_on": "BonusEvent.agreement_signed_on",
     "allocation_pct": "Dependent.allocation_pct",
