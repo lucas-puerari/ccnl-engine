@@ -19,6 +19,22 @@
       }
     },
     {
+      "id": "arrears_unused_deductions",
+      "institute": "contract_renewal_arrears",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "The engine computes the rate of the separate taxation of arrears from PriorYearTaxFacts.net_income_biennio (art. 21 cc. 1, 3 TUIR) but does not reduce the tax by the deductions of artt. 12 and 13 cc. 1-2 the worker did not use in the years the arrears refer to (art. 21 c. 4): the request does not state them, so the tax may be overstated.",
+      "calculation": "ccnl_engine.variable_pay.arrears.handlers._handle_arrears; art. 21 TUIR (Normattiva, text in force from 31-12-2024 to 31-12-2026, page sha256 9638f2c5aec6e3615193a672b6d07c3cd31083640b1c890b73022aa9951745f1)",
+      "state": "absent",
+      "remediation": "Add the deductions the worker declares as unused for each year of the arrears and reduce the tax by them, then resolve this limitation.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "arrears_unused_deductions"
+        ]
+      }
+    },
+    {
       "id": "complex_structure_allowance",
       "institute": "base_salary",
       "variant": "all",

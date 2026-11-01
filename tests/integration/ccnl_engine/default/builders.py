@@ -202,6 +202,10 @@ def _arrears(reference_period: PeriodId | None) -> ArrearsEvent:
     return ArrearsEvent(_EVENT_DAY, Decimal(500), Decimal("0.23"), reference_period)
 
 
+def _unrated() -> ArrearsEvent:
+    return ArrearsEvent(_EVENT_DAY, Decimal(500), reference_period=PeriodId(2025, 6))
+
+
 def _leave(suspends_accrual: bool | None) -> AbsenceEvent:
     # Unpaid leave of March 2026 but the 1st: suspending, March keeps one day.
     return AbsenceEvent(
@@ -551,6 +555,19 @@ DEFAULT_CASES: Mapping[str, tuple[DefaultCase, ...]] = {
     ),
     "ArrearsEvent.reference_period": (
         _event_pair(_arrears(PeriodId(2025, 6)), _arrears(None), "reference_period"),
+    ),
+    "PriorYearTaxFacts.net_income_biennio": (
+        DefaultCase(
+            replace(
+                _january(events=(_unrated(),)),
+                prior_year=replace(
+                    _january().prior_year,
+                    net_income_biennio=(Decimal(30_000), Decimal(32_000)),
+                ),
+            ),
+            _january(events=(_unrated(),)),
+            "net_income_biennio",
+        ),
     ),
     "BonusEvent.agreement_signed_on": (
         _event_pair(_renewal(), _renewal(None), "agreement_signed_on"),

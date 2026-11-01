@@ -47,7 +47,7 @@ amounts are `Decimal` values in EUR, validated on construction.
 | `StandbyEvent` | `kind` (`StandbyKind`: hours, worked day, rest day, holiday, week, week with holiday, week with holiday and rest day), `quantity`, `calls` | Standby pay (reperibilità) at the CCNL `work_rules.standby_rules` rates of the worker's level band in force on the event date, plus the CCNL fee per call with an intervention; income for IRPEF and INPS; TFR as the CCNL rules say (Federmeccanica: excluded). A CCNL or a date without rates rejects the event (`MissingRuleError`) |
 | `BonusEvent` | `amount`, `kind`, `agreement_signed_on` | One-off bonus; `kind` selects ordinary IRPEF, the PdR regime or the renewal regime |
 | `BilateralFundEvent` | `employee_amount`, `employer_amount` | Bilateral or health fund contribution; see [Pay components](pay-components.md#bilateral-funds-fondi-bilaterali) |
-| `ArrearsEvent` | `amount`, `separate_tax_rate`, `reference_period` | Renewal arrears; see [Renewal arrears](#renewal-arrears) |
+| `ArrearsEvent` | `amount`, `separate_tax_rate` (optional), `reference_period` | Renewal arrears; see [Renewal arrears](#renewal-arrears) |
 | `TerminationTFREvent` | `amount`, `separate_tax_rate` (both optional) | TFR settlement at cessazione (art. 19 TUIR); see [TFR settlement](pay-components.md#settlement-at-the-termination) |
 | `LeaveTakenEvent` | `bucket` (`LeaveBucket`: `ferie`, `rol`, `ex_festivita`), `quantity` (days of ferie, hours of a permit) | Paid leave taken: no pay of its own (the monthly pay holds it), it consumes the balance of its bucket; see [Paid leave](#paid-leave-ferie-rol-and-ex-festivita) |
 
@@ -699,14 +699,21 @@ renewal in `agreement_signed_on`. See
 Art. 17 c. 1 lett. b TUIR taxes separately the "emolumenti arretrati per
 prestazioni di lavoro dipendente riferibili ad anni precedenti" received
 by effect of a collective agreement; art. 21 c. 1 sets the rate on half
-the income of the two years before the year of receipt, which the engine
-does not know: the caller supplies it as `separate_tax_rate`.
+the income of the two years before the year of receipt. The caller may
+state it as `separate_tax_rate`; otherwise the engine computes it from
+`PriorYearTaxFacts.net_income_biennio` (the reddito complessivo netto of the
+two years): the average rate of the brackets of the tax year on half their
+sum, half the other year when one has no income, the first bracket when
+neither has (c. 3). The deductions of art. 21 c. 4 the worker did not use
+are not taken (engine limitation `arrears_unused_deductions`). Without
+either, the separate tax is not computed: an `arrears_separate_rate_unknown`
+issue and a `missing_fact net_income_biennio` blocker.
 `reference_period` is compared with the tax year of the run (a December
 paid by 12 January belongs to its year):
 
 | `reference_period` | Taxation | `contract_renewal_arrears` decision |
 |---|---|---|
-| An earlier tax year | Separate, `amount x separate_tax_rate` on `separate_tax` (code 1002) | `separate_taxation`, final |
+| An earlier tax year | Separate, `amount x rate` on `separate_tax` (code 1002) | `separate_taxation`, final |
 | The tax year of the run | Ordinary IRPEF with the run; the rate is not used | `ordinary_taxation`, final |
 | `None` | Separate, as a simulation, with an `arrears_reference_period_unknown` issue and a `missing_fact reference_period` blocker | `reference_period_unknown`, incomplete |
 | A later year | `InvalidInputError` | |

@@ -25,12 +25,12 @@ from ccnl_engine.compensation.renewal_minimum.rules import (
     qualifying_starts,
     renewal_table_from,
 )
-from ccnl_engine.event.allocation.services import worker_facts_of
 from ccnl_engine.extra_month.settlement.services import ExtraMonthSettlement
 from ccnl_engine.ledger.models import AccountKind
 from ccnl_engine.ledger.remittance.models import REGIME_CODES
 from ccnl_engine.pay_item.rounding.policies import money
 from ccnl_engine.pay_item.services import _make_entry
+from ccnl_engine.regime.requirement.rules import worker_facts_of
 
 if TYPE_CHECKING:
     from ccnl_engine.period.context.services import RunContext

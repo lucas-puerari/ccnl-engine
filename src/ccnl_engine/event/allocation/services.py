@@ -53,7 +53,6 @@ if TYPE_CHECKING:
     from ccnl_engine.event.handlers import FringeThreshold
     from ccnl_engine.leave.handlers import LeaveTerms
     from ccnl_engine.pay_item.policies import PolicyContext, PolicyResolver
-    from ccnl_engine.period.requests import PeriodCalculationRequest
     from ccnl_engine.regime.models import (
         PreferentialTaxRegime,
     )
@@ -65,29 +64,6 @@ if TYPE_CHECKING:
 
 _NO_FACTS = RegimeFacts()
 _MAX_MONTHLY_HOURS = Decimal(240)
-
-
-def worker_facts_of(
-    request: PeriodCalculationRequest, *, withholding_agent: bool
-) -> RegimeFacts:
-    """Return the worker facts the regimes of a run are checked against.
-
-    Args:
-        request: The period calculation request.
-        withholding_agent: Whether the employer withholds tax; the regimes
-            are applied only by a withholding agent.
-
-    Returns:
-        The prior-year income and waivers, the sector of the employment and
-        the activity of the employer, as declared on ``request``.
-    """
-    return RegimeFacts(
-        prior_income=request.prior_year.employment_income,
-        sector=request.sector,
-        activity=request.employer.activity,
-        waived_regimes=frozenset(request.prior_year.waived_regimes),
-        withholding_agent=withholding_agent,
-    )
 
 
 def _check_event_date(

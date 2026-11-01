@@ -698,6 +698,11 @@ def test_arrears_trace_their_year_tax_and_policy(
             "tax_year": str(_YEAR),
             "reference_period": shown,
             "amount": Decimal("2000.00"),
+            **(
+                {"separate_tax_rate": Decimal("0.23"), "rate_source": "caller"}
+                if taxed
+                else {}
+            ),
         },
         Decimal(amount),
         Decimal(1),

@@ -73,6 +73,18 @@ EVENT_DEFAULTS: Mapping[str, FieldDefault] = {
         "unknown reference year: separate or ordinary taxation (art. 17 c. 1 "
         "lett. b TUIR) is undetermined, with a blocker",
     ),
+    "ArrearsEvent.separate_tax_rate": absence_is_fact(
+        "no rate from the caller: the engine computes it from "
+        "PriorYearTaxFacts.net_income_biennio (art. 21 TUIR)"
+    ),
+    # The fact the arrears rate is computed from, with the event that reads it.
+    "PriorYearTaxFacts.net_income_biennio": requires_fact(
+        "contract_renewal_arrears",
+        "prior_year.net_income_biennio",
+        FactEnforcement.REPORTED,
+        "unknown income of the two years before: arrears of an earlier year "
+        "without a caller rate have no separate tax, with a blocker",
+    ),
     "BonusEvent.kind": absence_is_fact(
         "an ordinary bonus taxed as income; a preferential kind is declared"
     ),
