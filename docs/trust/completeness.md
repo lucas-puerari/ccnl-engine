@@ -14,7 +14,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 0/132 CCNLs.** Bundle: 266 weak rules, 558 open limitations (558 with a monetary impact).
+**Complete: 0/133 CCNLs.** Bundle: 268 weak rules, 558 open limitations (558 with a monetary impact).
 
 ## Declared window
 
@@ -71,7 +71,8 @@ Future data, registered apart from the gaps: a contract whose validity ends insi
 | [carta-cartone-assocarta](../contracts/carta-cartone-assocarta.md) | `carta-grafica` | exploratory | — | 23 rows | 23 open requirements; 1 weak rule; 20 monetary limitations; 20 non-native capabilities |
 | [ced-assoced](../contracts/ced-assoced.md) | `servizi-professionali` | exploratory | — | 26 rows | 26 open requirements; 2 weak rules; 21 monetary limitations; 1 outside_input limitation; 21 non-native capabilities |
 | [cemento-calce-gesso-industria](../contracts/cemento-calce-gesso-industria.md) | `materiali-estrattive` | exploratory | — | 25 rows | 25 open requirements; 1 weak rule; 22 monetary limitations; 20 non-native capabilities |
-| [ceramica-industria-confindustria](../contracts/ceramica-industria-confindustria.md) | `chimica` | exploratory | — | 26 rows | 26 open requirements; 2 weak rules; 21 monetary limitations; 1 outside_input limitation; 20 non-native capabilities |
+| [ceramica-industria-confindustria](../contracts/ceramica-industria-confindustria.md) | `chimica` | exploratory | — | 25 rows | 25 open requirements; 2 weak rules; 21 monetary limitations; 19 non-native capabilities |
+| [ceramica-sanitaria-stoviglieria-confindustria](../contracts/ceramica-sanitaria-stoviglieria-confindustria.md) | `chimica` | exploratory | — | 25 rows | 25 open requirements; 2 weak rules; 21 monetary limitations; 19 non-native capabilities |
 | [chimica-affini-pmi-unionchimica](../contracts/chimica-affini-pmi-unionchimica.md) | `chimica` | exploratory | — | 24 rows | 24 open requirements; 2 weak rules; 20 monetary limitations; 19 non-native capabilities |
 | [chimica-farmaceutica-federchimica](../contracts/chimica-farmaceutica-federchimica.md) | `chimica` | reviewed | — | 34 rows | 34 open requirements; 19 monetary limitations; 13 outside_input limitations; 22 non-native capabilities |
 | [cinema-audiovisivi-industria](../contracts/cinema-audiovisivi-industria.md) | `spettacolo-media` | exploratory | — | 23 rows | 23 open requirements; 1 weak rule; 19 monetary limitations; 1 outside_input limitation; 19 non-native capabilities |

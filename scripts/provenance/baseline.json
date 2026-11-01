@@ -70,6 +70,10 @@
       "accrual_rule": "missing",
       "additional_months[2024-09-01]": "assumed"
     },
+    "agreement/ceramica-sanitaria-stoviglieria-confindustria.json": {
+      "accrual_rule": "missing",
+      "additional_months[2024-09-01]": "assumed"
+    },
     "agreement/chimica-affini-pmi-unionchimica.json": {
       "accrual_rule": "missing",
       "additional_months[2026-01-01]": "assumed"
@@ -739,8 +743,10 @@
       "cemento-calce-gesso-industria/apprenticeship_full_pay_passthrough"
     ],
     "agreement/ceramica-industria-confindustria.json": [
-      "ceramica-industria-confindustria/apprentice_seniority",
-      "ceramica-industria-confindustria/sanitary_ceramics_tables"
+      "ceramica-industria-confindustria/apprentice_seniority"
+    ],
+    "agreement/ceramica-sanitaria-stoviglieria-confindustria.json": [
+      "ceramica-sanitaria-stoviglieria-confindustria/apprentice_seniority"
     ],
     "agreement/chimica-affini-pmi-unionchimica.json": [
       "chimica-affini-pmi-unionchimica/apprentice_seniority"

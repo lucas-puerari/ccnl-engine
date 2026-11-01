@@ -10,7 +10,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 |---|---:|---:|---:|---:|---:|---:|---|
 | pubblica-amministrazione | 14 | 7 548 000 | 14 | 208 | 186 | 0 | `funzioni-centrali-aran` |
 | terziario | 43 | 4 977 055 | 51 | 1554 | 846 | 4 | `commercio-confcommercio`, `sanita-privata-aiop-aris` |
-| industria | 48 | 4 946 900 | 151 | 2052 | 1001 | 15 | `logistica-trasporto-confetra`, `metalmeccanico-federmeccanica` |
+| industria | 49 | 4 969 900 | 153 | 2122 | 1001 | 15 | `logistica-trasporto-confetra`, `metalmeccanico-federmeccanica` |
 | lavoro-domestico | 3 | 1 800 000 | 0 | 3 | 56 | 0 | `lavoro-domestico-non-convivente` |
 | artigianato | 8 | 1 244 505 | 34 | 248 | 155 | 2 | `metalmeccanico-artigianato` |
 | agricoltura | 9 | 752 860 | 12 | 229 | 61 | 5 | `operai-agricoli-florovivaisti` |
@@ -116,6 +116,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | [`metalmeccanica-cooperative`](../contracts/metalmeccanica-cooperative.md) | 28 000 | exploratory | 1 | 45 | 1 | party or official | none | none |
 | [`cemento-calce-gesso-industria`](../contracts/cemento-calce-gesso-industria.md) | 25 000 | exploratory | 1 | 80 | 1 | party or official | none | none |
 | [`ceramica-industria-confindustria`](../contracts/ceramica-industria-confindustria.md) | 23 000 | exploratory | 2 | 60 | 0 | party or official | none | none |
+| [`ceramica-sanitaria-stoviglieria-confindustria`](../contracts/ceramica-sanitaria-stoviglieria-confindustria.md) | 23 000 | exploratory | 2 | 70 | 0 | party or official | none | none |
 | [`concia-unic`](../contracts/concia-unic.md) | 22 600 | reviewed | 0 | 1 | 57 | party or official | maintainer | 2027-01-31 |
 | [`occhiali-occhialeria-industria`](../contracts/occhiali-occhialeria-industria.md) | 20 000 | exploratory | 2 | 11 | 77 | party or official | none | none |
 | [`informatica-pmi-unimatica`](../contracts/informatica-pmi-unimatica.md) | 20 000 | exploratory | 1 | 39 | 2 | party or official | none | none |

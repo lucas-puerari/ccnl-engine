@@ -211,7 +211,7 @@ read their `scope` and `findings` instead.
 ## Current status
 
 Distribution across the
-<!-- trust:ccnl-total -->132<!-- /trust:ccnl-total --> bundled CCNL rulesets,
+<!-- trust:ccnl-total -->133<!-- /trust:ccnl-total --> bundled CCNL rulesets,
 generated from the data by `scripts/documentation/trust_count/generate.py` (CI fails when
 it drifts):
 
@@ -219,7 +219,7 @@ it drifts):
 
 | Readiness | CCNL rulesets |
 |---|---:|
-| `exploratory` | 109 |
+| `exploratory` | 110 |
 | `reviewed` | 17 |
 | `production` | 6 |
 

@@ -1,12 +1,14 @@
 """Bundled CCNL data files load with their expected values.
 
 Covers Legno Lapidei Artigianato Confartigianato, Comunicazione Artigianato
-Confartigianato, Ceramica Industria Confindustria, Orafi Argentieri Industria
-Federorafi.
+Confartigianato, Ceramica Industria Confindustria and its sanitary ware and
+tableware sibling, Orafi Argentieri Industria Federorafi.
 """
 
 from datetime import date
 from decimal import Decimal
+
+import pytest
 
 from ccnl_engine.agreement.facade import TaxSector
 from ccnl_engine.apprenticeship.models import (
@@ -330,6 +332,52 @@ class TestLoadCeramicaIndustriaConfindustria:
         assert len(track.destination_levels) == 12
         assert track.periods[0].percentage == Decimal("0.95")
         assert track.periods[0].months_until is None
+
+
+class TestLoadCeramicaSanitariaStoviglieriaConfindustria:
+    """The CERAMICA SANITARIA E STOVIGLIERIA table, p. 3 of the 2024 renewal."""
+
+    def test_ceramica_sanitaria_has_the_e3_level(self) -> None:
+        """13 levels: those of Piastrelle and E3, between E2 and F."""
+        ccnl = load_ccnl("ceramica-sanitaria-stoviglieria-confindustria")
+        ordered = [lv.code for lv in sorted(ccnl.levels, key=lambda lv: lv.order)]
+        assert ordered == [
+            "F",
+            "E3",
+            "E2",
+            "E1",
+            "D3",
+            "D2",
+            "D1",
+            "C3",
+            "C2",
+            "C1",
+            "B2",
+            "B1",
+            "A",
+        ]
+
+    @pytest.mark.parametrize(
+        ("code", "day", "minimum", "ipo"),
+        [
+            ("A", date(2024, 9, 1), "2250.51", "356.27"),
+            ("A", date(2027, 6, 1), "2400.50", "414.61"),
+            ("B2", date(2025, 7, 1), "2121.23", "187.06"),
+            ("D1", date(2026, 7, 1), "1732.44", "310.06"),
+            ("E3", date(2026, 6, 30), "1581.13", "33.27"),
+            ("E3", date(2027, 6, 1), "1656.05", "37.03"),
+            ("F", date(2026, 9, 1), "1602.65", None),
+        ],
+    )
+    def test_ceramica_sanitaria_minimum_and_ipo(
+        self, code: str, day: date, minimum: str, ipo: str | None
+    ) -> None:
+        """Minimo and ipo of each column; F has no ipo."""
+        ccnl = load_ccnl("ceramica-sanitaria-stoviglieria-confindustria")
+        level = next(lv for lv in ccnl.levels if lv.code == code)
+        found = [a.monthly.value_at(day) for a in level.fixed_allowances]
+        assert level.base_salary.value_at(day) == Decimal(minimum)
+        assert found == ([] if ipo is None else [Decimal(ipo)])
 
 
 class TestLoadOrafiArgentieriIndustriaFederorafi:

@@ -43,11 +43,11 @@ def test_groups_follow_workers_then_weak_rules() -> None:
 
 
 def test_the_bundled_plan_has_every_ccnl_and_every_anchor() -> None:
-    """132 CCNLs in eight groups, the ten of the first round as anchors."""
+    """133 CCNLs in eight groups, the ten of the first round as anchors."""
     items = agreements()
     page = build_page(items)
 
-    assert len(items) == 132
+    assert len(items) == 133
     assert len({a.sector for a in items}) == 8
     assert {a.slug for a in items} >= FIRST_ROUND
     assert page.count("(anchor)") == len(FIRST_ROUND)

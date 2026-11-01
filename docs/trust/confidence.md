@@ -108,7 +108,7 @@ residence and empty family are stated, is not payable:
   destination of a company under the Tesoreria rule;
 - a rule the run executes is `assumed`: the municipal surtax of a comune with
   no delibera for the year and, for most CCNLs, the base salary, since
-  <!-- trust:extra-months-assumed -->92 of 132<!-- /trust:extra-months-assumed -->
+  <!-- trust:extra-months-assumed -->93 of 133<!-- /trust:extra-months-assumed -->
   CCNLs cite no clause for their number of monthly payments;
 - for some CCNLs, an `open_limitation` that concerns every ordinary month (an
   INPS rate reused from another sector, a salary table read from a proxy
@@ -119,7 +119,7 @@ Without the residence or the family, each run also carries a
 the capabilities the engine does not compute (INAIL, health funds, maternity,
 ...) do not apply to an ordinary month or are outside the request (see the
 [capability matrix](../contracts/capability-matrix.md)). The bundle holds
-<!-- trust:rules-missing -->26<!-- /trust:rules-missing --> `missing` rules
+<!-- trust:rules-missing -->27<!-- /trust:rules-missing --> `missing` rules
 (see [Provenance](provenance.md#current-counts)); a run that reads one also
 raises a `rule_source_missing` issue and is `incomplete`.
 
@@ -203,7 +203,7 @@ is `False` on its closing state). See
 ## Model limitations
 
 A known simplification of the model is data, not a comment. The registry has
-<!-- trust:limitations-total -->590<!-- /trust:limitations-total --> `ModelLimitation`
+<!-- trust:limitations-total -->591<!-- /trust:limitations-total --> `ModelLimitation`
 entries: one per `simplification` note of a CCNL file that can move an
 amount, and <!-- trust:limitations-engine -->28<!-- /trust:limitations-engine -->
 engine limitations of code paths several CCNLs share
@@ -220,11 +220,11 @@ limits, the `rulesets` and dates it affects, a `monetary_impact` (`yes`,
 `no`, `unknown`), a `status` (`open`, `resolved`), its `source` and a
 `remediation`.
 
-The <!-- trust:simplification-notes -->616<!-- /trust:simplification-notes -->
+The <!-- trust:simplification-notes -->617<!-- /trust:simplification-notes -->
 simplification notes of the bundle each state their impact on what the engine
 computes from the bundle:
-<!-- trust:simplification-yes -->310<!-- /trust:simplification-yes --> `yes`,
-<!-- trust:simplification-unknown -->252<!-- /trust:simplification-unknown --> `unknown`
+<!-- trust:simplification-yes -->309<!-- /trust:simplification-yes --> `yes`,
+<!-- trust:simplification-unknown -->254<!-- /trust:simplification-unknown --> `unknown`
 and <!-- trust:simplification-no -->54<!-- /trust:simplification-no --> `no` (the
 engine refuses the case, or takes the value from the caller). A file whose
 note can move an amount without declaring a limitation does not load, so the
@@ -246,7 +246,7 @@ classifies it by obligation:
 - an engine limitation applies only when the run takes its code path, and the
   run records the traversal (an apprentice in a midpoint period of a CCNL
   whose midpoint components are unsourced);
-- <!-- trust:limitations-outside-input -->206<!-- /trust:limitations-outside-input -->
+- <!-- trust:limitations-outside-input -->205<!-- /trust:limitations-outside-input -->
   limitations depend on a fact the request cannot express (a hire date before
   a transitional regime, a fund the worker joins, a sector section): they are
   documented on the contract page and never recorded on a run. An amount
