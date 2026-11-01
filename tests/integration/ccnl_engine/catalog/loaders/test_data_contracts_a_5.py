@@ -8,6 +8,8 @@ Locali Aran, Dirigenza Funzioni Centrali Aran.
 from datetime import date
 from decimal import Decimal
 
+import pytest
+
 from ccnl_engine.agreement.facade import TaxSector
 from ccnl_engine.catalog.loaders import load_ccnl
 
@@ -388,6 +390,28 @@ class TestLoadDirigenzaFunzioniLocaliAran:
 class TestLoadDirigenzaFunzioniCentraliAran:
     """Tests for CCNL Area Dirigenza Funzioni Centrali 2022-2024 (S025)."""
 
+    @pytest.mark.parametrize(
+        ("code", "day", "expected"),
+        [
+            # 39803.20 / 13 under the CCNL of 16 November 2023
+            ("PRIMA_FASCIA", date(2023, 12, 1), "3061.78"),
+            # + 215.00 from 2024: 42598.20 / 13
+            ("PRIMA_FASCIA", date(2026, 3, 1), "3276.78"),
+            # 13345.11 / 13, then + 90.00: 14515.11 / 13
+            ("SECONDA_FASCIA", date(2023, 12, 1), "1026.55"),
+            ("SECONDA_FASCIA", date(2026, 3, 1), "1116.55"),
+        ],
+    )
+    def test_dirigenza_fc_position_pay_fixed_part(
+        self, code: str, day: date, expected: str
+    ) -> None:
+        """Art. 23 and 26 cc. 4-5 of the CCNL 2022-2024, on 13 months."""
+        ccnl = load_ccnl("dirigenza-funzioni-centrali-aran")
+        level = next(lv for lv in ccnl.levels if lv.code == code)
+        (allowance,) = level.fixed_allowances
+        assert allowance.code == "POSIZIONE_FISSA"
+        assert allowance.monthly.value_at(day) == Decimal(expected)
+
     def test_dirigenza_funzioni_centrali_aran_loads(self) -> None:
         """File loads and has correct id and CNEL code."""
         ccnl = load_ccnl("dirigenza-funzioni-centrali-aran")
@@ -433,12 +457,6 @@ class TestLoadDirigenzaFunzioniCentraliAran:
         """Hourly divisor: 165 (38h/week, SIMPLIFICATION)."""
         ccnl = load_ccnl("dirigenza-funzioni-centrali-aran")
         assert ccnl.parameters.hourly_divisor.value_at(date(2026, 1, 1)) == Decimal(165)
-
-    def test_dirigenza_funzioni_centrali_aran_no_fixed_allowances(self) -> None:
-        """Conglobated model: no fixed allowances (posizione variabile)."""
-        ccnl = load_ccnl("dirigenza-funzioni-centrali-aran")
-        for lv in ccnl.levels:
-            assert lv.fixed_allowances == ()
 
     def test_dirigenza_funzioni_centrali_aran_tax_sector(self) -> None:
         """Contract declares PUBBLICA_AMMINISTRAZIONE tax sector."""

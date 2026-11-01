@@ -626,7 +626,7 @@
       "valid_to": "2024-12-31",
       "ruleset_id": "ccnl/dirigenza-funzioni-centrali-aran",
       "ruleset_version": "2026.2",
-      "source_hash": "e76f084bc6341a6ff792afe7a1cba4b06005c5dc18e95103d926c0aaac8b4b7b",
+      "source_hash": "fa2742eac5433001b76aad4188bea2d947807c5ba5a96310049ab5ceb327d230",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/dirigenza-funzioni-centrali-aran.json.gz"
@@ -3090,7 +3090,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "81b63e473064ce9ae72b2ef17c158670cb28c2549e8c5c1f68bfe4e0dd106d28",
+      "source_hash": "b9f427657ed0637e2aab870150dfda799f3d86f59e491fa0fb5266a6bc4a674e",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/dirigenza-funzioni-centrali-aran.json.gz",

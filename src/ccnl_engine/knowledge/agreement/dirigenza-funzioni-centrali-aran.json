@@ -236,7 +236,48 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "POSIZIONE_FISSA",
+          "description": "Retribuzione di posizione parte fissa of the fascia, on 13 monthly payments",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2023-11-16",
+                "valid_until": "2024-01-01",
+                "value": "1026.55"
+              },
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": null,
+                "value": "1116.55"
+              }
+            ]
+          },
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-area-funzioni-centrali-2022-2024",
+                "title": "CCNL Area Funzioni Centrali 2022-2024 (Ministero del Lavoro, testo vigente)",
+                "kind": "associazione",
+                "url": "https://trasparenza.lavoro.gov.it/archiviofile/minlavoro/2025_10_28_CCNL_A_FC_2022-2024_Pubblicazione-1%20vigente.pdf",
+                "sha256": "174396efca00e37411fc07385de883dc47c1a6d713be8bd8f45fefc746b8585f"
+              },
+              "section": "Art. 26 cc. 4-5 - retribuzione di posizione parte fissa",
+              "quote": "Il valore della retribuzione di posizione parte fissa, definito dall’art. 30, comma 5, del CCNL 16/11/2023, è incrementato, a decorrere dal 1° gennaio 2024, di € 90,00 mensili lordi per 13 mensilità. [...] il nuovo valore a regime annuo lordo per 13 mensilità della retribuzione di posizione parte fissa [...] è rideterminato in € 14.515,11."
+            },
+            "transformation": "The yearly amount over the 13 monthly payments: 14.515,11 / 13 = 1116.55 from 1 January 2024, rounded to the cent as the stipendio tabellare of the file; before, the 13.345,11 of the CCNL of 16 November 2023 (same article, Art. 27 and 30 of that text, https://www.aranagenzia.it/wp-content/uploads/2023/11/2023_11_16_AREA-FC_2019-2021.pdf, sha256 d54282a02985eb805ba24ea566ae2d49815aedfd0c5b35baf096221cbf366a57) / 13 = 1026.55, which plus the 90,00 increase gives 1116.55.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T15:06:39Z",
+              "effective_from": "2023-11-16",
+              "verification_status": "unverified"
+            }
+          }
+        }
+      ],
       "provenance": {
         "status": "derived",
         "location": {
@@ -311,7 +352,48 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "POSIZIONE_FISSA",
+          "description": "Retribuzione di posizione parte fissa of the fascia, on 13 monthly payments",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2023-11-16",
+                "valid_until": "2024-01-01",
+                "value": "3061.78"
+              },
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": null,
+                "value": "3276.78"
+              }
+            ]
+          },
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-area-funzioni-centrali-2022-2024",
+                "title": "CCNL Area Funzioni Centrali 2022-2024 (Ministero del Lavoro, testo vigente)",
+                "kind": "associazione",
+                "url": "https://trasparenza.lavoro.gov.it/archiviofile/minlavoro/2025_10_28_CCNL_A_FC_2022-2024_Pubblicazione-1%20vigente.pdf",
+                "sha256": "174396efca00e37411fc07385de883dc47c1a6d713be8bd8f45fefc746b8585f"
+              },
+              "section": "Art. 23 cc. 4-5 - retribuzione di posizione parte fissa",
+              "quote": "Il valore della retribuzione di posizione parte fissa, definito dall’art. 27, comma 5, del CCNL 16/11/2023, è incrementato, a decorrere dal 1° gennaio 2024, di € 215,00 mensili lordi per 13 mensilità. [...] il nuovo valore a regime annuo lordo per 13 mensilità della retribuzione di posizione parte fissa [...] è rideterminato in € 42.598,20."
+            },
+            "transformation": "The yearly amount over the 13 monthly payments: 42.598,20 / 13 = 3276.78 from 1 January 2024, rounded to the cent as the stipendio tabellare of the file; before, the 39.803,20 of the CCNL of 16 November 2023 (same article, Art. 27 and 30 of that text, https://www.aranagenzia.it/wp-content/uploads/2023/11/2023_11_16_AREA-FC_2019-2021.pdf, sha256 d54282a02985eb805ba24ea566ae2d49815aedfd0c5b35baf096221cbf366a57) / 13 = 3061.78, which plus the 215,00 increase gives 3276.78.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T15:06:39Z",
+              "effective_from": "2023-11-16",
+              "verification_status": "unverified"
+            }
+          }
+        }
+      ],
       "provenance": {
         "status": "derived",
         "location": {
@@ -350,19 +432,6 @@
       {
         "kind": "source",
         "text": "Firma 28/10/2025. FP CGIL non ha firmato (indicato come 'non firmato' nel frontespizio). CGIL confederale non ha firmato."
-      },
-      {
-        "kind": "simplification",
-        "text": "Retribuzione di posizione parte fissa: prima fascia 42.598,20€/anno (Art. 23 c.5); seconda fascia 14.515,11€/anno (Art. 26 c.5). Variabile per incarico, non modellata (SIMPLIFICATION).",
-        "capability": "base_salary",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "position_pay_fixed_part",
-          "applies_when": {
-            "trigger": "owed"
-          },
-          "remediation": "Model the retribuzione di posizione parte fissa (Art. 23 c.5, Art. 26 c.5) as a fixed allowance per fascia over 13 months."
-        }
       },
       {
         "kind": "info",
@@ -418,7 +487,7 @@
     "effective_until": "2024-12-31",
     "source": "https://trasparenza.lavoro.gov.it/archiviofile/minlavoro/2025_10_28_CCNL_A_FC_2022-2024_Pubblicazione-1%20vigente.pdf",
     "verification_status": "unverified",
-    "source_hash": "e76f084bc6341a6ff792afe7a1cba4b06005c5dc18e95103d926c0aaac8b4b7b",
+    "source_hash": "fa2742eac5433001b76aad4188bea2d947807c5ba5a96310049ab5ceb327d230",
     "published_at": "2026-09-07",
     "source_type": "official_primary"
   },
