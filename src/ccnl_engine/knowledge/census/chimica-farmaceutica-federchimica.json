@@ -119,10 +119,10 @@
       "institute": "extraordinary_leave",
       "variant": "all",
       "discriminant": "applies_when.trigger = path",
-      "rule": "The daily indemnity of the extraordinary leave is the last monthly pay of fixed and continuous items times the monthly payments of a year over 365: art. 42 c. 5-ter D.Lgs. 151/2001 and INPS messaggio 30/2024 set the pay and its rateo of the extra months, and the INPS table of the yearly maximum divides it by 365 (2026: 43,486.00 / 365 = 119.14), but no source read states the divisor of the worker's own pay.",
-      "calculation": "ccnl_engine.absence.insured.extraordinary.handlers._handle_extraordinary_leave; D.Lgs. 151/2001 art. 42 c. 5-ter (Normattiva, text in force on 2026-10-30, page sha256 ad8aa2d80253c1a760b5e39ac829afa76dc0156f73a1f115150cd2165306a87f); INPS scheda congedi straordinari (page sha256 3f12506c8279719647196c854ecdbd19c41de7d5c29af10e15909a06d5fa319f)",
+      "rule": "The daily indemnity of the extraordinary leave is the last monthly pay of fixed and continuous items times the monthly payments of a year, over 365 days (366 in a leap year), as INPS circ. 64/2001 par. 4 sets for a month worked full time. For a vertical part time the circular divides the pay of the month by its paid days, rest days included, which the request does not state: the engine applies the full-time measure, so the indemnity of a vertical or mixed part time may be misstated.",
+      "calculation": "ccnl_engine.absence.insured.extraordinary.handlers._handle_extraordinary_leave; INPS circ. 64/2001 par. 4 ('la retribuzione del mese preso a riferimento (comprensiva della quota parte di tredicesima mensilità, ecc.), se il mese è lavorato a tempo pieno, va moltiplicata per 12 e divisa per 365 giorni (366 se le assenze cadono in un anno bisestile) [...] Se invece nel mese preso a riferimento l'attività è stata svolta in regime di contratto di lavoro a part time verticale, la retribuzione percepita nel mese stesso va divisa per il numero dei giorni retribuiti, compresi quelli festivi o comunque di riposo'; INPS content fragment sha256 de3751ac274d81141df627d3c95b220fbf6bcbafed78fefa4f94871a755c427e); D.Lgs. 151/2001 art. 42 c. 5-ter",
       "state": "unverified",
-      "remediation": "Source the daily divisor INPS applies to the last pay (circ. INPS 64/2001 or 32/2012) and apply it, then resolve this limitation.",
+      "remediation": "Take the paid days of the month before the leave of a vertical or mixed part time as a fact of the leave and divide its pay by them, then resolve this limitation.",
       "origin": "seeded",
       "links": {
         "limitations": [
