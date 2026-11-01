@@ -71,6 +71,8 @@ def _permit(**kwargs: object) -> PermitRules:
         (MonthCredit.WHOLE_MONTH, 29, False),
         (MonthCredit.MORE_THAN_HALF, 16, True),
         (MonthCredit.MORE_THAN_HALF, 15, False),
+        (MonthCredit.HALF_OR_MORE, 15, True),
+        (MonthCredit.HALF_OR_MORE, 14, False),
     ],
 )
 def test_month_credit(credit: MonthCredit, served: int, expected: bool) -> None:

@@ -44,7 +44,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 26 verified / 1 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 28 verified / 1 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🟢 Verified | The confidence the ruleset declares as a whole |
 | **Readiness** | 👁 Reviewed | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -53,7 +53,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2026-01-01 |
-| **Last review** | 2026-10-16 |
+| **Last review** | 2026-11-01 |
 | **Latest salary tranche** | 2026-01-01 |
 
 ## Review history
@@ -63,6 +63,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-09-18 | maintainer (human) | Whole file. The values checked were not recorded. | confirmed | The review recorded no list of the documents it read. |
 | 2026-10-12 | claude-opus-5-5 (ai) | Every payable rule of the file: minimums, hourly divisor, additional months, seniority, Cas.Sa.Colf, overtime, absences, leave and the accrual of the tredicesima, read in the signed text of 28 October 2025 and its 2026 table (p. 59); the sickness rule of Art. 27 stays derived (readings in its transformation). | corrected | Overtime: the file held 10% and 20%; Art. 15 c. 3 sets 25% by day, 50% by night and 60% on a holiday or Sunday. The 20% of Art. 14 c. 6 is the supplement of ordinary night work, not of overtime.<br>accrual_rule was missing: chiarimento a verbale 4 counts a fraction of a month of at least 15 calendar days as a whole month.<br>Citations moved from the DOMINA table and section labels without page to the signed text with page and quote.<br>Seniority of levels D and D super: the file held 4% of the minimum without the indennità di funzione (56.18, 58.99); Art. 34 c. 2 a) makes the indennità part of the retribuzione minima contrattuale on which Art. 37 c. 1 computes the 4%: 64.49 and 67.30.<br>Tabella A, the indennità di funzione and Tabella F match the signed table (p. 59) and the DOMINA table of 2026. |
 | 2026-10-16 | claude-opus-5-5 (ai) | Limitation hourly_inps_bracket_unvalidated: the band of the hourly INPS contribution up to 24 weekly hours against the worked quarters of a signatory of the CCNL (DOMINA) and INPS circ. 9/2026. | flagged | INPS circ. 9/2026 downloaded again on 2026-10-16: same sha256 as the bundle, no rectification in the text; the 2026 amounts of the file stand.<br>DOMINA states that the paga oraria effettiva includes the hourly share of the tredicesima and prints four quarters of 2026 (13 weeks): colf 10 h at 8.00 an hour, 1.70, 221.00 (worker 55.90); colf 10 h at 9.00, 1.92 because 9 x 13 / 12 = 9.75 is above 9.61, 249.60 (62.40); colf 25 h, 1.24, 403.00 (100.75); badante convivente 54 h, 1.24, 870.48 (217.62). The engine's effective pay and band match all four (tests/knowledge/ccnl_engine/contribution/domestic/services/test_effective_hourly_pay.py::test_the_band_of_the_published_quarters_of_a_signatory): the raise by 13/12 is validated.<br>Still unvalidated, so the limitation stays: the share of board and lodging in the effective pay of a convivente up to 24 weekly hours. DOMINA states it ('per chi ha vitto e alloggio, il loro valore convenzionale'), as the engine computes it, but prints no worked case with board and lodging, and no worked example of a convivente up to 24 hours was found. |
+| 2026-11-01 | claude-opus-5-5 (ai) | The accrual of the ferie and their indemnity at the end of the employment, Art. 17 and Chiarimenti a verbale (PDF pp. 29-30, 56). | corrected | Art. 17 c. 9 and Chiarimenti point 4: twelfths for each month of service, a month of 15 days or more whole: work_rules.leave_rules.ferie_accrual. Art. 17 c. 6: a day of ferie is paid 1/26 of the monthly pay, read as the indemnity of a day left: work_rules.leave_rules.termination. Found by a delegated search, read again in the PDF text layer. |
 
 ## Salary table
 
