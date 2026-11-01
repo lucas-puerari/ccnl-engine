@@ -1148,8 +1148,7 @@
     "agreement/occhiali-occhialeria-industria.json": [
       "occhiali-occhialeria-industria/apprentice_seniority",
       "occhiali-occhialeria-industria/apprenticeship_full_pay",
-      "occhiali-occhialeria-industria/level_1_entry_rate",
-      "occhiali-occhialeria-industria/shift_6x6_divisor_156"
+      "occhiali-occhialeria-industria/level_1_entry_rate"
     ],
     "agreement/ooss-unsic-confsal.json": [
       "ooss-unsic-confsal/apprentice_seniority",

@@ -385,22 +385,6 @@
       }
     },
     {
-      "id": "shift_6x6_divisor_156",
-      "institute": "overtime",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "HOURLY DIVISOR: 173 (standard 40h/week). Shift workers on 6x6 turns use divisor 156; engine models the 173 case uniformly.",
-      "calculation": "ccnl/occhiali-occhialeria-industria:coverage.notes",
-      "state": "absent",
-      "remediation": "Model the 156 divisor of the 6x6 shift workers (a work pattern input or an hourly_divisor by schedule), as the long-week divisors tracked elsewhere.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "occhiali-occhialeria-industria/shift_6x6_divisor_156"
-        ]
-      }
-    },
-    {
       "id": "sickness_cumulation_window",
       "institute": "sickness",
       "variant": "all",

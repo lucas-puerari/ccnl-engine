@@ -42,6 +42,15 @@ def test_the_week_of_45_hours_divides_by_195() -> None:
     assert "45 ore" in (period.provenance.location.quote or "")
 
 
+def test_the_occhiali_six_by_six_week_divides_by_156() -> None:
+    """Art. 54 of the 2026 renewal: 173 for 40 hours, 156 for the 6x6."""
+    ccnl = with_week_divisor(
+        load_ccnl("occhiali-occhialeria-industria"), WeeklyHours(Decimal(36))
+    )
+
+    assert ccnl.parameters.hourly_divisor.value_at(_DAY) == Decimal(156)
+
+
 @pytest.mark.parametrize("hours", [None, Decimal(40), Decimal(38)])
 def test_a_week_without_a_divisor_of_its_own_keeps_the_ccnl(
     hours: Decimal | None,
