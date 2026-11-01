@@ -73,17 +73,8 @@
         }
       },
       {
-        "kind": "simplification",
-        "text": "SUB-SECTORS: CCNL B122 covers Tiles (porcelain and stoneware), Refractory Materials, Sanitary Ceramics and Tableware, and Artistic and Traditional Ceramics. This file models the PIASTRELLE sub-sector (and REFRATTARI, which has identical tables). Sanitary Ceramics has a different pay structure (significantly higher IPO) and is not modelled here.",
-        "capability": "base_salary",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "sanitary_ceramics_tables",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Model the Sanitari e stoviglie tables (higher IPO) as a separate ruleset or a sub-sector fact, or open a limitation like chimica-farmaceutica other_sector_tables."
-        }
+        "kind": "info",
+        "text": "SUB-SECTORS: CCNL B122 covers Tiles (porcelain and stoneware), Refractory Materials, Sanitary Ceramics and Tableware. This file models PIASTRELLE (and REFRATTARI, which has identical tables); CERAMICA SANITARIA E STOVIGLIERIA is the sibling ceramica-sanitaria-stoviglieria-confindustria."
       },
       {
         "kind": "simplification",
@@ -2019,7 +2010,7 @@
     "effective_until": null,
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
     "verification_status": "unverified",
-    "source_hash": "79972bbaeff120b33b41eb6e58ef56bbc641149b086671cccaf9b2c583019020",
+    "source_hash": "e11805343883245b90f453be37270347b4286566197779a441a0c5bec0dbb160",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
