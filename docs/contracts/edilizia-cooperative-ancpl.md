@@ -107,11 +107,11 @@ percentage: 1.00
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
 !!! warning "edilizia-cooperative-ancpl/operai_seniority_ape · seniority · impact yes · open"
-    SENIORITY: 5 scatti biennali (24-month cadence, max 5). For blue-collar workers (levels 1-4), seniority is governed by the Cassa Edile APE system; engine uses the tabular scatti as an approximation.
+    SENIORITY: Art. 83 (CCNL text 2000, p. 89) gives the scatti to 'l'impiegato' only (levels 2 to 8, 5 biennial scatti); the operai accrue the Anzianità professionale edile of Art. 69 (p. 78) through the Cassa Edile instead, paid out of a contribution 'a carico dei datori di lavoro, la cui misura sarà stabilita [...] con accordo tra le Organizzazioni territoriali'. The engine pays no scatti to a worker stated as operaio (seniority excluded_categories); the territorial APE contribution is not modelled, and a run of levels 1-4 that does not state the category still pays the impiegato scatti.
 
-    **Applies when:** `seniority` applies; level in 1, 2, 3, 4.
+    **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Give levels 1-4 the operaio category with no scatti (APE paid by the Cassa Edile), or split the operai into their own file as edilizia-ance does.
+    **Remediation:** Add the territorial APE contribution of the province (Cassa Edile) as an employer cost.
 
 !!! warning "edilizia-cooperative-ancpl/cassa_edile_accruals_missing · bilateral_funds · impact yes · open"
     CASSA EDILE: for blue-collar workers, holidays (8.5%) and Christmas bonus (10%) accrue through the Cassa Edile system. The employer_cost_annual underestimates by ~18.5% of gross for blue-collar workers.

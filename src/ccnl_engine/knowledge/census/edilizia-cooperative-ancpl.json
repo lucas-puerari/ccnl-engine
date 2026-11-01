@@ -197,12 +197,12 @@
     {
       "id": "operai_seniority_ape",
       "institute": "seniority",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "SENIORITY: 5 scatti biennali (24-month cadence, max 5). For blue-collar workers (levels 1-4), seniority is governed by the Cassa Edile APE system; engine uses the tabular scatti as an approximation.",
+      "variant": "operaio",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "SENIORITY: Art. 83 (CCNL text 2000, p. 89) gives the scatti to 'l'impiegato' only (levels 2 to 8, 5 biennial scatti); the operai accrue the Anzianità professionale edile of Art. 69 (p. 78) through the Cassa Edile instead, paid out of a contribution 'a carico dei datori di lavoro, la cui misura sarà stabilita [...] con accordo tra le Organizzazioni territoriali'. The engine pays no scatti to a worker stated as operaio (seniority excluded_categories); the territorial APE contribution is not modelled, and a run of levels 1-4 that does not state the category still pays the impiegato scatti.",
       "calculation": "ccnl/edilizia-cooperative-ancpl:coverage.notes",
       "state": "absent",
-      "remediation": "Give levels 1-4 the operaio category with no scatti (APE paid by the Cassa Edile), or split the operai into their own file as edilizia-ance does.",
+      "remediation": "Add the territorial APE contribution of the province (Cassa Edile) as an employer cost.",
       "origin": "seeded",
       "links": {
         "limitations": [

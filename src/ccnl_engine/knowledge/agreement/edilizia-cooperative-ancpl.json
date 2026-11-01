@@ -59,21 +59,24 @@
       },
       {
         "kind": "simplification",
-        "text": "SENIORITY: 5 scatti biennali (24-month cadence, max 5). For blue-collar workers (levels 1-4), seniority is governed by the Cassa Edile APE system; engine uses the tabular scatti as an approximation.",
+        "text": "SENIORITY: Art. 83 (CCNL text 2000, p. 89) gives the scatti to 'l'impiegato' only (levels 2 to 8, 5 biennial scatti); the operai accrue the Anzianità professionale edile of Art. 69 (p. 78) through the Cassa Edile instead, paid out of a contribution 'a carico dei datori di lavoro, la cui misura sarà stabilita [...] con accordo tra le Organizzazioni territoriali'. The engine pays no scatti to a worker stated as operaio (seniority excluded_categories); the territorial APE contribution is not modelled, and a run of levels 1-4 that does not state the category still pays the impiegato scatti.",
         "capability": "seniority",
         "monetary_impact": "yes",
         "limitation": {
           "variant": "operai_seniority_ape",
           "applies_when": {
-            "trigger": "run",
+            "trigger": "outside_input",
             "levels": [
               "1",
               "2",
               "3",
               "4"
+            ],
+            "worker_categories": [
+              "operaio"
             ]
           },
-          "remediation": "Give levels 1-4 the operaio category with no scatti (APE paid by the Cassa Edile), or split the operai into their own file as edilizia-ance does."
+          "remediation": "Add the territorial APE contribution of the province (Cassa Edile) as an employer cost."
         }
       },
       {
@@ -186,6 +189,9 @@
     "seniority_increments": {
       "cadence_months": 24,
       "maximum_count": 5,
+      "excluded_categories": [
+        "operaio"
+      ],
       "provenance": {
         "status": "derived",
         "location": {
@@ -2052,7 +2058,7 @@
     "effective_until": null,
     "source": "https://www.studiocani.com/ccnl-edilizia-industria-e-cooperative-aumento-dei-minimi-dal-1-marzo/",
     "verification_status": "unverified",
-    "source_hash": "0b09717c42292d01539e9d5d979de23d70ba5f4a86da08300c931b864690c402",
+    "source_hash": "8989bc3bb215afab7020e4b7830bac7f5a71d651cb86c532d651f741183ec05e",
     "published_at": "2026-09-18",
     "source_type": "contracting_party"
   },
