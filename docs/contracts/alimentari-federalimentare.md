@@ -115,11 +115,11 @@ Destination levels: `5`
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
 !!! warning "alimentari-federalimentare/sickness_disabled_fixed_term · sickness · impact yes · open"
-    SICKNESS (Art. 47): the 100% and 50% bands of the net normal pay and the comporto of 186 days in 17 months (up to 5 years) and 365 days in 24 months (over 5) are counted over the sickness of every episode in the window. Not modelled: the 90 more days of comporto for disabled workers (L. 68/99); the fixed-term limit (4 months, integration no longer than the INPS indemnity); the apprentice's normal pay for at most six months a year (Art. 21). The net pay is computed by grossing up the INPS indemnity by the worker's INPS rate, as for the Commercio file.
+    SICKNESS (Art. 47): the 100% and 50% bands of the net normal pay and the comporto of 186 days in 17 months (up to 5 years) and 365 days in 24 months (over 5) are counted over the sickness of every episode in the window. Not modelled: the comporto of a fixed-term worker 'limitata al periodo massimo di 4 mesi' (prima nota a verbale, PDF p. 111), so a fixed-term sickness still indemnified by INPS past 4 months keeps its integration; the apprentice's 'retribuzione normale, per un massimo di sei mesi per ogni anno' (Art. 21, PDF p. 50). Already right without a model: the fixed-term integration stops with the INPS indemnity (the days past the D.L. 463/1983 limit are unpaid), and the 90 more days of comporto of a disabled worker (L. 68/99) carry 'non decorrerà retribuzione né si avrà decorrenza di anzianità', which is what a day past the comporto already pays. The net pay is computed by grossing up the INPS indemnity by the worker's INPS rate, as for the Commercio file.
 
     **Applies when:** `sickness` applies.
 
-    **Remediation:** Model the 90 more days of comporto of a disabled worker, the fixed-term limit and the apprentice treatment of Art. 47 and Art. 21.
+    **Remediation:** Cap the comporto of a fixed-term worker at 4 months and pay the apprentice the normal pay for up to six months a year (Art. 21), then resolve this limitation.
 
 !!! warning "alimentari-federalimentare/ordinary_hours_premiums · overtime · impact yes · open"
     Art. 31: the premiums on ordinary night, shift night, holiday and Sunday work.
