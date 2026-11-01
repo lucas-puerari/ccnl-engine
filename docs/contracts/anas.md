@@ -51,7 +51,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-12-18 |
-| **Last review** | 2026-10-18 |
+| **Last review** | 2026-11-01 |
 | **Latest salary tranche** | 2027-07-01 |
 
 ## Review history
@@ -59,6 +59,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | Date | Reviewer | Scope | Outcome | Findings |
 |---|---|---|---|---|
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | confirmed | Art. 106 - Tredicesima mensilita' (p. 149): "il dipendente ha diritto a tanti dodicesimi della tredicesima mensilità per quanti sono i mesi di servizio prestati, computando come mese intero la frazione di mese pari o superiore a 15 giorni.". Match: at_least 15. |
+| 2026-11-01 | claude-opus-5-5 (ai) | The notice clause (Art. 80 - Preavviso, p. 99). | corrected | Notice bands by level and service checked against the PDF by a separate session (delegated search and independent verification): work_rules.notice. |
 
 ## Salary table
 

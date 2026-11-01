@@ -230,6 +230,27 @@
         "findings": [
           "Art. 22 (pp. 27-28): the integration reaches 100% for the three days of carenza, 75% for days 4-20 and 100% for days 21-180 of the normale retribuzione; Art. 25: 180 days of comporto. The file had assumed 100% for every day: corrected to day bands of 75% and 100%."
         ]
+      },
+      {
+        "id": "2026-11-01-ai-notice",
+        "date": "2026-11-01",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The notice clause (Artt. 94–95, p. 49-50).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
+            "sha256": "0264d1857a1f61cf0ff2e4028e78cb6e7d5c74ca133b765acef993dd2edfa38e"
+          }
+        ],
+        "findings": [
+          "Notice bands by level and service checked against the PDF by a separate session (delegated search and independent verification): work_rules.notice."
+        ],
+        "independence": "separate_session",
+        "checked": [
+          "work_rules.notice"
+        ]
       }
     ]
   },
@@ -2169,7 +2190,7 @@
     "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
     "verification_status": "unverified",
     "published_at": "2026-09-11",
-    "source_hash": "a9c20b378dd6329ea57b3fdcd2b3e3eab4da711d0cb55241230db5449781526c",
+    "source_hash": "995f7c0689d3c95292addb6d35413c9c140299e916793b9f75f03679632dbce3",
     "source_type": "contracting_party"
   },
   "work_rules": {
@@ -2406,6 +2427,182 @@
         }
       }
     },
-    "leave_rules": null
+    "leave_rules": null,
+    "notice": {
+      "bands": [
+        {
+          "levels": [
+            "Q",
+            "1"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "up_to_months": 60,
+          "days": 60
+        },
+        {
+          "levels": [
+            "Q",
+            "1"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "up_to_months": 120,
+          "days": 90
+        },
+        {
+          "levels": [
+            "Q",
+            "1"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "days": 120
+        },
+        {
+          "levels": [
+            "2",
+            "3"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "up_to_months": 60,
+          "days": 30
+        },
+        {
+          "levels": [
+            "2",
+            "3"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "up_to_months": 120,
+          "days": 45
+        },
+        {
+          "levels": [
+            "2",
+            "3"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "days": 60
+        },
+        {
+          "levels": [
+            "4",
+            "5"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "up_to_months": 60,
+          "days": 20
+        },
+        {
+          "levels": [
+            "4",
+            "5"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "up_to_months": 120,
+          "days": 30
+        },
+        {
+          "levels": [
+            "4",
+            "5"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "days": 45
+        },
+        {
+          "levels": [
+            "6",
+            "6S",
+            "7"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "up_to_months": 60,
+          "days": 15
+        },
+        {
+          "levels": [
+            "6",
+            "6S",
+            "7"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "up_to_months": 120,
+          "days": 20
+        },
+        {
+          "levels": [
+            "6",
+            "6S",
+            "7"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "days": 20
+        }
+      ],
+      "starts": "first_or_sixteenth",
+      "extra_months_included": true,
+      "tfr_base": false,
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-ortofrutticoli-agrumari-2024-07-19-flai",
+            "title": "CCNL per i dipendenti da aziende ortofrutticole ed agrumarie, 1 gennaio 2024 - 31 dicembre 2027, Cesena 19 luglio 2024 (FLAI-CGIL)",
+            "kind": "associazione",
+            "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
+            "published_on": "2024-07-19",
+            "sha256": "0264d1857a1f61cf0ff2e4028e78cb6e7d5c74ca133b765acef993dd2edfa38e"
+          },
+          "page": "49-50",
+          "section": "Artt. 94–95",
+          "quote": "I termini di preavviso per il personale a tempo indeterminato sono pari ai seguenti giorni di calendario:"
+        },
+        "transformation": "Bands proposed by a delegated search and checked band by band against the PDF by a separate session. The resignation bands are left out where halving gives a fraction of a month (the engine computes only the indemnity the employer owes on a dismissal); a start day the text does not set is read as the day after the notice; the ratei of the extra months and the TFR treatment are set only where the text states them.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-01T21:00:00Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-01T21:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-01-ai-notice"
+        }
+      }
+    }
   }
 }

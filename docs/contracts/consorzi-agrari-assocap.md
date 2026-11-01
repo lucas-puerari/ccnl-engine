@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2023-12-12 |
-| **Last review** | 2026-10-18 |
+| **Last review** | 2026-11-01 |
 | **Latest salary tranche** | 2026-01-01 |
 
 ## Review history
@@ -58,6 +58,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | Date | Reviewer | Scope | Outcome | Findings |
 |---|---|---|---|---|
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | corrected | Art. 41 - Tredicesima e quattordicesima mensilità (p. 40): "In caso di inizio o di cessazione del rapporto durante il corso dell'anno, salvo che la cessazione avvenga durante il periodo di prova, il dipendente avrà diritto a tanti dodicesimi dell'ammontare delle predette mensilità per quanti sono i mesi di durata del rapporto nel corso dell'anno stesso. Le frazioni di mese superiori a quindici giorni si calcoleranno mese intero, quelle eguali o inferiori non saranno conteggiate.". Added: more_than 15 (the file applied the engine default, at least 15 days). |
+| 2026-11-01 | claude-opus-5-5 (ai) | The notice clause (Art. 47 - Preavviso, comma 2, p. 42). | corrected | Notice bands by level and service checked against the PDF by a separate session (delegated search and independent verification): work_rules.notice. |
 
 ## Salary table
 

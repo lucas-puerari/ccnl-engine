@@ -53,7 +53,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-05-22 |
-| **Last review** | 2026-10-31 |
+| **Last review** | 2026-11-01 |
 | **Latest salary tranche** | 2026-06-01 |
 
 ## Review history
@@ -63,6 +63,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | corrected | Art. 70 - Tredicesima e quattordicesima mensilità (p. 119): "il lavoratore ha diritto a tanti dodicesimi dell'ammontare della tredicesima e/o della quattordicesima mensilità, quanti sono i mesi interi di servizio prestati presso l’azienda nei 12 mesi antecedenti quello di erogazione. La frazione di mese superiore a quindici giorni va considerata a questi effetti come mese intero.". Added: more_than 15 (the file applied the engine default, at least 15 days). |
 | 2026-10-18 | claude-opus-5-5 (ai) | The base salaries (minimi contrattuali mensili) of all 16 posizioni retributive for the tranches from 1.6.2025, 1.11.2025 and 1.6.2026 against the pay table of the CCNL text of 22 May 2025 published by ORSA Ferrovie, a signatory union. | confirmed | Art. 68 punto 3 (PDF p. 117, printed p. 116) prints the minimi contrattuali mensili of the 16 posizioni retributive Q1-F2 in three columns (dal 1°.6.2025, dal 1°.11.2025, dal 1°.6.2026); all 48 file values match the printed table.<br>Art. 68 punto 3.1: "Gli importi dei minimi contrattuali di cui sopra sono comprensivi dell'ex indennità di contingenza (...) nonché dell'E.D.R. di cui al Protocollo Interconfederale del 31 luglio 1992 e dell'E.D.R. di cui all'accordo nazionale del 24.1.2008." This confirms the conglobated base_salary model of the file.<br>The indennità di funzione Quadri (art. 71) is a separate element of pay (art. 68 punto 1.2 c), so the file's Q1/Q2 base_salary correctly excludes it. |
 | 2026-10-31 | claude-opus-5-5 (ai) | The comporto and the sick pay of the CCNL counted over several illnesses (work_rules.sickness_rules), read on the signed text. | corrected | Art. 31 (pp. 81-82): comporto of 12 months summed over 36 consecutive months, the net pay integrated to 100% for 9 months (days 1-3 included) and 80% for 3. The file kept 100% for 540 days of one illness: corrected to a cumulation over three years (274 days at 100% of the net pay, 80% up to 365). |
+| 2026-11-01 | claude-opus-5-5 (ai) | The notice clause (Art. 54, tabella Livelli professionali / Durata, p. 107). | corrected | Notice bands by level and service checked against the PDF by a separate session (delegated search and independent verification): work_rules.notice. |
 
 ## Salary table
 

@@ -128,6 +128,27 @@
         "findings": [
           "Art. 49 - Tredicesima mensilita' o gratifica natalizia (p. 141): \"Agli effetti di cui sopra la frazione di mese non superiore a 15 giorni non va considerata, mentre va considerata come mese intero la frazione di mese superiore ai 15 giorni.\". Match: more_than 15."
         ]
+      },
+      {
+        "id": "2026-11-01-ai-notice",
+        "date": "2026-11-01",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The notice clause (Art. 76, Preavviso di licenziamento e di dimissioni, p. 184-185).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf",
+            "sha256": "0577ad1f914031470abf63b59ffc33b0eff779311bbe10fe670a28b3b0823f97"
+          }
+        ],
+        "findings": [
+          "Notice bands by level and service checked against the PDF by a separate session (delegated search and independent verification): work_rules.notice."
+        ],
+        "independence": "separate_session",
+        "checked": [
+          "work_rules.notice"
+        ]
       }
     ]
   },
@@ -2604,7 +2625,7 @@
     "effective_until": null,
     "source": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf",
     "verification_status": "verified",
-    "source_hash": "60355101d16c23cd2b5dd467063342470fc98c5119ff6a8ed99f822538fc8808",
+    "source_hash": "468be8390657ad659b1b3b506095beded37ceeb464c141edd243048a9624efbf",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2827,6 +2848,154 @@
           "extraction_timestamp": "2026-09-08T00:00:00",
           "verification_status": "unverified",
           "effective_from": "2024-01-01"
+        }
+      }
+    },
+    "notice": {
+      "bands": [
+        {
+          "levels": [
+            "AE1",
+            "AQ1",
+            "AQ2"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "up_to_months": 60,
+          "days": 15
+        },
+        {
+          "levels": [
+            "AE1",
+            "AQ1",
+            "AQ2"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "up_to_months": 120,
+          "months": 1
+        },
+        {
+          "levels": [
+            "AE1",
+            "AQ1",
+            "AQ2"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "months": 1,
+          "days": 15
+        },
+        {
+          "levels": [
+            "AS1",
+            "AS2",
+            "AS3",
+            "AC1",
+            "AC2",
+            "AC3"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "up_to_months": 60,
+          "days": 30
+        },
+        {
+          "levels": [
+            "AS1",
+            "AS2",
+            "AS3",
+            "AC1",
+            "AC2",
+            "AC3"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "up_to_months": 120,
+          "months": 2
+        },
+        {
+          "levels": [
+            "AS1",
+            "AS2",
+            "AS3",
+            "AC1",
+            "AC2",
+            "AC3"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "months": 3
+        },
+        {
+          "levels": [
+            "AD1",
+            "AD2",
+            "AD3"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "up_to_months": 60,
+          "days": 60
+        },
+        {
+          "levels": [
+            "AD1",
+            "AD2",
+            "AD3"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "up_to_months": 120,
+          "months": 3
+        },
+        {
+          "levels": [
+            "AD1",
+            "AD2",
+            "AD3"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "months": 4
+        }
+      ],
+      "starts": "day_after",
+      "extra_months_included": false,
+      "tfr_base": null,
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "cemento-calce-gesso-industria-ccnl-testo",
+            "title": "Federbeton Confindustria Contratto collettivo nazionale di lavoro 8 maggio 2025 per i dipendenti delle Aziende esercenti la produzione del cemento, della calce e suoi derivati, del gesso e relativi manufatti, delle malte e dei materiali di base per le costruzioni",
+            "kind": "associazione",
+            "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf",
+            "published_on": "2025-05-08",
+            "sha256": "0577ad1f914031470abf63b59ffc33b0eff779311bbe10fe670a28b3b0823f97"
+          },
+          "page": "184-185",
+          "section": "Art. 76, Preavviso di licenziamento e di dimissioni",
+          "quote": "Il rapporto di lavoro a tempo indeterminato non può essere risolto da nessuna delle parti senza un preavviso i cui termini sono stabiliti come segue a seconda dell’anzianità di servizio e della Area professionale cui appartiene il lavoratore."
+        },
+        "transformation": "Bands proposed by a delegated search and checked band by band against the PDF by a separate session. The resignation bands are left out where halving gives a fraction of a month (the engine computes only the indemnity the employer owes on a dismissal); a start day the text does not set is read as the day after the notice; the ratei of the extra months and the TFR treatment are set only where the text states them.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-01T21:00:00Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-01T21:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-01-ai-notice"
         }
       }
     }

@@ -65,7 +65,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/agenti-immobiliari-fiaip",
       "ruleset_version": "2026.2",
-      "source_hash": "8df56bf84e2943eeca6b66ba164aaf71d760be7bd9fb34ee6eabaac4f39b510b",
+      "source_hash": "82bacf5a9063782f660927ca1c52f2c2371ebbe8c889335aae0827fed2b47100",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/agenti-immobiliari-fiaip.json.gz"
@@ -167,7 +167,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/anas",
       "ruleset_version": "2026.2",
-      "source_hash": "6960e73fe35f11a8ee620349179c887635695bcde8abb9c14a7cf4b0442d8326",
+      "source_hash": "8342939110fad16b25b46b4e732d7e8cae88bc6c592d6cb9cdf461808f33aaeb",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/anas.json.gz"
@@ -388,7 +388,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/cemento-calce-gesso-industria",
       "ruleset_version": "2026.2",
-      "source_hash": "60355101d16c23cd2b5dd467063342470fc98c5119ff6a8ed99f822538fc8808",
+      "source_hash": "468be8390657ad659b1b3b506095beded37ceeb464c141edd243048a9624efbf",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/cemento-calce-gesso-industria.json.gz"
@@ -524,7 +524,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/consorzi-agrari-assocap",
       "ruleset_version": "2026.2",
-      "source_hash": "b2d5f380f931237b97be3e0964476e784b19efecb6998f13f9d9aa311b8ad810",
+      "source_hash": "d5e77acf50db60971bb5929b685402c82f20a4df16529e6ee4a2e07c9eef84f9",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/consorzi-agrari-assocap.json.gz"
@@ -660,7 +660,7 @@
       "valid_to": "2024-12-31",
       "ruleset_id": "ccnl/dirigenza-sanitaria-area-sanita-aran",
       "ruleset_version": "2026.2",
-      "source_hash": "5d0521c7a2eb03a29041e24a495e245bbcc7d15e11f9e938fd7f03261afb7ab2",
+      "source_hash": "3a65d4a6244d6e0f692ce4f3aba1892e31a7753c4c053def16db28c62ce09219",
       "source_type": "institutional_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/dirigenza-sanitaria-area-sanita-aran.json.gz"
@@ -677,7 +677,7 @@
       "valid_to": "2024-12-31",
       "ruleset_id": "ccnl/dirigenza-sanitaria-medico-veterinaria-aran",
       "ruleset_version": "2026.2",
-      "source_hash": "9bf06392827223afafb1687fffac06a78f1e6104a6ec7a491c208c4e9838d3ff",
+      "source_hash": "f92fc921596e8012c0433453239d075aa2dc73c4aecdf7b618ef2afccd6aeb7b",
       "source_type": "institutional_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/dirigenza-sanitaria-medico-veterinaria-aran.json.gz"
@@ -918,7 +918,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/farmacie-private-h121",
       "ruleset_version": "2026.2",
-      "source_hash": "ea7cc1100842da7c956f8f2bd8ace7bcd773f1348658c1fd9705f3f8f052c25d",
+      "source_hash": "101f93ca2d23565f7c3d17ecdc65ae32119ea93ff351aca9765a3d3c55e23f49",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/farmacie-private-h121.json.gz"
@@ -969,7 +969,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/formazione-professionale",
       "ruleset_version": "2026.1",
-      "source_hash": "dced01d1f35e561cd0e8605d63b5752485f953fcfbde8bc9df9b28a8ffcf9f09",
+      "source_hash": "9311dfe47ea9882ffdb11e7330bab8083bc142e981503b116fdd44f6ffe410ef",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/formazione-professionale.json.gz"
@@ -1122,7 +1122,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/impianti-sportivi-sport",
       "ruleset_version": "2024.1",
-      "source_hash": "e10dbadd74849ef14aba4e155ea5a5c330ea115eba7828bf5e90ee064369e7c7",
+      "source_hash": "dfe1df5c2d5997931fa81b2df710a3905b3d6cf4792b8f4b91f7de1d2a585ab0",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/impianti-sportivi-sport.json.gz"
@@ -1632,7 +1632,7 @@
       "valid_to": "2027-12-31",
       "ruleset_id": "ccnl/ortofrutticoli-agrumari",
       "ruleset_version": "2024.1",
-      "source_hash": "a9c20b378dd6329ea57b3fdcd2b3e3eab4da711d0cb55241230db5449781526c",
+      "source_hash": "995f7c0689d3c95292addb6d35413c9c140299e916793b9f75f03679632dbce3",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/ortofrutticoli-agrumari.json.gz"
@@ -1717,7 +1717,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/poste-italiane-k700",
       "ruleset_version": "2026.2",
-      "source_hash": "65bdbf22efb5a8eaabeb20d39cd811d7310f9ce4f098d15475ea10991ce2b979",
+      "source_hash": "ffa44607afdc450c7c58f1c6d1260700808229f384349e4e632e390b3dd09026",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/poste-italiane-k700.json.gz"
@@ -1785,7 +1785,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/radiotelevisive-radiofonico",
       "ruleset_version": "2026.2",
-      "source_hash": "a73d52255d5c9e76907a06cdc9c388bf7274528e759ef175cb0292177bf1e6bd",
+      "source_hash": "39dc636d33168d31aded6b4293c743ce1c0defe23e00f39b19a4153f5c6d4c3c",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/radiotelevisive-radiofonico.json.gz"
@@ -1921,7 +1921,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/scuole-private-laiche-aninsei",
       "ruleset_version": "2026.2",
-      "source_hash": "aaddf72424f0df4b11657bb2580a79961839f684cc40c07b7c3af74fef2a81db",
+      "source_hash": "557554b18c50bb8543fe004947a115a7d58c3ecb0e3bbf5a15450e90d079310d",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/scuole-private-laiche-aninsei.json.gz"
@@ -2125,7 +2125,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "ccnl/trasporto-ferroviario-agens",
       "ruleset_version": "2026.2",
-      "source_hash": "79284d681053128cf0d0d356bab7bd12c52f604849988b196393081933d893a7",
+      "source_hash": "51d6f4e48317f82d54c67c6597f064693f647e2f360486f7dd2d6b3375739b1e",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/trasporto-ferroviario-agens.json.gz"
@@ -2193,7 +2193,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/universita-aran",
       "ruleset_version": "2026.2",
-      "source_hash": "ef4cffba9585a0bb6eee741ab90390fa07180427bec880e5cb47352804ac065a",
+      "source_hash": "7d72374a87d50376da66671369ef5802d6fa183bb9a50d49d2649d4463f5263f",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/universita-aran.json.gz"

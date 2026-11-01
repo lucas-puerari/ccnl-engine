@@ -103,6 +103,27 @@
         "findings": [
           "Art. 106 - Tredicesima mensilita' (p. 149): \"il dipendente ha diritto a tanti dodicesimi della tredicesima mensilità per quanti sono i mesi di servizio prestati, computando come mese intero la frazione di mese pari o superiore a 15 giorni.\". Match: at_least 15."
         ]
+      },
+      {
+        "id": "2026-11-01-ai-notice",
+        "date": "2026-11-01",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The notice clause (Art. 80 - Preavviso, p. 99).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf",
+            "sha256": "c81e33f8253fff7a7df65b5959f24e3cfaeabecda8a77d48b0739c1285ad9027"
+          }
+        ],
+        "findings": [
+          "Notice bands by level and service checked against the PDF by a separate session (delegated search and independent verification): work_rules.notice."
+        ],
+        "independence": "separate_session",
+        "checked": [
+          "work_rules.notice"
+        ]
       }
     ]
   },
@@ -1363,7 +1384,7 @@
     "effective_until": null,
     "source": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "6960e73fe35f11a8ee620349179c887635695bcde8abb9c14a7cf4b0442d8326",
+    "source_hash": "8342939110fad16b25b46b4e732d7e8cae88bc6c592d6cb9cdf461808f33aaeb",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1608,6 +1629,86 @@
           "integration_rate": "0.5"
         }
       ]
+    },
+    "notice": {
+      "bands": [
+        {
+          "levels": [
+            "C1",
+            "C",
+            "B2",
+            "B1",
+            "B",
+            "A1",
+            "A"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "up_to_months": 60,
+          "months": 2
+        },
+        {
+          "levels": [
+            "C1",
+            "C",
+            "B2",
+            "B1",
+            "B",
+            "A1",
+            "A"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "up_to_months": 120,
+          "months": 3
+        },
+        {
+          "levels": [
+            "C1",
+            "C",
+            "B2",
+            "B1",
+            "B",
+            "A1",
+            "A"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "months": 4
+        }
+      ],
+      "starts": "first_or_sixteenth",
+      "extra_months_included": false,
+      "tfr_base": null,
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "anas-ccnl-testo",
+            "title": "Gruppo ANAS Contratto collettivo nazionale di lavoro 2025-2027, stipulato in data 18 dicembre 2025",
+            "kind": "altro",
+            "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf",
+            "published_on": "2025-12-18",
+            "sha256": "c81e33f8253fff7a7df65b5959f24e3cfaeabecda8a77d48b0739c1285ad9027"
+          },
+          "page": "99",
+          "section": "Art. 80 - Preavviso",
+          "quote": "Anni di servizio: Mesi di preavviso:\nFino a 5 2\nOltre a 5 fino a 10 3\nOltre 10 4\n2. Incaso di dimissioni i termini di preavviso sono ridotti alla metà.\nI termini di preavviso decorrono dal 1° o dal 16 di ciascun mese."
+        },
+        "transformation": "Bands proposed by a delegated search and checked band by band against the PDF by a separate session. The resignation bands are left out where halving gives a fraction of a month (the engine computes only the indemnity the employer owes on a dismissal); a start day the text does not set is read as the day after the notice; the ratei of the extra months and the TFR treatment are set only where the text states them.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-01T21:00:00Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-01T21:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-01-ai-notice"
+        }
+      }
     }
   }
 }

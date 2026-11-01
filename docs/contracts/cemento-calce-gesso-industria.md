@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-05-08 |
-| **Last review** | 2026-10-18 |
+| **Last review** | 2026-11-01 |
 | **Latest salary tranche** | 2027-10-01 |
 
 ## Review history
@@ -58,6 +58,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | Date | Reviewer | Scope | Outcome | Findings |
 |---|---|---|---|---|
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | confirmed | Art. 49 - Tredicesima mensilita' o gratifica natalizia (p. 141): "Agli effetti di cui sopra la frazione di mese non superiore a 15 giorni non va considerata, mentre va considerata come mese intero la frazione di mese superiore ai 15 giorni.". Match: more_than 15. |
+| 2026-11-01 | claude-opus-5-5 (ai) | The notice clause (Art. 76, Preavviso di licenziamento e di dimissioni, p. 184-185). | corrected | Notice bands by level and service checked against the PDF by a separate session (delegated search and independent verification): work_rules.notice. |
 
 ## Salary table
 
