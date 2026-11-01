@@ -695,9 +695,7 @@
       "autorimesse-ic35/meal_voucher"
     ],
     "agreement/autoscuole-unasca.json": [
-      "autoscuole-unasca/apprentice_seniority",
-      "autoscuole-unasca/ente_bilaterale_contribution",
-      "autoscuole-unasca/fondo_est_health_fund"
+      "autoscuole-unasca/apprentice_seniority"
     ],
     "agreement/autostrade-trafori.json": [
       "autostrade-trafori/apprentice_seniority",
