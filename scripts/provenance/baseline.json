@@ -891,8 +891,7 @@
       "edilizia-artigianato-cna/cassa_edile_accruals_missing",
       "edilizia-artigianato-cna/cigo_rate_by_activity",
       "edilizia-artigianato-cna/contractual_fund_uncovered",
-      "edilizia-artigianato-cna/inps_sector_rates_unsourced",
-      "edilizia-artigianato-cna/seniority_cadence_unconfirmed"
+      "edilizia-artigianato-cna/inps_sector_rates_unsourced"
     ],
     "agreement/edilizia-cooperative-ancpl.json": [
       "edilizia-cooperative-ancpl/apprentice_seniority",

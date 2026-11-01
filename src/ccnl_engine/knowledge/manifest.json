@@ -779,7 +779,7 @@
       "valid_to": "2028-09-30",
       "ruleset_id": "ccnl/edilizia-artigianato-cna",
       "ruleset_version": "2026.2",
-      "source_hash": "e964d81fb882989dbcaae3eaf7521b64a0bca2cf8f92bd0d9d9f57c04d6d3214",
+      "source_hash": "d43e0a43481ce2f4e7d16ff79441174ddbe6624f99dfce1ac43942b289a39321",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/edilizia-artigianato-cna.json.gz"
@@ -3304,7 +3304,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "6f7a9b9af1b151511e37550b999ae8690a3cdc4ae86f84a18610162d784e06f7",
+      "source_hash": "a3814796d4a2a0a21ced89691a3cf898a95044706d1cb3aacfe0a0196534b766",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/edilizia-artigianato-cna.json.gz",

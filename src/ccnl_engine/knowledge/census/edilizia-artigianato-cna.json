@@ -418,22 +418,6 @@
       }
     },
     {
-      "id": "seniority_cadence_unconfirmed",
-      "institute": "seniority",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "Seniority increment cadence (24 months) and maximum count (5) taken from general CCNL Edilizia Artigianato provisions; F015-specific text not independently confirmed. Level 1 scatto = EUR 0.00 as published in kitech.it.",
-      "calculation": "ccnl/edilizia-artigianato-cna:coverage.notes",
-      "state": "unverified",
-      "remediation": "Confirm the 24-month cadence, the 5-scatti maximum and the level 1 amount against the F015 text.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "edilizia-artigianato-cna/seniority_cadence_unconfirmed"
-        ]
-      }
-    },
-    {
       "id": "sickness_cumulation_window",
       "institute": "sickness",
       "variant": "all",

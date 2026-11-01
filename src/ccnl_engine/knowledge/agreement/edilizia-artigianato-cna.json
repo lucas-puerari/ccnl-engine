@@ -85,14 +85,8 @@
         "text": "Level 7Q has the same paga base as level 7, plus a fixed indennita di funzione of EUR 140.00/month (F015 Art. on Quadri, L. 190/1985). Modelled at order 8 (above level 7 order 7)."
       },
       {
-        "kind": "simplification",
-        "text": "Seniority increment cadence (24 months) and maximum count (5) taken from general CCNL Edilizia Artigianato provisions; F015-specific text not independently confirmed. Level 1 scatto = EUR 0.00 as published in kitech.it.",
-        "capability": "seniority",
-        "monetary_impact": "unknown",
-        "limitation": {
-          "variant": "seniority_cadence_unconfirmed",
-          "remediation": "Confirm the 24-month cadence, the 5-scatti maximum and the level 1 amount against the F015 text."
-        }
+        "kind": "info",
+        "text": "SENIORITY (Art. 56, testo integrale 20 maggio 2025, pp. 87-88): one scatto per biennio, at most five, for the impiegato only: level 7 16.73, 6 15.42, 5 12.55, 4 11.54, 3 10.78, 2 9.86 (7Q takes level 7). The operai accrue the Anzianità professionale edile of Art. 31 (p. 59) through the Fondo Unico APE, out of a territorial employer contribution: the engine pays them no scatti (excluded_categories operaio); a run that does not state the category is paid the scatti of the level."
       },
       {
         "kind": "simplification",
@@ -226,6 +220,9 @@
     "seniority_increments": {
       "cadence_months": 24,
       "maximum_count": 5,
+      "excluded_categories": [
+        "operaio"
+      ],
       "amount_by_level": {
         "1": {
           "periods": [
@@ -277,7 +274,7 @@
             {
               "valid_from": "2025-05-01",
               "valid_until": null,
-              "value": "15.92"
+              "value": "15.42"
             }
           ]
         },
@@ -304,18 +301,24 @@
         "status": "derived",
         "location": {
           "source_document": {
-            "document_id": "edilizia-artigianato-cna",
-            "title": "edilizia-artigianato-cna",
-            "kind": "rivista",
-            "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+            "document_id": "feneal-ccnl-edilizia-artigiani-pmi-2025",
+            "title": "CCNL dipendenti delle imprese artigiane e delle PMI industriali dell'edilizia e affini, testo integrale armonizzato 20 maggio 2025 (FENEAL-UIL)",
+            "kind": "associazione",
+            "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/20251222_CCNL_EDILIZIA-ARTIGIANI-E-PMI.pdf",
+            "published_on": "2025-05-20",
+            "sha256": "0c6e4b8d8ade933714625ae443c2fce283ad503acf121c22bd5177dfe7bc5d94"
           },
-          "section": "Scatti di anzianità"
+          "page": "87-88",
+          "section": "Art. 56 - Aumenti periodici di anzianità",
+          "quote": "A decorrere dal 1º gennaio 2009 l’impiegato ha diritto, per ogni biennio di anzianità di servizio presso la stessa impresa [...] ad uno scatto biennale, per un massimo di cinque scatti, secondo i valori mensili sottoindicati per ciascuna categoria: – Impiegato 1ª super (7º livello): € 16,73; – Impiegato 1ª (6º livello): € 15,42; – Impiegato 2ª A (5º livello): € 12,55; – Impiegato 2ª B (4º livello): € 11,54; – Impiegato 3ª (3º livello): € 10,78; – Impiegato 4ª (2º livello): € 9,86"
         },
+        "transformation": "Biennial scatti, at most five, of the impiegati of levels 2 to 7 (7Q at the level 7 amount); the operai accrue the APE of Art. 31 instead and are excluded by category.",
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-07T15:03:36",
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-01T23:06:20Z",
           "verification_status": "unverified",
-          "effective_from": "2020-01-01"
+          "effective_from": "2025-05-20"
         }
       }
     },
@@ -2280,7 +2283,7 @@
     "effective_until": "2028-09-30",
     "source": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/",
     "verification_status": "unverified",
-    "source_hash": "e964d81fb882989dbcaae3eaf7521b64a0bca2cf8f92bd0d9d9f57c04d6d3214",
+    "source_hash": "d43e0a43481ce2f4e7d16ff79441174ddbe6624f99dfce1ac43942b289a39321",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

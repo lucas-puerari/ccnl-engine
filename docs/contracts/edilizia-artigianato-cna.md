@@ -35,7 +35,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | bilateral_funds, inps_employer, pension_fund_contribution, seniority |
 
-7 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+6 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -88,7 +88,7 @@ Latest effective values per level (monthly gross, EUR).
 | `3` | € 10.78 |
 | `4` | € 11.54 |
 | `5` | € 12.55 |
-| `6` | € 15.92 |
+| `6` | € 15.42 |
 | `7` | € 16.73 |
 | `7Q` | € 16.73 |
 
@@ -117,13 +117,6 @@ percentage: 1.00
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
-
-!!! warning "edilizia-artigianato-cna/seniority_cadence_unconfirmed · seniority · impact unknown · open"
-    Seniority increment cadence (24 months) and maximum count (5) taken from general CCNL Edilizia Artigianato provisions; F015-specific text not independently confirmed. Level 1 scatto = EUR 0.00 as published in kitech.it.
-
-    **Applies when:** `seniority` applies.
-
-    **Remediation:** Confirm the 24-month cadence, the 5-scatti maximum and the level 1 amount against the F015 text.
 
 !!! warning "edilizia-artigianato-cna/cassa_edile_accruals_missing · bilateral_funds · impact yes · open"
     For blue-collar workers in construction the Cassa Edile / EPR bilateral system provides additional accrual benefits (annual leave, Christmas bonus, seniority) that are separate from INPS seniority increments. These are not modelled; only the tabular seniority increments are implemented.
@@ -359,6 +352,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     Jan 2027 and Jan 2028 paga base values confirmed from CCNL F015 renewal text (signed 2025-05-20): 4 tranches totalling +178 EUR at parametro 100 — May 2025 +75, Jan 2026 +35, Jan 2027 +35, Jan 2028 +33 (all at parametro 100 / L1). Parametro coefficients (L1=100, L2=115, L3=130, L4=139, L5=150, L6=180, L7=L7Q=205) applied proportionally; all 8 levels for all 4 periods cross-checked against Jan 2026 published figures (ilccnl.it, kitech.it); max deviation < 0.01 EUR. Source: confartigianatomarcatrevigiana.it citing F015 renewal.
     
     Level 7Q has the same paga base as level 7, plus a fixed indennita di funzione of EUR 140.00/month (F015 Art. on Quadri, L. 190/1985). Modelled at order 8 (above level 7 order 7).
+    
+    SENIORITY (Art. 56, testo integrale 20 maggio 2025, pp. 87-88): one scatto per biennio, at most five, for the impiegato only: level 7 16.73, 6 15.42, 5 12.55, 4 11.54, 3 10.78, 2 9.86 (7Q takes level 7). The operai accrue the Anzianità professionale edile of Art. 31 (p. 59) through the Fondo Unico APE, out of a territorial employer contribution: the engine pays them no scatti (excluded_categories operaio); a run that does not state the category is paid the scatti of the level.
     
     Apprenticeship standard professionalizzante Group 4 (Art. 7, Allegato D, renewal May 2025): 36 months / 6 semesters, destination level 4, 74/76/79/86/91/96% per semester, track 'standard_gruppo_4'. Source: ediltecnico.it citing F015 Allegato D.
     
