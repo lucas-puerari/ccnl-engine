@@ -1420,7 +1420,7 @@
     "effective_until": null,
     "source": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "4594225988055a2e2b34bf27b1d3a550a702e5a7afab1d9ddf6bab905e122884",
+    "source_hash": "49c945e6c713e2f9d0a112886f72892c8ace2053260045e4f47daabf90f90e1b",
     "published_at": "2026-10-07",
     "source_type": "commercial_secondary"
   },
@@ -1620,6 +1620,67 @@
           "verified_at": "2026-10-12T07:00:31Z",
           "review_id": "2026-10-12-ai"
         }
+      },
+      "ferie_accrual": {
+        "month_credit": "half_or_more",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-lavoro-domestico-2025-10-28",
+              "title": "CCNL sulla disciplina del rapporto di lavoro domestico, 28 ottobre 2025 (testo Assindatcolf)",
+              "kind": "associazione",
+              "url": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
+              "published_on": "2025-10-28",
+              "sha256": "122ca6a72196a835976abac7fb988dc1502973941d52891a546512347fdc9dcf"
+            },
+            "page": "30, 56",
+            "section": "Art. 17 c. 9 and Chiarimenti a verbale, punto 4",
+            "quote": "tanti dodicesimi del periodo di ferie al quale ha diritto, quanti sono i mesi di effettivo servizio prestato. [...] le frazioni di mese, quando raggiungono o superano i 15 giorni di calendario, si computano a mese intero."
+          },
+          "transformation": "A twelfth of the 26 days for each month of service; a month served 15 days or more counts as a whole month.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-01T18:46:42Z",
+            "effective_from": "2025-10-28",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-01T18:46:42Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-01-ai-leave-accrual"
+          }
+        }
+      },
+      "termination": {
+        "ferie_divisor": "26",
+        "permits_hourly": false,
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-lavoro-domestico-2025-10-28",
+              "title": "CCNL sulla disciplina del rapporto di lavoro domestico, 28 ottobre 2025 (testo Assindatcolf)",
+              "kind": "associazione",
+              "url": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
+              "published_on": "2025-10-28",
+              "sha256": "122ca6a72196a835976abac7fb988dc1502973941d52891a546512347fdc9dcf"
+            },
+            "page": "29",
+            "section": "Art. 17 c. 6",
+            "quote": "Durante il periodo di godimento delle ferie il lavoratore ha diritto per ciascuna giornata ad una retribuzione pari a 1/26 della retribuzione globale di fatto mensile."
+          },
+          "transformation": "The indemnity of a day of ferie left at the end of the employment is the pay of a day of ferie, 1/26 of the monthly retribuzione globale di fatto: a reading, the clause sets the pay of the days taken. The CCNL has no ROL or ex festività bank (art. 16 c. 5 compensates the abolished holidays with the whole day of the holidays of c. 1): no permit hours.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-01T18:46:42Z",
+            "effective_from": "2025-10-28",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-01T18:46:42Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-01-ai-leave-accrual"
+          }
+        }
       }
     },
     "sickness_rules": {
@@ -1743,6 +1804,27 @@
           "INPS circ. 9/2026 downloaded again on 2026-10-16: same sha256 as the bundle, no rectification in the text; the 2026 amounts of the file stand.",
           "DOMINA states that the paga oraria effettiva includes the hourly share of the tredicesima and prints four quarters of 2026 (13 weeks): colf 10 h at 8.00 an hour, 1.70, 221.00 (worker 55.90); colf 10 h at 9.00, 1.92 because 9 x 13 / 12 = 9.75 is above 9.61, 249.60 (62.40); colf 25 h, 1.24, 403.00 (100.75); badante convivente 54 h, 1.24, 870.48 (217.62). The engine's effective pay and band match all four (tests/knowledge/ccnl_engine/contribution/domestic/services/test_effective_hourly_pay.py::test_the_band_of_the_published_quarters_of_a_signatory): the raise by 13/12 is validated.",
           "Still unvalidated, so the limitation stays: the share of board and lodging in the effective pay of a convivente up to 24 weekly hours. DOMINA states it ('per chi ha vitto e alloggio, il loro valore convenzionale'), as the engine computes it, but prints no worked case with board and lodging, and no worked example of a convivente up to 24 hours was found."
+        ]
+      },
+      {
+        "id": "2026-11-01-ai-leave-accrual",
+        "date": "2026-11-01",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The accrual of the ferie and their indemnity at the end of the employment, Art. 17 and Chiarimenti a verbale (PDF pp. 29-30, 56).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
+            "sha256": "122ca6a72196a835976abac7fb988dc1502973941d52891a546512347fdc9dcf"
+          }
+        ],
+        "findings": [
+          "Art. 17 c. 9 and Chiarimenti point 4: twelfths for each month of service, a month of 15 days or more whole: work_rules.leave_rules.ferie_accrual. Art. 17 c. 6: a day of ferie is paid 1/26 of the monthly pay, read as the indemnity of a day left: work_rules.leave_rules.termination. Found by a delegated search, read again in the PDF text layer."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.leave_rules"
         ]
       }
     ],

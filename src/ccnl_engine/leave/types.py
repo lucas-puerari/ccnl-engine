@@ -46,10 +46,14 @@ class MonthCredit(StrEnum):
         MORE_THAN_HALF: A month served more than fifteen days counts as a
             whole month, a shorter one accrues nothing ("la frazione di mese
             superiore ai 15 giorni viene considerata come mese intero").
+        HALF_OR_MORE: A month served fifteen days or more counts as a whole
+            month (lavoro domestico: "le frazioni di mese, quando
+            raggiungono o superano i 15 giorni").
     """
 
     WHOLE_MONTH = "whole_month"
     MORE_THAN_HALF = "more_than_half"
+    HALF_OR_MORE = "half_or_more"
 
     def credits(self, served_days: int, month_days: int) -> bool:
         """Return whether a month served ``served_days`` days accrues.
@@ -59,4 +63,6 @@ class MonthCredit(StrEnum):
         """
         if self is MonthCredit.WHOLE_MONTH:
             return served_days >= month_days
+        if self is MonthCredit.HALF_OR_MORE:
+            return served_days >= HALF_MONTH_DAYS
         return served_days > HALF_MONTH_DAYS
