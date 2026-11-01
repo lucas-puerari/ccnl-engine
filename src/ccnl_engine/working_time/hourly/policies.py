@@ -13,8 +13,8 @@ The engine derives it only from a sourced rule, never from a default:
 - the CCNL ``hourly_base_provenance`` is ``verified``;
 - a divisor is in force on the day;
 - the full-time week of the employment, when stated, is the one the divisor
-  belongs to (``hourly_divisor_weekly_hours``): Turismo art. 151 divides by
-  190 for 44 hours, not by 172.
+  belongs to (``hourly_divisor_weekly_hours``), after ``week_divisors`` swapped
+  in its own (Turismo art. 151: 190 for 44 hours, not 172).
 
 Otherwise the event needs the caller's value and the run is rejected with
 :class:`~ccnl_engine.errors.MissingRuleError` naming the reason.

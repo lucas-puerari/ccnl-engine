@@ -80,7 +80,7 @@
               "section": "Art. 151 c.1 - Determinazione della retribuzione oraria",
               "quote": "- 172 per il personale con orario nonnale di quaranta ore ~ettilllanali."
             },
-            "note": "Not changed by the 2014 and 2024 renewals. 190 (44 hours) and 192 (45 hours) not modelled. The start of 1990-01-01 predates the cited text and is not read in it.",
+            "note": "Not changed by the 2014 and 2024 renewals. 190 (44 hours) and 192 (45 hours) in work_rules.time_supplements.week_divisors. The start of 1990-01-01 predates the cited text and is not read in it.",
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
@@ -3033,7 +3033,7 @@
       },
       {
         "kind": "source",
-        "text": "HOURLY DIVISOR: 172 for the 40-hour week (art. 151 c.1, 2010 text p. 135); 190 and 192 for 44 and 45 hours not modelled."
+        "text": "HOURLY DIVISOR: 172 for the 40-hour week (art. 151 c.1, 2010 text p. 135); 190 and 192 for 44 and 45 hours in work_rules.time_supplements.week_divisors, read from Employment.full_time_weekly_hours."
       },
       {
         "kind": "source",
@@ -3213,7 +3213,7 @@
       },
       {
         "kind": "info",
-        "text": "HOURLY RATE AND SUPPLEMENTS (artt. 148, 151, 216, 220 of the 2010 text): without a caller value the engine derives the hourly base (the art. 148 retribuzione over 172), the 25% on ordinary night hours from 24 to 6 (art. 216 c.1; 12% for the role qualifica_notturna, c.2: Employment.roles must be stated) and the 20% on the hours worked on a festività (art. 220). The night window of the lavoratori notturni (23:30-6:30, art. 218) only changes which hours the caller declares. Art. 220 also pays the festività hours themselves on top of the monthly pay: the engine posts the 20% only and the run is provisional. Not derived: the Sunday allowance of art. 126 (10% of the hourly paga base and contingenza: the bundle does not record that base_salary holds exactly those two voci), holiday overtime (art. 219 sets no rate), the divisors 190 and 192 of the 44- and 45-hour weeks (a stated full-time week other than 40 is not derived)."
+        "text": "HOURLY RATE AND SUPPLEMENTS (artt. 148, 151, 216, 220 of the 2010 text): without a caller value the engine derives the hourly base (the art. 148 retribuzione over 172), the 25% on ordinary night hours from 24 to 6 (art. 216 c.1; 12% for the role qualifica_notturna, c.2: Employment.roles must be stated) and the 20% on the hours worked on a festività (art. 220). The night window of the lavoratori notturni (23:30-6:30, art. 218) only changes which hours the caller declares. Art. 220 also pays the festività hours themselves on top of the monthly pay: the engine posts the 20% only and the run is provisional. Not derived: the Sunday allowance of art. 126 (10% of the hourly paga base and contingenza: the bundle does not record that base_salary holds exactly those two voci), holiday overtime (art. 219 sets no rate). The divisors 190 and 192 of the 44- and 45-hour weeks are derived from Employment.full_time_weekly_hours; another week than 40, 44 or 45 is not derived."
       },
       {
         "kind": "simplification",
@@ -3245,7 +3245,7 @@
     "effective_until": null,
     "source": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
     "verification_status": "unverified",
-    "source_hash": "8a5de25020333f46687f67367f0464c87f630ba8fbe6454a457e0442ef5e8ebe",
+    "source_hash": "35f1ff64b72760ba4b658429d15b05e1cf9f73e96b23c21f4a68f80203ad0cb8",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3267,7 +3267,7 @@
           "section": "Art. 151 c.1 - Retribuzione oraria",
           "quote": "La retribuzione oraria si ottiene dividendo la retribuzione per: - 192 per il personale con orario normale di quarantacinque ore settimanali; - 190 per il personale con orario normale di quarantaquattro ore settimanali; - 172 per il personale con orario normale di quaranta ore settimanali."
         },
-        "transformation": "Art. 148 c.1 (p. 134) lists the voci of the retribuzione: paga base nazionale conglobata, trattamenti salariali integrativi of the parti generale and speciale, indennità di contingenza and scatti: the bundle base_salary, fixed allowances (the Quadri function allowance of art. 145, parte generale) and seniority. Only the divisor of the 40-hour week is modelled.",
+        "transformation": "Art. 148 c.1 (p. 134) lists the voci of the retribuzione: paga base nazionale conglobata, trattamenti salariali integrativi of the parti generale and speciale, indennità di contingenza and scatti: the bundle base_salary, fixed allowances (the Quadri function allowance of art. 145, parte generale) and seniority. The divisors of the 44- and 45-hour weeks are in week_divisors.",
         "note": "Quote read on the OCR of the scanned page, recognition glitches corrected.",
         "extraction": {
           "method": "ai",
@@ -3311,6 +3311,68 @@
         }
       },
       "hourly_divisor_weekly_hours": 40,
+      "week_divisors": [
+        {
+          "weekly_hours": 44,
+          "divisor": "190",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-turismo-2010",
+                "title": "CCNL Turismo 20 febbraio 2010, testo firmato (UILTuCS)",
+                "kind": "associazione",
+                "url": "http://www.uiltucs.it/pdf/turismo/CCNL_Turismo_Confcommercio_2010.pdf",
+                "published_on": "2010-02-20",
+                "sha256": "47f71f5f3f9eb7975837a888f08f8694ca5b1d9e403c85226446c080b7e0f9e4"
+              },
+              "page": "135",
+              "section": "Art. 151 c.1 - Determinazione della retribuzione oraria",
+              "quote": "- L 90 per il personale con orario nonnale dì quaIalltaquattro ore settimmmli:"
+            },
+            "transformation": "The hourly divisor of an employment whose full-time week (Employment.full_time_weekly_hours) is 44 hours (quarantaquattro). The quote is the OCR of the scanned page, read as '190 per il personale con orario normale di quarantaquattro ore settimanali'.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T14:00:00Z",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T14:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-week-divisors"
+            }
+          }
+        },
+        {
+          "weekly_hours": 45,
+          "divisor": "192",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-turismo-2010",
+                "title": "CCNL Turismo 20 febbraio 2010, testo firmato (UILTuCS)",
+                "kind": "associazione",
+                "url": "http://www.uiltucs.it/pdf/turismo/CCNL_Turismo_Confcommercio_2010.pdf",
+                "published_on": "2010-02-20",
+                "sha256": "47f71f5f3f9eb7975837a888f08f8694ca5b1d9e403c85226446c080b7e0f9e4"
+              },
+              "page": "135",
+              "section": "Art. 151 c.1 - Determinazione della retribuzione oraria",
+              "quote": "- t 92 p~r il personale con orario lIonn;lle dì qu.lfalltacinque ore 'ieltillli\\llillì:"
+            },
+            "transformation": "The hourly divisor of an employment whose full-time week (Employment.full_time_weekly_hours) is 45 hours (quarantacinque). The quote is the OCR of the scanned page, read as '192 per il personale con orario normale di quarantacinque ore settimanali'.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T14:00:00Z",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T14:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-week-divisors"
+            }
+          }
+        }
+      ],
       "overtime_bands": [
         {
           "code": "OT_DIURNO",
@@ -4267,6 +4329,28 @@
           "work_rules.leave_rules.termination.ferie_divisor 26",
           "work_rules.leave_rules.termination.permits_hourly true",
           "coverage.notes[LEAVE AT TERMINATION]"
+        ]
+      },
+      {
+        "id": "2026-11-01-ai-week-divisors",
+        "date": "2026-11-01",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The hourly divisors of the 44 and 45 hour weeks, Art. 151 c.1 (p. 135), checked by a separate session on the rendered page.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "http://www.uiltucs.it/pdf/turismo/CCNL_Turismo_Confcommercio_2010.pdf",
+            "sha256": "47f71f5f3f9eb7975837a888f08f8694ca5b1d9e403c85226446c080b7e0f9e4"
+          }
+        ],
+        "findings": [
+          "Art. 151 c.1 (PDF p. 135, sha256 47f71f5f... matched; the page rendered and read, the OCR 't 92' and 'L 90' are 192 and 190): 192 for a normal week of 45 hours, 190 for 44, 172 for 40: work_rules.time_supplements.week_divisors 44/190, 45/192.",
+          "No later source of the file states another divisor; the notes of the file hold Art. 151 unchanged by the renewals of 2014 and 2024, whose PDFs were not opened."
+        ],
+        "independence": "separate_session",
+        "checked": [
+          "work_rules.time_supplements.week_divisors"
         ]
       }
     ],
