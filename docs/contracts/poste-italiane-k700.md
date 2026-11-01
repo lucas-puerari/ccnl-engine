@@ -110,19 +110,19 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Let the caller state the retribuzione individuale di anzianità and the posizioni economiche differenziate (e.g. EarnedIncrements or an individual allowance) and record the limitation.
 
-!!! warning "poste-italiane-k700/anticipo_lump_sum_2024 · una_tantum · impact yes · open"
-    SIMPLIFICATION: Salary tranche 01/07/2024–31/08/2025 covered by one-time 'anticipo sui futuri miglioramenti economici' (lump sum, September 2024). Engine carries paga base at 2024-07-23 level (same as pre-renewal) for that window.
-
-    **Applies when:** `una_tantum` applies; from 2024-09-01.
-
-    **Remediation:** Model the September 2024 anticipo sui futuri miglioramenti economici as an una tantum (or a caller event) and its absorption, or record a limitation for runs of September 2024.
-
 !!! warning "poste-italiane-k700/sickness_comporto_speciale · sickness · impact yes · open"
     SICKNESS (Art. 41 II): the comporto speciale of the workers with a serious illness listed in letter A), a disability under L. 68/99 or on life-saving therapy keeps the job for 730 days in the 48 months, with the whole fixed pay for all of them; the engine applies the comporto ordinario (609 days, 502 paid) to every worker.
 
     **Applies when:** `sickness` applies.
 
     **Remediation:** Take the serious illness, disability or life-saving therapy of Art. 41 II as a fact of the episode and apply the 730 days at full pay.
+
+!!! warning "poste-italiane-k700/vacanza_contrattuale_2024 · una_tantum · impact yes · open"
+    VACANZA CONTRATTUALE 2024 (Allegato 10, p. 178): the 'competenze contrattuali arretrate' for the first half of 2024 (A1 397.79 to F 244.92), paid with the September 2024 pay to the permanent workers in service on 23 July 2024 'nella misura di 1/12 per ogni mese di servizio', are not paid: twelfths of a six-month period leave the full amount unsettled.
+
+    **Applies when:** `una_tantum` applies; from 2024-09-01; before 2024-10-01.
+
+    **Remediation:** Pay the arretrate of Allegato 10 once the share of the six months is settled (six twelfths or the whole amount).
 
 !!! note "sickness_inps_daily_base · sickness · impact unknown · resolved"
     The INPS share of a sick day is computed on the INPS daily base of the episode, on the days INPS pays (the weekdays of an operaio, every day but the national holidays on a Sunday of an impiegato, point 7.3 of INPS circ. 134368/1981): the retribuzione media globale giornaliera of the month before the illness (INPS circ. 134368/1981 point 11; circ. 55/2024 Allegato 1), whole or partial month, impiegato or operaio, or for the lavoratori dello spettacolo the average pay of the last 40 daily contributions, capped for a fixed-term worker (INPS circ. 132/2021 par. 2.4). The base is a fact of the payroll history the episode states (SicknessEpisode.inps_base).
@@ -302,6 +302,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     INDENNITA DI FUNZIONE — PRODUZIONE DIFFERENTIAL: Staff rate (A1: 333.33/mo, A2: 187.50/mo) is unconditional. Produzione workers receive an additional delta (A1: +58.34, A2: +45.83) via IND_FUNZIONE_A*_PROD_DELTA with role="produzione". Total produzione: A1=391.67, A2=233.33 (Art. 21 CCNL K700). Callers: pass Employee(roles=frozenset(['produzione'])) for the higher rate.
     
     SIMPLIFICATION: industria CIGO (1.70-2.00%) included in employer INPS rate. Poste Italiane is not a manufacturing firm and is not CIGO-subject; actual employer cost is lower. Verify against INPS circ. for the correct Poste INPS classification.
+    
+    ANTICIPO 2024 (Allegato 10, p. 178): the 'anticipo sui futuri miglioramenti economici' (A1 928.18 to F 571.47) for July 2024 to August 2025 is the una tantum ANTICIPO_2024, paid with the September 2024 pay to the permanent workers in service on 23 July 2024; the paga base keeps the pre-renewal amount for that window. The 'competenze contrattuali arretrate' of the same page (vacanza contrattuale of the first half of 2024, A1 397.79 to F 244.92, '1/12 per ogni mese di servizio') are not modelled: the share of a six-month period in twelfths is not settled by the text.
     
 
 ## Raw data

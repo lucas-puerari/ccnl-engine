@@ -57,6 +57,9 @@ class UnaTantum(BaseModel):
             period (ANAV: "la frazione superiore ai 15 giorni", 16).
         in_service_on: Day the worker must be in service on (the signing
             of the agreement), ``None`` when the text sets none.
+        permanent_only: Whether only a permanent worker is owed it (Poste
+            Allegato 10: "esclusivamente al personale con contratto a tempo
+            indeterminato").
         installments: Its payments, in date order.
         provenance: The clause.
     """
@@ -68,6 +71,7 @@ class UnaTantum(BaseModel):
     covers_until: date
     month_min_days: int = Field(default=15, ge=1, le=31)
     in_service_on: date | None = None
+    permanent_only: bool = False
     installments: tuple[UnaTantumInstallment, ...] = Field(min_length=1)
     provenance: RuleProvenance
 
