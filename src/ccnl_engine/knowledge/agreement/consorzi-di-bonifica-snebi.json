@@ -2466,10 +2466,10 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-01T19:00:00Z",
+              "extraction_timestamp": "2026-11-01T11:39:15Z",
               "effective_from": "2025-07-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-01T19:00:00Z",
+              "verified_at": "2026-11-01T11:39:15Z",
               "verification_status": "verified",
               "review_id": "2026-11-01-ai-quadri-function-allowance"
             }
@@ -2581,10 +2581,10 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-01T19:00:00Z",
+              "extraction_timestamp": "2026-11-01T11:39:15Z",
               "effective_from": "2025-07-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-01T19:00:00Z",
+              "verified_at": "2026-11-01T11:39:15Z",
               "verification_status": "verified",
               "review_id": "2026-11-01-ai-quadri-function-allowance"
             }
@@ -2846,10 +2846,10 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-01T19:00:00Z",
+              "extraction_timestamp": "2026-11-01T11:39:15Z",
               "effective_from": "2025-07-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-01T19:00:00Z",
+              "verified_at": "2026-11-01T11:39:15Z",
               "verification_status": "verified",
               "review_id": "2026-11-01-ai-quadri-function-allowance"
             }
@@ -2961,10 +2961,10 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-01T19:00:00Z",
+              "extraction_timestamp": "2026-11-01T11:39:15Z",
               "effective_from": "2025-07-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-01T19:00:00Z",
+              "verified_at": "2026-11-01T11:39:15Z",
               "verification_status": "verified",
               "review_id": "2026-11-01-ai-quadri-function-allowance"
             }
@@ -2998,7 +2998,7 @@
     "effective_until": null,
     "source": "https://www.redigo.info/2026/03/06/ccnl-consorzi-di-bonifica-le-tabelle-retributive-aggiornate/",
     "verification_status": "unverified",
-    "source_hash": "d607f4e8b029bb1b9f498c786601a4c0c6f39c0cf11ee5a8249bc34007b869f0",
+    "source_hash": "a151c885a67f3e133290211301f64682944e8c8b00d1b4ffd3df6439d1b90646",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

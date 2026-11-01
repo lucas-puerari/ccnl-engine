@@ -1380,7 +1380,7 @@
     "effective_until": null,
     "source": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
     "verification_status": "unverified",
-    "source_hash": "557554b18c50bb8543fe004947a115a7d58c3ecb0e3bbf5a15450e90d079310d",
+    "source_hash": "a87d24ab6b63e4502dc9b780569572748c2769c2d39587c497b0bd0b5495681d",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1683,9 +1683,9 @@
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-11-01T21:00:00Z",
+          "extraction_timestamp": "2026-11-01T12:51:22Z",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-11-01T21:00:00Z",
+          "verified_at": "2026-11-01T12:51:22Z",
           "verification_status": "verified"
         }
       }

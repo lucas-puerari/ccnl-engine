@@ -462,10 +462,10 @@
           "extraction": {
             "method": "ai",
             "model": "claude-opus-5-5",
-            "extraction_timestamp": "2026-11-01T16:00:00Z",
+            "extraction_timestamp": "2026-11-01T10:38:57Z",
             "effective_from": "2025-05-01",
             "verified_by": "claude-opus-5-5",
-            "verified_at": "2026-11-01T16:00:00Z",
+            "verified_at": "2026-11-01T10:38:57Z",
             "verification_status": "verified",
             "review_id": "2026-11-01-ai-una-tantum"
           }
@@ -1698,7 +1698,7 @@
     "source": "https://www.fiaip.it/wp-content/uploads/2025/06/250519-Ipotesi-di-accordo-Fiaip-OOSS-firmata-1.pdf",
     "source_type": "contracting_party",
     "verification_status": "unverified",
-    "source_hash": "82bacf5a9063782f660927ca1c52f2c2371ebbe8c889335aae0827fed2b47100"
+    "source_hash": "afd508727c2752c8596ebc5c3ce6cc76a69ee6c0e2b84ba39fab8dd6a340d352"
   },
   "work_rules": {
     "notice": {
@@ -1863,9 +1863,9 @@
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-11-01T21:00:00Z",
+          "extraction_timestamp": "2026-11-01T12:51:22Z",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-11-01T21:00:00Z",
+          "verified_at": "2026-11-01T12:51:22Z",
           "verification_status": "verified",
           "review_id": "2026-11-01-ai-notice"
         }

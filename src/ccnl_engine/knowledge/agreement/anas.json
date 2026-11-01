@@ -1384,7 +1384,7 @@
     "effective_until": null,
     "source": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "8342939110fad16b25b46b4e732d7e8cae88bc6c592d6cb9cdf461808f33aaeb",
+    "source_hash": "7c61c5b5a72195a43c875cb52dad1d30f637ed557fd16a2cf6acad0821d77d37",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1702,9 +1702,9 @@
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-11-01T21:00:00Z",
+          "extraction_timestamp": "2026-11-01T12:51:22Z",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-11-01T21:00:00Z",
+          "verified_at": "2026-11-01T12:51:22Z",
           "verification_status": "verified",
           "review_id": "2026-11-01-ai-notice"
         }

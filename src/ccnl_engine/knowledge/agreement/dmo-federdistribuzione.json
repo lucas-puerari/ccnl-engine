@@ -3621,7 +3621,7 @@
     "effective_until": null,
     "source": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
     "verification_status": "unverified",
-    "source_hash": "ce1c6dfc0d4aca1401e7b25ce9ed76e54f005bd8552a99b27f17168ccc5b67a1",
+    "source_hash": "88878166c3f3d57d6ec36a47621a58172916bf8a20327d0233dd1b6c52da10d6",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -4497,10 +4497,10 @@
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-11-01T19:30:00Z",
+          "extraction_timestamp": "2026-11-01T11:59:12Z",
           "effective_from": "2023-04-01",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-11-01T19:30:00Z",
+          "verified_at": "2026-11-01T11:59:12Z",
           "verification_status": "verified",
           "review_id": "2026-11-01-ai-notice"
         }
