@@ -828,7 +828,7 @@
     "effective_until": null,
     "source": "https://ebta.it/documenti/CCNL_operai_agricoli_e_florovivaisti_2022-2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "3b9a08163ed06356747a0f0e2fbab12535f9302e03a23722fb6bfde81842ced0",
+    "source_hash": "5792fd563bd6d372683e9b7f90f82594e1cf2050a96e48c24d0be679a8216e4b",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1107,6 +1107,68 @@
         },
         "transformation": "The operaio agricolo keeps the job for 180 days and has no employer integration in the CCNL: the integrations are paid by the provincial Casse extra legem (Art. 8 and 63), outside the payroll. The florovivaisti integration of Art. 62 is declared as a limitation."
       }
+    },
+    "notice": {
+      "bands": [
+        {
+          "levels": [
+            "Area3",
+            "Area2",
+            "Area1"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "months": 2,
+          "days": 0,
+          "categories": [
+            "operaio"
+          ]
+        },
+        {
+          "levels": [
+            "Area3",
+            "Area2",
+            "Area1"
+          ],
+          "causes": [
+            "resignation"
+          ],
+          "months": 1,
+          "days": 0,
+          "categories": [
+            "operaio"
+          ]
+        }
+      ],
+      "starts": "same_day",
+      "extra_months_included": false,
+      "tfr_base": null,
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "operai-agricoli-florovivaisti-notice-text",
+            "title": "CCNL text with the notice clause (Art. 77 — Preavviso di risoluzione del rapporto (testo non modificato dal rinnovo 28 maggio 2026))",
+            "kind": "associazione",
+            "url": "https://www.flai.it/wp-content/uploads/2023/11/CCNL-Operai-Agricoli-e-Florovivaisti-2022-2025.pdf",
+            "sha256": "49ae5803f2081985a0e1a10f64e9019e1b999e808da9d3681eaab24c3dee674c"
+          },
+          "page": "69–70",
+          "section": "Art. 77 — Preavviso di risoluzione del rapporto (testo non modificato dal rinnovo 28 maggio 2026)",
+          "quote": "La risoluzione del rapporto di lavoro a tempo indeterminato nel caso di licenziamento non per giusta causa o di dimissioni non per giusta causa, deve essere preceduta da preavviso […] I termini di preavviso, che decorrono dalla data di ricevimento della comunicazione, sono così stabiliti: due mesi nel caso di licenziamento; un mese nel caso di dimissioni. In caso di mancato preavviso in tutto od in parte […] è dovuta […] una indennità sostitutiva equivalente all’importo della retribuzione che sarebbe spettata per il periodo di preavviso."
+        },
+        "transformation": "Bands proposed by a delegated search and checked band by band against the PDF by a separate session; the ratei of the extra months and the TFR treatment are set only where the text states them. The notice runs from the day the act is received ('decorre dal giorno in cui viene comunicata' / 'che decorrono dalla data di ricevimento della comunicazione'): starts same_day.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-01T18:33:13Z",
+          "verification_status": "verified",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-01T18:33:13Z",
+          "review_id": "2026-11-01-ai-notice-3"
+        }
+      }
     }
   },
   "verification": {
@@ -1338,6 +1400,27 @@
           "Art. 50 of the 2026 verbale applies the new minimi (which already include both tranches) from 1 June 2026 in provinces without a CPL renewed under the CCNL of 23 May 2022, and elsewhere from the CPL renewal date and not later than 1 January 2029. No text supports a national minimo of 1025.57 / 1375.48 / 1508.20 for June to December 2026: those figures apply the 3.4% first tranche (which raises provincial salari contrattuali) to the 2025 minimi. The 2026-06-01 periods are left unbacked.",
           "Maintainer decision: the 2026-06-01 periods take the printed minimi of Allegato n. 1 (p. 52), +5.1%, replacing the file values built on +3.4% (1508.20, 1375.48, 1025.57); the 2027-01-01 periods carried the same printed minimi and are merged into them.",
           "Corrected to the printed table: Area1 2026-06-01: 1508.20 -> 1533.00; Area2 2026-06-01: 1375.48 -> 1398.09; Area3 2026-06-01: 1025.57 -> 1042.43."
+        ]
+      },
+      {
+        "id": "2026-11-01-ai-notice-3",
+        "date": "2026-11-01",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The notice clause (Art. 77 — Preavviso di risoluzione del rapporto (testo non modificato dal rinnovo 28 maggio 2026), p. 69–70).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.flai.it/wp-content/uploads/2023/11/CCNL-Operai-Agricoli-e-Florovivaisti-2022-2025.pdf",
+            "sha256": "49ae5803f2081985a0e1a10f64e9019e1b999e808da9d3681eaab24c3dee674c"
+          }
+        ],
+        "findings": [
+          "Notice bands checked against the PDF by a separate session (delegated search and independent verification): work_rules.notice."
+        ],
+        "independence": "separate_session",
+        "checked": [
+          "work_rules.notice"
         ]
       }
     ],

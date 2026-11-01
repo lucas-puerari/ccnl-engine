@@ -864,7 +864,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/enti-ricerca-aran",
       "ruleset_version": "2026.2",
-      "source_hash": "3b40dc39e0862e39201a5c2777cb2a865472eedbd17aa7a82457e3505faeea74",
+      "source_hash": "bb48f5470012d7f848e50af721caadacb2fa1ff6bc2589e852a5f8e3f6f2cc53",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/enti-ricerca-aran.json.gz"
@@ -1581,7 +1581,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/ooss-unsic-confsal",
       "ruleset_version": "2026.2",
-      "source_hash": "4d7e9064de5049b71d5a126356db757367d92516d422bb00a0f962a18eb9fcd7",
+      "source_hash": "2bee1e9902e70bd900240c112f2dad33016c5a9b0b95912472f862eebd1c847a",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/ooss-unsic-confsal.json.gz"
@@ -1598,7 +1598,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/operai-agricoli-florovivaisti",
       "ruleset_version": "2026.2",
-      "source_hash": "3b9a08163ed06356747a0f0e2fbab12535f9302e03a23722fb6bfde81842ced0",
+      "source_hash": "5792fd563bd6d372683e9b7f90f82594e1cf2050a96e48c24d0be679a8216e4b",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/operai-agricoli-florovivaisti.json.gz"
@@ -1819,7 +1819,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/radiotelevisive-televisivo",
       "ruleset_version": "2026.2",
-      "source_hash": "13dd6312abc1bc4dd428497c6a9cbbf5c42ab2a0742be75f22df2f40b8541304",
+      "source_hash": "2755de28a19a6b0b80062bbb2a97894df3b5b33a2e44d7d39829737493691ffb",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/radiotelevisive-televisivo.json.gz"

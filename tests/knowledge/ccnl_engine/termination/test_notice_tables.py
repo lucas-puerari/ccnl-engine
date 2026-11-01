@@ -267,3 +267,43 @@ def test_the_logistica_operai_levels_take_no_impiegato_band() -> None:
     """Levels 4J and 6 hold operai only (art. 6)."""
     rules = _notice("logistica-trasporto-confetra")
     assert rules.band("6", _D, 61, _IMPIEGATO) is None
+
+
+@pytest.mark.parametrize(
+    ("ccnl_id", "level", "service", "cause", "months", "days", "category"),
+    [
+        # Radiotelevisive televisivo art. 64: calendar days by level.
+        ("radiotelevisive-televisivo", "9", 1, _R, 0, 180, None),
+        ("radiotelevisive-televisivo", "4", 1, _D, 0, 60, None),
+        # Enti di ricerca: 2, 3, 4 months on a dismissal.
+        ("enti-ricerca-aran", "VII", 121, _D, 4, 0, None),
+        # OOSS: 50, 55, 60 days for level I, 20, 25, 30 for V and VI.
+        ("ooss-unsic-confsal", "1", 61, _D, 0, 55, None),
+        ("ooss-unsic-confsal", "6", 121, _D, 0, 30, None),
+        # Operai agricoli art. 77: 2 months to dismiss, 1 to resign.
+        ("operai-agricoli-florovivaisti", "Area2", 1, _D, 2, 0, _OPERAIO),
+        ("operai-agricoli-florovivaisti", "Area1", 300, _R, 1, 0, _OPERAIO),
+    ],
+)
+def test_the_third_batch_of_tables(
+    ccnl_id: str,
+    level: str,
+    service: int,
+    cause: TerminationCause,
+    months: int,
+    days: int,
+    category: WorkerCategory | None,
+) -> None:
+    """The band of the level, cause, service and category."""
+    band = _notice(ccnl_id).band(level, cause, service, category)
+
+    assert band is not None
+    assert (band.months, band.days) == (months, days)
+
+
+@pytest.mark.parametrize(
+    "ccnl_id", ["ooss-unsic-confsal", "operai-agricoli-florovivaisti"]
+)
+def test_a_notice_from_the_day_the_act_is_received(ccnl_id: str) -> None:
+    """OOSS and Operai agricoli count the day of the act."""
+    assert _notice(ccnl_id).starts.value == "same_day"

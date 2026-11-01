@@ -29,10 +29,13 @@ class NoticeStart(StrEnum):
         DAY_AFTER: The day after the act is received.
         FIRST_OR_SIXTEENTH: The first 1st or 16th of a month after the act
             is received.
+        SAME_DAY: The day the act is received (OOSS: "decorre dal giorno
+            in cui viene comunicata la volontà di recesso").
     """
 
     DAY_AFTER = "day_after"
     FIRST_OR_SIXTEENTH = "first_or_sixteenth"
+    SAME_DAY = "same_day"
 
 
 class NoticeBand(BaseModel):

@@ -53,7 +53,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2026-07-01 |
-| **Last review** | 2026-10-12 |
+| **Last review** | 2026-11-01 |
 | **Latest salary tranche** | 2027-01-01 |
 
 ## Review history
@@ -61,6 +61,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | Date | Reviewer | Scope | Outcome | Findings |
 |---|---|---|---|---|
 | 2026-10-12 | claude-opus-5-5 (ai) | Tabellare and seniority bands of the research bodies, 2024-2027. | corrected | New file for the research bodies of the comparto Istruzione e Ricerca: Tabelle C3 and C4 of the CCNL 2022-2024 and 2025-2027, read on the ARAN texts. |
+| 2026-11-01 | claude-opus-5-5 (ai) | The notice clause (Recesso con preavviso, art. 25 CCNL 21 febbraio 2002 (riprodotto nella raccolta ARAN), p. 87). | corrected | Notice bands checked against the PDF by a separate session (delegated search and independent verification): work_rules.notice. |
 
 ## Salary table
 
