@@ -749,7 +749,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.quotidianosanita.it/allegati/allegato1736872056.pdf",
     "verification_status": "unverified",
-    "source_hash": "141cac3a64da52bd243a58405c5142bca145b7d3b9eb1e493d135268ef8dc114",
+    "source_hash": "eabcac08aa7000f4018c467990a09dc9384a8d49e1208c04a008c355e269d5ca",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -1055,6 +1055,82 @@
         },
         "note": "Job kept 18 months within the three years before the day (the CCNL sums 'le assenze per malattia verificatesi nel triennio precedente' the last episode): 540 days of 30-day months over a window of 3 years; 9 months (270 days) in full, 3 (days 271-360) at 90%, 6 (days 361-540) at 50%. The window ends on the sick day, not on the start of the last episode. The cut of the accessory pay of the first 10 days (D.L. 112/2008 art. 71 c. 1) is not modelled."
       }
+    },
+    "notice": {
+      "bands": [
+        {
+          "levels": [
+            "SUPPORTO",
+            "OPERATORI",
+            "ASSISTENTI",
+            "PROFESSIONISTI",
+            "ELEVATA_QUALIFICAZIONE"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "up_to_months": 60,
+          "months": 2,
+          "days": 0
+        },
+        {
+          "levels": [
+            "SUPPORTO",
+            "OPERATORI",
+            "ASSISTENTI",
+            "PROFESSIONISTI",
+            "ELEVATA_QUALIFICAZIONE"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "up_to_months": 120,
+          "months": 3,
+          "days": 0
+        },
+        {
+          "levels": [
+            "SUPPORTO",
+            "OPERATORI",
+            "ASSISTENTI",
+            "PROFESSIONISTI",
+            "ELEVATA_QUALIFICAZIONE"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "months": 4,
+          "days": 0
+        }
+      ],
+      "starts": "first_or_sixteenth",
+      "extra_months_included": false,
+      "tfr_base": null,
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "sanita-aran-notice-text",
+            "title": "CCNL text with the notice clause (Art. 53, commi 1–4 e 9)",
+            "kind": "associazione",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2025/10/2025_10_27_COMP-SANITA_2022-2024.pdf",
+            "sha256": "44703973da37ba07c1c1455795c18e710a596de00a28d59bbc462662f678235d"
+          },
+          "page": "80–81",
+          "section": "Art. 53, commi 1–4 e 9",
+          "quote": "a. 2 mesi per dipendenti con anzianità di servizio fino a 5 anni; b. 3 mesi per dipendenti con anzianità di servizio fino a 10 anni; c. 4 mesi per dipendenti con anzianità di servizio oltre 10 anni. 2. In caso di dimissioni del dipendente i termini di cui al comma 1 sono ridotti alla metà. 3. I termini di preavviso decorrono dal primo o dal sedicesimo giorno di ciascun mese."
+        },
+        "transformation": "Bands proposed by a delegated search and checked band by band against the PDF by a separate session. A start day the text does not set is read as the day after the notice; the ratei of the extra months and the TFR treatment are set only where the text states them. The resignation, half of the dismissal terms (Art. 53 c. 2), gives 1 month 15 days in the middle band and is left out.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-01T18:19:31Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-01T18:19:31Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-01-ai-notice-2"
+        }
+      }
     }
   },
   "verification": {
@@ -1119,6 +1195,27 @@
           "Tabella 2a (p. 107): the five annual amounts from 1 January 2024 over 12 give the monthly amounts of the file (21.545,34 / 12 = 1.795,445, 1.795,45 half up). Match.",
           "The 2025-2027 renewal is still the ipotesi of 29 July 2026 on 2026-10-17; renewal_2025_2027_not_modelled stays open with the status recorded. The next review is moved to 2027-01-31.",
           "No independent example (an ARAN worked example or a real payslip of the comparto) was found in this review."
+        ]
+      },
+      {
+        "id": "2026-11-01-ai-notice-2",
+        "date": "2026-11-01",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The notice clause (Art. 53, commi 1–4 e 9, p. 80–81).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2025/10/2025_10_27_COMP-SANITA_2022-2024.pdf",
+            "sha256": "44703973da37ba07c1c1455795c18e710a596de00a28d59bbc462662f678235d"
+          }
+        ],
+        "findings": [
+          "Notice bands by level, category and service checked against the PDF by a separate session (delegated search and independent verification): work_rules.notice."
+        ],
+        "independence": "separate_session",
+        "checked": [
+          "work_rules.notice"
         ]
       }
     ],

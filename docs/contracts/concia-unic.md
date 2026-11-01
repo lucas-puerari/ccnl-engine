@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-03-07 |
-| **Last review** | 2026-10-12 |
+| **Last review** | 2026-11-01 |
 | **Latest salary tranche** | 2026-01-01 |
 
 ## Review history
@@ -63,6 +63,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-12 | claude-opus-5-5 (ai) | Special cases of the comporto (art. 60 B as rewritten on 7 March 2024). | corrected | The longer comporto of the malattie invalidanti (+2, +3, +4 months) and the hospital stays over 5 days left out of the comporto (60 days at most) are now modelled; the restart from the 16th day of a hospital stay and the periodic checks stay a limitation. |
 | 2026-10-12 | claude-opus-5-5 (ai) | Restart of the sickness treatment from the 16th day of a hospital stay (art. 60 C). | corrected | From the 16th day of a hospital stay the treatment starts anew (full pay again): modelled with hospital_restart_day 16. |
 | 2026-10-12 | claude-opus-5-5 (ai) | Restart 12 months after the end of the full pay and periodic checks (art. 60). | corrected | The last special cases of art. 60 are modelled: the restart 12 months after the full pay ended and the periodic checks out of the comporto; the limitation sickness_special_cases is closed. |
+| 2026-11-01 | claude-opus-5-5 (ai) | The notice clause (Art. 83 (preavviso); Art. 26 (classificazione), PDF p. 51, p. 88). | corrected | Notice bands by level, category and service checked against the PDF by a separate session (delegated search and independent verification): work_rules.notice. |
 
 ## Salary table
 

@@ -969,7 +969,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf",
     "verification_status": "unverified",
-    "source_hash": "c12140fdbf807658717d9b79b2462785f015b8bfb3f10bfee7ab6bd96d31f96d",
+    "source_hash": "657c12bd17ce0f53820bfb7bd0933bf288a1d0ae8446cdee872bbf130ceb32b8",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },
@@ -1275,6 +1275,79 @@
         },
         "note": "Job kept 18 months within the three years before the day (the CCNL sums 'le assenze per malattia verificatesi nel triennio precedente' the last episode): 540 days of 30-day months over a window of 3 years; 9 months (270 days) in full, 3 (days 271-360) at 90%, 6 (days 361-540) at 50%. The window ends on the sick day, not on the start of the last episode. The cut of the accessory pay of the first 10 days (D.L. 112/2008 art. 71 c. 1) is not modelled."
       }
+    },
+    "notice": {
+      "bands": [
+        {
+          "levels": [
+            "OPERATORI",
+            "OPERATORI_ESPERTI",
+            "ISTRUTTORI",
+            "FUNZIONARI_EQ"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "up_to_months": 60,
+          "months": 2,
+          "days": 0
+        },
+        {
+          "levels": [
+            "OPERATORI",
+            "OPERATORI_ESPERTI",
+            "ISTRUTTORI",
+            "FUNZIONARI_EQ"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "up_to_months": 120,
+          "months": 3,
+          "days": 0
+        },
+        {
+          "levels": [
+            "OPERATORI",
+            "OPERATORI_ESPERTI",
+            "ISTRUTTORI",
+            "FUNZIONARI_EQ"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "months": 4,
+          "days": 0
+        }
+      ],
+      "starts": "day_after",
+      "extra_months_included": true,
+      "tfr_base": null,
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "funzioni-locali-aran-notice-text",
+            "title": "CCNL text with the notice clause (Art. 39, commi 1–4 e 9)",
+            "kind": "associazione",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf",
+            "sha256": "b08e21d819f677203e914f4925afbdf0dcd916fc92c1cdb260a1144f4656cd08"
+          },
+          "page": "55–56",
+          "section": "Art. 39, commi 1–4 e 9",
+          "quote": "a) due mesi per dipendenti con anzianità di servizio fino a cinque anni; b) tre mesi per dipendenti con anzianità di servizio fino a dieci anni; c) quattro mesi per dipendenti con anzianità di servizio oltre dieci anni. 2. In caso di dimissioni del dipendente i termini di cui al comma 1 sono ridotti alla metà. 3. I termini di preavviso decorrono dal giorno successivo a quello di comunicazione della risoluzione del rapporto di lavoro."
+        },
+        "transformation": "Bands proposed by a delegated search and checked band by band against the PDF by a separate session. A start day the text does not set is read as the day after the notice; the ratei of the extra months and the TFR treatment are set only where the text states them.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-01T18:19:31Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-01T18:19:31Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-01-ai-notice-2"
+        }
+      }
     }
   },
   "verification": {
@@ -1337,6 +1410,27 @@
           "Tabella B (p. 83): the eight annual amounts of the four areas, from 1 January 2024 and from the conglobamento, over 12 give the monthly amounts of the file (for example 24.941,67 / 12 = 2.078,47). Match.",
           "The 2025-2027 renewal is still an ipotesi of 21 July 2026 under the checks of art. 47 D.Lgs. 165/2001 on 2026-10-17; the limitation renewal_2025_2027_missing stays open with the status recorded. The next review is moved to 2027-01-31 to model it once signed.",
           "No verified reference case is added: it needs a provider output (a payslip or an official example) whose request the engine can state; the two Funzioni Locali payslips replayed pay individual elements (posizione, ad personam, IVC) that no request input states, so only their base salary is compared."
+        ]
+      },
+      {
+        "id": "2026-11-01-ai-notice-2",
+        "date": "2026-11-01",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The notice clause (Art. 39, commi 1–4 e 9, p. 55–56).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf",
+            "sha256": "b08e21d819f677203e914f4925afbdf0dcd916fc92c1cdb260a1144f4656cd08"
+          }
+        ],
+        "findings": [
+          "Notice bands by level, category and service checked against the PDF by a separate session (delegated search and independent verification): work_rules.notice."
+        ],
+        "independence": "separate_session",
+        "checked": [
+          "work_rules.notice"
         ]
       }
     ],

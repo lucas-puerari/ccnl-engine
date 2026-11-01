@@ -53,7 +53,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-06-18 |
-| **Last review** | 2026-10-18 |
+| **Last review** | 2026-11-01 |
 | **Latest salary tranche** | 2024-07-01 |
 
 ## Review history
@@ -61,6 +61,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | Date | Reviewer | Scope | Outcome | Findings |
 |---|---|---|---|---|
 | 2026-10-18 | claude-opus-5-5 (ai) | The minimi nazionali di stipendio mensile conglobato of the seven categories against the signed CCNL of 18 June 2024. | confirmed | Art. 31, Tab. 1 (PDF p. 35, signed scan with text layer, read on the page image): the minimi nazionali di stipendio mensile conglobato from 01/07/2024 for Q and categories 1-6 match the 7 values of the file (file 1Q = Q, 1-6 = 1°-6°); they move to verified. Q is printed as 1.788,38 without the indennità di funzione, which Art. 18 lett. b (p. 24, 'una indennità mensile pari a 100 euro, da corrispondersi per 14 mensilità') grants on top, as the file models it.<br>Art. 31 (p. 34) applies the 5% from 1/04/2024 and 1.9% from 1/01/2025 to the stipendi contrattuali of the territorial contracts, not to the national minimi; Tab. 1 has a single date, 01/07/2024 (for territorial contracts renewed under the CCNL 7/07/2021 the minimi apply from the date of their next renewal and no later than 1/01/2027, p. 35). The coverage note that calls the 2025 tranche of the national table missing is wrong: there is no 2025 national minimo, and the open-ended period is correct.<br>The national minimo is conglobated (minimo base + contingenza + EDR, footnote p. 34 citing the Verbale 4.6.2008), matching the file's base_salary; territorial contracts may set higher stipendi contrattuali, and the minimo di stipendio integrativo is outside this table.<br>The ruleset names this source, published by FLAI-CGIL, a signatory: source_type contracting_party. |
+| 2026-11-01 | claude-opus-5-5 (ai) | The notice clause (Art. 51 - Preavviso di risoluzione del rapporto, p. 47-48). | corrected | Notice bands by level, category and service checked against the PDF by a separate session (delegated search and independent verification): work_rules.notice. |
 
 ## Salary table
 
