@@ -588,6 +588,7 @@ pytest_add_cli_args_test_selection = [
     "tests/unit/ccnl_engine/compensation",
     "tests/integration/ccnl_engine/compensation",
     "tests/knowledge/ccnl_engine/compensation",
+    "tests/knowledge/ccnl_engine/seniority",
     "tests/unit/ccnl_engine/working_time",
     "tests/integration/ccnl_engine/working_time",
     "tests/knowledge/ccnl_engine/working_time",

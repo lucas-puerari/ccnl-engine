@@ -1,5 +1,5 @@
 {
-  "commit": "16c316b1921cef36117c8b249a5ba6e77fec1acf",
+  "commit": "9f77bb0873349d7ab8080bad3361b1293bf209fc",
   "date": "2026-11-01",
   "min_score": 93.0,
   "perimeter": [
@@ -1400,13 +1400,13 @@
       "minimum": 93.0
     },
     "src/ccnl_engine/compensation/element/services.py": {
-      "killed": 122,
-      "survived": 40,
+      "killed": 139,
+      "survived": 23,
       "other": 0,
       "not_checked": 0,
       "equivalent": 0,
       "total": 162,
-      "score": 75.3,
+      "score": 85.8,
       "minimum": 80.1
     },
     "src/ccnl_engine/compensation/hourly/services.py": {
