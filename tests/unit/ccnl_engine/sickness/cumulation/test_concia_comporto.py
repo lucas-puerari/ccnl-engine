@@ -14,8 +14,8 @@ from decimal import Decimal
 from ccnl_engine.seniority.inputs import SeniorityFact, SenioritySource
 from ccnl_engine.sickness.comporto.models import HospitalComportoRule
 from ccnl_engine.sickness.cumulation.rules import CumulativeTreatment, SicknessWorker
+from ccnl_engine.sickness.integration.condition.models import SeriousIllnessRule
 from ccnl_engine.sickness.integration.models import (
-    SeriousIllnessRule,
     SicknessCumulation,
     SicknessRules,
     SicknessSeniorityBand,

@@ -16,8 +16,8 @@ import pytest
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.seniority.inputs import SeniorityFact, SenioritySource
 from ccnl_engine.sickness.cumulation.rules import CumulativeTreatment, SicknessWorker
+from ccnl_engine.sickness.integration.condition.models import HospitalStayRule
 from ccnl_engine.sickness.integration.models import (
-    HospitalStayRule,
     SicknessCumulation,
     SicknessRules,
     SicknessSeniorityBand,

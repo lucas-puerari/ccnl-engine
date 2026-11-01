@@ -125,6 +125,7 @@ def _worker(ctx: RunContext) -> SicknessWorker:
         seniority=request.seniority,
         hired_on=None if period is None else period.started_on,
         known_from=ctx.opening.accrual.sickness_known_from,
+        fixed_term=request.contract_type.type == "fixed_term",
     )
 
 

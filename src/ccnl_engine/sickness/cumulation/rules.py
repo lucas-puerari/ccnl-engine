@@ -76,11 +76,13 @@ class SicknessWorker:
         hired_on: First day of the employment, ``None`` when not known.
         known_from: First day from which the recorded episodes list every
             sick day of the employment; ``None`` when they list all of them.
+        fixed_term: Whether the contract is fixed-term.
     """
 
     seniority: SeniorityFact | None = None
     hired_on: date | None = None
     known_from: date | None = None
+    fixed_term: bool = False
 
 
 @dataclass(frozen=True)
@@ -277,13 +279,15 @@ class CumulativeTreatment:
 
         Returns:
             ``serious_comporto_days`` for a serious illness when the band
-            has it, else ``comporto_days``.
+            has it, else ``comporto_days``; for a fixed-term worker at most
+            the ``fixed_term_comporto_days`` of the cumulation.
         """
         band = self.band
         extended = band.serious_comporto_days
-        if extended is not None and self.episode.serious_illness:
-            return extended
-        return band.comporto_days
+        serious = extended is not None and self.episode.serious_illness
+        limit = extended if serious and extended is not None else band.comporto_days
+        cap = self.cumulation.fixed_term_comporto_days
+        return limit if cap is None or not self.worker.fixed_term else min(limit, cap)
 
     def _counted(self, episode: SicknessEpisode) -> bool:
         """Return whether ``episode`` counts toward the comporto.
