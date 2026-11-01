@@ -1411,7 +1411,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/logistica-trasporto-confetra",
       "ruleset_version": "2026.2",
-      "source_hash": "197fc40f296e3d1297ec416e2d8fda75808bf77b8b7222d1cb17261390d4a847",
+      "source_hash": "6da3fb8ce9ba8e8d9fa92bb417a6d08369c9d2823528901e601c4ef414103962",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/logistica-trasporto-confetra.json.gz"
@@ -1530,7 +1530,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/metalmeccanico-federmeccanica",
       "ruleset_version": "2026.3",
-      "source_hash": "8c1af6d46758e9d490c4ed8a70825e93a4dd0c7e6aac33fb4af64829139643bc",
+      "source_hash": "68cdf69952b5a981190ec861669205bad5660d94ce1839f17d5ede5c1eabff6c",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/metalmeccanico-federmeccanica.json.gz"
@@ -1904,7 +1904,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/sanita-privata-aiop-aris",
       "ruleset_version": "2026.2",
-      "source_hash": "e78a0c993a2eba4ceff2a08a2a444e3fafc6a4663d41b2897d0c1be01b4c2a4d",
+      "source_hash": "a548ec3fc2c21710b8fef51e6b58f8837dccad9c5af76e93606ebb905fd819a7",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/sanita-privata-aiop-aris.json.gz"
@@ -4604,7 +4604,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "9333725db503ce6cd19a2da8b7c5ed537c3974443cd0f97e9393fbeaccb8164e",
+      "source_hash": "e1eb6186121377a3e7422df69e348b62e239aff330f39d0906e684bd0ca8dfb5",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/sanita-privata-aiop-aris.json.gz",

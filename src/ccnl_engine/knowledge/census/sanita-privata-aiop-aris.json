@@ -243,22 +243,6 @@
       }
     },
     {
-      "id": "part_time_supplementary_rate",
-      "institute": "overtime",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "PART-TIME SUPPLEMENTARY HOURS: the ore supplementari of a part-time worker are paid with 15% of the retribuzione oraria globale (Art. 22, CCNL 8 October 2020, p. 25). OvertimeKind.SUPPLEMENTARY exists, but the file has no supplementary-hours band: the event takes the overtime bands unless the caller passes the multiplier (review of 2026-10-30).",
-      "calculation": "ccnl/sanita-privata-aiop-aris:coverage.notes",
-      "state": "absent",
-      "remediation": "Add the supplementary-hours band (15%) of Art. 22.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "sanita-privata-aiop-aris/part_time_supplementary_rate"
-        ]
-      }
-    },
-    {
       "id": "paternity_daily_base",
       "institute": "paternity_leave",
       "variant": "all",
