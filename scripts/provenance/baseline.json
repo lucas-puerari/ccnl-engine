@@ -744,8 +744,7 @@
       "ceramica-industria-confindustria/sanitary_ceramics_tables"
     ],
     "agreement/chimica-affini-pmi-unionchimica.json": [
-      "chimica-affini-pmi-unionchimica/apprentice_seniority",
-      "chimica-affini-pmi-unionchimica/tranches_2027_2028"
+      "chimica-affini-pmi-unionchimica/apprentice_seniority"
     ],
     "agreement/chimica-farmaceutica-federchimica.json": [
       "chimica-farmaceutica-federchimica/absence_hours",

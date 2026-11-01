@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, seniority |
+| **Limits of this contract** | seniority |
 
-2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 0 verified / 21 derived / 1 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 0 verified / 53 derived / 1 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -51,7 +51,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|
 | **Last renewal** | 2026-02-23 |
 | **Last review** | 2026-10-18 |
-| **Latest salary tranche** | 2026-01-01 |
+| **Latest salary tranche** | 2028-12-01 |
 
 ## Review history
 
@@ -65,14 +65,14 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `H` | Level H — senior managers, top technical executives (quadri) | € 3,168.51 | 2026-01-01 |
-| `G` | Level G — managers, senior professionals, department heads | € 2,973.58 | 2026-01-01 |
-| `F` | Level F — senior technical staff, team leaders | € 2,703.06 | 2026-01-01 |
-| `E` | Level E — specialist workers, junior technical staff | € 2,444.03 | 2026-01-01 |
-| `D` | Level D — highly skilled operai, senior impiegati | € 2,267.00 | 2026-01-01 |
-| `C` | Level C — skilled operai, standard impiegati | € 2,033.35 | 2026-01-01 |
-| `B` | Level B — semi-skilled operai and lower-grade impiegati | € 1,830.43 | 2026-01-01 |
-| `A` | Level A — entry workers, unskilled, first-time employees | € 1,690.69 | 2026-01-01 |
+| `H` | Level H — senior managers, top technical executives (quadri) | € 3,388.30 | 2028-12-01 |
+| `G` | Level G — managers, senior professionals, department heads | € 3,186.65 | 2028-12-01 |
+| `F` | Level F — senior technical staff, team leaders | € 2,898.99 | 2028-12-01 |
+| `E` | Level E — specialist workers, junior technical staff | € 2,629.54 | 2028-12-01 |
+| `D` | Level D — highly skilled operai, senior impiegati | € 2,443.00 | 2028-12-01 |
+| `C` | Level C — skilled operai, standard impiegati | € 2,195.76 | 2028-12-01 |
+| `B` | Level B — semi-skilled operai and lower-grade impiegati | € 1,971.99 | 2028-12-01 |
+| `A` | Level A — entry workers, unskilled, first-time employees | € 1,813.61 | 2028-12-01 |
 
 ## Seniority increments
 
@@ -106,13 +106,6 @@ Destination levels: `A`
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
-
-!!! warning "chimica-affini-pmi-unionchimica/tranches_2027_2028 · base_salary · impact yes · open"
-    SINGLE TRANCHE ONLY. Only the 1 January 2026 tranche is modelled. The 4 subsequent tranches (Apr 2027, Dec 2027, Jun 2028, Dec 2028) are not accessible from primary source at time of extraction. Update with official amounts when the renewal text becomes available.
-
-    **Applies when:** `base_salary` applies; from 2027-04-01.
-
-    **Remediation:** Add the April 2027, December 2027, June 2028 and December 2028 tranches from the renewal text.
 
 !!! warning "chimica-affini-pmi-unionchimica/apprentice_seniority · seniority · impact unknown · open"
     APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.

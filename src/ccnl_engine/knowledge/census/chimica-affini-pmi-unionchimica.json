@@ -369,22 +369,6 @@
       }
     },
     {
-      "id": "tranches_2027_2028",
-      "institute": "base_salary",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "SINGLE TRANCHE ONLY. Only the 1 January 2026 tranche is modelled. The 4 subsequent tranches (Apr 2027, Dec 2027, Jun 2028, Dec 2028) are not accessible from primary source at time of extraction. Update with official amounts when the renewal text becomes available.",
-      "calculation": "ccnl/chimica-affini-pmi-unionchimica:coverage.notes",
-      "state": "absent",
-      "remediation": "Add the April 2027, December 2027, June 2028 and December 2028 tranches from the renewal text.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "chimica-affini-pmi-unionchimica/tranches_2027_2028"
-        ]
-      }
-    },
-    {
       "id": "una_tantum_readings",
       "institute": "base_salary",
       "variant": "all",

@@ -7,6 +7,8 @@ Assipan, Trasporto Ferroviario Agens.
 from datetime import date
 from decimal import Decimal
 
+import pytest
+
 from ccnl_engine.agreement.facade import TaxSector
 from ccnl_engine.catalog.loaders import load_ccnl
 
@@ -111,6 +113,31 @@ class TestLoadChimicaAffiniPmiUnionichimica:
         ccnl = load_ccnl("chimica-affini-pmi-unionchimica")
         lv_h = next(lv for lv in ccnl.levels if lv.code == "H")
         assert lv_h.base_salary.value_at(date(2026, 9, 1)) == Decimal("3168.51")
+
+    @pytest.mark.parametrize(
+        ("code", "day", "expected"),
+        [
+            # 2206.00 + 61.00 + 59.86 (1 April 2027)
+            ("D", date(2027, 3, 31), "2267.00"),
+            ("D", date(2027, 4, 1), "2326.86"),
+            # + 25.14 + 71.84 + 19.16: 2206.00 + 237.00 a regime
+            ("D", date(2028, 12, 1), "2443.00"),
+            # 1648.62 + 42.07 + 41.81 + 17.56 (1 December 2027)
+            ("A", date(2027, 12, 1), "1750.06"),
+            # + 50.17 (1 June 2028)
+            ("A", date(2028, 6, 1), "1800.23"),
+            # 3093.29 + 75.22 + 74.76 + 31.40 + 89.71 + 23.92, a cent over
+            # the 295.00 a regime printed
+            ("H", date(2028, 12, 1), "3388.30"),
+        ],
+    )
+    def test_chimica_pmi_tranches_to_2028(
+        self, code: str, day: date, expected: str
+    ) -> None:
+        """The four tranches of the 23 February 2026 renewal, p. 18."""
+        ccnl = load_ccnl("chimica-affini-pmi-unionchimica")
+        level = next(lv for lv in ccnl.levels if lv.code == code)
+        assert level.base_salary.value_at(day) == Decimal(expected)
 
     def test_chimica_pmi_level_ordering(self) -> None:
         """Level A has lowest order; level H has highest order."""
