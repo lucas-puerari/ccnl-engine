@@ -736,8 +736,7 @@
       "ced-assoced/terziario_inps_rates_unverified"
     ],
     "agreement/cemento-calce-gesso-industria.json": [
-      "cemento-calce-gesso-industria/apprentice_seniority",
-      "cemento-calce-gesso-industria/apprenticeship_full_pay_passthrough"
+      "cemento-calce-gesso-industria/apprentice_seniority"
     ],
     "agreement/ceramica-industria-confindustria.json": [
       "ceramica-industria-confindustria/apprentice_seniority"
