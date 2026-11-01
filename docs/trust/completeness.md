@@ -14,7 +14,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 0/134 CCNLs.** Bundle: 269 weak rules, 545 open limitations (545 with a monetary impact).
+**Complete: 0/134 CCNLs.** Bundle: 269 weak rules, 544 open limitations (544 with a monetary impact).
 
 ## Declared window
 
@@ -163,7 +163,7 @@ Future data, registered apart from the gaps: a contract whose validity ends insi
 | [scuole-private-agidae](../contracts/scuole-private-agidae.md) | `istruzione-formazione` | exploratory | — | 23 rows | 23 open requirements; 1 weak rule; 19 monetary limitations; 1 outside_input limitation; 19 non-native capabilities |
 | [scuole-private-laiche-aninsei](../contracts/scuole-private-laiche-aninsei.md) | `istruzione-formazione` | exploratory | — | 23 rows | 23 open requirements; 1 weak rule; 19 monetary limitations; 1 outside_input limitation; 19 non-native capabilities |
 | [servizi-postali-appalto-fise](../contracts/servizi-postali-appalto-fise.md) | `servizi-postali` | exploratory | — | 24 rows | 24 open requirements; 1 weak rule; 20 monetary limitations; 1 outside_input limitation; 20 non-native capabilities |
-| [sistemazioni-idraulico-forestali-impiegati](../contracts/sistemazioni-idraulico-forestali-impiegati.md) | `bonifica-forestazione` | exploratory | — | 28 rows | 28 open requirements; 2 weak rules; 24 monetary limitations; 21 non-native capabilities |
+| [sistemazioni-idraulico-forestali-impiegati](../contracts/sistemazioni-idraulico-forestali-impiegati.md) | `bonifica-forestazione` | exploratory | — | 27 rows | 27 open requirements; 2 weak rules; 23 monetary limitations; 21 non-native capabilities |
 | [sistemazioni-idraulico-forestali-operai](../contracts/sistemazioni-idraulico-forestali-operai.md) | `bonifica-forestazione` | exploratory | — | 28 rows | 28 open requirements; 2 weak rules; 23 monetary limitations; 1 outside_input limitation; 21 non-native capabilities |
 | [studi-professionali-confprofessioni](../contracts/studi-professionali-confprofessioni.md) | `servizi-professionali` | reviewed | — | 34 rows | 34 open requirements; 20 monetary limitations; 12 outside_input limitations; 22 non-native capabilities |
 | [tabacco-apti](../contracts/tabacco-apti.md) | `alimentare` | exploratory | — | 44 rows | 44 open requirements; 22 weak rules; 20 monetary limitations; 19 non-native capabilities |

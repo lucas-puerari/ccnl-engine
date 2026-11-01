@@ -34,10 +34,10 @@ class TestLoadSistemazioniIdraulicoForestaliOperai:
         assert lv.base_salary.value_at(date(2026, 6, 1)) == Decimal("1471.55")
 
     def test_a181_operai_level_o3_salary_tranche2(self) -> None:
-        """Level O3 base salary at 01/01/2027 is 1507.52 EUR."""
+        """Level O3 base salary at 01/01/2027 is 1507.53 EUR (Allegato C, p. 30)."""
         ccnl = load_ccnl("sistemazioni-idraulico-forestali-operai")
         lv = next(lv for lv in ccnl.levels if lv.code == "O3")
-        assert lv.base_salary.value_at(date(2027, 6, 1)) == Decimal("1507.52")
+        assert lv.base_salary.value_at(date(2027, 6, 1)) == Decimal("1507.53")
 
     def test_a181_operai_level_ordering(self) -> None:
         """O1 is lowest (order 1), O5 is highest (order 5)."""

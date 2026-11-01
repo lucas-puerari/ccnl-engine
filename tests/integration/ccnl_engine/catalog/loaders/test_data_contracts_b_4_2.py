@@ -352,16 +352,16 @@ class TestLoadSistemazioniIdraulicoForestaliImpiegati:
         assert codes == {"I1", "I2", "I3", "I4", "I5", "I6", "I6Q"}
 
     def test_a181_impiegati_level_i4_salary_tranche1(self) -> None:
-        """Level I4 base salary at 01/01/2026 is 1617.94 EUR."""
+        """Level I4 base salary at 01/01/2026 is 1618.07 EUR (Allegato B, p. 29)."""
         ccnl = load_ccnl("sistemazioni-idraulico-forestali-impiegati")
         lv = next(lv for lv in ccnl.levels if lv.code == "I4")
-        assert lv.base_salary.value_at(date(2026, 6, 1)) == Decimal("1617.94")
+        assert lv.base_salary.value_at(date(2026, 6, 1)) == Decimal("1618.07")
 
     def test_a181_impiegati_level_i4_salary_tranche2(self) -> None:
-        """Level I4 base salary at 01/01/2027 is 1657.43 EUR."""
+        """Level I4 base salary at 01/01/2027 is 1657.48 EUR (Allegato C, p. 30)."""
         ccnl = load_ccnl("sistemazioni-idraulico-forestali-impiegati")
         lv = next(lv for lv in ccnl.levels if lv.code == "I4")
-        assert lv.base_salary.value_at(date(2027, 6, 1)) == Decimal("1657.43")
+        assert lv.base_salary.value_at(date(2027, 6, 1)) == Decimal("1657.48")
 
     def test_a181_impiegati_level_ordering(self) -> None:
         """I1 is lowest (order 1), I6Q is highest (order 7)."""

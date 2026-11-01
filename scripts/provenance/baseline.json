@@ -1286,7 +1286,6 @@
     "agreement/sistemazioni-idraulico-forestali-impiegati.json": [
       "sistemazioni-idraulico-forestali-impiegati/apprentice_inps_rates_unsourced",
       "sistemazioni-idraulico-forestali-impiegati/apprentice_seniority",
-      "sistemazioni-idraulico-forestali-impiegati/derived_tranche_rounding",
       "sistemazioni-idraulico-forestali-impiegati/ind_funzione_transition_date",
       "sistemazioni-idraulico-forestali-impiegati/structural_rules_from_2021_text"
     ],

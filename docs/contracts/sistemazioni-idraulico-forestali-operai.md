@@ -45,7 +45,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 1 verified / 20 derived / 2 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 16 verified / 5 derived / 2 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -54,7 +54,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-12-04 |
-| **Last review** | 2026-10-18 |
+| **Last review** | 2026-11-01 |
 | **Latest salary tranche** | 2028-01-01 |
 
 ## Review history
@@ -62,6 +62,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | Date | Reviewer | Scope | Outcome | Findings |
 |---|---|---|---|---|
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | corrected | Art. 14 - Mensilità aggiuntive (13ª e 14ª) (p. 43): "dette mensilità aggiuntive sono frazionabili in dodicesimi nell’ipotesi di inizio o di cessazione del rapporto nel corso dell’anno. [...] La frazione di mese superiore a 15 giorni viene considerata come un mese intero.". Added: more_than 15 (the file applied the engine default, at least 15 days). |
+| 2026-11-01 | claude-opus-5-5 (ai) | Minimum pay of the operai forestali con rapporto di lavoro a tempo indeterminato from 1 January 2026, 2027 and 2028 against the tables of the signed 2025 renewal (Allegati B, C, C1, scanned pages read as images). AI review only. | corrected | The 2026-2028 minimums now cite the TOTALE NAZIONALE CONGLOBATO of the signed tables (pp. 29-31) instead of a secondary site and the Art. 35 parameters.<br>Level 3 in 2027 and 2028 was 1 cent below the table (1.507,53 and 1.528,09) and level 4 in 2026 1 cent above (1.537,90). |
 
 ## Salary table
 
@@ -71,7 +72,7 @@ Latest effective values per level (monthly gross, EUR).
 |---|---|---:|:---:|
 | `O5` | Operaio OTI 5° livello | € 1,695.97 | 2028-01-01 |
 | `O4` | Operaio OTI 4° livello | € 1,596.98 | 2028-01-01 |
-| `O3` | Operaio OTI 3° livello | € 1,528.08 | 2028-01-01 |
+| `O3` | Operaio OTI 3° livello | € 1,528.09 | 2028-01-01 |
 | `O2` | Operaio OTI 2° livello | € 1,491.16 | 2028-01-01 |
 | `O1` | Operaio OTI 1° livello | € 1,376.66 | 2028-01-01 |
 
