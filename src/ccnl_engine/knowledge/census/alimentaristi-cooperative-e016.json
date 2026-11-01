@@ -19,38 +19,6 @@
       }
     },
     {
-      "id": "apprenticeship_full_pay_passthrough",
-      "institute": "base_salary",
-      "variant": "apprentice",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "Apprenticeship rules involve per-level classification reduction not fully resolvable from available sources. Modeled as 100% passthrough for all levels.",
-      "calculation": "ccnl/alimentaristi-cooperative-e016:coverage.notes",
-      "state": "absent",
-      "remediation": "Source the per-level apprenticeship under-classification and model it as a track.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "alimentaristi-cooperative-e016/apprenticeship_full_pay_passthrough"
-        ]
-      }
-    },
-    {
-      "id": "apprenticeship_pct_undeclared_components",
-      "institute": "base_salary",
-      "variant": "apprentice",
-      "discriminant": "applies_when.trigger = path",
-      "rule": "A percentage apprenticeship reduces every fixed allowance whose apprenticeship_pct_relevant flag the data leaves at its default, together with the base salary. Whether the CCNL applies the percentage to that allowance (an EDR, a contingenza, a function allowance) was not sourced. The run is affected when such an allowance is in the apprentice's pay.",
-      "calculation": "ccnl_engine.apprenticeship.rules (percentage track chain)",
-      "state": "unverified",
-      "remediation": "Source, for each CCNL, the elements the apprenticeship percentage applies to and set apprenticeship_pct_relevant on every allowance; the limitation then no longer applies to its runs.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "apprenticeship_pct_undeclared_components"
-        ]
-      }
-    },
-    {
       "id": "arrears_unused_deductions",
       "institute": "contract_renewal_arrears",
       "variant": "all",

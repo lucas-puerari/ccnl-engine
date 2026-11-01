@@ -14,7 +14,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 0/134 CCNLs.** Bundle: 269 weak rules, 546 open limitations (546 with a monetary impact).
+**Complete: 0/134 CCNLs.** Bundle: 269 weak rules, 545 open limitations (545 with a monetary impact).
 
 ## Declared window
 
@@ -56,7 +56,7 @@ Future data, registered apart from the gaps: a contract whose validity ends insi
 | [agenzie-viaggio-fiavet](../contracts/agenzie-viaggio-fiavet.md) | `turismo` | exploratory | — | 23 rows | 23 open requirements; 1 weak rule; 19 monetary limitations; 1 outside_input limitation; 20 non-native capabilities |
 | [alimentari-federalimentare](../contracts/alimentari-federalimentare.md) | `alimentare` | reviewed | — | 25 rows | 25 open requirements; 20 monetary limitations; 3 outside_input limitations; 20 non-native capabilities |
 | [alimentari-pmi-unionalimentari](../contracts/alimentari-pmi-unionalimentari.md) | `alimentare` | exploratory | — | 22 rows | 22 open requirements; 1 weak rule; 19 monetary limitations; 19 non-native capabilities |
-| [alimentaristi-cooperative-e016](../contracts/alimentaristi-cooperative-e016.md) | `alimentare` | exploratory | — | 24 rows | 24 open requirements; 1 weak rule; 21 monetary limitations; 20 non-native capabilities |
+| [alimentaristi-cooperative-e016](../contracts/alimentaristi-cooperative-e016.md) | `alimentare` | exploratory | — | 22 rows | 22 open requirements; 1 weak rule; 19 monetary limitations; 19 non-native capabilities |
 | [anas](../contracts/anas.md) | `trasporti-logistica` | exploratory | — | 24 rows | tables from 2026-03-01; 24 open requirements; 1 weak rule; 21 monetary limitations; 19 non-native capabilities |
 | [assicurazioni-ania](../contracts/assicurazioni-ania.md) | `assicurazioni` | exploratory | — | 28 rows | 28 open requirements; 2 weak rules; 23 monetary limitations; 1 outside_input limitation; 21 non-native capabilities |
 | [attivita-minerarie-assorisorse](../contracts/attivita-minerarie-assorisorse.md) | `materiali-estrattive` | exploratory | — | 25 rows | 25 open requirements; 3 weak rules; 20 monetary limitations; 20 non-native capabilities |

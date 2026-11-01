@@ -152,8 +152,8 @@ _PCT_UNDECLARED = "apprenticeship_pct_undeclared_components"
 def test_undeclared_reduction_flag_blocks_a_percentage_apprentice() -> None:
     """A defaulted reduction flag on the apprentice's pay is unsourced."""
     result = _run(
-        "alimentaristi-cooperative-e016",
-        "4",
+        "autorimesse-ic35",
+        "Q1",
         Apprentice(months_elapsed=0),
         seniority=0,
     )

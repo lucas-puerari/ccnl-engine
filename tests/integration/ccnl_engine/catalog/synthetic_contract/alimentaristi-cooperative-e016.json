@@ -85,12 +85,36 @@
       "expected_amount": "51.42"
     }
   ],
-  "apprenticeship_pct_checks": [
+  "apprenticeship_uc_checks": [
     {
-      "level_code": "6",
-      "track_name": "professionalizzante",
+      "level_code": "5",
+      "track_name": "professionalizzante_5",
       "months_elapsed": 1,
-      "expected_pct": "1.00"
+      "expected_levels_below": 1
+    },
+    {
+      "level_code": "5",
+      "track_name": "professionalizzante_5",
+      "months_elapsed": 7,
+      "expected_levels_below": 0
+    },
+    {
+      "level_code": "4",
+      "track_name": "professionalizzante_4",
+      "months_elapsed": 19,
+      "expected_levels_below": 1
+    },
+    {
+      "level_code": "3A",
+      "track_name": "professionalizzante_3_2",
+      "months_elapsed": 22,
+      "expected_levels_below": 0
+    },
+    {
+      "level_code": "1",
+      "track_name": "professionalizzante_1",
+      "months_elapsed": 9,
+      "expected_levels_below": 2
     }
   ]
 }

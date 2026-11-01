@@ -33,9 +33,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, seniority |
+| **Limits of this contract** | seniority |
 
-3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -95,20 +95,21 @@ Latest effective values per level (monthly gross, EUR).
 
 ## Apprenticeship
 
-**professionalizzante** (type: `percentage`)  
-Destination levels: `6`, `5`, `4`, `3`, `3A`, `2`, `1`, `1A`  
-percentage: 1.00
+**professionalizzante_5** (type: `under_classification`)  
+Destination levels: `5`
+
+**professionalizzante_4** (type: `under_classification`)  
+Destination levels: `4`
+
+**professionalizzante_3_2** (type: `under_classification`)  
+Destination levels: `3`, `3A`, `2`
+
+**professionalizzante_1** (type: `under_classification`)  
+Destination levels: `1`
 
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
-
-!!! warning "alimentaristi-cooperative-e016/apprenticeship_full_pay_passthrough · base_salary · impact yes · open"
-    Apprenticeship rules involve per-level classification reduction not fully resolvable from available sources. Modeled as 100% passthrough for all levels.
-
-    **Applies when:** `base_salary` applies; contract type in apprentice.
-
-    **Remediation:** Source the per-level apprenticeship under-classification and model it as a track.
 
 !!! warning "alimentaristi-cooperative-e016/apprentice_seniority · seniority · impact unknown · open"
     APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.
@@ -123,13 +124,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
 
     **Remediation:** Resolved: the remaining CCNLs are tracked by their own apprentice_seniority limitation.
-
-!!! warning "apprenticeship_pct_undeclared_components · base_salary · impact unknown · open"
-    A percentage apprenticeship reduces every fixed allowance whose apprenticeship_pct_relevant flag the data leaves at its default, together with the base salary. Whether the CCNL applies the percentage to that allowance (an EDR, a contingenza, a function allowance) was not sourced. The run is affected when such an allowance is in the apprentice's pay.
-
-    **Applies when:** `base_salary` applies; the run takes the engine code path; contract type in apprentice.
-
-    **Remediation:** Source, for each CCNL, the elements the apprenticeship percentage applies to and set apprenticeship_pct_relevant on every allowance; the limitation then no longer applies to its runs.
 
 !!! note "sickness_inps_daily_base · sickness · impact unknown · resolved"
     The INPS share of a sick day is computed on the INPS daily base of the episode, on the days INPS pays (the weekdays of an operaio, every day but the national holidays on a Sunday of an impiegato, point 7.3 of INPS circ. 134368/1981): the retribuzione media globale giornaliera of the month before the illness (INPS circ. 134368/1981 point 11; circ. 55/2024 Allegato 1), whole or partial month, impiegato or operaio, or for the lavoratori dello spettacolo the average pay of the last 40 daily contributions, capped for a fixed-term worker (INPS circ. 132/2021 par. 2.4). The base is a fact of the payroll history the episode states (SicknessEpisode.inps_base).
@@ -306,6 +300,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     IAR first period from 01/12/2023: 1A=151.11, 1=131.39, 2=108.40, 3A=95.26, 3=85.41, 4=78.84, 5=72.27, 6=65.70. Second period from 01/09/2027.
     
     INPS: uses 2026-industria.json (TaxSector.INDUSTRIA). Alimentaristi cooperative are classified as industria for INPS purposes.
+    
+    APPRENTICESHIP (Art. 24): only the 5°, 4°, 3°, 3°A, 2° and 1° livello are destinations of the apprendistato professionalizzante; the 6° and the 1°A are not.
     
 
 ## Raw data
