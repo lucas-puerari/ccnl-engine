@@ -1045,8 +1045,7 @@
       "lavoro-domestico-convivente-orario-ridotto/babysitter_and_certification_allowances",
       "lavoro-domestico-convivente-orario-ridotto/extra_month_hours",
       "lavoro-domestico-convivente-orario-ridotto/hourly_inps_bracket_unvalidated",
-      "lavoro-domestico-convivente-orario-ridotto/hours_within_arrangement",
-      "lavoro-domestico-convivente-orario-ridotto/sick_board_lodging"
+      "lavoro-domestico-convivente-orario-ridotto/hours_within_arrangement"
     ],
     "agreement/lavoro-domestico-convivente.json": [
       "lavoro-domestico-convivente/annual_minimi_not_updated",
@@ -1054,7 +1053,6 @@
       "lavoro-domestico-convivente/hourly_inps_bracket_unvalidated",
       "lavoro-domestico-convivente/part_time_scaling",
       "lavoro-domestico-convivente/seniority_frozen_at_2026",
-      "lavoro-domestico-convivente/sick_board_lodging",
       "lavoro-domestico-convivente/tranches_from_2027"
     ],
     "agreement/lavoro-domestico-non-convivente.json": [

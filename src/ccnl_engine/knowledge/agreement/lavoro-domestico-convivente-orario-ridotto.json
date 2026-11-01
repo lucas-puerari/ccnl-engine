@@ -153,7 +153,7 @@
       },
       {
         "kind": "simplification",
-        "text": "Art. 27 c. 9: the conventional value of board and lodging is part of the sick pay only when the worker is not in hospital or in the employer's home. The request does not say where the worker is, so the engine pays the monthly pay as stated.",
+        "text": "Art. 27 c. 9: the conventional value of board and lodging is added to the sick pay only when the worker is not in hospital or in the employer's home. The sick pay is thirtieths of the cash monthly pay, without the value in kind; the sick days spent elsewhere are stated with BoardLodgingEvent, which pays that value in cash.",
         "capability": "sickness",
         "monetary_impact": "unknown",
         "limitation": {
@@ -161,7 +161,8 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Add a fact for the days in hospital or in the employer's home and leave the board and lodging out of their sick pay."
+          "remediation": "Resolved: the sick pay leaves the value in kind out, and BoardLodgingEvent pays it for the sick days outside hospital and the employer's home.",
+          "status": "resolved"
         }
       },
       {
@@ -784,7 +785,7 @@
     "effective_until": null,
     "source": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
     "verification_status": "unverified",
-    "source_hash": "e515bad9c3f0062fd63188d49f4bfae25b283bd59decbb84aac9e1e8f7b1cc6a",
+    "source_hash": "b099ddb07cd4dbfac68428932cc3cfa13d7e5665eb786042dcc118bcba1e2f58",
     "published_at": "2026-10-08",
     "source_type": "commercial_secondary"
   },
