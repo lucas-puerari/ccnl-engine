@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, seniority |
+| **Limits of this contract** | seniority |
 
-2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 1 verified / 40 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 25 verified / 40 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -50,14 +50,15 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2021-12-23 |
-| **Last review** | 2026-10-18 |
-| **Latest salary tranche** | 2025-06-01 |
+| **Last review** | 2026-11-01 |
+| **Latest salary tranche** | 2028-06-01 |
 
 ## Review history
 
 | Date | Reviewer | Scope | Outcome | Findings |
 |---|---|---|---|---|
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | confirmed | Disciplina speciale Parte prima, Art. 12 - Gratifica natalizia (operai); also Parte terza Art. 8 - Tredicesima mensilità, p. 93 (p. 85): "Nel caso di inizio o di cessazione del rapporto di lavoro durante il corso dell’anno, il lavoratore ha diritto a tanti dodicesimi della gratifica natalizia quanti sono i mesi di anzianità di servizio presso l’azienda. La frazione di mese superiore ai 15 giorni viene considerata a questi effetti come mese intero.". Match: more_than 15. |
+| 2026-11-01 | claude-opus-5-5 (ai) | Minimum pay from 1 October 2026 against the table of the signed 2026 renewal (scanned page 4 read as an image, checked against the FIOM-CGIL table of the same amounts). AI review only. | corrected | Added the minimums of 01/10/2026, 01/06/2027 and 01/06/2028 for levels 2 to 7 (7Q as 7); each equals the minimum of June 2025 plus the increment of the table 'Incrementi mensili' on the same page (2ª: 1574,39 + 42,85 = 1617,24).<br>Limitation renewal_2026_tables resolved. |
 
 ## Salary table
 
@@ -65,14 +66,14 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `7Q` | Level 7Q — top-level quadri | € 2,405.58 | 2025-06-01 |
-| `7` | Level 7 — quadri with significant managerial functions | € 2,405.58 | 2025-06-01 |
-| `6` | Level 6 — employees with managerial functions or specialist technicians | € 2,212.40 | 2025-06-01 |
-| `5S` | Level 5 Superior — workers with qualified executive autonomy | € 2,058.07 | 2025-06-01 |
-| `5` | Level 5 — highly specialised workers and white-collar employees | € 1,928.22 | 2025-06-01 |
-| `4` | Level 4 — specialist workers and qualified employees | € 1,804.87 | 2025-06-01 |
-| `3` | Level 3 — skilled workers and employees | € 1,734.59 | 2025-06-01 |
-| `2` | Level 2 — general workers and clerical employees | € 1,574.39 | 2025-06-01 |
+| `7Q` | Level 7Q — top-level quadri | € 2,624.22 | 2028-06-01 |
+| `7` | Level 7 — quadri with significant managerial functions | € 2,624.22 | 2028-06-01 |
+| `6` | Level 6 — employees with managerial functions or specialist technicians | € 2,413.48 | 2028-06-01 |
+| `5S` | Level 5 Superior — workers with qualified executive autonomy | € 2,245.12 | 2028-06-01 |
+| `5` | Level 5 — highly specialised workers and white-collar employees | € 2,103.47 | 2028-06-01 |
+| `4` | Level 4 — specialist workers and qualified employees | € 1,968.91 | 2028-06-01 |
+| `3` | Level 3 — skilled workers and employees | € 1,892.24 | 2028-06-01 |
+| `2` | Level 2 — general workers and clerical employees | € 1,717.48 | 2028-06-01 |
 
 ## Seniority increments
 
@@ -99,13 +100,6 @@ percentage: 0.95
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
-
-!!! warning "orafi-argentieri-industria-federorafi/renewal_2026_tables · base_salary · impact yes · open"
-    ULTRA-ACTIVITY: the 2026 renewal (signed 10/02/2026) has economic effects from 01/10/2026. The 2021 contract governs economically until 30/09/2026. The 2002 increments (from CCNL 2017 PDF) remain operative throughout the modelled period as neither the 2021 nor the 2026 renewal modified them.
-
-    **Applies when:** `base_salary` applies; from 2026-10-01.
-
-    **Remediation:** Model the minimi of the 2026 renewal (signed 10/02/2026) from 01/10/2026 onwards.
 
 !!! warning "orafi-argentieri-industria-federorafi/apprentice_seniority · seniority · impact unknown · open"
     APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.
@@ -302,6 +296,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     SENIORITY INCREMENTS: primary source — CCNL 2017 PDF (draft agreement 18/05/2017), General Provisions Section Three 'Aumenti Periodici di Anzianità', 'Valori mensili in vigore dal 1° gennaio 2002'. Confirmed: biennial cadence (24 months), maximum 5 bienniums per category. The 2021 renewal did not modify the increment amounts (not mentioned in the renewal economic clauses). Level Superior (5S) increment = 32.43 EUR confirmed from primary source — value 13.43 on secondary aggregators is incorrect. 7Q increment = 40.96 assumed equal to 7a (no explicit distinction in primary source).
     
     APPRENTICESHIP: three-period percentage (85%/90%/95%), standard duration 36 months. Primary source: CCNL 2021 PDF Annex 9 'Apprendistato professionalizzante'. Art. 4 Annex 9: 85% (months 1-12), 90% (months 13-24), 95% (months 25-36). Divisor 173 confirmed in the same Annex. The 36 months are stated as maximum duration; shorter individual contracts would pro-rate the bands — modelled as a fixed standard track (full 36 months).
+    
+    RENEWAL 2026 (ipotesi signed 10/02/2026, art. 47, p. 4): the minimums from 01/10/2026, 01/06/2027 and 01/06/2028; the 2021 tables govern until 30/09/2026. The agreement (p. 3) raises a year's minimums further when the IPCA adjustment exceeds its increments: the printed minimums are modelled. The welfare credit of art. 5 (200 EUR a year, 220 from 2028) is a benefit in kind outside the pay. The 2002 seniority increments and the function allowances of levels 7 and 7Q are not changed by the renewal.
     
     JUNE 2025 TRANCHE: values confirmed by two independent secondary sources — kitech.it (category 51) and ilccnl.it (tabelle retributive page, 2025-06-01 data). Both show identical amounts: 2=1574.39, 3=1734.59, 4=1804.87, 5=1928.22, 5S=2058.07, 6=2212.40, 7=2405.58, 7Q=2405.58. 10.54% increase consistent with IPCA+TEM mechanism in Art. 3 CCNL 2021. Cross-confirmed by FIOM-CGIL announcement (fiom-cgil.it, Jun 2025) citing the same mechanism.
     

@@ -81,18 +81,8 @@
         "text": "APPRENTICESHIP: three-period percentage (85%/90%/95%), standard duration 36 months. Primary source: CCNL 2021 PDF Annex 9 'Apprendistato professionalizzante'. Art. 4 Annex 9: 85% (months 1-12), 90% (months 13-24), 95% (months 25-36). Divisor 173 confirmed in the same Annex. The 36 months are stated as maximum duration; shorter individual contracts would pro-rate the bands — modelled as a fixed standard track (full 36 months)."
       },
       {
-        "kind": "simplification",
-        "text": "ULTRA-ACTIVITY: the 2026 renewal (signed 10/02/2026) has economic effects from 01/10/2026. The 2021 contract governs economically until 30/09/2026. The 2002 increments (from CCNL 2017 PDF) remain operative throughout the modelled period as neither the 2021 nor the 2026 renewal modified them.",
-        "capability": "base_salary",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "renewal_2026_tables",
-          "applies_when": {
-            "trigger": "run",
-            "effective_from": "2026-10-01"
-          },
-          "remediation": "Model the minimi of the 2026 renewal (signed 10/02/2026) from 01/10/2026 onwards."
-        }
+        "kind": "info",
+        "text": "RENEWAL 2026 (ipotesi signed 10/02/2026, art. 47, p. 4): the minimums from 01/10/2026, 01/06/2027 and 01/06/2028; the 2021 tables govern until 30/09/2026. The agreement (p. 3) raises a year's minimums further when the IPCA adjustment exceeds its increments: the printed minimums are modelled. The welfare credit of art. 5 (200 EUR a year, 220 from 2028) is a benefit in kind outside the pay. The 2002 seniority increments and the function allowances of levels 7 and 7Q are not changed by the renewal."
       },
       {
         "kind": "info",
@@ -152,6 +142,32 @@
         ],
         "findings": [
           "Disciplina speciale Parte prima, Art. 12 - Gratifica natalizia (operai); also Parte terza Art. 8 - Tredicesima mensilità, p. 93 (p. 85): \"Nel caso di inizio o di cessazione del rapporto di lavoro durante il corso dell’anno, il lavoratore ha diritto a tanti dodicesimi della gratifica natalizia quanti sono i mesi di anzianità di servizio presso l’azienda. La frazione di mese superiore ai 15 giorni viene considerata a questi effetti come mese intero.\". Match: more_than 15."
+        ]
+      },
+      {
+        "id": "2026-11-01-ai-renewal-2026",
+        "date": "2026-11-01",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Minimum pay from 1 October 2026 against the table of the signed 2026 renewal (scanned page 4 read as an image, checked against the FIOM-CGIL table of the same amounts). AI review only.",
+        "outcome": "corrected",
+        "independence": "same_process",
+        "checked": [
+          "levels.base_salary"
+        ],
+        "sources": [
+          {
+            "url": "https://www.uilmnazionale.it/wp-content/uploads/2026/02/20260210-rinnovo-CCNL-Industria-Orafa-Argentiera_FEDERORAFI-con-copertina.pdf",
+            "sha256": "6d6e945bccd716360debcc1b7519fb79979fb2c2d039e0395a2102adf5b16440"
+          },
+          {
+            "url": "https://www.fiom-cgil.it/attachments/article/13245/26_09_28-volantino-incrementi-orafi.pdf",
+            "sha256": "586e4becf2e2074c354ffd4e44d738ca864d771f087b9c7e1844d9b3ddc771f8"
+          }
+        ],
+        "findings": [
+          "Added the minimums of 01/10/2026, 01/06/2027 and 01/06/2028 for levels 2 to 7 (7Q as 7); each equals the minimum of June 2025 plus the increment of the table 'Incrementi mensili' on the same page (2ª: 1574,39 + 42,85 = 1617,24).",
+          "Limitation renewal_2026_tables resolved."
         ]
       }
     ]
@@ -386,7 +402,7 @@
           },
           {
             "valid_from": "2025-06-01",
-            "valid_until": null,
+            "valid_until": "2026-10-01",
             "value": "1574.39",
             "provenance": {
               "status": "derived",
@@ -404,6 +420,102 @@
                 "extraction_timestamp": "2026-09-07T15:03:36",
                 "verification_status": "unverified",
                 "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": "2027-06-01",
+            "value": "1617.24",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-orafi-ipotesi-rinnovo-2026-02-10",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per gli addetti all'industria orafa, argentiera e della gioielleria, 10 febbraio 2026, firmata (UILM)",
+                  "kind": "associazione",
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2026/02/20260210-rinnovo-CCNL-Industria-Orafa-Argentiera_FEDERORAFI-con-copertina.pdf",
+                  "published_on": "2026-02-10",
+                  "sha256": "6d6e945bccd716360debcc1b7519fb79979fb2c2d039e0395a2102adf5b16440"
+                },
+                "page": "4",
+                "section": "Art. 47 Parte salariale, Tabella minimi contrattuali lordi mensili (in €), column 'dal 01/10/2026', row 2ª",
+                "quote": "2ª 1617,24 1665,23 1717,48"
+              },
+              "transformation": "The minimum of 2ª dal 01/10/2026: 1617.24.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T20:56:27Z",
+                "verification_status": "verified",
+                "effective_from": "2026-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-01T20:56:27Z",
+                "review_id": "2026-11-01-ai-renewal-2026"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": "2028-06-01",
+            "value": "1665.23",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-orafi-ipotesi-rinnovo-2026-02-10",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per gli addetti all'industria orafa, argentiera e della gioielleria, 10 febbraio 2026, firmata (UILM)",
+                  "kind": "associazione",
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2026/02/20260210-rinnovo-CCNL-Industria-Orafa-Argentiera_FEDERORAFI-con-copertina.pdf",
+                  "published_on": "2026-02-10",
+                  "sha256": "6d6e945bccd716360debcc1b7519fb79979fb2c2d039e0395a2102adf5b16440"
+                },
+                "page": "4",
+                "section": "Art. 47 Parte salariale, Tabella minimi contrattuali lordi mensili (in €), column 'dal 01/06/2027', row 2ª",
+                "quote": "2ª 1617,24 1665,23 1717,48"
+              },
+              "transformation": "The minimum of 2ª dal 01/06/2027: 1665.23.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T20:56:27Z",
+                "verification_status": "verified",
+                "effective_from": "2027-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-01T20:56:27Z",
+                "review_id": "2026-11-01-ai-renewal-2026"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-06-01",
+            "valid_until": null,
+            "value": "1717.48",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-orafi-ipotesi-rinnovo-2026-02-10",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per gli addetti all'industria orafa, argentiera e della gioielleria, 10 febbraio 2026, firmata (UILM)",
+                  "kind": "associazione",
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2026/02/20260210-rinnovo-CCNL-Industria-Orafa-Argentiera_FEDERORAFI-con-copertina.pdf",
+                  "published_on": "2026-02-10",
+                  "sha256": "6d6e945bccd716360debcc1b7519fb79979fb2c2d039e0395a2102adf5b16440"
+                },
+                "page": "4",
+                "section": "Art. 47 Parte salariale, Tabella minimi contrattuali lordi mensili (in €), column 'dal 01/06/2028', row 2ª",
+                "quote": "2ª 1617,24 1665,23 1717,48"
+              },
+              "transformation": "The minimum of 2ª dal 01/06/2028: 1717.48.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T20:56:27Z",
+                "verification_status": "verified",
+                "effective_from": "2028-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-01T20:56:27Z",
+                "review_id": "2026-11-01-ai-renewal-2026"
               }
             }
           }
@@ -506,7 +618,7 @@
           },
           {
             "valid_from": "2025-06-01",
-            "valid_until": null,
+            "valid_until": "2026-10-01",
             "value": "1734.59",
             "provenance": {
               "status": "derived",
@@ -524,6 +636,102 @@
                 "extraction_timestamp": "2026-09-07T15:03:36",
                 "verification_status": "unverified",
                 "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": "2027-06-01",
+            "value": "1781.80",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-orafi-ipotesi-rinnovo-2026-02-10",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per gli addetti all'industria orafa, argentiera e della gioielleria, 10 febbraio 2026, firmata (UILM)",
+                  "kind": "associazione",
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2026/02/20260210-rinnovo-CCNL-Industria-Orafa-Argentiera_FEDERORAFI-con-copertina.pdf",
+                  "published_on": "2026-02-10",
+                  "sha256": "6d6e945bccd716360debcc1b7519fb79979fb2c2d039e0395a2102adf5b16440"
+                },
+                "page": "4",
+                "section": "Art. 47 Parte salariale, Tabella minimi contrattuali lordi mensili (in €), column 'dal 01/10/2026', row 3ª",
+                "quote": "3ª 1781,80 1834,67 1892,24"
+              },
+              "transformation": "The minimum of 3ª dal 01/10/2026: 1781.80.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T20:56:27Z",
+                "verification_status": "verified",
+                "effective_from": "2026-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-01T20:56:27Z",
+                "review_id": "2026-11-01-ai-renewal-2026"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": "2028-06-01",
+            "value": "1834.67",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-orafi-ipotesi-rinnovo-2026-02-10",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per gli addetti all'industria orafa, argentiera e della gioielleria, 10 febbraio 2026, firmata (UILM)",
+                  "kind": "associazione",
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2026/02/20260210-rinnovo-CCNL-Industria-Orafa-Argentiera_FEDERORAFI-con-copertina.pdf",
+                  "published_on": "2026-02-10",
+                  "sha256": "6d6e945bccd716360debcc1b7519fb79979fb2c2d039e0395a2102adf5b16440"
+                },
+                "page": "4",
+                "section": "Art. 47 Parte salariale, Tabella minimi contrattuali lordi mensili (in €), column 'dal 01/06/2027', row 3ª",
+                "quote": "3ª 1781,80 1834,67 1892,24"
+              },
+              "transformation": "The minimum of 3ª dal 01/06/2027: 1834.67.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T20:56:27Z",
+                "verification_status": "verified",
+                "effective_from": "2027-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-01T20:56:27Z",
+                "review_id": "2026-11-01-ai-renewal-2026"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-06-01",
+            "valid_until": null,
+            "value": "1892.24",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-orafi-ipotesi-rinnovo-2026-02-10",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per gli addetti all'industria orafa, argentiera e della gioielleria, 10 febbraio 2026, firmata (UILM)",
+                  "kind": "associazione",
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2026/02/20260210-rinnovo-CCNL-Industria-Orafa-Argentiera_FEDERORAFI-con-copertina.pdf",
+                  "published_on": "2026-02-10",
+                  "sha256": "6d6e945bccd716360debcc1b7519fb79979fb2c2d039e0395a2102adf5b16440"
+                },
+                "page": "4",
+                "section": "Art. 47 Parte salariale, Tabella minimi contrattuali lordi mensili (in €), column 'dal 01/06/2028', row 3ª",
+                "quote": "3ª 1781,80 1834,67 1892,24"
+              },
+              "transformation": "The minimum of 3ª dal 01/06/2028: 1892.24.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T20:56:27Z",
+                "verification_status": "verified",
+                "effective_from": "2028-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-01T20:56:27Z",
+                "review_id": "2026-11-01-ai-renewal-2026"
               }
             }
           }
@@ -626,7 +834,7 @@
           },
           {
             "valid_from": "2025-06-01",
-            "valid_until": null,
+            "valid_until": "2026-10-01",
             "value": "1804.87",
             "provenance": {
               "status": "derived",
@@ -644,6 +852,102 @@
                 "extraction_timestamp": "2026-09-07T15:03:36",
                 "verification_status": "unverified",
                 "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": "2027-06-01",
+            "value": "1853.99",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-orafi-ipotesi-rinnovo-2026-02-10",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per gli addetti all'industria orafa, argentiera e della gioielleria, 10 febbraio 2026, firmata (UILM)",
+                  "kind": "associazione",
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2026/02/20260210-rinnovo-CCNL-Industria-Orafa-Argentiera_FEDERORAFI-con-copertina.pdf",
+                  "published_on": "2026-02-10",
+                  "sha256": "6d6e945bccd716360debcc1b7519fb79979fb2c2d039e0395a2102adf5b16440"
+                },
+                "page": "4",
+                "section": "Art. 47 Parte salariale, Tabella minimi contrattuali lordi mensili (in €), column 'dal 01/10/2026', row 4ª",
+                "quote": "4ª 1853,99 1909,00 1968,91"
+              },
+              "transformation": "The minimum of 4ª dal 01/10/2026: 1853.99.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T20:56:27Z",
+                "verification_status": "verified",
+                "effective_from": "2026-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-01T20:56:27Z",
+                "review_id": "2026-11-01-ai-renewal-2026"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": "2028-06-01",
+            "value": "1909.00",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-orafi-ipotesi-rinnovo-2026-02-10",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per gli addetti all'industria orafa, argentiera e della gioielleria, 10 febbraio 2026, firmata (UILM)",
+                  "kind": "associazione",
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2026/02/20260210-rinnovo-CCNL-Industria-Orafa-Argentiera_FEDERORAFI-con-copertina.pdf",
+                  "published_on": "2026-02-10",
+                  "sha256": "6d6e945bccd716360debcc1b7519fb79979fb2c2d039e0395a2102adf5b16440"
+                },
+                "page": "4",
+                "section": "Art. 47 Parte salariale, Tabella minimi contrattuali lordi mensili (in €), column 'dal 01/06/2027', row 4ª",
+                "quote": "4ª 1853,99 1909,00 1968,91"
+              },
+              "transformation": "The minimum of 4ª dal 01/06/2027: 1909.00.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T20:56:27Z",
+                "verification_status": "verified",
+                "effective_from": "2027-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-01T20:56:27Z",
+                "review_id": "2026-11-01-ai-renewal-2026"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-06-01",
+            "valid_until": null,
+            "value": "1968.91",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-orafi-ipotesi-rinnovo-2026-02-10",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per gli addetti all'industria orafa, argentiera e della gioielleria, 10 febbraio 2026, firmata (UILM)",
+                  "kind": "associazione",
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2026/02/20260210-rinnovo-CCNL-Industria-Orafa-Argentiera_FEDERORAFI-con-copertina.pdf",
+                  "published_on": "2026-02-10",
+                  "sha256": "6d6e945bccd716360debcc1b7519fb79979fb2c2d039e0395a2102adf5b16440"
+                },
+                "page": "4",
+                "section": "Art. 47 Parte salariale, Tabella minimi contrattuali lordi mensili (in €), column 'dal 01/06/2028', row 4ª",
+                "quote": "4ª 1853,99 1909,00 1968,91"
+              },
+              "transformation": "The minimum of 4ª dal 01/06/2028: 1968.91.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T20:56:27Z",
+                "verification_status": "verified",
+                "effective_from": "2028-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-01T20:56:27Z",
+                "review_id": "2026-11-01-ai-renewal-2026"
               }
             }
           }
@@ -746,7 +1050,7 @@
           },
           {
             "valid_from": "2025-06-01",
-            "valid_until": null,
+            "valid_until": "2026-10-01",
             "value": "1928.22",
             "provenance": {
               "status": "derived",
@@ -764,6 +1068,102 @@
                 "extraction_timestamp": "2026-09-07T15:03:36",
                 "verification_status": "unverified",
                 "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": "2027-06-01",
+            "value": "1980.70",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-orafi-ipotesi-rinnovo-2026-02-10",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per gli addetti all'industria orafa, argentiera e della gioielleria, 10 febbraio 2026, firmata (UILM)",
+                  "kind": "associazione",
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2026/02/20260210-rinnovo-CCNL-Industria-Orafa-Argentiera_FEDERORAFI-con-copertina.pdf",
+                  "published_on": "2026-02-10",
+                  "sha256": "6d6e945bccd716360debcc1b7519fb79979fb2c2d039e0395a2102adf5b16440"
+                },
+                "page": "4",
+                "section": "Art. 47 Parte salariale, Tabella minimi contrattuali lordi mensili (in €), column 'dal 01/10/2026', row 5ª",
+                "quote": "5ª 1980,7 2039,47 2103,47"
+              },
+              "transformation": "The minimum of 5ª dal 01/10/2026: 1980.70.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T20:56:27Z",
+                "verification_status": "verified",
+                "effective_from": "2026-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-01T20:56:27Z",
+                "review_id": "2026-11-01-ai-renewal-2026"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": "2028-06-01",
+            "value": "2039.47",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-orafi-ipotesi-rinnovo-2026-02-10",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per gli addetti all'industria orafa, argentiera e della gioielleria, 10 febbraio 2026, firmata (UILM)",
+                  "kind": "associazione",
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2026/02/20260210-rinnovo-CCNL-Industria-Orafa-Argentiera_FEDERORAFI-con-copertina.pdf",
+                  "published_on": "2026-02-10",
+                  "sha256": "6d6e945bccd716360debcc1b7519fb79979fb2c2d039e0395a2102adf5b16440"
+                },
+                "page": "4",
+                "section": "Art. 47 Parte salariale, Tabella minimi contrattuali lordi mensili (in €), column 'dal 01/06/2027', row 5ª",
+                "quote": "5ª 1980,7 2039,47 2103,47"
+              },
+              "transformation": "The minimum of 5ª dal 01/06/2027: 2039.47.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T20:56:27Z",
+                "verification_status": "verified",
+                "effective_from": "2027-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-01T20:56:27Z",
+                "review_id": "2026-11-01-ai-renewal-2026"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-06-01",
+            "valid_until": null,
+            "value": "2103.47",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-orafi-ipotesi-rinnovo-2026-02-10",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per gli addetti all'industria orafa, argentiera e della gioielleria, 10 febbraio 2026, firmata (UILM)",
+                  "kind": "associazione",
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2026/02/20260210-rinnovo-CCNL-Industria-Orafa-Argentiera_FEDERORAFI-con-copertina.pdf",
+                  "published_on": "2026-02-10",
+                  "sha256": "6d6e945bccd716360debcc1b7519fb79979fb2c2d039e0395a2102adf5b16440"
+                },
+                "page": "4",
+                "section": "Art. 47 Parte salariale, Tabella minimi contrattuali lordi mensili (in €), column 'dal 01/06/2028', row 5ª",
+                "quote": "5ª 1980,7 2039,47 2103,47"
+              },
+              "transformation": "The minimum of 5ª dal 01/06/2028: 2103.47.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T20:56:27Z",
+                "verification_status": "verified",
+                "effective_from": "2028-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-01T20:56:27Z",
+                "review_id": "2026-11-01-ai-renewal-2026"
               }
             }
           }
@@ -866,7 +1266,7 @@
           },
           {
             "valid_from": "2025-06-01",
-            "valid_until": null,
+            "valid_until": "2026-10-01",
             "value": "2058.07",
             "provenance": {
               "status": "derived",
@@ -884,6 +1284,102 @@
                 "extraction_timestamp": "2026-09-07T15:03:36",
                 "verification_status": "unverified",
                 "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": "2027-06-01",
+            "value": "2114.08",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-orafi-ipotesi-rinnovo-2026-02-10",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per gli addetti all'industria orafa, argentiera e della gioielleria, 10 febbraio 2026, firmata (UILM)",
+                  "kind": "associazione",
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2026/02/20260210-rinnovo-CCNL-Industria-Orafa-Argentiera_FEDERORAFI-con-copertina.pdf",
+                  "published_on": "2026-02-10",
+                  "sha256": "6d6e945bccd716360debcc1b7519fb79979fb2c2d039e0395a2102adf5b16440"
+                },
+                "page": "4",
+                "section": "Art. 47 Parte salariale, Tabella minimi contrattuali lordi mensili (in €), column 'dal 01/10/2026', row 5ª Super",
+                "quote": "5ª Super 2114,08 2176,81 2245,12"
+              },
+              "transformation": "The minimum of 5ª Super dal 01/10/2026: 2114.08.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T20:56:27Z",
+                "verification_status": "verified",
+                "effective_from": "2026-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-01T20:56:27Z",
+                "review_id": "2026-11-01-ai-renewal-2026"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": "2028-06-01",
+            "value": "2176.81",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-orafi-ipotesi-rinnovo-2026-02-10",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per gli addetti all'industria orafa, argentiera e della gioielleria, 10 febbraio 2026, firmata (UILM)",
+                  "kind": "associazione",
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2026/02/20260210-rinnovo-CCNL-Industria-Orafa-Argentiera_FEDERORAFI-con-copertina.pdf",
+                  "published_on": "2026-02-10",
+                  "sha256": "6d6e945bccd716360debcc1b7519fb79979fb2c2d039e0395a2102adf5b16440"
+                },
+                "page": "4",
+                "section": "Art. 47 Parte salariale, Tabella minimi contrattuali lordi mensili (in €), column 'dal 01/06/2027', row 5ª Super",
+                "quote": "5ª Super 2114,08 2176,81 2245,12"
+              },
+              "transformation": "The minimum of 5ª Super dal 01/06/2027: 2176.81.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T20:56:27Z",
+                "verification_status": "verified",
+                "effective_from": "2027-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-01T20:56:27Z",
+                "review_id": "2026-11-01-ai-renewal-2026"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-06-01",
+            "valid_until": null,
+            "value": "2245.12",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-orafi-ipotesi-rinnovo-2026-02-10",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per gli addetti all'industria orafa, argentiera e della gioielleria, 10 febbraio 2026, firmata (UILM)",
+                  "kind": "associazione",
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2026/02/20260210-rinnovo-CCNL-Industria-Orafa-Argentiera_FEDERORAFI-con-copertina.pdf",
+                  "published_on": "2026-02-10",
+                  "sha256": "6d6e945bccd716360debcc1b7519fb79979fb2c2d039e0395a2102adf5b16440"
+                },
+                "page": "4",
+                "section": "Art. 47 Parte salariale, Tabella minimi contrattuali lordi mensili (in €), column 'dal 01/06/2028', row 5ª Super",
+                "quote": "5ª Super 2114,08 2176,81 2245,12"
+              },
+              "transformation": "The minimum of 5ª Super dal 01/06/2028: 2245.12.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T20:56:27Z",
+                "verification_status": "verified",
+                "effective_from": "2028-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-01T20:56:27Z",
+                "review_id": "2026-11-01-ai-renewal-2026"
               }
             }
           }
@@ -986,7 +1482,7 @@
           },
           {
             "valid_from": "2025-06-01",
-            "valid_until": null,
+            "valid_until": "2026-10-01",
             "value": "2212.40",
             "provenance": {
               "status": "derived",
@@ -1004,6 +1500,102 @@
                 "extraction_timestamp": "2026-09-07T15:03:36",
                 "verification_status": "unverified",
                 "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": "2027-06-01",
+            "value": "2272.61",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-orafi-ipotesi-rinnovo-2026-02-10",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per gli addetti all'industria orafa, argentiera e della gioielleria, 10 febbraio 2026, firmata (UILM)",
+                  "kind": "associazione",
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2026/02/20260210-rinnovo-CCNL-Industria-Orafa-Argentiera_FEDERORAFI-con-copertina.pdf",
+                  "published_on": "2026-02-10",
+                  "sha256": "6d6e945bccd716360debcc1b7519fb79979fb2c2d039e0395a2102adf5b16440"
+                },
+                "page": "4",
+                "section": "Art. 47 Parte salariale, Tabella minimi contrattuali lordi mensili (in €), column 'dal 01/10/2026', row 6ª",
+                "quote": "6ª 2272,61 2340,05 2413,48"
+              },
+              "transformation": "The minimum of 6ª dal 01/10/2026: 2272.61.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T20:56:27Z",
+                "verification_status": "verified",
+                "effective_from": "2026-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-01T20:56:27Z",
+                "review_id": "2026-11-01-ai-renewal-2026"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": "2028-06-01",
+            "value": "2340.05",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-orafi-ipotesi-rinnovo-2026-02-10",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per gli addetti all'industria orafa, argentiera e della gioielleria, 10 febbraio 2026, firmata (UILM)",
+                  "kind": "associazione",
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2026/02/20260210-rinnovo-CCNL-Industria-Orafa-Argentiera_FEDERORAFI-con-copertina.pdf",
+                  "published_on": "2026-02-10",
+                  "sha256": "6d6e945bccd716360debcc1b7519fb79979fb2c2d039e0395a2102adf5b16440"
+                },
+                "page": "4",
+                "section": "Art. 47 Parte salariale, Tabella minimi contrattuali lordi mensili (in €), column 'dal 01/06/2027', row 6ª",
+                "quote": "6ª 2272,61 2340,05 2413,48"
+              },
+              "transformation": "The minimum of 6ª dal 01/06/2027: 2340.05.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T20:56:27Z",
+                "verification_status": "verified",
+                "effective_from": "2027-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-01T20:56:27Z",
+                "review_id": "2026-11-01-ai-renewal-2026"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-06-01",
+            "valid_until": null,
+            "value": "2413.48",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-orafi-ipotesi-rinnovo-2026-02-10",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per gli addetti all'industria orafa, argentiera e della gioielleria, 10 febbraio 2026, firmata (UILM)",
+                  "kind": "associazione",
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2026/02/20260210-rinnovo-CCNL-Industria-Orafa-Argentiera_FEDERORAFI-con-copertina.pdf",
+                  "published_on": "2026-02-10",
+                  "sha256": "6d6e945bccd716360debcc1b7519fb79979fb2c2d039e0395a2102adf5b16440"
+                },
+                "page": "4",
+                "section": "Art. 47 Parte salariale, Tabella minimi contrattuali lordi mensili (in €), column 'dal 01/06/2028', row 6ª",
+                "quote": "6ª 2272,61 2340,05 2413,48"
+              },
+              "transformation": "The minimum of 6ª dal 01/06/2028: 2413.48.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T20:56:27Z",
+                "verification_status": "verified",
+                "effective_from": "2028-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-01T20:56:27Z",
+                "review_id": "2026-11-01-ai-renewal-2026"
               }
             }
           }
@@ -1106,7 +1698,7 @@
           },
           {
             "valid_from": "2025-06-01",
-            "valid_until": null,
+            "valid_until": "2026-10-01",
             "value": "2405.58",
             "provenance": {
               "status": "derived",
@@ -1124,6 +1716,102 @@
                 "extraction_timestamp": "2026-09-07T15:03:36",
                 "verification_status": "unverified",
                 "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": "2027-06-01",
+            "value": "2471.05",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-orafi-ipotesi-rinnovo-2026-02-10",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per gli addetti all'industria orafa, argentiera e della gioielleria, 10 febbraio 2026, firmata (UILM)",
+                  "kind": "associazione",
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2026/02/20260210-rinnovo-CCNL-Industria-Orafa-Argentiera_FEDERORAFI-con-copertina.pdf",
+                  "published_on": "2026-02-10",
+                  "sha256": "6d6e945bccd716360debcc1b7519fb79979fb2c2d039e0395a2102adf5b16440"
+                },
+                "page": "4",
+                "section": "Art. 47 Parte salariale, Tabella minimi contrattuali lordi mensili (in €), column 'dal 01/10/2026', row 7ª",
+                "quote": "7ª 2471,05 2544,37 2624,22"
+              },
+              "transformation": "The minimum of 7ª dal 01/10/2026: 2471.05.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T20:56:27Z",
+                "verification_status": "verified",
+                "effective_from": "2026-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-01T20:56:27Z",
+                "review_id": "2026-11-01-ai-renewal-2026"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": "2028-06-01",
+            "value": "2544.37",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-orafi-ipotesi-rinnovo-2026-02-10",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per gli addetti all'industria orafa, argentiera e della gioielleria, 10 febbraio 2026, firmata (UILM)",
+                  "kind": "associazione",
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2026/02/20260210-rinnovo-CCNL-Industria-Orafa-Argentiera_FEDERORAFI-con-copertina.pdf",
+                  "published_on": "2026-02-10",
+                  "sha256": "6d6e945bccd716360debcc1b7519fb79979fb2c2d039e0395a2102adf5b16440"
+                },
+                "page": "4",
+                "section": "Art. 47 Parte salariale, Tabella minimi contrattuali lordi mensili (in €), column 'dal 01/06/2027', row 7ª",
+                "quote": "7ª 2471,05 2544,37 2624,22"
+              },
+              "transformation": "The minimum of 7ª dal 01/06/2027: 2544.37.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T20:56:27Z",
+                "verification_status": "verified",
+                "effective_from": "2027-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-01T20:56:27Z",
+                "review_id": "2026-11-01-ai-renewal-2026"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-06-01",
+            "valid_until": null,
+            "value": "2624.22",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-orafi-ipotesi-rinnovo-2026-02-10",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per gli addetti all'industria orafa, argentiera e della gioielleria, 10 febbraio 2026, firmata (UILM)",
+                  "kind": "associazione",
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2026/02/20260210-rinnovo-CCNL-Industria-Orafa-Argentiera_FEDERORAFI-con-copertina.pdf",
+                  "published_on": "2026-02-10",
+                  "sha256": "6d6e945bccd716360debcc1b7519fb79979fb2c2d039e0395a2102adf5b16440"
+                },
+                "page": "4",
+                "section": "Art. 47 Parte salariale, Tabella minimi contrattuali lordi mensili (in €), column 'dal 01/06/2028', row 7ª",
+                "quote": "7ª 2471,05 2544,37 2624,22"
+              },
+              "transformation": "The minimum of 7ª dal 01/06/2028: 2624.22.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T20:56:27Z",
+                "verification_status": "verified",
+                "effective_from": "2028-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-01T20:56:27Z",
+                "review_id": "2026-11-01-ai-renewal-2026"
               }
             }
           }
@@ -1259,7 +1947,7 @@
           },
           {
             "valid_from": "2025-06-01",
-            "valid_until": null,
+            "valid_until": "2026-10-01",
             "value": "2405.58",
             "provenance": {
               "status": "derived",
@@ -1278,6 +1966,105 @@
                 "verification_status": "unverified",
                 "effective_from": "2020-01-01"
               }
+            }
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": "2027-06-01",
+            "value": "2471.05",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-orafi-ipotesi-rinnovo-2026-02-10",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per gli addetti all'industria orafa, argentiera e della gioielleria, 10 febbraio 2026, firmata (UILM)",
+                  "kind": "associazione",
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2026/02/20260210-rinnovo-CCNL-Industria-Orafa-Argentiera_FEDERORAFI-con-copertina.pdf",
+                  "published_on": "2026-02-10",
+                  "sha256": "6d6e945bccd716360debcc1b7519fb79979fb2c2d039e0395a2102adf5b16440"
+                },
+                "page": "4",
+                "section": "Art. 47 Parte salariale, Tabella minimi contrattuali lordi mensili (in €), column 'dal 01/10/2026', row 7ª",
+                "quote": "7ª 2471,05 2544,37 2624,22"
+              },
+              "transformation": "The minimum of 7ª dal 01/10/2026: 2471.05.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T20:56:27Z",
+                "verification_status": "verified",
+                "effective_from": "2026-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-01T20:56:27Z",
+                "review_id": "2026-11-01-ai-renewal-2026"
+              },
+              "note": "Level 7Q is not in the table: it takes the minimum of level 7, as in the earlier tables of the ruleset."
+            }
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": "2028-06-01",
+            "value": "2544.37",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-orafi-ipotesi-rinnovo-2026-02-10",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per gli addetti all'industria orafa, argentiera e della gioielleria, 10 febbraio 2026, firmata (UILM)",
+                  "kind": "associazione",
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2026/02/20260210-rinnovo-CCNL-Industria-Orafa-Argentiera_FEDERORAFI-con-copertina.pdf",
+                  "published_on": "2026-02-10",
+                  "sha256": "6d6e945bccd716360debcc1b7519fb79979fb2c2d039e0395a2102adf5b16440"
+                },
+                "page": "4",
+                "section": "Art. 47 Parte salariale, Tabella minimi contrattuali lordi mensili (in €), column 'dal 01/06/2027', row 7ª",
+                "quote": "7ª 2471,05 2544,37 2624,22"
+              },
+              "transformation": "The minimum of 7ª dal 01/06/2027: 2544.37.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T20:56:27Z",
+                "verification_status": "verified",
+                "effective_from": "2027-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-01T20:56:27Z",
+                "review_id": "2026-11-01-ai-renewal-2026"
+              },
+              "note": "Level 7Q is not in the table: it takes the minimum of level 7, as in the earlier tables of the ruleset."
+            }
+          },
+          {
+            "valid_from": "2028-06-01",
+            "valid_until": null,
+            "value": "2624.22",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-orafi-ipotesi-rinnovo-2026-02-10",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL per gli addetti all'industria orafa, argentiera e della gioielleria, 10 febbraio 2026, firmata (UILM)",
+                  "kind": "associazione",
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2026/02/20260210-rinnovo-CCNL-Industria-Orafa-Argentiera_FEDERORAFI-con-copertina.pdf",
+                  "published_on": "2026-02-10",
+                  "sha256": "6d6e945bccd716360debcc1b7519fb79979fb2c2d039e0395a2102adf5b16440"
+                },
+                "page": "4",
+                "section": "Art. 47 Parte salariale, Tabella minimi contrattuali lordi mensili (in €), column 'dal 01/06/2028', row 7ª",
+                "quote": "7ª 2471,05 2544,37 2624,22"
+              },
+              "transformation": "The minimum of 7ª dal 01/06/2028: 2624.22.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-01T20:56:27Z",
+                "verification_status": "verified",
+                "effective_from": "2028-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-01T20:56:27Z",
+                "review_id": "2026-11-01-ai-renewal-2026"
+              },
+              "note": "Level 7Q is not in the table: it takes the minimum of level 7, as in the earlier tables of the ruleset."
             }
           }
         ]
@@ -1376,7 +2163,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2022/01/20211223-CCNL-Orafi-ipotesi-di-rinnovo-apprendistato-firmato.pdf",
     "verification_status": "unverified",
-    "source_hash": "8d07401488803d0b756c76a62733a594d5295553dd265d012ed0257b6e384f43",
+    "source_hash": "f6a02420c3ca8af5e2e82ee6578767ba0ff358d3dd48e14cc4579ba859233c82",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
