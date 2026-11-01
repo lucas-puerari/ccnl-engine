@@ -455,10 +455,10 @@
           "extraction": {
             "method": "ai",
             "model": "claude-opus-5-5",
-            "extraction_timestamp": "2026-11-01T17:00:00Z",
+            "extraction_timestamp": "2026-11-01T10:54:25Z",
             "effective_from": "2024-01-01",
             "verified_by": "claude-opus-5-5",
-            "verified_at": "2026-11-01T17:00:00Z",
+            "verified_at": "2026-11-01T10:54:25Z",
             "verification_status": "verified",
             "review_id": "2026-11-01-ai-una-tantum"
           }
@@ -3803,7 +3803,7 @@
     "effective_until": "2026-12-31",
     "source": "https://anav.it/wp-content/uploads/2025/05/accordo-nazionale-di-rinnovo-del-ccnl-noleggio-autobus-con-conducente-e-le-relativie-attivita-correlate-23-maggio-2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "71a971b67dd3ea13c97985ba38656131360f2bbc30ab2cdf08d79721b7b95692",
+    "source_hash": "11e0f8ad71421340844096c8634e174493e3bc608836093bd58e8c0cae3c062d",
     "published_at": "2026-09-18",
     "source_type": "contracting_party"
   }

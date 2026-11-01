@@ -1233,7 +1233,7 @@
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=13",
     "verification_status": "unverified",
     "published_at": "2026-09-11",
-    "source_hash": "dfe1df5c2d5997931fa81b2df710a3905b3d6cf4792b8f4b91f7de1d2a585ab0",
+    "source_hash": "d449f3c12437edb9f3bace2c4d82036bf6cc5d35b80432229dfec8e868bc129b",
     "source_type": "commercial_secondary"
   },
   "work_rules": {
@@ -1686,9 +1686,9 @@
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-11-01T21:00:00Z",
+          "extraction_timestamp": "2026-11-01T12:51:22Z",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-11-01T21:00:00Z",
+          "verified_at": "2026-11-01T12:51:22Z",
           "verification_status": "verified"
         }
       }

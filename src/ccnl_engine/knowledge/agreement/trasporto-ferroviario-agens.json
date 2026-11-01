@@ -2496,7 +2496,7 @@
     "effective_until": "2026-12-31",
     "source": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2025/contratto_mobilita_area_af_22.05.2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "51d6f4e48317f82d54c67c6597f064693f647e2f360486f7dd2d6b3375739b1e",
+    "source_hash": "b0c9a7bb6eb3d17a9f44baa9c7cd61e14260292a6f3f2745f72de2da8d83da64",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2756,9 +2756,9 @@
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-11-01T21:00:00Z",
+          "extraction_timestamp": "2026-11-01T12:51:22Z",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-11-01T21:00:00Z",
+          "verified_at": "2026-11-01T12:51:22Z",
           "verification_status": "verified",
           "review_id": "2026-11-01-ai-notice"
         }

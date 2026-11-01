@@ -368,7 +368,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:00:00Z",
+                "extraction_timestamp": "2026-11-01T13:00:32Z",
                 "effective_from": "2027-04-01",
                 "verification_status": "unverified"
               }
@@ -397,7 +397,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:00:00Z",
+                "extraction_timestamp": "2026-11-01T13:00:32Z",
                 "effective_from": "2027-12-01",
                 "verification_status": "unverified"
               }
@@ -426,7 +426,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:00:00Z",
+                "extraction_timestamp": "2026-11-01T13:00:32Z",
                 "effective_from": "2028-06-01",
                 "verification_status": "unverified"
               }
@@ -455,7 +455,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:00:00Z",
+                "extraction_timestamp": "2026-11-01T13:00:32Z",
                 "effective_from": "2028-12-01",
                 "verification_status": "unverified"
               }
@@ -542,7 +542,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:00:00Z",
+                "extraction_timestamp": "2026-11-01T13:00:32Z",
                 "effective_from": "2027-04-01",
                 "verification_status": "unverified"
               }
@@ -571,7 +571,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:00:00Z",
+                "extraction_timestamp": "2026-11-01T13:00:32Z",
                 "effective_from": "2027-12-01",
                 "verification_status": "unverified"
               }
@@ -600,7 +600,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:00:00Z",
+                "extraction_timestamp": "2026-11-01T13:00:32Z",
                 "effective_from": "2028-06-01",
                 "verification_status": "unverified"
               }
@@ -629,7 +629,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:00:00Z",
+                "extraction_timestamp": "2026-11-01T13:00:32Z",
                 "effective_from": "2028-12-01",
                 "verification_status": "unverified"
               }
@@ -716,7 +716,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:00:00Z",
+                "extraction_timestamp": "2026-11-01T13:00:32Z",
                 "effective_from": "2027-04-01",
                 "verification_status": "unverified"
               }
@@ -745,7 +745,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:00:00Z",
+                "extraction_timestamp": "2026-11-01T13:00:32Z",
                 "effective_from": "2027-12-01",
                 "verification_status": "unverified"
               }
@@ -774,7 +774,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:00:00Z",
+                "extraction_timestamp": "2026-11-01T13:00:32Z",
                 "effective_from": "2028-06-01",
                 "verification_status": "unverified"
               }
@@ -803,7 +803,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:00:00Z",
+                "extraction_timestamp": "2026-11-01T13:00:32Z",
                 "effective_from": "2028-12-01",
                 "verification_status": "unverified"
               }
@@ -890,7 +890,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:00:00Z",
+                "extraction_timestamp": "2026-11-01T13:00:32Z",
                 "effective_from": "2027-04-01",
                 "verification_status": "unverified"
               }
@@ -919,7 +919,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:00:00Z",
+                "extraction_timestamp": "2026-11-01T13:00:32Z",
                 "effective_from": "2027-12-01",
                 "verification_status": "unverified"
               }
@@ -948,7 +948,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:00:00Z",
+                "extraction_timestamp": "2026-11-01T13:00:32Z",
                 "effective_from": "2028-06-01",
                 "verification_status": "unverified"
               }
@@ -977,7 +977,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:00:00Z",
+                "extraction_timestamp": "2026-11-01T13:00:32Z",
                 "effective_from": "2028-12-01",
                 "verification_status": "unverified"
               }
@@ -1064,7 +1064,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:00:00Z",
+                "extraction_timestamp": "2026-11-01T13:00:32Z",
                 "effective_from": "2027-04-01",
                 "verification_status": "unverified"
               }
@@ -1093,7 +1093,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:00:00Z",
+                "extraction_timestamp": "2026-11-01T13:00:32Z",
                 "effective_from": "2027-12-01",
                 "verification_status": "unverified"
               }
@@ -1122,7 +1122,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:00:00Z",
+                "extraction_timestamp": "2026-11-01T13:00:32Z",
                 "effective_from": "2028-06-01",
                 "verification_status": "unverified"
               }
@@ -1151,7 +1151,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:00:00Z",
+                "extraction_timestamp": "2026-11-01T13:00:32Z",
                 "effective_from": "2028-12-01",
                 "verification_status": "unverified"
               }
@@ -1270,7 +1270,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:00:00Z",
+                "extraction_timestamp": "2026-11-01T13:00:32Z",
                 "effective_from": "2027-04-01",
                 "verification_status": "unverified"
               }
@@ -1299,7 +1299,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:00:00Z",
+                "extraction_timestamp": "2026-11-01T13:00:32Z",
                 "effective_from": "2027-12-01",
                 "verification_status": "unverified"
               }
@@ -1328,7 +1328,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:00:00Z",
+                "extraction_timestamp": "2026-11-01T13:00:32Z",
                 "effective_from": "2028-06-01",
                 "verification_status": "unverified"
               }
@@ -1357,7 +1357,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:00:00Z",
+                "extraction_timestamp": "2026-11-01T13:00:32Z",
                 "effective_from": "2028-12-01",
                 "verification_status": "unverified"
               }
@@ -1476,7 +1476,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:00:00Z",
+                "extraction_timestamp": "2026-11-01T13:00:32Z",
                 "effective_from": "2027-04-01",
                 "verification_status": "unverified"
               }
@@ -1505,7 +1505,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:00:00Z",
+                "extraction_timestamp": "2026-11-01T13:00:32Z",
                 "effective_from": "2027-12-01",
                 "verification_status": "unverified"
               }
@@ -1534,7 +1534,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:00:00Z",
+                "extraction_timestamp": "2026-11-01T13:00:32Z",
                 "effective_from": "2028-06-01",
                 "verification_status": "unverified"
               }
@@ -1563,7 +1563,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:00:00Z",
+                "extraction_timestamp": "2026-11-01T13:00:32Z",
                 "effective_from": "2028-12-01",
                 "verification_status": "unverified"
               }
@@ -1682,7 +1682,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:00:00Z",
+                "extraction_timestamp": "2026-11-01T13:00:32Z",
                 "effective_from": "2027-04-01",
                 "verification_status": "unverified"
               }
@@ -1711,7 +1711,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:00:00Z",
+                "extraction_timestamp": "2026-11-01T13:00:32Z",
                 "effective_from": "2027-12-01",
                 "verification_status": "unverified"
               }
@@ -1740,7 +1740,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:00:00Z",
+                "extraction_timestamp": "2026-11-01T13:00:32Z",
                 "effective_from": "2028-06-01",
                 "verification_status": "unverified"
               }
@@ -1769,7 +1769,7 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:00:00Z",
+                "extraction_timestamp": "2026-11-01T13:00:32Z",
                 "effective_from": "2028-12-01",
                 "verification_status": "unverified"
               }
@@ -1892,7 +1892,7 @@
     "effective_until": "2028-12-31",
     "source": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "5d80712713e90c7a36635486d84ad86d3e5aeb186873b6d5ad427a28d006ab77",
+    "source_hash": "64c3e7c6ca81faf791975d9b028a1b1c8a02be38442d6db010689a20037e763f",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },

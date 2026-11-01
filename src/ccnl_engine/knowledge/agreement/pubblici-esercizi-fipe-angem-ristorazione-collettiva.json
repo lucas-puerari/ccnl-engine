@@ -2497,7 +2497,7 @@
     "effective_until": null,
     "source": "https://www.fipe.it/wp-content/uploads/2025/02/Tabelle-retributive-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "1902b663dce0ec5cf19370afb2f4a155d941a4a874fc1b8b23deffd8aa454535",
+    "source_hash": "77ebcfaec12c5661b3bc38c7a39a7b13d26e8ec788adcf0d61bb3b0493a3fd0c",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3140,9 +3140,9 @@
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-11-01T18:30:00Z",
+          "extraction_timestamp": "2026-11-01T11:49:14Z",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-11-01T18:30:00Z",
+          "verified_at": "2026-11-01T11:49:14Z",
           "verification_status": "verified",
           "review_id": "2026-11-01-ai-notice",
           "effective_from": "2018-02-08"
