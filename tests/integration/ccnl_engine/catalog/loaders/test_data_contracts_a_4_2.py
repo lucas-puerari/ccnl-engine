@@ -301,7 +301,7 @@ class TestLoadTerziarioConfesercenti:
         for lv in ccnl.levels:
             terzo, cassa = lv.fixed_allowances
             assert terzo.code == "TERZO_ELEMENTO_NAZIONALE"
-            assert terzo.replaced_by_provincial_element
+            assert terzo.replaced_by == "provincial_element"
             assert (cassa.code, cassa.role) == ("IND_CASSA", "cassiere")
 
     def test_terziario_confesercenti_tax_sector(self) -> None:

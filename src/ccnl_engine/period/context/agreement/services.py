@@ -67,7 +67,9 @@ class RunContract:
 
     ``provincial_unknown`` holds the national elements of the level left out
     because the employer does not state whether a provincial element
-    replaces them (:mod:`._provincial`).  ``sector_unknown`` holds the INPS
+    replaces them, ``premium_unknown`` those a company premium replaces
+    (:mod:`ccnl_engine.compensation.provincial_element.services`).
+    ``sector_unknown`` holds the INPS
     sectors of a CCNL applied in more than one when the employer does not
     state its own: the run reads the sector of the CCNL.
     """
@@ -80,6 +82,7 @@ class RunContract:
     catalog: CapabilityCatalog
     provincial_unknown: tuple[str, ...] = ()
     sector_unknown: tuple[TaxSector, ...] = ()
+    premium_unknown: tuple[str, ...] = ()
 
 
 def with_employer_sector(
@@ -141,10 +144,19 @@ def load_contract(
     tctx = TemporalContext.from_period(
         period_id.year, period_id.month, request.payment_date
     )
+    employer = request.employer
     ccnl, provincial_unknown = without_replaced_elements(
         ccnl,
         request.level_code,
-        request.employer.provincial_pay_element,
+        "provincial_element",
+        employer.provincial_pay_element,
+        tctx.competence,
+    )
+    ccnl, premium_unknown = without_replaced_elements(
+        ccnl,
+        request.level_code,
+        "second_level_premium",
+        employer.second_level_premium,
         tctx.competence,
     )
     ccnl = with_individual_elements(
@@ -202,6 +214,7 @@ def load_contract(
         catalog,
         provincial_unknown,
         sector_unknown,
+        premium_unknown,
     )
 
 

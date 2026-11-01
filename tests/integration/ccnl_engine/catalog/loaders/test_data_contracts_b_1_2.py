@@ -369,11 +369,11 @@ class TestLoadAlimentariPmiUnionalimentari:
         assert val == Decimal(173)
 
     def test_alimentari_pmi_unionalimentari_split_allowances(self) -> None:
-        """All 9 levels carry CONTINGENZA and EDR allowances (split model)."""
+        """All 9 levels carry CONTINGENZA, EDR and the EGR (split model)."""
         ccnl = load_ccnl("alimentari-pmi-unionalimentari")
         for lv in ccnl.levels:
             codes = {a.code for a in lv.fixed_allowances}
-            assert codes == {"CONTINGENZA", "EDR"}
+            assert codes == {"CONTINGENZA", "EDR", "EGR"}
 
     def test_alimentari_pmi_unionalimentari_tax_sector(self) -> None:
         """Contract uses INDUSTRIA tax sector."""

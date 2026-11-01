@@ -796,7 +796,7 @@
               "section": "Art. 199 - Terzi elementi nazionali",
               "quote": "siano corrisposte a titolo di terzo elemento Euro 2,07 mensili."
             },
-            "transformation": "Due only to the workers of firms in provinces with no provincial terzo elemento in force: replaced_by_provincial_element.",
+            "transformation": "Due only to the workers of firms in provinces with no provincial terzo elemento in force: replaced_by provincial_element.",
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
@@ -808,7 +808,7 @@
               "review_id": "2026-10-13-ai-production"
             }
           },
-          "replaced_by_provincial_element": true
+          "replaced_by": "provincial_element"
         },
         {
           "code": "IND_FUNZIONE",
@@ -1204,7 +1204,7 @@
               "section": "Art. 199 - Terzi elementi nazionali",
               "quote": "siano corrisposte a titolo di terzo elemento Euro 2,07 mensili."
             },
-            "transformation": "Due only to the workers of firms in provinces with no provincial terzo elemento in force: replaced_by_provincial_element.",
+            "transformation": "Due only to the workers of firms in provinces with no provincial terzo elemento in force: replaced_by provincial_element.",
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
@@ -1216,7 +1216,7 @@
               "review_id": "2026-10-13-ai-production"
             }
           },
-          "replaced_by_provincial_element": true
+          "replaced_by": "provincial_element"
         },
         {
           "code": "IND_CASSA",
@@ -1573,7 +1573,7 @@
               "section": "Art. 199 - Terzi elementi nazionali",
               "quote": "siano corrisposte a titolo di terzo elemento Euro 2,07 mensili."
             },
-            "transformation": "Due only to the workers of firms in provinces with no provincial terzo elemento in force: replaced_by_provincial_element.",
+            "transformation": "Due only to the workers of firms in provinces with no provincial terzo elemento in force: replaced_by provincial_element.",
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
@@ -1585,7 +1585,7 @@
               "review_id": "2026-10-13-ai-production"
             }
           },
-          "replaced_by_provincial_element": true
+          "replaced_by": "provincial_element"
         },
         {
           "code": "IND_CASSA",
@@ -1942,7 +1942,7 @@
               "section": "Art. 199 - Terzi elementi nazionali",
               "quote": "siano corrisposte a titolo di terzo elemento Euro 2,07 mensili."
             },
-            "transformation": "Due only to the workers of firms in provinces with no provincial terzo elemento in force: replaced_by_provincial_element.",
+            "transformation": "Due only to the workers of firms in provinces with no provincial terzo elemento in force: replaced_by provincial_element.",
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
@@ -1954,7 +1954,7 @@
               "review_id": "2026-10-13-ai-production"
             }
           },
-          "replaced_by_provincial_element": true
+          "replaced_by": "provincial_element"
         },
         {
           "code": "IND_CASSA",
@@ -2311,7 +2311,7 @@
               "section": "Art. 199 - Terzi elementi nazionali",
               "quote": "siano corrisposte a titolo di terzo elemento Euro 2,07 mensili."
             },
-            "transformation": "Due only to the workers of firms in provinces with no provincial terzo elemento in force: replaced_by_provincial_element.",
+            "transformation": "Due only to the workers of firms in provinces with no provincial terzo elemento in force: replaced_by provincial_element.",
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
@@ -2323,7 +2323,7 @@
               "review_id": "2026-10-13-ai-production"
             }
           },
-          "replaced_by_provincial_element": true
+          "replaced_by": "provincial_element"
         },
         {
           "code": "IND_CASSA",
@@ -2680,7 +2680,7 @@
               "section": "Art. 199 - Terzi elementi nazionali",
               "quote": "siano corrisposte a titolo di terzo elemento Euro 2,07 mensili."
             },
-            "transformation": "Due only to the workers of firms in provinces with no provincial terzo elemento in force: replaced_by_provincial_element.",
+            "transformation": "Due only to the workers of firms in provinces with no provincial terzo elemento in force: replaced_by provincial_element.",
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
@@ -2692,7 +2692,7 @@
               "review_id": "2026-10-13-ai-production"
             }
           },
-          "replaced_by_provincial_element": true
+          "replaced_by": "provincial_element"
         },
         {
           "code": "IND_CASSA",
@@ -3049,7 +3049,7 @@
               "section": "Art. 199 - Terzi elementi nazionali",
               "quote": "siano corrisposte a titolo di terzo elemento Euro 2,07 mensili."
             },
-            "transformation": "Due only to the workers of firms in provinces with no provincial terzo elemento in force: replaced_by_provincial_element.",
+            "transformation": "Due only to the workers of firms in provinces with no provincial terzo elemento in force: replaced_by provincial_element.",
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
@@ -3061,7 +3061,7 @@
               "review_id": "2026-10-13-ai-production"
             }
           },
-          "replaced_by_provincial_element": true
+          "replaced_by": "provincial_element"
         },
         {
           "code": "IND_CASSA",
@@ -3418,7 +3418,7 @@
               "section": "Art. 199 - Terzi elementi nazionali",
               "quote": "siano corrisposte a titolo di terzo elemento Euro 2,07 mensili."
             },
-            "transformation": "Due only to the workers of firms in provinces with no provincial terzo elemento in force: replaced_by_provincial_element.",
+            "transformation": "Due only to the workers of firms in provinces with no provincial terzo elemento in force: replaced_by provincial_element.",
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
@@ -3430,7 +3430,7 @@
               "review_id": "2026-10-13-ai-production"
             }
           },
-          "replaced_by_provincial_element": true
+          "replaced_by": "provincial_element"
         },
         {
           "code": "IND_FUNZIONE",
@@ -3621,7 +3621,7 @@
     "effective_until": null,
     "source": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
     "verification_status": "unverified",
-    "source_hash": "88878166c3f3d57d6ec36a47621a58172916bf8a20327d0233dd1b6c52da10d6",
+    "source_hash": "86a15a571b758f05d58ebfb277f79486a9496214314eaa7f3eecd157d90f5bf2",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

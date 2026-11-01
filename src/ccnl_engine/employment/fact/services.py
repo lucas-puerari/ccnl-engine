@@ -38,6 +38,7 @@ __all__ = [
     "fact_issues",
     "full_time_issue",
     "no_pay_issue",
+    "premium_issue",
     "provincial_issue",
     "roles_issue",
     "sector_issue",
@@ -47,6 +48,7 @@ FULL_TIME_FACT = "full_time_weekly_hours"
 ROLES_FACT = "roles"
 NO_PAY_FACT = "no_pay_due"
 PROVINCIAL_FACT = "provincial_pay_element"
+PREMIUM_FACT = "second_level_premium"
 SECTOR_FACT = "inps_sector"
 
 
@@ -161,6 +163,31 @@ def provincial_issue(ctx: RunContext) -> CalculationIssue | None:
     )
 
 
+def premium_issue(ctx: RunContext) -> CalculationIssue | None:
+    """Return the missing-fact issue of an element of guarantee left out.
+
+    Returns:
+        An incomplete issue naming ``second_level_premium`` when the level
+        has an element a company premium replaces and the employer does not
+        say whether it pays one, else ``None``.
+    """
+    unknown = ctx.contract.premium_unknown
+    if not unknown:
+        return None
+    return CalculationIssue(
+        code="second_level_premium_unknown",
+        capability="base_salary",
+        message=(
+            f"the level pays {', '.join(unknown)} only to the workers of a firm "
+            "that pays no premium of company or territorial bargaining, and "
+            "the employer does not say whether it pays one: the amounts shown "
+            "leave it out; state EmployerProfile.second_level_premium"
+        ),
+        status=CalculationStatus.INCOMPLETE,
+        fact=PREMIUM_FACT,
+    )
+
+
 def sector_issue(ctx: RunContext) -> CalculationIssue | None:
     """Return the missing-fact issue of an INPS sector left open.
 
@@ -190,13 +217,14 @@ def fact_issues(ctx: RunContext) -> tuple[CalculationIssue | None, ...]:
     """Return the issues of the employment facts, in a fixed order.
 
     Returns:
-        The full time, no-pay, roles, provincial element and INPS sector
-        issues, each ``None`` when not raised.
+        The full time, no-pay, roles, provincial element, company premium
+        and INPS sector issues, each ``None`` when not raised.
     """
     return (
         full_time_issue(ctx),
         no_pay_issue(ctx),
         roles_issue(ctx),
         provincial_issue(ctx),
+        premium_issue(ctx),
         sector_issue(ctx),
     )

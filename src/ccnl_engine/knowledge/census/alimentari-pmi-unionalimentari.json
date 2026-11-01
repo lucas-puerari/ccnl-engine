@@ -35,22 +35,6 @@
       }
     },
     {
-      "id": "egr_increase_2027",
-      "institute": "base_salary",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "SIMPLIFICATION: EGR (elemento di garanzia retributiva) increase of EUR 10 at parametro 137 from 01/01/2027 not modeled — amount per level not yet in a confirmed per-level table.",
-      "calculation": "ccnl/alimentari-pmi-unionalimentari:coverage.notes",
-      "state": "absent",
-      "remediation": "Add the EGR increase from 01/01/2027 once a confirmed per-level table is available.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "alimentari-pmi-unionalimentari/egr_increase_2027"
-        ]
-      }
-    },
-    {
       "id": "extraordinary_leave_daily_base",
       "institute": "extraordinary_leave",
       "variant": "all",

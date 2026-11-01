@@ -968,7 +968,7 @@
               "section": "Art. 215 - Terzo elemento nazionale",
               "quote": "quali non sono in atto terzi elementi retributivi provinciali comunque denominati, siano [...] corrisposte a titolo di terzo elemento Euro 2,07 mensili."
             },
-            "transformation": "Due only to the workers of firms in provinces with no provincial terzo elemento in force (Art. 214): replaced_by_provincial_element. Series opened with the file's first pay period.",
+            "transformation": "Due only to the workers of firms in provinces with no provincial terzo elemento in force (Art. 214): replaced_by provincial_element. Series opened with the file's first pay period.",
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
@@ -980,7 +980,7 @@
               "review_id": "2026-10-13-ai-production"
             }
           },
-          "replaced_by_provincial_element": true
+          "replaced_by": "provincial_element"
         },
         {
           "code": "IND_CASSA",
@@ -1349,7 +1349,7 @@
               "section": "Art. 215 - Terzo elemento nazionale",
               "quote": "quali non sono in atto terzi elementi retributivi provinciali comunque denominati, siano [...] corrisposte a titolo di terzo elemento Euro 2,07 mensili."
             },
-            "transformation": "Due only to the workers of firms in provinces with no provincial terzo elemento in force (Art. 214): replaced_by_provincial_element. Series opened with the file's first pay period.",
+            "transformation": "Due only to the workers of firms in provinces with no provincial terzo elemento in force (Art. 214): replaced_by provincial_element. Series opened with the file's first pay period.",
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
@@ -1361,7 +1361,7 @@
               "review_id": "2026-10-13-ai-production"
             }
           },
-          "replaced_by_provincial_element": true
+          "replaced_by": "provincial_element"
         },
         {
           "code": "IND_CASSA",
@@ -1730,7 +1730,7 @@
               "section": "Art. 215 - Terzo elemento nazionale",
               "quote": "quali non sono in atto terzi elementi retributivi provinciali comunque denominati, siano [...] corrisposte a titolo di terzo elemento Euro 2,07 mensili."
             },
-            "transformation": "Due only to the workers of firms in provinces with no provincial terzo elemento in force (Art. 214): replaced_by_provincial_element. Series opened with the file's first pay period.",
+            "transformation": "Due only to the workers of firms in provinces with no provincial terzo elemento in force (Art. 214): replaced_by provincial_element. Series opened with the file's first pay period.",
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
@@ -1742,7 +1742,7 @@
               "review_id": "2026-10-13-ai-production"
             }
           },
-          "replaced_by_provincial_element": true
+          "replaced_by": "provincial_element"
         },
         {
           "code": "IND_CASSA",
@@ -2111,7 +2111,7 @@
               "section": "Art. 215 - Terzo elemento nazionale",
               "quote": "quali non sono in atto terzi elementi retributivi provinciali comunque denominati, siano [...] corrisposte a titolo di terzo elemento Euro 2,07 mensili."
             },
-            "transformation": "Due only to the workers of firms in provinces with no provincial terzo elemento in force (Art. 214): replaced_by_provincial_element. Series opened with the file's first pay period.",
+            "transformation": "Due only to the workers of firms in provinces with no provincial terzo elemento in force (Art. 214): replaced_by provincial_element. Series opened with the file's first pay period.",
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
@@ -2123,7 +2123,7 @@
               "review_id": "2026-10-13-ai-production"
             }
           },
-          "replaced_by_provincial_element": true
+          "replaced_by": "provincial_element"
         },
         {
           "code": "IND_CASSA",
@@ -2492,7 +2492,7 @@
               "section": "Art. 215 - Terzo elemento nazionale",
               "quote": "quali non sono in atto terzi elementi retributivi provinciali comunque denominati, siano [...] corrisposte a titolo di terzo elemento Euro 2,07 mensili."
             },
-            "transformation": "Due only to the workers of firms in provinces with no provincial terzo elemento in force (Art. 214): replaced_by_provincial_element. Series opened with the file's first pay period.",
+            "transformation": "Due only to the workers of firms in provinces with no provincial terzo elemento in force (Art. 214): replaced_by provincial_element. Series opened with the file's first pay period.",
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
@@ -2504,7 +2504,7 @@
               "review_id": "2026-10-13-ai-production"
             }
           },
-          "replaced_by_provincial_element": true
+          "replaced_by": "provincial_element"
         },
         {
           "code": "IND_CASSA",
@@ -2873,7 +2873,7 @@
               "section": "Art. 215 - Terzo elemento nazionale",
               "quote": "quali non sono in atto terzi elementi retributivi provinciali comunque denominati, siano [...] corrisposte a titolo di terzo elemento Euro 2,07 mensili."
             },
-            "transformation": "Due only to the workers of firms in provinces with no provincial terzo elemento in force (Art. 214): replaced_by_provincial_element. Series opened with the file's first pay period.",
+            "transformation": "Due only to the workers of firms in provinces with no provincial terzo elemento in force (Art. 214): replaced_by provincial_element. Series opened with the file's first pay period.",
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
@@ -2885,7 +2885,7 @@
               "review_id": "2026-10-13-ai-production"
             }
           },
-          "replaced_by_provincial_element": true
+          "replaced_by": "provincial_element"
         },
         {
           "code": "IND_CASSA",
@@ -3254,7 +3254,7 @@
               "section": "Art. 215 - Terzo elemento nazionale",
               "quote": "quali non sono in atto terzi elementi retributivi provinciali comunque denominati, siano [...] corrisposte a titolo di terzo elemento Euro 2,07 mensili."
             },
-            "transformation": "Due only to the workers of firms in provinces with no provincial terzo elemento in force (Art. 214): replaced_by_provincial_element. Series opened with the file's first pay period.",
+            "transformation": "Due only to the workers of firms in provinces with no provincial terzo elemento in force (Art. 214): replaced_by provincial_element. Series opened with the file's first pay period.",
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
@@ -3266,7 +3266,7 @@
               "review_id": "2026-10-13-ai-production"
             }
           },
-          "replaced_by_provincial_element": true
+          "replaced_by": "provincial_element"
         },
         {
           "code": "IND_CASSA",
@@ -3635,7 +3635,7 @@
               "section": "Art. 215 - Terzo elemento nazionale",
               "quote": "quali non sono in atto terzi elementi retributivi provinciali comunque denominati, siano [...] corrisposte a titolo di terzo elemento Euro 2,07 mensili."
             },
-            "transformation": "Due only to the workers of firms in provinces with no provincial terzo elemento in force (Art. 214): replaced_by_provincial_element. Series opened with the file's first pay period.",
+            "transformation": "Due only to the workers of firms in provinces with no provincial terzo elemento in force (Art. 214): replaced_by provincial_element. Series opened with the file's first pay period.",
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
@@ -3647,7 +3647,7 @@
               "review_id": "2026-10-13-ai-production"
             }
           },
-          "replaced_by_provincial_element": true
+          "replaced_by": "provincial_element"
         },
         {
           "code": "IND_CASSA",
@@ -4029,7 +4029,7 @@
     "effective_until": "2027-03-31",
     "source": "https://www.confesercenti.it/wp-content/uploads/2023/01/CCNL_contratto-collettivo-nazionale.pdf",
     "verification_status": "unverified",
-    "source_hash": "afd57d8ba9f9b0327c1679efa329be82145d61c2e83d92c649287af13f61c6d5",
+    "source_hash": "1b2be1786813aa46560723c5aa6bf8c02869224193b675ed07aa1e0d15bf7c14",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

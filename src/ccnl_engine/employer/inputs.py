@@ -90,6 +90,12 @@ class EmployerProfile:
             absence (Commercio Art. 215).  ``None`` means not known: a level
             with such a national element leaves it out and has a
             ``missing_fact`` blocker.
+        second_level_premium: Whether the employer pays a premium agreed by
+            company or territorial bargaining (premio per obiettivi, di
+            risultato) that replaces the element of guarantee the CCNL owes
+            in its absence (Unionalimentari: elemento di garanzia
+            retributiva).  ``None`` means not known: a level with such an
+            element leaves it out and has a ``missing_fact`` blocker.
         agricultural_zone: Zone of the land of an agricultural employer,
             which cuts its INPS contributions by 68% in a zona svantaggiata
             and 75% in a zona particolarmente svantaggiata (INPS circ.
@@ -115,8 +121,9 @@ class EmployerProfile:
             ``activity`` is not an :class:`EmployerActivity` value,
             ``agricultural_zone`` not an :class:`AgriculturalZone` value,
             ``inps_sector`` not a :class:`TaxSector` value or
-            ``public_life_insurance``, ``fis_reduction`` or
-            ``provincial_pay_element`` is not a bool.
+            ``public_life_insurance``, ``fis_reduction``,
+            ``provincial_pay_element`` or ``second_level_premium`` is not a
+            bool.
     """
 
     headcount: Headcount
@@ -125,6 +132,7 @@ class EmployerProfile:
     fis_reduction: bool | None = None
     cigs_indotto: bool | None = None
     provincial_pay_element: bool | None = None
+    second_level_premium: bool | None = None
     agricultural_zone: AgriculturalZone | None = None
     inps_sector: TaxSector | None = None
     contractual_funds: frozenset[str] | None = None
@@ -184,7 +192,12 @@ class EmployerProfile:
                 self.second_level_elements, "EmployerProfile.second_level_elements"
             ),
         )
-        for name in ("fis_reduction", "provincial_pay_element", "cigs_indotto"):
+        for name in (
+            "fis_reduction",
+            "provincial_pay_element",
+            "second_level_premium",
+            "cigs_indotto",
+        ):
             value = getattr(self, name)
             if value is not None:
                 require_bool(value, f"EmployerProfile.{name}", feature=_FEATURE)
