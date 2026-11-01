@@ -67,22 +67,6 @@
       }
     },
     {
-      "id": "leave_entitlement_rounded",
-      "institute": "leave",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = owed",
-      "rule": "LEAVE (Art. 43): 32 giorni lavorativi on 6-day week + 4 giorni festività soppresse. SIMPLIFICATION: stored as 26 working days on 5-day-week basis (32/1.2=26.67); festività soppresse 4 giorni are not modeled as a separate tier. Source: Art. 43 para 3-4 CCNL.",
-      "calculation": "ccnl/formazione-professionale:coverage.notes",
-      "state": "absent",
-      "remediation": "Model the 32 days on a 6-day week (or 26.67 on 5 days) and the 4 giorni of festività soppresse, with their pay when not taken.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "formazione-professionale/leave_entitlement_rounded"
-        ]
-      }
-    },
-    {
       "id": "maternity_daily_base",
       "institute": "maternity_leave",
       "variant": "all",

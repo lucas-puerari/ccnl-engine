@@ -1003,7 +1003,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/formazione-professionale",
       "ruleset_version": "2026.1",
-      "source_hash": "d750ad580111fd5a3d81aaf1daf53b223372bc4425740dd30e0188adc9dd6a4a",
+      "source_hash": "15f9233025680d8769c2a74a8fbe4dba3f57792341f94368d5d42552259c3179",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/formazione-professionale.json.gz"
@@ -3544,7 +3544,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "762d5497f92a30141df989231cd47aecd1711307e60951aea57c194bfb76dbd5",
+      "source_hash": "73664624635c639f4d6dbe5ee437ceb0dab56858a3ebd6d5e2f21f101cd1ae17",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/formazione-professionale.json.gz",
