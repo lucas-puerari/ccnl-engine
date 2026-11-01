@@ -3727,7 +3727,7 @@
     "effective_until": null,
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "3b40dc39e0862e39201a5c2777cb2a865472eedbd17aa7a82457e3505faeea74",
+    "source_hash": "bb48f5470012d7f848e50af721caadacb2fa1ff6bc2589e852a5f8e3f6f2cc53",
     "published_at": "2026-09-07",
     "source_type": "official_primary"
   },
@@ -3834,6 +3834,91 @@
         },
         "note": "Job kept 18 months within the three years before the day (the CCNL sums 'le assenze per malattia verificatesi nel triennio precedente' the last episode): 540 days of 30-day months over a window of 3 years; 9 months (270 days) in full, 3 (days 271-360) at 90%, 6 (days 361-540) at 50%. The window ends on the sick day, not on the start of the last episode. The cut of the accessory pay of the first 10 days (D.L. 112/2008 art. 71 c. 1) is not modelled."
       }
+    },
+    "notice": {
+      "bands": [
+        {
+          "levels": [
+            "VIII",
+            "VII",
+            "VI",
+            "V",
+            "IV",
+            "III",
+            "II",
+            "I"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "up_to_months": 60,
+          "months": 2,
+          "days": 0
+        },
+        {
+          "levels": [
+            "VIII",
+            "VII",
+            "VI",
+            "V",
+            "IV",
+            "III",
+            "II",
+            "I"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "up_to_months": 120,
+          "months": 3,
+          "days": 0
+        },
+        {
+          "levels": [
+            "VIII",
+            "VII",
+            "VI",
+            "V",
+            "IV",
+            "III",
+            "II",
+            "I"
+          ],
+          "causes": [
+            "dismissal"
+          ],
+          "months": 4,
+          "days": 0
+        }
+      ],
+      "starts": "first_or_sixteenth",
+      "extra_months_included": false,
+      "tfr_base": null,
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "enti-ricerca-aran-notice-text",
+            "title": "CCNL text with the notice clause (Recesso con preavviso, art. 25 CCNL 21 febbraio 2002 (riprodotto nella raccolta ARAN))",
+            "kind": "associazione",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2024/09/Ricerca_Raccolta-sistematica_Gennaio-2017_s1.pdf",
+            "sha256": "371e335f0501d71fa7854ff3f404cc375ecf4e44ca322f8c004be68217d6a60a"
+          },
+          "page": "87",
+          "section": "Recesso con preavviso, art. 25 CCNL 21 febbraio 2002 (riprodotto nella raccolta ARAN)",
+          "quote": "fino a 5 anni: 2 mesi / oltre 5 e fino a 10 anni: 3 mesi / oltre 10 anni: 4 mesi. In caso di dimissioni volontarie del dipendente i termini di preavviso sono ridotti della metà. I termini di preavviso decorrono dal primo o dal sedicesimo giorno di ciascun mese."
+        },
+        "transformation": "Bands proposed by a delegated search and checked band by band against the PDF by a separate session; the ratei of the extra months and the TFR treatment are set only where the text states them.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-01T18:33:13Z",
+          "verification_status": "verified",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-01T18:33:13Z",
+          "review_id": "2026-11-01-ai-notice-3"
+        }
+      }
     }
   },
   "verification": {
@@ -3860,6 +3945,27 @@
         ],
         "findings": [
           "New file for the research bodies of the comparto Istruzione e Ricerca: Tabelle C3 and C4 of the CCNL 2022-2024 and 2025-2027, read on the ARAN texts."
+        ]
+      },
+      {
+        "id": "2026-11-01-ai-notice-3",
+        "date": "2026-11-01",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The notice clause (Recesso con preavviso, art. 25 CCNL 21 febbraio 2002 (riprodotto nella raccolta ARAN), p. 87).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2024/09/Ricerca_Raccolta-sistematica_Gennaio-2017_s1.pdf",
+            "sha256": "371e335f0501d71fa7854ff3f404cc375ecf4e44ca322f8c004be68217d6a60a"
+          }
+        ],
+        "findings": [
+          "Notice bands checked against the PDF by a separate session (delegated search and independent verification): work_rules.notice."
+        ],
+        "independence": "separate_session",
+        "checked": [
+          "work_rules.notice"
         ]
       }
     ]

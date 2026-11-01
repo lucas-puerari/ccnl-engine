@@ -142,6 +142,27 @@
         "findings": [
           "Art. 45 - Tredicesima mensilità (p. 76): \"Nel caso di inizio del rapporto durante il corso dell’anno, il lavoratore avrà diritto a tanti dodicesimi dell'ammontare della tredicesima mensilità per quanti sono i mesi di servizio prestati nell’Azienda. Le frazioni di mese superiori a 15 giorni saranno da considerare mese intero.\". Added: more_than 15 (the file applied the engine default, at least 15 days)."
         ]
+      },
+      {
+        "id": "2026-11-01-ai-notice-3",
+        "date": "2026-11-01",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The notice clause (Art. 64 - Preavviso di licenziamento e dimissioni, p. 86).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.confindustriaradiotv.it/wp-content/uploads/2026/09/CCNL_RadioTv-2026.pdf",
+            "sha256": "0197f37aaed4ff2a8838d441b9d9584efdcdb8c4222ce5259c55cfba4b78f142"
+          }
+        ],
+        "findings": [
+          "Notice bands checked against the PDF by a separate session (delegated search and independent verification): work_rules.notice."
+        ],
+        "independence": "separate_session",
+        "checked": [
+          "work_rules.notice"
+        ]
       }
     ]
   },
@@ -2157,6 +2178,104 @@
     "source": "https://www.confindustriaradiotv.it/wp-content/uploads/2026/01/tabelle-ccnl-2025.pdf",
     "source_type": "contracting_party",
     "verification_status": "unverified",
-    "source_hash": "13dd6312abc1bc4dd428497c6a9cbbf5c42ab2a0742be75f22df2f40b8541304"
+    "source_hash": "2755de28a19a6b0b80062bbb2a97894df3b5b33a2e44d7d39829737493691ffb"
+  },
+  "work_rules": {
+    "notice": {
+      "bands": [
+        {
+          "levels": [
+            "9",
+            "8"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "days": 180,
+          "months": 0,
+          "categories": []
+        },
+        {
+          "levels": [
+            "7",
+            "6",
+            "5"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "days": 90,
+          "months": 0,
+          "categories": []
+        },
+        {
+          "levels": [
+            "4"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "days": 60,
+          "months": 0,
+          "categories": []
+        },
+        {
+          "levels": [
+            "3"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "days": 45,
+          "months": 0,
+          "categories": []
+        },
+        {
+          "levels": [
+            "2",
+            "1"
+          ],
+          "causes": [
+            "dismissal",
+            "resignation"
+          ],
+          "days": 21,
+          "months": 0,
+          "categories": []
+        }
+      ],
+      "starts": "first_or_sixteenth",
+      "extra_months_included": true,
+      "tfr_base": false,
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "radiotelevisive-televisivo-notice-text",
+            "title": "CCNL text with the notice clause (Art. 64 - Preavviso di licenziamento e dimissioni)",
+            "kind": "associazione",
+            "url": "https://www.confindustriaradiotv.it/wp-content/uploads/2026/09/CCNL_RadioTv-2026.pdf",
+            "sha256": "0197f37aaed4ff2a8838d441b9d9584efdcdb8c4222ce5259c55cfba4b78f142"
+          },
+          "page": "86",
+          "section": "Art. 64 - Preavviso di licenziamento e dimissioni",
+          "quote": "9° - 8° livello 180 giorni di calendario\n7° - 6° - 5° livello 90 giorni di calendario\n4° livello 60 giorni di calendario\n3° livello 45 giorni di calendario\n2° - 1° livello 21 giorni di calendario\nI termini di preavviso di cui sopra hanno inizio dal 1° o dal 16° giorno di ciascun mese."
+        },
+        "transformation": "Bands proposed by a delegated search and checked band by band against the PDF by a separate session; the ratei of the extra months and the TFR treatment are set only where the text states them. Art. 65 lists the elements of the TFR base and leaves the indemnity out: tfr_base false read from that list.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-01T18:33:13Z",
+          "verification_status": "verified",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-01T18:33:13Z",
+          "review_id": "2026-11-01-ai-notice-3"
+        }
+      }
+    }
   }
 }

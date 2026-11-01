@@ -156,6 +156,26 @@ def test_a_notice_from_the_first_or_the_sixteenth(
     assert (period.first_day, period.last_day, period.days) == (first, last, 60)
 
 
+@pytest.mark.parametrize(
+    ("months", "days", "last", "length"),
+    [(2, 0, date(2026, 5, 9), 61), (0, 50, date(2026, 4, 28), 50)],
+    ids=["two-months", "fifty-days"],
+)
+def test_a_notice_from_the_day_of_the_act(
+    months: int, days: int, last: date, length: int
+) -> None:
+    """OOSS: the day the act is received is the first day of notice.
+
+    2 months on 10 March run to 9 May (61 days); 50 days to 28 April.
+    """
+    period = notice_period(
+        _band(None, months=months, days=days), date(2026, 3, 10), NoticeStart.SAME_DAY
+    )
+
+    assert (period.first_day, period.last_day) == (date(2026, 3, 10), last)
+    assert period.days == length
+
+
 def test_the_days_left_unworked() -> None:
     """Leaving before the notice ends leaves its last days; after, none."""
     period = notice_period(_band(None, 1), date(2026, 2, 28))

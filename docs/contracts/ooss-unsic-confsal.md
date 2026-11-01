@@ -57,7 +57,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2023-01-19 |
-| **Last review** | 2026-10-18 |
+| **Last review** | 2026-11-01 |
 | **Latest salary tranche** | 2026-01-01 |
 
 ## Review history
@@ -65,6 +65,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | Date | Reviewer | Scope | Outcome | Findings |
 |---|---|---|---|---|
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | confirmed | Art. 52 - Mensilità aggiuntive (p. 93): "Nel caso di inizio o di cessazione del rapporto di lavoro durante il corso dell'anno, il lavoratore dipendente ha diritto a tanti dodicesimi della 13ma e della 14ma per quanti sono i mesi di lavoro prestato. Per tali fini il periodo iniziale o finale superiore a 15 (quindici) giorni è computato come mese intero secondo il criterio della prevalenza.". Match: more_than 15. |
+| 2026-11-01 | claude-opus-5-5 (ai) | The notice clause (Art. 43 — Risoluzione del rapporto di lavoro, p. 83–84). | corrected | Notice bands checked against the PDF by a separate session (delegated search and independent verification): work_rules.notice. |
 
 ## Salary table
 

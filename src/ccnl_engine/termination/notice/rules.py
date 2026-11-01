@@ -75,7 +75,9 @@ def notice_period(
 
     A CCNL whose notice starts on the 1st or the 16th of a month runs it
     from the first such day after the act, for its months and days: 60 days
-    on an act of 10 March run from 16 March to 14 May.
+    on an act of 10 March run from 16 March to 14 May.  A CCNL whose notice
+    starts on the day the act is received counts that day, departing from
+    art. 2963: 2 months on an act of 10 March run from 10 March to 9 May.
 
     Returns:
         The first and last day of notice.
@@ -84,5 +86,8 @@ def notice_period(
         first = _first_or_sixteenth(received_on)
         last = _add_months(first, band.months) + timedelta(days=band.days) - _DAY
         return NoticePeriod(first, last, band)
+    if starts is NoticeStart.SAME_DAY:
+        last = _add_months(received_on, band.months) + timedelta(days=band.days)
+        return NoticePeriod(received_on, last - _DAY, band)
     last = _add_months(received_on, band.months) + timedelta(days=band.days)
     return NoticePeriod(received_on + _DAY, last, band)
