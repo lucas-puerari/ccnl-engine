@@ -244,3 +244,16 @@ def test_a_fixed_term_ended_within_the_period_counts_its_months() -> None:
     )
     events, _ = una_tantum_events(request, _FIAIP, RunKind.REGULAR)
     assert [e.amount for e in events] == [Decimal("62.50")]
+
+
+def test_an_employment_ended_on_the_signing_day_is_in_service() -> None:
+    """In force on 23 May 2025, its last day: 23 days of May count, 17 of 17."""
+    request = cast(
+        "PeriodCalculationRequest",
+        SimpleNamespace(**{
+            **vars(_january_2026(date(2023, 1, 1))),
+            "employment_period": EmploymentPeriod(date(2023, 1, 1), date(2025, 5, 23)),
+        }),
+    )
+    events, _ = una_tantum_events(request, _ANAV, RunKind.REGULAR)
+    assert [e.amount for e in events] == [Decimal("300.00")]
