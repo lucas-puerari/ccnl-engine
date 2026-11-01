@@ -3627,7 +3627,7 @@
     "effective_until": null,
     "source": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
     "verification_status": "unverified",
-    "source_hash": "e998c1bccac8c3c428c5bae7a08a7fa43b02dc5138257efe7f9455d48aefe3c5",
+    "source_hash": "15e7b1bdfa7ee949ef7a953b4baf5f0d3a94b4549ff3a267c143ac1ec46077c4",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3692,6 +3692,68 @@
         }
       },
       "hourly_divisor_weekly_hours": 40,
+      "week_divisors": [
+        {
+          "weekly_hours": 42,
+          "divisor": "182",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "uiltucs-tu2019",
+                "title": "CCNL per i dipendenti da aziende del Terziario della Distribuzione e dei Servizi, Testo Unico 30 luglio 2019",
+                "kind": "associazione",
+                "url": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
+                "published_on": "2019-07-30",
+                "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016"
+              },
+              "page": "197",
+              "section": "Art. 211 – Quota oraria, lett. b)",
+              "quote": "182, per il personale la cui durata normale di lavoro è di 42 ore settimanali"
+            },
+            "transformation": "The hourly divisor of an employment whose full-time week (Employment.full_time_weekly_hours) is 42 hours.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T12:00:00Z",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T12:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-week-divisors"
+            }
+          }
+        },
+        {
+          "weekly_hours": 45,
+          "divisor": "195",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "uiltucs-tu2019",
+                "title": "CCNL per i dipendenti da aziende del Terziario della Distribuzione e dei Servizi, Testo Unico 30 luglio 2019",
+                "kind": "associazione",
+                "url": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
+                "published_on": "2019-07-30",
+                "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016"
+              },
+              "page": "197",
+              "section": "Art. 211 – Quota oraria, lett. c)",
+              "quote": "195, per il personale la cui durata normale di lavoro è di 45 ore settimanali"
+            },
+            "transformation": "The hourly divisor of an employment whose full-time week (Employment.full_time_weekly_hours) is 45 hours.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T12:00:00Z",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T12:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-week-divisors"
+            }
+          }
+        }
+      ],
       "overtime_bands": [
         {
           "code": "OT_DIURNO",
@@ -4985,6 +5047,29 @@
         "independence": "separate_session",
         "checked": [
           "levels[*].fixed_allowances[IND_CASSA]"
+        ]
+      },
+      {
+        "id": "2026-11-01-ai-week-divisors",
+        "date": "2026-11-01",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The hourly divisors of the 42 and 45 hour weeks, Art. 211 (p. 197), checked by a separate session from the PDF.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
+            "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016"
+          }
+        ],
+        "findings": [
+          "Art. 211 (PDF p. 197, sha256 76420e3a... matched): 168 for a normal week of 40 hours, 182 for 42, 195 for 45, for the quota oraria 'sia normale che di fatto': work_rules.time_supplements.hourly_divisor_weekly_hours 40 and week_divisors 42/182, 45/195.",
+          "Art. 89 (p. 95): a part-time worker takes the divisor of Art. 211 of the full-time week, so the divisor is chosen by Employment.full_time_weekly_hours. Artt. 130 c. 2 and 147 set the 45-hour normal week of fuel-station and discontinuous workers; Art. 134 keeps the normal week at 40 (state 40, not 38).",
+          "The renewal of 2024 has a text layer only on its last four pages (accordo integrativo 28 March 2024, no change to Art. 211); the scanned body was not searched."
+        ],
+        "independence": "separate_session",
+        "checked": [
+          "work_rules.time_supplements.week_divisors"
         ]
       }
     ],

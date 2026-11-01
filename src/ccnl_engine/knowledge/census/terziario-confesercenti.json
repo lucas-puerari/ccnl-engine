@@ -83,22 +83,6 @@
       }
     },
     {
-      "id": "long_week_divisors",
-      "institute": "base_salary",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Art. 211: the hourly divisors 182 and 195 of the 42 and 45 hour weeks.",
-      "calculation": "ccnl/terziario-confesercenti:coverage.notes",
-      "state": "absent",
-      "remediation": "Pick the divisor by the weekly hours.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "terziario-confesercenti/long_week_divisors"
-        ]
-      }
-    },
-    {
       "id": "lump_sum_2024_2025",
       "institute": "una_tantum",
       "variant": "all",
