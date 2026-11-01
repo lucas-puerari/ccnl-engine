@@ -18,6 +18,9 @@
   nuovo ultimo episodio morboso".
 - Alimentari PMI Unionalimentari (art. 36, p. 109): 180 days in the 17
   months before up to five years of seniority, 365 in the 24 months after.
+- Formazione professionale (art. 50, p. 33): 18 months, summing "tutte le
+  assenze per malattia intervenute nei tre anni precedenti", paid 100% for
+  12 months and 75% for 6 more.
 - Federcasa (art. 51, p. 47): 12 months, over "un arco temporale pari a tre
   anni" for a non-continuous absence, the hospital stays left out of the
   window only.
@@ -32,6 +35,7 @@
 
 from __future__ import annotations
 
+from decimal import Decimal
 from typing import TYPE_CHECKING
 
 import pytest
@@ -115,3 +119,16 @@ def test_alimentari_pmi_widens_the_window_after_five_years() -> None:
     assert [
         (w.seniority_months_from, w.window_months, w.comporto_days) for w in windows
     ] == [(0, 17, 180), (61, 24, 365)]
+
+
+def test_formazione_pays_two_tiers_over_eighteen_months() -> None:
+    """540 days of one illness and over three years; 100% then 75%."""
+    rules = _sickness("formazione-professionale")
+    (window,) = rules.comporto_windows
+
+    assert (rules.max_duration_days, window.window_months) == (540, 36)
+    assert window.comporto_days == 540
+    assert [(t.month_from, t.month_until, t.integration_rate) for t in rules.tiers] == [
+        (1, 13, Decimal(1)),
+        (13, 19, Decimal("0.75")),
+    ]

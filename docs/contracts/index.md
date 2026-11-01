@@ -168,7 +168,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 51 | B254 | [CCNL Energia e Petrolio (Confindustria Energia)](energia-petrolio-confindustria.md) | energia | ~38k | — | ✅ | — | 0 / 171 / 1 / 0 | 🧪 | 🤖 |
 | 52 | G211 | [CCNL Esercizi Cinematografici e Cinema-Teatrali (ANEC)](esercizi-cinematografici-anec.md) | cinema | ~6k | — | ⚠️ | inps_employer, seniority, sickness | 1 / 54 / 1 / 0 | 🧪 | 🤖 |
 | 53 | H201 | [CCNL Fiori Freschi Recisi, Verde e Piante Ornamentali (ANCEF)](fiori-recisi-ancef.md) | Fiori recisi, verde e piante ornamentali (import-export) | ~1.3k | 2023 | ⚠️ | seniority | 1 / 38 / 1 / 0 | 🧪 | 🤖 |
-| 54 | T261 | [CCNL Formazione Professionale (CNOS-FAP/CIOFS-FP/FORMA/CNF)](formazione-professionale.md) | formazione professionale | ~19.8k | — | ✅ | absence, leave, sickness | 0 / 33 / 1 / 1 | 🧪 | 🤖 |
+| 54 | T261 | [CCNL Formazione Professionale (CNOS-FAP/CIOFS-FP/FORMA/CNF)](formazione-professionale.md) | formazione professionale | ~19.8k | — | ✅ | absence, leave | 0 / 33 / 1 / 1 | 🧪 | 🤖 |
 | 55 | K321 | [CCNL Gas e Acqua — Utilitalia/Proxigas/Anfida/Assogas](gas-acqua-utilitalia.md) | gas e acqua | ~65k | 2025 | ⚠️ | inps_employer, seniority | 0 / 63 / 1 / 0 | 🧪 | 🤖 |
 | 56 | B371 | [CCNL Gomma e Plastica Industria (Federazione Gomma Plastica)](gomma-plastica-federazione-gomma-plastica.md) | gomma-plastica | ~90k | — | ⚠️ | base_salary, seniority | 70 / 7 / 1 / 1 | 🧪 | 🤖 |
 | 57 | G011 | [CCNL Grafica e Editoria Industria (AIEG-Acigraf)](grafica-editoria-aieg.md) | grafica-editoria | ~70k | — | ⚠️ | base_salary, seniority | 2 / 70 / 1 / 0 | 🧪 | 🤖 |
