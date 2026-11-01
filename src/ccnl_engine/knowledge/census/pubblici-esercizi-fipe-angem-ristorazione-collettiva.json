@@ -19,22 +19,6 @@
       }
     },
     {
-      "id": "apprenticeship_long_profiles",
-      "institute": "base_salary",
-      "variant": "apprentice",
-      "discriminant": "applies_when.trigger = path",
-      "rule": "APPRENTICESHIP PROFILES: art. 72 c. 2 gives 48 months to named profiles of levels 2 and 3 and 42 months to named profiles of level 4, and art. 68 c. 1 pays 95% in their fourth year. The profile is not an input: the engine pays them the 36-month track, 100% from month 37 instead of 95%.",
-      "calculation": "ccnl/pubblici-esercizi-fipe-angem-ristorazione-collettiva:coverage.notes",
-      "state": "absent",
-      "remediation": "Let the caller state the art. 72 c. 2 profile and add the 42 and 48 month tracks with the 95% fourth year.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "pubblici-esercizi-fipe-angem-ristorazione-collettiva/apprenticeship_long_profiles"
-        ]
-      }
-    },
-    {
       "id": "arrears_unused_deductions",
       "institute": "contract_renewal_arrears",
       "variant": "all",

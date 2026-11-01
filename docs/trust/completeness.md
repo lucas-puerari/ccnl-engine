@@ -14,7 +14,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 0/134 CCNLs.** Bundle: 269 weak rules, 543 open limitations (543 with a monetary impact).
+**Complete: 0/134 CCNLs.** Bundle: 269 weak rules, 541 open limitations (541 with a monetary impact).
 
 ## Declared window
 
@@ -150,8 +150,8 @@ Future data, registered apart from the gaps: a contract whose validity ends insi
 | [pelli-cuoio-industria-assopellettieri](../contracts/pelli-cuoio-industria-assopellettieri.md) | `pelli-calzature` | exploratory | — | 24 rows | 24 open requirements; 2 weak rules; 20 monetary limitations; 20 non-native capabilities |
 | [portieri-fabbricati-confedilizia](../contracts/portieri-fabbricati-confedilizia.md) | `servizi-immobiliari` | exploratory | — | 26 rows | 26 open requirements; 1 weak rule; 22 monetary limitations; 1 outside_input limitation; 20 non-native capabilities |
 | [poste-italiane-k700](../contracts/poste-italiane-k700.md) | `servizi-postali` | exploratory | — | 26 rows | 26 open requirements; 1 weak rule; 21 monetary limitations; 2 outside_input limitations; 22 non-native capabilities |
-| [pubblici-esercizi-fipe-angem](../contracts/pubblici-esercizi-fipe-angem.md) | `turismo` | production | — | 29 rows | 29 open requirements; 20 monetary limitations; 7 outside_input limitations; 23 non-native capabilities |
-| [pubblici-esercizi-fipe-angem-ristorazione-collettiva](../contracts/pubblici-esercizi-fipe-angem-ristorazione-collettiva.md) | `turismo` | production | — | 26 rows | 26 open requirements; 21 monetary limitations; 3 outside_input limitations; 21 non-native capabilities |
+| [pubblici-esercizi-fipe-angem](../contracts/pubblici-esercizi-fipe-angem.md) | `turismo` | production | — | 28 rows | 28 open requirements; 19 monetary limitations; 7 outside_input limitations; 23 non-native capabilities |
+| [pubblici-esercizi-fipe-angem-ristorazione-collettiva](../contracts/pubblici-esercizi-fipe-angem-ristorazione-collettiva.md) | `turismo` | production | — | 25 rows | 25 open requirements; 20 monetary limitations; 3 outside_input limitations; 21 non-native capabilities |
 | [pulizia-artigianato-confartigianato](../contracts/pulizia-artigianato-confartigianato.md) | `pulizia-multiservizi` | exploratory | — | 58 rows | 58 open requirements; 29 weak rules; 26 monetary limitations; 1 outside_input limitation; 22 non-native capabilities |
 | [radiotelevisive-radiofonico](../contracts/radiotelevisive-radiofonico.md) | `spettacolo-media` | exploratory | — | 30 rows | 30 open requirements; 8 weak rules; 20 monetary limitations; 20 non-native capabilities |
 | [radiotelevisive-televisivo](../contracts/radiotelevisive-televisivo.md) | `spettacolo-media` | exploratory | — | 33 rows | 33 open requirements; 11 weak rules; 20 monetary limitations; 20 non-native capabilities |

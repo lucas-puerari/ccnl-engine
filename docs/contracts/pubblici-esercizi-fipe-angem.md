@@ -36,7 +36,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, leave, overtime, seniority, sickness, trattamento_integrativo |
 
-11 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+10 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -117,6 +117,14 @@ percentage: 1.00
 Destination levels: `6`  
 percentage: 1.00
 
+**professionalizzante_48_mesi** (type: `percentage`)  
+Destination levels: `2`, `3`  
+percentage: 1.00
+
+**professionalizzante_42_mesi** (type: `percentage`)  
+Destination levels: `4`  
+percentage: 1.00
+
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
@@ -148,13 +156,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Confirm whether the 20% of art. 132 is added to the overtime rate on a festività; if so set the bands to 0.5 and 0.8, else close this note.
-
-!!! warning "pubblici-esercizi-fipe-angem/apprenticeship_long_profiles · base_salary · impact yes · open"
-    APPRENTICESHIP PROFILES: art. 72 c. 2 gives 48 months to named profiles of levels 2 and 3 and 42 months to named profiles of level 4, and art. 68 c. 1 pays 95% in their fourth year. The profile is not an input: the engine pays them the 36-month track, 100% from month 37 instead of 95%.
-
-    **Applies when:** `base_salary` applies; the run takes the engine code path; contract type in apprentice.
-
-    **Remediation:** Let the caller state the art. 72 c. 2 profile and add the 42 and 48 month tracks with the 95% fourth year.
 
 !!! warning "pubblici-esercizi-fipe-angem/balneari_diurni_rules · sickness · impact yes · open"
     BALNEARI AND ALBERGHI DIURNI: art. 190 c. 5 (PDF p. 134) leaves the stabilimenti balneari and the alberghi diurni out of the sickness rule of the file: they pay the supplements of arts. 250 and 266 over the INPS 50%/66.66%, and the balneari non impiegati work 44 hours a week. Not modelled.
@@ -371,6 +372,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     HOURLY DIVISOR: 172 for a 40-hour week (Art. 160 of the CCNL of 8 February 2018, PDF p. 116; 190 for a 44-hour week, not modelled).
     
     INPS: uses 2026-terziario.json (tax_sector terziario, same as commercio-confcommercio and turismo-federalberghi).
+    
+    APPRENTICESHIP PROFILES: art. 72 c. 2 (PDF p. 75) gives 48 months to named profiles of levels 2 and 3 and 42 months to named profiles of level 4, and art. 68 c. 1 (p. 74) pays them 95% in the fourth year: tracks professionalizzante_48_mesi and professionalizzante_42_mesi. An apprentice of levels 2, 3 and 4 states Apprentice.track: professionalizzante for the 36 months of the other profiles.
     
     HOURLY RATE AND SUPPLEMENTS (artt. 124, 130, 132, 157, 160 of the 2018 text, unchanged by the 2024 renewal): without a caller value the engine derives the hourly base (the art. 157 retribuzione over 172), the 25% on ordinary night hours from 24 to 6 (art. 124), the 20% on the hours worked on a festività (art. 132) and the 10% of the hourly paga base and contingenza on ordinary Sunday hours of a worker resting on another day (art. 130). Art. 132 also pays the festività hours themselves on top of the monthly pay: the engine posts the 20% only and the run is provisional. Not derived: holiday and night holiday overtime (art. 126 sets no rate; the bands OT_FESTIVO and OT_NOTTURNO_FESTIVO stay derived), the divisor 190 of the 44-hour week.
     
