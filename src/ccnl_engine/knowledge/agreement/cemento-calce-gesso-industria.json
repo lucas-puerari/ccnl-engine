@@ -76,21 +76,6 @@
       },
       {
         "kind": "simplification",
-        "text": "APPRENTICESHIP (Art. 25): under_classification model — period 1 at 2 levels below target, period 2 at 1 level below target, period 3 (where applicable) at target level pay. Modelled as 100% passthrough for all eligible levels (AQ2 and above); correct for permanent workers. The schema can express it: UnderClassificationPeriod.levels_below is relative to the destination level (review of 2026-10-30).",
-        "capability": "base_salary",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "apprenticeship_full_pay_passthrough",
-          "applies_when": {
-            "contract_types": [
-              "apprentice"
-            ]
-          },
-          "remediation": "Model the Art. 25 periods with levels_below 2 and 1."
-        }
-      },
-      {
-        "kind": "simplification",
         "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
         "capability": "seniority",
         "monetary_impact": "unknown",
@@ -2596,11 +2581,51 @@
   ],
   "apprenticeship": [
     {
-      "type": "percentage",
-      "name": "professionalizzante",
+      "type": "under_classification",
+      "name": "professionalizzante_24_mesi",
       "destination_levels": [
         "AQ2",
-        "AS1",
+        "AS1"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "levels_below": 2
+        },
+        {
+          "months_from": 12,
+          "months_until": null,
+          "levels_below": 1
+        }
+      ],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-cemento-federbeton-2025-05-08",
+            "title": "CCNL Cemento, calce e gesso (Federbeton), 8 maggio 2025, stampa (FENEAL-UIL)",
+            "kind": "associazione",
+            "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf",
+            "sha256": "0577ad1f914031470abf63b59ffc33b0eff779311bbe10fe670a28b3b0823f97"
+          },
+          "page": "61",
+          "section": "Art. 25 - Apprendistato professionalizzante",
+          "quote": "La durata massima del periodo di apprendistato e la sua suddivisione in periodi è così determinata. [...] nel primo periodo di apprendistato professionalizzante: due livelli sotto quello di destinazione finale con retribuzione corrispondente a quella minima contrattuale (minimo tabellare, ex indennità di contingenza e EDR) del livello iniziale di inquadramento; nel secondo periodo: un livello sotto quello di destinazione finale [...]; nel terzo e ultimo periodo: fermo l’inquadramento di cui al secondo periodo di apprendistato, la retribuzione sarà corrispondente a quella prevista per il livello di destinazione finale."
+        },
+        "transformation": "Area qualificata 2° livello and Area specialistica 1° livello: 24 months, 12 at two levels below the destination and 12 at one level below, with the pay of that level (minimo, ex contingenza and EDR). Read on the rendered table of p. 61.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-01T19:46:09Z",
+          "verification_status": "unverified"
+        }
+      }
+    },
+    {
+      "type": "under_classification",
+      "name": "professionalizzante_tre_periodi",
+      "destination_levels": [
         "AS2",
         "AS3",
         "AC1",
@@ -2612,10 +2637,42 @@
       "periods": [
         {
           "months_from": 0,
+          "months_until": 12,
+          "levels_below": 2
+        },
+        {
+          "months_from": 12,
+          "months_until": 24,
+          "levels_below": 1
+        },
+        {
+          "months_from": 24,
           "months_until": null,
-          "percentage": "1.00"
+          "levels_below": 0
         }
-      ]
+      ],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-cemento-federbeton-2025-05-08",
+            "title": "CCNL Cemento, calce e gesso (Federbeton), 8 maggio 2025, stampa (FENEAL-UIL)",
+            "kind": "associazione",
+            "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf",
+            "sha256": "0577ad1f914031470abf63b59ffc33b0eff779311bbe10fe670a28b3b0823f97"
+          },
+          "page": "61",
+          "section": "Art. 25 - Apprendistato professionalizzante",
+          "quote": "La durata massima del periodo di apprendistato e la sua suddivisione in periodi è così determinata. [...] nel primo periodo di apprendistato professionalizzante: due livelli sotto quello di destinazione finale con retribuzione corrispondente a quella minima contrattuale (minimo tabellare, ex indennità di contingenza e EDR) del livello iniziale di inquadramento; nel secondo periodo: un livello sotto quello di destinazione finale [...]; nel terzo e ultimo periodo: fermo l’inquadramento di cui al secondo periodo di apprendistato, la retribuzione sarà corrispondente a quella prevista per il livello di destinazione finale."
+        },
+        "transformation": "Area specialistica 2° e 3° livello (30 months: 12, 12, 6), Area concettuale and Area direttiva 1° e 2° livello (36 months: 12, 12, 12): two levels below, one level below, then the pay of the destination level, the classification staying at the second period's (levels_below 0 prices the pay). Read on the rendered table of p. 61.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-01T19:46:09Z",
+          "verification_status": "unverified"
+        }
+      }
     }
   ],
   "ruleset": {
@@ -2625,7 +2682,7 @@
     "effective_until": null,
     "source": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf",
     "verification_status": "verified",
-    "source_hash": "d0ce8631f6e2b9c037f9800b34635241bb0f2bbcfa43e51b642ba7d14dc9f3da",
+    "source_hash": "795cf74c0f477a8778819704a62f75db1b84197731cd7e226b2f18e49d2a69e1",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

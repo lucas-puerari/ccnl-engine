@@ -19,38 +19,6 @@
       }
     },
     {
-      "id": "apprenticeship_full_pay_passthrough",
-      "institute": "base_salary",
-      "variant": "apprentice",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "APPRENTICESHIP (Art. 25): under_classification model — period 1 at 2 levels below target, period 2 at 1 level below target, period 3 (where applicable) at target level pay. Modelled as 100% passthrough for all eligible levels (AQ2 and above); correct for permanent workers. The schema can express it: UnderClassificationPeriod.levels_below is relative to the destination level (review of 2026-10-30).",
-      "calculation": "ccnl/cemento-calce-gesso-industria:coverage.notes",
-      "state": "absent",
-      "remediation": "Model the Art. 25 periods with levels_below 2 and 1.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "cemento-calce-gesso-industria/apprenticeship_full_pay_passthrough"
-        ]
-      }
-    },
-    {
-      "id": "apprenticeship_pct_undeclared_components",
-      "institute": "base_salary",
-      "variant": "apprentice",
-      "discriminant": "applies_when.trigger = path",
-      "rule": "A percentage apprenticeship reduces every fixed allowance whose apprenticeship_pct_relevant flag the data leaves at its default, together with the base salary. Whether the CCNL applies the percentage to that allowance (an EDR, a contingenza, a function allowance) was not sourced. The run is affected when such an allowance is in the apprentice's pay.",
-      "calculation": "ccnl_engine.apprenticeship.rules (percentage track chain)",
-      "state": "unverified",
-      "remediation": "Source, for each CCNL, the elements the apprenticeship percentage applies to and set apprenticeship_pct_relevant on every allowance; the limitation then no longer applies to its runs.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "apprenticeship_pct_undeclared_components"
-        ]
-      }
-    },
-    {
       "id": "arrears_unused_deductions",
       "institute": "contract_renewal_arrears",
       "variant": "all",

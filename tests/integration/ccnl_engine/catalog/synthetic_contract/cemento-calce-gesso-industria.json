@@ -125,12 +125,30 @@
       "expected_amount": "14.80"
     }
   ],
-  "apprenticeship_pct_checks": [
+  "apprenticeship_uc_checks": [
     {
       "level_code": "AQ2",
-      "track_name": "professionalizzante",
+      "track_name": "professionalizzante_24_mesi",
       "months_elapsed": 1,
-      "expected_pct": "1.00"
+      "expected_levels_below": 2
+    },
+    {
+      "level_code": "AS1",
+      "track_name": "professionalizzante_24_mesi",
+      "months_elapsed": 13,
+      "expected_levels_below": 1
+    },
+    {
+      "level_code": "AS2",
+      "track_name": "professionalizzante_tre_periodi",
+      "months_elapsed": 25,
+      "expected_levels_below": 0
+    },
+    {
+      "level_code": "AD2",
+      "track_name": "professionalizzante_tre_periodi",
+      "months_elapsed": 12,
+      "expected_levels_below": 1
     }
   ]
 }
