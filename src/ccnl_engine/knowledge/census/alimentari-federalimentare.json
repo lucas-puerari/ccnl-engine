@@ -359,10 +359,10 @@
       "institute": "sickness",
       "variant": "all",
       "discriminant": "applies_when.trigger = run",
-      "rule": "SICKNESS (Art. 47): the 100% and 50% bands of the net normal pay and the comporto of 186 days in 17 months (up to 5 years) and 365 days in 24 months (over 5) are counted over the sickness of every episode in the window. Not modelled: the 90 more days of comporto for disabled workers (L. 68/99); the fixed-term limit (4 months, integration no longer than the INPS indemnity); the apprentice's normal pay for at most six months a year (Art. 21). The net pay is computed by grossing up the INPS indemnity by the worker's INPS rate, as for the Commercio file.",
+      "rule": "SICKNESS (Art. 47): the 100% and 50% bands of the net normal pay and the comporto of 186 days in 17 months (up to 5 years) and 365 days in 24 months (over 5) are counted over the sickness of every episode in the window. Not modelled: the apprentice's 'retribuzione normale, per un massimo di sei mesi per ogni anno' (Art. 21, PDF p. 50). Modelled: the comporto of a fixed-term worker 'limitata al periodo massimo di 4 mesi' (prima nota a verbale, PDF p. 111), 120 days. Already right without a model: the fixed-term integration stops with the INPS indemnity (the days past the D.L. 463/1983 limit are unpaid), and the 90 more days of comporto of a disabled worker (L. 68/99) carry 'non decorrerà retribuzione né si avrà decorrenza di anzianità', which is what a day past the comporto already pays. The net pay is computed by grossing up the INPS indemnity by the worker's INPS rate, as for the Commercio file.",
       "calculation": "ccnl/alimentari-federalimentare:coverage.notes",
       "state": "absent",
-      "remediation": "Model the 90 more days of comporto of a disabled worker, the fixed-term limit and the apprentice treatment of Art. 47 and Art. 21.",
+      "remediation": "Pay the apprentice the normal pay for up to six months a year (Art. 21), then resolve this limitation.",
       "origin": "seeded",
       "links": {
         "limitations": [
