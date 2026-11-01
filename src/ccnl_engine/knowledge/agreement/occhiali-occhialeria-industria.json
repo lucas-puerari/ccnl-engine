@@ -59,19 +59,6 @@
         "text": "Level Q (Quadro): indennita di funzione +82.63 EUR/month on top of the tabular minimum (all tranches). Modelled as INDENNITA_FUNZIONE fixed allowance, months_per_year=13."
       },
       {
-        "kind": "simplification",
-        "text": "HOURLY DIVISOR: 173 (standard 40h/week). Shift workers on 6x6 turns use divisor 156; engine models the 173 case uniformly.",
-        "capability": "overtime",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "shift_6x6_divisor_156",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Model the 156 divisor of the 6x6 shift workers (a work pattern input or an hourly_divisor by schedule), as the long-week divisors tracked elsewhere."
-        }
-      },
-      {
         "kind": "info",
         "text": "SENIORITY: 5 biennali (24-month) scatti. Per-level amounts (EUR): 1=6.84, 2=7.36, 3=3S=7.80, 4=4S=8.26, 5=5S=9.76, 6=Q=11.65."
       },
@@ -3188,7 +3175,7 @@
     "effective_until": null,
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/260130_OCCHIALI_RINNOVO%20CCNL%202026_2028.pdf",
     "verification_status": "verified",
-    "source_hash": "e04c2a956bc47cfe7ebc429569079410b6b66ffec1c73ddb9f5024f52e7d1489",
+    "source_hash": "b00d82b881ddd0221076d5ec0d73bf8f173098bbfc05eb71ba568de1772fba57",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3337,6 +3324,36 @@
               "extraction_timestamp": "2026-09-08T00:00:00",
               "verification_status": "unverified",
               "effective_from": "2023-01-01"
+            }
+          }
+        }
+      ],
+      "hourly_divisor_weekly_hours": 40,
+      "week_divisors": [
+        {
+          "weekly_hours": 36,
+          "divisor": "156",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "occhiali-rinnovo-2026-01-30",
+                "title": "Ipotesi di rinnovo CCNL Occhiali 2026-2028, 30 gennaio 2026, signed scan (FILCTEM-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/260130_OCCHIALI_RINNOVO%20CCNL%202026_2028.pdf",
+                "sha256": "d89575d27ada28b26a5397b086ce9ca472aca6dfc66f28f70f2654e0fb82d79c"
+              },
+              "page": "23",
+              "section": "Art. 54 - Tutela della maternità e congedi parentali",
+              "quote": "si fa riferimento ai divisori fissi contrattuali, pari a: 173 ore/mese per l’orario a 40 ore; 156 ore/mese per l’orario 6x6."
+            },
+            "transformation": "The divisor of the 6x6 schedule (six hours a day on six days, a full-time week of 36 hours) is 156, as the CCNL's fixed divisor for 40 hours is 173 (parameters.hourly_divisor). The clause states the two divisors in the article on parental leave, calling them the fixed contractual divisors: read as the hourly divisor of the 36-hour week. Read on the rendered page of the scan.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T15:18:35Z",
+              "effective_from": "2026-01-30",
+              "verification_status": "unverified"
             }
           }
         }
