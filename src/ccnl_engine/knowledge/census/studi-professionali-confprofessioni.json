@@ -339,22 +339,6 @@
       }
     },
     {
-      "id": "part_time_supplementary",
-      "institute": "overtime",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Art. 42 (text of 16 February 2024, p. 36): the lavoro supplementare of part-time is paid with the quota oraria of the retribuzione di fatto and a 40% maggiorazione (band OT_SUPPLEMENTARE); c. 4 leaves its pay out of 'ogni Istituto retributivo differito, compreso il Trattamento di fine rapporto', while the engine puts an overtime event in the TFR base.",
-      "calculation": "ccnl/studi-professionali-confprofessioni:coverage.notes",
-      "state": "absent",
-      "remediation": "Leave the supplementary hours of Art. 42 out of the TFR base and of the deferred institutes.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "studi-professionali-confprofessioni/part_time_supplementary"
-        ]
-      }
-    },
-    {
       "id": "paternity_daily_base",
       "institute": "paternity_leave",
       "variant": "all",

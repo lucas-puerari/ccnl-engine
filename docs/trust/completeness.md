@@ -14,7 +14,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 0/135 CCNLs.** Bundle: 269 weak rules, 547 open limitations (547 with a monetary impact).
+**Complete: 0/135 CCNLs.** Bundle: 269 weak rules, 546 open limitations (546 with a monetary impact).
 
 ## Declared window
 
@@ -165,7 +165,7 @@ Future data, registered apart from the gaps: a contract whose validity ends insi
 | [servizi-postali-appalto-fise](../contracts/servizi-postali-appalto-fise.md) | `servizi-postali` | exploratory | — | 24 rows | 24 open requirements; 1 weak rule; 20 monetary limitations; 1 outside_input limitation; 20 non-native capabilities |
 | [sistemazioni-idraulico-forestali-impiegati](../contracts/sistemazioni-idraulico-forestali-impiegati.md) | `bonifica-forestazione` | exploratory | — | 27 rows | 27 open requirements; 2 weak rules; 23 monetary limitations; 21 non-native capabilities |
 | [sistemazioni-idraulico-forestali-operai](../contracts/sistemazioni-idraulico-forestali-operai.md) | `bonifica-forestazione` | exploratory | — | 28 rows | 28 open requirements; 2 weak rules; 23 monetary limitations; 1 outside_input limitation; 21 non-native capabilities |
-| [studi-professionali-confprofessioni](../contracts/studi-professionali-confprofessioni.md) | `servizi-professionali` | reviewed | — | 34 rows | 34 open requirements; 20 monetary limitations; 12 outside_input limitations; 22 non-native capabilities |
+| [studi-professionali-confprofessioni](../contracts/studi-professionali-confprofessioni.md) | `servizi-professionali` | reviewed | — | 33 rows | 33 open requirements; 20 monetary limitations; 11 outside_input limitations; 22 non-native capabilities |
 | [tabacco-apti](../contracts/tabacco-apti.md) | `alimentare` | exploratory | — | 44 rows | 44 open requirements; 22 weak rules; 20 monetary limitations; 19 non-native capabilities |
 | [telecomunicazioni-asstel](../contracts/telecomunicazioni-asstel.md) | `ict-telecomunicazioni` | exploratory | — | 24 rows | 24 open requirements; 1 weak rule; 21 monetary limitations; 20 non-native capabilities |
 | [terziario-confesercenti](../contracts/terziario-confesercenti.md) | `commercio` | reviewed | 2027-03-31 | 29 rows | 29 open requirements; 21 monetary limitations; 6 outside_input limitations; 22 non-native capabilities |

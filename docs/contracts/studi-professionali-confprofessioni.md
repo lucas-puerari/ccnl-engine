@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, leave, overtime, seniority, sickness |
+| **Limits of this contract** | base_salary, leave, seniority, sickness |
 
-13 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+12 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -136,13 +136,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Accept the weekly schedule (days per week) and accrue 26 days on a six-day week, or record the limitation as rol_not_accrued does for ROL.
-
-!!! warning "studi-professionali-confprofessioni/part_time_supplementary · overtime · impact yes · open"
-    Art. 42 (text of 16 February 2024, p. 36): the lavoro supplementare of part-time is paid with the quota oraria of the retribuzione di fatto and a 40% maggiorazione (band OT_SUPPLEMENTARE); c. 4 leaves its pay out of 'ogni Istituto retributivo differito, compreso il Trattamento di fine rapporto', while the engine puts an overtime event in the TFR base.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Leave the supplementary hours of Art. 42 out of the TFR base and of the deferred institutes.
 
 !!! warning "studi-professionali-confprofessioni/rolling_comporto_and_serious_illness · sickness · impact yes · open"
     Artt. 120-121: the comporto counted over the episodes of the 365 days before the last one, and the +90 days for serious illnesses paid 100% in months 7-8 and 70% in month 9.
@@ -409,6 +402,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     CNEL code H442: confirmed from the CNEL archive 'Studi Professionali — Confprofessioni'. Workers covered: 317,554 (UNIEMENS 2022).
     
     BILATERAL CONTRIBUTION: EBIPRO and CADIPROF are paid with a unified contribution of EUR 29 a month for 12 months, EUR 2 of it by the worker (Art. 13), modelled as the contractual funds cadiprof (20 EUR, health fund) and ebipro (7 + 2 EUR); an employer outside the bilateral system owes the worker 43 EUR for 14 months instead. The CADIPROF enrolment of EUR 24 (Art. 16) stays a caller BilateralFundEvent.
+    
+    PART-TIME SUPPLEMENTARY HOURS (Art. 42, text of 16 February 2024, p. 36): the quota oraria of the retribuzione di fatto with a 40% maggiorazione (band OT_SUPPLEMENTARE). C. 4 leaves that pay out of 'ogni Istituto retributivo differito, compreso il Trattamento di fine rapporto': an overtime event enters neither the TFR base nor the extra months of the engine.
     
     HOURLY RATE AND SUPPLEMENTS (artt. 93-97, 135, 137 of the CCNL of 16 February 2024): without a caller value the engine derives the hourly base (the art. 135 normale retribuzione over 170) and the 30% on festività hours paid as straordinario festivo (art. 97 lett. E with art. 95); art. 97 also pays the hours themselves, which the engine does not post: the run is provisional. Not derived, the caller states the amount: ordinary night work, which art. 93 leaves to the Area Professionale or second-level bargaining (the 30% of art. 95 is a night overtime rate); work on the weekly rest day ('la relativa sola maggiorazione', art. 97 lett. F, names no percentage).
     
