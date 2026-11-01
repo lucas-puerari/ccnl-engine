@@ -34,6 +34,8 @@ _DECLARED_GAPS: dict[tuple[str, SalaryGapKind, date], int] = {
     ("panificazione-assipan", _MISSING, date(2024, 2, 1)): 7,
     # EDR introduced by the verbale of 23 May 2025: not in force before.
     ("noleggio-autobus-conducente-anav", _NOT_APPLICABLE, date(2025, 7, 1)): 11,
+    # Art. 51 bis: the element without second-level bargaining from 2027.
+    ("alimentari-federalimentare", _NOT_APPLICABLE, date(2027, 1, 1)): 8,
 }
 
 

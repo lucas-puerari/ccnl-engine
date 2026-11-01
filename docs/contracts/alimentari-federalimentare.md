@@ -33,7 +33,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, bilateral_funds, overtime, sickness |
 
-7 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+6 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 83 verified / 0 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 91 verified / 0 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🟢 Verified | The confidence the ruleset declares as a whole |
 | **Readiness** | 👁 Reviewed | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -62,6 +62,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-17 | claude-opus-5-5 (ai) | Periodic review due 2026-12-01: the minimi of every level and tranche, the ex contingenza, the EDR, the IAR, the scatti, the indennità di funzione and the extra months against the CCNL of 1 March 2024, and a year and a termination of a 3rd level impiegato against a hand oracle. | confirmed | Art. 51 lett. A (PDF p. 116): the 40 minimi of the eight levels from December 2023 to January 2027 match the file.<br>Art. 52 (PDF p. 121): ex contingenza of the eight levels (1S 545,72 to 6 515,31) and EDR of 10,33 on 13 mensilità. Match.<br>Art. 51 lett. D (PDF p. 118): IAR of the eight levels from December 2023 and September 2027. Match. Art. 53: five biennial scatti, 1S 51,42 to 6 22,35. Match. Art. 23: indennità di funzione of the quadri, 100 euro. Match.<br>Art. 54 (PDF p. 123): tredicesima and quattordicesima of the monthly pay, in twelfths for a hire within the year; the EDR is paid on 13 mensilità, so the quattordicesima leaves it out, as the engine does. Art. 54 states neither the accrual period nor the payment month of the quattordicesima of the impiegati: the engine and the oracle read them from the gratifica speciale of the operai (PDF p. 215: paid with the June pay, accrued from 1 July to 30 June), an interpretation, not a statement of Art. 54.<br>Hand oracle (tests/knowledge/ccnl_engine/period/sector, scenarios alimentari-year and alimentari-june): a 3rd level impiegato hired on 1 January 2026 by an employer with 50 employees; every payment and the year (gross, contributions, tax, net, TFR, employer cost) match the engine to the cent.<br>Triage: overtime_subsector_tables (the overtime percentages of the subsector tables) and sickness_half_pay_and_comporto (half pay and the comporto) change pay only on runs with overtime or sickness events; each needs an engine change and stays open for a separate pull request. |
 | 2026-11-01 | claude-opus-5-5 (ai) | The notice of Art. 72 (PDF pp. 149-150). | corrected | Art. 72 (pp. 149-150): impiegati by level and service from the middle or end of the month, operai 12/20 days from any day, intermedi apart (not modelled), indemnity at the pay of the period: work_rules.notice. Found by a delegated search, checked again on the PDF text. |
 | 2026-11-01 | claude-opus-5-5 (ai) | The premio di campagna of Art. 51 ter (PDF p. 120). | corrected | Art. 51 ter: the monthly premio di campagna by level of the seasonal workers on tomatoes and fresh peas, 142.57 to 61.99, found by a delegated search and read again in the PDF text layer: levels[].fixed_allowances[PREMIO_CAMPAGNA]. |
+| 2026-11-01 | claude-opus-5-5 (ai) | The trattamento economico per mancata contrattazione di secondo livello of Art. 51 bis (PDF p. 119). | corrected | Art. 51 bis: paid from 1 January 2027 on 12 months, 75.55 (1S) to 32.85 (6), out of the TFR, by the firms without the premio per obiettivi: levels[].fixed_allowances[MANCATA_CONTRATTAZIONE]. The note read a start of 1 January 2023 for the first column; the clause pays from 2027. |
 
 ## Salary table
 
@@ -125,13 +126,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `sickness` applies.
 
     **Remediation:** Model the 90 more days of comporto of a disabled worker, the fixed-term limit and the apprentice treatment of Art. 47 and Art. 21.
-
-!!! warning "alimentari-federalimentare/second_level_omission_element · base_salary · impact yes · open"
-    Art. 51 bis: the trattamento economico per mancata contrattazione di secondo livello, EUR 21.90 at level 6 to 50.37 at 1S a month for 12 months from 1 January 2023, 32.85 to 75.55 from 1 January 2027, outside the TFR, owed by firms without a premio per obiettivi.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Add an employer fact for the premio per obiettivi and pay Art. 51 bis.
 
 !!! warning "alimentari-federalimentare/ordinary_hours_premiums · overtime · impact yes · open"
     Art. 31: the premiums on ordinary night, shift night, holiday and Sunday work.

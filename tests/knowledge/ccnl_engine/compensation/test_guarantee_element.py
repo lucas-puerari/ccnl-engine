@@ -1,4 +1,4 @@
-"""The elemento di garanzia retributiva of the Unionalimentari, by employer fact.
+"""The elements of guarantee owed without a company premium, by employer fact.
 
 Circular of the renewal of 28 May 2025, p. 8 (sha256
 85fbb0242738a0d34e7549a302c9c4002b5ff257146b3c3aeee10b8a945b7ba6): the
@@ -77,3 +77,37 @@ def test_an_unstated_premium_leaves_the_element_out_and_says_so() -> None:
 def test_the_element_is_not_paid_on_the_extra_months() -> None:
     """'erogati per 12 mensilità': nothing on the tredicesima."""
     assert _egr(_run(False, PayrollRun.thirteenth(2026, 12), date(2026, 12, 15))) == []
+
+
+def _alimentari(premium: bool | None, year: int) -> list[Decimal]:
+    result = _ENGINE.calculate_period(
+        PeriodInput(
+            run=PayrollRun.regular(year, 1),
+            payment_date=date(year, 1, 27),
+            employment=Employment(
+                ccnl_id="alimentari-federalimentare",
+                level_code="4",
+                seniority=new_hire(),
+                contract_type=Permanent(),
+                employment_period=EmploymentPeriod(date(2025, 1, 1)),
+            ),
+            employer=EmployerProfile(
+                headcount=Headcount(20), second_level_premium=premium
+            ),
+            facts=PeriodFacts(regione="IT-25", comune_belfiore="A005"),
+        )
+    )
+    return [i.amount for i in result.pay_items if "MANCATA_CONTRATTAZIONE" in i.item_id]
+
+
+@pytest.mark.parametrize(
+    ("premium", "year", "amount"),
+    [(False, 2027, "39.42"), (True, 2027, None), (False, 2026, None)],
+    ids=["no-premium-2027", "premium", "before-2027"],
+)
+def test_alimentari_pays_art_51_bis_from_2027(
+    premium: bool, year: int, amount: str | None
+) -> None:
+    """Level 4: 39.42 from January 2027 to a firm without the premium."""
+    expected = [] if amount is None else [Decimal(amount)]
+    assert _alimentari(premium, year) == expected

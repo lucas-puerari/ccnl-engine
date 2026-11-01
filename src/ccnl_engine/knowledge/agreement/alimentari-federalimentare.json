@@ -94,19 +94,6 @@
       },
       {
         "kind": "simplification",
-        "text": "Art. 51 bis: the trattamento economico per mancata contrattazione di secondo livello, EUR 21.90 at level 6 to 50.37 at 1S a month for 12 months from 1 January 2023, 32.85 to 75.55 from 1 January 2027, outside the TFR, owed by firms without a premio per obiettivi.",
-        "capability": "base_salary",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "second_level_omission_element",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Add an employer fact for the premio per obiettivi and pay Art. 51 bis."
-        }
-      },
-      {
-        "kind": "simplification",
         "text": "Art. 31: the premiums on ordinary night, shift night, holiday and Sunday work.",
         "capability": "overtime",
         "monetary_impact": "yes",
@@ -785,6 +772,54 @@
               "review_id": "2026-11-01-ai-campaign-premium"
             }
           }
+        },
+        {
+          "code": "MANCATA_CONTRATTAZIONE",
+          "description": "Trattamento economico per mancata contrattazione di secondo livello, Art. 51 bis, on 12 months",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": "2027-01-01",
+                "gap_kind": "not_applicable"
+              },
+              {
+                "valid_from": "2027-01-01",
+                "valid_until": null,
+                "value": "32.85"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "tfr_relevant": false,
+          "replaced_by": "second_level_premium",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "119",
+              "section": "Art. 51 bis - Trattamento economico per mancata contrattazione di secondo livello",
+              "quote": "Le aziende che non realizzano la contrattazione del premio per obiettivi di cui all’art. 55 del CCNL, erogheranno, a titolo di indennità per mancata contrattazione di secondo livello a favore dei lavoratori dipendenti, gli importi di cui alla tabella di seguito riportata: [...] 6 [...] 32,85 [...] Tali importi saranno erogati a partire dal 1° gennaio 2027 per 12 mensilità, assorbono fino a concorrenza eventuali erogazioni svolgenti funzione analoga agli istituti di cui sopra. [...] gli importi di cui sopra sono esclusi dal computo del T.F.R."
+            },
+            "transformation": "32.85 EUR a month for level 6 from 1 January 2027 (column 'dal 1/01/2027'), on 12 monthly payments, out of the TFR base, owed where the firm pays no premio per obiettivi (EmployerProfile.second_level_premium false); a payment with the same function absorbs it and the caller then states second_level_premium true. The column 'fino al 31/12/2026' is not paid: the clause pays the amounts from 1 January 2027 (Art. 51 ter: 'prima dell'entrata in applicazione dell'art. 51 bis').",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T17:14:58Z",
+              "effective_from": "2027-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T17:14:58Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-omission-element"
+            }
+          }
         }
       ],
       "provenance": {
@@ -1142,6 +1177,54 @@
               "verified_at": "2026-11-01T15:47:45Z",
               "verification_status": "verified",
               "review_id": "2026-11-01-ai-campaign-premium"
+            }
+          }
+        },
+        {
+          "code": "MANCATA_CONTRATTAZIONE",
+          "description": "Trattamento economico per mancata contrattazione di secondo livello, Art. 51 bis, on 12 months",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": "2027-01-01",
+                "gap_kind": "not_applicable"
+              },
+              {
+                "valid_from": "2027-01-01",
+                "valid_until": null,
+                "value": "36.13"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "tfr_relevant": false,
+          "replaced_by": "second_level_premium",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "119",
+              "section": "Art. 51 bis - Trattamento economico per mancata contrattazione di secondo livello",
+              "quote": "Le aziende che non realizzano la contrattazione del premio per obiettivi di cui all’art. 55 del CCNL, erogheranno, a titolo di indennità per mancata contrattazione di secondo livello a favore dei lavoratori dipendenti, gli importi di cui alla tabella di seguito riportata: [...] 5 [...] 36,13 [...] Tali importi saranno erogati a partire dal 1° gennaio 2027 per 12 mensilità, assorbono fino a concorrenza eventuali erogazioni svolgenti funzione analoga agli istituti di cui sopra. [...] gli importi di cui sopra sono esclusi dal computo del T.F.R."
+            },
+            "transformation": "36.13 EUR a month for level 5 from 1 January 2027 (column 'dal 1/01/2027'), on 12 monthly payments, out of the TFR base, owed where the firm pays no premio per obiettivi (EmployerProfile.second_level_premium false); a payment with the same function absorbs it and the caller then states second_level_premium true. The column 'fino al 31/12/2026' is not paid: the clause pays the amounts from 1 January 2027 (Art. 51 ter: 'prima dell'entrata in applicazione dell'art. 51 bis').",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T17:14:58Z",
+              "effective_from": "2027-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T17:14:58Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-omission-element"
             }
           }
         }
@@ -1503,6 +1586,54 @@
               "review_id": "2026-11-01-ai-campaign-premium"
             }
           }
+        },
+        {
+          "code": "MANCATA_CONTRATTAZIONE",
+          "description": "Trattamento economico per mancata contrattazione di secondo livello, Art. 51 bis, on 12 months",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": "2027-01-01",
+                "gap_kind": "not_applicable"
+              },
+              {
+                "valid_from": "2027-01-01",
+                "valid_until": null,
+                "value": "39.42"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "tfr_relevant": false,
+          "replaced_by": "second_level_premium",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "119",
+              "section": "Art. 51 bis - Trattamento economico per mancata contrattazione di secondo livello",
+              "quote": "Le aziende che non realizzano la contrattazione del premio per obiettivi di cui all’art. 55 del CCNL, erogheranno, a titolo di indennità per mancata contrattazione di secondo livello a favore dei lavoratori dipendenti, gli importi di cui alla tabella di seguito riportata: [...] 4 [...] 39,42 [...] Tali importi saranno erogati a partire dal 1° gennaio 2027 per 12 mensilità, assorbono fino a concorrenza eventuali erogazioni svolgenti funzione analoga agli istituti di cui sopra. [...] gli importi di cui sopra sono esclusi dal computo del T.F.R."
+            },
+            "transformation": "39.42 EUR a month for level 4 from 1 January 2027 (column 'dal 1/01/2027'), on 12 monthly payments, out of the TFR base, owed where the firm pays no premio per obiettivi (EmployerProfile.second_level_premium false); a payment with the same function absorbs it and the caller then states second_level_premium true. The column 'fino al 31/12/2026' is not paid: the clause pays the amounts from 1 January 2027 (Art. 51 ter: 'prima dell'entrata in applicazione dell'art. 51 bis').",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T17:14:58Z",
+              "effective_from": "2027-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T17:14:58Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-omission-element"
+            }
+          }
         }
       ],
       "provenance": {
@@ -1860,6 +1991,54 @@
               "verified_at": "2026-11-01T15:47:45Z",
               "verification_status": "verified",
               "review_id": "2026-11-01-ai-campaign-premium"
+            }
+          }
+        },
+        {
+          "code": "MANCATA_CONTRATTAZIONE",
+          "description": "Trattamento economico per mancata contrattazione di secondo livello, Art. 51 bis, on 12 months",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": "2027-01-01",
+                "gap_kind": "not_applicable"
+              },
+              {
+                "valid_from": "2027-01-01",
+                "valid_until": null,
+                "value": "42.70"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "tfr_relevant": false,
+          "replaced_by": "second_level_premium",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "119",
+              "section": "Art. 51 bis - Trattamento economico per mancata contrattazione di secondo livello",
+              "quote": "Le aziende che non realizzano la contrattazione del premio per obiettivi di cui all’art. 55 del CCNL, erogheranno, a titolo di indennità per mancata contrattazione di secondo livello a favore dei lavoratori dipendenti, gli importi di cui alla tabella di seguito riportata: [...] 3 [...] 42,70 [...] Tali importi saranno erogati a partire dal 1° gennaio 2027 per 12 mensilità, assorbono fino a concorrenza eventuali erogazioni svolgenti funzione analoga agli istituti di cui sopra. [...] gli importi di cui sopra sono esclusi dal computo del T.F.R."
+            },
+            "transformation": "42.70 EUR a month for level 3 from 1 January 2027 (column 'dal 1/01/2027'), on 12 monthly payments, out of the TFR base, owed where the firm pays no premio per obiettivi (EmployerProfile.second_level_premium false); a payment with the same function absorbs it and the caller then states second_level_premium true. The column 'fino al 31/12/2026' is not paid: the clause pays the amounts from 1 January 2027 (Art. 51 ter: 'prima dell'entrata in applicazione dell'art. 51 bis').",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T17:14:58Z",
+              "effective_from": "2027-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T17:14:58Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-omission-element"
             }
           }
         }
@@ -2221,6 +2400,54 @@
               "review_id": "2026-11-01-ai-campaign-premium"
             }
           }
+        },
+        {
+          "code": "MANCATA_CONTRATTAZIONE",
+          "description": "Trattamento economico per mancata contrattazione di secondo livello, Art. 51 bis, on 12 months",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": "2027-01-01",
+                "gap_kind": "not_applicable"
+              },
+              {
+                "valid_from": "2027-01-01",
+                "valid_until": null,
+                "value": "47.63"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "tfr_relevant": false,
+          "replaced_by": "second_level_premium",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "119",
+              "section": "Art. 51 bis - Trattamento economico per mancata contrattazione di secondo livello",
+              "quote": "Le aziende che non realizzano la contrattazione del premio per obiettivi di cui all’art. 55 del CCNL, erogheranno, a titolo di indennità per mancata contrattazione di secondo livello a favore dei lavoratori dipendenti, gli importi di cui alla tabella di seguito riportata: [...] 3A [...] 47,63 [...] Tali importi saranno erogati a partire dal 1° gennaio 2027 per 12 mensilità, assorbono fino a concorrenza eventuali erogazioni svolgenti funzione analoga agli istituti di cui sopra. [...] gli importi di cui sopra sono esclusi dal computo del T.F.R."
+            },
+            "transformation": "47.63 EUR a month for level 3A from 1 January 2027 (column 'dal 1/01/2027'), on 12 monthly payments, out of the TFR base, owed where the firm pays no premio per obiettivi (EmployerProfile.second_level_premium false); a payment with the same function absorbs it and the caller then states second_level_premium true. The column 'fino al 31/12/2026' is not paid: the clause pays the amounts from 1 January 2027 (Art. 51 ter: 'prima dell'entrata in applicazione dell'art. 51 bis').",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T17:14:58Z",
+              "effective_from": "2027-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T17:14:58Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-omission-element"
+            }
+          }
         }
       ],
       "provenance": {
@@ -2580,6 +2807,54 @@
               "review_id": "2026-11-01-ai-campaign-premium"
             }
           }
+        },
+        {
+          "code": "MANCATA_CONTRATTAZIONE",
+          "description": "Trattamento economico per mancata contrattazione di secondo livello, Art. 51 bis, on 12 months",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": "2027-01-01",
+                "gap_kind": "not_applicable"
+              },
+              {
+                "valid_from": "2027-01-01",
+                "valid_until": null,
+                "value": "54.20"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "tfr_relevant": false,
+          "replaced_by": "second_level_premium",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "119",
+              "section": "Art. 51 bis - Trattamento economico per mancata contrattazione di secondo livello",
+              "quote": "Le aziende che non realizzano la contrattazione del premio per obiettivi di cui all’art. 55 del CCNL, erogheranno, a titolo di indennità per mancata contrattazione di secondo livello a favore dei lavoratori dipendenti, gli importi di cui alla tabella di seguito riportata: [...] 2 [...] 54,20 [...] Tali importi saranno erogati a partire dal 1° gennaio 2027 per 12 mensilità, assorbono fino a concorrenza eventuali erogazioni svolgenti funzione analoga agli istituti di cui sopra. [...] gli importi di cui sopra sono esclusi dal computo del T.F.R."
+            },
+            "transformation": "54.20 EUR a month for level 2 from 1 January 2027 (column 'dal 1/01/2027'), on 12 monthly payments, out of the TFR base, owed where the firm pays no premio per obiettivi (EmployerProfile.second_level_premium false); a payment with the same function absorbs it and the caller then states second_level_premium true. The column 'fino al 31/12/2026' is not paid: the clause pays the amounts from 1 January 2027 (Art. 51 ter: 'prima dell'entrata in applicazione dell'art. 51 bis').",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T17:14:58Z",
+              "effective_from": "2027-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T17:14:58Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-omission-element"
+            }
+          }
         }
       ],
       "provenance": {
@@ -2937,6 +3212,54 @@
               "verified_at": "2026-11-01T15:47:45Z",
               "verification_status": "verified",
               "review_id": "2026-11-01-ai-campaign-premium"
+            }
+          }
+        },
+        {
+          "code": "MANCATA_CONTRATTAZIONE",
+          "description": "Trattamento economico per mancata contrattazione di secondo livello, Art. 51 bis, on 12 months",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": "2027-01-01",
+                "gap_kind": "not_applicable"
+              },
+              {
+                "valid_from": "2027-01-01",
+                "valid_until": null,
+                "value": "65.69"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "tfr_relevant": false,
+          "replaced_by": "second_level_premium",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "119",
+              "section": "Art. 51 bis - Trattamento economico per mancata contrattazione di secondo livello",
+              "quote": "Le aziende che non realizzano la contrattazione del premio per obiettivi di cui all’art. 55 del CCNL, erogheranno, a titolo di indennità per mancata contrattazione di secondo livello a favore dei lavoratori dipendenti, gli importi di cui alla tabella di seguito riportata: [...] 1 [...] 65,69 [...] Tali importi saranno erogati a partire dal 1° gennaio 2027 per 12 mensilità, assorbono fino a concorrenza eventuali erogazioni svolgenti funzione analoga agli istituti di cui sopra. [...] gli importi di cui sopra sono esclusi dal computo del T.F.R."
+            },
+            "transformation": "65.69 EUR a month for level 1 from 1 January 2027 (column 'dal 1/01/2027'), on 12 monthly payments, out of the TFR base, owed where the firm pays no premio per obiettivi (EmployerProfile.second_level_premium false); a payment with the same function absorbs it and the caller then states second_level_premium true. The column 'fino al 31/12/2026' is not paid: the clause pays the amounts from 1 January 2027 (Art. 51 ter: 'prima dell'entrata in applicazione dell'art. 51 bis').",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T17:14:58Z",
+              "effective_from": "2027-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T17:14:58Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-omission-element"
             }
           }
         }
@@ -3339,6 +3662,54 @@
               "review_id": "2026-11-01-ai-campaign-premium"
             }
           }
+        },
+        {
+          "code": "MANCATA_CONTRATTAZIONE",
+          "description": "Trattamento economico per mancata contrattazione di secondo livello, Art. 51 bis, on 12 months",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": "2027-01-01",
+                "gap_kind": "not_applicable"
+              },
+              {
+                "valid_from": "2027-01-01",
+                "valid_until": null,
+                "value": "75.55"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "tfr_relevant": false,
+          "replaced_by": "second_level_premium",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "119",
+              "section": "Art. 51 bis - Trattamento economico per mancata contrattazione di secondo livello",
+              "quote": "Le aziende che non realizzano la contrattazione del premio per obiettivi di cui all’art. 55 del CCNL, erogheranno, a titolo di indennità per mancata contrattazione di secondo livello a favore dei lavoratori dipendenti, gli importi di cui alla tabella di seguito riportata: [...] 1S [...] 75,55 [...] Tali importi saranno erogati a partire dal 1° gennaio 2027 per 12 mensilità, assorbono fino a concorrenza eventuali erogazioni svolgenti funzione analoga agli istituti di cui sopra. [...] gli importi di cui sopra sono esclusi dal computo del T.F.R."
+            },
+            "transformation": "75.55 EUR a month for level 1S from 1 January 2027 (column 'dal 1/01/2027'), on 12 monthly payments, out of the TFR base, owed where the firm pays no premio per obiettivi (EmployerProfile.second_level_premium false); a payment with the same function absorbs it and the caller then states second_level_premium true. The column 'fino al 31/12/2026' is not paid: the clause pays the amounts from 1 January 2027 (Art. 51 ter: 'prima dell'entrata in applicazione dell'art. 51 bis').",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T17:14:58Z",
+              "effective_from": "2027-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T17:14:58Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-01-ai-omission-element"
+            }
+          }
         }
       ],
       "category": "quadro",
@@ -3578,7 +3949,7 @@
     "effective_until": null,
     "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "eface514133c520953aabfd117932e522c7b61977890b25f4fb32f44c15a03ef",
+    "source_hash": "6e05a0be5f7170a9529abfb1c99b7ccbbd84a98e90c2065239fae0dba16bbba4",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -4186,6 +4557,27 @@
         "independence": "same_process",
         "checked": [
           "levels[].fixed_allowances[PREMIO_CAMPAGNA]"
+        ]
+      },
+      {
+        "id": "2026-11-01-ai-omission-element",
+        "date": "2026-11-01",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The trattamento economico per mancata contrattazione di secondo livello of Art. 51 bis (PDF p. 119).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+            "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+          }
+        ],
+        "findings": [
+          "Art. 51 bis: paid from 1 January 2027 on 12 months, 75.55 (1S) to 32.85 (6), out of the TFR, by the firms without the premio per obiettivi: levels[].fixed_allowances[MANCATA_CONTRATTAZIONE]. The note read a start of 1 January 2023 for the first column; the clause pays from 2027."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels[].fixed_allowances[MANCATA_CONTRATTAZIONE]"
         ]
       }
     ],
