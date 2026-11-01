@@ -5442,7 +5442,7 @@
     "effective_until": null,
     "source": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/139292",
     "verification_status": "unverified",
-    "source_hash": "14ae107b3be7d4ad37ec4eed75b43a34d3e0102f72db201fd6e671028494ee8f",
+    "source_hash": "1af1b6c0525a7ad8e657e3b2c94d7b358a9abbe360aa817be5905eb3e97f05f3",
     "published_at": "2026-09-07",
     "source_type": "official_primary"
   },
@@ -5717,8 +5717,16 @@
           "extraction_timestamp": "2026-10-13T09:25:49Z",
           "effective_from": "2021-07-01",
           "verification_status": "unverified"
+        },
+        "transformation": "Comporto of several illnesses (2026-11-01): the comporto sums the sick days of the 36 months before the day, up to 360 (12 months, as 30-day months), on top of the 180 days of one illness. Source: https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/139292, p. 22 (sha256 4a87d6d51d2c4ccf7d28a9e2708cd45ee122fdebea7d8f8420cdb38e448f6167): 'Il diritto alla conservazione del posto viene a cessare qualora il lavoratore anche con più periodi di infermità raggiunga in complesso 12 mesi di assenza nell’arco di 36 mesi consecutivi.'"
+      },
+      "comporto_windows": [
+        {
+          "seniority_months_from": 0,
+          "window_months": 36,
+          "comporto_days": 360
         }
-      }
+      ]
     }
   },
   "verification": {

@@ -1380,7 +1380,7 @@
     "effective_until": null,
     "source": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
     "verification_status": "unverified",
-    "source_hash": "a87d24ab6b63e4502dc9b780569572748c2769c2d39587c497b0bd0b5495681d",
+    "source_hash": "6088885b318628750bb058be307b399919d8d0688a67c2895856b11f1e780a65",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1603,8 +1603,10 @@
           "extraction_timestamp": "2026-09-08T00:00:00",
           "verification_status": "unverified",
           "effective_from": "2024-01-01"
-        }
-      }
+        },
+        "transformation": "Comporto of several illnesses (2026-11-01): the comporto of 180 days counts the sick days of every episode of the calendar year. Source: https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf, p. 71 (sha256 7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65): 'mantenimento del posto per un periodo massimo di 180 giorni in un anno solare;'"
+      },
+      "comporto_calendar_year": true
     },
     "notice": {
       "bands": [

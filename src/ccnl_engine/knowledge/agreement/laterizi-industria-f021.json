@@ -2951,7 +2951,7 @@
     "effective_until": null,
     "source": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf",
     "verification_status": "unverified",
-    "source_hash": "3bd5d6e58e36b8829a441a27df56a17d65a22a788fc42bd37d34dc1bf6cd6ae7",
+    "source_hash": "250059371fb067d74ed8c045117e0ea8979ee6c34378c7be83aaa461de0f24ed",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3174,8 +3174,16 @@
           "extraction_timestamp": "2026-09-08T00:00:00",
           "verification_status": "unverified",
           "effective_from": "2022-04-01"
+        },
+        "transformation": "Comporto of several illnesses (2026-11-01): the comporto sums the sick days of the 30 months before the day, up to 425 (14 months, which the CCNL itself converts to 425 calendar days), on top of the 180 days of one illness. Source: https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf, p. 9 (sha256 dccfdf857610cec1aeabeddda4eaf60d8b0214a3f632c8fe87dd1464143a0bf6): 'A titolo esemplificativo ai fini del conteggio del periodo di comporto espresso in mesi la conversione in giorni corrisponde a 425 giorni (14 mesi) di calendario su 912 (30 mesi).'"
+      },
+      "comporto_windows": [
+        {
+          "seniority_months_from": 0,
+          "window_months": 30,
+          "comporto_days": 425
         }
-      }
+      ]
     }
   }
 }
