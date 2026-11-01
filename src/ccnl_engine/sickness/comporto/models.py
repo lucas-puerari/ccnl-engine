@@ -67,9 +67,15 @@ class ComportoWindow(ComportoBand):
     Attributes:
         window_months: Months ending on the day whose sick days are summed,
             against the ``comporto_days`` of the band.
+        hospital_excluded: Whether the days of the hospital stays the
+            episodes state are left out of the sum (Federcasa art. 51 c. 3:
+            "Ai soli fini del presente comma vanno esclusi i periodi di
+            degenza ospedaliera"); the comporto of one illness still counts
+            them.
     """
 
     window_months: int = Field(ge=1)
+    hospital_excluded: bool = False
 
 
 def check_windows(windows: Sequence[ComportoBand]) -> None:

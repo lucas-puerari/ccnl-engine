@@ -51,6 +51,18 @@ def _overlap(episode: SicknessEpisode, first: date, last: date) -> int:
     return 0 if span is None else (span[1] - span[0]).days + 1
 
 
+def _hospital(episode: SicknessEpisode, first: date, last: date) -> int:
+    """Return the hospital days of ``episode`` from ``first`` to ``last``.
+
+    Returns:
+        The days of its stated stays within the span, zero without stays.
+    """
+    return sum(
+        max(0, (min(end, last) - max(start, first)).days + 1)
+        for start, end in episode.hospital_stays or ()
+    )
+
+
 @dataclass(frozen=True)
 class YearTreatment:
     """CCNL treatment of the days of one episode, counted over episodes.
@@ -89,6 +101,20 @@ class YearTreatment:
         """
         earlier = sum(_overlap(e, first, day) for e in self.earlier)
         return earlier + _overlap(self.episode, first, day)
+
+    def window_days(self, window: ComportoWindow, day: date) -> int:
+        """Return the sick days of ``window`` ending on ``day``.
+
+        Returns:
+            The days from the start of the window, less the days of the
+            hospital stays when the window leaves them out.
+        """
+        first = window_start(day, 0, window.window_months)
+        days = self.days_from(first, day)
+        if window.hospital_excluded:
+            episodes = (*self.earlier, self.episode)
+            days -= sum(_hospital(e, first, day) for e in episodes)
+        return days
 
     @cached_property
     def _months(self) -> int:
@@ -195,9 +221,8 @@ class YearTreatment:
         limit = self.limit
         count = self.year_days(day) if self.rules.comporto_calendar_year else index
         window = self.window
-        summed = window is not None and (
-            self.days_from(window_start(day, 0, window.window_months), day)
-            > window.comporto_days
+        summed = (
+            window is not None and self.window_days(window, day) > window.comporto_days
         )
         return CcnlDay(
             beyond_comporto=count > limit or summed,

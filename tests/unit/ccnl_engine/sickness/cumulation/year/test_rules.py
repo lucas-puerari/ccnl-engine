@@ -207,6 +207,45 @@ def test_the_illness_limit_holds_under_a_longer_window() -> None:
     assert year.day(271, date(2027, 2, 26)).beyond_comporto
 
 
+@pytest.mark.parametrize(
+    ("excluded", "last_kept", "first_past"),
+    [
+        # The 100 hospital days of the earlier episode leave the window: 100
+        # of its days count, 260 of the episode from 1 Jun 2026 are kept.
+        (True, date(2027, 2, 15), date(2027, 2, 16)),
+        # Counted, the 200 days leave 160: to 7 Nov 2026.
+        (False, date(2026, 11, 7), date(2026, 11, 8)),
+    ],
+    ids=["hospital-left-out", "hospital-counted"],
+)
+def test_a_window_may_leave_out_the_hospital_stays(
+    excluded: bool, last_kept: date, first_past: date
+) -> None:
+    """Federcasa art. 51 c. 3: 360 days in 36 months, hospital stays out."""
+    window = ComportoWindow(
+        seniority_months_from=0,
+        window_months=36,
+        comporto_days=360,
+        hospital_excluded=excluded,
+    )
+    rules = _ANCE.model_copy(
+        update={"max_duration_days": 365, "comporto_windows": (window,)}
+    )
+    start = date(2025, 2, 1)
+    earlier = SicknessEpisode(
+        "before",
+        start,
+        date(2025, 8, 19),
+        hospital_stays=((start, date(2025, 5, 11)),),
+    )
+    episode = _episode("now", date(2026, 6, 1), 300)
+    year = _year(episode, earlier, rules=rules)
+    kept = (last_kept - date(2026, 6, 1)).days + 1
+
+    assert not year.day(kept, last_kept).beyond_comporto
+    assert year.day(kept + 1, first_past).beyond_comporto
+
+
 def test_a_history_known_within_the_window_could_change_the_count() -> None:
     """The 20 months before 1 Jun 2026 start on 2 Oct 2024."""
     episode = _episode("now", date(2026, 6, 1), 3)

@@ -1213,7 +1213,7 @@
     "effective_until": null,
     "source": "https://cislfp.it/wp-content/uploads/2024/11/CCNL-Federcasa-2022-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "f5310f690a5c1414943a0faa18a366132f6fce083ec26882e85f107eacfd0a39",
+    "source_hash": "1597d0cdcc2c1ca54650e6512b3de647c243e235f62754336323f210026cf83a",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1419,7 +1419,7 @@
     "sickness_rules": {
       "carenza_integration_rate": "1",
       "full_pay_integration_rate": "1",
-      "max_duration_days": 180,
+      "max_duration_days": 360,
       "provenance": {
         "status": "derived",
         "location": {
@@ -1436,8 +1436,17 @@
           "extraction_timestamp": "2026-09-08T00:00:00",
           "verification_status": "unverified",
           "effective_from": "2022-01-01"
+        },
+        "transformation": "Comporto of several illnesses (2026-11-01): Art. 51 cc. 2-3 keep the job 12 months (360 days of 30-day months) over three years for a non-continuous absence, leaving out the hospital stays ('In caso di assenza non continuativa, i periodi di conservazione del posto suindicati si intendono riferiti ad un arco temporale pari a tre anni. Ai soli fini del presente comma vanno esclusi i periodi di degenza ospedaliera.'), read on the rendered p. 47 of https://cislfp.it/wp-content/uploads/2024/11/CCNL-Federcasa-2022-2024.pdf (sha256 4c9e5b5a0a22a0712fbbe475c9cc77248f0e0a33b3c338fab6881915146c2c0c). The 30 months of the 'malattie gravissime' are not modelled. The comporto of one illness is the same 12 months (c. 2 'conserva il posto al lavoratore, non in prova, per un periodo di mesi 12'; c. 4 'la retribuzione intera, sino ad un massimo di 12 mesi'): 360 days, not the 180 read before."
+      },
+      "comporto_windows": [
+        {
+          "seniority_months_from": 0,
+          "window_months": 36,
+          "comporto_days": 360,
+          "hospital_excluded": true
         }
-      }
+      ]
     }
   }
 }
