@@ -36,9 +36,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ✅ |
-| **Limits of this contract** | absence, leave |
+| **Limits of this contract** | absence |
 
-2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -46,7 +46,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🟢 Verified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 0 verified / 33 derived / 1 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 0 verified / 34 derived / 1 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -98,13 +98,6 @@ Latest effective values per level (monthly gross, EUR).
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
-
-!!! warning "formazione-professionale/leave_entitlement_rounded · leave · impact yes · open"
-    LEAVE (Art. 43): 32 giorni lavorativi on 6-day week + 4 giorni festività soppresse. SIMPLIFICATION: stored as 26 working days on 5-day-week basis (32/1.2=26.67); festività soppresse 4 giorni are not modeled as a separate tier. Source: Art. 43 para 3-4 CCNL.
-
-    **Applies when:** `leave` applies.
-
-    **Remediation:** Model the 32 days on a 6-day week (or 26.67 on 5 days) and the 4 giorni of festività soppresse, with their pay when not taken.
 
 !!! warning "formazione-professionale/daily_divisor_assumed · absence · impact unknown · open"
     DAILY DIVISOR: Art. 37 specifies 156 ore/month and 5-day week but does not state a daily divisor explicitly. SIMPLIFICATION: by_26 applied as standard for terziario contracts.
@@ -291,6 +284,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     INDENNITA (Art. 25 F-G): regional-bargaining indennita minima (700/1400 EUR) and sanita integrativa (7 EUR/month 'dalla data di attivazione dell accordo nazionale specifico'). These are not level-attached fixed allowances; excluded from fixed_allowances. No evidence the national sanita agreement has been activated.
     
     OVERTIME (Art. 39): three rates — diurno +15%, notturno or festivo +30%, notturno+festivo +50%. The combined notturno+festivo band (50%) is not in overtime_bands, although the engine supports it (OvertimeKind.NIGHT_HOLIDAY): such an event needs the caller's multiplier. Art. 41 para 3 (15% supplement for ordinary work at night or on holidays) is not modelled as a supplement band (supplement_bands): such an event needs the caller's amount (review of 2026-10-30)
+    
+    LEAVE (Art. 43, p. 30): 32 giorni lavorativi of ferie plus 4 giornate di ferie in place of the festività soppresse, 36 days counted on a 6-day week (on a 5-day week each day of ferie is 1.2 working days); twelfths, a month over 15 calendar days counting whole. The text sets no payment of the days not taken.
     
 
 ## Raw data

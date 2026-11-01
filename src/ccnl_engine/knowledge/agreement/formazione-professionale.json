@@ -80,17 +80,8 @@
         "text": "OVERTIME (Art. 39): three rates — diurno +15%, notturno or festivo +30%, notturno+festivo +50%. The combined notturno+festivo band (50%) is not in overtime_bands, although the engine supports it (OvertimeKind.NIGHT_HOLIDAY): such an event needs the caller's multiplier. Art. 41 para 3 (15% supplement for ordinary work at night or on holidays) is not modelled as a supplement band (supplement_bands): such an event needs the caller's amount (review of 2026-10-30)"
       },
       {
-        "kind": "simplification",
-        "text": "LEAVE (Art. 43): 32 giorni lavorativi on 6-day week + 4 giorni festività soppresse. SIMPLIFICATION: stored as 26 working days on 5-day-week basis (32/1.2=26.67); festività soppresse 4 giorni are not modeled as a separate tier. Source: Art. 43 para 3-4 CCNL.",
-        "capability": "leave",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "leave_entitlement_rounded",
-          "applies_when": {
-            "trigger": "owed"
-          },
-          "remediation": "Model the 32 days on a 6-day week (or 26.67 on 5 days) and the 4 giorni of festività soppresse, with their pay when not taken."
-        }
+        "kind": "info",
+        "text": "LEAVE (Art. 43, p. 30): 32 giorni lavorativi of ferie plus 4 giornate di ferie in place of the festività soppresse, 36 days counted on a 6-day week (on a 5-day week each day of ferie is 1.2 working days); twelfths, a month over 15 calendar days counting whole. The text sets no payment of the days not taken."
       },
       {
         "kind": "simplification",
@@ -1120,7 +1111,7 @@
     "effective_until": null,
     "source": "https://www.cislscuola.it/download/ccnl-formazione-professionale-2024-2027/",
     "verification_status": "verified",
-    "source_hash": "d750ad580111fd5a3d81aaf1daf53b223372bc4425740dd30e0188adc9dd6a4a",
+    "source_hash": "15f9233025680d8769c2a74a8fbe4dba3f57792341f94368d5d42552259c3179",
     "published_at": "2026-09-11",
     "source_type": "contracting_party"
   },
@@ -1261,29 +1252,62 @@
       }
     },
     "leave_rules": {
-      "default_annual_days": "26",
+      "default_annual_days": "36",
       "entitlement_tiers": [
         {
           "service_months_min": 0,
-          "annual_days": "26"
+          "annual_days": "36"
         }
       ],
       "provenance": {
         "status": "derived",
         "location": {
           "source_document": {
-            "document_id": "formazione-professionale",
-            "title": "CCNL Formazione Professionale (CNOS-FAP/CIOFS-FP/FORMA/CNF)",
+            "document_id": "cislscuola-ccnl-formazione-professionale-2023",
+            "title": "CCNL Formazione Professionale (testo CISL Scuola senza allegati, versione 18/12/2023)",
             "kind": "associazione",
-            "url": "https://www.cislscuola.it/download/ccnl-formazione-professionale-2024-2027/"
+            "url": "https://www.cislscuola.it/uploads/media/OS_CCNL-FP-2023-testo-fine-no-allegati_V181223.pdf",
+            "published_on": "2023-12-18",
+            "sha256": "4ebfebb1bc06c3a8f7c60f2d65a68b8f04dcc4188b695566a8c1b1fa0cd10095"
           },
-          "section": "Art. 43 — 32 gg lavorativi (base 6-gg) = 26.67 su 5-gg; arrotondato a 26"
+          "page": "30",
+          "section": "Art. 43 - Ferie",
+          "quote": "la settimana lavorativa è considerata di 6 giorni lavorativi [...] Il dipendente ha diritto ad un periodo annuale retribuito di ferie pari a 32 giorni lavorativi. [...] Vengono riconosciute altresì 4 giornate di ferie in sostituzione di tutte le festività soppresse."
         },
+        "transformation": "32 days of ferie and 4 days of ferie in place of the festività soppresse: 36 days, counted on the six-day week of comma 1.",
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-11T00:00:00",
-          "verification_status": "verified",
-          "effective_from": "2024-01-01"
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-01T22:55:30Z",
+          "verification_status": "unverified",
+          "effective_from": "2023-01-01"
+        }
+      },
+      "ferie_accrual": {
+        "month_credit": "more_than_half",
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "cislscuola-ccnl-formazione-professionale-2023",
+              "title": "CCNL Formazione Professionale (testo CISL Scuola senza allegati, versione 18/12/2023)",
+              "kind": "associazione",
+              "url": "https://www.cislscuola.it/uploads/media/OS_CCNL-FP-2023-testo-fine-no-allegati_V181223.pdf",
+              "published_on": "2023-12-18",
+              "sha256": "4ebfebb1bc06c3a8f7c60f2d65a68b8f04dcc4188b695566a8c1b1fa0cd10095"
+            },
+            "page": "30",
+            "section": "Art. 43 - Ferie",
+            "quote": "Le frazioni di anno si computano in dodicesimi ed i periodi eccedenti i 15 giorni di calendario saranno considerati mese intero."
+          },
+          "transformation": "Twelfths of the year; a month served more than 15 calendar days counts whole.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-01T22:55:30Z",
+            "verification_status": "unverified",
+            "effective_from": "2023-01-01"
+          }
         }
       }
     },
