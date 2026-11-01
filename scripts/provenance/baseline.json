@@ -937,7 +937,6 @@
     ],
     "agreement/farmacie-private-h121.json": [
       "farmacie-private-h121/apprentice_seniority",
-      "farmacie-private-h121/edr_thirteen_months",
       "farmacie-private-h121/isq_twelve_year_tier",
       "farmacie-private-h121/rural_pharmacy_table"
     ],
@@ -951,8 +950,7 @@
     ],
     "agreement/formazione-professionale.json": [
       "formazione-professionale/daily_divisor_assumed",
-      "formazione-professionale/leave_entitlement_rounded",
-      "formazione-professionale/sickness_second_tier_75"
+      "formazione-professionale/leave_entitlement_rounded"
     ],
     "agreement/forze-polizia-ordinamento-civile.json": [
       "forze-polizia-ordinamento-civile/assegno_funzionale_missing",

@@ -94,19 +94,6 @@
       },
       {
         "kind": "simplification",
-        "text": "SICKNESS (Art. 50 para 4): 100% for 12 months, 75% for months 13-18. SIMPLIFICATION: second tier (75%) is not captured by the single max_duration_days field; stored as max_duration_days=365 (full-pay period only). Source: Art. 50 para 4 CCNL.",
-        "capability": "sickness",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "sickness_second_tier_75",
-          "applies_when": {
-            "trigger": "run"
-          },
-          "remediation": "Add SicknessTier rows (100% months 1-12, 75% months 13-18) and max_duration_days for 18 months."
-        }
-      },
-      {
-        "kind": "simplification",
         "text": "DAILY DIVISOR: Art. 37 specifies 156 ore/month and 5-day week but does not state a daily divisor explicitly. SIMPLIFICATION: by_26 applied as standard for terziario contracts.",
         "capability": "absence",
         "monetary_impact": "unknown",
@@ -1133,7 +1120,7 @@
     "effective_until": null,
     "source": "https://www.cislscuola.it/download/ccnl-formazione-professionale-2024-2027/",
     "verification_status": "verified",
-    "source_hash": "3915cec6534cbc4dec14ee2d0a61e28ae6347c25909d76f3c888ec83f74b4898",
+    "source_hash": "d750ad580111fd5a3d81aaf1daf53b223372bc4425740dd30e0188adc9dd6a4a",
     "published_at": "2026-09-11",
     "source_type": "contracting_party"
   },
@@ -1303,7 +1290,7 @@
     "sickness_rules": {
       "carenza_integration_rate": "1",
       "full_pay_integration_rate": "1",
-      "max_duration_days": 365,
+      "max_duration_days": 540,
       "provenance": {
         "status": "derived",
         "location": {
@@ -1320,8 +1307,28 @@
           "extraction_timestamp": "2026-09-11T00:00:00",
           "verification_status": "verified",
           "effective_from": "2024-01-01"
+        },
+        "transformation": "Art. 50 cc. 1, 3-4 (2026-11-01), p. 33 of https://www.cislscuola.it/uploads/media/OS_CCNL-FP-2023-testo-fine-no-allegati_V181223.pdf (sha256 4ebfebb1bc06c3a8f7c60f2d65a68b8f04dcc4188b695566a8c1b1fa0cd10095): 'ha diritto alla conservazione del posto per un periodo di 18 mesi. Ai fini della maturazione del predetto periodo, si sommano tutte le assenze per malattia intervenute nei tre anni precedenti l’episodio morboso in corso' and 'il 100% della normale retribuzione mensile per un massimo di 12 mesi; il 75% della retribuzione per gli ulteriori 6 mesi': tiers of 100% for months 1-12 and 75% for months 13-18, a comporto of 540 days (18 months of 30 days) for one illness and over the 36 months before the day. The serious pathologies left out of the count (c. 2) are not modelled."
+      },
+      "tiers": [
+        {
+          "month_from": 1,
+          "month_until": 13,
+          "integration_rate": "1"
+        },
+        {
+          "month_from": 13,
+          "month_until": 19,
+          "integration_rate": "0.75"
         }
-      }
+      ],
+      "comporto_windows": [
+        {
+          "seniority_months_from": 0,
+          "window_months": 36,
+          "comporto_days": 540
+        }
+      ]
     },
     "notice": {
       "bands": [

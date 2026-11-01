@@ -245,6 +245,13 @@ class TestLoadAgenzieMaritime:
 class TestLoadFarmaciePrivateH121:
     """Tests for CCNL Dipendenti delle Farmacie Private (H121)."""
 
+    def test_farmacie_private_h121_edr_on_thirteen_months(self) -> None:
+        """Art. 54 e): the EDR of 10.33 'da corrispondersi per 13 mensilità'."""
+        ccnl = load_ccnl("farmacie-private-h121")
+        for lv in ccnl.levels:
+            (edr,) = (a for a in lv.fixed_allowances if a.code == "edr")
+            assert edr.months_per_year == 13, lv.code
+
     def test_farmacie_private_h121_loads(self) -> None:
         """Contract loads with correct id and CNEL code H121."""
         ccnl = load_ccnl("farmacie-private-h121")

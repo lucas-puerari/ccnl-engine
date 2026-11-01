@@ -353,38 +353,6 @@
       }
     },
     {
-      "id": "sickness_cumulation_window",
-      "institute": "sickness",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = path",
-      "rule": "The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded. A CCNL whose comporto the engine counts over the calendar year (Commercio Art. 186 and the others with comporto_calendar_year) is not affected.",
-      "calculation": "ccnl_engine.sickness.day.rules (CCNL tier of a sick day)",
-      "state": "unverified",
-      "remediation": "Add the cumulation window of each CCNL to its sickness rule, with the source, and count the tier and the comporto over it.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "sickness_cumulation_window"
-        ]
-      }
-    },
-    {
-      "id": "sickness_second_tier_75",
-      "institute": "sickness",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "SICKNESS (Art. 50 para 4): 100% for 12 months, 75% for months 13-18. SIMPLIFICATION: second tier (75%) is not captured by the single max_duration_days field; stored as max_duration_days=365 (full-pay period only). Source: Art. 50 para 4 CCNL.",
-      "calculation": "ccnl/formazione-professionale:coverage.notes",
-      "state": "absent",
-      "remediation": "Add SicknessTier rows (100% months 1-12, 75% months 13-18) and max_duration_days for 18 months.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "formazione-professionale/sickness_second_tier_75"
-        ]
-      }
-    },
-    {
       "id": "tfr_compensation_apprentice_guarantee_fund",
       "institute": "inps_employer",
       "variant": "apprentice",
