@@ -2622,13 +2622,73 @@
     "effective_until": null,
     "source": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
     "verification_status": "unverified",
-    "source_hash": "c162cd1c5c8e0b9833c995787762e4c54fe1232c14a574864fdb60331fd0b51c",
+    "source_hash": "197fc40f296e3d1297ec416e2d8fda75808bf77b8b7222d1cb17261390d4a847",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
   "work_rules": {
     "time_supplements": {
-      "hourly_base_method": "minimo_tabellare",
+      "hourly_base_method": "gross_incl_allowances",
+      "hourly_base_provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-logistica-testo-unico-2025",
+            "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+            "kind": "associazione",
+            "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+            "published_on": "2025-09-25",
+            "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+          },
+          "page": "39",
+          "section": "Art. 13 c. 8, Lavoro straordinario",
+          "quote": "Agli effetti del presente articolo, nonché del precedente articolo, per la determinazione della retribuzione oraria, si divide la retribuzione mensile per 168."
+        },
+        "transformation": "Art. 12 c. 4 and art. 13 c. 6 apply the maggiorazioni to the 'retribuzione globale determinata in base alle voci previste dagli artt. 61 e 74'. Art. 61 c. 1 (Parte speciale, sezione prima, pp. 85-86) composes it of the minimo tabellare, the aumenti periodici di anzianità, the 'eventuali altri aumenti comunque denominati', second-level premiums, the terzo elemento, the indennità di mensa, the indennità di funzione of the quadri, the EDR of art. 60 c. 8 and the EPA: base salary, seniority and the fixed allowances (EDR_2011, IND_FUN), divided by 168. The EDR of 18 May 2021 is not in the list and has 'nessuna incidenza su alcun istituto contrattuale': left out (hourly_base_excluded). The indennità di mensa, the second-level premiums and the art. 74 elements of the sezione seconda are not modelled allowances.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-01T20:27:22Z",
+          "verification_status": "verified",
+          "effective_from": "2025-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-01T20:27:22Z",
+          "review_id": "2026-11-01-ai-hourly-base"
+        }
+      },
+      "individual_elements": {
+        "in_hourly_base": "included",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-logistica-testo-unico-2025",
+              "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+              "kind": "associazione",
+              "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+              "published_on": "2025-09-25",
+              "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+            },
+            "page": "85",
+            "section": "Art. 61 c. 1 punto 3, Retribuzione (Parte speciale, sezione prima)",
+            "quote": "eventuali altri aumenti comunque denominati"
+          },
+          "transformation": "The retribuzione globale mensile counts every other increase, however named: the superminimi and assegni ad personam enter the hour and its maggiorazione.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-01T20:27:22Z",
+            "verification_status": "verified",
+            "effective_from": "2025-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-01T20:27:22Z",
+            "review_id": "2026-11-01-ai-hourly-base"
+          }
+        }
+      },
+      "hourly_base_excluded": [
+        "EDR_2021"
+      ],
       "overtime_bands": [
         {
           "code": "OT_DIURNO",
@@ -2850,6 +2910,52 @@
               "verified_by": "claude-opus-5-5",
               "verified_at": "2026-10-17T10:11:39Z",
               "review_id": "2026-10-17-ai-supplementary"
+            }
+          }
+        }
+      ],
+      "supplement_bands": [
+        {
+          "code": "FESTIVO",
+          "description": "Lavoro nelle festività nazionali e infrasettimanali nell'orario normale (art. 12 c. 4)",
+          "work": "holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "0.50",
+                "provenance": null
+              }
+            ]
+          },
+          "hours_paid_apart": null,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-logistica-testo-unico-2025",
+                "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                "kind": "associazione",
+                "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                "published_on": "2025-09-25",
+                "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+              },
+              "page": "38",
+              "section": "Art. 12 c. 4",
+              "quote": "lavoro nelle festività nazionali e infrasettimanali (prestato nell'ambito dell'orario normale) a) maggiorazione 50%"
+            },
+            "transformation": "The 50% of art. 12 c. 4 as a share of the hourly base of the CCNL.",
+            "note": "Within the ordinary hours; beyond them the festivo overtime of art. 13 c. 6 applies. The base is the retribuzione globale of artt. 61 and 74, priced like the overtime of art. 13 c. 6 with the hourly base of the CCNL; whether the hours themselves are paid apart is not stated.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-01T20:27:22Z",
+              "verification_status": "verified",
+              "effective_from": "2025-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-01T20:27:22Z",
+              "review_id": "2026-11-01-ai-hourly-base"
             }
           }
         }
@@ -3496,6 +3602,31 @@
         "independence": "separate_session",
         "checked": [
           "work_rules.notice"
+        ]
+      },
+      {
+        "id": "2026-11-01-ai-hourly-base",
+        "date": "2026-11-01",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Hourly base of the time supplements (art. 13 c. 8, art. 61 c. 1) and the supplements of ordinary Sunday and holiday work (art. 12 c. 4), read in the text layer of the testo unico. AI review only: the same model extracted and checked the values.",
+        "outcome": "corrected",
+        "independence": "same_process",
+        "checked": [
+          "work_rules.time_supplements.hourly_base_method",
+          "work_rules.time_supplements.individual_elements",
+          "work_rules.time_supplements.supplement_bands"
+        ],
+        "sources": [
+          {
+            "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+            "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+          }
+        ],
+        "findings": [
+          "hourly_base_method gross_incl_allowances (was minimo_tabellare), now verified: the retribuzione globale of art. 61 c. 1 divided by 168 (art. 13 c. 8), without the EDR of 2021; the engine derives the hourly rate of an event without one.",
+          "individual_elements included: art. 61 c. 1 punto 3 counts 'eventuali altri aumenti comunque denominati'.",
+          "Band FESTIVO added: 50% on holiday work within the ordinary hours (art. 12 c. 4). The night (20/15/25%) and Sunday (20% by day, 50% by night) rates of art. 12 c. 4 are left out: they depend on the guardian role, the shift and the hours of the Sunday, which the request does not carry."
         ]
       }
     ],

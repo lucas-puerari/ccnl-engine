@@ -108,6 +108,9 @@ class TimeSupplements(BaseModel):
     unless ``week_divisors`` holds the divisor of its week.
     ``individual_elements`` says whether the worker's individual elements
     enter the base (:class:`IndividualElementsRule`).
+    ``hourly_base_excluded`` names the allowances a
+    ``gross_incl_allowances`` base leaves out (Logistica art. 74: the EDR of
+    2021 has "nessuna incidenza su alcun istituto contrattuale").
 
     ``overtime_bands`` is an ordered list of :class:`OvertimeBand` entries.
     All applicable bands accumulate (no "first match wins" truncation) unless
@@ -122,6 +125,7 @@ class TimeSupplements(BaseModel):
     hourly_divisor_weekly_hours: int | None = Field(default=None, ge=1)
     week_divisors: tuple[WeekDivisor, ...] = Field(default=())
     individual_elements: IndividualElementsRule | None = None
+    hourly_base_excluded: tuple[str, ...] = Field(default=())
     overtime_bands: tuple[OvertimeBand, ...] = Field(default=())
     supplement_bands: tuple[SupplementBand, ...] = Field(default=())
 

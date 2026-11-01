@@ -133,3 +133,26 @@ def test_commercio_counts_the_superminimo_in_the_hour_only() -> None:
         "not_included",
     )
     assert terms.hour_only
+
+
+def test_gross_incl_allowances_leaves_the_excluded_allowances_out() -> None:
+    """Logistica: the function allowance in, the EDR of 2021 out."""
+    logistica = load_ccnl("logistica-trasporto-confetra")
+    (quadro,) = [lv for lv in logistica.levels if lv.code == "Q"]
+    found = {a.code: a for a in quadro.fixed_allowances}
+    chain = MonthlyPayChain(
+        base=Decimal("2000.00"),
+        seniority=Decimal("40.00"),
+        allowances=(
+            (found["IND_FUN"], Decimal("50.00")),
+            (found["EDR_2021"], Decimal("12.00")),
+        ),
+    )
+
+    base = _terms(ccnl=logistica, chain=chain).base(_DAY, "f", "overtime")
+
+    assert base.components == (
+        ("base_salary", Decimal("2000.00")),
+        ("seniority", Decimal("40.00")),
+        ("IND_FUN", Decimal("50.00")),
+    )

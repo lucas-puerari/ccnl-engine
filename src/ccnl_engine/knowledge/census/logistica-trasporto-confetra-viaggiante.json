@@ -359,7 +359,7 @@
       "institute": "base_salary",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "NOT MODELLED: the night allowance of art. 16 for a trasferta under 18 hours overlapping the night hours (paid only from 18 hours), the 50% on the Sunday and holiday work within the ordinary hours (art. 12 c. 4), and the 4.5 days of paid leave of art. 11 c. 11. The trasferta of art. 62 and the night allowance of a trasferta of 18-24 hours are paid by TravelAllowanceEvent.",
+      "rule": "NOT MODELLED: the night allowance of art. 16 for a trasferta under 18 hours overlapping the night hours (paid only from 18 hours) and the 4.5 days of paid leave of art. 11 c. 11. The trasferta of art. 62 and the night allowance of a trasferta of 18-24 hours are paid by TravelAllowanceEvent; the 50% on Sunday and holiday work of art. 12 c. 4 by the supplement bands VIAG_DOMENICA and VIAG_FESTIVO.",
       "calculation": "ccnl/logistica-trasporto-confetra-viaggiante:coverage.notes",
       "state": "absent",
       "remediation": "Pay the night allowance of art. 16 and the Sunday or holiday work within the ordinary hours outside the engine.",
