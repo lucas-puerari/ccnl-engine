@@ -144,12 +144,16 @@ class SeniorityFact:
             read only by a CCNL that reprices the earlier increments at the
             next increment; ``None`` when the level never changed or the
             change is older than the last increment.
+        birth_date: Date of birth of the worker, read only by a CCNL that
+            counts the increments from an age (Turismo Art. 158 c. 2: from
+            the eighteenth birthday); ``None`` counts them from the start.
 
     Raises:
         InvalidInputError: When ``months`` is not a non-negative int,
             ``as_of`` is not a date, ``source`` names no source,
-            ``earned`` is not :class:`EarnedIncrements` or ``promotion``
-            is not :class:`SeniorityPromotion`.
+            ``earned`` is not :class:`EarnedIncrements`, ``promotion``
+            is not :class:`SeniorityPromotion` or ``birth_date`` is not a
+            date.
     """
 
     months: int
@@ -157,6 +161,7 @@ class SeniorityFact:
     source: SenioritySource
     earned: EarnedIncrements | None = None
     promotion: SeniorityPromotion | None = None
+    birth_date: date | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
         require_int(self.months, "SeniorityFact.months", feature=FEATURE, minimum=0)
@@ -171,6 +176,9 @@ class SeniorityFact:
             "SeniorityFact.earned",
             feature=FEATURE,
             optional=True,
+        )
+        require_date(
+            self.birth_date, "SeniorityFact.birth_date", feature=FEATURE, optional=True
         )
         require_instance(
             self.promotion,

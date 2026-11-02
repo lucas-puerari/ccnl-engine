@@ -122,6 +122,13 @@ REQUEST_DEFAULTS: Mapping[str, FieldDefault] = {
     "IndividualElement.tfr_relevant": absence_is_fact("in the TFR base"),
     "SeniorityFact.earned": absence_is_fact("the table prices every increment"),
     "SeniorityFact.promotion": absence_is_fact("no promotion since the last increment"),
+    "SeniorityFact.birth_date": requires_fact(
+        "seniority",
+        "seniority.birth_date",
+        _PENDING,
+        "an adult hire: on a CCNL that counts the increments from an age the "
+        "service counts from the start, without a blocker",
+    ),
     "Employment.seniority": requires_fact(
         "seniority",
         "employment.seniority",

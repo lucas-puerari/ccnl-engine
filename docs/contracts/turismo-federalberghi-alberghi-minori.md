@@ -34,7 +34,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, leave, seniority, sickness, trattamento_integrativo |
 
-12 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+11 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -148,13 +148,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Model the absorption of Art. 145.
-
-!!! warning "turismo-federalberghi-alberghi-minori/first_scatto_from_18 · base_salary · impact yes · open"
-    Art. 158 c. 2-3: the first scatto counted from age 18 and from the month after the triennium.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Count the first scatto from age 18.
 
 !!! warning "turismo-federalberghi-alberghi-minori/apprentice_net_cap · base_salary · impact yes · open"
     Art. 58 c. 3: the net cap of the apprentice pay.
@@ -369,6 +362,8 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 ??? note "Coverage notes"
     CNEL code H052 is shared with CCNL Agenzie di Viaggio Fiavet: the engine allows duplicates.
+    
+    SENIORITY FROM AGE 18 (Art. 158 c. 2, p. 140): a worker hired from 1 June 1986 accrues the scatti only from the eighteenth birthday (SeniorityFact.birth_date; without it the service counts from the start). The rules of the workers in service on 1 June 1986 are not modelled.
     
     HOURLY RATE AND SUPPLEMENTS (artt. 148, 151, 216, 220 of the 2010 text): without a caller value the engine derives the hourly base (the art. 148 retribuzione over 172), the 25% on ordinary night hours from 24 to 6 (art. 216 c.1; 12% for the role qualifica_notturna, c.2: Employment.roles must be stated) and the 20% on the hours worked on a festività (art. 220). The night window of the lavoratori notturni (23:30-6:30, art. 218) only changes which hours the caller declares. Art. 220 also pays the festività hours themselves on top of the monthly pay: the engine posts the 20% only and the run is provisional. Not derived: the Sunday allowance of art. 126 (10% of the hourly paga base and contingenza: the bundle does not record that base_salary holds exactly those two voci), holiday overtime (art. 219 sets no rate). The divisors 190 and 192 of the 44- and 45-hour weeks are derived from Employment.full_time_weekly_hours; another week than 40, 44 or 45 is not derived.
     
