@@ -21,7 +21,7 @@ from ccnl_engine import (
     PeriodFacts,
     PeriodInput,
 )
-from ccnl_engine.events import SicknessEpisode
+from ccnl_engine.events import AgriculturalDays, SicknessEpisode
 from ccnl_engine.inputs import (
     EmploymentPeriod,
     FixedTerm,
@@ -39,7 +39,9 @@ if TYPE_CHECKING:
 _HIRED = date(2026, 1, 1)
 
 
-def _run(contract: FixedTerm | Permanent) -> PeriodResult:
+def _run(
+    contract: FixedTerm | Permanent, days: AgriculturalDays | None = None
+) -> PeriodResult:
     return PayrollEngine.bundled().calculate_period(
         PeriodInput(
             run=PayrollRun.regular(2026, 3),
@@ -56,7 +58,14 @@ def _run(contract: FixedTerm | Permanent) -> PeriodResult:
             ),
             employer=EmployerProfile(headcount=Headcount(20)),
             facts=PeriodFacts(
-                events=(SicknessEpisode("e1", date(2026, 3, 2), date(2026, 3, 13)),)
+                events=(
+                    SicknessEpisode(
+                        "e1",
+                        date(2026, 3, 2),
+                        date(2026, 3, 13),
+                        agricultural_days=days,
+                    ),
+                )
             ),
         )
     )
@@ -83,3 +92,22 @@ def test_inps_pays_the_fixed_term_operaio_directly() -> None:
     assert "sickness_agricultural_fixed_term_days" not in {
         lim.id for lim in open_ended.limitations
     }
+
+
+def test_the_stated_elenchi_days_close_the_limitation() -> None:
+    """INPS guide p. 4: 51 days in neither year, no day indemnified.
+
+    The same episode with 100 days of 2025 has days 4-12 indemnified; with
+    neither year at 51 every day after the carenza is past the limit.
+    """
+    paid = _run(FixedTerm(), AgriculturalDays(100, 0))
+    unpaid = _run(FixedTerm(), AgriculturalDays(10, 10))
+
+    for result in (paid, unpaid):
+        assert "sickness_agricultural_fixed_term_days" not in {
+            lim.id for lim in result.limitations
+        }
+    paid_days = str(_sickness(paid).inputs["segments"]).split(";")[1]
+    unpaid_days = str(_sickness(unpaid).inputs["segments"]).split(";")[1]
+    assert paid_days.startswith("2026-03-05..2026-03-13:indemnified:")
+    assert unpaid_days.startswith("2026-03-05..2026-03-13:fixed_term_limit:")

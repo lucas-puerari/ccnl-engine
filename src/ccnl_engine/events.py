@@ -42,10 +42,12 @@ from ccnl_engine.event.facade import (
     WorkInjuryEvent,
 )
 from ccnl_engine.run.types import PeriodId
+from ccnl_engine.sickness.agricultural.inputs import AgriculturalDays
 from ccnl_engine.sickness.base.inputs import InpsSicknessBase, SpettacoloSicknessBase
 
 __all__ = [
     "AbsenceEvent",
+    "AgriculturalDays",
     "ArrearsEvent",
     "BilateralFundEvent",
     "BoardLodgingEvent",

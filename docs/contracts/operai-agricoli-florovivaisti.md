@@ -357,11 +357,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Source how the employer splits the measure between two orders of the same kind (art. 499 c.p.c. on the intervention of creditors, case law of the Cassazione) and apply it, then resolve this limitation.
 
 !!! warning "sickness_agricultural_fixed_term_days · sickness · impact unknown · open"
-    INPS pays an operaio agricolo a tempo determinato for as many days as his registration in the elenchi (at most 180 a calendar year), and only when he worked 51 days in agriculture the year before and 51 in the year before the illness. The request states neither the registration days nor the agricultural days, so the engine pays INPS up to the 180 days a year and does not check the 51-day requirements.
+    INPS pays an operaio agricolo a tempo determinato for as many days as the registration in the elenchi of the year before (at most 180 a calendar year) when they are 51, else 30 days with 51 days of the current year before the illness, else none. An episode that does not state SicknessEpisode.agricultural_days is paid by INPS up to the 180 days a year, the 51-day requirements unchecked.
 
     **Applies when:** `sickness` applies; the run takes the engine code path; contract type in fixed_term.
 
-    **Remediation:** Add the registration days in the elenchi and the agricultural days of the two years to the facts of the episode, apply them, then resolve this limitation.
+    **Remediation:** State SicknessEpisode.agricultural_days (AgriculturalDays: the elenchi days of the year before and of the current year before the illness).
 
 !!! warning "mid_month_level_change · base_salary · impact unknown · open"
     A promotion on a day other than the first of a month splits the monthly pay of the run between the level before and the new level by the payable days of the CCNL daily quota on each side of the promotion, component by component; the hourly quotas of the month (overtime, permits, absences) read the same split chain whatever the day of the event. The CCNL texts read (Commercio and Terziario art. 118, DMO art. 102) give the new level from the promotion but not how its month is split.
