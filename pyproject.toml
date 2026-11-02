@@ -302,6 +302,7 @@ source_paths = [
     "src/ccnl_engine/sickness/cumulation/rules.py",
     "src/ccnl_engine/sickness/cumulation/year/rules.py",
     "src/ccnl_engine/sickness/window/rules.py",
+    "src/ccnl_engine/sickness/counting/rules.py",
     "src/ccnl_engine/sickness/cumulation/handlers.py",
     # The INPS-insured absences: the daily base, the days and hours paid,
     # and the indemnity of maternity, paternity and parental leave.
@@ -470,6 +471,7 @@ pytest_add_cli_args_test_selection = [
     "tests/integration/ccnl_engine/working_time/overtime/test_policies.py",
     "tests/unit/ccnl_engine/sickness/pay/test_handlers.py",
     "tests/integration/ccnl_engine/sickness/test_handlers.py",
+    "tests/integration/ccnl_engine/sickness/counting/test_rules.py",
     "tests/integration/ccnl_engine/variable_pay/travel/test_handlers.py",
     "tests/integration/ccnl_engine/period/services/test_variable_events.py",
     "tests/integration/ccnl_engine/period/services/test_variable_events_financial.py",
