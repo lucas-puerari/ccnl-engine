@@ -38,7 +38,7 @@ from ccnl_engine.period.services import (
 )
 from ccnl_engine.run.types import PeriodId
 from ccnl_engine.variable_pay.arrears.handlers import UNUSED_DEDUCTIONS
-from ccnl_engine.variable_pay.inputs import ArrearsEvent
+from ccnl_engine.variable_pay.arrears.inputs import ArrearsEvent
 
 if TYPE_CHECKING:
     from ccnl_engine.period.results import PeriodResult
@@ -126,6 +126,36 @@ def test_a_caller_rate_prevails() -> None:
     assert _separate(result) == Decimal("460.00")
     assert _decision(result).inputs["rate_source"] == "caller"
     assert UNUSED_DEDUCTIONS not in {lim.id for lim in result.limitations}
+
+
+@pytest.mark.parametrize(
+    ("unused", "tax"),
+    [
+        (Decimal(0), Decimal("479.35")),
+        (Decimal("100.00"), Decimal("379.35")),
+        (Decimal("600.00"), Decimal(0)),
+    ],
+)
+def test_the_unused_deductions_reduce_the_separate_tax(
+    unused: Decimal, tax: Decimal
+) -> None:
+    """Art. 21 c. 4 TUIR: the unused deductions reduce the tax, never below zero.
+
+    "ridotta di un importo pari a quello delle detrazioni [...] se e nella
+    misura in cui non siano state fruite".
+    """
+    stated = replace(_ARREARS, unused_deductions=unused)
+    result = _run((Decimal(30_000), Decimal(32_000)), stated)
+
+    assert _separate(result) == tax
+    assert _decision(result).inputs["unused_deductions"] == unused
+    assert UNUSED_DEDUCTIONS not in {lim.id for lim in result.limitations}
+
+
+def test_negative_unused_deductions_are_rejected() -> None:
+    """An amount of deductions is not negative."""
+    with pytest.raises(InvalidInputError, match="unused_deductions"):
+        replace(_ARREARS, unused_deductions=Decimal(-1))
 
 
 def test_without_rate_or_biennio_the_separate_tax_is_open() -> None:

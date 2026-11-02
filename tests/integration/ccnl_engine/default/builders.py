@@ -570,6 +570,9 @@ DEFAULT_CASES: Mapping[str, tuple[DefaultCase, ...]] = {
             _year_with_leave(False), _year_with_leave(None), "suspends_accrual"
         ),
     ),
+    "ArrearsEvent.unused_deductions": (
+        _event_pair(replace(_unrated(), unused_deductions=Decimal(40)), _unrated()),
+    ),
     "ArrearsEvent.reference_period": (
         _event_pair(_arrears(PeriodId(2025, 6)), _arrears(None), "reference_period"),
     ),

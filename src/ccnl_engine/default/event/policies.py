@@ -77,6 +77,13 @@ EVENT_DEFAULTS: Mapping[str, FieldDefault] = {
         "no rate from the caller: the engine computes it from "
         "PriorYearTaxFacts.net_income_biennio (art. 21 TUIR)"
     ),
+    "ArrearsEvent.unused_deductions": requires_fact(
+        "contract_renewal_arrears",
+        "event.unused_deductions",
+        FactEnforcement.PENDING,
+        "unknown unused deductions: the separate tax is not reduced (art. 21 "
+        "c. 4 TUIR), with the arrears_unused_deductions limitation",
+    ),
     # The fact the arrears rate is computed from, with the event that reads it.
     "PriorYearTaxFacts.net_income_biennio": requires_fact(
         "contract_renewal_arrears",
