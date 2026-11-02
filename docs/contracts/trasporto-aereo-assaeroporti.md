@@ -34,7 +34,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, seniority, sickness |
 
-5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -135,13 +135,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `base_salary` applies; from 2026-03-01.
 
     **Remediation:** Retrieve the 23 March 2026 agreement and apply its effect on levels and salary tables.
-
-!!! warning "trasporto-aereo-assaeroporti/apprentice_seniority · seniority · impact unknown · open"
-    APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.
-
-    **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
-
-    **Remediation:** Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.
 
 !!! warning "trasporto-aereo-assaeroporti/sickness_hospital_and_serious_illness · sickness · impact yes · open"
     SICKNESS (point 6, 9-10): the hospital stays, and the certified convalescence after them up to 120 days, are left out of both the comporto and the pay count; the limits are tripled for oncological illness, multiple sclerosis and muscular dystrophy and raised by 30% for a disability. The engine counts every sick day and applies the ordinary limits.
@@ -331,6 +324,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     EDR APPRENTICESHIP EXEMPTION. Art. G14 §16 limits the apprenticeship percentage to 'minimi tabellari in vigore, indennità di contingenza'. EDR (Art. G22) is not listed and is therefore paid at full value for apprentices. Modelled via apprenticeship_pct_relevant=false on all EDR allowances.
     
     SENIORITY CAP: maximum_count=8, as per 2025 rinnovo (signed 04/06/2025, FILT-CGIL comunicato) which recognized the 8th scatto from 01/01/2026 for all workers with ≥16 years seniority. Pre-1993 employees with 16+ years already captured under this rule. The engine ages the recognised seniority of the worker (Employment.seniority, a SeniorityFact as of a date), so the 8th biennial scatto matures after 16 years like the others. (review of 2026-10-30)
+    
+    APPRENTICE SENIORITY (Art. G14 c. 7, p. 31 of the Parte specifica): half of the apprenticeship counts for the aumenti periodici of the confirmed apprentice; no increment during it (seniority_increments.apprentice_amount 0.00).
     
 
 ## Raw data
