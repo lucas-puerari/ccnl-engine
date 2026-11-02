@@ -155,7 +155,7 @@
       },
       {
         "kind": "simplification",
-        "text": "Art. 54: the premiums on ordinary hours (lavoro festivo 45%, notturno 34% or 10% in shifts, festivo notturno 50%).",
+        "text": "Art. 54: the premium of lavoro festivo notturno outside periodic shifts (50%), which the engine has no work for. The night (34%, 10% in shifts) and holiday (45%) premiums on ordinary hours are modelled (supplement_bands ANCE_IMP_*).",
         "capability": "overtime",
         "monetary_impact": "yes",
         "limitation": {
@@ -163,7 +163,7 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Model the Art. 54 premiums on ordinary hours."
+          "remediation": "Model the festivo notturno premium of Art. 54."
         }
       },
       {
@@ -2426,13 +2426,70 @@
     "effective_until": null,
     "source": "https://ance.it/wp-content/uploads/allegati/Tabella_nuovi_minimi_orari-_CCNL_2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "e9976f122dad209f73caa20900d9aec181eda4bc7363834e5245e60d109d2bfe",
+    "source_hash": "8cfdf2b1b44bf3fd2fb9a7d8091577f2bb679e6ca60a365d7e39d31406321349",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
   "work_rules": {
     "time_supplements": {
       "hourly_base_method": "gross_incl_allowances",
+      "hourly_base_provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-edilizia-industria-2010-fillea",
+            "title": "CCNL 19 aprile 2010 per i dipendenti delle imprese edili ed affini, testo completo (FILLEA CGIL)",
+            "kind": "associazione",
+            "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL_EDILIZIA_INDUSTRIA_2010_TESTO_COMPLETO.pdf",
+            "published_on": "2010-04-19",
+            "sha256": "ddd11bb850de2e7c642eb662b59e40e36c66e3a534162c505aa1c9a94ac5a00b"
+          },
+          "page": "71",
+          "section": "Art. 54 - Lavoro straordinario, notturno e festivo; Art. 44 (pp. 66-67)",
+          "quote": "Le percentuali di cui sopra vanno calcolate sulla quota oraria degli elementi di cui ai punti 1, 2, 3, 4, 5, 6, 8 e 9 dell’art. 44."
+        },
+        "transformation": "Art. 44: 1) stipendio minimo, 2) superminimo collettivo, 3) superminimo ad personam di merito, 4) ex contingenza, 5) premio di produzione territoriale, 6) elemento economico territoriale, 8) scatti, 9) compensi e premi continuativi e determinati; the hourly quota is the monthly amount over 173 (art. 44, last paragraph). Base salary, seniority and the fixed allowances (the EDR read as a continuative fixed payment of point 9); the premio di produzione territoriale is provincial and not in the bundle.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-02T15:47:52Z",
+          "effective_from": "2025-02-01",
+          "verification_status": "verified",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-02T15:47:52Z",
+          "review_id": "2026-11-02-ai-ordinary-premiums"
+        }
+      },
+      "individual_elements": {
+        "in_hourly_base": "included",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-edilizia-industria-2010-fillea",
+              "title": "CCNL 19 aprile 2010 per i dipendenti delle imprese edili ed affini, testo completo (FILLEA CGIL)",
+              "kind": "associazione",
+              "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL_EDILIZIA_INDUSTRIA_2010_TESTO_COMPLETO.pdf",
+              "published_on": "2010-04-19",
+              "sha256": "ddd11bb850de2e7c642eb662b59e40e36c66e3a534162c505aa1c9a94ac5a00b"
+            },
+            "page": "71",
+            "section": "Art. 54; Art. 44 point 3",
+            "quote": "Le percentuali di cui sopra vanno calcolate sulla quota oraria degli elementi di cui ai punti 1, 2, 3, 4, 5, 6, 8 e 9 dell’art. 44."
+          },
+          "transformation": "Point 3, the superminimo ad personam di merito, is among the elements: the individual elements enter the hour and every premium.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-02T15:47:52Z",
+            "effective_from": "2025-02-01",
+            "verification_status": "verified",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-02T15:47:52Z",
+            "review_id": "2026-11-02-ai-ordinary-premiums"
+          }
+        }
+      },
       "overtime_bands": [
         {
           "code": "OT_DIURNO",
@@ -2607,6 +2664,134 @@
               "verified_at": "2026-10-13T07:47:58Z",
               "verification_status": "verified",
               "review_id": "2026-10-13-ai-production"
+            }
+          }
+        }
+      ],
+      "supplement_bands": [
+        {
+          "code": "ANCE_IMP_NOTTURNO",
+          "description": "Lavoro notturno non compreso in turni periodici (art. 54)",
+          "work": "night",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-02-01",
+                "valid_until": null,
+                "value": "0.34"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-edilizia-industria-2010-fillea",
+                "title": "CCNL 19 aprile 2010 per i dipendenti delle imprese edili ed affini, testo completo (FILLEA CGIL)",
+                "kind": "associazione",
+                "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL_EDILIZIA_INDUSTRIA_2010_TESTO_COMPLETO.pdf",
+                "published_on": "2010-04-19",
+                "sha256": "ddd11bb850de2e7c642eb662b59e40e36c66e3a534162c505aa1c9a94ac5a00b"
+              },
+              "page": "71",
+              "section": "Art. 54 - Lavoro straordinario, notturno e festivo",
+              "quote": "Le percentuali di aumento del lavoro straordinario, notturno e festivo sono le seguenti: lavoro notturno non compreso in turni periodici. .......................................... 34%"
+            },
+            "transformation": "34% on the elements of art. 44; night is 22-6.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-02T15:47:52Z",
+              "effective_from": "2025-02-01",
+              "verification_status": "verified",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-02T15:47:52Z",
+              "review_id": "2026-11-02-ai-ordinary-premiums"
+            }
+          }
+        },
+        {
+          "code": "ANCE_IMP_TURNO_NOTTURNO",
+          "description": "Lavoro notturno compreso in turni periodici (art. 54)",
+          "work": "night_shift",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-02-01",
+                "valid_until": null,
+                "value": "0.10"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-edilizia-industria-2010-fillea",
+                "title": "CCNL 19 aprile 2010 per i dipendenti delle imprese edili ed affini, testo completo (FILLEA CGIL)",
+                "kind": "associazione",
+                "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL_EDILIZIA_INDUSTRIA_2010_TESTO_COMPLETO.pdf",
+                "published_on": "2010-04-19",
+                "sha256": "ddd11bb850de2e7c642eb662b59e40e36c66e3a534162c505aa1c9a94ac5a00b"
+              },
+              "page": "71",
+              "section": "Art. 54 - Lavoro straordinario, notturno e festivo",
+              "quote": "Le percentuali di aumento del lavoro straordinario, notturno e festivo sono le seguenti: lavoro notturno compreso in turni periodici. ................................................. 10%"
+            },
+            "transformation": "10% on the elements of art. 44.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-02T15:47:52Z",
+              "effective_from": "2025-02-01",
+              "verification_status": "verified",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-02T15:47:52Z",
+              "review_id": "2026-11-02-ai-ordinary-premiums"
+            }
+          }
+        },
+        {
+          "code": "ANCE_IMP_FESTIVO",
+          "description": "Lavoro festivo (art. 54)",
+          "work": "holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-02-01",
+                "valid_until": null,
+                "value": "0.45"
+              }
+            ]
+          },
+          "hours_paid_apart": null,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-edilizia-industria-2010-fillea",
+                "title": "CCNL 19 aprile 2010 per i dipendenti delle imprese edili ed affini, testo completo (FILLEA CGIL)",
+                "kind": "associazione",
+                "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL_EDILIZIA_INDUSTRIA_2010_TESTO_COMPLETO.pdf",
+                "published_on": "2010-04-19",
+                "sha256": "ddd11bb850de2e7c642eb662b59e40e36c66e3a534162c505aa1c9a94ac5a00b"
+              },
+              "page": "71",
+              "section": "Art. 54 - Lavoro straordinario, notturno e festivo",
+              "quote": "Le percentuali di aumento del lavoro straordinario, notturno e festivo sono le seguenti: lavoro festivo................................................................................................... 45%"
+            },
+            "transformation": "45% on the elements of art. 44; whether the monthly salary covers the hours worked on a holiday is not settled by the article.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-02T15:47:52Z",
+              "effective_from": "2025-02-01",
+              "verification_status": "verified",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-02T15:47:52Z",
+              "review_id": "2026-11-02-ai-ordinary-premiums"
             }
           }
         }
@@ -2803,6 +2988,29 @@
           "Engine corrected: the ratei settled at a termination entered the TFR base whole, the EDR included, while the EDR stays out of the TFR base in the monthly pay and in an extra-month run (0,38 EUR of TFR too much here). The settled ratei now leave out the allowances outside the TFR base.",
           "Hand oracle (tests/knowledge/ccnl_engine/period/sector, scenarios edilizia-impiegati-year and edilizia-impiegati-june): an impiegato of the 3rd level hired on 1 January 2026 by an employer with 30 employees, across the tranche of March 2026; after the two corrections every payment and the year (gross, contributions, tax, net, TFR, employer cost) match the engine to the cent. The CCNL now covers every total of the definition of done.",
           "The 23 derived rules stay derived: the contingenza and EDR of each level (14) are read from the ANCE provincial tables, not tabulated in the CCNL; the Prevedi amounts are rebuilt from two verbali and the fund scheda; two scatti differ between the table (8,2) and the secondary tables (8,22); the payment day of the quattordicesima and the absence divisor are stated transformations. No signatory text states them directly."
+        ]
+      },
+      {
+        "id": "2026-11-02-ai-ordinary-premiums",
+        "date": "2026-11-02",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The premiums on ordinary hours of Art. 54 (PDF p. 71) and their base of Art. 44 (pp. 66-67).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL_EDILIZIA_INDUSTRIA_2010_TESTO_COMPLETO.pdf",
+            "sha256": "ddd11bb850de2e7c642eb662b59e40e36c66e3a534162c505aa1c9a94ac5a00b"
+          }
+        ],
+        "findings": [
+          "Art. 54: supplement_bands ANCE_IMP_* (night 34%, night in periodic shifts 10%, festivo 45%); festivo notturno 50% left as the narrowed limitation.",
+          "Art. 44 points 1-6, 8, 9 over 173: hourly_base_provenance verified, individual elements included (point 3).",
+          "A separate session without the reasoning of the extraction re-read art. 54 (p. 71) and art. 44 (pp. 66-67) on the PDF and confirmed the table (34%, 10%, 45%, festivo notturno 50%), the elements 1-6, 8, 9 and the divisor 173; it found the EDR named in neither article: its place in point 9 stays a reading."
+        ],
+        "independence": "separate_session",
+        "checked": [
+          "work_rules.time_supplements"
         ]
       }
     ],
