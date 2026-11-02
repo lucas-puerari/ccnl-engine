@@ -127,20 +127,8 @@
         "text": "SOURCE CAVEAT: previdenza-professionisti.it entry uses a domain-level URL; the exact deep-link page was not captured. Data cross-confirmed by lavoro-economia.it for seniority amounts."
       },
       {
-        "kind": "simplification",
-        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
-        "capability": "seniority",
-        "monetary_impact": "unknown",
-        "limitation": {
-          "variant": "apprentice_seniority",
-          "applies_when": {
-            "trigger": "path",
-            "contract_types": [
-              "apprentice"
-            ]
-          },
-          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
-        }
+        "kind": "info",
+        "text": "APPRENTICE SENIORITY (Art. 45, p. 63 of the CCNL testo definitivo 28 March 2023, CNEL deposit 245795, https://azstcnesa0002prodwe001.blob.core.windows.net/archivio-contratti/archivio%2F2026%2F1785247097907%2FCCNL%20Lavanderie%20industriali%2028%20marzo%202023.pdf, sha256 cdfa2207cd7010a97b45d65123fccd7822632475cc14e7b4eef5b5e6cf705aa7): 'L’intero periodo di apprendistato professionalizzante è utile ai fini della maturazione dell’anzianità aziendale, anche ai fini degli aumenti periodici di anzianità; tali aumenti saranno corrisposti nelle misure previste dal Modulo/Area professionale di appartenenza': seniority_increments.apprentice_level_amount."
       }
     ]
   },
@@ -280,7 +268,8 @@
           "verification_status": "unverified",
           "effective_from": "2020-01-01"
         }
-      }
+      },
+      "apprentice_level_amount": true
     }
   },
   "apprenticeship": [
@@ -1404,7 +1393,7 @@
     "effective_until": null,
     "source": "https://www.assosistema.it/11527-2/",
     "verification_status": "unverified",
-    "source_hash": "c0eb38e62c53360f62475f3151f2bb3ec9e4284d1a05b7267445568a5e90f99d",
+    "source_hash": "4425f4ccbcd462583022f22c2aee755f88effa45fd23a1877601133c50fdcbe5",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

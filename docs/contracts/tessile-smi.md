@@ -30,10 +30,10 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Core payroll path** | ⚠️ |
-| **Limits of this contract** | seniority |
+| **Core payroll path** | ✅ |
+| **Limits of this contract** | — |
 
-1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+0 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -118,13 +118,6 @@ Destination levels: `2`
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
-
-!!! warning "tessile-smi/apprentice_seniority · seniority · impact unknown · open"
-    APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.
-
-    **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
-
-    **Remediation:** Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
@@ -316,6 +309,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     APPRENTICESHIP: sotto-inquadramento. Group A (L4-L8) 36m total: 0-15m = 2 full levels below dest, 15-30m = 1 full level below, 30-36m+ = dest. Note: 'full level' skips S-variants, so levels_below in order arithmetic: L6-L8 → 2/1, L5 → 3/1, L4 → 4/2. Group B (L3/3S) 36m: 0-12m at L1, 12-30m at L2, 30m+ at dest. Group B (L2/2S) 36m: 0-12m at L1, then dest. L1 excluded as destination. Source: CCNL SMI (CNEL D014) + Gruppo24ORE scheda Oct 2023 + MySolution sintesi 2017. SIMPLIFICATION: MySolution notes 3S second period uses L2 pay (not L3).
     
     JANUARY 2027 TRANCHE: +60.96 at L8 basis, proportional to parametri. Values from rinnovo 11/11/2024 (Chapter VI column 'da gennaio 2027'). Source: studiobergonzini.it ipotesi 11/11/2024 PDF.
+    
+    APPRENTICE SENIORITY (Art. 31 B, p. 47 of the CCNL testo definitivo 2022, CNEL deposit 187819, https://azstcnesa0002prodwe001.blob.core.windows.net/archivio-contratti/archivio%2F2022%2Ff3495dfe-2d54-44fa-8603-be436ddfe900%2F20308.pdf, sha256 77c269b3fa0d3d87efeb86e44ecd7b344f55cb3d125205d283e6ac58b97fb2b1): 'L’intero periodo di apprendistato professionalizzante è utile ai fini della maturazione dell’anzianità aziendale, anche ai fini degli aumenti periodici di anzianità; tali aumenti saranno corrisposti nelle misure previste dal livello di appartenenza': seniority_increments.apprentice_level_amount.
     
 
 ## Raw data

@@ -129,20 +129,8 @@
         }
       },
       {
-        "kind": "simplification",
-        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
-        "capability": "seniority",
-        "monetary_impact": "unknown",
-        "limitation": {
-          "variant": "apprentice_seniority",
-          "applies_when": {
-            "trigger": "path",
-            "contract_types": [
-              "apprentice"
-            ]
-          },
-          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
-        }
+        "kind": "info",
+        "text": "APPRENTICE SENIORITY (Art. 32, p. 65 of the CCNL Autonoleggio-Autorimesse 2022-2024, https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL-AUTONOLEGGIO-ANIASA_2022-2024.pdf, sha256 fafa013d5843ab750bb1f6e0ccad3b3c60e560ada3a07e576793f68e4d40196e): 'L'intero periodo di apprendistato professionalizzante è utile ai fini della maturazione dell'anzianità di servizio, nonché ai fini degli aumenti periodici di anzianità.' Reading: the apprentice matures the art. 42 increments, paid at the amounts of the level (seniority_increments.apprentice_level_amount)."
       }
     ]
   },
@@ -291,7 +279,8 @@
           "verification_status": "unverified",
           "effective_from": "2020-01-01"
         }
-      }
+      },
+      "apprentice_level_amount": true
     }
   },
   "apprenticeship": [
@@ -2946,7 +2935,7 @@
     "effective_until": null,
     "source": "https://www.filtcgil.it/images/Contratti/Mobilita/ic35-verbale-accordo-09122025.pdf",
     "verification_status": "unverified",
-    "source_hash": "d461d2957edcb89c9d3382e101c1ab6e5102896de53846e40ecbf2880b34d907",
+    "source_hash": "0bb26a5814ef36bb026cf478f5897c4615326d53d5334199a0536148bbae365d",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

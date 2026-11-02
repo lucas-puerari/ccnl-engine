@@ -98,20 +98,8 @@
         }
       },
       {
-        "kind": "simplification",
-        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
-        "capability": "seniority",
-        "monetary_impact": "unknown",
-        "limitation": {
-          "variant": "apprentice_seniority",
-          "applies_when": {
-            "trigger": "path",
-            "contract_types": [
-              "apprentice"
-            ]
-          },
-          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
-        }
+        "kind": "info",
+        "text": "APPRENTICE SENIORITY (Art. 24, p. 40 of the CCNL testo definitivo 2023, CNEL deposit 176781, https://azstcnesa0002prodwe001.blob.core.windows.net/archivio-contratti/archivio%2F2023%2Fe5a59528-7634-4026-b087-0c21d247f1c7%2F20175.pdf, sha256 f32ae476b175e22d8b918c7f3e07f5472d91852505dc29e3ab022547f3b139c1, read on the OCR of the scan and on the 2021 text, same page): 'L’intero periodo di apprendistato professionalizzante è utile ai fini della maturazione dell’anzianità aziendale, anche ai fini degli aumenti periodici di anzianità; tali aumenti saranno corrisposti nelle misure previste dal livello/area-step di appartenenza': seniority_increments.apprentice_level_amount."
       }
     ]
   },
@@ -286,7 +274,8 @@
           "verification_status": "unverified",
           "effective_from": "2020-01-01"
         }
-      }
+      },
+      "apprentice_level_amount": true
     }
   },
   "levels": [
@@ -3175,7 +3164,7 @@
     "effective_until": null,
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/260130_OCCHIALI_RINNOVO%20CCNL%202026_2028.pdf",
     "verification_status": "verified",
-    "source_hash": "b00d82b881ddd0221076d5ec0d73bf8f173098bbfc05eb71ba568de1772fba57",
+    "source_hash": "82046c7ea7e7abfda7cfd116fc79252415c2ca97f22647e89aa11a169d3b9e0b",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

@@ -132,7 +132,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 15 | B282 | [CCNL Attivita Minerarie (ASSORISORSE)](attivita-minerarie-assorisorse.md) | Industria estrattiva - Miniere, cave, saline, metallurgia estrattiva | ~3000 | 2022 | ⚠️ | base_salary, seniority | 36 / 0 / 2 / 1 | 🧪 | 🤖 |
 | 16 | I320 | [CCNL Attività Ferroviarie — AGENS](trasporto-ferroviario-agens.md) | trasporto | ~75k | 2025 | ⚠️ | base_salary, inps_employer, seniority | 50 / 6 / 1 / 0 | 🧪 | 🤖 |
 | 17 | I022 | [CCNL Autoferrotranvieri e Internavigatori (Mobilita/TPL)](autoferrotranvieri-internavigatori.md) | trasporti | ~120k | 2024 | ⚠️ | inps_employer, pension_fund_contribution | 0 / 139 / 1 / 0 | 🧪 | 🤖 |
-| 18 | IC35 | [CCNL Autorimesse, Noleggio Automezzi e Parcheggi (ANIASA)](autorimesse-ic35.md) | Autorimesse e noleggio automezzi | ~41k | 2025 | ⚠️ | base_salary, seniority, welfare, workplace_injury | 0 / 95 / 1 / 1 | 🧪 | 🤖 |
+| 18 | IC35 | [CCNL Autorimesse, Noleggio Automezzi e Parcheggi (ANIASA)](autorimesse-ic35.md) | Autorimesse e noleggio automezzi | ~41k | 2025 | ⚠️ | base_salary, welfare, workplace_injury | 0 / 95 / 1 / 1 | 🧪 | 🤖 |
 | 19 | I192 | [CCNL Autostrade e Trafori Concessionari](autostrade-trafori.md) | autostrade e trafori — addetti alle concessionarie autostradali | ~15k | 2023 | ⚠️ | base_salary, seniority | 0 / 140 / 1 / 1 | 🧪 | 🤖 |
 | 20 | H601 | [CCNL CED, ICT, Professioni Digitali e STP (Assoced-UGL)](ced-assoced.md) | Terziario | ~22k | 2025 | ⚠️ | base_salary, inps_employer, seniority | 0 / 44 / 1 / 1 | 🧪 | 🤖 |
 | 21 | G022 | [CCNL Carta e Cartone — Aziende Industriali (Assocarta)](carta-cartone-assocarta.md) | carta-cartone | ~35k | 2026 | ⚠️ | base_salary | 14 / 61 / 1 / 0 | 🧪 | 🤖 |
@@ -140,7 +140,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 23 | F032 | [CCNL Cemento, Calce e Gesso — Industria (Federbeton)](cemento-calce-gesso-industria.md) | industria del cemento calce e gesso | ~25k | — | ⚠️ | seniority | 1 / 80 / 1 / 0 | 🧪 | 🤖 |
 | 24 | B122 | [CCNL Ceramica Industria (Confindustria) - Ceramica sanitaria e stoviglieria](ceramica-sanitaria-stoviglieria-confindustria.md) | ceramica | ~23k | — | ⚠️ | seniority | 0 / 70 / 1 / 1 | 🧪 | 🤖 |
 | 25 | B122 | [CCNL Ceramica Industria (Confindustria-Assopiastrelle)](ceramica-industria-confindustria.md) | ceramica | ~23k | — | ⚠️ | seniority | 0 / 60 / 1 / 1 | 🧪 | 🤖 |
-| 26 | B018 | [CCNL Chimica e Affini PMI — Unionchimica Confapi](chimica-affini-pmi-unionchimica.md) | chimica | ~56k | 2026 | ⚠️ | seniority | 0 / 53 / 1 / 1 | 🧪 | 🤖 |
+| 26 | B018 | [CCNL Chimica e Affini PMI — Unionchimica Confapi](chimica-affini-pmi-unionchimica.md) | chimica | ~56k | 2026 | ✅ | — | 0 / 53 / 1 / 1 | 🧪 | 🤖 |
 | 27 | S005 | [CCNL Comparto Funzioni Centrali — Triennio 2022-2024](funzioni-centrali-aran.md) | Pubblica Amministrazione — Comparto Funzioni Centrali | ~250k | 2026 | ⚠️ | base_salary | 26 / 5 / 0 / 0 | 👁 | 🤖✓ |
 | 28 | S105 | [CCNL Comparto Funzioni Locali 2022-2024 — ARAN](funzioni-locali-aran.md) | Pubblica Amministrazione | ~400k | 2026 | ⚠️ | base_salary | 18 / 9 / 0 / 0 | 👁 | 🤖✓ |
 | 29 | S305 | [CCNL Comparto Istruzione e Ricerca 2022-2024 e 2025-2027 (trattamento economico) - ARAN](istruzione-ricerca-aran.md) | Pubblica Amministrazione | ~1,2M | 2026 | ⚠️ | base_salary, inps_employee, overtime, workplace_injury | 48 / 41 / 1 / 0 | 🧪 | 🤖 |
@@ -182,11 +182,11 @@ on unverified sources, or be well sourced and not cleared for production.
 | 65 | G111 | [CCNL Industrie Cineaudiovisive (ANICA)](cinema-audiovisivi-industria.md) | Cinema e audiovisivo | ~2.3k | 2025 | ⚠️ | bilateral_funds, inps_employer | 2 / 61 / 1 / 0 | 🧪 | 🤖 |
 | 66 | HV40 | [CCNL Istituti e Imprese di Vigilanza Privata e Servizi Fiduciari — ASSIV/ANIVP/UNIV (GPG)](vigilanza-privata-assiv.md) | vigilanza-privata | ~85k | 2023 | ⚠️ | inps_employer, seniority | 0 / 49 / 1 / 0 | 🧪 | 🤖 |
 | 67 | T241 | [CCNL Istituzioni Formative Private (Scuole Private Religiose) — AGIDAE](scuole-private-agidae.md) | istruzione privata | ~50k | — | ⚠️ | seniority | 1 / 43 / 1 / 0 | 🧪 | 🤖 |
-| 68 | T141 | [CCNL Istituzioni Socio-Assistenziali — UNEBA](uneba-uneba.md) | servizi socio-assistenziali | ~130k | — | ⚠️ | base_salary, seniority, territorial_supplement | 1 / 41 / 1 / 0 | 🧪 | 🤖 |
+| 68 | T141 | [CCNL Istituzioni Socio-Assistenziali — UNEBA](uneba-uneba.md) | servizi socio-assistenziali | ~130k | — | ⚠️ | base_salary, territorial_supplement | 1 / 41 / 1 / 0 | 🧪 | 🤖 |
 | 69 | T131 | [CCNL Istituzioni e Servizi Socio-Assistenziali (ANASTE)](istituzioni-servizi-socio-assistenziali-anaste.md) | servizi socio-assistenziali | ~120k | — | ⚠️ | base_salary, una_tantum | 1 / 31 / 1 / 0 | 🧪 | 🤖 |
 | 70 | F041 | [CCNL Lapidei — Industria (Confindustria Marmomacchine/ANEPLA)](lapidei-industria.md) | industria lapidea e delle cave | ~18k | — | ⚠️ | absence, base_salary, inps_employer, seniority | 0 / 79 / 1 / 1 | 🧪 | 🤖 |
 | 71 | F021 | [CCNL Laterizi e Manufatti Cementizi - Industria](laterizi-industria-f021.md) | industria | ~17k | — | ⚠️ | base_salary, seniority | 1 / 98 / 1 / 0 | 🧪 | 🤖 |
-| 72 | D0L1 | [CCNL Lavanderie Industriali (Assosistema Confindustria)](lavanderie-industriali-assosistema.md) | lavanderie-industriali | ~17k | — | ⚠️ | base_salary, seniority | 0 / 37 / 1 / 1 | 🧪 | 🤖 |
+| 72 | D0L1 | [CCNL Lavanderie Industriali (Assosistema Confindustria)](lavanderie-industriali-assosistema.md) | lavanderie-industriali | ~17k | — | ⚠️ | base_salary | 0 / 37 / 1 / 1 | 🧪 | 🤖 |
 | 73 | V925 | [CCNL Lavoratori Dipendenti Organizzazioni Sindacali (UNSIC/CONFSAL)](ooss-unsic-confsal.md) | Organizzazioni sindacali nazionali e territoriali | ~7k | 2023 | ⚠️ | base_salary, seniority | 1 / 19 / 1 / 0 | 🧪 | 🤖 |
 | 74 | H501 | [CCNL Lavoro Domestico — DOMINA/FIDALDO/ASSINDATCOLF (conviventi a orario ridotto, art. 14 c. 2)](lavoro-domestico-convivente-orario-ridotto.md) | lavoro domestico | — | — | ⚠️ | assistance_contribution, base_salary, inps_employer, overtime | 15 / 2 / 0 / 0 | 👁 | 🤖✓ |
 | 75 | H501 | [CCNL Lavoro Domestico — DOMINA/FIDALDO/ASSINDATCOLF (conviventi)](lavoro-domestico-convivente.md) | lavoro domestico | ~900k | — | ⚠️ | assistance_contribution, base_salary, inps_employer, seniority | 28 / 1 / 0 / 0 | 👁 | 🤖✓ |
@@ -201,7 +201,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 84 | C018 | [CCNL Metalmeccanici Piccola Industria (Unionmeccanica-Confapi)](metalmeccanico-confapi.md) | metalmeccanico | ~350k | — | ⚠️ | base_salary, leave, overtime, pension_fund_contribution, sickness | 63 / 7 / 0 / 0 | 👁 | 🤖✓ |
 | 85 | C011 | [CCNL Metalmeccanici e Installatori di Impianti (Federmeccanica-Assistal)](metalmeccanico-federmeccanica.md) | metalmeccanico | ~1,7M | 2025 | ⚠️ | base_salary, leave, overtime | 90 / 1 / 0 / 0 | 🏭 | 🤖✓ |
 | 86 | IC36 | [CCNL Noleggio Autobus con Conducente (ANAV)](noleggio-autobus-conducente-anav.md) | Trasporti - Noleggio autobus con conducente | ~5422 | 2025 | ⚠️ | base_salary, seniority | 34 / 33 / 4 / 0 | 🧪 | 🤖 |
-| 87 | D271 | [CCNL Occhiali e Occhialeria — Industria (ANFAO)](occhiali-occhialeria-industria.md) | industria occhialeria e ottica | ~20k | — | ⚠️ | base_salary, seniority | 77 / 11 / 1 / 1 | 🧪 | 🤖 |
+| 87 | D271 | [CCNL Occhiali e Occhialeria — Industria (ANFAO)](occhiali-occhialeria-industria.md) | industria occhialeria e ottica | ~20k | — | ⚠️ | base_salary | 77 / 11 / 1 / 1 | 🧪 | 🤖 |
 | 88 | A011 | [CCNL Operai Agricoli e Florovivaisti — Coldiretti/Confagricoltura/CIA](operai-agricoli-florovivaisti.md) | agricoltura | ~600k | 2026 | ⚠️ | base_salary, bilateral_funds, inail, inps_employee, inps_employer, overtime, seniority, sickness, territorial_supplement | 11 / 6 / 1 / 0 | 🧪 | 🤖 |
 | 89 | A221 | [CCNL Organizzazioni Allevatori, Consorzi ed Enti Zootecnici (AIA-FLAI-FAI-UILA)](organizzazioni-allevatori-aia.md) | Agricoltura | ~2k | 2024 | ⚠️ | base_salary, inps_employer | 1 / 20 / 1 / 0 | 🧪 | 🤖 |
 | 90 | H341 | [CCNL Ortofrutticoli ed Agrumari (Import-Export)](ortofrutticoli-agrumari.md) | ortofrutticoli ed agrumari import-export | ~60000 | 2024 | ⚠️ | base_salary, leave, seniority, sickness | 47 / 0 / 7 / 0 | 🧪 | 🤖 |
@@ -242,7 +242,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 125 | E012 | [CCNL per i lavoratori dell'industria alimentare (Federalimentare)](alimentari-federalimentare.md) | industria | ~145k | — | ⚠️ | base_salary, bilateral_funds, overtime, sickness | 153 / 0 / 0 / 0 | 👁 | 🤖✓ |
 | 126 | B101 | [CCNL per i lavoratori dell'industria conciaria (UNIC)](concia-unic.md) | industria | ~22.6k | — | ✅ | leave, overtime | 57 / 1 / 0 / 0 | 👁 | 🤖✓ |
 | 127 | F051 | [CCNL per i lavoratori dell'industria del legno, del sughero, del mobile, dell'arredamento e delle industrie affini (Federlegno-Arredo)](legno-arredamento-federlegno.md) | industria | ~90k | — | ⚠️ | base_salary | 1 / 88 / 1 / 0 | 🧪 | 🤖 |
-| 128 | D014 | [CCNL per i lavoratori dell'industria tessile, abbigliamento, moda (SMI)](tessile-smi.md) | industria | ~160k | — | ⚠️ | seniority | 0 / 47 / 1 / 1 | 🧪 | 🤖 |
+| 128 | D014 | [CCNL per i lavoratori dell'industria tessile, abbigliamento, moda (SMI)](tessile-smi.md) | industria | ~160k | — | ✅ | — | 0 / 47 / 1 / 1 | 🧪 | 🤖 |
 | 129 | J271 | [CCNL per i lavoratori delle Banche di Credito Cooperativo, Casse Rurali ed Artigiane](bcc-credito-cooperativo.md) | credito | ~33k | — | ⚠️ | base_salary, inps_employer, seniority | 36 / 7 / 0 / 0 | 🧪 | 🤖 |
 | 130 | K051 | [CCNL per i lavoratori delle imprese produttrici, distributrici di energia elettrica (Elettricita Futura)](elettrico-elettricita-futura.md) | industria | ~60k | — | ⚠️ | seniority | 57 / 21 / 1 / 0 | 🧪 | 🤖 |
 | 131 | J241 | [CCNL per i lavoratori dipendenti dalle aziende di credito (ABI)](bancari-abi.md) | credito | ~270k | 2023 | ⚠️ | base_salary, inps_employer, overtime, seniority, sickness | 43 / 2 / 0 / 0 | 🧪 | 🤖 |
