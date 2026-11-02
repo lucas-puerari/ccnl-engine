@@ -128,19 +128,6 @@
       },
       {
         "kind": "simplification",
-        "text": "Art. 134, 136 and 139: the premiums on ordinary night (15%), Sunday (30%) and weekly rest day (30%) work.",
-        "capability": "overtime",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "ordinary_hours_premiums",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Model the premiums on ordinary hours."
-        }
-      },
-      {
-        "kind": "simplification",
         "text": "The pay rows of the operatori di vendita.",
         "capability": "base_salary",
         "monetary_impact": "yes",
@@ -194,6 +181,10 @@
       {
         "kind": "info",
         "text": "LEAVE, WEEKLY SCHEDULE: a 39-hour full-time week absorbs 36 hours of ROL and a 38-hour week 16 hours of ex festività and 56 of ROL, read from Employment.full_time_weekly_hours. The grandi magazzini, magazzini a prezzo unico, supermercati alimentari, cash&carry and ipermercati (Art. 119, EmployerProfile.subsector 'grande_distribuzione') on a 38-hour average absorb instead the 56 hours of Art. 141 c. 3 and the 16 of c. 4 and keep the ex festività."
+      },
+      {
+        "kind": "info",
+        "text": "ORDINARY HOUR PREMIUMS (Testo Unico 29 September 2025, pp. 43-44): ordinary night 15% (art. 134), Sunday 30% (art. 136 c. 7, without a better second-level treatment), weekly rest day 30% (art. 139), holidays as straordinario festivo 30% with the hour paid apart (art. 138): work_rules.time_supplements.supplement_bands DMO_*."
       }
     ]
   },
@@ -3713,13 +3704,70 @@
     "effective_until": null,
     "source": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
     "verification_status": "unverified",
-    "source_hash": "cbee21e8c2cadad834b24c9131e1b93f013751d074594a0cd2a07239c9a7a271",
+    "source_hash": "cc0886f250db6a2b29f0077d576c27b307ba5727764330935c2cdd9350c81b55",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
   "work_rules": {
     "time_supplements": {
       "hourly_base_method": "gross_incl_allowances",
+      "hourly_base_provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+            "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
+            "kind": "associazione",
+            "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+            "published_on": "2025-09-29",
+            "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
+          },
+          "page": "58",
+          "section": "Art. 194 - Quota oraria",
+          "quote": "La quota oraria della retribuzione, sia normale che di fatto, si ottiene dividendo l’importo mensile per i seguenti divisori convenzionali: a) 168, per il personale la cui durata normale di lavoro è di 40 ore settimanali;"
+        },
+        "transformation": "Art. 189 (p. 57) normale retribuzione: paga base nazionale conglobata, indennità di contingenza, terzi elementi, scatti and the other elements of collective bargaining: base salary, seniority and every fixed allowance. Art. 191 retribuzione di fatto adds the continuative individual elements, which the engine does not know: the hour at the retribuzione di fatto and the premium on the normale retribuzione of art. 132 are one base here. Read on the page image of p. 57 (two-column layout).",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-02T15:23:27Z",
+          "effective_from": "2023-04-01",
+          "verification_status": "verified",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-02T15:24:11Z",
+          "review_id": "2026-11-02-ai-ordinary-premiums"
+        }
+      },
+      "individual_elements": {
+        "in_hourly_base": "hour_only",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+              "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
+              "kind": "associazione",
+              "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+              "published_on": "2025-09-29",
+              "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
+            },
+            "page": "42",
+            "section": "Art. 132 - Maggiorazione lavoro straordinario; Artt. 189 and 191",
+            "quote": "verranno retribuite con la quota oraria della retribuzione di fatto di cui all’art. 191 e con le seguenti maggiorazioni da calcolare sulla quota oraria della normale retribuzione di cui all’art. 189"
+          },
+          "transformation": "The retribuzione di fatto of art. 191 holds 'tutti gli altri elementi retributivi aventi carattere continuativo'; the normale retribuzione of art. 189 lists paga base, contingenza, terzi elementi, scatti and the elements of collective bargaining only. The hour is paid with the individual elements, its maggiorazione without them.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-02T15:23:27Z",
+            "effective_from": "2023-04-01",
+            "verification_status": "verified",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-02T15:24:11Z",
+            "review_id": "2026-11-02-ai-ordinary-premiums"
+          }
+        }
+      },
       "hourly_divisor_weekly_hours": 40,
       "week_divisors": [
         {
@@ -4000,6 +4048,176 @@
               "extraction_timestamp": "2026-10-13T07:00:31Z",
               "effective_from": "2023-04-01",
               "verification_status": "unverified"
+            }
+          }
+        }
+      ],
+      "supplement_bands": [
+        {
+          "code": "DMO_NOTTURNO",
+          "description": "Lavoro ordinario notturno dalle 22 alle 6 (art. 134)",
+          "work": "night",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-04-01",
+                "valid_until": null,
+                "value": "0.15"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
+                "kind": "associazione",
+                "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                "published_on": "2025-09-29",
+                "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
+              },
+              "page": "43",
+              "section": "Art. 134 - Lavoro ordinario notturno",
+              "quote": "le ore di lavoro ordinario prestato di notte – intendendosi per tali quelle effettuate dalle ore 22 alle ore 6 del mattino – verranno retribuite con aliquota oraria della retribuzione di fatto di cui all’art. 191, maggiorata del 15%."
+            },
+            "transformation": "15% on the hourly pay of the ordinary night hours; the hour itself is in the monthly pay.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-02T15:22:11Z",
+              "effective_from": "2023-04-01",
+              "verification_status": "verified",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-02T15:24:11Z",
+              "review_id": "2026-11-02-ai-ordinary-premiums"
+            }
+          }
+        },
+        {
+          "code": "DMO_FESTIVO",
+          "description": "Lavoro nelle festività dell'art. 137, come straordinario festivo (art. 138)",
+          "work": "holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-04-01",
+                "valid_until": null,
+                "value": "0.30"
+              }
+            ]
+          },
+          "hours_paid_apart": true,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
+                "kind": "associazione",
+                "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                "published_on": "2025-09-29",
+                "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
+              },
+              "page": "44",
+              "section": "Art. 138 - Retribuzione prestazioni festive",
+              "quote": "Le ore di lavoro, a qualsiasi titolo richieste, prestate nei giorni festivi indicati nel precedente art. 137, dovranno essere compensate come lavoro straordinario festivo nella misura e con le modalità previste dagli artt. 132 e 194 di questo stesso contratto."
+            },
+            "transformation": "Art. 132 pays the straordinario festivo with the hourly pay and 30% (the OT_FESTIVO band): the band is the 30%; the hour itself is paid apart.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-02T15:22:11Z",
+              "effective_from": "2023-04-01",
+              "verification_status": "verified",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-02T15:24:11Z",
+              "review_id": "2026-11-02-ai-ordinary-premiums"
+            }
+          }
+        },
+        {
+          "code": "DMO_DOMENICA",
+          "description": "Lavoro ordinario domenicale (art. 136 c. 7)",
+          "work": "sunday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-04-01",
+                "valid_until": null,
+                "value": "0.30"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
+                "kind": "associazione",
+                "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                "published_on": "2025-09-29",
+                "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
+              },
+              "page": "43",
+              "section": "Art. 136 - Lavoro domenicale, c. 7",
+              "quote": "verrà riconosciuta la sola maggiorazione del 30% sulla quota oraria della normale retribuzione di cui all’art. 189 per ciascuna ora di lavoro prestata di domenica. Tale maggiorazione è omnicomprensiva e non cumulabile."
+            },
+            "transformation": "30% on the hourly normal pay of each Sunday hour, for a worker without a better second-level treatment.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-02T15:22:11Z",
+              "effective_from": "2023-04-01",
+              "verification_status": "verified",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-02T15:24:11Z",
+              "review_id": "2026-11-02-ai-ordinary-premiums"
+            }
+          }
+        },
+        {
+          "code": "DMO_RIPOSO",
+          "description": "Lavoro nel giorno di riposo settimanale (art. 139)",
+          "work": "rest_day",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-04-01",
+                "valid_until": null,
+                "value": "0.30"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
+                "kind": "associazione",
+                "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                "published_on": "2025-09-29",
+                "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
+              },
+              "page": "44",
+              "section": "Art. 139 - Retribuzione prestazioni nel giorno di riposo settimanale di Legge",
+              "quote": "le ore di lavoro prestate nei giorni di riposo settimanale dovranno essere retribuite con la sola maggiorazione del 30% sulla quota oraria della normale retribuzione di cui all’art. 189"
+            },
+            "transformation": "30% on the hourly normal pay; the compensatory rest is taken the next day.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-02T15:22:11Z",
+              "effective_from": "2023-04-01",
+              "verification_status": "verified",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-02T15:24:11Z",
+              "review_id": "2026-11-02-ai-ordinary-premiums"
             }
           }
         }
@@ -4930,6 +5148,30 @@
         "independence": "same_process",
         "checked": [
           "work_rules.notice"
+        ]
+      },
+      {
+        "id": "2026-11-02-ai-ordinary-premiums",
+        "date": "2026-11-02",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The premiums on ordinary hours of Artt. 134, 136, 138 and 139 and the hourly base of Artt. 189, 191 and 194 (PDF pp. 42-44 and 57-58).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+            "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
+          }
+        ],
+        "findings": [
+          "Art. 134 (p. 43): ordinary night 15%; art. 136 c. 7 (p. 43): Sunday 30%; art. 139 (p. 44): weekly rest day 30%; art. 138 (p. 44): holidays as straordinario festivo 30% (art. 132), the hour paid apart: supplement_bands DMO_*, as Commercio artt. 151-156.",
+          "Art. 194 (p. 58) divisor 168 at 40 hours; art. 189 (p. 57, read on the page image) normale retribuzione: paga base, contingenza, terzi elementi, scatti, other bargained elements; art. 191 adds the continuative individual elements: hourly_base_provenance and individual_elements hour_only, as Commercio artt. 206-211."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.time_supplements.supplement_bands",
+          "work_rules.time_supplements.hourly_base_provenance",
+          "work_rules.time_supplements.individual_elements"
         ]
       }
     ],

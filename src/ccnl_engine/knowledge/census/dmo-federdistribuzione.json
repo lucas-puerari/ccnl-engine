@@ -179,22 +179,6 @@
       }
     },
     {
-      "id": "ordinary_hours_premiums",
-      "institute": "overtime",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Art. 134, 136 and 139: the premiums on ordinary night (15%), Sunday (30%) and weekly rest day (30%) work.",
-      "calculation": "ccnl/dmo-federdistribuzione:coverage.notes",
-      "state": "absent",
-      "remediation": "Model the premiums on ordinary hours.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "dmo-federdistribuzione/ordinary_hours_premiums"
-        ]
-      }
-    },
-    {
       "id": "parental_daily_base",
       "institute": "parental_leave",
       "variant": "all",

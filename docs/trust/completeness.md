@@ -14,7 +14,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 0/135 CCNLs.** Bundle: 269 weak rules, 496 open limitations (496 with a monetary impact).
+**Complete: 0/135 CCNLs.** Bundle: 269 weak rules, 495 open limitations (495 with a monetary impact).
 
 ## Declared window
 
@@ -90,7 +90,7 @@ Future data, registered apart from the gaps: a contract whose validity ends insi
 | [dirigenza-sanitaria-area-sanita-aran](../contracts/dirigenza-sanitaria-area-sanita-aran.md) | `dirigenza-pubblica` | exploratory | 2024-12-31 | 20 rows | tables from 2026-03-01; 20 open requirements; 17 monetary limitations; 1 outside_input limitation; 20 non-native capabilities |
 | [dirigenza-sanitaria-medico-veterinaria-aran](../contracts/dirigenza-sanitaria-medico-veterinaria-aran.md) | `dirigenza-pubblica` | exploratory | 2024-12-31 | 24 rows | tables from 2026-03-01; 24 open requirements; 2 weak rules; 19 monetary limitations; 1 outside_input limitation; 20 non-native capabilities |
 | [distribuzione-cooperativa-ancc](../contracts/distribuzione-cooperativa-ancc.md) | `commercio` | exploratory | — | 24 rows | 24 open requirements; 1 weak rule; 20 monetary limitations; 1 outside_input limitation; 21 non-native capabilities |
-| [dmo-federdistribuzione](../contracts/dmo-federdistribuzione.md) | `commercio` | reviewed | — | 26 rows | 26 open requirements; 19 monetary limitations; 5 outside_input limitations; 21 non-native capabilities |
+| [dmo-federdistribuzione](../contracts/dmo-federdistribuzione.md) | `commercio` | reviewed | — | 25 rows | 25 open requirements; 19 monetary limitations; 4 outside_input limitations; 21 non-native capabilities |
 | [edilizia-ance](../contracts/edilizia-ance.md) | `edilizia` | reviewed | — | 32 rows | 32 open requirements; 19 monetary limitations; 11 outside_input limitations; 20 non-native capabilities |
 | [edilizia-ance-impiegati](../contracts/edilizia-ance-impiegati.md) | `edilizia` | production | — | 30 rows | 30 open requirements; 20 monetary limitations; 8 outside_input limitations; 21 non-native capabilities |
 | [edilizia-artigianato-cna](../contracts/edilizia-artigianato-cna.md) | `edilizia` | exploratory | — | 27 rows | 27 open requirements; 1 weak rule; 23 monetary limitations; 1 outside_input limitation; 20 non-native capabilities |
