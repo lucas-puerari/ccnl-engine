@@ -13,10 +13,15 @@ from decimal import Decimal
 
 import pytest
 
-from ccnl_engine.employment.period.inputs import TerminationCause
+from ccnl_engine.employment.period.inputs import (
+    CollectiveDismissal,
+    NaspiCase,
+    TerminationCause,
+)
 from ccnl_engine.inputs import Apprentice, FixedTerm, Permanent
 from ccnl_engine.termination.naspi.loaders import load_naspi_dismissal_rules
 from ccnl_engine.termination.naspi.rules import (
+    contribution_terms,
     dismissal_contribution,
     is_due,
     service_months,
@@ -98,3 +103,70 @@ def test_the_examples_of_circ_44_2013(months: int, amount: str) -> None:
     rules = rules.model_copy(update={"monthly_maximum": maximum})
 
     assert dismissal_contribution(rules, months) == Decimal(amount)
+
+
+_M = TerminationCause.MUTUAL_AGREEMENT
+
+
+@pytest.mark.parametrize(
+    ("cause", "just_cause", "case", "contract", "due"),
+    [
+        (_R, None, NaspiCase.PROTECTED_MATERNITY, Permanent(), True),
+        (_R, False, NaspiCase.PROTECTED_MATERNITY, Apprentice(months_elapsed=6), True),
+        (_M, None, NaspiCase.CONCILIATION, Permanent(), True),
+        (_M, None, NaspiCase.TRANSFER, Permanent(), True),
+        (_D, False, NaspiCase.CONTRACTOR_CHANGE, Permanent(), False),
+        (_D, False, NaspiCase.SITE_CLOSURE, Permanent(), False),
+        (_D, False, CollectiveDismissal(False, True), Permanent(), True),
+        (_D, False, NaspiCase.ORDINARY, Permanent(), True),
+        (_M, None, NaspiCase.CONCILIATION, FixedTerm(), False),
+    ],
+)
+def test_the_cases_that_change_it(
+    cause: TerminationCause,
+    just_cause: bool | None,
+    case: NaspiCase | CollectiveDismissal,
+    contract: Permanent | Apprentice | FixedTerm,
+    due: bool,
+) -> None:
+    """INPS circ. 44/2013 par. 1 and L. 92/2012 art. 2 c. 34."""
+    assert is_due(cause, just_cause, contract, case) is due
+
+
+@pytest.mark.parametrize(
+    ("case", "rate", "times", "amount"),
+    [
+        (None, "0.41", "1", "1949.19"),
+        (NaspiCase.ORDINARY, "0.41", "1", "1949.19"),
+        (CollectiveDismissal(True, False), "0.41", "1", "1949.19"),
+        (CollectiveDismissal(False, False), "0.41", "3", "5847.57"),
+        (CollectiveDismissal(True, True), "0.82", "1", "3898.35"),
+        (CollectiveDismissal(False, True), "0.82", "3", "11695.05"),
+    ],
+)
+def test_a_collective_dismissal_takes_82_per_cent_and_three_times(
+    case: NaspiCase | CollectiveDismissal | None, rate: str, times: str, amount: str
+) -> None:
+    """36 months of 2026, 82% of 1584.70 being 1299.45 a year.
+
+    L. 205/2017 art. 1 c. 137; three times without union agreement (L.
+    92/2012 art. 2 c. 35).
+    """
+    rules = load_naspi_dismissal_rules(2026)
+    assert rules is not None
+
+    assert contribution_terms(rules, case) == (Decimal(rate), Decimal(times))
+    assert dismissal_contribution(rules, 36, case) == Decimal(amount)
+
+
+@pytest.mark.parametrize(("months", "amount"), [(12, "990.68"), (36, "2972.04")])
+def test_the_example_of_msg_594_2018(months: int, amount: str) -> None:
+    """INPS msg. 594/2018 par. 4: 82% of the 2018 maximum of 1208.15."""
+    rules = load_naspi_dismissal_rules(2026)
+    assert rules is not None
+    maximum = rules.monthly_maximum.model_copy(update={"value": Decimal("1208.15")})
+    rules = rules.model_copy(update={"monthly_maximum": maximum})
+
+    assert dismissal_contribution(
+        rules, months, CollectiveDismissal(True, True)
+    ) == Decimal(amount)

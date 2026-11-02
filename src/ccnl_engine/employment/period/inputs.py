@@ -10,7 +10,7 @@ from enum import StrEnum
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.validators import parse_enum, require_bool, require_date
 
-__all__ = ["EmploymentPeriod", "TerminationCause"]
+__all__ = ["CollectiveDismissal", "EmploymentPeriod", "NaspiCase", "TerminationCause"]
 
 FEATURE = "employment_facts"
 
@@ -35,6 +35,66 @@ class TerminationCause(StrEnum):
 _JUST_CAUSE = frozenset({TerminationCause.DISMISSAL, TerminationCause.RESIGNATION})
 
 
+class NaspiCase(StrEnum):
+    """The case of an end of employment that changes the NASpI contribution.
+
+    Attributes:
+        ORDINARY: None of the cases below.
+        PROTECTED_MATERNITY: A resignation in the protected period of
+            maternity (INPS circ. 44/2013 par. 1): owes it.
+        CONCILIATION: A mutual agreement before the labour office (art. 7
+            L. 604/1966): owes it.
+        TRANSFER: A mutual agreement on a transfer more than 50 km from home
+            or 80 minutes away by public transport: owes it.
+        CONTRACTOR_CHANGE: A dismissal on a change of contractor followed by
+            hiring under a social clause (L. 92/2012 art. 2 c. 34 lett. a):
+            owes none.
+        SITE_CLOSURE: A dismissal in construction on the end of the works
+            and closure of the site (c. 34 lett. b): owes none.
+    """
+
+    ORDINARY = "ordinary"
+    PROTECTED_MATERNITY = "protected_maternity"
+    CONCILIATION = "conciliation"
+    TRANSFER = "transfer"
+    CONTRACTOR_CHANGE = "contractor_change"
+    SITE_CLOSURE = "site_closure"
+
+
+_CASE_CAUSE = {
+    NaspiCase.PROTECTED_MATERNITY: TerminationCause.RESIGNATION,
+    NaspiCase.CONCILIATION: TerminationCause.MUTUAL_AGREEMENT,
+    NaspiCase.TRANSFER: TerminationCause.MUTUAL_AGREEMENT,
+    NaspiCase.CONTRACTOR_CHANGE: TerminationCause.DISMISSAL,
+    NaspiCase.SITE_CLOSURE: TerminationCause.DISMISSAL,
+}
+
+
+@dataclass(frozen=True, slots=True)
+class CollectiveDismissal:
+    """A dismissal at the end of a collective procedure (L. 223/1991 art. 4).
+
+    Attributes:
+        union_agreement: Whether the declaration of redundancy was the
+            object of a union agreement; without one the contribution is
+            three times (L. 92/2012 art. 2 c. 35).
+        cigs_employer: Whether the employer owes the CIGS contribution (art.
+            23 D.Lgs. 148/2015); its rate is 82% (L. 205/2017 art. 1 c. 137).
+
+    Raises:
+        InvalidInputError: When a flag is not a ``bool``.
+    """
+
+    union_agreement: bool
+    cigs_employer: bool
+
+    def __post_init__(self) -> None:  # noqa: D105
+        for name in ("union_agreement", "cigs_employer"):
+            require_bool(
+                getattr(self, name), f"CollectiveDismissal.{name}", feature=FEATURE
+            )
+
+
 @dataclass(frozen=True, slots=True)
 class EmploymentPeriod:
     """Start and optional end of the employment relationship.
@@ -47,18 +107,22 @@ class EmploymentPeriod:
             not stated (a run that needs it reports the missing fact).
         just_cause: Whether a dismissal or a resignation has a just cause
             (art. 2119 c.c.); ``None`` when not stated or not either.
+        naspi_case: The case of the end that changes the NASpI contribution,
+            a collective dismissal or ``NaspiCase.ORDINARY``; ``None`` when
+            not stated (the contribution carries a limitation).
 
     Raises:
         InvalidInputError: When a date is not a ``date``, ``ended_on`` is
             before ``started_on``, ``ended_by`` comes without ``ended_on``,
-            or ``just_cause`` with a cause other than a dismissal or a
-            resignation.
+            ``just_cause`` with a cause other than a dismissal or a
+            resignation, or ``naspi_case`` without its own cause.
     """
 
     started_on: date
     ended_on: date | None = None
     ended_by: TerminationCause | None = None
     just_cause: bool | None = None
+    naspi_case: NaspiCase | CollectiveDismissal | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
         require_date(self.started_on, "EmploymentPeriod.started_on", feature=FEATURE)
@@ -76,6 +140,21 @@ class EmploymentPeriod:
         if self.ended_by is not None:
             object.__setattr__(self, "ended_by", self._cause())
         self._check_just_cause()
+        if self.naspi_case is not None:
+            object.__setattr__(self, "naspi_case", self._naspi_case())
+
+    def _naspi_case(self) -> NaspiCase | CollectiveDismissal:
+        path = "EmploymentPeriod.naspi_case"
+        case = self.naspi_case
+        if isinstance(case, CollectiveDismissal):
+            cause: TerminationCause | None = TerminationCause.DISMISSAL
+        else:
+            case = parse_enum(case, NaspiCase, path, feature=FEATURE)
+            cause = _CASE_CAUSE.get(case)
+        if self.ended_by is None or cause not in {None, self.ended_by}:
+            msg = f"{path} {case!r} does not fit the end {self.ended_by!r}"
+            raise InvalidInputError(msg, field=path, feature=FEATURE)
+        return case
 
     def _cause(self) -> TerminationCause:
         cause = parse_enum(

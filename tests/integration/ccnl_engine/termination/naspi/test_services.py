@@ -27,7 +27,14 @@ from ccnl_engine.balance.models import PeriodState
 from ccnl_engine.decision.models import CalculationStatus
 from ccnl_engine.employment.category.models import WorkerCategory
 from ccnl_engine.employment.period.inputs import TerminationCause
-from ccnl_engine.inputs import EmploymentPeriod, FixedTerm, NoPensionFund, Permanent
+from ccnl_engine.inputs import (
+    CollectiveDismissal,
+    EmploymentPeriod,
+    FixedTerm,
+    NaspiCase,
+    NoPensionFund,
+    Permanent,
+)
 from ccnl_engine.ledger.models import AccountKind
 from ccnl_engine.reconciliation.validators import reconcile
 from ccnl_engine.run.models import RunKind
@@ -51,8 +58,9 @@ def _run(
     opening: PeriodState | None = None,
     year: int = 2026,
     month: int = 3,
+    case: NaspiCase | CollectiveDismissal | None = None,
 ) -> PeriodResult:
-    period = EmploymentPeriod(hired, ended, cause, just) if ended else None
+    period = EmploymentPeriod(hired, ended, cause, just, case) if ended else None
     return PayrollEngine.bundled().calculate_period(
         PeriodInput(
             run=PayrollRun(run_kind=kind, month=month, year=year),
@@ -227,3 +235,69 @@ def test_a_year_without_the_naspi_maximum_is_a_missing_rule() -> None:
     assert issue.code == "naspi_dismissal_rule_missing"
     assert _contribution(dismissed) == []
     assert _decision_reasons(resigned) == ["not_due"]
+
+
+def _limited(result: PeriodResult) -> bool:
+    return "naspi_dismissal_exceptions" in {lim.id for lim in result.limitations}
+
+
+@pytest.mark.parametrize(
+    ("cause", "case", "amount"),
+    [
+        (_D, NaspiCase.ORDINARY, "1949.19"),
+        (_R, NaspiCase.PROTECTED_MATERNITY, "1949.19"),
+        (TerminationCause.MUTUAL_AGREEMENT, NaspiCase.CONCILIATION, "1949.19"),
+        (TerminationCause.MUTUAL_AGREEMENT, NaspiCase.TRANSFER, "1949.19"),
+        (_D, NaspiCase.CONTRACTOR_CHANGE, None),
+        (_D, NaspiCase.SITE_CLOSURE, None),
+    ],
+)
+def test_a_stated_case_decides_without_limitation(
+    cause: TerminationCause, case: NaspiCase, amount: str | None
+) -> None:
+    """Circ. 44/2013 par. 1 owes it, c. 34 leaves it out; no limitation."""
+    result = _run(cause=cause, just=None, case=case)
+    (decision,) = (d for d in result.decisions if d.capability == _CAPABILITY)
+
+    assert _contribution(result) == ([Decimal(amount)] if amount else [])
+    assert decision.reason_code == ("due" if amount else "not_due")
+    assert decision.inputs["naspi_case"] == case.value
+    assert "just_cause" not in decision.inputs
+    assert not _limited(result)
+
+
+@pytest.mark.parametrize(
+    ("agreement", "cigs", "rate", "amount"),
+    [
+        (True, False, "0.41", "1949.19"),
+        (False, False, "0.41", "5847.57"),
+        (True, True, "0.82", "3898.35"),
+        (False, True, "0.82", "11695.05"),
+    ],
+)
+def test_a_collective_dismissal(
+    agreement: bool,
+    cigs: bool,
+    rate: str,
+    amount: str,
+) -> None:
+    """82% if the employer owes the CIGS contribution, x3 without agreement.
+
+    L. 205/2017 art. 1 c. 137 and L. 92/2012 art. 2 c. 35; the rules used
+    are the ones reported.
+    """
+    result = _run(case=CollectiveDismissal(agreement, cigs))
+    (decision,) = (d for d in result.decisions if d.capability == _CAPABILITY)
+
+    assert _contribution(result) == [Decimal(amount)]
+    assert decision.inputs["rate"] == Decimal(rate)
+    assert decision.inputs.get("multiplier") == (None if agreement else Decimal(3))
+    assert (decision.inputs["union_agreement"], decision.inputs["cigs_employer"]) == (
+        str(agreement).lower(),
+        str(cigs).lower(),
+    )
+    assert not _limited(result)
+    assert reconcile(result, PeriodState.zero()).ok
+    assert result.capability_report.rule_sources[_CAPABILITY] == (
+        "verified" if agreement and not cigs else "derived"
+    )

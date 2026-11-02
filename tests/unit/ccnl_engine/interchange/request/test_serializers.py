@@ -51,7 +51,12 @@ from ccnl_engine.employment.fact.inputs import (
 )
 from ccnl_engine.employment.fixed_term.inputs import FixedTerm, NaspiExclusion
 from ccnl_engine.employment.inputs import Apprentice, Contract, Employment, Permanent
-from ccnl_engine.employment.period.inputs import EmploymentPeriod, TerminationCause
+from ccnl_engine.employment.period.inputs import (
+    CollectiveDismissal,
+    EmploymentPeriod,
+    NaspiCase,
+    TerminationCause,
+)
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.event.facade import WorkEvent
 from ccnl_engine.extra_month.schedule.models import (
@@ -209,7 +214,14 @@ def _employment(contract: Contract) -> Employment:
         contract_type=contract,
         category=WorkerCategory.IMPIEGATO,
         employment_period=EmploymentPeriod(
-            date(2020, 1, 1), date(2030, 12, 31), TerminationCause.DISMISSAL, False
+            date(2020, 1, 1),
+            date(2030, 12, 31),
+            TerminationCause.DISMISSAL,
+            False,
+            # A collective dismissal for the open-ended sample, a case else.
+            CollectiveDismissal(False, True)
+            if isinstance(contract, Permanent)
+            else NaspiCase.CONTRACTOR_CHANGE,
         ),
         weekly_hours=WeeklyHours(Decimal(30)),
         full_time_weekly_hours=WeeklyHours(Decimal(40)),
