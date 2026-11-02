@@ -139,6 +139,7 @@ EXPECTED_PUBLIC: dict[str, frozenset[str]] = {
     }),
     "ccnl_engine.events": frozenset({
         "AbsenceEvent",
+        "AgriculturalDays",
         "ArrearsEvent",
         "BilateralFundEvent",
         "BoardLodgingEvent",

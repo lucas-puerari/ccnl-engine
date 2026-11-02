@@ -274,6 +274,14 @@ EVENT_DEFAULTS: Mapping[str, FieldDefault] = {
         "art. 5 limit is not applied, with a provisional "
         "sickness_fixed_term_prior_work_unknown issue",
     ),
+    "SicknessEpisode.agricultural_days": requires_fact(
+        "sickness",
+        "event.agricultural_days",
+        FactEnforcement.PENDING,
+        "unknown days in the elenchi of an operaio agricolo a tempo "
+        "determinato: INPS pays up to 180 days a year, with the "
+        "sickness_agricultural_fixed_term_days limitation",
+    ),
     "SicknessEpisode.short_absence_exempt": requires_fact(
         "sickness",
         "event.short_absence_exempt",

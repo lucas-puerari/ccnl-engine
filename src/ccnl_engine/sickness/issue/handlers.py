@@ -267,7 +267,7 @@ def episode_limitations(
     Returns:
         The cumulation window of a per-episode CCNL with an earlier episode
         outside the relapse chain (not of a comporto counted over the year
-        or windows); the agricultural fixed-term days INPS pays directly.
+        or windows); the agricultural fixed-term days, when not stated.
     """
     found: list[str] = []
     ccnl = None if terms.rules is None else terms.rules.ccnl
@@ -280,7 +280,7 @@ def episode_limitations(
         e.episode_id not in chain for e in terms.history.earlier(event)
     ):
         found.append(CUMULATION_LIMITATION)
-    if terms.rules is not None and terms.rules.paid_directly:
+    if event.agricultural_days is None and terms.rules and terms.rules.paid_directly:
         found.append(_AGRICULTURAL_DAYS)
     return tuple(found)
 

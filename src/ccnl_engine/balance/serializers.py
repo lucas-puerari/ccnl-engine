@@ -46,12 +46,10 @@ from ccnl_engine.personal_withholding.models import WithheldToDate
 from ccnl_engine.run.models import PayrollRunId
 from ccnl_engine.run.types import RunKind
 from ccnl_engine.severance.provision.models import TfrQuotaYtd
+from ccnl_engine.sickness.agricultural.inputs import AgriculturalDays
 from ccnl_engine.sickness.base.inputs import InpsSicknessBase, SpettacoloSicknessBase
 from ccnl_engine.sickness.models import SicknessEpisode
-from ccnl_engine.surtax.obligation.models import (
-    SurtaxComponent,
-    SurtaxObligation,
-)
+from ccnl_engine.surtax.obligation.models import SurtaxComponent, SurtaxObligation
 from ccnl_engine.tax_credit.account.models import (
     SommaEsenteAccount,
     TrattamentoAccount,
@@ -80,6 +78,7 @@ _SUBJECT = "the persisted state"
 STATE_TYPES: Mapping[str, type] = MappingProxyType({
     cls.__name__: cls
     for cls in (
+        AgriculturalDays,
         DeferredShortfall,
         EarningsYtd,
         EmploymentAccrualState,

@@ -18,6 +18,7 @@ from dataclasses import dataclass, replace
 from datetime import date, timedelta
 
 from ccnl_engine.errors import InvalidInputError
+from ccnl_engine.sickness.agricultural.inputs import AgriculturalDays
 from ccnl_engine.sickness.base.inputs import InpsSicknessBase, SpettacoloSicknessBase
 from ccnl_engine.sickness.validators import validate_episode
 
@@ -70,14 +71,18 @@ class SicknessEpisode:
             the month before the illness, or of the last daily contributions
             for a lavoratore dello spettacolo; ``None`` when not stated.
             A relapse without one takes that of the episode it continues.
+        agricultural_days: Days of registration in the elenchi of an operaio
+            agricolo a tempo determinato, the year before and the current
+            one; ``None`` when not stated (INPS then pays up to 180 a year).
 
     Raises:
         InvalidInputError: When the identifier is blank, a day is not a
             date, ``short_absence_exempt`` is not a bool,
             ``prior_worked_days`` is not an int in [0, 366], ``inps_base``
             is not an :class:`InpsSicknessBase` or a
-            :class:`SpettacoloSicknessBase`, the episode ends before it
-            starts or continues itself.
+            :class:`SpettacoloSicknessBase`, ``agricultural_days`` is not an
+            :class:`AgriculturalDays`, the episode ends before it starts or
+            continues itself.
     """
 
     episode_id: str
@@ -91,6 +96,7 @@ class SicknessEpisode:
     periodic_check: bool | None = None
     daily_contributions: int | None = None
     inps_base: InpsSicknessBase | SpettacoloSicknessBase | None = None
+    agricultural_days: AgriculturalDays | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
         validate_episode(self)

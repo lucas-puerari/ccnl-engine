@@ -38,7 +38,7 @@
     "published_at": "2026-10-04",
     "source": "D.L. 30 dicembre 1979 n. 663, artt. 1-2 (conv. L. 29 febbraio 1980 n. 33) for the waiting period and the indemnity; rates, 180-day annual maximum and cover as summarised by Assolombarda, Lavoro a tempo indeterminato - Tutele previdenziali (secondary, read 2026-10-04); not checked against an INPS circular",
     "verification_status": "unverified",
-    "source_hash": "af166fc97c425eb84f14828bc01c999e5127a96e05758d487a8b216dc817bf2e",
+    "source_hash": "b5f18eb2e53c2dd9199aa9bba32ec8b680ecb887330e98ca88d12bc12105dd39",
     "source_type": "contracting_party"
   },
   "annual_max_days": 180,
@@ -304,7 +304,7 @@
             "section": "Lavoratori dipendenti: modalità di pagamento",
             "quote": "Per alcune tipologie di lavoratori è previsto il pagamento diretto da parte dell’INPS (operai agricoli a tempo determinato, lavoratori non agricoli a tempo determinato per le giornate non indennizzate dal datore di lavoro"
           },
-          "transformation": "The employer advances nothing to an operaio agricolo a tempo determinato: INPS pays its share of every day directly. The days of D.L. 463/1983 art. 5 c. 1 do not apply: the page gives the agricultural fixed-term worker 'un numero di giorni pari al numero di giorni di iscrizione negli elenchi (fino a un massimo di 180 giorni nell’anno solare)' with 51 days of agricultural work the year before and 51 in the current year, which the request does not state (limitation sickness_agricultural_fixed_term_days); the engine caps the days at the 180 a year. short_work_days keeps the 30 days of c. 3 only to satisfy the shared model and is not read on this path."
+          "transformation": "The employer advances nothing to an operaio agricolo a tempo determinato: INPS pays its share of every day directly. The days of D.L. 463/1983 art. 5 c. 1 do not apply: the page gives the agricultural fixed-term worker 'un numero di giorni pari al numero di giorni di iscrizione negli elenchi (fino a un massimo di 180 giorni nell’anno solare)' with 51 days of agricultural work the year before or 51 in the current year (30 days at most then: INPS, Guida alla tutela previdenziale della malattia, settembre 2024, p. 4, sha256 a1e151fbffb42a87a9d93b748dc70ceeeffea1a4f246932d44259aa573144c7b), from SicknessEpisode.agricultural_days (ccnl_engine.sickness.agricultural.rules); an episode without them is capped at the 180 a year (limitation sickness_agricultural_fixed_term_days). short_work_days keeps the 30 days of c. 3 only to satisfy the shared model and is not read on this path."
         }
       }
     }

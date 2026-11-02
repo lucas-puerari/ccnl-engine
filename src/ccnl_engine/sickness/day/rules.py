@@ -31,6 +31,7 @@ from enum import StrEnum
 from typing import TYPE_CHECKING
 
 from ccnl_engine.compensation.proration.rules import payable_days
+from ccnl_engine.sickness.agricultural import rules as agricultural
 from ccnl_engine.sickness.window.rules import window_start
 
 if TYPE_CHECKING:
@@ -111,9 +112,8 @@ class _Day:
 class _InpsDays:
     """Days paid per calendar year, counted as days are walked.
 
-    ``used`` counts the INPS days, ``short_term`` the days a fixed-term
-    worker with 30 days of work or fewer is paid (D.L. 463/1983 art. 5
-    c. 3).
+    ``used`` counts the INPS days, ``short_term`` the days of a yearly
+    fixed-term limit (D.L. 463/1983 art. 5 c. 3, the agricultural lists).
     """
 
     used: dict[int, int] = field(default_factory=dict)
@@ -141,8 +141,7 @@ class _FixedTermLimit:
     """Days of an episode a fixed-term contract pays (D.L. 463/1983 art. 5).
 
     Attributes:
-        days: Days of the episode paid at most (c. 1); ``None`` under the
-            days of the calendar year of c. 3.
+        days: Days of the episode paid at most (c. 1); ``None`` under c. 3.
         direct_after: Episode day after which INPS pays its share directly
             (c. 3 and c. 5); ``None`` when the employer advances every day.
         short_days: Days of the calendar year of c. 3.
@@ -160,20 +159,21 @@ class _FixedTermLimit:
 
 def _fixed_term_limit(
     episode: SicknessEpisode, rules: SickPayRules
-) -> _FixedTermLimit | None:
+) -> _FixedTermLimit | agricultural.AgriculturalLimit | None:
     """Return the limit of a fixed-term episode, ``None`` without one.
 
     Returns:
-        INPS paying every day directly where the regime says so; else the
-        days with this employer in the 12 months before the episode; ``None``
-        for an open-ended contract or when the days of work are not stated.
+        INPS paying directly where the regime says so (in the elenchi days);
+        else the days with this employer in the 12 months before the episode;
+        ``None`` for an open-ended contract or the days of work not stated.
     """
     worked, statute = episode.prior_worked_days, rules.inps.fixed_term
     if not rules.fixed_term or statute is None:
         return None
     short = statute.short_work_days
     if statute.paid_directly:
-        return _FixedTermLimit(rules.inps.annual_max_days, 0, short)
+        listed = agricultural.agricultural_limit(episode.agricultural_days, rules.inps)
+        return listed or _FixedTermLimit(rules.inps.annual_max_days, 0, short)
     if worked is None:
         return None
     if worked <= short:
@@ -192,7 +192,7 @@ def _classify(
     day: date,
     rules: SickPayRules,
     inps: _InpsDays,
-    days: tuple[CcnlDay, _FixedTermLimit | None],
+    days: tuple[CcnlDay, _FixedTermLimit | agricultural.AgriculturalLimit | None],
 ) -> _Day:
     """Return the treatment of the sick day ``day`` of episode index ``index``.
 

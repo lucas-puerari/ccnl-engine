@@ -27,11 +27,13 @@ from ccnl_engine import (
 )
 from ccnl_engine.events import (
     AbsenceEvent,
+    AgriculturalDays,
     ArrearsEvent,
     BonusEvent,
     ExtraordinaryLeaveEvent,
     NightShiftEvent,
     PeriodId,
+    SicknessEpisode,
     TerminationTFREvent,
 )
 from ccnl_engine.inputs import (
@@ -600,6 +602,17 @@ DEFAULT_CASES: Mapping[str, tuple[DefaultCase, ...]] = {
     ),
     "EmploymentPeriod.naspi_case": (
         _employment_pair(_ending(NaspiCase.ORDINARY), _ending(None)),
+    ),
+    "SicknessEpisode.agricultural_days": (
+        _event_pair(
+            SicknessEpisode(
+                "AG",
+                date(2026, 1, 12),
+                date(2026, 1, 16),
+                agricultural_days=AgriculturalDays(100, 0),
+            ),
+            SicknessEpisode("AG", date(2026, 1, 12), date(2026, 1, 16)),
+        ),
     ),
     "ArrearsEvent.unused_deductions": (
         _event_pair(replace(_unrated(), unused_deductions=Decimal(40)), _unrated()),

@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 from ccnl_engine.errors import InvalidInputError
+from ccnl_engine.sickness.agricultural.inputs import AgriculturalDays
 from ccnl_engine.sickness.base.inputs import InpsSicknessBase, SpettacoloSicknessBase
 from ccnl_engine.validators import (
     require_bool,
@@ -92,6 +93,13 @@ def validate_episode(episode: SicknessEpisode) -> None:
         episode.inps_base,
         (InpsSicknessBase, SpettacoloSicknessBase),
         f"{_OWNER}.inps_base",
+        feature=_FEATURE,
+        optional=True,
+    )
+    require_instance(
+        episode.agricultural_days,
+        AgriculturalDays,
+        f"{_OWNER}.agricultural_days",
         feature=_FEATURE,
         optional=True,
     )
