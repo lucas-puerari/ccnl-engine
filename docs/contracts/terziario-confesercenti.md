@@ -33,7 +33,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, leave, overtime, seniority, sickness, territorial_supplement, una_tantum |
 
-13 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+12 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -178,13 +178,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Model the apprentice sickness of Art. 54.
-
-!!! warning "terziario-confesercenti/rol_schedule_absorption · leave · impact yes · open"
-    LEAVE, WEEKLY SCHEDULE (Artt. 133-134): a 39-hour full-time week absorbs 36 hours of ROL, a 38-hour week 16 hours of ex festività and 56 of ROL (Art. 133 b-c), read from Employment.full_time_weekly_hours. The grandi magazzini, magazzini a prezzo unico, supermercati alimentari, cash&carry and ipermercati on the 38-hour average of Art. 134 absorb instead the 56 hours of Art. 158 c. 3 and the 16 of c. 4, leaving the ex festività: the request does not state the kind of store, and the engine applies Art. 133.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** State the kind of store of Art. 134 and absorb its hours (56 + 16 of ROL, no ex festività).
 
 !!! warning "terziario-confesercenti/permit_deadline_payout · leave · impact yes · open"
     LEAVE, DEADLINE (Art. 158): the permits not taken within the year of accrual lapse and are paid with the retribuzione di fatto, or are carried and taken by 30 June of the following year; the text leaves the choice open. The engine carries the balances and pays the residual only at the end of the employment.
@@ -383,6 +376,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     The una tantum of the Protocollo 12/12/2022 (EUR 200 + 150 at level IV with the January and March 2023 pay) is historic.
     
     HOURLY RATE AND SUPPLEMENTS (Testo Unico 12 December 2019, unchanged by the 2024 renewal, artt. 149-157, 206-211): without a caller value the engine derives the hourly base (the normale retribuzione of art. 206 over 168), the 15% on ordinary night hours from 22 to 6 (art. 151), the 30% on festività hours paid as straordinario festivo (art. 155 with art. 149), the 30% on ordinary Sunday hours (art. 153; 10% at the motorway fuel stations of art. 157, role impianto_carburante_autostradale: Employment.roles must be stated) and the 30% on the hours of the weekly rest day (art. 156). Art. 155 also pays the festività hours themselves: the engine posts the 30% only and the run is provisional. Second-level agreements may replace the Sunday and night rules (art. 153). Not derived: the divisors 182 and 195 of the 42- and 45-hour weeks; shift work, left to second-level bargaining.
+    
+    LEAVE, WEEKLY SCHEDULE: a 39-hour full-time week absorbs 36 hours of ROL and a 38-hour week 16 hours of ex festività and 56 of ROL, read from Employment.full_time_weekly_hours. The grandi magazzini, magazzini a prezzo unico, supermercati alimentari, cash&carry and ipermercati (Art. 134, EmployerProfile.subsector 'grande_distribuzione') on a 38-hour average absorb instead the 56 hours of Art. 158 c. 3 and the 16 of c. 4 and keep the ex festività.
     
     Base salary table effective from 01.01.2020 (Table I, CCNL 12.12.2019, confesercenti.it PDF).
     

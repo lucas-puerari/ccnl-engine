@@ -192,17 +192,8 @@
         }
       },
       {
-        "kind": "simplification",
-        "text": "LEAVE, WEEKLY SCHEDULE (Artt. 118-119, Testo Unico 2025 p. 40): a 39-hour full-time week absorbs 36 hours of ROL, a 38-hour week 16 hours of ex festività and 56 of ROL (Art. 118 b-c), read from Employment.full_time_weekly_hours. The grandi magazzini, magazzini a prezzo unico, supermercati alimentari, cash&carry and ipermercati on the 38-hour average of Art. 119 absorb instead the 56 hours of Art. 141 c. 3 and the 16 of c. 4, leaving the ex festività: the request does not state the kind of store, and the engine applies Art. 118.",
-        "capability": "leave",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "rol_schedule_absorption",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "State the kind of store of Art. 119 and absorb its hours (56 + 16 of ROL, no ex festività)."
-        }
+        "kind": "info",
+        "text": "LEAVE, WEEKLY SCHEDULE: a 39-hour full-time week absorbs 36 hours of ROL and a 38-hour week 16 hours of ex festività and 56 of ROL, read from Employment.full_time_weekly_hours. The grandi magazzini, magazzini a prezzo unico, supermercati alimentari, cash&carry and ipermercati (Art. 119, EmployerProfile.subsector 'grande_distribuzione') on a 38-hour average absorb instead the 56 hours of Art. 141 c. 3 and the 16 of c. 4 and keep the ex festività."
       }
     ]
   },
@@ -3722,7 +3713,7 @@
     "effective_until": null,
     "source": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
     "verification_status": "unverified",
-    "source_hash": "28fde39e4ec14b91ca2d4ac7a73f27b966744479bac7160bebd245bfb65a029e",
+    "source_hash": "cbee21e8c2cadad834b24c9131e1b93f013751d074594a0cd2a07239c9a7a271",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -4203,6 +4194,37 @@
                   "effective_from": "2025-09-29"
                 }
               }
+            },
+            {
+              "weekly_hours": "38",
+              "hours": "0",
+              "subsectors": [
+                "grande_distribuzione"
+              ],
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                    "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
+                    "kind": "associazione",
+                    "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                    "published_on": "2025-09-29",
+                    "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
+                  },
+                  "page": "40",
+                  "section": "Art. 119 - Orario medio settimanale per specifiche tipologie",
+                  "quote": "le aziende che esercitano l’attività di vendita al pubblico nei grandi magazzini, magazzini a prezzo unico, supermercati alimentari, cash&carry e ipermercati realizzeranno l’articolazione dell’orario medio settimanale di 38 ore, utilizzando le 56 ore di permessi di cui all’art. 141, terzo comma, e le ulteriori 16 ore di cui al successivo quarto comma"
+                },
+                "transformation": "The stores of Art. 119 keep the hours of Art. 141 c. 1 (the ex_festivita bucket).",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-02T06:36:23Z",
+                  "verification_status": "unverified",
+                  "effective_from": "2025-09-29"
+                }
+              }
             }
           ]
         },
@@ -4341,6 +4363,37 @@
                   "method": "ai",
                   "model": "claude-opus-5-5",
                   "extraction_timestamp": "2026-11-02T00:51:56Z",
+                  "verification_status": "unverified",
+                  "effective_from": "2025-09-29"
+                }
+              }
+            },
+            {
+              "weekly_hours": "38",
+              "hours": "72",
+              "subsectors": [
+                "grande_distribuzione"
+              ],
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+                    "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
+                    "kind": "associazione",
+                    "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+                    "published_on": "2025-09-29",
+                    "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
+                  },
+                  "page": "40",
+                  "section": "Art. 119 - Orario medio settimanale per specifiche tipologie",
+                  "quote": "le aziende che esercitano l’attività di vendita al pubblico nei grandi magazzini, magazzini a prezzo unico, supermercati alimentari, cash&carry e ipermercati realizzeranno l’articolazione dell’orario medio settimanale di 38 ore, utilizzando le 56 ore di permessi di cui all’art. 141, terzo comma, e le ulteriori 16 ore di cui al successivo quarto comma"
+                },
+                "transformation": "The stores of Art. 119 on a 38-hour week absorb the 56 hours of Art. 141 c. 3 and the 16 of c. 4 (the rol bucket, 72 for an employer of more than 15).",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-02T06:36:23Z",
                   "verification_status": "unverified",
                   "effective_from": "2025-09-29"
                 }

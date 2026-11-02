@@ -160,6 +160,7 @@ def _accrual_facts(ctx: RunContext) -> AccrualFacts:
         ),
         part_time_ratio=part_time_ratio(ctx),
         full_time_week=None if week is None else week.value,
+        subsector=request.employer.subsector,
     )
 
 

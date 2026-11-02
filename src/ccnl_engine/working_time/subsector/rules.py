@@ -25,15 +25,20 @@ __all__ = ["subsectors_of", "with_subsector"]
 
 
 def subsectors_of(ccnl: CCNL) -> frozenset[str]:
-    """Return the sub-sectors the overtime bands of ``ccnl`` name.
+    """Return the sub-sectors the overtime bands and permits of ``ccnl`` name.
 
     Returns:
-        Every sub-sector code of the bands, empty when none names one.
+        Every sub-sector code of the bands and of the week absorptions of
+        the permits, empty when none names one.
     """
     rules = ccnl.work_rules
     supplements = None if rules is None else rules.time_supplements
     bands = () if supplements is None else supplements.overtime_bands
-    return frozenset(code for band in bands for code in band.subsectors)
+    leave = None if rules is None else rules.leave_rules
+    permits = () if leave is None else leave.permits
+    return frozenset(code for band in bands for code in band.subsectors) | frozenset(
+        code for p in permits for a in p.week_absorption for code in a.subsectors
+    )
 
 
 def with_subsector(

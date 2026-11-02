@@ -135,17 +135,8 @@
         "text": "HOURLY RATE AND SUPPLEMENTS (Testo Unico 30 July 2019, unchanged by the 2024 renewal, artt. 149-157, 206-211): without a caller value the engine derives the hourly base (the normale retribuzione of art. 206 over 168), the 15% on ordinary night hours from 22 to 6 (art. 151), the 30% on festività hours paid as straordinario festivo (art. 155 with art. 149), the 30% on ordinary Sunday hours (art. 153; 10% at the motorway fuel stations of art. 157, role impianto_carburante_autostradale: Employment.roles must be stated) and the 30% on the hours of the weekly rest day (art. 156). Art. 155 also pays the festività hours themselves: the engine posts the 30% only and the run is provisional. Second-level agreements may replace the Sunday and night rules (art. 153). Not derived: the divisors 182 and 195 of the 42- and 45-hour weeks; shift work, left to second-level bargaining."
       },
       {
-        "kind": "simplification",
-        "text": "LEAVE, WEEKLY SCHEDULE (Artt. 133-134): a 39-hour full-time week absorbs 36 hours of ROL, a 38-hour week 16 hours of ex festività and 56 of ROL (Art. 133 b-c), read from Employment.full_time_weekly_hours. The grandi magazzini, magazzini a prezzo unico, supermercati alimentari, cash&carry and ipermercati on the 38-hour average of Art. 134 absorb instead the 56 hours of Art. 158 c. 3 and the 16 of c. 4, leaving the ex festività: the request does not state the kind of store, and the engine applies Art. 133.",
-        "capability": "leave",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "rol_schedule_absorption",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "State the kind of store of Art. 134 and absorb its hours (56 + 16 of ROL, no ex festività)."
-        }
+        "kind": "info",
+        "text": "LEAVE, WEEKLY SCHEDULE: a 39-hour full-time week absorbs 36 hours of ROL and a 38-hour week 16 hours of ex festività and 56 of ROL, read from Employment.full_time_weekly_hours. The grandi magazzini, magazzini a prezzo unico, supermercati alimentari, cash&carry and ipermercati (Art. 134, EmployerProfile.subsector 'grande_distribuzione') on a 38-hour average absorb instead the 56 hours of Art. 158 c. 3 and the 16 of c. 4 and keep the ex festività."
       },
       {
         "kind": "simplification",
@@ -3728,7 +3719,7 @@
     "effective_until": null,
     "source": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
     "verification_status": "unverified",
-    "source_hash": "d68227142e089ae63b7399e0ef6e79627b4fef9895dff7fe734ca2cb88c7d737",
+    "source_hash": "86dc3ff64e2c4f6ee555a76babcbdb10a6ca01c4421672785682659fb923aac4",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -4408,6 +4399,39 @@
                   "effective_from": "2019-07-30"
                 }
               }
+            },
+            {
+              "weekly_hours": "38",
+              "hours": "0",
+              "subsectors": [
+                "grande_distribuzione"
+              ],
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "uiltucs-tu2019",
+                    "title": "CCNL per i dipendenti da aziende del Terziario della Distribuzione e dei Servizi, Testo Unico 30 luglio 2019",
+                    "kind": "associazione",
+                    "url": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
+                    "pages": [],
+                    "published_on": "2019-07-30",
+                    "jurisdiction": "it",
+                    "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016"
+                  },
+                  "page": "140",
+                  "section": "Art. 134 - Orario medio settimanale per specifiche tipologie",
+                  "quote": "le aziende che esercitano l’attività di vendita al pubblico nei grandi magazzini, magazzini a prezzo unico, supermercati alimentari, cash&carry e ipermercati realizzeranno l’articolazione dell’orario medio settimanale di 38 ore, utilizzando le 56 ore di permessi di cui all’art. 158, terzo comma, e le ulteriori 16 ore di cui al successivo quarto comma"
+                },
+                "transformation": "The stores of Art. 134 keep the hours of Art. 158 c. 1 (the ex_festivita bucket).",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-02T06:36:23Z",
+                  "verification_status": "unverified",
+                  "effective_from": "2019-07-30"
+                }
+              }
             }
           ]
         },
@@ -4547,6 +4571,39 @@
                   "method": "ai",
                   "model": "claude-opus-5-5",
                   "extraction_timestamp": "2026-11-02T00:36:11Z",
+                  "verification_status": "unverified",
+                  "effective_from": "2019-07-30"
+                }
+              }
+            },
+            {
+              "weekly_hours": "38",
+              "hours": "72",
+              "subsectors": [
+                "grande_distribuzione"
+              ],
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "uiltucs-tu2019",
+                    "title": "CCNL per i dipendenti da aziende del Terziario della Distribuzione e dei Servizi, Testo Unico 30 luglio 2019",
+                    "kind": "associazione",
+                    "url": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
+                    "pages": [],
+                    "published_on": "2019-07-30",
+                    "jurisdiction": "it",
+                    "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016"
+                  },
+                  "page": "140",
+                  "section": "Art. 134 - Orario medio settimanale per specifiche tipologie",
+                  "quote": "le aziende che esercitano l’attività di vendita al pubblico nei grandi magazzini, magazzini a prezzo unico, supermercati alimentari, cash&carry e ipermercati realizzeranno l’articolazione dell’orario medio settimanale di 38 ore, utilizzando le 56 ore di permessi di cui all’art. 158, terzo comma, e le ulteriori 16 ore di cui al successivo quarto comma"
+                },
+                "transformation": "The stores of Art. 134 on a 38-hour week absorb the 56 hours of Art. 158 c. 3 and the 16 of c. 4 (the rol bucket, 72 for an employer of more than 15).",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-02T06:36:23Z",
                   "verification_status": "unverified",
                   "effective_from": "2019-07-30"
                 }

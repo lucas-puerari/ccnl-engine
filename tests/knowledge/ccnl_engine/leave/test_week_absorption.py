@@ -28,10 +28,14 @@ from ccnl_engine.period.services import (
 from ccnl_engine.run.types import PeriodId
 
 
-def _permits(slug: str, week: int | None) -> dict[LeaveBucket, Decimal]:
+def _permits(
+    slug: str, week: int | None, subsector: str | None = None, headcount: int = 10
+) -> dict[LeaveBucket, Decimal]:
     result = calculate_period(
         PeriodCalculationRequest(
-            employer=EmployerProfile(headcount=Headcount(10)),
+            employer=EmployerProfile(
+                headcount=Headcount(headcount), subsector=subsector
+            ),
             period_id=PeriodId(year=2026, month=3),
             payment_date=date(2026, 3, 27),
             ccnl_id=slug,
@@ -67,4 +71,27 @@ def test_the_week_absorbs_its_permits(
     assert _permits(slug, week) == {
         LeaveBucket.ROL: Decimal(rol),
         LeaveBucket.EX_FESTIVITA: Decimal(ex_festivita),
+    }
+
+
+@pytest.mark.parametrize(
+    "slug",
+    ["commercio-confcommercio", "terziario-confesercenti", "dmo-federdistribuzione"],
+)
+def test_a_supermarket_absorbs_72_hours_of_rol(slug: str) -> None:
+    """Art. 134 (DMO 119): the 56 of the third comma and the 16 of the fourth.
+
+    A firm of 20 has 72 hours of ROL: all absorbed, the ex festività kept.
+    """
+    assert _permits(slug, 38, "grande_distribuzione", 20) == {
+        LeaveBucket.ROL: Decimal(0),
+        LeaveBucket.EX_FESTIVITA: Decimal(32),
+    }
+
+
+def test_another_shop_of_a_firm_of_20_follows_art_133() -> None:
+    """Art. 133 c): 56 of ROL and 16 of ex festività, 16 of ROL left."""
+    assert _permits("commercio-confcommercio", 38, None, 20) == {
+        LeaveBucket.ROL: Decimal(16),
+        LeaveBucket.EX_FESTIVITA: Decimal(16),
     }
