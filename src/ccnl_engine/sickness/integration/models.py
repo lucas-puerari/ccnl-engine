@@ -259,6 +259,9 @@ class SicknessRules(BaseModel):
             by seniority, on top of ``max_duration_days`` for one illness.
         comporto_bands: Comporto of one illness by seniority, in place of
             ``max_duration_days`` (ABI Art. 66 c. 1).
+        window_alternative: Windows the employer may count instead
+            (``EmployerProfile.sickness_window_counting``, ABI Art. 66 c. 2:
+            the 48 months before the last day of absence).
         carenza_by_event: Lower carenza from the n-th event of the year.
         carenza_min_days: The carenza is paid only when the sickness lasts
             more than this many calendar days (Pubblici esercizi FIPE
@@ -295,6 +298,7 @@ class SicknessRules(BaseModel):
     comporto_calendar_year: bool = False
     comporto_windows: tuple[ComportoWindow, ...] = ()
     comporto_bands: tuple[ComportoBand, ...] = ()
+    window_alternative: tuple[ComportoWindow, ...] = ()
     carenza_by_event: CarenzaByEvent | None = None
     carenza_min_days: int | None = Field(default=None, ge=1)
     max_duration_days: int = Field(default=180, ge=1)
@@ -309,6 +313,7 @@ class SicknessRules(BaseModel):
     def _one_model(self) -> Self:
         check_windows(self.comporto_windows)
         check_windows(self.comporto_bands)
+        check_windows(self.window_alternative)
         per_episode = (
             self.tiers
             or self.day_bands

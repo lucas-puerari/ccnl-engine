@@ -85,6 +85,9 @@ EMPLOYER_DEFAULTS: Mapping[str, FieldDefault] = {
         "than one sector (Logistica) has a missing_fact inps_sector blocker",
     ),
     "EmployerProfile.second_level_elements": absence_is_fact("none agreed"),
+    "EmployerProfile.sickness_window_counting": absence_is_fact(
+        "the comporto of each illness the CCNL sets"
+    ),
     "SecondLevelElement.valid_until": absence_is_fact("in force, no end"),
     "SecondLevelElement.levels": absence_is_fact("every level"),
     "SecondLevelElement.extra_months": absence_is_fact("paid on the extra months"),

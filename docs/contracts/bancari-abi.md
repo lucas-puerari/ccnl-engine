@@ -154,11 +154,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Add a Saturday kind and read the elements of the annual pay that art. 114 c. 15 divides.
 
 !!! warning "bancari-abi/abi_sickness_counting · sickness · impact yes · open"
-    SICKNESS COUNTING (Art. 66, CCNL 23 November 2023, p. 101): c. 1 keeps the job and the whole pay for 6, 8, 12, 15, 18 or 22 months by seniority, the comporto_bands of the file (180 to 660 days); c. 2 lets the employer count instead the absences of the 48 months before the last day of absence, with 8, 10, 14, 18, 22 or 24 months, which the request cannot state. The periods rise by 50% (at least 12, at most 30 months) for tbc, AIDS and disabilità grave (c. 4) and double for an oncological illness, at most 36 months (c. 5): not modelled.
+    SICKNESS COUNTING (Art. 66, CCNL 23 November 2023, p. 101): c. 1 keeps the job and the whole pay for 6, 8, 12, 15, 18 or 22 months of each illness by seniority (comporto_bands, 180 to 660 days); an employer that counts by c. 2 'con riferimento ai 48 mesi precedenti l'ultimo giorno di assenza considerato' (EmployerProfile.sickness_window_counting) has 8, 10, 14, 18, 22 or 24 months over that window (window_alternative, 240 to 720 days). The periods rise by 50% (at least 12, at most 30 months) for tbc, AIDS and disabilità grave (c. 4) and double for an oncological illness, at most 36 months (c. 5): not modelled.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Let the employer state the 48-month counting of c. 2, and apply the increases of cc. 4-5 to a serious or oncological episode.
+    **Remediation:** Apply the increases of Art. 66 cc. 4-5 to a serious or oncological episode.
 
 !!! warning "bancari-abi/apprentice_net_equivalent_allowance · base_salary · impact yes · open"
     APPRENTICESHIP (Art. 36, testo coordinato p. 53): the apprentice of a 3a area profile is placed one level below the destination for the first 18 months, then paid the destination level 'con assegno temporaneo, corrispondente, al netto'; at most 3 years. Every 3a area level is a destination: an apprentice to 3A1 starts at the Area unificata (1e2A). The assegno equals the destination in net terms; the engine pays the destination gross.

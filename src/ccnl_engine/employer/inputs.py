@@ -116,6 +116,10 @@ class EmployerProfile:
             CCNL; when it lists more than one, the run has a
             ``missing_fact`` blocker.  A sector the CCNL does not list
             raises.
+        sickness_window_counting: Whether the employer counts the comporto
+            over the window its CCNL offers as an alternative (ABI Art. 66
+            c. 2: the 48 months before the last day of absence) instead of
+            each illness; raises on a CCNL that offers none.
         contractual_funds: Codes of the health and bilateral funds of the
             CCNL the employer pays (``parameters.health_funds``, e.g.
             ``"fondo_est"``); a fund of the CCNL not named owes the worker its
@@ -129,8 +133,9 @@ class EmployerProfile:
             ``agricultural_zone`` not an :class:`AgriculturalZone` value,
             ``inps_sector`` not a :class:`TaxSector` value or
             ``public_life_insurance``, ``fis_reduction``,
-            ``provincial_pay_element`` or ``second_level_premium`` is not a
-            bool, or ``subsector`` is not a non-blank string.
+            ``provincial_pay_element``, ``second_level_premium`` or
+            ``sickness_window_counting`` is not a bool, or ``subsector`` is
+            not a non-blank string.
     """
 
     headcount: Headcount
@@ -144,6 +149,7 @@ class EmployerProfile:
     agricultural_zone: AgriculturalZone | None = None
     inps_sector: TaxSector | None = None
     contractual_funds: frozenset[str] | None = None
+    sickness_window_counting: bool = False
     second_level_elements: tuple[SecondLevelElement, ...] = ()
 
     def __post_init__(self) -> None:  # noqa: D105
@@ -212,6 +218,7 @@ class EmployerProfile:
             "provincial_pay_element",
             "second_level_premium",
             "cigs_indotto",
+            "sickness_window_counting",
         ):
             value = getattr(self, name)
             if value is not None:
