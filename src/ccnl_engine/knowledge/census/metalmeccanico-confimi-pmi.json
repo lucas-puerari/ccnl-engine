@@ -147,18 +147,18 @@
       }
     },
     {
-      "id": "overtime_bands_from_confapi",
+      "id": "overtime_shift_column",
       "institute": "overtime",
       "variant": "all",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "WORK RULES: overtime bands and absence rules modelled on the standard industry framework consistent with the CONFAPI PMI metalmeccanica CCNL (C018), which shares the same legislative base. Verify specific CONFIMI provisions before applying.",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "WORK RULES (Art. 27, CCNL 2016 p. 104, unchanged by the renewals of 2021 and 2025): overtime 20% by day, 50% at night, 55% on a holiday and 75% on a holiday night beyond 8 hours, holiday work 55% and 10% with a compensatory rest day, for the workers not on shifts. Not modelled: the shift column (night overtime 40% for the first two hours and 45% after, holiday night 55% and 65%), the overtime with a compensatory rest day (35%, 55%), and the ordinary night work (25% to 22 o'clock, 35% after for the workers not on shifts).",
       "calculation": "ccnl/metalmeccanico-confimi-pmi:coverage.notes",
       "state": "unverified",
-      "remediation": "Verify the overtime bands against the CONFIMI CCNL text.",
+      "remediation": "Add a shift fact to the overtime event and the shift column of Art. 27, the compensatory-rest overtime and the ordinary night hours by the hour.",
       "origin": "seeded",
       "links": {
         "limitations": [
-          "metalmeccanico-confimi-pmi/overtime_bands_from_confapi"
+          "metalmeccanico-confimi-pmi/overtime_shift_column"
         ]
       }
     },
