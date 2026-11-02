@@ -19,22 +19,6 @@
       }
     },
     {
-      "id": "daily_divisor_assumed",
-      "institute": "absence",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "DAILY DIVISOR: Art. 37 specifies 156 ore/month and 5-day week but does not state a daily divisor explicitly. SIMPLIFICATION: by_26 applied as standard for terziario contracts.",
-      "calculation": "ccnl/formazione-professionale:coverage.notes",
-      "state": "unverified",
-      "remediation": "Source the daily quota of the CCNL (Art. 29 and 37) and set daily_divisor_method, then remove this limitation.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "formazione-professionale/daily_divisor_assumed"
-        ]
-      }
-    },
-    {
       "id": "disability_permit_tfr",
       "institute": "disability_permits",
       "variant": "all",
