@@ -142,20 +142,8 @@
         "text": "LEVELS: 33 parametri from 100 to 250. The CCNL classification assigns one or more job profiles per parametro; this file models one level per parametro as the economic unit. Descriptions are representative summaries; multiple job profiles exist at each parametro."
       },
       {
-        "kind": "simplification",
-        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
-        "capability": "seniority",
-        "monetary_impact": "unknown",
-        "limitation": {
-          "variant": "apprentice_seniority",
-          "applies_when": {
-            "trigger": "path",
-            "contract_types": [
-              "apprentice"
-            ]
-          },
-          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
-        }
+        "kind": "info",
+        "text": "APPRENTICE SENIORITY (Art. 22 Contratto di apprendistato professionalizzante, cc. 9-10, p. 150 of the CCNL TPL testo integrato published by AMT Genova, https://www.amt.genova.it/amt/accordi_aziendali/CCNL_TPL_integrato.pdf, sha256 288cec0840b850299ce1f5b65ae9b57dd7b338aac2d1bca742f71c71f543ee36): 'L’intero periodo di apprendistato professionalizzante è utile ai fini della maturazione dell’anzianità di servizio, con esclusione dei primi 24 mesi ai soli fini della maturazione degli aumenti periodici di anzianità. 10. Agli apprendisti spettano il trattamento economico [...] secondo quanto previsto dai singoli CCNL.' Reading: the apprentice matures the aumenti periodici after the first 24 months and is paid them at the amounts of the level (seniority_increments.apprentice_level_amount); the exclusion of the first 24 months is in the months the caller states in Employment.seniority."
       }
     ]
   },
@@ -502,7 +490,8 @@
           "verification_status": "unverified",
           "effective_from": "2020-01-01"
         }
-      }
+      },
+      "apprentice_level_amount": true
     },
     "accrual_rule": {
       "min_days": 15,
@@ -5209,7 +5198,7 @@
     "effective_until": null,
     "source": "https://www.uiltrasporti.it/wp-content/uploads/2025/03/TABELLA-AUTOFERRO.pdf",
     "verification_status": "unverified",
-    "source_hash": "f18fc8719821e2f1e0c465b23c0bd45ffbd4eb50740fdc914b43d69929bcc5db",
+    "source_hash": "b8bc3a0d0e5184dd6711b1c585ecd74c7619caa0b08f91f1c0acef46a2c3cc3a",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
