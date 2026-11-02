@@ -10,7 +10,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 |---|---:|---:|---:|---:|---:|---:|---|
 | pubblica-amministrazione | 14 | 7 548 000 | 14 | 210 | 186 | 0 | `funzioni-centrali-aran` |
 | terziario | 45 | 5 257 055 | 52 | 1647 | 868 | 4 | `commercio-confcommercio`, `sanita-privata-aiop-aris` |
-| industria | 49 | 4 969 900 | 153 | 2153 | 1108 | 15 | `logistica-trasporto-confetra`, `metalmeccanico-federmeccanica` |
+| industria | 49 | 4 969 900 | 153 | 2155 | 1108 | 15 | `logistica-trasporto-confetra`, `metalmeccanico-federmeccanica` |
 | lavoro-domestico | 3 | 1 800 000 | 0 | 3 | 60 | 0 | `lavoro-domestico-non-convivente` |
 | artigianato | 8 | 1 244 505 | 34 | 255 | 155 | 2 | `metalmeccanico-artigianato` |
 | agricoltura | 9 | 752 860 | 12 | 193 | 97 | 5 | `operai-agricoli-florovivaisti` |
@@ -99,7 +99,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | [`alimentari-federalimentare`](../contracts/alimentari-federalimentare.md) | 145 000 | reviewed | 0 | 0 | 153 | party or official | maintainer | 2027-04-30 |
 | [`poste-italiane-k700`](../contracts/poste-italiane-k700.md) | 117 000 | exploratory | 1 | 53 | 1 | party or official | none | none |
 | [`telecomunicazioni-asstel`](../contracts/telecomunicazioni-asstel.md) | 110 000 | exploratory | 1 | 44 | 2 | party or official | none | none |
-| [`metalmeccanico-confimi-pmi`](../contracts/metalmeccanico-confimi-pmi.md) | 100 000 | exploratory | 0 | 44 | 1 | aggregator | none | none |
+| [`metalmeccanico-confimi-pmi`](../contracts/metalmeccanico-confimi-pmi.md) | 100 000 | exploratory | 0 | 46 | 1 | aggregator | none | none |
 | [`gomma-plastica-federazione-gomma-plastica`](../contracts/gomma-plastica-federazione-gomma-plastica.md) | 90 000 | exploratory | 2 | 7 | 70 | aggregator | none | none |
 | [`legno-arredamento-federlegno`](../contracts/legno-arredamento-federlegno.md) | 90 000 | exploratory | 1 | 88 | 1 | aggregator | none | none |
 | [`calzaturiero-assocalzaturifici`](../contracts/calzaturiero-assocalzaturifici.md) | 75 000 | exploratory | 2 | 38 | 0 | aggregator | none | none |

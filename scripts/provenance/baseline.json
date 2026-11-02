@@ -1111,7 +1111,7 @@
       "metalmeccanico-confapi/sunday_holiday_and_ex_operai"
     ],
     "agreement/metalmeccanico-confimi-pmi.json": [
-      "metalmeccanico-confimi-pmi/overtime_bands_from_confapi"
+      "metalmeccanico-confimi-pmi/overtime_shift_column"
     ],
     "agreement/metalmeccanico-federmeccanica.json": [
       "metalmeccanico-federmeccanica/apprentice_seniority",

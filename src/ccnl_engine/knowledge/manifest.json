@@ -1513,7 +1513,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/metalmeccanico-confimi-pmi",
       "ruleset_version": "2025.1",
-      "source_hash": "abdebce73e5a9f1eaee714b9cf7d7959f41dd65d40bb3d1b98477ea77ba61b3f",
+      "source_hash": "4dbcf2aeaa88b2568f819f99b849acf70e13634c1fa1fd80603027135df5c7e4",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/metalmeccanico-confimi-pmi.json.gz"
@@ -4144,7 +4144,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "033ff2f07b3da48595e865d9e5b7d876858dc8c02ff850a2dc99c3e4709b61f3",
+      "source_hash": "9fdaf6eab46abb677f83fbde1f8af5ab9f805209e6ab5b9e1c1623b73b693b69",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/metalmeccanico-confimi-pmi.json.gz",
