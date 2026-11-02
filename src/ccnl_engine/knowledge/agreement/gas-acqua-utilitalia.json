@@ -93,20 +93,8 @@
         "text": "COVERAGE: CCNL covers approximately 50,000 workers in about 600 private gas and water distribution companies (source: filctemcgil.it, 2025 renewal announcement). CNEL code K321."
       },
       {
-        "kind": "simplification",
-        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
-        "capability": "seniority",
-        "monetary_impact": "unknown",
-        "limitation": {
-          "variant": "apprentice_seniority",
-          "applies_when": {
-            "trigger": "path",
-            "contract_types": [
-              "apprentice"
-            ]
-          },
-          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
-        }
+        "kind": "info",
+        "text": "APPRENTICE SENIORITY: the aumenti di anzianità are abolished from 31.12.2015 for every worker (§ 5.5), so an apprentice matures none (seniority_increments.apprentice_amount 0.00)."
       }
     ]
   },
@@ -237,6 +225,39 @@
           "verification_status": "unverified",
           "effective_from": "2020-01-01"
         }
+      },
+      "apprentice_amount": {
+        "periods": [
+          {
+            "valid_from": "2022-10-01",
+            "valid_until": null,
+            "value": "0.00",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-gas-acqua-sintesi",
+                  "title": "CCNL Gas-Acqua (Utilitalia), testo pubblicato da SOSVA",
+                  "kind": "associazione",
+                  "url": "https://sosvavsrl.it/media/attachments/2024/05/24/ccnl.pdf",
+                  "sha256": "2566ed04f04035769191b4b1d04bf1415b474a5550897b9ec098cf70cf3e2e46"
+                },
+                "page": "6",
+                "section": "5.5 Scatti di anzianità",
+                "quote": "a decorrere dal 31.12.2015 l’istituto degli aumenti di anzianità è abrogato."
+              },
+              "transformation": "No worker matures an increment after 31 December 2015 (maximum_count 0): an apprentice hired since then matures none.",
+              "note": "The zero amount follows from the abolition of the institute for every worker, not from an apprentice clause; the amounts frozen at 31.12.2015 are an individual ad personam element.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-02T11:57:15Z",
+                "effective_from": "2022-10-01",
+                "verification_status": "unverified"
+              }
+            }
+          }
+        ]
       }
     },
     "accrual_rule": {
@@ -1977,7 +1998,7 @@
     "effective_until": null,
     "source": "https://sosvavsrl.it/media/attachments/2024/05/24/ccnl.pdf",
     "verification_status": "unverified",
-    "source_hash": "38dc0df2ee1c0f0f5e1f48a0fb3ad95f166be61218e3511377dcd12c30f11487",
+    "source_hash": "99bcac705563038b809ff4ec5129c07891ff7d6fd5c3590c13072fe9e373a5da",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

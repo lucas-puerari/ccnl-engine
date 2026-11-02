@@ -14,7 +14,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 0/135 CCNLs.** Bundle: 269 weak rules, 522 open limitations (522 with a monetary impact).
+**Complete: 0/135 CCNLs.** Bundle: 269 weak rules, 520 open limitations (520 with a monetary impact).
 
 ## Declared window
 
@@ -99,7 +99,7 @@ Future data, registered apart from the gaps: a contract whose validity ends insi
 | [elettrico-elettricita-futura](../contracts/elettrico-elettricita-futura.md) | `energia-utilities` | exploratory | — | 22 rows | 22 open requirements; 1 weak rule; 19 monetary limitations; 19 non-native capabilities |
 | [energia-petrolio-confindustria](../contracts/energia-petrolio-confindustria.md) | `energia-utilities` | exploratory | — | 20 rows | 20 open requirements; 1 weak rule; 17 monetary limitations; 18 non-native capabilities |
 | [enti-ricerca-aran](../contracts/enti-ricerca-aran.md) | `pubblico-impiego` | exploratory | — | 21 rows | 21 open requirements; 1 weak rule; 17 monetary limitations; 1 outside_input limitation; 20 non-native capabilities |
-| [esercizi-cinematografici-anec](../contracts/esercizi-cinematografici-anec.md) | `spettacolo-media` | exploratory | — | 23 rows | 23 open requirements; 1 weak rule; 20 monetary limitations; 21 non-native capabilities |
+| [esercizi-cinematografici-anec](../contracts/esercizi-cinematografici-anec.md) | `spettacolo-media` | exploratory | — | 22 rows | 22 open requirements; 1 weak rule; 19 monetary limitations; 20 non-native capabilities |
 | [farmacie-municipalizzate-assofarm](../contracts/farmacie-municipalizzate-assofarm.md) | `farmacie` | exploratory | — | 22 rows | 22 open requirements; 1 weak rule; 19 monetary limitations; 20 non-native capabilities |
 | [farmacie-private-h121](../contracts/farmacie-private-h121.md) | `farmacie` | exploratory | — | 21 rows | 21 open requirements; 1 weak rule; 18 monetary limitations; 20 non-native capabilities |
 | [farmacie-rurali-sussidiate-h121](../contracts/farmacie-rurali-sussidiate-h121.md) | `farmacie` | exploratory | — | 21 rows | 21 open requirements; 1 weak rule; 18 monetary limitations; 20 non-native capabilities |
@@ -110,7 +110,7 @@ Future data, registered apart from the gaps: a contract whose validity ends insi
 | [funivie-anef](../contracts/funivie-anef.md) | `trasporti-logistica` | exploratory | — | 23 rows | 23 open requirements; 2 weak rules; 18 monetary limitations; 1 outside_input limitation; 20 non-native capabilities |
 | [funzioni-centrali-aran](../contracts/funzioni-centrali-aran.md) | `pubblico-impiego` | reviewed | — | 18 rows | 18 open requirements; 15 monetary limitations; 1 outside_input limitation; 19 non-native capabilities |
 | [funzioni-locali-aran](../contracts/funzioni-locali-aran.md) | `pubblico-impiego` | reviewed | 2024-12-31 | 18 rows | 18 open requirements; 16 monetary limitations; 19 non-native capabilities |
-| [gas-acqua-utilitalia](../contracts/gas-acqua-utilitalia.md) | `energia-utilities` | exploratory | — | 23 rows | 23 open requirements; 1 weak rule; 20 monetary limitations; 20 non-native capabilities |
+| [gas-acqua-utilitalia](../contracts/gas-acqua-utilitalia.md) | `energia-utilities` | exploratory | — | 22 rows | 22 open requirements; 1 weak rule; 19 monetary limitations; 19 non-native capabilities |
 | [gomma-plastica-federazione-gomma-plastica](../contracts/gomma-plastica-federazione-gomma-plastica.md) | `chimica` | exploratory | — | 24 rows | 24 open requirements; 2 weak rules; 20 monetary limitations; 20 non-native capabilities |
 | [grafica-editoria-aieg](../contracts/grafica-editoria-aieg.md) | `carta-grafica` | exploratory | — | 22 rows | 22 open requirements; 1 weak rule; 18 monetary limitations; 1 outside_input limitation; 20 non-native capabilities |
 | [igiene-ambientale-utilitalia](../contracts/igiene-ambientale-utilitalia.md) | `energia-utilities` | exploratory | — | 25 rows | tables from 2026-02-01; 25 open requirements; 1 weak rule; 22 monetary limitations; 21 non-native capabilities |

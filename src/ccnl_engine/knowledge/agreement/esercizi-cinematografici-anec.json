@@ -80,22 +80,6 @@
         "text": "Workers: 6,427 (ADAPT 18th Report, CNEL aggiornamento 31/12/2023)."
       },
       {
-        "kind": "simplification",
-        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
-        "capability": "seniority",
-        "monetary_impact": "unknown",
-        "limitation": {
-          "variant": "apprentice_seniority",
-          "applies_when": {
-            "trigger": "path",
-            "contract_types": [
-              "apprentice"
-            ]
-          },
-          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
-        }
-      },
-      {
         "kind": "info",
         "text": "SICKNESS INPS REGIME: the employees insured with the Fondo pensioni lavoratori dello spettacolo, operai and impiegati alike, have their own INPS sickness indemnity (INPS circ. 132/2021): from the fourth day, 60% up to the 20th day and 80% from the 21st to the 180th (regime 'spettacolo'), with 40 daily contributions from 1 January of the year before (SicknessEpisode.daily_contributions)."
       },
@@ -121,6 +105,10 @@
           },
           "remediation": "Leave the hospital stays, life-saving therapies and serious illnesses of Art. 64 out of the counts and pay half of the integration past day 180, then resolve this limitation."
         }
+      },
+      {
+        "kind": "info",
+        "text": "APPRENTICE SENIORITY (Art. 16, p. 25 of the CCNL 2023-2026): the seniority for the aumenti periodici runs from the conversion of the apprenticeship; no increment during it (seniority_increments.apprentice_amount 0.00)."
       }
     ]
   },
@@ -329,6 +317,39 @@
           "verification_status": "unverified",
           "effective_from": "2020-01-01"
         }
+      },
+      "apprentice_amount": {
+        "periods": [
+          {
+            "valid_from": "2023-01-01",
+            "valid_until": null,
+            "value": "0.00",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "fistel-ccnl-esercizi-cinematografici-2023-2026",
+                  "title": "CCNL Esercizi cinematografici 2023-2026 (FISTel-CISL)",
+                  "kind": "associazione",
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
+                  "sha256": "3bf774ddda3db69a37228fb7fb02ae6f451fe89a26ce64de78c771400185c382"
+                },
+                "page": "25",
+                "section": "Art. 16 - Apprendistato professionalizzante",
+                "quote": "il rapporto prosegue come ordinario rapporto di lavoro subordinato a tempo indeterminato e l’anzianità utile ai fini della maturazione degli aumenti periodici di anzianità decorre dalla data di trasformazione del rapporto."
+              },
+              "transformation": "No increment accrues during the apprenticeship: the seniority for the aumenti periodici runs from the conversion.",
+              "note": "The zero amount is read from the clause, not printed; the months from the conversion are the caller's Employment.seniority.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-02T11:57:15Z",
+                "effective_from": "2023-01-01",
+                "verification_status": "unverified"
+              }
+            }
+          }
+        ]
       }
     },
     "accrual_rule": {
@@ -1932,7 +1953,7 @@
     "effective_until": null,
     "source": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "c1e558bc7b29385a943fe8f71cdb8da4f7ee6730b6587547689ee8e48ad4ad94",
+    "source_hash": "482cc3a687844e3b47ea27ce5928563523d1e0de0aa64708bd2e56c6b5c7d977",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
