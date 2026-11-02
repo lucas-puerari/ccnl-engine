@@ -42,8 +42,10 @@ from ccnl_engine.inputs import (
     DependentRelationship,
     EmploymentPeriod,
     FamilyComposition,
+    FixedTerm,
     InpsBaseYtd,
     NaspiCase,
+    NaspiExclusion,
     NoPensionFund,
     OpeningBalances,
     PensionFundEnrolment,
@@ -53,6 +55,8 @@ from ccnl_engine.inputs import (
     TfrFundBalance,
     TfrQuotaYtd,
     WeeklyHours,
+    WorkerCategory,
+    WorkPattern,
 )
 from tests.integration.ccnl_engine.default.event.builders import (
     absence_cases,
@@ -246,6 +250,46 @@ _LEAVING = replace(
     employment_period=EmploymentPeriod(date(2025, 1, 1), date(2026, 1, 31)),
     tfr_fund=TfrFundBalance(2025, Decimal(2_000), Decimal(0), Decimal(0)),
 )
+
+
+def _vertical_leave(paid_days: int | None) -> PeriodInput:
+    """Return an extraordinary leave of a vertical part time, three days a week.
+
+    Returns:
+        The January run; the indemnity divides by the paid days when stated.
+    """
+    days = (Decimal(8),) * 3 + (Decimal(0),) * 4
+    employment = replace(
+        CONCIA_D2,
+        weekly_hours=WeeklyHours(Decimal(24)),
+        work_pattern=WorkPattern(weekday_hours=days),
+    )
+    leave = ExtraordinaryLeaveEvent(
+        date(2026, 1, 12),
+        date(2026, 1, 23),
+        Decimal(1300),
+        last_month_paid_days=paid_days,
+    )
+    return _january(employment, events=(leave,))
+
+
+def _farm_sickness(days: AgriculturalDays | None) -> PeriodInput:
+    """Return a sickness of an operaio agricolo a tempo determinato.
+
+    Returns:
+        The January run; INPS pays it within the elenchi days when stated.
+    """
+    employment = replace(
+        CONCIA_D2,
+        ccnl_id="operai-agricoli-florovivaisti",
+        level_code="Area1",
+        category=WorkerCategory.OPERAIO,
+        contract_type=FixedTerm(renewals=0, naspi_exclusion=NaspiExclusion.NONE),
+    )
+    episode = SicknessEpisode(
+        "AG", date(2026, 1, 12), date(2026, 1, 16), agricultural_days=days
+    )
+    return _january(employment, events=(episode,))
 
 
 def _ending(case: NaspiCase | None) -> Employment:
@@ -588,30 +632,16 @@ DEFAULT_CASES: Mapping[str, tuple[DefaultCase, ...]] = {
         ),
     ),
     "ExtraordinaryLeaveEvent.last_month_paid_days": (
-        _event_pair(
-            ExtraordinaryLeaveEvent(
-                date(2026, 1, 12),
-                date(2026, 1, 23),
-                Decimal(1300),
-                last_month_paid_days=13,
-            ),
-            ExtraordinaryLeaveEvent(
-                date(2026, 1, 12), date(2026, 1, 23), Decimal(1300)
-            ),
-        ),
+        DefaultCase(_vertical_leave(13), _vertical_leave(None), "last_month_paid_days"),
     ),
     "EmploymentPeriod.naspi_case": (
-        _employment_pair(_ending(NaspiCase.ORDINARY), _ending(None)),
+        _employment_pair(_ending(NaspiCase.ORDINARY), _ending(None), "naspi_case"),
     ),
     "SicknessEpisode.agricultural_days": (
-        _event_pair(
-            SicknessEpisode(
-                "AG",
-                date(2026, 1, 12),
-                date(2026, 1, 16),
-                agricultural_days=AgriculturalDays(100, 0),
-            ),
-            SicknessEpisode("AG", date(2026, 1, 12), date(2026, 1, 16)),
+        DefaultCase(
+            _farm_sickness(AgriculturalDays(100, 0)),
+            _farm_sickness(None),
+            "agricultural_days",
         ),
     ),
     "ArrearsEvent.unused_deductions": (

@@ -236,9 +236,10 @@ EVENT_DEFAULTS: Mapping[str, FieldDefault] = {
     "ExtraordinaryLeaveEvent.last_month_paid_days": requires_fact(
         "extraordinary_leave",
         "event.last_month_paid_days",
-        FactEnforcement.PENDING,
+        FactEnforcement.REPORTED,
         "unknown paid days: a vertical or mixed part time is paid on the "
-        "full-time measure, with the extraordinary_leave_daily_base limitation",
+        "full-time measure, with a provisional extraordinary_paid_days_unknown "
+        "issue",
     ),
     "PaternityLeaveEvent.paternity_base_pay": requires_fact(
         "paternity_leave",
@@ -277,10 +278,10 @@ EVENT_DEFAULTS: Mapping[str, FieldDefault] = {
     "SicknessEpisode.agricultural_days": requires_fact(
         "sickness",
         "event.agricultural_days",
-        FactEnforcement.PENDING,
+        FactEnforcement.REPORTED,
         "unknown days in the elenchi of an operaio agricolo a tempo "
-        "determinato: INPS pays up to 180 days a year, with the "
-        "sickness_agricultural_fixed_term_days limitation",
+        "determinato: INPS pays up to 180 days a year, with a provisional "
+        "sickness_agricultural_days_unknown issue",
     ),
     "SicknessEpisode.short_absence_exempt": requires_fact(
         "sickness",

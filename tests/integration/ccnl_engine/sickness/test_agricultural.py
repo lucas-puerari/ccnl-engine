@@ -37,6 +37,7 @@ if TYPE_CHECKING:
     from ccnl_engine.period.results import PeriodResult
 
 _HIRED = date(2026, 1, 1)
+_DAYS_UNKNOWN = "sickness_agricultural_days_unknown"
 
 
 def _run(
@@ -86,15 +87,13 @@ def test_inps_pays_the_fixed_term_operaio_directly() -> None:
     assert advanced > 0
     assert _sickness(fixed).inputs["absence"] == _sickness(open_ended).inputs["absence"]
     assert "sickness_fixed_term_prior_work_unknown" not in issues
-    assert "sickness_agricultural_fixed_term_days" in {
-        lim.id for lim in fixed.limitations
-    }
-    assert "sickness_agricultural_fixed_term_days" not in {
-        lim.id for lim in open_ended.limitations
-    }
+    (issue,) = (i for i in fixed.issues if i.code == _DAYS_UNKNOWN)
+    assert (issue.fact, issue.status) == ("agricultural_days", "provisional")
+    assert _sickness(fixed).status == "provisional"
+    assert _DAYS_UNKNOWN not in {i.code for i in open_ended.issues}
 
 
-def test_the_stated_elenchi_days_close_the_limitation() -> None:
+def test_the_stated_elenchi_days_are_final() -> None:
     """INPS guide p. 4: 51 days in neither year, no day indemnified.
 
     The same episode with 100 days of 2025 has days 4-12 indemnified; with
@@ -104,9 +103,7 @@ def test_the_stated_elenchi_days_close_the_limitation() -> None:
     unpaid = _run(FixedTerm(), AgriculturalDays(10, 10))
 
     for result in (paid, unpaid):
-        assert "sickness_agricultural_fixed_term_days" not in {
-            lim.id for lim in result.limitations
-        }
+        assert _DAYS_UNKNOWN not in {i.code for i in result.issues}
     paid_days = str(_sickness(paid).inputs["segments"]).split(";")[1]
     unpaid_days = str(_sickness(unpaid).inputs["segments"]).split(";")[1]
     assert paid_days.startswith("2026-03-05..2026-03-13:indemnified:")

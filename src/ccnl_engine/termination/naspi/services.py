@@ -7,8 +7,8 @@ its termination run) leaves it to that run.  The cases that change it (a
 resignation in the maternity protection, a mutual agreement before the
 labour office or on a transfer, the changes of contractor and site
 closures of c. 34, the collective dismissal of c. 35) are
-``EmploymentPeriod.naspi_case``; an end that does not state it carries a
-limitation.
+``EmploymentPeriod.naspi_case``; an end that does not state it is decided
+from its cause alone, provisionally, with an issue naming the fact.
 """
 
 from __future__ import annotations
@@ -34,6 +34,7 @@ from ccnl_engine.pay_item.services import _make_entry, _require_resolution
 from ccnl_engine.run.models import RunKind
 from ccnl_engine.termination.naspi.loaders import load_naspi_dismissal_rules
 from ccnl_engine.termination.naspi.rules import (
+    case_inputs,
     contribution_terms,
     dismissal_contribution,
     is_due,
@@ -51,7 +52,7 @@ if TYPE_CHECKING:
     from ccnl_engine.run.models import PayrollRunId
 
 __all__ = [
-    "EXCEPTIONS",
+    "CASE_UNKNOWN",
     "NASPI_DISMISSAL",
     "NaspiDismissal",
     "naspi_dismissal",
@@ -60,8 +61,8 @@ __all__ = [
 
 #: Capability of the contribution.
 NASPI_DISMISSAL = "naspi_dismissal"
-#: Limitation of an end that does not state its NASpI case.
-EXCEPTIONS = "naspi_dismissal_exceptions"
+#: An end that could be a case of the contribution does not state it.
+CASE_UNKNOWN = "naspi_dismissal_case_unknown"
 _KIND = "employer_contribution_item"
 _RULE = "law/naspi-dismissal:l92-2012-art2-c31"
 _ZERO = Decimal(0)
@@ -76,7 +77,6 @@ class NaspiDismissal:
     entries: tuple[LedgerEntry, ...] = ()
     decisions: tuple[CalculationDecision, ...] = ()
     issues: tuple[CalculationIssue, ...] = ()
-    limitations: frozenset[str] = frozenset()
 
 
 def _closed(run: PayrollRunId, ended: date) -> bool:
@@ -101,11 +101,12 @@ def _issue(
 
 
 def _decision(
-    ctx: RunContext, reason: str, amount: Decimal, inputs: _Inputs
+    ctx: RunContext, reason: str, amount: Decimal, inputs: _Inputs, *, open_case: bool
 ) -> CalculationDecision:
+    final = CalculationStatus.PROVISIONAL if open_case else CalculationStatus.FINAL
     return CalculationDecision(
         capability=NASPI_DISMISSAL,
-        status=CalculationStatus.FINAL,
+        status=final,
         reason_code=reason,
         rule=_RULE,
         rule_version=str(ctx.fiscal_year),
@@ -157,8 +158,25 @@ def _ending(
     return period, ended, cause, due
 
 
+def _case_issue() -> CalculationIssue:
+    return CalculationIssue(
+        code=CASE_UNKNOWN,
+        message=(
+            "the end does not state its NASpI case (EmploymentPeriod.naspi_case: "
+            "a maternity resignation, a conciliation or a transfer owe the "
+            "contribution, a change of contractor or a site closure leave it "
+            "out, a collective dismissal changes it; NaspiCase.ORDINARY for "
+            "none): it is decided from the cause alone"
+        ),
+        status=CalculationStatus.PROVISIONAL,
+        capability=NASPI_DISMISSAL,
+        fact="naspi_case",
+        cause=IssueCause.FACT,
+    )
+
+
 def _posted(
-    ctx: RunContext, amount: Decimal, inputs: _Inputs, *, limited: bool
+    ctx: RunContext, amount: Decimal, inputs: _Inputs, *, open_case: bool
 ) -> NaspiDismissal:
     item_id = f"naspi_dismissal_{ctx.run_id}"
     payment = ctx.contract.tctx.payment
@@ -184,22 +202,9 @@ def _posted(
     return NaspiDismissal(
         items=(item,),
         entries=(entry,),
-        decisions=(_decision(ctx, "due", amount, inputs),),
-        limitations=frozenset({EXCEPTIONS} if limited else ()),
+        decisions=(_decision(ctx, "due", amount, inputs, open_case=open_case),),
+        issues=(_case_issue(),) if open_case else (),
     )
-
-
-def _case_inputs(period: EmploymentPeriod) -> _Inputs:
-    case = period.naspi_case
-    if case is None:
-        return {}
-    if isinstance(case, CollectiveDismissal):
-        return {
-            "naspi_case": "collective_dismissal",
-            "union_agreement": str(case.union_agreement).lower(),
-            "cigs_employer": str(case.cigs_employer).lower(),
-        }
-    return {"naspi_case": case.value}
 
 
 def naspi_dismissal(ctx: RunContext) -> NaspiDismissal:
@@ -224,7 +229,7 @@ def naspi_dismissal(ctx: RunContext) -> NaspiDismissal:
         "contract_type": ctx.request.contract_type.type,
         "ended_on": ended.isoformat(),
     }
-    inputs |= _case_inputs(period)
+    inputs |= case_inputs(period.naspi_case)
     unstated = period.naspi_case is None
     if cause is TerminationCause.RESIGNATION and period.just_cause is not None:
         inputs["just_cause"] = str(period.just_cause).lower()
@@ -237,8 +242,8 @@ def naspi_dismissal(ctx: RunContext) -> NaspiDismissal:
             and isinstance(ctx.request.contract_type, Permanent | Apprentice)
         )
         return NaspiDismissal(
-            decisions=(_decision(ctx, "not_due", _ZERO, inputs),),
-            limitations=frozenset({EXCEPTIONS} if excepted else ()),
+            decisions=(_decision(ctx, "not_due", _ZERO, inputs, open_case=excepted),),
+            issues=(_case_issue(),) if excepted else (),
         )
     rules = load_naspi_dismissal_rules(ended.year)
     if rules is None:
@@ -258,7 +263,7 @@ def naspi_dismissal(ctx: RunContext) -> NaspiDismissal:
     if times != 1:
         inputs["multiplier"] = times
     amount = dismissal_contribution(rules, months, period.naspi_case)
-    return _posted(ctx, amount, inputs, limited=unstated)
+    return _posted(ctx, amount, inputs, open_case=unstated)
 
 
 def naspi_rules(ctx: RunContext) -> tuple[tuple[str, RuleProvenance], ...]:

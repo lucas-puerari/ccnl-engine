@@ -29,6 +29,7 @@ from ccnl_engine.inputs import (
     ContributableHours,
     EmploymentPeriod,
     FamilyComposition,
+    NaspiCase,
     NoPensionFund,
     Permanent,
     TerminationCause,
@@ -101,6 +102,7 @@ def test_incomplete_coverage_is_not_payable() -> None:
         ended_on=date(2026, 1, 30),
         ended_by=TerminationCause.RESIGNATION,
         just_cause=False,
+        naspi_case=NaspiCase.ORDINARY,
     )
     result = _january(
         Employment(

@@ -21,7 +21,7 @@ import ccnl_engine
 from ccnl_engine.capability.loaders import (
     load_capability_catalog,
 )
-from ccnl_engine.decision.models import PUBLIC_FACTS
+from ccnl_engine.decision.fact.models import PUBLIC_FACTS
 from ccnl_engine.default.models import (
     DefaultPolicy,
     FactEnforcement,

@@ -14,7 +14,6 @@ if TYPE_CHECKING:
 __all__ = ["PERIOD_DEFAULTS"]
 
 _REPORTED = FactEnforcement.REPORTED
-_PENDING = FactEnforcement.PENDING
 
 #: Classification of each defaulted field of the end of an employment.
 PERIOD_DEFAULTS: Mapping[str, FieldDefault] = {
@@ -37,9 +36,9 @@ PERIOD_DEFAULTS: Mapping[str, FieldDefault] = {
     "EmploymentPeriod.naspi_case": requires_fact(
         "naspi_dismissal",
         "employment.employment_period.naspi_case",
-        _PENDING,
+        _REPORTED,
         "an end whose NASpI case is not stated: the contribution is read "
-        "from the cause and the just cause alone, with the "
-        "naspi_dismissal_exceptions limitation",
+        "from the cause and the just cause alone, with a provisional "
+        "naspi_dismissal_case_unknown issue",
     ),
 }

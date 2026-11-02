@@ -94,6 +94,10 @@ def _decision_reasons(result: PeriodResult) -> list[str]:
     return [d.reason_code for d in result.decisions if d.capability == _CAPABILITY]
 
 
+def _limited(result: PeriodResult) -> bool:
+    return "naspi_dismissal_case_unknown" in {i.code for i in result.issues}
+
+
 @pytest.mark.parametrize(
     ("hired", "amount"),
     [(_HIRED, "1949.19"), (date(2025, 6, 1), "487.29")],
@@ -126,7 +130,12 @@ def test_a_dismissal_posts_the_contribution_on_the_employer(
     assert entry.policy_decision_id is not None
     assert result.capability_report.rule_sources[_CAPABILITY] == "verified"
     assert reconcile(result, PeriodState.zero()).ok
-    assert "naspi_dismissal_exceptions" in {lim.id for lim in result.limitations}
+    (issue,) = (i for i in result.issues if i.code == "naspi_dismissal_case_unknown")
+    assert (issue.fact, issue.status, decision.status) == (
+        "naspi_case",
+        "provisional",
+        "provisional",
+    )
 
 
 def test_the_contribution_is_employer_cost_only() -> None:
@@ -153,7 +162,7 @@ def test_ends_that_owe_none_decide_nil(
 ) -> None:
     """A resignation without just cause, a mutual agreement, a death, a term."""
     result = _run(cause=cause, just=just, fixed_term=fixed_term)
-    limited = "naspi_dismissal_exceptions" in {lim.id for lim in result.limitations}
+    limited = _limited(result)
 
     (decision,) = (d for d in result.decisions if d.capability == _CAPABILITY)
 
@@ -161,6 +170,7 @@ def test_ends_that_owe_none_decide_nil(
     assert (decision.reason_code, decision.amount) == ("not_due", Decimal(0))
     assert decision.inputs.get("just_cause") == ("false" if cause is _R else None)
     assert limited is (cause is not TerminationCause.DEATH and not fixed_term)
+    assert decision.status == ("provisional" if limited else "final")
 
 
 def test_a_resignation_for_just_cause_owes_it() -> None:
@@ -235,10 +245,6 @@ def test_a_year_without_the_naspi_maximum_is_a_missing_rule() -> None:
     assert issue.code == "naspi_dismissal_rule_missing"
     assert _contribution(dismissed) == []
     assert _decision_reasons(resigned) == ["not_due"]
-
-
-def _limited(result: PeriodResult) -> bool:
-    return "naspi_dismissal_exceptions" in {lim.id for lim in result.limitations}
 
 
 @pytest.mark.parametrize(

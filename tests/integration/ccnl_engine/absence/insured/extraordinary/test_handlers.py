@@ -112,25 +112,26 @@ def test_a_whole_month_on_the_last_pay() -> None:
     assert {i.item_id.rsplit("_", 1)[-1] for i in result.pay_items} >= {"abs", "inps"}
     (decision,) = (d for d in result.decisions if d.capability == "extraordinary_leave")
     assert (decision.amount, decision.status) == (Decimal("2382.96"), "final")
-    assert "extraordinary_leave_daily_base" not in {
-        lim.id for lim in result.limitations
-    }
+    assert "extraordinary_paid_days_unknown" not in _codes(result)
     assert "inps_minimum_base_undetermined" not in _codes(result)
 
 
-def test_a_vertical_part_time_records_its_open_divisor() -> None:
+def test_a_vertical_part_time_without_its_paid_days_is_provisional() -> None:
     """Its pay over its paid days, which the request does not state."""
     days = (Decimal(8), Decimal(8), Decimal(8), *(Decimal(0),) * 4)
     result = _run(_march(Decimal(1300)), pattern=WorkPattern(weekday_hours=days))
+    (issue,) = (i for i in result.issues if i.code == "extraordinary_paid_days_unknown")
+    (decision,) = (d for d in result.decisions if d.capability == "extraordinary_leave")
 
-    assert "extraordinary_leave_daily_base" in {lim.id for lim in result.limitations}
+    assert (issue.fact, issue.status) == ("last_month_paid_days", "provisional")
+    assert decision.status == "provisional"
 
 
 def test_a_vertical_part_time_divides_its_pay_by_the_paid_days() -> None:
     """INPS circ. 64/2001 par. 4: 'divisa per il numero dei giorni retribuiti'.
 
     1300.00 * 13 / 12 over 13 paid days: 108.333333 a day, below the 2026
-    maximum, for the 31 days of March = 3358.33, with no open limitation.
+    maximum, for the 31 days of March = 3358.33, with no issue on the days.
     """
     days = (Decimal(8), Decimal(8), Decimal(8), *(Decimal(0),) * 4)
     leave = ExtraordinaryLeaveEvent(
@@ -139,9 +140,7 @@ def test_a_vertical_part_time_divides_its_pay_by_the_paid_days() -> None:
     result = _run(leave, pattern=WorkPattern(weekday_hours=days))
 
     assert _amounts(result)["maternity_item"] == (Decimal("3358.33"), Decimal(31))
-    assert "extraordinary_leave_daily_base" not in {
-        lim.id for lim in result.limitations
-    }
+    assert "extraordinary_paid_days_unknown" not in _codes(result)
 
 
 def test_a_leap_year_divides_by_366() -> None:

@@ -20,7 +20,7 @@ import pytest
 
 import ccnl_engine
 from ccnl_engine import errors as errors_module
-from ccnl_engine.decision.models import PUBLIC_FACTS
+from ccnl_engine.decision.fact.models import PUBLIC_FACTS
 from ccnl_engine.errors import PUBLIC_ERROR_CODES, CcnlEngineError
 
 _REPO = Path(__file__).parents[4]
