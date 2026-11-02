@@ -26,6 +26,7 @@ from ccnl_engine.employment.context.models import (
 )
 from ccnl_engine.errors import InvalidInputError, UnknownLevelError
 from ccnl_engine.fund.solidarity.models import with_solidarity_tiers
+from ccnl_engine.sickness.counting.rules import with_window_counting
 from ccnl_engine.working_time.subsector.rules import with_subsector
 from ccnl_engine.working_time.week.rules import with_week_divisor
 
@@ -131,8 +132,7 @@ def _category(ccnl: CCNL, request: PeriodCalculationRequest) -> WorkerCategory |
     """Return the category of the worker: stated, else fixed by the level.
 
     Returns:
-        The category, ``None`` when neither states one or the level is
-        unknown (the run then raises on the level).
+        The category, ``None`` when neither states one or no level matches.
     """
     if request.category is not None:
         return request.category
@@ -157,6 +157,7 @@ def load_contract(
         request.full_time_weekly_hours,
     )
     ccnl, sector_unknown = with_employer_sector(ccnl, request.employer.inps_sector)
+    ccnl = with_window_counting(ccnl, request.employer.sickness_window_counting)
     ccnl, subsector_unknown = with_subsector(
         ccnl, request.employer.subsector, _category(ccnl, request)
     )
