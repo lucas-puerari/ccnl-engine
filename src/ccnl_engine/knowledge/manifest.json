@@ -728,7 +728,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/dmo-federdistribuzione",
       "ruleset_version": "2026.2",
-      "source_hash": "f4e36900d7c7c34026b495339bb4075ecfd05415b2fdfb0ca579682e1993cd1f",
+      "source_hash": "28fde39e4ec14b91ca2d4ac7a73f27b966744479bac7160bebd245bfb65a029e",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/dmo-federdistribuzione.json.gz"
@@ -3244,7 +3244,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "a617d098a8713d91f66291a777c110582940a638246806945e01874a1bc61bdc",
+      "source_hash": "084f72ffefa937ae9dedfad6bc7cab1d83f077fd0563a646bceb164158631b08",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/dmo-federdistribuzione.json.gz",

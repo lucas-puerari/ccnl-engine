@@ -387,6 +387,22 @@
       }
     },
     {
+      "id": "rol_schedule_absorption",
+      "institute": "leave",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "LEAVE, WEEKLY SCHEDULE (Artt. 118-119, Testo Unico 2025 p. 40): a 39-hour full-time week absorbs 36 hours of ROL, a 38-hour week 16 hours of ex festività and 56 of ROL (Art. 118 b-c), read from Employment.full_time_weekly_hours. The grandi magazzini, magazzini a prezzo unico, supermercati alimentari, cash&carry and ipermercati on the 38-hour average of Art. 119 absorb instead the 56 hours of Art. 141 c. 3 and the 16 of c. 4, leaving the ex festività: the request does not state the kind of store, and the engine applies Art. 118.",
+      "calculation": "ccnl/dmo-federdistribuzione:coverage.notes",
+      "state": "absent",
+      "remediation": "State the kind of store of Art. 119 and absorb its hours (56 + 16 of ROL, no ex festività).",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "dmo-federdistribuzione/rol_schedule_absorption"
+        ]
+      }
+    },
+    {
       "id": "sales_operators",
       "institute": "base_salary",
       "variant": "all",

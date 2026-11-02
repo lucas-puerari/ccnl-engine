@@ -1,4 +1,4 @@
-"""The permits a shorter full-time week absorbs (Commercio and Terziario Art. 133).
+"""The permits a shorter full-time week absorbs (Commercio, Terziario, DMO).
 
 "b) 39 ore settimanali. Si realizza attraverso l'assorbimento di 36 ore di
 permesso retribuito di cui al terzo comma dell'art. 158"; "c) 38 ore
@@ -35,7 +35,7 @@ def _permits(slug: str, week: int | None) -> dict[LeaveBucket, Decimal]:
             period_id=PeriodId(year=2026, month=3),
             payment_date=date(2026, 3, 27),
             ccnl_id=slug,
-            level_code="IV" if slug == "terziario-confesercenti" else "4",
+            level_code="4" if slug == "commercio-confcommercio" else "IV",
             opening_state=PeriodState.zero(),
             roles=frozenset(),
             employment_period=EmploymentPeriod(date(2020, 1, 1)),
@@ -52,7 +52,10 @@ def _permits(slug: str, week: int | None) -> dict[LeaveBucket, Decimal]:
     }
 
 
-@pytest.mark.parametrize("slug", ["commercio-confcommercio", "terziario-confesercenti"])
+@pytest.mark.parametrize(
+    "slug",
+    ["commercio-confcommercio", "terziario-confesercenti", "dmo-federdistribuzione"],
+)
 @pytest.mark.parametrize(
     ("week", "rol", "ex_festivita"),
     [(None, "56", "32"), (40, "56", "32"), (39, "20", "32"), (38, "0", "16")],
