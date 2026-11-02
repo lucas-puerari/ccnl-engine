@@ -183,10 +183,10 @@
       "institute": "overtime",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Art. 54: the premiums on ordinary hours (lavoro festivo 45%, notturno 34% or 10% in shifts, festivo notturno 50%).",
+      "rule": "Art. 54: the premium of lavoro festivo notturno outside periodic shifts (50%), which the engine has no work for. The night (34%, 10% in shifts) and holiday (45%) premiums on ordinary hours are modelled (supplement_bands ANCE_IMP_*).",
       "calculation": "ccnl/edilizia-ance-impiegati:coverage.notes",
       "state": "absent",
-      "remediation": "Model the Art. 54 premiums on ordinary hours.",
+      "remediation": "Model the festivo notturno premium of Art. 54.",
       "origin": "seeded",
       "links": {
         "limitations": [
