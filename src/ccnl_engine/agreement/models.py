@@ -29,6 +29,7 @@ from ccnl_engine.apprenticeship.models import (
     ApprenticeshipTrack,
     ApprenticeshipUnderClassification,
 )
+from ccnl_engine.compensation.entry.models import EntryPay
 from ccnl_engine.compensation.models import CCNLParameters, Level
 from ccnl_engine.limitation.models import ModelLimitation
 from ccnl_engine.provenance.ruleset.models import RulesetIdentity
@@ -53,6 +54,8 @@ class CCNL(BaseModel):
         verification: Human-review confidence and traceability metadata.
         work_rules: Work-rules data (overtime, leave, sickness, absence). ``None``
             when no work rules are modelled for this CCNL.
+        entry_pay: The entry pay a permanent hire may take
+            (``Permanent.entry_pay``), ``None`` when the CCNL has none.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -72,6 +75,7 @@ class CCNL(BaseModel):
     coverage: CCNLCoverage
     verification: CCNLVerification = Field(default_factory=CCNLVerification)
     work_rules: CCNLWorkRules | None = None
+    entry_pay: EntryPay | None = None
 
     @model_validator(mode="after")
     def _validate_cross_fields(self) -> Self:

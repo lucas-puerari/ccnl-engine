@@ -387,22 +387,6 @@
       }
     },
     {
-      "id": "reemployment_entry_pay",
-      "institute": "base_salary",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Art. 56: the salario d'ingresso of the reimpiego, up to two levels below for 9 months and one for 6.",
-      "calculation": "ccnl/studi-professionali-confprofessioni:coverage.notes",
-      "state": "absent",
-      "remediation": "Model the entry pay of the reimpiego.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "studi-professionali-confprofessioni/reemployment_entry_pay"
-        ]
-      }
-    },
-    {
       "id": "rol_not_accrued",
       "institute": "leave",
       "variant": "all",
