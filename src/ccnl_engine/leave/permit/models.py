@@ -101,6 +101,25 @@ class NewHireRamp(BaseModel):
         return reached[-1].share
 
 
+class WeekAbsorption(BaseModel):
+    """Permit hours a shorter full-time week absorbs.
+
+    Terziario Art. 133: "b) 39 ore settimanali. Si realizza attraverso
+    l'assorbimento di 36 ore di permesso retribuito".
+
+    Attributes:
+        weekly_hours: Full-time week of the employment.
+        hours: Yearly hours of the bucket the week absorbs.
+        provenance: Source of the absorption.
+    """
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    weekly_hours: Decimal = Field(gt=_ZERO)
+    hours: Decimal = Field(gt=_ZERO)
+    provenance: RuleProvenance | None = None
+
+
 class PermitRules(BaseModel):
     """Yearly hours of a permit bucket and how they accrue.
 
@@ -122,6 +141,7 @@ class PermitRules(BaseModel):
             employment every ``day_hours`` hours are paid at the daily quota,
             the monthly pay over the ferie divisor; ``None`` when they are
             paid by the hour.
+        week_absorption: Hours a shorter full-time week absorbs, by week.
         provenance: Source of the hours.
     """
 
@@ -133,6 +153,7 @@ class PermitRules(BaseModel):
     month_credit: MonthCredit | None = None
     ramp: NewHireRamp | None = None
     day_hours: Decimal | None = Field(default=None, gt=_ZERO)
+    week_absorption: tuple[WeekAbsorption, ...] = ()
     provenance: RuleProvenance | None = None
 
     @model_validator(mode="after")
@@ -152,12 +173,13 @@ class PermitRules(BaseModel):
             raise ValueError(msg)
         return self
 
-    def hours_for(self, headcount: int) -> Decimal:
+    def hours_for(self, headcount: int, week: Decimal | None = None) -> Decimal:
         """Return the yearly hours of a full-time worker of an employer.
 
         Returns:
             The hours of the largest size ``headcount`` exceeds, else those
-            of the tier without a size.
+            of the tier without a size, less those the full-time ``week``
+            absorbs, never below zero.
         """
         above = [
             h
@@ -165,5 +187,12 @@ class PermitRules(BaseModel):
             if h.headcount_above is not None and headcount > h.headcount_above
         ]
         if above:
-            return max(above, key=lambda h: h.headcount_above or 0).hours
-        return next(h.hours for h in self.annual_hours if h.headcount_above is None)
+            hours = max(above, key=lambda h: h.headcount_above or 0).hours
+        else:
+            hours = next(
+                h.hours for h in self.annual_hours if h.headcount_above is None
+            )
+        absorbed = sum(
+            (a.hours for a in self.week_absorption if a.weekly_hours == week), _ZERO
+        )
+        return max(hours - absorbed, _ZERO)

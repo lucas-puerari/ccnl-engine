@@ -180,11 +180,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Model the apprentice sickness of Art. 54.
 
 !!! warning "terziario-confesercenti/rol_schedule_absorption · leave · impact yes · open"
-    LEAVE, WEEKLY SCHEDULE (Artt. 133-134): an employer on a 39-hour week absorbs 36 hours of ROL, on a 38-hour week 72 hours (16 of ex festività and 56 of ROL), and the grandi magazzini, supermercati, cash&carry and ipermercati on a 38-hour average absorb 72 hours of ROL. The engine accrues the hours of a 40-hour week (Art. 133 a).
+    LEAVE, WEEKLY SCHEDULE (Artt. 133-134): a 39-hour full-time week absorbs 36 hours of ROL, a 38-hour week 16 hours of ex festività and 56 of ROL (Art. 133 b-c), read from Employment.full_time_weekly_hours. The grandi magazzini, magazzini a prezzo unico, supermercati alimentari, cash&carry and ipermercati on the 38-hour average of Art. 134 absorb instead the 56 hours of Art. 158 c. 3 and the 16 of c. 4, leaving the ex festività: the request does not state the kind of store, and the engine applies Art. 133.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Add an employer fact for the weekly schedule of Artt. 133-134 and absorb the hours it uses.
+    **Remediation:** State the kind of store of Art. 134 and absorb its hours (56 + 16 of ROL, no ex festività).
 
 !!! warning "terziario-confesercenti/permit_deadline_payout · leave · impact yes · open"
     LEAVE, DEADLINE (Art. 158): the permits not taken within the year of accrual lapse and are paid with the retribuzione di fatto, or are carried and taken by 30 June of the following year; the text leaves the choice open. The engine carries the balances and pays the residual only at the end of the employment.

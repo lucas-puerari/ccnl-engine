@@ -126,8 +126,8 @@ def _accrual_facts(ctx: RunContext) -> AccrualFacts:
     """Return the facts the accrual of the run's month reads.
 
     Returns:
-        The days served, the employer size, the hire date, the seniority
-        and the part-time ratio of the run.
+        The days served, the employer size, the hire date, the seniority,
+        the part-time ratio and the full-time week of the run.
     """
     request = ctx.request
     absences = [e for e in request.events if isinstance(e, AbsenceEvent)]
@@ -142,6 +142,7 @@ def _accrual_facts(ctx: RunContext) -> AccrualFacts:
     )
     month = request.period_id
     period = request.employment_period
+    week = request.full_time_weekly_hours
     return AccrualFacts(
         year=month.year,
         month=month.month,
@@ -158,6 +159,7 @@ def _accrual_facts(ctx: RunContext) -> AccrualFacts:
             request.seniority, ctx.contract.tctx.competence
         ),
         part_time_ratio=part_time_ratio(ctx),
+        full_time_week=None if week is None else week.value,
     )
 
 

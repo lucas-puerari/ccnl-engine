@@ -359,10 +359,10 @@
       "institute": "leave",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "LEAVE, WEEKLY SCHEDULE (Artt. 133-134): an employer on a 39-hour week absorbs 36 hours of ROL, on a 38-hour week 72 hours (16 of ex festività and 56 of ROL), and the grandi magazzini, supermercati, cash&carry and ipermercati on a 38-hour average absorb 72 hours of ROL. The engine accrues the hours of a 40-hour week (Art. 133 a).",
+      "rule": "LEAVE, WEEKLY SCHEDULE (Artt. 133-134): a 39-hour full-time week absorbs 36 hours of ROL, a 38-hour week 16 hours of ex festività and 56 of ROL (Art. 133 b-c), read from Employment.full_time_weekly_hours. The grandi magazzini, magazzini a prezzo unico, supermercati alimentari, cash&carry and ipermercati on the 38-hour average of Art. 134 absorb instead the 56 hours of Art. 158 c. 3 and the 16 of c. 4, leaving the ex festività: the request does not state the kind of store, and the engine applies Art. 133.",
       "calculation": "ccnl/terziario-confesercenti:coverage.notes",
       "state": "absent",
-      "remediation": "Add an employer fact for the weekly schedule of Artt. 133-134 and absorb the hours it uses.",
+      "remediation": "State the kind of store of Art. 134 and absorb its hours (56 + 16 of ROL, no ex festività).",
       "origin": "seeded",
       "links": {
         "limitations": [
