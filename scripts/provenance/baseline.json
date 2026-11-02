@@ -783,11 +783,7 @@
       "consorzi-di-bonifica-snebi/higher_tier_scatto_amounts",
       "consorzi-di-bonifica-snebi/pre_2000_cohort_table_missing"
     ],
-    "agreement/contoterzismo-caiagromec.json": [
-      "contoterzismo-caiagromec/apprentice_inps_rates_unsourced"
-    ],
     "agreement/cooperative-consorzi-agricoli.json": [
-      "cooperative-consorzi-agricoli/apprentice_inps_rates_unsourced",
       "cooperative-consorzi-agricoli/apprentice_seniority",
       "cooperative-consorzi-agricoli/apprenticeship_passthrough",
       "cooperative-consorzi-agricoli/operai_seniority_over_five",
@@ -966,7 +962,6 @@
       "impianti-sportivi-sport/sickness_net_basis"
     ],
     "agreement/impiegati-tecnici-agricoli.json": [
-      "impiegati-tecnici-agricoli/apprentice_inps_rates_unsourced",
       "impiegati-tecnici-agricoli/eban_agrifondo_missing",
       "impiegati-tecnici-agricoli/tranche_2025_01_missing"
     ],
@@ -1118,7 +1113,6 @@
     ],
     "agreement/operai-agricoli-florovivaisti.json": [
       "operai-agricoli-florovivaisti/agricoli_apprentice_provincial_levels",
-      "operai-agricoli-florovivaisti/apprentice_inps_rates_unsourced",
       "operai-agricoli-florovivaisti/apprentice_seniority",
       "operai-agricoli-florovivaisti/cpl_minimi_timing",
       "operai-agricoli-florovivaisti/eban_fisa_agrifondo",

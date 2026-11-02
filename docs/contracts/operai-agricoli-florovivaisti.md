@@ -34,9 +34,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, bilateral_funds, inail, inps_employee, inps_employer, overtime, seniority, sickness, territorial_supplement |
+| **Limits of this contract** | base_salary, bilateral_funds, inail, inps_employee, overtime, seniority, sickness, territorial_supplement |
 
-16 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+15 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -166,13 +166,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
 
     **Remediation:** Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.
-
-!!! warning "operai-agricoli-florovivaisti/apprentice_inps_rates_unsourced · inps_employer · impact unknown · open"
-    APPRENTICE INPS RATES: the apprentice rates of the sector (agricoltura) apply the 10% of L. 296/2006 art. 1 c. 773 plus the 1.61% NASpI, but no source found settles the disoccupazione and CISOA contributions of agricultural apprentices (INPS circ. 43/2026 gives no apprentice rates). The contributions of an apprentice may differ.
-
-    **Applies when:** `inps_employer` applies; contract type in apprentice.
-
-    **Remediation:** Source the apprentice rates of agricoltura (an INPS circular or an association table of 2026), mark the apprentice block of contribution/2026/agricoltura.json derived, then remove this note.
 
 !!! warning "operai-agricoli-florovivaisti/fixed_term_seniority_element · base_salary · impact yes · open"
     ELEMENTO AGGIUNTIVO DELLA RETRIBUZIONE (Art. 54-bis, new, verbale of 28 May 2026): from 1 January 2027 a fixed-term operaio who worked at least 150 days a year for the same employer for three consecutive years receives, from the fourth year, 0.4% of the salario contrattuale. The request carries no history of days per employer, so it is not paid.
@@ -416,6 +409,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     HISTORICAL PERIODS ADDED (2026-09-09). Three salary periods now modelled per area: (1) 2023-01-01: INPS Circ. n.94/2024 Allegato 1 (primary source, Area1=1389.15, Area2=1266.90, Area3=944.62). (2) 2025-01-01: Dottrinalavoro Jan 2025 PDF (Area1=1458.61, Area2=1330.25, Area3=991.85). Cross-check: 2025 values / 2023 values = 1.050 (approx. +5% tranche per 2022-2025 CCNL). (3) 2026-06-01: minimi di area of the 2026-2029 renewal (Allegato n. 1, both increases included). 2023-01-01 is the earliest verified period; pre-2023 values not modelled.
     
     JANUARY 2027 TRANCHE: the minimi of area of Allegato n. 1 of the verbale of 28 May 2026, printed Area 1 1532,999, Area 2 1398,093, Area 3 1042,434 (the 28 May 2026 salary x 1.051) and paid to the cent: 1533.00 / 1398.09 / 1042.43. Until 14 October 2026 the bundle compounded the tranches (June 2026 x 1.017: 1533.84 / 1398.86 / 1043.00), 0.57 to 0.84 a month too much.
+    
+    APPRENTICE INPS RATES (contribution/2026/agricoltura.json): employer 10% plus NASpI 1.61% (INPS circ. 108/2018 par. 3.2, applied to the agricultural contribution by circ. 116/2013 par. 1) plus CISOA 1.50% (circ. 1/2023; 'CIS operai agricoli 1,5000' of circ. 43/2026 allegato 1) = 13.11% (4.61% and 6.11% in the first two years up to nine employees); worker 5.84%.
     
 
 ## Raw data
