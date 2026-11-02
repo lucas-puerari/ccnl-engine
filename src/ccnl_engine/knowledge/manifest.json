@@ -2142,7 +2142,7 @@
       "valid_to": "2027-12-31",
       "ruleset_id": "ccnl/trasporto-aereo-assaeroporti",
       "ruleset_version": "2026.2",
-      "source_hash": "43d7eccf412132171f4adf414bb3fe05f1c7aa21c9c6de0ed14b68060e5a6dde",
+      "source_hash": "9ed7aee9677135a0fc7c9704a498ed4e1fbdfc2ddce33defc0cf7f7d948fa2d0",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/trasporto-aereo-assaeroporti.json.gz"
@@ -4884,7 +4884,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "8750b20620619b2dffa5932cda35f0e6302c266eeca425f29ddadf473e68e6f5",
+      "source_hash": "a77e847ebfae23f7e745589acb3e8aa797c8a0088c46504d6931dae223f2b94f",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/trasporto-aereo-assaeroporti.json.gz",
