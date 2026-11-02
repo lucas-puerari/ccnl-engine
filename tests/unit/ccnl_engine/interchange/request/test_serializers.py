@@ -104,8 +104,8 @@ from ccnl_engine.sickness.models import SicknessEpisode
 from ccnl_engine.tax_credit.foreign.inputs import ForeignTaxPaid
 from ccnl_engine.termination.inputs import TerminationTFREvent
 from ccnl_engine.termination.notice.inputs import NoticeIndemnityEvent
+from ccnl_engine.variable_pay.arrears.inputs import ArrearsEvent
 from ccnl_engine.variable_pay.inputs import (
-    ArrearsEvent,
     BilateralFundEvent,
     BonusEvent,
     FringeEvent,

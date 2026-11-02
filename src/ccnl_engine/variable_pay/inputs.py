@@ -1,4 +1,4 @@
-"""Variable-pay events: bonus, fringe, welfare, arrears, bilateral fund."""
+"""Variable-pay events: bonus, fringe, welfare, bilateral fund, travel."""
 
 from __future__ import annotations
 
@@ -7,13 +7,11 @@ from decimal import Decimal
 from typing import TYPE_CHECKING, Literal
 
 from ccnl_engine.errors import InvalidInputError
-from ccnl_engine.run.types import PeriodId
 from ccnl_engine.validators import (
     require_bool,
     require_choice,
     require_date,
     require_decimal,
-    require_instance,
     require_int,
 )
 
@@ -27,19 +25,19 @@ _MEALS_LODGING = ("none", "one", "both")
 _TFR_BASES = ("none", "whole", "above_exempt")
 
 
-def _check_amount(event_date: object, amount: object, event: str, feature: str) -> None:
+def check_amount(event_date: object, amount: object, event: str, feature: str) -> None:
     """Reject an event without a date or with a negative amount."""
     require_date(event_date, f"{event}.event_date", feature=feature)
     require_decimal(amount, f"{event}.amount", feature=feature, minimum=_ZERO)
 
 
 __all__ = [
-    "ArrearsEvent",
     "BilateralFundEvent",
     "BonusEvent",
     "FringeEvent",
     "TravelAllowanceEvent",
     "WelfareEvent",
+    "check_amount",
 ]
 
 
@@ -73,7 +71,7 @@ class BonusEvent:
     agreement_signed_on: date | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
-        _check_amount(self.event_date, self.amount, "BonusEvent", "bonus")
+        check_amount(self.event_date, self.amount, "BonusEvent", "bonus")
         require_choice(self.kind, _BONUS_KINDS, "BonusEvent.kind", feature="bonus")
         require_date(
             self.agreement_signed_on,
@@ -109,7 +107,7 @@ class FringeEvent:
     amount: Decimal
 
     def __post_init__(self) -> None:  # noqa: D105
-        _check_amount(self.event_date, self.amount, "FringeEvent", "fringe")
+        check_amount(self.event_date, self.amount, "FringeEvent", "fringe")
 
 
 @dataclass(frozen=True)
@@ -125,55 +123,7 @@ class WelfareEvent:
     amount: Decimal
 
     def __post_init__(self) -> None:  # noqa: D105
-        _check_amount(self.event_date, self.amount, "WelfareEvent", "welfare")
-
-
-@dataclass(frozen=True)
-class ArrearsEvent:
-    """Contract renewal arrears, taxed by the year they refer to.
-
-    Arrears of a tax year earlier than the run are taxed separately (art. 17
-    c. 1 lett. b TUIR; art. 19 c. 1 lett. b D.Lgs. 117/2026 from 2027) at
-    :attr:`separate_tax_rate`; arrears of the tax year
-    of the run are ordinary income of the run and the rate is not used.
-
-    Attributes:
-        event_date: Date the arrears are attributed to.
-        amount: Gross arrears amount in EUR.  Must be >= 0.
-        separate_tax_rate: Rate of the separate taxation: the rate on half
-            the income of the two years before the year of receipt (art. 21
-            c. 1 TUIR; art. 23 c. 1 D.Lgs. 117/2026 from 2027), in [0, 1].
-            ``None``: the engine computes it from
-            ``PriorYearTaxFacts.net_income_biennio``.
-        reference_period: The competence period the arrears refer to.  An
-            earlier tax year selects the separate taxation, the tax year of
-            the run the ordinary one, a later year is rejected.  ``None``
-            leaves the taxation undetermined: the run taxes the arrears
-            separately as a simulation, with a ``missing_fact`` blocker.
-    """
-
-    event_date: date
-    amount: Decimal
-    separate_tax_rate: Decimal | None = None
-    reference_period: PeriodId | None = None
-
-    def __post_init__(self) -> None:  # noqa: D105
-        _check_amount(self.event_date, self.amount, "ArrearsEvent", "arrears")
-        require_decimal(
-            self.separate_tax_rate,
-            "ArrearsEvent.separate_tax_rate",
-            feature="arrears",
-            minimum=_ZERO,
-            maximum=_ONE,
-            optional=True,
-        )
-        require_instance(
-            self.reference_period,
-            PeriodId,
-            "ArrearsEvent.reference_period",
-            feature="arrears",
-            optional=True,
-        )
+        check_amount(self.event_date, self.amount, "WelfareEvent", "welfare")
 
 
 @dataclass(frozen=True)

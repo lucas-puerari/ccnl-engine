@@ -49,9 +49,10 @@ SEPARATE_TAXATION = "separate_taxation"
 ORDINARY_TAXATION = "ordinary_taxation"
 #: Reason of arrears whose reference period is not stated.
 REFERENCE_PERIOD_UNKNOWN = "reference_period_unknown"
-#: Engine limitation of a rate the engine computes: the deductions of art. 21
-#: c. 4 TUIR the worker did not use in the years of the arrears are not taken.
+#: Engine limitation of a rate the engine computes without the deductions of
+#: art. 21 c. 4 TUIR the worker did not use in the years of the arrears.
 UNUSED_DEDUCTIONS = "arrears_unused_deductions"
+_NO_DEDUCTION = Decimal(0)
 
 
 def _reason(reference: PeriodId | None, tax_year: int, index: str) -> str:
@@ -188,7 +189,8 @@ def _handle_arrears(event: ArrearsEvent, ctx: _EventHandlerCtx) -> EventEffect:
             decisions=[_decision(reason, event, tax_year, None)],
             issues=[*issues, _rate_issue(ctx.evt_id, tax_year)],
         )
-    sep_tax = money(gross * rate)
+    unused = event.unused_deductions
+    sep_tax = max(money(gross * rate) - (unused or _NO_DEDUCTION), _NO_DEDUCTION)
     intents.append(
         PostingIntent(
             entry_id=f"sep_tax_{ctx.evt_id}",
@@ -206,6 +208,7 @@ def _handle_arrears(event: ArrearsEvent, ctx: _EventHandlerCtx) -> EventEffect:
         **decision.inputs,
         "separate_tax_rate": rate,
         "rate_source": "biennio" if computed else "caller",
+        **({} if unused is None else {"unused_deductions": unused}),
     }
     return EventEffect(
         items=[item],
@@ -213,5 +216,5 @@ def _handle_arrears(event: ArrearsEvent, ctx: _EventHandlerCtx) -> EventEffect:
         inps_delta=gross,
         decisions=[replace(decision, inputs=inputs)],
         issues=issues,
-        limitations=(UNUSED_DEDUCTIONS,) if computed else (),
+        limitations=(UNUSED_DEDUCTIONS,) if computed and unused is None else (),
     )

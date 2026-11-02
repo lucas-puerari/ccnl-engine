@@ -4,7 +4,8 @@ Each installment of a CCNL una tantum paid in the month of a regular or
 termination run is owed to the worker (:class:`~.models.UnaTantum`): the
 amount of the level, its share for a worker hired within the covered
 period, in proportion to the part-time hours.  It is paid as the arrears
-of the months it covers (:class:`~ccnl_engine.variable_pay.inputs.ArrearsEvent`):
+of the months it covers
+(:class:`~ccnl_engine.variable_pay.arrears.inputs.ArrearsEvent`):
 the share of the covered months of earlier years is taxed apart at the rate
 of the income of the biennio (art. 17 c. 1 lett. b, art. 21 TUIR; Agenzia
 delle Entrate, risposte 367/2020 and 243/2021 on the una tantum of a
@@ -30,7 +31,7 @@ from ccnl_engine.employment.inputs import Permanent
 from ccnl_engine.pay_item.rounding.policies import money
 from ccnl_engine.run.models import RunKind
 from ccnl_engine.run.types import PeriodId
-from ccnl_engine.variable_pay.inputs import ArrearsEvent
+from ccnl_engine.variable_pay.arrears.inputs import ArrearsEvent
 
 if TYPE_CHECKING:
     from ccnl_engine.agreement.facade import CCNL
