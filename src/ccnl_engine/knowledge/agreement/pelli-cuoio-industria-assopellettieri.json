@@ -87,20 +87,8 @@
         "text": "LEVEL 6Q: not present in the CCNL table of the CNEL PDF (August 2023). Excluded from the model."
       },
       {
-        "kind": "simplification",
-        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
-        "capability": "seniority",
-        "monetary_impact": "unknown",
-        "limitation": {
-          "variant": "apprentice_seniority",
-          "applies_when": {
-            "trigger": "path",
-            "contract_types": [
-              "apprentice"
-            ]
-          },
-          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
-        }
+        "kind": "info",
+        "text": "APPRENTICE SENIORITY (Art. 55 Regolamentazione dell'apprendistato professionalizzante, p. 44, CNEL archive https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf, sha256 4e303eba48192399bcecd05e5e0cdc675b61c3daff40ef71b0c1e377f98203f8): 'L’intero periodo di apprendistato professionalizzante è utile ai fini della maturazione dell’anzianità aziendale, anche ai fini degli aumenti periodici di anzianità; tali aumenti saranno corrisposti nelle misure previste dal livello di appartenenza': seniority_increments.apprentice_level_amount."
       }
     ]
   },
@@ -213,7 +201,8 @@
           "verification_status": "unverified",
           "effective_from": "2020-01-01"
         }
-      }
+      },
+      "apprentice_level_amount": true
     }
   },
   "levels": [
@@ -1206,7 +1195,7 @@
     "effective_until": null,
     "source": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf",
     "verification_status": "unverified",
-    "source_hash": "1298e5484a04e2c4e6f248add63df8716455b875b24d22caaff33c3ff15dd1cc",
+    "source_hash": "ccf325748dba204b3110773b6e8946856778cbb388faba40d60f333d4d0a83be",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },

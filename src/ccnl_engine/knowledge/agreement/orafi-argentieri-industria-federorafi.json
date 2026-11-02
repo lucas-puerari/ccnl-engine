@@ -105,20 +105,8 @@
         "text": "COMETA: supplementary pension fund (Art. 44 CCNL 2021 PDF). Employer 2.00% (from Dec 2024), employee 1.20%. Not modelled: parameters.employer_funds holds no COMETA fund for this CCNL, so a PensionFundEnrolment in it is rejected; the engine models CCNL pension funds on enrolment (COMETA in metalmeccanico-federmeccanica) (review of 2026-10-30)"
       },
       {
-        "kind": "simplification",
-        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
-        "capability": "seniority",
-        "monetary_impact": "unknown",
-        "limitation": {
-          "variant": "apprentice_seniority",
-          "applies_when": {
-            "trigger": "path",
-            "contract_types": [
-              "apprentice"
-            ]
-          },
-          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
-        }
+        "kind": "info",
+        "text": " Art. 46 (p. 73) and Allegato 9 art. 9 (p. 120) still date the seniority from the qualification, an older wording; either way no increment accrues during the apprenticeship."
       }
     ]
   },
@@ -290,6 +278,39 @@
           "verification_status": "unverified",
           "effective_from": "2020-01-01"
         }
+      },
+      "apprentice_amount": {
+        "periods": [
+          {
+            "valid_from": "2022-06-01",
+            "valid_until": null,
+            "value": "0.00",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "fim-ccnl-orafi-argentieri-2017-05-18",
+                  "title": "CCNL Orafi Argentieri industria 18 maggio 2017 (FIM-CISL)",
+                  "kind": "associazione",
+                  "url": "https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-orafi-argentieri-18-5-2017.pdf",
+                  "sha256": "093a8610fb069f16df77cee5fec9e858568f2f3776bcf14013eb4673869dc45b"
+                },
+                "page": "122",
+                "section": "Allegato 9, Art. 11 - Recesso o attribuzione della qualifica",
+                "quote": "Ai fini della maturazione degli aumenti periodici di anzianità, a decorrere dal 1 gennaio 2018, il periodo di apprendistato sarà computato nella misura del 65%."
+              },
+              "transformation": "No increment accrues during the apprenticeship: the apprenticeship counts for the aumenti periodici only for the worker kept in service, for 65% of its length from 2018.",
+              "note": "The zero amount is read from the clause, not printed; the credit after the apprenticeship is a caller fact (Employment.seniority).APPRENTICE SENIORITY (Allegato 9, Art. 11, p. 122 of the CCNL 18 May 2017): the apprenticeship counts for the aumenti periodici of the worker kept in service for 65% of its length from 2018; no increment during it (seniority_increments.apprentice_amount 0.00).",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-02T12:38:57Z",
+                "effective_from": "2022-06-01",
+                "verification_status": "unverified"
+              }
+            }
+          }
+        ]
       }
     },
     "accrual_rule": {
@@ -2163,7 +2184,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2022/01/20211223-CCNL-Orafi-ipotesi-di-rinnovo-apprendistato-firmato.pdf",
     "verification_status": "unverified",
-    "source_hash": "f6a02420c3ca8af5e2e82ee6578767ba0ff358d3dd48e14cc4579ba859233c82",
+    "source_hash": "a8caa358a2525e7dda92b40709c2f48cd6ffc8ec15e66aed37879eec9a5946b2",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
