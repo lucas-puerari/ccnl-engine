@@ -32,10 +32,10 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, workplace_injury |
+| **Core payroll path** | ✅ |
+| **Limits of this contract** | workplace_injury |
 
-2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -43,7 +43,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 0 verified / 13 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 0 verified / 15 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -76,13 +76,6 @@ Latest effective values per level (monthly gross, EUR).
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
-
-!!! warning "dirigenza-istruzione-ricerca-aran/position_pay_fixed_part · base_salary · impact yes · open"
-    Retribuzione di posizione parte fissa: seconda fascia 14.515,11€/anno (+1.170€/anno da 1/1/2024, era 13.345,11). Prima fascia 42.598,20€/anno. Variabile per incarico. Non modellata (SIMPLIFICATION).
-
-    **Applies when:** `base_salary` applies.
-
-    **Remediation:** Add the parte fissa of the retribuzione di posizione per fascia (14.515,11 / 42.598,20 EUR a year, 13 months) as fixed allowances; leave the variable part to IndividualElement.
 
 !!! warning "dirigenza-istruzione-ricerca-aran/approximate_hourly_divisor · workplace_injury · impact unknown · open"
     Hourly divisor 165 = 38h/settimana × 52/12 = 164.67 ≈ 165 (CCNL Area IR 2022-2024 — stesso orario di riferimento delle altre aree ARAN dirigenza). Standard contrattuale PA.
@@ -247,6 +240,8 @@ Each simplification below is a model limitation of the registry. An open limitat
 | Conferma firma definitiva 6 agosto 2026. Signatari: ANP, FLC CGIL, CISL FSUR, Dirigenti Scuola, UIL Scuola RUA. ANCODIS non ha firmato. | altro | 2026-08-06 | [↗](https://www.flcgil.it/scuola/dirigenti/dirigenti-scolastici-siglato-in-via-definitiva-ccnl-area-istruzione-e-ricerca-2022-2024.flc) |
 
 ??? note "Coverage notes"
+    POSITION PAY, FIXED PART (CCNL 6 August 2026, Artt. 7, 11 and 15, pp. 12-17): 42.598,20 a year for the prima fascia and 14.515,11 for the dirigenti scolastici, AFAM and the other seconda fascia, over 13 months from 1 January 2024 (allowance POSIZIONE_FISSA); before 2024 less the increases of 215,00 and 90,00 a month. The variable part depends on the assignment and is the caller's.
+    
     Nessuno scatto automatico di anzianità per i dirigenti. maximum_count=0.
     
     Layer 2 implemented. Part-time: engine scales by part_time_pct. Fixed-term: PA is excluded from NASpI addizionale (lavoratori delle pubbliche amministrazioni in statutory exclusion list per INPS guidance); fixed_term_additional_rate=0.000 in tax file. Apprenticeship: no ARAN CCNL defines percentage or under-classification tracks; narrow high-qualification form under D.Lgs. 81/2015 Art. 47 exists for research profiles but is not operationalized in any examined CCNL.

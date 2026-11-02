@@ -307,22 +307,6 @@
       }
     },
     {
-      "id": "segretari_fascia_c",
-      "institute": "base_salary",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Segretari comunali e provinciali fascia C (neo-assunti): incremento tabellare +184€/mese (vs +230€ delle altre fasce), valore stimato 49.407,77€/anno = 3.800,60€/mese. Non modellati come livello separato per mancanza di fonte primaria verificata.",
-      "calculation": "ccnl/dirigenza-funzioni-locali-aran:coverage.notes",
-      "state": "absent",
-      "remediation": "Model segretari fascia C as a separate level (+184 EUR increment) once a primary source is read, or open a limitation.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "dirigenza-funzioni-locali-aran/segretari_fascia_c"
-        ]
-      }
-    },
-    {
       "id": "una_tantum_readings",
       "institute": "base_salary",
       "variant": "all",

@@ -331,11 +331,12 @@ class TestLoadDirigenzaFunzioniLocaliAran:
         assert ccnl.meta.ccnl_id == "dirigenza-funzioni-locali-aran"
         assert ccnl.meta.cnel_code == "S125"
 
-    def test_dirigenza_funzioni_locali_aran_has_1_level(self) -> None:
-        """Contract has exactly 1 level (DIRIGENTE)."""
+    def test_dirigenza_funzioni_locali_aran_has_2_levels(self) -> None:
+        """DIRIGENTE and the segretari of fascia C (Art. 35, 40.004,59 a year)."""
         ccnl = load_ccnl("dirigenza-funzioni-locali-aran")
-        assert len(ccnl.levels) == 1
-        assert {lv.code for lv in ccnl.levels} == {"DIRIGENTE"}
+        assert {lv.code for lv in ccnl.levels} == {"DIRIGENTE", "SEGRETARIO_C"}
+        segretario = ccnl.level_by_code("SEGRETARIO_C")
+        assert segretario.base_salary.value_at(date(2024, 1, 1)) == Decimal("3077.28")
 
     def test_dirigenza_funzioni_locali_aran_salary_tranche1(self) -> None:
         """DIRIGENTE first tranche (2020-12-17): 3616.60 EUR/month."""
@@ -350,11 +351,10 @@ class TestLoadDirigenzaFunzioniLocaliAran:
         assert lv.base_salary.value_at(date(2024, 1, 1)) == Decimal("3846.60")
 
     def test_dirigenza_funzioni_locali_aran_level_ordering(self) -> None:
-        """DIRIGENTE is both highest-order and lowest-order (single level)."""
+        """The fascia C segretari below DIRIGENTE."""
         ccnl = load_ccnl("dirigenza-funzioni-locali-aran")
         orders = {lv.code: lv.order for lv in ccnl.levels}
-        assert orders["DIRIGENTE"] == max(orders.values())
-        assert orders["DIRIGENTE"] == min(orders.values())
+        assert orders["SEGRETARIO_C"] < orders["DIRIGENTE"]
 
     def test_dirigenza_funzioni_locali_aran_additional_months(self) -> None:
         """Additional months: 13 (tredicesima only)."""

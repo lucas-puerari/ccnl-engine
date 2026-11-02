@@ -275,22 +275,6 @@
       }
     },
     {
-      "id": "position_pay_fixed_part",
-      "institute": "base_salary",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = owed",
-      "rule": "Retribuzione di posizione parte fissa: seconda fascia 14.515,11€/anno (+1.170€/anno da 1/1/2024, era 13.345,11). Prima fascia 42.598,20€/anno. Variabile per incarico. Non modellata (SIMPLIFICATION).",
-      "calculation": "ccnl/dirigenza-istruzione-ricerca-aran:coverage.notes",
-      "state": "absent",
-      "remediation": "Add the parte fissa of the retribuzione di posizione per fascia (14.515,11 / 42.598,20 EUR a year, 13 months) as fixed allowances; leave the variable part to IndividualElement.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "dirigenza-istruzione-ricerca-aran/position_pay_fixed_part"
-        ]
-      }
-    },
-    {
       "id": "provisional_inps_ruleset",
       "institute": "inps_employer",
       "variant": "all",

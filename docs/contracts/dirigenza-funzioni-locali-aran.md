@@ -34,7 +34,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary |
 
-2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -42,7 +42,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 0 verified / 9 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 0 verified / 11 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -65,6 +65,7 @@ Latest effective values per level (monthly gross, EUR).
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
 | `DIRIGENTE` | Dirigente enti locali (RAL, PTA, Segretari comunali fascia A e B) | € 3,846.60 | 2024-01-01 |
+| `SEGRETARIO_C` | Segretari comunali e provinciali fascia C | € 3,077.28 | 2024-01-01 |
 
 ## Seniority increments
 
@@ -81,13 +82,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Model the CCNL minimum of the retribuzione di posizione or accept the amount of the incarico as a caller input, and open a limitation until then.
-
-!!! warning "dirigenza-funzioni-locali-aran/segretari_fascia_c · base_salary · impact yes · open"
-    Segretari comunali e provinciali fascia C (neo-assunti): incremento tabellare +184€/mese (vs +230€ delle altre fasce), valore stimato 49.407,77€/anno = 3.800,60€/mese. Non modellati come livello separato per mancanza di fonte primaria verificata.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Model segretari fascia C as a separate level (+184 EUR increment) once a primary source is read, or open a limitation.
 
 !!! note "sickness_inps_daily_base · sickness · impact unknown · resolved"
     The INPS share of a sick day is computed on the INPS daily base of the episode, on the days INPS pays (the weekdays of an operaio, every day but the national holidays on a Sunday of an impiegato, point 7.3 of INPS circ. 134368/1981): the retribuzione media globale giornaliera of the month before the illness (INPS circ. 134368/1981 point 11; circ. 55/2024 Allegato 1), whole or partial month, impiegato or operaio, or for the lavoratori dello spettacolo the average pay of the last 40 daily contributions, capped for a fixed-term worker (INPS circ. 132/2021 par. 2.4). The base is a fact of the payroll history the episode states (SicknessEpisode.inps_base).
@@ -245,6 +239,8 @@ Each simplification below is a model limitation of the registry. An open limitat
 | SIMPLIFICATION: codice CNEL S125 da fonte secondaria (ilccnl.it). Non riportato nel testo ufficiale ARAN. | altro | — | [↗](https://ilccnl.it/ccnl/dirigenti---funzioni-locali/dirigenti---enti-locali-dal-010195) |
 
 ??? note "Coverage notes"
+    SEGRETARI FASCIA C (Art. 35 c. 1 and 3, CCNL 23 February 2026, pp. 50-51): stipendio tabellare 40.004,59 a year with the tredicesima from 1 January 2024 (184,00 a month of increase, against 230,00 of fasce A and B), level SEGRETARIO_C at 3077.28 a month; before 2024 the same less the increase, 2893.28.
+    
     Layer 2 implemented. Part-time: the engine scales the pay by Employment.weekly_hours over full_time_weekly_hours. Fixed-term: PA is excluded from NASpI addizionale (lavoratori delle pubbliche amministrazioni in statutory exclusion list per INPS guidance); fixed_term_additional_rate=0.000 in knowledge/sector/2026/pubblica-amministrazione.json. Apprenticeship: no ARAN CCNL defines percentage or under-classification tracks; narrow high-qualification form under D.Lgs. 81/2015 Art. 47 exists for research profiles but is not operationalized in any examined CCNL (review of 2026-10-30).
     
     Nessuno scatto automatico di anzianità per i dirigenti. maximum_count=0.

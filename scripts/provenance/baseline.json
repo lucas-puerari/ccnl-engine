@@ -797,8 +797,7 @@
       "consorzi-di-bonifica-snebi/pre_2000_cohort_table_missing"
     ],
     "agreement/contoterzismo-caiagromec.json": [
-      "contoterzismo-caiagromec/apprentice_inps_rates_unsourced",
-      "contoterzismo-caiagromec/continuity_premium_cumulation"
+      "contoterzismo-caiagromec/apprentice_inps_rates_unsourced"
     ],
     "agreement/cooperative-consorzi-agricoli.json": [
       "cooperative-consorzi-agricoli/apprentice_inps_rates_unsourced",
@@ -817,12 +816,10 @@
       "dirigenza-funzioni-centrali-aran/position_variable_and_result_pay"
     ],
     "agreement/dirigenza-funzioni-locali-aran.json": [
-      "dirigenza-funzioni-locali-aran/position_pay",
-      "dirigenza-funzioni-locali-aran/segretari_fascia_c"
+      "dirigenza-funzioni-locali-aran/position_pay"
     ],
     "agreement/dirigenza-istruzione-ricerca-aran.json": [
-      "dirigenza-istruzione-ricerca-aran/approximate_hourly_divisor",
-      "dirigenza-istruzione-ricerca-aran/position_pay_fixed_part"
+      "dirigenza-istruzione-ricerca-aran/approximate_hourly_divisor"
     ],
     "agreement/dirigenza-sanitaria-area-sanita-aran.json": [
       "dirigenza-sanitaria-area-sanita-aran/approximate_hourly_divisor",

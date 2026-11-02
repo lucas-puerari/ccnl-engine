@@ -76,17 +76,8 @@
         "text": "Salary floors reflect CCNL national minimums only. kitech.it (CodiceCateg=1) shows values ca. EUR 20/month higher — those are in-assenza-di-contratto-integrativo-territoriale top-ups, not CCNL minimums. redigo.info and ilccnl.it agree on the lower CCNL floor used here."
       },
       {
-        "kind": "simplification",
-        "text": "Seniority: 'premi di continuita professionale' modeled as fixed_allowances with service_months_threshold (60/120/180 months) and months_per_year=1 (annual lump sums: EUR 50/150/180/year). Amounts assumed cumulative (stacking thresholds) per standard CCNL practice; cumulation unverified from public sources. seniority_increments is a schema placeholder (maximum_count=0).",
-        "capability": "seniority",
-        "monetary_impact": "unknown",
-        "limitation": {
-          "variant": "continuity_premium_cumulation",
-          "applies_when": {
-            "trigger": "run"
-          },
-          "remediation": "Source whether the premi di continuità stack or replace each other and set the allowances accordingly."
-        }
+        "kind": "info",
+        "text": "CONTINUITY PREMIUM (Art. 20 bis, p. 22): 'un premio annuo [...] con importo pari a' 50 at 5 years, 150 at 10, 180 at 15 of seniority: one yearly amount by the seniority reached, the higher replacing the lower (service_months_until 120 and 180). Paid 'mese per mese o in cifra unica nel mese di settembre'; where a territorial agreement has its own premium only the difference is due."
       },
       {
         "kind": "info",
@@ -336,20 +327,28 @@
             "status": "derived",
             "location": {
               "source_document": {
-                "document_id": "contoterzismo-caiagromec",
-                "title": "contoterzismo-caiagromec",
-                "kind": "tabella_retributiva",
-                "url": "https://www.redigo.info/2024/07/02/ccnl-contoterzismo-in-agricoltura-rinnovato-il-quadriennio-2024-2027/"
+                "document_id": "faicisl-ccnl-contoterzismo-2024-2027",
+                "title": "CCNL Contoterzismo in agricoltura CAI-Agromec 2024-2027 (FAI-CISL, scansione)",
+                "kind": "associazione",
+                "url": "https://www.faicisl.it/attachments/article/2347/CCNL%20CONTOTERZISMO%202024-2027.pdf",
+                "published_on": "2024-01-01",
+                "sha256": "5c5e88717c711c94159a8104f5d6217ded8efb3e75dc3361952687e476175022"
               },
-              "section": "Tabella retributiva"
+              "page": "22",
+              "section": "Art. 20 bis - Premio di continuità professionale",
+              "quote": "A partire dal 1°gennaio 2018 viene istituito un premio annuo collegato alla continuità professionale del lavoratore presso la stessa azienda con importo pari a: - euro 50 al raggiungimento dei 5 anni di anzianità; - euro 150 al raggiungimento dei 10 anni di anzianità; - euro 180 al raggiungimento dei 15 anni di anzianità."
             },
+            "transformation": "One yearly premium whose amount is that of the seniority reached: 50 from 5 years, 150 from 10, 180 from 15, each replacing the one before.",
+            "note": "Read on the page image (scan). 'Tale somma potrà essere liquidata mese per mese o in cifra unica nel mese di settembre'; a territorial premium is paid only above it.",
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-07T15:03:36",
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-02T09:02:28Z",
               "verification_status": "unverified",
-              "effective_from": "2020-01-01"
+              "effective_from": "2024-01-01"
             }
-          }
+          },
+          "service_months_until": 120
         },
         {
           "code": "PREMIO_CONTINUITA_10YR",
@@ -369,20 +368,28 @@
             "status": "derived",
             "location": {
               "source_document": {
-                "document_id": "contoterzismo-caiagromec",
-                "title": "contoterzismo-caiagromec",
-                "kind": "tabella_retributiva",
-                "url": "https://www.redigo.info/2024/07/02/ccnl-contoterzismo-in-agricoltura-rinnovato-il-quadriennio-2024-2027/"
+                "document_id": "faicisl-ccnl-contoterzismo-2024-2027",
+                "title": "CCNL Contoterzismo in agricoltura CAI-Agromec 2024-2027 (FAI-CISL, scansione)",
+                "kind": "associazione",
+                "url": "https://www.faicisl.it/attachments/article/2347/CCNL%20CONTOTERZISMO%202024-2027.pdf",
+                "published_on": "2024-01-01",
+                "sha256": "5c5e88717c711c94159a8104f5d6217ded8efb3e75dc3361952687e476175022"
               },
-              "section": "Tabella retributiva"
+              "page": "22",
+              "section": "Art. 20 bis - Premio di continuità professionale",
+              "quote": "A partire dal 1°gennaio 2018 viene istituito un premio annuo collegato alla continuità professionale del lavoratore presso la stessa azienda con importo pari a: - euro 50 al raggiungimento dei 5 anni di anzianità; - euro 150 al raggiungimento dei 10 anni di anzianità; - euro 180 al raggiungimento dei 15 anni di anzianità."
             },
+            "transformation": "One yearly premium whose amount is that of the seniority reached: 50 from 5 years, 150 from 10, 180 from 15, each replacing the one before.",
+            "note": "Read on the page image (scan). 'Tale somma potrà essere liquidata mese per mese o in cifra unica nel mese di settembre'; a territorial premium is paid only above it.",
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-07T15:03:36",
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-02T09:02:28Z",
               "verification_status": "unverified",
-              "effective_from": "2020-01-01"
+              "effective_from": "2024-01-01"
             }
-          }
+          },
+          "service_months_until": 180
         },
         {
           "code": "PREMIO_CONTINUITA_15YR",
@@ -402,18 +409,25 @@
             "status": "derived",
             "location": {
               "source_document": {
-                "document_id": "contoterzismo-caiagromec",
-                "title": "contoterzismo-caiagromec",
-                "kind": "tabella_retributiva",
-                "url": "https://www.redigo.info/2024/07/02/ccnl-contoterzismo-in-agricoltura-rinnovato-il-quadriennio-2024-2027/"
+                "document_id": "faicisl-ccnl-contoterzismo-2024-2027",
+                "title": "CCNL Contoterzismo in agricoltura CAI-Agromec 2024-2027 (FAI-CISL, scansione)",
+                "kind": "associazione",
+                "url": "https://www.faicisl.it/attachments/article/2347/CCNL%20CONTOTERZISMO%202024-2027.pdf",
+                "published_on": "2024-01-01",
+                "sha256": "5c5e88717c711c94159a8104f5d6217ded8efb3e75dc3361952687e476175022"
               },
-              "section": "Tabella retributiva"
+              "page": "22",
+              "section": "Art. 20 bis - Premio di continuità professionale",
+              "quote": "A partire dal 1°gennaio 2018 viene istituito un premio annuo collegato alla continuità professionale del lavoratore presso la stessa azienda con importo pari a: - euro 50 al raggiungimento dei 5 anni di anzianità; - euro 150 al raggiungimento dei 10 anni di anzianità; - euro 180 al raggiungimento dei 15 anni di anzianità."
             },
+            "transformation": "One yearly premium whose amount is that of the seniority reached: 50 from 5 years, 150 from 10, 180 from 15, each replacing the one before.",
+            "note": "Read on the page image (scan). 'Tale somma potrà essere liquidata mese per mese o in cifra unica nel mese di settembre'; a territorial premium is paid only above it.",
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-07T15:03:36",
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-02T09:02:28Z",
               "verification_status": "unverified",
-              "effective_from": "2020-01-01"
+              "effective_from": "2024-01-01"
             }
           }
         }
@@ -557,20 +571,28 @@
             "status": "derived",
             "location": {
               "source_document": {
-                "document_id": "contoterzismo-caiagromec",
-                "title": "contoterzismo-caiagromec",
-                "kind": "tabella_retributiva",
-                "url": "https://www.redigo.info/2024/07/02/ccnl-contoterzismo-in-agricoltura-rinnovato-il-quadriennio-2024-2027/"
+                "document_id": "faicisl-ccnl-contoterzismo-2024-2027",
+                "title": "CCNL Contoterzismo in agricoltura CAI-Agromec 2024-2027 (FAI-CISL, scansione)",
+                "kind": "associazione",
+                "url": "https://www.faicisl.it/attachments/article/2347/CCNL%20CONTOTERZISMO%202024-2027.pdf",
+                "published_on": "2024-01-01",
+                "sha256": "5c5e88717c711c94159a8104f5d6217ded8efb3e75dc3361952687e476175022"
               },
-              "section": "Tabella retributiva"
+              "page": "22",
+              "section": "Art. 20 bis - Premio di continuità professionale",
+              "quote": "A partire dal 1°gennaio 2018 viene istituito un premio annuo collegato alla continuità professionale del lavoratore presso la stessa azienda con importo pari a: - euro 50 al raggiungimento dei 5 anni di anzianità; - euro 150 al raggiungimento dei 10 anni di anzianità; - euro 180 al raggiungimento dei 15 anni di anzianità."
             },
+            "transformation": "One yearly premium whose amount is that of the seniority reached: 50 from 5 years, 150 from 10, 180 from 15, each replacing the one before.",
+            "note": "Read on the page image (scan). 'Tale somma potrà essere liquidata mese per mese o in cifra unica nel mese di settembre'; a territorial premium is paid only above it.",
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-07T15:03:36",
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-02T09:02:28Z",
               "verification_status": "unverified",
-              "effective_from": "2020-01-01"
+              "effective_from": "2024-01-01"
             }
-          }
+          },
+          "service_months_until": 120
         },
         {
           "code": "PREMIO_CONTINUITA_10YR",
@@ -590,20 +612,28 @@
             "status": "derived",
             "location": {
               "source_document": {
-                "document_id": "contoterzismo-caiagromec",
-                "title": "contoterzismo-caiagromec",
-                "kind": "tabella_retributiva",
-                "url": "https://www.redigo.info/2024/07/02/ccnl-contoterzismo-in-agricoltura-rinnovato-il-quadriennio-2024-2027/"
+                "document_id": "faicisl-ccnl-contoterzismo-2024-2027",
+                "title": "CCNL Contoterzismo in agricoltura CAI-Agromec 2024-2027 (FAI-CISL, scansione)",
+                "kind": "associazione",
+                "url": "https://www.faicisl.it/attachments/article/2347/CCNL%20CONTOTERZISMO%202024-2027.pdf",
+                "published_on": "2024-01-01",
+                "sha256": "5c5e88717c711c94159a8104f5d6217ded8efb3e75dc3361952687e476175022"
               },
-              "section": "Tabella retributiva"
+              "page": "22",
+              "section": "Art. 20 bis - Premio di continuità professionale",
+              "quote": "A partire dal 1°gennaio 2018 viene istituito un premio annuo collegato alla continuità professionale del lavoratore presso la stessa azienda con importo pari a: - euro 50 al raggiungimento dei 5 anni di anzianità; - euro 150 al raggiungimento dei 10 anni di anzianità; - euro 180 al raggiungimento dei 15 anni di anzianità."
             },
+            "transformation": "One yearly premium whose amount is that of the seniority reached: 50 from 5 years, 150 from 10, 180 from 15, each replacing the one before.",
+            "note": "Read on the page image (scan). 'Tale somma potrà essere liquidata mese per mese o in cifra unica nel mese di settembre'; a territorial premium is paid only above it.",
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-07T15:03:36",
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-02T09:02:28Z",
               "verification_status": "unverified",
-              "effective_from": "2020-01-01"
+              "effective_from": "2024-01-01"
             }
-          }
+          },
+          "service_months_until": 180
         },
         {
           "code": "PREMIO_CONTINUITA_15YR",
@@ -623,18 +653,25 @@
             "status": "derived",
             "location": {
               "source_document": {
-                "document_id": "contoterzismo-caiagromec",
-                "title": "contoterzismo-caiagromec",
-                "kind": "tabella_retributiva",
-                "url": "https://www.redigo.info/2024/07/02/ccnl-contoterzismo-in-agricoltura-rinnovato-il-quadriennio-2024-2027/"
+                "document_id": "faicisl-ccnl-contoterzismo-2024-2027",
+                "title": "CCNL Contoterzismo in agricoltura CAI-Agromec 2024-2027 (FAI-CISL, scansione)",
+                "kind": "associazione",
+                "url": "https://www.faicisl.it/attachments/article/2347/CCNL%20CONTOTERZISMO%202024-2027.pdf",
+                "published_on": "2024-01-01",
+                "sha256": "5c5e88717c711c94159a8104f5d6217ded8efb3e75dc3361952687e476175022"
               },
-              "section": "Tabella retributiva"
+              "page": "22",
+              "section": "Art. 20 bis - Premio di continuità professionale",
+              "quote": "A partire dal 1°gennaio 2018 viene istituito un premio annuo collegato alla continuità professionale del lavoratore presso la stessa azienda con importo pari a: - euro 50 al raggiungimento dei 5 anni di anzianità; - euro 150 al raggiungimento dei 10 anni di anzianità; - euro 180 al raggiungimento dei 15 anni di anzianità."
             },
+            "transformation": "One yearly premium whose amount is that of the seniority reached: 50 from 5 years, 150 from 10, 180 from 15, each replacing the one before.",
+            "note": "Read on the page image (scan). 'Tale somma potrà essere liquidata mese per mese o in cifra unica nel mese di settembre'; a territorial premium is paid only above it.",
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-07T15:03:36",
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-02T09:02:28Z",
               "verification_status": "unverified",
-              "effective_from": "2020-01-01"
+              "effective_from": "2024-01-01"
             }
           }
         }
@@ -778,20 +815,28 @@
             "status": "derived",
             "location": {
               "source_document": {
-                "document_id": "contoterzismo-caiagromec",
-                "title": "contoterzismo-caiagromec",
-                "kind": "tabella_retributiva",
-                "url": "https://www.redigo.info/2024/07/02/ccnl-contoterzismo-in-agricoltura-rinnovato-il-quadriennio-2024-2027/"
+                "document_id": "faicisl-ccnl-contoterzismo-2024-2027",
+                "title": "CCNL Contoterzismo in agricoltura CAI-Agromec 2024-2027 (FAI-CISL, scansione)",
+                "kind": "associazione",
+                "url": "https://www.faicisl.it/attachments/article/2347/CCNL%20CONTOTERZISMO%202024-2027.pdf",
+                "published_on": "2024-01-01",
+                "sha256": "5c5e88717c711c94159a8104f5d6217ded8efb3e75dc3361952687e476175022"
               },
-              "section": "Tabella retributiva"
+              "page": "22",
+              "section": "Art. 20 bis - Premio di continuità professionale",
+              "quote": "A partire dal 1°gennaio 2018 viene istituito un premio annuo collegato alla continuità professionale del lavoratore presso la stessa azienda con importo pari a: - euro 50 al raggiungimento dei 5 anni di anzianità; - euro 150 al raggiungimento dei 10 anni di anzianità; - euro 180 al raggiungimento dei 15 anni di anzianità."
             },
+            "transformation": "One yearly premium whose amount is that of the seniority reached: 50 from 5 years, 150 from 10, 180 from 15, each replacing the one before.",
+            "note": "Read on the page image (scan). 'Tale somma potrà essere liquidata mese per mese o in cifra unica nel mese di settembre'; a territorial premium is paid only above it.",
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-07T15:03:36",
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-02T09:02:28Z",
               "verification_status": "unverified",
-              "effective_from": "2020-01-01"
+              "effective_from": "2024-01-01"
             }
-          }
+          },
+          "service_months_until": 120
         },
         {
           "code": "PREMIO_CONTINUITA_10YR",
@@ -811,20 +856,28 @@
             "status": "derived",
             "location": {
               "source_document": {
-                "document_id": "contoterzismo-caiagromec",
-                "title": "contoterzismo-caiagromec",
-                "kind": "tabella_retributiva",
-                "url": "https://www.redigo.info/2024/07/02/ccnl-contoterzismo-in-agricoltura-rinnovato-il-quadriennio-2024-2027/"
+                "document_id": "faicisl-ccnl-contoterzismo-2024-2027",
+                "title": "CCNL Contoterzismo in agricoltura CAI-Agromec 2024-2027 (FAI-CISL, scansione)",
+                "kind": "associazione",
+                "url": "https://www.faicisl.it/attachments/article/2347/CCNL%20CONTOTERZISMO%202024-2027.pdf",
+                "published_on": "2024-01-01",
+                "sha256": "5c5e88717c711c94159a8104f5d6217ded8efb3e75dc3361952687e476175022"
               },
-              "section": "Tabella retributiva"
+              "page": "22",
+              "section": "Art. 20 bis - Premio di continuità professionale",
+              "quote": "A partire dal 1°gennaio 2018 viene istituito un premio annuo collegato alla continuità professionale del lavoratore presso la stessa azienda con importo pari a: - euro 50 al raggiungimento dei 5 anni di anzianità; - euro 150 al raggiungimento dei 10 anni di anzianità; - euro 180 al raggiungimento dei 15 anni di anzianità."
             },
+            "transformation": "One yearly premium whose amount is that of the seniority reached: 50 from 5 years, 150 from 10, 180 from 15, each replacing the one before.",
+            "note": "Read on the page image (scan). 'Tale somma potrà essere liquidata mese per mese o in cifra unica nel mese di settembre'; a territorial premium is paid only above it.",
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-07T15:03:36",
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-02T09:02:28Z",
               "verification_status": "unverified",
-              "effective_from": "2020-01-01"
+              "effective_from": "2024-01-01"
             }
-          }
+          },
+          "service_months_until": 180
         },
         {
           "code": "PREMIO_CONTINUITA_15YR",
@@ -844,18 +897,25 @@
             "status": "derived",
             "location": {
               "source_document": {
-                "document_id": "contoterzismo-caiagromec",
-                "title": "contoterzismo-caiagromec",
-                "kind": "tabella_retributiva",
-                "url": "https://www.redigo.info/2024/07/02/ccnl-contoterzismo-in-agricoltura-rinnovato-il-quadriennio-2024-2027/"
+                "document_id": "faicisl-ccnl-contoterzismo-2024-2027",
+                "title": "CCNL Contoterzismo in agricoltura CAI-Agromec 2024-2027 (FAI-CISL, scansione)",
+                "kind": "associazione",
+                "url": "https://www.faicisl.it/attachments/article/2347/CCNL%20CONTOTERZISMO%202024-2027.pdf",
+                "published_on": "2024-01-01",
+                "sha256": "5c5e88717c711c94159a8104f5d6217ded8efb3e75dc3361952687e476175022"
               },
-              "section": "Tabella retributiva"
+              "page": "22",
+              "section": "Art. 20 bis - Premio di continuità professionale",
+              "quote": "A partire dal 1°gennaio 2018 viene istituito un premio annuo collegato alla continuità professionale del lavoratore presso la stessa azienda con importo pari a: - euro 50 al raggiungimento dei 5 anni di anzianità; - euro 150 al raggiungimento dei 10 anni di anzianità; - euro 180 al raggiungimento dei 15 anni di anzianità."
             },
+            "transformation": "One yearly premium whose amount is that of the seniority reached: 50 from 5 years, 150 from 10, 180 from 15, each replacing the one before.",
+            "note": "Read on the page image (scan). 'Tale somma potrà essere liquidata mese per mese o in cifra unica nel mese di settembre'; a territorial premium is paid only above it.",
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-07T15:03:36",
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-02T09:02:28Z",
               "verification_status": "unverified",
-              "effective_from": "2020-01-01"
+              "effective_from": "2024-01-01"
             }
           }
         }
@@ -999,20 +1059,28 @@
             "status": "derived",
             "location": {
               "source_document": {
-                "document_id": "contoterzismo-caiagromec",
-                "title": "contoterzismo-caiagromec",
-                "kind": "tabella_retributiva",
-                "url": "https://www.redigo.info/2024/07/02/ccnl-contoterzismo-in-agricoltura-rinnovato-il-quadriennio-2024-2027/"
+                "document_id": "faicisl-ccnl-contoterzismo-2024-2027",
+                "title": "CCNL Contoterzismo in agricoltura CAI-Agromec 2024-2027 (FAI-CISL, scansione)",
+                "kind": "associazione",
+                "url": "https://www.faicisl.it/attachments/article/2347/CCNL%20CONTOTERZISMO%202024-2027.pdf",
+                "published_on": "2024-01-01",
+                "sha256": "5c5e88717c711c94159a8104f5d6217ded8efb3e75dc3361952687e476175022"
               },
-              "section": "Tabella retributiva"
+              "page": "22",
+              "section": "Art. 20 bis - Premio di continuità professionale",
+              "quote": "A partire dal 1°gennaio 2018 viene istituito un premio annuo collegato alla continuità professionale del lavoratore presso la stessa azienda con importo pari a: - euro 50 al raggiungimento dei 5 anni di anzianità; - euro 150 al raggiungimento dei 10 anni di anzianità; - euro 180 al raggiungimento dei 15 anni di anzianità."
             },
+            "transformation": "One yearly premium whose amount is that of the seniority reached: 50 from 5 years, 150 from 10, 180 from 15, each replacing the one before.",
+            "note": "Read on the page image (scan). 'Tale somma potrà essere liquidata mese per mese o in cifra unica nel mese di settembre'; a territorial premium is paid only above it.",
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-07T15:03:36",
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-02T09:02:28Z",
               "verification_status": "unverified",
-              "effective_from": "2020-01-01"
+              "effective_from": "2024-01-01"
             }
-          }
+          },
+          "service_months_until": 120
         },
         {
           "code": "PREMIO_CONTINUITA_10YR",
@@ -1032,20 +1100,28 @@
             "status": "derived",
             "location": {
               "source_document": {
-                "document_id": "contoterzismo-caiagromec",
-                "title": "contoterzismo-caiagromec",
-                "kind": "tabella_retributiva",
-                "url": "https://www.redigo.info/2024/07/02/ccnl-contoterzismo-in-agricoltura-rinnovato-il-quadriennio-2024-2027/"
+                "document_id": "faicisl-ccnl-contoterzismo-2024-2027",
+                "title": "CCNL Contoterzismo in agricoltura CAI-Agromec 2024-2027 (FAI-CISL, scansione)",
+                "kind": "associazione",
+                "url": "https://www.faicisl.it/attachments/article/2347/CCNL%20CONTOTERZISMO%202024-2027.pdf",
+                "published_on": "2024-01-01",
+                "sha256": "5c5e88717c711c94159a8104f5d6217ded8efb3e75dc3361952687e476175022"
               },
-              "section": "Tabella retributiva"
+              "page": "22",
+              "section": "Art. 20 bis - Premio di continuità professionale",
+              "quote": "A partire dal 1°gennaio 2018 viene istituito un premio annuo collegato alla continuità professionale del lavoratore presso la stessa azienda con importo pari a: - euro 50 al raggiungimento dei 5 anni di anzianità; - euro 150 al raggiungimento dei 10 anni di anzianità; - euro 180 al raggiungimento dei 15 anni di anzianità."
             },
+            "transformation": "One yearly premium whose amount is that of the seniority reached: 50 from 5 years, 150 from 10, 180 from 15, each replacing the one before.",
+            "note": "Read on the page image (scan). 'Tale somma potrà essere liquidata mese per mese o in cifra unica nel mese di settembre'; a territorial premium is paid only above it.",
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-07T15:03:36",
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-02T09:02:28Z",
               "verification_status": "unverified",
-              "effective_from": "2020-01-01"
+              "effective_from": "2024-01-01"
             }
-          }
+          },
+          "service_months_until": 180
         },
         {
           "code": "PREMIO_CONTINUITA_15YR",
@@ -1065,18 +1141,25 @@
             "status": "derived",
             "location": {
               "source_document": {
-                "document_id": "contoterzismo-caiagromec",
-                "title": "contoterzismo-caiagromec",
-                "kind": "tabella_retributiva",
-                "url": "https://www.redigo.info/2024/07/02/ccnl-contoterzismo-in-agricoltura-rinnovato-il-quadriennio-2024-2027/"
+                "document_id": "faicisl-ccnl-contoterzismo-2024-2027",
+                "title": "CCNL Contoterzismo in agricoltura CAI-Agromec 2024-2027 (FAI-CISL, scansione)",
+                "kind": "associazione",
+                "url": "https://www.faicisl.it/attachments/article/2347/CCNL%20CONTOTERZISMO%202024-2027.pdf",
+                "published_on": "2024-01-01",
+                "sha256": "5c5e88717c711c94159a8104f5d6217ded8efb3e75dc3361952687e476175022"
               },
-              "section": "Tabella retributiva"
+              "page": "22",
+              "section": "Art. 20 bis - Premio di continuità professionale",
+              "quote": "A partire dal 1°gennaio 2018 viene istituito un premio annuo collegato alla continuità professionale del lavoratore presso la stessa azienda con importo pari a: - euro 50 al raggiungimento dei 5 anni di anzianità; - euro 150 al raggiungimento dei 10 anni di anzianità; - euro 180 al raggiungimento dei 15 anni di anzianità."
             },
+            "transformation": "One yearly premium whose amount is that of the seniority reached: 50 from 5 years, 150 from 10, 180 from 15, each replacing the one before.",
+            "note": "Read on the page image (scan). 'Tale somma potrà essere liquidata mese per mese o in cifra unica nel mese di settembre'; a territorial premium is paid only above it.",
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-07T15:03:36",
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-02T09:02:28Z",
               "verification_status": "unverified",
-              "effective_from": "2020-01-01"
+              "effective_from": "2024-01-01"
             }
           }
         }
@@ -1220,20 +1303,28 @@
             "status": "derived",
             "location": {
               "source_document": {
-                "document_id": "contoterzismo-caiagromec",
-                "title": "contoterzismo-caiagromec",
-                "kind": "tabella_retributiva",
-                "url": "https://www.redigo.info/2024/07/02/ccnl-contoterzismo-in-agricoltura-rinnovato-il-quadriennio-2024-2027/"
+                "document_id": "faicisl-ccnl-contoterzismo-2024-2027",
+                "title": "CCNL Contoterzismo in agricoltura CAI-Agromec 2024-2027 (FAI-CISL, scansione)",
+                "kind": "associazione",
+                "url": "https://www.faicisl.it/attachments/article/2347/CCNL%20CONTOTERZISMO%202024-2027.pdf",
+                "published_on": "2024-01-01",
+                "sha256": "5c5e88717c711c94159a8104f5d6217ded8efb3e75dc3361952687e476175022"
               },
-              "section": "Tabella retributiva"
+              "page": "22",
+              "section": "Art. 20 bis - Premio di continuità professionale",
+              "quote": "A partire dal 1°gennaio 2018 viene istituito un premio annuo collegato alla continuità professionale del lavoratore presso la stessa azienda con importo pari a: - euro 50 al raggiungimento dei 5 anni di anzianità; - euro 150 al raggiungimento dei 10 anni di anzianità; - euro 180 al raggiungimento dei 15 anni di anzianità."
             },
+            "transformation": "One yearly premium whose amount is that of the seniority reached: 50 from 5 years, 150 from 10, 180 from 15, each replacing the one before.",
+            "note": "Read on the page image (scan). 'Tale somma potrà essere liquidata mese per mese o in cifra unica nel mese di settembre'; a territorial premium is paid only above it.",
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-07T15:03:36",
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-02T09:02:28Z",
               "verification_status": "unverified",
-              "effective_from": "2020-01-01"
+              "effective_from": "2024-01-01"
             }
-          }
+          },
+          "service_months_until": 120
         },
         {
           "code": "PREMIO_CONTINUITA_10YR",
@@ -1253,20 +1344,28 @@
             "status": "derived",
             "location": {
               "source_document": {
-                "document_id": "contoterzismo-caiagromec",
-                "title": "contoterzismo-caiagromec",
-                "kind": "tabella_retributiva",
-                "url": "https://www.redigo.info/2024/07/02/ccnl-contoterzismo-in-agricoltura-rinnovato-il-quadriennio-2024-2027/"
+                "document_id": "faicisl-ccnl-contoterzismo-2024-2027",
+                "title": "CCNL Contoterzismo in agricoltura CAI-Agromec 2024-2027 (FAI-CISL, scansione)",
+                "kind": "associazione",
+                "url": "https://www.faicisl.it/attachments/article/2347/CCNL%20CONTOTERZISMO%202024-2027.pdf",
+                "published_on": "2024-01-01",
+                "sha256": "5c5e88717c711c94159a8104f5d6217ded8efb3e75dc3361952687e476175022"
               },
-              "section": "Tabella retributiva"
+              "page": "22",
+              "section": "Art. 20 bis - Premio di continuità professionale",
+              "quote": "A partire dal 1°gennaio 2018 viene istituito un premio annuo collegato alla continuità professionale del lavoratore presso la stessa azienda con importo pari a: - euro 50 al raggiungimento dei 5 anni di anzianità; - euro 150 al raggiungimento dei 10 anni di anzianità; - euro 180 al raggiungimento dei 15 anni di anzianità."
             },
+            "transformation": "One yearly premium whose amount is that of the seniority reached: 50 from 5 years, 150 from 10, 180 from 15, each replacing the one before.",
+            "note": "Read on the page image (scan). 'Tale somma potrà essere liquidata mese per mese o in cifra unica nel mese di settembre'; a territorial premium is paid only above it.",
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-07T15:03:36",
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-02T09:02:28Z",
               "verification_status": "unverified",
-              "effective_from": "2020-01-01"
+              "effective_from": "2024-01-01"
             }
-          }
+          },
+          "service_months_until": 180
         },
         {
           "code": "PREMIO_CONTINUITA_15YR",
@@ -1286,18 +1385,25 @@
             "status": "derived",
             "location": {
               "source_document": {
-                "document_id": "contoterzismo-caiagromec",
-                "title": "contoterzismo-caiagromec",
-                "kind": "tabella_retributiva",
-                "url": "https://www.redigo.info/2024/07/02/ccnl-contoterzismo-in-agricoltura-rinnovato-il-quadriennio-2024-2027/"
+                "document_id": "faicisl-ccnl-contoterzismo-2024-2027",
+                "title": "CCNL Contoterzismo in agricoltura CAI-Agromec 2024-2027 (FAI-CISL, scansione)",
+                "kind": "associazione",
+                "url": "https://www.faicisl.it/attachments/article/2347/CCNL%20CONTOTERZISMO%202024-2027.pdf",
+                "published_on": "2024-01-01",
+                "sha256": "5c5e88717c711c94159a8104f5d6217ded8efb3e75dc3361952687e476175022"
               },
-              "section": "Tabella retributiva"
+              "page": "22",
+              "section": "Art. 20 bis - Premio di continuità professionale",
+              "quote": "A partire dal 1°gennaio 2018 viene istituito un premio annuo collegato alla continuità professionale del lavoratore presso la stessa azienda con importo pari a: - euro 50 al raggiungimento dei 5 anni di anzianità; - euro 150 al raggiungimento dei 10 anni di anzianità; - euro 180 al raggiungimento dei 15 anni di anzianità."
             },
+            "transformation": "One yearly premium whose amount is that of the seniority reached: 50 from 5 years, 150 from 10, 180 from 15, each replacing the one before.",
+            "note": "Read on the page image (scan). 'Tale somma potrà essere liquidata mese per mese o in cifra unica nel mese di settembre'; a territorial premium is paid only above it.",
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-07T15:03:36",
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-02T09:02:28Z",
               "verification_status": "unverified",
-              "effective_from": "2020-01-01"
+              "effective_from": "2024-01-01"
             }
           }
         }
@@ -1441,20 +1547,28 @@
             "status": "derived",
             "location": {
               "source_document": {
-                "document_id": "contoterzismo-caiagromec",
-                "title": "contoterzismo-caiagromec",
-                "kind": "tabella_retributiva",
-                "url": "https://www.redigo.info/2024/07/02/ccnl-contoterzismo-in-agricoltura-rinnovato-il-quadriennio-2024-2027/"
+                "document_id": "faicisl-ccnl-contoterzismo-2024-2027",
+                "title": "CCNL Contoterzismo in agricoltura CAI-Agromec 2024-2027 (FAI-CISL, scansione)",
+                "kind": "associazione",
+                "url": "https://www.faicisl.it/attachments/article/2347/CCNL%20CONTOTERZISMO%202024-2027.pdf",
+                "published_on": "2024-01-01",
+                "sha256": "5c5e88717c711c94159a8104f5d6217ded8efb3e75dc3361952687e476175022"
               },
-              "section": "Tabella retributiva"
+              "page": "22",
+              "section": "Art. 20 bis - Premio di continuità professionale",
+              "quote": "A partire dal 1°gennaio 2018 viene istituito un premio annuo collegato alla continuità professionale del lavoratore presso la stessa azienda con importo pari a: - euro 50 al raggiungimento dei 5 anni di anzianità; - euro 150 al raggiungimento dei 10 anni di anzianità; - euro 180 al raggiungimento dei 15 anni di anzianità."
             },
+            "transformation": "One yearly premium whose amount is that of the seniority reached: 50 from 5 years, 150 from 10, 180 from 15, each replacing the one before.",
+            "note": "Read on the page image (scan). 'Tale somma potrà essere liquidata mese per mese o in cifra unica nel mese di settembre'; a territorial premium is paid only above it.",
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-07T15:03:36",
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-02T09:02:28Z",
               "verification_status": "unverified",
-              "effective_from": "2020-01-01"
+              "effective_from": "2024-01-01"
             }
-          }
+          },
+          "service_months_until": 120
         },
         {
           "code": "PREMIO_CONTINUITA_10YR",
@@ -1474,20 +1588,28 @@
             "status": "derived",
             "location": {
               "source_document": {
-                "document_id": "contoterzismo-caiagromec",
-                "title": "contoterzismo-caiagromec",
-                "kind": "tabella_retributiva",
-                "url": "https://www.redigo.info/2024/07/02/ccnl-contoterzismo-in-agricoltura-rinnovato-il-quadriennio-2024-2027/"
+                "document_id": "faicisl-ccnl-contoterzismo-2024-2027",
+                "title": "CCNL Contoterzismo in agricoltura CAI-Agromec 2024-2027 (FAI-CISL, scansione)",
+                "kind": "associazione",
+                "url": "https://www.faicisl.it/attachments/article/2347/CCNL%20CONTOTERZISMO%202024-2027.pdf",
+                "published_on": "2024-01-01",
+                "sha256": "5c5e88717c711c94159a8104f5d6217ded8efb3e75dc3361952687e476175022"
               },
-              "section": "Tabella retributiva"
+              "page": "22",
+              "section": "Art. 20 bis - Premio di continuità professionale",
+              "quote": "A partire dal 1°gennaio 2018 viene istituito un premio annuo collegato alla continuità professionale del lavoratore presso la stessa azienda con importo pari a: - euro 50 al raggiungimento dei 5 anni di anzianità; - euro 150 al raggiungimento dei 10 anni di anzianità; - euro 180 al raggiungimento dei 15 anni di anzianità."
             },
+            "transformation": "One yearly premium whose amount is that of the seniority reached: 50 from 5 years, 150 from 10, 180 from 15, each replacing the one before.",
+            "note": "Read on the page image (scan). 'Tale somma potrà essere liquidata mese per mese o in cifra unica nel mese di settembre'; a territorial premium is paid only above it.",
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-07T15:03:36",
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-02T09:02:28Z",
               "verification_status": "unverified",
-              "effective_from": "2020-01-01"
+              "effective_from": "2024-01-01"
             }
-          }
+          },
+          "service_months_until": 180
         },
         {
           "code": "PREMIO_CONTINUITA_15YR",
@@ -1507,18 +1629,25 @@
             "status": "derived",
             "location": {
               "source_document": {
-                "document_id": "contoterzismo-caiagromec",
-                "title": "contoterzismo-caiagromec",
-                "kind": "tabella_retributiva",
-                "url": "https://www.redigo.info/2024/07/02/ccnl-contoterzismo-in-agricoltura-rinnovato-il-quadriennio-2024-2027/"
+                "document_id": "faicisl-ccnl-contoterzismo-2024-2027",
+                "title": "CCNL Contoterzismo in agricoltura CAI-Agromec 2024-2027 (FAI-CISL, scansione)",
+                "kind": "associazione",
+                "url": "https://www.faicisl.it/attachments/article/2347/CCNL%20CONTOTERZISMO%202024-2027.pdf",
+                "published_on": "2024-01-01",
+                "sha256": "5c5e88717c711c94159a8104f5d6217ded8efb3e75dc3361952687e476175022"
               },
-              "section": "Tabella retributiva"
+              "page": "22",
+              "section": "Art. 20 bis - Premio di continuità professionale",
+              "quote": "A partire dal 1°gennaio 2018 viene istituito un premio annuo collegato alla continuità professionale del lavoratore presso la stessa azienda con importo pari a: - euro 50 al raggiungimento dei 5 anni di anzianità; - euro 150 al raggiungimento dei 10 anni di anzianità; - euro 180 al raggiungimento dei 15 anni di anzianità."
             },
+            "transformation": "One yearly premium whose amount is that of the seniority reached: 50 from 5 years, 150 from 10, 180 from 15, each replacing the one before.",
+            "note": "Read on the page image (scan). 'Tale somma potrà essere liquidata mese per mese o in cifra unica nel mese di settembre'; a territorial premium is paid only above it.",
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-07T15:03:36",
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-02T09:02:28Z",
               "verification_status": "unverified",
-              "effective_from": "2020-01-01"
+              "effective_from": "2024-01-01"
             }
           }
         }
@@ -1550,7 +1679,7 @@
     "effective_until": null,
     "source": "https://www.redigo.info/2024/07/02/ccnl-contoterzismo-in-agricoltura-rinnovato-il-quadriennio-2024-2027/",
     "verification_status": "unverified",
-    "source_hash": "e2e00924955fe60e2222385de67f249ee5a76e06c7de3fbcdfbab612b76096ab",
+    "source_hash": "23490e046b669d6a86d24f95a71ad8c16fedacc1ddab0cae998ff95e74615938",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

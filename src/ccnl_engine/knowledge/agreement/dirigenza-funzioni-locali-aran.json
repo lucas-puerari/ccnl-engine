@@ -195,8 +195,95 @@
   },
   "levels": [
     {
-      "code": "DIRIGENTE",
+      "code": "SEGRETARIO_C",
       "order": 1,
+      "description": "Segretari comunali e provinciali fascia C",
+      "category": "dirigente",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2020-12-17",
+            "valid_until": "2024-01-01",
+            "value": "2893.28",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "aran-ccnl-area-funzioni-locali-2022-2024",
+                  "title": "CCNL dell'Area Funzioni Locali, triennio 2022-2024, 23 febbraio 2026 (ARAN)",
+                  "kind": "associazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026_02_23_AREA-FL-2022-2024.pdf",
+                  "published_on": "2026-02-23",
+                  "sha256": "2f2980b58b803cb535dc8f86c895a491049c7cc835021100e07341dabfa407bd"
+                },
+                "page": "50-51",
+                "section": "Art. 35 c. 1 and 3 - Stipendio tabellare dei segretari",
+                "quote": "Art. 35 c. 1: con decorrenza 1° gennaio 2024, degli importi mensili lordi per tredici mensilità [...] A 230,00 B 230,00 C 184,00; c. 3: i nuovi stipendi tabellari annui lordi comprensivi della tredicesima mensilità [...] A 50.005,77 B 50.005,77 C 40.004,59"
+              },
+              "transformation": "40.004,59 less 184,00 x 13 of the increase from 1 January 2024, over 13 months: 37.612,59 / 13 = 2893.28.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-02T09:02:28Z",
+                "verification_status": "unverified",
+                "effective_from": "2020-12-17"
+              }
+            }
+          },
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": null,
+            "value": "3077.28",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "aran-ccnl-area-funzioni-locali-2022-2024",
+                  "title": "CCNL dell'Area Funzioni Locali, triennio 2022-2024, 23 febbraio 2026 (ARAN)",
+                  "kind": "associazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026_02_23_AREA-FL-2022-2024.pdf",
+                  "published_on": "2026-02-23",
+                  "sha256": "2f2980b58b803cb535dc8f86c895a491049c7cc835021100e07341dabfa407bd"
+                },
+                "page": "50-51",
+                "section": "Art. 35 c. 1 and 3 - Stipendio tabellare dei segretari",
+                "quote": "Art. 35 c. 1: con decorrenza 1° gennaio 2024, degli importi mensili lordi per tredici mensilità [...] A 230,00 B 230,00 C 184,00; c. 3: i nuovi stipendi tabellari annui lordi comprensivi della tredicesima mensilità [...] A 50.005,77 B 50.005,77 C 40.004,59"
+              },
+              "transformation": "40.004,59 a year with the tredicesima, over 13 months: 3077.28.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-02T09:02:28Z",
+                "verification_status": "unverified",
+                "effective_from": "2024-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "dirigenza-funzioni-locali-aran",
+            "title": "dirigenza-funzioni-locali-aran",
+            "kind": "rivista",
+            "url": "https://www.truenumbers.it/ccnl-dirigenti-enti-locali-aumenti-arretrati/"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "DIRIGENTE",
+      "order": 2,
       "description": "Dirigente enti locali (RAL, PTA, Segretari comunali fascia A e B)",
       "category": "dirigente",
       "base_salary": {
@@ -303,17 +390,8 @@
         }
       },
       {
-        "kind": "simplification",
-        "text": "Segretari comunali e provinciali fascia C (neo-assunti): incremento tabellare +184€/mese (vs +230€ delle altre fasce), valore stimato 49.407,77€/anno = 3.800,60€/mese. Non modellati come livello separato per mancanza di fonte primaria verificata.",
-        "capability": "base_salary",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "segretari_fascia_c",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Model segretari fascia C as a separate level (+184 EUR increment) once a primary source is read, or open a limitation."
-        }
+        "kind": "info",
+        "text": "SEGRETARI FASCIA C (Art. 35 c. 1 and 3, CCNL 23 February 2026, pp. 50-51): stipendio tabellare 40.004,59 a year with the tredicesima from 1 January 2024 (184,00 a month of increase, against 230,00 of fasce A and B), level SEGRETARIO_C at 3077.28 a month; before 2024 the same less the increase, 2893.28."
       },
       {
         "kind": "info",
@@ -364,7 +442,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.truenumbers.it/ccnl-dirigenti-enti-locali-aumenti-arretrati/",
     "verification_status": "unverified",
-    "source_hash": "6f7f308d76980b26f76d2b3e5424728006885966e60d1575fb1da69dec4e0520",
+    "source_hash": "f5192d533940d4ab638f7b9d30dd5f68c1670eba0a9bea78a6480be4185cc752",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
