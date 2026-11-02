@@ -115,22 +115,6 @@
       }
     },
     {
-      "id": "injury_integration",
-      "institute": "sickness",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Art. 123: the infortunio integration (100% on the day of the event, 60% days 1-3, 75% after).",
-      "calculation": "ccnl/studi-professionali-confprofessioni:coverage.notes",
-      "state": "absent",
-      "remediation": "Model the injury integration.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "studi-professionali-confprofessioni/injury_integration"
-        ]
-      }
-    },
-    {
       "id": "intermittent_availability",
       "institute": "base_salary",
       "variant": "all",

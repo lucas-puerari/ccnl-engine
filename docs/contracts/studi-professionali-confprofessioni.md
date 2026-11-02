@@ -33,7 +33,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, leave, seniority, sickness |
 
-12 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+11 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -150,13 +150,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Pay the festività during sickness at 100%.
-
-!!! warning "studi-professionali-confprofessioni/injury_integration · sickness · impact yes · open"
-    Art. 123: the infortunio integration (100% on the day of the event, 60% days 1-3, 75% after).
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Model the injury integration.
 
 !!! warning "studi-professionali-confprofessioni/maternity_holiday_top_up · base_salary · impact yes · open"
     Art. 110 c. 8: the employer top-up to 100% of the holidays during compulsory maternity or paternity leave.
@@ -404,6 +397,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     BILATERAL CONTRIBUTION: EBIPRO and CADIPROF are paid with a unified contribution of EUR 29 a month for 12 months, EUR 2 of it by the worker (Art. 13), modelled as the contractual funds cadiprof (20 EUR, health fund) and ebipro (7 + 2 EUR); an employer outside the bilateral system owes the worker 43 EUR for 14 months instead. The CADIPROF enrolment of EUR 24 (Art. 16) stays a caller BilateralFundEvent.
     
     PART-TIME SUPPLEMENTARY HOURS (Art. 42, text of 16 February 2024, p. 36): the quota oraria of the retribuzione di fatto with a 40% maggiorazione (band OT_SUPPLEMENTARE). C. 4 leaves that pay out of 'ogni Istituto retributivo differito, compreso il Trattamento di fine rapporto': an overtime event enters neither the TFR base nor the extra months of the engine.
+    
+    INJURY (Art. 123, p. 66): the injury day in full and 60% for the three days of carenza (art. 73 DPR 1124/1965); from the fourth day the employer tops the INAIL indemnity up to 75% of the retribuzione media giornaliera (work_rules.insured_absence.injury). The indemnity is not due when INAIL pays none.
     
     HOURLY RATE AND SUPPLEMENTS (artt. 93-97, 135, 137 of the CCNL of 16 February 2024): without a caller value the engine derives the hourly base (the art. 135 normale retribuzione over 170) and the 30% on festività hours paid as straordinario festivo (art. 97 lett. E with art. 95); art. 97 also pays the hours themselves, which the engine does not post: the run is provisional. Not derived, the caller states the amount: ordinary night work, which art. 93 leaves to the Area Professionale or second-level bargaining (the 30% of art. 95 is a night overtime rate); work on the weekly rest day ('la relativa sola maggiorazione', art. 97 lett. F, names no percentage).
     
