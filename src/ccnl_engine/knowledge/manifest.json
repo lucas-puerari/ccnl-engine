@@ -337,7 +337,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/calzaturiero-assocalzaturifici",
       "ruleset_version": "2026.2",
-      "source_hash": "54b7e4cc014a2447531d62519db7235be085f93852163b198350a93011695f07",
+      "source_hash": "559d82a07c19178cb6c56f06135a0e544ab236f32131f3b0a4aee85443da7a50",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/calzaturiero-assocalzaturifici.json.gz"
@@ -2764,7 +2764,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "2254f49d23e148ad08b25cae23027a81097f5f8b83cf4c9c21dd4e8d5ee1af63",
+      "source_hash": "0b5a6bab592e27d921e0a73f051680c07ddd9c19667aa57742f3b04cac78835a",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/calzaturiero-assocalzaturifici.json.gz",

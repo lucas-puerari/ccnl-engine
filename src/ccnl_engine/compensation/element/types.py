@@ -76,13 +76,16 @@ class MonthlyPayChain:
             seniority_excluded_from=self.seniority_excluded_from,
         )
 
-    def scaled_for_apprenticeship(self, percentage: Decimal) -> MonthlyPayChain:
+    def scaled_for_apprenticeship(
+        self, percentage: Decimal, *, seniority_scaled: bool = False
+    ) -> MonthlyPayChain:
         """Scale the components a percentage apprenticeship reduces.
 
         The base salary is always reduced.  The seniority of an apprentice
         is the CCNL apprentice amount, already set for apprentices, so it
         is paid in full: reducing it again would count the apprenticeship
-        twice.  Allowances are reduced only when
+        twice; unless ``seniority_scaled``, a CCNL that pays the level
+        increments at the apprenticeship percentage.  Allowances are reduced only when
         :attr:`~ccnl_engine.compensation.models.Allowance.apprenticeship_pct_relevant`
         is ``True``; the others are paid
         at their full contractual value.
@@ -92,7 +95,9 @@ class MonthlyPayChain:
         """
         return MonthlyPayChain(
             base=money(self.base * percentage),
-            seniority=self.seniority,
+            seniority=money(self.seniority * percentage)
+            if seniority_scaled
+            else self.seniority,
             allowances=tuple(
                 (a, money(v * percentage) if a.apprenticeship_pct_relevant else v)
                 for a, v in self.allowances
@@ -213,7 +218,8 @@ class ApprenticeshipScaling:
             then the codes of the allowances whose
             ``apprenticeship_pct_relevant`` is true.
         unscaled: Components paid at full value: ``seniority`` when due
-            (the apprentice amount), then the codes of the other allowances.
+            (the apprentice amount; scaled instead where the CCNL reduces
+            it), then the codes of the other allowances.
     """
 
     percentage: Decimal
@@ -221,7 +227,13 @@ class ApprenticeshipScaling:
     unscaled: tuple[str, ...]
 
     @classmethod
-    def of(cls, chain: MonthlyPayChain, percentage: Decimal) -> ApprenticeshipScaling:
+    def of(
+        cls,
+        chain: MonthlyPayChain,
+        percentage: Decimal,
+        *,
+        seniority_scaled: bool = False,
+    ) -> ApprenticeshipScaling:
         """Describe which components of ``chain`` the percentage reduces.
 
         Mirrors :meth:`MonthlyPayChain.scaled_for_apprenticeship`.
@@ -229,6 +241,7 @@ class ApprenticeshipScaling:
         Args:
             chain: Full-value pay chain of the reference level.
             percentage: Apprenticeship percentage of the current period.
+            seniority_scaled: Whether the percentage reduces the seniority.
 
         Returns:
             The percentage with the scaled and unscaled component codes.
@@ -240,6 +253,8 @@ class ApprenticeshipScaling:
         exempt = tuple(
             a.code for a, _ in chain.allowances if not a.apprenticeship_pct_relevant
         )
+        if seniority_scaled:
+            return cls(percentage, ("base_salary", *seniority, *relevant), exempt)
         return cls(
             percentage=percentage,
             scaled=("base_salary", *relevant),

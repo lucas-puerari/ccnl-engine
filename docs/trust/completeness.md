@@ -14,7 +14,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 0/135 CCNLs.** Bundle: 269 weak rules, 501 open limitations (501 with a monetary impact).
+**Complete: 0/135 CCNLs.** Bundle: 269 weak rules, 500 open limitations (500 with a monetary impact).
 
 ## Declared window
 
@@ -67,7 +67,7 @@ Future data, registered apart from the gaps: a contract whose validity ends insi
 | [aziende-termali-federterme](../contracts/aziende-termali-federterme.md) | `turismo` | exploratory | — | 24 rows | 24 open requirements; 1 weak rule; 20 monetary limitations; 1 outside_input limitation; 22 non-native capabilities |
 | [bancari-abi](../contracts/bancari-abi.md) | `credito` | exploratory | 2026-03-31 | 25 rows | 25 open requirements; 20 monetary limitations; 3 outside_input limitations; 22 non-native capabilities |
 | [bcc-credito-cooperativo](../contracts/bcc-credito-cooperativo.md) | `credito` | exploratory | — | 21 rows | 21 open requirements; 18 monetary limitations; 1 outside_input limitation; 21 non-native capabilities |
-| [calzaturiero-assocalzaturifici](../contracts/calzaturiero-assocalzaturifici.md) | `pelli-calzature` | exploratory | — | 24 rows | 24 open requirements; 2 weak rules; 20 monetary limitations; 19 non-native capabilities |
+| [calzaturiero-assocalzaturifici](../contracts/calzaturiero-assocalzaturifici.md) | `pelli-calzature` | exploratory | — | 23 rows | 23 open requirements; 2 weak rules; 19 monetary limitations; 19 non-native capabilities |
 | [carta-cartone-assocarta](../contracts/carta-cartone-assocarta.md) | `carta-grafica` | exploratory | — | 20 rows | 20 open requirements; 1 weak rule; 17 monetary limitations; 19 non-native capabilities |
 | [ced-assoced](../contracts/ced-assoced.md) | `servizi-professionali` | exploratory | — | 23 rows | 23 open requirements; 2 weak rules; 18 monetary limitations; 1 outside_input limitation; 21 non-native capabilities |
 | [cemento-calce-gesso-industria](../contracts/cemento-calce-gesso-industria.md) | `materiali-estrattive` | exploratory | — | 21 rows | 21 open requirements; 1 weak rule; 18 monetary limitations; 19 non-native capabilities |
