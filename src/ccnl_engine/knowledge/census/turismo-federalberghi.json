@@ -147,22 +147,6 @@
       }
     },
     {
-      "id": "first_scatto_from_18",
-      "institute": "base_salary",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Art. 158 c. 2-3: the first scatto counted from age 18 and from the month after the triennium.",
-      "calculation": "ccnl/turismo-federalberghi:coverage.notes",
-      "state": "absent",
-      "remediation": "Count the first scatto from age 18.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "turismo-federalberghi/first_scatto_from_18"
-        ]
-      }
-    },
-    {
       "id": "guarantee_element_2027",
       "institute": "base_salary",
       "variant": "all",

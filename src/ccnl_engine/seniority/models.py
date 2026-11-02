@@ -10,6 +10,7 @@ from ccnl_engine.agreement.validity.rules import TimeSeries
 from ccnl_engine.employment.category.models import WorkerCategory
 from ccnl_engine.extra_month.schedule.models import ExtraMonthKind
 from ccnl_engine.provenance.source.rule.models import RuleProvenance
+from ccnl_engine.seniority.age.models import SeniorityAge
 from ccnl_engine.types import FrozenDict
 
 
@@ -109,6 +110,7 @@ class SeniorityIncrements(BaseModel):
     "esclusi [...] gli scatti di anzianità maturati").
     ``on_promotion`` states when the increments matured before a promotion
     take the amounts of the new level; ``None`` reprices them at once.
+    ``counted_from_age`` counts the service only after an age.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -134,6 +136,7 @@ class SeniorityIncrements(BaseModel):
         default_factory=dict
     )
     on_promotion: PromotionRepricing | None = None
+    counted_from_age: SeniorityAge | None = None
     provenance: RuleProvenance | None = None
 
     def requires_category(self, level_code: str) -> bool:

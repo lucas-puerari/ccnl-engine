@@ -258,6 +258,35 @@
           }
         }
       },
+      "counted_from_age": {
+        "age": 18,
+        "hired_from": "1986-06-01",
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-turismo-2010",
+              "title": "CCNL Turismo 20 febbraio 2010, testo firmato (UILTuCS)",
+              "kind": "associazione",
+              "url": "http://www.uiltucs.it/pdf/turismo/CCNL_Turismo_Confcommercio_2010.pdf",
+              "published_on": "2010-02-20",
+              "sha256": "47f71f5f3f9eb7975837a888f08f8694ca5b1d9e403c85226446c080b7e0f9e4"
+            },
+            "page": "140",
+            "section": "Art. 158 c. 2-3 - Scatti di anzianità",
+            "quote": "L'anzianità utile ai fini della maturazione del primo scatto di anzianità è: - quella maturata successivamente al compimento del diciottesimo anno di età per il personale assunto a partire dal 1° giugno 1986"
+          },
+          "transformation": "A worker hired from 1 June 1986 counts the service after the eighteenth birthday; the triennial scatti run from that day (c. 3: from the first day of the month after the triennium).",
+          "note": "Read on the page image (the text layer is garbled). The rules of c. 2 for the workers in service on 1 June 1986 (from that day between 18 and 21, from the 21st birthday above 21) are not modelled.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-02T07:17:10Z",
+            "verification_status": "unverified",
+            "effective_from": "1986-06-01"
+          }
+        }
+      },
       "provenance": {
         "status": "verified",
         "location": {
@@ -3120,17 +3149,8 @@
         }
       },
       {
-        "kind": "simplification",
-        "text": "Art. 158 c. 2-3: the first scatto counted from age 18 and from the month after the triennium.",
-        "capability": "base_salary",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "first_scatto_from_18",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Count the first scatto from age 18."
-        }
+        "kind": "info",
+        "text": "SENIORITY FROM AGE 18 (Art. 158 c. 2, p. 140): a worker hired from 1 June 1986 accrues the scatti only from the eighteenth birthday (SeniorityFact.birth_date; without it the service counts from the start). The rules of the workers in service on 1 June 1986 are not modelled."
       },
       {
         "kind": "simplification",
@@ -3236,7 +3256,7 @@
     "effective_until": null,
     "source": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
     "verification_status": "unverified",
-    "source_hash": "3a4cd9571b5acd0983f247c7f44e0edac6a988724ace3cb05ded65496db1b2c5",
+    "source_hash": "03ec4377029fc28fa3588e46f221dc7c565b000c94ef536564ae4456f21b772e",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

@@ -294,6 +294,23 @@ def _tax_year(
     )
 
 
+def _turismo_young(birth: date | None) -> PeriodInput:
+    """Return a Turismo run of a worker whose increments count from age 18.
+
+    Returns:
+        The January request with the birth date stated or not.
+    """
+    request = _january(
+        replace(CONCIA_D2, ccnl_id="turismo-federalberghi", level_code="4")
+    )
+    seniority = request.employment.seniority
+    assert seniority is not None
+    employment = replace(
+        request.employment, seniority=replace(seniority, birth_date=birth)
+    )
+    return replace(request, employment=employment)
+
+
 #: The cases of each ``requires_fact`` field, keyed ``Type.field``.
 DEFAULT_CASES: Mapping[str, tuple[DefaultCase, ...]] = {
     "PeriodInput.current_year": (
@@ -571,6 +588,10 @@ DEFAULT_CASES: Mapping[str, tuple[DefaultCase, ...]] = {
     ),
     "BonusEvent.agreement_signed_on": (
         _event_pair(_renewal(), _renewal(None), "agreement_signed_on"),
+    ),
+    "SeniorityFact.birth_date": tuple(
+        DefaultCase(_turismo_young(birth), _turismo_young(None))
+        for birth in (date(1990, 4, 2), date(2009, 4, 2))
     ),
     **absence_cases(_event_pair),
     **fixed_term_cases(_employment_pair),

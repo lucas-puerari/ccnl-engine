@@ -36,6 +36,7 @@ from ccnl_engine.pension_fund.conversion.services import (
 from ccnl_engine.period.context.agreement.services import load_contract
 from ccnl_engine.period.context.services import RunContext
 from ccnl_engine.period.payslip.services import resolve_payment
+from ccnl_engine.seniority.age.rules import months_from_age
 from ccnl_engine.seniority.services import seniority_months_at
 from ccnl_engine.withholding.plan.services import (
     resolve_withholding_schedule,
@@ -77,6 +78,15 @@ def _base_chain(
     months = seniority_months_at(request.seniority, contract.tctx.competence)
     if months is not None and seniority_conversion(contract.ccnl, request):
         months = kept_seniority_months(request)
+    elif months is not None and request.seniority is not None:
+        period = request.employment_period
+        months = months_from_age(
+            months,
+            contract.ccnl.parameters.seniority_increments.counted_from_age,
+            request.seniority.birth_date,
+            None if period is None else period.started_on,
+            contract.tctx.competence,
+        )
     return _resolve_chain(
         contract.ccnl,
         contract.level,

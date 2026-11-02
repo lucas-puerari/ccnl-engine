@@ -1,5 +1,5 @@
 {
-  "commit": "f1032661bc153b98e4d8ea3574251d5371e81df7",
+  "commit": "2bb8430d8d939bc4fd9581f141b121560bbf8511",
   "date": "2026-11-02",
   "min_score": 93.0,
   "perimeter": [
@@ -130,6 +130,7 @@
     "src/ccnl_engine/extra_month/qualification/services.py",
     "src/ccnl_engine/extra_month/services.py",
     "src/ccnl_engine/compensation/element/services.py",
+    "src/ccnl_engine/seniority/age/rules.py",
     "src/ccnl_engine/compensation/hourly/services.py",
     "src/ccnl_engine/compensation/individual/rules.py",
     "src/ccnl_engine/compensation/proration/services.py",
@@ -153,12 +154,12 @@
   ],
   "scores": {
     "core": {
-      "killed": 9376,
-      "survived": 268,
+      "killed": 9428,
+      "survived": 271,
       "other": 5,
       "not_checked": 0,
       "equivalent": 18,
-      "total": 9649,
+      "total": 9704,
       "score": 97.2,
       "minimum": 93.0
     },
@@ -1421,6 +1422,16 @@
       "total": 187,
       "score": 87.7,
       "minimum": 80.1
+    },
+    "src/ccnl_engine/seniority/age/rules.py": {
+      "killed": 52,
+      "survived": 3,
+      "other": 0,
+      "not_checked": 0,
+      "equivalent": 0,
+      "total": 55,
+      "score": 94.5,
+      "minimum": 93.0
     },
     "src/ccnl_engine/compensation/hourly/services.py": {
       "killed": 219,
