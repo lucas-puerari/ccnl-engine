@@ -1197,7 +1197,6 @@
     ],
     "agreement/pulizia-artigianato-confartigianato.json": [
       "pulizia-artigianato-confartigianato/apprentice_inps_rates_unsourced",
-      "pulizia-artigianato-confartigianato/apprentice_seniority",
       "pulizia-artigianato-confartigianato/apprenticeship_percentages_2022",
       "pulizia-artigianato-confartigianato/health_and_bilateral_funds",
       "pulizia-artigianato-confartigianato/ind_fun_months_per_year",
@@ -1228,7 +1227,6 @@
       "sanita-privata-aiop-aris/statutory_ipca_adjustment"
     ],
     "agreement/scuole-materne-fism.json": [
-      "scuole-materne-fism/apprentice_seniority",
       "scuole-materne-fism/apprenticeship_identity_track",
       "scuole-materne-fism/salario_di_anzianita",
       "scuole-materne-fism/sickness_net_basis"
@@ -1259,7 +1257,6 @@
       "sistemazioni-idraulico-forestali-operai/structural_rules_from_2021_text"
     ],
     "agreement/studi-professionali-confprofessioni.json": [
-      "studi-professionali-confprofessioni/apprentice_seniority",
       "studi-professionali-confprofessioni/fourteenth_exclusion",
       "studi-professionali-confprofessioni/holiday_during_sickness",
       "studi-professionali-confprofessioni/intermittent_availability",
@@ -1271,8 +1268,7 @@
       "studi-professionali-confprofessioni/unused_leave_hours"
     ],
     "agreement/tabacco-apti.json": [
-      "tabacco-apti/alifond_before_july_2025",
-      "tabacco-apti/apprentice_seniority"
+      "tabacco-apti/alifond_before_july_2025"
     ],
     "agreement/telecomunicazioni-asstel.json": [
       "telecomunicazioni-asstel/apprentice_seniority",

@@ -97,22 +97,6 @@
       },
       {
         "kind": "simplification",
-        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
-        "capability": "seniority",
-        "monetary_impact": "unknown",
-        "limitation": {
-          "variant": "apprentice_seniority",
-          "applies_when": {
-            "trigger": "path",
-            "contract_types": [
-              "apprentice"
-            ]
-          },
-          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
-        }
-      },
-      {
-        "kind": "simplification",
         "text": "SICKNESS (Art. 69): the CCNL integrates up to 100% of the net monthly pay ('retribuzione mensile netta') without saying how the net pay is computed. The engine grosses up the INPS indemnity by the worker's INPS rate (the 'lordizzazione' of payroll practice, Ordine dei Consulenti del Lavoro di Salerno) and tops it up to the measure of the gross daily quota; IRPEF is left out, as it falls on both. Day bands, carenza by event, the yearly comporto and the exclusion of apprentices are modelled.",
         "capability": "sickness",
         "monetary_impact": "unknown",
@@ -120,6 +104,10 @@
           "variant": "sickness_net_basis",
           "remediation": "Find a source (an interpretation of the parties, an INPS or Ministry text) that defines the net daily pay of Art. 69, align the computation, then resolve this limitation."
         }
+      },
+      {
+        "kind": "info",
+        "text": "APPRENTICE SENIORITY: the aumenti periodici are abolished for every worker since the CCNL 2016-2018 (Art. 44, p. 34 of the CCNL 2024-2027), so an apprentice matures none (seniority_increments.apprentice_amount 0.00)."
       }
     ]
   },
@@ -265,6 +253,39 @@
           "verification_status": "unverified",
           "effective_from": "2020-01-01"
         }
+      },
+      "apprentice_amount": {
+        "periods": [
+          {
+            "valid_from": "2023-09-01",
+            "valid_until": null,
+            "value": "0.00",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "fism-ccnl-2024-2027",
+                  "title": "CCNL FISM 2024-2027, firmato 28 maggio 2025 (scansione)",
+                  "kind": "associazione",
+                  "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf",
+                  "sha256": "07c84a5b92ff81e1d119ff08836972e8b1e382c7cce804e3eeb79234ec6b5a36"
+                },
+                "page": "34",
+                "section": "Art. 44",
+                "quote": "Con la sottoscrizione del CCNL 2016-2018 è stato previsto: - ex art. 44: il superamento degli aumenti periodi di anzianità"
+              },
+              "transformation": "No worker matures an increment (maximum_count 0): an apprentice matures none.",
+              "note": "Read on the page image. The zero follows from the abolition for every worker, not from an apprentice clause.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-02T13:32:50Z",
+                "effective_from": "2023-09-01",
+                "verification_status": "unverified"
+              }
+            }
+          }
+        ]
       }
     },
     "accrual_rule": {
@@ -1475,7 +1496,7 @@
     "effective_until": null,
     "source": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf",
     "verification_status": "verified",
-    "source_hash": "a571e064b7731fcdf3e310680453afc28c648a3a3237ee82a66de84389b22b3a",
+    "source_hash": "4cda0955b9ca41557c1ecd21c0c7a5b42d8351417e8674db54ff14fee20190b2",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
