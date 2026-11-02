@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, bilateral_funds, overtime, seniority, sickness, territorial_supplement |
+| **Limits of this contract** | base_salary, bilateral_funds, seniority, sickness, territorial_supplement |
 
-9 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+8 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 88 verified / 3 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 93 verified / 3 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🟢 Verified | The confidence the ruleset declares as a whole |
 | **Readiness** | 👁 Reviewed | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-09-29 |
-| **Last review** | 2026-11-01 |
+| **Last review** | 2026-11-02 |
 | **Latest salary tranche** | 2027-02-01 |
 
 ## Review history
@@ -66,6 +66,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-01 | claude-opus-5-5 (ai) | The indennità di cassa e maneggio denaro of Art. 202 (p. 59). | corrected | Art. 202 (p. 59): 5% of the paga base nazionale conglobata to the staff normally at the till with full responsibility for it: levels[*].fixed_allowances[IND_CASSA], role cassiere, one value per period of the base_salary. |
 | 2026-11-01 | claude-opus-5-5 (ai) | The hourly divisors of the 42 and 45 hour weeks, Art. 194 - Quota oraria (p. 58). | corrected | Art. 194 - Quota oraria (p. 58): 168 for a normal week of 40 hours, 182 for 42, 195 for 45: work_rules.time_supplements.hourly_divisor_weekly_hours 40 and week_divisors 42/182, 45/195. |
 | 2026-11-01 | claude-opus-5-5 (ai) | The notice of Artt. 231-236 (PDF pp. 64-66). | corrected | Artt. 231, 232, 233 c. 3, 236 c. 2 (pp. 64-66): calendar days by level and service for dismissal and resignation, from the 1st or the 16th, indemnity on the retribuzione di fatto with the 13th and 14th ratei, out of the TFR base: work_rules.notice. Found by a delegated search, checked again on the PDF text. |
+| 2026-11-02 | claude-opus-5-5 (ai) | The premiums on ordinary hours of Artt. 134, 136, 138 and 139 and the hourly base of Artt. 189, 191 and 194 (PDF pp. 42-44 and 57-58). | corrected | Art. 134 (p. 43): ordinary night 15%; art. 136 c. 7 (p. 43): Sunday 30%; art. 139 (p. 44): weekly rest day 30%; art. 138 (p. 44): holidays as straordinario festivo 30% (art. 132), the hour paid apart: supplement_bands DMO_*, as Commercio artt. 151-156.<br>Art. 194 (p. 58) divisor 168 at 40 hours; art. 189 (p. 57, read on the page image) normale retribuzione: paga base, contingenza, terzi elementi, scatti, other bargained elements; art. 191 adds the continuative individual elements: hourly_base_provenance and individual_elements hour_only, as Commercio artt. 206-211. |
 
 ## Salary table
 
@@ -143,13 +144,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Resolved: every level carries IND_CASSA, 5% of its paga base nazionale conglobata, for the role cassiere of Employment.roles.
-
-!!! warning "dmo-federdistribuzione/ordinary_hours_premiums · overtime · impact yes · open"
-    Art. 134, 136 and 139: the premiums on ordinary night (15%), Sunday (30%) and weekly rest day (30%) work.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Model the premiums on ordinary hours.
 
 !!! warning "dmo-federdistribuzione/sales_operators · base_salary · impact yes · open"
     The pay rows of the operatori di vendita.
@@ -364,6 +358,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     APPRENTICESHIP PROFILES OF TABELLA B (Art. 61): 48 months for the listed profiles ending at levels II and III (track tabella_b_48_mesi), 42 months for those ending at level IV (tabella_b_42_mesi), two levels below for the first half and one below for the second. An apprentice of levels II, III and IV states Apprentice.track: standard_II_V for the 36 months of the other profiles.
     
     LEAVE, WEEKLY SCHEDULE: a 39-hour full-time week absorbs 36 hours of ROL and a 38-hour week 16 hours of ex festività and 56 of ROL, read from Employment.full_time_weekly_hours. The grandi magazzini, magazzini a prezzo unico, supermercati alimentari, cash&carry and ipermercati (Art. 119, EmployerProfile.subsector 'grande_distribuzione') on a 38-hour average absorb instead the 56 hours of Art. 141 c. 3 and the 16 of c. 4 and keep the ex festività.
+    
+    ORDINARY HOUR PREMIUMS (Testo Unico 29 September 2025, pp. 43-44): ordinary night 15% (art. 134), Sunday 30% (art. 136 c. 7, without a better second-level treatment), weekly rest day 30% (art. 139), holidays as straordinario festivo 30% with the hour paid apart (art. 138): work_rules.time_supplements.supplement_bands DMO_*.
     
 
 ## Raw data
