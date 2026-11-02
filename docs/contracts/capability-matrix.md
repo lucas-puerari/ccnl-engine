@@ -101,8 +101,8 @@ formulas or caller-declared amounts.
 | `family_deductions` | Detrazioni familiari a carico (Art. 12 TUIR) | core | net | native | decided | decision | `facts.family_composition`, `current_year` | children, other_dependants, sole_parent_first_child, spouse, spouse_increase_bands | simplified | 4 / 0 / 4 / 0 |
 | `art15_deductions` | Detrazioni Art. 15 TUIR (interessi mutuo e oneri) | outside_input | net | unsupported | outside_input | — | `facts.art15_expenses` | — | unavailable | none bundled |
 | `overtime` | Lavoro straordinario e supplementare | scenario | work_rules | caller_supplied | event | event | — | ccnl_band_multiplier, caller_multiplier | caller-supplied | 175 / 303 / 7 / 0 |
-| `night_work` | Lavoro notturno | scenario | work_rules | caller_supplied | event | event | — | — | caller-supplied | 50 / 0 / 0 / 0 |
-| `holiday_work` | Lavoro festivo | scenario | work_rules | caller_supplied | event | event | — | — | caller-supplied | 121 / 2 / 0 / 0 |
+| `night_work` | Lavoro notturno | scenario | work_rules | caller_supplied | event | event | — | — | caller-supplied | 52 / 0 / 0 / 0 |
+| `holiday_work` | Lavoro festivo | scenario | work_rules | caller_supplied | event | event | — | — | caller-supplied | 123 / 2 / 0 / 0 |
 | `shift_work` | Lavoro a turni | scenario | work_rules | caller_supplied | event | event | — | — | caller-supplied | 43 / 0 / 0 / 0 |
 | `standby` | Reperibilità (importi del CCNL per livello) | scenario | work_rules | native | event | event | — | — | implemented | none bundled |
 | `absence` | Assenze ingiustificate | scenario | work_rules | caller_supplied | event | event | — | — | caller-supplied | 15 / 0 / 0 / 0 |
@@ -220,7 +220,7 @@ never grow.
 | 81 | [CCNL Metalmeccanica - Cooperative](metalmeccanica-cooperative.md) | ⚠️ | base_salary, inps_employer | 1 / 45 / 1 / 0 |
 | 82 | [CCNL Metalmeccanica e Installazione di Impianti — Artigianato](metalmeccanico-artigianato.md) | ⚠️ | base_salary, bilateral_funds, inps_employer, overtime, sickness | 38 / 43 / 0 / 0 |
 | 83 | [CCNL Metalmeccanici Piccola Industria (CONFIMI IMPRESA MECCANICA)](metalmeccanico-confimi-pmi.md) | ✅ | overtime | 1 / 46 / 0 / 0 |
-| 84 | [CCNL Metalmeccanici Piccola Industria (Unionmeccanica-Confapi)](metalmeccanico-confapi.md) | ⚠️ | base_salary, leave, overtime, pension_fund_contribution, sickness | 65 / 7 / 0 / 0 |
+| 84 | [CCNL Metalmeccanici Piccola Industria (Unionmeccanica-Confapi)](metalmeccanico-confapi.md) | ⚠️ | base_salary, leave, overtime, pension_fund_contribution, sickness | 69 / 7 / 0 / 0 |
 | 85 | [CCNL Metalmeccanici e Installatori di Impianti (Federmeccanica-Assistal)](metalmeccanico-federmeccanica.md) | ⚠️ | base_salary, leave, overtime | 90 / 1 / 0 / 0 |
 | 86 | [CCNL Noleggio Autobus con Conducente (ANAV)](noleggio-autobus-conducente-anav.md) | ⚠️ | base_salary, seniority | 34 / 33 / 4 / 0 |
 | 87 | [CCNL Occhiali e Occhialeria — Industria (ANFAO)](occhiali-occhialeria-industria.md) | ⚠️ | base_salary | 77 / 11 / 1 / 1 |

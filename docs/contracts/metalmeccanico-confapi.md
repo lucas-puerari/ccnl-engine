@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 65 verified / 7 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 69 verified / 7 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🟢 Verified | The confidence the ruleset declares as a whole |
 | **Readiness** | 👁 Reviewed | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -65,6 +65,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-20 | claude-opus-5-5 (ai) | Whether the individual elements of the worker (superminimi, aumenti di merito, assegni ad personam) enter the hourly base of overtime and supplements (Art. 38 - Mensilizzazione). | corrected | Art. 38 - Mensilizzazione: individual elements included in the hourly base: work_rules.time_supplements.individual_elements. |
 | 2026-10-31 | claude-opus-5-5 (ai) | The basis of the indemnity for the leave not taken at the end of the employment, searched for a divisor of the daily pay in the CCNL of 3 July 2017 (Artt. 15, 29, 32, 33, 40) and in the OCR of the 2025-2028 renewal. | confirmed | Art. 33 pays a day of ferie at the 'retribuzione giornaliera globale di fatto' and no text read divides the monthly pay into it for the generality of workers. No termination basis is recorded. |
 | 2026-11-02 | claude-opus-5-5 (ai) | Art. 29 row h (PDF p. 101). | corrected | Art. 29 row h: notturno e festivo 60%, 55% for shift workers (role turnista). |
+| 2026-11-02 | claude-opus-5-5 (ai) | Art. 29 row b (PDF p. 101). | corrected | Art. 29 row b: ordinary night 25% until 22 (NightShiftEvent.before_22) and 35% after for the workers not on shifts, 25% for shift workers (role turnista). |
 
 ## Salary table
 
@@ -143,11 +144,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Model standby and travel.
 
 !!! warning "metalmeccanico-confapi/ordinary_hours_premiums · overtime · impact yes · open"
-    Art. 29 rows b and i, and the shift-worker column of the overtime rows: ordinary night work 25% until 22 and 35% after for the non-shift workers (25% for shift workers), night holiday work with compensatory rest (35%, 30%), night overtime 40%/45% and night holiday overtime 65% of shift workers. The holiday (55%), compensatory-rest (10%) and night holiday (60%, 55% for shift workers) premiums are modelled.
+    Art. 29 row i and the shift-worker column of the overtime rows: night holiday work with compensatory rest (35%, 30%), night overtime 40%/45% and night holiday overtime 65% of shift workers. The ordinary night (25% until 22, 35% after; 25% for shift workers), holiday (55%), compensatory-rest (10%) and night holiday (60%, 55%) premiums are modelled.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Model the ordinary night premiums of row b by the hour of the night, row i and the shift-worker column.
+    **Remediation:** Model row i and the shift-worker column of the Art. 29 overtime rows.
 
 !!! warning "metalmeccanico-confapi/flexibility_and_hours_bank · overtime · impact yes · open"
     Art. 23: flessibilità beyond 40 hours (15%/20%) and banca ore (50% of the overtime premium).

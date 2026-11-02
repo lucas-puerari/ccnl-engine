@@ -38,6 +38,10 @@ EVENT_DEFAULTS: Mapping[str, FieldDefault] = {
     "OvertimeEvent.hourly_rate": absence_is_fact(_FROM_CCNL),
     "NightShiftEvent.supplement_amount": absence_is_fact(_FROM_CCNL),
     "NightShiftEvent.hours": absence_is_fact(_SUPPLEMENT_HOURS),
+    "NightShiftEvent.before_22": absence_is_fact(
+        "night hours from 22:00; hours before it are a fact of the timesheet "
+        "the event records"
+    ),
     "HolidayWorkEvent.supplement_amount": absence_is_fact(_FROM_CCNL),
     "HolidayWorkEvent.hours": absence_is_fact(_SUPPLEMENT_HOURS),
     "HolidayWorkEvent.kind": absence_is_fact(

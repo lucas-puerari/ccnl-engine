@@ -215,10 +215,10 @@
       "institute": "overtime",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Art. 29 rows b and i, and the shift-worker column of the overtime rows: ordinary night work 25% until 22 and 35% after for the non-shift workers (25% for shift workers), night holiday work with compensatory rest (35%, 30%), night overtime 40%/45% and night holiday overtime 65% of shift workers. The holiday (55%), compensatory-rest (10%) and night holiday (60%, 55% for shift workers) premiums are modelled.",
+      "rule": "Art. 29 row i and the shift-worker column of the overtime rows: night holiday work with compensatory rest (35%, 30%), night overtime 40%/45% and night holiday overtime 65% of shift workers. The ordinary night (25% until 22, 35% after; 25% for shift workers), holiday (55%), compensatory-rest (10%) and night holiday (60%, 55%) premiums are modelled.",
       "calculation": "ccnl/metalmeccanico-confapi:coverage.notes",
       "state": "absent",
-      "remediation": "Model the ordinary night premiums of row b by the hour of the night, row i and the shift-worker column.",
+      "remediation": "Model row i and the shift-worker column of the Art. 29 overtime rows.",
       "origin": "seeded",
       "links": {
         "limitations": [
