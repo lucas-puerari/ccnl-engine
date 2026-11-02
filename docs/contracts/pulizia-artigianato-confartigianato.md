@@ -36,7 +36,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, bilateral_funds, holiday_work, inps_employer, leave, night_work, overtime, seniority |
 
-9 documented simplification(s) and 3 missing feature(s): see [Known simplifications](#known-simplifications).
+8 documented simplification(s) and 3 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -170,13 +170,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `overtime` applies.
 
     **Remediation:** Model the 40-hour weekly threshold and the 200-hour yearly cap of OT_DIURNO, or pass the multiplier on the overtime event.
-
-!!! warning "pulizia-artigianato-confartigianato/apprentice_seniority · seniority · impact yes · open"
-    APPRENTICE SENIORITY: the December 2025 renewal extends the seniority increments to apprentices from 2026-01-01 (see the seniority note), but the clause and its amounts are not modelled: the engine pays no increment during the apprenticeship. The run is affected when the apprentice has matured increments the level pays.
-
-    **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
-
-    **Remediation:** Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
@@ -366,6 +359,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     Fonte accordo rinnovo 2025 (Confartigianato, 17 dic 2025): URL non raggiungibile il 2026-09-12. Tranches Jan 2026 — Dec 2029 verificate incrociatamente con kitech CodiceCateg=83 (Jul 2026, tutti e 7 i livelli, match al centesimo) e ilccnl.it Jul 2026 (L1: Paga Base=Totale=1693.84). Accesso originale: 2026-09-12.
     
     APPRENTICESHIP TRACKS: a level with several candidate tracks (L5: tracks 1 and 3; L4: 3 and 4; L3: 2 and 4) raises OutOfScopeError ambiguous_track unless Apprentice.track names the track: the engine no longer takes the first match (review of 2026-10-30).
+    
+    APPRENTICE SENIORITY (Art. 58 point 7-bis of the renewal of 17 December 2025, p. 5): from 1 January 2026 the apprentices mature the increments at 6 euro each, not scaled by the apprenticeship percentage (seniority_increments.apprentice_amount); none before. The service of the apprentices already employed counts from 1 January 2026 (caller's Employment.seniority); the repricing at qualification follows the level from then.
     
 
 ## Raw data

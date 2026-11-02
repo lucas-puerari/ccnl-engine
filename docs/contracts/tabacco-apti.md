@@ -30,10 +30,10 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Core payroll path** | ⚠️ |
-| **Limits of this contract** | pension_fund_contribution, seniority |
+| **Core payroll path** | ✅ |
+| **Limits of this contract** | pension_fund_contribution |
 
-3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -112,13 +112,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `pension_fund_contribution` applies; before 2025-07-01.
 
     **Remediation:** Model the ALIFOND employer rate in force before 1 July 2025.
-
-!!! warning "tabacco-apti/apprentice_seniority · seniority · impact unknown · open"
-    APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.
-
-    **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
-
-    **Remediation:** Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
@@ -290,6 +283,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     SALARY MODEL: split. base_salary = minimo tabellare (4 tranches: +60 at 4A on 01/01/2025, +50 on 01/01/2026, +50 on 01/01/2027, +40 on 01/01/2028). 50/50 parametric formula verified against published Allegato A table.
     
     CONTINGENZA: per-level amounts frozen at 01/11/1991 (Allegato B, CCNL 2021). EDR 10.33 EUR uniform for all levels (Accordo Interconfederale 31/07/1992).
+    
+    APPRENTICE SENIORITY (Art. 6, p. 23 of the CCNL 2021-2024): a third of the apprenticeship counts for the aumenti periodici of the confirmed apprentice; no increment during it (seniority_increments.apprentice_amount 0.00).
     
     SENIORITY: cadence 24 months, maximum 5 scatti. Amounts from Article 32 of the 2025 renewal. Operai amounts roughly doubled vs 2021 CCNL (4A/B: 5.68->12.00, 5: 5.42->11.00, 6: 5.16->10.00).
     

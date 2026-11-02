@@ -223,20 +223,8 @@
         "capability": "holiday_work"
       },
       {
-        "kind": "simplification",
-        "text": "APPRENTICE SENIORITY: the December 2025 renewal extends the seniority increments to apprentices from 2026-01-01 (see the seniority note), but the clause and its amounts are not modelled: the engine pays no increment during the apprenticeship. The run is affected when the apprentice has matured increments the level pays.",
-        "capability": "seniority",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "apprentice_seniority",
-          "applies_when": {
-            "trigger": "path",
-            "contract_types": [
-              "apprentice"
-            ]
-          },
-          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
-        }
+        "kind": "info",
+        "text": "APPRENTICE SENIORITY (Art. 58 point 7-bis of the renewal of 17 December 2025, p. 5): from 1 January 2026 the apprentices mature the increments at 6 euro each, not scaled by the apprenticeship percentage (seniority_increments.apprentice_amount); none before. The service of the apprentices already employed counts from 1 January 2026 (caller's Employment.seniority); the repricing at qualification follows the level from then."
       }
     ]
   },
@@ -627,6 +615,68 @@
           "back_calculation": null
         },
         "note": null
+      },
+      "apprentice_amount": {
+        "periods": [
+          {
+            "valid_from": "2022-11-01",
+            "valid_until": "2026-01-01",
+            "value": "0.00",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "informaimpresa-rinnovo-ccnl-pulizia-artigianato-2025-12-17",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL imprese artigiane di pulizia, 17 dicembre 2025 (scansione firmata)",
+                  "kind": "associazione",
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2025/12/Rinnovo-CCNL-servizi-di-pulizie_17.12.2025.pdf",
+                  "sha256": "4bef34edad3ebf73772735fb48819b75fdfaf991eb9c53640e492c4f48ca0416"
+                },
+                "page": "5",
+                "section": "Art. 58 - Apprendistato Professionalizzante, 7-bis Scatti di anzianità apprendista",
+                "quote": "A decorrere dal 1° gennaio 2026 i lavoratori assunti con contratto di apprendistato iniziano a maturare gli scatti di anzianità. [...] L’importo dello scatto di anzianità maturato durante il periodo di apprendistato è di 6 euro, non rapportato alla percentuale di progressione retributiva."
+              },
+              "transformation": "Before 1 January 2026 the apprentices mature no increment.",
+              "note": "Read on the page image.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-02T13:32:50Z",
+                "effective_from": "2022-11-01",
+                "verification_status": "unverified"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "6.00",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "informaimpresa-rinnovo-ccnl-pulizia-artigianato-2025-12-17",
+                  "title": "Ipotesi di accordo di rinnovo del CCNL imprese artigiane di pulizia, 17 dicembre 2025 (scansione firmata)",
+                  "kind": "associazione",
+                  "url": "https://www.informaimpresa.it/wp-content/uploads/2025/12/Rinnovo-CCNL-servizi-di-pulizie_17.12.2025.pdf",
+                  "sha256": "4bef34edad3ebf73772735fb48819b75fdfaf991eb9c53640e492c4f48ca0416"
+                },
+                "page": "5",
+                "section": "Art. 58 - Apprendistato Professionalizzante, 7-bis Scatti di anzianità apprendista",
+                "quote": "A decorrere dal 1° gennaio 2026 i lavoratori assunti con contratto di apprendistato iniziano a maturare gli scatti di anzianità. [...] L’importo dello scatto di anzianità maturato durante il periodo di apprendistato è di 6 euro, non rapportato alla percentuale di progressione retributiva."
+              },
+              "transformation": "6 euro for each increment matured during the apprenticeship, not scaled by the apprenticeship percentage.",
+              "note": "Read on the page image. The service counts from 1 January 2026 for the apprentices already employed then: the caller states it in Employment.seniority. At qualification the increments are repriced at the final level.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-02T13:32:50Z",
+                "effective_from": "2026-01-01",
+                "verification_status": "unverified"
+              }
+            }
+          }
+        ]
       }
     },
     "accrual_rule": {
@@ -3930,7 +3980,7 @@
     "source": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
     "verification_status": "unverified",
     "published_at": "2026-09-12",
-    "source_hash": "05c85130e04cb9944a3e31ae6bf877102f93e00a66965ae7ea11118ac9e542ff",
+    "source_hash": "2304923572d3ec82ff9358e07fc824a781a2044160b78ef99e08a5c55c8bf40a",
     "source_type": "commercial_secondary"
   },
   "work_rules": {

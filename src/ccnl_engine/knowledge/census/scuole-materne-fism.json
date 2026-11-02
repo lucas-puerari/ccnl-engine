@@ -3,22 +3,6 @@
   "ccnl_id": "scuole-materne-fism",
   "requirements": [
     {
-      "id": "apprentice_seniority",
-      "institute": "seniority",
-      "variant": "apprentice",
-      "discriminant": "applies_when.trigger = path",
-      "rule": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
-      "calculation": "ccnl/scuole-materne-fism:coverage.notes",
-      "state": "unverified",
-      "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "scuole-materne-fism/apprentice_seniority"
-        ]
-      }
-    },
-    {
       "id": "apprenticeship_identity_track",
       "institute": "base_salary",
       "variant": "apprentice",
