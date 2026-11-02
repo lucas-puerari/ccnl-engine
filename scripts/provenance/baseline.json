@@ -1239,7 +1239,6 @@
       "rsa-aiop/seniority_premium_2023"
     ],
     "agreement/sanita-aran.json": [
-      "sanita-aran/nursing_specificity_allowance",
       "sanita-aran/renewal_2025_2027_not_modelled"
     ],
     "agreement/sanita-privata-aiop-aris.json": [
@@ -1321,8 +1320,7 @@
       "tessile-pmi-uniontessile/other_subsectors_tables"
     ],
     "agreement/tessile-smi.json": [
-      "tessile-smi/apprentice_seniority",
-      "tessile-smi/december_2024_proportional_tranche"
+      "tessile-smi/apprentice_seniority"
     ],
     "agreement/trasporto-aereo-assaeroporti.json": [
       "trasporto-aereo-assaeroporti/apprentice_seniority",

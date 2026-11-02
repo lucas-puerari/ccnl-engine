@@ -55,18 +55,8 @@
   "coverage": {
     "notes": [
       {
-        "kind": "simplification",
-        "text": "December 2024 tranche (01/12/2024): per-level values derived proportionally from the +EUR 95 increase at grade 4 (2024 SMI renewal, source filctemcgil.it). Rationale: Dec-2024 increment = 95/152 = 5/8 of the total increase Nov-2024→Jan-2026; verified by exact closure on all levels against Jan-2026 values from kitech.it.",
-        "capability": "base_salary",
-        "monetary_impact": "unknown",
-        "limitation": {
-          "variant": "december_2024_proportional_tranche",
-          "applies_when": {
-            "trigger": "run",
-            "effective_from": "2024-12-01"
-          },
-          "remediation": "Source the per-level Dec 2024 table (2024 SMI renewal) and replace the proportionally derived values."
-        }
+        "kind": "info",
+        "text": "DECEMBER 2024 TRANCHE (renewal of 11 November 2024, Tabella E.R.N. p. 37): the ERN of each level from December 2024 is read off the table (level 1 1.379,36, not the 1401.94 the parameters gave)."
       },
       {
         "kind": "info",
@@ -282,24 +272,31 @@
           {
             "valid_from": "2024-12-01",
             "valid_until": "2026-01-01",
-            "value": "1401.94",
+            "value": "1379.36",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "tessile-smi",
-                  "title": "tessile-smi",
+                  "document_id": "filctem-rinnovo-ccnl-tessile-2024-2027",
+                  "title": "Rinnovo del CCNL Tessile-Abbigliamento-Moda 2024-2027, firmato (FILCTEM-CGIL)",
                   "kind": "associazione",
-                  "url": "https://www.sistemamodaitalia.com/"
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/tessile_abbigliamento/241111-TESSILE_RINNOVO%20CCNL2024-2027.pdf",
+                  "published_on": "2024-11-11",
+                  "sha256": "58c099d2ebc5e86dfc136be93593d792a104c94458a96b5b2c66c93b9d78e8e3"
                 },
-                "section": "Tabella retributiva"
+                "page": "37",
+                "section": "Tabella E.R.N. fino al 31 marzo 2027, column 'ERN da dicembre 2024'",
+                "quote": "1 1.379,36 €"
               },
+              "transformation": "The ERN of level 1 from December 2024: 1379.36.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-02T09:20:21Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "effective_from": "2024-12-01"
+              },
+              "note": "Read on the page image. Level 1 was 1401.94, derived from the parameters; the table prints 1.379,36."
             }
           },
           {
@@ -407,19 +404,26 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "tessile-smi",
-                  "title": "tessile-smi",
+                  "document_id": "filctem-rinnovo-ccnl-tessile-2024-2027",
+                  "title": "Rinnovo del CCNL Tessile-Abbigliamento-Moda 2024-2027, firmato (FILCTEM-CGIL)",
                   "kind": "associazione",
-                  "url": "https://www.sistemamodaitalia.com/"
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/tessile_abbigliamento/241111-TESSILE_RINNOVO%20CCNL2024-2027.pdf",
+                  "published_on": "2024-11-11",
+                  "sha256": "58c099d2ebc5e86dfc136be93593d792a104c94458a96b5b2c66c93b9d78e8e3"
                 },
-                "section": "Tabella retributiva"
+                "page": "37",
+                "section": "Tabella E.R.N. fino al 31 marzo 2027, column 'ERN da dicembre 2024'",
+                "quote": "2 1.708,15 €"
               },
+              "transformation": "The ERN of level 2 from December 2024: 1708.15.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-02T09:20:21Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "effective_from": "2024-12-01"
+              },
+              "note": "Read on the page image. Level 1 was 1401.94, derived from the parameters; the table prints 1.379,36."
             }
           },
           {
@@ -527,19 +531,26 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "tessile-smi",
-                  "title": "tessile-smi",
+                  "document_id": "filctem-rinnovo-ccnl-tessile-2024-2027",
+                  "title": "Rinnovo del CCNL Tessile-Abbigliamento-Moda 2024-2027, firmato (FILCTEM-CGIL)",
                   "kind": "associazione",
-                  "url": "https://www.sistemamodaitalia.com/"
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/tessile_abbigliamento/241111-TESSILE_RINNOVO%20CCNL2024-2027.pdf",
+                  "published_on": "2024-11-11",
+                  "sha256": "58c099d2ebc5e86dfc136be93593d792a104c94458a96b5b2c66c93b9d78e8e3"
                 },
-                "section": "Tabella retributiva"
+                "page": "37",
+                "section": "Tabella E.R.N. fino al 31 marzo 2027, column 'ERN da dicembre 2024'",
+                "quote": "2bis 1.746,16 €"
               },
+              "transformation": "The ERN of level 2bis from December 2024: 1746.16.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-02T09:20:21Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "effective_from": "2024-12-01"
+              },
+              "note": "Read on the page image. Level 1 was 1401.94, derived from the parameters; the table prints 1.379,36."
             }
           },
           {
@@ -647,19 +658,26 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "tessile-smi",
-                  "title": "tessile-smi",
+                  "document_id": "filctem-rinnovo-ccnl-tessile-2024-2027",
+                  "title": "Rinnovo del CCNL Tessile-Abbigliamento-Moda 2024-2027, firmato (FILCTEM-CGIL)",
                   "kind": "associazione",
-                  "url": "https://www.sistemamodaitalia.com/"
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/tessile_abbigliamento/241111-TESSILE_RINNOVO%20CCNL2024-2027.pdf",
+                  "published_on": "2024-11-11",
+                  "sha256": "58c099d2ebc5e86dfc136be93593d792a104c94458a96b5b2c66c93b9d78e8e3"
                 },
-                "section": "Tabella retributiva"
+                "page": "37",
+                "section": "Tabella E.R.N. fino al 31 marzo 2027, column 'ERN da dicembre 2024'",
+                "quote": "3 1.798,45 €"
               },
+              "transformation": "The ERN of level 3 from December 2024: 1798.45.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-02T09:20:21Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "effective_from": "2024-12-01"
+              },
+              "note": "Read on the page image. Level 1 was 1401.94, derived from the parameters; the table prints 1.379,36."
             }
           },
           {
@@ -767,19 +785,26 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "tessile-smi",
-                  "title": "tessile-smi",
+                  "document_id": "filctem-rinnovo-ccnl-tessile-2024-2027",
+                  "title": "Rinnovo del CCNL Tessile-Abbigliamento-Moda 2024-2027, firmato (FILCTEM-CGIL)",
                   "kind": "associazione",
-                  "url": "https://www.sistemamodaitalia.com/"
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/tessile_abbigliamento/241111-TESSILE_RINNOVO%20CCNL2024-2027.pdf",
+                  "published_on": "2024-11-11",
+                  "sha256": "58c099d2ebc5e86dfc136be93593d792a104c94458a96b5b2c66c93b9d78e8e3"
                 },
-                "section": "Tabella retributiva"
+                "page": "37",
+                "section": "Tabella E.R.N. fino al 31 marzo 2027, column 'ERN da dicembre 2024'",
+                "quote": "3bis 1.839,08 €"
               },
+              "transformation": "The ERN of level 3bis from December 2024: 1839.08.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-02T09:20:21Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "effective_from": "2024-12-01"
+              },
+              "note": "Read on the page image. Level 1 was 1401.94, derived from the parameters; the table prints 1.379,36."
             }
           },
           {
@@ -887,19 +912,26 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "tessile-smi",
-                  "title": "tessile-smi",
+                  "document_id": "filctem-rinnovo-ccnl-tessile-2024-2027",
+                  "title": "Rinnovo del CCNL Tessile-Abbigliamento-Moda 2024-2027, firmato (FILCTEM-CGIL)",
                   "kind": "associazione",
-                  "url": "https://www.sistemamodaitalia.com/"
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/tessile_abbigliamento/241111-TESSILE_RINNOVO%20CCNL2024-2027.pdf",
+                  "published_on": "2024-11-11",
+                  "sha256": "58c099d2ebc5e86dfc136be93593d792a104c94458a96b5b2c66c93b9d78e8e3"
                 },
-                "section": "Tabella retributiva"
+                "page": "37",
+                "section": "Tabella E.R.N. fino al 31 marzo 2027, column 'ERN da dicembre 2024'",
+                "quote": "4 1.881,95 €"
               },
+              "transformation": "The ERN of level 4 from December 2024: 1881.95.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-02T09:20:21Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "effective_from": "2024-12-01"
+              },
+              "note": "Read on the page image. Level 1 was 1401.94, derived from the parameters; the table prints 1.379,36."
             }
           },
           {
@@ -1007,19 +1039,26 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "tessile-smi",
-                  "title": "tessile-smi",
+                  "document_id": "filctem-rinnovo-ccnl-tessile-2024-2027",
+                  "title": "Rinnovo del CCNL Tessile-Abbigliamento-Moda 2024-2027, firmato (FILCTEM-CGIL)",
                   "kind": "associazione",
-                  "url": "https://www.sistemamodaitalia.com/"
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/tessile_abbigliamento/241111-TESSILE_RINNOVO%20CCNL2024-2027.pdf",
+                  "published_on": "2024-11-11",
+                  "sha256": "58c099d2ebc5e86dfc136be93593d792a104c94458a96b5b2c66c93b9d78e8e3"
                 },
-                "section": "Tabella retributiva"
+                "page": "37",
+                "section": "Tabella E.R.N. fino al 31 marzo 2027, column 'ERN da dicembre 2024'",
+                "quote": "5 1.978,11 €"
               },
+              "transformation": "The ERN of level 5 from December 2024: 1978.11.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-02T09:20:21Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "effective_from": "2024-12-01"
+              },
+              "note": "Read on the page image. Level 1 was 1401.94, derived from the parameters; the table prints 1.379,36."
             }
           },
           {
@@ -1127,19 +1166,26 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "tessile-smi",
-                  "title": "tessile-smi",
+                  "document_id": "filctem-rinnovo-ccnl-tessile-2024-2027",
+                  "title": "Rinnovo del CCNL Tessile-Abbigliamento-Moda 2024-2027, firmato (FILCTEM-CGIL)",
                   "kind": "associazione",
-                  "url": "https://www.sistemamodaitalia.com/"
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/tessile_abbigliamento/241111-TESSILE_RINNOVO%20CCNL2024-2027.pdf",
+                  "published_on": "2024-11-11",
+                  "sha256": "58c099d2ebc5e86dfc136be93593d792a104c94458a96b5b2c66c93b9d78e8e3"
                 },
-                "section": "Tabella retributiva"
+                "page": "37",
+                "section": "Tabella E.R.N. fino al 31 marzo 2027, column 'ERN da dicembre 2024'",
+                "quote": "6 2.111,53 €"
               },
+              "transformation": "The ERN of level 6 from December 2024: 2111.53.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-02T09:20:21Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "effective_from": "2024-12-01"
+              },
+              "note": "Read on the page image. Level 1 was 1401.94, derived from the parameters; the table prints 1.379,36."
             }
           },
           {
@@ -1247,19 +1293,26 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "tessile-smi",
-                  "title": "tessile-smi",
+                  "document_id": "filctem-rinnovo-ccnl-tessile-2024-2027",
+                  "title": "Rinnovo del CCNL Tessile-Abbigliamento-Moda 2024-2027, firmato (FILCTEM-CGIL)",
                   "kind": "associazione",
-                  "url": "https://www.sistemamodaitalia.com/"
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/tessile_abbigliamento/241111-TESSILE_RINNOVO%20CCNL2024-2027.pdf",
+                  "published_on": "2024-11-11",
+                  "sha256": "58c099d2ebc5e86dfc136be93593d792a104c94458a96b5b2c66c93b9d78e8e3"
                 },
-                "section": "Tabella retributiva"
+                "page": "37",
+                "section": "Tabella E.R.N. fino al 31 marzo 2027, column 'ERN da dicembre 2024'",
+                "quote": "7 2.250,10 €"
               },
+              "transformation": "The ERN of level 7 from December 2024: 2250.10.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-02T09:20:21Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "effective_from": "2024-12-01"
+              },
+              "note": "Read on the page image. Level 1 was 1401.94, derived from the parameters; the table prints 1.379,36."
             }
           },
           {
@@ -1367,19 +1420,26 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "tessile-smi",
-                  "title": "tessile-smi",
+                  "document_id": "filctem-rinnovo-ccnl-tessile-2024-2027",
+                  "title": "Rinnovo del CCNL Tessile-Abbigliamento-Moda 2024-2027, firmato (FILCTEM-CGIL)",
                   "kind": "associazione",
-                  "url": "https://www.sistemamodaitalia.com/"
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/tessile_abbigliamento/241111-TESSILE_RINNOVO%20CCNL2024-2027.pdf",
+                  "published_on": "2024-11-11",
+                  "sha256": "58c099d2ebc5e86dfc136be93593d792a104c94458a96b5b2c66c93b9d78e8e3"
                 },
-                "section": "Tabella retributiva"
+                "page": "37",
+                "section": "Tabella E.R.N. fino al 31 marzo 2027, column 'ERN da dicembre 2024'",
+                "quote": "8 2.385,33 €"
               },
+              "transformation": "The ERN of level 8 from December 2024: 2385.33.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-02T09:20:21Z",
                 "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "effective_from": "2024-12-01"
+              },
+              "note": "Read on the page image. Level 1 was 1401.94, derived from the parameters; the table prints 1.379,36."
             }
           },
           {
@@ -1652,7 +1712,7 @@
     "effective_until": null,
     "source": "https://www.sistemamodaitalia.com/",
     "verification_status": "unverified",
-    "source_hash": "44728d8d0a9b8cab28093f35cfa8a72d4de6e0b97ee38b5400bb9b33ad94b581",
+    "source_hash": "f05d317746c847429444deebf443792f0f39b64d580935c2cdb2c946e716c0bc",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

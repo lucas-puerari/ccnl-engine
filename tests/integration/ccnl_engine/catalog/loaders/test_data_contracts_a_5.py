@@ -143,11 +143,32 @@ class TestLoadSanitaAran:
         ccnl = load_ccnl("sanita-aran")
         assert ccnl.parameters.hourly_divisor.value_at(date(2026, 1, 1)) == Decimal(156)
 
-    def test_sanita_aran_no_fixed_allowances(self) -> None:
-        """Conglobated model: all levels have no fixed allowances."""
+    @pytest.mark.parametrize(
+        ("level", "on", "amount"),
+        [
+            ("PROFESSIONISTI", date(2023, 6, 1), "72.79"),
+            ("PROFESSIONISTI", date(2024, 6, 1), "80.73"),
+            ("PROFESSIONISTI", date(2025, 6, 1), "87.79"),
+            ("ASSISTENTI", date(2025, 6, 1), "78.27"),
+            ("OPERATORI", date(2025, 6, 1), "73.41"),
+        ],
+    )
+    def test_sanita_aran_nursing_allowance(
+        self, level: str, on: date, amount: str
+    ) -> None:
+        """Art. 65 Tabella 3 p. 108: 12 months, role infermiere."""
         ccnl = load_ccnl("sanita-aran")
-        for lv in ccnl.levels:
-            assert lv.fixed_allowances == ()
+        (allowance,) = next(
+            lv for lv in ccnl.levels if lv.code == level
+        ).fixed_allowances
+        assert allowance.monthly.value_at(on) == Decimal(amount)
+        assert (allowance.role, allowance.months_per_year) == ("infermiere", 12)
+
+    @pytest.mark.parametrize("level", ["SUPPORTO", "ELEVATA_QUALIFICAZIONE"])
+    def test_sanita_aran_no_nursing_allowance(self, level: str) -> None:
+        """No nursing profile in the support and high-qualification areas."""
+        ccnl = load_ccnl("sanita-aran")
+        assert next(lv for lv in ccnl.levels if lv.code == level).fixed_allowances == ()
 
     def test_sanita_aran_tax_sector(self) -> None:
         """Contract declares PUBBLICA_AMMINISTRAZIONE tax sector."""

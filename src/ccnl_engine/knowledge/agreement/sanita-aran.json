@@ -391,7 +391,57 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "IND_SPECIFICITA_INFERMIERISTICA",
+          "description": "Indennità di specificità infermieristica (Art. 104 CCNL 2.11.2022, Art. 65 CCNL 27.10.2025)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2023-01-01",
+                "valid_until": "2024-01-01",
+                "value": "62.81"
+              },
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": "2025-01-01",
+                "value": "67.32"
+              },
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "73.41"
+              }
+            ]
+          },
+          "role": "infermiere",
+          "months_per_year": 12,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "aran-ccnl-comparto-sanita-2022-2024",
+                "title": "CCNL Comparto Sanità 2022-2024, 27 ottobre 2025 (ARAN)",
+                "kind": "associazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2025/10/2025_10_27_COMP-SANITA_2022-2024.pdf",
+                "published_on": "2025-10-27",
+                "sha256": "44703973da37ba07c1c1455795c18e710a596de00a28d59bbc462662f678235d"
+              },
+              "page": "108",
+              "section": "Tabella 3 - Nuovi valori dell'indennità di specificità infermieristica (Art. 65)",
+              "quote": "Valori mensili lordi in Euro da corrispondere per 12 mensilità [...] Area degli OPERATORI (3) 67,32 73,41. L'indennità è corrisposta ai seguenti profili: Infermiere generico, Infermiere psichiatrico con un anno di corso, Puericultrice."
+            },
+            "transformation": "62.81 from 2021 (Tabella H of the CCNL 2.11.2022, p. 170), 67.32 from 1 January 2024, 73.41 from 1 January 2025; 12 months, out of the tredicesima (Art. 60 c. 2, p. 88); for the nursing profiles of the area (role infermiere).",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-02T09:20:21Z",
+              "verification_status": "unverified",
+              "effective_from": "2023-01-01"
+            }
+          }
+        }
+      ],
       "provenance": {
         "status": "derived",
         "location": {
@@ -484,7 +534,57 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "IND_SPECIFICITA_INFERMIERISTICA",
+          "description": "Indennità di specificità infermieristica (Art. 104 CCNL 2.11.2022, Art. 65 CCNL 27.10.2025)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2023-01-01",
+                "valid_until": "2024-01-01",
+                "value": "66.97"
+              },
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": "2025-01-01",
+                "value": "71.77"
+              },
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "78.27"
+              }
+            ]
+          },
+          "role": "infermiere",
+          "months_per_year": 12,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "aran-ccnl-comparto-sanita-2022-2024",
+                "title": "CCNL Comparto Sanità 2022-2024, 27 ottobre 2025 (ARAN)",
+                "kind": "associazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2025/10/2025_10_27_COMP-SANITA_2022-2024.pdf",
+                "published_on": "2025-10-27",
+                "sha256": "44703973da37ba07c1c1455795c18e710a596de00a28d59bbc462662f678235d"
+              },
+              "page": "108",
+              "section": "Tabella 3 - Nuovi valori dell'indennità di specificità infermieristica (Art. 65)",
+              "quote": "Valori mensili lordi in Euro da corrispondere per 12 mensilità [...] Area degli ASSISTENTI (2) 71,77 78,27. L'indennità è corrisposta ai seguenti profili: Infermiere generico o psichiatrico con un anno di corso senior, Puericultrice senior."
+            },
+            "transformation": "66.97 from 2021 (Tabella H of the CCNL 2.11.2022, p. 170), 71.77 from 1 January 2024, 78.27 from 1 January 2025; 12 months, out of the tredicesima (Art. 60 c. 2, p. 88); for the nursing profiles of the area (role infermiere).",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-02T09:20:21Z",
+              "verification_status": "unverified",
+              "effective_from": "2023-01-01"
+            }
+          }
+        }
+      ],
       "provenance": {
         "status": "derived",
         "location": {
@@ -577,7 +677,57 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "IND_SPECIFICITA_INFERMIERISTICA",
+          "description": "Indennità di specificità infermieristica (Art. 104 CCNL 2.11.2022, Art. 65 CCNL 27.10.2025)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2023-01-01",
+                "valid_until": "2024-01-01",
+                "value": "72.79"
+              },
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": "2025-01-01",
+                "value": "80.73"
+              },
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "87.79"
+              }
+            ]
+          },
+          "role": "infermiere",
+          "months_per_year": 12,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "aran-ccnl-comparto-sanita-2022-2024",
+                "title": "CCNL Comparto Sanità 2022-2024, 27 ottobre 2025 (ARAN)",
+                "kind": "associazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2025/10/2025_10_27_COMP-SANITA_2022-2024.pdf",
+                "published_on": "2025-10-27",
+                "sha256": "44703973da37ba07c1c1455795c18e710a596de00a28d59bbc462662f678235d"
+              },
+              "page": "108",
+              "section": "Tabella 3 - Nuovi valori dell'indennità di specificità infermieristica (Art. 65)",
+              "quote": "Valori mensili lordi in Euro da corrispondere per 12 mensilità [...] Area dei PROFESSIONISTI DELLA SALUTE e dei FUNZIONARI (1) 80,73 87,79. L'indennità è corrisposta ai seguenti profili: Infermiere, Infermiere pediatrico, Infermiere senior, Infermiere pediatrico senior."
+            },
+            "transformation": "72.79 from 2021 (Tabella H of the CCNL 2.11.2022, p. 170), 80.73 from 1 January 2024, 87.79 from 1 January 2025; 12 months, out of the tredicesima (Art. 60 c. 2, p. 88); for the nursing profiles of the area (role infermiere).",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-02T09:20:21Z",
+              "verification_status": "unverified",
+              "effective_from": "2023-01-01"
+            }
+          }
+        }
+      ],
       "provenance": {
         "status": "derived",
         "location": {
@@ -707,17 +857,8 @@
         "text": "Seniority via DEP (Differenziali Economici di Professionalità) per Art. 60 Fondo incarichi: selective procedure, not automatic — maximum_count=0."
       },
       {
-        "kind": "simplification",
-        "text": "Indennità di specificità infermieristica (Art. 62, Tabella 3) not modelled as fixed_allowance — applies only to specific nursing profiles (infermieri, ostetriche), not universally to all area members.",
-        "capability": "base_salary",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "nursing_specificity_allowance",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Model l'indennità di specificità infermieristica (Art. 62, Tabella 3) as an allowance gated by a role (infermieri, ostetriche) or record a limitation."
-        }
+        "kind": "info",
+        "text": "NURSING ALLOWANCE (Art. 104 CCNL 2.11.2022, Tabella H p. 170; Art. 65 CCNL 27.10.2025, Tabella 3 p. 108): the indennità di specificità infermieristica of the nursing profiles of each area, 12 months a year and out of the tredicesima (Art. 60 c. 2), allowance IND_SPECIFICITA_INFERMIERISTICA for the role infermiere. The ostetriche take the indennità tutela del malato of Tabella 4 instead, not modelled."
       },
       {
         "kind": "info",
@@ -749,7 +890,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.quotidianosanita.it/allegati/allegato1736872056.pdf",
     "verification_status": "unverified",
-    "source_hash": "eabcac08aa7000f4018c467990a09dc9384a8d49e1208c04a008c355e269d5ca",
+    "source_hash": "438074a644fc37b8a80e39b4ee9351c88f8149007c8adf91d6be0e6c3feb4f35",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
