@@ -7,7 +7,8 @@ and the impiegati.  A band naming sub-sectors applies only to an employer
 of one of them (``EmployerProfile.subsector``), a band naming categories
 only to a worker of one of them.  When the employer does not state the
 sub-sector, the run is priced with the first sub-sector the bands name (the
-first table of the CCNL) and names the missing fact.
+first table of the CCNL) and names the missing fact.  The supplement bands
+of ordinary night, holiday and shift hours follow the same rule.
 """
 
 from __future__ import annotations
@@ -20,20 +21,25 @@ if TYPE_CHECKING:
     from ccnl_engine.agreement.facade import CCNL
     from ccnl_engine.employment.category.models import WorkerCategory
     from ccnl_engine.working_time.models import OvertimeBand
+    from ccnl_engine.working_time.supplement.models import SupplementBand
 
 __all__ = ["subsectors_of", "with_subsector"]
 
 
 def subsectors_of(ccnl: CCNL) -> frozenset[str]:
-    """Return the sub-sectors the overtime bands and permits of ``ccnl`` name.
+    """Return the sub-sectors the time bands and permits of ``ccnl`` name.
 
     Returns:
-        Every sub-sector code of the bands and of the week absorptions of
-        the permits, empty when none names one.
+        Every sub-sector code of the overtime and supplement bands and of the
+        week absorptions of the permits, empty when none names one.
     """
     rules = ccnl.work_rules
     supplements = None if rules is None else rules.time_supplements
-    bands = () if supplements is None else supplements.overtime_bands
+    bands: tuple[OvertimeBand | SupplementBand, ...] = (
+        ()
+        if supplements is None
+        else (*supplements.overtime_bands, *supplements.supplement_bands)
+    )
     leave = None if rules is None else rules.leave_rules
     permits = () if leave is None else leave.permits
     return frozenset(code for band in bands for code in band.subsectors) | frozenset(
@@ -71,32 +77,43 @@ def with_subsector(
         )
     rules = ccnl.work_rules
     supplements = None if rules is None else rules.time_supplements
+    bands: tuple[OvertimeBand | SupplementBand, ...] = (
+        ()
+        if supplements is None
+        else (*supplements.overtime_bands, *supplements.supplement_bands)
+    )
     if (
         rules is None
         or supplements is None
-        or not any(b.subsectors or b.categories for b in supplements.overtime_bands)
+        or not any(b.subsectors or b.categories for b in bands)
     ):
         return ccnl, False
-    first = next(
-        (b.subsectors[0] for b in supplements.overtime_bands if b.subsectors), None
-    )
+    first = next((b.subsectors[0] for b in bands if b.subsectors), None)
     stated = subsector if subsector is not None else first
-    if category is None and any(
-        b.categories and stated in b.subsectors for b in supplements.overtime_bands
-    ):
+    if category is None and any(b.categories and stated in b.subsectors for b in bands):
         msg = (
             f"the overtime of sub-sector {stated!r} of {ccnl.meta.ccnl_id} "
             "differs by category: state Employment.category"
         )
         raise InvalidInputError(msg, field="Employment.category", feature="overtime")
-    kept = tuple(b for b in supplements.overtime_bands if _applies(b, stated, category))
-    supplements = supplements.model_copy(update={"overtime_bands": kept})
+    supplements = supplements.model_copy(
+        update={
+            "overtime_bands": tuple(
+                b for b in supplements.overtime_bands if _applies(b, stated, category)
+            ),
+            "supplement_bands": tuple(
+                b for b in supplements.supplement_bands if _applies(b, stated, category)
+            ),
+        }
+    )
     work = rules.model_copy(update={"time_supplements": supplements})
     return ccnl.model_copy(update={"work_rules": work}), bool(known) and not subsector
 
 
 def _applies(
-    band: OvertimeBand, subsector: str | None, category: WorkerCategory | None
+    band: OvertimeBand | SupplementBand,
+    subsector: str | None,
+    category: WorkerCategory | None,
 ) -> bool:
     """Return whether ``band`` applies to the sub-sector and category.
 

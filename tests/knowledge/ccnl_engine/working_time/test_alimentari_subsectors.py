@@ -105,7 +105,9 @@ def _with_bands(*bands: OvertimeBand) -> CCNL:
     rules = _CCNL.work_rules
     assert rules is not None
     assert rules.time_supplements is not None
-    supplements = rules.time_supplements.model_copy(update={"overtime_bands": bands})
+    supplements = rules.time_supplements.model_copy(
+        update={"overtime_bands": bands, "supplement_bands": ()}
+    )
     work = rules.model_copy(update={"time_supplements": supplements})
     return _CCNL.model_copy(update={"work_rules": work})
 
@@ -161,3 +163,57 @@ def test_the_errors_name_their_field(
         with_subsector(_CCNL, subsector, category)
 
     assert (raised.value.field, raised.value.feature) == (field, feature)
+
+
+def _supplements(subsector: str, category: WorkerCategory) -> dict[str, Decimal]:
+    ccnl, _ = with_subsector(_CCNL, subsector, category)
+    assert ccnl.work_rules is not None
+    supplements = ccnl.work_rules.time_supplements
+    assert supplements is not None
+    found: dict[str, Decimal] = {}
+    for band in supplements.supplement_bands:
+        value = band.rate.periods[-1].value
+        assert value is not None
+        assert band.work.value not in found, band.code
+        found[band.work.value] = value
+    return found
+
+
+@pytest.mark.parametrize(
+    ("subsector", "category", "rest", "holiday", "night", "shift"),
+    [
+        ("carni", _OPERAIO, "0.50", "0.50", "0.40", "0.30"),
+        ("vini_liquori", _IMPIEGATO, "0.65", "0.65", "0.50", "0.225"),
+        ("bevande_gassate", _OPERAIO, "0.40", "0.40", "0.30", "0.21"),
+        ("bevande_gassate", _IMPIEGATO, "0.60", "0.60", "0.45", "0.18"),
+        ("distillatori", _OPERAIO, "0.55", "0.50", "0.55", "0.15"),
+        ("risiera", _IMPIEGATO, "0.56", "0.65", "0.45", "0.165"),
+        ("conserve_ittiche", _OPERAIO, "0.40", "0.40", "0.35", "0.21"),
+        ("avicoli", _IMPIEGATO, "0.65", "0.65", "0.50", "0.30"),
+    ],
+)
+def test_the_ordinary_hour_premiums_of_the_table_and_column(
+    subsector: str,
+    category: WorkerCategory,
+    rest: str,
+    holiday: str,
+    night: str,
+    shift: str,
+) -> None:
+    """Rows 2, 4, 5 and the night-shift row (2009 rate), Sunday 10%."""
+    assert _supplements(subsector, category) == {
+        "rest_day": Decimal(rest),
+        "holiday": Decimal(holiday),
+        "night": Decimal(night),
+        "night_shift": Decimal(shift),
+        "sunday": Decimal("0.10"),
+    }
+
+
+def test_a_ccnl_without_sub_sectors_keeps_its_supplement_bands() -> None:
+    """Chimica names no sub-sector: its bands pass through unchanged."""
+    chimica = load_ccnl("chimica-farmaceutica-federchimica")
+    ccnl, unknown = with_subsector(chimica, None, _OPERAIO)
+
+    assert ccnl is chimica
+    assert not unknown
