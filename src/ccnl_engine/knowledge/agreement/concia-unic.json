@@ -7,7 +7,7 @@
     "effective_until": null,
     "published_at": "2026-09-11",
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
-    "source_hash": "a9f40e0ace916247de73c7148c92332d6437f3c8060bd38cd32b01847b131717",
+    "source_hash": "9e9fb7f85e4fac184733f39f380538d2f1682edd3cd27807d8791cf6ec38d00d",
     "verification_status": "verified",
     "source_type": "contracting_party"
   },
@@ -254,7 +254,8 @@
           "verified_at": "2026-10-11T18:49:35Z",
           "review_id": "2026-10-11-ai"
         }
-      }
+      },
+      "apprentice_level_amount": true
     },
     "accrual_rule": {
       "min_days": 15,
@@ -3738,24 +3739,12 @@
         }
       },
       {
-        "kind": "simplification",
-        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
-        "capability": "seniority",
-        "monetary_impact": "unknown",
-        "limitation": {
-          "variant": "apprentice_seniority",
-          "applies_when": {
-            "trigger": "path",
-            "contract_types": [
-              "apprentice"
-            ]
-          },
-          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
-        }
+        "kind": "info",
+        "text": "SICKNESS: seniority bands of art. 60 modelled as a cumulation (8, 10, 12 months of comporto within 36 months; 3, 4, 5 months in full and the rest at half, on the net pay); restarts after 4 months without sickness, from the 16th day of a hospital stay (within the episode) and 12 months after the end of the full pay; comporto 2, 3, 4 months longer for an invalidating disease; hospital stays over 5 days (60 at most) and periodic checks of an oncological illness left out of the comporto."
       },
       {
         "kind": "info",
-        "text": "SICKNESS: seniority bands of art. 60 modelled as a cumulation (8, 10, 12 months of comporto within 36 months; 3, 4, 5 months in full and the rest at half, on the net pay); restarts after 4 months without sickness, from the 16th day of a hospital stay (within the episode) and 12 months after the end of the full pay; comporto 2, 3, 4 months longer for an invalidating disease; hospital stays over 5 days (60 at most) and periodic checks of an oncological illness left out of the comporto."
+        "text": "APPRENTICE SENIORITY (Art. 25, p. 41 of the CCNL testo definitivo 21 January 2021, CNEL B101 n. 148617, sha256 e5f478479583edd9fd8614480cc5ee5d6dc130ad29271067522ed444c8bd9cde): 'L’intero periodo di apprendistato professionalizzante è utile ai fini della maturazione dell’anzianità aziendale, anche ai fini degli aumenti periodici di anzianità; tali aumenti saranno corrisposti nelle misure previste dal livello di appartenenza': seniority_increments.apprentice_level_amount. The renewal of 2024 was not read for a change of the article."
       }
     ]
   },
