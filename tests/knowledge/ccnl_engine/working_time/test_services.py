@@ -86,7 +86,7 @@ class Pilot:
 
 
 _PILOTS = (
-    # Art. 9 punti 2-3, art. 15 punto 1 (minimo + IPO D1 from 1 December
+    # Art. 9 punti 2-4, art. 15 punto 1 (minimo + IPO D1 from 1 December
     # 2025), art. 20 punto 4 (175).
     Pilot(
         "chimica-farmaceutica-federchimica",
@@ -94,7 +94,7 @@ _PILOTS = (
         ("2360.26",),
         "175",
         "0.10",
-        None,
+        "0.50",
         "0.50",
     ),
     # Art. 148, 151 (172), 216 c.1 (25%), 219 (30%), 220 (20%); level 4.
