@@ -44,7 +44,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 36 verified / 23 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 37 verified / 23 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🟢 Verified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🏭 Production | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -64,6 +64,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-13 | claude-opus-5-5 (ai) | Scope of the declared limitations. | corrected | edilizia_impiegati_sickness (the art. 66 treatment beyond two years of service) is recorded on every sickness run of a worker with 24 months of seniority or more, or of unknown seniority. |
 | 2026-10-17 | claude-opus-5-5 (ai) | A year and a termination of an impiegato of the 3rd level against a hand oracle, and the 23 derived rules of the file. | corrected | Engine corrected: at a termination the June pay settles the ratei of the tredicesima; the Prevedi contributo contrattuale, 'applicato anche per 13° e 14° mensilità', was not charged on them (6,50 EUR and its 10% solidarity contribution short), while an extra-month run of the same ratei charges it. The settled ratei now owe it (tests/knowledge/ccnl_engine/pension_fund/services/test_prevedi.py::test_a_termination_owes_the_ratei_it_settles).<br>Engine corrected: the ratei settled at a termination entered the TFR base whole, the EDR included, while the EDR stays out of the TFR base in the monthly pay and in an extra-month run (0,38 EUR of TFR too much here). The settled ratei now leave out the allowances outside the TFR base.<br>Hand oracle (tests/knowledge/ccnl_engine/period/sector, scenarios edilizia-impiegati-year and edilizia-impiegati-june): an impiegato of the 3rd level hired on 1 January 2026 by an employer with 30 employees, across the tranche of March 2026; after the two corrections every payment and the year (gross, contributions, tax, net, TFR, employer cost) match the engine to the cent. The CCNL now covers every total of the definition of done.<br>The 23 derived rules stay derived: the contingenza and EDR of each level (14) are read from the ANCE provincial tables, not tabulated in the CCNL; the Prevedi amounts are rebuilt from two verbali and the fund scheda; two scatti differ between the table (8,2) and the secondary tables (8,22); the payment day of the quattordicesima and the absence divisor are stated transformations. No signatory text states them directly. |
 | 2026-11-02 | claude-opus-5-5 (ai) | The premiums on ordinary hours of Art. 54 (PDF p. 71) and their base of Art. 44 (pp. 66-67). | corrected | Art. 54: supplement_bands ANCE_IMP_* (night 34%, night in periodic shifts 10%, festivo 45%); festivo notturno 50% left as the narrowed limitation.<br>Art. 44 points 1-6, 8, 9 over 173: hourly_base_provenance verified, individual elements included (point 3).<br>A separate session without the reasoning of the extraction re-read art. 54 (p. 71) and art. 44 (pp. 66-67) on the PDF and confirmed the table (34%, 10%, 45%, festivo notturno 50%), the elements 1-6, 8, 9 and the divisor 173; it found the EDR named in neither article: its place in point 9 stays a reading. |
+| 2026-11-02 | claude-opus-5-5 (ai) | Art. 54 (PDF p. 71). | corrected | Art. 54 (p. 71): 'lavoro festivo notturno escluso quello compreso in turni periodici' 50%, confirmed by a separate session without the reasoning of the extraction; no other row covers ordinary night holiday work, and none gives the rate of the periodic shifts it excludes (kept as the ordinary_hours_premiums limitation). |
 
 ## Salary table
 
@@ -139,13 +140,6 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Model the premio di fedeltà on seniority.
 
-!!! warning "edilizia-ance-impiegati/ordinary_hours_premiums · overtime · impact yes · open"
-    Art. 54: the premium of lavoro festivo notturno outside periodic shifts (50%), which the engine has no work for. The night (34%, 10% in shifts) and holiday (45%) premiums on ordinary hours are modelled (supplement_bands ANCE_IMP_*).
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Model the festivo notturno premium of Art. 54.
-
 !!! warning "edilizia-ance-impiegati/special_allowances · base_salary · impact yes · open"
     Art. 47, 50 and 52: the indennità speciale, di cassa and for alta montagna, cassoni and galleria.
 
@@ -180,6 +174,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `territorial_supplement` applies.
 
     **Remediation:** Model the provincial premio di produzione with a fact naming the province, then remove this note.
+
+!!! warning "edilizia-ance-impiegati/ordinary_hours_premiums · overtime · impact yes · open"
+    Art. 54: the 50% of lavoro festivo notturno excludes the work 'compreso in turni periodici', and the table states no rate for it; the engine does not tell a shift worker apart and pays the 50% (supplement_bands ANCE_IMP_FESTIVO_NOTTURNO). The other premiums on ordinary hours are modelled (ANCE_IMP_*).
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Exclude the night holiday work in periodic shifts from the 50% of Art. 54 once a source sets its rate.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

@@ -155,19 +155,6 @@
       },
       {
         "kind": "simplification",
-        "text": "Art. 54: the premium of lavoro festivo notturno outside periodic shifts (50%), which the engine has no work for. The night (34%, 10% in shifts) and holiday (45%) premiums on ordinary hours are modelled (supplement_bands ANCE_IMP_*).",
-        "capability": "overtime",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "ordinary_hours_premiums",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Model the festivo notturno premium of Art. 54."
-        }
-      },
-      {
-        "kind": "simplification",
         "text": "Art. 47, 50 and 52: the indennità speciale, di cassa and for alta montagna, cassoni and galleria.",
         "capability": "base_salary",
         "monetary_impact": "yes",
@@ -229,6 +216,19 @@
             "trigger": "owed"
           },
           "remediation": "Model the provincial premio di produzione with a fact naming the province, then remove this note."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 54: the 50% of lavoro festivo notturno excludes the work 'compreso in turni periodici', and the table states no rate for it; the engine does not tell a shift worker apart and pays the 50% (supplement_bands ANCE_IMP_FESTIVO_NOTTURNO). The other premiums on ordinary hours are modelled (ANCE_IMP_*).",
+        "capability": "overtime",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "ordinary_hours_premiums",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Exclude the night holiday work in periodic shifts from the 50% of Art. 54 once a source sets its rate."
         }
       }
     ]
@@ -2426,7 +2426,7 @@
     "effective_until": null,
     "source": "https://ance.it/wp-content/uploads/allegati/Tabella_nuovi_minimi_orari-_CCNL_2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "8cfdf2b1b44bf3fd2fb9a7d8091577f2bb679e6ca60a365d7e39d31406321349",
+    "source_hash": "3a75c0a9a27f1a55363d6746a55031cd889bab9007eca82b56d980d173e9e8fc",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2794,6 +2794,48 @@
               "review_id": "2026-11-02-ai-ordinary-premiums"
             }
           }
+        },
+        {
+          "code": "ANCE_IMP_FESTIVO_NOTTURNO",
+          "description": "Lavoro festivo notturno escluso quello in turni periodici (art. 54)",
+          "work": "night_holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-02-01",
+                "valid_until": null,
+                "value": "0.50"
+              }
+            ]
+          },
+          "hours_paid_apart": null,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-edilizia-industria-2010-fillea",
+                "title": "CCNL 19 aprile 2010 per i dipendenti delle imprese edili ed affini, testo completo (FILLEA CGIL)",
+                "kind": "associazione",
+                "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL_EDILIZIA_INDUSTRIA_2010_TESTO_COMPLETO.pdf",
+                "published_on": "2010-04-19",
+                "sha256": "ddd11bb850de2e7c642eb662b59e40e36c66e3a534162c505aa1c9a94ac5a00b"
+              },
+              "section": "Art. 54 - Lavoro straordinario, notturno e festivo",
+              "quote": "lavoro festivo notturno escluso quello compreso in turni periodici............................................................................................. 50%",
+              "page": "71"
+            },
+            "transformation": "50% on the elements of art. 44; the hours paid apart are not settled, as for ANCE_IMP_FESTIVO.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-02T16:41:58Z",
+              "effective_from": "2025-02-01",
+              "verification_status": "verified",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-02T16:41:58Z",
+              "review_id": "2026-11-02-ai-night-holiday"
+            }
+          }
         }
       ]
     },
@@ -3011,6 +3053,27 @@
         "independence": "separate_session",
         "checked": [
           "work_rules.time_supplements"
+        ]
+      },
+      {
+        "id": "2026-11-02-ai-night-holiday",
+        "date": "2026-11-02",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 54 (PDF p. 71).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL_EDILIZIA_INDUSTRIA_2010_TESTO_COMPLETO.pdf",
+            "sha256": "ddd11bb850de2e7c642eb662b59e40e36c66e3a534162c505aa1c9a94ac5a00b"
+          }
+        ],
+        "findings": [
+          "Art. 54 (p. 71): 'lavoro festivo notturno escluso quello compreso in turni periodici' 50%, confirmed by a separate session without the reasoning of the extraction; no other row covers ordinary night holiday work, and none gives the rate of the periodic shifts it excludes (kept as the ordinary_hours_premiums limitation)."
+        ],
+        "independence": "separate_session",
+        "checked": [
+          "work_rules.time_supplements.supplement_bands"
         ]
       }
     ],

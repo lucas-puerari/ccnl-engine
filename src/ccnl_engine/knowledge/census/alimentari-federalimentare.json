@@ -167,10 +167,10 @@
       "institute": "overtime",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Art. 31: the premiums the engine has no work for: notturno festivo, Saturday or sixth-day work (birra e malto, avicoli) and the 5% of the two day shifts of the alimenti zootecnici on three continuous shifts (terza nota a verbale). Ordinary night, night-shift, holiday, rest-day and Sunday premiums of each table are modelled (supplement_bands ALIM_*).",
+      "rule": "Art. 31: Saturday or sixth-day work (birra e malto, avicoli), the 5% of the two day shifts of the alimenti zootecnici on three continuous shifts (terza nota a verbale), and the ordinary night holiday work of the sub-sectors whose table has no such row. The other premiums on ordinary hours of each table are modelled (supplement_bands ALIM_*).",
       "calculation": "ccnl/alimentari-federalimentare:coverage.notes",
       "state": "absent",
-      "remediation": "Model the notturno festivo and Saturday premiums of the Art. 31 tables and the zootecnici day-shift 5%.",
+      "remediation": "Model the Saturday premiums of the Art. 31 tables and the zootecnici day-shift 5%.",
       "origin": "seeded",
       "links": {
         "limitations": [

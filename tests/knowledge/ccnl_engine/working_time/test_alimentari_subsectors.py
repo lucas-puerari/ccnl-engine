@@ -180,16 +180,16 @@ def _supplements(subsector: str, category: WorkerCategory) -> dict[str, Decimal]
 
 
 @pytest.mark.parametrize(
-    ("subsector", "category", "rest", "holiday", "night", "shift"),
+    ("subsector", "category", "rest", "holiday", "night", "shift", "night_holiday"),
     [
-        ("carni", _OPERAIO, "0.50", "0.50", "0.40", "0.30"),
-        ("vini_liquori", _IMPIEGATO, "0.65", "0.65", "0.50", "0.225"),
-        ("bevande_gassate", _OPERAIO, "0.40", "0.40", "0.30", "0.21"),
-        ("bevande_gassate", _IMPIEGATO, "0.60", "0.60", "0.45", "0.18"),
-        ("distillatori", _OPERAIO, "0.55", "0.50", "0.55", "0.15"),
-        ("risiera", _IMPIEGATO, "0.56", "0.65", "0.45", "0.165"),
-        ("conserve_ittiche", _OPERAIO, "0.40", "0.40", "0.35", "0.21"),
-        ("avicoli", _IMPIEGATO, "0.65", "0.65", "0.50", "0.30"),
+        ("carni", _OPERAIO, "0.50", "0.50", "0.40", "0.30", "0.50"),
+        ("vini_liquori", _IMPIEGATO, "0.65", "0.65", "0.50", "0.225", "0.65"),
+        ("bevande_gassate", _OPERAIO, "0.40", "0.40", "0.30", "0.21", None),
+        ("bevande_gassate", _IMPIEGATO, "0.60", "0.60", "0.45", "0.18", None),
+        ("distillatori", _OPERAIO, "0.55", "0.50", "0.55", "0.15", None),
+        ("risiera", _IMPIEGATO, "0.56", "0.65", "0.45", "0.165", None),
+        ("conserve_ittiche", _OPERAIO, "0.40", "0.40", "0.35", "0.21", None),
+        ("avicoli", _IMPIEGATO, "0.65", "0.65", "0.50", "0.30", "0.50"),
     ],
 )
 def test_the_ordinary_hour_premiums_of_the_table_and_column(
@@ -199,15 +199,19 @@ def test_the_ordinary_hour_premiums_of_the_table_and_column(
     holiday: str,
     night: str,
     shift: str,
+    night_holiday: str | None,
 ) -> None:
-    """Rows 2, 4, 5 and the night-shift row (2009 rate), Sunday 10%."""
-    assert _supplements(subsector, category) == {
+    """Rows 2, 4, 5, night shift (2009 rate), Sunday 10%, night holiday."""
+    expected = {
         "rest_day": Decimal(rest),
         "holiday": Decimal(holiday),
         "night": Decimal(night),
         "night_shift": Decimal(shift),
         "sunday": Decimal("0.10"),
     }
+    if night_holiday is not None:
+        expected["night_holiday"] = Decimal(night_holiday)
+    assert _supplements(subsector, category) == expected
 
 
 def test_a_ccnl_without_sub_sectors_keeps_its_supplement_bands() -> None:
