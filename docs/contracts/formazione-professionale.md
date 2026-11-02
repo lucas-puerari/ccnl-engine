@@ -36,9 +36,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ✅ |
-| **Limits of this contract** | absence |
+| **Limits of this contract** | — |
 
-1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+0 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -98,13 +98,6 @@ Latest effective values per level (monthly gross, EUR).
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
-
-!!! warning "formazione-professionale/daily_divisor_assumed · absence · impact unknown · open"
-    DAILY DIVISOR: Art. 37 specifies 156 ore/month and 5-day week but does not state a daily divisor explicitly. SIMPLIFICATION: by_26 applied as standard for terziario contracts.
-
-    **Applies when:** `absence` applies.
-
-    **Remediation:** Source the daily quota of the CCNL (Art. 29 and 37) and set daily_divisor_method, then remove this limitation.
 
 !!! note "sickness_inps_daily_base · sickness · impact unknown · resolved"
     The INPS share of a sick day is computed on the INPS daily base of the episode, on the days INPS pays (the weekdays of an operaio, every day but the national holidays on a Sunday of an impiegato, point 7.3 of INPS circ. 134368/1981): the retribuzione media globale giornaliera of the month before the illness (INPS circ. 134368/1981 point 11; circ. 55/2024 Allegato 1), whole or partial month, impiegato or operaio, or for the lavoratori dello spettacolo the average pay of the last 40 daily contributions, capped for a fixed-term worker (INPS circ. 132/2021 par. 2.4). The base is a fact of the payroll history the episode states (SicknessEpisode.inps_base).
@@ -286,6 +279,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     OVERTIME (Art. 39): three rates — diurno +15%, notturno or festivo +30%, notturno+festivo +50%. The combined notturno+festivo band (50%) is not in overtime_bands, although the engine supports it (OvertimeKind.NIGHT_HOLIDAY): such an event needs the caller's multiplier. Art. 41 para 3 (15% supplement for ordinary work at night or on holidays) is not modelled as a supplement band (supplement_bands): such an event needs the caller's amount (review of 2026-10-30)
     
     LEAVE (Art. 43, p. 30): 32 giorni lavorativi of ferie plus 4 giornate di ferie in place of the festività soppresse, 36 days counted on a 6-day week (on a 5-day week each day of ferie is 1.2 working days); twelfths, a month over 15 calendar days counting whole. The text sets no payment of the days not taken.
+    
+    DAILY DIVISOR (Art. 29 c. 5, p. 23): 'La quota giornaliera si determina convenzionalmente, dividendo la retribuzione mensile per 26'; the hourly quota is the monthly pay over 156 (c. 6, Art. 37: 36 hours a week, 156 a month).
     
 
 ## Raw data

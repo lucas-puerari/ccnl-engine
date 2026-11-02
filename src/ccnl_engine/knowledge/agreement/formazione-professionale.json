@@ -84,17 +84,8 @@
         "text": "LEAVE (Art. 43, p. 30): 32 giorni lavorativi of ferie plus 4 giornate di ferie in place of the festività soppresse, 36 days counted on a 6-day week (on a 5-day week each day of ferie is 1.2 working days); twelfths, a month over 15 calendar days counting whole. The text sets no payment of the days not taken."
       },
       {
-        "kind": "simplification",
-        "text": "DAILY DIVISOR: Art. 37 specifies 156 ore/month and 5-day week but does not state a daily divisor explicitly. SIMPLIFICATION: by_26 applied as standard for terziario contracts.",
-        "capability": "absence",
-        "monetary_impact": "unknown",
-        "limitation": {
-          "variant": "daily_divisor_assumed",
-          "applies_when": {
-            "trigger": "run"
-          },
-          "remediation": "Source the daily quota of the CCNL (Art. 29 and 37) and set daily_divisor_method, then remove this limitation."
-        }
+        "kind": "info",
+        "text": "DAILY DIVISOR (Art. 29 c. 5, p. 23): 'La quota giornaliera si determina convenzionalmente, dividendo la retribuzione mensile per 26'; the hourly quota is the monthly pay over 156 (c. 6, Art. 37: 36 hours a week, 156 a month)."
       }
     ]
   },
@@ -1111,7 +1102,7 @@
     "effective_until": null,
     "source": "https://www.cislscuola.it/download/ccnl-formazione-professionale-2024-2027/",
     "verification_status": "verified",
-    "source_hash": "15f9233025680d8769c2a74a8fbe4dba3f57792341f94368d5d42552259c3179",
+    "source_hash": "d6099d162790e00eff55d26d89d146b08ba78d9d370cd7bc36e1b6aa2a63d31f",
     "published_at": "2026-09-11",
     "source_type": "contracting_party"
   },
@@ -1236,18 +1227,24 @@
         "status": "derived",
         "location": {
           "source_document": {
-            "document_id": "formazione-professionale",
-            "title": "CCNL Formazione Professionale (CNOS-FAP/CIOFS-FP/FORMA/CNF)",
+            "document_id": "cislscuola-ccnl-formazione-professionale-2023",
+            "title": "CCNL Formazione Professionale (testo CISL Scuola senza allegati, versione 18/12/2023)",
             "kind": "associazione",
-            "url": "https://www.cislscuola.it/download/ccnl-formazione-professionale-2024-2027/"
+            "url": "https://www.cislscuola.it/uploads/media/OS_CCNL-FP-2023-testo-fine-no-allegati_V181223.pdf",
+            "published_on": "2023-12-18",
+            "sha256": "4ebfebb1bc06c3a8f7c60f2d65a68b8f04dcc4188b695566a8c1b1fa0cd10095"
           },
-          "section": "Art. 37 — 156 ore/mese; divisore giornaliero by_26 per convenzione terziario"
+          "page": "23",
+          "section": "Art. 29 c. 5-6",
+          "quote": "5.La quota giornaliera si determina convenzionalmente, dividendo la retribuzione mensile per 26. 6. La retribuzione oraria, anche ai fini dei vari istituti contrattuali, si determina: retribuzione mensile/156"
         },
+        "transformation": "The daily quota of an absence is the monthly pay over 26 (by_26).",
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-11T00:00:00",
-          "verification_status": "verified",
-          "effective_from": "2024-01-01"
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-02T08:18:46Z",
+          "verification_status": "unverified",
+          "effective_from": "2023-12-18"
         }
       }
     },
