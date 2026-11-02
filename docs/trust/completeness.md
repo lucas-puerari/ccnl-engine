@@ -14,7 +14,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 0/135 CCNLs.** Bundle: 269 weak rules, 528 open limitations (528 with a monetary impact).
+**Complete: 0/135 CCNLs.** Bundle: 269 weak rules, 525 open limitations (525 with a monetary impact).
 
 ## Declared window
 
@@ -56,7 +56,7 @@ Future data, registered apart from the gaps: a contract whose validity ends insi
 | [agenzie-viaggio-fiavet](../contracts/agenzie-viaggio-fiavet.md) | `turismo` | exploratory | — | 21 rows | 21 open requirements; 1 weak rule; 17 monetary limitations; 1 outside_input limitation; 20 non-native capabilities |
 | [alimentari-federalimentare](../contracts/alimentari-federalimentare.md) | `alimentare` | reviewed | — | 23 rows | 23 open requirements; 18 monetary limitations; 3 outside_input limitations; 20 non-native capabilities |
 | [alimentari-pmi-unionalimentari](../contracts/alimentari-pmi-unionalimentari.md) | `alimentare` | exploratory | — | 20 rows | 20 open requirements; 1 weak rule; 17 monetary limitations; 19 non-native capabilities |
-| [alimentaristi-cooperative-e016](../contracts/alimentaristi-cooperative-e016.md) | `alimentare` | exploratory | — | 20 rows | 20 open requirements; 1 weak rule; 17 monetary limitations; 19 non-native capabilities |
+| [alimentaristi-cooperative-e016](../contracts/alimentaristi-cooperative-e016.md) | `alimentare` | exploratory | — | 19 rows | 19 open requirements; 1 weak rule; 16 monetary limitations; 18 non-native capabilities |
 | [anas](../contracts/anas.md) | `trasporti-logistica` | exploratory | — | 22 rows | tables from 2026-03-01; 22 open requirements; 1 weak rule; 19 monetary limitations; 19 non-native capabilities |
 | [assicurazioni-ania](../contracts/assicurazioni-ania.md) | `assicurazioni` | exploratory | — | 26 rows | 26 open requirements; 2 weak rules; 21 monetary limitations; 1 outside_input limitation; 21 non-native capabilities |
 | [attivita-minerarie-assorisorse](../contracts/attivita-minerarie-assorisorse.md) | `materiali-estrattive` | exploratory | — | 23 rows | 23 open requirements; 3 weak rules; 18 monetary limitations; 20 non-native capabilities |
@@ -65,8 +65,8 @@ Future data, registered apart from the gaps: a contract whose validity ends insi
 | [autoscuole-unasca](../contracts/autoscuole-unasca.md) | `servizi-automobilistici` | exploratory | — | 19 rows | 19 open requirements; 1 weak rule; 16 monetary limitations; 18 non-native capabilities |
 | [autostrade-trafori](../contracts/autostrade-trafori.md) | `trasporti-logistica` | exploratory | — | 24 rows | 24 open requirements; 2 weak rules; 20 monetary limitations; 20 non-native capabilities |
 | [aziende-termali-federterme](../contracts/aziende-termali-federterme.md) | `turismo` | exploratory | — | 24 rows | 24 open requirements; 1 weak rule; 20 monetary limitations; 1 outside_input limitation; 22 non-native capabilities |
-| [bancari-abi](../contracts/bancari-abi.md) | `credito` | exploratory | 2026-03-31 | 26 rows | 26 open requirements; 21 monetary limitations; 3 outside_input limitations; 22 non-native capabilities |
-| [bcc-credito-cooperativo](../contracts/bcc-credito-cooperativo.md) | `credito` | exploratory | — | 22 rows | 22 open requirements; 19 monetary limitations; 1 outside_input limitation; 21 non-native capabilities |
+| [bancari-abi](../contracts/bancari-abi.md) | `credito` | exploratory | 2026-03-31 | 25 rows | 25 open requirements; 20 monetary limitations; 3 outside_input limitations; 22 non-native capabilities |
+| [bcc-credito-cooperativo](../contracts/bcc-credito-cooperativo.md) | `credito` | exploratory | — | 21 rows | 21 open requirements; 18 monetary limitations; 1 outside_input limitation; 21 non-native capabilities |
 | [calzaturiero-assocalzaturifici](../contracts/calzaturiero-assocalzaturifici.md) | `pelli-calzature` | exploratory | — | 24 rows | 24 open requirements; 2 weak rules; 20 monetary limitations; 19 non-native capabilities |
 | [carta-cartone-assocarta](../contracts/carta-cartone-assocarta.md) | `carta-grafica` | exploratory | — | 21 rows | 21 open requirements; 1 weak rule; 18 monetary limitations; 20 non-native capabilities |
 | [ced-assoced](../contracts/ced-assoced.md) | `servizi-professionali` | exploratory | — | 23 rows | 23 open requirements; 2 weak rules; 18 monetary limitations; 1 outside_input limitation; 21 non-native capabilities |

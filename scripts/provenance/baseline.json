@@ -664,9 +664,6 @@
     "agreement/alimentari-pmi-unionalimentari.json": [
       "alimentari-pmi-unionalimentari/tranches_2027_2028"
     ],
-    "agreement/alimentaristi-cooperative-e016.json": [
-      "alimentaristi-cooperative-e016/apprentice_seniority"
-    ],
     "agreement/anas.json": [
       "anas/apprentice_seniority"
     ],
@@ -707,13 +704,11 @@
       "bancari-abi/abi_saturday_overtime_and_hourly_base",
       "bancari-abi/abi_sickness_counting",
       "bancari-abi/apprentice_net_equivalent_allowance",
-      "bancari-abi/apprentice_seniority",
       "bancari-abi/ex_ristrutturazione_amount",
       "bancari-abi/inps_sector_rates_unsourced",
       "bancari-abi/scatti_freeze_2013_2014"
     ],
     "agreement/bcc-credito-cooperativo.json": [
-      "bcc-credito-cooperativo/apprentice_seniority",
       "bcc-credito-cooperativo/art3_derogation_apprenticeship",
       "bcc-credito-cooperativo/inps_sector_rates_unsourced",
       "bcc-credito-cooperativo/pre_1998_cohort_scatti"
