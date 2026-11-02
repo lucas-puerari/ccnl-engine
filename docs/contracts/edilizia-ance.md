@@ -44,7 +44,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 33 verified / 7 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 41 verified / 7 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🟢 Verified | The confidence the ruleset declares as a whole |
 | **Readiness** | 👁 Reviewed | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -53,7 +53,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-02-21 |
-| **Last review** | 2026-11-01 |
+| **Last review** | 2026-11-02 |
 | **Latest salary tranche** | 2027-03-01 |
 
 ## Review history
@@ -72,6 +72,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-17 | claude-opus-5-5 (ai) | The rate of the supplementary hours of the part-time workers. | corrected | Art. 78 (pp. 90-91): the operai are paid the supplementary hours with the hourly quota raised by 20%, which 'avrà incidenza su tutti gli istituti retributivi legali e contrattuali, indiretti e differiti, compresi le contribuzioni e gli accantonamenti in Cassa Edile'. The 20% band is added; its incidence on the TFR and the Cassa Edile accruals is not modelled (the engine keeps an overtime pay out of the TFR base), so part_time_supplementary_rate stays open, narrowed to it. The 10% of the flexible clauses is not modelled either. |
 | 2026-10-31 | claude-opus-5-5 (ai) | The comporto and the sick pay of the CCNL counted over several illnesses (work_rules.sickness_rules), read on the signed text. | corrected | Art. 26 (pp. 50-51): the comporto is 270 days of one illness and 'nove mesi nell’arco di 20 mesi consecutivi' of several, 365 days and '12 mesi nell’arco di 24 mesi consecutivi' past three and a half years of seniority; coefficient (e) pays days 181-365. The file kept a comporto of 270 days of one illness: corrected to the windows of 20 and 24 months (comporto_windows) with one illness paid up to day 365. The coefficients were confirmed. |
 | 2026-11-01 | claude-opus-5-5 (ai) | The notice of the operai, Art. 32 (p. 55). | corrected | Art. 32 (p. 55): 7 calendar days up to three years, 10 beyond, from any day, indemnity at the pay of the period: work_rules.notice. Found by a delegated search, checked on the PDF text. |
+| 2026-11-02 | claude-opus-5-5 (ai) | The premiums on ordinary hours of Art. 19 (PDF p. 40) and the hourly base of Art. 24 point 3 (p. 49). | corrected | Art. 19 nn. 2, 4-8, 12: supplement_bands ANCE_* (festivo 45%, night 28%, guardiano 8%, continuous night 16%, day shift 9%, night shift 12%, Sunday with compensatory rest 8%).<br>Art. 24 point 3: the base of the premiums is paga base di fatto, ex contingenza and indennità territoriale di settore: the EDR was in the hourly base of the overtime bands and is now excluded (hourly_base_excluded); the superminimo enters (individual_elements included). |
 
 ## Salary table
 
@@ -153,11 +154,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Model the APE as a Cassa Edile payment.
 
 !!! warning "edilizia-ance/ordinary_hours_premiums · overtime · impact yes · open"
-    Art. 19 and Art. 5: the premiums on ordinary hours (lavoro festivo 45%, notturno 28%, turni 9% and 12%, guardiano 8%, notturno continuativo 16%, festivo notturno 50%, domenicale con riposo compensativo 8%) and the 8% of a Saturday in a six-day week.
+    Art. 19 n. 10 and 12, Art. 5: the premium of lavoro festivo notturno (50%), which the engine has no work for, the exclusion of the shift workers from the 8% of Sunday work with compensatory rest, and the 8% of a Saturday in a six-day week. The other premiums on ordinary hours are modelled (supplement_bands ANCE_*).
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Model the premiums on ordinary hours of Art. 19 and Art. 5.
+    **Remediation:** Model the festivo notturno premium, the shift-worker exclusion of n. 12 and the Saturday premium of Art. 5.
 
 !!! warning "edilizia-ance/hardship_allowances · base_salary · impact yes · open"
     Art. 20-21: the indennità for lavori speciali disagiati, alta montagna and cantiere ferroviario.

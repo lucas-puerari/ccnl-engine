@@ -188,7 +188,7 @@
       },
       {
         "kind": "simplification",
-        "text": "Art. 19 and Art. 5: the premiums on ordinary hours (lavoro festivo 45%, notturno 28%, turni 9% and 12%, guardiano 8%, notturno continuativo 16%, festivo notturno 50%, domenicale con riposo compensativo 8%) and the 8% of a Saturday in a six-day week.",
+        "text": "Art. 19 n. 10 and 12, Art. 5: the premium of lavoro festivo notturno (50%), which the engine has no work for, the exclusion of the shift workers from the 8% of Sunday work with compensatory rest, and the 8% of a Saturday in a six-day week. The other premiums on ordinary hours are modelled (supplement_bands ANCE_*).",
         "capability": "overtime",
         "monetary_impact": "yes",
         "limitation": {
@@ -196,7 +196,7 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Model the premiums on ordinary hours of Art. 19 and Art. 5."
+          "remediation": "Model the festivo notturno premium, the shift-worker exclusion of n. 12 and the Saturday premium of Art. 5."
         }
       },
       {
@@ -1718,13 +1718,73 @@
     "effective_until": null,
     "source": "https://ance.it/wp-content/uploads/allegati/Tabella_nuovi_minimi_orari-_CCNL_2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "eb63f913d6600998d113b2a1fb2eb847a278b6a598298a32757b1182bf9a663b",
+    "source_hash": "fc244527430fb66e04237e25866023b1051a72b49d1ea3ab216842372246817c",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
   "work_rules": {
     "time_supplements": {
       "hourly_base_method": "gross_incl_allowances",
+      "hourly_base_provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-edilizia-industria-2010-fillea",
+            "title": "CCNL 19 aprile 2010 per i dipendenti delle imprese edili ed affini, testo completo (FILLEA CGIL)",
+            "kind": "associazione",
+            "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL_EDILIZIA_INDUSTRIA_2010_TESTO_COMPLETO.pdf",
+            "published_on": "2010-04-19",
+            "sha256": "ddd11bb850de2e7c642eb662b59e40e36c66e3a534162c505aa1c9a94ac5a00b"
+          },
+          "page": "49",
+          "section": "Art. 24 - Elementi della retribuzione, punto 3",
+          "quote": "Ai fini dell’applicazione degli artt. 6, 7, 19, 20, 21, 28, 29, 36 e 77, debbono essere assunti a base di calcolo i seguenti elementi della retribuzione: a) per gli operai che lavorano ad economia: –– paga base di fatto; –– ex indennità di contingenza; –– elemento economico territoriale (in vigore fino al 31 dicembre 2010); –– indennità territoriale di settore;"
+        },
+        "transformation": "The premiums of Art. 19 are on paga base di fatto, ex contingenza and indennità territoriale di settore (point 3 a), the hourly pay of the operai being the monthly minimi over 173 (Allegato A, p. 164): base salary and the CONTINGENZA allowance; the EDR is not listed (hourly_base_excluded). The indennità territoriale di settore is provincial and not in the bundle: the caller's base leaves it out.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-02T15:36:18Z",
+          "effective_from": "2025-02-01",
+          "verification_status": "verified",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-02T15:36:18Z",
+          "review_id": "2026-11-02-ai-ordinary-premiums"
+        }
+      },
+      "hourly_base_excluded": [
+        "EDR"
+      ],
+      "individual_elements": {
+        "in_hourly_base": "included",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-edilizia-industria-2010-fillea",
+              "title": "CCNL 19 aprile 2010 per i dipendenti delle imprese edili ed affini, testo completo (FILLEA CGIL)",
+              "kind": "associazione",
+              "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL_EDILIZIA_INDUSTRIA_2010_TESTO_COMPLETO.pdf",
+              "published_on": "2010-04-19",
+              "sha256": "ddd11bb850de2e7c642eb662b59e40e36c66e3a534162c505aa1c9a94ac5a00b"
+            },
+            "page": "49",
+            "section": "Art. 24 - Elementi della retribuzione, punto 3",
+            "quote": "Ai fini dell’applicazione degli artt. 6, 7, 19, 20, 21, 28, 29, 36 e 77, debbono essere assunti a base di calcolo i seguenti elementi della retribuzione: a) per gli operai che lavorano ad economia: –– paga base di fatto; –– ex indennità di contingenza; –– elemento economico territoriale (in vigore fino al 31 dicembre 2010); –– indennità territoriale di settore;"
+          },
+          "transformation": "The paga base di fatto is 'la paga attribuita all’operaio ad personam (minimo contrattuale più eventuale superminimo)' (point 2): the individual elements enter the hour and every premium.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-02T15:36:18Z",
+            "effective_from": "2025-02-01",
+            "verification_status": "verified",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-02T15:36:18Z",
+            "review_id": "2026-11-02-ai-ordinary-premiums"
+          }
+        }
+      },
       "overtime_bands": [
         {
           "code": "OT_DIURNO",
@@ -1943,6 +2003,304 @@
               "verified_by": "claude-opus-5-5",
               "verified_at": "2026-10-17T10:11:39Z",
               "review_id": "2026-10-17-ai-supplementary"
+            }
+          }
+        }
+      ],
+      "supplement_bands": [
+        {
+          "code": "ANCE_NOTTURNO",
+          "description": "Lavoro notturno non compreso in turni regolari avvicendati (art. 19 n. 4)",
+          "work": "night",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-02-01",
+                "valid_until": null,
+                "value": "0.28"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-edilizia-industria-2010-fillea",
+                "title": "CCNL 19 aprile 2010 per i dipendenti delle imprese edili ed affini, testo completo (FILLEA CGIL)",
+                "kind": "associazione",
+                "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL_EDILIZIA_INDUSTRIA_2010_TESTO_COMPLETO.pdf",
+                "published_on": "2010-04-19",
+                "sha256": "ddd11bb850de2e7c642eb662b59e40e36c66e3a534162c505aa1c9a94ac5a00b"
+              },
+              "page": "40",
+              "section": "Art. 19 - Lavoro straordinario, notturno e festivo",
+              "quote": "Le percentuali per lavoro straordinario, notturno e festivo sono le seguenti: 4) Lavoro notturno non compreso in turni regolari avvicendati.................. 28%"
+            },
+            "transformation": "28% on the elements of Art. 24 point 3. Night is 22-6 (same article).",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-02T15:36:18Z",
+              "effective_from": "2025-02-01",
+              "verification_status": "verified",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-02T15:36:18Z",
+              "review_id": "2026-11-02-ai-ordinary-premiums"
+            }
+          }
+        },
+        {
+          "code": "ANCE_NOTTURNO_GUARDIANO",
+          "description": "Lavoro notturno del guardiano (art. 19 n. 7)",
+          "work": "night",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-02-01",
+                "valid_until": null,
+                "value": "0.08"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "role": "guardiano",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-edilizia-industria-2010-fillea",
+                "title": "CCNL 19 aprile 2010 per i dipendenti delle imprese edili ed affini, testo completo (FILLEA CGIL)",
+                "kind": "associazione",
+                "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL_EDILIZIA_INDUSTRIA_2010_TESTO_COMPLETO.pdf",
+                "published_on": "2010-04-19",
+                "sha256": "ddd11bb850de2e7c642eb662b59e40e36c66e3a534162c505aa1c9a94ac5a00b"
+              },
+              "page": "40",
+              "section": "Art. 19 - Lavoro straordinario, notturno e festivo",
+              "quote": "Le percentuali per lavoro straordinario, notturno e festivo sono le seguenti: 7) Lavoro notturno del guardiano................................................................ 8%"
+            },
+            "transformation": "8% on the elements of Art. 24 point 3.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-02T15:36:18Z",
+              "effective_from": "2025-02-01",
+              "verification_status": "verified",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-02T15:36:18Z",
+              "review_id": "2026-11-02-ai-ordinary-premiums"
+            }
+          }
+        },
+        {
+          "code": "ANCE_NOTTURNO_CONTINUATIVO",
+          "description": "Lavoro notturno continuativo di lavori eseguibili solo di notte (art. 19 n. 8)",
+          "work": "night",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-02-01",
+                "valid_until": null,
+                "value": "0.16"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "role": "notturno_continuativo",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-edilizia-industria-2010-fillea",
+                "title": "CCNL 19 aprile 2010 per i dipendenti delle imprese edili ed affini, testo completo (FILLEA CGIL)",
+                "kind": "associazione",
+                "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL_EDILIZIA_INDUSTRIA_2010_TESTO_COMPLETO.pdf",
+                "published_on": "2010-04-19",
+                "sha256": "ddd11bb850de2e7c642eb662b59e40e36c66e3a534162c505aa1c9a94ac5a00b"
+              },
+              "page": "40",
+              "section": "Art. 19 - Lavoro straordinario, notturno e festivo",
+              "quote": "Le percentuali per lavoro straordinario, notturno e festivo sono le seguenti: 8) Lavoro notturno a carattere continuativo di operai che compiono lavori di costruzione o di riparazione che possono eseguirsi esclusivamente di notte. ...... 16%"
+            },
+            "transformation": "16% on the elements of Art. 24 point 3.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-02T15:36:18Z",
+              "effective_from": "2025-02-01",
+              "verification_status": "verified",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-02T15:36:18Z",
+              "review_id": "2026-11-02-ai-ordinary-premiums"
+            }
+          }
+        },
+        {
+          "code": "ANCE_TURNO_DIURNO",
+          "description": "Lavoro diurno compreso in turni regolari avvicendati (art. 19 n. 5)",
+          "work": "day_shift",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-02-01",
+                "valid_until": null,
+                "value": "0.09"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-edilizia-industria-2010-fillea",
+                "title": "CCNL 19 aprile 2010 per i dipendenti delle imprese edili ed affini, testo completo (FILLEA CGIL)",
+                "kind": "associazione",
+                "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL_EDILIZIA_INDUSTRIA_2010_TESTO_COMPLETO.pdf",
+                "published_on": "2010-04-19",
+                "sha256": "ddd11bb850de2e7c642eb662b59e40e36c66e3a534162c505aa1c9a94ac5a00b"
+              },
+              "page": "40",
+              "section": "Art. 19 - Lavoro straordinario, notturno e festivo",
+              "quote": "Le percentuali per lavoro straordinario, notturno e festivo sono le seguenti: 5) Lavoro diurno compreso in turni regolari avvicendati............................. 9%"
+            },
+            "transformation": "9% on the elements of Art. 24 point 3.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-02T15:36:18Z",
+              "effective_from": "2025-02-01",
+              "verification_status": "verified",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-02T15:36:18Z",
+              "review_id": "2026-11-02-ai-ordinary-premiums"
+            }
+          }
+        },
+        {
+          "code": "ANCE_TURNO_NOTTURNO",
+          "description": "Lavoro notturno compreso in turni regolari avvicendati (art. 19 n. 6)",
+          "work": "night_shift",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-02-01",
+                "valid_until": null,
+                "value": "0.12"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-edilizia-industria-2010-fillea",
+                "title": "CCNL 19 aprile 2010 per i dipendenti delle imprese edili ed affini, testo completo (FILLEA CGIL)",
+                "kind": "associazione",
+                "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL_EDILIZIA_INDUSTRIA_2010_TESTO_COMPLETO.pdf",
+                "published_on": "2010-04-19",
+                "sha256": "ddd11bb850de2e7c642eb662b59e40e36c66e3a534162c505aa1c9a94ac5a00b"
+              },
+              "page": "40",
+              "section": "Art. 19 - Lavoro straordinario, notturno e festivo",
+              "quote": "Le percentuali per lavoro straordinario, notturno e festivo sono le seguenti: 6) Lavoro notturno compreso in turni regolari avvicendati......................... 12%"
+            },
+            "transformation": "12% on the elements of Art. 24 point 3.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-02T15:36:18Z",
+              "effective_from": "2025-02-01",
+              "verification_status": "verified",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-02T15:36:18Z",
+              "review_id": "2026-11-02-ai-ordinary-premiums"
+            }
+          }
+        },
+        {
+          "code": "ANCE_FESTIVO",
+          "description": "Lavoro festivo nei giorni dell'art. 17 (art. 19 n. 2)",
+          "work": "holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-02-01",
+                "valid_until": null,
+                "value": "0.45"
+              }
+            ]
+          },
+          "hours_paid_apart": true,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-edilizia-industria-2010-fillea",
+                "title": "CCNL 19 aprile 2010 per i dipendenti delle imprese edili ed affini, testo completo (FILLEA CGIL)",
+                "kind": "associazione",
+                "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL_EDILIZIA_INDUSTRIA_2010_TESTO_COMPLETO.pdf",
+                "published_on": "2010-04-19",
+                "sha256": "ddd11bb850de2e7c642eb662b59e40e36c66e3a534162c505aa1c9a94ac5a00b"
+              },
+              "page": "40",
+              "section": "Art. 19 - Lavoro straordinario, notturno e festivo",
+              "quote": "Le percentuali per lavoro straordinario, notturno e festivo sono le seguenti: 2) Lavoro festivo........................................................................................... 45%"
+            },
+            "transformation": "45% on the elements of Art. 24 point 3. The operai are paid by the hour (art. 11): the hours worked on a holiday are paid on top of the monthly pay, which the engine does not post.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-02T15:36:18Z",
+              "effective_from": "2025-02-01",
+              "verification_status": "verified",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-02T15:36:18Z",
+              "review_id": "2026-11-02-ai-ordinary-premiums"
+            }
+          }
+        },
+        {
+          "code": "ANCE_DOMENICA_RIPOSO",
+          "description": "Lavoro domenicale con riposo compensativo (art. 19 n. 12)",
+          "work": "holiday_compensatory_rest",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-02-01",
+                "valid_until": null,
+                "value": "0.08"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-edilizia-industria-2010-fillea",
+                "title": "CCNL 19 aprile 2010 per i dipendenti delle imprese edili ed affini, testo completo (FILLEA CGIL)",
+                "kind": "associazione",
+                "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL_EDILIZIA_INDUSTRIA_2010_TESTO_COMPLETO.pdf",
+                "published_on": "2010-04-19",
+                "sha256": "ddd11bb850de2e7c642eb662b59e40e36c66e3a534162c505aa1c9a94ac5a00b"
+              },
+              "page": "40",
+              "section": "Art. 19 - Lavoro straordinario, notturno e festivo",
+              "quote": "Le percentuali per lavoro straordinario, notturno e festivo sono le seguenti: 12) Lavoro domenicale con riposo compensativo, esclusi i turnisti. .............. 8%"
+            },
+            "transformation": "8% on the elements of Art. 24 point 3. The shift workers it excludes are not told apart: a shift worker takes it too.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-02T15:36:18Z",
+              "effective_from": "2025-02-01",
+              "verification_status": "verified",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-02T15:36:18Z",
+              "review_id": "2026-11-02-ai-ordinary-premiums"
             }
           }
         }
@@ -2391,6 +2749,28 @@
         "independence": "same_process",
         "checked": [
           "work_rules.notice"
+        ]
+      },
+      {
+        "id": "2026-11-02-ai-ordinary-premiums",
+        "date": "2026-11-02",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The premiums on ordinary hours of Art. 19 (PDF p. 40) and the hourly base of Art. 24 point 3 (p. 49).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL_EDILIZIA_INDUSTRIA_2010_TESTO_COMPLETO.pdf",
+            "sha256": "ddd11bb850de2e7c642eb662b59e40e36c66e3a534162c505aa1c9a94ac5a00b"
+          }
+        ],
+        "findings": [
+          "Art. 19 nn. 2, 4-8, 12: supplement_bands ANCE_* (festivo 45%, night 28%, guardiano 8%, continuous night 16%, day shift 9%, night shift 12%, Sunday with compensatory rest 8%).",
+          "Art. 24 point 3: the base of the premiums is paga base di fatto, ex contingenza and indennità territoriale di settore: the EDR was in the hourly base of the overtime bands and is now excluded (hourly_base_excluded); the superminimo enters (individual_elements included)."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.time_supplements"
         ]
       }
     ],

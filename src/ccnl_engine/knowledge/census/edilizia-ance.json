@@ -247,10 +247,10 @@
       "institute": "overtime",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Art. 19 and Art. 5: the premiums on ordinary hours (lavoro festivo 45%, notturno 28%, turni 9% and 12%, guardiano 8%, notturno continuativo 16%, festivo notturno 50%, domenicale con riposo compensativo 8%) and the 8% of a Saturday in a six-day week.",
+      "rule": "Art. 19 n. 10 and 12, Art. 5: the premium of lavoro festivo notturno (50%), which the engine has no work for, the exclusion of the shift workers from the 8% of Sunday work with compensatory rest, and the 8% of a Saturday in a six-day week. The other premiums on ordinary hours are modelled (supplement_bands ANCE_*).",
       "calculation": "ccnl/edilizia-ance:coverage.notes",
       "state": "absent",
-      "remediation": "Model the premiums on ordinary hours of Art. 19 and Art. 5.",
+      "remediation": "Model the festivo notturno premium, the shift-worker exclusion of n. 12 and the Saturday premium of Art. 5.",
       "origin": "seeded",
       "links": {
         "limitations": [
