@@ -5,6 +5,7 @@ from enum import StrEnum
 from pydantic import BaseModel, ConfigDict
 
 from ccnl_engine.agreement.validity.rules import TimeSeries
+from ccnl_engine.employment.category.models import WorkerCategory
 from ccnl_engine.provenance.source.rule.models import RuleProvenance
 
 
@@ -111,6 +112,9 @@ class SupplementBand(BaseModel):
             ``None`` for the workers holding none of the roles of the
             other bands of the same work.
         levels: Level codes the band is reserved to; empty for every level.
+        subsectors: Sub-sectors (``EmployerProfile.subsector``) the band is
+            reserved to, as an overtime band (Alimentari art. 31 tables).
+        categories: Worker categories the band is reserved to.
         provenance: Source of the band.
     """
 
@@ -124,4 +128,6 @@ class SupplementBand(BaseModel):
     hours_paid_apart: bool | None
     role: str | None = None
     levels: tuple[str, ...] = ()
+    subsectors: tuple[str, ...] = ()
+    categories: tuple[WorkerCategory, ...] = ()
     provenance: RuleProvenance
