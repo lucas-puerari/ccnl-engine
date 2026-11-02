@@ -24,7 +24,11 @@ from ccnl_engine.calendar.inputs import (
 from ccnl_engine.calendar.models import WorkCalendar
 from ccnl_engine.decision.models import CalculationStatus
 from ccnl_engine.employment.inputs import Permanent
-from ccnl_engine.employment.period.inputs import EmploymentPeriod, TerminationCause
+from ccnl_engine.employment.period.inputs import (
+    EmploymentPeriod,
+    NaspiCase,
+    TerminationCause,
+)
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.event.facade import AbsenceEvent
 from ccnl_engine.inputs import (
@@ -341,6 +345,7 @@ class TestEmploymentPeriodRuns:
                     date(_YEAR, 5, 31),
                     ended_by=TerminationCause.RESIGNATION,
                     just_cause=False,
+                    naspi_case=NaspiCase.ORDINARY,
                 ),
                 opening_state=fresh_tax_year(_YEAR),
             ),

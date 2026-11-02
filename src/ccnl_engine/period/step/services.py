@@ -241,7 +241,6 @@ def run_tfr_settlement(
             totals,
             decisions=totals.decisions + effect.decisions + end.decisions,
             issues=totals.issues + effect.issues + end.issues,
-            limitations=totals.limitations | end.limitations,
         ),
         events.items + effect.items + end.items,
         events.entries + effect.entries + end.entries,

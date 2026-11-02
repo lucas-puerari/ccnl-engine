@@ -12,8 +12,8 @@ parte di tredicesima mensilità [...] va moltiplicata per 12 e divisa per
 365 giorni (366 se le assenze cadono in un anno bisestile)".  A vertical
 part time divides the pay of the month by its paid days, rest days
 included (``ExtraordinaryLeaveEvent.last_month_paid_days``); a vertical
-run that does not state them records the engine limitation
-``extraordinary_leave_daily_base``.
+run that does not state them is paid on the full-time measure with a
+provisional issue naming the fact.
 """
 
 from __future__ import annotations
@@ -42,8 +42,8 @@ if TYPE_CHECKING:
 __all__ = [
     "CEILING_UNKNOWN",
     "EXTRAORDINARY",
-    "EXTRAORDINARY_BASE_LIMITATION",
     "LAST_PAY_UNKNOWN",
+    "PAID_DAYS_UNKNOWN",
     "_handle_extraordinary_leave",
 ]
 
@@ -54,7 +54,7 @@ LAST_PAY_UNKNOWN = "extraordinary_last_pay_unknown"
 #: The bundle lists no daily maximum for the year of a day of leave.
 CEILING_UNKNOWN = "extraordinary_leave_ceiling_unknown"
 #: The paid days of a vertical part time, its daily divisor, are not stated.
-EXTRAORDINARY_BASE_LIMITATION = "extraordinary_leave_daily_base"
+PAID_DAYS_UNKNOWN = "extraordinary_paid_days_unknown"
 _DEDUCTION = "absence_deduction"
 _MONTHS = 12
 _DAY = timedelta(days=1)
@@ -112,8 +112,7 @@ def _handle_extraordinary_leave(
     """Pay the days of the extraordinary leave in the month of the run.
 
     Returns:
-        The items, entries, base deltas, decision, issues and limitation of
-        the leave.
+        The items, entries, base deltas, decision and issues of the leave.
     """
     terms = ctx.insured
     span = _span(event, terms, EXTRAORDINARY)
@@ -135,6 +134,17 @@ def _handle_extraordinary_leave(
         )
     yearly = last_pay * (_MONTHS + terms.pay.extra_months)
     paid_days = event.last_month_paid_days if terms.vertical else None
+    if terms.vertical and paid_days is None:
+        issues.append(
+            _issue(
+                PAID_DAYS_UNKNOWN,
+                "a vertical or mixed part time divides the pay of the month by "
+                "its paid days (INPS circ. 64/2001 par. 4; ExtraordinaryLeave"
+                "Event.last_month_paid_days), which the leave does not state; "
+                "the indemnity is computed on the full-time measure meanwhile",
+                "last_month_paid_days",
+            )
+        )
     amount, unknown = _indemnity(
         *span, yearly, terms.rates.extraordinary_leave, paid_days
     )
@@ -163,6 +173,4 @@ def _handle_extraordinary_leave(
         decision = replace(decision, status=provisional, reason_code=issues[0].code)
     effect.decisions = [decision]
     effect.issues = issues
-    unstated = terms.vertical and paid_days is None
-    effect.limitations = (EXTRAORDINARY_BASE_LIMITATION,) if unstated else ()
     return effect

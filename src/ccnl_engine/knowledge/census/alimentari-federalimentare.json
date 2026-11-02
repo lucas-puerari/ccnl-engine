@@ -51,22 +51,6 @@
       }
     },
     {
-      "id": "extraordinary_leave_daily_base",
-      "institute": "extraordinary_leave",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = path",
-      "rule": "The daily indemnity of the extraordinary leave is the last monthly pay of fixed and continuous items times the monthly payments of a year, over 365 days (366 in a leap year), as INPS circ. 64/2001 par. 4 sets for a month worked full time; for a vertical part time the circular divides the pay of the month by its paid days, rest days included, which ExtraordinaryLeaveEvent.last_month_paid_days states. A vertical or mixed part time that does not state them is paid on the full-time measure, so its indemnity may be misstated.",
-      "calculation": "ccnl_engine.absence.insured.extraordinary.handlers._handle_extraordinary_leave; INPS circ. 64/2001 par. 4 ('la retribuzione del mese preso a riferimento (comprensiva della quota parte di tredicesima mensilità, ecc.), se il mese è lavorato a tempo pieno, va moltiplicata per 12 e divisa per 365 giorni (366 se le assenze cadono in un anno bisestile) [...] Se invece nel mese preso a riferimento l'attività è stata svolta in regime di contratto di lavoro a part time verticale, la retribuzione percepita nel mese stesso va divisa per il numero dei giorni retribuiti, compresi quelli festivi o comunque di riposo'; INPS content fragment sha256 de3751ac274d81141df627d3c95b220fbf6bcbafed78fefa4f94871a755c427e); D.Lgs. 151/2001 art. 42 c. 5-ter",
-      "state": "unverified",
-      "remediation": "State ExtraordinaryLeaveEvent.last_month_paid_days for a vertical or mixed part time.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "extraordinary_leave_daily_base"
-        ]
-      }
-    },
-    {
       "id": "first_level_apprentice_pay",
       "institute": "base_salary",
       "variant": "all",
@@ -127,22 +111,6 @@
       "links": {
         "limitations": [
           "mid_month_level_change"
-        ]
-      }
-    },
-    {
-      "id": "naspi_dismissal_exceptions",
-      "institute": "naspi_dismissal",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = path",
-      "rule": "The NASpI contribution of the end of an employment that does not state its case (EmploymentPeriod.naspi_case) is read from the cause, the just cause and the contract type alone: a resignation in the protected period of maternity and a mutual agreement before the labour office or on a transfer over 50 km would owe it (INPS circ. 44/2013 par. 1), a collective dismissal would owe 82% for an employer owing the CIGS contribution (L. 205/2017 art. 1 c. 137) and three times without union agreement (L. 92/2012 art. 2 c. 35), the changes of contractor with a social clause and the closures of a construction site of c. 34 would leave it out. The service counts the fixed-term periods before the open-ended contract and leaves out the leave of art. 42 c. 5 D.Lgs. 151/2001 only through EmploymentPeriod.started_on.",
-      "calculation": "ccnl_engine.termination.naspi.services.naspi_dismissal; L. 92/2012 art. 2 cc. 31-35 (Normattiva, sha256 d40853a1e6c1e20173298f832828aff3e5838ec01aa7994575ed3bd8e1716f6e); INPS circ. 44/2013 (sha256 921fa38bef69508119c546fd0179ceff3e272224bd4ddea8f2e2949e09c89f07); INPS msg. 594/2018 (sha256 f035fc25dc30190d0ef3895fced7b461d6f1b788821f20fdb0bc516d2e7ae500)",
-      "state": "unverified",
-      "remediation": "State EmploymentPeriod.naspi_case (NaspiCase.ORDINARY when none applies, or a CollectiveDismissal) on the end of the employment.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "naspi_dismissal_exceptions"
         ]
       }
     },

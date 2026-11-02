@@ -35,6 +35,7 @@ if TYPE_CHECKING:
     from ccnl_engine.termination.naspi.models import NaspiDismissalRules
 
 __all__ = [
+    "case_inputs",
     "contribution_terms",
     "dismissal_contribution",
     "is_due",
@@ -147,3 +148,21 @@ def dismissal_contribution(
     rate, times = contribution_terms(rules, case)
     yearly = money(rate * rules.monthly_maximum.value)
     return (yearly * months / _MONTHS).quantize(_CENT, rounding=ROUND_DOWN) * times
+
+
+def case_inputs(case: NaspiCase | CollectiveDismissal | None) -> dict[str, str]:
+    """Return the inputs of the decision that name the case of the end.
+
+    Returns:
+        Nothing for an unstated case; the case, or for a collective
+        dismissal its union agreement and CIGS flags.
+    """
+    if case is None:
+        return {}
+    if isinstance(case, CollectiveDismissal):
+        return {
+            "naspi_case": "collective_dismissal",
+            "union_agreement": str(case.union_agreement).lower(),
+            "cigs_employer": str(case.cigs_employer).lower(),
+        }
+    return {"naspi_case": case.value}

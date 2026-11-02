@@ -16,9 +16,9 @@ import re
 from collections.abc import Mapping
 from dataclasses import dataclass, field
 from enum import StrEnum
-from types import MappingProxyType
 from typing import TYPE_CHECKING
 
+from ccnl_engine.decision.fact.models import PUBLIC_FACTS
 from ccnl_engine.types import FrozenDict
 
 if TYPE_CHECKING:
@@ -28,7 +28,6 @@ if TYPE_CHECKING:
     from ccnl_engine.provenance.source.models import SourceLocation
 
 __all__ = [
-    "PUBLIC_FACTS",
     "CalculationDecision",
     "CalculationIssue",
     "CalculationStatus",
@@ -99,70 +98,6 @@ class DecisionOrigin(StrEnum):
 _SEVERITY: dict[CalculationStatus, int] = {
     status: rank for rank, status in enumerate(CalculationStatus)
 }
-
-
-#: Public input field the caller sets to resolve each missing fact an issue names.
-PUBLIC_FACTS: Mapping[str, str] = MappingProxyType({
-    "activity": "EmployerProfile.activity",
-    "advances": "TfrFundBalance.advances",
-    "advances_taxable": "TfrFundBalance.advances_taxable",
-    "net_income_biennio": "PriorYearTaxFacts.net_income_biennio",
-    "agricultural_zone": "EmployerProfile.agricultural_zone",
-    "agreement_signed_on": "BonusEvent.agreement_signed_on",
-    "allocation_pct": "Dependent.allocation_pct",
-    "category": "Employment.category",
-    "cohabiting": "Dependent.cohabiting",
-    "contribution_history": "Employment.contribution_history",
-    "contractual_funds": "EmployerProfile.contractual_funds",
-    "current_year": "PeriodInput.current_year",
-    "employment_income": "PriorYearTaxFacts.employment_income",
-    "ended_by": "EmploymentPeriod.ended_by",
-    "fis_reduction": "EmployerProfile.fis_reduction",
-    "cigs_indotto": "EmployerProfile.cigs_indotto",
-    "provincial_pay_element": "EmployerProfile.provincial_pay_element",
-    "second_level_premium": "EmployerProfile.second_level_premium",
-    "subsector": "EmployerProfile.subsector",
-    "inps_sector": "EmployerProfile.inps_sector",
-    "just_cause": "EmploymentPeriod.just_cause",
-    "full_time_weekly_hours": "Employment.full_time_weekly_hours",
-    "naspi_exclusion": "FixedTerm.naspi_exclusion",
-    "no_pay_due": "AbsenceEvent.no_pay_due",
-    "opening_state": "PeriodInput.opening_state",
-    "ordinary_hours_worked": "PeriodFacts.ordinary_hours_worked",
-    "other_employers": "InpsBaseYtd.other_employers",
-    "other_employers_additional_ivs": "InpsBaseYtd.other_employers_additional_ivs",
-    "own_income": "Dependent.own_income",
-    "pension_fund": "Employment.pension_fund",
-    "renewals": "FixedTerm.renewals",
-    "residency_eligibility": "Dependent.residency_eligibility",
-    "revaluations": "TfrFundBalance.revaluations",
-    "reference_period": "ArrearsEvent.reference_period",
-    "roles": "Employment.roles",
-    "sector": "Employment.sector",
-    "seniority": "Employment.seniority",
-    "short_absence_exempt": "SicknessEpisode.short_absence_exempt",
-    "prior_worked_days": "SicknessEpisode.prior_worked_days",
-    "hospital_stays": "SicknessEpisode.hospital_stays",
-    "serious_illness": "SicknessEpisode.serious_illness",
-    "daily_contributions": "SicknessEpisode.daily_contributions",
-    "inps_base": "SicknessEpisode.inps_base",
-    "maternity_base_pay": "MaternityLeaveEvent.maternity_base_pay",
-    "paternity_base_pay": "PaternityLeaveEvent.paternity_base_pay",
-    "parental_base_pay": "ParentalLeaveEvent.parental_base_pay",
-    "protection_ended_on": "ParentalLeaveEvent.protection_ended_on",
-    "last_fixed_pay": "ExtraordinaryLeaveEvent.last_fixed_pay",
-    "sickness_known_from": "OpeningBalances.sickness_known_from",
-    "suspends_accrual": "AbsenceEvent.suspends_accrual",
-    "tfr_fund": "Employment.tfr_fund",
-    "tfr_quotas": "OpeningBalances.tfr_quotas",
-    "tfr_treasury_fund": "Employment.tfr_treasury_fund",
-    "young_member": "PensionFundEnrolment.young_member",
-    "erc_amount": "Employment.erc_amount",
-    "leave_balances": "OpeningBalances.leave_balances",
-    "conventional_base": "PensionFundEnrolment.conventional_base",
-    "public_end_of_service": "Employment.public_end_of_service",
-    "public_life_insurance": "EmployerProfile.public_life_insurance",
-})
 
 
 class IssueCause(StrEnum):

@@ -31,7 +31,6 @@ class TerminationCharges:
     entries: tuple[LedgerEntry, ...] = ()
     decisions: tuple[CalculationDecision, ...] = ()
     issues: tuple[CalculationIssue, ...] = ()
-    limitations: frozenset[str] = frozenset()
 
 
 def termination_charges(
@@ -49,7 +48,7 @@ def termination_charges(
         settled_rate: Rate the computed TFR settlement taxed with.
 
     Returns:
-        Their items, entries, decisions, issues and limitation paths.
+        Their items, entries, decisions and issues.
     """
     notice = notice_tax(ctx, items, apart_inps, settled_rate)
     naspi = naspi_dismissal(ctx)
@@ -58,5 +57,4 @@ def termination_charges(
         entries=notice.entries + naspi.entries,
         decisions=notice.decisions + naspi.decisions,
         issues=notice.issues + naspi.issues,
-        limitations=naspi.limitations,
     )

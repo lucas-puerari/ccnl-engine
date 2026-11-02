@@ -26,8 +26,8 @@ from ccnl_engine.comparison.totals.models import (
     TotalsComparison,
 )
 from ccnl_engine.comparison.totals.services import compare_totals
+from ccnl_engine.decision.fact.models import PUBLIC_FACTS
 from ccnl_engine.decision.models import (
-    PUBLIC_FACTS,
     CalculationDecision,
     CalculationIssue,
     CalculationStatus,

@@ -29,7 +29,7 @@ is one :class:`~ccnl_engine.assurance.models.ResultBlocker`:
   current for that run, whatever the installed bundle says.
 
 A cause is reported once.  A missing fact keeps its key of
-:data:`~ccnl_engine.decision.models.PUBLIC_FACTS` as detail, names its public
+:data:`~ccnl_engine.decision.fact.models.PUBLIC_FACTS` as detail, names its public
 field (``Employment.seniority``) in the remediation and the capability it
 leaves open as feature; the other blockers of that capability (its decision that is not
 final, its gap) follow from the fact and are not repeated.  Likewise an

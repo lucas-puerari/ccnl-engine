@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from ccnl_engine.assurance.models import BlockerCode, ResultBlocker
-from ccnl_engine.decision.models import PUBLIC_FACTS
+from ccnl_engine.decision.fact.models import PUBLIC_FACTS
 from ccnl_engine.limitation.types import ALL_TOTALS, ResultTotal
 
 __all__ = ["REVIEW_OVERDUE", "blocker"]
