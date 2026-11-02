@@ -81,7 +81,7 @@
       },
       {
         "kind": "simplification",
-        "text": "Art. 31: the premiums the engine has no work for: notturno festivo, Saturday or sixth-day work (birra e malto, avicoli) and the 5% of the two day shifts of the alimenti zootecnici on three continuous shifts (terza nota a verbale). Ordinary night, night-shift, holiday, rest-day and Sunday premiums of each table are modelled (supplement_bands ALIM_*).",
+        "text": "Art. 31: Saturday or sixth-day work (birra e malto, avicoli), the 5% of the two day shifts of the alimenti zootecnici on three continuous shifts (terza nota a verbale), and the ordinary night holiday work of the sub-sectors whose table has no such row. The other premiums on ordinary hours of each table are modelled (supplement_bands ALIM_*).",
         "capability": "overtime",
         "monetary_impact": "yes",
         "limitation": {
@@ -89,7 +89,7 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Model the notturno festivo and Saturday premiums of the Art. 31 tables and the zootecnici day-shift 5%."
+          "remediation": "Model the Saturday premiums of the Art. 31 tables and the zootecnici day-shift 5%."
         }
       },
       {
@@ -3940,7 +3940,7 @@
     "effective_until": null,
     "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "8e86e8d7ab89c6acf4f4ebf547678e8b6aefd7453eb4292e396e0537db82bcae",
+    "source_hash": "16d272442396a28edd5c32365b411281809123bda55ef38f424ec5c3b5c78050",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -12598,6 +12598,390 @@
               "review_id": "2026-11-02-ai-ordinary-premiums"
             }
           }
+        },
+        {
+          "code": "ALIM_NOTTURNO_FESTIVO_CARNI",
+          "description": "Lavoro notturno festivo (Carni - Dolciari - Alimenti Zootecnici - Lattiero-Caseari, art. 31)",
+          "work": "night_holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "0.50"
+              }
+            ]
+          },
+          "hours_paid_apart": null,
+          "subsectors": [
+            "carni",
+            "dolciari",
+            "alimenti_zootecnici",
+            "lattiero_caseari"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "section": "Art. 31 - Tabelle delle maggiorazioni, Industria Carni - Dolciari - Alimenti Zootecnici - Lattiero-Caseari",
+              "quote": "Lavoro notturno festivo 50%",
+              "page": "87"
+            },
+            "transformation": "50% of the hourly retribuzione mensile di fatto over 173, table 'Carni - Dolciari - Alimenti Zootecnici - Lattiero-Caseari'; the tables of the other sub-sectors have no row of ordinary night holiday work.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-02T16:41:58Z",
+              "effective_from": "2023-12-01",
+              "verification_status": "verified",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-02T16:41:58Z",
+              "review_id": "2026-11-02-ai-night-holiday"
+            }
+          }
+        },
+        {
+          "code": "ALIM_NOTTURNO_FESTIVO_VINI_LIQUORI_OPERAI",
+          "description": "Lavoro notturno festivo (vini-liquori, Operai, art. 31)",
+          "work": "night_holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "0.50"
+              }
+            ]
+          },
+          "hours_paid_apart": null,
+          "subsectors": [
+            "vini_liquori"
+          ],
+          "categories": [
+            "operaio"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "section": "Art. 31 - Tabelle delle maggiorazioni, Industria vini-liquori, Operai",
+              "quote": "Lavoro notturno festivo 50%",
+              "page": "87"
+            },
+            "transformation": "50% of the hourly retribuzione mensile di fatto over 173, table 'vini-liquori, Operai'; the tables of the other sub-sectors have no row of ordinary night holiday work.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-02T16:41:58Z",
+              "effective_from": "2023-12-01",
+              "verification_status": "verified",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-02T16:41:58Z",
+              "review_id": "2026-11-02-ai-night-holiday"
+            }
+          }
+        },
+        {
+          "code": "ALIM_NOTTURNO_FESTIVO_VINI_LIQUORI_IMPIEGATI",
+          "description": "Lavoro notturno festivo (vini-liquori, Intermedi e Impiegati, art. 31)",
+          "work": "night_holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "0.65"
+              }
+            ]
+          },
+          "hours_paid_apart": null,
+          "subsectors": [
+            "vini_liquori"
+          ],
+          "categories": [
+            "impiegato",
+            "quadro"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "section": "Art. 31 - Tabelle delle maggiorazioni, Industria vini-liquori, Intermedi e Impiegati",
+              "quote": "Lavoro notturno festivo 65%",
+              "page": "87"
+            },
+            "transformation": "65% of the hourly retribuzione mensile di fatto over 173, table 'vini-liquori, Intermedi e Impiegati'; the tables of the other sub-sectors have no row of ordinary night holiday work.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-02T16:41:58Z",
+              "effective_from": "2023-12-01",
+              "verification_status": "verified",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-02T16:41:58Z",
+              "review_id": "2026-11-02-ai-night-holiday"
+            }
+          }
+        },
+        {
+          "code": "ALIM_NOTTURNO_FESTIVO_ACQUE_MINERALI_OPERAI",
+          "description": "Lavoro notturno festivo (acque minerali, Operai e Intermedi, art. 31)",
+          "work": "night_holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "0.48"
+              }
+            ]
+          },
+          "hours_paid_apart": null,
+          "subsectors": [
+            "acque_minerali"
+          ],
+          "categories": [
+            "operaio"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "section": "Art. 31 - Tabelle delle maggiorazioni, Industria acque minerali, Operai e Intermedi",
+              "quote": "Lavoro notturno festivo 48%",
+              "page": "88"
+            },
+            "transformation": "48% of the hourly retribuzione mensile di fatto over 173, table 'acque minerali, Operai e Intermedi'; the tables of the other sub-sectors have no row of ordinary night holiday work.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-02T16:41:58Z",
+              "effective_from": "2023-12-01",
+              "verification_status": "verified",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-02T16:41:58Z",
+              "review_id": "2026-11-02-ai-night-holiday"
+            }
+          }
+        },
+        {
+          "code": "ALIM_NOTTURNO_FESTIVO_ACQUE_MINERALI_IMPIEGATI",
+          "description": "Lavoro notturno festivo (acque minerali, Impiegati, art. 31)",
+          "work": "night_holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "0.65"
+              }
+            ]
+          },
+          "hours_paid_apart": null,
+          "subsectors": [
+            "acque_minerali"
+          ],
+          "categories": [
+            "impiegato",
+            "quadro"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "section": "Art. 31 - Tabelle delle maggiorazioni, Industria acque minerali, Impiegati",
+              "quote": "Lavoro notturno festivo 65%",
+              "page": "88"
+            },
+            "transformation": "65% of the hourly retribuzione mensile di fatto over 173, table 'acque minerali, Impiegati'; the tables of the other sub-sectors have no row of ordinary night holiday work.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-02T16:41:58Z",
+              "effective_from": "2023-12-01",
+              "verification_status": "verified",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-02T16:41:58Z",
+              "review_id": "2026-11-02-ai-night-holiday"
+            }
+          }
+        },
+        {
+          "code": "ALIM_NOTTURNO_FESTIVO_CONSERVE_VEGETALI_OPERAI",
+          "description": "Lavoro notturno festivo (conserve vegetali, Operai, art. 31)",
+          "work": "night_holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "0.45"
+              }
+            ]
+          },
+          "hours_paid_apart": null,
+          "subsectors": [
+            "conserve_vegetali"
+          ],
+          "categories": [
+            "operaio"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "section": "Art. 31 - Tabelle delle maggiorazioni, Industria conserve vegetali, Operai",
+              "quote": "Lavoro notturno festivo 45%",
+              "page": "90"
+            },
+            "transformation": "45% of the hourly retribuzione mensile di fatto over 173, table 'conserve vegetali, Operai'; the tables of the other sub-sectors have no row of ordinary night holiday work.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-02T16:41:58Z",
+              "effective_from": "2023-12-01",
+              "verification_status": "verified",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-02T16:41:58Z",
+              "review_id": "2026-11-02-ai-night-holiday"
+            }
+          }
+        },
+        {
+          "code": "ALIM_NOTTURNO_FESTIVO_CONSERVE_VEGETALI_IMPIEGATI",
+          "description": "Lavoro notturno festivo (conserve vegetali, Intermedi e Impiegati, art. 31)",
+          "work": "night_holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "0.45"
+              }
+            ]
+          },
+          "hours_paid_apart": null,
+          "subsectors": [
+            "conserve_vegetali"
+          ],
+          "categories": [
+            "impiegato",
+            "quadro"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "section": "Art. 31 - Tabelle delle maggiorazioni, Industria conserve vegetali, Intermedi e Impiegati",
+              "quote": "Lavoro notturno festivo 45%",
+              "page": "90"
+            },
+            "transformation": "45% of the hourly retribuzione mensile di fatto over 173, table 'conserve vegetali, Intermedi e Impiegati'; the tables of the other sub-sectors have no row of ordinary night holiday work.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-02T16:41:58Z",
+              "effective_from": "2023-12-01",
+              "verification_status": "verified",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-02T16:41:58Z",
+              "review_id": "2026-11-02-ai-night-holiday"
+            }
+          }
+        },
+        {
+          "code": "ALIM_NOTTURNO_FESTIVO_AVICOLI",
+          "description": "Lavoro notturno festivo (macellazione e lavorazione delle specie avicole, art. 31)",
+          "work": "night_holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "0.50"
+              }
+            ]
+          },
+          "hours_paid_apart": null,
+          "subsectors": [
+            "avicoli"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "section": "Art. 31 - Tabelle delle maggiorazioni, Industria macellazione e lavorazione delle specie avicole",
+              "quote": "Lavoro notturno festivo 50%",
+              "page": "92"
+            },
+            "transformation": "50% of the hourly retribuzione mensile di fatto over 173, table 'macellazione e lavorazione delle specie avicole'; the tables of the other sub-sectors have no row of ordinary night holiday work.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-02T16:41:58Z",
+              "effective_from": "2023-12-01",
+              "verification_status": "verified",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-02T16:41:58Z",
+              "review_id": "2026-11-02-ai-night-holiday"
+            }
+          }
         }
       ]
     },
@@ -13153,6 +13537,27 @@
         "independence": "same_process",
         "checked": [
           "work_rules.time_supplements"
+        ]
+      },
+      {
+        "id": "2026-11-02-ai-night-holiday",
+        "date": "2026-11-02",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The 'Lavoro notturno festivo' rows of the Art. 31 tables (PDF pp. 87-92).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+            "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+          }
+        ],
+        "findings": [
+          "Art. 31: the notturno festivo rows of carni group, vini-liquori, acque minerali, conserve vegetali and avicoli (HolidayWorkKind.NIGHT_HOLIDAY)."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.time_supplements.supplement_bands"
         ]
       }
     ],

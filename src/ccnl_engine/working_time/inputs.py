@@ -129,12 +129,15 @@ class HolidayWorkKind(StrEnum):
         SUNDAY: Ordinary hours worked on a Sunday by a worker whose weekly
             rest falls on another day.
         REST_DAY: Hours worked on the weekly rest day.
+        NIGHT_HOLIDAY: Hours worked on a public holiday at night (lavoro
+            festivo notturno), which a CCNL may pay at a rate of its own.
     """
 
     HOLIDAY = "holiday"
     HOLIDAY_COMPENSATORY_REST = "holiday_compensatory_rest"
     SUNDAY = "sunday"
     REST_DAY = "rest_day"
+    NIGHT_HOLIDAY = "night_holiday"
 
 
 class ShiftKind(StrEnum):

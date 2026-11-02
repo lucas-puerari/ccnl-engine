@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 264 verified / 0 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 272 verified / 0 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🟢 Verified | The confidence the ruleset declares as a whole |
 | **Readiness** | 👁 Reviewed | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -66,6 +66,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-01 | claude-opus-5-5 (ai) | The overtime tables of Art. 31 by sub-sector (PDF pp. 87-90). | corrected | Art. 31: day, weekday night and holiday overtime of the eleven further sub-sector tables, operai and impiegati columns, read in the PDF text layer: work_rules.time_supplements.overtime_bands; the first table's bands now name their four sub-sectors. |
 | 2026-11-01 | claude-opus-5-5 (ai) | The comporto of a fixed-term worker, Art. 47 prima nota a verbale (PDF p. 111). | corrected | Art. 47 prima nota a verbale: the comporto of a fixed-term worker is at most 4 months, read again in the PDF text layer: work_rules.sickness_rules.cumulation.fixed_term_comporto_days 120. The bands and windows of the rule are unchanged. |
 | 2026-11-02 | claude-opus-5-5 (ai) | The premiums on ordinary hours of the Art. 31 tables (PDF pp. 87-92) and their base (p. 85). | corrected | Art. 31 tables: rows of rest-day, holiday, night outside shifts, night shift (the 2009 rates of the notes) and Sunday with compensatory rest, by sub-sector and category: supplement_bands ALIM_* (SupplementBand.subsectors and categories).<br>Art. 31 base (p. 85): retribuzione mensile di fatto over 173 (minimo, contingenza, scatti, superminimo, aumento individuale): hourly_base_provenance verified, the other allowances excluded, individual elements included. The overtime bands now use the same base. |
+| 2026-11-02 | claude-opus-5-5 (ai) | The 'Lavoro notturno festivo' rows of the Art. 31 tables (PDF pp. 87-92). | corrected | Art. 31: the notturno festivo rows of carni group, vini-liquori, acque minerali, conserve vegetali and avicoli (HolidayWorkKind.NIGHT_HOLIDAY). |
 
 ## Salary table
 
@@ -124,11 +125,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Pay the apprentice the normal pay for up to six months a year (Art. 21), then resolve this limitation.
 
 !!! warning "alimentari-federalimentare/ordinary_hours_premiums · overtime · impact yes · open"
-    Art. 31: the premiums the engine has no work for: notturno festivo, Saturday or sixth-day work (birra e malto, avicoli) and the 5% of the two day shifts of the alimenti zootecnici on three continuous shifts (terza nota a verbale). Ordinary night, night-shift, holiday, rest-day and Sunday premiums of each table are modelled (supplement_bands ALIM_*).
+    Art. 31: Saturday or sixth-day work (birra e malto, avicoli), the 5% of the two day shifts of the alimenti zootecnici on three continuous shifts (terza nota a verbale), and the ordinary night holiday work of the sub-sectors whose table has no such row. The other premiums on ordinary hours of each table are modelled (supplement_bands ALIM_*).
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Model the notturno festivo and Saturday premiums of the Art. 31 tables and the zootecnici day-shift 5%.
+    **Remediation:** Model the Saturday premiums of the Art. 31 tables and the zootecnici day-shift 5%.
 
 !!! warning "alimentari-federalimentare/edr_tfr_from_march_2024 · base_salary · impact yes · open"
     Art. 73: the EDR enters the TFR base only from 1 March 2024; the file counts it for every period.

@@ -188,7 +188,7 @@
       },
       {
         "kind": "simplification",
-        "text": "Art. 19 n. 10 and 12, Art. 5: the premium of lavoro festivo notturno (50%), which the engine has no work for, the exclusion of the shift workers from the 8% of Sunday work with compensatory rest, and the 8% of a Saturday in a six-day week. The other premiums on ordinary hours are modelled (supplement_bands ANCE_*).",
+        "text": "Art. 19 n. 12 and Art. 5: the exclusion of the shift workers from the 8% of Sunday work with compensatory rest, and the 8% of a Saturday in a six-day week. The other premiums on ordinary hours are modelled (supplement_bands ANCE_*).",
         "capability": "overtime",
         "monetary_impact": "yes",
         "limitation": {
@@ -196,7 +196,7 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Model the festivo notturno premium, the shift-worker exclusion of n. 12 and the Saturday premium of Art. 5."
+          "remediation": "Model the shift-worker exclusion of n. 12 and the Saturday premium of Art. 5."
         }
       },
       {
@@ -1718,7 +1718,7 @@
     "effective_until": null,
     "source": "https://ance.it/wp-content/uploads/allegati/Tabella_nuovi_minimi_orari-_CCNL_2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "fc244527430fb66e04237e25866023b1051a72b49d1ea3ab216842372246817c",
+    "source_hash": "194cfe7947a2c4dd7e93f3af023789dc3571fedb8a35023436a6b8c5f2530416",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2303,6 +2303,48 @@
               "review_id": "2026-11-02-ai-ordinary-premiums"
             }
           }
+        },
+        {
+          "code": "ANCE_FESTIVO_NOTTURNO",
+          "description": "Lavoro festivo notturno (art. 19 n. 10)",
+          "work": "night_holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-02-01",
+                "valid_until": null,
+                "value": "0.50"
+              }
+            ]
+          },
+          "hours_paid_apart": true,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-edilizia-industria-2010-fillea",
+                "title": "CCNL 19 aprile 2010 per i dipendenti delle imprese edili ed affini, testo completo (FILLEA CGIL)",
+                "kind": "associazione",
+                "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL_EDILIZIA_INDUSTRIA_2010_TESTO_COMPLETO.pdf",
+                "published_on": "2010-04-19",
+                "sha256": "ddd11bb850de2e7c642eb662b59e40e36c66e3a534162c505aa1c9a94ac5a00b"
+              },
+              "section": "Art. 19 - Lavoro straordinario, notturno e festivo",
+              "quote": "Le percentuali per lavoro straordinario, notturno e festivo sono le seguenti: [...] 10) Lavoro festivo notturno. .......................................................................... 50%",
+              "page": "40"
+            },
+            "transformation": "50% on the elements of Art. 24 point 3; the hours of a holiday are paid apart, as for ANCE_FESTIVO.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-02T16:41:58Z",
+              "effective_from": "2025-02-01",
+              "verification_status": "verified",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-02T16:41:58Z",
+              "review_id": "2026-11-02-ai-night-holiday"
+            }
+          }
         }
       ]
     },
@@ -2771,6 +2813,27 @@
         "independence": "same_process",
         "checked": [
           "work_rules.time_supplements"
+        ]
+      },
+      {
+        "id": "2026-11-02-ai-night-holiday",
+        "date": "2026-11-02",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 19 n. 10 (PDF p. 40).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL_EDILIZIA_INDUSTRIA_2010_TESTO_COMPLETO.pdf",
+            "sha256": "ddd11bb850de2e7c642eb662b59e40e36c66e3a534162c505aa1c9a94ac5a00b"
+          }
+        ],
+        "findings": [
+          "Art. 19 n. 10: festivo notturno 50% (HolidayWorkKind.NIGHT_HOLIDAY)."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.time_supplements.supplement_bands"
         ]
       }
     ],

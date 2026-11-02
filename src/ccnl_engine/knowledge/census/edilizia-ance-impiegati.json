@@ -183,10 +183,10 @@
       "institute": "overtime",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Art. 54: the premium of lavoro festivo notturno outside periodic shifts (50%), which the engine has no work for. The night (34%, 10% in shifts) and holiday (45%) premiums on ordinary hours are modelled (supplement_bands ANCE_IMP_*).",
+      "rule": "Art. 54: the 50% of lavoro festivo notturno excludes the work 'compreso in turni periodici', and the table states no rate for it; the engine does not tell a shift worker apart and pays the 50% (supplement_bands ANCE_IMP_FESTIVO_NOTTURNO). The other premiums on ordinary hours are modelled (ANCE_IMP_*).",
       "calculation": "ccnl/edilizia-ance-impiegati:coverage.notes",
       "state": "absent",
-      "remediation": "Model the festivo notturno premium of Art. 54.",
+      "remediation": "Exclude the night holiday work in periodic shifts from the 50% of Art. 54 once a source sets its rate.",
       "origin": "seeded",
       "links": {
         "limitations": [
