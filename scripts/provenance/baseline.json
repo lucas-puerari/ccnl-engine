@@ -951,7 +951,6 @@
       "gomma-plastica-federazione-gomma-plastica/q_allowance_2023_unverified"
     ],
     "agreement/grafica-editoria-aieg.json": [
-      "grafica-editoria-aieg/apprentice_seniority",
       "grafica-editoria-aieg/grafica_levels_unreconciled",
       "grafica-editoria-aieg/pre_july_2026_amounts_missing"
     ],
@@ -988,7 +987,6 @@
       "informatica-pmi-unimatica/apprenticeship_duration_by_agreement"
     ],
     "agreement/istituzioni-servizi-socio-assistenziali-anaste.json": [
-      "istituzioni-servizi-socio-assistenziali-anaste/apprentice_seniority",
       "istituzioni-servizi-socio-assistenziali-anaste/nurses_professional_allowance",
       "istituzioni-servizi-socio-assistenziali-anaste/una_tantum_2025"
     ],
@@ -1037,7 +1035,6 @@
       "lavoro-domestico-non-convivente/tranches_from_2027"
     ],
     "agreement/legno-arredamento-federlegno.json": [
-      "legno-arredamento-federlegno/apprentice_seniority",
       "legno-arredamento-federlegno/apprenticeship_midpoint_components"
     ],
     "agreement/legno-lapidei-artigianato-confartigianato.json": [
