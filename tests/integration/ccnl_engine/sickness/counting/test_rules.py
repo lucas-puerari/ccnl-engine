@@ -58,8 +58,30 @@ def test_the_48_months_replace_the_bands_of_each_illness() -> None:
 
 def test_a_ccnl_without_the_alternative_rejects_the_choice() -> None:
     """Commercio counts the calendar year only."""
-    with pytest.raises(InvalidInputError, match="no alternative comporto window"):
+    with pytest.raises(InvalidInputError, match="no alternative comporto window") as e:
         with_window_counting(load_ccnl("commercio-confcommercio"), True)
+
+    assert (e.value.field, e.value.feature) == (
+        "EmployerProfile.sickness_window_counting",
+        "sickness",
+    )
+
+
+def test_a_ccnl_without_sickness_rules_rejects_the_choice() -> None:
+    """No sickness rules, no window to choose."""
+    work = _ABI.work_rules
+    assert work is not None
+    bare = _ABI.model_copy(
+        update={"work_rules": work.model_copy(update={"sickness_rules": None})}
+    )
+    with pytest.raises(InvalidInputError, match="no alternative comporto window"):
+        with_window_counting(bare, True)
+
+
+def test_a_ccnl_without_work_rules_rejects_the_choice() -> None:
+    """No work rules at all."""
+    with pytest.raises(InvalidInputError, match="no alternative comporto window"):
+        with_window_counting(_ABI.model_copy(update={"work_rules": None}), True)
 
 
 def test_the_flag_must_be_a_bool() -> None:
