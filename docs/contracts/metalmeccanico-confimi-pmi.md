@@ -40,7 +40,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 1 verified / 44 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 1 verified / 46 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -97,12 +97,12 @@ Latest effective values per level (monthly gross, EUR).
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning "metalmeccanico-confimi-pmi/overtime_bands_from_confapi · overtime · impact unknown · open"
-    WORK RULES: overtime bands and absence rules modelled on the standard industry framework consistent with the CONFAPI PMI metalmeccanica CCNL (C018), which shares the same legislative base. Verify specific CONFIMI provisions before applying.
+!!! warning "metalmeccanico-confimi-pmi/overtime_shift_column · overtime · impact unknown · open"
+    WORK RULES (Art. 27, CCNL 2016 p. 104, unchanged by the renewals of 2021 and 2025): overtime 20% by day, 50% at night, 55% on a holiday and 75% on a holiday night beyond 8 hours, holiday work 55% and 10% with a compensatory rest day, for the workers not on shifts. Not modelled: the shift column (night overtime 40% for the first two hours and 45% after, holiday night 55% and 65%), the overtime with a compensatory rest day (35%, 55%), and the ordinary night work (25% to 22 o'clock, 35% after for the workers not on shifts).
 
-    **Applies when:** `overtime` applies.
+    **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Verify the overtime bands against the CONFIMI CCNL text.
+    **Remediation:** Add a shift fact to the overtime event and the shift column of Art. 27, the compensatory-rest overtime and the ordinary night hours by the hour.
 
 !!! note "sickness_inps_daily_base · sickness · impact unknown · resolved"
     The INPS share of a sick day is computed on the INPS daily base of the episode, on the days INPS pays (the weekdays of an operaio, every day but the national holidays on a Sunday of an impiegato, point 7.3 of INPS circ. 134368/1981): the retribuzione media globale giornaliera of the month before the illness (INPS circ. 134368/1981 point 11; circ. 55/2024 Allegato 1), whole or partial month, impiegato or operaio, or for the lavoratori dello spettacolo the average pay of the last 40 daily contributions, capped for a fixed-term worker (INPS circ. 132/2021 par. 2.4). The base is a fact of the payroll history the episode states (SicknessEpisode.inps_base).

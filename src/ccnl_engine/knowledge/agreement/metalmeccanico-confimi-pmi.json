@@ -89,12 +89,15 @@
       },
       {
         "kind": "simplification",
-        "text": "WORK RULES: overtime bands and absence rules modelled on the standard industry framework consistent with the CONFAPI PMI metalmeccanica CCNL (C018), which shares the same legislative base. Verify specific CONFIMI provisions before applying.",
+        "text": "WORK RULES (Art. 27, CCNL 2016 p. 104, unchanged by the renewals of 2021 and 2025): overtime 20% by day, 50% at night, 55% on a holiday and 75% on a holiday night beyond 8 hours, holiday work 55% and 10% with a compensatory rest day, for the workers not on shifts. Not modelled: the shift column (night overtime 40% for the first two hours and 45% after, holiday night 55% and 65%), the overtime with a compensatory rest day (35%, 55%), and the ordinary night work (25% to 22 o'clock, 35% after for the workers not on shifts).",
         "capability": "overtime",
         "monetary_impact": "unknown",
         "limitation": {
-          "variant": "overtime_bands_from_confapi",
-          "remediation": "Verify the overtime bands against the CONFIMI CCNL text."
+          "variant": "overtime_shift_column",
+          "remediation": "Add a shift fact to the overtime event and the shift column of Art. 27, the compensatory-rest overtime and the ordinary night hours by the hour.",
+          "applies_when": {
+            "trigger": "outside_input"
+          }
         }
       },
       {
@@ -1510,7 +1513,7 @@
     "effective_until": null,
     "source": "https://www.fim-cisl.it/2025/10/29/metalmeccanica-piccola-industria-firmato-il-rinnovo-del-ccnl-confimi/",
     "verification_status": "unverified",
-    "source_hash": "abdebce73e5a9f1eaee714b9cf7d7959f41dd65d40bb3d1b98477ea77ba61b3f",
+    "source_hash": "4dbcf2aeaa88b2568f819f99b849acf70e13634c1fa1fd80603027135df5c7e4",
     "published_at": "2026-09-18",
     "source_type": "contracting_party"
   },
@@ -1520,15 +1523,15 @@
       "overtime_bands": [
         {
           "code": "OT_DIURNO",
-          "description": "Straordinario feriale diurno",
+          "description": "Lavoro straordinario diurno",
           "kind": "percentage",
           "rate": {
             "periods": [
               {
                 "valid_from": "2025-10-28",
-                "value": 0.15,
-                "provenance": null,
-                "valid_until": null
+                "valid_until": null,
+                "value": "0.20",
+                "provenance": null
               }
             ]
           },
@@ -1539,16 +1542,23 @@
             "status": "derived",
             "location": {
               "source_document": {
-                "document_id": "ccnl-c01a-confimi-kitech-445",
-                "title": "CCNL Metalmeccanici Piccola Industria CONFIMI — Tabella retributiva (kitech.it CodiceCateg=445)",
-                "kind": "tabella_retributiva",
-                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=445"
+                "document_id": "fim-ccnl-metalmeccanici-pmi-confimi-2016",
+                "title": "CCNL Metalmeccanici PMI Confimi Impresa Meccanica, testo 2016 (FIM-CISL)",
+                "kind": "associazione",
+                "url": "https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-2016-Metalmeccanici-PMI-Confimi.pdf",
+                "published_on": "2016-01-01",
+                "sha256": "842c80dd4c5eed9ed9600ffcafe90f57c8113e9e6ef8fc93f021e8f09e44c0a4"
               },
-              "section": "Art. straordinario — maggiorazione 15%"
+              "page": "104",
+              "section": "Art. 27, percentuali di maggiorazione (lavoro non a turni)",
+              "quote": "a) lavoro straordinario diurno 20% 20%"
             },
+            "transformation": "20% for the workers not on shifts.",
+            "note": "The renewal of 7 June 2021 (FIM-CISL scan, sha256 d16a296c…, all 47 pages read through OCR) does not change the table, and the agreement of 28 October 2025 raises the minimums only. The column 'non a turni' is modelled.",
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-18T00:00:00",
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-02T08:42:01Z",
               "verification_status": "unverified",
               "effective_from": "2025-10-28"
             }
@@ -1556,15 +1566,15 @@
         },
         {
           "code": "OT_NOTTURNO",
-          "description": "Straordinario feriale notturno",
+          "description": "Lavoro straordinario notturno",
           "kind": "percentage",
           "rate": {
             "periods": [
               {
                 "valid_from": "2025-10-28",
-                "value": 0.4,
-                "provenance": null,
-                "valid_until": null
+                "valid_until": null,
+                "value": "0.50",
+                "provenance": null
               }
             ]
           },
@@ -1575,16 +1585,23 @@
             "status": "derived",
             "location": {
               "source_document": {
-                "document_id": "ccnl-c01a-confimi-kitech-445",
-                "title": "CCNL Metalmeccanici Piccola Industria CONFIMI — Tabella retributiva (kitech.it CodiceCateg=445)",
-                "kind": "tabella_retributiva",
-                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=445"
+                "document_id": "fim-ccnl-metalmeccanici-pmi-confimi-2016",
+                "title": "CCNL Metalmeccanici PMI Confimi Impresa Meccanica, testo 2016 (FIM-CISL)",
+                "kind": "associazione",
+                "url": "https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-2016-Metalmeccanici-PMI-Confimi.pdf",
+                "published_on": "2016-01-01",
+                "sha256": "842c80dd4c5eed9ed9600ffcafe90f57c8113e9e6ef8fc93f021e8f09e44c0a4"
               },
-              "section": "Art. straordinario — notturno 40%"
+              "page": "104",
+              "section": "Art. 27, percentuali di maggiorazione (lavoro non a turni)",
+              "quote": "g) straordinario notturno - prime 2 ore 50% 40% - ore successive 50% 45%"
             },
+            "transformation": "50% for the workers not on shifts.",
+            "note": "The renewal of 7 June 2021 (FIM-CISL scan, sha256 d16a296c…, all 47 pages read through OCR) does not change the table, and the agreement of 28 October 2025 raises the minimums only. The column 'non a turni' is modelled.",
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-18T00:00:00",
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-02T08:42:01Z",
               "verification_status": "unverified",
               "effective_from": "2025-10-28"
             }
@@ -1592,15 +1609,15 @@
         },
         {
           "code": "OT_FESTIVO",
-          "description": "Straordinario festivo",
+          "description": "Lavoro straordinario festivo oltre le 8 ore",
           "kind": "percentage",
           "rate": {
             "periods": [
               {
                 "valid_from": "2025-10-28",
-                "value": 0.5,
-                "provenance": null,
-                "valid_until": null
+                "valid_until": null,
+                "value": "0.55",
+                "provenance": null
               }
             ]
           },
@@ -1611,16 +1628,23 @@
             "status": "derived",
             "location": {
               "source_document": {
-                "document_id": "ccnl-c01a-confimi-kitech-445",
-                "title": "CCNL Metalmeccanici Piccola Industria CONFIMI — Tabella retributiva (kitech.it CodiceCateg=445)",
-                "kind": "tabella_retributiva",
-                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=445"
+                "document_id": "fim-ccnl-metalmeccanici-pmi-confimi-2016",
+                "title": "CCNL Metalmeccanici PMI Confimi Impresa Meccanica, testo 2016 (FIM-CISL)",
+                "kind": "associazione",
+                "url": "https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-2016-Metalmeccanici-PMI-Confimi.pdf",
+                "published_on": "2016-01-01",
+                "sha256": "842c80dd4c5eed9ed9600ffcafe90f57c8113e9e6ef8fc93f021e8f09e44c0a4"
               },
-              "section": "Art. straordinario — festivo 50%"
+              "page": "104",
+              "section": "Art. 27, percentuali di maggiorazione (lavoro non a turni)",
+              "quote": "e) straordinario festivo oltre le 8 ore 55% 55%"
             },
+            "transformation": "55% for the workers not on shifts.",
+            "note": "The renewal of 7 June 2021 (FIM-CISL scan, sha256 d16a296c…, all 47 pages read through OCR) does not change the table, and the agreement of 28 October 2025 raises the minimums only. The column 'non a turni' is modelled.",
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-18T00:00:00",
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-02T08:42:01Z",
               "verification_status": "unverified",
               "effective_from": "2025-10-28"
             }
@@ -1628,15 +1652,15 @@
         },
         {
           "code": "OT_NOTTURNO_FESTIVO",
-          "description": "Straordinario notturno festivo",
+          "description": "Lavoro straordinario notturno festivo oltre le 8 ore",
           "kind": "percentage",
           "rate": {
             "periods": [
               {
                 "valid_from": "2025-10-28",
-                "value": 0.6,
-                "provenance": null,
-                "valid_until": null
+                "valid_until": null,
+                "value": "0.75",
+                "provenance": null
               }
             ]
           },
@@ -1647,16 +1671,107 @@
             "status": "derived",
             "location": {
               "source_document": {
-                "document_id": "ccnl-c01a-confimi-kitech-445",
-                "title": "CCNL Metalmeccanici Piccola Industria CONFIMI — Tabella retributiva (kitech.it CodiceCateg=445)",
-                "kind": "tabella_retributiva",
-                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=445"
+                "document_id": "fim-ccnl-metalmeccanici-pmi-confimi-2016",
+                "title": "CCNL Metalmeccanici PMI Confimi Impresa Meccanica, testo 2016 (FIM-CISL)",
+                "kind": "associazione",
+                "url": "https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-2016-Metalmeccanici-PMI-Confimi.pdf",
+                "published_on": "2016-01-01",
+                "sha256": "842c80dd4c5eed9ed9600ffcafe90f57c8113e9e6ef8fc93f021e8f09e44c0a4"
               },
-              "section": "Art. straordinario — notturno festivo 60%"
+              "page": "104",
+              "section": "Art. 27, percentuali di maggiorazione (lavoro non a turni)",
+              "quote": "l) straordinario notturno festivo oltre le 8 ore 75% 65%"
             },
+            "transformation": "75% for the workers not on shifts.",
+            "note": "The renewal of 7 June 2021 (FIM-CISL scan, sha256 d16a296c…, all 47 pages read through OCR) does not change the table, and the agreement of 28 October 2025 raises the minimums only. The column 'non a turni' is modelled.",
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-18T00:00:00",
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-02T08:42:01Z",
+              "verification_status": "unverified",
+              "effective_from": "2025-10-28"
+            }
+          }
+        }
+      ],
+      "supplement_bands": [
+        {
+          "code": "CONFIMI_FESTIVO",
+          "description": "Lavoro festivo (Art. 27 c)",
+          "work": "holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-10-28",
+                "valid_until": null,
+                "value": "0.55",
+                "provenance": null
+              }
+            ]
+          },
+          "hours_paid_apart": null,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "fim-ccnl-metalmeccanici-pmi-confimi-2016",
+                "title": "CCNL Metalmeccanici PMI Confimi Impresa Meccanica, testo 2016 (FIM-CISL)",
+                "kind": "associazione",
+                "url": "https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-2016-Metalmeccanici-PMI-Confimi.pdf",
+                "published_on": "2016-01-01",
+                "sha256": "842c80dd4c5eed9ed9600ffcafe90f57c8113e9e6ef8fc93f021e8f09e44c0a4"
+              },
+              "page": "104",
+              "section": "Art. 27, percentuali di maggiorazione (lavoro non a turni)",
+              "quote": "c) festivo 55% 55%"
+            },
+            "transformation": "55% of the hourly base for the hours of holiday work.",
+            "note": "The renewal of 7 June 2021 (FIM-CISL scan, sha256 d16a296c…, all 47 pages read through OCR) does not change the table, and the agreement of 28 October 2025 raises the minimums only. The column 'non a turni' is modelled.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-02T08:42:01Z",
+              "verification_status": "unverified",
+              "effective_from": "2025-10-28"
+            }
+          }
+        },
+        {
+          "code": "CONFIMI_FESTIVO_RIPOSO",
+          "description": "Lavoro festivo con riposo compensativo (Art. 27 d)",
+          "work": "holiday_compensatory_rest",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-10-28",
+                "valid_until": null,
+                "value": "0.10",
+                "provenance": null
+              }
+            ]
+          },
+          "hours_paid_apart": null,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "fim-ccnl-metalmeccanici-pmi-confimi-2016",
+                "title": "CCNL Metalmeccanici PMI Confimi Impresa Meccanica, testo 2016 (FIM-CISL)",
+                "kind": "associazione",
+                "url": "https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-2016-Metalmeccanici-PMI-Confimi.pdf",
+                "published_on": "2016-01-01",
+                "sha256": "842c80dd4c5eed9ed9600ffcafe90f57c8113e9e6ef8fc93f021e8f09e44c0a4"
+              },
+              "page": "104",
+              "section": "Art. 27, percentuali di maggiorazione (lavoro non a turni)",
+              "quote": "d) festivo con riposo compensativo 10% 10%"
+            },
+            "transformation": "10% of the hourly base for holiday work with a compensatory rest day.",
+            "note": "The renewal of 7 June 2021 (FIM-CISL scan, sha256 d16a296c…, all 47 pages read through OCR) does not change the table, and the agreement of 28 October 2025 raises the minimums only. The column 'non a turni' is modelled.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-02T08:42:01Z",
               "verification_status": "unverified",
               "effective_from": "2025-10-28"
             }
