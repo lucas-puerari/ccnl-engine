@@ -692,9 +692,6 @@
       "autorimesse-ic35/long_week_divisors",
       "autorimesse-ic35/meal_voucher"
     ],
-    "agreement/autoscuole-unasca.json": [
-      "autoscuole-unasca/apprentice_seniority"
-    ],
     "agreement/autostrade-trafori.json": [
       "autostrade-trafori/apprentice_seniority",
       "autostrade-trafori/apprenticeship_full_pay_passthrough"

@@ -204,7 +204,7 @@ def _seniority_amount(
     # any); the level increments start after qualification.  Without an
     # apprentice amount the chain records the CCNL limitation of the
     # APPRENTICE_SENIORITY_VARIANT when it matters.
-    if is_apprentice:
+    if is_apprentice and not seniority_rules.apprentice_level_amount:
         raw = (
             seniority_rules.apprentice_amount.value_at(as_of)
             if seniority_rules.apprentice_amount is not None

@@ -233,14 +233,17 @@ def test_unsourced_apprentice_seniority_is_an_open_limitation(
 ) -> None:
     """A CCNL whose levels pay apprentices increments states the apprentice rule.
 
-    With an apprentice amount the rule is modelled; without one the
-    engine pays none and the CCNL carries an open limitation, which the
-    chain records when the level pays matured increments.
+    With an apprentice amount, or the amounts of the level the apprentice
+    is classified at, the rule is modelled; without either the engine pays
+    none and the CCNL carries an open limitation, which the chain records
+    when the level pays matured increments.
     """
     for ccnl in ccnls:
+        increments = ccnl.parameters.seniority_increments
         unsourced = (
             _has_level_seniority_for_apprentices(ccnl)
-            and ccnl.parameters.seniority_increments.apprentice_amount is None
+            and increments.apprentice_amount is None
+            and not increments.apprentice_level_amount
         )
         expected = [LimitationStatus.OPEN] if unsourced else []
         assert _apprentice_seniority_notes(ccnl) == expected, ccnl.meta.ccnl_id

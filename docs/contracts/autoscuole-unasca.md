@@ -31,10 +31,10 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Core payroll path** | ⚠️ |
-| **Limits of this contract** | seniority |
+| **Core payroll path** | ✅ |
+| **Limits of this contract** | — |
 
-1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+0 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -107,13 +107,6 @@ Destination levels: `5`
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
-
-!!! warning "autoscuole-unasca/apprentice_seniority · seniority · impact unknown · open"
-    APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.
-
-    **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
-
-    **Remediation:** Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
@@ -298,6 +291,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     tax_sector: terziario. Following IC35 (autorimesse) precedent for transport/services CCNL with UNASCA/CONFARCA. Sector uses standard terziario INPS rates.
     
     Contract in ultra-vigenza since 01/01/2024 (expired 31/12/2023 per Art. 50). Negotiations broke down July 2026. Salary amounts remain operative per Art. 2074 c.c.
+    
+    APPRENTICE SENIORITY (Apprendistato professionalizzante, punto 5 lett. h, p. 50 of the signed CCNL of 28 February 2023, read on the page image): 'L'intero periodo di apprendistato professionalizzante è utile ai fini della maturazione dell'anzianità aziendale, anche ai fini degli aumenti periodici di anzianità; tali aumenti saranno corrisposti nelle misure previste dal livello di appartenenza': the apprentice accrues the scatti of art. 17 at the amount of the level he is classified at (seniority_increments.apprentice_level_amount).
     
 
 ## Raw data

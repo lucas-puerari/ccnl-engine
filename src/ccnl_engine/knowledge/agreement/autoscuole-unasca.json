@@ -92,20 +92,8 @@
         "text": "Contract in ultra-vigenza since 01/01/2024 (expired 31/12/2023 per Art. 50). Negotiations broke down July 2026. Salary amounts remain operative per Art. 2074 c.c."
       },
       {
-        "kind": "simplification",
-        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
-        "capability": "seniority",
-        "monetary_impact": "unknown",
-        "limitation": {
-          "variant": "apprentice_seniority",
-          "applies_when": {
-            "trigger": "path",
-            "contract_types": [
-              "apprentice"
-            ]
-          },
-          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
-        }
+        "kind": "info",
+        "text": "APPRENTICE SENIORITY (Apprendistato professionalizzante, punto 5 lett. h, p. 50 of the signed CCNL of 28 February 2023, read on the page image): 'L'intero periodo di apprendistato professionalizzante è utile ai fini della maturazione dell'anzianità aziendale, anche ai fini degli aumenti periodici di anzianità; tali aumenti saranno corrisposti nelle misure previste dal livello di appartenenza': the apprentice accrues the scatti of art. 17 at the amount of the level he is classified at (seniority_increments.apprentice_level_amount)."
       }
     ]
   },
@@ -160,6 +148,7 @@
     "seniority_increments": {
       "cadence_months": 24,
       "maximum_count": 5,
+      "apprentice_level_amount": true,
       "provenance": {
         "status": "derived",
         "location": {
@@ -1501,7 +1490,7 @@
     "effective_until": null,
     "source": "https://www.unasca.it/PDF/ccnl/Verbale_di_Accordo_Rettifica_tabelle14-03-2023.pdf",
     "verification_status": "unverified",
-    "source_hash": "567f16dc1a517b984cdcf9f115d4ce4d2de721a44b9b5646bd9b2ac1cff12239",
+    "source_hash": "c887c641d75a28f7d7c7543bd97e938a5d7b0b9ce34500d8532dd7ea19de9512",
     "published_at": "2026-09-12",
     "source_type": "contracting_party"
   },

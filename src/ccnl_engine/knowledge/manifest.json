@@ -252,7 +252,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/autoscuole-unasca",
       "ruleset_version": "2026.1",
-      "source_hash": "567f16dc1a517b984cdcf9f115d4ce4d2de721a44b9b5646bd9b2ac1cff12239",
+      "source_hash": "c887c641d75a28f7d7c7543bd97e938a5d7b0b9ce34500d8532dd7ea19de9512",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/autoscuole-unasca.json.gz"
@@ -2664,7 +2664,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "c53c9d609abccc4e3b0ff8393ba1ea0258cb9641b4e8ea123a143983951e8bc6",
+      "source_hash": "94be6bc3e1ca5be02b0174bfd1eee6138a4b3e2f13ef67c9d06f6ed360850a8f",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/autoscuole-unasca.json.gz",
