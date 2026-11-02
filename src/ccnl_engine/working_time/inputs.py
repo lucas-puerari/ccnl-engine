@@ -10,6 +10,7 @@ from typing import TYPE_CHECKING
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.validators import (
     parse_enum,
+    require_bool,
     require_date,
     require_decimal,
 )
@@ -35,19 +36,16 @@ __all__ = [
 class OvertimeKind(StrEnum):
     """When overtime hours were worked, selecting the CCNL overtime band.
 
-    The values match the work kinds the CCNL ``time_supplements`` bands
-    apply to.
+    The values match the work kinds of the CCNL ``time_supplements`` bands.
 
     Attributes:
         WEEKDAY: Daytime overtime on a working day (straordinario diurno).
         NIGHT: Night overtime (straordinario notturno).
-        HOLIDAY: Overtime on a public holiday or rest day (straordinario
-            festivo).
+        HOLIDAY: Overtime on a public holiday or rest day (straordinario festivo).
         REST_DAY: Overtime on the weekly rest day (Sunday, or the day the
             rest moves to) where the CCNL pays it apart from the public
             holidays; a CCNL without a rest-day band pays it as ``HOLIDAY``.
-        NIGHT_HOLIDAY: Night overtime on a public holiday (straordinario
-            festivo notturno).
+        NIGHT_HOLIDAY: Night overtime on a public holiday (festivo notturno).
         SUPPLEMENTARY: Hours a part-time worker works beyond the agreed
             hours within the full-time week (lavoro supplementare, D.Lgs.
             81/2015 art. 6 c. 2), paid with the CCNL supplementare band.
@@ -67,8 +65,7 @@ class OvertimeEvent:
 
     Attributes:
         event_date: Calendar date the overtime was worked.
-        hours: Number of overtime hours, above 0 and at most the 744 hours
-            of a month of 31 days.
+        hours: Overtime hours, above 0 and at most 744 (a month of 31 days).
         hourly_rate: Base hourly rate in EUR, above 0.  ``None`` (the
             default) derives it from the CCNL: the monthly pay elements of
             its ``hourly_base_method`` divided by its hourly divisor, when
@@ -201,11 +198,14 @@ class NightShiftEvent:
             from the CCNL night band and hourly base, ``hours`` required;
             the run is rejected when the CCNL has none the engine applies.
         hours: Ordinary night hours, above 0 and at most 744.
+        before_22: Whether the hours fall before 22:00, which a CCNL may pay
+            at a lower night rate (Confapi art. 29 row b).
     """
 
     event_date: date
     supplement_amount: Decimal | None = None
     hours: Decimal | None = None
+    before_22: bool = False
 
     def __post_init__(self) -> None:  # noqa: D105
         _check_supplement(
@@ -215,6 +215,7 @@ class NightShiftEvent:
             "NightShiftEvent",
             "night_shift",
         )
+        require_bool(self.before_22, "NightShiftEvent.before_22", feature="night_shift")
 
 
 @dataclass(frozen=True)

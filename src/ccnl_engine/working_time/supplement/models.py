@@ -67,6 +67,8 @@ class SupplementWork(StrEnum):
 
     Attributes:
         NIGHT: Ordinary hours worked at night.
+        NIGHT_EARLY: Ordinary night hours before 22:00, where a CCNL starts
+            the night earlier and pays them less (Confapi art. 29 row b).
         HOLIDAY: Hours worked on a public holiday (festività).
         HOLIDAY_COMPENSATORY_REST: Hours worked on a public holiday or rest
             day with a compensatory rest day (metalmeccanici: festivo con
@@ -80,6 +82,7 @@ class SupplementWork(StrEnum):
     """
 
     NIGHT = "night"
+    NIGHT_EARLY = "night_early"
     HOLIDAY = "holiday"
     HOLIDAY_COMPENSATORY_REST = "holiday_compensatory_rest"
     SUNDAY = "sunday"

@@ -114,8 +114,8 @@ _PILOTS = (
         "0.15",
         "0.30",
     ),
-    # Art. 29 (20%, festivo 55%), art. 38 (173); level 5.
-    Pilot("metalmeccanico-confapi", "5", ("2195.87",), "173", "0.20", None, "0.55"),
+    # Art. 29 (20%, night after 22 35%, festivo 55%), art. 38 (173); level 5.
+    Pilot("metalmeccanico-confapi", "5", ("2195.87",), "173", "0.20", "0.35", "0.55"),
     # Art. 7 (25%, festivo 50%), art. 3 Tit. IV (173); level C3.
     Pilot(
         "metalmeccanico-federmeccanica", "C3", ("2158.26",), "173", "0.25", None, "0.50"

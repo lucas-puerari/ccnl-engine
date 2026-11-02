@@ -86,11 +86,12 @@ def work_of(event: SupplementEvent) -> SupplementWork | None:
     """Return the work a supplement event pays.
 
     Returns:
-        Night work, the holiday work of its kind, or the shift of its kind;
+        Night work (before 22:00 when the event says so), the holiday work
+        of its kind, or the shift of its kind;
         ``None`` for a shift event that states no kind.
     """
     if isinstance(event, NightShiftEvent):
-        return SupplementWork.NIGHT
+        return SupplementWork.NIGHT_EARLY if event.before_22 else SupplementWork.NIGHT
     if isinstance(event, HolidayWorkEvent):
         return SupplementWork(event.kind.value)
     return None if event.kind is None else _SHIFTS[event.kind]
