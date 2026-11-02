@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, seniority, welfare, workplace_injury |
+| **Limits of this contract** | base_salary, welfare, workplace_injury |
 
-5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -124,13 +124,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `base_salary` applies; contract type in apprentice.
 
     **Remediation:** Confirm the 85/90/95% apprenticeship percentages against the current consolidated text.
-
-!!! warning "autorimesse-ic35/apprentice_seniority · seniority · impact unknown · open"
-    APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.
-
-    **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
-
-    **Remediation:** Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
@@ -335,6 +328,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     Source status: the 2025-12-09 document is a signed 'ipotesi di accordo' (conditional agreement). OO.SS. were to dissolve the reserve by 31/01/2026. As of 2026-09-05 the January 2026 tranches are in effect per public reporting; formal scioglimento not independently verified. Source is a signatory union PDF and sufficient as primary source.
     
     Headcount: 41,438 workers (contratticcnl.it, CNEL/INPS archive, IC35, 2025).
+    
+    APPRENTICE SENIORITY (Art. 32, p. 65 of the CCNL Autonoleggio-Autorimesse 2022-2024, https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL-AUTONOLEGGIO-ANIASA_2022-2024.pdf, sha256 fafa013d5843ab750bb1f6e0ccad3b3c60e560ada3a07e576793f68e4d40196e): 'L'intero periodo di apprendistato professionalizzante è utile ai fini della maturazione dell'anzianità di servizio, nonché ai fini degli aumenti periodici di anzianità.' Reading: the apprentice matures the art. 42 increments, paid at the amounts of the level (seniority_increments.apprentice_level_amount).
     
 
 ## Raw data

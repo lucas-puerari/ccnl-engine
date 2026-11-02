@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, seniority |
+| **Limits of this contract** | base_salary |
 
-2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -110,13 +110,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `base_salary` applies; from 2027-10-01.
 
     **Remediation:** Model the October 2027 (+50 at B1) and October 2028 (+60 at B1) tranches once the tables are published, or derive them with the level coefficients of note 8.
-
-!!! warning "lavanderie-industriali-assosistema/apprentice_seniority · seniority · impact unknown · open"
-    APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.
-
-    **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
-
-    **Remediation:** Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
@@ -319,6 +312,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     APPRENTICESHIP ALLOWANCES: engine draws INCENTIVO_DI_MODULO from the effective pay level, not the destination level. An apprentice at A3 destination (month 6, pay level A1) receives 0.00 allowances because A1 has no incentivo. An apprentice at B1 destination (month 18, pay level A3) receives 57.00 EUR (A3 incentivo). Verified by compute sweep across all five boundary cases (A3/m6, A2/m6, B1/m18, C2/m30, D2/m18).
     
     SOURCE CAVEAT: previdenza-professionisti.it entry uses a domain-level URL; the exact deep-link page was not captured. Data cross-confirmed by lavoro-economia.it for seniority amounts.
+    
+    APPRENTICE SENIORITY (Art. 45, p. 63 of the CCNL testo definitivo 28 March 2023, CNEL deposit 245795, https://azstcnesa0002prodwe001.blob.core.windows.net/archivio-contratti/archivio%2F2026%2F1785247097907%2FCCNL%20Lavanderie%20industriali%2028%20marzo%202023.pdf, sha256 cdfa2207cd7010a97b45d65123fccd7822632475cc14e7b4eef5b5e6cf705aa7): 'L’intero periodo di apprendistato professionalizzante è utile ai fini della maturazione dell’anzianità aziendale, anche ai fini degli aumenti periodici di anzianità; tali aumenti saranno corrisposti nelle misure previste dal Modulo/Area professionale di appartenenza': seniority_increments.apprentice_level_amount.
     
 
 ## Raw data

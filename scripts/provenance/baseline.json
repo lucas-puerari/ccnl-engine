@@ -683,7 +683,6 @@
       "autoferrotranvieri-internavigatori/public_operator_inps_scheme"
     ],
     "agreement/autorimesse-ic35.json": [
-      "autorimesse-ic35/apprentice_seniority",
       "autorimesse-ic35/apprenticeship_percentages_2019",
       "autorimesse-ic35/long_week_divisors",
       "autorimesse-ic35/meal_voucher"
@@ -732,9 +731,6 @@
     ],
     "agreement/ceramica-sanitaria-stoviglieria-confindustria.json": [
       "ceramica-sanitaria-stoviglieria-confindustria/apprentice_seniority"
-    ],
-    "agreement/chimica-affini-pmi-unionchimica.json": [
-      "chimica-affini-pmi-unionchimica/apprentice_seniority"
     ],
     "agreement/chimica-farmaceutica-federchimica.json": [
       "chimica-farmaceutica-federchimica/absence_hours",
@@ -932,7 +928,6 @@
       "forze-polizia-ordinamento-civile/renewal_2025_2027_pending_dpr"
     ],
     "agreement/funivie-anef.json": [
-      "funivie-anef/apprentice_seniority",
       "funivie-anef/pre_2016_seniority_cohort",
       "funivie-anef/quadri_function_allowance"
     ],
@@ -1008,7 +1003,6 @@
       "laterizi-industria-f021/level_e_first_period_one_below"
     ],
     "agreement/lavanderie-industriali-assosistema.json": [
-      "lavanderie-industriali-assosistema/apprentice_seniority",
       "lavanderie-industriali-assosistema/tranches_from_october_2027"
     ],
     "agreement/lavoro-domestico-convivente-orario-ridotto.json": [
@@ -1115,7 +1109,6 @@
       "noleggio-autobus-conducente-anav/t0_table_back_calculated"
     ],
     "agreement/occhiali-occhialeria-industria.json": [
-      "occhiali-occhialeria-industria/apprentice_seniority",
       "occhiali-occhialeria-industria/apprenticeship_full_pay",
       "occhiali-occhialeria-industria/level_1_entry_rate"
     ],
@@ -1296,9 +1289,6 @@
       "tessile-pmi-uniontessile/level_8_function_allowance",
       "tessile-pmi-uniontessile/other_subsectors_tables"
     ],
-    "agreement/tessile-smi.json": [
-      "tessile-smi/apprentice_seniority"
-    ],
     "agreement/trasporto-aereo-assaeroporti.json": [
       "trasporto-aereo-assaeroporti/art_g6_reclassification",
       "trasporto-aereo-assaeroporti/level_9_seniority_zero",
@@ -1344,7 +1334,6 @@
       "turismo-federalberghi/tourism_special_supplement"
     ],
     "agreement/uneba-uneba.json": [
-      "uneba-uneba/apprentice_seniority",
       "uneba-uneba/equal_apprenticeship_bands",
       "uneba-uneba/ermt_territorial"
     ],

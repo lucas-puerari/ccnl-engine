@@ -107,20 +107,8 @@
         "text": "Apprenticeship destinations limited to levels 1-6. Level 1S excluded: Quadro status per L. 190/1985 is a person-status designation acquired through individual deed, not a contractually defined apprenticeship destination."
       },
       {
-        "kind": "simplification",
-        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
-        "capability": "seniority",
-        "monetary_impact": "unknown",
-        "limitation": {
-          "variant": "apprentice_seniority",
-          "applies_when": {
-            "trigger": "path",
-            "contract_types": [
-              "apprentice"
-            ]
-          },
-          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
-        }
+        "kind": "info",
+        "text": "APPRENTICE SENIORITY (Art. 11 c. 13, p. 20 of the CCNL Impianti a fune, testo unico coordinato, https://www.fitcisl.org/wp-content/uploads/2025/10/CCNL-Impianti-a-Fune-testo-unico-coordinato.pdf, sha256 24f5d87b3468ae8a25bb494f42cf3431764d1740e4cf4b5b3525c573cee62482): 'L’intero periodo di apprendistato professionalizzante è utile ai fini della maturazione dell’anzianità aziendale, anche con riferimento agli aumenti periodici di anzianità che saranno corrisposti nelle misure previste dal livello di appartenenza': seniority_increments.apprentice_level_amount."
       }
     ]
   },
@@ -242,7 +230,8 @@
           "verification_status": "unverified",
           "effective_from": "2020-01-01"
         }
-      }
+      },
+      "apprentice_level_amount": true
     }
   },
   "apprenticeship": [
@@ -1496,7 +1485,7 @@
     "effective_until": null,
     "source": "https://www.funiviearabba.it/wp-content/uploads/2025/12/Sintesi-CCNL-ANEF.pdf",
     "verification_status": "unverified",
-    "source_hash": "c4a2bc217a38a3844566b55ff54c834243ddca4ff2681c6fb6931ec99a7cff09",
+    "source_hash": "e151c3d40533c1f127045531705442f743bd335434fc34caf2a69a934d0fa66d",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
