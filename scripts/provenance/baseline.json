@@ -1315,13 +1315,13 @@
     "agreement/terziario-confesercenti.json": [
       "terziario-confesercenti/apprentice_seniority",
       "terziario-confesercenti/apprentice_sickness",
-      "terziario-confesercenti/lump_sum_2024_2025",
       "terziario-confesercenti/permit_deadline_payout",
       "terziario-confesercenti/provincial_third_elements",
       "terziario-confesercenti/rol_schedule_absorption",
       "terziario-confesercenti/sales_operators",
       "terziario-confesercenti/sickness_net_basis",
-      "terziario-confesercenti/sunday_overtime"
+      "terziario-confesercenti/sunday_overtime",
+      "terziario-confesercenti/una_tantum_apprentices_sales"
     ],
     "agreement/tessile-moda-artigianato-confartigianato.json": [
       "tessile-moda-artigianato-confartigianato/apprentice_inps_rates_unsourced",

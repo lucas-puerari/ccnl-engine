@@ -2074,7 +2074,7 @@
       "valid_to": "2027-03-31",
       "ruleset_id": "ccnl/terziario-confesercenti",
       "ruleset_version": "2026.2",
-      "source_hash": "65e35b42f7bca2341f0b8332219b8e94d815882de4bdba05e274887ae89f43aa",
+      "source_hash": "5fb6d4a93961ae088478eb25b2dfd239a3c58ff900cf74a233ac49cf6234e53d",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/terziario-confesercenti.json.gz"
@@ -4804,7 +4804,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "2df61bbd6622dd1f17675220ca535b8df3f7a104648ef07206e18dd3490cc039",
+      "source_hash": "b6b3925a8c535d0f985a469317fdc8313f7b14251b664130d1b10371556dfbe7",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/terziario-confesercenti.json.gz",

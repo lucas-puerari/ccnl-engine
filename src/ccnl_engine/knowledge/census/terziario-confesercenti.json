@@ -83,22 +83,6 @@
       }
     },
     {
-      "id": "lump_sum_2024_2025",
-      "institute": "una_tantum",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "One-off lump sum of the renewal of 22/03/2024 (CNEL 20260, pp. 49-50): EUR 350 at level IV, reparametrised for every level, paid in two instalments with the July 2024 and July 2025 pay (per instalment Q 303.81, I 273.67, II 236.73, III 202.34, IV 175.00, V 158.11, VI 141.95, VII 121.53), to the workers in force on 22/03/2024, pro rata over 1/1/2022-31/3/2023, outside the TFR and every other institute. Not modelled.",
-      "calculation": "ccnl/terziario-confesercenti:coverage.notes",
-      "state": "absent",
-      "remediation": "Pay the una tantum as a one-off earning with the July 2024 and July 2025 pay: per instalment Q 303.81, I 273.67, II 236.73, III 202.34, IV 175.00, V 158.11, VI 141.95, VII 121.53, pro rata over 1/1/2022-31/3/2023.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "terziario-confesercenti/lump_sum_2024_2025"
-        ]
-      }
-    },
-    {
       "id": "maternity_daily_base",
       "institute": "maternity_leave",
       "variant": "all",
@@ -447,6 +431,22 @@
       "links": {
         "limitations": [
           "tfr_compensation_apprentice_guarantee_fund"
+        ]
+      }
+    },
+    {
+      "id": "una_tantum_apprentices_sales",
+      "institute": "una_tantum",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "UNA TANTUM 2024-2025, apprentices and operatori di vendita: the apprentices take the una tantum 'riproporzionata in base al trattamento economico' and the operatori di vendita of the I and II categoria 165.20 and 138.69 per installment (p. 50); the engine pays them the amount of the level.",
+      "calculation": "ccnl/terziario-confesercenti:coverage.notes",
+      "state": "absent",
+      "remediation": "Reproportion the una tantum of the apprentices and pay the operatori di vendita their row.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "terziario-confesercenti/una_tantum_apprentices_sales"
         ]
       }
     },
