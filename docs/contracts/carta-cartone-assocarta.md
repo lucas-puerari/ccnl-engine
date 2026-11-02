@@ -33,9 +33,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, seniority |
+| **Limits of this contract** | base_salary |
 
-2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -123,13 +123,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `base_salary` applies; from 2026-04-01.
 
     **Remediation:** Read the Assocarta nota illustrativa of 24/02/2026 (or a signed table) and settle whether the EMC is in the 2026-2028 minimi; correct base_salary if absorbed.
-
-!!! warning "carta-cartone-assocarta/apprentice_seniority · seniority · impact unknown · open"
-    APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.
-
-    **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
-
-    **Remediation:** Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
@@ -315,6 +308,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     APPRENTICESHIP professionalizzante, percentage type (CCNL 28/07/2021 Art. Apprendistato professionalizzante, pisacaneboxes.com PDF): track 'triennale' (36 months, 6 semesters 70/75/80/85/90/95%) for destination levels C3, C2, C1, C1S, B2, B2S, B1, A; track 'biennale_categoria_D' (24 months, 6 quadrimestri with the same percentages) for D2 and D1. E, AS and Q are not apprenticeship destinations. The final 95% period is open-ended: after the contractual duration the worker is qualified and paid at 100% as a permanent employee.
     
     INPS: reuses 2026-industria.json (Confindustria/CIGO). Assocarta is a Confindustria federation; CIGO applicable per D.Lgs. 148/2015.
+    
+    APPRENTICE SENIORITY (Art. 18 e), p. 13 of the CCNL 28 July 2021): the seniority for the aumenti periodici runs from the conversion of the apprenticeship; no increment during it (seniority_increments.apprentice_amount 0.00).
     
 
 ## Raw data

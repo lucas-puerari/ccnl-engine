@@ -717,7 +717,6 @@
       "calzaturiero-assocalzaturifici/seniority_secondary_source"
     ],
     "agreement/carta-cartone-assocarta.json": [
-      "carta-cartone-assocarta/apprentice_seniority",
       "carta-cartone-assocarta/emc_absorption_unconfirmed"
     ],
     "agreement/ced-assoced.json": [
@@ -774,7 +773,6 @@
       "comunicazione-artigianato-confartigianato/switchboard_apprenticeship_duration"
     ],
     "agreement/concia-unic.json": [
-      "concia-unic/apprentice_seniority",
       "concia-unic/higher_overtime_bands",
       "concia-unic/rol_not_accrued"
     ],
