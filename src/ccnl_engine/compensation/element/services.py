@@ -10,6 +10,7 @@ from ccnl_engine.agreement.validity.rules import rule_scope
 from ccnl_engine.apprenticeship.rules import _apprentice_chain
 from ccnl_engine.compensation.element.rules import _level_chain
 from ccnl_engine.compensation.element.types import ApprenticeshipScaling
+from ccnl_engine.compensation.entry.rules import entry_level
 from ccnl_engine.employment.inputs import Apprentice, FixedTerm, Permanent
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.seniority.repricing.rules import (
@@ -219,9 +220,10 @@ def _contract_chain(
             scaling = ApprenticeshipScaling.of(chain, pct)
             chain = chain.scaled_for_apprenticeship(pct)
     else:
+        chosen = isinstance(contract_type, Permanent) and contract_type.entry_pay
         chain = _level_chain(
             ccnl,
-            level,
+            entry_level(ccnl, level, chosen, hired_on, as_of),
             count,
             roles,
             as_of,

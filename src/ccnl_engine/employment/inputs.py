@@ -58,9 +58,10 @@ _CCNL_ID = re.compile(r"[a-z0-9][a-z0-9-]*|[A-Z][A-Z0-9]{3}")
 
 @dataclass(frozen=True, slots=True)
 class Permanent:
-    """Standard open-ended (permanent) employment contract."""
+    """Open-ended contract; ``entry_pay`` takes the entry pay of the CCNL."""
 
     type: Literal["permanent"] = field(default="permanent", init=False)
+    entry_pay: bool = False
 
 
 @dataclass(frozen=True, slots=True)
@@ -120,12 +121,9 @@ class Employment:
     producing a payslip.
 
     Attributes:
-        ccnl_id: The CCNL, by slug (lower-case letters, digits and
-            hyphens, e.g. ``"metalmeccanico-federmeccanica"``) or by CNEL
-            code (e.g. ``"E042"``).  An id the repository does not hold, or
-            a CNEL code shared by several CCNLs, raises
-            :class:`~ccnl_engine.errors.UnknownCcnlError` when the run loads
-            it.
+        ccnl_id: The CCNL, by slug (``"metalmeccanico-federmeccanica"``) or CNEL
+            code (``"E042"``); an id not held, or a CNEL code of several CCNLs,
+            raises :class:`~ccnl_engine.errors.UnknownCcnlError` at the run.
         level_code: Contractual level code, e.g. ``"C3"``.
         contract_type: :class:`Permanent`, :class:`FixedTerm` or :class:`Apprentice`,
             always stated: it selects the NASpI surcharge of a fixed-term contract and
