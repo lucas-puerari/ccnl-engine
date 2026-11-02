@@ -11,8 +11,9 @@ INPS circ. 64/2001 par. 4: the pay of the month "comprensiva della quota
 parte di tredicesima mensilità [...] va moltiplicata per 12 e divisa per
 365 giorni (366 se le assenze cadono in un anno bisestile)".  A vertical
 part time divides the pay of the month by its paid days, rest days
-included, which the request does not state: such a run records the open
-engine limitation ``extraordinary_leave_daily_base``.
+included (``ExtraordinaryLeaveEvent.last_month_paid_days``); a vertical
+run that does not state them records the engine limitation
+``extraordinary_leave_daily_base``.
 """
 
 from __future__ import annotations
@@ -71,7 +72,11 @@ def _issue(code: str, message: str, fact: str | None = None) -> CalculationIssue
 
 
 def _indemnity(
-    first: date, last: date, yearly: Decimal, rates: ExtraordinaryLeaveRates
+    first: date,
+    last: date,
+    yearly: Decimal,
+    rates: ExtraordinaryLeaveRates,
+    paid_days: int | None = None,
 ) -> tuple[Decimal, set[int]]:
     """Return the indemnity of the days ``first``-``last`` and the unknown years.
 
@@ -80,6 +85,8 @@ def _indemnity(
         last: Last day of leave of the run.
         yearly: The last pay times the monthly payments of a year.
         rates: The statutory maximum of each year.
+        paid_days: The paid days of the last month of a vertical part
+            time: the day is a twelfth of ``yearly`` over them.
 
     Returns:
         The sum of each day's indemnity, ``yearly`` over the days of its
@@ -89,7 +96,8 @@ def _indemnity(
     total, unknown = Decimal(0), set()
     day = first
     while day <= last:
-        daily = yearly / (366 if isleap(day.year) else 365)
+        days = paid_days * _MONTHS if paid_days else (366 if isleap(day.year) else 365)
+        daily = yearly / days
         ceiling = rates.ceiling(day.year)
         if ceiling is None:
             unknown.add(day.year)
@@ -126,7 +134,10 @@ def _handle_extraordinary_leave(
             )
         )
     yearly = last_pay * (_MONTHS + terms.pay.extra_months)
-    amount, unknown = _indemnity(*span, yearly, terms.rates.extraordinary_leave)
+    paid_days = event.last_month_paid_days if terms.vertical else None
+    amount, unknown = _indemnity(
+        *span, yearly, terms.rates.extraordinary_leave, paid_days
+    )
     if unknown:
         years = ", ".join(str(y) for y in sorted(unknown))
         issues.append(
@@ -152,5 +163,6 @@ def _handle_extraordinary_leave(
         decision = replace(decision, status=provisional, reason_code=issues[0].code)
     effect.decisions = [decision]
     effect.issues = issues
-    effect.limitations = (EXTRAORDINARY_BASE_LIMITATION,) if terms.vertical else ()
+    unstated = terms.vertical and paid_days is None
+    effect.limitations = (EXTRAORDINARY_BASE_LIMITATION,) if unstated else ()
     return effect

@@ -29,6 +29,7 @@ from ccnl_engine.events import (
     AbsenceEvent,
     ArrearsEvent,
     BonusEvent,
+    ExtraordinaryLeaveEvent,
     NightShiftEvent,
     PeriodId,
     TerminationTFREvent,
@@ -568,6 +569,19 @@ DEFAULT_CASES: Mapping[str, tuple[DefaultCase, ...]] = {
         DefaultCase(_year_with_leave(True), _year_with_leave(None), "suspends_accrual"),
         DefaultCase(
             _year_with_leave(False), _year_with_leave(None), "suspends_accrual"
+        ),
+    ),
+    "ExtraordinaryLeaveEvent.last_month_paid_days": (
+        _event_pair(
+            ExtraordinaryLeaveEvent(
+                date(2026, 1, 12),
+                date(2026, 1, 23),
+                Decimal(1300),
+                last_month_paid_days=13,
+            ),
+            ExtraordinaryLeaveEvent(
+                date(2026, 1, 12), date(2026, 1, 23), Decimal(1300)
+            ),
         ),
     ),
     "ArrearsEvent.unused_deductions": (
