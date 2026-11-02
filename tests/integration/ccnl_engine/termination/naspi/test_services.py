@@ -292,6 +292,7 @@ def test_a_collective_dismissal(
     assert _contribution(result) == [Decimal(amount)]
     assert decision.inputs["rate"] == Decimal(rate)
     assert decision.inputs.get("multiplier") == (None if agreement else Decimal(3))
+    assert decision.inputs["naspi_case"] == "collective_dismissal"
     assert (decision.inputs["union_agreement"], decision.inputs["cigs_employer"]) == (
         str(agreement).lower(),
         str(cigs).lower(),
