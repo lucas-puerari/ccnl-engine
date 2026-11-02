@@ -67,24 +67,12 @@
         "monetary_impact": "no"
       },
       {
-        "kind": "simplification",
-        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
-        "capability": "seniority",
-        "monetary_impact": "unknown",
-        "limitation": {
-          "variant": "apprentice_seniority",
-          "applies_when": {
-            "trigger": "path",
-            "contract_types": [
-              "apprentice"
-            ]
-          },
-          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
-        }
+        "kind": "info",
+        "text": "APPRENTICESHIP (Art. 24): only the 5°, 4°, 3°, 3°A, 2° and 1° livello are destinations of the apprendistato professionalizzante; the 6° and the 1°A are not."
       },
       {
         "kind": "info",
-        "text": "APPRENTICESHIP (Art. 24): only the 5°, 4°, 3°, 3°A, 2° and 1° livello are destinations of the apprendistato professionalizzante; the 6° and the 1°A are not."
+        "text": "APPRENTICE SENIORITY (Art. 24 - Apprendistato professionalizzante, p. 34): no increment during the apprenticeship; a third of it counts for the increments when the employment continues, which the caller states in Employment.seniority."
       }
     ]
   },
@@ -2213,6 +2201,39 @@
           "verification_status": "unverified",
           "effective_from": "2020-01-01"
         }
+      },
+      "apprentice_amount": {
+        "periods": [
+          {
+            "valid_from": "2023-12-01",
+            "valid_until": null,
+            "value": "0.00",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "flai-ccnl-cooperazione-alimentare-2023",
+                  "title": "CCNL cooperative di trasformazione di prodotti agricoli e zootecnici e lavorazione prodotti alimentari 2023 (FLAI-CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2023/07/CCNL-cooperazione-alimentare-2023.pdf",
+                  "sha256": "a38eb5c832d99cddb4c6fe1b31c24b72291c8362b8633aa3c523c6a189fc043a"
+                },
+                "page": "34",
+                "section": "Art. 24 - Apprendistato professionalizzante",
+                "quote": "Per gli apprendisti confermati a tempo indeterminato, l’anzianità utile, ai fini degli aumenti periodici di anzianità, viene considerata per un periodo equivalente ad un terzo dell’intera durata del periodo di apprendistato presso la medesima azienda."
+              },
+              "transformation": "No increment accrues during the apprenticeship: the apprenticeship counts for the increments only when the employment continues after it, for a third of its length.",
+              "note": "The clause grants the apprentice no increment and credits a third of the apprenticeship afterwards; the zero amount is read from that clause, not printed. The credit after the apprenticeship is a caller fact (Employment.seniority).",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-02T11:21:58Z",
+                "effective_from": "2023-12-01",
+                "verification_status": "unverified"
+              }
+            }
+          }
+        ]
       }
     },
     "accrual_rule": {
@@ -2437,7 +2458,7 @@
     "effective_until": null,
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016",
     "verification_status": "unverified",
-    "source_hash": "c8c02fc6c03ad1c1d4a1f41fa7865fc4e80ffdd46440ba43b4d7f2eae46b36b5",
+    "source_hash": "8d1da15cd47a61fc638a0bac7f4c610830dc3956562ac98f5631778d1a3bba62",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

@@ -78,22 +78,6 @@
       },
       {
         "kind": "simplification",
-        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
-        "capability": "seniority",
-        "monetary_impact": "unknown",
-        "limitation": {
-          "variant": "apprentice_seniority",
-          "applies_when": {
-            "trigger": "path",
-            "contract_types": [
-              "apprentice"
-            ]
-          },
-          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
-        }
-      },
-      {
-        "kind": "simplification",
         "text": "INPS RATES: the employer and worker INPS rates of the sector (credito) are totals no 2026 INPS or association table confirms: the only component split found is the INPS guide of 2012 and the 2026 totals come from a software house page that does not prove its year. The contributions of every run rest on them.",
         "capability": "inps_employer",
         "monetary_impact": "unknown",
@@ -175,6 +159,10 @@
           },
           "remediation": "Model the assegno temporaneo as the gross that gives the destination-level net under the apprentice contribution rates, or open a limitation stating the overpayment."
         }
+      },
+      {
+        "kind": "info",
+        "text": "APPRENTICE SENIORITY (Art. 36 - Apprendistato professionalizzante, punto 5 Anzianità, p. 54): no increment during the apprenticeship; half of it counts for the increments when the employment continues, which the caller states in Employment.seniority."
       }
     ]
   },
@@ -379,6 +367,39 @@
           "review_id": "2026-10-15-ai-texts"
         },
         "transformation": "Every 36 months, the first after 48; at most 8 for the 1st and 2nd level of the quadri and for the aree, 7 for the 3rd and 4th level of the quadri; the amounts are those of the tables of the renewal (Allegato 2)."
+      },
+      "apprentice_amount": {
+        "periods": [
+          {
+            "valid_from": "2023-07-01",
+            "valid_until": null,
+            "value": "0.00",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "fabi-ccnl-abi-2023-11-23",
+                  "title": "CCNL ABI 23 novembre 2023 (testo FABI)",
+                  "kind": "associazione",
+                  "url": "https://www.fabi.it/wp-content/uploads/2025/07/ccnl-23-nov-2023_fabi.pdf",
+                  "sha256": "4d92bc5226736682ddb1eedfaf7940df989fdc3cbbd99d0fa6347fd91979a933"
+                },
+                "page": "54",
+                "section": "Art. 36 - Apprendistato professionalizzante, punto 5 Anzianità",
+                "quote": "il periodo di apprendistato è computato integralmente nella maturazione dell’anzianità di servizio e, limitatamente alla metà, per la maturazione degli scatti di anzianità e degli automatismi"
+              },
+              "transformation": "No increment accrues during the apprenticeship: the apprenticeship counts for the increments only when the employment continues after it, for half of its length.",
+              "note": "The clause grants the apprentice no increment and credits half of the apprenticeship afterwards; the zero amount is read from that clause, not printed. The credit after the apprenticeship is a caller fact (Employment.seniority).",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-02T11:21:58Z",
+                "effective_from": "2023-07-01",
+                "verification_status": "unverified"
+              }
+            }
+          }
+        ]
       }
     },
     "solidarity_fund": {
@@ -1853,7 +1874,7 @@
     "effective_until": null,
     "source": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/",
     "verification_status": "unverified",
-    "source_hash": "50d8a6473eeffe9e82dddd6123552deab1ed701d350d7f3df0bd6a153f54e576",
+    "source_hash": "6220e8ac5b0572051532e1c5f5bc186e716d35495f8b63ce01dff3d160d775a8",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
