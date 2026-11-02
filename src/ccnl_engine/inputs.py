@@ -44,7 +44,12 @@ from ccnl_engine.employment.fact.inputs import (
 )
 from ccnl_engine.employment.fixed_term.inputs import NaspiExclusion
 from ccnl_engine.employment.inputs import Apprentice, FixedTerm, Permanent
-from ccnl_engine.employment.period.inputs import EmploymentPeriod, TerminationCause
+from ccnl_engine.employment.period.inputs import (
+    CollectiveDismissal,
+    EmploymentPeriod,
+    NaspiCase,
+    TerminationCause,
+)
 from ccnl_engine.employment.spell.models import EmploymentSpell
 from ccnl_engine.family.inputs import (
     Dependent,
@@ -96,6 +101,7 @@ __all__ = [
     "Apprentice",
     "CalendarOverride",
     "CalendarOverrideReason",
+    "CollectiveDismissal",
     "ContributableHours",
     "ContributionHistory",
     "CurrentYearTaxFacts",
@@ -116,6 +122,7 @@ __all__ = [
     "IndividualElement",
     "InpsBaseYtd",
     "LeaveBalance",
+    "NaspiCase",
     "NaspiExclusion",
     "NoPensionFund",
     "OpeningBalances",

@@ -47,7 +47,12 @@ from ccnl_engine.employment.fact.inputs import (
 )
 from ccnl_engine.employment.fixed_term.inputs import FixedTerm, NaspiExclusion
 from ccnl_engine.employment.inputs import Apprentice, Employment, Permanent
-from ccnl_engine.employment.period.inputs import EmploymentPeriod, TerminationCause
+from ccnl_engine.employment.period.inputs import (
+    CollectiveDismissal,
+    EmploymentPeriod,
+    NaspiCase,
+    TerminationCause,
+)
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.event.types import WORK_EVENT_TYPES
 from ccnl_engine.extra_month.schedule.models import (
@@ -137,6 +142,7 @@ REQUEST_TYPES: Mapping[str, type] = MappingProxyType({
             CalendarOverride,
             CalendarOverrideReason,
             CompetenceYearPlan,
+            CollectiveDismissal,
             ContributableHours,
             ContributionHistory,
             CurrentYearTaxFacts,
@@ -162,6 +168,7 @@ REQUEST_TYPES: Mapping[str, type] = MappingProxyType({
             IncomeEstimateQuality,
             IndividualElement,
             ParentalLeaveTaken,
+            NaspiCase,
             NaspiExclusion,
             NoPensionFund,
             OvertimeKind,

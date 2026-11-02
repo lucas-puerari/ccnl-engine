@@ -14,6 +14,7 @@ if TYPE_CHECKING:
 __all__ = ["PERIOD_DEFAULTS"]
 
 _REPORTED = FactEnforcement.REPORTED
+_PENDING = FactEnforcement.PENDING
 
 #: Classification of each defaulted field of the end of an employment.
 PERIOD_DEFAULTS: Mapping[str, FieldDefault] = {
@@ -32,5 +33,13 @@ PERIOD_DEFAULTS: Mapping[str, FieldDefault] = {
         "a dismissal or a resignation whose just cause is not stated: the "
         "notice indemnity, and the NASpI contribution of a resignation, have "
         "a missing_fact just_cause blocker",
+    ),
+    "EmploymentPeriod.naspi_case": requires_fact(
+        "naspi_dismissal",
+        "employment.employment_period.naspi_case",
+        _PENDING,
+        "an end whose NASpI case is not stated: the contribution is read "
+        "from the cause and the just cause alone, with the "
+        "naspi_dismissal_exceptions limitation",
     ),
 }

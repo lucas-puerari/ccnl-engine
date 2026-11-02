@@ -64,6 +64,10 @@ state types.
 
 ::: ccnl_engine.inputs.TerminationCause
 
+::: ccnl_engine.inputs.NaspiCase
+
+::: ccnl_engine.inputs.CollectiveDismissal
+
 ## Family and tax facts
 
 ::: ccnl_engine.inputs.FamilyComposition

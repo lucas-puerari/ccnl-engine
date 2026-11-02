@@ -34,6 +34,12 @@ class NaspiDismissalRules(BaseModel):
         rate: Share of the monthly NASpI maximum for each twelve months of
             service in the last three years, 41%.
         monthly_maximum: Monthly NASpI maximum of the year.
+        collective_rate: The rate of a dismissal at the end of a collective
+            procedure of an employer owing the CIGS contribution, 82% (L.
+            205/2017 art. 1 c. 137).
+        no_agreement_multiplier: The times a collective dismissal without
+            union agreement owes the contribution, 3 (L. 92/2012 art. 2 c.
+            35).
         ruleset: Identity of the data file.
     """
 
@@ -42,4 +48,6 @@ class NaspiDismissalRules(BaseModel):
     year: int
     rate: SourcedValue
     monthly_maximum: SourcedValue
+    collective_rate: SourcedValue
+    no_agreement_multiplier: SourcedValue
     ruleset: RulesetIdentity | None = None

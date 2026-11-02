@@ -41,11 +41,13 @@ from ccnl_engine.inputs import (
     EmploymentPeriod,
     FamilyComposition,
     InpsBaseYtd,
+    NaspiCase,
     NoPensionFund,
     OpeningBalances,
     PensionFundEnrolment,
     PeriodState,
     PriorYearTaxFacts,
+    TerminationCause,
     TfrFundBalance,
     TfrQuotaYtd,
     WeeklyHours,
@@ -242,6 +244,18 @@ _LEAVING = replace(
     employment_period=EmploymentPeriod(date(2025, 1, 1), date(2026, 1, 31)),
     tfr_fund=TfrFundBalance(2025, Decimal(2_000), Decimal(0), Decimal(0)),
 )
+
+
+def _ending(case: NaspiCase | None) -> Employment:
+    """Return a dismissal on 31 January 2026, with or without its NASpI case.
+
+    Returns:
+        The employment of :data:`_SINCE_2025` ending by dismissal.
+    """
+    period = EmploymentPeriod(
+        date(2025, 1, 1), date(2026, 1, 31), TerminationCause.DISMISSAL, False, case
+    )
+    return replace(_SINCE_2025, employment_period=period)
 
 
 def _leaving(
@@ -583,6 +597,9 @@ DEFAULT_CASES: Mapping[str, tuple[DefaultCase, ...]] = {
                 date(2026, 1, 12), date(2026, 1, 23), Decimal(1300)
             ),
         ),
+    ),
+    "EmploymentPeriod.naspi_case": (
+        _employment_pair(_ending(NaspiCase.ORDINARY), _ending(None)),
     ),
     "ArrearsEvent.unused_deductions": (
         _event_pair(replace(_unrated(), unused_deductions=Decimal(40)), _unrated()),

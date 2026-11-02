@@ -57,15 +57,65 @@
       }
     }
   },
+  "collective_rate": {
+    "value": "0.82",
+    "provenance": {
+      "status": "derived",
+      "location": {
+        "source_document": {
+          "document_id": "inps-msg-594-2018",
+          "title": "INPS, messaggio n. 594 dell'8 febbraio 2018",
+          "kind": "inps_circolare",
+          "url": "https://servizi2.inps.it/MessaggiZIP/Messaggio%20numero%20594%20del%2008-02-2018.pdf",
+          "sha256": "f035fc25dc30190d0ef3895fced7b461d6f1b788821f20fdb0bc516d2e7ae500"
+        },
+        "section": "par. 2, quoting L. 205/2017 art. 1 c. 137",
+        "quote": "A decorrere dal 1º gennaio 2018, per ciascun licenziamento effettuato nell'ambito di un licenziamento collettivo da parte di un datore di lavoro tenuto alla contribuzione per il finanziamento dell'integrazione salariale straordinaria, ai sensi dell'articolo 23 del decreto legislativo 14 settembre 2015, n. 148, l'aliquota percentuale di cui all'articolo 2, comma 31, della legge 28 giugno 2012, n. 92, è innalzata all'82 per cento."
+      },
+      "transformation": "The 82 per cento replaces the 41 of c. 31 for a dismissal at the end of a collective procedure of an employer owing the CIGS contribution (EmploymentPeriod.naspi_case CollectiveDismissal with cigs_employer); par. 4 of the message: 990.68 for twelve months at 82% of the 2018 maximum 1208.15. The procedures opened by 20 October 2017 that keep the 41% are not modelled: their dismissals fall before 2026.",
+      "extraction": {
+        "method": "ai",
+        "model": "claude-opus-5-5",
+        "extraction_timestamp": "2026-11-02T09:37:55",
+        "effective_from": "2026-01-01",
+        "verification_status": "unverified"
+      }
+    }
+  },
+  "no_agreement_multiplier": {
+    "value": "3",
+    "provenance": {
+      "status": "derived",
+      "location": {
+        "source_document": {
+          "document_id": "l-92-2012-art2-2026-11-02",
+          "title": "L. 28 giugno 2012 n. 92, art. 2 (Normattiva, ultimo aggiornamento all'atto 23/03/2026)",
+          "kind": "legge",
+          "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:2012-06-28;92~art2",
+          "sha256": "d40853a1e6c1e20173298f832828aff3e5838ec01aa7994575ed3bd8e1716f6e"
+        },
+        "section": "art. 2 c. 35",
+        "quote": "A decorrere dal 1° gennaio 2017, nei casi di licenziamento collettivo in cui la dichiarazione di eccedenza del personale di cui all' articolo 4, comma 9, della legge 23 luglio 1991, n. 223 , non abbia formato oggetto di accordo sindacale, il contributo di cui al comma 31 del presente articolo è moltiplicato per tre volte."
+      },
+      "transformation": "The contribution of a collective dismissal whose declaration of redundancy had no union agreement (CollectiveDismissal.union_agreement false), three times, at 41% or at the 82% of an employer owing the CIGS contribution (INPS msg. 594/2018 par. 4: 'la misura del contributo in argomento è moltiplicata per tre volte').",
+      "extraction": {
+        "method": "ai",
+        "model": "claude-opus-5-5",
+        "extraction_timestamp": "2026-11-02T09:37:55",
+        "effective_from": "2026-01-01",
+        "verification_status": "unverified"
+      }
+    }
+  },
   "ruleset": {
     "id": "law/2026/naspi-dismissal",
-    "version": "2026.1",
+    "version": "2026.2",
     "effective_from": "2026-01-01",
     "effective_until": "2026-12-31",
     "published_at": "2026-10-31",
-    "source": "L. 92/2012 art. 2 c. 31; INPS circ. 4/2026 par. 6; INPS circ. 44/2013",
+    "source": "L. 92/2012 art. 2 cc. 31, 35; L. 205/2017 art. 1 c. 137 (INPS msg. 594/2018); INPS circ. 4/2026 par. 6; INPS circ. 44/2013",
     "source_type": "official_primary",
     "verification_status": "unverified",
-    "source_hash": "899185dd72dae8d13bafe1f1eef7b428b1fb4f183700b1e9da060d9ea6cbb3f0"
+    "source_hash": "b108c285ab1579125c5aad7c693d5fe70e58740373cce758ef998aa38f8c8eec"
   }
 }
