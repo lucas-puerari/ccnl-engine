@@ -23,8 +23,15 @@ from ccnl_engine import (
     PeriodInput,
     PeriodResult,
 )
+from ccnl_engine.catalog.loaders import load_ccnl
+from ccnl_engine.compensation.element.rules import _level_chain
 from ccnl_engine.events import OvertimeEvent
-from ccnl_engine.inputs import Apprentice, Permanent, SeniorityFact, SenioritySource
+from ccnl_engine.inputs import (
+    Apprentice,
+    Permanent,
+    SeniorityFact,
+    SenioritySource,
+)
 from ccnl_engine.results import BlockerCode, MonetaryImpact
 
 _ENGINE = PayrollEngine.bundled()
@@ -136,14 +143,29 @@ def test_apprentice_without_seniority_is_a_missing_fact() -> None:
 
 
 def test_apprentice_seniority_without_level_series_is_kept() -> None:
-    """A level series with no value at the date cannot show the amounts equal."""
-    result = _run(
-        "grafica-editoria-aieg",
-        "C2",
-        Apprentice(months_elapsed=0, track="triennale"),
-        seniority=120,
+    """A level series with no value at the date cannot show the amounts equal.
+
+    Grafica level C2 has no increment value in June 2026; with the apprentice
+    amount left out the CCNL limitation is kept.
+    """
+    ccnl = load_ccnl("grafica-editoria-aieg")
+    increments = ccnl.parameters.seniority_increments.model_copy(
+        update={"apprentice_amount": None}
     )
-    assert f"grafica-editoria-aieg/{_APPRENTICE_SENIORITY}" in _ids(result)
+    parameters = ccnl.parameters.model_copy(update={"seniority_increments": increments})
+    unsourced = ccnl.model_copy(update={"parameters": parameters})
+    (level,) = (lv for lv in unsourced.levels if lv.code == "C2")
+    chain = _level_chain(
+        unsourced,
+        level,
+        3,
+        frozenset(),
+        date(2026, 6, 1),
+        is_apprentice=True,
+        seniority_months=120,
+    )
+
+    assert chain.limitations == (f"grafica-editoria-aieg/{_APPRENTICE_SENIORITY}",)
 
 
 _PCT_UNDECLARED = "apprenticeship_pct_undeclared_components"

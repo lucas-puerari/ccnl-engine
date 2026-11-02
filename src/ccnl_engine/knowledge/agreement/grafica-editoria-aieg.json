@@ -94,22 +94,6 @@
       },
       {
         "kind": "simplification",
-        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
-        "capability": "seniority",
-        "monetary_impact": "unknown",
-        "limitation": {
-          "variant": "apprentice_seniority",
-          "applies_when": {
-            "trigger": "path",
-            "contract_types": [
-              "apprentice"
-            ]
-          },
-          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
-        }
-      },
-      {
-        "kind": "simplification",
         "text": "LEVELS E, D2, A, AS: the file values exceed the sum of the printed items (minimo of 01/10/2022 + contingenza + EDR + cumulative TEM increments, FISTel compendium pp. 172, 176, 173, 19) by a constant amount at every tranche: E +14.74, D2 +16.77, A +30.81, AS +36.47, about one 2022 tranche. No signatory prints the post-2024 totals, so the values are kept from the aggregator and not verified.",
         "capability": "base_salary",
         "monetary_impact": "yes",
@@ -120,6 +104,10 @@
           },
           "remediation": "Read a printed post-2024 table of the signatories (testo a stampa) and reconcile levels E, D2, A and AS."
         }
+      },
+      {
+        "kind": "info",
+        "text": "APPRENTICE SENIORITY (X e) Apprendistato, p. 14 of the CCNL 2021-2022): the seniority for the aumenti periodici runs from the conversion of the apprenticeship; no increment during it (seniority_increments.apprentice_amount 0.00)."
       }
     ]
   },
@@ -688,6 +676,39 @@
           "verification_status": "unverified",
           "effective_from": "2020-01-01"
         }
+      },
+      "apprentice_amount": {
+        "periods": [
+          {
+            "valid_from": "2024-03-01",
+            "valid_until": null,
+            "value": "0.00",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "adapt-ccnl-grafici-2021-2022",
+                  "title": "CCNL Grafici editoriali e affini 2021-2022 (ADAPT)",
+                  "kind": "associazione",
+                  "url": "https://farecontrattazione.adapt.it/wp-content/uploads/2021/01/729909-grafici20212022.pdf",
+                  "sha256": "c18e0b19490c3f0ad428d913ec50c95a09ab84d806e0a20f20aea3d795c9e244"
+                },
+                "page": "14",
+                "section": "X e) Apprendistato - Disciplina generale",
+                "quote": "L’anzianità utile ai fini della maturazione degli aumenti periodici di anzianità decorre dalla data di trasformazione del rapporto."
+              },
+              "transformation": "No increment accrues during the apprenticeship: the seniority for the aumenti periodici runs from the conversion.",
+              "note": "The zero amount is read from the clause of the 2021-2022 text (the 2024-2026 text was not reachable); the months from the conversion are the caller's Employment.seniority.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-02T12:16:12Z",
+                "effective_from": "2024-03-01",
+                "verification_status": "unverified"
+              }
+            }
+          }
+        ]
       }
     },
     "employer_funds": [
@@ -2897,7 +2918,7 @@
     "effective_until": null,
     "source": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
     "verification_status": "unverified",
-    "source_hash": "240e45f1c53499990b6aaa3e8e2fb6abb7b2c5c9f2e3b029042f192a2d6f1b28",
+    "source_hash": "df6bb81487d04256d804dcccc1c247fc09ef3917b74b50f5ab62bd55c28fc915",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

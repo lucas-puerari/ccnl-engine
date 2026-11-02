@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, seniority |
+| **Limits of this contract** | base_salary |
 
-5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -130,13 +130,6 @@ Destination levels: `AS4`
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
-
-!!! warning "legno-arredamento-federlegno/apprentice_seniority · seniority · impact unknown · open"
-    APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.
-
-    **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
-
-    **Remediation:** Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.
 
 !!! warning "legno-arredamento-federlegno/apprenticeship_midpoint_components · base_salary · impact yes · open"
     APPRENTICESHIP MIDPOINT COMPONENTS: the 3rd period pays a 'retribuzione intermedia' between the current and the destination level (secondary source studiocerbone.com on the apprenticeship agreement); the CCNL text listed in the sources (direzionelavoro.it PDF) is no longer reachable, so whether the intermediate pay covers contingenza and EDR or the minimum table only is unverified. The engine averages the whole monthly pay, as the Federterme clause states; contingenza differs by about 1-2 EUR between adjacent levels.
@@ -349,6 +342,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     MANAGEMENT FUNCTION ALLOWANCE AD3: EUR 25.82/month, not included in the minimum pay table, modelled as a fixed_allowance for level AD3.
     
     INPS: industry sector rates from contribution/2026/industria.json (existing file reused). Employee 9.19% up to 15 employees, 9.49% above; employer (operai): up to 15 employees 30.68%, 16-50 employees 31.28%, >50 employees 31.58% (impiegati and quadri 28.46%, 29.06%, 29.36%). No substitute bilateral fund for CCNL Legno Industria (Fondimpresa for training only, does not affect INPS contribution rates) (review of 2026-10-30)
+    
+    APPRENTICE SENIORITY (Parte VII, Regolamentazione dell'apprendistato professionalizzante, p. 149 of the CCNL Legno industria, https://www.filcacisl.it/sindacato/wp-content/uploads/2022/04/Ccnl-Legno-Industria-definitivo1.pdf, sha256 591296abac43a018b9ffe08f60a521584129d9717e87a46583b8125a58d067bf): 'L’intero periodo di apprendistato professionalizzante è utile ai fini della maturazione dell’anzianità aziendale, anche ai fini degli aumenti periodici di anzianità; tali aumenti saranno corrisposti nelle misure previste dal livello di appartenenza': seniority_increments.apprentice_level_amount.
     
     HOURLY DIVISOR 174 (40h x 52 / 12 = 173.33, rounded up as used by the sector): no published hourly table in accessible primary sources; independent secondary sources converge on 174 (previdenza-professionisti.it). Daily coefficient 26 confirmed by the CNEL F051 PDF.
     

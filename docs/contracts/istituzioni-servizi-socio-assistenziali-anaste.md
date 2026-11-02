@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, seniority, una_tantum |
+| **Limits of this contract** | base_salary, una_tantum |
 
-3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -125,13 +125,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Model the indennita professionale infermieri (155 EUR x 12) as a fixed allowance with role 'infermiere' (Allowance.role, months_per_year 12).
-
-!!! warning "istituzioni-servizi-socio-assistenziali-anaste/apprentice_seniority · seniority · impact unknown · open"
-    APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.
-
-    **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
-
-    **Remediation:** Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
@@ -321,6 +314,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     LEVEL 1 PRE-2025: level 1 introduced ex-novo in 2025 renewal. Pre-2025 salary set equal to 2025-08-01 value (1295.43 EUR) — no historical data available.
     
     APPRENTICESHIP (Art. 22 c. 12-15, p. 19): levels 1-5 apprentice 12 months at 90% for months 1-6 and 95% after; levels 6-10 32 months at 90% for months 1-28 and 95% after; the full pay of the qualification from the end (c. 13). The first clause of c. 12 says 'fino a 32 mesi' for levels 1-5 too, against the 12 months of c. 15: c. 15 sets the duration. Level Q, in neither list, keeps the 32-month track.
+    
+    APPRENTICE SENIORITY (Apprendistato c. 12, p. 19 of the CCNL ANASTE, https://snalv.it/docs/anaste25/pdf6.pdf, sha256 0104ada3fe1307dce987c275b55e962e6db6230c0bc94d4182e406bb395c8c98): 'Il periodo di apprendistato è considerato utile ai fini della maturazione degli scatti di anzianità previsti dall’art. 73 del CCNL.' Reading: the scatti matured during the apprenticeship are those of art. 73 at the amounts of the level (seniority_increments.apprentice_level_amount).
     
 
 ## Raw data
