@@ -1066,7 +1066,6 @@
       "materiali-costruzione-lapidei-confapi/contractual_fund_partial"
     ],
     "agreement/metalmeccanica-cooperative.json": [
-      "metalmeccanica-cooperative/apprentice_seniority",
       "metalmeccanica-cooperative/apprenticeship_from_federmeccanica",
       "metalmeccanica-cooperative/cooperative_inps_rates_unverified"
     ],
@@ -1098,7 +1097,6 @@
       "metalmeccanico-confimi-pmi/overtime_shift_column"
     ],
     "agreement/metalmeccanico-federmeccanica.json": [
-      "metalmeccanico-federmeccanica/apprentice_seniority",
       "metalmeccanico-federmeccanica/elemento_perequativo",
       "metalmeccanico-federmeccanica/overtime_exempt_quota_supplement",
       "metalmeccanico-federmeccanica/par_conto_ore_payout",
@@ -1142,9 +1140,6 @@
       "operai-agricoli-florovivaisti/provincial_supplement",
       "operai-agricoli-florovivaisti/super_profile_scatti"
     ],
-    "agreement/orafi-argentieri-industria-federorafi.json": [
-      "orafi-argentieri-industria-federorafi/apprentice_seniority"
-    ],
     "agreement/organizzazioni-allevatori-aia.json": [
       "organizzazioni-allevatori-aia/apprentice_inps_rates_unsourced",
       "organizzazioni-allevatori-aia/quadri_function_allowance",
@@ -1168,7 +1163,6 @@
       "panificazione-assipan/apprentice_seniority"
     ],
     "agreement/pelli-cuoio-industria-assopellettieri.json": [
-      "pelli-cuoio-industria-assopellettieri/apprentice_seniority",
       "pelli-cuoio-industria-assopellettieri/level_1_apprentice_reference"
     ],
     "agreement/portieri-fabbricati-confedilizia.json": [

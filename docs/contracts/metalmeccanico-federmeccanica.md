@@ -32,9 +32,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, leave, overtime, seniority |
+| **Limits of this contract** | base_salary, leave, overtime |
 
-7 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+6 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -126,13 +126,6 @@ percentage: 1.00
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
-
-!!! warning "metalmeccanico-federmeccanica/apprentice_seniority · seniority · impact unknown · open"
-    APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.
-
-    **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
-
-    **Remediation:** Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.
 
 !!! warning "metalmeccanico-federmeccanica/overtime_exempt_quota_supplement · overtime · impact yes · open"
     OVERTIME, QUOTE ESENTI: the 2025 ipotesi (p. 35) adds 8% to the overtime hours worked beyond the exempt quota of 40 or 48 hours a year; the engine does not count the overtime hours of the year, so it does not add it.
@@ -375,6 +368,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     HOURLY RATE AND SUPPLEMENTS (Art. 7 Sez. Quarta Tit. III of the CCNL of 5 February 2021, rates untouched by the renewal of 22 November 2025): without a caller value the engine derives the hourly base (minimi, scatti and fixed allowances over 173) and the supplements on holiday hours (50%) and on holiday hours with a compensatory rest (10%), equal in both columns. Whether those hours are also paid on top of the monthly pay is not settled: a derived holiday supplement is provisional. Not derived, the caller states the amount: ordinary night work (20% until 22 and 30% after; shift workers 15%, 20% from June 2013, 25% from 22 to 6 in the impiantistica), because its window starts 12 hours after the morning shift of each work group and its rate depends on the hour and on the shift column, facts the request does not carry; night holiday work and Sunday work. Individual elements (merito, superminimi, cottimi) are not in the hourly base. Absences: no clause sets the divisor of an absence deduction; the 1/26 of art. 9 (festività on a Sunday) is taken by analogy (work_rules.absence_rules derived, was verified on the wrong clause): the caller states AbsenceEvent.hourly_rate.
     
     LEAVE AT TERMINATION (Sez. IV, Tit. III, Art. 10, p. 166 of the CCNL of 5 February 2021): 'L’indennità dovuta al lavoratore per le giornate di ferie non godute è costituita dalla retribuzione giornaliera globale di fatto'. No clause of the 2021 text or of the ipotesi of 22 November 2025 (OCR) defines that daily pay as a fraction of the monthly pay: the only daily quota stated (1/26 of the retribuzione mensile fissa, Art. 9, p. 164) is the pay of a festività falling on a Sunday, and the divisor 173 (Tit. IV, Art. 3, p. 173) gives the hourly pay. The engine pays no residual (termination_residual_leave incomplete, termination_basis_not_sourced).
+    
+    APPRENTICE SENIORITY (Disciplina dell'apprendistato professionalizzante, Art. 13, p. 272 of the CCNL 5 February 2021): the apprenticeship counts for the aumenti periodici of the worker kept in service for 65% of its length; no increment during it (seniority_increments.apprentice_amount 0.00).
     
 
 ## Raw data

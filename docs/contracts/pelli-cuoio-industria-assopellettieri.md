@@ -32,9 +32,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, seniority |
+| **Limits of this contract** | base_salary |
 
-2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -117,13 +117,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `base_salary` applies; contract type in apprentice; level in 2, 3.
 
     **Remediation:** Verify the 22/12/2023 agreement for the apprenticeship pay reference of level 1.
-
-!!! warning "pelli-cuoio-industria-assopellettieri/apprentice_seniority · seniority · impact unknown · open"
-    APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.
-
-    **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
-
-    **Remediation:** Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
@@ -306,6 +299,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     INPS: industry sector rates from 2026-industria.json (existing file reused). Employee 9.19% up to 15 employees, 9.49% above; employer (operai): <=15 employees 30.68%, 16-50 employees 31.28%, >50 employees 31.58% (impiegati and quadri 28.46%, 29.06%, 29.36%). (review of 2026-10-30)
     
     LEVEL 6Q: not present in the CCNL table of the CNEL PDF (August 2023). Excluded from the model.
+    
+    APPRENTICE SENIORITY (Art. 55 Regolamentazione dell'apprendistato professionalizzante, p. 44, CNEL archive https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf, sha256 4e303eba48192399bcecd05e5e0cdc675b61c3daff40ef71b0c1e377f98203f8): 'L’intero periodo di apprendistato professionalizzante è utile ai fini della maturazione dell’anzianità aziendale, anche ai fini degli aumenti periodici di anzianità; tali aumenti saranno corrisposti nelle misure previste dal livello di appartenenza': seniority_increments.apprentice_level_amount.
     
 
 ## Raw data
