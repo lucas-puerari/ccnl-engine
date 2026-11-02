@@ -231,10 +231,10 @@
       "institute": "overtime",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Art. 9 punti 3-6, 9-11: the premiums on ordinary hours not yet modelled: night work outside shifts 50%, night shifts 34% and 46% (3x7), Sunday 3x7 33%, pluriperiodale and Saturday 10%, the first 120 hours past 2,024 a year 30%. The holiday premium (50%) and the day-shift premium (4%) are modelled (supplement_bands CHIM_FESTIVO, CHIM_TURNO_DIURNO) (review of 2026-10-30).",
+      "rule": "Art. 9 punti 9-11: the premiums of pluriperiodale work and Saturday work (10%) and of the first 120 hours past the 2,024 of a year (30%), which the engine has no work for. The holiday (50%), night (50%), shift (4%, 34%, 46% in 3x7) and 3x7 Sunday (33%) premiums are modelled (supplement_bands CHIM_*).",
       "calculation": "ccnl/chimica-farmaceutica-federchimica:coverage.notes",
       "state": "absent",
-      "remediation": "Model the remaining Art. 9 premiums on ordinary hours.",
+      "remediation": "Model the pluriperiodale, Saturday and annual-excess premiums of Art. 9 punti 9-11.",
       "origin": "seeded",
       "links": {
         "limitations": [

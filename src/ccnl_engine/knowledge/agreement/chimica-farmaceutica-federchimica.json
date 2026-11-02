@@ -131,7 +131,7 @@
       },
       {
         "kind": "simplification",
-        "text": "Art. 9 punti 3-6, 9-11: the premiums on ordinary hours not yet modelled: night work outside shifts 50%, night shifts 34% and 46% (3x7), Sunday 3x7 33%, pluriperiodale and Saturday 10%, the first 120 hours past 2,024 a year 30%. The holiday premium (50%) and the day-shift premium (4%) are modelled (supplement_bands CHIM_FESTIVO, CHIM_TURNO_DIURNO) (review of 2026-10-30).",
+        "text": "Art. 9 punti 9-11: the premiums of pluriperiodale work and Saturday work (10%) and of the first 120 hours past the 2,024 of a year (30%), which the engine has no work for. The holiday (50%), night (50%), shift (4%, 34%, 46% in 3x7) and 3x7 Sunday (33%) premiums are modelled (supplement_bands CHIM_*).",
         "capability": "overtime",
         "monetary_impact": "yes",
         "limitation": {
@@ -139,7 +139,7 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Model the remaining Art. 9 premiums on ordinary hours."
+          "remediation": "Model the pluriperiodale, Saturday and annual-excess premiums of Art. 9 punti 9-11."
         }
       },
       {
@@ -4826,7 +4826,7 @@
     "effective_until": null,
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/chimico_farmaceutico/250415-_CHIMICO-FARMACEUTICO_RINNOVO%20CCNL_%201-7-2025__30-6-2028.pdf",
     "verification_status": "unverified",
-    "source_hash": "209ec49d151735341cb28fef009bfaa685fe21744045897e265631e6d45a9f26",
+    "source_hash": "9fa21f45b19343c925699aadd8ae2496b3b9ff903007a925bfb80f9df72bfa08",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -5426,6 +5426,172 @@
               "review_id": "2026-10-19-ai-hourly-rates"
             }
           }
+        },
+        {
+          "code": "CHIM_NOTTURNO",
+          "description": "Lavoro notturno non compreso in turni avvicendati (art. 9 punto 4)",
+          "work": "night",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2006-05-10",
+                "valid_until": null,
+                "value": "0.50"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "cnel-579-ccnl-chimica-2006",
+                "title": "CCNL industria chimica, chimico-farmaceutica, fibre chimiche e settori abrasivi, lubrificanti e GPL, testo definitivo 10 maggio 2006 (CNEL n. 579, file Word)",
+                "kind": "cnel",
+                "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/579",
+                "published_on": "2006-05-10",
+                "sha256": "a9926705b06590a6d8fbe2e6ab683c75d56dfd9e898e7b0f71fb377d7edef3d6"
+              },
+              "section": "Art. 9",
+              "quote": "4) Lavoro notturno non compreso in turni avvicendati 50%"
+            },
+            "transformation": "50% on the hourly quota of the elements of art. 15 point 1.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-02T16:09:50Z",
+              "effective_from": "2006-05-10",
+              "verification_status": "verified",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-02T16:09:50Z",
+              "review_id": "2026-11-02-ai-ordinary-premiums"
+            }
+          }
+        },
+        {
+          "code": "CHIM_TURNO_NOTTURNO",
+          "description": "Turno notturno (art. 9 punto 5 b)",
+          "work": "night_shift",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2006-05-10",
+                "valid_until": null,
+                "value": "0.34"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "cnel-579-ccnl-chimica-2006",
+                "title": "CCNL industria chimica, chimico-farmaceutica, fibre chimiche e settori abrasivi, lubrificanti e GPL, testo definitivo 10 maggio 2006 (CNEL n. 579, file Word)",
+                "kind": "cnel",
+                "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/579",
+                "published_on": "2006-05-10",
+                "sha256": "a9926705b06590a6d8fbe2e6ab683c75d56dfd9e898e7b0f71fb377d7edef3d6"
+              },
+              "section": "Art. 9",
+              "quote": "5) Lavoro effettuato in turni avvicendati: [...] b) turno notturno 34%"
+            },
+            "transformation": "34% on the hourly quota of the elements of art. 15 point 1.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-02T16:09:50Z",
+              "effective_from": "2006-05-10",
+              "verification_status": "verified",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-02T16:09:50Z",
+              "review_id": "2026-11-02-ai-ordinary-premiums"
+            }
+          }
+        },
+        {
+          "code": "CHIM_TURNO_NOTTURNO_3X7",
+          "description": "Turno notturno a ciclo continuo 3x7 (art. 9 punto 5 c)",
+          "work": "night_shift",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2006-05-10",
+                "valid_until": null,
+                "value": "0.46"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "role": "turno_3x7",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "cnel-579-ccnl-chimica-2006",
+                "title": "CCNL industria chimica, chimico-farmaceutica, fibre chimiche e settori abrasivi, lubrificanti e GPL, testo definitivo 10 maggio 2006 (CNEL n. 579, file Word)",
+                "kind": "cnel",
+                "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/579",
+                "published_on": "2006-05-10",
+                "sha256": "a9926705b06590a6d8fbe2e6ab683c75d56dfd9e898e7b0f71fb377d7edef3d6"
+              },
+              "section": "Art. 9",
+              "quote": "c) turno notturno in lavorazioni a ciclo continuo che si svolgono su tre turni avvicendati nell’intero arco settimanale di 7 giorni (3x7) 46%"
+            },
+            "transformation": "46% on the hourly quota of the elements of art. 15 point 1.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-02T16:09:50Z",
+              "effective_from": "2006-05-10",
+              "verification_status": "verified",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-02T16:09:50Z",
+              "review_id": "2026-11-02-ai-ordinary-premiums"
+            }
+          }
+        },
+        {
+          "code": "CHIM_DOMENICA_3X7",
+          "description": "Lavoro domenicale a ciclo continuo 3x7 (art. 9 punto 6)",
+          "work": "sunday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2006-05-10",
+                "valid_until": null,
+                "value": "0.33"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "role": "turno_3x7",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "cnel-579-ccnl-chimica-2006",
+                "title": "CCNL industria chimica, chimico-farmaceutica, fibre chimiche e settori abrasivi, lubrificanti e GPL, testo definitivo 10 maggio 2006 (CNEL n. 579, file Word)",
+                "kind": "cnel",
+                "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/579",
+                "published_on": "2006-05-10",
+                "sha256": "a9926705b06590a6d8fbe2e6ab683c75d56dfd9e898e7b0f71fb377d7edef3d6"
+              },
+              "section": "Art. 9",
+              "quote": "6) Lavoro domenicale per gli addetti a lavorazioni a ciclo continuo che si svolgono su tre turni avvicendati nell’intero arco settimanale di 7 giorni (3x7) 33%"
+            },
+            "transformation": "33% on the hourly quota of the elements of art. 15 point 1, for the workers of a 3x7 continuous cycle (role turno_3x7); a Sunday with compensatory rest of the others is point 3 (CHIM_FESTIVO).",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-02T16:09:50Z",
+              "effective_from": "2006-05-10",
+              "verification_status": "verified",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-02T16:09:50Z",
+              "review_id": "2026-11-02-ai-ordinary-premiums"
+            }
+          }
         }
       ]
     },
@@ -5905,6 +6071,27 @@
         "checked": [
           "work_rules.leave_rules.termination absent",
           "coverage.notes[LEAVE AT TERMINATION]"
+        ]
+      },
+      {
+        "id": "2026-11-02-ai-ordinary-premiums",
+        "date": "2026-11-02",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The premiums on ordinary hours of Art. 9 punti 4-6 in the CNEL text 579 (Word file).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/579",
+            "sha256": "a9926705b06590a6d8fbe2e6ab683c75d56dfd9e898e7b0f71fb377d7edef3d6"
+          }
+        ],
+        "findings": [
+          "Art. 9 punti 4, 5 b-c, 6: supplement_bands CHIM_NOTTURNO 50%, CHIM_TURNO_NOTTURNO 34%, CHIM_TURNO_NOTTURNO_3X7 46% and CHIM_DOMENICA_3X7 33% (role turno_3x7); punti 9-11 left as the narrowed limitation."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.time_supplements.supplement_bands"
         ]
       }
     ],

@@ -43,7 +43,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 116 verified / 6 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 120 verified / 6 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🟢 Verified | The confidence the ruleset declares as a whole |
 | **Readiness** | 👁 Reviewed | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -52,7 +52,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-04-15 |
-| **Last review** | 2026-10-31 |
+| **Last review** | 2026-11-02 |
 | **Latest salary tranche** | 2028-06-01 |
 
 ## Review history
@@ -67,6 +67,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-20 | claude-opus-5-5 (ai) | The treatment of the compulsory maternity leave and of a work injury. | corrected | work_rules.insured_absence added from the articles cited in its provenance; statutory measures in absence/insured/rates.json (D.Lgs. 151/2001 artt. 22-23, D.P.R. 1124/1965 artt. 68, 73, 116-117). |
 | 2026-10-20 | claude-opus-5-5 (ai) | Whether the individual elements of the worker (superminimi, aumenti di merito, assegni ad personam) enter the hourly base of overtime and supplements (Art. 15 punto 1 - Elementi della retribuzione; Art. 9). | corrected | Art. 15 punto 1 - Elementi della retribuzione; Art. 9: individual elements included in the hourly base: work_rules.time_supplements.individual_elements. |
 | 2026-10-31 | claude-opus-5-5 (ai) | The basis of the indemnity for the leave not taken at the end of the employment, searched for a divisor of the daily pay in the testo definitivo of 10 May 2006 (Artt. 13, 14, 20) and in the OCR of the renewals of 2010, 2019 and 2025. | confirmed | The daily coefficient 1/25 of Art. 20 is restricted by its chiarimento a verbale to the festività on a Sunday and to the clauses that refer to it expressly; Art. 14 does not. No termination basis is recorded. |
+| 2026-11-02 | claude-opus-5-5 (ai) | The premiums on ordinary hours of Art. 9 punti 4-6 in the CNEL text 579 (Word file). | corrected | Art. 9 punti 4, 5 b-c, 6: supplement_bands CHIM_NOTTURNO 50%, CHIM_TURNO_NOTTURNO 34%, CHIM_TURNO_NOTTURNO_3X7 46% and CHIM_DOMENICA_3X7 33% (role turno_3x7); punti 9-11 left as the narrowed limitation. |
 
 ## Salary table
 
@@ -114,11 +115,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Add a band for the lavoro eccedente at 5%.
 
 !!! warning "chimica-farmaceutica-federchimica/ordinary_hours_premiums · overtime · impact yes · open"
-    Art. 9 punti 3-6, 9-11: the premiums on ordinary hours not yet modelled: night work outside shifts 50%, night shifts 34% and 46% (3x7), Sunday 3x7 33%, pluriperiodale and Saturday 10%, the first 120 hours past 2,024 a year 30%. The holiday premium (50%) and the day-shift premium (4%) are modelled (supplement_bands CHIM_FESTIVO, CHIM_TURNO_DIURNO) (review of 2026-10-30).
+    Art. 9 punti 9-11: the premiums of pluriperiodale work and Saturday work (10%) and of the first 120 hours past the 2,024 of a year (30%), which the engine has no work for. The holiday (50%), night (50%), shift (4%, 34%, 46% in 3x7) and 3x7 Sunday (33%) premiums are modelled (supplement_bands CHIM_*).
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Model the remaining Art. 9 premiums on ordinary hours.
+    **Remediation:** Model the pluriperiodale, Saturday and annual-excess premiums of Art. 9 punti 9-11.
 
 !!! warning "chimica-farmaceutica-federchimica/night_shift_indemnity · base_salary · impact yes · open"
     Renewal of 2025, p. 47: the night-shift indemnity in cifra, outside the TFR base (EUR 13.50 per 8 hours, EUR 15.50 from 1/7/2027).
