@@ -146,7 +146,7 @@
       },
       {
         "kind": "simplification",
-        "text": "SICKNESS COUNTING: Art. 66 c. 1 keeps the job and the whole pay for 6, 8, 12, 15, 18 or 22 months by seniority; c. 2 lets the employer count instead the 48 months before the last day of absence, with 8, 10, 14, 18, 22 or 24 months. The file applies c. 2; an employer counting by c. 1 pays fewer months. The periods rise by 50% for tbc, AIDS and disabilità grave and double for oncological illness (cc. 4-5), not modelled.",
+        "text": "SICKNESS COUNTING (Art. 66, CCNL 23 November 2023, p. 101): c. 1 keeps the job and the whole pay for 6, 8, 12, 15, 18 or 22 months by seniority, the comporto_bands of the file (180 to 660 days); c. 2 lets the employer count instead the absences of the 48 months before the last day of absence, with 8, 10, 14, 18, 22 or 24 months, which the request cannot state. The periods rise by 50% (at least 12, at most 30 months) for tbc, AIDS and disabilità grave (c. 4) and double for an oncological illness, at most 36 months (c. 5): not modelled.",
         "capability": "sickness",
         "monetary_impact": "yes",
         "limitation": {
@@ -154,7 +154,7 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Add a fact for the counting the employer adopts and the extended periods of Art. 66 cc. 4-5."
+          "remediation": "Let the employer state the 48-month counting of c. 2, and apply the increases of cc. 4-5 to a serious or oncological episode."
         }
       },
       {
@@ -1853,7 +1853,7 @@
     "effective_until": null,
     "source": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/",
     "verification_status": "unverified",
-    "source_hash": "f72735956b5f6878d214c0124a4e8917b5967d35d1b7c474d53300c885644913",
+    "source_hash": "0847781d260511b957ca3a8b7149421b234138abe6fe263499120653e64104d7",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
