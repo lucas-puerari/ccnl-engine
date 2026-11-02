@@ -35,9 +35,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | inps_employer, pension_fund_contribution, seniority |
+| **Limits of this contract** | inps_employer, pension_fund_contribution |
 
-3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -165,13 +165,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Model the INPS contribution scheme of publicly-owned TPL operators and a request field to select it.
-
-!!! warning "autoferrotranvieri-internavigatori/apprentice_seniority · seniority · impact unknown · open"
-    APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.
-
-    **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
-
-    **Remediation:** Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
@@ -371,6 +364,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     APPRENTICESHIP: CCNL Art. 36-bis (apprendistato professionalizzante). No wage reduction: the apprentice earns 100% of the destination parametro from day one; the track therefore covers every parametro. Source: Art. 36-bis per AGENS circular 20/03/2025.
     
     LEVELS: 33 parametri from 100 to 250. The CCNL classification assigns one or more job profiles per parametro; this file models one level per parametro as the economic unit. Descriptions are representative summaries; multiple job profiles exist at each parametro.
+    
+    APPRENTICE SENIORITY (Art. 22 Contratto di apprendistato professionalizzante, cc. 9-10, p. 150 of the CCNL TPL testo integrato published by AMT Genova, https://www.amt.genova.it/amt/accordi_aziendali/CCNL_TPL_integrato.pdf, sha256 288cec0840b850299ce1f5b65ae9b57dd7b338aac2d1bca742f71c71f543ee36): 'L’intero periodo di apprendistato professionalizzante è utile ai fini della maturazione dell’anzianità di servizio, con esclusione dei primi 24 mesi ai soli fini della maturazione degli aumenti periodici di anzianità. 10. Agli apprendisti spettano il trattamento economico [...] secondo quanto previsto dai singoli CCNL.' Reading: the apprentice matures the aumenti periodici after the first 24 months and is paid them at the amounts of the level (seniority_increments.apprentice_level_amount); the exclusion of the first 24 months is in the months the caller states in Employment.seniority.
     
 
 ## Raw data
