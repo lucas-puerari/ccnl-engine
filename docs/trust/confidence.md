@@ -203,7 +203,7 @@ is `False` on its closing state). See
 ## Model limitations
 
 A known simplification of the model is data, not a comment. The registry has
-<!-- trust:limitations-total -->569<!-- /trust:limitations-total --> `ModelLimitation`
+<!-- trust:limitations-total -->566<!-- /trust:limitations-total --> `ModelLimitation`
 entries: one per `simplification` note of a CCNL file that can move an
 amount, and <!-- trust:limitations-engine -->28<!-- /trust:limitations-engine -->
 engine limitations of code paths several CCNLs share
@@ -220,11 +220,11 @@ limits, the `rulesets` and dates it affects, a `monetary_impact` (`yes`,
 `no`, `unknown`), a `status` (`open`, `resolved`), its `source` and a
 `remediation`.
 
-The <!-- trust:simplification-notes -->595<!-- /trust:simplification-notes -->
+The <!-- trust:simplification-notes -->592<!-- /trust:simplification-notes -->
 simplification notes of the bundle each state their impact on what the engine
 computes from the bundle:
-<!-- trust:simplification-yes -->288<!-- /trust:simplification-yes --> `yes`,
-<!-- trust:simplification-unknown -->253<!-- /trust:simplification-unknown --> `unknown`
+<!-- trust:simplification-yes -->286<!-- /trust:simplification-yes --> `yes`,
+<!-- trust:simplification-unknown -->252<!-- /trust:simplification-unknown --> `unknown`
 and <!-- trust:simplification-no -->54<!-- /trust:simplification-no --> `no` (the
 engine refuses the case, or takes the value from the caller). A file whose
 note can move an amount without declaring a limitation does not load, so the
@@ -233,7 +233,7 @@ bundle build fails on an unmapped note.
 A limitation applies to a run only when its predicate holds. Its trigger
 classifies it by obligation:
 
-- <!-- trust:limitations-owed -->29<!-- /trust:limitations-owed -->
+- <!-- trust:limitations-owed -->28<!-- /trust:limitations-owed -->
   limitations are `owed`: an amount the CCNL owes for every worker it scopes
   that the engine does not compute (a health or bilateral fund, a provincial
   element owed in every province). They apply to every run of the CCNL
@@ -246,7 +246,7 @@ classifies it by obligation:
 - an engine limitation applies only when the run takes its code path, and the
   run records the traversal (an apprentice in a midpoint period of a CCNL
   whose midpoint components are unsourced);
-- <!-- trust:limitations-outside-input -->200<!-- /trust:limitations-outside-input -->
+- <!-- trust:limitations-outside-input -->199<!-- /trust:limitations-outside-input -->
   limitations depend on a fact the request cannot express (a hire date before
   a transitional regime, a fund the worker joins, a sector section): they are
   documented on the contract page and never recorded on a run. An amount

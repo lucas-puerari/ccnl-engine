@@ -61,11 +61,17 @@ class TestLoadDirigenzaIstruzioneRicercaAran:
         ccnl = load_ccnl("dirigenza-istruzione-ricerca-aran")
         assert ccnl.parameters.hourly_divisor.value_at(date(2026, 1, 1)) == Decimal(165)
 
-    def test_dirigenza_istruzione_ricerca_aran_no_fixed_allowances(self) -> None:
-        """Conglobated model: no fixed allowances (posizione variabile)."""
+    def test_dirigenza_istruzione_ricerca_aran_position_fixed_part(self) -> None:
+        """Arts. 7, 11 and 15: 42.598,20 and 14.515,11 a year over 13 months."""
         ccnl = load_ccnl("dirigenza-istruzione-ricerca-aran")
-        for lv in ccnl.levels:
-            assert lv.fixed_allowances == ()
+        fixed = {
+            lv.code: [a.monthly.value_at(date(2024, 6, 1)) for a in lv.fixed_allowances]
+            for lv in ccnl.levels
+        }
+        assert fixed == {
+            "PRIMA_FASCIA": [Decimal("3276.78")],
+            "SECONDA_FASCIA": [Decimal("1116.55")],
+        }
 
     def test_dirigenza_istruzione_ricerca_aran_tax_sector(self) -> None:
         """Contract declares PUBBLICA_AMMINISTRAZIONE tax sector."""

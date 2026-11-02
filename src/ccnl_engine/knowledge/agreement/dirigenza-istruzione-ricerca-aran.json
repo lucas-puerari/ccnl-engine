@@ -287,7 +287,50 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "POSIZIONE_FISSA",
+          "description": "Retribuzione di posizione parte fissa",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-01-01",
+                "valid_until": "2024-01-01",
+                "value": "1026.55"
+              },
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": null,
+                "value": "1116.55"
+              }
+            ]
+          },
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "aran-ccnl-area-istruzione-ricerca-2022-2024",
+                "title": "CCNL dell'Area Istruzione e Ricerca, triennio 2022-2024, 6 agosto 2026 (ARAN)",
+                "kind": "associazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2026/08/2026_08_06_CCNL-area-IR-2022-2024.pdf",
+                "published_on": "2026-08-06",
+                "sha256": "44c27ea302da97ca8f833aa0e94ec037034ec208ab1579f8d7d110562f9f8d5d"
+              },
+              "page": "14, 17",
+              "section": "Art. 11 c. 4-5 and Art. 15 c. 5-6 - Retribuzione di posizione parte fissa",
+              "quote": "è incrementata, a decorrere dal 1° gennaio 2024, di euro 90,00 mensili lordi per 13 mensilità. [...] il nuovo valore a regime annuo lordo per 13 mensilità [...] dei dirigenti scolastici ed AFAM è rideterminato in euro 14.515,11"
+            },
+            "transformation": "14.515,11 a year over 13 months from 2024 (1116.55); before, less 90,00: 1026.55.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-02T09:02:28Z",
+              "verification_status": "unverified",
+              "effective_from": "2021-01-01"
+            }
+          }
+        }
+      ],
       "provenance": {
         "status": "derived",
         "location": {
@@ -362,7 +405,50 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "POSIZIONE_FISSA",
+          "description": "Retribuzione di posizione parte fissa",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-01-01",
+                "valid_until": "2024-01-01",
+                "value": "3061.78"
+              },
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": null,
+                "value": "3276.78"
+              }
+            ]
+          },
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "aran-ccnl-area-istruzione-ricerca-2022-2024",
+                "title": "CCNL dell'Area Istruzione e Ricerca, triennio 2022-2024, 6 agosto 2026 (ARAN)",
+                "kind": "associazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2026/08/2026_08_06_CCNL-area-IR-2022-2024.pdf",
+                "published_on": "2026-08-06",
+                "sha256": "44c27ea302da97ca8f833aa0e94ec037034ec208ab1579f8d7d110562f9f8d5d"
+              },
+              "page": "12",
+              "section": "Art. 7 c. 5-6 - Retribuzione di posizione parte fissa",
+              "quote": "è incrementata, a decorrere dal 1° gennaio 2024 di euro 215,00 mensili lordi per 13 mensilità. [...] il nuovo valore a regime annuo lordo per 13 mensilità [...] dei dirigenti di prima fascia è rideterminato in euro 42.598,20."
+            },
+            "transformation": "42.598,20 a year over 13 months from 2024 (3276.78); before, less 215,00: 3061.78.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-02T09:02:28Z",
+              "verification_status": "unverified",
+              "effective_from": "2021-01-01"
+            }
+          }
+        }
+      ],
       "provenance": {
         "status": "derived",
         "location": {
@@ -403,17 +489,8 @@
         "text": "Platea: ~7.550 dirigenti scolastici + ~360 direttori università/ricerca = ~7.910 totale (quifinanza.it)."
       },
       {
-        "kind": "simplification",
-        "text": "Retribuzione di posizione parte fissa: seconda fascia 14.515,11€/anno (+1.170€/anno da 1/1/2024, era 13.345,11). Prima fascia 42.598,20€/anno. Variabile per incarico. Non modellata (SIMPLIFICATION).",
-        "capability": "base_salary",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "position_pay_fixed_part",
-          "applies_when": {
-            "trigger": "owed"
-          },
-          "remediation": "Add the parte fissa of the retribuzione di posizione per fascia (14.515,11 / 42.598,20 EUR a year, 13 months) as fixed allowances; leave the variable part to IndividualElement."
-        }
+        "kind": "info",
+        "text": "POSITION PAY, FIXED PART (CCNL 6 August 2026, Artt. 7, 11 and 15, pp. 12-17): 42.598,20 a year for the prima fascia and 14.515,11 for the dirigenti scolastici, AFAM and the other seconda fascia, over 13 months from 1 January 2024 (allowance POSIZIONE_FISSA); before 2024 less the increases of 215,00 and 90,00 a month. The variable part depends on the assignment and is the caller's."
       },
       {
         "kind": "info",
@@ -477,7 +554,7 @@
     "effective_until": "2024-12-31",
     "source": "https://quifinanza.it/lavoro/ccnl-istruzione-ricerca-2022-2024-tabelle-retributive/1011686/",
     "verification_status": "unverified",
-    "source_hash": "704a01513fe1496fa29c835b635000204c14dea5efe97fc8a1ecb97be901716e",
+    "source_hash": "404189e890d68e2e7ebdbd064b08e8f69020d29bd6b818857bc31360060e3bfe",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
