@@ -13,7 +13,7 @@ from datetime import date
 from decimal import Decimal
 
 from ccnl_engine.errors import InvalidInputError
-from ccnl_engine.validators import require_date, require_decimal
+from ccnl_engine.validators import require_date, require_decimal, require_int
 
 __all__ = ["ExtraordinaryLeaveEvent"]
 
@@ -33,15 +33,20 @@ class ExtraordinaryLeaveEvent:
         ended_on: Last day of the leave.
         last_fixed_pay: The pay of the fixed and continuous items of the
             last month before the leave; ``None`` when not stated.
+        last_month_paid_days: The days paid in that month, rest days
+            included, the divisor of a vertical or mixed part time (INPS
+            circ. 64/2001 par. 4); ``None`` when not stated.
 
     Raises:
         InvalidInputError: When a day is not a date, the leave ends before
-            it starts or ``last_fixed_pay`` is not a positive ``Decimal``.
+            it starts, ``last_fixed_pay`` is not a positive ``Decimal`` or
+            ``last_month_paid_days`` is not an int from 1 to 31.
     """
 
     started_on: date
     ended_on: date
     last_fixed_pay: Decimal | None = None
+    last_month_paid_days: int | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
         for name in ("started_on", "ended_on"):
@@ -53,6 +58,14 @@ class ExtraordinaryLeaveEvent:
             "ExtraordinaryLeaveEvent.last_fixed_pay",
             feature=_LEAVE,
             positive=True,
+            optional=True,
+        )
+        require_int(
+            self.last_month_paid_days,
+            "ExtraordinaryLeaveEvent.last_month_paid_days",
+            feature=_LEAVE,
+            minimum=1,
+            maximum=31,
             optional=True,
         )
         if self.ended_on < self.started_on:

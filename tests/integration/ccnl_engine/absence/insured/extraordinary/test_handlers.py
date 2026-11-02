@@ -126,6 +126,24 @@ def test_a_vertical_part_time_records_its_open_divisor() -> None:
     assert "extraordinary_leave_daily_base" in {lim.id for lim in result.limitations}
 
 
+def test_a_vertical_part_time_divides_its_pay_by_the_paid_days() -> None:
+    """INPS circ. 64/2001 par. 4: 'divisa per il numero dei giorni retribuiti'.
+
+    1300.00 * 13 / 12 over 13 paid days: 108.333333 a day, below the 2026
+    maximum, for the 31 days of March = 3358.33, with no open limitation.
+    """
+    days = (Decimal(8), Decimal(8), Decimal(8), *(Decimal(0),) * 4)
+    leave = ExtraordinaryLeaveEvent(
+        date(2026, 3, 1), date(2026, 3, 31), Decimal(1300), last_month_paid_days=13
+    )
+    result = _run(leave, pattern=WorkPattern(weekday_hours=days))
+
+    assert _amounts(result)["maternity_item"] == (Decimal("3358.33"), Decimal(31))
+    assert "extraordinary_leave_daily_base" not in {
+        lim.id for lim in result.limitations
+    }
+
+
 def test_a_leap_year_divides_by_366() -> None:
     """February 2028: 29 days of 4000.00 * 13 / 366, no 2028 maximum listed."""
     rates = load_insured_absence_rates().extraordinary_leave

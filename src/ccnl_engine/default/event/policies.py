@@ -233,6 +233,13 @@ EVENT_DEFAULTS: Mapping[str, FieldDefault] = {
         "unknown last pay before the leave: the indemnity is computed on the "
         "monthly pay of the run, with a missing_fact last_fixed_pay blocker",
     ),
+    "ExtraordinaryLeaveEvent.last_month_paid_days": requires_fact(
+        "extraordinary_leave",
+        "event.last_month_paid_days",
+        FactEnforcement.PENDING,
+        "unknown paid days: a vertical or mixed part time is paid on the "
+        "full-time measure, with the extraordinary_leave_daily_base limitation",
+    ),
     "PaternityLeaveEvent.paternity_base_pay": requires_fact(
         "paternity_leave",
         "event.paternity_base_pay",
