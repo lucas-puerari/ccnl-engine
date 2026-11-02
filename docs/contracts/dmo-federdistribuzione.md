@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, bilateral_funds, leave, overtime, seniority, sickness, territorial_supplement |
+| **Limits of this contract** | base_salary, bilateral_funds, overtime, seniority, sickness, territorial_supplement |
 
-10 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+9 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -178,13 +178,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `bilateral_funds` applies.
 
     **Remediation:** Model the contributions per worker, with a fact for an employer that pays the worker the alternative element instead, then remove this note.
-
-!!! warning "dmo-federdistribuzione/rol_schedule_absorption · leave · impact yes · open"
-    LEAVE, WEEKLY SCHEDULE (Artt. 118-119, Testo Unico 2025 p. 40): a 39-hour full-time week absorbs 36 hours of ROL, a 38-hour week 16 hours of ex festività and 56 of ROL (Art. 118 b-c), read from Employment.full_time_weekly_hours. The grandi magazzini, magazzini a prezzo unico, supermercati alimentari, cash&carry and ipermercati on the 38-hour average of Art. 119 absorb instead the 56 hours of Art. 141 c. 3 and the 16 of c. 4, leaving the ex festività: the request does not state the kind of store, and the engine applies Art. 118.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** State the kind of store of Art. 119 and absorb its hours (56 + 16 of ROL, no ex festività).
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
@@ -369,6 +362,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     Additional months: 14 (tredicesima Art. 204 + quattordicesima Art. 205).
     
     APPRENTICESHIP PROFILES OF TABELLA B (Art. 61): 48 months for the listed profiles ending at levels II and III (track tabella_b_48_mesi), 42 months for those ending at level IV (tabella_b_42_mesi), two levels below for the first half and one below for the second. An apprentice of levels II, III and IV states Apprentice.track: standard_II_V for the 36 months of the other profiles.
+    
+    LEAVE, WEEKLY SCHEDULE: a 39-hour full-time week absorbs 36 hours of ROL and a 38-hour week 16 hours of ex festività and 56 of ROL, read from Employment.full_time_weekly_hours. The grandi magazzini, magazzini a prezzo unico, supermercati alimentari, cash&carry and ipermercati (Art. 119, EmployerProfile.subsector 'grande_distribuzione') on a 38-hour average absorb instead the 56 hours of Art. 141 c. 3 and the 16 of c. 4 and keep the ex festività.
     
 
 ## Raw data

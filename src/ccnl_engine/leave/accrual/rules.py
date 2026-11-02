@@ -77,6 +77,7 @@ class AccrualFacts:
             time worker, ``None`` for a full-time worker.
         full_time_week: Full-time weekly hours of the contract, ``None``
             when not stated.
+        subsector: Sub-sector of the employer, ``None`` when not stated.
     """
 
     year: int
@@ -87,6 +88,7 @@ class AccrualFacts:
     seniority_months: int | None = None
     part_time_ratio: Decimal | None = None
     full_time_week: Decimal | None = None
+    subsector: str | None = None
 
     @property
     def last_day(self) -> date:
@@ -179,7 +181,7 @@ def _permit(permit: PermitRules, facts: AccrualFacts) -> tuple[Decimal, bool]:
         hire and the part-time ratio, when the month is credited.
     """
     credited, exact = _credit(permit.month_credit, facts.service)
-    hours = permit.hours_for(facts.headcount, facts.full_time_week)
+    hours = permit.hours_for(facts.headcount, facts.full_time_week, facts.subsector)
     ramp = permit.ramp
     if ramp is not None and ramp.covers(facts.headcount):
         months = facts.months_since_hire()

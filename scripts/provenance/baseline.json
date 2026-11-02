@@ -770,7 +770,6 @@
       "commercio-confcommercio/apprentice_seniority",
       "commercio-confcommercio/permit_deadline_payout",
       "commercio-confcommercio/profile_specific_apprenticeship",
-      "commercio-confcommercio/rol_schedule_absorption",
       "commercio-confcommercio/sickness_net_basis"
     ],
     "agreement/comunicazione-artigianato-confartigianato.json": [
@@ -853,7 +852,6 @@
       "dmo-federdistribuzione/health_and_bilateral_funds",
       "dmo-federdistribuzione/ordinary_hours_premiums",
       "dmo-federdistribuzione/provincial_elements_missing",
-      "dmo-federdistribuzione/rol_schedule_absorption",
       "dmo-federdistribuzione/sales_operators",
       "dmo-federdistribuzione/sickness_net_basis"
     ],
@@ -1316,7 +1314,6 @@
       "terziario-confesercenti/apprentice_sickness",
       "terziario-confesercenti/permit_deadline_payout",
       "terziario-confesercenti/provincial_third_elements",
-      "terziario-confesercenti/rol_schedule_absorption",
       "terziario-confesercenti/sales_operators",
       "terziario-confesercenti/sickness_net_basis",
       "terziario-confesercenti/sunday_overtime",

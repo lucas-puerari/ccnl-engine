@@ -110,13 +110,18 @@ class WeekAbsorption(BaseModel):
     Attributes:
         weekly_hours: Full-time week of the employment.
         hours: Yearly hours of the bucket the week absorbs.
+        subsectors: Sub-sectors of the employer (``EmployerProfile.subsector``)
+            whose week absorbs these hours instead of those of the entries
+            without one (Commercio Art. 134: the supermercati on a 38-hour
+            average); empty for every employer.
         provenance: Source of the absorption.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
 
     weekly_hours: Decimal = Field(gt=_ZERO)
-    hours: Decimal = Field(gt=_ZERO)
+    hours: Decimal = Field(ge=_ZERO)
+    subsectors: tuple[str, ...] = ()
     provenance: RuleProvenance | None = None
 
 
@@ -173,13 +178,19 @@ class PermitRules(BaseModel):
             raise ValueError(msg)
         return self
 
-    def hours_for(self, headcount: int, week: Decimal | None = None) -> Decimal:
+    def hours_for(
+        self,
+        headcount: int,
+        week: Decimal | None = None,
+        subsector: str | None = None,
+    ) -> Decimal:
         """Return the yearly hours of a full-time worker of an employer.
 
         Returns:
             The hours of the largest size ``headcount`` exceeds, else those
             of the tier without a size, less those the full-time ``week``
-            absorbs, never below zero.
+            absorbs (the entries of the ``subsector`` when it has some),
+            never below zero.
         """
         above = [
             h
@@ -192,7 +203,9 @@ class PermitRules(BaseModel):
             hours = next(
                 h.hours for h in self.annual_hours if h.headcount_above is None
             )
-        absorbed = sum(
-            (a.hours for a in self.week_absorption if a.weekly_hours == week), _ZERO
-        )
+        same_week = [a for a in self.week_absorption if a.weekly_hours == week]
+        chosen = [a for a in same_week if subsector in a.subsectors] or [
+            a for a in same_week if not a.subsectors
+        ]
+        absorbed = sum((a.hours for a in chosen), _ZERO)
         return max(hours - absorbed, _ZERO)
