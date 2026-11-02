@@ -34,9 +34,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, bilateral_funds, inps_employer |
+| **Limits of this contract** | base_salary, bilateral_funds |
 
-3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -109,13 +109,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `bilateral_funds` applies.
 
     **Remediation:** Pass the EBAN and Agrifondo contributions as bilateral fund events, or model them.
-
-!!! warning "impiegati-tecnici-agricoli/apprentice_inps_rates_unsourced · inps_employer · impact unknown · open"
-    APPRENTICE INPS RATES: the apprentice rates of the sector (agricoltura) apply the 10% of L. 296/2006 art. 1 c. 773 plus the 1.61% NASpI, but no source found settles the disoccupazione and CISOA contributions of agricultural apprentices (INPS circ. 43/2026 gives no apprentice rates). The contributions of an apprentice may differ.
-
-    **Applies when:** `inps_employer` applies; contract type in apprentice.
-
-    **Remediation:** Source the apprentice rates of agricoltura (an INPS circular or an association table of 2026), mark the apprentice block of contribution/2026/agricoltura.json derived, then remove this note.
 
 !!! note "sickness_inps_daily_base · sickness · impact unknown · resolved"
     The INPS share of a sick day is computed on the INPS daily base of the episode, on the days INPS pays (the weekdays of an operaio, every day but the national holidays on a Sunday of an impiegato, point 7.3 of INPS circ. 134368/1981): the retribuzione media globale giornaliera of the month before the illness (INPS circ. 134368/1981 point 11; circ. 55/2024 Allegato 1), whole or partial month, impiegato or operaio, or for the lavoratori dello spettacolo the average pay of the last 40 daily contributions, capped for a fixed-term worker (INPS circ. 132/2021 par. 2.4). The base is a fact of the payroll history the episode states (SicknessEpisode.inps_base).
@@ -307,6 +300,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     INDENNITA DI FUNZIONE: level 1Q receives +100.00 EUR/month additive to base_salary 1788.38. Modelled as fixed_allowance code IND_FUN. Source: lavoro-economia.it/ccnl/ccnl.aspx?c=3 (total 1888.38 'with function allowance').
     
     INPS CONTRIBUTION BASE. The retribuzione convenzionale regime (INPS annual decree) applies to operai agricoli OTD/OTI (braccianti), NOT to impiegati agricoli. For impiegati OTI, contributions are computed on actual contractual salary pursuant to DL 338/1989 Art. 1 minimale (contribution base cannot fall below CCNL minimum). The engine applies rates to actual gross salary, which is correct for impiegati. Source: INPS Circ. 43/2026 covers operai only; standard regime applies to impiegati. (Confirmed by confagricolturapadova.it/wp-content/uploads/2020/02/Contributi_minimi_2020.pdf, laprevidenza.it.)
+    
+    APPRENTICE INPS RATES (contribution/2026/agricoltura.json): employer 10% plus NASpI 1.61% (INPS circ. 108/2018 par. 3.2, applied to the agricultural contribution by circ. 116/2013 par. 1) plus CISOA 1.50% (circ. 1/2023; 'CIS operai agricoli 1,5000' of circ. 43/2026 allegato 1) = 13.11% (4.61% and 6.11% in the first two years up to nine employees); worker 5.84%.
     
 
 ## Raw data

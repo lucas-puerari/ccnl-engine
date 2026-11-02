@@ -84,20 +84,8 @@
         "text": "layer_2 out_of_scope: no apprenticeship tracks modeled. The 2024 CCNL text (Art. 13 and Allegati E/F per CAI Agromec contract structure) references apprendistato professionalizzante but no percentage or under-classification table was found in any primary source (ilccnl.it, redigo.info, lavoro-economia.it). If apprenticeship provisions exist, they require the full CCNL PDF to model correctly."
       },
       {
-        "kind": "simplification",
-        "text": "APPRENTICE INPS RATES: the apprentice rates of the sector (agricoltura) apply the 10% of L. 296/2006 art. 1 c. 773 plus the 1.61% NASpI, but no source found settles the disoccupazione and CISOA contributions of agricultural apprentices (INPS circ. 43/2026 gives no apprentice rates). The contributions of an apprentice may differ.",
-        "capability": "inps_employer",
-        "monetary_impact": "unknown",
-        "limitation": {
-          "variant": "apprentice_inps_rates_unsourced",
-          "applies_when": {
-            "trigger": "run",
-            "contract_types": [
-              "apprentice"
-            ]
-          },
-          "remediation": "Source the apprentice rates of agricoltura (an INPS circular or an association table of 2026), mark the apprentice block of contribution/2026/agricoltura.json derived, then remove this note."
-        }
+        "kind": "info",
+        "text": "APPRENTICE INPS RATES (contribution/2026/agricoltura.json): employer 10% plus NASpI 1.61% (INPS circ. 108/2018 par. 3.2, applied to the agricultural contribution by circ. 116/2013 par. 1) plus CISOA 1.50% (circ. 1/2023; 'CIS operai agricoli 1,5000' of circ. 43/2026 allegato 1) = 13.11% (4.61% and 6.11% in the first two years up to nine employees); worker 5.84%."
       }
     ]
   },
@@ -1679,7 +1667,7 @@
     "effective_until": null,
     "source": "https://www.redigo.info/2024/07/02/ccnl-contoterzismo-in-agricoltura-rinnovato-il-quadriennio-2024-2027/",
     "verification_status": "unverified",
-    "source_hash": "23490e046b669d6a86d24f95a71ad8c16fedacc1ddab0cae998ff95e74615938",
+    "source_hash": "b08a9ff49d2bd7852e7211b3cd6c980e676ac0bc86af0e19a561bea080b03fef",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

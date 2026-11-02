@@ -3,22 +3,6 @@
   "ccnl_id": "impiegati-tecnici-agricoli",
   "requirements": [
     {
-      "id": "apprentice_inps_rates_unsourced",
-      "institute": "inps_employer",
-      "variant": "apprentice",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "APPRENTICE INPS RATES: the apprentice rates of the sector (agricoltura) apply the 10% of L. 296/2006 art. 1 c. 773 plus the 1.61% NASpI, but no source found settles the disoccupazione and CISOA contributions of agricultural apprentices (INPS circ. 43/2026 gives no apprentice rates). The contributions of an apprentice may differ.",
-      "calculation": "ccnl/impiegati-tecnici-agricoli:coverage.notes",
-      "state": "unverified",
-      "remediation": "Source the apprentice rates of agricoltura (an INPS circular or an association table of 2026), mark the apprentice block of contribution/2026/agricoltura.json derived, then remove this note.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "impiegati-tecnici-agricoli/apprentice_inps_rates_unsourced"
-        ]
-      }
-    },
-    {
       "id": "arrears_unused_deductions",
       "institute": "contract_renewal_arrears",
       "variant": "all",
