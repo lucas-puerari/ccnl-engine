@@ -903,7 +903,6 @@
       "enti-ricerca-aran/shared_rules_unchecked"
     ],
     "agreement/esercizi-cinematografici-anec.json": [
-      "esercizi-cinematografici-anec/apprentice_seniority",
       "esercizi-cinematografici-anec/fpls_rates_approximated",
       "esercizi-cinematografici-anec/sickness_hospital_exclusions",
       "esercizi-cinematografici-anec/sickness_net_basis"
@@ -944,7 +943,6 @@
       "funzioni-locali-aran/renewal_2025_2027_missing"
     ],
     "agreement/gas-acqua-utilitalia.json": [
-      "gas-acqua-utilitalia/apprentice_seniority",
       "gas-acqua-utilitalia/industria_rates_proxy"
     ],
     "agreement/gomma-plastica-federazione-gomma-plastica.json": [
