@@ -85,20 +85,8 @@
         "text": "APPRENTICESHIP (professionalizzante): 80/90/100% in three periods. Total duration 36 months per Art. apprendistato. Period splits by level group: L6-L8=10/10/16m, L3-L5=11/11/14m, L2-L2S=12/12/12m. L1 not eligible as destination. Source: CCNL 2024-07-17 Assocalzaturifici (D121), circolare apprendistato; businessonline.it article 2024; kitech.it scheda D121."
       },
       {
-        "kind": "simplification",
-        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
-        "capability": "seniority",
-        "monetary_impact": "unknown",
-        "limitation": {
-          "variant": "apprentice_seniority",
-          "applies_when": {
-            "trigger": "path",
-            "contract_types": [
-              "apprentice"
-            ]
-          },
-          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
-        }
+        "kind": "info",
+        "text": "APPRENTICE SENIORITY (Art. 23 Apprendistato, p. 52 of the CCNL industria delle calzature 17 July 2024, https://www.falc.biz/wp-content/uploads/2025/03/CCNL-contratto-collettivo-nazionale-di-lavoro-calzaturiero-2024.pdf, sha256 fd48de9dd4aa81fd5ca97c3dd94099d085ac61666831e6da37fe2fbab19558cf): 'L’anzianità durante il rapporto di apprendistato è utile per la maturazione e per la corresponsione degli aumenti periodici di anzianità. Gli aumenti saranno commisurati alle stesse percentuali del minimo contrattuale': the level increments, reduced by the apprenticeship percentage (seniority_increments.apprentice_level_amount and apprentice_pct_scaled)."
       }
     ]
   },
@@ -238,7 +226,9 @@
           "verification_status": "unverified",
           "effective_from": "2020-01-01"
         }
-      }
+      },
+      "apprentice_level_amount": true,
+      "apprentice_pct_scaled": true
     }
   },
   "levels": [
@@ -1362,7 +1352,7 @@
     "effective_until": null,
     "source": "https://www.consulenza.it/Contenuti/News/news/9409/calzaturieri-industria-e-minimi-retributivi",
     "verification_status": "unverified",
-    "source_hash": "54b7e4cc014a2447531d62519db7235be085f93852163b198350a93011695f07",
+    "source_hash": "559d82a07c19178cb6c56f06135a0e544ab236f32131f3b0a4aee85443da7a50",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

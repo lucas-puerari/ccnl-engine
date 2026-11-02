@@ -217,8 +217,9 @@ def _contract_chain(
             seniority_months=seniority_months,
         )
         if pct is not None:
-            scaling = ApprenticeshipScaling.of(chain, pct)
-            chain = chain.scaled_for_apprenticeship(pct)
+            scaled = ccnl.parameters.seniority_increments.apprentice_pct_scaled
+            scaling = ApprenticeshipScaling.of(chain, pct, seniority_scaled=scaled)
+            chain = chain.scaled_for_apprenticeship(pct, seniority_scaled=scaled)
     else:
         chosen = isinstance(contract_type, Permanent) and contract_type.entry_pay
         chain = _level_chain(

@@ -113,7 +113,9 @@ class SeniorityIncrements(BaseModel):
     ``counted_from_age`` counts the service only after an age.
     ``apprentice_level_amount`` pays an apprentice the amounts of the level
     he is classified at (Autoscuole: "nelle misure previste dal livello di
-    appartenenza") instead of ``apprentice_amount``.
+    appartenenza") instead of ``apprentice_amount``;
+    ``apprentice_pct_scaled`` reduces them by the apprenticeship percentage
+    (Calzaturiero art. 23: "commisurati alle stesse percentuali del minimo").
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -141,6 +143,7 @@ class SeniorityIncrements(BaseModel):
     on_promotion: PromotionRepricing | None = None
     counted_from_age: SeniorityAge | None = None
     apprentice_level_amount: bool = False
+    apprentice_pct_scaled: bool = False
     provenance: RuleProvenance | None = None
 
     def requires_category(self, level_code: str) -> bool:

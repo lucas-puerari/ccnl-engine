@@ -57,6 +57,15 @@ class TestScaledForApprenticeship:
             (_EDR, _D("41.85")),
         )
 
+    def test_a_ccnl_can_scale_the_seniority_too(self) -> None:
+        """Calzaturiero art. 23: 20.00 at 75% is 15.00."""
+        result = _chain("20.00").scaled_for_apprenticeship(
+            _D("0.75"), seniority_scaled=True
+        )
+
+        assert (result.base, result.seniority) == (_D("980.60"), _D("15.00"))
+        assert result.allowances[1] == (_EDR, _D("41.85"))
+
     def test_extra_month_scaling_still_reduces_every_component(self) -> None:
         """``scaled`` is the extra-month rateo and ignores the flag."""
         result = _chain().scaled(_D("0.5"))
@@ -82,3 +91,24 @@ class TestApprenticeshipScalingOf:
         scaling = ApprenticeshipScaling.of(_chain(), _D("0.80"))
 
         assert scaling.scaled == ("base_salary", "CONTINGENZA")
+
+    def test_lists_a_scaled_seniority_among_the_reduced(self) -> None:
+        """With the seniority scaled it moves to the reduced components."""
+        scaling = ApprenticeshipScaling.of(
+            _chain("20.00"), _D("0.75"), seniority_scaled=True
+        )
+
+        assert scaling == ApprenticeshipScaling(
+            percentage=_D("0.75"),
+            scaled=("base_salary", "seniority", "CONTINGENZA"),
+            unscaled=("EDR",),
+        )
+
+    def test_a_scaled_chain_without_seniority_lists_none(self) -> None:
+        """No seniority due: nothing to list either way."""
+        scaling = ApprenticeshipScaling.of(_chain(), _D("0.75"), seniority_scaled=True)
+
+        assert (scaling.scaled, scaling.unscaled) == (
+            ("base_salary", "CONTINGENZA"),
+            ("EDR",),
+        )
