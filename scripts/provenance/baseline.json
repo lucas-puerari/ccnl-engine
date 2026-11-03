@@ -651,8 +651,7 @@
       "agenzie-marittime-i481/level_1_seniority_zero"
     ],
     "agreement/agenzie-viaggio-fiavet.json": [
-      "agenzie-viaggio-fiavet/apprentice_seniority",
-      "agenzie-viaggio-fiavet/tourism_special_supplement"
+      "agenzie-viaggio-fiavet/apprentice_seniority"
     ],
     "agreement/alimentari-federalimentare.json": [
       "alimentari-federalimentare/edr_tfr_from_march_2024",
@@ -695,8 +694,7 @@
       "aziende-termali-federterme/apprentice_seniority",
       "aziende-termali-federterme/ebiterme_fontur_funds",
       "aziende-termali-federterme/edr_rounding_discrepancy",
-      "aziende-termali-federterme/terziario_inps_rates_unverified",
-      "aziende-termali-federterme/tourism_special_supplement"
+      "aziende-termali-federterme/terziario_inps_rates_unverified"
     ],
     "agreement/bancari-abi.json": [
       "bancari-abi/abi_saturday_overtime_and_hourly_base",
@@ -967,8 +965,7 @@
     "agreement/industria-turistica-federturismo.json": [
       "industria-turistica-federturismo/apprentice_seniority",
       "industria-turistica-federturismo/apprenticeship_under_classification",
-      "industria-turistica-federturismo/seniority_cadence_unconfirmed",
-      "industria-turistica-federturismo/tourism_special_supplement"
+      "industria-turistica-federturismo/seniority_cadence_unconfirmed"
     ],
     "agreement/informatica-pmi-unimatica.json": [
       "informatica-pmi-unimatica/apprentice_seniority",
@@ -1167,8 +1164,7 @@
       "pubblici-esercizi-fipe-angem-ristorazione-collettiva/apprentice_seniority",
       "pubblici-esercizi-fipe-angem-ristorazione-collettiva/guarantee_premium_2027",
       "pubblici-esercizi-fipe-angem-ristorazione-collettiva/health_and_bilateral_funds",
-      "pubblici-esercizi-fipe-angem-ristorazione-collettiva/holiday_overtime_cumulation",
-      "pubblici-esercizi-fipe-angem-ristorazione-collettiva/tourism_special_supplement"
+      "pubblici-esercizi-fipe-angem-ristorazione-collettiva/holiday_overtime_cumulation"
     ],
     "agreement/pubblici-esercizi-fipe-angem.json": [
       "pubblici-esercizi-fipe-angem/apprentice_seniority",
@@ -1177,8 +1173,7 @@
       "pubblici-esercizi-fipe-angem/contract_catering_tranche_dates",
       "pubblici-esercizi-fipe-angem/guarantee_premium_2027",
       "pubblici-esercizi-fipe-angem/holiday_overtime_cumulation",
-      "pubblici-esercizi-fipe-angem/small_company_pay_reduction",
-      "pubblici-esercizi-fipe-angem/tourism_special_supplement"
+      "pubblici-esercizi-fipe-angem/small_company_pay_reduction"
     ],
     "agreement/pulizia-artigianato-confartigianato.json": [
       "pulizia-artigianato-confartigianato/apprentice_inps_rates_unsourced",
@@ -1296,8 +1291,7 @@
     "agreement/turismo-confesercenti.json": [
       "turismo-confesercenti/apprentice_seniority",
       "turismo-confesercenti/apprenticeship_under_classification",
-      "turismo-confesercenti/other_subsectors_tables",
-      "turismo-confesercenti/tourism_special_supplement"
+      "turismo-confesercenti/other_subsectors_tables"
     ],
     "agreement/turismo-federalberghi-alberghi-minori.json": [
       "turismo-federalberghi-alberghi-minori/apprentice_net_cap",
@@ -1309,8 +1303,7 @@
       "turismo-federalberghi-alberghi-minori/guarantee_element_2027",
       "turismo-federalberghi-alberghi-minori/hires_2016_ramp",
       "turismo-federalberghi-alberghi-minori/quadri_absorption",
-      "turismo-federalberghi-alberghi-minori/sickness_net_basis",
-      "turismo-federalberghi-alberghi-minori/tourism_special_supplement"
+      "turismo-federalberghi-alberghi-minori/sickness_net_basis"
     ],
     "agreement/turismo-federalberghi.json": [
       "turismo-federalberghi/apprentice_net_cap",
@@ -1322,8 +1315,7 @@
       "turismo-federalberghi/guarantee_element_2027",
       "turismo-federalberghi/hires_2016_ramp",
       "turismo-federalberghi/quadri_absorption",
-      "turismo-federalberghi/sickness_net_basis",
-      "turismo-federalberghi/tourism_special_supplement"
+      "turismo-federalberghi/sickness_net_basis"
     ],
     "agreement/uneba-uneba.json": [
       "uneba-uneba/equal_apprenticeship_bands",

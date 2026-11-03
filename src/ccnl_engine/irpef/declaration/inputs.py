@@ -18,6 +18,7 @@ from ccnl_engine.tax_credit.foreign.inputs import (
 )
 from ccnl_engine.validators import (
     parse_enum,
+    require_bool,
     require_decimal,
     require_instance,
 )
@@ -69,13 +70,17 @@ class PriorYearTaxFacts:
             the first year before the tax year, in EUR, each ``>= 0``: the
             rate of the separate taxation of arrears is the one of half
             their sum (art. 21 cc. 1, 3 TUIR).  ``None`` when not known.
+        special_supplement_requested: Whether the worker asked in writing,
+            attesting ``employment_income``, for the trattamento integrativo
+            speciale of L. 199/2025 art. 1 cc. 18-20 (c. 20).
 
     Raises:
         InvalidInputError: When ``employment_income`` is not a finite,
             non-negative ``Decimal``, a waiver names no regime,
             ``shortfall_deferral`` is not a request, two foreign taxes
-            name the same State, or ``net_income_biennio`` is not two
-            non-negative amounts.
+            name the same State, ``net_income_biennio`` is not two
+            non-negative amounts, or ``special_supplement_requested`` is not
+            a bool.
     """
 
     employment_income: Decimal | None = None
@@ -83,6 +88,7 @@ class PriorYearTaxFacts:
     shortfall_deferral: ShortfallDeferralRequest | None = None
     foreign_taxes: tuple[ForeignTaxPaid, ...] = ()
     net_income_biennio: tuple[Decimal, Decimal] | None = None
+    special_supplement_requested: bool = False
 
     def __post_init__(self) -> None:  # noqa: D105
         owner = "PriorYearTaxFacts"
@@ -112,6 +118,11 @@ class PriorYearTaxFacts:
         )
         check_one_per_state(taxes)
         object.__setattr__(self, "foreign_taxes", taxes)
+        require_bool(
+            self.special_supplement_requested,
+            f"{owner}.special_supplement_requested",
+            feature=_FEATURE,
+        )
         biennio: object = self.net_income_biennio
         if biennio is not None:
             if not isinstance(biennio, tuple) or len(biennio) != 2:

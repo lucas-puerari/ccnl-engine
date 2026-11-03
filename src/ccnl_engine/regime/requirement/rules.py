@@ -57,6 +57,8 @@ class RegimeFacts:
         arrears_rate: Rate of the separate taxation of arrears from the
             income of the two years before (art. 21 TUIR).  ``None`` when
             that income is not known.
+        special_supplement: Whether the worker asked for the trattamento
+            integrativo speciale (L. 199/2025 art. 1 c. 20).
     """
 
     prior_income: Decimal | None = None
@@ -66,6 +68,7 @@ class RegimeFacts:
     agreement_signed_on: date | None = None
     withholding_agent: bool = True
     arrears_rate: Decimal | None = None
+    special_supplement: bool = False
 
     def waived(self, regime: PreferentialTaxRegime) -> bool:
         """Return whether the worker renounced ``regime`` in writing.
@@ -187,4 +190,5 @@ def worker_facts_of(
             if biennio is None or not brackets
             else separate_rate(biennio, brackets)
         ),
+        special_supplement=request.prior_year.special_supplement_requested,
     )
