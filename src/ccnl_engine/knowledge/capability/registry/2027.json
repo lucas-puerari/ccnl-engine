@@ -397,6 +397,17 @@
       "description": "Somma esente L. 207/2024 art. 1 c. 4"
     },
     {
+      "feature": "special_supplement",
+      "layer": "net",
+      "implementation": "native",
+      "applies_when": "decided",
+      "handler": "decision",
+      "evidence": "derived",
+      "variants": [],
+      "required_facts": [],
+      "description": "Trattamento integrativo speciale del turismo e della somministrazione L. 199/2025 art. 1 cc. 18-21: 15% della retribuzione lorda del lavoro notturno e dello straordinario festivo, 1 gennaio - 30 settembre 2026"
+    },
+    {
       "feature": "withholding_shortfall",
       "layer": "net",
       "implementation": "native",

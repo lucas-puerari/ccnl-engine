@@ -38,6 +38,7 @@ from ccnl_engine.regime.handlers import (
     apply_preferential_regime,
 )
 from ccnl_engine.working_time.services import resolve_work_event
+from ccnl_engine.working_time.tourism.services import special_supplement_lines
 
 
 def _pdr_ceiling_exceeded(
@@ -141,10 +142,13 @@ def _handle_standard(
             issues.append(regime.issue)
     elif treatment.substitute:
         substitute_delta = gross
+    special = special_supplement_lines(event, gross, decisions, ctx)
+    decisions.extend(special.decisions)
+    issues.extend(special.issues)
 
     return EventEffect(
-        items=[item],
-        intents=intents,
+        items=[item, *special.items],
+        intents=[*intents, *special.intents],
         inps_delta=di,
         tfr_delta=dt,
         irpef_delta=dirpef,

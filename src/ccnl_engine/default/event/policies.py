@@ -89,6 +89,9 @@ EVENT_DEFAULTS: Mapping[str, FieldDefault] = {
         "c. 4 TUIR), with the arrears_unused_deductions limitation",
     ),
     # The fact the arrears rate is computed from, with the event that reads it.
+    "PriorYearTaxFacts.special_supplement_requested": absence_is_fact(
+        "no written request (L. 199/2025 art. 1 c. 20): no supplement is paid"
+    ),
     "PriorYearTaxFacts.net_income_biennio": requires_fact(
         "contract_renewal_arrears",
         "prior_year.net_income_biennio",

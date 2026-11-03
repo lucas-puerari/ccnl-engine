@@ -35,7 +35,7 @@ __all__ = [
 ]
 
 _ZERO = Decimal(0)
-_CREDITS = frozenset({"trattamento_integrativo", "somma_esente"})
+_CREDITS = frozenset({"trattamento_integrativo", "somma_esente", "special_supplement"})
 #: The surtax of the run, or the surtax an earlier run carried for lack of
 #: pay, which the withholding cap decides.
 _SURTAX = frozenset({

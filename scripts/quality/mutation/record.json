@@ -1,6 +1,6 @@
 {
-  "commit": "87067bfbad17bcf68c8bd5c004ab24f0b9842c9b",
-  "date": "2026-11-02",
+  "commit": "278d3b2b3262d8a59a35a04c566b46829c67eadc",
+  "date": "2026-11-03",
   "min_score": 93.0,
   "perimeter": [
     "src/ccnl_engine/contribution/rules.py",
@@ -48,6 +48,7 @@
     "src/ccnl_engine/sickness/base/rules.py",
     "src/ccnl_engine/sickness/day/rules.py",
     "src/ccnl_engine/sickness/agricultural/rules.py",
+    "src/ccnl_engine/working_time/tourism/rules.py",
     "src/ccnl_engine/sickness/cumulation/rules.py",
     "src/ccnl_engine/sickness/cumulation/year/rules.py",
     "src/ccnl_engine/sickness/window/rules.py",
@@ -156,13 +157,13 @@
   ],
   "scores": {
     "core": {
-      "killed": 9617,
-      "survived": 274,
+      "killed": 9717,
+      "survived": 287,
       "other": 5,
       "not_checked": 0,
       "equivalent": 18,
-      "total": 9896,
-      "score": 97.2,
+      "total": 10009,
+      "score": 97.1,
       "minimum": 93.0
     },
     "src/ccnl_engine/contribution/rules.py": {
@@ -276,13 +277,13 @@
       "minimum": 93.0
     },
     "src/ccnl_engine/working_time/handlers.py": {
-      "killed": 119,
+      "killed": 130,
       "survived": 2,
       "other": 0,
       "not_checked": 0,
       "equivalent": 0,
-      "total": 121,
-      "score": 98.3,
+      "total": 132,
+      "score": 98.5,
       "minimum": 93.0
     },
     "src/ccnl_engine/sickness/pay/handlers.py": {
@@ -486,23 +487,23 @@
       "minimum": 93.0
     },
     "src/ccnl_engine/termination/naspi/rules.py": {
-      "killed": 111,
+      "killed": 126,
       "survived": 1,
       "other": 1,
       "not_checked": 0,
       "equivalent": 0,
-      "total": 113,
-      "score": 98.2,
+      "total": 128,
+      "score": 98.4,
       "minimum": 93.0
     },
     "src/ccnl_engine/termination/naspi/services.py": {
-      "killed": 284,
-      "survived": 10,
+      "killed": 280,
+      "survived": 20,
       "other": 0,
       "not_checked": 0,
       "equivalent": 0,
-      "total": 294,
-      "score": 96.6,
+      "total": 300,
+      "score": 93.3,
       "minimum": 93.0
     },
     "src/ccnl_engine/personal_withholding/rules.py": {
@@ -602,6 +603,16 @@
       "not_checked": 0,
       "equivalent": 0,
       "total": 29,
+      "score": 100.0,
+      "minimum": 93.0
+    },
+    "src/ccnl_engine/working_time/tourism/rules.py": {
+      "killed": 62,
+      "survived": 0,
+      "other": 0,
+      "not_checked": 0,
+      "equivalent": 0,
+      "total": 62,
       "score": 100.0,
       "minimum": 93.0
     },
@@ -786,13 +797,13 @@
       "minimum": 93.0
     },
     "src/ccnl_engine/absence/insured/extraordinary/handlers.py": {
-      "killed": 152,
-      "survived": 5,
+      "killed": 157,
+      "survived": 7,
       "other": 0,
       "not_checked": 0,
       "equivalent": 0,
-      "total": 157,
-      "score": 96.8,
+      "total": 164,
+      "score": 95.7,
       "minimum": 93.0
     },
     "src/ccnl_engine/absence/insured/permit/handlers.py": {
@@ -1426,13 +1437,13 @@
       "minimum": 93.0
     },
     "src/ccnl_engine/compensation/element/services.py": {
-      "killed": 176,
-      "survived": 23,
+      "killed": 180,
+      "survived": 25,
       "other": 0,
       "not_checked": 0,
       "equivalent": 0,
-      "total": 199,
-      "score": 88.4,
+      "total": 205,
+      "score": 87.8,
       "minimum": 80.1
     },
     "src/ccnl_engine/seniority/age/rules.py": {
@@ -1606,13 +1617,13 @@
       "minimum": 93.0
     },
     "src/ccnl_engine/working_time/subsector/rules.py": {
-      "killed": 106,
-      "survived": 0,
+      "killed": 117,
+      "survived": 1,
       "other": 0,
       "not_checked": 0,
       "equivalent": 0,
-      "total": 106,
-      "score": 100.0,
+      "total": 118,
+      "score": 99.2,
       "minimum": 93.0
     },
     "src/ccnl_engine/working_time/services.py": {
@@ -1636,13 +1647,13 @@
       "minimum": 65.7
     },
     "src/ccnl_engine/working_time/supplement/policies.py": {
-      "killed": 148,
-      "survived": 45,
+      "killed": 152,
+      "survived": 43,
       "other": 0,
       "not_checked": 0,
       "equivalent": 0,
-      "total": 193,
-      "score": 76.7,
+      "total": 195,
+      "score": 77.9,
       "minimum": 76.6
     },
     "src/ccnl_engine/working_time/week/rules.py": {

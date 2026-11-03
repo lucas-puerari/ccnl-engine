@@ -54,6 +54,7 @@ __all__ = [
     "REMITTANCE_ACCOUNTS",
     "SEVERANCE_WITHHOLDING",
     "SOMMA_ESENTE_CREDIT",
+    "SPECIAL_SUPPLEMENT_CREDIT",
     "TRATTAMENTO_CREDIT",
     "RemittanceColumn",
     "RemittanceLine",
@@ -87,6 +88,14 @@ TRATTAMENTO_CREDIT = "1701"
 #: amount paid and "importi a debito versati" for the amount "già erogata e
 #: poi recuperata in capo al dipendente" (ris. 9/E/2025).
 SOMMA_ESENTE_CREDIT = "1704"
+#: "Credito maturato dai sostituti d'imposta per l'erogazione del
+#: trattamento integrativo speciale per lavoro notturno e straordinario
+#: effettuato nei giorni festivi dai dipendenti di strutture
+#: turistico-alberghiere": instituted by ris. 51/E/2023 and renamed by ris.
+#: 26/E/2024 and ris. 8/E/2025 (sha256 53cfa60f...) for each year of the
+#: measure; L. 199/2025 art. 1 c. 21 keeps the F24 compensation for 2026,
+#: and no renaming for 2026 was found.
+SPECIAL_SUPPLEMENT_CREDIT = "1702"
 #: "ADDIZIONALE REGIONALE ALL'IMPOSTA SUL REDDITO DELLE PERSONE FISICHE
 #: SOSTITUTI D'IMPOSTA" (Allegato 1, provv. 31/01/2025).
 REGIONAL_SURTAX = "3802"
@@ -147,7 +156,11 @@ ACCOUNT_CODES: Mapping[AccountKind, frozenset[str]] = MappingProxyType({
     }),
     AccountKind.SUBSTITUTE_TAX: frozenset({PDR_SUBSTITUTE_TAX, *REGIME_CODES.values()}),
     AccountKind.SEPARATE_TAX: frozenset({ARREARS_WITHHOLDING, SEVERANCE_WITHHOLDING}),
-    AccountKind.CREDITS: frozenset({TRATTAMENTO_CREDIT, SOMMA_ESENTE_CREDIT}),
+    AccountKind.CREDITS: frozenset({
+        TRATTAMENTO_CREDIT,
+        SOMMA_ESENTE_CREDIT,
+        SPECIAL_SUPPLEMENT_CREDIT,
+    }),
     AccountKind.CREDIT_RECOVERIES: frozenset({SOMMA_ESENTE_CREDIT}),
 })
 
