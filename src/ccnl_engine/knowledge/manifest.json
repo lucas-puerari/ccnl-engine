@@ -116,7 +116,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/alimentari-federalimentare",
       "ruleset_version": "2026.2",
-      "source_hash": "16d272442396a28edd5c32365b411281809123bda55ef38f424ec5c3b5c78050",
+      "source_hash": "9dffceff8727c5f0764ed7db03e889e851cc7e92d4b25e38e0321cd7d203d66c",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/alimentari-federalimentare.json.gz"
@@ -524,7 +524,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/concia-unic",
       "ruleset_version": "2026.1",
-      "source_hash": "9e9fb7f85e4fac184733f39f380538d2f1682edd3cd27807d8791cf6ec38d00d",
+      "source_hash": "2ed83589e7fa5502a0368502901b4319e1e0ee984216285e972cdc868777419a",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/concia-unic.json.gz"

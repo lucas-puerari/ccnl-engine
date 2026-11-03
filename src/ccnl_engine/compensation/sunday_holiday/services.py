@@ -7,11 +7,11 @@ ricorra nel giorno di domenica, [...] anche una ulteriore retribuzione
 corrispondente all'aliquota giornaliera" (4 November stopped being a
 holiday with L. 54/1977 art. 1).  A CCNL that pays other holidays on a
 Sunday names them (``work_rules.sunday_holidays``).  The quota is the
-monthly pay of a full month (minimo, seniority, the allowances and the
-individual elements of the chain) over the daily divisor of the clause or,
-without one, of the CCNL absences.  A run of a month
-with another holiday on a Sunday, in a CCNL that names none, records the
-engine limitation of the clause not sourced.
+monthly pay of a full month (minimo, seniority, the cash allowances the
+clause does not exclude and the individual elements of the chain) over the
+daily divisor of the clause or, without one, of the CCNL absences.  A run
+of a month with another holiday on a Sunday, in a CCNL that names none,
+records the engine limitation of the clause not sourced.
 """
 
 from __future__ import annotations
@@ -152,8 +152,14 @@ def _paid(
         The quota of the monthly pay of a full month over ``divisor``, once
         a day.
     """
+    excluded = frozenset() if clause is None else clause.excluded
+    allowances = (
+        v
+        for a, v in ctx.regular_chain.allowances
+        if not a.in_kind and a.code not in excluded
+    )
     chain = ctx.regular_chain
-    monthly = money(chain.base + chain.seniority + chain.allowances_total)
+    monthly = money(chain.base + chain.seniority + sum(allowances, _ZERO))
     amount = money(monthly / divisor * len(days))
     resolution = _require_resolution(ctx.resolver, _KIND, ctx.policy_context)
     treatment = _treatment_from_resolution(resolution)

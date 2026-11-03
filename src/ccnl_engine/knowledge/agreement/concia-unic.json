@@ -7,7 +7,7 @@
     "effective_until": null,
     "published_at": "2026-09-11",
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
-    "source_hash": "9e9fb7f85e4fac184733f39f380538d2f1682edd3cd27807d8791cf6ec38d00d",
+    "source_hash": "2ed83589e7fa5502a0368502901b4319e1e0ee984216285e972cdc868777419a",
     "verification_status": "verified",
     "source_type": "contracting_party"
   },
@@ -3679,6 +3679,50 @@
           "verified_at": "2026-11-01T18:19:31Z",
           "verification_status": "verified",
           "review_id": "2026-11-01-ai-notice-2"
+        }
+      }
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "04-25",
+        "05-01",
+        "06-02",
+        "01-01",
+        "01-06",
+        "easter_monday",
+        "08-15",
+        "11-01",
+        "12-08",
+        "12-25",
+        "12-26"
+      ],
+      "divisor": "25",
+      "excluded": [
+        "IND_FUNZIONE"
+      ],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "cnel-b101-148617",
+            "title": "CCNL per gli addetti delle aziende conciarie, testo definitivo 21 gennaio 2021 (vigenza 1/11/2019-30/6/2023), deposito CNEL B101 n. 148617 (PDF in the fileContent of the archive API response)",
+            "kind": "cnel",
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/148617",
+            "published_on": "2021-01-21",
+            "sha256": "e5f478479583edd9fd8614480cc5ee5d6dc130ad29271067522ed444c8bd9cde"
+          },
+          "page": "60, 67-69",
+          "section": "Art. 38 - Riposo settimanale e giorni festivi; Art. 46; Art. 50",
+          "quote": "Qualora una delle festività di cui alle lettere b) e c) cadesse di domenica, è dovuta al lavoratore una giornata di retribuzione calcolata secondo le norme di cui all'art. 50. [...] La retribuzione giornaliera si ottiene dividendo la retribuzione mensile per 25. Agli effetti di cui sopra si intende per retribuzione mensile quella prevista dal 1° comma dell'art. 46."
+        },
+        "transformation": "The festività of letters b) (25 April, 1 May, 2 June) and c) (Capodanno, Epifania, Assunzione, Ognissanti, Immacolata, Natale, S. Stefano, Easter Monday) of art. 38 on a Sunday: the paga mensile of art. 46 c. 1 (minimo, IPO, EDR, scatti, ERI, ILP, merit and other excesses) over 25 (art. 50); the quadri function allowance (IND_FUNZIONE, art. 46 lett. g) is an additional element and is left out. The Santo Patrono of letter c) point 8 is not in the national calendar and is not paid. The 2024 renewal does not change arts. 38, 46 and 50.",
+        "note": "4 October, a holiday from 2026 (L. 151/2025), is not in the 2021 list: its Sunday stays open. A Sunday worker with a compensatory rest day is paid too; nothing is due when the holiday falls on the compensatory rest day: not told apart.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-03T12:00:00Z",
+          "effective_from": "2019-11-01",
+          "verification_status": "unverified"
         }
       }
     }
