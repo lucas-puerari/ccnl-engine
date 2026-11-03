@@ -4826,7 +4826,7 @@
     "effective_until": null,
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/chimico_farmaceutico/250415-_CHIMICO-FARMACEUTICO_RINNOVO%20CCNL_%201-7-2025__30-6-2028.pdf",
     "verification_status": "unverified",
-    "source_hash": "9fa21f45b19343c925699aadd8ae2496b3b9ff903007a925bfb80f9df72bfa08",
+    "source_hash": "5a783ece171e27592571b68ed1cc327f839585ab13cc5cd97bd7321aa0dc6d47",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -5881,6 +5881,46 @@
             "verification_status": "verified",
             "effective_from": "2006-05-10"
           }
+        }
+      }
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "04-25",
+        "05-01",
+        "06-02",
+        "01-01",
+        "01-06",
+        "08-15",
+        "11-01",
+        "12-08",
+        "12-25",
+        "12-26",
+        "easter_monday"
+      ],
+      "divisor": "25",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "cnel-579-ccnl-chimica-2006",
+            "title": "CCNL industria chimica, chimico-farmaceutica, fibre chimiche e settori abrasivi, lubrificanti e GPL, testo definitivo 10 maggio 2006 (CNEL n. 579, file Word)",
+            "kind": "cnel",
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/579",
+            "published_on": "2006-05-10",
+            "sha256": "a9926705b06590a6d8fbe2e6ab683c75d56dfd9e898e7b0f71fb377d7edef3d6"
+          },
+          "section": "Art. 11 - Riposo settimanale - Giorni festivi",
+          "quote": "Qualora una delle festività di cui alle lettere b) e c) cadesse di domenica è dovuta al lavoratore giornaliero o all’addetto al turno 2x5 o 2x6 una giornata di retribuzione calcolata secondo le norme di cui all’art. 20."
+        },
+        "transformation": "Letters b) (25 aprile, 1 maggio, 2 giugno) and c) (Capodanno, Epifania, Assunzione, Ognissanti, Immacolata, Natale, S. Stefano, the patron saint, the day after Easter) of the national calendar; the patron saint is local and not in it. One daily quota a holiday. Art. 20 point 4: 'La retribuzione giornaliera si ottiene dividendo la retribuzione mensile per 25', the retribuzione mensile of art. 15 point 1 (minimo, IPO, scatti, individual elements): the minimo and IPO of the level, the scatti and the individual elements of the pay chain, over 25.",
+        "note": "The 3x shift workers take rest days instead (Art. 11 last paragraphs): not told apart. 4 October, a holiday from 2026 (L. 151/2025), is not in the 2006 list: its Sunday stays open.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-03T09:59:08Z",
+          "effective_from": "2006-05-10",
+          "verification_status": "unverified"
         }
       }
     }

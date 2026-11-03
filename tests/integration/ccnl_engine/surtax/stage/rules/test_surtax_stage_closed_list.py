@@ -131,7 +131,11 @@ def engine() -> PayrollEngine:
 def test_a_closed_list_leaves_no_surtax_blocker(
     engine: PayrollEngine, comune: str, regione: str
 ) -> None:
-    """A resident of a capoluogo is payable on chimica, the carried rates final."""
+    """A resident of a capoluogo has no surtax blocker, the carried rates final.
+
+    Chimica pays 1 November on a Sunday (art. 11); 4 October, a holiday since
+    L. 151/2025, is the one other blocker of the year.
+    """
     year = engine.calculate_competence_year(
         CompetenceYearPlan(
             year=2026,
@@ -168,14 +172,18 @@ def test_a_closed_list_leaves_no_surtax_blocker(
             ),
         )
     )
-    details = {b.detail for b in year.blockers}
+    blockers = [b for b in year.blockers if b.feature != "sunday_holiday"]
+    assert {b.detail for b in year.blockers} - {b.detail for b in blockers} == {
+        "sunday_holiday_ccnl_clause"
+    }
+    details = {b.detail for b in blockers}
     if comune in _SPECIFIC_EXEMPTIONS:
         assert details
         assert not any("prior_year" in detail for detail in details)
         assert all(
             b.feature == "addizionale_comunale" or "specific" in b.detail
-            for b in year.blockers
+            for b in blockers
         )
     else:
         assert details == set()
-        assert year.is_payable
+        assert all(r.is_payable for r in year.period_results if r.period_id.month != 10)

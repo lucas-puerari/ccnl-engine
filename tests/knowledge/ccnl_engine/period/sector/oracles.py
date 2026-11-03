@@ -813,8 +813,15 @@ def _d1(month: int) -> Decimal:
     return _D1_UNTIL_JUNE if month < 7 else _D1_FROM_JULY
 
 
+#: 1 November 2026 falls on a Sunday: "una giornata di retribuzione" (CCNL
+#: art. 11), the monthly pay over 25 (art. 20 point 4), paid with November.
+_D1_SUNDAY_HOLIDAY = _cents(_D1_FROM_JULY / 25)
+
+
 def _chimica_year() -> tuple[Pay, ...]:
     pays = [Pay(_run(m), _d1(m), _d1(m)) for m in range(1, 13)]
+    november = _D1_FROM_JULY + _D1_SUNDAY_HOLIDAY
+    pays[10] = Pay(_run(11), november, november)
     #: Tredicesima of one monthly pay, paid "alla vigilia di Natale"
     #: before the December pay: CCNL 10 May 2006 (CNEL n. 579), art. 21.
     pays.insert(11, Pay(_run(12, "thirteenth"), _D1_FROM_JULY, _D1_FROM_JULY))

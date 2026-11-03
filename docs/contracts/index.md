@@ -30,7 +30,7 @@ on unverified sources, or be well sourced and not cleared for production.
   verified / derived / assumed / missing.
 - **Readiness:** the review tier of the contract ruleset.
 
-**Core payroll path: computed on every run of every contract** (23):
+**Core payroll path: computed on every run of every contract** (24):
 
 - ✅ `base_salary` (native)
 - ✅ `seniority` (native)
@@ -45,6 +45,7 @@ on unverified sources, or be well sourced and not cleared for production.
 - ✅ `ulteriore_detrazione_lavoro` (native)
 - ✅ `somma_esente` (native)
 - ✅ `special_supplement` (native)
+- ✅ `sunday_holiday` (native)
 - ✅ `withholding_shortfall` (native)
 - ✅ `shortfall_deferral` (native)
 - ✅ `addizionale_regionale` (native)

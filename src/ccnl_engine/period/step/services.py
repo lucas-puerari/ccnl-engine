@@ -23,6 +23,7 @@ from ccnl_engine.compensation.renewal_minimum.services import (
     renewal_settlement,
 )
 from ccnl_engine.compensation.second_level.rules import second_level_decisions
+from ccnl_engine.compensation.sunday_holiday.services import sunday_holiday
 from ccnl_engine.contribution.ceiling.services import (
     IvsCeiling,
     ivs_ceiling_decision,
@@ -144,28 +145,23 @@ def run_events(ctx: RunContext) -> RunEvents:
         ctx.monthly_gross,
         with_sickness=any(i.code == WITH_UNPAID_ABSENCE for i in events.totals.issues),
     )
-    totals = reduction.added_to(erc.added_to(settlement.added_to(events.totals)))
-    renewal = renewal_settlement(ctx)
-    funds = contractual_funds(ctx).settlement
-    leave = run_leave(ctx)
-    totals = leave.added_to(funds.added_to(renewal.added_to(hourly.added_to(totals))))
+    parts = (
+        settlement,
+        erc,
+        reduction,
+        hourly,
+        renewal_settlement(ctx),
+        contractual_funds(ctx).settlement,
+        run_leave(ctx),
+        sunday_holiday(ctx),
+    )
+    totals = events.totals
+    for part in parts:
+        totals = part.added_to(totals)
     return RunEvents(
         totals,
-        events.items
-        + settlement.items
-        + erc.items
-        + reduction.items
-        + hourly.items
-        + funds.items
-        + leave.items,
-        events.entries
-        + settlement.entries
-        + erc.entries
-        + reduction.entries
-        + hourly.entries
-        + renewal.entries
-        + funds.entries
-        + leave.entries,
+        events.items + tuple(item for part in parts for item in part.items),
+        events.entries + tuple(entry for part in parts for entry in part.entries),
     )
 
 

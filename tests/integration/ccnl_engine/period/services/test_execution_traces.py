@@ -305,4 +305,8 @@ class TestYearDecisions:
         # mètaSalute on each of the 12 monthly runs, the flexible benefits on
         # the February run.
         funds = 12 + 1
-        assert len(year.decisions) == 15 * len(runs) + 2 - before_the_renewal + funds
+        # The holidays on a Sunday of October and November, left unpaid.
+        sunday_holidays = 2
+        assert len(year.decisions) == (
+            15 * len(runs) + 2 - before_the_renewal + funds + sunday_holidays
+        )

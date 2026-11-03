@@ -21,6 +21,7 @@ from pydantic import BaseModel, ConfigDict, model_validator
 from ccnl_engine.absence.insured.models import InsuredAbsenceRules
 from ccnl_engine.absence.models import AbsenceRules
 from ccnl_engine.agreement.types import NoteKind
+from ccnl_engine.compensation.sunday_holiday.models import SundayHolidayPay
 from ccnl_engine.leave.models import LeaveRules
 from ccnl_engine.limitation.models import (
     ModelLimitation,
@@ -133,6 +134,7 @@ class CCNLWorkRules(BaseModel):
     standby_rules: StandbyRules | None = None
     travel_allowance: CcnlTravelAllowance | None = None
     notice: NoticeRules | None = None
+    sunday_holidays: SundayHolidayPay | None = None
 
 
 class CCNLCoverage(BaseModel):

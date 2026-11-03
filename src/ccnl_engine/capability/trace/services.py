@@ -45,6 +45,7 @@ _DECISION_FEATURES: dict[str, TraceState] = {
     "trattamento_integrativo": TraceState.NOT_APPLICABLE,
     "somma_esente": TraceState.NOT_APPLICABLE,
     "special_supplement": TraceState.NOT_APPLICABLE,
+    "sunday_holiday": TraceState.NOT_APPLICABLE,
     "withholding_shortfall": TraceState.NOT_APPLICABLE,
     "shortfall_deferral": TraceState.NOT_APPLICABLE,
     "personal_withholdings": TraceState.NOT_APPLICABLE,
