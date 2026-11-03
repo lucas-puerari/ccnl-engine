@@ -118,8 +118,8 @@ def test_fractional_extra_months_settle_trattamento_integrativo() -> None:
 @pytest.mark.parametrize(
     ("level_code", "expected"),
     [
-        pytest.param("Q", Decimal("4448.55"), id="second-bracket"),
-        pytest.param("3", Decimal("2264.70"), id="first-bracket"),
+        pytest.param("Q", Decimal("4533.18"), id="second-bracket"),
+        pytest.param("3", Decimal("2307.31"), id="first-bracket"),
     ],
 )
 def test_part_year_employment_withholds_the_tax_on_its_days(
@@ -138,17 +138,23 @@ def test_part_year_employment_withholds_the_tax_on_its_days(
     each share rounded on its own (INPS circ. 117/2022 all. 1 and 208/2001;
     D.Lgs. 148/2015 artt. 23 c. 1-bis, 29 c. 8):
 
+    November also pays two further quotas of its pay over 26: 1 November
+    2026 falls on a Sunday, and 4 November is celebrated on the first Sunday
+    of November (CCNL art. 154 and 210).
+
     - Level Q: runs of 1,608.00, 2,986.29 seven times, 995.43 (June
-      fourteenth), 3,047.05 twice and 2,539.22 (thirteenth): 32,140.78 of
-      gross, 3,135.58 of INPS, final taxable 29,005.20.  Gross tax 6,440.00
-      + 1,005.20 * 33% = 6,771.72; deduction 1,910 * 0.9543 * 0.8 + 65 =
-      1,523.17, the 65 of art. 13 c. 1.1 whole (circolare AdE 4/E/2022);
-      further deduction 800.00; net 4,448.55.
-    - Level 3: runs of 1,068.25, 1,983.91 seven times, 661.31, 2,024.38
-      twice and 1,686.99: 21,352.68 of gross, 2,083.25 of INPS, final
-      taxable 19,269.43.  Gross tax 4,431.97; ratio 8,730.57 / 13,000
-      truncated 0.6715; deduction (1,910 + 1,190 * 0.6715) * 0.8 =
-      2,167.27; no further deduction below 20,000; net 2,264.70.
+      fourteenth), 3,281.44 (November, 3,047.05 + 234.39), 3,047.05 and
+      2,539.22 (thirteenth): 32,375.17 of gross, 3,158.40 of INPS, final
+      taxable 29,216.77.  Gross tax 6,440.00 + 1,216.77 * 33% = 6,841.53;
+      deduction 1,910 * 0.9446 * 0.8 + 65 = 1,508.35, the 65 of art. 13
+      c. 1.1 whole (circolare AdE 4/E/2022); further deduction 800.00; net
+      4,533.18.
+    - Level 3: runs of 1,068.25, 1,983.91 seven times, 661.31, 2,180.10
+      (November, 2,024.38 + 155.72), 2,024.38 and 1,686.99: 21,508.40 of
+      gross, 2,098.46 of INPS, final taxable 19,409.94.  Gross tax
+      4,464.29; ratio 8,590.06 / 13,000 truncated 0.6607; deduction (1,910
+      + 1,190 * 0.6607) * 0.8 = 2,156.98; no further deduction below
+      20,000; net 2,307.31.
 
     Observed on 26 September 2026 before the days reached the tax
     computation: full-year deductions on a 292-day employment.

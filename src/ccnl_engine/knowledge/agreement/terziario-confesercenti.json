@@ -4168,7 +4168,7 @@
     "effective_until": "2027-03-31",
     "source": "https://www.confesercenti.it/wp-content/uploads/2023/01/CCNL_contratto-collettivo-nazionale.pdf",
     "verification_status": "unverified",
-    "source_hash": "844051c4aa9187b4ca837dcfb638e72efc18fa33463056baefdd14cf60f567ae",
+    "source_hash": "508d39e4583cd8e41abd17a8f99ef629a8339b3d4ff699b67bd402b86d3e2489",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -5430,6 +5430,48 @@
           "verified_by": "claude-opus-5-5",
           "verified_at": "2026-10-31T21:00:00Z",
           "review_id": "2026-10-31-ai"
+        }
+      }
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "04-25",
+        "05-01",
+        "06-02",
+        "01-01",
+        "01-06",
+        "easter_monday",
+        "08-15",
+        "11-01",
+        "12-08",
+        "12-25",
+        "12-26",
+        "11-04"
+      ],
+      "divisor": "26",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "confesercenti-tu2019",
+            "title": "CCNL Terziario, Distribuzione e Servizi Confesercenti, Testo Unico 12 dicembre 2019",
+            "kind": "associazione",
+            "url": "https://www.confesercenti.it/wp-content/uploads/2023/01/CCNL_contratto-collettivo-nazionale.pdf",
+            "published_on": "2019-12-12",
+            "sha256": "18a2f10cf41209a56523473660321348214c1d8d54900257cf805ad8488f7ec0"
+          },
+          "page": "124, 155",
+          "section": "Art. 154 - Festività; Art. 210 - Quota giornaliera",
+          "quote": "In caso di coincidenza di una delle festività sopra elencate con una domenica, in aggiunta alla retribuzione mensile sarà corrisposto ai lavoratori un ulteriore importo pari alla quota giornaliera della retribuzione di fatto di cui all'art. 208. Per la festività civile del 4 novembre la cui celebrazione è stata spostata alla prima domenica del mese, ai sensi dell'art. 1, secondo comma, della Legge 5 marzo 1977, n. 54, il lavoratore beneficerà del trattamento previsto per le festività che coincidono con la domenica. [Art. 210] La quota giornaliera della retribuzione, sia normale che di fatto, si ottiene, in tutti i casi, dividendo l'importo mensile per il divisore convenzionale 26"
+        },
+        "transformation": "The national and weekday holidays of art. 154 (but the Patrono) on a Sunday, and 4 November on the first Sunday of November: the retribuzione di fatto of art. 208 (every continuing element of the chain) over 26 (art. 210).",
+        "note": "4 October, a holiday from 2026 (L. 151/2025), is not in the art. 154 list: its Sunday stays open. The Patrono is not in the national calendar and is not paid.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-03T14:00:00Z",
+          "effective_from": "2019-12-12",
+          "verification_status": "unverified"
         }
       }
     }

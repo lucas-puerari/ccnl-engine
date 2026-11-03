@@ -3719,7 +3719,7 @@
     "effective_until": null,
     "source": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
     "verification_status": "unverified",
-    "source_hash": "86dc3ff64e2c4f6ee555a76babcbdb10a6ca01c4421672785682659fb923aac4",
+    "source_hash": "c9dd7200637110c27cdb127dc5ac87ac07175eda89ccb9ac630f1b2d3f7cfabb",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -4988,6 +4988,50 @@
           "verified_by": "claude-opus-5-5",
           "verified_at": "2026-10-31T20:00:00Z",
           "review_id": "2026-10-31-ai"
+        }
+      }
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "04-25",
+        "05-01",
+        "06-02",
+        "01-01",
+        "01-06",
+        "easter_monday",
+        "08-15",
+        "11-01",
+        "12-08",
+        "12-25",
+        "12-26",
+        "11-04"
+      ],
+      "divisor": "26",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "uiltucs-tu2019",
+            "title": "CCNL per i dipendenti da aziende del Terziario della Distribuzione e dei Servizi, Testo Unico 30 luglio 2019",
+            "kind": "associazione",
+            "url": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
+            "pages": [],
+            "published_on": "2019-07-30",
+            "jurisdiction": "it",
+            "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016"
+          },
+          "page": "154, 197",
+          "section": "Art. 154 - Festività; Art. 210 - Quota giornaliera",
+          "quote": "In caso di coincidenza di una delle festività sopra elencate con una domenica, in aggiunta alla retribuzione mensile sarà corrisposto ai lavoratori un ulteriore importo pari alla quota giornaliera della retribuzione di fatto di cui all'art. 208. Per la festività civile del 4 novembre la cui celebrazione è stata spostata alla prima domenica del mese, ai sensi dell'art. 1, secondo comma, della Legge 5 marzo 1977, n. 54, il lavoratore beneficerà del trattamento previsto per le festività che coincidono con la domenica. [Art. 210] La quota giornaliera della retribuzione, sia normale che di fatto, si ottiene, in tutti i casi, dividendo l'importo mensile per il divisore convenzionale 26"
+        },
+        "transformation": "The national and weekday holidays of art. 154 (but the Patrono) on a Sunday, and 4 November on the first Sunday of November: the retribuzione di fatto of art. 208 (every continuing element of the chain) over 26 (art. 210).",
+        "note": "4 October, a holiday from 2026 (L. 151/2025), is not in the art. 154 list: its Sunday stays open. The Patrono is not in the national calendar and is not paid.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-03T14:00:00Z",
+          "effective_from": "2019-07-30",
+          "verification_status": "unverified"
         }
       }
     }

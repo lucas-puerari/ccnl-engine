@@ -399,6 +399,7 @@ source_paths = [
     "src/ccnl_engine/compensation/proration/services.py",
     "src/ccnl_engine/compensation/provincial_element/services.py",
     "src/ccnl_engine/compensation/raccordo/services.py",
+    "src/ccnl_engine/compensation/sunday_holiday/rules.py",
     "src/ccnl_engine/compensation/sunday_holiday/services.py",
     "src/ccnl_engine/compensation/renewal_minimum/rules.py",
     "src/ccnl_engine/compensation/renewal_minimum/services.py",

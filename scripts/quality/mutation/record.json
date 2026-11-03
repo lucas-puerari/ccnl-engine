@@ -1,5 +1,5 @@
 {
-  "commit": "d184bf18b01a99850aef35e5fb6f2244a7215a87",
+  "commit": "732caaee0dccb28a6e449d5753fcb5ed27ebae12",
   "date": "2026-11-03",
   "min_score": 93.0,
   "perimeter": [
@@ -139,6 +139,7 @@
     "src/ccnl_engine/compensation/proration/services.py",
     "src/ccnl_engine/compensation/provincial_element/services.py",
     "src/ccnl_engine/compensation/raccordo/services.py",
+    "src/ccnl_engine/compensation/sunday_holiday/rules.py",
     "src/ccnl_engine/compensation/sunday_holiday/services.py",
     "src/ccnl_engine/compensation/renewal_minimum/rules.py",
     "src/ccnl_engine/compensation/renewal_minimum/services.py",
@@ -158,12 +159,12 @@
   ],
   "scores": {
     "core": {
-      "killed": 9966,
-      "survived": 295,
+      "killed": 10107,
+      "survived": 302,
       "other": 5,
       "not_checked": 0,
       "equivalent": 18,
-      "total": 10266,
+      "total": 10414,
       "score": 97.1,
       "minimum": 93.0
     },
@@ -1517,14 +1518,24 @@
       "score": 67.9,
       "minimum": 67.9
     },
-    "src/ccnl_engine/compensation/sunday_holiday/services.py": {
-      "killed": 249,
-      "survived": 8,
+    "src/ccnl_engine/compensation/sunday_holiday/rules.py": {
+      "killed": 100,
+      "survived": 5,
       "other": 0,
       "not_checked": 0,
       "equivalent": 0,
-      "total": 257,
-      "score": 96.9,
+      "total": 105,
+      "score": 95.2,
+      "minimum": 93.0
+    },
+    "src/ccnl_engine/compensation/sunday_holiday/services.py": {
+      "killed": 290,
+      "survived": 10,
+      "other": 0,
+      "not_checked": 0,
+      "equivalent": 0,
+      "total": 300,
+      "score": 96.7,
       "minimum": 93.0
     },
     "src/ccnl_engine/compensation/renewal_minimum/rules.py": {

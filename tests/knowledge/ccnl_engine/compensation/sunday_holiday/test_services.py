@@ -16,11 +16,11 @@ import pytest
 from ccnl_engine.absence.models import DailyDivisorMethod
 from ccnl_engine.balance.models import PeriodState
 from ccnl_engine.catalog.loaders import load_ccnl
+from ccnl_engine.compensation.sunday_holiday.rules import divisor as _divisor
 from ccnl_engine.compensation.sunday_holiday.services import (
     CAPABILITY,
     CLAUSE_LIMITATION,
     SundayHoliday,
-    _divisor,
 )
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.employment.period.inputs import EmploymentPeriod
@@ -48,8 +48,8 @@ _EDILIZIA_IMPIEGATI = ("edilizia-ance-impiegati", "1")
 _METAL_MONTHLY = Decimal("2211.43")
 #: Chimica D1 from 1 July 2026: minimo and IPO.
 _CHIMICA_MONTHLY = Decimal("2420.26")
-#: The day of the month of the holiday on a Sunday, by month.
-_DAY = {4: "25", 10: "04", 11: "01"}
+_COMMERCIO = ("commercio-confcommercio", "4")
+_DMO = ("dmo-federdistribuzione", "IV")
 
 
 def _run(
@@ -135,23 +135,25 @@ def _posted(result: PeriodResult, account: str) -> Decimal:
 
 
 @pytest.mark.parametrize(
-    ("ccnl", "monthly", "divisor"),
+    ("ccnl", "monthly", "divisor", "days"),
     [
         # Art. 46 c. 1 and art. 50: the quadri function allowance (art. 46
-        # lett. g) is out of the paga mensile, divided by 25.
-        (("concia-unic", "A"), Decimal("2973.75") - Decimal("25.82"), 25),
-        (_CONCIA, Decimal("2052.32"), 25),
-        # Art. 34: 1/26 of the retribuzione mensile fissa.
-        (_ALIMENTARI, Decimal("2184.22"), 26),
+        # lett. g) is out of the paga mensile, divided by 25; 4 November is
+        # among the ex festività art. 41 replaces with rest days.
+        (("concia-unic", "A"), Decimal("2973.75") - Decimal("25.82"), 25, 1),
+        (_CONCIA, Decimal("2052.32"), 25, 1),
+        # Art. 34: 1/26 of the retribuzione mensile fissa; 4 November takes
+        # the same quota (art. 30), on the same Sunday.
+        (_ALIMENTARI, Decimal("2184.22"), 26, 2),
     ],
     ids=["concia-quadro", "concia", "alimentari"],
 )
 def test_the_clause_names_its_divisor_and_monthly_pay(
-    ccnl: tuple[str, str], monthly: Decimal, divisor: int
+    ccnl: tuple[str, str], monthly: Decimal, divisor: int, days: int
 ) -> None:
     """1 November 2026 on a Sunday, paid at the clause's quota."""
     result = _run(ccnl, 2026, 11)
-    quota = (monthly / divisor).quantize(Decimal("0.01"))
+    quota = (monthly / divisor * days).quantize(Decimal("0.01"))
 
     assert _decisions(result) == [("ccnl_clause", quota)]
     (decision,) = (d for d in result.decisions if d.capability == CAPABILITY)
@@ -195,19 +197,22 @@ def test_the_ccnl_clause_pays_its_own_holidays() -> None:
 
 
 @pytest.mark.parametrize(
-    ("ccnl", "year", "month"),
+    ("ccnl", "year", "month", "days"),
     [
-        # 4 October is more recent than every CCNL text.
-        (_CHIMICA, 2026, 10),
-        # No clause: 1 November is not a holiday of L. 260/1949 art. 5.
-        (_METAL, 2026, 11),
+        # 4 October is more recent than the Chimica text.
+        (_CHIMICA, 2026, 10, "2026-10-04"),
+        # No clause: 1 November is not a holiday of L. 260/1949 art. 5, nor
+        # 4 November, on the same first Sunday of November.
+        (_METAL, 2026, 11, "2026-11-01,2026-11-01"),
+        # 4 November alone, on the first Sunday of November 2027.
+        (_METAL, 2027, 11, "2027-11-07"),
         # The statutory holiday, without a daily divisor the engine applies.
-        (_EDILIZIA_IMPIEGATI, 2027, 4),
+        (_EDILIZIA_IMPIEGATI, 2027, 4, "2027-04-25"),
     ],
-    ids=["recent-holiday", "no-clause", "no-divisor"],
+    ids=["recent-holiday", "no-clause", "november-fourth", "no-divisor"],
 )
 def test_an_unsourced_holiday_records_the_limitation(
-    ccnl: tuple[str, str], year: int, month: int
+    ccnl: tuple[str, str], year: int, month: int, days: str
 ) -> None:
     """Nothing is paid, and the run records the limitation of the clause."""
     result = _run(ccnl, year, month)
@@ -216,7 +221,7 @@ def test_an_unsourced_holiday_records_the_limitation(
     assert _quota(result) == 0
     assert _limited(result)
     (decision,) = (d for d in result.decisions if d.capability == CAPABILITY)
-    assert dict(decision.inputs) == {"days": f"{year}-{month:02d}-{_DAY[month]}"}
+    assert dict(decision.inputs) == {"days": days}
 
 
 def test_a_public_employment_is_not_paid() -> None:
@@ -349,3 +354,96 @@ def test_the_clause_divisor_prevails() -> None:
         update={"sunday_holidays": clause.model_copy(update={"divisor": None})}
     )
     assert _divisor(without) is None
+
+
+def test_four_november_is_paid_on_the_first_sunday_of_november() -> None:
+    """Commercio art. 154: the treatment of a holiday on a Sunday, 7 Nov 2027."""
+    result = _run(_COMMERCIO, 2027, 11)
+    (decision,) = (d for d in result.decisions if d.capability == CAPABILITY)
+
+    assert decision.inputs["days"] == "2027-11-07"
+    monthly = Decimal(str(decision.inputs["monthly"]))
+    assert decision.amount == (monthly / 26).quantize(Decimal("0.01"))
+    assert not _limited(result)
+
+
+def test_a_holiday_a_ccnl_adopted_by_declaration_is_paid() -> None:
+    """DMO art. 137 adopts 4 October once in force: paid on Sunday 4 Oct 2026."""
+    result = _run(_DMO, 2026, 10)
+
+    assert [reason for reason, _ in _decisions(result)] == ["ccnl_clause"]
+    assert not _limited(result)
+
+
+@pytest.mark.parametrize(
+    "ccnl", [_CHIMICA, _CONCIA], ids=["paid-in-august", "replaced-by-rest"]
+)
+def test_four_november_paid_apart_or_not_adds_nothing_in_november(
+    ccnl: tuple[str, str],
+) -> None:
+    """Chimica pays it in August (art. 13), Concia with rest days (art. 41)."""
+    result = _run(ccnl, 2027, 11)
+
+    assert _decisions(result) == []
+    assert not _limited(result)
+
+
+def test_the_ex_holiday_of_four_november_is_paid_in_august() -> None:
+    """Chimica art. 13: 8/173 of the monthly pay with the August pay."""
+    result = _run(_CHIMICA, 2026, 8)
+    quota = (_CHIMICA_MONTHLY * 8 / 173).quantize(Decimal("0.01"))
+
+    assert _decisions(result) == [("ex_november_fourth", quota)]
+    assert quota == Decimal("111.92")
+    (item,) = (
+        i for i in result.pay_items if i.item_id.startswith("ex_november_fourth")
+    )
+    assert item.amount == quota
+    assert item.source.startswith("Ex festività 4 novembre: Art. 13")
+    (decision,) = (d for d in result.decisions if d.capability == CAPABILITY)
+    assert dict(decision.inputs) == {
+        "monthly": _CHIMICA_MONTHLY,
+        "hours": Decimal(8),
+        "hourly_divisor": Decimal(173),
+    }
+    assert not _limited(result)
+    assert _decisions(_run(_CHIMICA, 2026, 7)) == []
+
+
+@pytest.mark.parametrize(
+    "employment_period",
+    [
+        EmploymentPeriod(date(2026, 1, 2)),
+        EmploymentPeriod(date(2025, 1, 1), date(2026, 12, 30)),
+    ],
+    ids=["hired-in-the-year", "ends-in-the-year"],
+)
+def test_a_part_year_ex_holiday_records_the_limitation(
+    employment_period: EmploymentPeriod,
+) -> None:
+    """Paid "in ragione annua": the share of a part year is not sourced."""
+    result = _run(_CHIMICA, 2026, 8, employment_period=employment_period)
+
+    assert [reason for reason, _ in _decisions(result)] == ["ex_november_fourth"]
+    assert _limited(result)
+
+
+@pytest.mark.parametrize(
+    "employment_period",
+    [None, EmploymentPeriod(date(2026, 1, 1), date(2026, 12, 31))],
+    ids=["open-ended", "the-whole-year"],
+)
+def test_a_whole_year_ex_holiday_records_nothing(
+    employment_period: EmploymentPeriod | None,
+) -> None:
+    """An employment from 1 January to 31 December is paid in full."""
+    result = _run(_CHIMICA, 2026, 8, employment_period=employment_period)
+
+    assert not _limited(result)
+
+
+def test_a_public_employment_has_no_ex_holiday() -> None:
+    """The treatment of a public employment is not sourced."""
+    result = _run(_CHIMICA, 2026, 8, sector=EmploymentSector.PUBLIC)
+
+    assert _decisions(result) == []
