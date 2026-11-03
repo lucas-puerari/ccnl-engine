@@ -20,6 +20,7 @@ __all__ = [
     "CONCIA_D2_2026",
     "CONCIA_D2_JULY_HIRE_2026",
     "ConciaMidYear",
+    "ConciaPayment",
     "ConciaYear",
 ]
 
@@ -38,10 +39,52 @@ _EMPLOYEE_IVS_RATE = Decimal("0.0919")
 _EMPLOYEE_CIGS_RATE = Decimal("0.0030")
 _TFR_DIVISOR = Decimal("13.5")
 _TFR_EXTRA_IVS_RATE = Decimal("0.0050")
+#: Art. 38 and 50 (CNEL 148617, pp. 60 and 69): 1 November 2026 falls on a
+#: Sunday, "una giornata di retribuzione", the paga mensile over 25.
+_SUNDAY_HOLIDAY_DIVISOR = Decimal(25)
 
 
 def _cents(amount: Decimal) -> Decimal:
     return amount.quantize(_CENT, rounding=ROUND_HALF_UP)
+
+
+@dataclass(frozen=True)
+class ConciaPayment:
+    """The oracle figures of one payment, in EUR.
+
+    Attributes:
+        gross: Gross of the payment.
+        allowances: Fixed allowances of the payment: the EDR and, in
+            November, the quota of the holiday on a Sunday.
+        inps_base: INPS base, the gross to the whole euro.
+        inps: Employee INPS.
+        tfr_quota: Art. 2120 c.c. TFR quota.
+        tfr_deduction: The 0.50% additional IVS on the INPS base.
+    """
+
+    gross: Decimal
+    allowances: Decimal
+    inps_base: Decimal
+    inps: Decimal
+    tfr_quota: Decimal
+    tfr_deduction: Decimal
+
+    @property
+    def tfr_net_of_extra_ivs(self) -> Decimal:
+        """The TFR quota less the additional IVS."""
+        return self.tfr_quota - self.tfr_deduction
+
+
+def _payment(gross: Decimal, allowances: Decimal) -> ConciaPayment:
+    base = gross.quantize(Decimal(1), rounding=ROUND_HALF_UP)
+    return ConciaPayment(
+        gross=gross,
+        allowances=allowances,
+        inps_base=base,
+        inps=_cents(base * _EMPLOYEE_IVS_RATE) + _cents(base * _EMPLOYEE_CIGS_RATE),
+        tfr_quota=_cents(gross / _TFR_DIVISOR),
+        tfr_deduction=_cents(base * _TFR_EXTRA_IVS_RATE),
+    )
 
 
 @dataclass(frozen=True)
@@ -60,6 +103,8 @@ class ConciaYear:
             INPS base (well under the IVS massimale), that L. 297/1982 art. 3
             c. 16 deducts from the quota.
         tfr_net_of_extra_ivs: The quota less ``tfr_deduction``.
+        sunday_holiday: Quota of 1 November 2026, a holiday on a Sunday.
+        november: The November payment, with ``sunday_holiday``.
         payments: Number of payments of the tax year.
         gross: Gross of the year.
         inps: Employee INPS of the year.
@@ -80,6 +125,8 @@ class ConciaYear:
     tfr_quota: Decimal
     tfr_deduction: Decimal
     tfr_net_of_extra_ivs: Decimal
+    sunday_holiday: Decimal
+    november: ConciaPayment
     payments: int
     gross: Decimal
     inps: Decimal
@@ -104,8 +151,10 @@ def _year() -> ConciaYear:
     )
     tfr_quota = _cents(monthly_gross / _TFR_DIVISOR)
     tfr_deduction = _cents(base * _TFR_EXTRA_IVS_RATE)
-    gross = monthly_gross * _MONTHS_PAID
-    inps = monthly_inps * _MONTHS_PAID
+    sunday_holiday = _cents(monthly_gross / _SUNDAY_HOLIDAY_DIVISOR)
+    november = _payment(monthly_gross + sunday_holiday, edr + sunday_holiday)
+    gross = monthly_gross * (_MONTHS_PAID - 1) + november.gross
+    inps = monthly_inps * (_MONTHS_PAID - 1) + november.inps
     taxable = gross - inps
     irpef = net_irpef(taxable)
     municipal = municipal_alghero(taxable, irpef)
@@ -119,6 +168,8 @@ def _year() -> ConciaYear:
         tfr_quota=tfr_quota,
         tfr_deduction=tfr_deduction,
         tfr_net_of_extra_ivs=tfr_quota - tfr_deduction,
+        sunday_holiday=sunday_holiday,
+        november=november,
         payments=_MONTHS_PAID,
         gross=gross,
         inps=inps,
@@ -157,7 +208,8 @@ class ConciaMidYear:
 
     Attributes:
         monthly_gross: Gross of each regular month.
-        monthly_inps: Employee INPS of each regular month.
+        monthly_inps: Employee INPS of each regular month but November.
+        november: The November payment, with the holiday on a Sunday.
         thirteenth_gross: Gross of the tredicesima.
         thirteenth_inps: Employee INPS of the tredicesima.
         payments: Number of payments of the tax year.
@@ -175,6 +227,7 @@ class ConciaMidYear:
 
     monthly_gross: Decimal
     monthly_inps: Decimal
+    november: ConciaPayment
     thirteenth_gross: Decimal
     thirteenth_inps: Decimal
     payments: int
@@ -199,8 +252,10 @@ def _july_hire() -> ConciaMidYear:
     share = Decimal(_JULY_HIRE_MONTHS) / 12
     thirteenth = _cents(full.minimum * share) + _cents(full.edr * share)
     thirteenth_inps = _inps(_whole_euro(thirteenth))
-    gross = full.monthly_gross * _JULY_HIRE_MONTHS + thirteenth
-    inps = full.monthly_inps * _JULY_HIRE_MONTHS + thirteenth_inps
+    gross = full.monthly_gross * (_JULY_HIRE_MONTHS - 1) + full.november.gross
+    gross += thirteenth
+    inps = full.monthly_inps * (_JULY_HIRE_MONTHS - 1) + full.november.inps
+    inps += thirteenth_inps
     taxable = gross - inps
     irpef = net_irpef(taxable, _JULY_HIRE_DAYS)
     trattamento = trattamento_integrativo(taxable, _JULY_HIRE_DAYS)
@@ -208,6 +263,7 @@ def _july_hire() -> ConciaMidYear:
     return ConciaMidYear(
         monthly_gross=full.monthly_gross,
         monthly_inps=full.monthly_inps,
+        november=full.november,
         thirteenth_gross=thirteenth,
         thirteenth_inps=thirteenth_inps,
         payments=_JULY_HIRE_MONTHS + 1,

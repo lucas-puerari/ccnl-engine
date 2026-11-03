@@ -98,7 +98,10 @@ def test_the_year_has_six_months_and_a_partial_tredicesima() -> None:
     runs = _runs()
 
     assert len(runs) == ORACLE.payments
-    assert [r.period_gross for r in runs[:-1]] == [ORACLE.monthly_gross] * 6
+    # 1 November 2026, a holiday on a Sunday, pays a further day (art. 38).
+    monthly = [ORACLE.monthly_gross] * 6
+    monthly[4] = ORACLE.november.gross
+    assert [r.period_gross for r in runs[:-1]] == monthly
     assert runs[-1].period_gross == ORACLE.thirteenth_gross
 
 
@@ -106,7 +109,9 @@ def test_employee_contributions_of_each_payment() -> None:
     """IVS 9.19% and CIGS 0.30% of the whole-euro base of each payment."""
     inps = [_posted(r, "employee_contributions") for r in _runs()]
 
-    assert inps == [ORACLE.monthly_inps] * 6 + [ORACLE.thirteenth_inps]
+    monthly = [ORACLE.monthly_inps] * 6
+    monthly[4] = ORACLE.november.inps
+    assert inps == [*monthly, ORACLE.thirteenth_inps]
 
 
 def test_taxable_income_of_the_year() -> None:
@@ -161,11 +166,11 @@ def test_surtax_left_for_2027(component: SurtaxComponent, amount: Decimal) -> No
 def test_every_run_is_payable() -> None:
     """Nothing the case reads blocks it in simulation mode.
 
-    But October and November: 4 October and 1 November 2026 fall on a
-    Sunday, and whether Concia pays them apart is not sourced.
+    But October: 4 October 2026, a holiday since L. 151/2025, falls on a
+    Sunday, and is not in the art. 38 list.
     """
     for result in _runs():
-        sunday = result.period_id.month in {10, 11}
+        sunday = result.period_id.month == 10
         assert {b.detail for b in result.blockers} == (
             {"sunday_holiday_ccnl_clause"} if sunday else set()
         )

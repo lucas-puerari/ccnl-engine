@@ -51,6 +51,9 @@ from ccnl_engine.inputs import (
 from tests.knowledge.ccnl_engine.period.oracles import (
     CONCIA_D2_2026 as ORACLE,
 )
+from tests.knowledge.ccnl_engine.period.oracles import (
+    ConciaPayment,
+)
 from tests.knowledge.ccnl_engine.seniority.builders import new_hire
 from tests.knowledge.ccnl_engine.surtax.oracles import (
     ADVANCE_MONTHS,
@@ -122,6 +125,28 @@ def _year_total(account: str) -> Decimal:
     return sum((_posted(r, account) for r in _runs()), _ZERO)
 
 
+#: The November run, which pays 1 November 2026, a holiday on a Sunday.
+_NOVEMBER = 10
+
+
+def _payment(index: int) -> ConciaPayment:
+    """Return the oracle of the payment at ``index``.
+
+    Returns:
+        The November payment, or the payment of any other run.
+    """
+    if index == _NOVEMBER:
+        return ORACLE.november
+    return ConciaPayment(
+        gross=ORACLE.monthly_gross,
+        allowances=ORACLE.edr,
+        inps_base=ORACLE.inps_base,
+        inps=ORACLE.monthly_inps,
+        tfr_quota=ORACLE.tfr_quota,
+        tfr_deduction=ORACLE.tfr_deduction,
+    )
+
+
 class TestEveryPayment:
     """Each of the thirteen payments pays the oracle month."""
 
@@ -134,31 +159,32 @@ class TestEveryPayment:
         """Salary items follow the signed table."""
         result = _runs()[index]
         assert _items(result, "base_salary_earning") == ORACLE.minimum
-        assert _items(result, "fixed_allowance_earning") == ORACLE.edr
-        assert result.period_gross == ORACLE.monthly_gross
+        assert _items(result, "fixed_allowance_earning") == _payment(index).allowances
+        assert result.period_gross == _payment(index).gross
 
     @pytest.mark.parametrize("index", range(13))
     def test_employee_inps_is_ivs_plus_cigs(self, index: int) -> None:
         """Employee INPS is IVS 9.19% plus CIGS 0.30% of the gross."""
         result = _runs()[index]
-        assert _posted(result, "employee_contributions") == ORACLE.monthly_inps
+        assert _posted(result, "employee_contributions") == _payment(index).inps
 
     @pytest.mark.parametrize("index", range(13))
     def test_tfr_accrues_on_the_pay_divided_by_13_5(self, index: int) -> None:
         """The TFR base is the pay of the month and the divisor 13.5."""
         (decision,) = (d for d in _runs()[index].decisions if d.capability == "tfr")
-        assert decision.inputs["base"] == ORACLE.monthly_gross
+        assert decision.inputs["base"] == _payment(index).gross
         assert decision.inputs["accrual_divisor"] == ORACLE.tfr_divisor
-        assert decision.inputs["quota"] == ORACLE.tfr_quota
+        assert decision.inputs["quota"] == _payment(index).tfr_quota
 
     @pytest.mark.parametrize("index", range(13))
     def test_tfr_accrual_is_net_of_the_additional_ivs(self, index: int) -> None:
         """The TFR posted is the quota less the 0.50% L. 297/1982 deducts."""
         result = _runs()[index]
         (decision,) = (d for d in result.decisions if d.capability == "tfr")
-        assert decision.inputs["additional_ivs_base"] == ORACLE.inps_base
-        assert decision.inputs["additional_ivs_deduction"] == ORACLE.tfr_deduction
-        assert _posted(result, "tfr_accrual") == ORACLE.tfr_net_of_extra_ivs
+        payment = _payment(index)
+        assert decision.inputs["additional_ivs_base"] == payment.inps_base
+        assert decision.inputs["additional_ivs_deduction"] == payment.tfr_deduction
+        assert _posted(result, "tfr_accrual") == payment.tfr_net_of_extra_ivs
 
 
 class TestYearTotals:
@@ -235,12 +261,11 @@ class TestCandidateGroupEvidence:
         the codice civile, the industria INPS rates from the rate table of
         operai and impiegati with the CIGO and CIGS of D.Lgs. 148/2015, and
         the operaio category picks the employer rate: every run of the year
-        is payable in simulation mode, but October and November.  4 October
-        and 1 November 2026 fall on a Sunday, and whether Concia pays them
-        apart is not sourced.
+        is payable in simulation mode, but October: 4 October 2026, a holiday
+        since L. 151/2025, falls on a Sunday, and is not in the art. 38 list.
         """
         for result in _runs():
-            sunday = result.period_id.month in {10, 11}
+            sunday = result.period_id.month == 10
             assert {b.detail for b in result.blockers} == (
                 {"sunday_holiday_ccnl_clause"} if sunday else set()
             )

@@ -3940,7 +3940,7 @@
     "effective_until": null,
     "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "16d272442396a28edd5c32365b411281809123bda55ef38f424ec5c3b5c78050",
+    "source_hash": "9dffceff8727c5f0764ed7db03e889e851cc7e92d4b25e38e0321cd7d203d66c",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -13341,6 +13341,47 @@
           "verified_at": "2026-11-01T12:13:54Z",
           "verification_status": "verified",
           "review_id": "2026-11-01-ai-notice"
+        }
+      }
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "04-25",
+        "05-01",
+        "06-02",
+        "01-01",
+        "01-06",
+        "easter_monday",
+        "08-15",
+        "11-01",
+        "12-08",
+        "12-25",
+        "12-26"
+      ],
+      "divisor": "26",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-industria-alimentare-2024-03-01",
+            "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+            "kind": "associazione",
+            "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+            "published_on": "2024-03-01",
+            "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+          },
+          "page": "94",
+          "section": "Art. 34 - Giorni festivi - Festività infrasettimanali e nazionali",
+          "quote": "Nel solo caso in cui una delle giornate festive sopra indicate cada di domenica ai lavoratori è dovuto, in aggiunta al normale trattamento economico, un importo pari ad una quota giornaliera della retribuzione di fatto. Il predetto importo sarà determinato sulla base di 1/26 della retribuzione mensile fissa."
+        },
+        "transformation": "The festività of points b) (25 April, 1 May, 2 June) and c) (1 and 6 January, Easter Monday, 15 August, 1 November, 8 and 25 and 26 December) of art. 34 on a Sunday: the fixed monthly pay of the chain (minimo, contingenza, EDR, IAR, scatti, individual elements) over 26. The Santo Patrono of point d) is not in the national calendar and is not paid.",
+        "note": "4 October, a holiday from 2026 (L. 151/2025), is not in the 2024 list: its Sunday stays open.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-03T12:00:00Z",
+          "effective_from": "2024-03-01",
+          "verification_status": "unverified"
         }
       }
     }

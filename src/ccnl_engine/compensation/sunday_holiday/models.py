@@ -23,6 +23,8 @@ class SundayHolidayPay(BaseModel):
             or ``easter_monday``) the CCNL pays on a Sunday.
         divisor: The divisor of the daily pay the clause names (Chimica
             art. 20 point 4: 25); ``None`` for the CCNL absence divisor.
+        excluded: The allowance codes the clause leaves out of the monthly
+            pay (Concia art. 46 lett. g: the quadri function allowance).
         provenance: The CCNL clause.
     """
 
@@ -30,4 +32,5 @@ class SundayHolidayPay(BaseModel):
 
     holidays: tuple[str, ...] = Field(min_length=1)
     divisor: Decimal | None = Field(default=None, gt=0)
+    excluded: frozenset[str] = frozenset()
     provenance: RuleProvenance

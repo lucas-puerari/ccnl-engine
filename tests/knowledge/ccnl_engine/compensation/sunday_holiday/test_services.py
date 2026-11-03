@@ -42,6 +42,8 @@ if TYPE_CHECKING:
 _METAL = ("metalmeccanico-federmeccanica", "C3")
 _CHIMICA = ("chimica-farmaceutica-federchimica", "D1")
 _CONCIA = ("concia-unic", "D2")
+_ALIMENTARI = ("alimentari-federalimentare", "3")
+_EDILIZIA_IMPIEGATI = ("edilizia-ance-impiegati", "1")
 #: Metalmeccanico C3 from 1 June 2026: the minimo, with no other element.
 _METAL_MONTHLY = Decimal("2211.43")
 #: Chimica D1 from 1 July 2026: minimo and IPO.
@@ -132,6 +134,32 @@ def _posted(result: PeriodResult, account: str) -> Decimal:
     )
 
 
+@pytest.mark.parametrize(
+    ("ccnl", "monthly", "divisor"),
+    [
+        # Art. 46 c. 1 and art. 50: the quadri function allowance (art. 46
+        # lett. g) is out of the paga mensile, divided by 25.
+        (("concia-unic", "A"), Decimal("2973.75") - Decimal("25.82"), 25),
+        (_CONCIA, Decimal("2052.32"), 25),
+        # Art. 34: 1/26 of the retribuzione mensile fissa.
+        (_ALIMENTARI, Decimal("2184.22"), 26),
+    ],
+    ids=["concia-quadro", "concia", "alimentari"],
+)
+def test_the_clause_names_its_divisor_and_monthly_pay(
+    ccnl: tuple[str, str], monthly: Decimal, divisor: int
+) -> None:
+    """1 November 2026 on a Sunday, paid at the clause's quota."""
+    result = _run(ccnl, 2026, 11)
+    quota = (monthly / divisor).quantize(Decimal("0.01"))
+
+    assert _decisions(result) == [("ccnl_clause", quota)]
+    (decision,) = (d for d in result.decisions if d.capability == CAPABILITY)
+    assert decision.inputs["monthly"] == monthly
+    assert decision.inputs["divisor"] == divisor
+    assert not _limited(result)
+
+
 def test_the_quota_is_paid_on_the_whole_monthly_pay() -> None:
     """Minimo, scatti and allowances, taxed as pay of the month.
 
@@ -172,9 +200,9 @@ def test_the_ccnl_clause_pays_its_own_holidays() -> None:
         # 4 October is more recent than every CCNL text.
         (_CHIMICA, 2026, 10),
         # No clause: 1 November is not a holiday of L. 260/1949 art. 5.
-        (_CONCIA, 2026, 11),
+        (_METAL, 2026, 11),
         # The statutory holiday, without a daily divisor the engine applies.
-        (_CONCIA, 2027, 4),
+        (_EDILIZIA_IMPIEGATI, 2027, 4),
     ],
     ids=["recent-holiday", "no-clause", "no-divisor"],
 )

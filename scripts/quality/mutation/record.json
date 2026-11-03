@@ -1,5 +1,5 @@
 {
-  "commit": "b63bfe522898e1c84710d17019e819bc2ac9713b",
+  "commit": "d184bf18b01a99850aef35e5fb6f2244a7215a87",
   "date": "2026-11-03",
   "min_score": 93.0,
   "perimeter": [
@@ -158,12 +158,12 @@
   ],
   "scores": {
     "core": {
-      "killed": 9955,
-      "survived": 294,
+      "killed": 9966,
+      "survived": 295,
       "other": 5,
       "not_checked": 0,
       "equivalent": 18,
-      "total": 10254,
+      "total": 10266,
       "score": 97.1,
       "minimum": 93.0
     },
@@ -1518,13 +1518,13 @@
       "minimum": 67.9
     },
     "src/ccnl_engine/compensation/sunday_holiday/services.py": {
-      "killed": 238,
-      "survived": 7,
+      "killed": 249,
+      "survived": 8,
       "other": 0,
       "not_checked": 0,
       "equivalent": 0,
-      "total": 245,
-      "score": 97.1,
+      "total": 257,
+      "score": 96.9,
       "minimum": 93.0
     },
     "src/ccnl_engine/compensation/renewal_minimum/rules.py": {

@@ -873,8 +873,16 @@ def _twelfths(items: tuple[Decimal, ...], months: int) -> Decimal:
 _ALIMENTARI_FOURTEENTH = _twelfths(_ALIMENTARI_ITEMS, 6)
 
 
+#: 1 November 2026 falls on a Sunday: "un importo pari ad una quota
+#: giornaliera della retribuzione di fatto [...] sulla base di 1/26 della
+#: retribuzione mensile fissa" (Art. 34, p. 94), paid with November.
+_ALIMENTARI_SUNDAY_HOLIDAY = _cents(_ALIMENTARI / 26)
+
+
 def _alimentari_year() -> tuple[Pay, ...]:
     pays = [Pay(_run(m), _ALIMENTARI, _ALIMENTARI) for m in range(1, 13)]
+    november = _ALIMENTARI + _ALIMENTARI_SUNDAY_HOLIDAY
+    pays[10] = Pay(_run(11), november, november)
     fourteenth = _ALIMENTARI_FOURTEENTH
     pays.insert(6, Pay(_run(6, "fourteenth"), fourteenth, fourteenth))
     pays.append(Pay(_run(12, "thirteenth"), _ALIMENTARI, _ALIMENTARI))
