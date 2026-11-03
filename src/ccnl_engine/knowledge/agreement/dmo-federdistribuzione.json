@@ -3704,7 +3704,7 @@
     "effective_until": null,
     "source": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
     "verification_status": "unverified",
-    "source_hash": "cc0886f250db6a2b29f0077d576c27b307ba5727764330935c2cdd9350c81b55",
+    "source_hash": "41b208a7f9e726cbcb61caac9074ba92677cac010489cd9e354bec221f7405b1",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -4963,6 +4963,49 @@
           "verified_at": "2026-11-01T11:59:12Z",
           "verification_status": "verified",
           "review_id": "2026-11-01-ai-notice"
+        }
+      }
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "04-25",
+        "05-01",
+        "06-02",
+        "01-01",
+        "01-06",
+        "easter_monday",
+        "08-15",
+        "11-01",
+        "12-08",
+        "12-25",
+        "12-26",
+        "10-04",
+        "11-04"
+      ],
+      "divisor": "26",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+            "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
+            "kind": "associazione",
+            "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+            "published_on": "2025-09-29",
+            "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
+          },
+          "page": "44, 58",
+          "section": "Art. 137 - Festività; Art. 193 - Quota giornaliera",
+          "quote": "4. In caso di coincidenza di una delle festività sopra elencate con una domenica, in aggiunta alla retribuzione mensile sarà corrisposto ai lavoratori un ulteriore importo pari alla quota giornaliera della retribuzione di fatto di cui all'art. 191. 5. Per la festività civile del 4 novembre la cui celebrazione è stata spostata alla prima domenica del mese, ai sensi dell'art. 1, secondo comma, della Legge 5 marzo 1977, n. 54, il lavoratore beneficerà del trattamento previsto per le festività che coincidono con la domenica. [Dichiarazione a verbale] Le Parti si danno atto che, in caso di entrata in vigore della Legge istitutiva della festività del 4 ottobre - Festa Nazionale di San Francesco d'Assisi Patrono d'Italia, quest'ultima si intende automaticamente recepita quale festività retribuita. [Art. 193] La quota giornaliera della retribuzione, sia normale che di fatto, si ottiene, in tutti i casi, dividendo l'importo mensile per il divisore convenzionale 26"
+        },
+        "transformation": "The holidays of art. 137 (but the Patrono), 4 October once in force (L. 151/2025, from 2026) by the dichiarazione a verbale, on a Sunday, and 4 November on the first Sunday of November: the retribuzione di fatto of art. 191 (every continuing element of the chain) over 26 (art. 193).",
+        "note": "The Patrono is not in the national calendar and is not paid.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-03T14:00:00Z",
+          "effective_from": "2025-09-29",
+          "verification_status": "unverified"
         }
       }
     }

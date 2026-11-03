@@ -625,8 +625,30 @@ def _iv(month: int) -> Decimal:
     return _IV_UNTIL_OCTOBER if month < 11 else _IV_FROM_NOVEMBER
 
 
+def _with_quota(pays: list[Pay], month: int, quota: Decimal) -> None:
+    """Add ``quota`` to the regular run of ``month`` (the first twelve pays)."""
+    pay = pays[month - 1]
+    pays[month - 1] = replace(
+        pay, gross=pay.gross + quota, tfr_base=pay.tfr_base + quota
+    )
+
+
+def _two_november_quotas(monthly: Decimal) -> Decimal:
+    """Return the two Sunday quotas of November 2026 of Terziario and DMO.
+
+    Art. 154 (Testo Unico 2019, p. 124): 1 November 2026 falls on a Sunday,
+    and 4 November is celebrated on the first Sunday of November: two
+    quotas of the retribuzione di fatto over 26 (Art. 210, p. 155).
+
+    Returns:
+        The two quotas, to cents.
+    """
+    return _cents(monthly / 26 * 2)
+
+
 def _terziario_year() -> tuple[Pay, ...]:
     pays = [Pay(_run(m), _iv(m), _iv(m)) for m in range(1, 13)]
+    _with_quota(pays, 11, _two_november_quotas(_iv(11)))
     #: Quattordicesima: one twelfth for each month from July to June (Art.
     #: 221 of the Testo Unico 2019), six for a hire on 1 January, paid on 1
     #: July; tredicesima of twelve twelfths in December (Art. 220).
@@ -818,8 +840,16 @@ def _d1(month: int) -> Decimal:
 _D1_SUNDAY_HOLIDAY = _cents(_D1_FROM_JULY / 25)
 
 
+#: Art. 13: "in occasione del pagamento della retribuzione del mese di
+#: agosto, a fronte della ex festività del 4 novembre [...] 8/173 della
+#: retribuzione di fatto".
+_D1_EX_NOVEMBER_FOURTH = _cents(_D1_FROM_JULY * 8 / 173)
+
+
 def _chimica_year() -> tuple[Pay, ...]:
     pays = [Pay(_run(m), _d1(m), _d1(m)) for m in range(1, 13)]
+    august = _D1_FROM_JULY + _D1_EX_NOVEMBER_FOURTH
+    pays[7] = Pay(_run(8), august, august)
     november = _D1_FROM_JULY + _D1_SUNDAY_HOLIDAY
     pays[10] = Pay(_run(11), november, november)
     #: Tredicesima of one monthly pay, paid "alla vigilia di Natale"
@@ -876,7 +906,9 @@ _ALIMENTARI_FOURTEENTH = _twelfths(_ALIMENTARI_ITEMS, 6)
 #: 1 November 2026 falls on a Sunday: "un importo pari ad una quota
 #: giornaliera della retribuzione di fatto [...] sulla base di 1/26 della
 #: retribuzione mensile fissa" (Art. 34, p. 94), paid with November.
-_ALIMENTARI_SUNDAY_HOLIDAY = _cents(_ALIMENTARI / 26)
+#: 4 November, celebrated on the same Sunday, takes the same quota (Art. 30,
+#: p. 77): two quotas.
+_ALIMENTARI_SUNDAY_HOLIDAY = _cents(_ALIMENTARI / 26 * 2)
 
 
 def _alimentari_year() -> tuple[Pay, ...]:
@@ -932,6 +964,11 @@ def _dmo(month: int) -> Decimal:
 
 def _dmo_year() -> tuple[Pay, ...]:
     pays = [Pay(_run(m), _dmo(m), _dmo(m)) for m in range(1, 13)]
+    #: Art. 137 (PDF p. 44): 4 October, a paid holiday by the dichiarazione
+    #: a verbale once in force (L. 151/2025), falls on a Sunday in 2026; the
+    #: November quotas as for Terziario, over 26 (Art. 193, p. 58).
+    _with_quota(pays, 10, _cents(_dmo(10) / 26))
+    _with_quota(pays, 11, _two_november_quotas(_dmo(11)))
     pays.insert(6, Pay(_run(6, "fourteenth"), _DMO_FOURTEENTH, _DMO_FOURTEENTH))
     pays.insert(12, Pay(_run(12, "thirteenth"), _DMO_FROM_NOVEMBER, _DMO_FROM_NOVEMBER))
     return tuple(pays)
@@ -985,6 +1022,8 @@ def _commercio(month: int) -> Decimal:
 
 def _commercio_year() -> tuple[Pay, ...]:
     pays = [Pay(_run(m), _commercio(m), _commercio(m)) for m in range(1, 13)]
+    #: Art. 154 and 210 (p. 154 and 197): as for Terziario.
+    _with_quota(pays, 11, _two_november_quotas(_commercio(11)))
     fourteenth = _COMMERCIO_FOURTEENTH
     pays.insert(6, Pay(_run(6, "fourteenth"), fourteenth, fourteenth))
     pays.insert(12, Pay(_run(12, "thirteenth"), _commercio(12), _commercio(12)))

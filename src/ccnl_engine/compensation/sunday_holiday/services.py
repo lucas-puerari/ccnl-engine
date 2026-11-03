@@ -6,12 +6,14 @@ workers "retribuiti in misura fissa" are owed, "qualora la festività
 ricorra nel giorno di domenica, [...] anche una ulteriore retribuzione
 corrispondente all'aliquota giornaliera" (4 November stopped being a
 holiday with L. 54/1977 art. 1).  A CCNL that pays other holidays on a
-Sunday names them (``work_rules.sunday_holidays``).  The quota is the
-monthly pay of a full month (minimo, seniority, the cash allowances the
-clause does not exclude and the individual elements of the chain) over the
+Sunday names them (``work_rules.sunday_holidays``), 4 November among them
+when it grants its celebration on the first Sunday of November the same
+treatment; a CCNL may pay 4 November in another month instead.  The quota
+is the monthly pay of a full month (:func:`~.rules.monthly_pay`) over the
 daily divisor of the clause or, without one, of the CCNL absences.  A run
-of a month with another holiday on a Sunday, in a CCNL that names none,
-records the engine limitation of the clause not sourced.
+of a month with another holiday on a Sunday, 4 November included, in a
+CCNL that names none, records the engine limitation of the clause not
+sourced.
 """
 
 from __future__ import annotations
@@ -21,7 +23,14 @@ from dataclasses import dataclass, replace
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.absence.models import DailyDivisorMethod
+from ccnl_engine.compensation.sunday_holiday.rules import (
+    STATUTORY,
+    divisor,
+    monthly_pay,
+    sundays,
+    unsourced,
+    whole_year,
+)
 from ccnl_engine.decision.models import CalculationDecision, CalculationStatus
 from ccnl_engine.ledger.models import AccountKind
 from ccnl_engine.pay_item.facade import FixedAllowanceEarning
@@ -34,7 +43,6 @@ from ccnl_engine.pay_item.services import (
 from ccnl_engine.regime.models import EmploymentSector
 
 if TYPE_CHECKING:
-    from ccnl_engine.agreement.coverage.models import CCNLWorkRules
     from ccnl_engine.compensation.sunday_holiday.models import SundayHolidayPay
     from ccnl_engine.event.total.handlers import _EventTotals
     from ccnl_engine.ledger.models import LedgerEntry
@@ -47,17 +55,8 @@ __all__ = ["CAPABILITY", "CLAUSE_LIMITATION", "SundayHoliday", "sunday_holiday"]
 CAPABILITY = "sunday_holiday"
 #: Engine limitation of a holiday on a Sunday the CCNL clause is not sourced for.
 CLAUSE_LIMITATION = "sunday_holiday_ccnl_clause"
-#: The festa nazionale, 25 April and 1 May (L. 260/1949 art. 5).
-STATUTORY = frozenset({"04-25", "05-01", "06-02"})
 _KIND = "fixed_allowance_earning"
 _RULE = "law/sunday-holiday:l260-1949-art5"
-_SUNDAY = 6
-_DIVISORS = {
-    DailyDivisorMethod.BY_22: Decimal(22),
-    DailyDivisorMethod.BY_25: Decimal(25),
-    DailyDivisorMethod.BY_26: Decimal(26),
-    DailyDivisorMethod.BY_30: Decimal(30),
-}
 _ZERO = Decimal(0)
 
 
@@ -71,6 +70,22 @@ class SundayHoliday:
     taxed: tuple[bool, bool, bool] = (False, False, False)
     decisions: tuple[CalculationDecision, ...] = ()
     limitations: frozenset[str] = frozenset()
+
+    def plus(self, other: SundayHoliday) -> SundayHoliday:
+        """Return the two quotas of the run together.
+
+        Returns:
+            The items, entries, amounts, decisions and limitations of both,
+            taxed as the one that pays (both are the same kind of item).
+        """
+        return SundayHoliday(
+            items=self.items + other.items,
+            entries=self.entries + other.entries,
+            amount=self.amount + other.amount,
+            taxed=self.taxed if self.items else other.taxed,
+            decisions=self.decisions + other.decisions,
+            limitations=self.limitations | other.limitations,
+        )
 
     def added_to(self, totals: _EventTotals) -> _EventTotals:
         """Return ``totals`` with the quota in its bases and its decision.
@@ -89,33 +104,6 @@ class SundayHoliday:
         )
 
 
-def _employed(ctx: RunContext, day: dt.date) -> bool:
-    period = ctx.request.employment_period
-    if period is None:
-        return True
-    return period.started_on <= day and (
-        period.ended_on is None or day <= period.ended_on
-    )
-
-
-def _sundays(ctx: RunContext) -> list[tuple[str, dt.date, bool]]:
-    """Return the national holidays of the month that fall on a Sunday.
-
-    Returns:
-        Each day code, date and whether the holiday is a recent one (with a
-        ``valid_from``, as 4 October from 2026), within the employment.
-    """
-    year, month = ctx.request.period_id.year, ctx.request.period_id.month
-    found = []
-    for holiday in ctx.repo.load_national_holidays().holidays:
-        day = holiday.on(year)
-        if day is None or (day.month, day.weekday()) != (month, _SUNDAY):
-            continue
-        if _employed(ctx, day):
-            found.append((holiday.day, day, holiday.valid_from is not None))
-    return found
-
-
 def _decision(
     ctx: RunContext, reason: str, inputs: dict[str, Decimal | str], amount: Decimal
 ) -> CalculationDecision:
@@ -130,51 +118,31 @@ def _decision(
     )
 
 
-def _divisor(rules: CCNLWorkRules | None) -> Decimal | None:
-    clause = None if rules is None else rules.sunday_holidays
-    if clause is not None and clause.divisor is not None:
-        return clause.divisor
-    absence = None if rules is None else rules.absence_rules
-    if absence is None:
-        return _DIVISORS[DailyDivisorMethod.BY_26]
-    return _DIVISORS.get(absence.daily_divisor_method)
-
-
-def _paid(
+def _posted(
     ctx: RunContext,
-    clause: SundayHolidayPay | None,
-    days: list[dt.date],
-    divisor: Decimal,
+    item: tuple[str, Decimal, Decimal, str],
+    reason: str,
+    inputs: dict[str, Decimal | str],
 ) -> SundayHoliday:
-    """Return the earning, entry and decision of ``days`` at the daily quota.
+    """Return the earning, entry and decision of a quota.
+
+    ``item`` is the item id suffix, the quantity, the amount and the source.
 
     Returns:
-        The quota of the monthly pay of a full month over ``divisor``, once
-        a day.
+        The quota posted as a fixed allowance of the month.
     """
-    excluded = frozenset() if clause is None else clause.excluded
-    allowances = (
-        v
-        for a, v in ctx.regular_chain.allowances
-        if not a.in_kind and a.code not in excluded
-    )
-    chain = ctx.regular_chain
-    monthly = money(chain.base + chain.seniority + sum(allowances, _ZERO))
-    amount = money(monthly / divisor * len(days))
+    suffix, quantity, amount, source = item
     resolution = _require_resolution(ctx.resolver, _KIND, ctx.policy_context)
     treatment = _treatment_from_resolution(resolution)
-    item_id = f"sunday_holiday_{ctx.run_id}"
+    item_id = f"{suffix}_{ctx.run_id}"
     payment = ctx.contract.tctx.payment
-    location = None if clause is None else clause.provenance.location
-    section = None if location is None else location.section
-    source = section or ("the CCNL" if clause is not None else "L. 260/1949 art. 5")
-    item = FixedAllowanceEarning(
+    earning = FixedAllowanceEarning(
         item_id=item_id,
         competence_period=ctx.cp,
         payment_date=payment,
-        quantity=Decimal(len(days)),
+        quantity=quantity,
         amount=amount,
-        source=f"Festività cadente di domenica: {source}",
+        source=source,
     )
     entry = _make_entry(
         item_id,
@@ -186,14 +154,8 @@ def _paid(
         amount,
         policy_id=resolution.policy_id,
     )
-    inputs: dict[str, Decimal | str] = {
-        "days": ",".join(d.isoformat() for d in days),
-        "divisor": divisor,
-        "monthly": monthly,
-    }
-    reason = "ccnl_clause" if clause is not None else "statutory"
     return SundayHoliday(
-        items=(item,),
+        items=(earning,),
         entries=(entry,),
         amount=amount,
         taxed=(treatment.inps, treatment.tfr, treatment.irpef),
@@ -201,39 +163,114 @@ def _paid(
     )
 
 
+def _section(clause: SundayHolidayPay | None, law: str) -> str:
+    if clause is None:
+        return law
+    location = clause.provenance.location
+    section = None if location is None else location.section
+    return section or "the CCNL"
+
+
+def _paid(
+    ctx: RunContext,
+    clause: SundayHolidayPay | None,
+    days: list[dt.date],
+    by: Decimal,
+) -> SundayHoliday:
+    """Return the earning, entry and decision of ``days`` at the daily quota.
+
+    Returns:
+        The quota of the monthly pay of a full month over ``by``, once a day.
+    """
+    excluded = frozenset() if clause is None else clause.excluded
+    monthly = monthly_pay(ctx.regular_chain, excluded)
+    amount = money(monthly / by * len(days))
+    source = _section(clause, "L. 260/1949 art. 5")
+    inputs: dict[str, Decimal | str] = {
+        "days": ",".join(d.isoformat() for d in days),
+        "divisor": by,
+        "monthly": monthly,
+    }
+    return _posted(
+        ctx,
+        (
+            "sunday_holiday",
+            Decimal(len(days)),
+            amount,
+            f"Festività cadente di domenica: {source}",
+        ),
+        "ccnl_clause" if clause is not None else "statutory",
+        inputs,
+    )
+
+
+def _ex_november_fourth(
+    ctx: RunContext, clause: SundayHolidayPay | None, *, public: bool
+) -> SundayHoliday:
+    """Return the pay of 4 November a CCNL carries in a month of its own.
+
+    Returns:
+        Nothing in another month; the share of the monthly pay in its
+        month, with the limitation of an employment that does not cover
+        the whole year (the CCNL pays it "in ragione annua").
+    """
+    ex = None if clause is None or public else clause.ex_november_fourth
+    if clause is None or ex is None or ctx.request.period_id.month != ex.month:
+        return SundayHoliday()
+    monthly = monthly_pay(ctx.regular_chain, clause.excluded)
+    amount = money(monthly * ex.hours / ex.hourly_divisor)
+    location = ex.provenance.location
+    section = None if location is None else location.section
+    posted = _posted(
+        ctx,
+        (
+            "ex_november_fourth",
+            Decimal(1),
+            amount,
+            f"Ex festività 4 novembre: {section}",
+        ),
+        "ex_november_fourth",
+        {"monthly": monthly, "hours": ex.hours, "hourly_divisor": ex.hourly_divisor},
+    )
+    if whole_year(ctx):
+        return posted
+    return replace(posted, limitations=frozenset({CLAUSE_LIMITATION}))
+
+
 def sunday_holiday(ctx: RunContext) -> SundayHoliday:
     """Return the further quota of the holidays of the month on a Sunday.
 
     Returns:
-        Nothing without such a holiday; the limitation of a holiday the
-        CCNL clause is not sourced for (and of every holiday of a public
-        employment, whose treatment is not sourced, or of a CCNL without a
-        daily divisor the engine applies), with a nil decision
-        when nothing is paid; the earning, entry and decision of the paid
-        holidays at the CCNL daily quota.
+        Nothing without such a holiday, or when the CCNL pays none of them
+        in the month; the limitation of a holiday the CCNL clause is not
+        sourced for (and of every holiday of a public employment, whose
+        treatment is not sourced, or of a CCNL without a daily divisor the
+        engine applies), with a nil decision when nothing is paid; the
+        earning, entry and decision of the paid holidays at the CCNL daily
+        quota; with the pay of 4 November of a CCNL that carries it in a
+        month of its own.
     """
-    sundays = _sundays(ctx)
-    if not sundays:
-        return SundayHoliday()
     rules = ctx.contract.ccnl.work_rules
     clause = None if rules is None else rules.sunday_holidays
-    paid = STATUTORY if clause is None else frozenset(clause.holidays)
     public = ctx.request.sector is EmploymentSector.PUBLIC
-    days = [d for code, d, _ in sundays if code in paid and not public]
-    # A holiday the clause leaves out is open without a clause, or when the
-    # holiday is more recent than the CCNL texts (4 October from 2026).
+    ex = _ex_november_fourth(ctx, clause, public=public)
+    found = sundays(ctx)
+    paid = STATUTORY if clause is None else frozenset(clause.holidays)
+    days = [] if public else [d for code, d, _ in found if code in paid]
+    by = divisor(rules)
     # A paid holiday without a daily divisor the engine applies is open too.
-    divisor = _divisor(rules)
-    open_clause = (
-        public
-        or (bool(days) and divisor is None)
-        or any(c not in paid and (clause is None or recent) for c, _, recent in sundays)
+    open_clause = bool(found) and (
+        public or unsourced(clause, found, unpayable=bool(days) and by is None)
     )
-    limitations = frozenset({CLAUSE_LIMITATION} if open_clause else ())
-    if not days or divisor is None:
-        listed = ",".join(d.isoformat() for _, d, _ in sundays)
-        unpaid = _decision(ctx, "not_paid", {"days": listed}, _ZERO)
-        result = SundayHoliday(decisions=(unpaid,))
+    if days and by is not None:
+        result = _paid(ctx, clause, days, by)
+    elif open_clause:
+        listed = ",".join(d.isoformat() for _, d, _ in found)
+        result = SundayHoliday(
+            decisions=(_decision(ctx, "not_paid", {"days": listed}, _ZERO),)
+        )
     else:
-        result = _paid(ctx, clause, days, divisor)
-    return replace(result, limitations=limitations)
+        # No holiday, or all paid apart or not at all.
+        return ex
+    limitations = frozenset({CLAUSE_LIMITATION} if open_clause else ())
+    return replace(result, limitations=limitations).plus(ex)

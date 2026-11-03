@@ -116,7 +116,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/alimentari-federalimentare",
       "ruleset_version": "2026.2",
-      "source_hash": "9dffceff8727c5f0764ed7db03e889e851cc7e92d4b25e38e0321cd7d203d66c",
+      "source_hash": "00d19ed7aab38f6acc0708054ae940285767dc540fcb41048c3c0752811c3d2f",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/alimentari-federalimentare.json.gz"
@@ -456,7 +456,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/chimica-farmaceutica-federchimica",
       "ruleset_version": "2026.2",
-      "source_hash": "5a783ece171e27592571b68ed1cc327f839585ab13cc5cd97bd7321aa0dc6d47",
+      "source_hash": "ceb4667a13296ade2a5f96c7617d1870fe993e57d872a8a10ba9e24925f31bcb",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/chimica-farmaceutica-federchimica.json.gz"
@@ -490,7 +490,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/commercio-confcommercio",
       "ruleset_version": "2026.2",
-      "source_hash": "86dc3ff64e2c4f6ee555a76babcbdb10a6ca01c4421672785682659fb923aac4",
+      "source_hash": "c9dd7200637110c27cdb127dc5ac87ac07175eda89ccb9ac630f1b2d3f7cfabb",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/commercio-confcommercio.json.gz"
@@ -524,7 +524,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/concia-unic",
       "ruleset_version": "2026.1",
-      "source_hash": "2ed83589e7fa5502a0368502901b4319e1e0ee984216285e972cdc868777419a",
+      "source_hash": "67a762034feb6dfe63a281435be3ca4bdc087df499d59ac4244086027c17b315",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/concia-unic.json.gz"
@@ -728,7 +728,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/dmo-federdistribuzione",
       "ruleset_version": "2026.2",
-      "source_hash": "cc0886f250db6a2b29f0077d576c27b307ba5727764330935c2cdd9350c81b55",
+      "source_hash": "41b208a7f9e726cbcb61caac9074ba92677cac010489cd9e354bec221f7405b1",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/dmo-federdistribuzione.json.gz"
@@ -2074,7 +2074,7 @@
       "valid_to": "2027-03-31",
       "ruleset_id": "ccnl/terziario-confesercenti",
       "ruleset_version": "2026.2",
-      "source_hash": "844051c4aa9187b4ca837dcfb638e72efc18fa33463056baefdd14cf60f567ae",
+      "source_hash": "508d39e4583cd8e41abd17a8f99ef629a8339b3d4ff699b67bd402b86d3e2489",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/terziario-confesercenti.json.gz"

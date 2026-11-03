@@ -21,7 +21,10 @@ from the engine:
 - the TFR of a run is its pay over 13.5 less 0.50% of the whole-euro INPS
   base (art. 2120 c.c.; L. 297/1982 art. 3 c. 16);
 - pay of December paid by 12 January belongs to the tax year 2026 (art. 51
-  c. 1 TUIR).
+  c. 1 TUIR);
+- 1 November 2026 falls on a Sunday, and 4 November is celebrated on the
+  first Sunday of November: two further quotas of the monthly pay over 26
+  with November (Art. 154, Art. 210).
 """
 
 from __future__ import annotations
@@ -60,6 +63,15 @@ def _money(value: Decimal) -> Decimal:
 
 def _share(chain: tuple[Decimal, ...], units: int, of: int) -> tuple[Decimal, ...]:
     return tuple(_money(c * units / of) for c in chain)
+
+
+#: The two Sunday quotas of November 2026 at level 4 (Art. 154 and 210).
+_NOVEMBER_QUOTAS = _money(sum(_LEVEL_4_NOVEMBER, Decimal(0)) / 26 * 2)
+
+
+def _gross(month: int, kind: RunKind, result: PeriodResult) -> Decimal:
+    quotas = _NOVEMBER_QUOTAS if (month, kind) == (11, RunKind.REGULAR) else 0
+    return sum(_components(result), Decimal(0)) + quotas
 
 
 def _tfr(gross: Decimal) -> Decimal:
@@ -152,10 +164,18 @@ def test_december_paid_on_12_january_belongs_to_2026(runs: Runs) -> None:
     assert december.closing_state.cash.tax_year == 2026
 
 
+def test_november_pays_the_two_sunday_quotas(runs: Runs) -> None:
+    """1 November and 4 November on Sunday 1 November: 2 x 1,818.75 / 26."""
+    november = runs[11, RunKind.REGULAR]
+    assert Decimal("139.90") == _NOVEMBER_QUOTAS
+    assert november.period_gross == _gross(11, RunKind.REGULAR, november)
+
+
 def test_the_tfr_of_the_year_is_the_sum_of_its_runs(runs: Runs) -> None:
     """The quota of 2026 the last run closes with: each run by hand."""
     expected = sum(
-        (_tfr(sum(_components(r), Decimal(0))) for r in runs.values()), Decimal(0)
+        (_tfr(_gross(month, kind, r)) for (month, kind), r in runs.items()),
+        Decimal(0),
     )
     last = runs[12, RunKind.REGULAR].closing_state.accrual.tfr_quotas
     assert [(q.year, q.amount) for q in last] == [(2026, expected)]

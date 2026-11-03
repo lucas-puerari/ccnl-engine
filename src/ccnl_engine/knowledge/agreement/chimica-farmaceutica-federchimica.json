@@ -4826,7 +4826,7 @@
     "effective_until": null,
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/chimico_farmaceutico/250415-_CHIMICO-FARMACEUTICO_RINNOVO%20CCNL_%201-7-2025__30-6-2028.pdf",
     "verification_status": "unverified",
-    "source_hash": "5a783ece171e27592571b68ed1cc327f839585ab13cc5cd97bd7321aa0dc6d47",
+    "source_hash": "ceb4667a13296ade2a5f96c7617d1870fe993e57d872a8a10ba9e24925f31bcb",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -5899,6 +5899,35 @@
         "easter_monday"
       ],
       "divisor": "25",
+      "ex_november_fourth": {
+        "month": 8,
+        "hours": "8",
+        "hourly_divisor": "173",
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "cnel-579-ccnl-chimica-2006",
+              "title": "CCNL industria chimica, chimico-farmaceutica, fibre chimiche e settori abrasivi, lubrificanti e GPL, testo definitivo 10 maggio 2006 (CNEL n. 579, file Word)",
+              "kind": "cnel",
+              "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/579",
+              "published_on": "2006-05-10",
+              "sha256": "a9926705b06590a6d8fbe2e6ab683c75d56dfd9e898e7b0f71fb377d7edef3d6"
+            },
+            "section": "Art. 13 - Riposi aggiuntivi e riduzione dell'orario di lavoro",
+            "quote": "Inoltre, in occasione del pagamento della retribuzione del mese di agosto, a fronte della ex festività del 4 novembre e in sostituzione del trattamento per detta festività previsto dal precitato Accordo interconfederale, verrà erogato un trattamento aggiuntivo complessivo pari a 8/173 della retribuzione di fatto. Quanto sopra compete in ragione annua."
+          },
+          "transformation": "8/173 of the monthly pay of the clause (minimo, IPO, scatti, individual elements) with the August pay, in place of the treatment of 4 November on the first Sunday of November.",
+          "note": "Paid 'in ragione annua': an employment that does not cover the whole year records the clause limitation (its share is not sourced).",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-03T09:59:08Z",
+            "effective_from": "2006-05-10",
+            "verification_status": "unverified"
+          }
+        }
+      },
       "provenance": {
         "status": "derived",
         "location": {

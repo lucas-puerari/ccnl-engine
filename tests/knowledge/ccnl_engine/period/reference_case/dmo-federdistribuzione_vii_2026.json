@@ -12,7 +12,8 @@
     "November 2025 tranche: paga base VII 873,22 (Allegato 11, 'Paga base dal 01/11/2025'); the 1 November 2026 tranche is not yet in effect in October.",
     "Allegato 11 row VII: altri elementi 5,16, contingenza + EDR 517,51, totale mensile 1395,89.",
     "Terzo elemento nazionale 2,07 (Art. 199, p59) is due where no provincial terzo elemento is in force: the case states none is (provincial_pay_element false).",
-    "Allowances = 517,51 + 5,16 + 2,07 = 524,74; period gross = 873,22 + 524,74 = 1397,96."
+    "Allowances = 517,51 + 5,16 + 2,07 = 524,74; period gross = 873,22 + 524,74 = 1397,96.",
+    "4 October 2026, a paid holiday by the dichiarazione a verbale of Art. 137 once L. 151/2025 is in force, falls on a Sunday: a further quota of the retribuzione di fatto over 26 (Art. 137 c. 4, Art. 193, PDF pp. 44 and 58), 1397,96 / 26 = 53,77, a fixed allowance: allowances 578,51, period gross 1451,73."
   ],
   "source": {
     "document": "Testo Unico del CCNL della Distribuzione Moderna Organizzata (DMO), sottoscritto il 29 settembre 2025 (Federdistribuzione)",
@@ -31,7 +32,7 @@
   },
   "expected": {
     "base_salary": "873.22",
-    "fixed_allowances": "524.74",
-    "period_gross": "1397.96"
+    "fixed_allowances": "578.51",
+    "period_gross": "1451.73"
   }
 }

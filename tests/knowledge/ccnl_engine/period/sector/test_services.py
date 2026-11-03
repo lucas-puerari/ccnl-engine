@@ -721,9 +721,9 @@ def _stated_gaps(
             "pension_fund_contribution",
             "partial_implementation",
         ))
-    if any(r.period_id == _OCTOBER for r in results):
+    if s.ccnl != _DMO and any(r.period_id == _OCTOBER for r in results):
         # 4 October 2026, a holiday since L. 151/2025, falls on a Sunday:
-        # whether it is paid apart is not sourced for any CCNL.
+        # whether it is paid apart is not sourced but for DMO (Art. 137).
         expected.add(_SUNDAY_HOLIDAY)
     return expected
 
