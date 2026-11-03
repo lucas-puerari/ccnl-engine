@@ -48,6 +48,7 @@ from ccnl_engine.inputs import (
     WorkerCategory,
 )
 from ccnl_engine.results import BlockerCode
+from ccnl_engine.run.types import PeriodId
 from tests.knowledge.ccnl_engine.period.sector.oracles import (
     ALIMENTARI_JUNE,
     ALIMENTARI_YEAR,
@@ -667,24 +668,32 @@ def test_owed_amounts_leave_the_totals_they_touch_short(name: str) -> None:
             assert not result.is_payable
         else:
             features = {b.feature for b in result.blockers}
-            # The unmodelled residual leave and the overtime supplement past
-            # the exempt quota leave the employer cost short.
-            short = bool({"termination_residual_leave", "overtime"} & features)
+            # The unmodelled residual leave, the overtime supplement past the
+            # exempt quota and the unpaid Sunday holiday leave the employer
+            # cost short.
+            short = bool(
+                {"termination_residual_leave", "overtime", "sunday_holiday"} & features
+            )
             assert result.is_employer_cost_complete is not short
 
 
-@pytest.mark.parametrize("name", _NAMES)
-def test_only_the_stated_gaps_block_the_net_pay(name: str) -> None:
-    """Besides the owed amounts, only the known gaps of the scenario block."""
-    s = SCENARIOS[name]
-    year = _year(name)
-    others = {
-        (b.code, b.feature, b.detail)
-        for r in year.period_results
-        for b in r.blockers
-        if b.detail not in s.owed
-    }
-    expected = set()
+_OCTOBER = PeriodId(2026, 10)
+_SUNDAY_HOLIDAY = (
+    BlockerCode.OPEN_LIMITATION,
+    "sunday_holiday",
+    "sunday_holiday_ccnl_clause",
+)
+
+
+def _stated_gaps(
+    s: Scenario, results: tuple[PeriodResult, ...]
+) -> set[tuple[BlockerCode, str, str]]:
+    """Return the known gaps of the scenario, besides its owed amounts.
+
+    Returns:
+        The (code, feature, detail) of each blocker the scenario expects.
+    """
+    expected: set[tuple[BlockerCode, str, str]] = set()
     if s.overtime:
         expected |= {
             (BlockerCode.CALCULATION_ISSUE, "overtime", "ccnl_overtime_band_applied"),
@@ -712,6 +721,25 @@ def test_only_the_stated_gaps_block_the_net_pay(name: str) -> None:
             "pension_fund_contribution",
             "partial_implementation",
         ))
+    if any(r.period_id == _OCTOBER for r in results):
+        # 4 October 2026, a holiday since L. 151/2025, falls on a Sunday:
+        # whether it is paid apart is not sourced for any CCNL.
+        expected.add(_SUNDAY_HOLIDAY)
+    return expected
+
+
+@pytest.mark.parametrize("name", _NAMES)
+def test_only_the_stated_gaps_block_the_net_pay(name: str) -> None:
+    """Besides the owed amounts, only the known gaps of the scenario block."""
+    s = SCENARIOS[name]
+    year = _year(name)
+    others = {
+        (b.code, b.feature, b.detail)
+        for r in year.period_results
+        for b in r.blockers
+        if b.detail not in s.owed
+    }
+    expected = _stated_gaps(s, year.period_results)
     assert others == expected
     owed_only = [
         r for r in year.period_results if {b.detail for b in r.blockers} <= s.owed

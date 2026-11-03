@@ -44,6 +44,9 @@ from ccnl_engine.capability.loaders import (
     load_capability_catalog,
 )
 from ccnl_engine.compensation.change.rules import MID_MONTH_CHANGE
+from ccnl_engine.compensation.sunday_holiday.services import (
+    CLAUSE_LIMITATION as SUNDAY_CLAUSE,
+)
 from ccnl_engine.compensation.una_tantum.rules import UNA_TANTUM
 from ccnl_engine.contribution.minimum_base.services import (
     EXEMPT_CATEGORY_FLOOR,
@@ -145,6 +148,7 @@ def test_engine_limitations_are_raised_by_their_code() -> None:
         MID_MONTH_CHANGE,
         UNUSED_DEDUCTIONS,
         UNA_TANTUM,
+        SUNDAY_CLAUSE,
     }
     assert by_status[LimitationStatus.RESOLVED] == {
         _MIDPOINT,

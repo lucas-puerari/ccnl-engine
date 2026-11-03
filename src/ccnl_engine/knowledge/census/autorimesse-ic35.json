@@ -369,6 +369,22 @@
       }
     },
     {
+      "id": "sunday_holiday_ccnl_clause",
+      "institute": "sunday_holiday",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "L. 260/1949 art. 5 pays the workers with a fixed salary a further daily quota only for the civil holidays (25 April, 1 May, 2 June) falling on a Sunday; the other holidays of art. 2 (1 January, 6 January, Easter Monday, 15 August, 4 October, 1 November, 8 December, 25 and 26 December) give it only by CCNL clause, and the payment of 4 November is a CCNL institute. A run of a month with such a holiday on a Sunday, in a CCNL whose clause is not sourced (work_rules.sunday_holidays), pays the statutory holidays only; a public employment is paid none, its treatment not being sourced.",
+      "calculation": "ccnl_engine.compensation.sunday_holiday.services.sunday_holiday; L. 260/1949 artt. 2 and 5 (Normattiva, art. 2 page sha256 42631c3dd629fe3a1c5e10efc7e3b7b86bb5a2b5325024aa4105eaadfcb49828, art. 5 page sha256 dbd670c663744af9); L. 54/1977 art. 1 (page sha256 cde3b9773f4411d28334a85bebdf9358fc4c161d745772df70f38bc79f48d09e)",
+      "state": "absent",
+      "remediation": "Source the CCNL clause on the holidays falling on a Sunday and record it as work_rules.sunday_holidays.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "sunday_holiday_ccnl_clause"
+        ]
+      }
+    },
+    {
       "id": "tfr_compensation_apprentice_guarantee_fund",
       "institute": "inps_employer",
       "variant": "apprentice",

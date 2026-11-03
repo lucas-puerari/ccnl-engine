@@ -341,6 +341,13 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Source the counting of the months, the part time and the taxation of each una tantum from its agreement, then resolve this limitation.
 
+!!! warning "sunday_holiday_ccnl_clause · sunday_holiday · impact yes · open"
+    L. 260/1949 art. 5 pays the workers with a fixed salary a further daily quota only for the civil holidays (25 April, 1 May, 2 June) falling on a Sunday; the other holidays of art. 2 (1 January, 6 January, Easter Monday, 15 August, 4 October, 1 November, 8 December, 25 and 26 December) give it only by CCNL clause, and the payment of 4 November is a CCNL institute. A run of a month with such a holiday on a Sunday, in a CCNL whose clause is not sourced (work_rules.sunday_holidays), pays the statutory holidays only; a public employment is paid none, its treatment not being sourced.
+
+    **Applies when:** `sunday_holiday` applies; the run takes the engine code path.
+
+    **Remediation:** Source the CCNL clause on the holidays falling on a Sunday and record it as work_rules.sunday_holidays.
+
 ### Without monetary impact
 
 !!! note ""

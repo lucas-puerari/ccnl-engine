@@ -159,5 +159,14 @@ def test_surtax_left_for_2027(component: SurtaxComponent, amount: Decimal) -> No
 
 
 def test_every_run_is_payable() -> None:
-    """Nothing the case reads blocks it in simulation mode."""
-    assert all(r.is_payable for r in _runs())
+    """Nothing the case reads blocks it in simulation mode.
+
+    But October and November: 4 October and 1 November 2026 fall on a
+    Sunday, and whether Concia pays them apart is not sourced.
+    """
+    for result in _runs():
+        sunday = result.period_id.month in {10, 11}
+        assert {b.detail for b in result.blockers} == (
+            {"sunday_holiday_ccnl_clause"} if sunday else set()
+        )
+        assert result.is_payable is not sunday

@@ -55,7 +55,7 @@ formulas or caller-declared amounts.
 
 | Scope | native | caller_supplied | partial | unsupported |
 |---|---:|---:|---:|---:|
-| core | 23 | 0 | 0 | 0 |
+| core | 24 | 0 | 0 | 0 |
 | scenario | 17 | 10 | 2 | 0 |
 | outside_input | 0 | 0 | 0 | 6 |
 
@@ -94,6 +94,7 @@ formulas or caller-declared amounts.
 | `ulteriore_detrazione_lavoro` | Ulteriore detrazione lavoro dipendente | core | net | native | decided | decision | — | — | simplified | 8 / 0 / 8 / 0 |
 | `somma_esente` | Somma esente L. 207/2024 art. 1 c. 4 | core | net | native | decided | decision | — | — | simplified | 1 / 0 / 1 / 0 |
 | `special_supplement` | Trattamento integrativo speciale del turismo e della somministrazione L. 199/2025 art. 1 cc. 18-21: 15% della retribuzione lorda del lavoro notturno e dello straordinario festivo, 1 gennaio - 30 settembre 2026 | core | net | native | decided | decision | — | — | implemented | none bundled |
+| `sunday_holiday` | Festività cadente di domenica (L. 260/1949 art. 5 per le festività civili; la clausola del CCNL per le altre): un'ulteriore quota giornaliera della retribuzione | core | gross | native | decided | decision | — | — | implemented | none bundled |
 | `withholding_shortfall` | Ritenute non capienti riportate ai cedolini successivi | core | net | native | decided | decision | — | — | implemented | none bundled |
 | `shortfall_deferral` | Differimento scritto dell'IRPEF incapiente del conguaglio con interessi 0,50% mensile (art. 23 c. 3 DPR 600/1973) | core | net | native | decided | decision | — | — | implemented | none bundled |
 | `foreign_tax_credit` | Credito imposte estere art. 165 TUIR al conguaglio | scenario | net | partial | decided | decision | — | declared_foreign_tax_at_conguaglio | simplified | none bundled |

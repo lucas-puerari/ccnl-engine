@@ -58,6 +58,7 @@ def test_bundled_engine_limitations_are_path_triggered() -> None:
         "mid_month_level_change",
         "arrears_unused_deductions",
         "una_tantum_readings",
+        "sunday_holiday_ccnl_clause",
     }
     assert {lim.id for lim in limitations} - blocking == {
         "apprenticeship_midpoint_allowances",
