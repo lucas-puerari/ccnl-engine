@@ -84,6 +84,16 @@ def _base(result: PeriodResult, sector: str) -> Decimal:
     return gross.quantize(Decimal(1), rounding=ROUND_HALF_UP) if whole else gross
 
 
+#: Sectors declared in the <DenunciaIndividuale> of the UniEmens flow.
+_DENUNCIA_INDIVIDUALE = frozenset({
+    "industria",
+    "terziario",
+    "edilizia",
+    "credito",
+    "artigianato",
+})
+
+
 def _expected(
     sector: str,
     base: Decimal,
@@ -102,9 +112,15 @@ def _expected(
         rate = Decimal(by_category[category]) if category in by_category else rate
         rate += Decimal(0) if exempt else _SURCHARGE
     credit = Decimal(inps.get("public_credit", {}).get("employee_rate", "0"))
-    employee_side = _side(
+    employee_core = _side(
         base, Decimal(employee["rate"]), Decimal(employee["ivs_rate"])
-    ) + _cents(base * credit)
+    )
+    employee_side = employee_core + _cents(base * credit)
+    if sector in _DENUNCIA_INDIVIDUALE:
+        # One contribution at the whole rate, to cents (Documento tecnico
+        # UniEmens, <Contributo>), less the employee's withheld share.
+        whole = _cents(base * (Decimal(employee["rate"]) + rate))
+        return employee_side, whole - employee_core
     return employee_side, _side(base, rate, Decimal(employer["ivs_rate"]))
 
 

@@ -132,6 +132,7 @@ def _assembled(
     rules, tax_ruleset, inps_ruleset = _raw_rules(year, sector)
     return YearRules(
         year=rules.year,
+        sector=sector,
         ruleset=tax_ruleset,
         inps_ruleset=inps_ruleset,
         irpef_brackets=tuple(rules.irpef_brackets),

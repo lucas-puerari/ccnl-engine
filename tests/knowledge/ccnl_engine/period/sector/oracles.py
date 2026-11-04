@@ -278,11 +278,17 @@ def _payment(pay: Pay, rates: Rates) -> Payment:
     paid = pay.gross - pay.absence
     base = _whole_euro(paid)
     employee = _cents(base * rates.employee_ivs) + _cents(base * rates.employee_other)
-    employer = (
-        _cents(base * rates.employer_ivs)
-        + _cents(base * rates.employer_other)
-        + _cents(base * rates.employer_supplement)
+    # INPS charges one contribution on the month's base at the whole rate,
+    # "con arrotondamento ai centesimi" (Documento tecnico UniEmens,
+    # <Contributo>); the employer pays it less the employee's withheld share.
+    whole = (
+        rates.employee_ivs
+        + rates.employee_other
+        + rates.employer_ivs
+        + rates.employer_other
+        + rates.employer_supplement
     )
+    employer = _cents(base * whole) - employee
     quota = _cents(pay.tfr_base / _TFR_DIVISOR)
     deduction = _cents(base * rates.tfr_offset)
     accrual = quota - deduction
