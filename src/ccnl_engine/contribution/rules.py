@@ -88,6 +88,33 @@ def _side(
     return ivs + non_ivs, components
 
 
+def _whole_employee_rate(
+    employee_items: list[ContributionComponent],
+    rates: ContributionRates,
+    ivs_base: Decimal,
+    full_base: Decimal,
+) -> tuple[Decimal, list[ContributionComponent]]:
+    """Return the employee share at the whole employee rate, to cents once.
+
+    The payslip withholds one "Contributo IVS" at the whole employee rate
+    (Zucchetti guide, Studio Miazzo, sha256 707dcf4d...: code Z00000 at
+    9,19%; FILCTEM CGIL guide 2024, sha256 7f5d68da..., p. 21: "1.672 x
+    9,49% = 158,67", where the IVS and CIGS rates apart give 158,68), the
+    base above the IVS massimale at the minor rates only.  The non-IVS
+    employee component (or the IVS one without it) takes the rounding.
+
+    Returns:
+        The employee share and its components, adjusted to the share.
+    """
+    rate, ivs_rate = rates.employee_rate, rates.employee_ivs_rate
+    share = money(ivs_base * rate) + money((full_base - ivs_base) * (rate - ivs_rate))
+    if not employee_items:
+        return _ZERO, employee_items
+    *kept, last = employee_items
+    rest = sum((c.amount for c in kept), _ZERO)
+    return share, [*kept, replace(last, amount=share - rest)]
+
+
 def _employer_share(
     employee: Decimal,
     employer_items: list[ContributionComponent],
@@ -243,6 +270,9 @@ def resolve_contributions(
     )
     employer_total = sum((c.amount for c in employer_items), _ZERO)
     if rules.sector in _DENUNCIA_INDIVIDUALE:
+        employee_total, employee_items = _whole_employee_rate(
+            employee_items, rates, ivs_base, period_inps_base
+        )
         employer_total, employer_items = _employer_share(
             employee_total, employer_items, rates, ivs_base, period_inps_base
         )

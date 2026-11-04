@@ -3,8 +3,10 @@
 The UniEmens <Contributo> of <DatiRetributivi> is "l'importo della
 contribuzione calcolata sull'imponibile previdenziale del mese corrente
 [...] con arrotondamento ai centesimi": the employer pays it less the share
-it withholds from the employee.  The base above the IVS massimale is
-declared apart, with the minor contributions only.
+it withholds from the employee.  The payslip withholds that share as one
+contribution at the whole employee rate, to cents once (FILCTEM CGIL 2024
+guide p. 21: "1.672 x 9,49% = 158,67").  The base above the IVS massimale
+is declared apart, with the minor contributions only.
 """
 
 from __future__ import annotations
@@ -51,18 +53,18 @@ def _amounts(breakdown: ContributionBreakdown) -> dict[str, Decimal]:
 
 
 def test_the_employer_pays_the_whole_contribution_less_the_employee() -> None:
-    """2382 x 39.95% = 951.61, less 218.91 + 7.15 withheld: 725.55."""
+    """2382 x 39.95% = 951.61, less 2382 x 9.49% = 226.05 withheld: 725.56."""
     base = _D(2382)
     breakdown = first_run_contributions(
         base, _rules(TaxSector.INDUSTRIA), Permanent(), None
     )
 
-    assert breakdown.employee == _D("226.06")
+    assert breakdown.employee == money(base * _EMPLOYEE) == _D("226.05")
     assert money(base * (_EMPLOYEE + _EMPLOYER)) == _D("951.61")
-    assert breakdown.employer == _D("725.55")
+    assert breakdown.employer == _D("725.56")
     amounts = _amounts(breakdown)
     assert amounts["ivs_employer"] == money(base * _EMPLOYER_IVS) == _D("567.15")
-    assert amounts["non_ivs_employer"] == _D("158.40")
+    assert amounts["non_ivs_employer"] == _D("158.41")
 
 
 @pytest.mark.parametrize(
@@ -93,7 +95,7 @@ def test_the_sectors_differ_where_the_rounding_does() -> None:
     split = first_run_contributions(base, _rules(None), Permanent(), None)
 
     assert whole.employer != split.employer
-    assert whole.employee == split.employee
+    assert whole.employee == money(base * _EMPLOYEE)
     assert whole.employee + whole.employer == money(base * (_EMPLOYEE + _EMPLOYER))
 
 
@@ -225,3 +227,53 @@ def test_a_further_rate_without_ivs_components() -> None:
         breakdown = first_run_contributions(base, rules, Permanent(), None)
         added = whole_rate_addition(breakdown, rules, base, rate)
         assert added == money(base * _D("0.0632")) - money(base * _D("0.0555")), base
+
+
+def test_the_employee_share_is_rounded_once() -> None:
+    """1,672 x 9.49% = 158.67; the IVS and CIGS rates apart give 158.68."""
+    base = _D(1672)
+    whole = first_run_contributions(
+        base, _rules(TaxSector.INDUSTRIA), Permanent(), None
+    )
+    split = first_run_contributions(base, _rules(None), Permanent(), None)
+    amounts = _amounts(whole)
+
+    assert whole.employee == _D("158.67")
+    assert split.employee == _D("158.68")
+    assert amounts["ivs_employee"] == _D("153.66")
+    assert amounts["non_ivs_employee"] == _D("5.01")
+
+
+def test_the_employee_share_above_the_massimale() -> None:
+    """The excess takes the minor employee rate apart."""
+    ceiling = _D(120000)
+    base = _D(2385)
+    breakdown = first_run_contributions(
+        base,
+        _rules(TaxSector.INDUSTRIA, ceiling=str(ceiling)),
+        Permanent(),
+        None,
+        ytd_inps_base=ceiling - _D(1000),
+    )
+    minor = _EMPLOYEE - _EMPLOYEE_IVS
+
+    assert breakdown.employee == money(_D(1000) * _EMPLOYEE) + money(
+        (base - _D(1000)) * minor
+    )
+
+
+def test_no_employee_rate_withholds_nothing() -> None:
+    """An employer-only rate leaves the employee share at zero."""
+    rules = make_year_rules(
+        inps={
+            "employee_rate": "0",
+            "employee_ivs_rate": "0",
+            "employer_rate": str(_EMPLOYER),
+            "employer_ivs_rate": str(_EMPLOYER_IVS),
+            "ceiling": None,
+        }
+    ).model_copy(update={"sector": TaxSector.INDUSTRIA})
+    breakdown = first_run_contributions(_D(2385), rules, Permanent(), None)
+
+    assert breakdown.employee == 0
+    assert not any(c.name.endswith("_employee") for c in breakdown.components)

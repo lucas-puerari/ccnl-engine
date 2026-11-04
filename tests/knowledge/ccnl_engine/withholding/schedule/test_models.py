@@ -242,13 +242,13 @@ def test_fourteenth_withholds_on_monthly_brackets() -> None:
 
     The fourteenth pays 6/12 of the month (January to June of the July-June
     window): 1,783.75 / 2 = 891.88, INPS base 892 (whole euro, INPS circ.
-    208/2001).  The employer has 50 employees: INPS 9.19% = 81.97 plus FIS
-    and CIGS 0.56667% = 5.05, taxable 804.86.  It is under 28,000 / 12 =
-    2,333.33, so lett. b) withholds 23% of it with no deduction: 185.12.
-    The June regular run pays 1,783.75 less 163.95 and 10.11 of INPS on
-    1,784, 1,609.69 of taxable (23% = 370.23), and takes the deductions of
-    its 30 days on the projected 9,658.14 + 13,378.13 x 0.9024333 =
-    21,731.01:
+    208/2001).  The employer has 50 employees: INPS 9.19% plus FIS and CIGS
+    0.56667%, one contribution at the whole rate: 87.03, taxable 804.85.
+    It is under 28,000 / 12 = 2,333.33, so lett. b) withholds 23% of it
+    with no deduction: 185.12.  The June regular run pays 1,783.75 less
+    174.06 of INPS on 1,784, 1,609.69 of taxable (23% = 370.23), and takes
+    the deductions of its 30 days on the projected 9,658.14 + 13,378.13 x
+    0.9024333 = 21,731.01:
     art. 13 1,910 + 1,190 x 0.4822 = 2,483.82, times 30/365 = 204.15, and
     the ulteriore detrazione 1,000 x 30/365 = 82.19 (lett. a): 83.89.
     Observed on 6 October 2026 before this rule: 129.91 on the fourteenth,
@@ -269,7 +269,7 @@ def test_fourteenth_withholds_on_monthly_brackets() -> None:
     )
     withheld = fourteenth.tax_computation.ordinary_tax
 
-    assert taxable == Decimal("804.86")
+    assert taxable == Decimal("804.85")
     assert withheld == extra_month_withholding(taxable) == Decimal("185.12")
     assert regular.tax_computation.ordinary_tax == regular_month_withholding(
         Decimal("1609.69"), Decimal("21731.01"), 30

@@ -75,13 +75,19 @@ class ConciaPayment:
         return self.tfr_quota - self.tfr_deduction
 
 
+def _inps(base: Decimal) -> Decimal:
+    # One contribution at the whole employee rate, to cents once (FILCTEM
+    # CGIL 2024 guide p. 21: "1.672 x 9,49% = 158,67").
+    return _cents(base * (_EMPLOYEE_IVS_RATE + _EMPLOYEE_CIGS_RATE))
+
+
 def _payment(gross: Decimal, allowances: Decimal) -> ConciaPayment:
     base = gross.quantize(Decimal(1), rounding=ROUND_HALF_UP)
     return ConciaPayment(
         gross=gross,
         allowances=allowances,
         inps_base=base,
-        inps=_cents(base * _EMPLOYEE_IVS_RATE) + _cents(base * _EMPLOYEE_CIGS_RATE),
+        inps=_inps(base),
         tfr_quota=_cents(gross / _TFR_DIVISOR),
         tfr_deduction=_cents(base * _TFR_EXTRA_IVS_RATE),
     )
@@ -146,9 +152,7 @@ def _year() -> ConciaYear:
     edr = _cents(_EDR_LIRE / _LIRE_PER_EURO)
     monthly_gross = minimum + edr
     base = monthly_gross.quantize(Decimal(1), rounding=ROUND_HALF_UP)
-    monthly_inps = _cents(base * _EMPLOYEE_IVS_RATE) + _cents(
-        base * _EMPLOYEE_CIGS_RATE
-    )
+    monthly_inps = _inps(base)
     tfr_quota = _cents(monthly_gross / _TFR_DIVISOR)
     tfr_deduction = _cents(base * _TFR_EXTRA_IVS_RATE)
     sunday_holiday = _cents(monthly_gross / _SUNDAY_HOLIDAY_DIVISOR)
@@ -189,10 +193,6 @@ CONCIA_D2_2026 = _year()
 _JULY_HIRE_MONTHS = 6
 #: Days of employment from 1 July to 31 December 2026.
 _JULY_HIRE_DAYS = 184
-
-
-def _inps(base: Decimal) -> Decimal:
-    return _cents(base * _EMPLOYEE_IVS_RATE) + _cents(base * _EMPLOYEE_CIGS_RATE)
 
 
 @dataclass(frozen=True)
@@ -298,14 +298,9 @@ def employee_taxable(gross: Decimal) -> Decimal:
     Valid only for a gross below the IVS massimale and with no pension fund.
 
     Returns:
-        ``gross`` less the IVS and CIGS shares of its whole-euro base.
+        ``gross`` less the IVS and CIGS shares of its whole-euro base, one
+        contribution at their whole rate, to cents once.
     """
     base = gross.quantize(Decimal(1), rounding=ROUND_HALF_UP)
-    inps = sum(
-        (
-            (base * share).quantize(_CENT, rounding=ROUND_HALF_UP)
-            for share in _EMPLOYEE_SHARES
-        ),
-        Decimal(0),
-    )
-    return gross - inps
+    rate = sum(_EMPLOYEE_SHARES, Decimal(0))
+    return gross - (base * rate).quantize(_CENT, rounding=ROUND_HALF_UP)

@@ -23,7 +23,9 @@ from the engine:
 
 Each side is the IVS share plus the rest, each taken to cents, on the base
 of the run: the gross to the whole euro (INPS circ. 208/2001), to the cent
-in the public administrations.
+in the public administrations.  In the sectors of the UniEmens
+<DenunciaIndividuale> the employee share is taken at its whole rate and
+the employer pays the whole contribution less it, each to cents once.
 """
 
 from __future__ import annotations
@@ -117,8 +119,11 @@ def _expected(
     )
     employee_side = employee_core + _cents(base * credit)
     if sector in _DENUNCIA_INDIVIDUALE:
-        # One contribution at the whole rate, to cents (Documento tecnico
-        # UniEmens, <Contributo>), less the employee's withheld share.
+        # The employee share at the whole employee rate, to cents once
+        # (FILCTEM CGIL 2024 guide p. 21); one contribution at the whole
+        # rate (Documento tecnico UniEmens, <Contributo>), less that share.
+        employee_core = _cents(base * Decimal(employee["rate"]))
+        employee_side = employee_core + _cents(base * credit)
         whole = _cents(base * (Decimal(employee["rate"]) + rate))
         return employee_side, whole - employee_core
     return employee_side, _side(base, rate, Decimal(employer["ivs_rate"]))
