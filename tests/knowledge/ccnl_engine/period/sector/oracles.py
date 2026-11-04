@@ -1176,10 +1176,20 @@ def _fipe_june(tranche: int) -> tuple[Pay, ...]:
     )
 
 
-FIPE_YEAR = sector_year(_fipe_year(6), _FIPE_RATES, _FULL_YEAR, terminated=False)
+#: 1 November 2026, a Sunday and the default rest day, pays one twenty-sixth
+#: (art. 131 c. 4 and art. 159 of the 2018 text).
+FIPE_YEAR = sector_year(
+    with_sunday_holidays(_fipe_year(6), 11, 1, 26),
+    _FIPE_RATES,
+    _FULL_YEAR,
+    terminated=False,
+)
 FIPE_JUNE = sector_year(_fipe_june(6), _FIPE_RATES, _HALF_YEAR, terminated=True)
 RISTORAZIONE_YEAR = sector_year(
-    _fipe_year(9), _FIPE_RATES, _FULL_YEAR, terminated=False
+    with_sunday_holidays(_fipe_year(9), 11, 1, 26),
+    _FIPE_RATES,
+    _FULL_YEAR,
+    terminated=False,
 )
 RISTORAZIONE_JUNE = sector_year(_fipe_june(9), _FIPE_RATES, _HALF_YEAR, terminated=True)
 

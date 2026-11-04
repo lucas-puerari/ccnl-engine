@@ -1,5 +1,8 @@
 """A holiday falling on the worker's weekly rest day, Turismo art. 127 c. 4.
 
+FIPE art. 131 c. 4, art. 133 c. 4 and art. 159 (CCNL Pubblici Esercizi
+2018) carry the same words and divisor for both FIPE rulesets.
+
 "A tutto il personale assente nelle giornate di festività, per riposo
 settimanale [...] dovrà essere corrisposta una giornata di retribuzione
 contrattuale" (art. 127 c. 4, CCNL Turismo 2010), 4 November included on
@@ -39,6 +42,8 @@ if TYPE_CHECKING:
 
 _TURISMO = ("turismo-federalberghi", "4")
 _COMMERCIO = ("commercio-confcommercio", "4")
+_FIPE = ("pubblici-esercizi-fipe-angem", "4")
+_FIPE_COLLETTIVA = ("pubblici-esercizi-fipe-angem-ristorazione-collettiva", "4")
 _CENT = Decimal("0.01")
 
 
@@ -153,6 +158,34 @@ def test_a_recent_holiday_on_the_rest_day_is_open() -> None:
 
     assert _paid(result) == ("2026-10-04", Decimal(0))
     assert _limited(result)
+
+
+@pytest.mark.parametrize("ccnl", [_FIPE, _FIPE_COLLETTIVA], ids=["fipe", "collettiva"])
+@pytest.mark.parametrize(
+    ("year", "month", "rest", "days"),
+    [
+        (2026, 11, Weekday.WEDNESDAY, "2026-11-04"),
+        (2026, 12, Weekday.FRIDAY, "2026-12-25"),
+        (2026, 4, Weekday.SATURDAY, "2026-04-25"),
+    ],
+    ids=["fourth-november", "christmas-on-friday-rest", "liberation-on-saturday"],
+)
+def test_fipe_pays_a_holiday_on_the_rest_day(
+    ccnl: tuple[str, str], year: int, month: int, rest: Weekday, days: str
+) -> None:
+    """FIPE art. 131 c. 4 and art. 133 c. 4 pay one twenty-sixth."""
+    result = _run(ccnl, year, month, rest)
+
+    assert _paid(result) == (days, _quota(result))
+    assert not _limited(result)
+
+
+@pytest.mark.parametrize("ccnl", [_FIPE, _FIPE_COLLETTIVA], ids=["fipe", "collettiva"])
+def test_fipe_pays_nothing_off_the_rest_day(ccnl: tuple[str, str]) -> None:
+    """1 November 2026 is a Sunday, the rest day a Monday: nothing is due."""
+    result = _run(ccnl, 2026, 11, Weekday.MONDAY)
+
+    assert _paid(result) is None
 
 
 def test_a_sunday_clause_ignores_the_rest_day() -> None:
