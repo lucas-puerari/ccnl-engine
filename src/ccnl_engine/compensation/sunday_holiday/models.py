@@ -62,6 +62,10 @@ class SundayHolidayPay(BaseModel):
             (Pulizia artigianato art. 23: "il lavoratore beneficerà del
             trattamento previsto per le festività che coincidono con la
             domenica").
+        annual_share: The share of a twelfth of the annual pay (the monthly
+            pay times the CCNL's yearly payments) the divisor divides, for
+            a daily pay so defined (BCC art. 114: "il 90,66% di un
+            dodicesimo dell'ammontare annuo"); ``None`` for the monthly pay.
         provenance: The CCNL clause.
     """
 
@@ -73,4 +77,5 @@ class SundayHolidayPay(BaseModel):
     ex_november_fourth: ExHolidayPay | None = None
     on_rest_day: bool = False
     fourth_november_on_sunday: bool = False
+    annual_share: Decimal | None = Field(default=None, gt=0, le=1)
     provenance: RuleProvenance

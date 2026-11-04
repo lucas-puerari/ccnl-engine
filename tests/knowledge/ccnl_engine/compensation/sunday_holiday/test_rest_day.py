@@ -4,7 +4,9 @@ FIPE art. 131 c. 4, art. 133 c. 4 and art. 159 (CCNL Pubblici Esercizi
 2018) carry the same words and divisor for both FIPE rulesets, as do
 Industria Turistica arts. 86, 87 and 108 (2016) and Turismo Confesercenti
 arts. 117, 118 and 142 (2003).  Pulizia artigianato art. 23 adds Easter
-and 4 October and keeps 4 November on the first Sunday of November.
+and 4 October and keeps 4 November on the first Sunday of November.  BCC
+arts. 98 and 126 pay the holidays of the law on the rest day at the daily
+pay of art. 114: 90.66% of a twelfth of thirteen monthly pays, over 21.5.
 
 "A tutto il personale assente nelle giornate di festività, per riposo
 settimanale [...] dovrà essere corrisposta una giornata di retribuzione
@@ -50,6 +52,7 @@ _FIPE_COLLETTIVA = ("pubblici-esercizi-fipe-angem-ristorazione-collettiva", "4")
 _FEDERTURISMO = ("industria-turistica-federturismo", "B1")
 _CONFESERCENTI = ("turismo-confesercenti", "4")
 _PULIZIA = ("pulizia-artigianato-confartigianato", "3")
+_BCC = ("bcc-credito-cooperativo", "3AP1")
 _SAME_CLAUSE = [_FIPE, _FIPE_COLLETTIVA, _FEDERTURISMO, _CONFESERCENTI]
 _SAME_IDS = ["fipe", "collettiva", "federturismo", "confesercenti"]
 _CENT = Decimal("0.01")
@@ -224,6 +227,35 @@ def test_pulizia_keeps_the_fourth_of_november_on_sunday() -> None:
 
     assert _paid(result) is None
     assert not _limited(result)
+
+
+@pytest.mark.parametrize(
+    ("month", "rest", "days"),
+    [
+        (11, Weekday.SUNDAY, "2026-11-01"),
+        (10, Weekday.SUNDAY, "2026-10-04"),
+        (12, Weekday.FRIDAY, "2026-12-25"),
+    ],
+    ids=["ognissanti", "fourth-october", "christmas-on-friday-rest"],
+)
+def test_bcc_pays_the_art_114_daily_pay(month: int, rest: Weekday, days: str) -> None:
+    """Thirteen monthly pays over twelve, at 90.66%, over 21.5 days."""
+    result = _run(_BCC, 2026, month, rest)
+
+    (decision,) = [d for d in result.decisions if d.capability == CAPABILITY]
+    monthly = Decimal(str(decision.inputs["monthly"]))
+    daily = monthly * 13 / 12 * Decimal("0.9066") / Decimal("21.5")
+    assert _paid(result) == (days, daily.quantize(_CENT, rounding=ROUND_HALF_UP))
+    assert str(decision.inputs["yearly_payments"]) == "13"
+    assert str(decision.inputs["annual_share"]) == "0.9066"
+    assert not _limited(result)
+
+
+def test_bcc_does_not_pay_the_fourth_of_november() -> None:
+    """4 November is no holiday of the law: a Wednesday rest gets nothing."""
+    result = _run(_BCC, 2026, 11, Weekday.WEDNESDAY)
+
+    assert _paid(result) is None
 
 
 def test_a_sunday_clause_ignores_the_rest_day() -> None:

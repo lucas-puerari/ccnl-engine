@@ -320,7 +320,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/bcc-credito-cooperativo",
       "ruleset_version": "2026.2",
-      "source_hash": "d225e0eb4b436c5b14b8e0b93e2fc2b63a9c85a1031e815388a70df4a21b4a0f",
+      "source_hash": "459e1d75d62f378103629eaca33667ed1514ee9ffb840148634481386c119e75",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/bcc-credito-cooperativo.json.gz"
