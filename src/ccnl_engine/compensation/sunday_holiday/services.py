@@ -58,6 +58,7 @@ CLAUSE_LIMITATION = "sunday_holiday_ccnl_clause"
 _KIND = "fixed_allowance_earning"
 _RULE = "law/sunday-holiday:l260-1949-art5"
 _ZERO = Decimal(0)
+_MONTHS = 12
 
 
 @dataclass(frozen=True)
@@ -180,17 +181,26 @@ def _paid(
     """Return the earning, entry and decision of ``days`` at the daily quota.
 
     Returns:
-        The quota of the monthly pay of a full month over ``by``, once a day.
+        The quota of the monthly pay of a full month over ``by``, once a day;
+        of the clause's share of a twelfth of the annual pay when it sets one.
     """
     excluded = frozenset() if clause is None else clause.excluded
     monthly = monthly_pay(ctx.regular_chain, excluded)
-    amount = money(monthly / by * len(days))
-    source = _section(clause, "L. 260/1949 art. 5")
     inputs: dict[str, Decimal | str] = {
         "days": ",".join(d.isoformat() for d in days),
         "divisor": by,
         "monthly": monthly,
     }
+    paid = monthly
+    share = None if clause is None else clause.annual_share
+    if share is not None:
+        payments = ctx.contract.ccnl.parameters.additional_months.value_at(
+            ctx.contract.tctx.competence
+        )
+        paid = monthly * payments / _MONTHS * share
+        inputs |= {"yearly_payments": payments, "annual_share": share}
+    amount = money(paid / by * len(days))
+    source = _section(clause, "L. 260/1949 art. 5")
     return _posted(
         ctx,
         (

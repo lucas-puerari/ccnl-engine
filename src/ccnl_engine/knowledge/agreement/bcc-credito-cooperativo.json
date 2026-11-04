@@ -1767,7 +1767,7 @@
     "effective_until": null,
     "source": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "d225e0eb4b436c5b14b8e0b93e2fc2b63a9c85a1031e815388a70df4a21b4a0f",
+    "source_hash": "459e1d75d62f378103629eaca33667ed1514ee9ffb840148634481386c119e75",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2067,6 +2067,49 @@
           "review_id": "2026-10-31-ai-sickness-comporto"
         },
         "note": "Not modelled: the 80% longer comporto (12 to 40 months) of tuberculosis and the listed serious illnesses and the therapy days left out of it; the unpaid aspettativa summed in the 18 months; the floor of the R.D.L. 1825/1924 for the last period ('non può essere praticato un trattamento meno favorevole'); the end of the treatment six months after the old-age pension requirements; the 6 months of the apprentices."
+      }
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "01-01",
+        "01-06",
+        "easter_monday",
+        "04-25",
+        "05-01",
+        "06-02",
+        "08-15",
+        "10-04",
+        "11-01",
+        "12-08",
+        "12-25",
+        "12-26"
+      ],
+      "divisor": "21.5",
+      "on_rest_day": true,
+      "annual_share": "0.9066",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-bcc-2024-07-09",
+            "title": "CCNL Credito Cooperativo 9 luglio 2024",
+            "kind": "associazione",
+            "url": "https://apilavoro.eutekne.it/v1/notizie/allegato/f571390d-5db7-457d-bde1-59ed2112e1e9/CCNL%2009.07.2024.pdf/download",
+            "sha256": "029acdd17a73c7dafaed4ec2ba54ff3d52a74cade36c6d9fb6b5796fbd82281e"
+          },
+          "page": "69, 115, 117-118, 128-129, 140",
+          "section": "Art. 51 - Riposo settimanale, Festività; Art. 98 and Art. 126 - Prestazione lavorativa; Art. 103 and Art. 114 - Retribuzione giornaliera",
+          "quote": "Al personale compete un riposo settimanale, che deve normalmente coincidere con la domenica, secondo le norme di legge. Sono considerati giorni festivi quelli previsti dalle vigenti disposizioni di legge. [Art. 98, Art. 126] Nel caso di coincidenza di una festività nazionale o infrasettimanale con il giorno destinato al riposo settimanale (domenica o altro sostitutivo), al personale deve essere corrisposta una somma equivalente alla retribuzione giornaliera, a meno che non gli sia consentito di assentarsi dal lavoro in altro giorno feriale. [Art. 114] A) calcolando il 90,66% di un dodicesimo dell'ammontare annuo delle seguenti competenze: stipendio, [...] scatto di anzianità [...] B) dividendo il risultato per divisori ottenuti: per la retribuzione giornaliera, in ipotesi di orario di lavoro settimanale distribuito su 5 o 6 giorni, moltiplicando i giorni di lavoro settimanale per 52 e dividendo il prodotto per 12, con arrotondamento a 0,5 per difetto."
+        },
+        "transformation": "The holidays of the law (art. 51: the national and weekday holidays of L. 260/1949 as amended, 4 October included from 2026; 4 November and the Patrono, a semifestivo, are not festivi) falling on the weekly rest day (Employment.weekly_rest_day, Sunday or the day in its place): 90.66% of a twelfth of the annual pay (the monthly stipendio and seniority of the chain times the 13 yearly payments of art. 46) over 21.5 (5 x 52 / 12 = 21.67, rounded down to 0.5), the five-day week of the bank timetable. Art. 103 (quadri direttivi) and art. 114 (aree professionali) give the same formula.",
+        "note": "The six-day week divides by 26 (6 x 52 / 12): the engine has no input for the days of a full-time week and uses 21.5 (open). The bank may let the worker take another weekday off in place of the payment: not modelled, the payment is due. The allowances of art. 114 lett. A (preposto, ex ristrutturazione, assegni ex differenza) enter only as far as the chain carries them; a rotating rest day is not modelled.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-04T18:00:00Z",
+          "effective_from": "2024-07-09",
+          "verification_status": "unverified"
+        }
       }
     }
   },
