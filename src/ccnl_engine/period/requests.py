@@ -21,6 +21,7 @@ from ccnl_engine.employment.fact.inputs import (
 )
 from ccnl_engine.employment.inputs import Apprentice, FixedTerm, Permanent
 from ccnl_engine.employment.period.inputs import EmploymentPeriod
+from ccnl_engine.employment.rest_day.inputs import Weekday
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.irpef.declaration.inputs import PriorYearTaxFacts
 from ccnl_engine.irpef.other_income.inputs import CurrentYearTaxFacts
@@ -97,15 +98,13 @@ class PeriodCalculationRequest:
             ``weekly_hours`` and the months worked.  A regular or termination run of a
             month not worked posts no monthly pay, and the months not worked accrue no
             extra-month rateo.  ``None`` for a horizontal part time or a full time.
-        employment_period: Start and optional end of the employment.
-            ``None`` when not tracked.
-            :func:`~ccnl_engine.year.tax_year.services.calculate_tax_year`
-            uses it to select the runs of the year.  A regular run must fall
-            in a month with at least one day of employment.
-        seniority: Recognised seniority, aged to the competence month.
-            ``None`` means not known: when the level pays seniority
-            increments or service-gated allowances the run has a
-            ``missing_fact`` blocker.
+        employment_period: Start and optional end of the employment, ``None`` when
+            not tracked; it selects the runs of the year, and a regular run must
+            fall in a month with at least one day of employment.
+        weekly_rest_day: Day of the weekly rest, for a CCNL paying a holiday on it.
+        seniority: Recognised seniority, aged to the competence month.  ``None``
+            means not known: when the level pays seniority increments or
+            service-gated allowances the run has a ``missing_fact`` blocker.
         roles: Role codes of the role-specific allowances, ``None`` unknown.
         individual_elements: Pay elements agreed with the worker above the
             CCNL minimum, paid as fixed allowances of the level.
@@ -169,6 +168,7 @@ class PeriodCalculationRequest:
     ordinary_hours_worked: ContributableHours | None = None
     full_time_weekly_hours: WeeklyHours | None = None
     work_pattern: WorkPattern | None = None
+    weekly_rest_day: Weekday = Weekday.SUNDAY
     employment_period: EmploymentPeriod | None = None
     seniority: SeniorityFact | None = None
     roles: frozenset[str] | None = None
@@ -296,6 +296,7 @@ class PeriodCalculationRequest:
             ),
             ("full_time_weekly_hours", self.full_time_weekly_hours, WeeklyHours, True),
             ("work_pattern", self.work_pattern, WorkPattern, True),
+            ("weekly_rest_day", self.weekly_rest_day, Weekday, False),
             ("employment_period", self.employment_period, EmploymentPeriod, True),
             ("seniority", self.seniority, SeniorityFact, True),
             ("sector", self.sector, EmploymentSector, True),

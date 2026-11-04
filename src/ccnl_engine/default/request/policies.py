@@ -113,6 +113,9 @@ REQUEST_DEFAULTS: Mapping[str, FieldDefault] = {
         "a horizontal part time or a full time: every month is worked and "
         "weekly_hours alone sets the part-time ratio"
     ),
+    "Employment.weekly_rest_day": absence_is_fact(
+        "the rest on Sunday, the day of L. 370/1934 art. 3"
+    ),
     "Employment.individual_elements": absence_is_fact("no element above the minimo"),
     "Employment.personal_withholdings": absence_is_fact("no order notified"),
     "PersonalWithholding.installment": absence_is_fact("a legal fraction, none stated"),

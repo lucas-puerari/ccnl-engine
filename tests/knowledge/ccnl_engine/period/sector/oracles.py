@@ -858,7 +858,14 @@ def _turismo_june() -> tuple[Pay, ...]:
     )
 
 
-TURISMO_YEAR = sector_year(_turismo_year(), _TURISMO, _FULL_YEAR, terminated=False)
+#: Art. 127 c. 4 pays one day of a holiday on the rest day (Sunday unless
+#: stated): 1 November 2026; 4 November, a Wednesday, is no rest day.
+TURISMO_YEAR = sector_year(
+    with_sunday_holidays(_turismo_year(), 11, 1, 26),
+    _TURISMO,
+    _FULL_YEAR,
+    terminated=False,
+)
 TURISMO_JUNE = sector_year(_turismo_june(), _TURISMO, _HALF_YEAR, terminated=True)
 
 

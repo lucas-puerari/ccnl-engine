@@ -51,6 +51,12 @@ class SundayHolidayPay(BaseModel):
             pay (Concia art. 46 lett. g: the quadri function allowance).
         ex_november_fourth: The pay of 4 November in another month and
             share, in place of the quota of ``11-04``.
+        on_rest_day: The clause pays the holidays falling on the worker's
+            weekly rest day, whatever day it is (Turismo art. 127 c. 4: "A
+            tutto il personale assente nelle giornate di festività per riposo
+            settimanale [...] dovrà essere corrisposta una giornata di
+            retribuzione"), and ``11-04`` on 4 November itself (art. 128 c.
+            4); the statutory holidays on a Sunday stay paid by the law.
         provenance: The CCNL clause.
     """
 
@@ -60,4 +66,5 @@ class SundayHolidayPay(BaseModel):
     divisor: Decimal | None = Field(default=None, gt=0)
     excluded: frozenset[str] = frozenset()
     ex_november_fourth: ExHolidayPay | None = None
+    on_rest_day: bool = False
     provenance: RuleProvenance
