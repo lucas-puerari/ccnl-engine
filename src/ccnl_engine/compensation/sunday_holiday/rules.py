@@ -13,6 +13,7 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.absence.models import DailyDivisorMethod
+from ccnl_engine.calendar.holiday.models import easter_sunday
 from ccnl_engine.pay_item.rounding.policies import money
 
 if TYPE_CHECKING:
@@ -22,6 +23,7 @@ if TYPE_CHECKING:
     from ccnl_engine.period.context.services import RunContext
 
 __all__ = [
+    "EASTER",
     "FOURTH_NOVEMBER",
     "STATUTORY",
     "divisor",
@@ -34,6 +36,8 @@ __all__ = [
 
 #: Day code of 4 November, celebrated on the first Sunday of November.
 FOURTH_NOVEMBER = "11-04"
+#: Day code of Easter Sunday, a holiday of some CCNLs only.
+EASTER = "easter"
 #: The festa nazionale, 25 April and 1 May (L. 260/1949 art. 5).
 STATUTORY = frozenset({"04-25", "05-01", "06-02"})
 _NOVEMBER = 11
@@ -72,7 +76,9 @@ def sundays(ctx: RunContext) -> list[tuple[str, dt.date, bool]]:
     Returns:
         Each day code, date and whether the holiday is a recent one (with a
         ``valid_from``, as 4 October from 2026), within the employment; in
-        November, also 4 November on the first Sunday of the month.
+        November, also 4 November on the first Sunday of the month; Easter
+        Sunday (``easter``), no holiday with civil effects, only when the
+        CCNL clause names it.
     """
     year, month = ctx.request.period_id.year, ctx.request.period_id.month
     found = []
@@ -86,6 +92,16 @@ def sundays(ctx: RunContext) -> list[tuple[str, dt.date, bool]]:
         day = _first_sunday_of_november(year)
         if employed(ctx, day):
             found.append((FOURTH_NOVEMBER, day, False))
+    rules = ctx.contract.ccnl.work_rules
+    clause = None if rules is None else rules.sunday_holidays
+    easter = easter_sunday(year)
+    if (
+        clause is not None
+        and EASTER in clause.holidays
+        and easter.month == month
+        and employed(ctx, easter)
+    ):
+        found.append((EASTER, easter, False))
     return found
 
 
