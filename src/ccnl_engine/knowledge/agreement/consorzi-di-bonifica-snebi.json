@@ -2998,7 +2998,7 @@
     "effective_until": null,
     "source": "https://www.redigo.info/2026/03/06/ccnl-consorzi-di-bonifica-le-tabelle-retributive-aggiornate/",
     "verification_status": "unverified",
-    "source_hash": "a151c885a67f3e133290211301f64682944e8c8b00d1b4ffd3df6439d1b90646",
+    "source_hash": "0fc46c49bf6fdbcdce2c8e06b4e10792eb094d27bdc637973b9937126f758327",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -3202,6 +3202,39 @@
           "verified_at": "2026-10-31T18:00:00Z",
           "verification_status": "verified",
           "review_id": "2026-10-31-ai-sickness-pay-texts"
+        }
+      }
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "04-25",
+        "05-01",
+        "06-02",
+        "11-04"
+      ],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-consorzi-bonifica-2025-05-21-fai-cisl",
+            "title": "Contratto Collettivo Nazionale di Lavoro per i Dipendenti dei Consorzi di Bonifica e di Miglioramento Fondiario, Roma 21 maggio 2025 (FAI-CISL)",
+            "kind": "associazione",
+            "url": "https://www.faicisl.it/attachments/article/2356/FAI%20CISL%20-%20CCNL%20BONIFICA%202023%20-%202026.pdf",
+            "published_on": "2025-05-21",
+            "sha256": "8f09770620642bc2d3179029ddacf84f7f5530831c5d5d5d6f854f2fb955c83a"
+          },
+          "page": "59, 168",
+          "section": "Art. 50 - Festività, chiarimento a verbale; accordo sulle festività soppresse, art. 3",
+          "quote": "Le parti si danno atto che il trattamento economico, previsto dall'art. 5, ultimo comma, ultimo periodo, della legge 27 maggio 1949, n. 260, in favore dei \"salariati in misura fissa\", nelle ipotesi in cui le ricorrenze della festa nazionale (2 giugno), dell'anniversario della Liberazione (25 aprile), della festa del lavoro (1 maggio), e dell'unità nazionale (4 novembre), cadano di domenica, spetta, oltre che agli operai, anche al personale appartenente [...] [Art. 3] Nei confronti di tutto il personale trova applicazione per le due festività nazionali (2 giugno e 4 novembre) la cui celebrazione è stata spostata, rispettivamente, alla prima domenica di giugno e di novembre, la norma di cui all'art. 1 della legge 31 marzo 1954, n. 90 e successive modifiche che disciplina l'ipotesi di festività nazionale coincidente con la domenica."
+        },
+        "transformation": "The civil holidays of L. 260/1949 art. 5 (25 April, 1 May, 2 June) on a Sunday, extended to every category, and 4 November on the first Sunday of November: the monthly pay of the chain over the CCNL absence divisor (26).",
+        "note": "2 June is again a holiday on its own date since L. 336/2000: the moved celebration of art. 3 applies to 4 November only. The religious holidays on a Sunday are not paid apart. 4 October, a holiday from 2026 (L. 151/2025), is not in the list: its Sunday stays open.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-04T13:00:00Z",
+          "effective_from": "2025-05-21",
+          "verification_status": "unverified"
         }
       }
     }
