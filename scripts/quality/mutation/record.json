@@ -1,6 +1,6 @@
 {
-  "commit": "732caaee0dccb28a6e449d5753fcb5ed27ebae12",
-  "date": "2026-11-03",
+  "commit": "50f112234f2ccd50997e399cab68a1c621c8d487",
+  "date": "2026-11-04",
   "min_score": 93.0,
   "perimeter": [
     "src/ccnl_engine/contribution/rules.py",
@@ -159,23 +159,23 @@
   ],
   "scores": {
     "core": {
-      "killed": 10107,
-      "survived": 302,
+      "killed": 10196,
+      "survived": 306,
       "other": 5,
       "not_checked": 0,
       "equivalent": 18,
-      "total": 10414,
-      "score": 97.1,
+      "total": 10507,
+      "score": 97.0,
       "minimum": 93.0
     },
     "src/ccnl_engine/contribution/rules.py": {
-      "killed": 117,
-      "survived": 1,
+      "killed": 200,
+      "survived": 5,
       "other": 0,
       "not_checked": 0,
       "equivalent": 0,
-      "total": 118,
-      "score": 99.2,
+      "total": 205,
+      "score": 97.6,
       "minimum": 93.0
     },
     "src/ccnl_engine/irpef/rules.py": {
@@ -1069,12 +1069,12 @@
       "minimum": 89.1
     },
     "src/ccnl_engine/contribution/sick_pay_supplement/services.py": {
-      "killed": 28,
+      "killed": 34,
       "survived": 0,
       "other": 0,
       "not_checked": 0,
       "equivalent": 0,
-      "total": 28,
+      "total": 34,
       "score": 100.0,
       "minimum": 93.0
     },

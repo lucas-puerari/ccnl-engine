@@ -7,7 +7,9 @@ the pubblici esercizi pay 0.77% (INPS circ. 71/1985, from D.M. 1 febbraio
 1957; authorisation code 9P).  The CCNL names the regime in
 ``work_rules.sickness_rules.inps_regime`` and the INPS table of the year
 holds the rate; the contribution is the employer's alone and is not IVS,
-so the massimale does not cap it.
+so the massimale does not cap it.  INPS charges it in the one contribution
+of the worker, so it joins the rounding of the whole rate
+(:func:`~ccnl_engine.contribution.rules.whole_rate_addition`).
 """
 
 from __future__ import annotations
@@ -16,8 +18,8 @@ from dataclasses import replace
 from typing import TYPE_CHECKING
 
 from ccnl_engine.contribution.results import ContributionComponent
+from ccnl_engine.contribution.rules import whole_rate_addition
 from ccnl_engine.errors import DataIntegrityError
-from ccnl_engine.pay_item.rounding.policies import money
 
 if TYPE_CHECKING:
     from decimal import Decimal
@@ -59,7 +61,7 @@ def with_sick_pay_supplement(
             f"for the regime {regime!r} the CCNL names"
         )
         raise DataIntegrityError(msg)
-    amount = money(base * supplement.employer_rate)
+    amount = whole_rate_addition(breakdown, inp.rules, base, supplement.employer_rate)
     component = ContributionComponent(
         EMPLOYER_COMPONENT, base, supplement.employer_rate, amount
     )
