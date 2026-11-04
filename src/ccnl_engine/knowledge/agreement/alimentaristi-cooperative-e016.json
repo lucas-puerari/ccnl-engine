@@ -2458,7 +2458,7 @@
     "effective_until": null,
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016",
     "verification_status": "unverified",
-    "source_hash": "8d1da15cd47a61fc638a0bac7f4c610830dc3956562ac98f5631778d1a3bba62",
+    "source_hash": "1ab3b4fcd554ed7c72f64a5878c7fe2a08bea94bbd3b9d8c6785b9546efbe680",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -2674,6 +2674,47 @@
           "review_id": "2026-10-31-ai-sickness-comporto"
         },
         "note": "Not modelled: the 3 or 7 days of franchigia of the seasonal fixed-term workers of some sectors for an illness of up to 14 days; the 4 months of the fixed-term workers; the sugar annex (operai: full pay for six months without carenza); the serious illnesses without comporto pending the invalidity pension. A renewal after the 2019-2023 text was not checked."
+      }
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "04-25",
+        "05-01",
+        "06-02",
+        "01-01",
+        "01-06",
+        "easter_monday",
+        "08-15",
+        "11-01",
+        "12-08",
+        "12-25",
+        "12-26",
+        "11-04"
+      ],
+      "divisor": "26",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "flai-ccnl-cooperazione-alimentare-2023",
+            "title": "CCNL cooperative di trasformazione di prodotti agricoli e zootecnici e lavorazione prodotti alimentari 2023 (FLAI-CGIL)",
+            "kind": "associazione",
+            "url": "https://www.flai.it/wp-content/uploads/2023/07/CCNL-cooperazione-alimentare-2023.pdf",
+            "sha256": "a38eb5c832d99cddb4c6fe1b31c24b72291c8362b8633aa3c523c6a189fc043a"
+          },
+          "page": "42",
+          "section": "Art. 32 - Giorni festivi - Festività infrasettimanali e nazionali",
+          "quote": "Nel solo caso in cui una delle giornate festive sopra indicate cada di domenica ai lavoratori è dovuto, in aggiunta al normale trattamento economico, un importo pari ad una quota giornaliera della retribuzione di fatto. Il predetto importo sarà determinato sulla base di 1/26 della retribuzione mensile fissa. [...] Per quanto riguarda la festività del 4 novembre il lavoratore beneficerà del trattamento economico previsto per le festività che coincidono con la domenica."
+        },
+        "transformation": "The festività of points b) and c) of art. 32 (but the Patrono of point d) on a Sunday, and 4 November on the first Sunday of November: the monthly pay of the chain over 26.",
+        "note": "The Patrono is not in the national calendar and is not paid. 4 October, a holiday from 2026 (L. 151/2025), is not in the list: its Sunday stays open. The saccarifera addetti of the specific provisions are not told apart.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-04T10:00:00Z",
+          "effective_from": "2020-12-02",
+          "verification_status": "unverified"
+        }
       }
     }
   }

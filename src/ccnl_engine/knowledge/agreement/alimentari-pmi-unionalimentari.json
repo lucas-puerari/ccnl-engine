@@ -2004,7 +2004,7 @@
     "effective_until": null,
     "source": "https://www.unionalimentari.com/",
     "verification_status": "unverified",
-    "source_hash": "baf0dd84e2545507de472722ab2e7de4218fcf4831ad64a30f8f4612fd36e8ce",
+    "source_hash": "5dadd0ff0facaf742788bd18ae10964abd30f7d02e9a1135c8fd801e385c1ada",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2206,6 +2206,48 @@
           "comporto_days": 365
         }
       ]
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "04-25",
+        "05-01",
+        "06-02",
+        "01-01",
+        "01-06",
+        "easter_monday",
+        "08-15",
+        "11-01",
+        "12-08",
+        "12-25",
+        "12-26",
+        "11-04"
+      ],
+      "divisor": "26",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "alimentari-pmi-unionalimentari-ccnl-testo",
+            "title": "Contratto Collettivo Nazionale di Lavoro per i lavoratori dipendenti della piccola e media industria alimentare - 28 novembre 2013 - 1 maggio 2013 – 30 giugno 2016",
+            "kind": "associazione",
+            "url": "https://www.faicisl.it/attachments/article/2354/CCNL%20Piccola%20e%20media%20industria%20alimentare%202013.pdf",
+            "published_on": "2013-11-28",
+            "sha256": "55e1579703ca5cadfc56c4ae079da0820d4f760fa2812fd842a2fcd9f4e34418"
+          },
+          "page": "100",
+          "section": "Art. 31 - Giorni festivi",
+          "quote": "Nel solo caso in cui una delle giornate festive di cui ai precedenti punti a), b) e c) cada di domenica, ai lavoratori è dovuto, in aggiunta al normale trattamento economico, un importo pari ad 1/26° della retribuzione normale di fatto. [...] Per quanto riguarda la festività del 4 novembre, il lavoratore beneficerà del trattamento economico previsto per le festività che coincidono con la domenica."
+        },
+        "transformation": "The festività of points a) and b) (but the Patrono of point c) on a Sunday, and 4 November on the first Sunday of November: the monthly pay of the chain over 26.",
+        "note": "The text is the 2013 CCNL: the 2016, 2021 and 2025 renewals were not read. The Patrono is not in the national calendar and is not paid. 4 October, a holiday from 2026 (L. 151/2025), is not in the list: its Sunday stays open.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-04T10:00:00Z",
+          "effective_from": "2013-01-01",
+          "verification_status": "unverified"
+        }
+      }
     }
   }
 }
