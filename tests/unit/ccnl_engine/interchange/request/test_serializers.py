@@ -57,6 +57,7 @@ from ccnl_engine.employment.period.inputs import (
     NaspiCase,
     TerminationCause,
 )
+from ccnl_engine.employment.rest_day.inputs import Weekday
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.event.facade import WorkEvent
 from ccnl_engine.extra_month.schedule.models import (
@@ -229,6 +230,7 @@ def _employment(contract: Contract) -> Employment:
             weekday_hours=(Decimal(6),) * 5 + (Decimal(0),) * 2,
             months=frozenset(range(1, 12)),
         ),
+        weekly_rest_day=Weekday.SATURDAY,
         seniority=SeniorityFact(
             60,
             date(2025, 12, 31),

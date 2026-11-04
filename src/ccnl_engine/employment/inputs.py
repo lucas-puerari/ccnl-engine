@@ -13,6 +13,7 @@ from ccnl_engine.compensation.individual.inputs import (
     check_individual_elements,
 )
 from ccnl_engine.contribution.ceiling.inputs import ContributionHistory
+from ccnl_engine.employment.apprentice.inputs import Apprentice
 from ccnl_engine.employment.category.models import (
     WorkerCategory,
     parse_worker_category,
@@ -27,6 +28,7 @@ from ccnl_engine.employment.fact.inputs import (
 )
 from ccnl_engine.employment.fixed_term.inputs import FixedTerm
 from ccnl_engine.employment.period.inputs import EmploymentPeriod
+from ccnl_engine.employment.rest_day.inputs import Weekday, check_rest_day
 from ccnl_engine.pension_fund.inputs import (
     PENSION_FUND_TYPES,
     NoPensionFund,
@@ -45,13 +47,11 @@ from ccnl_engine.validators import (
     reject,
     require_decimal,
     require_instances,
-    require_int,
     require_str,
 )
 
 __all__ = ["Apprentice", "Contract", "Employment", "FixedTerm", "Permanent"]
 
-_CONTRACT_FEATURE = "contract_type"
 #: A CCNL file name of the bundle: no directory, no other extension.
 _CCNL_ID = re.compile(r"[a-z0-9][a-z0-9-]*|[A-Z][A-Z0-9]{3}")
 
@@ -62,44 +62,6 @@ class Permanent:
 
     type: Literal["permanent"] = field(default="permanent", init=False)
     entry_pay: bool = False
-
-
-@dataclass(frozen=True, slots=True)
-class Apprentice:
-    """Apprenticeship contract; salary is derived from CCNL apprenticeship rules.
-
-    Attributes:
-        months_elapsed: Months of apprenticeship service elapsed so far,
-            ``>= 0``.  Used to look up the applicable ``apprenticeship_pct``
-            in the CCNL percentage track, or the under-classification level
-            in under-classification tracks.
-        track: Name of the CCNL apprenticeship track to apply. Required
-            only when more than one track covers the destination level;
-            ``None`` lets the engine select the unique applicable track.
-
-    Raises:
-        InvalidInputError: When ``months_elapsed`` is not a non-negative
-            int or ``track`` is not a non-blank string.
-    """
-
-    months_elapsed: int
-    track: str | None = None
-    type: Literal["apprentice"] = field(default="apprentice", init=False)
-
-    def __post_init__(self) -> None:  # noqa: D105
-        require_int(
-            self.months_elapsed,
-            "Apprentice.months_elapsed",
-            feature=_CONTRACT_FEATURE,
-            minimum=0,
-        )
-        require_str(
-            self.track,
-            "Apprentice.track",
-            feature=_CONTRACT_FEATURE,
-            non_blank=True,
-            optional=True,
-        )
 
 
 #: Every supported employment contract type.
@@ -145,6 +107,9 @@ class Employment:
             works.  A month not worked pays no monthly pay and accrues no extra-month
             rateo.  ``None`` for a horizontal part time or a full time worked every
             month.
+        weekly_rest_day: Day of the week of the weekly rest, Sunday unless stated
+            (L. 370/1934 art. 3); a CCNL that pays a holiday falling on the rest day
+            pays it on this day.  A rest day that rotates is not modelled.
         seniority: Recognised seniority, aged by the engine to each run. ``None`` means
             not known: a run whose level pays seniority increments or service-gated
             allowances then has a ``missing_fact`` blocker, and its amounts leave them
@@ -204,8 +169,9 @@ class Employment:
     Raises:
         InvalidInputError: When a field is not of its type, a role is not a
             non-blank string, ``weekly_hours`` exceeds ``full_time_weekly_hours``
-            or differs from the weekday hours of ``work_pattern``, ``category``
-            or ``sector`` names no known value, or two individual elements or
+            or differs from the weekday hours of ``work_pattern``, ``category``,
+            ``sector`` or ``weekly_rest_day`` names no known value, the pattern
+            states hours on the rest day, or two individual elements or
             withholdings share a code.
     """
 
@@ -217,6 +183,7 @@ class Employment:
     weekly_hours: WeeklyHours | None = None
     full_time_weekly_hours: WeeklyHours | None = None
     work_pattern: WorkPattern | None = None
+    weekly_rest_day: Weekday = Weekday.SUNDAY
     seniority: SeniorityFact | None = None
     roles: frozenset[str] | None = None
     contribution_history: ContributionHistory | None = None
@@ -261,6 +228,8 @@ class Employment:
             object.__setattr__(self, "public_end_of_service", regime)
         check_within_full_time(self.weekly_hours, self.full_time_weekly_hours)
         check_pattern_hours(self.weekly_hours, self.work_pattern)
+        rest = check_rest_day(self.weekly_rest_day, self.work_pattern)
+        object.__setattr__(self, "weekly_rest_day", rest)
         elements = check_individual_elements(
             self.individual_elements, "Employment.individual_elements"
         )
