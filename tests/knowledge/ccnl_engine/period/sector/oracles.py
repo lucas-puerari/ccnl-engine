@@ -277,7 +277,9 @@ def _with_fund(pay: Pay, health: HealthFund | None) -> Pay:
 def _payment(pay: Pay, rates: Rates) -> Payment:
     paid = pay.gross - pay.absence
     base = _whole_euro(paid)
-    employee = _cents(base * rates.employee_ivs) + _cents(base * rates.employee_other)
+    # The payslip withholds one contribution at the whole employee rate,
+    # to cents once (FILCTEM CGIL 2024 guide p. 21: "1.672 x 9,49% = 158,67").
+    employee = _cents(base * (rates.employee_ivs + rates.employee_other))
     # INPS charges one contribution on the month's base at the whole rate,
     # "con arrotondamento ai centesimi" (Documento tecnico UniEmens,
     # <Contributo>); the employer pays it less the employee's withheld share.
