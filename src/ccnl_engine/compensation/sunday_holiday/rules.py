@@ -89,7 +89,11 @@ def _rest_day(ctx: RunContext, clause: SundayHolidayPay | None) -> int:
 
 
 def _fourth_november(year: int, clause: SundayHolidayPay | None) -> dt.date:
-    if clause is not None and clause.on_rest_day:
+    if (
+        clause is not None
+        and clause.on_rest_day
+        and not clause.fourth_november_on_sunday
+    ):
         return dt.date(year, _NOVEMBER, 4)
     return _first_sunday_of_november(year)
 
@@ -103,8 +107,9 @@ def sundays(ctx: RunContext) -> list[tuple[str, dt.date, bool]]:
         holidays on a Sunday, or on the worker's rest day for a clause that
         pays it (with the statutory ones on a Sunday); in November, also 4
         November on the first Sunday of the month, or on the 4th when it is
-        the rest day of such a clause; Easter Sunday (``easter``), no
-        holiday with civil effects, only when the CCNL clause names it.
+        the rest day of such a clause (unless it keeps the Sunday); Easter
+        Sunday (``easter``), no holiday with civil effects, only when the
+        CCNL clause names it.
     """
     year, month = ctx.request.period_id.year, ctx.request.period_id.month
     rules = ctx.contract.ccnl.work_rules
