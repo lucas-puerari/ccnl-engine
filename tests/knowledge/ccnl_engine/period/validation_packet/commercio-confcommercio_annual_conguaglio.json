@@ -63,7 +63,7 @@
     },
     {
       "output": "employee_contributions",
-      "value": "179.53",
+      "value": "179.52",
       "perimeter": "INPS contributions withheld from the worker in the run",
       "tolerance": "0.01",
       "rounding": "half_up_cents",
@@ -71,7 +71,7 @@
     },
     {
       "output": "employer_contributions",
-      "value": "554.08",
+      "value": "554.09",
       "perimeter": "INPS contributions due by the employer for the run (INAIL excluded)",
       "tolerance": "0.01",
       "rounding": "half_up_cents",
@@ -87,7 +87,7 @@
     },
     {
       "output": "net",
-      "value": "1675.19",
+      "value": "1675.20",
       "perimeter": "Net pay of the run, before advances and deductions unrelated to payroll",
       "tolerance": "0.01",
       "rounding": "half_up_cents",
@@ -103,7 +103,7 @@
     },
     {
       "output": "employer_cost",
-      "value": "2521.39",
+      "value": "2521.40",
       "perimeter": "Gross pay, employer contributions, TFR accrual and employer fund contributions of the run",
       "tolerance": "0.01",
       "rounding": "half_up_cents",
@@ -112,10 +112,10 @@
   ],
   "review": {
     "reviewer": "claude-opus-5-5",
-    "date": "2026-11-03",
+    "date": "2026-11-04",
     "owner": "maintainer",
-    "review_by": "2027-05-04",
-    "rewritten_because": "the further quota of the holidays on a Sunday (art. 154 and 210): 1 November and 4 November 2026"
+    "review_by": "2027-05-05",
+    "rewritten_because": "the employee INPS share at the whole employee rate, rounded once"
   },
   "versions": {
     "engine": "0.6.0",
