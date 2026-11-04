@@ -3,7 +3,8 @@
 FIPE art. 131 c. 4, art. 133 c. 4 and art. 159 (CCNL Pubblici Esercizi
 2018) carry the same words and divisor for both FIPE rulesets, as do
 Industria Turistica arts. 86, 87 and 108 (2016) and Turismo Confesercenti
-arts. 117, 118 and 142 (2003).
+arts. 117, 118 and 142 (2003).  Pulizia artigianato art. 23 adds Easter
+and 4 October and keeps 4 November on the first Sunday of November.
 
 "A tutto il personale assente nelle giornate di festività, per riposo
 settimanale [...] dovrà essere corrisposta una giornata di retribuzione
@@ -48,6 +49,7 @@ _FIPE = ("pubblici-esercizi-fipe-angem", "4")
 _FIPE_COLLETTIVA = ("pubblici-esercizi-fipe-angem-ristorazione-collettiva", "4")
 _FEDERTURISMO = ("industria-turistica-federturismo", "B1")
 _CONFESERCENTI = ("turismo-confesercenti", "4")
+_PULIZIA = ("pulizia-artigianato-confartigianato", "3")
 _SAME_CLAUSE = [_FIPE, _FIPE_COLLETTIVA, _FEDERTURISMO, _CONFESERCENTI]
 _SAME_IDS = ["fipe", "collettiva", "federturismo", "confesercenti"]
 _CENT = Decimal("0.01")
@@ -192,6 +194,36 @@ def test_the_same_clause_pays_nothing_off_the_rest_day(ccnl: tuple[str, str]) ->
     result = _run(ccnl, 2026, 11, Weekday.MONDAY)
 
     assert _paid(result) is None
+
+
+@pytest.mark.parametrize(
+    ("year", "month", "rest", "days"),
+    [
+        (2026, 11, Weekday.SUNDAY, "2026-11-01,2026-11-01"),
+        (2026, 4, Weekday.SUNDAY, "2026-04-05"),
+        (2026, 10, Weekday.SUNDAY, "2026-10-04"),
+        (2026, 4, Weekday.MONDAY, "2026-04-06"),
+    ],
+    ids=["ognissanti-and-fourth-november", "easter", "fourth-october", "easter-monday"],
+)
+def test_pulizia_pays_its_holidays_on_the_rest_day(
+    year: int, month: int, rest: Weekday, days: str
+) -> None:
+    """Art. 23 pays each holiday of letters b) and c) on the rest day."""
+    result = _run(_PULIZIA, year, month, rest)
+
+    paid = _paid(result)
+    assert paid is not None
+    assert paid[0] == days
+    assert not _limited(result)
+
+
+def test_pulizia_keeps_the_fourth_of_november_on_sunday() -> None:
+    """A Wednesday rest does not move 4 November off the first Sunday."""
+    result = _run(_PULIZIA, 2026, 11, Weekday.WEDNESDAY)
+
+    assert _paid(result) is None
+    assert not _limited(result)
 
 
 def test_a_sunday_clause_ignores_the_rest_day() -> None:
