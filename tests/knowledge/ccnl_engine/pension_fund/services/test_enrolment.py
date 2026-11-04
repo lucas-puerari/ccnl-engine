@@ -139,43 +139,47 @@ class TestTabaccoAlifond:
         assert solidarity == Decimal("2.65") - Decimal("3.53") - Decimal("4.94")
 
     def test_employer_cost_rises_by_fund_and_solidarity(self) -> None:
-        """14 x (26.46 + 2.65 - 3.53 - 4.94) = 288.96; the gross does not move.
+        """13 x (26.46 + 2.65 - 3.53 - 4.94) + 22.22 = 290.54; the gross does not move.
 
-        Fund and solidarity add 407.54 a year; the TFR paid to the fund
-        takes back 14 x (3.53 + 4.94) = 118.58 of contributions.
+        November also pays two Sunday quotas of 1/26 (CCNL art. 16: 1
+        November and 4 November on Sunday 1 November), so its fund base is
+        1,763.68 + 135.67 = 1,899.35: employer 28.49, solidarity 2.85, and
+        the TFR paid to the fund takes back 3.80 + 5.32 on 1,899.
         """
         enrolled, not_enrolled = _year(_tabacco()), _year(_tabacco(NoPensionFund()))
         delta = enrolled.annual_employer_cost - not_enrolled.annual_employer_cost
-        assert delta == Decimal("288.96")
+        assert delta == Decimal("290.54")
         assert enrolled.annual_gross == not_enrolled.annual_gross
 
     def test_employee_contribution_leaves_the_taxable(self) -> None:
-        """Within the cap the taxable falls by 14 x 17.64 = 246.96.
+        """Within the cap the taxable falls by 13 x 17.64 + 18.99 = 248.31.
 
-        The employer part (370.44) enters the income and is deducted with
-        the employee part: 617.40 deducted in the year.
+        November's base of 1,899.35 (two Sunday quotas) gives an employee
+        part of 18.99 and an employer part of 28.49; the employer part enters
+        the income and is deducted with the employee part: 13 x 44.10 +
+        47.48 = 620.78 deducted in the year.
         """
         enrolled, not_enrolled = _year(_tabacco()), _year(_tabacco(NoPensionFund()))
         closing = enrolled.period_results[-1].closing_state.cash.earnings
         base = not_enrolled.period_results[-1].closing_state.cash.earnings
-        assert base.taxable - closing.taxable == Decimal("246.96")
-        assert closing.pension_deducted == Decimal("617.40")
+        assert base.taxable - closing.taxable == Decimal("248.31")
+        assert closing.pension_deducted == Decimal("620.78")
 
     def test_net_falls_by_employee_part_less_irpef_saved(self) -> None:
-        """The IRPEF saved is the marginal effect on 246.96 of taxable.
+        """The IRPEF saved is the marginal effect on 248.31 of taxable.
 
-        At about 22 100 of taxable: 23% bracket, and the Art. 13 c. 1
+        At about 22 200 of taxable: 23% bracket, and the Art. 13 c. 1
         lett. b TUIR deduction 1910 + 1190 x (28000 - R) / 13000 rises by
-        1190/13000 per euro.  Saving 246.96 x (0.23 + 1190/13000) = 79.41.
+        1190/13000 per euro.  Saving 248.31 x (0.23 + 1190/13000) = 79.84.
         """
         enrolled, not_enrolled = _year(_tabacco()), _year(_tabacco(NoPensionFund()))
         irpef = (
             not_enrolled.period_results[-1].closing_state.cash.tax.irpef
             - enrolled.period_results[-1].closing_state.cash.tax.irpef
         )
-        assert abs(irpef - Decimal("79.41")) <= Decimal("0.02")
+        assert abs(irpef - Decimal("79.84")) <= Decimal("0.02")
         assert enrolled.annual_net - not_enrolled.annual_net == irpef - Decimal(
-            "246.96"
+            "248.31"
         )
 
     def test_decision_records_rates_and_source(self) -> None:
