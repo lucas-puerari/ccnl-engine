@@ -2446,6 +2446,49 @@
     "source": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf",
     "source_type": "contracting_party",
     "verification_status": "unverified",
-    "source_hash": "fbe1caf5fbc191a5211e4b99fe3bf7a00c925695cee4af9f7925cf3f37023f79"
+    "source_hash": "698c4aa35b1e08c7db50cb7deaeda18de669875e6515110bcf01db1cb3240f64"
+  },
+  "work_rules": {
+    "sunday_holidays": {
+      "holidays": [
+        "04-25",
+        "05-01",
+        "06-02",
+        "01-01",
+        "01-06",
+        "easter_monday",
+        "08-15",
+        "11-01",
+        "12-08",
+        "12-25",
+        "12-26",
+        "11-04"
+      ],
+      "divisor": "26",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "flai-ccnl-tabacco-2021-2024",
+            "title": "CCNL Industria del tabacco 2021-2024 (FLAI-CGIL)",
+            "kind": "associazione",
+            "url": "https://www.flai.it/wp-content/uploads/2023/07/CCNL-Industria-Tabacco-2021-2024.pdf",
+            "sha256": "45297ea8fa28431034b7b1c979f06b02fb69647d01312c5fa596fba53df37ae5"
+          },
+          "page": "31, 34-35",
+          "section": "Articolo 16 - Riposo settimanale e giorni festivi; Articolo 15",
+          "quote": "Nel solo caso in cui una delle sopraddette giornate festive cada di domenica, ai lavoratori è dovuto, in aggiunta al normale trattamento economico, un importo pari ad una quota giornaliera della retribuzione di fatto. Il predetto importo sarà determinato sulla base di 1/26 della retribuzione mensile fissa. [Art. 15] Per quanto riguarda le festività la cui celebrazione è spostata alla domenica successiva, i lavoratori beneficeranno del trattamento previsto per le festività che coincidono con la domenica."
+        },
+        "transformation": "The festività of letters a) and b) of art. 16 (but SS. Pietro e Paolo, the Rome Patrono) on a Sunday, and 4 November, the festività whose celebration moved to the first Sunday of November: the monthly pay of the chain over 26.",
+        "note": "The Patrono is not in the national calendar and is not paid. 4 October, a holiday from 2026 (L. 151/2025), is not in the list: its Sunday stays open. The seasonal workers paid by percentage are not told apart.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-04T15:00:00Z",
+          "effective_from": "2021-01-01",
+          "verification_status": "unverified"
+        }
+      }
+    }
   }
 }
