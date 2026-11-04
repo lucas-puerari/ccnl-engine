@@ -193,9 +193,12 @@ def test_mid_year_hire_projects_the_tredicesima_it_will_accrue() -> None:
     Each regular month withholds under art. 23 c. 2 lett. a) DPR 600/1973:
     23% of 2,001.61 = 460.37, less the art. 13 deduction of the 184 days
     (1,955 x 184 / 365 = 985.53) times the days of the month over 184: 31
-    days give 166.04 and 294.33 withheld, 30 days 160.68 and 299.69.  The
-    tredicesima settles the year (art. 23 c. 3): the IRPEF withheld is the
-    net IRPEF of the final taxable for 184 days.
+    days give 166.04 and 294.33 withheld, 30 days 160.68 and 299.69.
+    November also pays two further quotas of 1/26 (CCNL art. 9: 1 November
+    and the 4 November celebrated on Sunday 1 November): 2,381.54 less
+    218.91 IVS and 7.15 CIGS on 2,382 is 2,155.48, which withholds 335.08.
+    The tredicesima settles the year (art. 23 c. 3): the IRPEF withheld is
+    the net IRPEF of the final taxable for 184 days.
     """
     year = ENGINE.calculate_competence_year(
         CompetenceYearPlan(
@@ -220,10 +223,15 @@ def test_mid_year_hire_projects_the_tredicesima_it_will_accrue() -> None:
 
     assert len(runs) == 7
     assert july_projection == Decimal("13010.22")
-    for run, days in zip(runs[:6], (31, 31, 30, 31, 30, 31), strict=True):
+    monthly = [Decimal("2001.61")] * 6
+    monthly[4] = Decimal("2155.48")
+    for run, taxable, days in zip(
+        runs[:6], monthly, (31, 31, 30, 31, 30, 31), strict=True
+    ):
         assert run.tax_computation.ordinary_tax == regular_month_withholding(
-            Decimal("2001.61"), Decimal("13010.22"), days, employment_days=184
+            taxable, Decimal("13010.22"), days, employment_days=184
         )
+    assert runs[4].tax_computation.ordinary_tax == Decimal("335.08")
     assert runs[0].tax_computation.ordinary_tax == Decimal("294.33")
     assert runs[2].tax_computation.ordinary_tax == Decimal("299.69")
     assert abs(withheld - net_irpef(final_taxable, 184)) <= _CENT

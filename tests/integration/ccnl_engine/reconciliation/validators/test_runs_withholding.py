@@ -256,24 +256,26 @@ def test_large_bonus_is_withheld_on_the_payslip_that_pays_it() -> None:
     the annual premiums, on the brackets divided by twelve and without
     deductions.
 
-    November pays 2,211.43 + 20,000 = 22,211.43, an INPS base of 22,211
-    (INPS circ. 208/2001); employee INPS 9.19% (2,041.19) + 0.30% (66.63) +
-    the additional 1% above 4,685.00 (INPS circ. 6/2026 par. 5: 17,526 x 1%
-    = 175.26) = 2,283.08; taxable 19,928.35.  The bonus net of 9.49% INPS,
+    November pays its 2,211.43, two further quotas of 1/26 (CCNL art. 9: 1
+    November and the 4 November celebrated on Sunday 1 November), 170.11,
+    and the 20,000: 22,381.54, an INPS base of 22,382 (INPS circ. 208/2001);
+    employee INPS 9.19% (2,056.91) + 0.30% (67.15) + the additional 1% above
+    4,685.00 (INPS circ. 6/2026 par. 5: 17,697 x 1% = 176.97) = 2,301.03;
+    taxable 20,080.51.  The bonus net of 9.49% INPS,
     the employee rate of the run (an engine choice: the statute does not
     split the INPS of the run, and the 1% above the band falls on the rest
     of the month), is 18,102.00, taxed under lett.
     b): 23% of 2,333.33 + 33% up to 4,166.67 + 43% of the rest = 7,133.86.
-    The rest, 1,826.35, is taxed under lett. a): 23% = 420.06.  The year is
-    projected at 19,775.40 (January to October) + 19,928.35 + December and
-    tredicesima 4,422.86 less 9.49% INPS = 43,706.88: art. 13 1,910 x 0.2860
-    = 546.26, times 30/365 = 44.90; no ulteriore detrazione above 40,000.
-    November withholds 7,133.86 + 420.06 - 44.90 = 7,509.02.
+    The rest, 1,978.51, is taxed under lett. a): 23% = 455.06.  The year is
+    projected at 19,775.40 (January to October) + 20,080.51 + December and
+    tredicesima 4,422.86 less 9.49% INPS = 43,859.04: art. 13 1,910 x 0.2791
+    = 533.08, times 30/365 = 43.81; no ulteriore detrazione above 40,000.
+    November withholds 7,133.86 + 455.06 - 43.81 = 7,545.11.
 
-    Without the bonus November's taxable is 2,211.43 - 209.82 = 2,001.61,
-    taxed 460.37; the year is projected at 25,780.14: art. 13 1,910 + 1,190
-    x 0.1707 + 65 = 2,178.13, times 30/365 = 179.02; ulteriore detrazione
-    1,000 x 30/365 = 82.19; November withholds 199.16.
+    Without the bonus November's taxable is 2,381.54 - 226.06 = 2,155.48,
+    taxed 495.76; the year is projected at 25,934.01: art. 13 1,910 + 1,190
+    x 0.1589 + 65 = 2,164.09, times 30/365 = 177.87; ulteriore detrazione
+    1,000 x 30/365 = 82.19; November withholds 235.70.
 
     The ulteriore detrazione the months before the bonus recognized is not
     due on the final income: L. 207/2024 art. 1 c. 7 recovers it in ten
@@ -293,13 +295,13 @@ def test_large_bonus_is_withheld_on_the_payslip_that_pays_it() -> None:
     )
 
     separate = extra_month_withholding(Decimal("18102.00"))
-    regular = regular_month_withholding(Decimal("1826.35"), Decimal("43706.88"), 30)
+    regular = regular_month_withholding(Decimal("1978.51"), Decimal("43859.04"), 30)
     assert separate == Decimal("7133.86")
-    assert _november_irpef(with_bonus) == separate + regular == Decimal("7509.02")
+    assert _november_irpef(with_bonus) == separate + regular == Decimal("7545.11")
     assert _november_irpef(without) == regular_month_withholding(
-        Decimal("2001.61"), Decimal("25780.14"), 30
+        Decimal("2155.48"), Decimal("25934.01"), 30
     )
-    assert _november_irpef(without) == Decimal("199.16")
+    assert _november_irpef(without) == Decimal("235.70")
     final = with_bonus.period_results[-1].closing_state.cash
     withheld = sum(
         (r.tax_computation.ordinary_tax for r in with_bonus.period_results),

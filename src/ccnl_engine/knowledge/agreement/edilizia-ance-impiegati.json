@@ -2426,7 +2426,7 @@
     "effective_until": null,
     "source": "https://ance.it/wp-content/uploads/allegati/Tabella_nuovi_minimi_orari-_CCNL_2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "3a75c0a9a27f1a55363d6746a55031cd889bab9007eca82b56d980d173e9e8fc",
+    "source_hash": "eb1092aa8b51c6064066150285efeabc3f9a59c0dca68e2b1cbc27a61b6ff0d6",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2932,6 +2932,48 @@
           "verified_at": "2026-10-13T07:47:58Z",
           "verification_status": "verified",
           "review_id": "2026-10-13-ai-production"
+        }
+      }
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "04-25",
+        "05-01",
+        "06-02",
+        "01-01",
+        "01-06",
+        "easter_monday",
+        "08-15",
+        "11-01",
+        "12-08",
+        "12-25",
+        "12-26",
+        "11-04"
+      ],
+      "divisor": "25",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-edilizia-industria-2010-fillea",
+            "title": "CCNL 19 aprile 2010 per i dipendenti delle imprese edili ed affini, testo completo (FILLEA CGIL)",
+            "kind": "associazione",
+            "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL_EDILIZIA_INDUSTRIA_2010_TESTO_COMPLETO.pdf",
+            "published_on": "2010-04-19",
+            "sha256": "ddd11bb850de2e7c642eb662b59e40e36c66e3a534162c505aa1c9a94ac5a00b"
+          },
+          "page": "66, 75",
+          "section": "Art. 61 - Festività - Riposo settimanale; Art. 43 - Orario di lavoro - Permessi individuali",
+          "quote": "In caso di coincidenza con la domenica di una delle festività di cui al punto 3) si applicano le norme dell'accordo interconfederale 3 dicembre 1954. In tal caso l'importo della quota giornaliera della retribuzione di fatto, dovuto ai sensi dell'art. 1 del predetto accordo, è determinato dividendo la retribuzione mensile per venticinque. [Art. 43] In relazione alla festività nazionale del 4 novembre, soppressa dalla citata legge, agli impiegati per il mese di novembre è dovuto, in aggiunta alla normale retribuzione mensile, 1/25 della retribuzione stessa."
+        },
+        "transformation": "The festività of point 3) of art. 61 (but the Patrono) on a Sunday: the monthly pay of the chain over 25; 4 November: 1/25 of the monthly pay with November (art. 43), the quota of the first Sunday of November.",
+        "note": "The Patrono is not in the national calendar and is not paid. 4 October, a holiday from 2026 (L. 151/2025), is not in the 2010 list: its Sunday stays open.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-03T16:00:00Z",
+          "effective_from": "2010-04-19",
+          "verification_status": "unverified"
         }
       }
     }
