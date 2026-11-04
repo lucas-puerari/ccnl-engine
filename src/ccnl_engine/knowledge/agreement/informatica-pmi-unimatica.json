@@ -1495,7 +1495,7 @@
     "effective_until": null,
     "source": "https://www.cdltorino.it/ccnl-informatica-piccola-industria-rettifica-tabelle-retributive/",
     "verification_status": "unverified",
-    "source_hash": "74fd7b2ecc520ee0c88d1ab51301f768a99ad74aa5ccba9853a2a1e6a8bb679b",
+    "source_hash": "62b9b1f6edf9cd4459073039e177fb12b342efa644f756ff67fcb89b753c33de",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -1741,6 +1741,48 @@
           "review_id": "2026-10-31-ai-sickness-comporto"
         },
         "note": "Not modelled: the hospital stays (day hospital included), the life-saving therapies and the continuous absences over a month (up to 90 days) left out of the counts; the absences of up to 3 days counted twice after the first 4 events of the comporto."
+      }
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "04-25",
+        "05-01",
+        "06-02",
+        "01-01",
+        "01-06",
+        "easter_monday",
+        "08-15",
+        "11-01",
+        "12-08",
+        "12-25",
+        "12-26",
+        "11-04"
+      ],
+      "divisor": "26",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "informatica-pmi-unimatica-ccnl-testo",
+            "title": "Contratto Collettivo Nazionale di Lavoro 9 marzo 2021 per i dipendenti della piccola e media impresa della comunicazione, dell'informatica, dei servizi innovativi e della microimpresa (codice contratto G029)",
+            "kind": "associazione",
+            "url": "https://www.slc-cgil.it/images/20210309-CCNL_CONFAPI_UNIGEC_UNIMATICA.pdf",
+            "published_on": "2021-03-09",
+            "sha256": "6bbe76bde0c25e44094fcc648466fa38812a877349d9a9115aff15ba35e01d21"
+          },
+          "page": "110-111",
+          "section": "Art. 67 - Riposo settimanale e giorni festivi",
+          "quote": "In caso di coincidenza di una o più festività di cui alle lettere a) e b) del presente articolo tra di loro, o con la domenica, o con il giorno destinato al riposo compensativo, qualora non si proceda a spostamento, verrà corrisposto al lavoratore, in aggiunta alla retribuzione mensile, l'importo di un 1/26 dell'intera retribuzione stessa. [...] Per quanto riguarda la festività nazionale del 4 novembre, la cui celebrazione è spostata alla domenica successiva, il lavoratore beneficerà del trattamento previsto per le festività che coincidono con la domenica."
+        },
+        "transformation": "The festività of letters a) and b) of art. 67 on a Sunday, and 4 November on the first Sunday of November: the monthly pay of the chain over 26.",
+        "note": "Two festività on the same weekday (Easter Monday on 25 April) and a festività on the rest day of a worker resting on another day are not told apart. The Patrono is not in the national calendar and is not paid. 4 October, a holiday from 2026 (L. 151/2025), is not in the list: its Sunday stays open.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-04T12:00:00Z",
+          "effective_from": "2021-03-09",
+          "verification_status": "unverified"
+        }
       }
     }
   }

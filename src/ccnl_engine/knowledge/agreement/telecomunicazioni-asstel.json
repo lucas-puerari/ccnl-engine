@@ -1513,7 +1513,7 @@
     "effective_until": null,
     "source": "https://www.asstel.it/lavoro-e-relazioni-industriali/ccnl-tlc/",
     "verification_status": "unverified",
-    "source_hash": "5780992516d5a29ed9a1a0e54427e497de2aa529eefb8589112148e369f038cc",
+    "source_hash": "ec778aea79ce8c9d4a14510d35df2659b9308f86562603ef96dd065e1e5b2c2a",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1762,6 +1762,48 @@
           "review_id": "2026-10-31-ai-sickness-comporto"
         },
         "note": "Not modelled: the 120 more days of a continuous illness and the 120 days at 50% of the life-saving therapies; the hospital stays and the illnesses over 15 days paid in full outside the pay limits (60 days each, 90 together); the absences not counting for seniority that suspend the three years (c. 18); the carenza by event of the 2025 renewal, read only in a non-primary transcription."
+      }
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "04-25",
+        "05-01",
+        "06-02",
+        "01-01",
+        "01-06",
+        "easter_monday",
+        "08-15",
+        "11-01",
+        "12-08",
+        "12-25",
+        "12-26",
+        "11-04"
+      ],
+      "divisor": "26",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "telecomunicazioni-asstel-ccnl-testo",
+            "title": "CCNL TLC 12 novembre 2020 (Asstel, Slc-Cgil, Fistel-Cisl, Uilcom-Uil)",
+            "kind": "associazione",
+            "url": "https://www.asstel.it/wp-content/uploads/2023/05/CCNL-TLC-Slc-Cgil-Fistel-Cisl-Uilcom-Uil-12-novembre-2020-nuovo.pdf",
+            "published_on": "2020-11-12",
+            "sha256": "67ac2f50eea25ec50d43e02f0f65aa89f6c850a7bcf5ca7dd78e98a1dfd785d4"
+          },
+          "page": "58",
+          "section": "Art. 28 - Giorni festivi",
+          "quote": "4. Qualora una delle suddette festività cada di domenica ai lavoratori è dovuto, in aggiunta alla normale retribuzione mensile, l'importo di una quota giornaliera della retribuzione di fatto, pari a 1/26 della retribuzione mensile fissa ovvero ragguagliata ad 1/6 dell'orario settimanale normale per i lavoratori non retribuiti in misura fissa. [...] 7. Per quanto riguarda la festività del 4 novembre, la cui celebrazione ha luogo nella prima domenica di novembre, le aziende provvederanno a corrispondere il trattamento economico previsto per le festività che coincidono con la domenica."
+        },
+        "transformation": "The festività of points A) and B) of art. 28 (but SS. Pietro e Paolo, the Rome Patrono) on a Sunday, and 4 November on the first Sunday of November: the monthly pay of the chain over 26 (the workers paid a fixed monthly pay).",
+        "note": "The Patrono (point C) and SS. Pietro e Paolo in Rome) is not in the national calendar and is not paid. 4 October, a holiday from 2026 (L. 151/2025), is not in the 2020 list: its Sunday stays open.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-04T12:00:00Z",
+          "effective_from": "2020-11-12",
+          "verification_status": "unverified"
+        }
       }
     }
   }

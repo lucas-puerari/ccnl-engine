@@ -1207,7 +1207,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/informatica-pmi-unimatica",
       "ruleset_version": "2026.2",
-      "source_hash": "74fd7b2ecc520ee0c88d1ab51301f768a99ad74aa5ccba9853a2a1e6a8bb679b",
+      "source_hash": "62b9b1f6edf9cd4459073039e177fb12b342efa644f756ff67fcb89b753c33de",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/informatica-pmi-unimatica.json.gz"
@@ -2057,7 +2057,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/telecomunicazioni-asstel",
       "ruleset_version": "2026.2",
-      "source_hash": "5780992516d5a29ed9a1a0e54427e497de2aa529eefb8589112148e369f038cc",
+      "source_hash": "ec778aea79ce8c9d4a14510d35df2659b9308f86562603ef96dd065e1e5b2c2a",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/telecomunicazioni-asstel.json.gz"
