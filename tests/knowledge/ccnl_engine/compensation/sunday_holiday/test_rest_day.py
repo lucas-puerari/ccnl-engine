@@ -1,7 +1,9 @@
 """A holiday falling on the worker's weekly rest day, Turismo art. 127 c. 4.
 
 FIPE art. 131 c. 4, art. 133 c. 4 and art. 159 (CCNL Pubblici Esercizi
-2018) carry the same words and divisor for both FIPE rulesets.
+2018) carry the same words and divisor for both FIPE rulesets, as do
+Industria Turistica arts. 86, 87 and 108 (2016) and Turismo Confesercenti
+arts. 117, 118 and 142 (2003).
 
 "A tutto il personale assente nelle giornate di festività, per riposo
 settimanale [...] dovrà essere corrisposta una giornata di retribuzione
@@ -44,6 +46,10 @@ _TURISMO = ("turismo-federalberghi", "4")
 _COMMERCIO = ("commercio-confcommercio", "4")
 _FIPE = ("pubblici-esercizi-fipe-angem", "4")
 _FIPE_COLLETTIVA = ("pubblici-esercizi-fipe-angem-ristorazione-collettiva", "4")
+_FEDERTURISMO = ("industria-turistica-federturismo", "B1")
+_CONFESERCENTI = ("turismo-confesercenti", "4")
+_SAME_CLAUSE = [_FIPE, _FIPE_COLLETTIVA, _FEDERTURISMO, _CONFESERCENTI]
+_SAME_IDS = ["fipe", "collettiva", "federturismo", "confesercenti"]
 _CENT = Decimal("0.01")
 
 
@@ -160,7 +166,7 @@ def test_a_recent_holiday_on_the_rest_day_is_open() -> None:
     assert _limited(result)
 
 
-@pytest.mark.parametrize("ccnl", [_FIPE, _FIPE_COLLETTIVA], ids=["fipe", "collettiva"])
+@pytest.mark.parametrize("ccnl", _SAME_CLAUSE, ids=_SAME_IDS)
 @pytest.mark.parametrize(
     ("year", "month", "rest", "days"),
     [
@@ -170,18 +176,18 @@ def test_a_recent_holiday_on_the_rest_day_is_open() -> None:
     ],
     ids=["fourth-november", "christmas-on-friday-rest", "liberation-on-saturday"],
 )
-def test_fipe_pays_a_holiday_on_the_rest_day(
+def test_the_same_clause_pays_a_holiday_on_the_rest_day(
     ccnl: tuple[str, str], year: int, month: int, rest: Weekday, days: str
 ) -> None:
-    """FIPE art. 131 c. 4 and art. 133 c. 4 pay one twenty-sixth."""
+    """The holiday and 4 November on the rest day pay one twenty-sixth."""
     result = _run(ccnl, year, month, rest)
 
     assert _paid(result) == (days, _quota(result))
     assert not _limited(result)
 
 
-@pytest.mark.parametrize("ccnl", [_FIPE, _FIPE_COLLETTIVA], ids=["fipe", "collettiva"])
-def test_fipe_pays_nothing_off_the_rest_day(ccnl: tuple[str, str]) -> None:
+@pytest.mark.parametrize("ccnl", _SAME_CLAUSE, ids=_SAME_IDS)
+def test_the_same_clause_pays_nothing_off_the_rest_day(ccnl: tuple[str, str]) -> None:
     """1 November 2026 is a Sunday, the rest day a Monday: nothing is due."""
     result = _run(ccnl, 2026, 11, Weekday.MONDAY)
 
