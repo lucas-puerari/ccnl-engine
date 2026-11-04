@@ -558,7 +558,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/consorzi-di-bonifica-snebi",
       "ruleset_version": "2026.2",
-      "source_hash": "a151c885a67f3e133290211301f64682944e8c8b00d1b4ffd3df6439d1b90646",
+      "source_hash": "0fc46c49bf6fdbcdce2c8e06b4e10792eb094d27bdc637973b9937126f758327",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/consorzi-di-bonifica-snebi.json.gz"
