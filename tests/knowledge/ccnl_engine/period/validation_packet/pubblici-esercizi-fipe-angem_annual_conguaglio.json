@@ -79,7 +79,7 @@
     },
     {
       "output": "tax",
-      "value": "24.18",
+      "value": "24.64",
       "perimeter": "IRPEF and surtaxes withheld in the run net of refunds, before tax credits",
       "tolerance": "0.01",
       "rounding": "half_up_cents",
@@ -87,7 +87,7 @@
     },
     {
       "output": "net",
-      "value": "1526.95",
+      "value": "1526.49",
       "perimeter": "Net pay of the run, before advances and deductions unrelated to payroll",
       "tolerance": "0.01",
       "rounding": "half_up_cents",
@@ -112,9 +112,10 @@
   ],
   "review": {
     "reviewer": "claude-opus-5-5",
-    "date": "2026-10-24",
+    "date": "2026-11-04",
     "owner": "maintainer",
-    "review_by": "2027-04-24"
+    "review_by": "2027-05-05",
+    "rewritten_because": "FIPE art. 131 c. 4 pays 1 November 2026 on the Sunday rest day"
   },
   "versions": {
     "engine": "0.6.0",

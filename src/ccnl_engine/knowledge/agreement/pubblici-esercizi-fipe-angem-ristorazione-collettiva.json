@@ -2591,7 +2591,7 @@
     "effective_until": null,
     "source": "https://www.fipe.it/wp-content/uploads/2025/02/Tabelle-retributive-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "8e216c25ee3be4e2e15a2e87a13a64db2cc020c2c85330e051903de4af752fcb",
+    "source_hash": "827f63a07a95a4e422aaeb27b95de37467779975fb503243d07b2ed426b78f71",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3240,6 +3240,49 @@
           "verification_status": "verified",
           "review_id": "2026-11-01-ai-notice",
           "effective_from": "2018-02-08"
+        }
+      }
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "04-25",
+        "05-01",
+        "06-02",
+        "01-01",
+        "01-06",
+        "easter_monday",
+        "08-15",
+        "11-01",
+        "12-08",
+        "12-25",
+        "12-26",
+        "11-04"
+      ],
+      "divisor": "26",
+      "on_rest_day": true,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "fipe-ccnl-2018-02-08",
+            "title": "CCNL per i dipendenti da aziende dei settori Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo, 8 febbraio 2018 (scansione firmata)",
+            "kind": "associazione",
+            "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ccnl_ristorazione_2018.pdf",
+            "published_on": "2018-02-08",
+            "sha256": "32a2831b6ff1965adf82da1714f46ac6dc46102971012d6f646368837f72cf85"
+          },
+          "page": "100-101, 116",
+          "section": "Art. 131 c.1, c.4 - Festività; Art. 133 c.4 - IV novembre; Art. 159 - Retribuzione giornaliera",
+          "quote": "(4) A tutto il personale assente nelle giornate di festività, per riposo settimanale, per malattia, infortunio, dovrà essere corrisposta una giornata di retribuzione contrattuale senza alcuna maggiorazione. [Art. 133] (4) Al lavoratore assente nella stessa giornata per riposo settimanale dovrà essere corrisposta una giornata di retribuzione contrattuale senza alcuna maggiorazione. [Art. 159] La retribuzione giornaliera si ottiene dividendo la retribuzione mensile per ventisei."
+        },
+        "transformation": "The national and weekday holidays of art. 131 c.1 (but the Patrono della Città) and 4 November (art. 133) falling on the worker's weekly rest day (Employment.weekly_rest_day): one day of the monthly pay of the chain over 26 (art. 159). The statutory holidays on a Sunday stay paid by L. 260/1949 art. 5 when the rest day is another day.",
+        "note": "OCR (tesseract) of the 2018 signed scan; the 2024 renewal of 5 June 2024 amends arts. 114, 135, 161, 183-184 and 199-202, not arts. 131-133. 4 October, a holiday from 2026 (L. 151/2025), is not in the list: its rest day stays open. The Patrono is not in the national calendar and is not paid. A rotating rest day is not modelled. The staff paid on the percentuale di servizio take the day on the art. 179 pay (art. 132 c.2), not modelled. The absence for sickness or injury on a holiday (same comma) is left to the sickness treatment.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-04T15:00:00Z",
+          "effective_from": "2018-01-01",
+          "verification_status": "unverified"
         }
       }
     }
