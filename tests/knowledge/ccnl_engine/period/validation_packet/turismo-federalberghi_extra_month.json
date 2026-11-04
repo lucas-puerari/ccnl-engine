@@ -64,7 +64,7 @@
     },
     {
       "output": "employer_contributions",
-      "value": "486.03",
+      "value": "486.02",
       "perimeter": "INPS contributions due by the employer for the run (INAIL excluded)",
       "tolerance": "0.01",
       "rounding": "half_up_cents",
@@ -96,7 +96,7 @@
     },
     {
       "output": "employer_cost",
-      "value": "2211.31",
+      "value": "2211.30",
       "perimeter": "Gross pay, employer contributions, TFR accrual and employer fund contributions of the run",
       "tolerance": "0.01",
       "rounding": "half_up_cents",
@@ -105,9 +105,10 @@
   ],
   "review": {
     "reviewer": "claude-opus-5-5",
-    "date": "2026-10-24",
+    "date": "2026-11-04",
     "owner": "maintainer",
-    "review_by": "2027-04-24"
+    "review_by": "2027-05-05",
+    "rewritten_because": "one INPS contribution at the whole rate (UniEmens <Contributo>), and the further quota of the holidays on a Sunday (Metalmeccanico art. 9, ANCE art. 61 and 43)"
   },
   "versions": {
     "engine": "0.6.0",

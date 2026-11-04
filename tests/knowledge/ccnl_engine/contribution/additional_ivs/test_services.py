@@ -114,15 +114,17 @@ def test_december_gives_back_the_1pct_of_a_bonus_month() -> None:
 
 
 def test_december_charges_a_year_above_the_band_paid_below_the_month() -> None:
-    """Full year, a 2,450 bonus every month: each month stays below 4,685.
+    """Full year, a bonus every month: each month stays below 4,685.
 
     No month pays more than 2,211.43 + 2,450 = 4,661.43 (the C3 minimum
-    rises to 2,211.43 in June and is lower before), so no month charges the
-    1%.  The year, read from the INPS bases of the runs, ends above 56,224
-    with the tredicesima; the December runs charge 1% of the excess, the
-    whole 1% of the year (msg. 5327/2015 par. 2.3).
+    rises to 2,211.43 in June and is lower before); November also pays two
+    Sunday quotas of 1/26 (CCNL art. 9), 170.11, so its bonus is 2,280:
+    2,381.54 + 2,280 = 4,661.54.  No month charges the 1%.  The year, read
+    from the INPS bases of the runs, ends above 56,224 with the
+    tredicesima; the December runs charge 1% of the excess, the whole 1% of
+    the year (msg. 5327/2015 par. 2.3).
     """
-    periods = {m: _bonus(m, Decimal(2450)) for m in range(1, 13)}
+    periods = {m: _bonus(m, Decimal(2280 if m == 11 else 2450)) for m in range(1, 13)}
     year = _year(date(2026, 1, 1), periods)
     runs = year.period_results
     year_base = sum((_inps_base(r) for r in runs), _ZERO)

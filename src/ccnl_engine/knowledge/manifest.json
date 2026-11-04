@@ -745,7 +745,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/edilizia-ance-impiegati",
       "ruleset_version": "2026.2",
-      "source_hash": "3a75c0a9a27f1a55363d6746a55031cd889bab9007eca82b56d980d173e9e8fc",
+      "source_hash": "eb1092aa8b51c6064066150285efeabc3f9a59c0dca68e2b1cbc27a61b6ff0d6",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/edilizia-ance-impiegati.json.gz"
@@ -1496,7 +1496,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/metalmeccanico-confapi",
       "ruleset_version": "2026.2",
-      "source_hash": "99874a03dba7ad9a97ba00345479555d4c879fc7ef958941fe66f63b06d66f54",
+      "source_hash": "76cc3a3c983bd7acfb082c5327217aed29b7234a0e89566e4e0ecb167e57fa4d",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/metalmeccanico-confapi.json.gz"
@@ -1530,7 +1530,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/metalmeccanico-federmeccanica",
       "ruleset_version": "2026.3",
-      "source_hash": "c8d959ee663a1561b3005e75d99645d86bb585fdbe53dea905f69024c9874f96",
+      "source_hash": "0b9107b398bfae805dbdb0eb5fc465e1c0fc0afe964fae1bf80180838d97ab6a",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/metalmeccanico-federmeccanica.json.gz"

@@ -87,11 +87,13 @@ _RENEWAL: Final[frozenset[Blocker]] = frozenset({
 })
 #: Blocker of a resident of a comune whose 2026 row carries earlier rates
 #: (REVIEW A2).
-#: 4 October and 1 November 2026 fall on a Sunday: no pilot CCNL has its
-#: clause on a holiday falling on a Sunday sourced (work_rules.sunday_holidays).
+#: 4 October 2026 falls on a Sunday, a holiday since L. 151/2025: whether it
+#: is paid apart is not sourced but for the CCNLs whose clause lists it
+#: (work_rules.sunday_holidays), as Confapi art. 32 of the 2026 ipotesi.
 _SUNDAY_HOLIDAY: Final[frozenset[Blocker]] = frozenset({
     ("open_limitation", "sunday_holiday", "sunday_holiday_ccnl_clause"),
 })
+_FOURTH_OCTOBER_PAID: Final = frozenset({"metalmeccanico-confapi"})
 _SURTAX_SOURCE: Final[frozenset[Blocker]] = frozenset({
     ("rule_source_weak", "addizionale_comunale", "assumed")
 })
@@ -157,7 +159,9 @@ _PROFILES: Final = [
 
 
 def _expected(ccnl_id: str, income: Decimal, comune: str) -> frozenset[Blocker]:
-    expected = set(_SPECIFIC[ccnl_id]) | _SUNDAY_HOLIDAY
+    expected = set(_SPECIFIC[ccnl_id])
+    if ccnl_id not in _FOURTH_OCTOBER_PAID:
+        expected |= _SUNDAY_HOLIDAY
     if income == _ELIGIBLE and ccnl_id in _RENEWAL_UNMEASURED:
         expected |= _RENEWAL
     if comune == _MILAN:
