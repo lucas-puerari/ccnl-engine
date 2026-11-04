@@ -449,3 +449,46 @@ def test_a_public_employment_has_no_ex_holiday() -> None:
     result = _run(_CHIMICA, 2026, 8, sector=EmploymentSector.PUBLIC)
 
     assert _decisions(result) == []
+
+
+_CINEMA = ("cinema-audiovisivi-industria", "3")
+
+
+def test_easter_sunday_is_paid_where_the_clause_lists_it() -> None:
+    """Cinema art. 28 lists "Pasqua": Sunday 28 March 2027, at 1/26."""
+    result = _run(_CINEMA, 2027, 3)
+    (decision,) = (d for d in result.decisions if d.capability == CAPABILITY)
+
+    assert decision.reason_code == "ccnl_clause"
+    assert decision.inputs["days"] == "2027-03-28"
+    monthly = Decimal(str(decision.inputs["monthly"]))
+    assert decision.amount == (monthly / 26).quantize(Decimal("0.01"))
+    assert not _limited(result)
+
+
+@pytest.mark.parametrize(
+    "ccnl", [("metalmeccanico-federmeccanica", "C3"), _ANAS], ids=["clause", "none"]
+)
+def test_easter_sunday_is_no_holiday_elsewhere(ccnl: tuple[str, str]) -> None:
+    """Without "easter" in the clause, or without a clause, nothing in March 2027."""
+    result = _run(ccnl, 2027, 3)
+
+    assert _decisions(result) == []
+    assert not _limited(result)
+
+
+@pytest.mark.parametrize(
+    ("employment_period", "paid"),
+    [
+        (EmploymentPeriod(date(2027, 3, 28)), True),
+        (EmploymentPeriod(date(2027, 3, 29)), False),
+    ],
+    ids=["hired-on-easter", "hired-after-easter"],
+)
+def test_easter_sunday_within_the_employment(
+    employment_period: EmploymentPeriod, *, paid: bool
+) -> None:
+    """Easter is paid only within the employment."""
+    result = _run(_CINEMA, 2027, 3, employment_period=employment_period)
+
+    assert bool(_decisions(result)) is paid
