@@ -30,10 +30,10 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, seniority |
+| **Core payroll path** | ✅ |
+| **Limits of this contract** | — |
 
-2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -50,12 +50,14 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2023-01-01 |
-| **Last review** | — |
+| **Last review** | 2026-11-05 |
 | **Latest salary tranche** | 2028-01-01 |
 
 ## Review history
 
-No review is recorded.
+| Date | Reviewer | Scope | Outcome | Findings |
+|---|---|---|---|---|
+| 2026-11-05 | claude-opus-5-5 (ai) | Artt. 10, 32 and 36 (PDF pp. 20-21, 54, 57) of the CCNL of 18 July 2023, OCR of the CNEL scan checked on the page images. | corrected | Art. 10 c. 8: the apprentice is paid 80/85/95% of the art. 32 pay over the 36 months of c. 7: the 100% passthrough is replaced.<br>Art. 10 c. 10 and art. 36: the apprenticeship counts for the biennial increments, part of the art. 32 pay reduced by the percentage. |
 
 ## Salary table
 
@@ -104,19 +106,12 @@ percentage: 1.00
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning "autostrade-trafori/apprenticeship_full_pay_passthrough · base_salary · impact yes · open"
-    Apprenticeship: CCNL provides under-classification 2 levels below; the file models it as a 100% passthrough (one percentage track at 1.00), although the engine supports under_classification tracks (review of 2026-10-30).
+!!! note "autostrade-trafori/apprenticeship_full_pay_passthrough · base_salary · impact yes · resolved"
+    APPRENTICESHIP (Art. 10 cc. 7-8, pp. 20-21): a percentage of the art. 32 pay of the level, 80/85/95% over 36 months, not under-classification.
 
     **Applies when:** `base_salary` applies.
 
-    **Remediation:** Model the track as type under_classification (levels_below 2, then the CCNL periods) from the CCNL apprenticeship clause and drop the 100% passthrough.
-
-!!! warning "autostrade-trafori/apprentice_seniority · seniority · impact unknown · open"
-    APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.
-
-    **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
-
-    **Remediation:** Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.
+    **Remediation:** Resolved: the professionalizzante track holds 80/85/95% over 36 months, read on 2026-11-05.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
@@ -316,6 +311,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     Levels B+, B1+, C+ are parametrically derived as D × param/100 for the 2023 contract tranches (params: B+=192, B1+=176, C+=155). Verified against D values to within rounding. 2026 contract values taken from research agent sources.
     
     IDR 2021: modeled as 0.00 for 01/01/2023–01/08/2023 (element not yet established in first 2023 tranches). Period 1 values from 01/08/2023; period 2 from 01/01/2024 onwards.
+    
+    APPRENTICE SENIORITY (Art. 10 cc. 8, 10, art. 32 c. 1 a), art. 36, pp. 21, 54, 57): 'L’intero periodo di apprendistato professionalizzante è utile ai fini dei riflessi dell’anzianità di servizio su tutti gli istituti contrattuali': the apprentice accrues the biennial increments of the level, which are part of the art. 32 pay the percentage of c. 8 applies to (apprentice_level_amount, apprentice_pct_scaled).
     
 
 ## Raw data

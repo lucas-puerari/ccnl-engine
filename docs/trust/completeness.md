@@ -14,7 +14,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 0/135 CCNLs.** Bundle: 269 weak rules, 479 open limitations (479 with a monetary impact).
+**Complete: 0/135 CCNLs.** Bundle: 269 weak rules, 476 open limitations (476 with a monetary impact).
 
 ## Declared window
 
@@ -63,7 +63,7 @@ Future data, registered apart from the gaps: a contract whose validity ends insi
 | [autoferrotranvieri-internavigatori](../contracts/autoferrotranvieri-internavigatori.md) | `trasporti-logistica` | exploratory | — | 23 rows | 23 open requirements; 1 weak rule; 18 monetary limitations; 2 outside_input limitations; 19 non-native capabilities |
 | [autorimesse-ic35](../contracts/autorimesse-ic35.md) | `servizi-automobilistici` | exploratory | — | 25 rows | 25 open requirements; 2 weak rules; 20 monetary limitations; 1 outside_input limitation; 20 non-native capabilities |
 | [autoscuole-unasca](../contracts/autoscuole-unasca.md) | `servizi-automobilistici` | exploratory | — | 20 rows | 20 open requirements; 1 weak rule; 17 monetary limitations; 18 non-native capabilities |
-| [autostrade-trafori](../contracts/autostrade-trafori.md) | `trasporti-logistica` | exploratory | — | 25 rows | 25 open requirements; 2 weak rules; 21 monetary limitations; 20 non-native capabilities |
+| [autostrade-trafori](../contracts/autostrade-trafori.md) | `trasporti-logistica` | exploratory | — | 23 rows | 23 open requirements; 2 weak rules; 19 monetary limitations; 18 non-native capabilities |
 | [aziende-termali-federterme](../contracts/aziende-termali-federterme.md) | `turismo` | exploratory | — | 24 rows | 24 open requirements; 1 weak rule; 21 monetary limitations; 21 non-native capabilities |
 | [bancari-abi](../contracts/bancari-abi.md) | `credito` | exploratory | 2026-03-31 | 26 rows | 26 open requirements; 21 monetary limitations; 3 outside_input limitations; 22 non-native capabilities |
 | [bcc-credito-cooperativo](../contracts/bcc-credito-cooperativo.md) | `credito` | exploratory | — | 22 rows | 22 open requirements; 19 monetary limitations; 1 outside_input limitation; 21 non-native capabilities |
@@ -174,7 +174,7 @@ Future data, registered apart from the gaps: a contract whose validity ends insi
 | [tessile-smi](../contracts/tessile-smi.md) | `tessile-moda` | exploratory | — | 22 rows | 22 open requirements; 2 weak rules; 18 monetary limitations; 18 non-native capabilities |
 | [trasporto-aereo-assaeroporti](../contracts/trasporto-aereo-assaeroporti.md) | `trasporti-logistica` | exploratory | — | 25 rows | 25 open requirements; 1 weak rule; 21 monetary limitations; 1 outside_input limitation; 21 non-native capabilities |
 | [trasporto-ferroviario-agens](../contracts/trasporto-ferroviario-agens.md) | `trasporti-logistica` | exploratory | 2026-12-31 | 24 rows | 24 open requirements; 1 weak rule; 21 monetary limitations; 21 non-native capabilities |
-| [turismo-confesercenti](../contracts/turismo-confesercenti.md) | `turismo` | exploratory | — | 24 rows | 24 open requirements; 1 weak rule; 20 monetary limitations; 1 outside_input limitation; 20 non-native capabilities |
+| [turismo-confesercenti](../contracts/turismo-confesercenti.md) | `turismo` | exploratory | — | 23 rows | 23 open requirements; 1 weak rule; 19 monetary limitations; 1 outside_input limitation; 20 non-native capabilities |
 | [turismo-federalberghi](../contracts/turismo-federalberghi.md) | `turismo` | production | — | 29 rows | 29 open requirements; 20 monetary limitations; 7 outside_input limitations; 22 non-native capabilities |
 | [turismo-federalberghi-alberghi-minori](../contracts/turismo-federalberghi-alberghi-minori.md) | `turismo` | exploratory | — | 29 rows | 29 open requirements; 20 monetary limitations; 7 outside_input limitations; 22 non-native capabilities |
 | [uneba-uneba](../contracts/uneba-uneba.md) | `socio-sanitario` | exploratory | — | 22 rows | 22 open requirements; 1 weak rule; 18 monetary limitations; 1 outside_input limitation; 19 non-native capabilities |

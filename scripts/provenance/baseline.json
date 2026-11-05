@@ -685,10 +685,6 @@
       "autorimesse-ic35/apprenticeship_percentages_2019",
       "autorimesse-ic35/meal_voucher"
     ],
-    "agreement/autostrade-trafori.json": [
-      "autostrade-trafori/apprentice_seniority",
-      "autostrade-trafori/apprenticeship_full_pay_passthrough"
-    ],
     "agreement/aziende-termali-federterme.json": [
       "aziende-termali-federterme/apprentice_seniority",
       "aziende-termali-federterme/ebiterme_fontur_funds",
@@ -1281,7 +1277,6 @@
     ],
     "agreement/turismo-confesercenti.json": [
       "turismo-confesercenti/apprentice_seniority",
-      "turismo-confesercenti/apprenticeship_under_classification",
       "turismo-confesercenti/other_subsectors_tables"
     ],
     "agreement/turismo-federalberghi-alberghi-minori.json": [
