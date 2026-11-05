@@ -67,22 +67,6 @@
       }
     },
     {
-      "id": "long_week_divisors",
-      "institute": "workplace_injury",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "HOURLY DIVISOR: 165 h/month used, per ilccnl.it (38h/week standard, all levels). Art. 198 of the CCNL also references 168 for 40h/week and higher divisors for extended shifts. Conflict: ilccnl.it states 165 as the contract divisor; Art. 198 lists 168 for 40h/week. Dominant workforce (post-2011 hires in a high-turnover retail sector on the 38h standard) is served by 165. 42h/week (182) and 45h/week (195) schedules not modelled.",
-      "calculation": "ccnl/distribuzione-cooperativa-ancc:coverage.notes",
-      "state": "unverified",
-      "remediation": "Source Art. 198 and add the 168, 182 and 195 divisors of the 40, 42 and 45 hour weeks with hourly_divisor_weekly_hours=38, so other weeks are not derived from 165.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "distribuzione-cooperativa-ancc/long_week_divisors"
-        ]
-      }
-    },
-    {
       "id": "maternity_daily_base",
       "institute": "maternity_leave",
       "variant": "all",

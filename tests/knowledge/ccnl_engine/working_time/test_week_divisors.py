@@ -132,3 +132,14 @@ def test_autorimesse_divides_by_the_divisor_of_the_role_week(
     """Autorimesse Art. 40 (2022 text, p. 86): drivers 42 hours, custodians 44."""
     ccnl = with_week_divisor(load_ccnl("autorimesse-ic35"), WeeklyHours(Decimal(week)))
     assert ccnl.parameters.hourly_divisor.value_at(date(2026, 3, 1)) == divisor
+
+
+@pytest.mark.parametrize(
+    ("week", "divisor"), [(38, 165), (39, 168), (40, 168), (42, 182), (44, 184)]
+)
+def test_the_ancc_divides_by_the_divisor_of_art_187(week: int, divisor: int) -> None:
+    """Distribuzione cooperativa Art. 187 c. 2 (2011 official text, p. 201)."""
+    ccnl = with_week_divisor(
+        load_ccnl("distribuzione-cooperativa-ancc"), WeeklyHours(Decimal(week))
+    )
+    assert ccnl.parameters.hourly_divisor.value_at(date(2026, 3, 1)) == divisor
