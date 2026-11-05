@@ -59,6 +59,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | Date | Reviewer | Scope | Outcome | Findings |
 |---|---|---|---|---|
 | 2026-11-05 | claude-opus-5-5 (ai) | The seniority increments of the apprentices, Apprendistato professionalizzante (accordo 15 marzo 2006), inquadramento e retribuzione (PDF p. 61), found by a separate research session and checked again on the page. | corrected | No increment during the apprenticeship: seniority_increments.apprentice_amount 0. |
+| 2026-11-05 | claude-opus-5-5 (ai) | Art. 18 (PDF p. 26) and art. 10 (PDF p. 21) of the 2008 complete text, text layer. | corrected | Art. 18: a holiday of b), c) or d) on a Sunday or the compensatory rest day pays 1/25 of the monthly pay on top: work_rules.sunday_holidays with divisor 25 and on_rest_day.<br>Art. 10: the hourly divisor is 174; no general daily divisor of the absences. |
 
 ## Salary table
 
@@ -102,11 +103,11 @@ percentage: 1.00
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
 !!! warning "lapidei-industria/daily_divisor_25 · absence · impact unknown · open"
-    HOURLY DIVISOR: 174. Daily divisor: 25.
+    DIVISORS: hourly 174 (art. 10 c. 1, p. 21). The 1/25 is the quota of a holiday on a Sunday or the compensatory rest day (art. 18, p. 26), in work_rules.sunday_holidays; the CCNL states no general daily divisor for the absences, which keep the unverified by_26.
 
     **Applies when:** `absence` applies.
 
-    **Remediation:** Read the CCNL clause on the quota giornaliera; set work_rules.absence_rules.daily_divisor_method to by_25 if it states 25 (the engine supports by_25), or correct the note.
+    **Remediation:** Find the daily quota of an unpaid absence of the CCNL (or of the payroll practice of the sector) and set work_rules.absence_rules.daily_divisor_method.
 
 !!! warning "lapidei-industria/apprenticeship_passthrough · base_salary · impact unknown · open"
     APPRENTICESHIP: 2022 CCNL Art. 3d changed system from sotto-inquadramento to percentage ('calcolate in percentuale...come da allegata tabella'). Pre-2022 system confirmed from full CCNL 2008 text (integrating Accordo 15/03/2006): 2 levels below destination for first half of apprenticeship, 1 level below for second half, no seniority increments accrued. Post-2022 percentage values from scanned allegata tabella not extractable (OCR-confirmed: image-only PDF). 2025-2028 rinnovo (12-page OCR) does not modify apprenticeship. Modelled as 1.00 passthrough pending actual 2022+ percentage values.

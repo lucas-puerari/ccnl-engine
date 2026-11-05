@@ -69,11 +69,12 @@ class TestLoadFunivieAnef:
         assert ccnl.parameters.hourly_divisor.value_at(date(2026, 1, 1)) == 173
 
     def test_funivie_anef_contingenza_only_no_edr(self) -> None:
-        """Each level has exactly one fixed allowance (contingenza, no EDR)."""
+        """Each level has the contingenza, no EDR; 1S and 1 the quadri allowance."""
         ccnl = load_ccnl("funivie-anef")
         for lv in ccnl.levels:
-            assert len(lv.fixed_allowances) == 1
-            assert lv.fixed_allowances[0].code == "contingenza"
+            codes = [a.code for a in lv.fixed_allowances]
+            quadri = ["IND_FUNZIONE_QUADRO"] if lv.code in {"1S", "1"} else []
+            assert codes == ["contingenza", *quadri]
 
     def test_funivie_anef_tax_sector(self) -> None:
         """tax_sector == INDUSTRIA (SIMPLIFICATION)."""

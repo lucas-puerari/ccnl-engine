@@ -14,7 +14,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 0/135 CCNLs.** Bundle: 269 weak rules, 477 open limitations (477 with a monetary impact).
+**Complete: 0/135 CCNLs.** Bundle: 269 weak rules, 474 open limitations (474 with a monetary impact).
 
 ## Declared window
 
@@ -107,14 +107,14 @@ Future data, registered apart from the gaps: a contract whose validity ends insi
 | [fiori-recisi-ancef](../contracts/fiori-recisi-ancef.md) | `commercio` | exploratory | — | 21 rows | 21 open requirements; 1 weak rule; 18 monetary limitations; 19 non-native capabilities |
 | [formazione-professionale](../contracts/formazione-professionale.md) | `istruzione-formazione` | exploratory | — | 21 rows | 21 open requirements; 2 weak rules; 17 monetary limitations; 18 non-native capabilities |
 | [forze-polizia-ordinamento-civile](../contracts/forze-polizia-ordinamento-civile.md) | `forze-polizia` | exploratory | — | 23 rows | 23 open requirements; 2 weak rules; 19 monetary limitations; 20 non-native capabilities |
-| [funivie-anef](../contracts/funivie-anef.md) | `trasporti-logistica` | exploratory | — | 23 rows | 23 open requirements; 2 weak rules; 18 monetary limitations; 1 outside_input limitation; 20 non-native capabilities |
+| [funivie-anef](../contracts/funivie-anef.md) | `trasporti-logistica` | exploratory | — | 22 rows | 22 open requirements; 2 weak rules; 17 monetary limitations; 1 outside_input limitation; 19 non-native capabilities |
 | [funzioni-centrali-aran](../contracts/funzioni-centrali-aran.md) | `pubblico-impiego` | reviewed | — | 19 rows | 19 open requirements; 16 monetary limitations; 1 outside_input limitation; 19 non-native capabilities |
 | [funzioni-locali-aran](../contracts/funzioni-locali-aran.md) | `pubblico-impiego` | reviewed | 2024-12-31 | 19 rows | 19 open requirements; 17 monetary limitations; 19 non-native capabilities |
 | [gas-acqua-utilitalia](../contracts/gas-acqua-utilitalia.md) | `energia-utilities` | exploratory | — | 23 rows | 23 open requirements; 1 weak rule; 20 monetary limitations; 19 non-native capabilities |
 | [gomma-plastica-federazione-gomma-plastica](../contracts/gomma-plastica-federazione-gomma-plastica.md) | `chimica` | exploratory | — | 25 rows | 25 open requirements; 2 weak rules; 21 monetary limitations; 20 non-native capabilities |
 | [grafica-editoria-aieg](../contracts/grafica-editoria-aieg.md) | `carta-grafica` | exploratory | — | 22 rows | 22 open requirements; 1 weak rule; 18 monetary limitations; 1 outside_input limitation; 20 non-native capabilities |
 | [igiene-ambientale-utilitalia](../contracts/igiene-ambientale-utilitalia.md) | `energia-utilities` | exploratory | — | 26 rows | tables from 2026-02-01; 26 open requirements; 1 weak rule; 23 monetary limitations; 21 non-native capabilities |
-| [impianti-sportivi-sport](../contracts/impianti-sportivi-sport.md) | `sport` | exploratory | — | 28 rows | 28 open requirements; 2 weak rules; 22 monetary limitations; 2 outside_input limitations; 20 non-native capabilities |
+| [impianti-sportivi-sport](../contracts/impianti-sportivi-sport.md) | `sport` | exploratory | — | 26 rows | 26 open requirements; 2 weak rules; 20 monetary limitations; 2 outside_input limitations; 20 non-native capabilities |
 | [impiegati-tecnici-agricoli](../contracts/impiegati-tecnici-agricoli.md) | `agricoltura` | exploratory | — | 24 rows | 24 open requirements; 2 weak rules; 20 monetary limitations; 19 non-native capabilities |
 | [industria-turistica-federturismo](../contracts/industria-turistica-federturismo.md) | `turismo` | exploratory | — | 24 rows | 24 open requirements; 1 weak rule; 21 monetary limitations; 20 non-native capabilities |
 | [informatica-pmi-unimatica](../contracts/informatica-pmi-unimatica.md) | `ict-telecomunicazioni` | exploratory | — | 22 rows | 22 open requirements; 1 weak rule; 18 monetary limitations; 1 outside_input limitation; 20 non-native capabilities |

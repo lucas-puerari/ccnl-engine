@@ -111,12 +111,13 @@
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: Straordinario diurno. Art. 83 prevede 15% per ore 41-48 e 20% per ore oltre 48 settimanali. Modellato solo il 15% (caso dominante). Banda 20% (oltre 48h) non modellata.",
+        "text": "OVERTIME (Art. 83, p. 76): 15% from the 41st to the 48th weekly hour (OT_DIURNO), 20% past the 48th (OT_DIURNO_OLTRE_48).",
         "capability": "overtime",
         "monetary_impact": "yes",
         "limitation": {
           "variant": "overtime_over_48h_band_missing",
-          "remediation": "Model the 20% band over 48 weekly hours, or pass the multiplier on the overtime event."
+          "remediation": "Resolved: overtime band OT_DIURNO_OLTRE_48 of 20% past 48 weekly hours, read on 2026-11-05.",
+          "status": "resolved"
         }
       },
       {
@@ -146,12 +147,13 @@
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: Cumulo notturno. Art. 83 ult. comma: 'Le varie maggiorazioni previste dal presente articolo non sono cumulabili tra loro' — esclude la cumulabilita tra i soli supplementi interni all'Art. 83 (15%/20%/30%/50%). Il supplemento del 10% di Art. 84 e un articolo separato e non e esplicitamente escluso dalla cumulabilita. Il motore applica entrambi alle ore notturne straordinarie (60% totale). Se le parti intendono il 50% inclusivo del 10%, il motore sovrastima di 10 punti sulle ore OT notturne.",
+        "text": "NIGHT OVERTIME (Artt. 83-84, p. 76): the night overtime is paid at 50% (OT_NOTTURNO); the 10% of art. 84 is for 'le ore di lavoro ordinario prestate di notte' (LAVORO_NOTTURNO, ordinary night work only), so the two do not add up on an overtime hour.",
         "capability": "overtime",
         "monetary_impact": "unknown",
         "limitation": {
           "variant": "night_overtime_cumulation",
-          "remediation": "Confirm with the parties whether the 50% night overtime band includes the 10% night supplement of Art. 84."
+          "remediation": "Resolved: art. 84 covers ordinary night work only; LAVORO_NOTTURNO is not an overtime band, read on 2026-11-05.",
+          "status": "resolved"
         }
       },
       {
@@ -1234,7 +1236,7 @@
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=13",
     "verification_status": "unverified",
     "published_at": "2026-09-11",
-    "source_hash": "f88f0aa94181dc52769d9e234d09c699da31b5e442b9da246f778a0861187fb5",
+    "source_hash": "66cd9880392a8fc0a9a63e9743a23c1b02cc9c15cae9095d7771682b0e5ec2de",
     "source_type": "commercial_secondary"
   },
   "work_rules": {
@@ -1290,21 +1292,73 @@
             "weekday"
           ],
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
                 "document_id": "ccnl-cusi-sport-2024",
                 "title": "CCNL Impianti e Attività Sportive 2024–2026 (CUSI)",
                 "kind": "altro",
-                "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf"
+                "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
+                "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
               },
-              "section": "Art. 83 — straordinario diurno: 15% per ore 41-48 sett. SEMPLIFICAZIONE: banda 20% (oltre 48h) non modellata."
+              "page": "76",
+              "section": "Art. 83 - Maggiorazione lavoro straordinario",
+              "quote": "le ore di lavoro straordinario [...] verranno retribuite con la quota oraria della retribuzione di fatto di cui all'art. 117, e con le seguenti maggiorazioni da calcolare sulla quota oraria della normale retribuzione di cui all'art. 116, con esclusione della lettera b): - 15% per le prestazioni di lavoro dalla 41ª alla 48ª ora settimanale; - 20% per le prestazioni di lavoro eccedenti la 48ª ora settimanale. [...] Le varie maggiorazioni previste dal presente articolo non sono cumulabili tra loro."
             },
+            "transformation": "15% on the weekday overtime from the 41st to the 48th weekly hour.",
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-11T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2024-01-01"
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-05T18:00:00Z",
+              "effective_from": "2024-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-05T18:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-05-ai-overtime-bands"
+            }
+          }
+        },
+        {
+          "code": "OT_DIURNO_OLTRE_48",
+          "description": "Straordinario diurno feriale oltre la 48ª ora settimanale (Art. 83, 20%)",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": null,
+                "value": "0.20"
+              }
+            ]
+          },
+          "hour_threshold_per_week": 48,
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-cusi-sport-2024",
+                "title": "CCNL Impianti e Attività Sportive 2024–2026 (CUSI)",
+                "kind": "altro",
+                "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
+                "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
+              },
+              "page": "76",
+              "section": "Art. 83 - Maggiorazione lavoro straordinario",
+              "quote": "le ore di lavoro straordinario [...] verranno retribuite con la quota oraria della retribuzione di fatto di cui all'art. 117, e con le seguenti maggiorazioni da calcolare sulla quota oraria della normale retribuzione di cui all'art. 116, con esclusione della lettera b): - 15% per le prestazioni di lavoro dalla 41ª alla 48ª ora settimanale; - 20% per le prestazioni di lavoro eccedenti la 48ª ora settimanale. [...] Le varie maggiorazioni previste dal presente articolo non sono cumulabili tra loro."
+            },
+            "transformation": "20% on the weekday overtime past the 48th weekly hour, in place of the 15% (the rates of art. 83 do not cumulate).",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-05T18:00:00Z",
+              "effective_from": "2024-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-05T18:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-05-ai-overtime-bands"
             }
           }
         },
@@ -1694,5 +1748,31 @@
         }
       }
     }
+  },
+  "verification": {
+    "reviews": [
+      {
+        "id": "2026-11-05-ai-overtime-bands",
+        "date": "2026-11-05",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Artt. 83-84 (PDF p. 76) of the CCNL of 12 January 2024, text layer.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
+            "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
+          }
+        ],
+        "findings": [
+          "Art. 83: 20% past the 48th weekly hour was missing.",
+          "Art. 84: the 10% is for ordinary night work only; the note claiming 50% + 10% on night overtime is resolved."
+        ],
+        "independence": "separate_session",
+        "checked": [
+          "work_rules.time_supplements.overtime_bands"
+        ]
+      }
+    ]
   }
 }

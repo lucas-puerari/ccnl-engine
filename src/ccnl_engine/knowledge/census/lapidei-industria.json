@@ -71,10 +71,10 @@
       "institute": "absence",
       "variant": "all",
       "discriminant": "applies_when.trigger = run",
-      "rule": "HOURLY DIVISOR: 174. Daily divisor: 25.",
+      "rule": "DIVISORS: hourly 174 (art. 10 c. 1, p. 21). The 1/25 is the quota of a holiday on a Sunday or the compensatory rest day (art. 18, p. 26), in work_rules.sunday_holidays; the CCNL states no general daily divisor for the absences, which keep the unverified by_26.",
       "calculation": "ccnl/lapidei-industria:coverage.notes",
       "state": "unverified",
-      "remediation": "Read the CCNL clause on the quota giornaliera; set work_rules.absence_rules.daily_divisor_method to by_25 if it states 25 (the engine supports by_25), or correct the note.",
+      "remediation": "Find the daily quota of an unpaid absence of the CCNL (or of the payroll practice of the sector) and set work_rules.absence_rules.daily_divisor_method.",
       "origin": "seeded",
       "links": {
         "limitations": [
