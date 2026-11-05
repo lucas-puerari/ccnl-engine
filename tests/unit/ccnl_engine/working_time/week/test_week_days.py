@@ -122,3 +122,40 @@ def test_week_days_leave_excludes_seniority_tiers() -> None:
             **leave.model_dump(),
             "entitlement_tiers": (tier.model_dump(),),
         })
+
+
+@pytest.mark.parametrize(
+    ("slug", "days", "divisor"),
+    [
+        ("pulizia-artigianato-confartigianato", 6, 26),
+        ("pulizia-artigianato-confartigianato", 5, 22),
+        ("multiservizi-anip", 6, 26),
+        ("studi-professionali-confprofessioni", 6, 26),
+    ],
+)
+def test_the_week_sets_the_divisor_of_a_day_of_ferie_left(
+    slug: str, days: int, divisor: int
+) -> None:
+    """Pulizia art. 34, Multiservizi art. 19: /22 or /26; Studi art. 137: 26."""
+    ccnl = with_week_days(load_ccnl(slug), days)
+    assert ccnl.work_rules is not None
+    assert ccnl.work_rules.leave_rules is not None
+    termination = ccnl.work_rules.leave_rules.termination
+    assert termination is not None
+    assert termination.ferie_divisor == divisor
+
+
+def test_a_week_without_termination_keeps_none() -> None:
+    """A divisor of the week but no settlement rule to carry it."""
+    ccnl = load_ccnl("pulizia-artigianato-confartigianato")
+    assert ccnl.work_rules is not None
+    leave = ccnl.work_rules.leave_rules
+    assert leave is not None
+    rules = ccnl.work_rules.model_copy(
+        update={"leave_rules": leave.model_copy(update={"termination": None})}
+    )
+    ccnl = with_week_days(ccnl.model_copy(update={"work_rules": rules}), 6)
+    assert ccnl.work_rules is not None
+    assert ccnl.work_rules.leave_rules is not None
+    assert ccnl.work_rules.leave_rules.termination is None
+    assert ccnl.work_rules.leave_rules.default_annual_days == 26

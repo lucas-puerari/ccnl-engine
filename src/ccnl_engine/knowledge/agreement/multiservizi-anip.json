@@ -149,6 +149,11 @@
           },
           "remediation": "Model the ONBSI shares with the reduced worker share below 20 hours a week, then remove this note."
         }
+      },
+      {
+        "kind": "info",
+        "capability": "leave",
+        "text": "LEAVE (artt. 19, 41, 42 of the 2011 text): 22 days of ferie on five days, 26 on six (Employment.full_time_week_days), in twelfths with the month over 15 days; 40 hours a year of reduced time (art. 42). At termination a day of ferie is the monthly pay over 22 (26 on six days), an hour of permits over 173. The ex festività are compensatory permits for the abolished holidays worked (art. 41): not a bank, not accrued. The 2025 renewal (72 hours of permits according to the union summary) is not read in a primary text."
       }
     ]
   },
@@ -5496,7 +5501,7 @@
     "effective_until": null,
     "source": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/139292",
     "verification_status": "unverified",
-    "source_hash": "a8ed0dbf4160b3ae35c229988e6bfb14015027f08068348e602833ea489009aa",
+    "source_hash": "72a191c9d2b2edafb804bcc854eedd16f7bfc2c307c83f6cb5efa32a510f048f",
     "published_at": "2026-09-07",
     "source_type": "official_primary"
   },
@@ -5798,9 +5803,109 @@
               "review_id": "2026-11-05-ai-leave-week-days",
               "effective_from": "2021-06-01"
             }
+          },
+          "ferie_divisor": "26"
+        }
+      ],
+      "ferie_accrual": {
+        "month_credit": "more_than_half",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "cnel-k511-105782",
+              "title": "CCNL imprese esercenti servizi di pulizia e servizi integrati/multiservizi, testo definitivo 31 maggio 2011 (CNEL K511, deposito 105782)",
+              "kind": "cnel",
+              "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+              "published_on": "2011-05-31",
+              "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+            },
+            "page": "61",
+            "section": "Art. 42 Ferie",
+            "quote": "Le frazioni di mese non superiori ai 15 giorni non saranno calcolate, mentre saranno considerate come mese intero se superiori ai 15 giorni."
+          },
+          "transformation": "A twelfth of the days for each month served, a month served more than 15 days counting whole.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-05T17:00:00Z",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-05T17:00:00Z",
+            "verification_status": "verified",
+            "effective_from": "2021-06-01",
+            "review_id": "2026-11-05-ai-leave"
+          },
+          "note": "The 2021 renewal does not amend arts. 19, 41 or 42; the union summary of the 2025 renewal (72 hours of permits, rateo from 16 days) was not read in a primary text."
+        }
+      },
+      "permits": [
+        {
+          "bucket": "rol",
+          "annual_hours": [
+            {
+              "hours": "40"
+            }
+          ],
+          "month_credit": null,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "cnel-k511-105782",
+                "title": "CCNL imprese esercenti servizi di pulizia e servizi integrati/multiservizi, testo definitivo 31 maggio 2011 (CNEL K511, deposito 105782)",
+                "kind": "cnel",
+                "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+                "published_on": "2011-05-31",
+                "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+              },
+              "page": "61",
+              "section": "Art. 42 (riduzione dell'orario)",
+              "quote": "A partire dal 1° gennaio 1986 l’orario di lavoro è ridotto di 40 ore annue, di norma attraverso il riconoscimento di corrispondenti giornate di riposo"
+            },
+            "transformation": "40 hours a year of reduced working time; the text does not say how a month fraction counts. The ex festività are compensatory permits for the abolished holidays actually worked (art. 41), not a yearly bank: not accrued.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-05T17:00:00Z",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-05T17:00:00Z",
+              "verification_status": "verified",
+              "effective_from": "2021-06-01",
+              "review_id": "2026-11-05-ai-leave"
+            },
+            "note": "The 2021 renewal does not amend arts. 19, 41 or 42; the union summary of the 2025 renewal (72 hours of permits, rateo from 16 days) was not read in a primary text."
           }
         }
-      ]
+      ],
+      "termination": {
+        "ferie_divisor": "22",
+        "permits_hourly": true,
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "cnel-k511-105782",
+              "title": "CCNL imprese esercenti servizi di pulizia e servizi integrati/multiservizi, testo definitivo 31 maggio 2011 (CNEL K511, deposito 105782)",
+              "kind": "cnel",
+              "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+              "published_on": "2011-05-31",
+              "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+            },
+            "page": "40",
+            "section": "Art. 19 cc. 2-3",
+            "quote": "Ai fini della determinazione della retribuzione oraria, il divisore mensile è 173. La determinazione della retribuzione giornaliera si ottiene dividendo la retribuzione mensile per 22 nel caso di prestazione su 5 giorni settimanali e per 26 nel caso di prestazione su 6 giorni settimanali."
+          },
+          "transformation": "A day of ferie left at the end of the employment (art. 42: 'avrà diritto al compenso per le ferie stesse') at the daily pay over 22 (26 on six days), an hour of permits over 173. Art. 42 names no basis of its own: the general divisors of art. 19 are read.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-05T17:00:00Z",
+            "verification_status": "unverified",
+            "effective_from": "2021-06-01"
+          },
+          "note": "The 2021 renewal does not amend arts. 19, 41 or 42; the union summary of the 2025 renewal (72 hours of permits, rateo from 16 days) was not read in a primary text."
+        }
+      }
     },
     "sickness_rules": {
       "carenza_integration_rate": "1",
@@ -5920,6 +6025,30 @@
         "independence": "separate_session",
         "checked": [
           "work_rules.leave_rules.week_days_annual_days"
+        ]
+      },
+      {
+        "id": "2026-11-05-ai-leave",
+        "date": "2026-11-05",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Ferie accrual, permits and their settlement: arts. 19 (PDF p. 40), 41 and 42 (pp. 60-61) of the 2011 definitive text, read by a separate research session and checked again on the text layer; the 2021 renewal read for amendments.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+            "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+          }
+        ],
+        "findings": [
+          "Art. 42: twelfths with the month over 15 days, 40 hours of reduced time a year: work_rules.leave_rules.ferie_accrual and permits.",
+          "Art. 41: the ex festività are compensatory permits for the days worked, not a yearly bank.",
+          "The 2025 renewal (72 hours according to the union summary) was not read in a primary text."
+        ],
+        "independence": "separate_session",
+        "checked": [
+          "work_rules.leave_rules.ferie_accrual",
+          "work_rules.leave_rules.permits"
         ]
       }
     ]

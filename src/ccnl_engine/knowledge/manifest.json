@@ -1547,7 +1547,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/multiservizi-anip",
       "ruleset_version": "2026.2",
-      "source_hash": "a8ed0dbf4160b3ae35c229988e6bfb14015027f08068348e602833ea489009aa",
+      "source_hash": "72a191c9d2b2edafb804bcc854eedd16f7bfc2c307c83f6cb5efa32a510f048f",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/multiservizi-anip.json.gz"
@@ -1802,7 +1802,7 @@
       "valid_to": "2029-12-31",
       "ruleset_id": "ccnl/pulizia-artigianato-confartigianato",
       "ruleset_version": "2025.1",
-      "source_hash": "a61d053982d31f1aa79d83cb6e97a6568330c8a43f2172f67fc0a6c393dbec3d",
+      "source_hash": "95462c79bcd803c3acdf13a7b4fb45154f77fb1a21d39dd2faba1a3d7a2c4fdb",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/pulizia-artigianato-confartigianato.json.gz"
