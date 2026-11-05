@@ -53,7 +53,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-11-19 |
-| **Last review** | 2026-10-31 |
+| **Last review** | 2026-11-05 |
 | **Latest salary tranche** | 2026-11-01 |
 
 ## Review history
@@ -72,6 +72,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'ferie, permessi, festività, assenze, malattia e comporto', re-read on the full text published by a party, found on 15 October 2026. | corrected | Sickness of the operai (Art. 61, pp. 137-138): top-up to 100% of the net pay from the fourth day (from the first past 7 days), for at most 150 days; the file paid 100% from the first day for 180 days: corrected. The impiegati rule of Art. 73 (p. 147) is declared by category.<br>Ferie 160 hours, 20 days (Art. 58, p. 133): verified. |
 | 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'fondi sanitari, previdenza complementare, bilateralità e quote a carico di lavoratore e datore': the amounts of the declared contributions, read on the full text published by a party. | confirmed | Bilateralità 11,65 euro a month, FSBA 0,45% + 0,15%, San.Arti 10,42 euro a month and the E.a.r. of 30 and 25 euro read on pp. 30-32: the declared limitation now states every amount. |
 | 2026-10-31 | claude-opus-5-5 (ai) | The comporto and the sick pay of the CCNL counted over several illnesses (work_rules.sickness_rules), read on the signed text. | corrected | Art. 61 (pp. 137-138): the job is kept 9 months for one illness and 10 months 'nell'arco dei 24 mesi precedenti' for several; the integration lasts at most 150 days. The file stored the 150 days as max_duration_days, the comporto: corrected to 274 days of one illness and 304 within 24 months (comporto_windows), the integration ending on day 150 by a tier of rate 0 from the sixth month. |
+| 2026-11-05 | claude-opus-5-5 (ai) | Artt. 11-12 (PDF pp. 28-32) of the CCNL of 17 December 2021, EBNA text, text layer. | corrected | EBNA (EUR 11.65 a month, or EUR 30 on 13 months unpaid) and SAN.ARTI. (EUR 10.42 a month, or EUR 25 on 13 months unpaid) were not modelled. |
 
 ## Salary table
 
@@ -140,11 +141,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Add an 'impiegati_centralinisti' track (70, 70, 75, 80% by semester, then 100%) selectable by Apprentice.track.
 
 !!! warning "metalmeccanico-artigianato/health_and_bilateral_funds · bilateral_funds · impact yes · open"
-    HEALTH AND BILATERAL FUNDS (EBNA text, Art. 11-12, pp. 30-32): bilateralità artigiana 11,65 euro a month for 12 months from the employer, also for part-time and apprentices, plus FSBA 0,45% from the employer and 0,15% from the worker of the INPS base (from 1 January 2022), or 30 euro a month for 13 months paid to the worker by a firm outside the bilateral system; San.Arti 10,42 euro a month for 12 months from the employer, or an E.a.r. of 25 euro a month for 13 months when the firm does not enrol. Not modelled: the worker's 0,15% lowers the net pay.
+    HEALTH AND BILATERAL FUNDS (EBNA text, artt. 11-12, pp. 28-32): EBNA EUR 11.65 a month (EUR 30 on 13 months to the worker of an employer outside the bilateralità) and SAN.ARTI. EUR 10.42 a month (E.A.R. of EUR 25 on 13 months) are modelled. Not modelled: the FSBA, 0.45% from the employer and 0.15% from the worker of the INPS base (from 1 January 2016).
 
     **Applies when:** `bilateral_funds` applies.
 
-    **Remediation:** Pass the contributions as bilateral fund events, or model them per worker.
+    **Remediation:** Model the FSBA contribution (0.45% from the employer and 0.15% from the worker of the INPS base), which the contractual funds cannot hold on that base, then remove this note.
 
 !!! warning "metalmeccanico-artigianato/artisan_saturday_overtime · overtime · impact yes · open"
     SATURDAY OVERTIME AND ORDINARY NIGHT AND HOLIDAY WORK: in a five-day week Saturday overtime is paid 25% for the first 3 hours and 50% after; ordinary night work is paid 15% and holiday work 45% (Art. 22, p. 84). The request has no Saturday kind and the bands hold only the overtime rates.

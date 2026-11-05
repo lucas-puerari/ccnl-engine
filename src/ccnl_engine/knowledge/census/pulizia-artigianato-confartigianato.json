@@ -71,10 +71,10 @@
       "institute": "bilateral_funds",
       "variant": "all",
       "discriminant": "applies_when.trigger = owed",
-      "rule": "SIMPLIFICATION: Fondi bilaterali non modellati (Fondo sanitario EUR 10.42*12 + bilateralità EUR 11.65*12). employer_cost_annual sottostimato di ~EUR 267/anno.",
+      "rule": "HEALTH AND BILATERAL FUNDS: SAN.ARTI. EUR 10.42 a month (art. 18 of the 2014 text, E.A.R. of EUR 25 on 13 months) and EBNA EUR 11.65 a month from 1 November 2022 (interconfederal agreement of 17 December 2021 taken in by the renewal of 27 October 2022; EUR 30 on 13 months to the worker of an employer outside the bilateralità) are modelled. Not modelled: the FSBA, 0.45% from the employer and 0.15% from the worker of the INPS base.",
       "calculation": "ccnl/pulizia-artigianato-confartigianato:coverage.notes",
       "state": "absent",
-      "remediation": "Pass the health-fund and bilateral contributions as a bilateral fund event, or model the funds.",
+      "remediation": "Model the FSBA contribution (0.45% from the employer and 0.15% from the worker of the INPS base), which the contractual funds cannot hold on that base, then remove this note.",
       "origin": "seeded",
       "links": {
         "limitations": [

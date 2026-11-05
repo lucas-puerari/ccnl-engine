@@ -162,7 +162,7 @@
       },
       {
         "kind": "simplification",
-        "text": "HEALTH AND BILATERAL FUNDS (EBNA text, Art. 11-12, pp. 30-32): bilateralità artigiana 11,65 euro a month for 12 months from the employer, also for part-time and apprentices, plus FSBA 0,45% from the employer and 0,15% from the worker of the INPS base (from 1 January 2022), or 30 euro a month for 13 months paid to the worker by a firm outside the bilateral system; San.Arti 10,42 euro a month for 12 months from the employer, or an E.a.r. of 25 euro a month for 13 months when the firm does not enrol. Not modelled: the worker's 0,15% lowers the net pay.",
+        "text": "HEALTH AND BILATERAL FUNDS (EBNA text, artt. 11-12, pp. 28-32): EBNA EUR 11.65 a month (EUR 30 on 13 months to the worker of an employer outside the bilateralità) and SAN.ARTI. EUR 10.42 a month (E.A.R. of EUR 25 on 13 months) are modelled. Not modelled: the FSBA, 0.45% from the employer and 0.15% from the worker of the INPS base (from 1 January 2016).",
         "capability": "bilateral_funds",
         "monetary_impact": "yes",
         "limitation": {
@@ -170,7 +170,7 @@
           "applies_when": {
             "trigger": "owed"
           },
-          "remediation": "Pass the contributions as bilateral fund events, or model them per worker."
+          "remediation": "Model the FSBA contribution (0.45% from the employer and 0.15% from the worker of the INPS base), which the contractual funds cannot hold on that base, then remove this note."
         }
       },
       {
@@ -386,7 +386,120 @@
         },
         "note": "In force from the signing date (art. 2); the text of 2021 had no fraction rule for the tredicesima. Scanned text, read by OCR and checked on the page image. Operai: 'sarà considerata utile la frazione di mese superiore ai 15 gg.'"
       }
-    }
+    },
+    "health_funds": [
+      {
+        "code": "ebna",
+        "description": "Bilateralità artigiana EBNA, quota fissa (accordo interconfederale 17 dicembre 2021)",
+        "employer": {
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "valid_until": null,
+                "value": "11.65"
+              }
+            ]
+          }
+        },
+        "alternative": {
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "valid_until": null,
+                "value": "30.0"
+              }
+            ]
+          }
+        },
+        "alternative_extra_months": true,
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-area-meccanica-artigianato-2021-ebna",
+              "title": "CCNL Area Meccanica artigianato 17 dicembre 2021, testo EBNA",
+              "kind": "associazione",
+              "url": "https://www.ebat.tn.it/wp-content/uploads/2024/02/EBNA-Contratto-CCNL-Area-Meccanica_web_LR_compressed-1.pdf",
+              "published_on": "2021-12-17",
+              "sha256": "f8cd3c42582324aa4484bb2bb9465a5a0a442467aae64e3ea3a1c57e089f3151"
+            },
+            "page": "28, 31",
+            "section": "Art. 11 - Bilateralità",
+            "quote": "con decorrenza dal 1° gennaio 2022, [...] la quota di contribuzione mensile alla Bilateralità viene stabilita in cifra fissa pari ad 11,65€ mensili per dodici mensilità (dovuta per intero anche per i lavoratori con contratto part-time e con contratto di apprendistato) [...] le imprese non aderenti alla bilateralità e che non versano il relativo contributo, dovranno erogare a ciascun lavoratore un importo forfetario pari a 30,00€ lordi mensili per 13 mensilità"
+          },
+          "transformation": "EUR 11.65 a month on 12 months from the employer, in full for part-time workers and apprentices; an employer outside the bilateralità owes the worker EUR 30 a month on 13 months, outside the TFR ('escluso il TFR'), in proportion to the hours of a part-timer. The FSBA (0.45% + 0.15% of the INPS base) is not modelled.",
+          "note": "The 2010 E.A.R. of art. 11 n. 4 (p. 28), which the 2022 amount replaces: 'non è assorbibile', on every institute 'escluso il TFR', 'corrisposto proporzionalmente all'orario di lavoro' of a part-timer. The renewal of 19 November 2024 does not amend artt. 11-12.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-05T19:30:00Z",
+            "effective_from": "2022-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-05T19:30:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-05-ai-contractual-funds"
+          }
+        }
+      },
+      {
+        "code": "sanarti",
+        "description": "SAN.ARTI., assistenza sanitaria integrativa dell'artigianato",
+        "permanent_only": true,
+        "employer": {
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "valid_until": null,
+                "value": "10.42"
+              }
+            ]
+          }
+        },
+        "solidarity_rate": "0.1",
+        "alternative": {
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "valid_until": null,
+                "value": "25.0"
+              }
+            ]
+          }
+        },
+        "alternative_extra_months": true,
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-area-meccanica-artigianato-2021-ebna",
+              "title": "CCNL Area Meccanica artigianato 17 dicembre 2021, testo EBNA",
+              "kind": "associazione",
+              "url": "https://www.ebat.tn.it/wp-content/uploads/2024/02/EBNA-Contratto-CCNL-Area-Meccanica_web_LR_compressed-1.pdf",
+              "published_on": "2021-12-17",
+              "sha256": "f8cd3c42582324aa4484bb2bb9465a5a0a442467aae64e3ea3a1c57e089f3151"
+            },
+            "page": "31-32",
+            "section": "Art. 12 - SAN.ARTI.",
+            "quote": "a decorrere dal 1° febbraio 2013 sono iscritti al Fondo i dipendenti a tempo indeterminato [...] ivi compresi gli apprendisti [...] un contributo a carico dell'azienda pari a 10,42€ mensili per 12 mensilità [...] “elemento aggiuntivo della retribuzione” (E.a.r.) pari a 25€ lordi mensili per 13 mensilità"
+          },
+          "transformation": "EUR 10.42 a month on 12 months from the employer for the permanent workers, apprentices included, with the 10% INPS solidarity of a health fund (L. 166/1991 art. 9-bis); an employer that does not enrol them owes an E.A.R. of EUR 25 a month on 13 months. The fixed-term workers hired for at least 12 months, also enrolled, are not modelled.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-05T19:30:00Z",
+            "effective_from": "2022-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-05T19:30:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-05-ai-contractual-funds"
+          }
+        }
+      }
+    ]
   },
   "levels": [
     {
@@ -2629,7 +2742,7 @@
     "effective_until": null,
     "source": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf",
     "verification_status": "unverified",
-    "source_hash": "3bee2cf897fde82703b915f497e3c0450ba7d142d5d34d5d181963ef8ecb081c",
+    "source_hash": "07726b38c87b20360c04912a9138427c3de2da98885f0b05d2b4cfb9aa11cccf",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3130,6 +3243,27 @@
         ],
         "findings": [
           "Art. 61 (pp. 137-138): the job is kept 9 months for one illness and 10 months 'nell'arco dei 24 mesi precedenti' for several; the integration lasts at most 150 days. The file stored the 150 days as max_duration_days, the comporto: corrected to 274 days of one illness and 304 within 24 months (comporto_windows), the integration ending on day 150 by a tier of rate 0 from the sixth month."
+        ]
+      },
+      {
+        "id": "2026-11-05-ai-contractual-funds",
+        "date": "2026-11-05",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Artt. 11-12 (PDF pp. 28-32) of the CCNL of 17 December 2021, EBNA text, text layer.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.ebat.tn.it/wp-content/uploads/2024/02/EBNA-Contratto-CCNL-Area-Meccanica_web_LR_compressed-1.pdf",
+            "sha256": "f8cd3c42582324aa4484bb2bb9465a5a0a442467aae64e3ea3a1c57e089f3151"
+          }
+        ],
+        "findings": [
+          "EBNA (EUR 11.65 a month, or EUR 30 on 13 months unpaid) and SAN.ARTI. (EUR 10.42 a month, or EUR 25 on 13 months unpaid) were not modelled."
+        ],
+        "independence": "separate_session",
+        "checked": [
+          "parameters.health_funds"
         ]
       }
     ],
