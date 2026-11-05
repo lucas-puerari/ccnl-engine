@@ -376,7 +376,117 @@
         },
         "note": "Quote taken verbatim from the text layer or the OCR of the cited PDF; no human review recorded."
       }
-    }
+    },
+    "health_funds": [
+      {
+        "code": "sanilog",
+        "description": "Sanilog, assistenza sanitaria integrativa, Art. 51",
+        "permanent_only": true,
+        "employer": {
+          "annual": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "150.0"
+              }
+            ]
+          }
+        },
+        "solidarity_rate": "0.1",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-logistica-testo-unico-2025",
+              "title": "CCNL Logistica, trasporto merci e spedizione, Testo Unico 25 settembre 2025 (Confetra)",
+              "kind": "associazione",
+              "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+              "published_on": "2025-09-25",
+              "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+            },
+            "page": "64",
+            "section": "Art. 51 cc. 2-3, 5 - Sanilog",
+            "quote": "Hanno diritto all’erogazione delle prestazioni sanitarie di Sanilog tutti i lavoratori non in prova ai quali si applica il presente contratto in dipendenza di un rapporto di lavoro a tempo indeterminato ivi compreso l’apprendistato [...] il cui importo è di 120 euro annuali a decorrere dall’1 luglio 2011 per ciascun lavoratore (al netto del contributo di solidarietà INPS attualmente stabilito al 10% [...]) [...] incrementata, a partire dal 1° gennaio 2022, di 30 euro annuali."
+          },
+          "transformation": "EUR 150 a year from the employer only for each permanent worker, apprentices included, charged a twelfth a month, with the 10% INPS solidarity contribution. The probation is not modelled (the share is due from the start); the CCNL grants no alternative element: an employer that does not pay answers for the lost benefits (c. 5).",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-05T19:00:00Z",
+            "effective_from": "2025-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-05T19:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-05-ai-contractual-funds"
+          }
+        }
+      },
+      {
+        "code": "ebilog",
+        "description": "Ebilog, ente bilaterale nazionale, Art. 52",
+        "employer": {
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "3.50"
+              }
+            ]
+          }
+        },
+        "employee": {
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "0.50"
+              }
+            ]
+          }
+        },
+        "alternative": {
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "8.0"
+              }
+            ]
+          }
+        },
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-logistica-testo-unico-2025",
+              "title": "CCNL Logistica, trasporto merci e spedizione, Testo Unico 25 settembre 2025 (Confetra)",
+              "kind": "associazione",
+              "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+              "published_on": "2025-09-25",
+              "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+            },
+            "page": "65",
+            "section": "Art. 52 cc. 2-3 - Ebilog",
+            "quote": "specifica contribuzione mensile (riferita a 12 mensilità) di 2 euro a carico delle imprese per ciascun lavoratore in forza, non in prova, e di 0,50 euro a carico dei lavoratori [...] incrementata, a partire dal 1° gennaio 2022, di 1,5 euro a solo carico aziendale. [...] non versano il relativo contributo all’Ente Bilaterale (2 euro, incrementati a 3,5 euro [...]) [...] (EAR, “elemento aggiuntivo della retribuzione”) pari ad Euro 8 mensili per dodici mensilità."
+          },
+          "transformation": "EUR 3.50 a month from the employer and 0.50 from the worker, on 12 months, for each worker in force; an employer outside the signatory associations that does not pay owes the worker an EAR of EUR 8 a month on 12 months. Whether the EAR enters the TFR the text does not say: it is kept out.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-05T19:00:00Z",
+            "effective_from": "2025-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-05T19:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-05-ai-contractual-funds"
+          }
+        }
+      }
+    ]
   },
   "levels": [
     {
@@ -3370,7 +3480,7 @@
     "effective_until": null,
     "source": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
     "verification_status": "unverified",
-    "source_hash": "688b6579994ea543797955baa9c2b562aa47f84143a72f38e6a954611aaaf0e1",
+    "source_hash": "0644d951a8b833f103832f4cd104ae3336e5f515d1c7e3d55308e536fe09ad67",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -4157,6 +4267,27 @@
           "hourly_base_method gross_incl_allowances (was minimo_tabellare), now verified: the retribuzione globale of art. 61 c. 1 divided by 168 (art. 13 c. 8), without the EDR of 2021; the engine derives the hourly rate of an event without one.",
           "individual_elements included: art. 61 c. 1 punto 3 counts 'eventuali altri aumenti comunque denominati'.",
           "The travelling staff take 50% on Sunday and holiday work (art. 12 c. 4): bands VIAG_DOMENICA and VIAG_FESTIVO."
+        ]
+      },
+      {
+        "id": "2026-11-05-ai-contractual-funds",
+        "date": "2026-11-05",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Artt. 51-52 (PDF pp. 64-65) of the Testo Unico of 25 September 2025, text layer.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+            "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+          }
+        ],
+        "findings": [
+          "Sanilog and Ebilog, owed for every worker of the CCNL, were not modelled: employer cost and worker share were short."
+        ],
+        "independence": "separate_session",
+        "checked": [
+          "parameters.health_funds"
         ]
       }
     ],

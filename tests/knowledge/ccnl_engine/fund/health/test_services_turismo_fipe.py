@@ -400,3 +400,33 @@ def test_ristorazione_collettiva_fondo_est(
         sorted(i.amount for i in result.pay_items if "_element_" in i.item_id)
         == elements
     )
+
+
+@pytest.mark.parametrize(
+    ("funds", "employer", "employee", "elements"),
+    [
+        (frozenset({"sanilog", "ebilog"}), Decimal("16.00"), Decimal("0.50"), []),
+        (frozenset(), Decimal("12.50"), Decimal(0), [Decimal("8.00")]),
+    ],
+)
+def test_logistica_funds(
+    funds: frozenset[str],
+    employer: Decimal,
+    employee: Decimal,
+    elements: list[Decimal],
+) -> None:
+    """Sanilog 150 EUR a year (12.50 a month) and Ebilog 3.50 + 0.50 (artt. 51-52).
+
+    Not stated: the EAR of 8 EUR of Ebilog; Sanilog, which has no alternative
+    element, is still owed.
+    """
+    result = _run("logistica-trasporto-confetra", "4", funds)
+
+    assert _posted(result, AccountKind.BILATERAL_FUND_EMPLOYER) == employer
+    assert _posted(result, AccountKind.BILATERAL_FUND_EMPLOYEE) == employee
+    assert (
+        sorted(i.amount for i in result.pay_items if "_element_" in i.item_id)
+        == elements
+    )
+    if funds:
+        assert _entries(result, "sanilog_")["solidarity"] == Decimal("1.25")
