@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-02-16 |
-| **Last review** | 2026-11-01 |
+| **Last review** | 2026-11-05 |
 | **Latest salary tranche** | 2026-12-01 |
 
 ## Review history
@@ -69,6 +69,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-31 | claude-opus-5-5 (ai) | The basis of the indemnity for the leave not taken at the end of the employment, searched in the CCNL of 16 February 2024 (Artt. 44, 45, 91, 98, 101, 137) and in its April 2026 testo ufficiale. | corrected | Art. 137 - Frazionamento della retribuzione (p. 70; same text in the 2026 testo ufficiale, p. 122): the indemnity for the ferie not taken is the monthly pay divided by 26: work_rules.leave_rules.termination. The ex festività left have a daily basis (Art. 98), not an hourly one: permits_hourly false. |
 | 2026-10-31 | claude-opus-5-5 (ai) | The ROL and the basis of the ex festività left at the end of the employment, read in the CCNL of 16 February 2024 (Artt. 91, 98, 137) and checked against its April 2026 testo ufficiale (Art. 91 p. 77, Art. 98: same wording). | corrected | Art. 91 c.2 lett. A, cc.3, 6 (p. 47): 40 hours of ROL a year for the week of five days, by whole months, reduced for the hires within the term of the contract: work_rules.leave_rules.permits[rol].<br>Art. 98 (p. 51): the ex festività not used are paid at the retribuzione normale giornaliera, one day for each festività of 8 hours: permits[ex_festivita].day_hours.<br>Art. 91 c.5 (p. 47) and Art. 137 (p. 70): the ROL left are paid at the monthly pay / 170: termination.permits_hourly true. |
 | 2026-11-01 | claude-opus-5-5 (ai) | The notice of Artt. 146-148 (pp. 74-75). | corrected | Artt. 146-148 (pp. 74-75): notice in calendar days by level and seniority for dismissal and resignation, from the 1st or the 16th, indemnity with the 13th and 14th ratei, out of the TFR base: work_rules.notice. Found by a delegated search and checked again on the PDF text. |
+| 2026-11-05 | claude-opus-5-5 (ai) | The ferie days of the six-day week, Art. 99 c. 1 - Misura del periodo di ferie (PDF p. 51), read by a separate research session and checked again on the text layer. | corrected | Art. 99 c. 1 - Misura del periodo di ferie: 22 working days in the five-day week, 26 in the six-day week: work_rules.leave_rules.week_days_annual_days 6/26, read when Employment.full_time_week_days is 6. |
 
 ## Salary table
 
@@ -123,12 +124,12 @@ percentage: 0.60
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning "studi-professionali-confprofessioni/six_day_week_leave · leave · impact unknown · open"
-    LEAVE: 22 working days for the settimana corta (Monday to Friday), 26 for a six-day week (Art. 99 CCNL 2024, p. 51). The file carries the 22 days; the engine cannot switch on the weekly schedule.
+!!! note "studi-professionali-confprofessioni/six_day_week_leave · leave · impact yes · resolved"
+    LEAVE: 22 working days for the settimana corta (Monday to Friday), 26 for a six-day week (Art. 99 CCNL 2024, p. 51). The file carries the 22 days and accrues 26 when Employment.full_time_week_days is 6 (leave_rules.week_days_annual_days).
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Accept the weekly schedule (days per week) and accrue 26 days on a six-day week, or record the limitation as rol_not_accrued does for ROL.
+    **Remediation:** Resolved: work_rules.leave_rules.week_days_annual_days holds 26 days for the six-day week, read for an employment whose full_time_week_days is 6.
 
 !!! warning "studi-professionali-confprofessioni/rolling_comporto_and_serious_illness · sickness · impact yes · open"
     Artt. 120-121: the comporto counted over the episodes of the 365 days before the last one, and the +90 days for serious illnesses paid 100% in months 7-8 and 70% in month 9.

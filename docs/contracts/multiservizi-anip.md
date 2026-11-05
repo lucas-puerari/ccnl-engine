@@ -54,7 +54,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2021-06-08 |
-| **Last review** | 2026-10-13 |
+| **Last review** | 2026-11-05 |
 | **Latest salary tranche** | 2029-03-01 |
 
 ## Review history
@@ -64,6 +64,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-09-18 | maintainer (human) | Whole file. The values checked were not recorded. | confirmed | The review recorded no list of the documents it read. |
 | 2026-10-13 | claude-opus-5-5 (ai) | Signatories of the renewals behind the salary periods from July 2025. | flagged | The renewal of 13 June 2025 (CNEL K511, deposits 234754 and 234752) is not signed by ANIP; the file pays its minima from July 2025. Declared as the limitation anip_unsigned_renewal; values left unchanged pending an ANIP amount. |
 | 2026-10-13 | claude-opus-5-5 (ai) | Limited scope, tier unchanged: the rules that do not depend on the missing ANIP amounts, read in the CNEL K511 deposits 105782 (2011 text) and 139292 (2021 renewal); the salary periods from July 2025 stay as they are. | corrected | 66 records verified: the 2021-2024 tabellare, contingenza and EDR of levels 1-7 and Q, the quadri allowance, the levels 1, 2par115, 4par125, 7 and Q, the divisor 173, the 14 monthly payments and their accrual rule, the overtime rates and 22 days of leave.<br>Added the payment days of the tredicesima (20 December) and quattordicesima (15 July, window July to June), arts. 20-21.<br>The 2par115 and 4par125 tabellare is computed (April 2013 amount plus the parametric increments): derived, descriptions corrected to the notes a verbale of art. 10.<br>Closed cigs_threshold_16_to_50: terziario.json already charges the CIGS above 15 employees (D.Lgs. 148/2015 arts. 20 and 23).<br>Closed apprentice_seniority: apprentices are paid tabellare, contingenza and EDR only (art. 12), apprentice_amount 0 (derived).<br>Corrected the notes on the July 2025 values (the 2021 fifth tranche is the operative ANIP amount), on scatti recomputed at every tranche, on the apprenticeship durations, on the 2025 signatories and on the worker estimate.<br>Declared multiservizi_unmodelled_rules: seniority and sickness by worker type, the 181-270 sickness band, the /22 divisor, the overtime base and premiums, the art. 24 allowances, the funds and the apprenticeship durations.<br>hourly_base_method gross_incl_allowances: the art. 38 premiums are on tabellare plus contingenza.<br>Left derived: the periods from July 2025 (renewal not signed by ANIP, re-cited to CNEL 234752), the seniority block, the contingenza of the parametric positions, levels 2 to 6 (mixed categories), absence and sickness rules.<br>The aggregator sources (oristano summary, redigo, kitech, ccnlportatili) are replaced by the CNEL deposits. |
+| 2026-11-05 | claude-opus-5-5 (ai) | The ferie days of the six-day week, Art. 42 Ferie (PDF p. 61), read by a separate research session and checked again on the text layer. | corrected | Art. 42 Ferie: 22 working days in the five-day week, 26 in the six-day week: work_rules.leave_rules.week_days_annual_days 6/26, read when Employment.full_time_week_days is 6. |
 
 ## Salary table
 
