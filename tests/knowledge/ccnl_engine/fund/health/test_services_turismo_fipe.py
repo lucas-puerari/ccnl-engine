@@ -327,3 +327,76 @@ def test_commercio_quadro_without_quas_owes_37_eur() -> None:
     assert [i.amount for i in result.pay_items if "_element_" in i.item_id] == [
         Decimal("37.00")
     ]
+
+
+_DMO = Decimal("1781.68")
+
+
+@pytest.mark.parametrize(
+    ("funds", "employer", "employee", "elements"),
+    [
+        (
+            frozenset({"ebidim", "fondo_est"}),
+            _pct("0.001", _DMO) + Decimal(13),
+            _pct("0.0005", _DMO) + Decimal(2),
+            [],
+        ),
+        (
+            frozenset(),
+            Decimal(0),
+            Decimal(0),
+            sorted([_pct("0.003", _DMO), Decimal("16.00")]),
+        ),
+    ],
+)
+def test_dmo_funds(
+    funds: frozenset[str],
+    employer: Decimal,
+    employee: Decimal,
+    elements: list[Decimal],
+) -> None:
+    """DMO IV, paga base 1,257.46 and contingenza 524.22 EUR in June 2026.
+
+    Paid: E.Bi.Di.M. 0.10% + 0.05% (art. 18) and Fondo EST 13 + 2 EUR from
+    April 2025 (art. 19); not paid: 0.30% and 16 EUR, for 14 months.
+    """
+    result = _run("dmo-federdistribuzione", "IV", funds)
+
+    assert _posted(result, AccountKind.BILATERAL_FUND_EMPLOYER) == employer
+    assert _posted(result, AccountKind.BILATERAL_FUND_EMPLOYEE) == employee
+    assert (
+        sorted(i.amount for i in result.pay_items if "_element_" in i.item_id)
+        == elements
+    )
+
+
+def test_dmo_quadro_pays_quas_a_twelfth_a_month() -> None:
+    """Cassa QuAS 390 + 56 EUR a year from 2026 (art. 20): 32.50 and 4.67."""
+    result = _run("dmo-federdistribuzione", "Q", frozenset({"ebidim", "quas"}))
+
+    assert _entries(result, "quas_") == {
+        "er": Decimal("32.50"),
+        "solidarity": Decimal("3.25"),
+        "emp": Decimal("4.67"),
+    }
+    assert not _entries(result, "fondo_est_")
+
+
+@pytest.mark.parametrize(
+    ("funds", "employer", "elements"),
+    [
+        (frozenset({"fondo_est"}), Decimal(12), []),
+        (frozenset(), Decimal(0), [Decimal("16.00")]),
+    ],
+)
+def test_ristorazione_collettiva_fondo_est(
+    funds: frozenset[str], employer: Decimal, elements: list[Decimal]
+) -> None:
+    """Art. 186 covers ristorazione collettiva: 12 EUR, or 16 EUR not paid."""
+    result = _run("pubblici-esercizi-fipe-angem-ristorazione-collettiva", "3", funds)
+
+    assert _posted(result, AccountKind.BILATERAL_FUND_EMPLOYER) == employer
+    assert (
+        sorted(i.amount for i in result.pay_items if "_element_" in i.item_id)
+        == elements
+    )
