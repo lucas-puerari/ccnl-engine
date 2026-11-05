@@ -31,7 +31,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, bilateral_funds, seniority, sickness, territorial_supplement |
+| **Limits of this contract** | base_salary, seniority, sickness, territorial_supplement |
 
 8 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-09-29 |
-| **Last review** | 2026-11-02 |
+| **Last review** | 2026-11-05 |
 | **Latest salary tranche** | 2027-02-01 |
 
 ## Review history
@@ -67,6 +67,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-01 | claude-opus-5-5 (ai) | The hourly divisors of the 42 and 45 hour weeks, Art. 194 - Quota oraria (p. 58). | corrected | Art. 194 - Quota oraria (p. 58): 168 for a normal week of 40 hours, 182 for 42, 195 for 45: work_rules.time_supplements.hourly_divisor_weekly_hours 40 and week_divisors 42/182, 45/195. |
 | 2026-11-01 | claude-opus-5-5 (ai) | The notice of Artt. 231-236 (PDF pp. 64-66). | corrected | Artt. 231, 232, 233 c. 3, 236 c. 2 (pp. 64-66): calendar days by level and service for dismissal and resignation, from the 1st or the 16th, indemnity on the retribuzione di fatto with the 13th and 14th ratei, out of the TFR base: work_rules.notice. Found by a delegated search, checked again on the PDF text. |
 | 2026-11-02 | claude-opus-5-5 (ai) | The premiums on ordinary hours of Artt. 134, 136, 138 and 139 and the hourly base of Artt. 189, 191 and 194 (PDF pp. 42-44 and 57-58). | corrected | Art. 134 (p. 43): ordinary night 15%; art. 136 c. 7 (p. 43): Sunday 30%; art. 139 (p. 44): weekly rest day 30%; art. 138 (p. 44): holidays as straordinario festivo 30% (art. 132), the hour paid apart: supplement_bands DMO_*, as Commercio artt. 151-156.<br>Art. 194 (p. 58) divisor 168 at 40 hours; art. 189 (p. 57, read on the page image) normale retribuzione: paga base, contingenza, terzi elementi, scatti, other bargained elements; art. 191 adds the continuative individual elements: hourly_base_provenance and individual_elements hour_only, as Commercio artt. 206-211. |
+| 2026-11-05 | claude-opus-5-5 (ai) | Artt. 18-20 (PDF pp. 15-16), 191 and 233 of the Testo Unico of 29 September 2025, text layer. | corrected | The three funds and their alternative elements were not modelled: employer cost, worker shares and the EDR of an employer that does not pay them were missing. |
 
 ## Salary table
 
@@ -166,12 +167,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Model the guarantee of commission-paid staff.
 
-!!! warning "dmo-federdistribuzione/health_and_bilateral_funds · bilateral_funds · impact yes · open"
-    HEALTH AND BILATERAL FUNDS: E.Bi.Di.M. (Art. 18), Fondo EST (Art. 19) and, for the quadri, Cassa QuAS (Art. 20) are owed for every worker, with their worker shares; an employer that does not pay them owes the worker instead the EDR of 0.30% of paga base and contingenza (14 months), EUR 16.00 x 14 and EUR 37.00 x 14. Neither is modelled: the net pay and the employer cost are short of them.
+!!! note "dmo-federdistribuzione/health_and_bilateral_funds · bilateral_funds · impact yes · resolved"
+    HEALTH AND BILATERAL FUNDS (artt. 18-20, pp. 15-16): E.Bi.Di.M. 0.10% + 0.05% of paga base and contingenza on 14 months, Fondo EST EUR 10 (13 from April 2025) + 2 a month for the permanent non-quadri, Cassa QuAS EUR 350/370/390 + 56 a year for the quadri; the elements of an employer that does not pay them (0.30%, EUR 16 and 37 on 14 months) when it states so in EmployerProfile.contractual_funds.
 
     **Applies when:** `bilateral_funds` applies.
 
-    **Remediation:** Model the contributions per worker, with a fact for an employer that pays the worker the alternative element instead, then remove this note.
+    **Remediation:** Resolved: parameters.health_funds ebidim, fondo_est and quas, read on 2026-11-05.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

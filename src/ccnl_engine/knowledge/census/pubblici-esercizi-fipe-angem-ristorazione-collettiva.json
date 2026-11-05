@@ -67,22 +67,6 @@
       }
     },
     {
-      "id": "health_and_bilateral_funds",
-      "institute": "bilateral_funds",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = owed",
-      "rule": "HEALTH FUND: the Fondo Est is owed for every worker (CCNL 2018 art. 186); an employer that does not pay it owes the worker instead the elemento distinto of EUR 16.00 for 14 months (c. 12). Neither is modelled: the employer cost, and with the elemento the net pay, are short of it.",
-      "calculation": "ccnl/pubblici-esercizi-fipe-angem-ristorazione-collettiva:coverage.notes",
-      "state": "absent",
-      "remediation": "Model the contributions per worker, with a fact for an employer that pays the worker the alternative element instead, then remove this note.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "pubblici-esercizi-fipe-angem-ristorazione-collettiva/health_and_bilateral_funds"
-        ]
-      }
-    },
-    {
       "id": "holiday_overtime_cumulation",
       "institute": "overtime",
       "variant": "all",

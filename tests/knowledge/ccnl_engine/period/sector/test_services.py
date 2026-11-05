@@ -151,15 +151,15 @@ _TERZ_OWED = frozenset({"contractual_funds"})
 _COMMERCIO_OWED = frozenset({"contractual_funds"})
 #: Studi models CADIPROF and EBIPRO; the scenarios leave them unstated.
 _STUDI_OWED = frozenset({"contractual_funds"})
-#: The funds of Turismo and FIPE are modelled; the scenarios leave the
-#: employer's funds unstated, as their oracles leave the funds out: a missing
-#: fact, owed like an open limitation.
+#: The funds of Turismo, FIPE, ristorazione collettiva and DMO are modelled;
+#: the scenarios leave the employer's funds unstated, as their oracles leave
+#: the funds out: a missing fact, owed like an open limitation.
 _TURISMO_OWED = frozenset({"contractual_funds"})
 _CHIMICA_OWED: frozenset[str] = frozenset()
 _ALIMENTARI_OWED = frozenset({f"{_ALIMENTARI}/health_and_bilateral_funds"})
-_DMO_OWED = frozenset({f"{_DMO}/health_and_bilateral_funds"})
+_DMO_OWED = frozenset({"contractual_funds"})
 _FIPE_OWED = frozenset({"contractual_funds"})
-_RISTORAZIONE_OWED = frozenset({f"{_RISTORAZIONE}/health_and_bilateral_funds"})
+_RISTORAZIONE_OWED = frozenset({"contractual_funds"})
 _CONFAPI_OWED = frozenset({"contractual_funds"})
 _EDILIZIA_IMPIEGATI_OWED = frozenset({
     f"{_EDILIZIA_IMPIEGATI}/provincial_production_premium"

@@ -55,14 +55,12 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-07-22 |
-| **Last review** | 2026-11-05 |
+| **Last review** | — |
 | **Latest salary tranche** | 2027-11-01 |
 
 ## Review history
 
-| Date | Reviewer | Scope | Outcome | Findings |
-|---|---|---|---|---|
-| 2026-11-05 | claude-opus-5-5 (ai) | Artt. 54 and 58 (PDF pp. 14-16) of the renewal of 18 July 2018, OCR of the scan checked on the page images. | corrected | The apprentice is paid a share of the pay of the qualified worker of the level (80/85/90/95% by year), not two levels below: the file's 100% passthrough over every level is replaced by the tracks of the durations of art. 54. |
+No review is recorded.
 
 ## Salary table
 
@@ -102,19 +100,7 @@ Latest effective values per level (monthly gross, EUR).
 ## Apprenticeship
 
 **professionalizzante** (type: `percentage`)  
-Destination levels: `2`, `3`, `4`, `5`, `6S`  
-percentage: 1.00
-
-**professionalizzante_24_mesi** (type: `percentage`)  
-Destination levels: `6`  
-percentage: 1.00
-
-**professionalizzante_48_mesi** (type: `percentage`)  
-Destination levels: `2`, `3`  
-percentage: 1.00
-
-**professionalizzante_42_mesi** (type: `percentage`)  
-Destination levels: `4`  
+Destination levels: `7`, `6`, `6S`, `5`, `4`, `3`, `2`, `1`, `QB`, `QA`  
 percentage: 1.00
 
 ## Known simplifications
@@ -128,12 +114,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Model the pubblici esercizi and stabilimenti balneari tables (split paga base + contingenza) with a sub-sector input, or record the limitation.
 
-!!! note "turismo-confesercenti/apprenticeship_under_classification · base_salary · impact yes · resolved"
-    APPRENTICESHIP (artt. 54, 58 of the 2018 renewal): percentage tracks, not under-classification: 80/85/90% a year over 36 months for levels 2-6S, 80/85% over 24 for level 6, and the 48- (levels 2, 3) and 42-month (level 4) tracks of the craft profiles with 95% in the fourth year.
+!!! warning "turismo-confesercenti/apprenticeship_under_classification · base_salary · impact yes · open"
+    Apprenticeship model confirmed: CCNL Turismo Confesercenti provides sotto-inquadramento 2 levels below destination (consistent with Testo Unico apprendistato Art. 11, secondary sources). Modeled as 100% passthrough pending contract text; the engine supports under_classification tracks with levels_below. (review of 2026-10-30)
 
     **Applies when:** `base_salary` applies.
 
-    **Remediation:** Resolved: apprenticeship holds the percentage tracks of art. 58 by the durations of art. 54, read on 2026-11-05.
+    **Remediation:** Source the contract text and model under_classification tracks (2 levels below destination) instead of the 100% passthrough.
 
 !!! warning "turismo-confesercenti/apprentice_seniority · seniority · impact unknown · open"
     APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.

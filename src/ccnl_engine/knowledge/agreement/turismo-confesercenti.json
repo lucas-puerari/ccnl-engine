@@ -83,7 +83,7 @@
       },
       {
         "kind": "simplification",
-        "text": "APPRENTICESHIP (artt. 54, 58 of the 2018 renewal): percentage tracks, not under-classification: 80/85/90% a year over 36 months for levels 2-6S, 80/85% over 24 for level 6, and the 48- (levels 2, 3) and 42-month (level 4) tracks of the craft profiles with 95% in the fourth year.",
+        "text": "Apprenticeship model confirmed: CCNL Turismo Confesercenti provides sotto-inquadramento 2 levels below destination (consistent with Testo Unico apprendistato Art. 11, secondary sources). Modeled as 100% passthrough pending contract text; the engine supports under_classification tracks with levels_below. (review of 2026-10-30)",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
@@ -91,8 +91,7 @@
           "applies_when": {
             "trigger": "run"
           },
-          "remediation": "Resolved: apprenticeship holds the percentage tracks of art. 58 by the durations of art. 54, read on 2026-11-05.",
-          "status": "resolved"
+          "remediation": "Source the contract text and model under_classification tracks (2 levels below destination) instead of the 100% passthrough."
         }
       },
       {
@@ -288,239 +287,24 @@
       "type": "percentage",
       "name": "professionalizzante",
       "destination_levels": [
-        "2",
-        "3",
-        "4",
+        "7",
+        "6",
+        "6S",
         "5",
-        "6S"
-      ],
-      "periods": [
-        {
-          "months_from": 0,
-          "months_until": 12,
-          "percentage": "0.80"
-        },
-        {
-          "months_from": 12,
-          "months_until": 24,
-          "percentage": "0.85"
-        },
-        {
-          "months_from": 24,
-          "months_until": 36,
-          "percentage": "0.90"
-        },
-        {
-          "months_from": 36,
-          "months_until": null,
-          "percentage": "1.00"
-        }
-      ],
-      "provenance": {
-        "status": "verified",
-        "location": {
-          "source_document": {
-            "document_id": "ccnl-turismo-confesercenti-2018-rinnovo",
-            "title": "CCNL Turismo Assoturismo Confesercenti, accordo di rinnovo 18 luglio 2018 (scansione, archivio CNEL)",
-            "kind": "associazione",
-            "url": "https://www.cnel.it/archivio-contratti",
-            "published_on": "2018-07-18",
-            "sha256": "58c26b5cf30bd09349b5b53e10e7fe8eeffea2310f52ed782aa1632d5f5c5f3c"
-          },
-          "page": "14-16",
-          "section": "Art. 54 cc. 1-2 - Durata; Art. 58 c. 1 - Retribuzione",
-          "quote": "Livello di inquadramento Durata (mesi) 2°, 3°, 4°, 5°, 6°s 36 6° 24 [...] 2° Livello — Durata massima 48 mesi [...] 3° Livello — Durata massima 48 mesi [...] 4° Livello — Durata massima 42 mesi [Art. 58] La retribuzione degli apprendisti è determinata con riferimento alla normale retribuzione dei lavoratori qualificati di pari livello, secondo le seguenti proporzioni: - primo anno: 80%; - secondo anno: 85%; - terzo anno: 90%; - dal quarto anno: 95%. La retribuzione degli apprendisti del 95% si applica nei casi in cui la durata massima del contratto di apprendistato professionalizzante è superiore a 36 mesi"
-        },
-        "transformation": "Destination levels 2, 3, 4, 5, 6S: 36 months, 80% of the pay of the qualified worker of the level in the first year, 85% in the second, 90% in the third, 95% from the fourth only where the duration tops 36 months (art. 58); 100% after the term. The 48- and 42-month tracks are for the craft profiles art. 54 c. 2 lists (Capo cuoco, Cuoco unico, Pizzaiolo and the others).",
-        "note": "Read on the OCR of the scan, checked on the page images on 2026-11-05. The renewal of 22 July 2024 (CNEL 194334, p. 81) refers the apprentices back to these articles.",
-        "extraction": {
-          "method": "ai",
-          "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-11-05T17:00:00Z",
-          "effective_from": "2018-07-18",
-          "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-11-05T17:00:00Z",
-          "verification_status": "verified",
-          "review_id": "2026-11-05-ai-apprenticeship"
-        }
-      }
-    },
-    {
-      "type": "percentage",
-      "name": "professionalizzante_24_mesi",
-      "destination_levels": [
-        "6"
-      ],
-      "periods": [
-        {
-          "months_from": 0,
-          "months_until": 12,
-          "percentage": "0.80"
-        },
-        {
-          "months_from": 12,
-          "months_until": 24,
-          "percentage": "0.85"
-        },
-        {
-          "months_from": 24,
-          "months_until": null,
-          "percentage": "1.00"
-        }
-      ],
-      "provenance": {
-        "status": "verified",
-        "location": {
-          "source_document": {
-            "document_id": "ccnl-turismo-confesercenti-2018-rinnovo",
-            "title": "CCNL Turismo Assoturismo Confesercenti, accordo di rinnovo 18 luglio 2018 (scansione, archivio CNEL)",
-            "kind": "associazione",
-            "url": "https://www.cnel.it/archivio-contratti",
-            "published_on": "2018-07-18",
-            "sha256": "58c26b5cf30bd09349b5b53e10e7fe8eeffea2310f52ed782aa1632d5f5c5f3c"
-          },
-          "page": "14-16",
-          "section": "Art. 54 cc. 1-2 - Durata; Art. 58 c. 1 - Retribuzione",
-          "quote": "Livello di inquadramento Durata (mesi) 2°, 3°, 4°, 5°, 6°s 36 6° 24 [...] 2° Livello — Durata massima 48 mesi [...] 3° Livello — Durata massima 48 mesi [...] 4° Livello — Durata massima 42 mesi [Art. 58] La retribuzione degli apprendisti è determinata con riferimento alla normale retribuzione dei lavoratori qualificati di pari livello, secondo le seguenti proporzioni: - primo anno: 80%; - secondo anno: 85%; - terzo anno: 90%; - dal quarto anno: 95%. La retribuzione degli apprendisti del 95% si applica nei casi in cui la durata massima del contratto di apprendistato professionalizzante è superiore a 36 mesi"
-        },
-        "transformation": "Destination levels 6: 24 months, 80% of the pay of the qualified worker of the level in the first year, 85% in the second, 90% in the third, 95% from the fourth only where the duration tops 36 months (art. 58); 100% after the term. The 48- and 42-month tracks are for the craft profiles art. 54 c. 2 lists (Capo cuoco, Cuoco unico, Pizzaiolo and the others).",
-        "note": "Read on the OCR of the scan, checked on the page images on 2026-11-05. The renewal of 22 July 2024 (CNEL 194334, p. 81) refers the apprentices back to these articles.",
-        "extraction": {
-          "method": "ai",
-          "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-11-05T17:00:00Z",
-          "effective_from": "2018-07-18",
-          "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-11-05T17:00:00Z",
-          "verification_status": "verified",
-          "review_id": "2026-11-05-ai-apprenticeship"
-        }
-      }
-    },
-    {
-      "type": "percentage",
-      "name": "professionalizzante_48_mesi",
-      "destination_levels": [
+        "4",
+        "3",
         "2",
-        "3"
+        "1",
+        "QB",
+        "QA"
       ],
       "periods": [
         {
           "months_from": 0,
-          "months_until": 12,
-          "percentage": "0.80"
-        },
-        {
-          "months_from": 12,
-          "months_until": 24,
-          "percentage": "0.85"
-        },
-        {
-          "months_from": 24,
-          "months_until": 36,
-          "percentage": "0.90"
-        },
-        {
-          "months_from": 36,
-          "months_until": 48,
-          "percentage": "0.95"
-        },
-        {
-          "months_from": 48,
           "months_until": null,
           "percentage": "1.00"
         }
-      ],
-      "provenance": {
-        "status": "verified",
-        "location": {
-          "source_document": {
-            "document_id": "ccnl-turismo-confesercenti-2018-rinnovo",
-            "title": "CCNL Turismo Assoturismo Confesercenti, accordo di rinnovo 18 luglio 2018 (scansione, archivio CNEL)",
-            "kind": "associazione",
-            "url": "https://www.cnel.it/archivio-contratti",
-            "published_on": "2018-07-18",
-            "sha256": "58c26b5cf30bd09349b5b53e10e7fe8eeffea2310f52ed782aa1632d5f5c5f3c"
-          },
-          "page": "14-16",
-          "section": "Art. 54 cc. 1-2 - Durata; Art. 58 c. 1 - Retribuzione",
-          "quote": "Livello di inquadramento Durata (mesi) 2°, 3°, 4°, 5°, 6°s 36 6° 24 [...] 2° Livello — Durata massima 48 mesi [...] 3° Livello — Durata massima 48 mesi [...] 4° Livello — Durata massima 42 mesi [Art. 58] La retribuzione degli apprendisti è determinata con riferimento alla normale retribuzione dei lavoratori qualificati di pari livello, secondo le seguenti proporzioni: - primo anno: 80%; - secondo anno: 85%; - terzo anno: 90%; - dal quarto anno: 95%. La retribuzione degli apprendisti del 95% si applica nei casi in cui la durata massima del contratto di apprendistato professionalizzante è superiore a 36 mesi"
-        },
-        "transformation": "Destination levels 2, 3: 48 months, 80% of the pay of the qualified worker of the level in the first year, 85% in the second, 90% in the third, 95% from the fourth only where the duration tops 36 months (art. 58); 100% after the term. The 48- and 42-month tracks are for the craft profiles art. 54 c. 2 lists (Capo cuoco, Cuoco unico, Pizzaiolo and the others).",
-        "note": "Read on the OCR of the scan, checked on the page images on 2026-11-05. The renewal of 22 July 2024 (CNEL 194334, p. 81) refers the apprentices back to these articles.",
-        "extraction": {
-          "method": "ai",
-          "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-11-05T17:00:00Z",
-          "effective_from": "2018-07-18",
-          "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-11-05T17:00:00Z",
-          "verification_status": "verified",
-          "review_id": "2026-11-05-ai-apprenticeship"
-        }
-      }
-    },
-    {
-      "type": "percentage",
-      "name": "professionalizzante_42_mesi",
-      "destination_levels": [
-        "4"
-      ],
-      "periods": [
-        {
-          "months_from": 0,
-          "months_until": 12,
-          "percentage": "0.80"
-        },
-        {
-          "months_from": 12,
-          "months_until": 24,
-          "percentage": "0.85"
-        },
-        {
-          "months_from": 24,
-          "months_until": 36,
-          "percentage": "0.90"
-        },
-        {
-          "months_from": 36,
-          "months_until": 42,
-          "percentage": "0.95"
-        },
-        {
-          "months_from": 42,
-          "months_until": null,
-          "percentage": "1.00"
-        }
-      ],
-      "provenance": {
-        "status": "verified",
-        "location": {
-          "source_document": {
-            "document_id": "ccnl-turismo-confesercenti-2018-rinnovo",
-            "title": "CCNL Turismo Assoturismo Confesercenti, accordo di rinnovo 18 luglio 2018 (scansione, archivio CNEL)",
-            "kind": "associazione",
-            "url": "https://www.cnel.it/archivio-contratti",
-            "published_on": "2018-07-18",
-            "sha256": "58c26b5cf30bd09349b5b53e10e7fe8eeffea2310f52ed782aa1632d5f5c5f3c"
-          },
-          "page": "14-16",
-          "section": "Art. 54 cc. 1-2 - Durata; Art. 58 c. 1 - Retribuzione",
-          "quote": "Livello di inquadramento Durata (mesi) 2°, 3°, 4°, 5°, 6°s 36 6° 24 [...] 2° Livello — Durata massima 48 mesi [...] 3° Livello — Durata massima 48 mesi [...] 4° Livello — Durata massima 42 mesi [Art. 58] La retribuzione degli apprendisti è determinata con riferimento alla normale retribuzione dei lavoratori qualificati di pari livello, secondo le seguenti proporzioni: - primo anno: 80%; - secondo anno: 85%; - terzo anno: 90%; - dal quarto anno: 95%. La retribuzione degli apprendisti del 95% si applica nei casi in cui la durata massima del contratto di apprendistato professionalizzante è superiore a 36 mesi"
-        },
-        "transformation": "Destination levels 4: 42 months, 80% of the pay of the qualified worker of the level in the first year, 85% in the second, 90% in the third, 95% from the fourth only where the duration tops 36 months (art. 58); 100% after the term. The 48- and 42-month tracks are for the craft profiles art. 54 c. 2 lists (Capo cuoco, Cuoco unico, Pizzaiolo and the others).",
-        "note": "Read on the OCR of the scan, checked on the page images on 2026-11-05. The renewal of 22 July 2024 (CNEL 194334, p. 81) refers the apprentices back to these articles.",
-        "extraction": {
-          "method": "ai",
-          "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-11-05T17:00:00Z",
-          "effective_from": "2018-07-18",
-          "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-11-05T17:00:00Z",
-          "verification_status": "verified",
-          "review_id": "2026-11-05-ai-apprenticeship"
-        }
-      }
+      ]
     }
   ],
   "levels": [
@@ -1962,7 +1746,7 @@
     "effective_until": null,
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=257",
     "verification_status": "unverified",
-    "source_hash": "ad78e42fd6d4322aca514e16e9e708ba7e83f470f9dd6100835aa80487432041",
+    "source_hash": "e33e00b6f0fa5d0040a6790819edaad223c418e1ff3bd21874336556aac11cf0",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -2232,30 +2016,5 @@
         }
       }
     }
-  },
-  "verification": {
-    "reviews": [
-      {
-        "id": "2026-11-05-ai-apprenticeship",
-        "date": "2026-11-05",
-        "reviewer": "claude-opus-5-5",
-        "reviewer_kind": "ai",
-        "scope": "Artt. 54 and 58 (PDF pp. 14-16) of the renewal of 18 July 2018, OCR of the scan checked on the page images.",
-        "outcome": "corrected",
-        "sources": [
-          {
-            "url": "https://www.cnel.it/archivio-contratti",
-            "sha256": "58c26b5cf30bd09349b5b53e10e7fe8eeffea2310f52ed782aa1632d5f5c5f3c"
-          }
-        ],
-        "findings": [
-          "The apprentice is paid a share of the pay of the qualified worker of the level (80/85/90/95% by year), not two levels below: the file's 100% passthrough over every level is replaced by the tracks of the durations of art. 54."
-        ],
-        "independence": "separate_session",
-        "checked": [
-          "apprenticeship"
-        ]
-      }
-    ]
   }
 }

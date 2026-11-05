@@ -52,7 +52,7 @@
   "outputs": [
     {
       "output": "employer_contributions",
-      "value": "503.47",
+      "value": "508.35",
       "perimeter": "INPS contributions due by the employer for the run (INAIL excluded)",
       "tolerance": "0.01",
       "rounding": "half_up_cents",
@@ -60,7 +60,7 @@
     },
     {
       "output": "tfr",
-      "value": "114.15",
+      "value": "115.26",
       "perimeter": "TFR accrued in the run, kept by the employer or paid to a fund",
       "tolerance": "0.01",
       "rounding": "half_up_cents",
@@ -68,7 +68,7 @@
     },
     {
       "output": "employer_cost",
-      "value": "2279.40",
+      "value": "2301.48",
       "perimeter": "Gross pay, employer contributions, TFR accrual and employer fund contributions of the run",
       "tolerance": "0.01",
       "rounding": "half_up_cents",
@@ -77,9 +77,10 @@
   ],
   "review": {
     "reviewer": "claude-opus-5-5",
-    "date": "2026-10-24",
+    "date": "2026-11-05",
     "owner": "maintainer",
-    "review_by": "2027-04-24"
+    "review_by": "2027-05-06",
+    "rewritten_because": "Art. 186 Fondo Est now covers ristorazione collettiva: an employer that states no fund owes the EUR 16 element on 14 months"
   },
   "versions": {
     "engine": "0.6.0",
