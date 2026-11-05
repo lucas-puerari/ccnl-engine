@@ -70,6 +70,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-31 | claude-opus-5-5 (ai) | The ROL and the basis of the ex festività left at the end of the employment, read in the CCNL of 16 February 2024 (Artt. 91, 98, 137) and checked against its April 2026 testo ufficiale (Art. 91 p. 77, Art. 98: same wording). | corrected | Art. 91 c.2 lett. A, cc.3, 6 (p. 47): 40 hours of ROL a year for the week of five days, by whole months, reduced for the hires within the term of the contract: work_rules.leave_rules.permits[rol].<br>Art. 98 (p. 51): the ex festività not used are paid at the retribuzione normale giornaliera, one day for each festività of 8 hours: permits[ex_festivita].day_hours.<br>Art. 91 c.5 (p. 47) and Art. 137 (p. 70): the ROL left are paid at the monthly pay / 170: termination.permits_hourly true. |
 | 2026-11-01 | claude-opus-5-5 (ai) | The notice of Artt. 146-148 (pp. 74-75). | corrected | Artt. 146-148 (pp. 74-75): notice in calendar days by level and seniority for dismissal and resignation, from the 1st or the 16th, indemnity with the 13th and 14th ratei, out of the TFR base: work_rules.notice. Found by a delegated search and checked again on the PDF text. |
 | 2026-11-05 | claude-opus-5-5 (ai) | The ferie days of the six-day week, Art. 99 c. 1 - Misura del periodo di ferie (PDF p. 51), read by a separate research session and checked again on the text layer. | corrected | Art. 99 c. 1 - Misura del periodo di ferie: 22 working days in the five-day week, 26 in the six-day week: work_rules.leave_rules.week_days_annual_days 6/26, read when Employment.full_time_week_days is 6. |
+| 2026-11-05 | claude-opus-5-5 (ai) | The permits of the six-day week, Art. 91 c.2 lett. B (PDF p. 47). | corrected | Art. 91 c.2: 40 hours of reduced time on five days, 66 on six: work_rules.leave_rules.week_days_annual_days[6].permit_hours rol 66. |
 
 ## Salary table
 
@@ -181,11 +182,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Add a worker fact for extra months already paid.
 
 !!! warning "studi-professionali-confprofessioni/rol_not_accrued · leave · impact yes · open"
-    LEAVE, ROL (Art. 91 cc.2-3, p. 47): 40 hours a year on a five-day week, 66 on a six-day week. The file accrues the 40 hours, the schedule it assumes for the 22 days of ferie; the 66 hours of a six-day week are not modelled (the weekly schedule is not an input). The hires within the 2024-2027 term accrue 50% from the twelfth month, 75% from the twenty-fourth to the thirty-sixth, 100% after; the clause states no share before the twelfth month, read as nothing, as Commercio's 'decorsi due anni' (steps 0, 11, 23, 36 completed months). The 50/75/100% of the contratto di reimpiego (c.4) is not modelled.
+    LEAVE, ROL (Art. 91 cc.2-3, p. 47): 40 hours a year on a five-day week, 66 on a six-day week. The file accrues the 40 hours of the five-day week and the 66 of the six-day week when Employment.full_time_week_days is 6. The hires within the 2024-2027 term accrue 50% from the twelfth month, 75% from the twenty-fourth to the thirty-sixth, 100% after; the clause states no share before the twelfth month, read as nothing, as Commercio's 'decorsi due anni' (steps 0, 11, 23, 36 completed months). The 50/75/100% of the contratto di reimpiego (c.4) is not modelled.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Add the weekly schedule as an employment fact for the 66 hours of a six-day week, and the contratto di reimpiego for its own ramp.
+    **Remediation:** Add the contratto di reimpiego as an employment fact for its own ramp (Art. 91 c.4: 50% from the sixth month, 75% from the twelfth to the eighteenth).
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

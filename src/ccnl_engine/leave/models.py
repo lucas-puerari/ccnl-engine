@@ -26,6 +26,7 @@ __all__ = [
     "LeaveRules",
     "LeaveTermination",
     "WeekDaysLeave",
+    "WeekDaysPermit",
 ]
 
 _ZERO = Decimal(0)
@@ -98,6 +99,20 @@ class LeaveTermination(BaseModel):
     provenance: RuleProvenance | None = None
 
 
+class WeekDaysPermit(BaseModel):
+    """The yearly hours of a permit bucket for a full-time week of some days.
+
+    Studi professionali art. 91 c. 2: 40 hours "su 5 (cinque) giorni", 66
+    "su 6 (sei) giorni".
+    """
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    bucket: LeaveBucket
+    hours: Decimal = Field(gt=_ZERO)
+    provenance: RuleProvenance
+
+
 class WeekDaysLeave(BaseModel):
     """The ferie days of a year for a full-time week of ``days`` working days.
 
@@ -105,7 +120,8 @@ class WeekDaysLeave(BaseModel):
     (sei) giorni", 22 in the "settimana corta".  ``ferie_divisor``, when
     set, replaces the divisor of the indemnity for the ferie left at the
     end of the employment (Pulizia artigianato art. 34: the daily pay is
-    the monthly pay over 22 or 26).
+    the monthly pay over 22 or 26).  ``permit_hours`` replace the yearly
+    hours of their bucket, of any employer size.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -113,6 +129,7 @@ class WeekDaysLeave(BaseModel):
     days: int = Field(ge=5, le=6)
     annual_days: Decimal = Field(gt=_ZERO)
     ferie_divisor: Decimal | None = Field(default=None, gt=_ZERO)
+    permit_hours: tuple[WeekDaysPermit, ...] = ()
     provenance: RuleProvenance
 
 

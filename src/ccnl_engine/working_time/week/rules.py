@@ -22,6 +22,8 @@ from __future__ import annotations
 from decimal import Decimal
 from typing import TYPE_CHECKING, Protocol
 
+from ccnl_engine.leave.permit.models import PermitHours
+
 if TYPE_CHECKING:
     from ccnl_engine.agreement.facade import CCNL, CCNLWorkRules
     from ccnl_engine.employment.fact.inputs import WeeklyHours
@@ -143,19 +145,36 @@ def _week_days_update(rules: CCNLWorkRules, days: int) -> dict[str, object]:
 
 
 def _leave_of_days(leave: LeaveRules, ferie: WeekDaysLeave) -> LeaveRules:
-    """Return ``leave`` with the ferie days and indemnity divisor of ``ferie``.
+    """Return ``leave`` with the ferie days, divisor and permits of ``ferie``.
 
     Returns:
-        ``leave`` whose ``default_annual_days`` are those of the week, and
-        whose termination divisor is the week's when ``ferie`` sets one.
+        ``leave`` whose ``default_annual_days`` are those of the week, whose
+        termination divisor is the week's when ``ferie`` sets one, and whose
+        permit buckets named by ``ferie`` take the hours of the week.
     """
     termination = leave.termination
     if termination is not None and ferie.ferie_divisor is not None:
         termination = termination.model_copy(
             update={"ferie_divisor": ferie.ferie_divisor}
         )
+    hours = {p.bucket: p for p in ferie.permit_hours}
+    permits = tuple(
+        permit
+        if permit.bucket not in hours
+        else permit.model_copy(
+            update={
+                "annual_hours": (PermitHours(hours=hours[permit.bucket].hours),),
+                "provenance": hours[permit.bucket].provenance,
+            }
+        )
+        for permit in leave.permits
+    )
     return leave.model_copy(
-        update={"default_annual_days": ferie.annual_days, "termination": termination}
+        update={
+            "default_annual_days": ferie.annual_days,
+            "termination": termination,
+            "permits": permits,
+        }
     )
 
 

@@ -1,5 +1,5 @@
 {
-  "commit": "7dcc1fd8d169e61da9437a107f705f39ee844e11",
+  "commit": "8796ade893404939af43a8034498da8c9caf1d2c",
   "date": "2026-11-05",
   "min_score": 93.0,
   "perimeter": [
@@ -159,12 +159,12 @@
   ],
   "scores": {
     "core": {
-      "killed": 10372,
+      "killed": 10386,
       "survived": 307,
       "other": 5,
       "not_checked": 0,
       "equivalent": 18,
-      "total": 10684,
+      "total": 10698,
       "score": 97.1,
       "minimum": 93.0
     },
@@ -1679,12 +1679,12 @@
       "minimum": 76.6
     },
     "src/ccnl_engine/working_time/week/rules.py": {
-      "killed": 124,
+      "killed": 138,
       "survived": 0,
       "other": 0,
       "not_checked": 0,
       "equivalent": 0,
-      "total": 124,
+      "total": 138,
       "score": 100.0,
       "minimum": 93.0
     }
