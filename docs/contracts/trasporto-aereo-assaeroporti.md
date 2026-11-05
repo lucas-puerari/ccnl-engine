@@ -32,7 +32,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, seniority, sickness |
+| **Limits of this contract** | base_salary, sickness |
 
 4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
@@ -51,7 +51,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-06-04 |
-| **Last review** | 2026-10-18 |
+| **Last review** | 2026-11-05 |
 | **Latest salary tranche** | 2027-07-01 |
 
 ## Review history
@@ -59,6 +59,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | Date | Reviewer | Scope | Outcome | Findings |
 |---|---|---|---|---|
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | confirmed | Art. G29 - Tredicesima mensilità (p. 43): "Le frazioni di mese pari o superiori a 15 giorni saranno considerate come mese intero.". Match: at_least 15. |
+| 2026-11-05 | claude-opus-5-5 (ai) | Artt. G6 and G23 of the 2025-2027 text (PDF pp. 40-41, 71, 82) and G6 of the 2025 text (p. 20), text layer. | confirmed | Level 9 has no amount in G23 and no worker stays there two years: 6 months under the 2025 G6, no classification at level 9 from 1 March 2026. The 0.00 of the file is the text. |
 
 ## Salary table
 
@@ -115,12 +116,12 @@ percentage: 0.95
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning "trasporto-aereo-assaeroporti/level_9_seniority_zero · seniority · impact unknown · open"
-    LEVEL 9 SENIORITY. Art. G23 seniority table lists amounts for levels 1S through 8 only. Level 9 is absent. Modelled as 0.00; not confirmed whether intentional exclusion or typographical omission.
+!!! note "trasporto-aereo-assaeroporti/level_9_seniority_zero · seniority · impact unknown · resolved"
+    LEVEL 9 SENIORITY (G23 c. 4, pp. 40-41 of the 2025-2027 text of March 2026): the table of the increments stops at level 8, and none accrues at level 9: the G6 of 4 June 2025 kept a worker at level 9 for 6 months before level 8 (p. 20 of the 2025 text: 'inizialmente assegnato al livello 9 e, dopo 6 mesi di servizio, al livello 8'), short of the biennio of G23 c. 1; the G6 in force from 1 March 2026 (verbale 23 marzo 2026, p. 71) makes level 9 'non utilizzabile ai fini inquadramentali' (p. 82). The amount 0.00 stands.
 
     **Applies when:** `seniority` applies; level in 9.
 
-    **Remediation:** Confirm whether level 9 is excluded from Art. G23 seniority increments.
+    **Remediation:** Resolved: level 9 accrues no increment (6 months at level 9 under the 2025 G6, no classification at level 9 from 1 March 2026), read on 2026-11-05.
 
 !!! warning "trasporto-aereo-assaeroporti/role_conditional_allowances · base_salary · impact yes · open"
     SUPPLEMENTARY ALLOWANCES. The daily allowances of presence (Art. G24: 2.73 or 3.97 EUR, 3 more from 1 July 2025; G25 turno 0.26; G26 campo 0.21 or 0.26) are not modelled: they need the days of presence. The una tantum of 500 EUR of Art. G20 is of July 2025, before the window of the engine. The indennità maneggio denaro (G27) and the DPI contribution (G37 ter) are modelled by role.
