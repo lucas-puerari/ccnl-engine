@@ -99,22 +99,6 @@
       }
     },
     {
-      "id": "night_overtime_cumulation",
-      "institute": "overtime",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "SIMPLIFICATION: Cumulo notturno. Art. 83 ult. comma: 'Le varie maggiorazioni previste dal presente articolo non sono cumulabili tra loro' — esclude la cumulabilita tra i soli supplementi interni all'Art. 83 (15%/20%/30%/50%). Il supplemento del 10% di Art. 84 e un articolo separato e non e esplicitamente escluso dalla cumulabilita. Il motore applica entrambi alle ore notturne straordinarie (60% totale). Se le parti intendono il 50% inclusivo del 10%, il motore sovrastima di 10 punti sulle ore OT notturne.",
-      "calculation": "ccnl/impianti-sportivi-sport:coverage.notes",
-      "state": "unverified",
-      "remediation": "Confirm with the parties whether the 50% night overtime band includes the 10% night supplement of Art. 84.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "impianti-sportivi-sport/night_overtime_cumulation"
-        ]
-      }
-    },
-    {
       "id": "notice_indemnity_day_measure",
       "institute": "termination_notice",
       "variant": "all",
@@ -159,22 +143,6 @@
       "links": {
         "limitations": [
           "notice_indemnity_partial"
-        ]
-      }
-    },
-    {
-      "id": "overtime_over_48h_band_missing",
-      "institute": "overtime",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "SIMPLIFICATION: Straordinario diurno. Art. 83 prevede 15% per ore 41-48 e 20% per ore oltre 48 settimanali. Modellato solo il 15% (caso dominante). Banda 20% (oltre 48h) non modellata.",
-      "calculation": "ccnl/impianti-sportivi-sport:coverage.notes",
-      "state": "absent",
-      "remediation": "Model the 20% band over 48 weekly hours, or pass the multiplier on the overtime event.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "impianti-sportivi-sport/overtime_over_48h_band_missing"
         ]
       }
     },

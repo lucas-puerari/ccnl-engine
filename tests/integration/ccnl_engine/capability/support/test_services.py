@@ -87,7 +87,7 @@ def test_bundled_missing_notes_and_limitations() -> None:
 @pytest.mark.parametrize(
     ("ccnl_id", "features"),
     [
-        ("impianti-sportivi-sport", ("overtime", "sickness")),
+        ("impianti-sportivi-sport", ("sickness",)),
         ("concia-unic", ("overtime",)),
         ("ortofrutticoli-agrumari", ("sickness",)),
         (

@@ -913,8 +913,7 @@
       "forze-polizia-ordinamento-civile/renewal_2025_2027_pending_dpr"
     ],
     "agreement/funivie-anef.json": [
-      "funivie-anef/pre_2016_seniority_cohort",
-      "funivie-anef/quadri_function_allowance"
+      "funivie-anef/pre_2016_seniority_cohort"
     ],
     "agreement/funzioni-centrali-aran.json": [
       "funzioni-centrali-aran/agency_salary_tables"
@@ -944,8 +943,6 @@
     "agreement/impianti-sportivi-sport.json": [
       "impianti-sportivi-sport/level_v_first_semester_overpaid",
       "impianti-sportivi-sport/level_vi_whole_track_at_destination",
-      "impianti-sportivi-sport/night_overtime_cumulation",
-      "impianti-sportivi-sport/overtime_over_48h_band_missing",
       "impianti-sportivi-sport/pre_2015_fourteenth_missing",
       "impianti-sportivi-sport/pre_2015_superminimo_missing",
       "impianti-sportivi-sport/sickness_net_basis"

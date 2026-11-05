@@ -32,7 +32,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, seniority |
+| **Limits of this contract** | seniority |
 
 2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
@@ -42,7 +42,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 0 verified / 47 derived / 1 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 2 verified / 47 derived / 1 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -51,12 +51,14 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-05-16 |
-| **Last review** | — |
+| **Last review** | 2026-11-05 |
 | **Latest salary tranche** | 2028-03-01 |
 
 ## Review history
 
-No review is recorded.
+| Date | Reviewer | Scope | Outcome | Findings |
+|---|---|---|---|---|
+| 2026-11-05 | claude-opus-5-5 (ai) | The Quadri function allowance of Art. 5 (PDF p. 15) of the 2025 coordinated text, text layer, and Art. 5 c. 3 of the 2019 text (p. 13). | corrected | Art. 5 c. 3: EUR 118.79 a month to the workers of levels I super and I recognised in writing as Quadri, not absorbed by an individual superminimo; unchanged by the renewals of 19 July 2022 and 16 May 2025. |
 
 ## Salary table
 
@@ -98,12 +100,12 @@ Destination levels: `1`, `2`, `3`, `4`, `5`, `6`
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning "funivie-anef/quadri_function_allowance · base_salary · impact yes · open"
-    Indennita di funzione (118.79 EUR/month) for Quadri (L. 190/1985 status within levels 1S and 1) is not modelled. It is a person-status allowance tied to individual Quadro designation, not a livello retributivo; the engine can restrict an allowance to Employment.roles (Allowance.role), but the file declares none (review of 2026-10-30)
+!!! note "funivie-anef/quadri_function_allowance · base_salary · impact yes · resolved"
+    QUADRI (Art. 5, p. 15 of the 2025 coordinated text): the indennità di funzione of EUR 118.79 a month is paid to the level 1S and 1 workers holding the role 'quadro' (Employment.roles), recognised in writing by the employer.
 
     **Applies when:** `base_salary` applies; level in 1, 1S.
 
-    **Remediation:** Add the 118.79 EUR allowance to levels 1S and 1 with role 'quadro'.
+    **Remediation:** Resolved: fixed allowance IND_FUNZIONE_QUADRO of levels 1S and 1 with role 'quadro', read on 2026-11-05.
 
 !!! warning "funivie-anef/pre_2016_seniority_cohort · seniority · impact yes · open"
     Allegato 3.1 (grandfathered scatti for workers hired before 30/04/2016) not modelled. Only Allegato 3 (standard post-2016 cohort) amounts implemented. Structural scope decision: pre-2016 grandfathered amounts affect a declining cohort; the new-hire case is exact.
