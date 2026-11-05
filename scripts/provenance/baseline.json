@@ -1077,7 +1077,6 @@
     ],
     "agreement/multiservizi-anip.json": [
       "multiservizi-anip/anip_unsigned_renewal",
-      "multiservizi-anip/health_and_bilateral_funds",
       "multiservizi-anip/multiservizi_unmodelled_rules"
     ],
     "agreement/noleggio-autobus-conducente-anav.json": [

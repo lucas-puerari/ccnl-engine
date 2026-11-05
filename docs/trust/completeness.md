@@ -14,7 +14,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 0/135 CCNLs.** Bundle: 269 weak rules, 470 open limitations (470 with a monetary impact).
+**Complete: 0/135 CCNLs.** Bundle: 269 weak rules, 469 open limitations (469 with a monetary impact).
 
 ## Declared window
 
@@ -137,7 +137,7 @@ Future data, registered apart from the gaps: a contract whose validity ends insi
 | [metalmeccanico-confapi](../contracts/metalmeccanico-confapi.md) | `metalmeccanica` | reviewed | — | 33 rows | 33 open requirements; 18 monetary limitations; 13 outside_input limitations; 21 non-native capabilities |
 | [metalmeccanico-confimi-pmi](../contracts/metalmeccanico-confimi-pmi.md) | `metalmeccanica` | exploratory | — | 21 rows | tables from 2026-06-01; 21 open requirements; 18 monetary limitations; 1 outside_input limitation; 18 non-native capabilities |
 | [metalmeccanico-federmeccanica](../contracts/metalmeccanico-federmeccanica.md) | `metalmeccanica` | production | — | 24 rows | 24 open requirements; 18 monetary limitations; 4 outside_input limitations; 20 non-native capabilities |
-| [multiservizi-anip](../contracts/multiservizi-anip.md) | `pulizia-multiservizi` | exploratory | — | 22 rows | 22 open requirements; 19 monetary limitations; 1 outside_input limitation; 19 non-native capabilities |
+| [multiservizi-anip](../contracts/multiservizi-anip.md) | `pulizia-multiservizi` | exploratory | — | 21 rows | 21 open requirements; 18 monetary limitations; 1 outside_input limitation; 19 non-native capabilities |
 | [noleggio-autobus-conducente-anav](../contracts/noleggio-autobus-conducente-anav.md) | `trasporti-logistica` | exploratory | — | 28 rows | 28 open requirements; 4 weak rules; 22 monetary limitations; 20 non-native capabilities |
 | [occhiali-occhialeria-industria](../contracts/occhiali-occhialeria-industria.md) | `tessile-moda` | exploratory | — | 25 rows | 25 open requirements; 2 weak rules; 21 monetary limitations; 19 non-native capabilities |
 | [ooss-unsic-confsal](../contracts/ooss-unsic-confsal.md) | `organizzazioni-associative` | exploratory | — | 24 rows | 24 open requirements; 1 weak rule; 21 monetary limitations; 20 non-native capabilities |

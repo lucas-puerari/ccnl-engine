@@ -70,6 +70,7 @@ def test_asim_by_weekly_hours(
         e.amount
         for e in result.ledger_entries
         if e.account is AccountKind.BILATERAL_FUND_EMPLOYER
+        and e.entry_id.startswith("asim_")
     ]
     paid = [
         e.amount for e in result.ledger_entries if e.entry_id.endswith("_solidarity")
@@ -78,5 +79,7 @@ def test_asim_by_weekly_hours(
     assert posted == [Decimal(employer)]
     assert paid == [Decimal(solidarity)]
     assert not any(
-        e.account is AccountKind.BILATERAL_FUND_EMPLOYEE for e in result.ledger_entries
+        e.account is AccountKind.BILATERAL_FUND_EMPLOYEE
+        for e in result.ledger_entries
+        if e.entry_id.startswith("asim_")
     )

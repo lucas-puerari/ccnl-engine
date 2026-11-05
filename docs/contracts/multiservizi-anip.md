@@ -35,7 +35,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, bilateral_funds |
+| **Limits of this contract** | base_salary |
 
 3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
@@ -66,6 +66,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-13 | claude-opus-5-5 (ai) | Limited scope, tier unchanged: the rules that do not depend on the missing ANIP amounts, read in the CNEL K511 deposits 105782 (2011 text) and 139292 (2021 renewal); the salary periods from July 2025 stay as they are. | corrected | 66 records verified: the 2021-2024 tabellare, contingenza and EDR of levels 1-7 and Q, the quadri allowance, the levels 1, 2par115, 4par125, 7 and Q, the divisor 173, the 14 monthly payments and their accrual rule, the overtime rates and 22 days of leave.<br>Added the payment days of the tredicesima (20 December) and quattordicesima (15 July, window July to June), arts. 20-21.<br>The 2par115 and 4par125 tabellare is computed (April 2013 amount plus the parametric increments): derived, descriptions corrected to the notes a verbale of art. 10.<br>Closed cigs_threshold_16_to_50: terziario.json already charges the CIGS above 15 employees (D.Lgs. 148/2015 arts. 20 and 23).<br>Closed apprentice_seniority: apprentices are paid tabellare, contingenza and EDR only (art. 12), apprentice_amount 0 (derived).<br>Corrected the notes on the July 2025 values (the 2021 fifth tranche is the operative ANIP amount), on scatti recomputed at every tranche, on the apprenticeship durations, on the 2025 signatories and on the worker estimate.<br>Declared multiservizi_unmodelled_rules: seniority and sickness by worker type, the 181-270 sickness band, the /22 divisor, the overtime base and premiums, the art. 24 allowances, the funds and the apprenticeship durations.<br>hourly_base_method gross_incl_allowances: the art. 38 premiums are on tabellare plus contingenza.<br>Left derived: the periods from July 2025 (renewal not signed by ANIP, re-cited to CNEL 234752), the seniority block, the contingenza of the parametric positions, levels 2 to 6 (mixed categories), absence and sickness rules.<br>The aggregator sources (oristano summary, redigo, kitech, ccnlportatili) are replaced by the CNEL deposits. |
 | 2026-11-05 | claude-opus-5-5 (ai) | The ferie days of the six-day week, Art. 42 Ferie (PDF p. 61), read by a separate research session and checked again on the text layer. | corrected | Art. 42 Ferie: 22 working days in the five-day week, 26 in the six-day week: work_rules.leave_rules.week_days_annual_days 6/26, read when Employment.full_time_week_days is 6. |
 | 2026-11-05 | claude-opus-5-5 (ai) | Ferie accrual, permits and their settlement: arts. 19 (PDF p. 40), 41 and 42 (pp. 60-61) of the 2011 definitive text, read by a separate research session and checked again on the text layer; the 2021 renewal read for amendments. | corrected | Art. 42: twelfths with the month over 15 days, 40 hours of reduced time a year: work_rules.leave_rules.ferie_accrual and permits.<br>Art. 41: the ex festività are compensatory permits for the days worked, not a yearly bank.<br>The 2025 renewal (72 hours according to the union summary) was not read in a primary text. |
+| 2026-11-05 | claude-opus-5-5 (ai) | Art. 66 (PDF p. 29) of the ipotesi of 8 June 2021, OCR of the scan. | corrected | ONBSI was not modelled: the contractual funds held no reduced worker share; the model now has reduced_employee. |
 
 ## Salary table
 
@@ -128,12 +129,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Key seniority and sickness by worker category, model the second sickness band, the /22 divisor as the default, the art. 38 and art. 24 premiums, the funds and the apprenticeship durations of the 2012 accord.
 
-!!! warning "multiservizi-anip/health_and_bilateral_funds · bilateral_funds · impact yes · open"
-    BILATERAL FUND: ONBSI 0.50 EUR of the employer and 0.50 of the worker a month on 12 months, 0.25 each below 20 hours a week (art. 66 as amended in 2021, CNEL 139292 p. 29), is not modelled: the contractual funds hold no reduced worker share. ASIM (art. 69) is modelled.
+!!! note "multiservizi-anip/health_and_bilateral_funds · bilateral_funds · impact yes · resolved"
+    BILATERAL FUND: ONBSI EUR 0.50 from the employer and 0.50 from the worker a month on 12 months, 0.25 each below 20 hours a week (art. 66 as amended in 2021, CNEL 139292 p. 29), and ASIM (art. 69) are modelled.
 
     **Applies when:** `bilateral_funds` applies.
 
-    **Remediation:** Model the ONBSI shares with the reduced worker share below 20 hours a week, then remove this note.
+    **Remediation:** Resolved: parameters.health_funds onbsi with reduced_employer and reduced_employee below 20 weekly hours, read on 2026-11-05.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
