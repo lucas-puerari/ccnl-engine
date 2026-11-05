@@ -20,15 +20,12 @@ from ccnl_engine.compensation.second_level.rules import with_second_level_elemen
 from ccnl_engine.contribution.cigs.models import with_cigs_indotto
 from ccnl_engine.contribution.fis.models import with_fis_reduction
 from ccnl_engine.contribution.zone.models import with_zone_reduction
-from ccnl_engine.employment.context.models import (
-    EffectiveDateContext,
-    TemporalContext,
-)
+from ccnl_engine.employment.context.models import EffectiveDateContext, TemporalContext
 from ccnl_engine.errors import InvalidInputError, UnknownLevelError
 from ccnl_engine.fund.solidarity.models import with_solidarity_tiers
 from ccnl_engine.sickness.counting.rules import with_window_counting
 from ccnl_engine.working_time.subsector.rules import with_subsector
-from ccnl_engine.working_time.week.rules import with_week_divisor
+from ccnl_engine.working_time.week.rules import with_week_days, with_week_divisor
 
 if TYPE_CHECKING:
     from ccnl_engine.agreement.facade import CCNL, TaxSector
@@ -152,9 +149,12 @@ def load_contract(
         UnknownLevelError: When the CCNL has no level ``request.level_code``.
     """
     period_id = request.period_id
-    ccnl = with_week_divisor(
-        flat_pay_divisor(resolve_ccnl(repo, request.ccnl_id), request.weekly_hours),
-        request.full_time_weekly_hours,
+    ccnl = with_week_days(
+        with_week_divisor(
+            flat_pay_divisor(resolve_ccnl(repo, request.ccnl_id), request.weekly_hours),
+            request.full_time_weekly_hours,
+        ),
+        request.full_time_week_days,
     )
     ccnl, sector_unknown = with_employer_sector(ccnl, request.employer.inps_sector)
     ccnl = with_window_counting(ccnl, request.employer.sickness_window_counting)

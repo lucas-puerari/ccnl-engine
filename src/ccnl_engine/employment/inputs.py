@@ -29,6 +29,7 @@ from ccnl_engine.employment.fact.inputs import (
 from ccnl_engine.employment.fixed_term.inputs import FixedTerm
 from ccnl_engine.employment.period.inputs import EmploymentPeriod
 from ccnl_engine.employment.rest_day.inputs import Weekday, check_rest_day
+from ccnl_engine.employment.week_days.inputs import check_week_days
 from ccnl_engine.pension_fund.inputs import (
     PENSION_FUND_TYPES,
     NoPensionFund,
@@ -102,6 +103,9 @@ class Employment:
             part time.
         full_time_weekly_hours: Full-time weekly hours of the contract. ``weekly_hours``
             must not exceed it.
+        full_time_week_days: Working days of the full-time week, 5 or 6; a CCNL
+            that sets the daily pay by the week (Pulizia art. 34: 22 or 26) uses
+            it.  ``None`` keeps the CCNL default divisor.
         work_pattern: Vertical or mixed part time: the hours of each day of the week,
             whose sum must equal ``weekly_hours``, and the months of the year the worker
             works.  A month not worked pays no monthly pay and accrues no extra-month
@@ -170,7 +174,8 @@ class Employment:
         InvalidInputError: When a field is not of its type, a role is not a
             non-blank string, ``weekly_hours`` exceeds ``full_time_weekly_hours``
             or differs from the weekday hours of ``work_pattern``, ``category``,
-            ``sector`` or ``weekly_rest_day`` names no known value, the pattern
+            ``sector`` or ``weekly_rest_day`` names no known value, the week
+            days are not 5 or 6, the pattern
             states hours on the rest day, or two individual elements or
             withholdings share a code.
     """
@@ -182,6 +187,7 @@ class Employment:
     employment_period: EmploymentPeriod | None = None
     weekly_hours: WeeklyHours | None = None
     full_time_weekly_hours: WeeklyHours | None = None
+    full_time_week_days: int | None = None
     work_pattern: WorkPattern | None = None
     weekly_rest_day: Weekday = Weekday.SUNDAY
     seniority: SeniorityFact | None = None
@@ -230,6 +236,7 @@ class Employment:
         check_pattern_hours(self.weekly_hours, self.work_pattern)
         rest = check_rest_day(self.weekly_rest_day, self.work_pattern)
         object.__setattr__(self, "weekly_rest_day", rest)
+        check_week_days(self.full_time_week_days)
         elements = check_individual_elements(
             self.individual_elements, "Employment.individual_elements"
         )

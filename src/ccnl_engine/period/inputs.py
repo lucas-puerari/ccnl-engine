@@ -269,6 +269,7 @@ class PeriodInput:
             contributable_hours=facts.contributable_hours,
             ordinary_hours_worked=facts.ordinary_hours_worked,
             full_time_weekly_hours=employment.full_time_weekly_hours,
+            full_time_week_days=employment.full_time_week_days,
             work_pattern=employment.work_pattern,
             weekly_rest_day=employment.weekly_rest_day,
             employment_period=employment.employment_period,

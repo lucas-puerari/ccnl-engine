@@ -226,6 +226,7 @@ def _employment(contract: Contract) -> Employment:
         ),
         weekly_hours=WeeklyHours(Decimal(30)),
         full_time_weekly_hours=WeeklyHours(Decimal(40)),
+        full_time_week_days=5,
         work_pattern=WorkPattern(
             weekday_hours=(Decimal(6),) * 5 + (Decimal(0),) * 2,
             months=frozenset(range(1, 12)),

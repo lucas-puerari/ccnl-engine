@@ -58,7 +58,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-12-06 |
-| **Last review** | 2026-11-01 |
+| **Last review** | 2026-11-05 |
 | **Latest salary tranche** | 2027-06-01 |
 
 ## Review history
@@ -81,6 +81,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-17 | claude-opus-5-5 (ai) | The rate of the supplementary hours of the part-time workers. | corrected | Art. 56 of the testo unico (p. 71), read in review 2026-10-15-ai-contracts (the Confetra site was down on 2026-10-17): supplementary hours at 18%, 40% past the yearly limit. The 18% band is added for OvertimeKind.SUPPLEMENTARY; the 40% needs the yearly count and is not modelled. |
 | 2026-11-01 | claude-opus-5-5 (ai) | The notice clause (Art. 36, lett. a–d; artt. 18–19, p. 53–54 (art. 36); 42 (artt. 18–19)). | corrected | Notice bands by level, category and service checked against the PDF by a separate session (delegated search and independent verification): work_rules.notice. |
 | 2026-11-01 | claude-opus-5-5 (ai) | Hourly base of the time supplements (art. 13 c. 8, art. 61 c. 1) and the supplements of ordinary Sunday and holiday work (art. 12 c. 4), read in the text layer of the testo unico. AI review only: the same model extracted and checked the values. | corrected | hourly_base_method gross_incl_allowances (was minimo_tabellare), now verified: the retribuzione globale of art. 61 c. 1 divided by 168 (art. 13 c. 8), without the EDR of 2021; the engine derives the hourly rate of an event without one.<br>individual_elements included: art. 61 c. 1 punto 3 counts 'eventuali altri aumenti comunque denominati'.<br>Band FESTIVO added: 50% on holiday work within the ordinary hours (art. 12 c. 4). The night (20/15/25%) and Sunday (20% by day, 50% by night) rates of art. 12 c. 4 are left out: they depend on the guardian role, the shift and the hours of the Sunday, which the request does not carry. |
+| 2026-11-05 | claude-opus-5-5 (ai) | The daily divisor of a six-day week of the non-travelling staff, art. 61 c. 3, p. 86 of the testo unico. | confirmed | Art. 61 c. 3 divides by 26 the monthly pay of the non-travelling staff on a six-day week, by 22 otherwise: week_days_methods 6 -> by_26, read when Employment.full_time_week_days is 6. |
 
 ## Salary table
 
