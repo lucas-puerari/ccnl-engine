@@ -66,7 +66,7 @@
       },
       {
         "kind": "simplification",
-        "text": "LEVEL 9 SENIORITY. Art. G23 seniority table lists amounts for levels 1S through 8 only. Level 9 is absent. Modelled as 0.00; not confirmed whether intentional exclusion or typographical omission.",
+        "text": "LEVEL 9 SENIORITY (G23 c. 4, pp. 40-41 of the 2025-2027 text of March 2026): the table of the increments stops at level 8, and none accrues at level 9: the G6 of 4 June 2025 kept a worker at level 9 for 6 months before level 8 (p. 20 of the 2025 text: 'inizialmente assegnato al livello 9 e, dopo 6 mesi di servizio, al livello 8'), short of the biennio of G23 c. 1; the G6 in force from 1 March 2026 (verbale 23 marzo 2026, p. 71) makes level 9 'non utilizzabile ai fini inquadramentali' (p. 82). The amount 0.00 stands.",
         "capability": "seniority",
         "monetary_impact": "unknown",
         "limitation": {
@@ -76,7 +76,8 @@
               "9"
             ]
           },
-          "remediation": "Confirm whether level 9 is excluded from Art. G23 seniority increments."
+          "remediation": "Resolved: level 9 accrues no increment (6 months at level 9 under the 2025 G6, no classification at level 9 from 1 March 2026), read on 2026-11-05.",
+          "status": "resolved"
         }
       },
       {
@@ -144,6 +145,27 @@
         ],
         "findings": [
           "Art. G29 - Tredicesima mensilità (p. 43): \"Le frazioni di mese pari o superiori a 15 giorni saranno considerate come mese intero.\". Match: at_least 15."
+        ]
+      },
+      {
+        "id": "2026-11-05-ai-level-9-seniority",
+        "date": "2026-11-05",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Artt. G6 and G23 of the 2025-2027 text (PDF pp. 40-41, 71, 82) and G6 of the 2025 text (p. 20), text layer.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://assaeroporti.com/wp-content/uploads/2026/03/CCNL-2025-2027-accessibile.pdf",
+            "sha256": "350fe520f50eda3ac9cf61b4c4ae0d820b0e483332bdc354f8c9944646048c7b"
+          }
+        ],
+        "findings": [
+          "Level 9 has no amount in G23 and no worker stays there two years: 6 months under the 2025 G6, no classification at level 9 from 1 March 2026. The 0.00 of the file is the text."
+        ],
+        "independence": "separate_session",
+        "checked": [
+          "parameters.seniority_increments"
         ]
       }
     ]
@@ -3576,7 +3598,7 @@
     "effective_until": "2027-12-31",
     "source": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
     "verification_status": "unverified",
-    "source_hash": "9ed7aee9677135a0fc7c9704a498ed4e1fbdfc2ddce33defc0cf7f7d948fa2d0",
+    "source_hash": "5b03f1175b78f0ab9b3f20d3e67ae1aa34612e66573ff8bfaa520afcee887956",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

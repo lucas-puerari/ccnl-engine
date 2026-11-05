@@ -67,22 +67,6 @@
       }
     },
     {
-      "id": "level_9_seniority_zero",
-      "institute": "seniority",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "LEVEL 9 SENIORITY. Art. G23 seniority table lists amounts for levels 1S through 8 only. Level 9 is absent. Modelled as 0.00; not confirmed whether intentional exclusion or typographical omission.",
-      "calculation": "ccnl/trasporto-aereo-assaeroporti:coverage.notes",
-      "state": "unverified",
-      "remediation": "Confirm whether level 9 is excluded from Art. G23 seniority increments.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "trasporto-aereo-assaeroporti/level_9_seniority_zero"
-        ]
-      }
-    },
-    {
       "id": "maternity_daily_base",
       "institute": "maternity_leave",
       "variant": "all",

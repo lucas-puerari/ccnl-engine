@@ -782,7 +782,6 @@
     ],
     "agreement/cooperative-consorzi-agricoli.json": [
       "cooperative-consorzi-agricoli/apprenticeship_passthrough",
-      "cooperative-consorzi-agricoli/operai_seniority_over_five",
       "cooperative-consorzi-agricoli/otd_terzo_elemento_missing"
     ],
     "agreement/cooperative-sociali.json": [
@@ -1264,7 +1263,6 @@
     ],
     "agreement/trasporto-aereo-assaeroporti.json": [
       "trasporto-aereo-assaeroporti/art_g6_reclassification",
-      "trasporto-aereo-assaeroporti/level_9_seniority_zero",
       "trasporto-aereo-assaeroporti/role_conditional_allowances",
       "trasporto-aereo-assaeroporti/sickness_hospital_and_serious_illness"
     ],
