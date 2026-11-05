@@ -121,12 +121,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Model the 20% band over 48 weekly hours, or pass the multiplier on the overtime event.
 
-!!! warning "impianti-sportivi-sport/integration_75_days_4_20 · sickness · impact yes · open"
-    SIMPLIFICATION: Integrazione malattia (Art. 103). Struttura contrattuale: giorni 1-3 a carico del datore (100%), giorni 4-20 integrazione al 75%, giorni 21+ integrazione al 100%. Modellato: carenza_integration_rate=1.0, full_pay_integration_rate=1.0 (allineato alla fase finale). La finestra al 75% (gg. 4-20) non e modellata; il motore sovrastima la retribuzione per eventi di malattia breve. The sickness rules can hold day bands (sickness_rules.day_bands): the gap is in the data only (review of 2026-10-30).
+!!! note "impianti-sportivi-sport/integration_75_days_4_20 · sickness · impact yes · resolved"
+    SICKNESS INTEGRATION (Art. 103 b): days 1-3 paid by the employer at 100%, the top-up reaches 75% for days 4-20 and 100% from day 21 of the net daily pay; stored as sickness_rules.day_bands.
 
     **Applies when:** `sickness` applies.
 
-    **Remediation:** Add the day bands of Art. 103 (75% on days 4-20, 100% from day 21) to sickness_rules.day_bands, then resolve this limitation.
+    **Remediation:** Resolved: sickness_rules.day_bands hold 75% for days 4-20 and 100% from day 21 of Art. 103 b), read on 2026-10-30.
 
 !!! note "impianti-sportivi-sport/long_week_divisor_195 · workplace_injury · impact unknown · resolved"
     SIMPLIFICATION: Divisore orario. Art. 120 prevede 173 (40h) e 195 (45h). Solo il divisore 173 e modellato. Le assunzioni a 45h settimanali non sono gestite.
