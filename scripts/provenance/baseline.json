@@ -685,6 +685,10 @@
       "autorimesse-ic35/apprenticeship_percentages_2019",
       "autorimesse-ic35/meal_voucher"
     ],
+    "agreement/autostrade-trafori.json": [
+      "autostrade-trafori/apprentice_seniority",
+      "autostrade-trafori/apprenticeship_full_pay_passthrough"
+    ],
     "agreement/aziende-termali-federterme.json": [
       "aziende-termali-federterme/apprentice_seniority",
       "aziende-termali-federterme/ebiterme_fontur_funds",
@@ -817,7 +821,6 @@
       "dmo-federdistribuzione/apprentice_seniority",
       "dmo-federdistribuzione/commission_guarantee",
       "dmo-federdistribuzione/employment_support_contract",
-      "dmo-federdistribuzione/health_and_bilateral_funds",
       "dmo-federdistribuzione/provincial_elements_missing",
       "dmo-federdistribuzione/sales_operators",
       "dmo-federdistribuzione/sickness_net_basis"
@@ -1150,7 +1153,6 @@
     "agreement/pubblici-esercizi-fipe-angem-ristorazione-collettiva.json": [
       "pubblici-esercizi-fipe-angem-ristorazione-collettiva/apprentice_seniority",
       "pubblici-esercizi-fipe-angem-ristorazione-collettiva/guarantee_premium_2027",
-      "pubblici-esercizi-fipe-angem-ristorazione-collettiva/health_and_bilateral_funds",
       "pubblici-esercizi-fipe-angem-ristorazione-collettiva/holiday_overtime_cumulation"
     ],
     "agreement/pubblici-esercizi-fipe-angem.json": [
@@ -1274,6 +1276,7 @@
     ],
     "agreement/turismo-confesercenti.json": [
       "turismo-confesercenti/apprentice_seniority",
+      "turismo-confesercenti/apprenticeship_under_classification",
       "turismo-confesercenti/other_subsectors_tables"
     ],
     "agreement/turismo-federalberghi-alberghi-minori.json": [

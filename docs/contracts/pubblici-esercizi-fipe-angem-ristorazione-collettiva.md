@@ -34,7 +34,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, bilateral_funds, overtime, seniority |
+| **Limits of this contract** | base_salary, overtime, seniority |
 
 6 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
@@ -69,6 +69,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-31 | claude-opus-5-5 (ai) | The basis of the indemnity for the leave not taken at the end of the employment, searched in the OCR of the signed text of 2018 (Artt. 114, 134, 135, 159, 160). | corrected | Art. 159 - Determinazione della retribuzione giornaliera (p. 116): the daily pay is the monthly pay divided by 26 for every contractual purpose: work_rules.leave_rules.termination; the accrual of the leave is not modelled, so the basis is not used yet. |
 | 2026-11-01 | claude-opus-5-5 (ai) | The notice of Artt. 208-209 (PDF pp. 143-144), checked by a separate session on the rendered pages. | confirmed | Art. 208 (PDF pp. 143-144, sha256 32a2831b... matched, page images read): 15 bands, A e B / 1 / 2 e 3 / 4 e 5 / 6S, 6 e 7 over the three service bands, the same for dismissal and resignation, no start day: work_rules.notice.<br>Art. 209 (p. 144): the indemnity is the normale retribuzione of the period, extra_months_included false; the exception of Art. 179 for the pubblici esercizi does not concern this file. |
 | 2026-11-05 | claude-opus-5-5 (ai) | The hourly divisor of the 44-hour week, Articolo 160 (PDF p. 116, printed p. 114), checked by a separate session on the page rendered at 200 and 400 dpi. | confirmed | Art. 160 c.1 (sha256 32a2831b... matched): 190 for a normal week of 44 hours, 172 for 40: work_rules.time_supplements.week_divisors 44/190.<br>The renewal of 5 June 2024 amends arts. 114, 135, 161, 183-184 and 199-202, not art. 160. |
+| 2026-11-05 | claude-opus-5-5 (ai) | Art. 186 (p. 17) of the renewal of 5 June 2024, OCR of the signed scan. | corrected | Art. 186 covers every sector of the CCNL: the Fondo Est of the Pubblici esercizi file applies to ristorazione collettiva, which had no health fund. |
 
 ## Salary table
 
@@ -148,12 +149,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Model the 2027 guarantee premium as a conditional allowance.
 
-!!! warning "pubblici-esercizi-fipe-angem-ristorazione-collettiva/health_and_bilateral_funds · bilateral_funds · impact yes · open"
-    HEALTH FUND: the Fondo Est is owed for every worker (CCNL 2018 art. 186); an employer that does not pay it owes the worker instead the elemento distinto of EUR 16.00 for 14 months (c. 12). Neither is modelled: the employer cost, and with the elemento the net pay, are short of it.
+!!! note "pubblici-esercizi-fipe-angem-ristorazione-collettiva/health_and_bilateral_funds · bilateral_funds · impact yes · resolved"
+    HEALTH FUND (art. 186): Fondo Est EUR 11/12 (15 from 2027) a month from the employer for the permanent non-quadri, and the element of EUR 16 on 14 months of an employer that does not pay it, as in the Pubblici esercizi file.
 
     **Applies when:** `bilateral_funds` applies.
 
-    **Remediation:** Model the contributions per worker, with a fact for an employer that pays the worker the alternative element instead, then remove this note.
+    **Remediation:** Resolved: parameters.health_funds fondo_est, read on 2026-11-05.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
