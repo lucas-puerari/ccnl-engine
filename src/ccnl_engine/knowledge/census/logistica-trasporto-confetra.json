@@ -83,22 +83,6 @@
       }
     },
     {
-      "id": "health_and_bilateral_funds",
-      "institute": "bilateral_funds",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = owed",
-      "rule": "HEALTH AND BILATERAL FUNDS: Sanilog (Art. 51, p. 64): 150 euro a year for each worker not in probation with a permanent contract or an apprenticeship, from the employer only, plus the 10% INPS solidarity contribution; Ebilog (Art. 52, p. 65): 3,50 euro a month from the employer and 0,50 euro from the worker, for 12 months, or an EAR of 8 euro a month paid to the worker by an employer outside the bilateral system. Not modelled.",
-      "calculation": "ccnl/logistica-trasporto-confetra:coverage.notes",
-      "state": "absent",
-      "remediation": "Pass the contributions as bilateral fund events, or model them per worker.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "logistica-trasporto-confetra/health_and_bilateral_funds"
-        ]
-      }
-    },
-    {
       "id": "level_6j_2025",
       "institute": "base_salary",
       "variant": "all",

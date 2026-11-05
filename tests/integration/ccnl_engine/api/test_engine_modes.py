@@ -227,8 +227,12 @@ def test_a_logistica_run_needs_the_inps_sector_of_the_employer() -> None:
     assert _employer_inps(unstated) == _employer_inps(industria)
     #: Terziario above 15 employees: 30.11333% of the INPS base, the gross
     #: to the euro, the IVS and the other shares each taken to cents.
+    #: Both add the 10% INPS solidarity on the Sanilog share (art. 51: EUR
+    #: 150 a year, 12.50 a month), owed whatever funds the employer states.
     base = terziario.period_gross.quantize(Decimal(1))
-    expected = base * Decimal("0.3011333")
+    solidarity = Decimal("1.25")
+    expected = base * Decimal("0.3011333") + solidarity
     assert abs(_employer_inps(terziario) - expected) <= Decimal("0.01")
     #: Industria impiegati from 16 to 50 employees: 29.06%.
-    assert abs(_employer_inps(industria) - base * Decimal("0.2906")) <= Decimal("0.01")
+    industria_expected = base * Decimal("0.2906") + solidarity
+    assert abs(_employer_inps(industria) - industria_expected) <= Decimal("0.01")

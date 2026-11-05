@@ -39,7 +39,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | absence, base_salary, bilateral_funds, overtime, seniority |
+| **Limits of this contract** | absence, base_salary, overtime, seniority |
 
 7 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
@@ -82,6 +82,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-01 | claude-opus-5-5 (ai) | The notice clause (Art. 36, lett. a–d; artt. 18–19, p. 53–54 (art. 36); 42 (artt. 18–19)). | corrected | Notice bands by level, category and service checked against the PDF by a separate session (delegated search and independent verification): work_rules.notice. |
 | 2026-11-01 | claude-opus-5-5 (ai) | Hourly base of the time supplements (art. 13 c. 8, art. 61 c. 1) and the supplements of ordinary Sunday and holiday work (art. 12 c. 4), read in the text layer of the testo unico. AI review only: the same model extracted and checked the values. | corrected | hourly_base_method gross_incl_allowances (was minimo_tabellare), now verified: the retribuzione globale of art. 61 c. 1 divided by 168 (art. 13 c. 8), without the EDR of 2021; the engine derives the hourly rate of an event without one.<br>individual_elements included: art. 61 c. 1 punto 3 counts 'eventuali altri aumenti comunque denominati'.<br>Band FESTIVO added: 50% on holiday work within the ordinary hours (art. 12 c. 4). The night (20/15/25%) and Sunday (20% by day, 50% by night) rates of art. 12 c. 4 are left out: they depend on the guardian role, the shift and the hours of the Sunday, which the request does not carry. |
 | 2026-11-05 | claude-opus-5-5 (ai) | The daily divisor of a six-day week of the non-travelling staff, art. 61 c. 3, p. 86 of the testo unico. | confirmed | Art. 61 c. 3 divides by 26 the monthly pay of the non-travelling staff on a six-day week, by 22 otherwise: week_days_methods 6 -> by_26, read when Employment.full_time_week_days is 6. |
+| 2026-11-05 | claude-opus-5-5 (ai) | Artt. 51-52 (PDF pp. 64-65) of the Testo Unico of 25 September 2025, text layer. | corrected | Sanilog and Ebilog, owed for every worker of the CCNL, were not modelled: employer cost and worker share were short. |
 
 ## Salary table
 
@@ -165,12 +166,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Count the supplementary hours of the year and pay the higher rate past the yearly limit.
 
-!!! warning "logistica-trasporto-confetra/health_and_bilateral_funds · bilateral_funds · impact yes · open"
-    HEALTH AND BILATERAL FUNDS: Sanilog (Art. 51, p. 64): 150 euro a year for each worker not in probation with a permanent contract or an apprenticeship, from the employer only, plus the 10% INPS solidarity contribution; Ebilog (Art. 52, p. 65): 3,50 euro a month from the employer and 0,50 euro from the worker, for 12 months, or an EAR of 8 euro a month paid to the worker by an employer outside the bilateral system. Not modelled.
+!!! note "logistica-trasporto-confetra/health_and_bilateral_funds · bilateral_funds · impact yes · resolved"
+    HEALTH AND BILATERAL FUNDS (artt. 51-52, pp. 64-65): Sanilog EUR 150 a year from the employer for the permanent workers with the 10% INPS solidarity, Ebilog EUR 3.50 + 0.50 a month, and the EAR of EUR 8 on 12 months of an employer that does not pay Ebilog, when it states so in EmployerProfile.contractual_funds. The artisan section (EBNA, FSBA) is not modelled.
 
     **Applies when:** `bilateral_funds` applies.
 
-    **Remediation:** Pass the contributions as bilateral fund events, or model them per worker.
+    **Remediation:** Resolved: parameters.health_funds sanilog and ebilog, read on 2026-11-05.
 
 !!! note "logistica-trasporto-confetra/inps_employer_class_unconfirmed · inps_employer · impact unknown · resolved"
     INPS CONTRIBUTION CLASS: the file applies the rates of the industria (impiegati 29.06% from 16 to 50 employees and 29.36% from 51, operai 31.28% and 31.58% with the 2.22% malattia). The cost table of the Ministry of Labour for this CCNL (DD 135 of 19 December 2025) applies 29.44% to operai and impiegati alike, and states neither the INPS class of the employer nor the composition of the rate: the class of a logistica employer is not confirmed, and the employer and worker contributions may differ.
