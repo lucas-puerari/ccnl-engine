@@ -459,3 +459,34 @@ def test_artisan_funds(
     )
     if funds:
         assert _entries(result, "sanarti_")["solidarity"] == Decimal("1.04")
+
+
+@pytest.mark.parametrize(
+    ("funds", "employer", "elements"),
+    [
+        (
+            frozenset({"fasa", "cassa_maternita", "rischio_vita", "bilateralita"}),
+            Decimal("25.50"),
+            [],
+        ),
+        (frozenset(), Decimal(0), [Decimal("20.00")]),
+    ],
+)
+def test_alimentari_funds(
+    funds: frozenset[str], employer: Decimal, elements: list[Decimal]
+) -> None:
+    """FASA 16, Cassa maternità 4.50, rischio vita 30/12 and bilateralità 2.50.
+
+    Arts. 74 bis-quinquies, from 2025: 16 + 4.50 + 2.50 + 2.50 = 25.50 a
+    month; an employer outside the bilateralità owes one EDR of EUR 20.
+    """
+    result = _run("alimentari-federalimentare", "3", funds)
+
+    assert _posted(result, AccountKind.BILATERAL_FUND_EMPLOYER) == employer
+    assert (
+        sorted(i.amount for i in result.pay_items if "_element_" in i.item_id)
+        == elements
+    )
+    if funds:
+        assert _entries(result, "fasa_")["solidarity"] == Decimal("1.60")
+        assert _entries(result, "cassa_maternita_")["solidarity"] == Decimal("0.45")
