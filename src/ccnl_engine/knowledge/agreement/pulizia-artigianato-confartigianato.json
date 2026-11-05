@@ -170,7 +170,7 @@
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: Fondi bilaterali non modellati (Fondo sanitario EUR 10.42*12 + bilateralità EUR 11.65*12). employer_cost_annual sottostimato di ~EUR 267/anno.",
+        "text": "HEALTH AND BILATERAL FUNDS: SAN.ARTI. EUR 10.42 a month (art. 18 of the 2014 text, E.A.R. of EUR 25 on 13 months) and EBNA EUR 11.65 a month from 1 November 2022 (interconfederal agreement of 17 December 2021 taken in by the renewal of 27 October 2022; EUR 30 on 13 months to the worker of an employer outside the bilateralità) are modelled. Not modelled: the FSBA, 0.45% from the employer and 0.15% from the worker of the INPS base.",
         "capability": "bilateral_funds",
         "monetary_impact": "yes",
         "limitation": {
@@ -181,7 +181,7 @@
           "totals": [
             "employer_cost"
           ],
-          "remediation": "Pass the health-fund and bilateral contributions as a bilateral fund event, or model the funds."
+          "remediation": "Model the FSBA contribution (0.45% from the employer and 0.15% from the worker of the INPS base), which the contractual funds cannot hold on that base, then remove this note."
         }
       },
       {
@@ -310,6 +310,27 @@
         "independence": "separate_session",
         "checked": [
           "work_rules.leave_rules"
+        ]
+      },
+      {
+        "id": "2026-11-05-ai-contractual-funds",
+        "date": "2026-11-05",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 18 (p. 11) of the CCNL of 18 September 2014 (OCR of the scan) and the renewal of 27 October 2022 (p. 2).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
+            "sha256": "037e5a830b9027e280d0a84285afe7c69190550e5704b236270ba6ebd62f6424"
+          }
+        ],
+        "findings": [
+          "EBNA (EUR 11.65 a month, or EUR 30 on 13 months unpaid) and SAN.ARTI. (EUR 10.42 a month, or EUR 25 on 13 months unpaid) were not modelled."
+        ],
+        "independence": "separate_session",
+        "checked": [
+          "parameters.health_funds"
         ]
       }
     ]
@@ -732,7 +753,120 @@
         },
         "note": "Quote read by OCR of a scanned PDF."
       }
-    }
+    },
+    "health_funds": [
+      {
+        "code": "ebna",
+        "description": "Bilateralità artigiana EBNA, quota fissa (accordo interconfederale 17 dicembre 2021)",
+        "employer": {
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-11-01",
+                "valid_until": null,
+                "value": "11.65"
+              }
+            ]
+          }
+        },
+        "alternative": {
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-11-01",
+                "valid_until": null,
+                "value": "30.0"
+              }
+            ]
+          }
+        },
+        "alternative_extra_months": true,
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-pulizia-artigianato-rinnovo-2022",
+              "title": "CCNL Pulizia artigianato, accordo di rinnovo 27 ottobre 2022",
+              "kind": "associazione",
+              "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
+              "published_on": "2022-10-27",
+              "sha256": "037e5a830b9027e280d0a84285afe7c69190550e5704b236270ba6ebd62f6424"
+            },
+            "page": "2",
+            "section": "Validità",
+            "quote": "L'Accordo Interconfederale del 17.12.2021 sottoscritto da Confartigianato Imprese, Cna, Casartigiani, Claai insieme a Cgil, Cisl e Uil si intende integralmente recepito all'interno del C.C.N.L. e pertanto ne costituisce parte integrante con decorrenza dall’1.11.2022."
+          },
+          "transformation": "EUR 11.65 a month on 12 months from the employer, in full for part-time workers and apprentices; an employer outside the bilateralità owes the worker EUR 30 a month on 13 months, outside the TFR ('escluso il TFR'), in proportion to the hours of a part-timer. The FSBA (0.45% + 0.15% of the INPS base) is not modelled.",
+          "note": "The amounts are those of the interconfederal agreement of 17 December 2021 the renewal takes in from 1 November 2022: EUR 11.65 a month (EBNA resolution of 28 July 2022) and EUR 30 on 13 months to the worker of an employer outside the bilateralità, as the artisan Area Meccanica text states them (art. 11, p. 31).",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-05T19:30:00Z",
+            "effective_from": "2022-11-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-05T19:30:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-05-ai-contractual-funds"
+          }
+        }
+      },
+      {
+        "code": "sanarti",
+        "description": "SAN.ARTI., assistenza sanitaria integrativa dell'artigianato",
+        "permanent_only": true,
+        "employer": {
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-11-01",
+                "valid_until": null,
+                "value": "10.42"
+              }
+            ]
+          }
+        },
+        "solidarity_rate": "0.1",
+        "alternative": {
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-11-01",
+                "valid_until": null,
+                "value": "25.0"
+              }
+            ]
+          }
+        },
+        "alternative_extra_months": true,
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-pulizia-artigianato-2014",
+              "title": "CCNL Pulizia artigianato 18 settembre 2014 (scansione firmata)",
+              "kind": "associazione",
+              "url": "https://www.informaimpresa.it/wp-content/uploads/2014/09/CCNL-Pulizie-18-sette-2014_Firmato-84b.pdf",
+              "published_on": "2014-09-18",
+              "sha256": "3b9549505ed29bae42278201160fadfb7427d07ec4113228eeb09aefb33b212e"
+            },
+            "page": "11",
+            "section": "Art. 18 - SAN.ARTI.",
+            "quote": "Con pari decorrenza è attivato un contributo a carico dell'azienda pari a 10,42 euro mensili per 12 mensilità. [...] “elemento aggiuntivo della retribuzione” (E.A.R.) pari a 25€ lordi mensili per 13 mensilità cosi come previsto dal presente CCNL."
+          },
+          "transformation": "EUR 10.42 a month on 12 months from the employer for the permanent workers, apprentices included, with the 10% INPS solidarity of a health fund (L. 166/1991 art. 9-bis); an employer that does not enrol them owes an E.A.R. of EUR 25 a month on 13 months. The fixed-term workers hired for at least 12 months, also enrolled, are not modelled.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-05T19:30:00Z",
+            "effective_from": "2022-11-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-05T19:30:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-05-ai-contractual-funds"
+          }
+        }
+      }
+    ]
   },
   "apprenticeship": [
     {
@@ -4002,7 +4136,7 @@
     "source": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
     "verification_status": "unverified",
     "published_at": "2026-09-12",
-    "source_hash": "95462c79bcd803c3acdf13a7b4fb45154f77fb1a21d39dd2faba1a3d7a2c4fdb",
+    "source_hash": "e00c9d731c3d362381883d1d5ace92ef3922a3588818c3833a495c638e99ad78",
     "source_type": "commercial_secondary"
   },
   "work_rules": {

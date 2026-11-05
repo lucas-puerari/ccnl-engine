@@ -430,3 +430,32 @@ def test_logistica_funds(
     )
     if funds:
         assert _entries(result, "sanilog_")["solidarity"] == Decimal("1.25")
+
+
+@pytest.mark.parametrize(
+    "ccnl",
+    [("metalmeccanico-artigianato", "3"), ("pulizia-artigianato-confartigianato", "3")],
+)
+@pytest.mark.parametrize(
+    ("funds", "employer", "elements"),
+    [
+        (frozenset({"ebna", "sanarti"}), Decimal("22.07"), []),
+        (frozenset(), Decimal(0), [Decimal("25.00"), Decimal("30.00")]),
+    ],
+)
+def test_artisan_funds(
+    ccnl: tuple[str, str],
+    funds: frozenset[str],
+    employer: Decimal,
+    elements: list[Decimal],
+) -> None:
+    """EBNA 11.65 and SAN.ARTI. 10.42 a month; not paid, EUR 30 and 25."""
+    result = _run(ccnl[0], ccnl[1], funds)
+
+    assert _posted(result, AccountKind.BILATERAL_FUND_EMPLOYER) == employer
+    assert (
+        sorted(i.amount for i in result.pay_items if "_element_" in i.item_id)
+        == elements
+    )
+    if funds:
+        assert _entries(result, "sanarti_")["solidarity"] == Decimal("1.04")

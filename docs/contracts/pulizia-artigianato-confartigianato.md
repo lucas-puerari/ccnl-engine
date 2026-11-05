@@ -64,6 +64,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | corrected | Art. 38 Tredicesima mensilità (p. 22): "Nel caso di inizio o di cessazione del rapporto durante il corso dell'anno, il lavoratore non in prova avrà diritto a tanti dodicesimi dell'ammontare della tredicesima mensilità per quanti sono i mesi di servizio prestato. Le frazioni di mese non superiori ai 15 giorni non saranno calcolate, mentre saranno considerate come mese intero se superiori ai 15 giorni.". Added: more_than 15 (the file applied the engine default, at least 15 days). |
 | 2026-10-31 | claude-opus-5-5 (ai) | The comporto and the sick pay of the CCNL counted over several illnesses (work_rules.sickness_rules), read on the signed text. | corrected | Art. 44 of the CCNL 18.9.2014 (pp. 25-26, OCR of the signed scan): comporto 9 months of one illness and 10 months within the 24 months before; integration to 100% of the net pay from day 1 for at most 180 days in the calendar year. The file kept 180 days of one illness as the comporto: corrected (max_duration_days 274, a window of 24 months and 304 days, integration ending on day 180 of the illness). |
 | 2026-11-05 | claude-opus-5-5 (ai) | Ferie, permits and their settlement: arts. 21 (PDF p. 12), 23-24 (p. 13) and 34 (p. 19) of the 2014 scan, read by a separate research session on the OCR and checked again on a new OCR; the renewals of 2022 and 2025 read for amendments. | corrected | Art. 24: 22/26 days by the days of the week, twelfths with the month over 15 days: work_rules.leave_rules.<br>Art. 23: 32 hours of ex festività, month of 15 days or more; art. 21: 16 hours of permits in twelfths; art. 34: daily pay /22 or /26, hourly /173. |
+| 2026-11-05 | claude-opus-5-5 (ai) | Art. 18 (p. 11) of the CCNL of 18 September 2014 (OCR of the scan) and the renewal of 27 October 2022 (p. 2). | corrected | EBNA (EUR 11.65 a month, or EUR 30 on 13 months unpaid) and SAN.ARTI. (EUR 10.42 a month, or EUR 25 on 13 months unpaid) were not modelled. |
 
 ## Salary table
 
@@ -159,11 +160,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Source the apprentice rates of artigianato (an INPS circular or an association table of 2026), mark the apprentice block of contribution/2026/artigianato.json derived, then remove this note.
 
 !!! warning "pulizia-artigianato-confartigianato/health_and_bilateral_funds · bilateral_funds · impact yes · open"
-    SIMPLIFICATION: Fondi bilaterali non modellati (Fondo sanitario EUR 10.42*12 + bilateralità EUR 11.65*12). employer_cost_annual sottostimato di ~EUR 267/anno.
+    HEALTH AND BILATERAL FUNDS: SAN.ARTI. EUR 10.42 a month (art. 18 of the 2014 text, E.A.R. of EUR 25 on 13 months) and EBNA EUR 11.65 a month from 1 November 2022 (interconfederal agreement of 17 December 2021 taken in by the renewal of 27 October 2022; EUR 30 on 13 months to the worker of an employer outside the bilateralità) are modelled. Not modelled: the FSBA, 0.45% from the employer and 0.15% from the worker of the INPS base.
 
     **Applies when:** `bilateral_funds` applies.
 
-    **Remediation:** Pass the health-fund and bilateral contributions as a bilateral fund event, or model the funds.
+    **Remediation:** Model the FSBA contribution (0.45% from the employer and 0.15% from the worker of the INPS base), which the contractual funds cannot hold on that base, then remove this note.
 
 !!! warning "pulizia-artigianato-confartigianato/overtime_weekly_threshold · overtime · impact unknown · open"
     SIMPLIFICATION: Soglia settimanale ore straordinarie (OT_DIURNO) non modellata (hour_threshold_per_week=null). Il contratto prevede scatto dopo 40h/settimana e limite annuale 200h. Coverage work_rules gia' marcata partial.
