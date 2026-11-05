@@ -25,6 +25,7 @@ __all__ = [
     "LeaveEntitlementTier",
     "LeaveRules",
     "LeaveTermination",
+    "WeekDaysLeave",
 ]
 
 _ZERO = Decimal(0)
@@ -97,6 +98,20 @@ class LeaveTermination(BaseModel):
     provenance: RuleProvenance | None = None
 
 
+class WeekDaysLeave(BaseModel):
+    """The ferie days of a year for a full-time week of ``days`` working days.
+
+    Studi professionali art. 99: 26 days "se l'orario è distribuito su 6
+    (sei) giorni", 22 in the "settimana corta".
+    """
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    days: int = Field(ge=5, le=6)
+    annual_days: Decimal = Field(gt=_ZERO)
+    provenance: RuleProvenance
+
+
 class LeaveRules(BaseModel):
     """Layer 3 rules for paid leave (ferie and permessi).
 
@@ -104,7 +119,10 @@ class LeaveRules(BaseModel):
     seniority-gated tier matches or when seniority is unknown.
     ``entitlement_tiers`` (optional) list tiers in any order; the engine
     selects the one with the highest ``service_months_min`` that the
-    worker has satisfied.  ``ferie_accrual``, ``permits`` and
+    worker has satisfied.  ``week_days_annual_days`` replace
+    ``default_annual_days`` for the working days of the full-time week
+    (``Employment.full_time_week_days``); they exclude seniority tiers.
+    ``ferie_accrual``, ``permits`` and
     ``termination`` are stated for a CCNL whose accrual was read; a CCNL
     without them accrues no leave.
 
@@ -115,6 +133,7 @@ class LeaveRules(BaseModel):
 
     default_annual_days: Decimal = Field(gt=Decimal(0))
     entitlement_tiers: tuple[LeaveEntitlementTier, ...] = Field(default=())
+    week_days_annual_days: tuple[WeekDaysLeave, ...] = ()
     provenance: RuleProvenance | None = None
     ferie_accrual: FerieAccrual | None = None
     permits: tuple[PermitRules, ...] = ()
@@ -131,6 +150,9 @@ class LeaveRules(BaseModel):
                 "permits need distinct buckets, and no ex_festivita bucket "
                 f"beside a rol pool that includes it; got {buckets}"
             )
+            raise ValueError(msg)
+        if self.week_days_annual_days and self.entitlement_tiers:
+            msg = "week_days_annual_days exclude seniority entitlement_tiers"
             raise ValueError(msg)
         return self
 

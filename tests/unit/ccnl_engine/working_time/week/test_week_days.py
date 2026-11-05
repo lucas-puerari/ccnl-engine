@@ -6,9 +6,11 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 import pytest
+from pydantic import ValidationError
 
 from ccnl_engine.absence.models import DailyDivisorMethod
 from ccnl_engine.catalog.loaders import load_ccnl
+from ccnl_engine.leave.models import LeaveEntitlementTier, LeaveRules
 from ccnl_engine.working_time.week.rules import with_week_days
 
 if TYPE_CHECKING:
@@ -90,3 +92,33 @@ def test_work_rules_without_absence_or_clause_are_unchanged() -> None:
     )
     ccnl = ccnl.model_copy(update={"work_rules": rules})
     assert with_week_days(ccnl, 5) is ccnl
+
+
+@pytest.mark.parametrize(
+    ("slug", "days", "ferie"),
+    [
+        ("studi-professionali-confprofessioni", 6, 26),
+        ("studi-professionali-confprofessioni", 5, 22),
+        ("multiservizi-anip", 6, 26),
+    ],
+)
+def test_the_week_sets_the_ferie_of_a_year(slug: str, days: int, ferie: int) -> None:
+    """Studi art. 99, Multiservizi art. 42: 26 on six days, 22 on five."""
+    ccnl = with_week_days(load_ccnl(slug), days)
+    assert ccnl.work_rules is not None
+    assert ccnl.work_rules.leave_rules is not None
+    assert ccnl.work_rules.leave_rules.default_annual_days == ferie
+
+
+def test_week_days_leave_excludes_seniority_tiers() -> None:
+    """A seniority tier beside the days of the week is ambiguous: rejected."""
+    ccnl = load_ccnl("studi-professionali-confprofessioni")
+    assert ccnl.work_rules is not None
+    leave = ccnl.work_rules.leave_rules
+    assert leave is not None
+    tier = LeaveEntitlementTier(annual_days=Decimal(22))
+    with pytest.raises(ValidationError, match="exclude seniority"):
+        LeaveRules.model_validate({
+            **leave.model_dump(),
+            "entitlement_tiers": (tier.model_dump(),),
+        })

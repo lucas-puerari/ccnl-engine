@@ -11,21 +11,29 @@ same divisor.
 
 A CCNL may also set the daily divisor by the working days of the full-time
 week (Pulizia artigianato art. 34: 22 "nel caso di settimana corta", 26
-"su sei giorni"): :func:`with_week_days` swaps the absence method and the
-divisor of the holiday clause for the days stated, so the absences, the
-proration, a change of level, the sick days and the holidays read the same.
+"su sei giorni"): :func:`with_week_days` swaps the absence method, the
+divisor of the holiday clause and the ferie days of a year (Studi art. 99:
+22 or 26) for the days stated, so the absences, the proration, a change of
+level, the sick days, the holidays and the leave accrual read the same.
 """
 
 from __future__ import annotations
 
 from decimal import Decimal
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Protocol
 
 if TYPE_CHECKING:
-    from ccnl_engine.agreement.facade import CCNL
+    from ccnl_engine.agreement.facade import CCNL, CCNLWorkRules
     from ccnl_engine.employment.fact.inputs import WeeklyHours
 
 __all__ = ["with_week_days", "with_week_divisor"]
+
+
+class _OfDays(Protocol):
+    """A rule of the CCNL for a full-time week of ``days`` working days."""
+
+    @property
+    def days(self) -> int: ...
 
 
 def with_week_divisor(ccnl: CCNL, full_time: WeeklyHours | None) -> CCNL:
@@ -83,18 +91,33 @@ def with_week_days(ccnl: CCNL, days: int | None) -> CCNL:
         days: ``Employment.full_time_week_days``; ``None`` when not stated.
 
     Returns:
-        ``ccnl`` whose absence method (with its provenance) and holiday
-        clause divisor are the ones the CCNL sets for ``days``; ``ccnl``
+        ``ccnl`` whose absence method (with its provenance), holiday
+        clause divisor and ferie days are the ones the CCNL sets for
+        ``days``; ``ccnl``
         unchanged without a stated week or a divisor of the CCNL for it.
     """
     rules = ccnl.work_rules
     if rules is None or days is None:
         return ccnl
+    update = _week_days_update(rules, days)
+    if not update:
+        return ccnl
+    return ccnl.model_copy(update={"work_rules": rules.model_copy(update=update)})
+
+
+def _week_days_update(rules: CCNLWorkRules, days: int) -> dict[str, object]:
+    """Return the work rules ``days`` replaces, by field name.
+
+    Returns:
+        The absence rules, holiday clause and leave rules with the values
+        the CCNL sets for ``days``; only those it sets.
+    """
     update: dict[str, object] = {}
     absence = rules.absence_rules
-    methods = () if absence is None else absence.week_days_methods
-    method = next((m for m in methods if m.days == days), None)
-    if absence is not None and method is not None:
+    if (
+        absence is not None
+        and (method := _of_days(absence.week_days_methods, days)) is not None
+    ):
         update["absence_rules"] = absence.model_copy(
             update={
                 "daily_divisor_method": method.method,
@@ -102,12 +125,28 @@ def with_week_days(ccnl: CCNL, days: int | None) -> CCNL:
             }
         )
     clause = rules.sunday_holidays
-    divisors = () if clause is None else clause.week_days_divisors
-    divisor = next((d for d in divisors if d.days == days), None)
-    if clause is not None and divisor is not None:
+    if (
+        clause is not None
+        and (divisor := _of_days(clause.week_days_divisors, days)) is not None
+    ):
         update["sunday_holidays"] = clause.model_copy(
             update={"divisor": divisor.divisor}
         )
-    if not update:
-        return ccnl
-    return ccnl.model_copy(update={"work_rules": rules.model_copy(update=update)})
+    leave = rules.leave_rules
+    if (
+        leave is not None
+        and (ferie := _of_days(leave.week_days_annual_days, days)) is not None
+    ):
+        update["leave_rules"] = leave.model_copy(
+            update={"default_annual_days": ferie.annual_days}
+        )
+    return update
+
+
+def _of_days[T: _OfDays](items: tuple[T, ...], days: int) -> T | None:
+    """Return the item of ``items`` for a week of ``days``.
+
+    Returns:
+        The first item whose ``days`` is ``days``, ``None`` if none.
+    """
+    return next((item for item in items if item.days == days), None)

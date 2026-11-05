@@ -29,6 +29,7 @@ from ccnl_engine.inputs import (
     SeniorityFact,
     SenioritySource,
 )
+from ccnl_engine.leave.types import LeaveBucket
 from ccnl_engine.period.requests import PeriodCalculationRequest
 from ccnl_engine.period.services import (
     bundled_policies,
@@ -157,3 +158,19 @@ def test_a_holiday_on_the_rest_day_divides_by_the_days_of_the_week(
     decision = _decision(_run(slug, level, 11, days), CAPABILITY)
 
     assert decision.inputs["divisor"] == Decimal(divisor)
+
+
+@pytest.mark.parametrize(("days", "ferie"), [(None, "22"), (5, "22"), (6, "26")])
+def test_studi_accrues_the_ferie_of_the_days_of_the_week(
+    days: int | None, ferie: str
+) -> None:
+    """Art. 99: 26 days on six days, 22 in the settimana corta; a twelfth a month."""
+    result = _run(
+        "studi-professionali-confprofessioni", "4", 3, days, start=date(2020, 1, 1)
+    )
+    (balance,) = [
+        b
+        for b in result.closing_state.accrual.leave.balances
+        if b.bucket is LeaveBucket.FERIE
+    ]
+    assert balance.accrued_twelfths == Decimal(ferie)
