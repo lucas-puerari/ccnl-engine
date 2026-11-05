@@ -102,13 +102,17 @@ class WeekDaysLeave(BaseModel):
     """The ferie days of a year for a full-time week of ``days`` working days.
 
     Studi professionali art. 99: 26 days "se l'orario è distribuito su 6
-    (sei) giorni", 22 in the "settimana corta".
+    (sei) giorni", 22 in the "settimana corta".  ``ferie_divisor``, when
+    set, replaces the divisor of the indemnity for the ferie left at the
+    end of the employment (Pulizia artigianato art. 34: the daily pay is
+    the monthly pay over 22 or 26).
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
 
     days: int = Field(ge=5, le=6)
     annual_days: Decimal = Field(gt=_ZERO)
+    ferie_divisor: Decimal | None = Field(default=None, gt=_ZERO)
     provenance: RuleProvenance
 
 

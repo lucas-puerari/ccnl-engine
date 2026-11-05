@@ -208,9 +208,9 @@
         }
       },
       {
-        "kind": "missing",
-        "text": "MISSING: Ferie e permessi (leave_rules) non modellati: il file non riporta i giorni di ferie annuali né le ore di permesso retribuito.",
-        "capability": "leave"
+        "kind": "info",
+        "capability": "leave",
+        "text": "LEAVE (artt. 21, 23, 24, 34 of the 2014 text): 22 days of ferie on five days, 26 on six (Employment.full_time_week_days), in twelfths with the month over 15 days; 32 hours of ex festività (month of 15 days or more), usable until 30 September of the next year and then paid; 16 hours of permits (art. 21), paid when unused. At termination a day of ferie is the monthly pay over 22 (26 on six days), an hour of permits over 173. Not modelled: the 30 September deadline, the 8 further hours of a flexible week above 40 hours, the 4 days of Rome."
       },
       {
         "kind": "missing",
@@ -288,6 +288,28 @@
         ],
         "findings": [
           "Art. 44 of the CCNL 18.9.2014 (pp. 25-26, OCR of the signed scan): comporto 9 months of one illness and 10 months within the 24 months before; integration to 100% of the net pay from day 1 for at most 180 days in the calendar year. The file kept 180 days of one illness as the comporto: corrected (max_duration_days 274, a window of 24 months and 304 days, integration ending on day 180 of the illness)."
+        ]
+      },
+      {
+        "id": "2026-11-05-ai-leave",
+        "date": "2026-11-05",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Ferie, permits and their settlement: arts. 21 (PDF p. 12), 23-24 (p. 13) and 34 (p. 19) of the 2014 scan, read by a separate research session on the OCR and checked again on a new OCR; the renewals of 2022 and 2025 read for amendments.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.informaimpresa.it/wp-content/uploads/2014/09/CCNL-Pulizie-18-sette-2014_Firmato-84b.pdf",
+            "sha256": "3b9549505ed29bae42278201160fadfb7427d07ec4113228eeb09aefb33b212e"
+          }
+        ],
+        "findings": [
+          "Art. 24: 22/26 days by the days of the week, twelfths with the month over 15 days: work_rules.leave_rules.",
+          "Art. 23: 32 hours of ex festività, month of 15 days or more; art. 21: 16 hours of permits in twelfths; art. 34: daily pay /22 or /26, hourly /173."
+        ],
+        "independence": "separate_session",
+        "checked": [
+          "work_rules.leave_rules"
         ]
       }
     ]
@@ -3980,7 +4002,7 @@
     "source": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
     "verification_status": "unverified",
     "published_at": "2026-09-12",
-    "source_hash": "a61d053982d31f1aa79d83cb6e97a6568330c8a43f2172f67fc0a6c393dbec3d",
+    "source_hash": "95462c79bcd803c3acdf13a7b4fb45154f77fb1a21d39dd2faba1a3d7a2c4fdb",
     "source_type": "commercial_secondary"
   },
   "work_rules": {
@@ -4327,6 +4349,209 @@
           "extraction_timestamp": "2026-11-04T17:00:00Z",
           "effective_from": "2014-09-18",
           "verification_status": "unverified"
+        }
+      }
+    },
+    "leave_rules": {
+      "default_annual_days": "22",
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-pulizia-artigianato-2014-09-18",
+            "title": "CCNL per i dipendenti dalle imprese artigiane esercenti servizi di pulizia, disinfezione, disinfestazione, derattizzazione e sanificazione, Roma 18 settembre 2014, firmato (InformaImpresa; scanned, read by OCR)",
+            "kind": "associazione",
+            "url": "https://www.informaimpresa.it/wp-content/uploads/2014/09/CCNL-Pulizie-18-sette-2014_Firmato-84b.pdf",
+            "published_on": "2014-09-18",
+            "sha256": "3b9549505ed29bae42278201160fadfb7427d07ec4113228eeb09aefb33b212e"
+          },
+          "page": "13",
+          "section": "Art. 24 c. 1 - Ferie",
+          "quote": "pari a 22 giorni lavorativi nell'ipotesi di prestazione settimanale distribuita su cinque giornate (settimana corta);"
+        },
+        "transformation": "22 working days on the five-day week, the norm of art. 20 (40 hours on 5 days).",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-05T17:00:00Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-05T17:00:00Z",
+          "verification_status": "verified",
+          "effective_from": "2014-09-18",
+          "review_id": "2026-11-05-ai-leave"
+        },
+        "note": "OCR of the signed scan; the renewals of 27 October 2022 and 17 December 2025 do not amend arts. 21, 23, 24 or 34."
+      },
+      "week_days_annual_days": [
+        {
+          "days": 6,
+          "annual_days": "26",
+          "ferie_divisor": "26",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-pulizia-artigianato-2014-09-18",
+                "title": "CCNL per i dipendenti dalle imprese artigiane esercenti servizi di pulizia, disinfezione, disinfestazione, derattizzazione e sanificazione, Roma 18 settembre 2014, firmato (InformaImpresa; scanned, read by OCR)",
+                "kind": "associazione",
+                "url": "https://www.informaimpresa.it/wp-content/uploads/2014/09/CCNL-Pulizie-18-sette-2014_Firmato-84b.pdf",
+                "published_on": "2014-09-18",
+                "sha256": "3b9549505ed29bae42278201160fadfb7427d07ec4113228eeb09aefb33b212e"
+              },
+              "page": "13",
+              "section": "Art. 24 c. 1 - Ferie; Art. 34 c. 2 (p. 19)",
+              "quote": "pari a 26 giorni lavorativi nell'ipotesi di prestazione settimanale distribuita su sei giornate. [Art. 34] La determinazione della retribuzione giornaliera si ottiene dividendo la retribuzione mensile per 22 nel caso di settimana corta e per 26 nel caso di prestazione su sei giorni settimanali."
+            },
+            "transformation": "The ferie days of a year (26) and the divisor of a day of ferie (26) of an employment whose full-time week (Employment.full_time_week_days) has 6 working days.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-05T17:00:00Z",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-05T17:00:00Z",
+              "verification_status": "verified",
+              "effective_from": "2014-09-18",
+              "review_id": "2026-11-05-ai-leave"
+            },
+            "note": "OCR of the signed scan; the renewals of 27 October 2022 and 17 December 2025 do not amend arts. 21, 23, 24 or 34."
+          }
+        }
+      ],
+      "ferie_accrual": {
+        "month_credit": "more_than_half",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-pulizia-artigianato-2014-09-18",
+              "title": "CCNL per i dipendenti dalle imprese artigiane esercenti servizi di pulizia, disinfezione, disinfestazione, derattizzazione e sanificazione, Roma 18 settembre 2014, firmato (InformaImpresa; scanned, read by OCR)",
+              "kind": "associazione",
+              "url": "https://www.informaimpresa.it/wp-content/uploads/2014/09/CCNL-Pulizie-18-sette-2014_Firmato-84b.pdf",
+              "published_on": "2014-09-18",
+              "sha256": "3b9549505ed29bae42278201160fadfb7427d07ec4113228eeb09aefb33b212e"
+            },
+            "page": "13",
+            "section": "Art. 24 cc. 2-3 - Ferie",
+            "quote": "Qualora non abbia maturato il diritto alle ferie intere, il lavoratore avrà diritto a tanti dodicesimi di ferie quanti sono i mesi interi di anzianità. La frazione di mese superiore a 15 giorni sarà considerata mese intero, mentre non sarà considerata la frazione inferiore a 15 giorni."
+          },
+          "transformation": "A twelfth of the days for each month served, a month served more than 15 days counting whole. A fraction of exactly 15 days is not named: it accrues nothing.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-05T17:00:00Z",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-05T17:00:00Z",
+            "verification_status": "verified",
+            "effective_from": "2014-09-18",
+            "review_id": "2026-11-05-ai-leave"
+          },
+          "note": "OCR of the signed scan; the renewals of 27 October 2022 and 17 December 2025 do not amend arts. 21, 23, 24 or 34."
+        }
+      },
+      "permits": [
+        {
+          "bucket": "ex_festivita",
+          "annual_hours": [
+            {
+              "hours": "32"
+            }
+          ],
+          "month_credit": "half_or_more",
+          "day_hours": "8",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-pulizia-artigianato-2014-09-18",
+                "title": "CCNL per i dipendenti dalle imprese artigiane esercenti servizi di pulizia, disinfezione, disinfestazione, derattizzazione e sanificazione, Roma 18 settembre 2014, firmato (InformaImpresa; scanned, read by OCR)",
+                "kind": "associazione",
+                "url": "https://www.informaimpresa.it/wp-content/uploads/2014/09/CCNL-Pulizie-18-sette-2014_Firmato-84b.pdf",
+                "published_on": "2014-09-18",
+                "sha256": "3b9549505ed29bae42278201160fadfb7427d07ec4113228eeb09aefb33b212e"
+              },
+              "page": "13",
+              "section": "Art. 23 - Festività (festività abolite)",
+              "quote": "Per i lavoratori nuovi assunti, i dimissionari e i licenziati, la maturazione delle 32 ore avverrà secondo i criteri di maturazione previsti per le ferie (in dodicesimi). La frazione di mese pari o superiore a 15 giorni sarà considerata mese intero."
+            },
+            "transformation": "32 hours a year in place of the 4 abolished holidays, in twelfths, a month served 15 days or more counting whole; 8 hours a day (40 hours on 5 days, art. 20).",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-05T17:00:00Z",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-05T17:00:00Z",
+              "verification_status": "verified",
+              "effective_from": "2014-09-18",
+              "review_id": "2026-11-05-ai-leave"
+            },
+            "note": "OCR of the signed scan; the renewals of 27 October 2022 and 17 December 2025 do not amend arts. 21, 23, 24 or 34."
+          }
+        },
+        {
+          "bucket": "rol",
+          "annual_hours": [
+            {
+              "hours": "16"
+            }
+          ],
+          "month_credit": null,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-pulizia-artigianato-2014-09-18",
+                "title": "CCNL per i dipendenti dalle imprese artigiane esercenti servizi di pulizia, disinfezione, disinfestazione, derattizzazione e sanificazione, Roma 18 settembre 2014, firmato (InformaImpresa; scanned, read by OCR)",
+                "kind": "associazione",
+                "url": "https://www.informaimpresa.it/wp-content/uploads/2014/09/CCNL-Pulizie-18-sette-2014_Firmato-84b.pdf",
+                "published_on": "2014-09-18",
+                "sha256": "3b9549505ed29bae42278201160fadfb7427d07ec4113228eeb09aefb33b212e"
+              },
+              "page": "12",
+              "section": "Art. 21 - Flessibilità dell'orario",
+              "quote": "Le parti convengono che l'indennità pari a 16 ore annue venga di norma fruita dai lavoratori sotto forma di permessi retribuiti [...] Le frazioni di anno verranno computate in dodicesimi. Tali permessi verranno utilizzati nel corso dell'anno; in caso essi siano in tutto o in parte inutilizzati saranno direttamente retribuiti al lavoratore."
+            },
+            "transformation": "16 hours of paid permits a year, in twelfths; the text does not say how a month fraction counts. The further 8 hours of a worker on a flexible week above 40 hours are not modelled.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-05T17:00:00Z",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-05T17:00:00Z",
+              "verification_status": "verified",
+              "effective_from": "2014-09-18",
+              "review_id": "2026-11-05-ai-leave"
+            },
+            "note": "OCR of the signed scan; the renewals of 27 October 2022 and 17 December 2025 do not amend arts. 21, 23, 24 or 34."
+          }
+        }
+      ],
+      "termination": {
+        "ferie_divisor": "22",
+        "permits_hourly": true,
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-pulizia-artigianato-2014-09-18",
+              "title": "CCNL per i dipendenti dalle imprese artigiane esercenti servizi di pulizia, disinfezione, disinfestazione, derattizzazione e sanificazione, Roma 18 settembre 2014, firmato (InformaImpresa; scanned, read by OCR)",
+              "kind": "associazione",
+              "url": "https://www.informaimpresa.it/wp-content/uploads/2014/09/CCNL-Pulizie-18-sette-2014_Firmato-84b.pdf",
+              "published_on": "2014-09-18",
+              "sha256": "3b9549505ed29bae42278201160fadfb7427d07ec4113228eeb09aefb33b212e"
+            },
+            "page": "19",
+            "section": "Art. 34 cc. 1-2 - Retribuzione oraria e giornaliera",
+            "quote": "La retribuzione oraria si ottiene dividendo la retribuzione mensile per 173. La determinazione della retribuzione giornaliera si ottiene dividendo la retribuzione mensile per 22 nel caso di settimana corta e per 26 nel caso di prestazione su sei giorni settimanali."
+          },
+          "transformation": "A day of ferie left at the end of the employment (art. 24 c. 2: 'avrà diritto al compenso per le ferie stesse') at the daily pay over 22, an hour of permits at the hourly pay over 173. Art. 24 names no basis of its own: the general divisors of art. 34 are read.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-05T17:00:00Z",
+            "verification_status": "unverified",
+            "effective_from": "2014-09-18"
+          },
+          "note": "OCR of the signed scan; the renewals of 27 October 2022 and 17 December 2025 do not amend arts. 21, 23, 24 or 34."
         }
       }
     }

@@ -160,14 +160,20 @@ def test_a_holiday_on_the_rest_day_divides_by_the_days_of_the_week(
     assert decision.inputs["divisor"] == Decimal(divisor)
 
 
+@pytest.mark.parametrize(
+    ("slug", "level"),
+    [
+        ("studi-professionali-confprofessioni", "4"),
+        ("pulizia-artigianato-confartigianato", "3"),
+        ("multiservizi-anip", "3"),
+    ],
+)
 @pytest.mark.parametrize(("days", "ferie"), [(None, "22"), (5, "22"), (6, "26")])
-def test_studi_accrues_the_ferie_of_the_days_of_the_week(
-    days: int | None, ferie: str
+def test_the_ferie_accrue_by_the_days_of_the_week(
+    slug: str, level: str, days: int | None, ferie: str
 ) -> None:
-    """Art. 99: 26 days on six days, 22 in the settimana corta; a twelfth a month."""
-    result = _run(
-        "studi-professionali-confprofessioni", "4", 3, days, start=date(2020, 1, 1)
-    )
+    """Studi art. 99, Pulizia art. 24, Multiservizi art. 42: 26 on six, 22 on five."""
+    result = _run(slug, level, 3, days, start=date(2020, 1, 1))
     (balance,) = [
         b
         for b in result.closing_state.accrual.leave.balances

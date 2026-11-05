@@ -25,6 +25,7 @@ from typing import TYPE_CHECKING, Protocol
 if TYPE_CHECKING:
     from ccnl_engine.agreement.facade import CCNL, CCNLWorkRules
     from ccnl_engine.employment.fact.inputs import WeeklyHours
+    from ccnl_engine.leave.models import LeaveRules, WeekDaysLeave
 
 __all__ = ["with_week_days", "with_week_divisor"]
 
@@ -137,10 +138,25 @@ def _week_days_update(rules: CCNLWorkRules, days: int) -> dict[str, object]:
         leave is not None
         and (ferie := _of_days(leave.week_days_annual_days, days)) is not None
     ):
-        update["leave_rules"] = leave.model_copy(
-            update={"default_annual_days": ferie.annual_days}
-        )
+        update["leave_rules"] = _leave_of_days(leave, ferie)
     return update
+
+
+def _leave_of_days(leave: LeaveRules, ferie: WeekDaysLeave) -> LeaveRules:
+    """Return ``leave`` with the ferie days and indemnity divisor of ``ferie``.
+
+    Returns:
+        ``leave`` whose ``default_annual_days`` are those of the week, and
+        whose termination divisor is the week's when ``ferie`` sets one.
+    """
+    termination = leave.termination
+    if termination is not None and ferie.ferie_divisor is not None:
+        termination = termination.model_copy(
+            update={"ferie_divisor": ferie.ferie_divisor}
+        )
+    return leave.model_copy(
+        update={"default_annual_days": ferie.annual_days, "termination": termination}
+    )
 
 
 def _of_days[T: _OfDays](items: tuple[T, ...], days: int) -> T | None:
