@@ -209,7 +209,7 @@
       },
       {
         "kind": "simplification",
-        "text": "LEAVE, ROL (Art. 91 cc.2-3, p. 47): 40 hours a year on a five-day week, 66 on a six-day week. The file accrues the 40 hours, the schedule it assumes for the 22 days of ferie; the 66 hours of a six-day week are not modelled (the weekly schedule is not an input). The hires within the 2024-2027 term accrue 50% from the twelfth month, 75% from the twenty-fourth to the thirty-sixth, 100% after; the clause states no share before the twelfth month, read as nothing, as Commercio's 'decorsi due anni' (steps 0, 11, 23, 36 completed months). The 50/75/100% of the contratto di reimpiego (c.4) is not modelled.",
+        "text": "LEAVE, ROL (Art. 91 cc.2-3, p. 47): 40 hours a year on a five-day week, 66 on a six-day week. The file accrues the 40 hours of the five-day week and the 66 of the six-day week when Employment.full_time_week_days is 6. The hires within the 2024-2027 term accrue 50% from the twelfth month, 75% from the twenty-fourth to the thirty-sixth, 100% after; the clause states no share before the twelfth month, read as nothing, as Commercio's 'decorsi due anni' (steps 0, 11, 23, 36 completed months). The 50/75/100% of the contratto di reimpiego (c.4) is not modelled.",
         "capability": "leave",
         "monetary_impact": "yes",
         "limitation": {
@@ -217,7 +217,7 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Add the weekly schedule as an employment fact for the 66 hours of a six-day week, and the contratto di reimpiego for its own ramp."
+          "remediation": "Add the contratto di reimpiego as an employment fact for its own ramp (Art. 91 c.4: 50% from the sixth month, 75% from the twelfth to the eighteenth)."
         }
       },
       {
@@ -2395,7 +2395,7 @@
     "effective_until": null,
     "source": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
     "verification_status": "unverified",
-    "source_hash": "8c79ea39e3bd1c68782f430ee363a6f54fb9b9d0c874db853c48365c32562628",
+    "source_hash": "383fb0f2480928ef3978acdfcd9af755c9cdf3e687e79afabf1b641edf9f1147",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3002,7 +3002,40 @@
               "review_id": "2026-11-05-ai-leave-week-days",
               "effective_from": "2024-02-16"
             }
-          }
+          },
+          "permit_hours": [
+            {
+              "bucket": "rol",
+              "hours": "66",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "ccnl-studi-professionali-2024-02-16",
+                    "title": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024, testo integrale definitivo (Confprofessioni)",
+                    "kind": "associazione",
+                    "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+                    "published_on": "2024-02-16",
+                    "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
+                  },
+                  "page": "47",
+                  "section": "Art. 91 c.2 lett. B",
+                  "quote": "In questo caso la riduzione dell’orario di lavoro sarà pari a 66 (sessantasei) ore annue, usufruibili dai lavoratori mediante permessi retribuiti, della durata di giornata intera o mezza giornata"
+                },
+                "transformation": "66 hours a year of reduced time for an employment whose full-time week (Employment.full_time_week_days) has 6 working days; the new-hire ramp of c. 3 applies to them as to the 40 hours.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-05T18:00:00Z",
+                  "effective_from": "2024-02-16",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-05T18:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-05-ai-six-day-rol"
+                }
+              }
+            }
+          ]
         }
       ]
     },
@@ -3724,6 +3757,27 @@
           "Art. 99 c. 1 - Misura del periodo di ferie: 22 working days in the five-day week, 26 in the six-day week: work_rules.leave_rules.week_days_annual_days 6/26, read when Employment.full_time_week_days is 6."
         ],
         "independence": "separate_session",
+        "checked": [
+          "work_rules.leave_rules.week_days_annual_days"
+        ]
+      },
+      {
+        "id": "2026-11-05-ai-six-day-rol",
+        "date": "2026-11-05",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The permits of the six-day week, Art. 91 c.2 lett. B (PDF p. 47).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+            "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
+          }
+        ],
+        "findings": [
+          "Art. 91 c.2: 40 hours of reduced time on five days, 66 on six: work_rules.leave_rules.week_days_annual_days[6].permit_hours rol 66."
+        ],
+        "independence": "same_process",
         "checked": [
           "work_rules.leave_rules.week_days_annual_days"
         ]

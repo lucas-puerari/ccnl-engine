@@ -11,6 +11,7 @@ from pydantic import ValidationError
 from ccnl_engine.absence.models import DailyDivisorMethod
 from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.leave.models import LeaveEntitlementTier, LeaveRules
+from ccnl_engine.leave.types import LeaveBucket
 from ccnl_engine.working_time.week.rules import with_week_days
 
 if TYPE_CHECKING:
@@ -159,3 +160,28 @@ def test_a_week_without_termination_keeps_none() -> None:
     assert ccnl.work_rules.leave_rules is not None
     assert ccnl.work_rules.leave_rules.termination is None
     assert ccnl.work_rules.leave_rules.default_annual_days == 26
+
+
+def _permit_hours(ccnl: CCNL, bucket: LeaveBucket) -> Decimal:
+    assert ccnl.work_rules is not None
+    assert ccnl.work_rules.leave_rules is not None
+    (permit,) = [p for p in ccnl.work_rules.leave_rules.permits if p.bucket is bucket]
+    return permit.hours_for(10)
+
+
+def test_the_six_day_studi_week_accrues_66_hours_of_rol() -> None:
+    """Art. 91 c.2: 40 hours on five days, 66 on six; ex festività unchanged."""
+    base = load_ccnl("studi-professionali-confprofessioni")
+    six = with_week_days(base, 6)
+
+    assert _permit_hours(base, LeaveBucket.ROL) == 40
+    assert _permit_hours(six, LeaveBucket.ROL) == 66
+    assert _permit_hours(six, LeaveBucket.EX_FESTIVITA) == 32
+    assert six.work_rules is not None
+    assert six.work_rules.leave_rules is not None
+    (rol,) = [
+        p for p in six.work_rules.leave_rules.permits if p.bucket is LeaveBucket.ROL
+    ]
+    assert rol.provenance is not None
+    assert rol.provenance.location is not None
+    assert "66 (sessantasei)" in (rol.provenance.location.quote or "")
