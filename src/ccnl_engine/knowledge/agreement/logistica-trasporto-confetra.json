@@ -2622,7 +2622,7 @@
     "effective_until": null,
     "source": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
     "verification_status": "unverified",
-    "source_hash": "6da3fb8ce9ba8e8d9fa92bb417a6d08369c9d2823528901e601c4ef414103962",
+    "source_hash": "7ddda0fad61c915148767c50e1ba84f0de489e7aa49eb5225a1e167c7ea17109",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2988,7 +2988,39 @@
           "verified_at": "2026-10-11T19:57:35Z",
           "review_id": "2026-10-11-ai"
         }
-      }
+      },
+      "week_days_methods": [
+        {
+          "days": 6,
+          "method": "by_26",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-logistica-testo-unico-2025",
+                "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+                "kind": "associazione",
+                "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+                "published_on": "2025-09-25",
+                "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+              },
+              "page": "86",
+              "section": "Art. 61 c. 3 (Sezione prima)",
+              "quote": "Per il personale non viaggiante, in caso di orario di lavoro settimanale distribuito su 6 giorni la retribuzione giornaliera si ottiene dividendo la retribuzione mensile per 26."
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-05T09:00:00Z",
+              "verification_status": "verified",
+              "effective_from": "2023-05-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-05T09:00:00Z",
+              "review_id": "2026-11-05-ai"
+            }
+          }
+        }
+      ]
     },
     "leave_rules": {
       "default_annual_days": "22",
@@ -3628,6 +3660,27 @@
           "individual_elements included: art. 61 c. 1 punto 3 counts 'eventuali altri aumenti comunque denominati'.",
           "Band FESTIVO added: 50% on holiday work within the ordinary hours (art. 12 c. 4). The night (20/15/25%) and Sunday (20% by day, 50% by night) rates of art. 12 c. 4 are left out: they depend on the guardian role, the shift and the hours of the Sunday, which the request does not carry."
         ]
+      },
+      {
+        "id": "2026-11-05-ai",
+        "date": "2026-11-05",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The daily divisor of a six-day week of the non-travelling staff, art. 61 c. 3, p. 86 of the testo unico.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+            "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+          }
+        ],
+        "findings": [
+          "Art. 61 c. 3 divides by 26 the monthly pay of the non-travelling staff on a six-day week, by 22 otherwise: week_days_methods 6 -> by_26, read when Employment.full_time_week_days is 6."
+        ],
+        "checked": [
+          "work_rules.absence_rules.week_days_methods"
+        ],
+        "independence": "same_process"
       }
     ],
     "review_due": "2027-06-01"

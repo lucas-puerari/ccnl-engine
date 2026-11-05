@@ -8,7 +8,7 @@ from pydantic import BaseModel, ConfigDict, Field
 
 from ccnl_engine.provenance.source.rule.models import RuleProvenance
 
-__all__ = ["ExHolidayPay", "SundayHolidayPay"]
+__all__ = ["ExHolidayPay", "SundayHolidayPay", "WeekDaysDivisor"]
 
 
 class ExHolidayPay(BaseModel):
@@ -31,6 +31,15 @@ class ExHolidayPay(BaseModel):
     hours: Decimal = Field(gt=0)
     hourly_divisor: Decimal = Field(gt=0)
     provenance: RuleProvenance
+
+
+class WeekDaysDivisor(BaseModel):
+    """The divisor of a clause's daily pay for a full-time week of ``days``."""
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    days: int = Field(ge=5, le=6)
+    divisor: Decimal = Field(gt=0)
 
 
 class SundayHolidayPay(BaseModel):
@@ -66,6 +75,9 @@ class SundayHolidayPay(BaseModel):
             pay times the CCNL's yearly payments) the divisor divides, for
             a daily pay so defined (BCC art. 114: "il 90,66% di un
             dodicesimo dell'ammontare annuo"); ``None`` for the monthly pay.
+        week_days_divisors: The divisor of a full-time week of the days
+            stated in ``Employment.full_time_week_days``, in place of
+            ``divisor`` (BCC art. 114: 26 on a six-day week).
         provenance: The CCNL clause.
     """
 
@@ -78,4 +90,5 @@ class SundayHolidayPay(BaseModel):
     on_rest_day: bool = False
     fourth_november_on_sunday: bool = False
     annual_share: Decimal | None = Field(default=None, gt=0, le=1)
+    week_days_divisors: tuple[WeekDaysDivisor, ...] = ()
     provenance: RuleProvenance

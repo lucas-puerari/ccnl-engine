@@ -1,6 +1,6 @@
 {
-  "commit": "31e84ed84168c7234ec7b5bf80e9e5a2853d0aa6",
-  "date": "2026-11-04",
+  "commit": "de62e3d9084abb911e977317aac572a730b2d3a1",
+  "date": "2026-11-05",
   "min_score": 93.0,
   "perimeter": [
     "src/ccnl_engine/contribution/rules.py",
@@ -159,12 +159,12 @@
   ],
   "scores": {
     "core": {
-      "killed": 10295,
+      "killed": 10345,
       "survived": 307,
       "other": 5,
       "not_checked": 0,
       "equivalent": 18,
-      "total": 10607,
+      "total": 10657,
       "score": 97.1,
       "minimum": 93.0
     },
@@ -1679,12 +1679,12 @@
       "minimum": 76.6
     },
     "src/ccnl_engine/working_time/week/rules.py": {
-      "killed": 47,
+      "killed": 97,
       "survived": 0,
       "other": 0,
       "not_checked": 0,
       "equivalent": 0,
-      "total": 47,
+      "total": 97,
       "score": 100.0,
       "minimum": 93.0
     }

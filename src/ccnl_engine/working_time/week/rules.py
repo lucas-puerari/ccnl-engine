@@ -8,6 +8,12 @@ che di fatto", is then the monthly pay over the divisor of the worker's
 normal week: :func:`with_week_divisor` swaps it into the CCNL of the run,
 so the overtime, the supplements, the permits and the absences read the
 same divisor.
+
+A CCNL may also set the daily divisor by the working days of the full-time
+week (Pulizia artigianato art. 34: 22 "nel caso di settimana corta", 26
+"su sei giorni"): :func:`with_week_days` swaps the absence method and the
+divisor of the holiday clause for the days stated, so the absences, the
+proration, a change of level, the sick days and the holidays read the same.
 """
 
 from __future__ import annotations
@@ -19,7 +25,7 @@ if TYPE_CHECKING:
     from ccnl_engine.agreement.facade import CCNL
     from ccnl_engine.employment.fact.inputs import WeeklyHours
 
-__all__ = ["with_week_divisor"]
+__all__ = ["with_week_days", "with_week_divisor"]
 
 
 def with_week_divisor(ccnl: CCNL, full_time: WeeklyHours | None) -> CCNL:
@@ -67,3 +73,41 @@ def with_week_divisor(ccnl: CCNL, full_time: WeeklyHours | None) -> CCNL:
             "work_rules": rules.model_copy(update={"time_supplements": supplements}),
         }
     )
+
+
+def with_week_days(ccnl: CCNL, days: int | None) -> CCNL:
+    """Return ``ccnl`` with the daily divisors of a full-time week of ``days``.
+
+    Args:
+        ccnl: The CCNL of the run.
+        days: ``Employment.full_time_week_days``; ``None`` when not stated.
+
+    Returns:
+        ``ccnl`` whose absence method (with its provenance) and holiday
+        clause divisor are the ones the CCNL sets for ``days``; ``ccnl``
+        unchanged without a stated week or a divisor of the CCNL for it.
+    """
+    rules = ccnl.work_rules
+    if rules is None or days is None:
+        return ccnl
+    update: dict[str, object] = {}
+    absence = rules.absence_rules
+    methods = () if absence is None else absence.week_days_methods
+    method = next((m for m in methods if m.days == days), None)
+    if absence is not None and method is not None:
+        update["absence_rules"] = absence.model_copy(
+            update={
+                "daily_divisor_method": method.method,
+                "provenance": method.provenance,
+            }
+        )
+    clause = rules.sunday_holidays
+    divisors = () if clause is None else clause.week_days_divisors
+    divisor = next((d for d in divisors if d.days == days), None)
+    if clause is not None and divisor is not None:
+        update["sunday_holidays"] = clause.model_copy(
+            update={"divisor": divisor.divisor}
+        )
+    if not update:
+        return ccnl
+    return ccnl.model_copy(update={"work_rules": rules.model_copy(update=update)})

@@ -22,6 +22,7 @@ from ccnl_engine.employment.fact.inputs import (
 from ccnl_engine.employment.inputs import Apprentice, FixedTerm, Permanent
 from ccnl_engine.employment.period.inputs import EmploymentPeriod
 from ccnl_engine.employment.rest_day.inputs import Weekday
+from ccnl_engine.employment.week_days.inputs import check_week_days
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.irpef.declaration.inputs import PriorYearTaxFacts
 from ccnl_engine.irpef.other_income.inputs import CurrentYearTaxFacts
@@ -92,8 +93,8 @@ class PeriodCalculationRequest:
             contributions (domestic CCNLs).  ``ordinary_hours_worked``: the
             ordinary hours actually worked, which a CCNL with ``hourly_pay``
             pays (operai edili) and the Prevedi operai amount is due on.
-        full_time_weekly_hours: Full-time weekly hours of the contract,
-            positive.  ``weekly_hours`` must not exceed it.
+        full_time_weekly_hours: Full-time weekly hours, positive, at least
+            ``weekly_hours``; ``full_time_week_days`` its working days, 5 or 6.
         work_pattern: Vertical or mixed part time: weekday hours summing to
             ``weekly_hours`` and the months worked.  A regular or termination run of a
             month not worked posts no monthly pay, and the months not worked accrue no
@@ -102,12 +103,10 @@ class PeriodCalculationRequest:
             not tracked; it selects the runs of the year, and a regular run must
             fall in a month with at least one day of employment.
         weekly_rest_day: Day of the weekly rest, for a CCNL paying a holiday on it.
-        seniority: Recognised seniority, aged to the competence month.  ``None``
-            means not known: when the level pays seniority increments or
-            service-gated allowances the run has a ``missing_fact`` blocker.
+        seniority: Recognised seniority, aged to the competence month; ``None``
+            unknown, a ``missing_fact`` blocker when the level pays on seniority.
         roles: Role codes of the role-specific allowances, ``None`` unknown.
-        individual_elements: Pay elements agreed with the worker above the
-            CCNL minimum, paid as fixed allowances of the level.
+        individual_elements: Pay agreed above the CCNL minimum, fixed allowances.
         category: Worker category declared on the employment.  ``None``
             takes the category fixed by the level, if any.  Must match the
             level's category when the level fixes one, and is required when
@@ -127,8 +126,7 @@ class PeriodCalculationRequest:
         extra_month_settlements: Ratei the run liquidates at the end of the employment,
             as extra-month earnings; ``None`` derives them
             (:mod:`~ccnl_engine.extra_month.liquidation.services`).
-        sector: Private or public sector of the employment, ``None`` when not known.
-            Read by the regimes restricted to one sector.
+        sector: Private or public sector, ``None`` unknown; read by one-sector regimes.
         prior_year: Prior-year income and written waivers, read by every
             preferential tax regime.
         current_year: Income of the tax year beyond this employment, read
@@ -142,10 +140,10 @@ class PeriodCalculationRequest:
             because the bundle holds no pay rules on their date. They are reported once,
             as ``run_not_computed`` blockers of the year, so the opening state is not
             judged to miss them.
-        tfr_fund: TFR fund at 31 December of the year before, if known.
-        tfr_treasury_fund: Whether the TFR goes to the Fondo Tesoreria.
-        erc_amount: Annual ERC of the CCNL grafici editoriali, if known.
-        public_end_of_service: End-of-service regime of a public employee.
+        tfr_fund: TFR fund at 31 December of the year before, if known;
+            ``tfr_treasury_fund`` whether the TFR goes to the Fondo Tesoreria.
+        erc_amount: Annual ERC of the CCNL grafici editoriali, if known;
+            ``public_end_of_service`` the regime of a public employee.
         personal_withholdings: Garnishments and salary assignments notified
             to the employer, withheld from the net pay.
     """
@@ -167,6 +165,7 @@ class PeriodCalculationRequest:
     contributable_hours: ContributableHours | None = None
     ordinary_hours_worked: ContributableHours | None = None
     full_time_weekly_hours: WeeklyHours | None = None
+    full_time_week_days: int | None = None
     work_pattern: WorkPattern | None = None
     weekly_rest_day: Weekday = Weekday.SUNDAY
     employment_period: EmploymentPeriod | None = None
@@ -214,6 +213,7 @@ class PeriodCalculationRequest:
         if gap is not None:
             raise InvalidInputError(gap, feature="employment_facts")
         check_within_full_time(self.weekly_hours, self.full_time_weekly_hours)
+        check_week_days(self.full_time_week_days)
         check_pattern_hours(self.weekly_hours, self.work_pattern)
         check_surtax_codes(self.regione, self.comune_belfiore)
         competence = date(self.period_id.year, self.period_id.month, 1)
