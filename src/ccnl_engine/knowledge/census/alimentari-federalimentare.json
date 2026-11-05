@@ -67,22 +67,6 @@
       }
     },
     {
-      "id": "health_and_bilateral_funds",
-      "institute": "bilateral_funds",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = owed",
-      "rule": "HEALTH AND BILATERAL FUNDS: the employer contributions to FASA (EUR 16 a month), the Cassa maternità, the bilateralità and the Cassa rischio vita (Art. 74 ter-quinquies) are owed for every worker; a firm outside the bilateral funds owes instead the EDR of EUR 20 x 12 of Art. 74 bis. Neither is modelled: the employer cost, and with the EDR the net pay, are short of them.",
-      "calculation": "ccnl/alimentari-federalimentare:coverage.notes",
-      "state": "absent",
-      "remediation": "Model the contributions per worker, with a fact for an employer that pays the worker the alternative element instead, then remove this note.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "alimentari-federalimentare/health_and_bilateral_funds"
-        ]
-      }
-    },
-    {
       "id": "maternity_daily_base",
       "institute": "maternity_leave",
       "variant": "all",

@@ -48,7 +48,7 @@ from ccnl_engine.inputs import (
     WorkerCategory,
 )
 from ccnl_engine.results import BlockerCode
-from ccnl_engine.run.types import PeriodId
+from ccnl_engine.run.types import PeriodId, RunKind
 from tests.knowledge.ccnl_engine.period.sector.oracles import (
     ALIMENTARI_JUNE,
     ALIMENTARI_YEAR,
@@ -127,6 +127,7 @@ class Scenario:
     fixed_term: bool = False
     sickness: bool = False
     starts_on: date = date(2026, 1, 1)
+    owed_on_extra_months: bool = True
 
 
 _METAL = "metalmeccanico-federmeccanica"
@@ -151,12 +152,12 @@ _TERZ_OWED = frozenset({"contractual_funds"})
 _COMMERCIO_OWED = frozenset({"contractual_funds"})
 #: Studi models CADIPROF and EBIPRO; the scenarios leave them unstated.
 _STUDI_OWED = frozenset({"contractual_funds"})
-#: The funds of Turismo, FIPE, ristorazione collettiva and DMO are modelled;
+#: The funds of Turismo, FIPE, ristorazione, DMO and Alimentari are modelled;
 #: the scenarios leave the employer's funds unstated, as their oracles leave
 #: the funds out: a missing fact, owed like an open limitation.
 _TURISMO_OWED = frozenset({"contractual_funds"})
 _CHIMICA_OWED: frozenset[str] = frozenset()
-_ALIMENTARI_OWED = frozenset({f"{_ALIMENTARI}/health_and_bilateral_funds"})
+_ALIMENTARI_OWED = frozenset({"contractual_funds"})
 _DMO_OWED = frozenset({"contractual_funds"})
 _FIPE_OWED = frozenset({"contractual_funds"})
 _RISTORAZIONE_OWED = frozenset({"contractual_funds"})
@@ -317,6 +318,7 @@ SCENARIOS = {
         50,
         ALIMENTARI_YEAR,
         _ALIMENTARI_OWED,
+        owed_on_extra_months=False,
         net_pay_reliable=False,
     ),
     "alimentari-june": Scenario(
@@ -326,6 +328,7 @@ SCENARIOS = {
         50,
         ALIMENTARI_JUNE,
         _ALIMENTARI_OWED,
+        owed_on_extra_months=False,
         net_pay_reliable=False,
         terminated=True,
     ),
@@ -656,6 +659,8 @@ def test_owed_amounts_leave_the_totals_they_touch_short(name: str) -> None:
     """
     s = SCENARIOS[name]
     for result in _year(name).period_results:
+        if not _owes(s, result):
+            continue
         owed = {
             b.detail
             for b in result.blockers
@@ -683,6 +688,21 @@ _SUNDAY_HOLIDAY = (
     "sunday_holiday",
     "sunday_holiday_ccnl_clause",
 )
+
+
+def _owes(s: Scenario, result: PeriodResult) -> bool:
+    """Return whether the owed amounts of ``s`` reach the run of ``result``.
+
+    Alimentari owes the EDR of its funds on twelve months only (art. 74
+    bis): the funds left unstated do not touch the fourteenth.
+
+    Returns:
+        False for an extra-month run of a scenario whose owed amounts skip
+        the extra months, True otherwise.
+    """
+    run = result.run
+    extra = run is not None and run.run_kind in {RunKind.THIRTEENTH, RunKind.FOURTEENTH}
+    return s.owed_on_extra_months or not extra
 
 
 def _stated_gaps(
@@ -743,7 +763,9 @@ def test_only_the_stated_gaps_block_the_net_pay(name: str) -> None:
     expected = _stated_gaps(s, year.period_results)
     assert others == expected
     owed_only = [
-        r for r in year.period_results if {b.detail for b in r.blockers} <= s.owed
+        r
+        for r in year.period_results
+        if _owes(s, r) and {b.detail for b in r.blockers} <= s.owed
     ]
     if not owed_only:
         # Every edilizia run also carries the partial Prevedi contribution.
