@@ -68,8 +68,11 @@ class ContractualFund(BaseModel):
         reduced_employer: Employer share of a part-timer working at most
             ``reduced_up_to_weekly_hours`` a week, when the fund sets one.
         reduced_up_to_weekly_hours: Weekly hours up to which the reduced
-            share applies.
+            shares apply.
         employee: Worker share a month, withheld from the pay.
+        reduced_employee: Worker share of a part-timer working at most
+            ``reduced_up_to_weekly_hours`` a week, when the fund sets one
+            (Multiservizi art. 66: ONBSI 0.25 EUR each below 20 hours).
         extra_months: Whether the shares are due on the extra months too.
         employee_deductible: Whether the worker share leaves the IRPEF base
             (a health fund of TUIR art. 51 c. 2 lett. a).
@@ -108,6 +111,7 @@ class ContractualFund(BaseModel):
     reduced_employer: FundAmount | None = None
     reduced_up_to_weekly_hours: Decimal | None = Field(default=None, gt=0)
     employee: FundAmount | None = None
+    reduced_employee: FundAmount | None = None
     extra_months: bool = False
     employee_deductible: bool = False
     solidarity_rate: Decimal = Field(default=Decimal(0), ge=0, lt=1)

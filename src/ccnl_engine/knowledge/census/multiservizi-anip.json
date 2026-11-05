@@ -51,22 +51,6 @@
       }
     },
     {
-      "id": "health_and_bilateral_funds",
-      "institute": "bilateral_funds",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = owed",
-      "rule": "BILATERAL FUND: ONBSI 0.50 EUR of the employer and 0.50 of the worker a month on 12 months, 0.25 each below 20 hours a week (art. 66 as amended in 2021, CNEL 139292 p. 29), is not modelled: the contractual funds hold no reduced worker share. ASIM (art. 69) is modelled.",
-      "calculation": "ccnl/multiservizi-anip:coverage.notes",
-      "state": "absent",
-      "remediation": "Model the ONBSI shares with the reduced worker share below 20 hours a week, then remove this note.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "multiservizi-anip/health_and_bilateral_funds"
-        ]
-      }
-    },
-    {
       "id": "maternity_daily_base",
       "institute": "maternity_leave",
       "variant": "all",
