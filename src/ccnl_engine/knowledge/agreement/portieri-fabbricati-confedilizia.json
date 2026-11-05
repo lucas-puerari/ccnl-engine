@@ -128,20 +128,9 @@
         "text": "INPS: uses 2026-terziario.json (same tax_sector as commercio-confcommercio and turismo-federalberghi)."
       },
       {
-        "kind": "simplification",
-        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
+        "kind": "info",
         "capability": "seniority",
-        "monetary_impact": "unknown",
-        "limitation": {
-          "variant": "apprentice_seniority",
-          "applies_when": {
-            "trigger": "path",
-            "contract_types": [
-              "apprentice"
-            ]
-          },
-          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
-        }
+        "text": "APPRENTICE SENIORITY (Artt. 126, 127, 128 c. 3 - Scatti di anzianità (profili B, C, D), p. 76-78): no increment during the apprenticeship: 'L'eventuale periodo di apprendistato non sarà considerato utile agli effetti degli scatti di anzianità.' seniority_increments.apprentice_amount 0. OCR of the scan; art. 36 c. 5 admits apprentices only to profiles B, C and D, whose three articles carry the same comma."
       }
     ]
   },
@@ -290,6 +279,43 @@
           "verification_status": "unverified",
           "effective_from": "2020-01-01"
         }
+      },
+      "apprentice_amount": {
+        "periods": [
+          {
+            "valid_from": "2025-10-30",
+            "valid_until": null,
+            "value": "0.00",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "portieri-ipotesi-rinnovo-2025-10-30",
+                  "title": "CCNL dipendenti da proprietari di fabbricati, ipotesi di rinnovo 30 ottobre 2025 (scansione)",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                  "published_on": "2025-10-30",
+                  "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+                },
+                "page": "76-78",
+                "section": "Artt. 126, 127, 128 c. 3 - Scatti di anzianità (profili B, C, D)",
+                "quote": "L'eventuale periodo di apprendistato non sarà considerato utile agli effetti degli scatti di anzianità."
+              },
+              "transformation": "No seniority increment is paid during the apprenticeship.",
+              "note": "OCR of the scan; art. 36 c. 5 admits apprentices only to profiles B, C and D, whose three articles carry the same comma.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-05T19:00:00Z",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-05T19:00:00Z",
+                "verification_status": "verified",
+                "effective_from": "2025-10-30",
+                "review_id": "2026-11-05-ai-apprentice-seniority"
+              }
+            }
+          }
+        ]
       }
     },
     "accrual_rule": {
@@ -1435,7 +1461,7 @@
     "effective_until": null,
     "source": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/",
     "verification_status": "verified",
-    "source_hash": "76ae5162ad340111e774f7d6d26a0833db13fbee7b0bdae6b6ef69ba7835106c",
+    "source_hash": "1e3c3cd71250df4686348ead6d05f2bc0fa29bb6ada8628c7d0b4b2c715bdb8a",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1590,5 +1616,30 @@
         }
       }
     }
+  },
+  "verification": {
+    "reviews": [
+      {
+        "id": "2026-11-05-ai-apprentice-seniority",
+        "date": "2026-11-05",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The seniority increments of the apprentices, Artt. 126, 127, 128 c. 3 - Scatti di anzianità (profili B, C, D) (PDF p. 76-78), found by a separate research session and checked again on the page.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+            "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+          }
+        ],
+        "findings": [
+          "No increment during the apprenticeship: seniority_increments.apprentice_amount 0."
+        ],
+        "independence": "separate_session",
+        "checked": [
+          "parameters.seniority_increments"
+        ]
+      }
+    ]
   }
 }

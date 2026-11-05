@@ -110,20 +110,9 @@
         "monetary_impact": "no"
       },
       {
-        "kind": "simplification",
-        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
+        "kind": "info",
         "capability": "seniority",
-        "monetary_impact": "unknown",
-        "limitation": {
-          "variant": "apprentice_seniority",
-          "applies_when": {
-            "trigger": "path",
-            "contract_types": [
-              "apprentice"
-            ]
-          },
-          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
-        }
+        "text": "APPRENTICE SENIORITY (Accordo apprendistato, Trattamento economico/normativo, punto 7, p. 133): no increment during the apprenticeship: 'La retribuzione degli apprendisti è composta da: retribuzione tabellare, indennità di contingenza ed EDR ex Accordo Interconfederale 31 luglio 1992.' seniority_increments.apprentice_amount 0. The apprentice pay lists no seniority element; the past service counts on confirmation for the last comma of art. 35 (the clerks' increments after 4 years)."
       }
     ]
   },
@@ -168,6 +157,27 @@
         ],
         "findings": [
           "Art. on malattia e infortunio (pp. 42-43): the comporto is twelve months of sickness summed over the 36 months before the last sick day; the operai are paid 100% up to day 180 counted over the same window and 50% after, the impiegati the whole pay for 6 months and 50% for 6 more within 18 months. The file kept 180 days of one illness: corrected to a cumulation over three years (180 days at 100%, 50% up to 365)."
+        ]
+      },
+      {
+        "id": "2026-11-05-ai-apprentice-seniority",
+        "date": "2026-11-05",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The seniority increments of the apprentices, Accordo apprendistato, Trattamento economico/normativo, punto 7 (PDF p. 133), found by a separate research session and checked again on the page.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf",
+            "sha256": "85cf6d7066abe5ba2740d39b989b159065a20bd7013f07afae8b77ccbf48cde4"
+          }
+        ],
+        "findings": [
+          "No increment during the apprenticeship: seniority_increments.apprentice_amount 0."
+        ],
+        "independence": "separate_session",
+        "checked": [
+          "parameters.seniority_increments"
         ]
       }
     ]
@@ -329,6 +339,43 @@
           "verification_status": "unverified",
           "effective_from": "2020-01-01"
         }
+      },
+      "apprentice_amount": {
+        "periods": [
+          {
+            "valid_from": "2023-12-21",
+            "valid_until": null,
+            "value": "0.00",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "servizi-postali-ccnl-2023-stampa-2024",
+                  "title": "CCNL Servizi postali in appalto 21 dicembre 2023, versione stampa giugno 2024 (SLP-CISL)",
+                  "kind": "associazione",
+                  "url": "https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf",
+                  "published_on": "2023-12-21",
+                  "sha256": "85cf6d7066abe5ba2740d39b989b159065a20bd7013f07afae8b77ccbf48cde4"
+                },
+                "page": "133",
+                "section": "Accordo apprendistato, Trattamento economico/normativo, punto 7",
+                "quote": "La retribuzione degli apprendisti è composta da: retribuzione tabellare, indennità di contingenza ed EDR ex Accordo Interconfederale 31 luglio 1992."
+              },
+              "transformation": "No seniority increment is paid during the apprenticeship.",
+              "note": "The apprentice pay lists no seniority element; the past service counts on confirmation for the last comma of art. 35 (the clerks' increments after 4 years).",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-05T19:00:00Z",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-05T19:00:00Z",
+                "verification_status": "verified",
+                "effective_from": "2023-12-21",
+                "review_id": "2026-11-05-ai-apprentice-seniority"
+              }
+            }
+          }
+        ]
       }
     },
     "accrual_rule": {
@@ -1726,7 +1773,7 @@
     "effective_until": null,
     "source": "https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf",
     "verification_status": "unverified",
-    "source_hash": "e1e187b63b5ba19f2f451c884f780c9b3d61be46925d74c3c134571aff80ebee",
+    "source_hash": "1eca89e371f8ac171d0db4b763514c35fc977db9ad28020836f4dbeb85aaa4fe",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

@@ -103,20 +103,9 @@
         "text": "OVERTIME/LEAVE/ABSENCE (L3): Art. 37 CCNL 2023 — straordinario 30%, notturno 50%, festivo 50%. Ferie 22 giorni (orario su 5 giorni, Art. 12). Malattia: integrazione datoriale al 100% per max 6 mesi (Art. 44). Assenza: divisore 26. Rates from 2023 CCNL PDF; 2025 rinnovo structural rules assumed unchanged (text image-only)."
       },
       {
-        "kind": "simplification",
-        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
+        "kind": "info",
         "capability": "seniority",
-        "monetary_impact": "unknown",
-        "limitation": {
-          "variant": "apprentice_seniority",
-          "applies_when": {
-            "trigger": "path",
-            "contract_types": [
-              "apprentice"
-            ]
-          },
-          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
-        }
+        "text": "APPRENTICE SENIORITY (Art. 7 - Apprendistato, Inquadramento e retribuzione, p. 33 of https://www.flai.it/wp-content/uploads/2023/05/CCNL-Idraulico-Forestale-2023.pdf, sha256 fb09d06825c27a3abb8081bec9e1645f17e51920559a6406323225d26b549461): 'Agli apprendisti impiegati spetta lo stesso trattamento previsto per gli impiegati a tempo indeterminato.' Reading: the apprentice matures the increments of the level, at its amounts (seniority_increments.apprentice_level_amount). Art. 41 gives the clerks a fixed increment per biennium; the renewal of 4 December 2025 does not amend arts. 7 or 41."
       },
       {
         "kind": "simplification",
@@ -178,6 +167,27 @@
         "findings": [
           "The 2026-2028 minimums now cite the TOTALE NAZIONALE CONGLOBATO of the signed tables (pp. 29-31) instead of a secondary site and the Art. 35 parameters.",
           "The signed tables disagree on level 4 in 2026: p. 29 prints 1.618,07, p. 30 carries 1.617,94 as the pay of 1 January 2027 before the 39,54 increase that reaches 1.657,48. The 2026 table of p. 29 is used for 2026; the 2027 and 2028 totals are those printed."
+        ]
+      },
+      {
+        "id": "2026-11-05-ai-apprentice-seniority",
+        "date": "2026-11-05",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The seniority increments of the apprentices, Art. 7 - Apprendistato, Inquadramento e retribuzione (PDF p. 33), found by a separate research session and checked again on the page.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.flai.it/wp-content/uploads/2023/05/CCNL-Idraulico-Forestale-2023.pdf",
+            "sha256": "fb09d06825c27a3abb8081bec9e1645f17e51920559a6406323225d26b549461"
+          }
+        ],
+        "findings": [
+          "The apprentice has the treatment of the permanent staff: seniority_increments.apprentice_level_amount."
+        ],
+        "independence": "separate_session",
+        "checked": [
+          "parameters.seniority_increments"
         ]
       }
     ]
@@ -1196,7 +1206,8 @@
           "effective_from": "2026-01-01"
         },
         "note": "Assumed, not derived: no citation (http(s) url and section or page)."
-      }
+      },
+      "apprentice_level_amount": true
     },
     "accrual_rule": {
       "min_days": 15,
@@ -1314,7 +1325,7 @@
     "source": "https://www.lavoro-economia.it/?c=9",
     "verification_status": "unverified",
     "published_at": "2026-09-11",
-    "source_hash": "0b49be62db0e93d96ca147be96e318fbb3fba32353ab937699f83bbcf98dbf9d",
+    "source_hash": "a8bc24d67ef695e1c93520f905d183b9aae9259870bfb972ce9f9e0b23889197",
     "source_type": "commercial_secondary"
   },
   "work_rules": {

@@ -781,7 +781,6 @@
       "consorzi-di-bonifica-snebi/pre_2000_cohort_table_missing"
     ],
     "agreement/cooperative-consorzi-agricoli.json": [
-      "cooperative-consorzi-agricoli/apprentice_seniority",
       "cooperative-consorzi-agricoli/apprenticeship_passthrough",
       "cooperative-consorzi-agricoli/operai_seniority_over_five",
       "cooperative-consorzi-agricoli/otd_terzo_elemento_missing"
@@ -980,7 +979,6 @@
       "istruzione-ricerca-aran/teacher_hourly_divisor"
     ],
     "agreement/lapidei-industria.json": [
-      "lapidei-industria/apprentice_seniority",
       "lapidei-industria/apprenticeship_passthrough",
       "lapidei-industria/cigo_rate_by_activity",
       "lapidei-industria/daily_divisor_25"
@@ -1146,7 +1144,6 @@
       "pelli-cuoio-industria-assopellettieri/level_1_apprentice_reference"
     ],
     "agreement/portieri-fabbricati-confedilizia.json": [
-      "portieri-fabbricati-confedilizia/apprentice_seniority",
       "portieri-fabbricati-confedilizia/apprenticeship_24_month_profiles",
       "portieri-fabbricati-confedilizia/b5_short_schedule_premium",
       "portieri-fabbricati-confedilizia/c4_first_employment_rate"
@@ -1217,13 +1214,11 @@
       "scuole-private-laiche-aninsei/salario_di_anzianita"
     ],
     "agreement/servizi-postali-appalto-fise.json": [
-      "servizi-postali-appalto-fise/apprentice_seniority",
       "servizi-postali-appalto-fise/conditional_integrative_allowance",
       "servizi-postali-appalto-fise/level_4s_seniority_amount"
     ],
     "agreement/sistemazioni-idraulico-forestali-impiegati.json": [
       "sistemazioni-idraulico-forestali-impiegati/apprentice_inps_rates_unsourced",
-      "sistemazioni-idraulico-forestali-impiegati/apprentice_seniority",
       "sistemazioni-idraulico-forestali-impiegati/ind_funzione_transition_date",
       "sistemazioni-idraulico-forestali-impiegati/structural_rules_from_2021_text"
     ],

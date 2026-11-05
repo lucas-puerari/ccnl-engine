@@ -32,9 +32,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | absence, base_salary, inps_employer, seniority |
+| **Limits of this contract** | absence, base_salary, inps_employer |
 
-5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -51,12 +51,14 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2022-11-24 |
-| **Last review** | — |
+| **Last review** | 2026-11-05 |
 | **Latest salary tranche** | 2027-07-01 |
 
 ## Review history
 
-No review is recorded.
+| Date | Reviewer | Scope | Outcome | Findings |
+|---|---|---|---|---|
+| 2026-11-05 | claude-opus-5-5 (ai) | The seniority increments of the apprentices, Apprendistato professionalizzante (accordo 15 marzo 2006), inquadramento e retribuzione (PDF p. 61), found by a separate research session and checked again on the page. | corrected | No increment during the apprenticeship: seniority_increments.apprentice_amount 0. |
 
 ## Salary table
 
@@ -112,13 +114,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `base_salary` applies; contract type in apprentice.
 
     **Remediation:** Extract the post-2022 percentage table and model the percentage track.
-
-!!! warning "lapidei-industria/apprentice_seniority · seniority · impact unknown · open"
-    APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.
-
-    **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
-
-    **Remediation:** Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.
 
 !!! warning "lapidei-industria/cigo_rate_by_activity · inps_employer · impact yes · open"
     CIGO: the operai of the stone-working firms owe 3.30% ('operai delle imprese dell'industria e artigianato lapidei', D.Lgs. 148/2015 art. 13 c. 1 (Normattiva, text in force on 2026-10-14, https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2015-09-14;148~art13!vig=2026-10-14, snapshot sha256 3f7019a244e01d36ac8e7c9e25bcf058c777c8ed758418ba261d83867672c46a), lett. d); the industria table charges the 1.70% / 2.00% of lett. a-b, so the employer contributions of an operaio are understated by 1.60 or 1.30 points. Impiegati and quadri owe the 1.70% / 2.00% of lett. e-f the table already charges.
@@ -335,6 +330,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     ADDITIONAL MONTHS: 13 (tredicesima only).
     
     SENIORITY: 5 biennali (24-month) scatti. Per-level EUR amounts: F=6.65, E=7.69, D=8.31, C=8.82, CS=9.45, B=9.80, A=11.97, AS=13.01. Confirmed from ilccnl.it.
+    
+    APPRENTICE SENIORITY (Apprendistato professionalizzante (accordo 15 marzo 2006), inquadramento e retribuzione, p. 61): no increment during the apprenticeship: 'La retribuzione sarà corrispondente a quella prevista dal vigente c.c.n.l., esclusi gli scatti di anzianità, per il livello iniziale di inquadramento per metà del periodo di apprendistato.' seniority_increments.apprentice_amount 0. The 2025 renewal (OCR) does not mention apprenticeship or increments; the 2022 renewal was not read in full.
     
 
 ## Raw data
