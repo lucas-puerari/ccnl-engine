@@ -711,7 +711,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/distribuzione-cooperativa-ancc",
       "ruleset_version": "2026.2",
-      "source_hash": "117ce70bb3964129519f08d9faa708116368d839d643e9dace71d1c9b8a45cd3",
+      "source_hash": "d446cf05d19e8c2d3d7b0d5c576f9a703aae8c5a260013c0bd1a6a4345be4939",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/distribuzione-cooperativa-ancc.json.gz"
@@ -3224,7 +3224,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "fe2a3c0177f7fc39f36cb1eb147e280a2106a2624569ec8e8bd7787a8e897e57",
+      "source_hash": "3787ef2e31330ff802c82a187f5ad83d22d845068de485ada06cf3be54e7ca38",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/distribuzione-cooperativa-ancc.json.gz",
