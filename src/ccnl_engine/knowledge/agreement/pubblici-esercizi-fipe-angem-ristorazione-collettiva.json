@@ -2591,7 +2591,7 @@
     "effective_until": null,
     "source": "https://www.fipe.it/wp-content/uploads/2025/02/Tabelle-retributive-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "827f63a07a95a4e422aaeb27b95de37467779975fb503243d07b2ed426b78f71",
+    "source_hash": "dc733c46f8aa8527fc6d9c130a8a9f9342367a05b2038254db691a4fb6976dbb",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2769,7 +2769,41 @@
             "note": "Art. 126 sets the overtime rate by time of day only (night: from midnight to 6, c. 2), so it covers overtime on a holiday: 30% by day, 60% by night. Whether the 20% of art. 132 (work on a festività, p. 103) is added is not stated (note holiday_overtime_cumulation)."
           }
         }
-      ]
+      ],
+      "week_divisors": [
+        {
+          "weekly_hours": 44,
+          "divisor": "190",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "fipe-ccnl-2018-02-08",
+                "title": "CCNL per i dipendenti da aziende dei settori Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo, 8 febbraio 2018 (scansione firmata)",
+                "kind": "associazione",
+                "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ccnl_ristorazione_2018.pdf",
+                "published_on": "2018-02-08",
+                "sha256": "32a2831b6ff1965adf82da1714f46ac6dc46102971012d6f646368837f72cf85"
+              },
+              "page": "116",
+              "section": "Articolo 160 - Determinazione della retribuzione oraria",
+              "quote": "(1) La retribuzione oraria si ottiene dividendo la retribuzione per: - 190 per il personale con orario normale di quarantaquattro ore settimanali; - 172 per il personale con orario normale di quaranta ore settimanali."
+            },
+            "transformation": "The hourly divisor of an employment whose full-time week (Employment.full_time_weekly_hours) is 44 hours (quarantaquattro).",
+            "note": "OCR (tesseract) of the signed scan; the 2024 renewal does not amend art. 160.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-05T10:00:00Z",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-05T10:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-05-ai-week-divisor"
+            }
+          }
+        }
+      ],
+      "hourly_divisor_weekly_hours": 40
     },
     "absence_rules": {
       "daily_divisor_method": "by_26",
@@ -3474,6 +3508,28 @@
         "independence": "separate_session",
         "checked": [
           "work_rules.notice"
+        ]
+      },
+      {
+        "id": "2026-11-05-ai-week-divisor",
+        "date": "2026-11-05",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The hourly divisor of the 44-hour week, Articolo 160 (PDF p. 116, printed p. 114), checked by a separate session on the page rendered at 200 and 400 dpi.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ccnl_ristorazione_2018.pdf",
+            "sha256": "32a2831b6ff1965adf82da1714f46ac6dc46102971012d6f646368837f72cf85"
+          }
+        ],
+        "findings": [
+          "Art. 160 c.1 (sha256 32a2831b... matched): 190 for a normal week of 44 hours, 172 for 40: work_rules.time_supplements.week_divisors 44/190.",
+          "The renewal of 5 June 2024 amends arts. 114, 135, 161, 183-184 and 199-202, not art. 160."
+        ],
+        "independence": "separate_session",
+        "checked": [
+          "work_rules.time_supplements.week_divisors"
         ]
       }
     ],
