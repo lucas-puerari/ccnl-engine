@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, seniority |
+| **Limits of this contract** | base_salary |
 
-4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -50,12 +50,14 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-10-30 |
-| **Last review** | — |
+| **Last review** | 2026-11-05 |
 | **Latest salary tranche** | 2028-01-01 |
 
 ## Review history
 
-No review is recorded.
+| Date | Reviewer | Scope | Outcome | Findings |
+|---|---|---|---|---|
+| 2026-11-05 | claude-opus-5-5 (ai) | The seniority increments of the apprentices, Artt. 126, 127, 128 c. 3 - Scatti di anzianità (profili B, C, D) (PDF p. 76-78), found by a separate research session and checked again on the page. | corrected | No increment during the apprenticeship: seniority_increments.apprentice_amount 0. |
 
 ## Salary table
 
@@ -124,13 +126,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `base_salary` applies; level in B5.
 
     **Remediation:** Model the Art. 122 15% hourly premium for B5 with a weekly schedule below 8 hours (e.g. a conditional allowance on part_time_pct below 0.2), or record it as a limitation.
-
-!!! warning "portieri-fabbricati-confedilizia/apprentice_seniority · seniority · impact unknown · open"
-    APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.
-
-    **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
-
-    **Remediation:** Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
@@ -328,6 +323,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     ADDITIONAL MONTHS: 13 (tredicesima only — Art. 130 'Gratifica natalizia'). Art. 130 provides tredicesima in December equal to one monthly salary; no quattordicesima provision exists in this CCNL. Confirmed via ilccnl.it full CCNL text and targeted search.
     
     INPS: uses 2026-terziario.json (same tax_sector as commercio-confcommercio and turismo-federalberghi).
+    
+    APPRENTICE SENIORITY (Artt. 126, 127, 128 c. 3 - Scatti di anzianità (profili B, C, D), p. 76-78): no increment during the apprenticeship: 'L'eventuale periodo di apprendistato non sarà considerato utile agli effetti degli scatti di anzianità.' seniority_increments.apprentice_amount 0. OCR of the scan; art. 36 c. 5 admits apprentices only to profiles B, C and D, whose three articles carry the same comma.
     
 
 ## Raw data

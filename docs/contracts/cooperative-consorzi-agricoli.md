@@ -35,7 +35,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, seniority |
 
-4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -52,7 +52,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-07-19 |
-| **Last review** | 2026-10-18 |
+| **Last review** | 2026-11-05 |
 | **Latest salary tranche** | 2027-02-01 |
 
 ## Review history
@@ -61,6 +61,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|---|---|
 | 2026-10-14 | claude-opus-5-5 (ai) | Second review of the agricoltura group: minimi conglobati of the eight levels in the four tranches, monthly payments, fixed-term operai and scatti, against the signed verbale of 19 July 2024. | corrected | The 32 minimi match the signed All. n. 1 (p. 19, a scanned page read from the image; each tranche equals the one before plus the printed aumento): verified.<br>14 monthly payments: the verbale names the 13ma and 14ma for the operai a tempo indeterminato (p. 14) but restates no clause for the impiegati: derived, no longer assumed.<br>Fixed-term operai are owed a terzo elemento of 30.44% instead of the monthly payments (p. 14): not modelled and not declared; now a limitation.<br>Scatti are not in the verbale: derived. The file applies the impiegati maximum of 12 to the operai, whose maximum is 5; the note said so but did not block: now a limitation from the 6th biennale. |
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | confirmed | Art. 34 - 13ma e 14ma mensilita' (p. 52): "La frazione di mese superiore a 15 giorni viene considerata come mese intero.". Match: more_than 15. |
+| 2026-11-05 | claude-opus-5-5 (ai) | The seniority increments of the apprentices, Art. 24 - Apprendistato (PDF p. 40), found by a separate research session and checked again on the page. | corrected | The apprentice has the treatment of the permanent staff: seniority_increments.apprentice_level_amount. |
 
 ## Salary table
 
@@ -116,13 +117,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `base_salary` applies; contract type in apprentice.
 
     **Remediation:** Source the apprenticeship rule of the 2024 CCNL and model its track.
-
-!!! warning "cooperative-consorzi-agricoli/apprentice_seniority · seniority · impact unknown · open"
-    APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.
-
-    **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
-
-    **Remediation:** Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.
 
 !!! warning "cooperative-consorzi-agricoli/otd_terzo_elemento_missing · base_salary · impact yes · open"
     OTD: a fixed-term operaio is paid the minimo conglobato giornaliero or orario plus a terzo elemento of 30.44% (festività 5.45%, ferie 8.33%, 13ma 8.33%, 14ma 8.33%) on 312 working days instead of the monthly payments (Art. 60, verbale 19 July 2024, p. 14); the engine pays the monthly structure.
@@ -323,6 +317,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     CCNL A016 — Cooperative e Consorzi Agricoli. Conglobated model. 8 livelli: np-7-6-5-4-3-2-1. Divisore 169, 14 mesi. 4 tranches: apr-2024, mag-2025, mag-2026, feb-2027.
     
     Quadri: i livelli 1Q e 2Q del precedente impianto corrispondono a livello 1° e 2° con aggiunta dell'indennità di funzione quadri (Art. 45): 1Q +EUR 180→230/mese, 2Q +EUR 125→160/mese dal 01/08/2024. Modellata come fixed_allowance a 14 mensilità su ciascun livello.
+    
+    APPRENTICE SENIORITY (Art. 24 - Apprendistato, p. 40 of https://www.uila.eu/web/wp-content/uploads/2022/04/03_08_2022-STESURA-CCNL-COOPERATIVE-AGRICOLE-2019-2023.pdf, sha256 586ec86c279b9cf2484217d15e0e663985d32c3ed31a4e649e1574a1f594004b): 'A tutti gli apprendisti operai, in quanto lavoratori a tempo indeterminato si applicano le norme del CCNL relative a tale categoria pertanto agli stessi gli istituti contrattuali saranno corrisposti alle normali scadenze e non attraverso il terzo elemento. Analogamente agli apprendisti impiegati sarà garantito lo stesso trattamento previsto per gli altri impiegati a tempo indeterminato.' Reading: the apprentice matures the increments of the level, at its amounts (seniority_increments.apprentice_level_amount). The renewal of 19 July 2024 does not amend art. 24.
     
     APPRENTICE INPS RATES (contribution/2026/agricoltura.json): employer 10% plus NASpI 1.61% (INPS circ. 108/2018 par. 3.2, applied to the agricultural contribution by circ. 116/2013 par. 1) plus CISOA 1.50% (circ. 1/2023; 'CIS operai agricoli 1,5000' of circ. 43/2026 allegato 1) = 13.11% (4.61% and 6.11% in the first two years up to nine employees); worker 5.84%.
     

@@ -81,20 +81,9 @@
         }
       },
       {
-        "kind": "simplification",
-        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
+        "kind": "info",
         "capability": "seniority",
-        "monetary_impact": "unknown",
-        "limitation": {
-          "variant": "apprentice_seniority",
-          "applies_when": {
-            "trigger": "path",
-            "contract_types": [
-              "apprentice"
-            ]
-          },
-          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
-        }
+        "text": "APPRENTICE SENIORITY (Art. 24 - Apprendistato, p. 40 of https://www.uila.eu/web/wp-content/uploads/2022/04/03_08_2022-STESURA-CCNL-COOPERATIVE-AGRICOLE-2019-2023.pdf, sha256 586ec86c279b9cf2484217d15e0e663985d32c3ed31a4e649e1574a1f594004b): 'A tutti gli apprendisti operai, in quanto lavoratori a tempo indeterminato si applicano le norme del CCNL relative a tale categoria pertanto agli stessi gli istituti contrattuali saranno corrisposti alle normali scadenze e non attraverso il terzo elemento. Analogamente agli apprendisti impiegati sarà garantito lo stesso trattamento previsto per gli altri impiegati a tempo indeterminato.' Reading: the apprentice matures the increments of the level, at its amounts (seniority_increments.apprentice_level_amount). The renewal of 19 July 2024 does not amend art. 24."
       },
       {
         "kind": "simplification",
@@ -1550,7 +1539,8 @@
           "verification_status": "unverified",
           "effective_from": "2020-01-01"
         }
-      }
+      },
+      "apprentice_level_amount": true
     },
     "accrual_rule": {
       "min_days": 15,
@@ -1614,7 +1604,7 @@
     "effective_until": null,
     "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "4dddc97fbd1963f15c875fe01a3ab62e3bf9c1638e93b3d446d4a41b64113ce2",
+    "source_hash": "322689cc67cca05eabd1bfd193b57af80eba5d6d5bf36cab10f0f56b644899d4",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1846,6 +1836,27 @@
         ],
         "findings": [
           "Art. 34 - 13ma e 14ma mensilita' (p. 52): \"La frazione di mese superiore a 15 giorni viene considerata come mese intero.\". Match: more_than 15."
+        ]
+      },
+      {
+        "id": "2026-11-05-ai-apprentice-seniority",
+        "date": "2026-11-05",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The seniority increments of the apprentices, Art. 24 - Apprendistato (PDF p. 40), found by a separate research session and checked again on the page.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/03_08_2022-STESURA-CCNL-COOPERATIVE-AGRICOLE-2019-2023.pdf",
+            "sha256": "586ec86c279b9cf2484217d15e0e663985d32c3ed31a4e649e1574a1f594004b"
+          }
+        ],
+        "findings": [
+          "The apprentice has the treatment of the permanent staff: seniority_increments.apprentice_level_amount."
+        ],
+        "independence": "separate_session",
+        "checked": [
+          "parameters.seniority_increments"
         ]
       }
     ],

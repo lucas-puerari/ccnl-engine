@@ -35,9 +35,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, inps_employer, seniority |
+| **Limits of this contract** | base_salary, inps_employer |
 
-6 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -54,7 +54,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-12-04 |
-| **Last review** | 2026-11-01 |
+| **Last review** | 2026-11-05 |
 | **Latest salary tranche** | 2028-01-01 |
 
 ## Review history
@@ -63,6 +63,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|---|---|
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | corrected | Art. 14 - Mensilità aggiuntive (13ª e 14ª) (p. 43): "dette mensilità aggiuntive sono frazionabili in dodicesimi nell’ipotesi di inizio o di cessazione del rapporto nel corso dell’anno. [...] La frazione di mese superiore a 15 giorni viene considerata come un mese intero.". Added: more_than 15 (the file applied the engine default, at least 15 days). |
 | 2026-11-01 | claude-opus-5-5 (ai) | Minimum pay of the impiegati forestali from 1 January 2026, 2027 and 2028 against the tables of the signed 2025 renewal (Allegati B, C, C1, scanned pages read as images). AI review only. | corrected | The 2026-2028 minimums now cite the TOTALE NAZIONALE CONGLOBATO of the signed tables (pp. 29-31) instead of a secondary site and the Art. 35 parameters.<br>The signed tables disagree on level 4 in 2026: p. 29 prints 1.618,07, p. 30 carries 1.617,94 as the pay of 1 January 2027 before the 39,54 increase that reaches 1.657,48. The 2026 table of p. 29 is used for 2026; the 2027 and 2028 totals are those printed. |
+| 2026-11-05 | claude-opus-5-5 (ai) | The seniority increments of the apprentices, Art. 7 - Apprendistato, Inquadramento e retribuzione (PDF p. 33), found by a separate research session and checked again on the page. | corrected | The apprentice has the treatment of the permanent staff: seniority_increments.apprentice_level_amount. |
 
 ## Salary table
 
@@ -121,13 +122,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `base_salary` applies.
 
     **Remediation:** Verify the structural rules against the 2025 renewal text.
-
-!!! warning "sistemazioni-idraulico-forestali-impiegati/apprentice_seniority · seniority · impact unknown · open"
-    APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.
-
-    **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
-
-    **Remediation:** Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.
 
 !!! warning "sistemazioni-idraulico-forestali-impiegati/apprentice_inps_rates_unsourced · inps_employer · impact unknown · open"
     APPRENTICE INPS RATES: the apprentice rates of the sector (agricoltura) apply the 10% of L. 296/2006 art. 1 c. 773 plus the 1.61% NASpI, but no source found settles the disoccupazione and CISOA contributions of agricultural apprentices (INPS circ. 43/2026 gives no apprentice rates). The contributions of an apprentice may differ.
@@ -332,6 +326,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     Seniority: Art. 41 CCNL 2021 — 12 scatti biennali. Amounts per level confirmed from 2021 previgente text; carried forward to 2025 rinnovo (structural rules unchanged per summary).
     
     OVERTIME/LEAVE/ABSENCE (L3): Art. 37 CCNL 2023 — straordinario 30%, notturno 50%, festivo 50%. Ferie 22 giorni (orario su 5 giorni, Art. 12). Malattia: integrazione datoriale al 100% per max 6 mesi (Art. 44). Assenza: divisore 26. Rates from 2023 CCNL PDF; 2025 rinnovo structural rules assumed unchanged (text image-only).
+    
+    APPRENTICE SENIORITY (Art. 7 - Apprendistato, Inquadramento e retribuzione, p. 33 of https://www.flai.it/wp-content/uploads/2023/05/CCNL-Idraulico-Forestale-2023.pdf, sha256 fb09d06825c27a3abb8081bec9e1645f17e51920559a6406323225d26b549461): 'Agli apprendisti impiegati spetta lo stesso trattamento previsto per gli impiegati a tempo indeterminato.' Reading: the apprentice matures the increments of the level, at its amounts (seniority_increments.apprentice_level_amount). Art. 41 gives the clerks a fixed increment per biennium; the renewal of 4 December 2025 does not amend arts. 7 or 41.
     
 
 ## Raw data
