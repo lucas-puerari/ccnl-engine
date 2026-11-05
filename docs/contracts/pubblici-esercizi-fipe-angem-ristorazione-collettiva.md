@@ -53,7 +53,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-06-26 |
-| **Last review** | 2026-11-01 |
+| **Last review** | 2026-11-05 |
 | **Latest salary tranche** | 2027-12-01 |
 
 ## Review history
@@ -68,6 +68,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-17 | claude-opus-5-5 (ai) | The paga base and contingenza of every level from June 2024 against the accordo integrativo of 26 June 2024, the quattordicesima against the CCNL of 8 February 2018, and a year and a termination of a 4th level worker against a hand oracle. | confirmed | Accordo integrativo of 26 June 2024 (pp. 1-3): the 50 totals of contingenza and paga base of the ten levels from June 2024 to December 2027 match the file, with the tranches of 2025 and 2026 in September.<br>Art. 184 of the CCNL of 8 February 2018 (p. 128, scan read by OCR): quattordicesima of the pay in force on 30 June, paid with the July pay, in ratei of the twelve months before 1 July. Match.<br>Hand oracle (tests/knowledge/ccnl_engine/period/sector, scenarios ristorazione-year and ristorazione-june): a 4th level impiegato hired on 1 January 2026 by an employer with 10 employees, with the terziario rates up to 15 employees and the 0.77% sickness supplement of the pubblici esercizi taken apart; every payment and the year (gross, contributions, tax, net, TFR, employer cost) match the engine to the cent. The CCNL now covers every total of the definition of done. |
 | 2026-10-31 | claude-opus-5-5 (ai) | The basis of the indemnity for the leave not taken at the end of the employment, searched in the OCR of the signed text of 2018 (Artt. 114, 134, 135, 159, 160). | corrected | Art. 159 - Determinazione della retribuzione giornaliera (p. 116): the daily pay is the monthly pay divided by 26 for every contractual purpose: work_rules.leave_rules.termination; the accrual of the leave is not modelled, so the basis is not used yet. |
 | 2026-11-01 | claude-opus-5-5 (ai) | The notice of Artt. 208-209 (PDF pp. 143-144), checked by a separate session on the rendered pages. | confirmed | Art. 208 (PDF pp. 143-144, sha256 32a2831b... matched, page images read): 15 bands, A e B / 1 / 2 e 3 / 4 e 5 / 6S, 6 e 7 over the three service bands, the same for dismissal and resignation, no start day: work_rules.notice.<br>Art. 209 (p. 144): the indemnity is the normale retribuzione of the period, extra_months_included false; the exception of Art. 179 for the pubblici esercizi does not concern this file. |
+| 2026-11-05 | claude-opus-5-5 (ai) | The hourly divisor of the 44-hour week, Articolo 160 (PDF p. 116, printed p. 114), checked by a separate session on the page rendered at 200 and 400 dpi. | confirmed | Art. 160 c.1 (sha256 32a2831b... matched): 190 for a normal week of 44 hours, 172 for 40: work_rules.time_supplements.week_divisors 44/190.<br>The renewal of 5 June 2024 amends arts. 114, 135, 161, 183-184 and 199-202, not art. 160. |
 
 ## Salary table
 

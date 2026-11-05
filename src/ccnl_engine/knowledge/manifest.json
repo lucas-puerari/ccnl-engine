@@ -1768,7 +1768,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/pubblici-esercizi-fipe-angem-ristorazione-collettiva",
       "ruleset_version": "2026.2",
-      "source_hash": "827f63a07a95a4e422aaeb27b95de37467779975fb503243d07b2ed426b78f71",
+      "source_hash": "dc733c46f8aa8527fc6d9c130a8a9f9342367a05b2038254db691a4fb6976dbb",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/pubblici-esercizi-fipe-angem-ristorazione-collettiva.json.gz"
@@ -1785,7 +1785,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/pubblici-esercizi-fipe-angem",
       "ruleset_version": "2026.2",
-      "source_hash": "275310af86d16dbf0b284b5c803afc8f81aaba315d0d3e2976625d6b367a08a8",
+      "source_hash": "322ac22c388054195c8ff2a8e404e71198937079492229836aa16803b10d1827",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/pubblici-esercizi-fipe-angem.json.gz"
