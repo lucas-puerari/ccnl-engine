@@ -134,7 +134,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 15 | B282 | [CCNL Attivita Minerarie (ASSORISORSE)](attivita-minerarie-assorisorse.md) | Industria estrattiva - Miniere, cave, saline, metallurgia estrattiva | ~3000 | 2022 | ⚠️ | base_salary, seniority | 36 / 0 / 2 / 1 | 🧪 | 🤖 |
 | 16 | I320 | [CCNL Attività Ferroviarie — AGENS](trasporto-ferroviario-agens.md) | trasporto | ~75k | 2025 | ⚠️ | base_salary, inps_employer, seniority | 50 / 6 / 1 / 0 | 🧪 | 🤖 |
 | 17 | I022 | [CCNL Autoferrotranvieri e Internavigatori (Mobilita/TPL)](autoferrotranvieri-internavigatori.md) | trasporti | ~120k | 2024 | ⚠️ | inps_employer, pension_fund_contribution | 0 / 139 / 1 / 0 | 🧪 | 🤖 |
-| 18 | IC35 | [CCNL Autorimesse, Noleggio Automezzi e Parcheggi (ANIASA)](autorimesse-ic35.md) | Autorimesse e noleggio automezzi | ~41k | 2025 | ⚠️ | base_salary, welfare, workplace_injury | 0 / 95 / 1 / 1 | 🧪 | 🤖 |
+| 18 | IC35 | [CCNL Autorimesse, Noleggio Automezzi e Parcheggi (ANIASA)](autorimesse-ic35.md) | Autorimesse e noleggio automezzi | ~41k | 2025 | ⚠️ | base_salary, welfare | 0 / 95 / 1 / 1 | 🧪 | 🤖 |
 | 19 | I192 | [CCNL Autostrade e Trafori Concessionari](autostrade-trafori.md) | autostrade e trafori — addetti alle concessionarie autostradali | ~15k | 2023 | ⚠️ | base_salary, seniority | 0 / 140 / 1 / 1 | 🧪 | 🤖 |
 | 20 | H601 | [CCNL CED, ICT, Professioni Digitali e STP (Assoced-UGL)](ced-assoced.md) | Terziario | ~22k | 2025 | ⚠️ | base_salary, inps_employer, seniority | 0 / 44 / 1 / 1 | 🧪 | 🤖 |
 | 21 | G022 | [CCNL Carta e Cartone — Aziende Industriali (Assocarta)](carta-cartone-assocarta.md) | carta-cartone | ~35k | 2026 | ⚠️ | base_salary | 14 / 61 / 1 / 0 | 🧪 | 🤖 |

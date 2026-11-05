@@ -102,15 +102,16 @@
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: Hourly divisor 173 applies to standard 40h/week staff. The 2019 CCNL notes 182 (autisti/drivers) and 191 (custodi/security) in specific roles. Only 173 modeled here: dominant case. Verify per-role divisor for drivers and security classifications.",
+        "text": "Art. 40 (2022 text, p. 86): the hourly pay is the monthly pay over 173 for the 40-hour week, 182 for the drivers (42 hours, art. 19 b) and 191 for the custodians and night watchmen (44 hours, art. 19 a). The engine reads 182 or 191 when Employment.full_time_weekly_hours is 42 or 44 (week_divisors); a 40-hour week keeps 173.",
         "capability": "workplace_injury",
-        "monetary_impact": "unknown",
+        "monetary_impact": "yes",
         "limitation": {
           "variant": "long_week_divisors",
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Add the 182 (42h, drivers) and 191 (44h, custodians) divisors keyed by the full-time week, set hourly_divisor_weekly_hours=40, and use the divisor of the stated week in the INAIL daily base."
+          "remediation": "Resolved: work_rules.time_supplements.week_divisors holds 182 and 191, read for an employment whose full_time_weekly_hours is 42 or 44.",
+          "status": "resolved"
         }
       },
       {
@@ -2935,7 +2936,7 @@
     "effective_until": null,
     "source": "https://www.filtcgil.it/images/Contratti/Mobilita/ic35-verbale-accordo-09122025.pdf",
     "verification_status": "unverified",
-    "source_hash": "0bb26a5814ef36bb026cf478f5897c4615326d53d5334199a0536148bbae365d",
+    "source_hash": "ad369d00c724168037104a3fe027af74b6d099f71594635f85b9667afbae2b36",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3087,6 +3088,71 @@
             }
           }
         }
+      ],
+      "hourly_divisor_weekly_hours": 40,
+      "week_divisors": [
+        {
+          "weekly_hours": 42,
+          "divisor": "182",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-autonoleggio-autorimesse-2022",
+                "title": "CCNL Autonoleggio - Autorimesse 15 dicembre 2022 (stesura)",
+                "kind": "associazione",
+                "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL-AUTONOLEGGIO-ANIASA_2022-2024.pdf",
+                "published_on": "2022-12-15",
+                "sha256": "fafa013d5843ab750bb1f6e0ccad3b3c60e560ada3a07e576793f68e4d40196e"
+              },
+              "page": "86",
+              "section": "Art. 40 - Retribuzione; Art. 19 - Orario di lavoro (p. 43)",
+              "quote": "La retribuzione oraria si ottiene dividendo gli elementi mensili della retribuzione per: 191 per il personale di custodia - guardiani notturni; 182 per il personale conducente di auto; 173 per il personale a 40 ore settimanali."
+            },
+            "transformation": "The hourly divisor of an employment whose full-time week (Employment.full_time_weekly_hours) is 42 hours: the conducenti auto (art. 19 b), 42 ore.",
+            "note": "Text layer of the 2022 stesura (printed p. 85); the verbale of 9 December 2025 renews the pay tables, not art. 40.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-05T14:00:00Z",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-05T14:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-05-ai-week-divisors"
+            }
+          }
+        },
+        {
+          "weekly_hours": 44,
+          "divisor": "191",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-autonoleggio-autorimesse-2022",
+                "title": "CCNL Autonoleggio - Autorimesse 15 dicembre 2022 (stesura)",
+                "kind": "associazione",
+                "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL-AUTONOLEGGIO-ANIASA_2022-2024.pdf",
+                "published_on": "2022-12-15",
+                "sha256": "fafa013d5843ab750bb1f6e0ccad3b3c60e560ada3a07e576793f68e4d40196e"
+              },
+              "page": "86",
+              "section": "Art. 40 - Retribuzione; Art. 19 - Orario di lavoro (p. 43)",
+              "quote": "La retribuzione oraria si ottiene dividendo gli elementi mensili della retribuzione per: 191 per il personale di custodia - guardiani notturni; 182 per il personale conducente di auto; 173 per il personale a 40 ore settimanali."
+            },
+            "transformation": "The hourly divisor of an employment whose full-time week (Employment.full_time_weekly_hours) is 44 hours: the personale di custodia e guardiani notturni (art. 19 a), 44 ore.",
+            "note": "Text layer of the 2022 stesura (printed p. 85); the verbale of 9 December 2025 renews the pay tables, not art. 40.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-05T14:00:00Z",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-05T14:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-05-ai-week-divisors"
+            }
+          }
+        }
       ]
     },
     "absence_rules": {
@@ -3161,5 +3227,30 @@
         }
       }
     }
+  },
+  "verification": {
+    "reviews": [
+      {
+        "id": "2026-11-05-ai-week-divisors",
+        "date": "2026-11-05",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The hourly divisors of the 42- and 44-hour weeks, Art. 40 (PDF p. 86) and the weeks of Art. 19 (PDF p. 43) of the 2022 stesura, text layer.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL-AUTONOLEGGIO-ANIASA_2022-2024.pdf",
+            "sha256": "fafa013d5843ab750bb1f6e0ccad3b3c60e560ada3a07e576793f68e4d40196e"
+          }
+        ],
+        "findings": [
+          "Art. 40: 191 for the custodians and night watchmen (44 hours, art. 19 a), 182 for the drivers (42 hours, art. 19 b), 173 for the 40-hour week: work_rules.time_supplements.week_divisors 42/182 and 44/191, hourly_divisor_weekly_hours 40."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.time_supplements.week_divisors"
+        ]
+      }
+    ]
   }
 }

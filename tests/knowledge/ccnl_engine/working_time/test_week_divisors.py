@@ -123,3 +123,12 @@ def test_fipe_ristorazione_collettiva_divides_the_44_hour_week_by_190() -> None:
         WeeklyHours(Decimal(44)),
     )
     assert ccnl.parameters.hourly_divisor.value_at(date(2026, 3, 1)) == 190
+
+
+@pytest.mark.parametrize(("week", "divisor"), [(40, 173), (42, 182), (44, 191)])
+def test_autorimesse_divides_by_the_divisor_of_the_role_week(
+    week: int, divisor: int
+) -> None:
+    """Autorimesse Art. 40 (2022 text, p. 86): drivers 42 hours, custodians 44."""
+    ccnl = with_week_divisor(load_ccnl("autorimesse-ic35"), WeeklyHours(Decimal(week)))
+    assert ccnl.parameters.hourly_divisor.value_at(date(2026, 3, 1)) == divisor

@@ -67,22 +67,6 @@
       }
     },
     {
-      "id": "long_week_divisors",
-      "institute": "workplace_injury",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "SIMPLIFICATION: Hourly divisor 173 applies to standard 40h/week staff. The 2019 CCNL notes 182 (autisti/drivers) and 191 (custodi/security) in specific roles. Only 173 modeled here: dominant case. Verify per-role divisor for drivers and security classifications.",
-      "calculation": "ccnl/autorimesse-ic35:coverage.notes",
-      "state": "unverified",
-      "remediation": "Add the 182 (42h, drivers) and 191 (44h, custodians) divisors keyed by the full-time week, set hourly_divisor_weekly_hours=40, and use the divisor of the stated week in the INAIL daily base.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "autorimesse-ic35/long_week_divisors"
-        ]
-      }
-    },
-    {
       "id": "maternity_daily_base",
       "institute": "maternity_leave",
       "variant": "all",
