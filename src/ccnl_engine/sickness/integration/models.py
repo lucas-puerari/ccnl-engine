@@ -267,6 +267,13 @@ class SicknessRules(BaseModel):
             more than this many calendar days (Pubblici esercizi FIPE
             Art. 190: "qualora la durata della malattia superi i cinque
             giorni"); ``None`` pays it whatever the length.
+        carenza_first_day_min_days: The first waiting day is paid only when
+            the sickness lasts more than this many calendar days, the others
+            whatever the length (Turismo Art. 228 c. 5: "a carico del
+            lavoratore per il primo giorno [...] Nel caso però che la
+            malattia sia riconosciuta per il periodo eccedente i detti tre
+            giorni l'intero periodo di carenza sarà a carico del datore");
+            ``None`` pays it as the other waiting days.
         max_duration_days: Number of calendar days after which sick leave
             exceeds the comporto period.  Days beyond this limit are not
             modelled by the engine.
@@ -301,6 +308,7 @@ class SicknessRules(BaseModel):
     window_alternative: tuple[ComportoWindow, ...] = ()
     carenza_by_event: CarenzaByEvent | None = None
     carenza_min_days: int | None = Field(default=None, ge=1)
+    carenza_first_day_min_days: int | None = Field(default=None, ge=1)
     max_duration_days: int = Field(default=180, ge=1)
     cumulation: SicknessCumulation | None = None
     net_basis: bool = False

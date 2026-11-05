@@ -691,3 +691,28 @@ def test_a_worker_paid_by_the_hour_has_no_sick_hours_deducted() -> None:
 
     assert "abs" not in sick
     assert sick["inps"] > Decimal(0)
+
+
+def _turismo_carenza(ended_on: date) -> Decimal:
+    episode = sickness_episode("short", date(2026, 3, 9), ended_on)
+    request = _req(
+        3,
+        episode,
+        slug="turismo-federalberghi",
+        level="4",
+        category=WorkerCategory.IMPIEGATO,
+    )
+    inputs = _decision(
+        calculate_period(
+            request, repo=bundled_repository(), resolver=bundled_policies()
+        )
+    ).inputs
+    return Decimal(str(inputs["carenza_pay"]))
+
+
+def test_first_carenza_day_paid_only_past_three_days() -> None:
+    """Turismo art. 228 c.5: the first waiting day is the worker's up to 3 days."""
+    three_days = _turismo_carenza(date(2026, 3, 11))
+    four_days = _turismo_carenza(date(2026, 3, 12))
+    assert four_days > 0
+    assert three_days == (four_days * 2 / 3).quantize(Decimal("0.01"))

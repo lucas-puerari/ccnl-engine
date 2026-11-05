@@ -35,22 +35,6 @@
       }
     },
     {
-      "id": "integration_75_days_4_20",
-      "institute": "sickness",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "SIMPLIFICATION: Integrazione malattia (Art. 103). Struttura contrattuale: giorni 1-3 a carico del datore (100%), giorni 4-20 integrazione al 75%, giorni 21+ integrazione al 100%. Modellato: carenza_integration_rate=1.0, full_pay_integration_rate=1.0 (allineato alla fase finale). La finestra al 75% (gg. 4-20) non e modellata; il motore sovrastima la retribuzione per eventi di malattia breve. The sickness rules can hold day bands (sickness_rules.day_bands): the gap is in the data only (review of 2026-10-30).",
-      "calculation": "ccnl/impianti-sportivi-sport:coverage.notes",
-      "state": "absent",
-      "remediation": "Add the day bands of Art. 103 (75% on days 4-20, 100% from day 21) to sickness_rules.day_bands, then resolve this limitation.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "impianti-sportivi-sport/integration_75_days_4_20"
-        ]
-      }
-    },
-    {
       "id": "level_v_first_semester_overpaid",
       "institute": "base_salary",
       "variant": "apprentice",

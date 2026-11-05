@@ -122,11 +122,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.
 
 !!! warning "turismo-federalberghi-alberghi-minori/sickness_net_basis · sickness · impact yes · open"
-    SICKNESS (art. 228, 2010 text p. 184): the CCNL integrates up to a share of the net daily pay without saying how the net pay is computed; the engine grosses up the INPS indemnity by the worker's INPS rate, as for the Commercio file. Day 1 of the carenza is the worker's when the illness lasts three days or less (c.5): the engine pays all three days. For fixed-term and seasonal workers no integration is due past the end of the contract (c.2).
+    SICKNESS (art. 228, 2010 text p. 184): the CCNL integrates up to a share of the net daily pay without saying how the net pay is computed; the engine grosses up the INPS indemnity by the worker's INPS rate, as for the Commercio file. For fixed-term and seasonal workers no integration is due past the end of the contract (c.2).
 
     **Applies when:** `sickness` applies.
 
-    **Remediation:** Model the net daily pay of art. 228, the unpaid first day of a short illness and the end of a fixed-term contract.
+    **Remediation:** Model the net daily pay of art. 228 and the end of a fixed-term contract.
 
 !!! warning "turismo-federalberghi-alberghi-minori/guarantee_element_2027 · base_salary · impact yes · open"
     Art. 13 c. 10, pp. 11-12: the elemento economico di garanzia paid with the November 2027 pay without an integrative agreement by 31 October 2026 (A and B 186, 1-3 158, 4-5 140, 6s-7 112).

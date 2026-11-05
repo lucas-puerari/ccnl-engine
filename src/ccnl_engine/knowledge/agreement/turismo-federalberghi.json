@@ -3094,7 +3094,7 @@
       },
       {
         "kind": "simplification",
-        "text": "SICKNESS (art. 228, 2010 text p. 184): the CCNL integrates up to a share of the net daily pay without saying how the net pay is computed; the engine grosses up the INPS indemnity by the worker's INPS rate, as for the Commercio file. Day 1 of the carenza is the worker's when the illness lasts three days or less (c.5): the engine pays all three days. For fixed-term and seasonal workers no integration is due past the end of the contract (c.2).",
+        "text": "SICKNESS (art. 228, 2010 text p. 184): the CCNL integrates up to a share of the net daily pay without saying how the net pay is computed; the engine grosses up the INPS indemnity by the worker's INPS rate, as for the Commercio file. For fixed-term and seasonal workers no integration is due past the end of the contract (c.2).",
         "capability": "sickness",
         "monetary_impact": "yes",
         "limitation": {
@@ -3102,7 +3102,7 @@
           "applies_when": {
             "trigger": "run"
           },
-          "remediation": "Model the net daily pay of art. 228, the unpaid first day of a short illness and the end of a fixed-term contract."
+          "remediation": "Model the net daily pay of art. 228 and the end of a fixed-term contract."
         }
       },
       {
@@ -3245,7 +3245,7 @@
     "effective_until": null,
     "source": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
     "verification_status": "unverified",
-    "source_hash": "925885e5d1055ee2be881d1810fc8c9104b06e49184c27f48d021ba26e0e3eb7",
+    "source_hash": "e284c56739a04bd5a00525ce458981e27d894cac1612921b649f495e90a3809f",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3813,6 +3813,7 @@
       "full_pay_integration_rate": "1",
       "max_duration_days": 180,
       "net_basis": true,
+      "carenza_first_day_min_days": 3,
       "day_bands": [
         {
           "day_from": 4,
@@ -3841,7 +3842,7 @@
           "section": "Art. 228 c.1 b), c.2, c.5 - Trattamento di malattia (alberghi); identical art. 278 (campeggi)",
           "quote": "misura del ~etlnlllacillque per cento pt!r i giomi dal qmu10 .\\1 ventesimo e dd [...] (2) L'integrilzione è dovuta per Cl!l1tottanta giollli all'anno solare. [...] i successivi due giomi. Nel caso però che la I1lnlnHia sia riconosciuta per il"
         },
-        "transformation": "Integration up to 75% for days 4-20 and 100% from day 21 of the net daily pay (c.1 b); due for 180 days in a calendar year (c.2); the carenza is paid by the employer for days 2-3, and day 1 too when the illness lasts more than three days (c.5): modelled as all three days paid.",
+        "transformation": "Integration up to 75% for days 4-20 and 100% from day 21 of the net daily pay (c.1 b); due for 180 days in a calendar year (c.2); the carenza is paid by the employer for days 2-3, and day 1 too when the illness lasts more than three days (c.5: 'a carico del lavoratore per il primo giorno ed a carico del datore di lavoro per i successivi due giorni. Nel caso però che la malattia sia riconosciuta per il periodo eccedente i detti tre giorni l'intero periodo di carenza sarà a carico del datore di lavoro'): carenza_first_day_min_days 3, read on the OCR of p. 184 on 2026-11-05.",
         "note": "Not changed by the 2014 and 2024 renewals. Hotels are on the general INPS regime.",
         "extraction": {
           "method": "ai",

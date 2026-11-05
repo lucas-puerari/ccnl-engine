@@ -407,10 +407,10 @@
       "institute": "sickness",
       "variant": "all",
       "discriminant": "applies_when.trigger = run",
-      "rule": "SICKNESS (art. 228, 2010 text p. 184): the CCNL integrates up to a share of the net daily pay without saying how the net pay is computed; the engine grosses up the INPS indemnity by the worker's INPS rate, as for the Commercio file. Day 1 of the carenza is the worker's when the illness lasts three days or less (c.5): the engine pays all three days. For fixed-term and seasonal workers no integration is due past the end of the contract (c.2).",
+      "rule": "SICKNESS (art. 228, 2010 text p. 184): the CCNL integrates up to a share of the net daily pay without saying how the net pay is computed; the engine grosses up the INPS indemnity by the worker's INPS rate, as for the Commercio file. For fixed-term and seasonal workers no integration is due past the end of the contract (c.2).",
       "calculation": "ccnl/turismo-federalberghi:coverage.notes",
       "state": "absent",
-      "remediation": "Model the net daily pay of art. 228, the unpaid first day of a short illness and the end of a fixed-term contract.",
+      "remediation": "Model the net daily pay of art. 228 and the end of a fixed-term contract.",
       "origin": "seeded",
       "links": {
         "limitations": [

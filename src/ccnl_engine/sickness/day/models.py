@@ -12,6 +12,7 @@ The CCNL treatment of a day comes from one of two models of
 
 from __future__ import annotations
 
+import sys
 from dataclasses import dataclass, field, replace
 from decimal import Decimal
 from typing import TYPE_CHECKING
@@ -156,18 +157,24 @@ class SickPayRules:
 
         A CCNL that pays the carenza only past a minimum length of the
         sickness (``carenza_min_days``) pays no waiting day of a shorter
-        episode; the length is the one of the certificates the run knows.
+        episode, one that pays the first waiting day only past a minimum
+        (``carenza_first_day_min_days``) does not pay that day; the length
+        is the one of the certificates the run knows.
 
         Returns:
             A function of the relapse-chain index and the date of a day.
         """
         treatment = self._treatment(episode, history)
-        minimum = self.ccnl.carenza_min_days
-        if minimum is None or (episode.ended_on - episode.started_on).days >= minimum:
+        length = (episode.ended_on - episode.started_on).days
+        unpaid_from = _unpaid_carenza_from(self.ccnl, length)
+        if unpaid_from is None:
             return treatment
 
         def unpaid_carenza(index: int, day: date) -> CcnlDay:
-            return replace(treatment(index, day), carenza_rate=Decimal(0))
+            ccnl_day = treatment(index, day)
+            if index > unpaid_from:
+                return ccnl_day
+            return replace(ccnl_day, carenza_rate=Decimal(0))
 
         return unpaid_carenza
 
@@ -184,3 +191,27 @@ class SickPayRules:
             return cumulative.day
         year = self.year(episode, history)
         return self._per_episode if year is None else year.day
+
+
+#: Episode index past every waiting day: the whole carenza is unpaid.
+_EVERY_DAY = sys.maxsize
+
+
+def _unpaid_carenza_from(ccnl: SicknessRules, length: int) -> int | None:
+    """Return the last waiting day the CCNL leaves unpaid for ``length``.
+
+    Args:
+        ccnl: The sickness rules of the CCNL.
+        length: Calendar days of the episode past its first day.
+
+    Returns:
+        The episode index up to which the carenza is unpaid: every waiting
+        day under ``carenza_min_days``, the first under
+        ``carenza_first_day_min_days``; ``None`` when all are paid.
+    """
+    if ccnl.carenza_min_days is not None and length < ccnl.carenza_min_days:
+        return _EVERY_DAY
+    first = ccnl.carenza_first_day_min_days
+    if first is not None and length < first:
+        return 1
+    return None
