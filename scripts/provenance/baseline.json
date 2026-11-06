@@ -681,9 +681,6 @@
     "agreement/autorimesse-ic35.json": [
       "autorimesse-ic35/meal_voucher"
     ],
-    "agreement/autostrade-trafori.json": [
-      "autostrade-trafori/apprentice_seniority"
-    ],
     "agreement/aziende-termali-federterme.json": [
       "aziende-termali-federterme/apprentice_seniority",
       "aziende-termali-federterme/ebiterme_fontur_funds",
