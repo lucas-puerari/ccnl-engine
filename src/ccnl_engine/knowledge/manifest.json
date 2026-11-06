@@ -1105,7 +1105,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/gomma-plastica-federazione-gomma-plastica",
       "ruleset_version": "2026.2",
-      "source_hash": "139dc5fedf6ebcc838225e5782ba6f66d6769d27387c196ef3cd26f9904f342f",
+      "source_hash": "5e4f571dfacf1ebda90f68770b9765d97d893812dda6239cd791690adb0b72d8",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/gomma-plastica-federazione-gomma-plastica.json.gz"
@@ -3681,7 +3681,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "7f1442f39d7f93b250915782be8b9e777ee69e232dc19d2b0bb27712663e174e",
+      "source_hash": "47101e2c8e4a56130d5ae7b6e050869387cc6a873ac97057e7e5bd59fd8357cc",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/gomma-plastica-federazione-gomma-plastica.json.gz",
