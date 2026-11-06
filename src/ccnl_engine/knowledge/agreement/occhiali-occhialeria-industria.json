@@ -84,7 +84,7 @@
       },
       {
         "kind": "simplification",
-        "text": "APPRENTICESHIP: 2026 rinnovo (signed 30/01/2026) explicitly 'abroga la ripartizione in percentuale in relazione agli step professionali' (edotto.com). Pre-2026 CCNL used a percentage system. Post-2026 replacement type is not confirmed from a D271 primary source — the cognate piccola industria (ccnlportatili.it) uses sotto-inquadramento (2 levels below for first 12m, 1 level below for next 12m, then destination). Modelled as 100% passthrough for all levels pending primary source confirmation; this is a conservative over-estimate for the 2026-2028 period.",
+        "text": "APPRENTICESHIP (Art. 24, pp. 39-40 of the CCNL of 10 June 2021, table in force from 1 July 2017, kept by the text of 28 April 2023): two levels below the destination for 10 months, one below for 10, the destination for the last 16 (2°: level 1 for 6 months, then the 2°). The renewal of 30 January 2026 does not amend art. 24: its 'ripartizione in percentuale' per step is that of the Premio di professionalità a valore aggiunto.",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
@@ -94,7 +94,8 @@
               "apprentice"
             ]
           },
-          "remediation": "Model the post-2026 under-classification apprenticeship from a D271 primary source."
+          "remediation": "Resolved: under-classification of art. 24, read on 2026-11-06.",
+          "status": "resolved"
         }
       },
       {
@@ -134,6 +135,31 @@
           "Consistency check (base + printed increment) on both tables: 2023 table off by -0,01 for level 6 at 1.03.2024 (2.319,66 + 58,98 = 2.378,64 vs 2.378,63 printed) and by -1,49 for 4S; 2026 table consistent except the level 1 MAG.2027 transposition. Rule applied: a printed value stays a verified row unless a later signed table contradicts it by more than rounding (4S, unbacked); one-cent residuals are kept as printed and reported here.",
           "The ruleset names a FILCTEM-CGIL document, a signatory: source_type contracting_party.",
           "Corrected to the printed table: Q 2026-10-01: 2546.53 -> 2546.54; Q 2027-05-01: 2604.87 -> 2604.88; Q 2028-05-01: 2657.38 -> 2657.39; Q 2028-11-01: 2680.72 -> 2680.73; 6 2026-10-01: 2539.80 -> 2539.79; 6 2027-05-01: 2596.76 -> 2596.74; 6 2028-05-01: 2648.02 -> 2647.99; 6 2028-11-01: 2670.80 -> 2670.77; 5S 2027-05-01: 2467.76 -> 2467.75; 5S 2028-05-01: 2517.77 -> 2517.76; 5S 2028-11-01: 2540.00 -> 2539.99; 4S 2026-10-01: 2158.67 -> 2157.78; 4S 2027-05-01: 2211.56 -> 2209.18; 4S 2028-05-01: 2259.16 -> 2255.44; 4S 2028-11-01: 2280.32 -> 2276.00; 3S 2028-11-01: 2125.83 -> 2125.84; 2 2028-05-01: 1948.54 -> 1948.53; 2 2028-11-01: 1966.32 -> 1966.31; 1 2028-05-01: 1696.39 -> 1696.38; 1 2028-11-01: 1712.04 -> 1712.03."
+        ]
+      },
+      {
+        "id": "2026-11-06-ai-occhiali-art24",
+        "date": "2026-11-06",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 24 apprenticeship of the CCNL of 10 June 2021 (pp. 39-40); the renewal of 30 January 2026 searched for an amendment.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/152279",
+            "sha256": "abb4d8a7c8d35e84ecc4208eaea781883c15f1bee2364067113ffcd1eb61c4ff"
+          },
+          {
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/260130_OCCHIALI_RINNOVO%20CCNL%202026_2028.pdf",
+            "sha256": "d89575d27ada28b26a5397b086ce9ca472aca6dfc66f28f70f2654e0fb82d79c"
+          }
+        ],
+        "findings": [
+          "The apprentices are under-classified (two levels, one, then the destination), not paid 100%: the 2026 percentages abrogated are those of the PPVA premium per step."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "apprenticeship"
         ]
       }
     ]
@@ -3134,11 +3160,9 @@
   ],
   "apprenticeship": [
     {
-      "type": "percentage",
+      "type": "under_classification",
       "name": "professionalizzante",
       "destination_levels": [
-        "1",
-        "2",
         "3",
         "3S",
         "4",
@@ -3151,10 +3175,93 @@
       "periods": [
         {
           "months_from": 0,
+          "months_until": 10,
+          "levels_below": 2
+        },
+        {
+          "months_from": 10,
+          "months_until": 20,
+          "levels_below": 1
+        },
+        {
+          "months_from": 20,
           "months_until": null,
-          "percentage": "1.00"
+          "levels_below": 0
         }
-      ]
+      ],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "cnel-d271-152279-ccnl-2021",
+            "title": "CCNL Occhialeria industria, 10 giugno 2021 (archivio CNEL D271, accordo 152279)",
+            "kind": "cnel",
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/152279",
+            "published_on": "2021-06-10",
+            "sha256": "abb4d8a7c8d35e84ecc4208eaea781883c15f1bee2364067113ffcd1eb61c4ff"
+          },
+          "page": "39-40",
+          "section": "Art. 24 - Apprendistato professionalizzante",
+          "quote": "in vigore dall'1.7.2017 [...] durata complessiva / primo / secondo / terzo periodo: 36 10 10 16 [Quadro/6°, 5°S/5°, 4°S/4°, 3°S, 3°]; 24 6 6 12 [2°]. L'inquadramento e il relativo trattamento economico è così determinato: nel primo periodo di apprendistato professionalizzante: due livelli sotto quello di destinazione finale; nel secondo periodo: un livello sotto quello di destinazione finale; nel terzo e ultimo periodo: livello di destinazione finale. Gli apprendisti con destinazione finale al 2°livello/Area Operativa-Centrato saranno inquadrati al livello di destinazione finale con decorrenza dall'inizio del secondo periodo di apprendistato."
+        },
+        "transformation": "Each row of the area-step grid is a level (order 1 to 10): two rows below for 10 months, one row below for 10, then the destination for the last 16.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-06T19:00:00Z",
+          "effective_from": "2017-07-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-06T19:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-06-ai-occhiali-art24"
+        }
+      }
+    },
+    {
+      "type": "under_classification",
+      "name": "professionalizzante_2",
+      "destination_levels": [
+        "2"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 6,
+          "levels_below": 1
+        },
+        {
+          "months_from": 6,
+          "months_until": null,
+          "levels_below": 0
+        }
+      ],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "cnel-d271-152279-ccnl-2021",
+            "title": "CCNL Occhialeria industria, 10 giugno 2021 (archivio CNEL D271, accordo 152279)",
+            "kind": "cnel",
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/152279",
+            "published_on": "2021-06-10",
+            "sha256": "abb4d8a7c8d35e84ecc4208eaea781883c15f1bee2364067113ffcd1eb61c4ff"
+          },
+          "page": "39-40",
+          "section": "Art. 24 - Apprendistato professionalizzante",
+          "quote": "in vigore dall'1.7.2017 [...] durata complessiva / primo / secondo / terzo periodo: 36 10 10 16 [Quadro/6°, 5°S/5°, 4°S/4°, 3°S, 3°]; 24 6 6 12 [2°]. L'inquadramento e il relativo trattamento economico è così determinato: nel primo periodo di apprendistato professionalizzante: due livelli sotto quello di destinazione finale; nel secondo periodo: un livello sotto quello di destinazione finale; nel terzo e ultimo periodo: livello di destinazione finale. Gli apprendisti con destinazione finale al 2°livello/Area Operativa-Centrato saranno inquadrati al livello di destinazione finale con decorrenza dall'inizio del secondo periodo di apprendistato."
+        },
+        "transformation": "Destination 2°: the 1st level, the only one below, for the first 6 months; the destination from the start of the second period.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-06T19:00:00Z",
+          "effective_from": "2017-07-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-06T19:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-06-ai-occhiali-art24"
+        }
+      }
     }
   ],
   "ruleset": {
@@ -3164,7 +3271,7 @@
     "effective_until": null,
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/260130_OCCHIALI_RINNOVO%20CCNL%202026_2028.pdf",
     "verification_status": "verified",
-    "source_hash": "82046c7ea7e7abfda7cfd116fc79252415c2ca97f22647e89aa11a169d3b9e0b",
+    "source_hash": "ecb7d3537e81c3051b97e9c26e42871b4ae02153617a45470d5afb951f06a112",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
