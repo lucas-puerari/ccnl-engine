@@ -31,7 +31,8 @@ def subsectors_of(ccnl: CCNL) -> frozenset[str]:
 
     Returns:
         Every sub-sector code of the overtime and supplement bands and of the
-        week absorptions of the permits, empty when none names one.
+        week absorptions and yearly hours of the permits, empty when none
+        names one.
     """
     rules = ccnl.work_rules
     supplements = None if rules is None else rules.time_supplements
@@ -42,9 +43,12 @@ def subsectors_of(ccnl: CCNL) -> frozenset[str]:
     )
     leave = None if rules is None else rules.leave_rules
     permits = () if leave is None else leave.permits
-    return frozenset(code for band in bands for code in band.subsectors) | frozenset(
+    absorbed = {
         code for p in permits for a in p.week_absorption for code in a.subsectors
-    )
+    }
+    tiers = {code for p in permits for h in p.annual_hours for code in h.subsectors}
+    named = {code for band in bands for code in band.subsectors}
+    return frozenset(named | absorbed | tiers)
 
 
 def with_subsector(

@@ -24,12 +24,17 @@ class PermitHours(BaseModel):
         hours: Hours a year of a full-time worker.
         headcount_above: The hours apply to an employer with more than this
             many employees; ``None`` for the hours of any employer.
+        subsectors: The hours apply to an employer of these sub-sectors
+            (``EmployerProfile.subsector``; Turismo art. 111 c. 2: 108 hours
+            for the stabilimenti balneari, 104 for the others); empty for
+            every other employer.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
 
     hours: Decimal = Field(gt=_ZERO)
     headcount_above: int | None = Field(default=None, ge=1)
+    subsectors: tuple[str, ...] = ()
 
 
 class RampStep(BaseModel):
@@ -131,9 +136,10 @@ class PermitRules(BaseModel):
     Attributes:
         bucket: The bucket: :attr:`~LeaveBucket.ROL` or
             :attr:`~LeaveBucket.EX_FESTIVITA`.
-        annual_hours: Hours a year by employer size; the tier of the
-            largest ``headcount_above`` the employer exceeds applies, else
-            the tier without one.
+        annual_hours: Hours a year by employer size and sub-sector; among
+            the tiers of the employer's sub-sector, else those naming none,
+            the tier of the largest ``headcount_above`` the employer exceeds
+            applies, else the tier without one.
         includes_ex_festivita: Whether the hours hold those of the abolished
             festivities (a single pool): the CCNL then has no separate
             :attr:`~LeaveBucket.EX_FESTIVITA` bucket.
@@ -169,12 +175,18 @@ class PermitRules(BaseModel):
         if self.includes_ex_festivita and self.bucket is not LeaveBucket.ROL:
             msg = "only the rol bucket can include the ex festività hours"
             raise ValueError(msg)
-        sizes = [h.headcount_above for h in self.annual_hours]
-        if sizes.count(None) != 1 or len(set(sizes)) != len(sizes):
-            msg = (
-                "annual_hours needs one tier without headcount_above and distinct "
-                f"sizes; got {sizes}"
-            )
+        for group in {h.subsectors for h in self.annual_hours}:
+            sizes = [
+                h.headcount_above for h in self.annual_hours if h.subsectors == group
+            ]
+            if sizes.count(None) != 1 or len(set(sizes)) != len(sizes):
+                msg = (
+                    "annual_hours needs, for each set of sub-sectors, one tier "
+                    f"without headcount_above and distinct sizes; got {sizes}"
+                )
+                raise ValueError(msg)
+        if () not in {h.subsectors for h in self.annual_hours}:
+            msg = "annual_hours needs the tiers of the employers of no sub-sector"
             raise ValueError(msg)
         return self
 
@@ -187,22 +199,24 @@ class PermitRules(BaseModel):
         """Return the yearly hours of a full-time worker of an employer.
 
         Returns:
-            The hours of the largest size ``headcount`` exceeds, else those
-            of the tier without a size, less those the full-time ``week``
+            Among the tiers of ``subsector`` (else those naming none), the
+            hours of the largest size ``headcount`` exceeds, else those of
+            the tier without a size, less those the full-time ``week``
             absorbs (the entries of the ``subsector`` when it has some),
             never below zero.
         """
+        tiers = [h for h in self.annual_hours if subsector in h.subsectors] or [
+            h for h in self.annual_hours if not h.subsectors
+        ]
         above = [
             h
-            for h in self.annual_hours
+            for h in tiers
             if h.headcount_above is not None and headcount > h.headcount_above
         ]
         if above:
             hours = max(above, key=lambda h: h.headcount_above or 0).hours
         else:
-            hours = next(
-                h.hours for h in self.annual_hours if h.headcount_above is None
-            )
+            hours = next(h.hours for h in tiers if h.headcount_above is None)
         same_week = [a for a in self.week_absorption if a.weekly_hours == week]
         chosen = [a for a in same_week if subsector in a.subsectors] or [
             a for a in same_week if not a.subsectors

@@ -3213,7 +3213,7 @@
       },
       {
         "kind": "simplification",
-        "text": "LEAVE, STABILIMENTI BALNEARI (Art. 111 c.2): 108 hours of reduction a year instead of 104. The engine accrues the 104 hours of alberghi, pubblici esercizi, campeggi, alberghi diurni and agenzie di viaggi.",
+        "text": "LEAVE, STABILIMENTI BALNEARI (Art. 111 c.2, p. 114): 108 hours of reduction a year instead of the 104 of alberghi, pubblici esercizi, campeggi, alberghi diurni and agenzie di viaggi, for an employer whose EmployerProfile.subsector is 'stabilimenti_balneari'.",
         "capability": "leave",
         "monetary_impact": "yes",
         "limitation": {
@@ -3221,7 +3221,8 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Add an employer fact for the comparto and accrue 108 hours for the stabilimenti balneari."
+          "remediation": "Resolved: rol annual_hours tier of 108 hours for the sub-sector stabilimenti_balneari, read on 2026-11-06.",
+          "status": "resolved"
         }
       },
       {
@@ -3245,7 +3246,7 @@
     "effective_until": null,
     "source": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
     "verification_status": "unverified",
-    "source_hash": "e284c56739a04bd5a00525ce458981e27d894cac1612921b649f495e90a3809f",
+    "source_hash": "16d782767963a030e0d23389f6db43d40f27df928a788ac160d9be9082ad8052",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3744,6 +3745,12 @@
           "annual_hours": [
             {
               "hours": "104"
+            },
+            {
+              "hours": "108",
+              "subsectors": [
+                "stabilimenti_balneari"
+              ]
             }
           ],
           "includes_ex_festivita": true,
@@ -3773,7 +3780,8 @@
               "verification_status": "verified",
               "review_id": "2026-10-19-ai-leave"
             },
-            "note": "One pool of 104 hours holding the 32 hours of the abolished festivities. The month fractions follow the cumulated rule of Art. 111 c.8, not modelled: a partial month accrues nothing and the balance is marked inexact. No new-hire ramp found in the 2010 text, the 2014 version and the 2024 ipotesi. Quote read on the OCR of the scan."
+            "note": "One pool of 104 hours holding the 32 hours of the abolished festivities. The month fractions follow the cumulated rule of Art. 111 c.8, not modelled: a partial month accrues nothing and the balance is marked inexact. No new-hire ramp found in the 2010 text, the 2014 version and the 2024 ipotesi. Quote read on the OCR of the scan.",
+            "transformation": "Art. 111 c.2: 108 hours for the stabilimenti balneari (EmployerProfile.subsector 'stabilimenti_balneari'), read on the OCR of p. 114 on 2026-11-06."
           }
         }
       ],

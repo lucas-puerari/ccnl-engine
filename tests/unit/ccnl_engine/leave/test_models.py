@@ -93,6 +93,26 @@ def test_permit_hours_by_employer_size() -> None:
     assert permit.hours_for(16) == Decimal(72)
 
 
+def test_permit_hours_by_subsector() -> None:
+    """Turismo Art. 111: 104 hours, 108 for the stabilimenti balneari."""
+    permit = _permit(
+        annual_hours=(
+            PermitHours(hours=Decimal(104)),
+            PermitHours(hours=Decimal(108), subsectors=("stabilimenti_balneari",)),
+            PermitHours(
+                hours=Decimal(110),
+                headcount_above=15,
+                subsectors=("stabilimenti_balneari",),
+            ),
+        )
+    )
+
+    assert permit.hours_for(10) == Decimal(104)
+    assert permit.hours_for(10, subsector="alberghi") == Decimal(104)
+    assert permit.hours_for(10, subsector="stabilimenti_balneari") == Decimal(108)
+    assert permit.hours_for(16, subsector="stabilimenti_balneari") == Decimal(110)
+
+
 @pytest.mark.parametrize(
     "kwargs",
     [
@@ -105,10 +125,21 @@ def test_permit_hours_by_employer_size() -> None:
                 PermitHours(hours=Decimal(2)),
             )
         },
+        {"annual_hours": (PermitHours(hours=Decimal(1), subsectors=("x",)),)},
+        {
+            "annual_hours": (
+                PermitHours(hours=Decimal(1)),
+                PermitHours(hours=Decimal(2), subsectors=("x",), headcount_above=5),
+            )
+        },
     ],
 )
 def test_invalid_permit_is_rejected(kwargs: dict[str, object]) -> None:
-    """Ferie, a pooled ex festività, no default size or two default sizes."""
+    """Ferie, a pooled ex festività, no default size or two default sizes.
+
+    Each set of sub-sectors needs its own tier without a size, and the
+    employers of no sub-sector need theirs.
+    """
     with pytest.raises(ValidationError):
         _permit(**kwargs)
 
