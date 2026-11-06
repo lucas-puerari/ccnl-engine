@@ -24,6 +24,7 @@ from typing import TYPE_CHECKING
 
 from ccnl_engine.absence.inputs import AbsenceEvent
 from ccnl_engine.absence.insured.extraordinary.inputs import ExtraordinaryLeaveEvent
+from ccnl_engine.employment.inputs import Permanent
 from ccnl_engine.leave.accrual.rules import AccrualFacts, accrue_month, month_service
 from ccnl_engine.leave.handlers import LeaveTerms
 from ccnl_engine.leave.inputs import LeaveTakenEvent
@@ -161,6 +162,8 @@ def _accrual_facts(ctx: RunContext) -> AccrualFacts:
         part_time_ratio=part_time_ratio(ctx),
         full_time_week=None if week is None else week.value,
         subsector=request.employer.subsector,
+        entry_pay=isinstance(request.contract_type, Permanent)
+        and request.contract_type.entry_pay,
     )
 
 
