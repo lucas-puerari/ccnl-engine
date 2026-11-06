@@ -652,9 +652,6 @@
       "agenzie-marittime-i481/apprentice_seniority",
       "agenzie-marittime-i481/function_allowance_on_fourteenth"
     ],
-    "agreement/agenzie-viaggio-fiavet.json": [
-      "agenzie-viaggio-fiavet/apprentice_seniority"
-    ],
     "agreement/alimentari-federalimentare.json": [
       "alimentari-federalimentare/edr_tfr_from_march_2024",
       "alimentari-federalimentare/first_level_apprentice_pay",
@@ -1253,7 +1250,6 @@
     ],
     "agreement/turismo-federalberghi-alberghi-minori.json": [
       "turismo-federalberghi-alberghi-minori/apprentice_net_cap",
-      "turismo-federalberghi-alberghi-minori/apprentice_seniority",
       "turismo-federalberghi-alberghi-minori/apprenticeship_durations_unsourced",
       "turismo-federalberghi-alberghi-minori/extra_months_during_leave",
       "turismo-federalberghi-alberghi-minori/extras_hourly_table",
@@ -1264,7 +1260,6 @@
     ],
     "agreement/turismo-federalberghi.json": [
       "turismo-federalberghi/apprentice_net_cap",
-      "turismo-federalberghi/apprentice_seniority",
       "turismo-federalberghi/apprenticeship_durations_unsourced",
       "turismo-federalberghi/extra_months_during_leave",
       "turismo-federalberghi/extras_hourly_table",
