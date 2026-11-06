@@ -39,9 +39,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | absence, base_salary, seniority |
+| **Limits of this contract** | absence, base_salary |
 
-3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -58,7 +58,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-12-06 |
-| **Last review** | 2026-11-05 |
+| **Last review** | 2026-11-06 |
 | **Latest salary tranche** | 2027-06-01 |
 
 ## Review history
@@ -75,6 +75,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-17 | claude-opus-5-5 (ai) | The INPS sector of the employers of the CCNL against the INPS classification manual, after the review 2026-10-16-ai-inps-composition left the class of the employer open. | corrected | The Manuale di classificazione dei datori di lavoro of INPS (May 2021, ATECO 2007) classifies the activities of this CCNL in two sectors: autotrasporto, traslochi, movimento merci and corrieri in the industria (CSC 11501, 11505, 11507), magazzini di custodia, spedizionieri, intermediari dei trasporti and servizi logistici in the terziario (CSC 70401). The file applied the industria to every employer.<br>Corrected: meta.inps_sectors lists industria and terziario; EmployerProfile.inps_sector states the sector of the employer and the run reads its INPS rates, sickness cover and every rule that follows the sector; a run without it reads the industria with a missing_fact inps_sector blocker.<br>INPS circ. 71/2025 adopted ATECO 2025 from 1 April 2025 and announced a new edition of the manual; that edition was not found: the classification above is the one of the 2021 edition. |
 | 2026-11-01 | claude-opus-5-5 (ai) | Hourly base of the time supplements (art. 13 c. 8, art. 61 c. 1) and the supplements of ordinary Sunday and holiday work (art. 12 c. 4), read in the text layer of the testo unico. AI review only: the same model extracted and checked the values. | corrected | hourly_base_method gross_incl_allowances (was minimo_tabellare), now verified: the retribuzione globale of art. 61 c. 1 divided by 168 (art. 13 c. 8), without the EDR of 2021; the engine derives the hourly rate of an event without one.<br>individual_elements included: art. 61 c. 1 punto 3 counts 'eventuali altri aumenti comunque denominati'.<br>The travelling staff take 50% on Sunday and holiday work (art. 12 c. 4): bands VIAG_DOMENICA and VIAG_FESTIVO. |
 | 2026-11-05 | claude-opus-5-5 (ai) | Artt. 51-52 (PDF pp. 64-65) of the Testo Unico of 25 September 2025, text layer. | corrected | Sanilog and Ebilog, owed for every worker of the CCNL, were not modelled: employer cost and worker share were short. |
+| 2026-11-06 | claude-opus-5-5 (ai) | Apprentice seniority: artt. 17 and 57 of the testo unico of 25 September 2025 (pp. 40-41, 73, 75). | corrected | Apprentices accrue the level increments in full: art. 17 c. 1 (pp. 40-41 of the testo unico of 25 September 2025) gives 'Ai lavoratori, per l'anzianità di servizio maturata presso la stessa azienda' a fixed amount of the level each biennio; art. 57 c. 7 (p. 73) counts the apprentice's probation 'agli effetti dell'anzianità di servizio'; cc. 8-9 and tables A-B (pp. 73, 75) apply the percentage to the 'minimo contrattuale' only. |
 
 ## Salary table
 
@@ -148,13 +149,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `absence` applies.
 
     **Remediation:** Exclude EDR_2021 from the daily base of absences and sickness (a relevance flag on the allowance), or source that it enters it.
-
-!!! warning "logistica-trasporto-confetra-viaggiante/apprentice_seniority · seniority · impact unknown · open"
-    APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.
-
-    **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
-
-    **Remediation:** Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
