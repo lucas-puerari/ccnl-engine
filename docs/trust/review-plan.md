@@ -13,7 +13,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | industria | 49 | 4 969 900 | 153 | 2154 | 1240 | 15 | `logistica-trasporto-confetra`, `metalmeccanico-federmeccanica` |
 | lavoro-domestico | 3 | 1 800 000 | 0 | 3 | 60 | 0 | `lavoro-domestico-non-convivente` |
 | artigianato | 8 | 1 244 505 | 34 | 256 | 158 | 2 | `metalmeccanico-artigianato` |
-| agricoltura | 9 | 752 860 | 12 | 177 | 131 | 5 | `operai-agricoli-florovivaisti` |
+| agricoltura | 9 | 752 860 | 12 | 164 | 170 | 5 | `operai-agricoli-florovivaisti` |
 | edilizia | 4 | 710 000 | 2 | 117 | 95 | 0 | `edilizia-ance` |
 | credito | 3 | 348 000 | 2 | 39 | 79 | 0 | `bancari-abi` |
 
@@ -172,7 +172,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | [`consorzi-di-bonifica-snebi`](../contracts/consorzi-di-bonifica-snebi.md) | 4 000 | exploratory | 2 | 55 | 5 | party or official | none | none |
 | [`contoterzismo-caiagromec`](../contracts/contoterzismo-caiagromec.md) | 4 000 | exploratory | 1 | 48 | 1 | party or official | none | none |
 | [`consorzi-agrari-assocap`](../contracts/consorzi-agrari-assocap.md) | 2 000 | exploratory | 1 | 21 | 34 | aggregator | none | none |
-| [`organizzazioni-allevatori-aia`](../contracts/organizzazioni-allevatori-aia.md) | 2 000 | exploratory | 1 | 20 | 1 | aggregator | none | none |
+| [`organizzazioni-allevatori-aia`](../contracts/organizzazioni-allevatori-aia.md) | 2 000 | exploratory | 1 | 7 | 40 | aggregator | none | none |
 | [`sistemazioni-idraulico-forestali-impiegati`](../contracts/sistemazioni-idraulico-forestali-impiegati.md) | 430 | exploratory | 2 | 6 | 22 | aggregator | none | none |
 | [`sistemazioni-idraulico-forestali-operai`](../contracts/sistemazioni-idraulico-forestali-operai.md) | 430 | exploratory | 2 | 5 | 16 | party or official | none | none |
 
