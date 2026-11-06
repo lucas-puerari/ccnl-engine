@@ -1290,11 +1290,7 @@
       "vigilanza-privata-assiv/apprentice_seniority",
       "vigilanza-privata-assiv/terziario_tax_sector_unverified"
     ],
-    "agreement/vigilanza-privata-federdat-gpg.json": [
-      "vigilanza-privata-federdat-gpg/apprentice_seniority"
-    ],
     "agreement/vigilanza-privata-federdat-sf.json": [
-      "vigilanza-privata-federdat-sf/apprentice_seniority",
       "vigilanza-privata-federdat-sf/health_and_bilateral_funds",
       "vigilanza-privata-federdat-sf/level_f_2023",
       "vigilanza-privata-federdat-sf/ordinary_hours_premiums"
