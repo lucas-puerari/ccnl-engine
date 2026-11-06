@@ -14,7 +14,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 0/135 CCNLs.** Bundle: 269 weak rules, 464 open limitations (464 with a monetary impact).
+**Complete: 0/136 CCNLs.** Bundle: 270 weak rules, 468 open limitations (468 with a monetary impact).
 
 ## Declared window
 
@@ -184,3 +184,4 @@ Future data, registered apart from the gaps: a contract whose validity ends insi
 | [vigilanza-privata-assiv](../contracts/vigilanza-privata-assiv.md) | `vigilanza` | exploratory | — | 23 rows | 23 open requirements; 1 weak rule; 20 monetary limitations; 20 non-native capabilities |
 | [vigilanza-privata-assiv-sf](../contracts/vigilanza-privata-assiv-sf.md) | `vigilanza` | exploratory | — | 25 rows | 25 open requirements; 3 weak rules; 20 monetary limitations; 20 non-native capabilities |
 | [vigilanza-privata-federdat-gpg](../contracts/vigilanza-privata-federdat-gpg.md) | `vigilanza` | exploratory | — | 24 rows | 24 open requirements; 2 weak rules; 19 monetary limitations; 1 outside_input limitation; 20 non-native capabilities |
+| [vigilanza-privata-federdat-sf](../contracts/vigilanza-privata-federdat-sf.md) | `vigilanza` | exploratory | — | 25 rows | 25 open requirements; 1 weak rule; 19 monetary limitations; 3 outside_input limitations; 21 non-native capabilities |
