@@ -467,6 +467,9 @@
       "accrual_rule": "missing",
       "additional_months[2023-06-01]": "assumed"
     },
+    "agreement/vigilanza-privata-federdat-sf.json": {
+      "accrual_rule": "missing"
+    },
     "contribution/2027/agricoltura.json": {
       "apprentice": "assumed",
       "inps": "assumed",
@@ -1322,6 +1325,12 @@
     "agreement/vigilanza-privata-federdat-gpg.json": [
       "vigilanza-privata-federdat-gpg/apprentice_seniority",
       "vigilanza-privata-federdat-gpg/leave_days_by_rota"
+    ],
+    "agreement/vigilanza-privata-federdat-sf.json": [
+      "vigilanza-privata-federdat-sf/apprentice_seniority",
+      "vigilanza-privata-federdat-sf/health_and_bilateral_funds",
+      "vigilanza-privata-federdat-sf/level_f_2023",
+      "vigilanza-privata-federdat-sf/ordinary_hours_premiums"
     ],
     "limitation/engine.json": [
       "apprenticeship_pct_undeclared_components",

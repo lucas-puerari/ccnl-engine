@@ -1,0 +1,1401 @@
+{
+  "schema_version": "0.6",
+  "meta": {
+    "ccnl_id": "vigilanza-privata-federdat-sf",
+    "cnel_code": "HV51",
+    "name": "CCNL Vigilanza Privata e Servizi Fiduciari FEDERDAT — SF",
+    "sector": "vigilanza privata — servizi fiduciari (SF)",
+    "family": {
+      "id": "vigilanza",
+      "reason": "Private security, fiduciary services section (FEDERDAT, CNEL HV51).",
+      "related": []
+    },
+    "tax_sector": "terziario",
+    "signatories": [
+      "FEDERDAT",
+      "CIU Unionquadri",
+      "FLAITS",
+      "CONSIL",
+      "CONFIAL"
+    ],
+    "agreement_date": "2026-07-09",
+    "sources": [
+      {
+        "document_id": "cnel-hv51-245848-ccnl-2026",
+        "title": "CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 9 luglio 2026 (archivio CNEL HV51, accordo 245848)",
+        "kind": "cnel",
+        "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+        "pages": [],
+        "published_on": "2026-07-09"
+      },
+      {
+        "document_id": "cnel-hv51-167336-ccnl-2023",
+        "title": "CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 4 maggio 2023 (archivio CNEL HV51, accordo 167336)",
+        "kind": "cnel",
+        "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/167336",
+        "pages": [],
+        "published_on": "2023-05-04"
+      }
+    ],
+    "extraction": {
+      "method": "ai",
+      "model": "claude-opus-5-5",
+      "extraction_timestamp": "2026-11-06",
+      "verification_status": "verified",
+      "effective_from": "2023-06-01"
+    }
+  },
+  "coverage": {
+    "notes": [
+      {
+        "kind": "info",
+        "text": "CCNL FEDERDAT (CNEL HV51), servizi fiduciari. Conglobated pay, 13 months, hourly divisor 173, daily 26 on six days and 22 on five (Employment.full_time_week_days). The CCNL of 4 May 2023 pays one table (art. 139) until the renewal of 9 July 2026, in force 'da luglio 2026' (art. 4: read as 1 July), whose art. 156 gives the amounts in force and those of December 2026."
+      },
+      {
+        "kind": "info",
+        "text": "APPRENTICESHIP (Art. 32, 2026 text): pay, classification and hours of the apprentice follow the CCNL 'in applicazione del principio di parità di trattamento': modelled as 100% of the level; three years at most (art. 33)."
+      },
+      {
+        "kind": "simplification",
+        "text": "LEVEL F: the 2023 table pays a level F (865.68 EUR, art. 139); the 2026 table has none. The file models the levels A-E.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "level_f_2023",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Add the level F of the 2023 table until the renewal of July 2026."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "ORDINARY SUNDAY AND HOLIDAY WORK (Art. 143): 40% by day, 50% by night, and the indennità sesto giorno of 10%, on ordinary hours, are not modelled; the overtime bands are.",
+        "capability": "overtime",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "ordinary_hours_premiums",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the premiums of art. 143 on ordinary Sunday, holiday and sixth-day work."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "HEALTH AND BILATERAL FUNDS: the ente bilaterale EBILAV and the health fund of the CCNL are not modelled; their amounts were not read on the text.",
+        "capability": "contractual_funds",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "health_and_bilateral_funds",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Read the fund articles of the 2026 text and model them as health_funds."
+        }
+      },
+      {
+        "kind": "info",
+        "text": "SICKNESS COMPORTO (Art. 105): the job is kept for 240 days of several illnesses in a calendar year, 300 of one; the file keeps the 180 paid days."
+      },
+      {
+        "kind": "simplification",
+        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
+        "capability": "seniority",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "apprentice_seniority",
+          "applies_when": {
+            "trigger": "path",
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
+        }
+      }
+    ]
+  },
+  "levels": [
+    {
+      "code": "E",
+      "order": 1,
+      "description": "Livello E (servizi fiduciari)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2023-06-01",
+            "valid_until": "2026-07-01",
+            "value": "952.26",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "cnel-hv51-167336-ccnl-2023",
+                  "title": "CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 4 maggio 2023 (archivio CNEL HV51, accordo 167336)",
+                  "kind": "cnel",
+                  "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/167336",
+                  "published_on": "2023-05-04",
+                  "sha256": "40f3628a8d1cf28cf73f4445dd4c8013027c8e68933569ea36ae50c50061cb14"
+                },
+                "page": "76",
+                "section": "Art. 139 - Paga tabellare conglobata",
+                "quote": "LIVELLO paga A 1.586,72 B 1.442,84 C 1.212,37 D 1.010,00 E 952,26 F 865,68"
+              },
+              "transformation": "Monthly paga base tabellare conglobata of the level, read on the page image of the CNEL scan.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-06T16:00:00Z",
+                "effective_from": "2023-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-06T16:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-06-ai-federdat-hv51"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2026-12-01",
+            "value": "1188.57",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "cnel-hv51-245848-ccnl-2026",
+                  "title": "CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 9 luglio 2026 (archivio CNEL HV51, accordo 245848)",
+                  "kind": "cnel",
+                  "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+                  "published_on": "2026-07-09",
+                  "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
+                },
+                "page": "76",
+                "section": "Art. 156 - Paga tabellare conglobata",
+                "quote": "LIVELLO In vigore Dicembre 2026 A 2.003,05 2.032,24 B 1.822,65 1.849,18 C 1.534,00 1.556,29 D 1.281,43 1.300,00 E 1.188,57 1.207,14"
+              },
+              "transformation": "Monthly paga base tabellare conglobata of the level, read on the page image of the CNEL scan.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-06T16:00:00Z",
+                "effective_from": "2026-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-06T16:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-06-ai-federdat-hv51"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-12-01",
+            "valid_until": null,
+            "value": "1207.14",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "cnel-hv51-245848-ccnl-2026",
+                  "title": "CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 9 luglio 2026 (archivio CNEL HV51, accordo 245848)",
+                  "kind": "cnel",
+                  "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+                  "published_on": "2026-07-09",
+                  "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
+                },
+                "page": "76",
+                "section": "Art. 156 - Paga tabellare conglobata",
+                "quote": "LIVELLO In vigore Dicembre 2026 A 2.003,05 2.032,24 B 1.822,65 1.849,18 C 1.534,00 1.556,29 D 1.281,43 1.300,00 E 1.188,57 1.207,14"
+              },
+              "transformation": "Monthly paga base tabellare conglobata of the level, read on the page image of the CNEL scan.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-06T16:00:00Z",
+                "effective_from": "2026-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-06T16:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-06-ai-federdat-hv51"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "cnel-hv51-245848-ccnl-2026",
+            "title": "CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 9 luglio 2026 (archivio CNEL HV51, accordo 245848)",
+            "kind": "cnel",
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+            "published_on": "2026-07-09",
+            "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
+          },
+          "page": "76",
+          "section": "Art. 156 - Paga tabellare conglobata",
+          "quote": "LIVELLO In vigore Dicembre 2026 A 2.003,05 2.032,24 B 1.822,65 1.849,18 C 1.534,00 1.556,29 D 1.281,43 1.300,00 E 1.188,57 1.207,14"
+        },
+        "transformation": "The levels A-E of the servizi fiduciari; the level F of the 2023 table is not in the 2026 one.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-06T16:00:00Z",
+          "effective_from": "2023-06-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-06T16:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-06-ai-federdat-hv51"
+        }
+      }
+    },
+    {
+      "code": "D",
+      "order": 2,
+      "description": "Livello D (servizi fiduciari)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2023-06-01",
+            "valid_until": "2026-07-01",
+            "value": "1010.00",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "cnel-hv51-167336-ccnl-2023",
+                  "title": "CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 4 maggio 2023 (archivio CNEL HV51, accordo 167336)",
+                  "kind": "cnel",
+                  "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/167336",
+                  "published_on": "2023-05-04",
+                  "sha256": "40f3628a8d1cf28cf73f4445dd4c8013027c8e68933569ea36ae50c50061cb14"
+                },
+                "page": "76",
+                "section": "Art. 139 - Paga tabellare conglobata",
+                "quote": "LIVELLO paga A 1.586,72 B 1.442,84 C 1.212,37 D 1.010,00 E 952,26 F 865,68"
+              },
+              "transformation": "Monthly paga base tabellare conglobata of the level, read on the page image of the CNEL scan.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-06T16:00:00Z",
+                "effective_from": "2023-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-06T16:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-06-ai-federdat-hv51"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2026-12-01",
+            "value": "1281.43",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "cnel-hv51-245848-ccnl-2026",
+                  "title": "CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 9 luglio 2026 (archivio CNEL HV51, accordo 245848)",
+                  "kind": "cnel",
+                  "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+                  "published_on": "2026-07-09",
+                  "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
+                },
+                "page": "76",
+                "section": "Art. 156 - Paga tabellare conglobata",
+                "quote": "LIVELLO In vigore Dicembre 2026 A 2.003,05 2.032,24 B 1.822,65 1.849,18 C 1.534,00 1.556,29 D 1.281,43 1.300,00 E 1.188,57 1.207,14"
+              },
+              "transformation": "Monthly paga base tabellare conglobata of the level, read on the page image of the CNEL scan.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-06T16:00:00Z",
+                "effective_from": "2026-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-06T16:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-06-ai-federdat-hv51"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-12-01",
+            "valid_until": null,
+            "value": "1300.00",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "cnel-hv51-245848-ccnl-2026",
+                  "title": "CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 9 luglio 2026 (archivio CNEL HV51, accordo 245848)",
+                  "kind": "cnel",
+                  "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+                  "published_on": "2026-07-09",
+                  "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
+                },
+                "page": "76",
+                "section": "Art. 156 - Paga tabellare conglobata",
+                "quote": "LIVELLO In vigore Dicembre 2026 A 2.003,05 2.032,24 B 1.822,65 1.849,18 C 1.534,00 1.556,29 D 1.281,43 1.300,00 E 1.188,57 1.207,14"
+              },
+              "transformation": "Monthly paga base tabellare conglobata of the level, read on the page image of the CNEL scan.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-06T16:00:00Z",
+                "effective_from": "2026-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-06T16:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-06-ai-federdat-hv51"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "cnel-hv51-245848-ccnl-2026",
+            "title": "CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 9 luglio 2026 (archivio CNEL HV51, accordo 245848)",
+            "kind": "cnel",
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+            "published_on": "2026-07-09",
+            "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
+          },
+          "page": "76",
+          "section": "Art. 156 - Paga tabellare conglobata",
+          "quote": "LIVELLO In vigore Dicembre 2026 A 2.003,05 2.032,24 B 1.822,65 1.849,18 C 1.534,00 1.556,29 D 1.281,43 1.300,00 E 1.188,57 1.207,14"
+        },
+        "transformation": "The levels A-E of the servizi fiduciari; the level F of the 2023 table is not in the 2026 one.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-06T16:00:00Z",
+          "effective_from": "2023-06-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-06T16:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-06-ai-federdat-hv51"
+        }
+      }
+    },
+    {
+      "code": "C",
+      "order": 3,
+      "description": "Livello C (servizi fiduciari)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2023-06-01",
+            "valid_until": "2026-07-01",
+            "value": "1212.37",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "cnel-hv51-167336-ccnl-2023",
+                  "title": "CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 4 maggio 2023 (archivio CNEL HV51, accordo 167336)",
+                  "kind": "cnel",
+                  "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/167336",
+                  "published_on": "2023-05-04",
+                  "sha256": "40f3628a8d1cf28cf73f4445dd4c8013027c8e68933569ea36ae50c50061cb14"
+                },
+                "page": "76",
+                "section": "Art. 139 - Paga tabellare conglobata",
+                "quote": "LIVELLO paga A 1.586,72 B 1.442,84 C 1.212,37 D 1.010,00 E 952,26 F 865,68"
+              },
+              "transformation": "Monthly paga base tabellare conglobata of the level, read on the page image of the CNEL scan.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-06T16:00:00Z",
+                "effective_from": "2023-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-06T16:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-06-ai-federdat-hv51"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2026-12-01",
+            "value": "1534.00",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "cnel-hv51-245848-ccnl-2026",
+                  "title": "CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 9 luglio 2026 (archivio CNEL HV51, accordo 245848)",
+                  "kind": "cnel",
+                  "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+                  "published_on": "2026-07-09",
+                  "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
+                },
+                "page": "76",
+                "section": "Art. 156 - Paga tabellare conglobata",
+                "quote": "LIVELLO In vigore Dicembre 2026 A 2.003,05 2.032,24 B 1.822,65 1.849,18 C 1.534,00 1.556,29 D 1.281,43 1.300,00 E 1.188,57 1.207,14"
+              },
+              "transformation": "Monthly paga base tabellare conglobata of the level, read on the page image of the CNEL scan.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-06T16:00:00Z",
+                "effective_from": "2026-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-06T16:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-06-ai-federdat-hv51"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-12-01",
+            "valid_until": null,
+            "value": "1556.29",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "cnel-hv51-245848-ccnl-2026",
+                  "title": "CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 9 luglio 2026 (archivio CNEL HV51, accordo 245848)",
+                  "kind": "cnel",
+                  "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+                  "published_on": "2026-07-09",
+                  "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
+                },
+                "page": "76",
+                "section": "Art. 156 - Paga tabellare conglobata",
+                "quote": "LIVELLO In vigore Dicembre 2026 A 2.003,05 2.032,24 B 1.822,65 1.849,18 C 1.534,00 1.556,29 D 1.281,43 1.300,00 E 1.188,57 1.207,14"
+              },
+              "transformation": "Monthly paga base tabellare conglobata of the level, read on the page image of the CNEL scan.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-06T16:00:00Z",
+                "effective_from": "2026-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-06T16:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-06-ai-federdat-hv51"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "cnel-hv51-245848-ccnl-2026",
+            "title": "CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 9 luglio 2026 (archivio CNEL HV51, accordo 245848)",
+            "kind": "cnel",
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+            "published_on": "2026-07-09",
+            "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
+          },
+          "page": "76",
+          "section": "Art. 156 - Paga tabellare conglobata",
+          "quote": "LIVELLO In vigore Dicembre 2026 A 2.003,05 2.032,24 B 1.822,65 1.849,18 C 1.534,00 1.556,29 D 1.281,43 1.300,00 E 1.188,57 1.207,14"
+        },
+        "transformation": "The levels A-E of the servizi fiduciari; the level F of the 2023 table is not in the 2026 one.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-06T16:00:00Z",
+          "effective_from": "2023-06-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-06T16:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-06-ai-federdat-hv51"
+        }
+      }
+    },
+    {
+      "code": "B",
+      "order": 4,
+      "description": "Livello B (servizi fiduciari)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2023-06-01",
+            "valid_until": "2026-07-01",
+            "value": "1442.84",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "cnel-hv51-167336-ccnl-2023",
+                  "title": "CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 4 maggio 2023 (archivio CNEL HV51, accordo 167336)",
+                  "kind": "cnel",
+                  "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/167336",
+                  "published_on": "2023-05-04",
+                  "sha256": "40f3628a8d1cf28cf73f4445dd4c8013027c8e68933569ea36ae50c50061cb14"
+                },
+                "page": "76",
+                "section": "Art. 139 - Paga tabellare conglobata",
+                "quote": "LIVELLO paga A 1.586,72 B 1.442,84 C 1.212,37 D 1.010,00 E 952,26 F 865,68"
+              },
+              "transformation": "Monthly paga base tabellare conglobata of the level, read on the page image of the CNEL scan.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-06T16:00:00Z",
+                "effective_from": "2023-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-06T16:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-06-ai-federdat-hv51"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2026-12-01",
+            "value": "1822.65",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "cnel-hv51-245848-ccnl-2026",
+                  "title": "CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 9 luglio 2026 (archivio CNEL HV51, accordo 245848)",
+                  "kind": "cnel",
+                  "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+                  "published_on": "2026-07-09",
+                  "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
+                },
+                "page": "76",
+                "section": "Art. 156 - Paga tabellare conglobata",
+                "quote": "LIVELLO In vigore Dicembre 2026 A 2.003,05 2.032,24 B 1.822,65 1.849,18 C 1.534,00 1.556,29 D 1.281,43 1.300,00 E 1.188,57 1.207,14"
+              },
+              "transformation": "Monthly paga base tabellare conglobata of the level, read on the page image of the CNEL scan.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-06T16:00:00Z",
+                "effective_from": "2026-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-06T16:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-06-ai-federdat-hv51"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-12-01",
+            "valid_until": null,
+            "value": "1849.18",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "cnel-hv51-245848-ccnl-2026",
+                  "title": "CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 9 luglio 2026 (archivio CNEL HV51, accordo 245848)",
+                  "kind": "cnel",
+                  "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+                  "published_on": "2026-07-09",
+                  "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
+                },
+                "page": "76",
+                "section": "Art. 156 - Paga tabellare conglobata",
+                "quote": "LIVELLO In vigore Dicembre 2026 A 2.003,05 2.032,24 B 1.822,65 1.849,18 C 1.534,00 1.556,29 D 1.281,43 1.300,00 E 1.188,57 1.207,14"
+              },
+              "transformation": "Monthly paga base tabellare conglobata of the level, read on the page image of the CNEL scan.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-06T16:00:00Z",
+                "effective_from": "2026-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-06T16:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-06-ai-federdat-hv51"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "cnel-hv51-245848-ccnl-2026",
+            "title": "CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 9 luglio 2026 (archivio CNEL HV51, accordo 245848)",
+            "kind": "cnel",
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+            "published_on": "2026-07-09",
+            "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
+          },
+          "page": "76",
+          "section": "Art. 156 - Paga tabellare conglobata",
+          "quote": "LIVELLO In vigore Dicembre 2026 A 2.003,05 2.032,24 B 1.822,65 1.849,18 C 1.534,00 1.556,29 D 1.281,43 1.300,00 E 1.188,57 1.207,14"
+        },
+        "transformation": "The levels A-E of the servizi fiduciari; the level F of the 2023 table is not in the 2026 one.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-06T16:00:00Z",
+          "effective_from": "2023-06-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-06T16:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-06-ai-federdat-hv51"
+        }
+      }
+    },
+    {
+      "code": "A",
+      "order": 5,
+      "description": "Livello A (servizi fiduciari)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2023-06-01",
+            "valid_until": "2026-07-01",
+            "value": "1586.72",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "cnel-hv51-167336-ccnl-2023",
+                  "title": "CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 4 maggio 2023 (archivio CNEL HV51, accordo 167336)",
+                  "kind": "cnel",
+                  "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/167336",
+                  "published_on": "2023-05-04",
+                  "sha256": "40f3628a8d1cf28cf73f4445dd4c8013027c8e68933569ea36ae50c50061cb14"
+                },
+                "page": "76",
+                "section": "Art. 139 - Paga tabellare conglobata",
+                "quote": "LIVELLO paga A 1.586,72 B 1.442,84 C 1.212,37 D 1.010,00 E 952,26 F 865,68"
+              },
+              "transformation": "Monthly paga base tabellare conglobata of the level, read on the page image of the CNEL scan.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-06T16:00:00Z",
+                "effective_from": "2023-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-06T16:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-06-ai-federdat-hv51"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2026-12-01",
+            "value": "2003.05",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "cnel-hv51-245848-ccnl-2026",
+                  "title": "CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 9 luglio 2026 (archivio CNEL HV51, accordo 245848)",
+                  "kind": "cnel",
+                  "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+                  "published_on": "2026-07-09",
+                  "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
+                },
+                "page": "76",
+                "section": "Art. 156 - Paga tabellare conglobata",
+                "quote": "LIVELLO In vigore Dicembre 2026 A 2.003,05 2.032,24 B 1.822,65 1.849,18 C 1.534,00 1.556,29 D 1.281,43 1.300,00 E 1.188,57 1.207,14"
+              },
+              "transformation": "Monthly paga base tabellare conglobata of the level, read on the page image of the CNEL scan.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-06T16:00:00Z",
+                "effective_from": "2026-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-06T16:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-06-ai-federdat-hv51"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-12-01",
+            "valid_until": null,
+            "value": "2032.24",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "cnel-hv51-245848-ccnl-2026",
+                  "title": "CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 9 luglio 2026 (archivio CNEL HV51, accordo 245848)",
+                  "kind": "cnel",
+                  "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+                  "published_on": "2026-07-09",
+                  "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
+                },
+                "page": "76",
+                "section": "Art. 156 - Paga tabellare conglobata",
+                "quote": "LIVELLO In vigore Dicembre 2026 A 2.003,05 2.032,24 B 1.822,65 1.849,18 C 1.534,00 1.556,29 D 1.281,43 1.300,00 E 1.188,57 1.207,14"
+              },
+              "transformation": "Monthly paga base tabellare conglobata of the level, read on the page image of the CNEL scan.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-06T16:00:00Z",
+                "effective_from": "2026-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-06T16:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-06-ai-federdat-hv51"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "cnel-hv51-245848-ccnl-2026",
+            "title": "CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 9 luglio 2026 (archivio CNEL HV51, accordo 245848)",
+            "kind": "cnel",
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+            "published_on": "2026-07-09",
+            "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
+          },
+          "page": "76",
+          "section": "Art. 156 - Paga tabellare conglobata",
+          "quote": "LIVELLO In vigore Dicembre 2026 A 2.003,05 2.032,24 B 1.822,65 1.849,18 C 1.534,00 1.556,29 D 1.281,43 1.300,00 E 1.188,57 1.207,14"
+        },
+        "transformation": "The levels A-E of the servizi fiduciari; the level F of the 2023 table is not in the 2026 one.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-06T16:00:00Z",
+          "effective_from": "2023-06-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-06T16:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-06-ai-federdat-hv51"
+        }
+      }
+    }
+  ],
+  "parameters": {
+    "additional_months": {
+      "periods": [
+        {
+          "valid_from": "2023-06-01",
+          "valid_until": null,
+          "value": "13",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "cnel-hv51-245848-ccnl-2026",
+                "title": "CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 9 luglio 2026 (archivio CNEL HV51, accordo 245848)",
+                "kind": "cnel",
+                "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+                "published_on": "2026-07-09",
+                "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
+              },
+              "page": "77",
+              "section": "Art. 158 - Mensilità supplementare (13ma)",
+              "quote": "Ogni anno, entro il 20 dicembre ai lavoratori deve essere corrisposto al lavoratore un importo pari ad una mensilità della normale retribuzione."
+            },
+            "transformation": "13 monthly payments; the servizi fiduciari have no fourteenth (art. 141 of the 2023 text is the same).",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-06T16:00:00Z",
+              "effective_from": "2023-06-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-06T16:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-06-ai-federdat-hv51"
+            }
+          }
+        }
+      ]
+    },
+    "hourly_divisor": {
+      "periods": [
+        {
+          "valid_from": "2023-06-01",
+          "valid_until": null,
+          "value": "173",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "cnel-hv51-245848-ccnl-2026",
+                "title": "CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 9 luglio 2026 (archivio CNEL HV51, accordo 245848)",
+                "kind": "cnel",
+                "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+                "published_on": "2026-07-09",
+                "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
+              },
+              "page": "76",
+              "section": "Art. 156 - Paga tabellare conglobata",
+              "quote": "L'importo della retribuzione oraria si ottiene dividendo l'importo della retribuzione mensile per il divisore convenzionale 173."
+            },
+            "transformation": "Hourly divisor 173 (art. 139 of the 2023 text is the same).",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-06T16:00:00Z",
+              "effective_from": "2023-06-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-06T16:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-06-ai-federdat-hv51"
+            }
+          }
+        }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 36,
+      "maximum_count": 6,
+      "amount_by_level": {
+        "A": {
+          "periods": [
+            {
+              "valid_from": "2023-06-01",
+              "valid_until": null,
+              "value": "21.00"
+            }
+          ]
+        },
+        "B": {
+          "periods": [
+            {
+              "valid_from": "2023-06-01",
+              "valid_until": null,
+              "value": "19.00"
+            }
+          ]
+        },
+        "C": {
+          "periods": [
+            {
+              "valid_from": "2023-06-01",
+              "valid_until": null,
+              "value": "17.00"
+            }
+          ]
+        },
+        "D": {
+          "periods": [
+            {
+              "valid_from": "2023-06-01",
+              "valid_until": null,
+              "value": "15.00"
+            }
+          ]
+        },
+        "E": {
+          "periods": [
+            {
+              "valid_from": "2023-06-01",
+              "valid_until": null,
+              "value": "0.00"
+            }
+          ]
+        }
+      },
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "cnel-hv51-245848-ccnl-2026",
+            "title": "CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 9 luglio 2026 (archivio CNEL HV51, accordo 245848)",
+            "kind": "cnel",
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+            "published_on": "2026-07-09",
+            "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
+          },
+          "page": "76",
+          "section": "Art. 157 - Scatti di anzianità",
+          "quote": "Per l'anzianità di servizio maturata presso la stessa azienda, spettano un numero di sei scatti triennali, per ciascun livello di inquadramento nelle seguenti misure: A 21 B 19 C 17 D 15 E 0"
+        },
+        "transformation": "Six increments, one every 36 months: A 21, B 19, C 17, D 15, E none (art. 140 of the 2023 text lists A-D with the same amounts).",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-06T16:00:00Z",
+          "effective_from": "2023-06-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-06T16:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-06-ai-federdat-hv51"
+        }
+      }
+    }
+  },
+  "apprenticeship": [
+    {
+      "type": "percentage",
+      "name": "professionalizzante",
+      "destination_levels": [
+        "E",
+        "D",
+        "C",
+        "B",
+        "A"
+      ],
+      "reference_level": null,
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": null,
+          "percentage": "1.00"
+        }
+      ]
+    }
+  ],
+  "ruleset": {
+    "id": "ccnl/vigilanza-privata-federdat-sf",
+    "version": "2026.1",
+    "effective_from": "2023-06-01",
+    "effective_until": null,
+    "source": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+    "verification_status": "unverified",
+    "source_hash": "3b685135c5ece07c0a16da9a4677522965ea938098af592497227f3b267d2817",
+    "published_at": "2026-11-06",
+    "source_type": "contracting_party"
+  },
+  "work_rules": {
+    "time_supplements": {
+      "hourly_base_method": "minimo_tabellare",
+      "overtime_bands": [
+        {
+          "code": "OT_DIURNO",
+          "description": "Straordinario diurno fino alla 48a ora",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-06-01",
+                "valid_until": null,
+                "value": "0.25"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "cnel-hv51-245848-ccnl-2026",
+                "title": "CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 9 luglio 2026 (archivio CNEL HV51, accordo 245848)",
+                "kind": "cnel",
+                "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+                "published_on": "2026-07-09",
+                "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
+              },
+              "page": "72",
+              "section": "Art. 143 - Lavoro straordinario e maggiorazioni",
+              "quote": "lavoro straordinario: diurno fino alla 48a ora 25%, dalla 49a ora 30% notturno 35% lavoro domenicale/festivo: diurno 40% notturno 50% lavoro straordinario domenicale/festivo: diurno 50% notturno 60%"
+            },
+            "transformation": "Straordinario diurno fino alla 48a ora: 0.25 (art. 126 of the 2023 text is the same).",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-06T16:00:00Z",
+              "effective_from": "2023-06-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-06T16:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-06-ai-federdat-hv51"
+            }
+          }
+        },
+        {
+          "code": "OT_DIURNO_OLTRE_48",
+          "description": "Straordinario diurno dalla 49a ora",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-06-01",
+                "valid_until": null,
+                "value": "0.30"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "cnel-hv51-245848-ccnl-2026",
+                "title": "CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 9 luglio 2026 (archivio CNEL HV51, accordo 245848)",
+                "kind": "cnel",
+                "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+                "published_on": "2026-07-09",
+                "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
+              },
+              "page": "72",
+              "section": "Art. 143 - Lavoro straordinario e maggiorazioni",
+              "quote": "lavoro straordinario: diurno fino alla 48a ora 25%, dalla 49a ora 30% notturno 35% lavoro domenicale/festivo: diurno 40% notturno 50% lavoro straordinario domenicale/festivo: diurno 50% notturno 60%"
+            },
+            "transformation": "Straordinario diurno dalla 49a ora: 0.30 (art. 126 of the 2023 text is the same).",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-06T16:00:00Z",
+              "effective_from": "2023-06-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-06T16:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-06-ai-federdat-hv51"
+            }
+          },
+          "hour_threshold_per_week": 48
+        },
+        {
+          "code": "OT_NOTTURNO",
+          "description": "Straordinario notturno",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-06-01",
+                "valid_until": null,
+                "value": "0.35"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "cnel-hv51-245848-ccnl-2026",
+                "title": "CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 9 luglio 2026 (archivio CNEL HV51, accordo 245848)",
+                "kind": "cnel",
+                "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+                "published_on": "2026-07-09",
+                "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
+              },
+              "page": "72",
+              "section": "Art. 143 - Lavoro straordinario e maggiorazioni",
+              "quote": "lavoro straordinario: diurno fino alla 48a ora 25%, dalla 49a ora 30% notturno 35% lavoro domenicale/festivo: diurno 40% notturno 50% lavoro straordinario domenicale/festivo: diurno 50% notturno 60%"
+            },
+            "transformation": "Straordinario notturno: 0.35 (art. 126 of the 2023 text is the same).",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-06T16:00:00Z",
+              "effective_from": "2023-06-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-06T16:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-06-ai-federdat-hv51"
+            }
+          }
+        },
+        {
+          "code": "OT_FESTIVO",
+          "description": "Straordinario domenicale/festivo diurno",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-06-01",
+                "valid_until": null,
+                "value": "0.50"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "holiday"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "cnel-hv51-245848-ccnl-2026",
+                "title": "CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 9 luglio 2026 (archivio CNEL HV51, accordo 245848)",
+                "kind": "cnel",
+                "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+                "published_on": "2026-07-09",
+                "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
+              },
+              "page": "72",
+              "section": "Art. 143 - Lavoro straordinario e maggiorazioni",
+              "quote": "lavoro straordinario: diurno fino alla 48a ora 25%, dalla 49a ora 30% notturno 35% lavoro domenicale/festivo: diurno 40% notturno 50% lavoro straordinario domenicale/festivo: diurno 50% notturno 60%"
+            },
+            "transformation": "Straordinario domenicale/festivo diurno: 0.50 (art. 126 of the 2023 text is the same).",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-06T16:00:00Z",
+              "effective_from": "2023-06-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-06T16:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-06-ai-federdat-hv51"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO_FESTIVO",
+          "description": "Straordinario domenicale/festivo notturno",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-06-01",
+                "valid_until": null,
+                "value": "0.60"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night_holiday"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "cnel-hv51-245848-ccnl-2026",
+                "title": "CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 9 luglio 2026 (archivio CNEL HV51, accordo 245848)",
+                "kind": "cnel",
+                "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+                "published_on": "2026-07-09",
+                "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
+              },
+              "page": "72",
+              "section": "Art. 143 - Lavoro straordinario e maggiorazioni",
+              "quote": "lavoro straordinario: diurno fino alla 48a ora 25%, dalla 49a ora 30% notturno 35% lavoro domenicale/festivo: diurno 40% notturno 50% lavoro straordinario domenicale/festivo: diurno 50% notturno 60%"
+            },
+            "transformation": "Straordinario domenicale/festivo notturno: 0.60 (art. 126 of the 2023 text is the same).",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-06T16:00:00Z",
+              "effective_from": "2023-06-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-06T16:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-06-ai-federdat-hv51"
+            }
+          }
+        }
+      ]
+    },
+    "absence_rules": {
+      "daily_divisor_method": "by_26",
+      "daily_hours": null,
+      "week_days_methods": [
+        {
+          "days": 5,
+          "method": "by_22",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "cnel-hv51-245848-ccnl-2026",
+                "title": "CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 9 luglio 2026 (archivio CNEL HV51, accordo 245848)",
+                "kind": "cnel",
+                "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+                "published_on": "2026-07-09",
+                "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
+              },
+              "page": "76",
+              "section": "Art. 156 - Paga tabellare conglobata",
+              "quote": "La quota giornaliera della retribuzione si ottiene: dividendo l'importo della retribuzione mensile per 26 (\"Servizi fiduciari\" con orario di lavoro distribuito su 6gg settimanali) dividendo l'importo della retribuzione mensile per 22 (\"Servizi fiduciari\" con orario di lavoro distribuito su 5gg settimanali)"
+            },
+            "transformation": "The daily quota of a five-day week is the monthly pay over 22.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-06T16:00:00Z",
+              "effective_from": "2023-06-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-06T16:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-06-ai-federdat-hv51"
+            }
+          }
+        }
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "cnel-hv51-245848-ccnl-2026",
+            "title": "CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 9 luglio 2026 (archivio CNEL HV51, accordo 245848)",
+            "kind": "cnel",
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+            "published_on": "2026-07-09",
+            "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
+          },
+          "page": "76",
+          "section": "Art. 156 - Paga tabellare conglobata",
+          "quote": "La quota giornaliera della retribuzione si ottiene: dividendo l'importo della retribuzione mensile per 26 (\"Servizi fiduciari\" con orario di lavoro distribuito su 6gg settimanali) dividendo l'importo della retribuzione mensile per 22 (\"Servizi fiduciari\" con orario di lavoro distribuito su 5gg settimanali)"
+        },
+        "transformation": "The daily quota of a six-day week is the monthly pay over 26; of a five-day week over 22 (Employment.full_time_week_days).",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-06T16:00:00Z",
+          "effective_from": "2023-06-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-06T16:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-06-ai-federdat-hv51"
+        }
+      }
+    },
+    "leave_rules": {
+      "default_annual_days": "26",
+      "week_days_annual_days": [
+        {
+          "days": 5,
+          "annual_days": "22",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "cnel-hv51-245848-ccnl-2026",
+                "title": "CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 9 luglio 2026 (archivio CNEL HV51, accordo 245848)",
+                "kind": "cnel",
+                "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+                "published_on": "2026-07-09",
+                "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
+              },
+              "page": "74",
+              "section": "Art. 151 - Ferie",
+              "quote": "Il lavoratore ha diritto ad un periodo di ferie di 22 giorni lavorativi per l'orario di lavoro articolato su 5 giorni settimanali e di 26 giorni lavorativi per l'orario di lavoro articolato su 6 giorni settimanali."
+            },
+            "transformation": "22 days on a five-day week (art. 134 of the 2023 text is the same).",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-06T16:00:00Z",
+              "effective_from": "2023-06-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-06T16:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-06-ai-federdat-hv51"
+            }
+          }
+        }
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "cnel-hv51-245848-ccnl-2026",
+            "title": "CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 9 luglio 2026 (archivio CNEL HV51, accordo 245848)",
+            "kind": "cnel",
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+            "published_on": "2026-07-09",
+            "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
+          },
+          "page": "74",
+          "section": "Art. 151 - Ferie",
+          "quote": "Il lavoratore ha diritto ad un periodo di ferie di 22 giorni lavorativi per l'orario di lavoro articolato su 5 giorni settimanali e di 26 giorni lavorativi per l'orario di lavoro articolato su 6 giorni settimanali."
+        },
+        "transformation": "26 days on a six-day week, 22 on a five-day week.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-06T16:00:00Z",
+          "effective_from": "2023-06-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-06T16:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-06-ai-federdat-hv51"
+        }
+      }
+    },
+    "sickness_rules": {
+      "carenza_integration_rate": "1",
+      "full_pay_integration_rate": "1",
+      "day_bands": [
+        {
+          "day_from": 4,
+          "day_until": 21,
+          "integration_rate": "0.75"
+        },
+        {
+          "day_from": 21,
+          "day_until": null,
+          "integration_rate": "1"
+        }
+      ],
+      "max_duration_days": 180,
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "cnel-hv51-245848-ccnl-2026",
+            "title": "CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 9 luglio 2026 (archivio CNEL HV51, accordo 245848)",
+            "kind": "cnel",
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+            "published_on": "2026-07-09",
+            "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
+          },
+          "page": "51",
+          "section": "Art. 101 - Malattia; Art. 103 - Trattamento economico di malattia",
+          "quote": "ha diritto alla normale retribuzione netta mensile per un periodo massimo di 180 giorni. [Art. 103] 100% (cento per cento) della retribuzione di fatto per i primi tre giorni (periodi di carenza); 75% (settantacinque per cento) della retribuzione di fatto dal 4° al 20° giorno; 100% (cento per cento) della retribuzione di fatto dal 21° giorno in poi."
+        },
+        "transformation": "The top-up reaches 100% for the three days of carenza, 75% for days 4-20, 100% from day 21, for 180 days (art. 86 of the 2023 text is the same).",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-06T16:00:00Z",
+          "effective_from": "2023-06-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-06T16:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-06-ai-federdat-hv51"
+        }
+      }
+    }
+  },
+  "verification": {
+    "reviews": [
+      {
+        "id": "2026-11-06-ai-federdat-hv51",
+        "date": "2026-11-06",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "FEDERDAT CCNL of 4 May 2023 (CNEL 167336) and of 9 July 2026 (CNEL 245848), servizi fiduciari: artt. 139-141/156-158 pay, seniority, 13th (pp. 76-77, page images), 126/143 overtime (p. 72), 134/151 ferie (p. 74), 86/103 sickness (p. 51), 32 apprenticeship.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+            "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
+          },
+          {
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/167336",
+            "sha256": "40f3628a8d1cf28cf73f4445dd4c8013027c8e68933569ea36ae50c50061cb14"
+          }
+        ],
+        "findings": [
+          "New file: the servizi fiduciari of the FEDERDAT CCNL had no ruleset (the old federdat-sf file held the HV17 tables, now vigilanza-privata-assiv-sf)."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "meta",
+          "levels.base_salary",
+          "parameters",
+          "work_rules"
+        ]
+      }
+    ]
+  }
+}
