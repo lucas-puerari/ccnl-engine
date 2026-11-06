@@ -490,7 +490,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/commercio-confcommercio",
       "ruleset_version": "2026.2",
-      "source_hash": "c9dd7200637110c27cdb127dc5ac87ac07175eda89ccb9ac630f1b2d3f7cfabb",
+      "source_hash": "9b00f8a83c5dd17c8bc273e4cd9f76169b7ffa6b80774e3f2a99aab31ccf5d0d",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/commercio-confcommercio.json.gz"
@@ -2023,7 +2023,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/studi-professionali-confprofessioni",
       "ruleset_version": "2026.2",
-      "source_hash": "37f5e5356e9e9da7d6f9bbc5d07f6afd83a6eb167e2d9ed1dec08f4f4c4353ba",
+      "source_hash": "5a2666b96bffa916e6667b45ccac648b8f04610e7e7ff22922ffb2754bf87eb3",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/studi-professionali-confprofessioni.json.gz"
@@ -2074,7 +2074,7 @@
       "valid_to": "2027-03-31",
       "ruleset_id": "ccnl/terziario-confesercenti",
       "ruleset_version": "2026.2",
-      "source_hash": "508d39e4583cd8e41abd17a8f99ef629a8339b3d4ff699b67bd402b86d3e2489",
+      "source_hash": "ca173ffd8ee1482e9e07942e129b3caf77b64b0fe49a887160d344734d367de9",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/terziario-confesercenti.json.gz"
@@ -2193,7 +2193,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/turismo-federalberghi-alberghi-minori",
       "ruleset_version": "2026.2",
-      "source_hash": "10b23edd04c8b7343fabf4f7609c3d3e8e18ec0b967b1ddc1e285060f8f51b8e",
+      "source_hash": "8991fa7a6790eed21efe6f27d113c427ba80beedb60683b3bdb8049c39ace94e",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/turismo-federalberghi-alberghi-minori.json.gz"
@@ -2210,7 +2210,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/turismo-federalberghi",
       "ruleset_version": "2026.2",
-      "source_hash": "16d782767963a030e0d23389f6db43d40f27df928a788ac160d9be9082ad8052",
+      "source_hash": "2ab400978fa248e0662cf115ea9d3d4419c9fe8ed4e363e6438c610359d761b4",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/turismo-federalberghi.json.gz"
@@ -2944,7 +2944,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "72871ad18ac4f57ffb912840eb926f72b31791a11fe4ca2026427d2eed72911d",
+      "source_hash": "fbb00f49051c949f2b260409e7b9e89dbd8508deedbd36896ab6a4645af8e489",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/commercio-confcommercio.json.gz",
@@ -4804,7 +4804,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "591c9b0fac9af5e5040f317b5c574b1f0451278dcdb29c7e205f5ab7e866c4d8",
+      "source_hash": "e7a232750e90a7f4f48b47a9f12815b262cca2474c9ac8ff36ef579af0735d95",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/terziario-confesercenti.json.gz",

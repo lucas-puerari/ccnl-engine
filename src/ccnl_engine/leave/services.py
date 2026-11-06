@@ -24,20 +24,29 @@ from typing import TYPE_CHECKING
 
 from ccnl_engine.absence.inputs import AbsenceEvent
 from ccnl_engine.absence.insured.extraordinary.inputs import ExtraordinaryLeaveEvent
+from ccnl_engine.decision.models import (
+    CalculationDecision,
+    CalculationIssue,
+    CalculationStatus,
+)
 from ccnl_engine.employment.inputs import Permanent
 from ccnl_engine.leave.accrual.rules import AccrualFacts, accrue_month, month_service
+from ccnl_engine.leave.balance.models import LeaveAccount
 from ccnl_engine.leave.handlers import LeaveTerms
 from ccnl_engine.leave.inputs import LeaveTakenEvent
-from ccnl_engine.leave.settlement.services import SettlementTerms, settle_leave
+from ccnl_engine.leave.settlement.models import (
+    PERMIT_DEADLINE,
+    LeaveSettlement,
+    SettlementTerms,
+)
+from ccnl_engine.leave.settlement.services import settle_leave
 from ccnl_engine.run.models import RunKind
 from ccnl_engine.seniority.services import seniority_months_at
 from ccnl_engine.working_time.overtime.policies import CCNLOvertimeBands
 
 if TYPE_CHECKING:
     from ccnl_engine.event.total.handlers import _EventTotals
-    from ccnl_engine.leave.balance.models import LeaveAccount
     from ccnl_engine.leave.models import LeaveRules
-    from ccnl_engine.leave.settlement.services import LeaveSettlement
     from ccnl_engine.ledger.models import LedgerEntry
     from ccnl_engine.pay_item.facade import PayItem
     from ccnl_engine.period.context.services import RunContext
@@ -200,6 +209,76 @@ def run_leave(ctx: RunContext) -> RunLeave:
         if isinstance(event, LeaveTakenEvent):
             account = account.taken(event.bucket, event.event_date.year, event.quantity)
     if not ctx.closes_employment:
-        return RunLeave(account)
+        deadline = _deadline_payout(ctx, account, terms)
+        if deadline is None:
+            return RunLeave(account)
+        return RunLeave(deadline.account, deadline)
     settlement = settle_leave(account, _settlement_terms(ctx, terms))
     return RunLeave(settlement.account, settlement)
+
+
+#: The employer's choice for the permits of a year left untaken is unknown.
+PERMIT_CARRYOVER_UNKNOWN = CalculationIssue(
+    code="permit_carryover_unknown",
+    message=(
+        "the CCNL pays the permits not taken within their year at its end or "
+        "at the deadline of the next year, at the employer's choice: state "
+        "EmployerProfile.permit_carryover; nothing is paid"
+    ),
+    status=CalculationStatus.PROVISIONAL,
+    fact="permit_carryover",
+    capability=PERMIT_DEADLINE,
+)
+
+
+def _deadline_payout(
+    ctx: RunContext, account: LeaveAccount, terms: LeaveTerms
+) -> LeaveSettlement | None:
+    """Pay the permits of a year left at the deadline the employer chose.
+
+    The residual of a year is paid with the December pay when the employer
+    pays at the end of the year, with the pay of the month of the deadline
+    of the next year when it carries them; the balances taken first are the
+    oldest, so what is left of the year is what lapses.
+
+    Returns:
+        The settlement of the lapsing balances on the regular run of the
+        deadline, a provisional decision paying nothing when the employer's
+        choice is unknown, ``None`` on any other run.
+    """
+    rules = terms.rules
+    deadline = None if rules is None else rules.permit_deadline
+    if deadline is None or ctx.run_kind is not RunKind.REGULAR:
+        return None
+    period = ctx.request.period_id
+    carry = ctx.request.employer.permit_carryover
+    if carry is None:
+        if period.month not in {12, deadline.carry_until_month}:
+            return None
+        return LeaveSettlement(
+            account=account,
+            decision=CalculationDecision(
+                capability=PERMIT_DEADLINE,
+                status=CalculationStatus.PROVISIONAL,
+                reason_code=PERMIT_CARRYOVER_UNKNOWN.code,
+                rule=f"{terms.ruleset}:work_rules.leave_rules.permit_deadline",
+                rule_version=terms.version,
+                source=None
+                if deadline.provenance is None
+                else deadline.provenance.location,
+            ),
+            issues=(PERMIT_CARRYOVER_UNKNOWN,),
+        )
+    if period.month != (deadline.carry_until_month if carry else 12):
+        return None
+    year = period.year - 1 if carry else period.year
+    lapsing = tuple(
+        b
+        for b in account.unsettled()
+        if b.bucket in deadline.buckets and b.year == year
+    )
+    base = replace(_settlement_terms(ctx, terms), deadline=deadline)
+    settlement = settle_leave(LeaveAccount(lapsing, account.known), base)
+    return replace(
+        settlement, account=account.with_balances(*settlement.account.balances)
+    )

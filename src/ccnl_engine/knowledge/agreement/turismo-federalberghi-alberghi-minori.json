@@ -2776,7 +2776,7 @@
     "effective_until": null,
     "source": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
     "verification_status": "unverified",
-    "source_hash": "10b23edd04c8b7343fabf4f7609c3d3e8e18ec0b967b1ddc1e285060f8f51b8e",
+    "source_hash": "8991fa7a6790eed21efe6f27d113c427ba80beedb60683b3bdb8049c39ace94e",
     "published_at": "2026-11-01",
     "source_type": "contracting_party"
   },
@@ -3343,6 +3343,39 @@
             "review_id": "2026-10-31-ai-leave-termination"
           },
           "transformation": "Ferie: residual days x monthly pay / 26. No clause on the end of the employment names a divisor: the daily pay of Art. 150, stated for every contractual purpose, is the pay of a day of ferie, and the 26 days of ferie are counted on a week of six days (Art. 129 c.1, p. 124), the week of the divisor. Permits: residual hours x monthly pay / 172, the hourly divisor of Art. 151 (p. 135) for a 40-hour week. Art. 111 c.7 (p. 114) pays the permits not taken by the deadline 'con la retribuzione in atto al momento della scadenza'; paying the residual hours at the end of the employment at that hourly pay is the reading adopted, as for Commercio, not a clause on termination. The 2014 version and the 2024 ipotesi read leave Artt. 150 and 151 unchanged."
+        }
+      },
+      "permit_deadline": {
+        "carry_until_month": 6,
+        "buckets": [
+          "rol"
+        ],
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-turismo-2010",
+              "title": "CCNL Turismo 20 febbraio 2010, testo firmato (UILTuCS)",
+              "kind": "associazione",
+              "url": "http://www.uiltucs.it/pdf/turismo/CCNL_Turismo_Confcommercio_2010.pdf",
+              "published_on": "2010-02-20",
+              "sha256": "47f71f5f3f9eb7975837a888f08f8694ca5b1d9e403c85226446c080b7e0f9e4"
+            },
+            "page": "114",
+            "section": "Art. 111 c. 7 - Riduzione dell'orario",
+            "quote": "I permessi non goduti entro l'anno di maturazione saranno pagati con la retribuzione in atto al momento della scadenza oppure potranno essere fruiti, con le medesime modalità sopra previste, entro e non oltre il 30 giugno dell'anno seguente."
+          },
+          "transformation": "The permits of a year not taken lapse and are paid at the employer's choice (EmployerProfile.permit_carryover): with the December pay, or carried and paid with the pay of month 6 of the next year for what is left; the hours are paid at the basis of the residual leave of the termination.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-06T13:00:00Z",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-06T13:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-06-ai-permit-deadline",
+            "effective_from": "2010-01-01"
+          }
         }
       }
     },

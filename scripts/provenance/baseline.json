@@ -749,7 +749,6 @@
     ],
     "agreement/commercio-confcommercio.json": [
       "commercio-confcommercio/apprentice_seniority",
-      "commercio-confcommercio/permit_deadline_payout",
       "commercio-confcommercio/profile_specific_apprenticeship",
       "commercio-confcommercio/sickness_net_basis"
     ],
@@ -1239,7 +1238,6 @@
     "agreement/terziario-confesercenti.json": [
       "terziario-confesercenti/apprentice_seniority",
       "terziario-confesercenti/apprentice_sickness",
-      "terziario-confesercenti/permit_deadline_payout",
       "terziario-confesercenti/provincial_third_elements",
       "terziario-confesercenti/sales_operators",
       "terziario-confesercenti/sickness_net_basis",

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from dataclasses import replace
 from datetime import date
 from decimal import Decimal
 from types import SimpleNamespace
@@ -18,10 +19,16 @@ from ccnl_engine.decision.models import (
 from ccnl_engine.event.total.handlers import _EventTotals
 from ccnl_engine.leave.balance.models import LeaveAccount, LeaveBalance
 from ccnl_engine.leave.handlers import LeaveTerms
-from ccnl_engine.leave.models import FerieAccrual, LeaveRules, LeaveTermination
+from ccnl_engine.leave.models import (
+    FerieAccrual,
+    LeaveRules,
+    LeaveTermination,
+    PermitDeadline,
+)
 from ccnl_engine.leave.permit.models import PermitHours, PermitRules
 from ccnl_engine.leave.services import RunLeave, part_time_ratio
-from ccnl_engine.leave.settlement.services import SettlementTerms, settle_leave
+from ccnl_engine.leave.settlement.models import SettlementTerms
+from ccnl_engine.leave.settlement.services import settle_leave
 from ccnl_engine.leave.types import LeaveBucket
 from ccnl_engine.pay_item.facade import CompetencePeriod
 from ccnl_engine.pay_item.loaders import load_policy_resolver
@@ -84,7 +91,11 @@ def test_residual_is_paid_and_settled() -> None:
     assert settlement.decision.status is CalculationStatus.FINAL
     assert settlement.decision.amount == Decimal("913.65")
     assert settlement.inps_base == settlement.tfr_base == settlement.irpef_base
+    assert settlement.inps_base == Decimal("913.65")
     assert settlement.account.unsettled() == ()
+    assert settlement.decision.capability == "termination_residual_leave"
+    assert settlement.decision.rule == "ccnl/x:work_rules.leave_rules.termination"
+    assert all("at termination" in str(i.source) for i in settlement.items)
     assert settlement.decision.inputs == {
         "ferie_residual": Decimal(140) / 12,
         "ex_festivita_residual": Decimal(128) / 12,
@@ -295,3 +306,21 @@ def test_a_permit_used_up_needs_no_hourly_basis() -> None:
     settlement = settle_leave(account, _terms(divisor=None))
 
     assert settlement.decision.reason_code == "residual_leave_paid"
+
+
+def test_a_deadline_payment_is_a_leave_decision() -> None:
+    """Paid at the deadline: the leave capability, rule and source of the clause."""
+    deadline = PermitDeadline(
+        carry_until_month=6,
+        buckets=(LeaveBucket.EX_FESTIVITA,),
+        provenance=load_ccnl(
+            "commercio-confcommercio"
+        ).work_rules.leave_rules.permit_deadline.provenance,  # type: ignore[union-attr]
+    )
+    terms = replace(_terms(), deadline=deadline)
+    settlement = settle_leave(_account(), terms)
+
+    assert settlement.decision.capability == "leave"
+    assert settlement.decision.rule == "ccnl/x:work_rules.leave_rules.permit_deadline"
+    assert settlement.decision.source == deadline.provenance.location  # type: ignore[union-attr]
+    assert all("at the deadline" in str(i.source) for i in settlement.items)
