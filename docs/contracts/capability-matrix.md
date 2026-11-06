@@ -1,6 +1,6 @@
 <!-- auto-generated; run: uv run python scripts/documentation/capability_matrix/generate.py -->
 
-<!-- generated: 2026-11-05 -->
+<!-- generated: 2026-11-06 -->
 
 # Capability Matrix
 
@@ -248,8 +248,8 @@ never grow.
 | 107 | [CCNL Trasporto Aereo — Gestori Aeroportuali](trasporto-aereo-assaeroporti.md) | ⚠️ | base_salary, sickness | 1 / 94 / 1 / 0 |
 | 108 | [CCNL Trasporto a Fune (Funivie Terrestri ed Aeree) - ANEF](funivie-anef.md) | ⚠️ | seniority | 2 / 47 / 1 / 1 |
 | 109 | [CCNL Turismo (Assoturismo-Confesercenti)](turismo-confesercenti.md) | ⚠️ | base_salary, seniority | 0 / 57 / 1 / 0 |
-| 110 | [CCNL Turismo — Federalberghi/Faita](turismo-federalberghi.md) | ⚠️ | base_salary, leave, seniority, sickness | 78 / 1 / 0 / 0 |
-| 111 | [CCNL Turismo — Federalberghi/Faita - Alberghi a una e due stelle e campeggi minori](turismo-federalberghi-alberghi-minori.md) | ⚠️ | base_salary, leave, seniority, sickness | 18 / 51 / 0 / 0 |
+| 110 | [CCNL Turismo — Federalberghi/Faita](turismo-federalberghi.md) | ⚠️ | base_salary, seniority, sickness | 78 / 1 / 0 / 0 |
+| 111 | [CCNL Turismo — Federalberghi/Faita - Alberghi a una e due stelle e campeggi minori](turismo-federalberghi-alberghi-minori.md) | ⚠️ | base_salary, seniority, sickness | 18 / 51 / 0 / 0 |
 | 112 | [CCNL Vetro (Industrie) — Settori Meccanizzati (Prime Lavorazioni)](vetro-meccanizzato-assovetro.md) | ⚠️ | base_salary, seniority | 0 / 0 / 35 / 1 |
 | 113 | [CCNL Vigilanza Privata e Servizi Fiduciari FEDERDAT — GPG](vigilanza-privata-federdat-gpg.md) | ⚠️ | seniority | 0 / 48 / 1 / 1 |
 | 114 | [CCNL Vigilanza Privata e Servizi Fiduciari FEDERDAT — SF](vigilanza-privata-federdat-sf.md) | ⚠️ | seniority | 0 / 46 / 2 / 1 |

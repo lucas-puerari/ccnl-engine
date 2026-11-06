@@ -27,6 +27,8 @@ from ccnl_engine.period.services import (
 )
 from ccnl_engine.run.types import PeriodId
 
+_ROMAN = {"terziario-confesercenti", "dmo-federdistribuzione"}
+
 
 def _permits(
     slug: str, week: int | None, subsector: str | None = None, headcount: int = 10
@@ -39,7 +41,7 @@ def _permits(
             period_id=PeriodId(year=2026, month=3),
             payment_date=date(2026, 3, 27),
             ccnl_id=slug,
-            level_code="4" if slug == "commercio-confcommercio" else "IV",
+            level_code="IV" if slug in _ROMAN else "4",
             opening_state=PeriodState.zero(),
             roles=frozenset(),
             employment_period=EmploymentPeriod(date(2020, 1, 1)),
@@ -95,3 +97,15 @@ def test_another_shop_of_a_firm_of_20_follows_art_133() -> None:
         LeaveBucket.ROL: Decimal(16),
         LeaveBucket.EX_FESTIVITA: Decimal(16),
     }
+
+
+@pytest.mark.parametrize(
+    ("subsector", "rol"), [(None, "104"), ("stabilimenti_balneari", "108")]
+)
+def test_the_stabilimenti_balneari_accrue_108_hours(
+    subsector: str | None, rol: str
+) -> None:
+    """Turismo art. 111: 104 hours of reduction, 108 for the balneari (c. 2)."""
+    accrued = _permits("turismo-federalberghi", None, subsector)
+
+    assert accrued[LeaveBucket.ROL] == Decimal(rol)

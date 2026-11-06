@@ -67,22 +67,6 @@
       }
     },
     {
-      "id": "balneari_reduction_hours",
-      "institute": "leave",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "LEAVE, STABILIMENTI BALNEARI (Art. 111 c.2): 108 hours of reduction a year instead of 104. The engine accrues the 104 hours of alberghi, pubblici esercizi, campeggi, alberghi diurni and agenzie di viaggi.",
-      "calculation": "ccnl/turismo-federalberghi:coverage.notes",
-      "state": "absent",
-      "remediation": "Add an employer fact for the comparto and accrue 108 hours for the stabilimenti balneari.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "turismo-federalberghi/balneari_reduction_hours"
-        ]
-      }
-    },
-    {
       "id": "disability_permit_tfr",
       "institute": "disability_permits",
       "variant": "all",

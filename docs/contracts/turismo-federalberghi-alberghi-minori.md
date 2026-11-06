@@ -32,7 +32,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, leave, seniority, sickness |
+| **Limits of this contract** | base_salary, seniority, sickness |
 
 10 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
@@ -177,12 +177,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Read a signed copy of the accord of 17 April 2012 and its 2014 amendment.
 
-!!! warning "turismo-federalberghi-alberghi-minori/balneari_reduction_hours · leave · impact yes · open"
-    LEAVE, STABILIMENTI BALNEARI (Art. 111 c.2): 108 hours of reduction a year instead of 104. The engine accrues the 104 hours of alberghi, pubblici esercizi, campeggi, alberghi diurni and agenzie di viaggi.
+!!! note "turismo-federalberghi-alberghi-minori/balneari_reduction_hours · leave · impact yes · resolved"
+    LEAVE, STABILIMENTI BALNEARI (Art. 111 c.2, p. 114): 108 hours of reduction a year instead of the 104 of alberghi, pubblici esercizi, campeggi, alberghi diurni and agenzie di viaggi, for an employer whose EmployerProfile.subsector is 'stabilimenti_balneari'.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Add an employer fact for the comparto and accrue 108 hours for the stabilimenti balneari.
+    **Remediation:** Resolved: rol annual_hours tier of 108 hours for the sub-sector stabilimenti_balneari, read on 2026-11-06.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

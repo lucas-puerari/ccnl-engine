@@ -1,5 +1,5 @@
 <!-- auto-generated -- run: uv run python scripts/documentation/coverage_matrix/generate.py -->
-<!-- generated: 2026-11-05 -->
+<!-- generated: 2026-11-06 -->
 
 # CCNL Coverage
 
@@ -226,8 +226,8 @@ on unverified sources, or be well sourced and not cleared for production.
 | 107 | I810 | [CCNL Trasporto Aereo — Gestori Aeroportuali](trasporto-aereo-assaeroporti.md) | trasporto aereo | ~40k | 2025 | ⚠️ | base_salary, sickness | 1 / 94 / 1 / 0 | 🧪 | 🤖 |
 | 108 | I911 | [CCNL Trasporto a Fune (Funivie Terrestri ed Aeree) - ANEF](funivie-anef.md) | Trasporto a fune | ~15k | 2025 | ⚠️ | seniority | 2 / 47 / 1 / 1 | 🧪 | 🤖 |
 | 109 | H058 | [CCNL Turismo (Assoturismo-Confesercenti)](turismo-confesercenti.md) | turismo — alberghi, campeggi, pubblici esercizi, agenzie di viaggi | — | 2024 | ⚠️ | base_salary, seniority | 0 / 57 / 1 / 0 | 🧪 | 🤖 |
-| 110 | H052 | [CCNL Turismo — Federalberghi/Faita](turismo-federalberghi.md) | Turismo | ~220k | 2024 | ⚠️ | base_salary, leave, seniority, sickness | 78 / 1 / 0 / 0 | 🏭 | 🤖✓ |
-| 111 | H052 | [CCNL Turismo — Federalberghi/Faita - Alberghi a una e due stelle e campeggi minori](turismo-federalberghi-alberghi-minori.md) | Turismo | ~220k | 2024 | ⚠️ | base_salary, leave, seniority, sickness | 18 / 51 / 0 / 0 | 🧪 | 🤖 |
+| 110 | H052 | [CCNL Turismo — Federalberghi/Faita](turismo-federalberghi.md) | Turismo | ~220k | 2024 | ⚠️ | base_salary, seniority, sickness | 78 / 1 / 0 / 0 | 🏭 | 🤖✓ |
+| 111 | H052 | [CCNL Turismo — Federalberghi/Faita - Alberghi a una e due stelle e campeggi minori](turismo-federalberghi-alberghi-minori.md) | Turismo | ~220k | 2024 | ⚠️ | base_salary, seniority, sickness | 18 / 51 / 0 / 0 | 🧪 | 🤖 |
 | 112 | B132 | [CCNL Vetro (Industrie) — Settori Meccanizzati (Prime Lavorazioni)](vetro-meccanizzato-assovetro.md) | vetro industria — settori meccanizzati | ~28k | 2026 | ⚠️ | base_salary, seniority | 0 / 0 / 35 / 1 | 🧪 | 🔍 |
 | 113 | HV17 | [CCNL Vigilanza Privata e Servizi Fiduciari FEDERDAT — GPG](vigilanza-privata-federdat-gpg.md) | vigilanza privata — guardie particolari giurate (GPG) | ~45k | 2023 | ⚠️ | seniority | 0 / 48 / 1 / 1 | 🧪 | 🤖 |
 | 114 | HV17 | [CCNL Vigilanza Privata e Servizi Fiduciari FEDERDAT — SF](vigilanza-privata-federdat-sf.md) | vigilanza privata — servizi fiduciari (SF) | ~40k | 2023 | ⚠️ | seniority | 0 / 46 / 2 / 1 | 🧪 | 🤖 |
