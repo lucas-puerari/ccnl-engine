@@ -145,22 +145,6 @@
       },
       {
         "kind": "simplification",
-        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
-        "capability": "seniority",
-        "monetary_impact": "unknown",
-        "limitation": {
-          "variant": "apprentice_seniority",
-          "applies_when": {
-            "trigger": "path",
-            "contract_types": [
-              "apprentice"
-            ]
-          },
-          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
-        }
-      },
-      {
-        "kind": "simplification",
         "text": "INPS RATES: the employer and worker INPS rates of the sector (credito) are totals no 2026 INPS or association table confirms: the only component split found is the INPS guide of 2012 and the 2026 totals come from a software house page that does not prove its year. The contributions of every run rest on them.",
         "capability": "inps_employer",
         "monetary_impact": "unknown",
@@ -361,7 +345,8 @@
           "verification_status": "unverified",
           "effective_from": "2020-01-01"
         }
-      }
+      },
+      "apprentice_level_amount": true
     },
     "solidarity_fund": {
       "code": "FONDO_SOLIDARIETA_ASSICURATIVO",
@@ -1217,7 +1202,7 @@
     "effective_until": null,
     "source": "https://www.first-cisl.it/",
     "verification_status": "unverified",
-    "source_hash": "66eb3e0029392cad21f3c6efda9ea2105f51c93b4192dc161f8c994e959cb5eb",
+    "source_hash": "1d40470d1b1c465146597c866999873733c785fa0af2b6e37753f12858b374d3",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1407,5 +1392,30 @@
         }
       }
     }
+  },
+  "verification": {
+    "reviews": [
+      {
+        "id": "2026-11-06-ai-assicurazioni-ania-apprentice-seniority",
+        "date": "2026-11-06",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Apprentice seniority: art. 113 (p. 81) and Allegato 18 cap. 3 artt. 5, 8 and 9 (pp. 250, 253, OCR) of the CCNL of 22 February 2017.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.firstcisl.it/assicurazioni/wp-content/uploads/sites/5/2017/09/2017-02-22-CCNL-ANIA.pdf",
+            "sha256": "e159cd123920f8b02cf26e41920e2d475860df4a5566f11dfcd72999eba57b9c"
+          }
+        ],
+        "findings": [
+          "The apprentice is classified up to two levels below, then one; the period 'è computato integralmente nella maturazione dell'anzianità e degli automatismi' (art. 8), the general CCNL applies to what the accordo does not settle (art. 9) and art. 113 counts the seniority of the scatto from the hire month: the increments of the level the apprentice is paid at."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "parameters.seniority_increments"
+        ]
+      }
+    ]
   }
 }
