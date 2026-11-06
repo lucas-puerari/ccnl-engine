@@ -3,22 +3,6 @@
   "ccnl_id": "portieri-fabbricati-confedilizia",
   "requirements": [
     {
-      "id": "apprenticeship_24_month_profiles",
-      "institute": "base_salary",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "APPRENTICESHIP: percentage type per Art. 35-36 of the 2025 renewal. Art. 36 comma 6: 80% months 1-12, 85% months 13-24, 90% months 25-36. Two tracks exist: 36 months (B1, C3) and 24 months (B2, B4, C4, D1, D3). SIMPLIFICATION: all seven destinations use the single 36-month schedule; the five 24-month profiles are over-modelled by 12 months — an apprentice in those profiles is paid 90% during months 25-36 instead of 100%. Impact: slight under-payment for 1 year for 5 destination levels. B3, B5, D2, D4 have no CCNL apprenticeship provision; excluded from destination_levels.",
-      "calculation": "ccnl/portieri-fabbricati-confedilizia:coverage.notes",
-      "state": "absent",
-      "remediation": "Add a professionalizzante_24 track (80% months 1-12, 85% months 13-24, 100% after) for B2, B4, C4, D1, D3 and keep professionalizzante_36 for B1 and C3; until then add a limitation for apprentices of these levels.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "portieri-fabbricati-confedilizia/apprenticeship_24_month_profiles"
-        ]
-      }
-    },
-    {
       "id": "arrears_unused_deductions",
       "institute": "contract_renewal_arrears",
       "variant": "all",

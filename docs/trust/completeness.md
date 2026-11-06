@@ -14,7 +14,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 0/136 CCNLs.** Bundle: 270 weak rules, 454 open limitations (454 with a monetary impact).
+**Complete: 0/136 CCNLs.** Bundle: 270 weak rules, 453 open limitations (453 with a monetary impact).
 
 ## Declared window
 
@@ -148,7 +148,7 @@ Future data, registered apart from the gaps: a contract whose validity ends insi
 | [panificazione-artigianato-confartigianato](../contracts/panificazione-artigianato-confartigianato.md) | `alimentare` | exploratory | — | 26 rows | 26 open requirements; 23 monetary limitations; 1 outside_input limitation; 21 non-native capabilities |
 | [panificazione-assipan](../contracts/panificazione-assipan.md) | `alimentare` | exploratory | 2026-12-31 | 22 rows | 22 open requirements; 1 weak rule; 19 monetary limitations; 19 non-native capabilities |
 | [pelli-cuoio-industria-assopellettieri](../contracts/pelli-cuoio-industria-assopellettieri.md) | `pelli-calzature` | exploratory | — | 22 rows | 22 open requirements; 2 weak rules; 18 monetary limitations; 19 non-native capabilities |
-| [portieri-fabbricati-confedilizia](../contracts/portieri-fabbricati-confedilizia.md) | `servizi-immobiliari` | exploratory | — | 24 rows | 24 open requirements; 1 weak rule; 20 monetary limitations; 1 outside_input limitation; 19 non-native capabilities |
+| [portieri-fabbricati-confedilizia](../contracts/portieri-fabbricati-confedilizia.md) | `servizi-immobiliari` | exploratory | — | 23 rows | 23 open requirements; 1 weak rule; 19 monetary limitations; 1 outside_input limitation; 19 non-native capabilities |
 | [poste-italiane-k700](../contracts/poste-italiane-k700.md) | `servizi-postali` | exploratory | — | 25 rows | 25 open requirements; 1 weak rule; 20 monetary limitations; 2 outside_input limitations; 22 non-native capabilities |
 | [pubblici-esercizi-fipe-angem](../contracts/pubblici-esercizi-fipe-angem.md) | `turismo` | production | — | 26 rows | 26 open requirements; 18 monetary limitations; 6 outside_input limitations; 22 non-native capabilities |
 | [pubblici-esercizi-fipe-angem-ristorazione-collettiva](../contracts/pubblici-esercizi-fipe-angem-ristorazione-collettiva.md) | `turismo` | production | — | 22 rows | 22 open requirements; 18 monetary limitations; 2 outside_input limitations; 20 non-native capabilities |
