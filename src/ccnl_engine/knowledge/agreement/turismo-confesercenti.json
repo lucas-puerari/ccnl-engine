@@ -95,22 +95,6 @@
         }
       },
       {
-        "kind": "simplification",
-        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
-        "capability": "seniority",
-        "monetary_impact": "unknown",
-        "limitation": {
-          "variant": "apprentice_seniority",
-          "applies_when": {
-            "trigger": "path",
-            "contract_types": [
-              "apprentice"
-            ]
-          },
-          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
-        }
-      },
-      {
         "kind": "info",
         "text": "TRATTAMENTO INTEGRATIVO SPECIALE (L. 199/2025 art. 1 cc. 18-21): for the work of 1 January - 30 September 2026 of a worker who asked for it (PriorYearTaxFacts.special_supplement_requested) with 2025 employment income up to 40,000 EUR, in an employer of food service, tourism or thermal establishments (EmployerProfile.activity), the engine pays 15% of the gross pay of the night hours and of the holiday overtime (AdE circ. 26/E/2023 par. 2: 'calcolata sulla retribuzione lorda'), outside income, as a credit the employer recovers in F24 (capability special_supplement)."
       }
@@ -252,7 +236,9 @@
           "verification_status": "unverified",
           "effective_from": "2020-01-01"
         }
-      }
+      },
+      "apprentice_level_amount": true,
+      "apprentice_pct_scaled": true
     },
     "accrual_rule": {
       "comparison": "working_days_26",
@@ -1746,7 +1732,7 @@
     "effective_until": null,
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=257",
     "verification_status": "unverified",
-    "source_hash": "e33e00b6f0fa5d0040a6790819edaad223c418e1ff3bd21874336556aac11cf0",
+    "source_hash": "1cace94387faad9ff85e24c99a117257a5606774ce318e74b65146f7aec64fce",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -2016,5 +2002,34 @@
         }
       }
     }
+  },
+  "verification": {
+    "reviews": [
+      {
+        "id": "2026-11-06-ai-turismo-confesercenti-apprentice-seniority",
+        "date": "2026-11-06",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Apprentice seniority: art. 58 c. 1 of the accordo of 18 July 2018 (CNEL 90033, p. 116, OCR); the definition of the retribuzione read in the unified CCNL Turismo of 22 July 2003 (art. 140 c. 1 d) and its Federalberghi successor of 20 February 2010 (art. 148 c. 1 d).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/90033",
+            "sha256": "58c26b5cf30bd09349b5b53e10e7fe8eeffea2310f52ed782aa1632d5f5c5f3c"
+          },
+          {
+            "url": "http://www.uiltucs.it/pdf/turismo/CCNL_Turismo_Confcommercio_2010.pdf",
+            "sha256": "47f71f5f3f9eb7975837a888f08f8694ca5b1d9e403c85226446c080b7e0f9e4"
+          }
+        ],
+        "findings": [
+          "The apprentice is paid a percentage of 'la normale retribuzione dei lavoratori qualificati di pari livello' (art. 58); the retribuzione 'è distinta nelle seguenti voci [...] eventuali scatti di anzianità' in the 2003 parent text, a clause the Federalberghi successor keeps; 'A tutto il personale verranno riconosciuti sei scatti' for uninterrupted service: the level increments, scaled by the percentage. The Confesercenti 2010 text itself was not read."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "parameters.seniority_increments"
+        ]
+      }
+    ]
   }
 }
