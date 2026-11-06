@@ -13,7 +13,12 @@ from decimal import Decimal
 import pytest
 from pydantic import ValidationError
 
-from ccnl_engine.leave.models import FerieAccrual, LeaveEntitlementTier, LeaveRules
+from ccnl_engine.leave.models import (
+    FerieAccrual,
+    LeaveEntitlementTier,
+    LeaveRules,
+    PermitDeadline,
+)
 from ccnl_engine.leave.permit.models import (
     NewHireRamp,
     PermitHours,
@@ -93,6 +98,26 @@ def test_permit_hours_by_employer_size() -> None:
     assert permit.hours_for(16) == Decimal(72)
 
 
+def test_permit_hours_by_subsector() -> None:
+    """Turismo Art. 111: 104 hours, 108 for the stabilimenti balneari."""
+    permit = _permit(
+        annual_hours=(
+            PermitHours(hours=Decimal(104)),
+            PermitHours(hours=Decimal(108), subsectors=("stabilimenti_balneari",)),
+            PermitHours(
+                hours=Decimal(110),
+                headcount_above=15,
+                subsectors=("stabilimenti_balneari",),
+            ),
+        )
+    )
+
+    assert permit.hours_for(10) == Decimal(104)
+    assert permit.hours_for(10, subsector="alberghi") == Decimal(104)
+    assert permit.hours_for(10, subsector="stabilimenti_balneari") == Decimal(108)
+    assert permit.hours_for(16, subsector="stabilimenti_balneari") == Decimal(110)
+
+
 @pytest.mark.parametrize(
     "kwargs",
     [
@@ -105,10 +130,21 @@ def test_permit_hours_by_employer_size() -> None:
                 PermitHours(hours=Decimal(2)),
             )
         },
+        {"annual_hours": (PermitHours(hours=Decimal(1), subsectors=("x",)),)},
+        {
+            "annual_hours": (
+                PermitHours(hours=Decimal(1)),
+                PermitHours(hours=Decimal(2), subsectors=("x",), headcount_above=5),
+            )
+        },
     ],
 )
 def test_invalid_permit_is_rejected(kwargs: dict[str, object]) -> None:
-    """Ferie, a pooled ex festività, no default size or two default sizes."""
+    """Ferie, a pooled ex festività, no default size or two default sizes.
+
+    Each set of sub-sectors needs its own tier without a size, and the
+    employers of no sub-sector need theirs.
+    """
     with pytest.raises(ValidationError):
         _permit(**kwargs)
 
@@ -185,3 +221,25 @@ def test_buckets_and_seniority_dependence() -> None:
 def test_bucket_units() -> None:
     """Ferie are counted in days, the permits in hours."""
     assert [b.unit for b in LeaveBucket] == ["days", "hours", "hours"]
+
+
+def test_a_permit_deadline_names_buckets_with_permits() -> None:
+    """A deadline of a bucket the CCNL accrues no permit of is rejected."""
+    rules = LeaveRules(
+        default_annual_days=Decimal(26),
+        permits=(
+            PermitRules(
+                bucket=LeaveBucket.ROL, annual_hours=(PermitHours(hours=Decimal(56)),)
+            ),
+        ),
+        permit_deadline=PermitDeadline(carry_until_month=6, buckets=(LeaveBucket.ROL,)),
+    )
+    assert rules.permit_deadline is not None
+    with pytest.raises(ValidationError, match="permit_deadline"):
+        rules.model_validate({
+            **rules.model_dump(),
+            "permit_deadline": {
+                "carry_until_month": 6,
+                "buckets": [LeaveBucket.EX_FESTIVITA],
+            },
+        })

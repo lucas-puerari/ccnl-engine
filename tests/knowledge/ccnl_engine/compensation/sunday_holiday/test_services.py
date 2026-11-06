@@ -39,13 +39,14 @@ from ccnl_engine.run.types import PeriodId
 if TYPE_CHECKING:
     from ccnl_engine.period.results import PeriodResult
 
-_METAL = ("metalmeccanico-federmeccanica", "C3")
+#: A CCNL without a Sunday-holiday clause, absences by 26.
+_ANAS = ("anas", "C1")
 _CHIMICA = ("chimica-farmaceutica-federchimica", "D1")
 _CONCIA = ("concia-unic", "D2")
 _ALIMENTARI = ("alimentari-federalimentare", "3")
-_EDILIZIA_IMPIEGATI = ("edilizia-ance-impiegati", "1")
-#: Metalmeccanico C3 from 1 June 2026: the minimo, with no other element.
-_METAL_MONTHLY = Decimal("2211.43")
+_EDILIZIA_OPERAI = ("edilizia-ance", "1")
+#: ANAS C1 in April 2027: the monthly pay of the chain.
+_ANAS_MONTHLY = Decimal("1926.71")
 #: Chimica D1 from 1 July 2026: minimo and IPO.
 _CHIMICA_MONTHLY = Decimal("2420.26")
 _COMMERCIO = ("commercio-confcommercio", "4")
@@ -102,8 +103,8 @@ def _quota(result: PeriodResult) -> Decimal:
 
 def test_the_statutory_holiday_pays_a_daily_quota() -> None:
     """25 April 2027 pays the monthly pay over the CCNL divisor of 26."""
-    result = _run(_METAL, 2027, 4)
-    quota = (_METAL_MONTHLY / 26).quantize(Decimal("0.01"))
+    result = _run(_ANAS, 2027, 4)
+    quota = (_ANAS_MONTHLY / 26).quantize(Decimal("0.01"))
 
     assert _decisions(result) == [("statutory", quota)]
     assert _quota(result) == quota
@@ -112,7 +113,7 @@ def test_the_statutory_holiday_pays_a_daily_quota() -> None:
     assert dict(decision.inputs) == {
         "days": "2027-04-25",
         "divisor": Decimal(26),
-        "monthly": _METAL_MONTHLY,
+        "monthly": _ANAS_MONTHLY,
     }
     assert (decision.rule, decision.rule_version) == (
         "law/sunday-holiday:l260-1949-art5",
@@ -203,11 +204,12 @@ def test_the_ccnl_clause_pays_its_own_holidays() -> None:
         (_CHIMICA, 2026, 10, "2026-10-04"),
         # No clause: 1 November is not a holiday of L. 260/1949 art. 5, nor
         # 4 November, on the same first Sunday of November.
-        (_METAL, 2026, 11, "2026-11-01,2026-11-01"),
+        (_ANAS, 2026, 11, "2026-11-01,2026-11-01"),
         # 4 November alone, on the first Sunday of November 2027.
-        (_METAL, 2027, 11, "2027-11-07"),
-        # The statutory holiday, without a daily divisor the engine applies.
-        (_EDILIZIA_IMPIEGATI, 2027, 4, "2027-04-25"),
+        (_ANAS, 2027, 11, "2027-11-07"),
+        # The statutory holiday of an hourly-paid worker, without a daily
+        # divisor the engine applies.
+        (_EDILIZIA_OPERAI, 2027, 4, "2027-04-25"),
     ],
     ids=["recent-holiday", "no-clause", "november-fourth", "no-divisor"],
 )
@@ -226,7 +228,7 @@ def test_an_unsourced_holiday_records_the_limitation(
 
 def test_a_public_employment_is_not_paid() -> None:
     """The treatment of a public employment is not sourced."""
-    result = _run(_METAL, 2027, 4, sector=EmploymentSector.PUBLIC)
+    result = _run(_ANAS, 2027, 4, sector=EmploymentSector.PUBLIC)
 
     assert _decisions(result) == [("not_paid", Decimal(0))]
     assert _limited(result)
@@ -244,7 +246,7 @@ def test_a_holiday_outside_the_employment_is_ignored(
     employment_period: EmploymentPeriod,
 ) -> None:
     """A Sunday holiday before the hire or after the end adds nothing."""
-    result = _run(_METAL, 2027, 4, employment_period=employment_period)
+    result = _run(_ANAS, 2027, 4, employment_period=employment_period)
 
     assert _decisions(result) == []
     assert not _limited(result)
@@ -262,7 +264,7 @@ def test_a_holiday_within_the_employment_is_paid(
     employment_period: EmploymentPeriod,
 ) -> None:
     """An employment covering the day, starting or ending on it, is paid."""
-    result = _run(_METAL, 2027, 4, employment_period=employment_period)
+    result = _run(_ANAS, 2027, 4, employment_period=employment_period)
 
     assert [reason for reason, _ in _decisions(result)] == ["statutory"]
 
@@ -323,7 +325,7 @@ def test_the_divisor_follows_the_absence_method(
     method: DailyDivisorMethod, divisor: Decimal | None
 ) -> None:
     """Without a clause divisor, the CCNL absence divisor applies."""
-    rules = load_ccnl("metalmeccanico-federmeccanica").work_rules
+    rules = load_ccnl("anas").work_rules
     assert rules is not None
     assert rules.absence_rules is not None
     absence = rules.absence_rules.model_copy(update={"daily_divisor_method": method})
@@ -333,7 +335,7 @@ def test_the_divisor_follows_the_absence_method(
 
 def test_the_divisor_defaults_to_26() -> None:
     """Without work rules or absence rules, the industria divisor of 26."""
-    rules = load_ccnl("metalmeccanico-federmeccanica").work_rules
+    rules = load_ccnl("anas").work_rules
     assert rules is not None
 
     assert _divisor(None) == 26
@@ -447,3 +449,46 @@ def test_a_public_employment_has_no_ex_holiday() -> None:
     result = _run(_CHIMICA, 2026, 8, sector=EmploymentSector.PUBLIC)
 
     assert _decisions(result) == []
+
+
+_CINEMA = ("cinema-audiovisivi-industria", "3")
+
+
+def test_easter_sunday_is_paid_where_the_clause_lists_it() -> None:
+    """Cinema art. 28 lists "Pasqua": Sunday 28 March 2027, at 1/26."""
+    result = _run(_CINEMA, 2027, 3)
+    (decision,) = (d for d in result.decisions if d.capability == CAPABILITY)
+
+    assert decision.reason_code == "ccnl_clause"
+    assert decision.inputs["days"] == "2027-03-28"
+    monthly = Decimal(str(decision.inputs["monthly"]))
+    assert decision.amount == (monthly / 26).quantize(Decimal("0.01"))
+    assert not _limited(result)
+
+
+@pytest.mark.parametrize(
+    "ccnl", [("metalmeccanico-federmeccanica", "C3"), _ANAS], ids=["clause", "none"]
+)
+def test_easter_sunday_is_no_holiday_elsewhere(ccnl: tuple[str, str]) -> None:
+    """Without "easter" in the clause, or without a clause, nothing in March 2027."""
+    result = _run(ccnl, 2027, 3)
+
+    assert _decisions(result) == []
+    assert not _limited(result)
+
+
+@pytest.mark.parametrize(
+    ("employment_period", "paid"),
+    [
+        (EmploymentPeriod(date(2027, 3, 28)), True),
+        (EmploymentPeriod(date(2027, 3, 29)), False),
+    ],
+    ids=["hired-on-easter", "hired-after-easter"],
+)
+def test_easter_sunday_within_the_employment(
+    employment_period: EmploymentPeriod, *, paid: bool
+) -> None:
+    """Easter is paid only within the employment."""
+    result = _run(_CINEMA, 2027, 3, employment_period=employment_period)
+
+    assert bool(_decisions(result)) is paid

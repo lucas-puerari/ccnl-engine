@@ -84,22 +84,6 @@
       {
         "kind": "info",
         "text": "HOURLY RATE: Art. 50 bis defines the official quota oraria as minimo_tabellare/173 (base only). work_rules.time_supplements.hourly_base_method is minimo_tabellare, so a derived hourly base leaves PREMIO_PROD out; while the hourly base provenance is not verified the engine derives none and overtime and absences take the caller's hourly rate. Monthly and annual figures are unaffected. (review of 2026-10-30)"
-      },
-      {
-        "kind": "simplification",
-        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
-        "capability": "seniority",
-        "monetary_impact": "unknown",
-        "limitation": {
-          "variant": "apprentice_seniority",
-          "applies_when": {
-            "trigger": "path",
-            "contract_types": [
-              "apprentice"
-            ]
-          },
-          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
-        }
       }
     ]
   },
@@ -123,6 +107,27 @@
         ],
         "findings": [
           "Titolo XIX - Art. 52 - Tredicesima e quattordicesima mensilità (p. 66): \"Il diritto alle mensilità aggiuntive matura per dodicesimi, intendendosi per mese intero la frazione di mese superiore a 15 giorni.\". Added: more_than 15 (the file applied the engine default, at least 15 days)."
+        ]
+      },
+      {
+        "id": "2026-11-06-ai-panificazione-apprentice-seniority",
+        "date": "2026-11-06",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Apprentice seniority: artt. 28 and 51 of the testo unico of 26 February 2025 (pp. 43, 46, 65).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://assipan.it/wp-content/uploads/2025/03/CCNL-della-Panificazione-26-febbraio-2025.pdf",
+            "sha256": "8533abbd8719e1de2e7f3fa2f228ebe44e62154d27b2e9a3120bd47ab31e1abf"
+          }
+        ],
+        "findings": [
+          "Art. 28 lett. a counts 'Il periodo di apprendistato [...] ai fini dell'anzianità aziendale e di servizio'; the apprentice percentage applies to 'paga base, ex indennità di contingenza, E.D.R.' and second-level elements only; art. 51 owes the industrial operai and impiegati an increment each biennio of service: the level increments in full."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "parameters.seniority_increments"
         ]
       }
     ]
@@ -236,7 +241,8 @@
           "verification_status": "unverified",
           "effective_from": "2020-01-01"
         }
-      }
+      },
+      "apprentice_level_amount": true
     },
     "accrual_rule": {
       "min_days": 15,
@@ -1595,7 +1601,7 @@
     "effective_until": "2026-12-31",
     "source": "https://www.assipan.it/contratto-collettivo-nazionale-lavoro/",
     "verification_status": "unverified",
-    "source_hash": "616827f4d08b87b9db114c054915291e2ea82dd848b218864d0a5e626253217f",
+    "source_hash": "2cc19e0224feab01cc502f2732d3132f58857ef2041b1d96498d040e924c3e9d",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

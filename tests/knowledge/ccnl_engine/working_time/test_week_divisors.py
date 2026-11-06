@@ -108,3 +108,38 @@ def test_the_sport_ccnl_divides_by_173_or_195(week: int, divisor: int) -> None:
 def test_turismo_divides_by_172_190_or_192(week: int, amount: str) -> None:
     """Turismo Art. 151 c.1 (2010 text, p. 135): 2 x 1.30 x 1,660.69 / divisor."""
     assert _overtime("turismo-federalberghi", "4", week) == Decimal(amount)
+
+
+@pytest.mark.parametrize(("week", "amount"), [(40, "24.98"), (44, "22.62")])
+def test_fipe_divides_by_172_or_190(week: int, amount: str) -> None:
+    """FIPE Art. 160 (2018 text, p. 116): 2 x 1.30 x 1,652.69 / 172 or 190."""
+    assert _overtime("pubblici-esercizi-fipe-angem", "4", week) == Decimal(amount)
+
+
+def test_fipe_ristorazione_collettiva_divides_the_44_hour_week_by_190() -> None:
+    """Same Art. 160; the ruleset derives no hourly base, the divisor is read."""
+    ccnl = with_week_divisor(
+        load_ccnl("pubblici-esercizi-fipe-angem-ristorazione-collettiva"),
+        WeeklyHours(Decimal(44)),
+    )
+    assert ccnl.parameters.hourly_divisor.value_at(date(2026, 3, 1)) == 190
+
+
+@pytest.mark.parametrize(("week", "divisor"), [(40, 173), (42, 182), (44, 191)])
+def test_autorimesse_divides_by_the_divisor_of_the_role_week(
+    week: int, divisor: int
+) -> None:
+    """Autorimesse Art. 40 (2022 text, p. 86): drivers 42 hours, custodians 44."""
+    ccnl = with_week_divisor(load_ccnl("autorimesse-ic35"), WeeklyHours(Decimal(week)))
+    assert ccnl.parameters.hourly_divisor.value_at(date(2026, 3, 1)) == divisor
+
+
+@pytest.mark.parametrize(
+    ("week", "divisor"), [(38, 165), (39, 168), (40, 168), (42, 182), (44, 184)]
+)
+def test_the_ancc_divides_by_the_divisor_of_art_187(week: int, divisor: int) -> None:
+    """Distribuzione cooperativa Art. 187 c. 2 (2011 official text, p. 201)."""
+    ccnl = with_week_divisor(
+        load_ccnl("distribuzione-cooperativa-ancc"), WeeklyHours(Decimal(week))
+    )
+    assert ccnl.parameters.hourly_divisor.value_at(date(2026, 3, 1)) == divisor

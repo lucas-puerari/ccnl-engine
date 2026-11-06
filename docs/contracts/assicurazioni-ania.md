@@ -35,7 +35,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, inps_employer, seniority |
 
-6 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -52,12 +52,14 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2026-05-13 |
-| **Last review** | — |
+| **Last review** | 2026-11-06 |
 | **Latest salary tranche** | 2028-01-01 |
 
 ## Review history
 
-No review is recorded.
+| Date | Reviewer | Scope | Outcome | Findings |
+|---|---|---|---|---|
+| 2026-11-06 | claude-opus-5-5 (ai) | Apprentice seniority: art. 113 (p. 81) and Allegato 18 cap. 3 artt. 5, 8 and 9 (pp. 250, 253, OCR) of the CCNL of 22 February 2017. | corrected | The apprentice is classified up to two levels below, then one; the period 'è computato integralmente nella maturazione dell'anzianità e degli automatismi' (art. 8), the general CCNL applies to what the accordo does not settle (art. 9) and art. 113 counts the seniority of the scatto from the hire month: the increments of the level the apprentice is paid at. |
 
 ## Salary table
 
@@ -133,13 +135,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `inps_employer` applies.
 
     **Remediation:** Resolved as a duplicate of assicurazioni-ania/inps_sector_rates_unsourced, which stays open (review of 2026-10-30): both say the credito employer rate is not confirmed by a 2026 INPS source. contribution/2026/credito.json now takes 26.76 from the INPS 2012 table and keeps the Fondo di solidarietà out of the totals, in parameters.solidarity_fund.
-
-!!! warning "assicurazioni-ania/apprentice_seniority · seniority · impact unknown · open"
-    APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.
-
-    **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
-
-    **Remediation:** Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.
 
 !!! warning "assicurazioni-ania/inps_sector_rates_unsourced · inps_employer · impact unknown · open"
     INPS RATES: the employer and worker INPS rates of the sector (credito) are totals no 2026 INPS or association table confirms: the only component split found is the INPS guide of 2012 and the 2026 totals come from a software house page that does not prove its year. The contributions of every run rest on them.

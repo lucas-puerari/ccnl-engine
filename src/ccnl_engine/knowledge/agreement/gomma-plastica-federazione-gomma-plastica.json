@@ -72,7 +72,7 @@
       },
       {
         "kind": "simplification",
-        "text": "Q LEVEL INDENNITA' DI FUNZIONE 50.00 EUR/month (quadri ex L. 190/1985), cross-verified at April 2025 (lexplain.it total 2473.68 vs contratticcnl.it TEM 2423.68). valid_from set to 2023-01-01 for consistency with the first modelled tranche; not verified whether the amount was already 50 EUR in 2023.",
+        "text": "Q LEVEL INDENNITA' DI FUNZIONE (p. 40 of the 2021 stesura): 'Ai lavoratori con qualifica di quadro è riconosciuto con decorrenza 1.9.2008 un nuovo elemento retributivo denominato \"Indennità di funzione\", pari a euro 50,00 lordi': the 50 EUR are in force from 2008, through the first modelled tranche of 2023; the renewal of 26 January 2023 does not amend it.",
         "capability": "base_salary",
         "monetary_impact": "unknown",
         "limitation": {
@@ -84,7 +84,8 @@
             ],
             "effective_until": "2025-04-01"
           },
-          "remediation": "Source the Q indennità di funzione in force from 2023-01-01 to 2025-03-31."
+          "remediation": "Resolved: 50 EUR from 1 September 2008 (2021 stesura, p. 40); read on 2026-11-06.",
+          "status": "resolved"
         }
       },
       {
@@ -121,22 +122,6 @@
       {
         "kind": "info",
         "text": "ADDITIONAL MONTHS: 13 (tredicesima). A quattordicesima is not provided for by the CCNL Gomma e Plastica Industria."
-      },
-      {
-        "kind": "simplification",
-        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
-        "capability": "seniority",
-        "monetary_impact": "unknown",
-        "limitation": {
-          "variant": "apprentice_seniority",
-          "applies_when": {
-            "trigger": "path",
-            "contract_types": [
-              "apprentice"
-            ]
-          },
-          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
-        }
       }
     ]
   },
@@ -171,6 +156,27 @@
           "Rinnovo 10 dicembre 2025: the signed ipotesi (45-page scan, PDF p. 31) states only the level F increment (60 from 1/01/2026, 60 from 1/04/2027, 60 from 1/04/2028, 15 from 1/12/2028); FILCTEM-CGIL publishes the per-level table of Art. 17 as a separate one-page file, which prints the minimi of the ten levels on the four dates and the per-level increments. The 40 values of the file were derived parametrically from level F; 11 differ by one or two cents from the printed table and are corrected.",
           "The file's base_salary is the conglobated TEM (Art. 17 Paragrafo A), the same item the tables print. The ruleset names a source published by FILCTEM-CGIL, a signatory: source_type contracting_party.",
           "Corrected to the printed table: I 2027-04-01: 1662.67 -> 1662.66; I 2028-04-01: 1710.60 -> 1710.59; I 2028-12-01: 1722.59 -> 1722.57; G 2028-04-01: 1995.28 -> 1995.27; E 2027-04-01: 2136.42 -> 2136.43; E 2028-04-01: 2198.02 -> 2198.03; E 2028-12-01: 2213.42 -> 2213.43; D 2028-04-01: 2290.45 -> 2290.44; D 2028-12-01: 2306.50 -> 2306.49; B 2028-04-01: 2350.47 -> 2350.48; B 2028-12-01: 2366.94 -> 2366.95."
+        ]
+      },
+      {
+        "id": "2026-11-06-ai-gomma-plastica-apprentice-seniority",
+        "date": "2026-11-06",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Apprentice seniority: art. 2 par. A c. 9 and art. 19 c. 1 of the stesura of 12 April 2021 (pp. 13, 30).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.studiobergonzini.it/uploads/3004241047572021-04-12-ccnlpdf.pdf",
+            "sha256": "31758caf2480d3645bf46c30b70c28c921d0eb13e36d52ca49d9d858f960adb8"
+          }
+        ],
+        "findings": [
+          "Apprentices are paid the minimo contrattuale of their level alone; the scatti are a separate element of the pay: none during the apprenticeship."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "parameters.seniority_increments"
         ]
       }
     ]
@@ -311,6 +317,42 @@
           "verification_status": "unverified",
           "effective_from": "2020-01-01"
         }
+      },
+      "apprentice_amount": {
+        "periods": [
+          {
+            "valid_from": "2023-01-01",
+            "valid_until": null,
+            "value": "0.00",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "gomma-plastica-stesura-2021",
+                  "title": "CCNL Gomma plastica, stesura 12 aprile 2021",
+                  "kind": "altro",
+                  "url": "https://www.studiobergonzini.it/uploads/3004241047572021-04-12-ccnlpdf.pdf",
+                  "published_on": "2021-04-12",
+                  "sha256": "31758caf2480d3645bf46c30b70c28c921d0eb13e36d52ca49d9d858f960adb8"
+                },
+                "page": "13",
+                "section": "Art. 2 par. A c. 9 - Apprendistato; Art. 19 c. 1",
+                "quote": "Durante il rapporto di apprendistato, la retribuzione spettante è composta dal minimo contrattuale del livello in cui l'apprendista è stato inquadrato. [Art. 19] Paga mensile o stipendio (minimo contrattuale, scatti di anzianità, eventuale importo retributivo individuale [...])"
+              },
+              "transformation": "The apprentice is paid the minimo contrattuale alone, which art. 19 keeps apart from the scatti: no increment during the apprenticeship (the renewal of 10 December 2025 keeps the clause as c. 7).",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T00:30:00Z",
+                "effective_from": "2023-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T00:30:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-06-ai-gomma-plastica-apprentice-seniority"
+              }
+            }
+          }
+        ]
       }
     }
   },
@@ -2908,7 +2950,7 @@
     "effective_until": null,
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/251002-_GOMMAPLASTICA_RINNOVO%20CCNL%202026-2028_tabelle_minimi.pdf",
     "verification_status": "unverified",
-    "source_hash": "7f72956dde66e3a37af75b3415623f8d6759fc4f46e44d59f11d2fae9b81845b",
+    "source_hash": "5e4f571dfacf1ebda90f68770b9765d97d893812dda6239cd791690adb0b72d8",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

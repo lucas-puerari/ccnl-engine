@@ -1,4 +1,4 @@
-"""Usage example: vigilanza-privata-federdat-sf (HV17).
+"""Usage example: vigilanza-privata-federdat-sf (HV51).
 
 CCNL Vigilanza Privata e Servizi Fiduciari FEDERDAT - SF.
 

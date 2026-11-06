@@ -50,6 +50,8 @@ from ccnl_engine.employment.period.inputs import (
     NaspiCase,
     TerminationCause,
 )
+from ccnl_engine.employment.rest_day.inputs import Weekday
+from ccnl_engine.employment.rota.inputs import Rota
 from ccnl_engine.employment.spell.models import EmploymentSpell
 from ccnl_engine.family.inputs import (
     Dependent,
@@ -137,6 +139,7 @@ __all__ = [
     "PublicEndOfService",
     "RecoveryObligation",
     "RecoveryPlan",
+    "Rota",
     "SecondLevelAgreement",
     "SecondLevelElement",
     "SeniorityFact",
@@ -150,6 +153,7 @@ __all__ = [
     "TerminationCause",
     "TfrFundBalance",
     "TfrQuotaYtd",
+    "Weekday",
     "WeeklyHours",
     "WorkCalendar",
     "WorkPattern",

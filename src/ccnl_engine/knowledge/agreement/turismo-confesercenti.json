@@ -1746,7 +1746,7 @@
     "effective_until": null,
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=257",
     "verification_status": "unverified",
-    "source_hash": "c9407cc184284913df60644e14ad076c3e15515ffe71296a8dc66b4939f40b23",
+    "source_hash": "e33e00b6f0fa5d0040a6790819edaad223c418e1ff3bd21874336556aac11cf0",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -1970,6 +1970,49 @@
           "extraction_timestamp": "2026-09-08T00:00:00",
           "verification_status": "unverified",
           "effective_from": "2022-01-01"
+        }
+      }
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "04-25",
+        "05-01",
+        "06-02",
+        "01-01",
+        "01-06",
+        "easter_monday",
+        "08-15",
+        "11-01",
+        "12-08",
+        "12-25",
+        "12-26",
+        "11-04"
+      ],
+      "divisor": "26",
+      "on_rest_day": true,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-turismo-confesercenti-2003",
+            "title": "CCNL Turismo 22 luglio 2003 (Assoturismo Confesercenti), deposito CNEL H058031",
+            "kind": "associazione",
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/715",
+            "published_on": "2003-07-22",
+            "sha256": "18cd59a16ab6d5d5b5a152b0502cda95218d83faf50c5adb05032f314e856171"
+          },
+          "page": "n/a (plain text)",
+          "section": "Art. 117 c.1, c.4 - Festività; Art. 118 c.4 - 4 novembre; Art. 142 - Determinazione della retribuzione giornaliera",
+          "quote": "A tutto il personale assente nelle giornate di festività, per riposo settimanale, per malattia, infortunio, dovrà essere corrisposta 1 giornata di retribuzione contrattuale senza alcuna maggiorazione. [Art. 118] (4) Al lavoratore assente nella stessa giornata per riposo settimanale dovrà essere corrisposta 1 giornata di retribuzione contrattuale senza alcuna maggiorazione. [Art. 142] (1) La retribuzione giornaliera si ottiene dividendo la retribuzione mensile per 26."
+        },
+        "transformation": "The national and weekday holidays of art. 117 c.1 (but the S. Patrono della città) and 4 November (art. 118) falling on the worker's weekly rest day (Employment.weekly_rest_day): one day of the monthly pay of the chain over 26 (art. 142). The statutory holidays on a Sunday stay paid by L. 260/1949 art. 5 when the rest day is another day.",
+        "note": "Plain Latin-1 text the CNEL archive serves as H058031.rtf. The 2010 renewal (CNEL 1168, OCR) and the 2024 ipotesi of 22 July 2024 (CNEL 194334, OCR) leave arts. 117-118 unchanged; the 2007 and 2018 renewals were not read. 4 October, a holiday from 2026 (L. 151/2025), is not in the list: its rest day stays open. The Patrono is not in the national calendar and is not paid. A rotating rest day is not modelled. The absence for sickness or injury on a holiday (same comma) is left to the sickness treatment.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-04T16:00:00Z",
+          "verification_status": "unverified",
+          "effective_from": "2003-07-22"
         }
       }
     }

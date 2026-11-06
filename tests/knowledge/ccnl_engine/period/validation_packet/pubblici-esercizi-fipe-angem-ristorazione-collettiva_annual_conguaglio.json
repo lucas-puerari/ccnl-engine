@@ -55,7 +55,7 @@
     },
     {
       "output": "gross",
-      "value": "1692.69",
+      "value": "1708.69",
       "perimeter": "Gross pay of the run: every earning of the run before contributions and taxes",
       "tolerance": "0.01",
       "rounding": "half_up_cents",
@@ -63,7 +63,7 @@
     },
     {
       "output": "employee_contributions",
-      "value": "165.18",
+      "value": "166.74",
       "perimeter": "INPS contributions withheld from the worker in the run",
       "tolerance": "0.01",
       "rounding": "half_up_cents",
@@ -71,7 +71,7 @@
     },
     {
       "output": "employer_contributions",
-      "value": "522.86",
+      "value": "527.80",
       "perimeter": "INPS contributions due by the employer for the run (INAIL excluded)",
       "tolerance": "0.01",
       "rounding": "half_up_cents",
@@ -79,7 +79,7 @@
     },
     {
       "output": "tax",
-      "value": "50.23",
+      "value": "55.47",
       "perimeter": "IRPEF and surtaxes withheld in the run net of refunds, before tax credits",
       "tolerance": "0.01",
       "rounding": "half_up_cents",
@@ -87,7 +87,7 @@
     },
     {
       "output": "net",
-      "value": "1477.28",
+      "value": "1486.48",
       "perimeter": "Net pay of the run, before advances and deductions unrelated to payroll",
       "tolerance": "0.01",
       "rounding": "half_up_cents",
@@ -95,7 +95,7 @@
     },
     {
       "output": "tfr",
-      "value": "116.91",
+      "value": "118.02",
       "perimeter": "TFR accrued in the run, kept by the employer or paid to a fund",
       "tolerance": "0.01",
       "rounding": "half_up_cents",
@@ -103,7 +103,7 @@
     },
     {
       "output": "employer_cost",
-      "value": "2332.46",
+      "value": "2354.51",
       "perimeter": "Gross pay, employer contributions, TFR accrual and employer fund contributions of the run",
       "tolerance": "0.01",
       "rounding": "half_up_cents",
@@ -112,9 +112,10 @@
   ],
   "review": {
     "reviewer": "claude-opus-5-5",
-    "date": "2026-10-24",
+    "date": "2026-11-05",
     "owner": "maintainer",
-    "review_by": "2027-04-24"
+    "review_by": "2027-05-06",
+    "rewritten_because": "Art. 186 Fondo Est now covers ristorazione collettiva: an employer that states no fund owes the EUR 16 element on 14 months"
   },
   "versions": {
     "engine": "0.6.0",

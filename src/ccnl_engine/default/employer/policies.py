@@ -84,6 +84,15 @@ EMPLOYER_DEFAULTS: Mapping[str, FieldDefault] = {
         "the INPS sector of the CCNL; a CCNL applied by employers of more "
         "than one sector (Logistica) has a missing_fact inps_sector blocker",
     ),
+    "EmployerProfile.permit_carryover": requires_fact(
+        "leave",
+        "employer.permit_carryover",
+        _REPORTED,
+        "on a CCNL that leaves the employer to pay the permits of a year at "
+        "its end or at a deadline of the next year (Commercio art. 158), the "
+        "runs of December and of the deadline pay nothing, with a "
+        "missing_fact permit_carryover blocker",
+    ),
     "EmployerProfile.second_level_elements": absence_is_fact("none agreed"),
     "EmployerProfile.sickness_window_counting": absence_is_fact(
         "the comporto of each illness the CCNL sets"

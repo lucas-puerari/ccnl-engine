@@ -3,22 +3,6 @@
   "ccnl_id": "dmo-federdistribuzione",
   "requirements": [
     {
-      "id": "apprentice_seniority",
-      "institute": "seniority",
-      "variant": "apprentice",
-      "discriminant": "applies_when.trigger = path",
-      "rule": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
-      "calculation": "ccnl/dmo-federdistribuzione:coverage.notes",
-      "state": "unverified",
-      "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "dmo-federdistribuzione/apprentice_seniority"
-        ]
-      }
-    },
-    {
       "id": "arrears_unused_deductions",
       "institute": "contract_renewal_arrears",
       "variant": "all",
@@ -79,22 +63,6 @@
       "links": {
         "limitations": [
           "dmo-federdistribuzione/employment_support_contract"
-        ]
-      }
-    },
-    {
-      "id": "health_and_bilateral_funds",
-      "institute": "bilateral_funds",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = owed",
-      "rule": "HEALTH AND BILATERAL FUNDS: E.Bi.Di.M. (Art. 18), Fondo EST (Art. 19) and, for the quadri, Cassa QuAS (Art. 20) are owed for every worker, with their worker shares; an employer that does not pay them owes the worker instead the EDR of 0.30% of paga base and contingenza (14 months), EUR 16.00 x 14 and EUR 37.00 x 14. Neither is modelled: the net pay and the employer cost are short of them.",
-      "calculation": "ccnl/dmo-federdistribuzione:coverage.notes",
-      "state": "absent",
-      "remediation": "Model the contributions per worker, with a fact for an employer that pays the worker the alternative element instead, then remove this note.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "dmo-federdistribuzione/health_and_bilateral_funds"
         ]
       }
     },

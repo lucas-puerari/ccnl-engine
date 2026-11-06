@@ -13,9 +13,11 @@ never assumes it.
 
 from __future__ import annotations
 
+from dataclasses import replace
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.agreement.types import TaxSector
 from ccnl_engine.contribution.additional_ivs.rules import (
     AdditionalIvsPosition,
     additional_ivs,
@@ -28,11 +30,23 @@ from ccnl_engine.contribution.results import (
 from ccnl_engine.pay_item.rounding.policies import money
 
 if TYPE_CHECKING:
+    from ccnl_engine.contribution.rate.rules import ContributionRates
     from ccnl_engine.employment.category.models import WorkerCategory
     from ccnl_engine.employment.inputs import Apprentice, FixedTerm, Permanent
     from ccnl_engine.sector.models import YearRules
 
 _ZERO = Decimal(0)
+#: Sectors whose employers declare each worker in the <DenunciaIndividuale>
+#: of the UniEmens flow, one contribution at the whole rate.  The public
+#: administrations declare each fund apart (ListaPosPA) and the farm
+#: workers go through the DMAG: their rates stay rounded one by one.
+_DENUNCIA_INDIVIDUALE = frozenset({
+    TaxSector.INDUSTRIA,
+    TaxSector.TERZIARIO,
+    TaxSector.EDILIZIA,
+    TaxSector.CREDITO,
+    TaxSector.ARTIGIANATO,
+})
 _NO_POSITION = AdditionalIvsPosition()
 
 
@@ -72,6 +86,100 @@ def _side(
             )
         )
     return ivs + non_ivs, components
+
+
+def _whole_employee_rate(
+    employee_items: list[ContributionComponent],
+    rates: ContributionRates,
+    ivs_base: Decimal,
+    full_base: Decimal,
+) -> tuple[Decimal, list[ContributionComponent]]:
+    """Return the employee share at the whole employee rate, to cents once.
+
+    The payslip withholds one "Contributo IVS" at the whole employee rate
+    (Zucchetti guide, Studio Miazzo, sha256 707dcf4d...: code Z00000 at
+    9,19%; FILCTEM CGIL guide 2024, sha256 7f5d68da..., p. 21: "1.672 x
+    9,49% = 158,67", where the IVS and CIGS rates apart give 158,68), the
+    base above the IVS massimale at the minor rates only.  The non-IVS
+    employee component (or the IVS one without it) takes the rounding.
+
+    Returns:
+        The employee share and its components, adjusted to the share.
+    """
+    rate, ivs_rate = rates.employee_rate, rates.employee_ivs_rate
+    share = money(ivs_base * rate) + money((full_base - ivs_base) * (rate - ivs_rate))
+    if not employee_items:
+        return _ZERO, employee_items
+    *kept, last = employee_items
+    rest = sum((c.amount for c in kept), _ZERO)
+    return share, [*kept, replace(last, amount=share - rest)]
+
+
+def _employer_share(
+    employee: Decimal,
+    employer_items: list[ContributionComponent],
+    rates: ContributionRates,
+    ivs_base: Decimal,
+    full_base: Decimal,
+) -> tuple[Decimal, list[ContributionComponent]]:
+    """Return the employer share of the contribution INPS charges on the run.
+
+    INPS charges one contribution per worker and month: "Importo della
+    contribuzione calcolata sull'imponibile previdenziale del mese corrente
+    [...] con arrotondamento ai centesimi" (Documento tecnico UniEmens,
+    <Contributo> of <DatiRetributivi>), at the whole rate of the worker, the
+    NASpI surcharge of a fixed term included (INPS circ. 140/2012 p. 6: no
+    exposure of its own).  The part of the base above the IVS massimale is
+    declared apart, with the minor contributions only.  The employer pays
+    that contribution less the share it withholds from the employee, so the
+    non-IVS employer component takes the rounding of the whole.
+
+    Returns:
+        The employer share and its components, the non-IVS one (or the IVS
+        one without it) adjusted to the share.
+    """
+    rate = rates.employee_rate + rates.employer_rate
+    ivs_rate = rates.employee_ivs_rate + rates.employer_ivs_rate
+    total = money(ivs_base * rate) + money((full_base - ivs_base) * (rate - ivs_rate))
+    share = total - employee
+    if not employer_items:
+        return _ZERO, employer_items
+    *kept, last = employer_items
+    rest = sum((c.amount for c in kept), _ZERO)
+    return share, [*kept, replace(last, amount=share - rest)]
+
+
+def whole_rate_addition(
+    breakdown: ContributionBreakdown, rules: YearRules, base: Decimal, rate: Decimal
+) -> Decimal:
+    """Return what a further employer rate on ``base`` adds to the contribution.
+
+    In a sector whose employers declare one contribution per worker at the
+    whole rate (:data:`_DENUNCIA_INDIVIDUALE`), a further rate INPS charges in
+    the same <Contributo> (the additional sickness contribution of the
+    pubblici esercizi) joins the single rounding: the addition is the whole
+    contribution with it less the whole contribution without it.  Elsewhere
+    it is ``base * rate`` to cents.
+
+    Returns:
+        The amount the further rate adds.
+    """
+    if rules.sector not in _DENUNCIA_INDIVIDUALE:
+        return money(base * rate)
+    named = {c.name: c for c in breakdown.components}
+    ivs = [named[n] for n in ("ivs_employee", "ivs_employer") if n in named]
+    other = [named[n] for n in ("non_ivs_employee", "non_ivs_employer") if n in named]
+    ivs_rate = sum((c.rate for c in ivs), _ZERO)
+    other_rate = sum((c.rate for c in other), _ZERO)
+    ivs_base = max((c.base for c in ivs), default=base)
+    excess = base - ivs_base
+
+    def whole(extra: Decimal) -> Decimal:
+        return money(ivs_base * (ivs_rate + other_rate + extra)) + money(
+            excess * (other_rate + extra)
+        )
+
+    return whole(rate) - whole(_ZERO)
 
 
 def _additional(
@@ -153,13 +261,21 @@ def resolve_contributions(
         ivs_base,
         period_inps_base,
     )
-    employer_total, employer_items = _side(
+    _, employer_items = _side(
         "employer",
         rates.employer_rate,
         rates.employer_ivs_rate,
         ivs_base,
         period_inps_base,
     )
+    employer_total = sum((c.amount for c in employer_items), _ZERO)
+    if rules.sector in _DENUNCIA_INDIVIDUALE:
+        employee_total, employee_items = _whole_employee_rate(
+            employee_items, rates, ivs_base, period_inps_base
+        )
+        employer_total, employer_items = _employer_share(
+            employee_total, employer_items, rates, ivs_base, period_inps_base
+        )
     components = [*employee_items, *employer_items]
 
     add_comp = _additional(rules, period_inps_base, ytd_inps_base, ceiling, additional)

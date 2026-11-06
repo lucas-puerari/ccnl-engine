@@ -28,6 +28,10 @@ state types.
 
 ::: ccnl_engine.inputs.WorkPattern
 
+::: ccnl_engine.inputs.Weekday
+
+::: ccnl_engine.inputs.Rota
+
 ::: ccnl_engine.inputs.ContributableHours
 
 ::: ccnl_engine.inputs.SecondLevelAgreement

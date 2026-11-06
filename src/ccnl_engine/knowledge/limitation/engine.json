@@ -121,7 +121,8 @@
         "uneba-uneba",
         "vigilanza-privata-assiv",
         "vigilanza-privata-federdat-gpg",
-        "vigilanza-privata-federdat-sf"
+        "vigilanza-privata-federdat-sf",
+        "vigilanza-privata-assiv-sf"
       ],
       "applies_when": {
         "trigger": "path",
@@ -163,7 +164,6 @@
         "marittimi-industria-armatoriale",
         "metalmeccanica-cooperative",
         "noleggio-autobus-conducente-anav",
-        "occhiali-occhialeria-industria",
         "orafi-argentieri-industria-federorafi",
         "panificazione-assipan",
         "studi-professionali-confprofessioni",
@@ -307,7 +307,8 @@
         "universita-tecnologi-aran",
         "vigilanza-privata-assiv",
         "vigilanza-privata-federdat-gpg",
-        "vigilanza-privata-federdat-sf"
+        "vigilanza-privata-federdat-sf",
+        "vigilanza-privata-assiv-sf"
       ],
       "applies_when": {
         "trigger": "path"
@@ -372,7 +373,8 @@
         "turismo-confesercenti",
         "vigilanza-privata-assiv",
         "vigilanza-privata-federdat-gpg",
-        "vigilanza-privata-federdat-sf"
+        "vigilanza-privata-federdat-sf",
+        "vigilanza-privata-assiv-sf"
       ],
       "applies_when": {
         "trigger": "path"
@@ -522,7 +524,8 @@
         "vetro-meccanizzato-assovetro",
         "vigilanza-privata-assiv",
         "vigilanza-privata-federdat-gpg",
-        "vigilanza-privata-federdat-sf"
+        "vigilanza-privata-federdat-sf",
+        "vigilanza-privata-assiv-sf"
       ],
       "applies_when": {
         "trigger": "path"
@@ -672,7 +675,8 @@
         "vetro-meccanizzato-assovetro",
         "vigilanza-privata-assiv",
         "vigilanza-privata-federdat-gpg",
-        "vigilanza-privata-federdat-sf"
+        "vigilanza-privata-federdat-sf",
+        "vigilanza-privata-assiv-sf"
       ],
       "applies_when": {
         "trigger": "path"
@@ -796,7 +800,8 @@
         "vetro-meccanizzato-assovetro",
         "vigilanza-privata-assiv",
         "vigilanza-privata-federdat-gpg",
-        "vigilanza-privata-federdat-sf"
+        "vigilanza-privata-federdat-sf",
+        "vigilanza-privata-assiv-sf"
       ],
       "applies_when": {
         "trigger": "path",
@@ -973,7 +978,8 @@
         "vetro-meccanizzato-assovetro",
         "vigilanza-privata-assiv",
         "vigilanza-privata-federdat-gpg",
-        "vigilanza-privata-federdat-sf"
+        "vigilanza-privata-federdat-sf",
+        "vigilanza-privata-assiv-sf"
       ],
       "applies_when": {
         "trigger": "path"
@@ -1123,7 +1129,8 @@
         "vetro-meccanizzato-assovetro",
         "vigilanza-privata-assiv",
         "vigilanza-privata-federdat-gpg",
-        "vigilanza-privata-federdat-sf"
+        "vigilanza-privata-federdat-sf",
+        "vigilanza-privata-assiv-sf"
       ],
       "applies_when": {
         "trigger": "path"
@@ -1273,7 +1280,8 @@
         "vetro-meccanizzato-assovetro",
         "vigilanza-privata-assiv",
         "vigilanza-privata-federdat-gpg",
-        "vigilanza-privata-federdat-sf"
+        "vigilanza-privata-federdat-sf",
+        "vigilanza-privata-assiv-sf"
       ],
       "applies_when": {
         "trigger": "path"
@@ -1423,7 +1431,8 @@
         "vetro-meccanizzato-assovetro",
         "vigilanza-privata-assiv",
         "vigilanza-privata-federdat-gpg",
-        "vigilanza-privata-federdat-sf"
+        "vigilanza-privata-federdat-sf",
+        "vigilanza-privata-assiv-sf"
       ],
       "applies_when": {
         "trigger": "path"
@@ -1573,7 +1582,8 @@
         "vetro-meccanizzato-assovetro",
         "vigilanza-privata-assiv",
         "vigilanza-privata-federdat-gpg",
-        "vigilanza-privata-federdat-sf"
+        "vigilanza-privata-federdat-sf",
+        "vigilanza-privata-assiv-sf"
       ],
       "applies_when": {
         "trigger": "path"
@@ -1723,7 +1733,8 @@
         "vetro-meccanizzato-assovetro",
         "vigilanza-privata-assiv",
         "vigilanza-privata-federdat-gpg",
-        "vigilanza-privata-federdat-sf"
+        "vigilanza-privata-federdat-sf",
+        "vigilanza-privata-assiv-sf"
       ],
       "applies_when": {
         "trigger": "path"
@@ -1873,7 +1884,8 @@
         "vetro-meccanizzato-assovetro",
         "vigilanza-privata-assiv",
         "vigilanza-privata-federdat-gpg",
-        "vigilanza-privata-federdat-sf"
+        "vigilanza-privata-federdat-sf",
+        "vigilanza-privata-assiv-sf"
       ],
       "applies_when": {
         "trigger": "path"
@@ -2023,7 +2035,8 @@
         "vetro-meccanizzato-assovetro",
         "vigilanza-privata-assiv",
         "vigilanza-privata-federdat-gpg",
-        "vigilanza-privata-federdat-sf"
+        "vigilanza-privata-federdat-sf",
+        "vigilanza-privata-assiv-sf"
       ],
       "applies_when": {
         "trigger": "path"
@@ -2173,7 +2186,8 @@
         "vetro-meccanizzato-assovetro",
         "vigilanza-privata-assiv",
         "vigilanza-privata-federdat-gpg",
-        "vigilanza-privata-federdat-sf"
+        "vigilanza-privata-federdat-sf",
+        "vigilanza-privata-assiv-sf"
       ],
       "applies_when": {
         "trigger": "path"
@@ -2323,7 +2337,8 @@
         "vetro-meccanizzato-assovetro",
         "vigilanza-privata-assiv",
         "vigilanza-privata-federdat-gpg",
-        "vigilanza-privata-federdat-sf"
+        "vigilanza-privata-federdat-sf",
+        "vigilanza-privata-assiv-sf"
       ],
       "applies_when": {
         "trigger": "path"
@@ -2473,7 +2488,8 @@
         "vetro-meccanizzato-assovetro",
         "vigilanza-privata-assiv",
         "vigilanza-privata-federdat-gpg",
-        "vigilanza-privata-federdat-sf"
+        "vigilanza-privata-federdat-sf",
+        "vigilanza-privata-assiv-sf"
       ],
       "applies_when": {
         "trigger": "path"
@@ -2623,7 +2639,8 @@
         "vetro-meccanizzato-assovetro",
         "vigilanza-privata-assiv",
         "vigilanza-privata-federdat-gpg",
-        "vigilanza-privata-federdat-sf"
+        "vigilanza-privata-federdat-sf",
+        "vigilanza-privata-assiv-sf"
       ],
       "applies_when": {
         "trigger": "path"
@@ -2773,7 +2790,8 @@
         "vetro-meccanizzato-assovetro",
         "vigilanza-privata-assiv",
         "vigilanza-privata-federdat-gpg",
-        "vigilanza-privata-federdat-sf"
+        "vigilanza-privata-federdat-sf",
+        "vigilanza-privata-assiv-sf"
       ],
       "applies_when": {
         "trigger": "path"
@@ -2923,7 +2941,8 @@
         "vetro-meccanizzato-assovetro",
         "vigilanza-privata-assiv",
         "vigilanza-privata-federdat-gpg",
-        "vigilanza-privata-federdat-sf"
+        "vigilanza-privata-federdat-sf",
+        "vigilanza-privata-assiv-sf"
       ],
       "applies_when": {
         "trigger": "path"
@@ -3076,7 +3095,8 @@
         "vetro-meccanizzato-assovetro",
         "vigilanza-privata-assiv",
         "vigilanza-privata-federdat-gpg",
-        "vigilanza-privata-federdat-sf"
+        "vigilanza-privata-federdat-sf",
+        "vigilanza-privata-assiv-sf"
       ],
       "applies_when": {
         "trigger": "path"
@@ -3245,7 +3265,8 @@
         "vetro-meccanizzato-assovetro",
         "vigilanza-privata-assiv",
         "vigilanza-privata-federdat-gpg",
-        "vigilanza-privata-federdat-sf"
+        "vigilanza-privata-federdat-sf",
+        "vigilanza-privata-assiv-sf"
       ],
       "applies_when": {
         "trigger": "path"
@@ -3395,7 +3416,8 @@
         "vetro-meccanizzato-assovetro",
         "vigilanza-privata-assiv",
         "vigilanza-privata-federdat-gpg",
-        "vigilanza-privata-federdat-sf"
+        "vigilanza-privata-federdat-sf",
+        "vigilanza-privata-assiv-sf"
       ],
       "applies_when": {
         "trigger": "path"
@@ -3548,7 +3570,8 @@
         "vetro-meccanizzato-assovetro",
         "vigilanza-privata-assiv",
         "vigilanza-privata-federdat-gpg",
-        "vigilanza-privata-federdat-sf"
+        "vigilanza-privata-federdat-sf",
+        "vigilanza-privata-assiv-sf"
       ],
       "applies_when": {
         "trigger": "path"
@@ -3698,7 +3721,8 @@
         "vetro-meccanizzato-assovetro",
         "vigilanza-privata-assiv",
         "vigilanza-privata-federdat-gpg",
-        "vigilanza-privata-federdat-sf"
+        "vigilanza-privata-federdat-sf",
+        "vigilanza-privata-assiv-sf"
       ],
       "applies_when": {
         "trigger": "path"

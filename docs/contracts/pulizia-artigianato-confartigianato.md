@@ -34,9 +34,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, bilateral_funds, holiday_work, inps_employer, leave, night_work, overtime, seniority |
+| **Limits of this contract** | base_salary, bilateral_funds, holiday_work, inps_employer, night_work, overtime, seniority |
 
-8 documented simplification(s) and 3 missing feature(s): see [Known simplifications](#known-simplifications).
+8 documented simplification(s) and 2 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -44,7 +44,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 58 verified / 7 derived / 29 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 61 verified / 8 derived / 29 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -53,7 +53,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-12-17 |
-| **Last review** | 2026-10-31 |
+| **Last review** | 2026-11-06 |
 | **Latest salary tranche** | 2029-12-01 |
 
 ## Review history
@@ -63,6 +63,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-17 | claude-opus-5-5 (ai) | The tabellare of the seven levels from December 2024 to December 2029 against the ipotesi di rinnovo of 17 December 2025. | corrected | 56 tabellari (seven levels, eight columns, pp. 7-9 of the signed scan, read by OCR and on the page images) move from assumed to verified.<br>Corrected: level 2 from 1 December 2029 is 1.727,83 in the text (1.716,16 + 11,67, and the table 'a regime'), not 1.727,84; the file reproportioned the level 5 tranche instead of reading the table.<br>The 21 tabellari of November 2022, July 2023 and July 2024 stay assumed: the accordo of 27 October 2022 (Art. 35) prints only the increments of the 5th level, 'riferito al 5° livello', and no table of the other levels was found. |
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | corrected | Art. 38 Tredicesima mensilità (p. 22): "Nel caso di inizio o di cessazione del rapporto durante il corso dell'anno, il lavoratore non in prova avrà diritto a tanti dodicesimi dell'ammontare della tredicesima mensilità per quanti sono i mesi di servizio prestato. Le frazioni di mese non superiori ai 15 giorni non saranno calcolate, mentre saranno considerate come mese intero se superiori ai 15 giorni.". Added: more_than 15 (the file applied the engine default, at least 15 days). |
 | 2026-10-31 | claude-opus-5-5 (ai) | The comporto and the sick pay of the CCNL counted over several illnesses (work_rules.sickness_rules), read on the signed text. | corrected | Art. 44 of the CCNL 18.9.2014 (pp. 25-26, OCR of the signed scan): comporto 9 months of one illness and 10 months within the 24 months before; integration to 100% of the net pay from day 1 for at most 180 days in the calendar year. The file kept 180 days of one illness as the comporto: corrected (max_duration_days 274, a window of 24 months and 304 days, integration ending on day 180 of the illness). |
+| 2026-11-05 | claude-opus-5-5 (ai) | Ferie, permits and their settlement: arts. 21 (PDF p. 12), 23-24 (p. 13) and 34 (p. 19) of the 2014 scan, read by a separate research session on the OCR and checked again on a new OCR; the renewals of 2022 and 2025 read for amendments. | corrected | Art. 24: 22/26 days by the days of the week, twelfths with the month over 15 days: work_rules.leave_rules.<br>Art. 23: 32 hours of ex festività, month of 15 days or more; art. 21: 16 hours of permits in twelfths; art. 34: daily pay /22 or /26, hourly /173. |
+| 2026-11-05 | claude-opus-5-5 (ai) | Art. 18 (p. 11) of the CCNL of 18 September 2014 (OCR of the scan) and the renewal of 27 October 2022 (p. 2). | corrected | EBNA (EUR 11.65 a month, or EUR 30 on 13 months unpaid) and SAN.ARTI. (EUR 10.42 a month, or EUR 25 on 13 months unpaid) were not modelled. |
+| 2026-11-06 | claude-opus-5-5 (ai) | Art. 23 (p. 13) of the CCNL of 18 September 2014, OCR of the signed scan. | corrected | The ex festività not used by 30 September of the next year lapse and are paid: the engine carried them to the end of the employment. |
 
 ## Salary table
 
@@ -158,11 +161,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Source the apprentice rates of artigianato (an INPS circular or an association table of 2026), mark the apprentice block of contribution/2026/artigianato.json derived, then remove this note.
 
 !!! warning "pulizia-artigianato-confartigianato/health_and_bilateral_funds · bilateral_funds · impact yes · open"
-    SIMPLIFICATION: Fondi bilaterali non modellati (Fondo sanitario EUR 10.42*12 + bilateralità EUR 11.65*12). employer_cost_annual sottostimato di ~EUR 267/anno.
+    HEALTH AND BILATERAL FUNDS: SAN.ARTI. EUR 10.42 a month (art. 18 of the 2014 text, E.A.R. of EUR 25 on 13 months) and EBNA EUR 11.65 a month from 1 November 2022 (interconfederal agreement of 17 December 2021 taken in by the renewal of 27 October 2022; EUR 30 on 13 months to the worker of an employer outside the bilateralità) are modelled. Not modelled: the FSBA, 0.45% from the employer and 0.15% from the worker of the INPS base.
 
     **Applies when:** `bilateral_funds` applies.
 
-    **Remediation:** Pass the health-fund and bilateral contributions as a bilateral fund event, or model the funds.
+    **Remediation:** Model the FSBA contribution (0.45% from the employer and 0.15% from the worker of the INPS base), which the contractual funds cannot hold on that base, then remove this note.
 
 !!! warning "pulizia-artigianato-confartigianato/overtime_weekly_threshold · overtime · impact unknown · open"
     SIMPLIFICATION: Soglia settimanale ore straordinarie (OT_DIURNO) non modellata (hour_threshold_per_week=null). Il contratto prevede scatto dopo 40h/settimana e limite annuale 200h. Coverage work_rules gia' marcata partial.
@@ -366,6 +369,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     Fonte accordo rinnovo 2025 (Confartigianato, 17 dic 2025): URL non raggiungibile il 2026-09-12. Tranches Jan 2026 — Dec 2029 verificate incrociatamente con kitech CodiceCateg=83 (Jul 2026, tutti e 7 i livelli, match al centesimo) e ilccnl.it Jul 2026 (L1: Paga Base=Totale=1693.84). Accesso originale: 2026-09-12.
     
     APPRENTICESHIP TRACKS: a level with several candidate tracks (L5: tracks 1 and 3; L4: 3 and 4; L3: 2 and 4) raises OutOfScopeError ambiguous_track unless Apprentice.track names the track: the engine no longer takes the first match (review of 2026-10-30).
+    
+    LEAVE (artt. 21, 23, 24, 34 of the 2014 text): 22 days of ferie on five days, 26 on six (Employment.full_time_week_days), in twelfths with the month over 15 days; 32 hours of ex festività (month of 15 days or more), usable until 30 September of the next year and then paid; 16 hours of permits (art. 21), paid when unused. At termination a day of ferie is the monthly pay over 22 (26 on six days), an hour of permits over 173. Not modelled: the 30 September deadline, the 8 further hours of a flexible week above 40 hours, the 4 days of Rome.
     
     APPRENTICE SENIORITY (Art. 58 point 7-bis of the renewal of 17 December 2025, p. 5): from 1 January 2026 the apprentices mature the increments at 6 euro each, not scaled by the apprenticeship percentage (seniority_increments.apprentice_amount); none before. The service of the apprentices already employed counts from 1 January 2026 (caller's Employment.seniority); the repricing at qualification follows the level from then.
     

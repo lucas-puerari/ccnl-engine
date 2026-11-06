@@ -3,22 +3,6 @@
   "ccnl_id": "vigilanza-privata-federdat-gpg",
   "requirements": [
     {
-      "id": "apprentice_seniority",
-      "institute": "seniority",
-      "variant": "apprentice",
-      "discriminant": "applies_when.trigger = path",
-      "rule": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
-      "calculation": "ccnl/vigilanza-privata-federdat-gpg:coverage.notes",
-      "state": "unverified",
-      "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "vigilanza-privata-federdat-gpg/apprentice_seniority"
-        ]
-      }
-    },
-    {
       "id": "arrears_unused_deductions",
       "institute": "contract_renewal_arrears",
       "variant": "all",
@@ -301,22 +285,6 @@
       "links": {
         "rules": [
           "agreement/vigilanza-privata-federdat-gpg.json#additional_months[2023-06-01]"
-        ]
-      }
-    },
-    {
-      "id": "seniority_assumed_unchanged",
-      "institute": "seniority",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "SENIORITY: amounts from UILTUCS tabelle PDF (Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf), cadence 36m: Q=31.30, I=26.12, II=23.83, III=22.46, IV=21.13, V=20.52, VI=19.66 EUR/scatto. July 9 2026 renewal (FEDERDAT-CONFIAL) increased maximum_count from 6 to 10; per-scatto amounts confirmed unchanged post-rinnovo (ilccnl.it shows same Q–III values after rinnovo). Amounts for IV–VI post-rinnovo not independently verified from a post-rinnovo primary source.",
-      "calculation": "ccnl/vigilanza-privata-federdat-gpg:coverage.notes",
-      "state": "unverified",
-      "remediation": "Confirm the post-rinnovo scatto amounts of IV-VI from a primary source.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "vigilanza-privata-federdat-gpg/seniority_assumed_unchanged"
         ]
       }
     },

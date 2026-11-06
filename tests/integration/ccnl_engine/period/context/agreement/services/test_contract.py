@@ -11,13 +11,13 @@ from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.employment.fact.inputs import WeeklyHours
 from ccnl_engine.period.context.agreement.services import (
-    flat_pay_divisor,
     with_competence_contributions,
 )
 from ccnl_engine.period.requests import PeriodCalculationRequest
 from ccnl_engine.period.services import bundled_policies, calculate_period
 from ccnl_engine.run.models import PayrollRun
 from ccnl_engine.run.types import PeriodId
+from ccnl_engine.working_time.flat_pay.rules import flat_pay_divisor
 from tests.integration.ccnl_engine.year.builders import (
     NextYearRepository,
 )

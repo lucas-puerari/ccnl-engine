@@ -117,22 +117,6 @@
       },
       {
         "kind": "simplification",
-        "text": "APPRENTICE SENIORITY: no clause says it in so many words. Art. 182 c. 1 (PDF p. 126) grants the six scatti 'A tutto il personale', art. 71 applies to the apprentice the normative treatment of the qualified worker, and art. 68 c. 1 pays a percentage of the qualified pay of the level, scatti included: the apprenticeship counts for the scatti and a matured scatto is paid at the apprentice percentage. The first scatto matures after 48 months, so only an apprentice with prior seniority reaches one; the engine pays no increment during the apprenticeship.",
-        "capability": "seniority",
-        "monetary_impact": "unknown",
-        "limitation": {
-          "variant": "apprentice_seniority",
-          "applies_when": {
-            "trigger": "path",
-            "contract_types": [
-              "apprentice"
-            ]
-          },
-          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
-        }
-      },
-      {
-        "kind": "simplification",
         "text": "HOLIDAY OVERTIME: Art. 126 (PDF p. 99) gives 30% by day and 60% by night for every overtime hour; Art. 132 (p. 103) gives 20% for the hours worked on a festività. No clause links them: art. 126 c. 3 excludes cumulation only with ordinary night work, art. 130 c. 2 only Sunday work with the festività, and the special parts (arts. 246-247, 263-264) and the 2024 renewal repeat or leave them. The engine pays holiday overtime at 30%/60% without the 20%.",
         "capability": "overtime",
         "monetary_impact": "unknown",
@@ -176,7 +160,7 @@
       },
       {
         "kind": "info",
-        "text": "HOURLY RATE AND SUPPLEMENTS (artt. 124, 130, 132, 157, 160 of the 2018 text, unchanged by the 2024 renewal): without a caller value the engine derives the hourly base (the art. 157 retribuzione over 172), the 25% on ordinary night hours from 24 to 6 (art. 124), the 20% on the hours worked on a festività (art. 132) and the 10% of the hourly paga base and contingenza on ordinary Sunday hours of a worker resting on another day (art. 130). Art. 132 also pays the festività hours themselves on top of the monthly pay: the engine posts the 20% only and the run is provisional. Not derived: holiday and night holiday overtime (art. 126 sets no rate; the bands OT_FESTIVO and OT_NOTTURNO_FESTIVO stay derived), the divisor 190 of the 44-hour week."
+        "text": "HOURLY RATE AND SUPPLEMENTS (artt. 124, 130, 132, 157, 160 of the 2018 text, unchanged by the 2024 renewal): without a caller value the engine derives the hourly base (the art. 157 retribuzione over 172), the 25% on ordinary night hours from 24 to 6 (art. 124), the 20% on the hours worked on a festività (art. 132) and the 10% of the hourly paga base and contingenza on ordinary Sunday hours of a worker resting on another day (art. 130). Art. 132 also pays the festività hours themselves on top of the monthly pay: the engine posts the 20% only and the run is provisional. Not derived: holiday and night holiday overtime (art. 126 sets no rate; the bands OT_FESTIVO and OT_NOTTURNO_FESTIVO stay derived). The 44-hour week divides by 190 (week_divisors)."
       },
       {
         "kind": "simplification",
@@ -425,7 +409,9 @@
       },
       "excluded_from_extra_months": [
         "fourteenth"
-      ]
+      ],
+      "apprentice_level_amount": true,
+      "apprentice_pct_scaled": true
     },
     "employer_funds": [
       {
@@ -2850,7 +2836,7 @@
     "effective_until": null,
     "source": "https://www.fipe.it/wp-content/uploads/2025/02/Tabelle-retributive-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "03252ae4460c2394108cf59d39a14c2e512e8233e1b739999b109879c4059da0",
+    "source_hash": "8c4ea068124429b2eee077dbe2fd3a4b5a65282edc7d2941c5b48201ce59f940",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3217,6 +3203,39 @@
               "verified_by": "claude-opus-5-5",
               "verified_at": "2026-10-19T09:00:00Z",
               "review_id": "2026-10-19-ai-hourly-rates"
+            }
+          }
+        }
+      ],
+      "week_divisors": [
+        {
+          "weekly_hours": 44,
+          "divisor": "190",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "fipe-ccnl-2018-02-08",
+                "title": "CCNL per i dipendenti da aziende dei settori Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo, 8 febbraio 2018 (scansione firmata)",
+                "kind": "associazione",
+                "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ccnl_ristorazione_2018.pdf",
+                "published_on": "2018-02-08",
+                "sha256": "32a2831b6ff1965adf82da1714f46ac6dc46102971012d6f646368837f72cf85"
+              },
+              "page": "116",
+              "section": "Articolo 160 - Determinazione della retribuzione oraria",
+              "quote": "(1) La retribuzione oraria si ottiene dividendo la retribuzione per: - 190 per il personale con orario normale di quarantaquattro ore settimanali; - 172 per il personale con orario normale di quaranta ore settimanali."
+            },
+            "transformation": "The hourly divisor of an employment whose full-time week (Employment.full_time_weekly_hours) is 44 hours (quarantaquattro).",
+            "note": "OCR (tesseract) of the signed scan; the 2024 renewal does not amend art. 160.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-05T10:00:00Z",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-05T10:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-05-ai-week-divisor"
             }
           }
         }
@@ -3706,6 +3725,49 @@
           "review_id": "2026-10-31-ai"
         }
       }
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "04-25",
+        "05-01",
+        "06-02",
+        "01-01",
+        "01-06",
+        "easter_monday",
+        "08-15",
+        "11-01",
+        "12-08",
+        "12-25",
+        "12-26",
+        "11-04"
+      ],
+      "divisor": "26",
+      "on_rest_day": true,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "fipe-ccnl-2018-02-08",
+            "title": "CCNL per i dipendenti da aziende dei settori Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo, 8 febbraio 2018 (scansione firmata)",
+            "kind": "associazione",
+            "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ccnl_ristorazione_2018.pdf",
+            "published_on": "2018-02-08",
+            "sha256": "32a2831b6ff1965adf82da1714f46ac6dc46102971012d6f646368837f72cf85"
+          },
+          "page": "100-101, 116",
+          "section": "Art. 131 c.1, c.4 - Festività; Art. 133 c.4 - IV novembre; Art. 159 - Retribuzione giornaliera",
+          "quote": "(4) A tutto il personale assente nelle giornate di festività, per riposo settimanale, per malattia, infortunio, dovrà essere corrisposta una giornata di retribuzione contrattuale senza alcuna maggiorazione. [Art. 133] (4) Al lavoratore assente nella stessa giornata per riposo settimanale dovrà essere corrisposta una giornata di retribuzione contrattuale senza alcuna maggiorazione. [Art. 159] La retribuzione giornaliera si ottiene dividendo la retribuzione mensile per ventisei."
+        },
+        "transformation": "The national and weekday holidays of art. 131 c.1 (but the Patrono della Città) and 4 November (art. 133) falling on the worker's weekly rest day (Employment.weekly_rest_day): one day of the monthly pay of the chain over 26 (art. 159). The statutory holidays on a Sunday stay paid by L. 260/1949 art. 5 when the rest day is another day.",
+        "note": "OCR (tesseract) of the 2018 signed scan; the 2024 renewal of 5 June 2024 amends arts. 114, 135, 161, 183-184 and 199-202, not arts. 131-133. 4 October, a holiday from 2026 (L. 151/2025), is not in the list: its rest day stays open. The Patrono is not in the national calendar and is not paid. A rotating rest day is not modelled. The staff paid on the percentuale di servizio take the day on the art. 179 pay (art. 132 c.2), not modelled. The absence for sickness or injury on a holiday (same comma) is left to the sickness treatment.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-04T15:00:00Z",
+          "effective_from": "2018-01-01",
+          "verification_status": "unverified"
+        }
+      }
     }
   },
   "verification": {
@@ -3942,6 +4004,28 @@
           "work_rules.leave_rules.termination.ferie_divisor 26",
           "work_rules.leave_rules.termination.permits_hourly true",
           "coverage.notes[LEAVE AT TERMINATION]"
+        ]
+      },
+      {
+        "id": "2026-11-05-ai-week-divisor",
+        "date": "2026-11-05",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The hourly divisor of the 44-hour week, Articolo 160 (PDF p. 116, printed p. 114), checked by a separate session on the page rendered at 200 and 400 dpi.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ccnl_ristorazione_2018.pdf",
+            "sha256": "32a2831b6ff1965adf82da1714f46ac6dc46102971012d6f646368837f72cf85"
+          }
+        ],
+        "findings": [
+          "Art. 160 c.1 (sha256 32a2831b... matched): 190 for a normal week of 44 hours, 172 for 40: work_rules.time_supplements.week_divisors 44/190.",
+          "The renewal of 5 June 2024 amends arts. 114, 135, 161, 183-184 and 199-202, not art. 160."
+        ],
+        "independence": "separate_session",
+        "checked": [
+          "work_rules.time_supplements.week_divisors"
         ]
       }
     ],

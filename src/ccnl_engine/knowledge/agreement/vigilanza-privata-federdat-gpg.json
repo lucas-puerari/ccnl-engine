@@ -2,30 +2,39 @@
   "schema_version": "0.6",
   "meta": {
     "ccnl_id": "vigilanza-privata-federdat-gpg",
-    "cnel_code": "HV17",
+    "cnel_code": "HV51",
     "name": "CCNL Vigilanza Privata e Servizi Fiduciari FEDERDAT — GPG",
     "sector": "vigilanza privata — guardie particolari giurate (GPG)",
     "family": {
       "id": "vigilanza",
-      "reason": "Private security, sworn guards section (Federdat).",
+      "reason": "Private security, sworn guards section (FEDERDAT, CNEL HV51).",
       "related": []
     },
     "tax_sector": "terziario",
     "signatories": [
       "FEDERDAT",
-      "FILCAMS-CGIL",
-      "FISASCAT-CISL",
-      "UILTUCS-UIL"
+      "CIU Unionquadri",
+      "FLAITS",
+      "CONSIL",
+      "CONFIAL"
     ],
-    "agreement_date": "2023-05-04",
+    "agreement_date": "2026-07-09",
     "sources": [
       {
-        "document_id": "uiltucs-it-wp-content-uploads-2024-07-tabelle-ccnl-16-2-2024_firmato-2023-2026-p",
-        "title": "Tabelle retributive GPG e SF, 2023-2026. Accordo di rinnovo 04/05/2023 (tranche 01/06/2023) + Ipotesi di accordo 16/02/2024 (tranches 01/06/2024 - 01/12/2026).",
-        "kind": "tabella_retributiva",
-        "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf",
+        "document_id": "cnel-hv51-245848-ccnl-2026",
+        "title": "CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 9 luglio 2026 (archivio CNEL HV51, accordo 245848)",
+        "kind": "cnel",
+        "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
         "pages": [],
-        "published_on": "2024-02-16"
+        "published_on": "2026-07-09"
+      },
+      {
+        "document_id": "cnel-hv51-167336-ccnl-2023",
+        "title": "CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 4 maggio 2023 (archivio CNEL HV51, accordo 167336)",
+        "kind": "cnel",
+        "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/167336",
+        "pages": [],
+        "published_on": "2023-05-04"
       }
     ],
     "extraction": {
@@ -41,49 +50,24 @@
     "notes": [
       {
         "kind": "info",
-        "text": "CCNL HV17 FEDERDAT GPG section. Conglobated, 14 months, divisor 173. 7 levels. 6 tranches: 01/06/2023, 01/06/2024, 01/06/2025, 01/12/2025, 01/04/2026, 01/12/2026. Contract validity: 01/06/2023-31/12/2026."
-      },
-      {
-        "kind": "simplification",
-        "text": "SENIORITY: amounts from UILTUCS tabelle PDF (Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf), cadence 36m: Q=31.30, I=26.12, II=23.83, III=22.46, IV=21.13, V=20.52, VI=19.66 EUR/scatto. July 9 2026 renewal (FEDERDAT-CONFIAL) increased maximum_count from 6 to 10; per-scatto amounts confirmed unchanged post-rinnovo (ilccnl.it shows same Q–III values after rinnovo). Amounts for IV–VI post-rinnovo not independently verified from a post-rinnovo primary source.",
-        "capability": "seniority",
-        "monetary_impact": "unknown",
-        "limitation": {
-          "variant": "seniority_assumed_unchanged",
-          "applies_when": {
-            "trigger": "run",
-            "levels": [
-              "IV",
-              "V",
-              "VI"
-            ],
-            "effective_from": "2026-07-09"
-          },
-          "remediation": "Confirm the post-rinnovo scatto amounts of IV-VI from a primary source."
-        }
+        "text": "CCNL FEDERDAT (CNEL HV51), guardie particolari giurate. Conglobated pay, 14 months, hourly divisor 173, daily 26. The CCNL of 4 May 2023 pays one table (art. 102) until the renewal of 9 July 2026, in force 'da luglio 2026' (art. 4: read as 1 July), whose art. 119 gives the amounts in force and those of December 2026. The pay tables of the main CCNL (HV17) the file held before are those of vigilanza-privata-assiv."
       },
       {
         "kind": "info",
-        "text": "Apprenticeship: 100% passthrough confirmed from CCNL FEDERDAT Art. 86: \"L'Apprendista ha diritto per tutta la durata del periodo di apprendistato all'inquadramento e alla corrispondente retribuzione del livello finale di collocazione.\" (FESICA PDF, CCNL ISTITUTI AZIENDE VIGILANZA PRIVATA, Art. 86). Engine models this correctly as 100% of destination level salary."
-      },
-      {
-        "kind": "info",
-        "text": "Level VI salary at 01/06/2024 (1185.44) is anomalously high vs prior tranche (1108.06) — confirmed by source as conventional riallineamento for level VI."
+        "text": "APPRENTICESHIP (Art. 32, 2026 text): 'La retribuzione, l'inquadramento e l'orario di lavoro dell'apprendista sono disciplinati [...] in applicazione del principio di parità di trattamento': modelled as 100% of the level; three years at most (art. 33)."
       },
       {
         "kind": "simplification",
-        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
-        "capability": "seniority",
-        "monetary_impact": "unknown",
+        "text": "LEAVE (Art. 89, 2026 text): 25 days with the 5+1 rota, 23 with 6+1+1, 22 with 5+2, read by Employment.rota; without it the 25 days of the 5+1 rota.",
+        "capability": "leave",
+        "monetary_impact": "yes",
         "limitation": {
-          "variant": "apprentice_seniority",
+          "variant": "leave_days_by_rota",
           "applies_when": {
-            "trigger": "path",
-            "contract_types": [
-              "apprentice"
-            ]
+            "trigger": "outside_input"
           },
-          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
+          "remediation": "Resolved: leave_rules.rota_annual_days with Employment.rota, read on 2026-11-06.",
+          "status": "resolved"
         }
       }
     ]
@@ -97,116 +81,65 @@
         "periods": [
           {
             "valid_from": "2023-06-01",
-            "valid_until": "2024-06-01",
-            "value": "1108.06",
+            "valid_until": "2026-07-01",
+            "value": "1115.19",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "kind": "associazione",
-                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+                  "document_id": "cnel-hv51-167336-ccnl-2023",
+                  "title": "CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 4 maggio 2023 (archivio CNEL HV51, accordo 167336)",
+                  "kind": "cnel",
+                  "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/167336",
+                  "published_on": "2023-05-04",
+                  "sha256": "40f3628a8d1cf28cf73f4445dd4c8013027c8e68933569ea36ae50c50061cb14"
                 },
-                "section": "Tabella retributiva"
+                "page": "63",
+                "section": "Art. 102 - Paga conglobata",
+                "quote": "LIVELLO paga VI 1115,19"
               },
+              "transformation": "Monthly paga base tabellare conglobata of the level, read on the page image of the CNEL scan.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-06T15:00:00Z",
+                "effective_from": "2023-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-06T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-06-ai-federdat-hv51"
               }
             }
           },
           {
-            "valid_from": "2024-06-01",
-            "valid_until": "2025-06-01",
-            "value": "1185.44",
-            "provenance": {
-              "status": "derived",
-              "location": {
-                "source_document": {
-                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "kind": "associazione",
-                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
-                },
-                "section": "Tabella retributiva"
-              },
-              "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
-            }
-          },
-          {
-            "valid_from": "2025-06-01",
-            "valid_until": "2025-12-01",
-            "value": "1218.44",
-            "provenance": {
-              "status": "derived",
-              "location": {
-                "source_document": {
-                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "kind": "associazione",
-                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
-                },
-                "section": "Tabella retributiva"
-              },
-              "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
-            }
-          },
-          {
-            "valid_from": "2025-12-01",
-            "valid_until": "2026-04-01",
-            "value": "1246.73",
-            "provenance": {
-              "status": "derived",
-              "location": {
-                "source_document": {
-                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "kind": "associazione",
-                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
-                },
-                "section": "Tabella retributiva"
-              },
-              "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
-            }
-          },
-          {
-            "valid_from": "2026-04-01",
+            "valid_from": "2026-07-01",
             "valid_until": "2026-12-01",
             "value": "1293.87",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "kind": "associazione",
-                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+                  "document_id": "cnel-hv51-245848-ccnl-2026",
+                  "title": "CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 9 luglio 2026 (archivio CNEL HV51, accordo 245848)",
+                  "kind": "cnel",
+                  "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+                  "published_on": "2026-07-09",
+                  "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
                 },
-                "section": "Tabella retributiva"
+                "page": "63",
+                "section": "Art. 119 - Paga conglobata",
+                "quote": "LIVELLO In vigore Dicembre 2026 VI 1293,87 1350,44"
               },
+              "transformation": "Monthly paga base tabellare conglobata of the level, read on the page image of the CNEL scan.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-06T15:00:00Z",
+                "effective_from": "2026-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-06T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-06-ai-federdat-hv51"
               }
             }
           },
@@ -215,21 +148,30 @@
             "valid_until": null,
             "value": "1350.44",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "kind": "associazione",
-                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+                  "document_id": "cnel-hv51-245848-ccnl-2026",
+                  "title": "CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 9 luglio 2026 (archivio CNEL HV51, accordo 245848)",
+                  "kind": "cnel",
+                  "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+                  "published_on": "2026-07-09",
+                  "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
                 },
-                "section": "Tabella retributiva"
+                "page": "63",
+                "section": "Art. 119 - Paga conglobata",
+                "quote": "LIVELLO In vigore Dicembre 2026 VI 1293,87 1350,44"
               },
+              "transformation": "Monthly paga base tabellare conglobata of the level, read on the page image of the CNEL scan.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-06T15:00:00Z",
+                "effective_from": "2026-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-06T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-06-ai-federdat-hv51"
               }
             }
           }
@@ -263,116 +205,65 @@
         "periods": [
           {
             "valid_from": "2023-06-01",
-            "valid_until": "2024-06-01",
-            "value": "1261.87",
+            "valid_until": "2026-07-01",
+            "value": "1271.27",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "kind": "associazione",
-                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+                  "document_id": "cnel-hv51-167336-ccnl-2023",
+                  "title": "CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 4 maggio 2023 (archivio CNEL HV51, accordo 167336)",
+                  "kind": "cnel",
+                  "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/167336",
+                  "published_on": "2023-05-04",
+                  "sha256": "40f3628a8d1cf28cf73f4445dd4c8013027c8e68933569ea36ae50c50061cb14"
                 },
-                "section": "Tabella retributiva"
+                "page": "63",
+                "section": "Art. 102 - Paga conglobata",
+                "quote": "LIVELLO paga V 1271,27"
               },
+              "transformation": "Monthly paga base tabellare conglobata of the level, read on the page image of the CNEL scan.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-06T15:00:00Z",
+                "effective_from": "2023-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-06T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-06-ai-federdat-hv51"
               }
             }
           },
           {
-            "valid_from": "2024-06-01",
-            "valid_until": "2025-06-01",
-            "value": "1285.44",
-            "provenance": {
-              "status": "derived",
-              "location": {
-                "source_document": {
-                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "kind": "associazione",
-                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
-                },
-                "section": "Tabella retributiva"
-              },
-              "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
-            }
-          },
-          {
-            "valid_from": "2025-06-01",
-            "valid_until": "2025-12-01",
-            "value": "1318.44",
-            "provenance": {
-              "status": "derived",
-              "location": {
-                "source_document": {
-                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "kind": "associazione",
-                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
-                },
-                "section": "Tabella retributiva"
-              },
-              "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
-            }
-          },
-          {
-            "valid_from": "2025-12-01",
-            "valid_until": "2026-04-01",
-            "value": "1346.73",
-            "provenance": {
-              "status": "derived",
-              "location": {
-                "source_document": {
-                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "kind": "associazione",
-                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
-                },
-                "section": "Tabella retributiva"
-              },
-              "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
-            }
-          },
-          {
-            "valid_from": "2026-04-01",
+            "valid_from": "2026-07-01",
             "valid_until": "2026-12-01",
             "value": "1393.87",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "kind": "associazione",
-                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+                  "document_id": "cnel-hv51-245848-ccnl-2026",
+                  "title": "CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 9 luglio 2026 (archivio CNEL HV51, accordo 245848)",
+                  "kind": "cnel",
+                  "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+                  "published_on": "2026-07-09",
+                  "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
                 },
-                "section": "Tabella retributiva"
+                "page": "63",
+                "section": "Art. 119 - Paga conglobata",
+                "quote": "LIVELLO In vigore Dicembre 2026 V 1393,87 1450,44"
               },
+              "transformation": "Monthly paga base tabellare conglobata of the level, read on the page image of the CNEL scan.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-06T15:00:00Z",
+                "effective_from": "2026-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-06T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-06-ai-federdat-hv51"
               }
             }
           },
@@ -381,21 +272,30 @@
             "valid_until": null,
             "value": "1450.44",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "kind": "associazione",
-                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+                  "document_id": "cnel-hv51-245848-ccnl-2026",
+                  "title": "CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 9 luglio 2026 (archivio CNEL HV51, accordo 245848)",
+                  "kind": "cnel",
+                  "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+                  "published_on": "2026-07-09",
+                  "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
                 },
-                "section": "Tabella retributiva"
+                "page": "63",
+                "section": "Art. 119 - Paga conglobata",
+                "quote": "LIVELLO In vigore Dicembre 2026 V 1393,87 1450,44"
               },
+              "transformation": "Monthly paga base tabellare conglobata of the level, read on the page image of the CNEL scan.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-06T15:00:00Z",
+                "effective_from": "2026-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-06T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-06-ai-federdat-hv51"
               }
             }
           }
@@ -429,116 +329,65 @@
         "periods": [
           {
             "valid_from": "2023-06-01",
-            "valid_until": "2024-06-01",
-            "value": "1328.88",
+            "valid_until": "2026-07-01",
+            "value": "1338.85",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "kind": "associazione",
-                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+                  "document_id": "cnel-hv51-167336-ccnl-2023",
+                  "title": "CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 4 maggio 2023 (archivio CNEL HV51, accordo 167336)",
+                  "kind": "cnel",
+                  "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/167336",
+                  "published_on": "2023-05-04",
+                  "sha256": "40f3628a8d1cf28cf73f4445dd4c8013027c8e68933569ea36ae50c50061cb14"
                 },
-                "section": "Tabella retributiva"
+                "page": "63",
+                "section": "Art. 102 - Paga conglobata",
+                "quote": "LIVELLO paga IV 1338,85"
               },
+              "transformation": "Monthly paga base tabellare conglobata of the level, read on the page image of the CNEL scan.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-06T15:00:00Z",
+                "effective_from": "2023-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-06T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-06-ai-federdat-hv51"
               }
             }
           },
           {
-            "valid_from": "2024-06-01",
-            "valid_until": "2025-06-01",
-            "value": "1353.88",
-            "provenance": {
-              "status": "derived",
-              "location": {
-                "source_document": {
-                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "kind": "associazione",
-                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
-                },
-                "section": "Tabella retributiva"
-              },
-              "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
-            }
-          },
-          {
-            "valid_from": "2025-06-01",
-            "valid_until": "2025-12-01",
-            "value": "1388.88",
-            "provenance": {
-              "status": "derived",
-              "location": {
-                "source_document": {
-                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "kind": "associazione",
-                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
-                },
-                "section": "Tabella retributiva"
-              },
-              "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
-            }
-          },
-          {
-            "valid_from": "2025-12-01",
-            "valid_until": "2026-04-01",
-            "value": "1418.88",
-            "provenance": {
-              "status": "derived",
-              "location": {
-                "source_document": {
-                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "kind": "associazione",
-                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
-                },
-                "section": "Tabella retributiva"
-              },
-              "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
-            }
-          },
-          {
-            "valid_from": "2026-04-01",
+            "valid_from": "2026-07-01",
             "valid_until": "2026-12-01",
             "value": "1468.88",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "kind": "associazione",
-                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+                  "document_id": "cnel-hv51-245848-ccnl-2026",
+                  "title": "CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 9 luglio 2026 (archivio CNEL HV51, accordo 245848)",
+                  "kind": "cnel",
+                  "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+                  "published_on": "2026-07-09",
+                  "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
                 },
-                "section": "Tabella retributiva"
+                "page": "63",
+                "section": "Art. 119 - Paga conglobata",
+                "quote": "LIVELLO In vigore Dicembre 2026 IV 1468,88 1528,88"
               },
+              "transformation": "Monthly paga base tabellare conglobata of the level, read on the page image of the CNEL scan.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-06T15:00:00Z",
+                "effective_from": "2026-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-06T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-06-ai-federdat-hv51"
               }
             }
           },
@@ -547,21 +396,30 @@
             "valid_until": null,
             "value": "1528.88",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "kind": "associazione",
-                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+                  "document_id": "cnel-hv51-245848-ccnl-2026",
+                  "title": "CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 9 luglio 2026 (archivio CNEL HV51, accordo 245848)",
+                  "kind": "cnel",
+                  "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+                  "published_on": "2026-07-09",
+                  "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
                 },
-                "section": "Tabella retributiva"
+                "page": "63",
+                "section": "Art. 119 - Paga conglobata",
+                "quote": "LIVELLO In vigore Dicembre 2026 IV 1468,88 1528,88"
               },
+              "transformation": "Monthly paga base tabellare conglobata of the level, read on the page image of the CNEL scan.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-06T15:00:00Z",
+                "effective_from": "2026-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-06T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-06-ai-federdat-hv51"
               }
             }
           }
@@ -595,116 +453,65 @@
         "periods": [
           {
             "valid_from": "2023-06-01",
-            "valid_until": "2024-06-01",
-            "value": "1483.31",
+            "valid_until": "2026-07-01",
+            "value": "1495.28",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "kind": "associazione",
-                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+                  "document_id": "cnel-hv51-167336-ccnl-2023",
+                  "title": "CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 4 maggio 2023 (archivio CNEL HV51, accordo 167336)",
+                  "kind": "cnel",
+                  "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/167336",
+                  "published_on": "2023-05-04",
+                  "sha256": "40f3628a8d1cf28cf73f4445dd4c8013027c8e68933569ea36ae50c50061cb14"
                 },
-                "section": "Tabella retributiva"
+                "page": "63",
+                "section": "Art. 102 - Paga conglobata",
+                "quote": "LIVELLO paga III 1495,28"
               },
+              "transformation": "Monthly paga base tabellare conglobata of the level, read on the page image of the CNEL scan.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-06T15:00:00Z",
+                "effective_from": "2023-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-06T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-06-ai-federdat-hv51"
               }
             }
           },
           {
-            "valid_from": "2024-06-01",
-            "valid_until": "2025-06-01",
-            "value": "1513.31",
-            "provenance": {
-              "status": "derived",
-              "location": {
-                "source_document": {
-                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "kind": "associazione",
-                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
-                },
-                "section": "Tabella retributiva"
-              },
-              "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
-            }
-          },
-          {
-            "valid_from": "2025-06-01",
-            "valid_until": "2025-12-01",
-            "value": "1553.31",
-            "provenance": {
-              "status": "derived",
-              "location": {
-                "source_document": {
-                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "kind": "associazione",
-                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
-                },
-                "section": "Tabella retributiva"
-              },
-              "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
-            }
-          },
-          {
-            "valid_from": "2025-12-01",
-            "valid_until": "2026-04-01",
-            "value": "1591.31",
-            "provenance": {
-              "status": "derived",
-              "location": {
-                "source_document": {
-                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "kind": "associazione",
-                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
-                },
-                "section": "Tabella retributiva"
-              },
-              "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
-            }
-          },
-          {
-            "valid_from": "2026-04-01",
+            "valid_from": "2026-07-01",
             "valid_until": "2026-12-01",
             "value": "1651.31",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "kind": "associazione",
-                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+                  "document_id": "cnel-hv51-245848-ccnl-2026",
+                  "title": "CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 9 luglio 2026 (archivio CNEL HV51, accordo 245848)",
+                  "kind": "cnel",
+                  "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+                  "published_on": "2026-07-09",
+                  "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
                 },
-                "section": "Tabella retributiva"
+                "page": "63",
+                "section": "Art. 119 - Paga conglobata",
+                "quote": "LIVELLO In vigore Dicembre 2026 III 1651,31 1723,31"
               },
+              "transformation": "Monthly paga base tabellare conglobata of the level, read on the page image of the CNEL scan.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-06T15:00:00Z",
+                "effective_from": "2026-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-06T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-06-ai-federdat-hv51"
               }
             }
           },
@@ -713,21 +520,30 @@
             "valid_until": null,
             "value": "1723.31",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "kind": "associazione",
-                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+                  "document_id": "cnel-hv51-245848-ccnl-2026",
+                  "title": "CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 9 luglio 2026 (archivio CNEL HV51, accordo 245848)",
+                  "kind": "cnel",
+                  "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+                  "published_on": "2026-07-09",
+                  "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
                 },
-                "section": "Tabella retributiva"
+                "page": "63",
+                "section": "Art. 119 - Paga conglobata",
+                "quote": "LIVELLO In vigore Dicembre 2026 III 1651,31 1723,31"
               },
+              "transformation": "Monthly paga base tabellare conglobata of the level, read on the page image of the CNEL scan.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-06T15:00:00Z",
+                "effective_from": "2026-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-06T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-06-ai-federdat-hv51"
               }
             }
           }
@@ -761,116 +577,65 @@
         "periods": [
           {
             "valid_from": "2023-06-01",
-            "valid_until": "2024-06-01",
-            "value": "1660.38",
+            "valid_until": "2026-07-01",
+            "value": "1674.65",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "kind": "associazione",
-                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+                  "document_id": "cnel-hv51-167336-ccnl-2023",
+                  "title": "CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 4 maggio 2023 (archivio CNEL HV51, accordo 167336)",
+                  "kind": "cnel",
+                  "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/167336",
+                  "published_on": "2023-05-04",
+                  "sha256": "40f3628a8d1cf28cf73f4445dd4c8013027c8e68933569ea36ae50c50061cb14"
                 },
-                "section": "Tabella retributiva"
+                "page": "63",
+                "section": "Art. 102 - Paga conglobata",
+                "quote": "LIVELLO paga II 1674,65"
               },
+              "transformation": "Monthly paga base tabellare conglobata of the level, read on the page image of the CNEL scan.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-06T15:00:00Z",
+                "effective_from": "2023-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-06T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-06-ai-federdat-hv51"
               }
             }
           },
           {
-            "valid_from": "2024-06-01",
-            "valid_until": "2025-06-01",
-            "value": "1696.09",
-            "provenance": {
-              "status": "derived",
-              "location": {
-                "source_document": {
-                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "kind": "associazione",
-                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
-                },
-                "section": "Tabella retributiva"
-              },
-              "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
-            }
-          },
-          {
-            "valid_from": "2025-06-01",
-            "valid_until": "2025-12-01",
-            "value": "1746.09",
-            "provenance": {
-              "status": "derived",
-              "location": {
-                "source_document": {
-                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "kind": "associazione",
-                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
-                },
-                "section": "Tabella retributiva"
-              },
-              "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
-            }
-          },
-          {
-            "valid_from": "2025-12-01",
-            "valid_until": "2026-04-01",
-            "value": "1788.95",
-            "provenance": {
-              "status": "derived",
-              "location": {
-                "source_document": {
-                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "kind": "associazione",
-                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
-                },
-                "section": "Tabella retributiva"
-              },
-              "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
-            }
-          },
-          {
-            "valid_from": "2026-04-01",
+            "valid_from": "2026-07-01",
             "valid_until": "2026-12-01",
             "value": "1860.38",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "kind": "associazione",
-                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+                  "document_id": "cnel-hv51-245848-ccnl-2026",
+                  "title": "CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 9 luglio 2026 (archivio CNEL HV51, accordo 245848)",
+                  "kind": "cnel",
+                  "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+                  "published_on": "2026-07-09",
+                  "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
                 },
-                "section": "Tabella retributiva"
+                "page": "63",
+                "section": "Art. 119 - Paga conglobata",
+                "quote": "LIVELLO In vigore Dicembre 2026 II 1860,38 1946,09"
               },
+              "transformation": "Monthly paga base tabellare conglobata of the level, read on the page image of the CNEL scan.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-06T15:00:00Z",
+                "effective_from": "2026-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-06T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-06-ai-federdat-hv51"
               }
             }
           },
@@ -879,21 +644,30 @@
             "valid_until": null,
             "value": "1946.09",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "kind": "associazione",
-                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+                  "document_id": "cnel-hv51-245848-ccnl-2026",
+                  "title": "CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 9 luglio 2026 (archivio CNEL HV51, accordo 245848)",
+                  "kind": "cnel",
+                  "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+                  "published_on": "2026-07-09",
+                  "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
                 },
-                "section": "Tabella retributiva"
+                "page": "63",
+                "section": "Art. 119 - Paga conglobata",
+                "quote": "LIVELLO In vigore Dicembre 2026 II 1860,38 1946,09"
               },
+              "transformation": "Monthly paga base tabellare conglobata of the level, read on the page image of the CNEL scan.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-06T15:00:00Z",
+                "effective_from": "2026-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-06T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-06-ai-federdat-hv51"
               }
             }
           }
@@ -927,116 +701,65 @@
         "periods": [
           {
             "valid_from": "2023-06-01",
-            "valid_until": "2024-06-01",
-            "value": "1772.60",
+            "valid_until": "2026-07-01",
+            "value": "1788.31",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "kind": "associazione",
-                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+                  "document_id": "cnel-hv51-167336-ccnl-2023",
+                  "title": "CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 4 maggio 2023 (archivio CNEL HV51, accordo 167336)",
+                  "kind": "cnel",
+                  "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/167336",
+                  "published_on": "2023-05-04",
+                  "sha256": "40f3628a8d1cf28cf73f4445dd4c8013027c8e68933569ea36ae50c50061cb14"
                 },
-                "section": "Tabella retributiva"
+                "page": "63",
+                "section": "Art. 102 - Paga conglobata",
+                "quote": "LIVELLO paga I 1788,31"
               },
+              "transformation": "Monthly paga base tabellare conglobata of the level, read on the page image of the CNEL scan.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-06T15:00:00Z",
+                "effective_from": "2023-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-06T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-06-ai-federdat-hv51"
               }
             }
           },
           {
-            "valid_from": "2024-06-01",
-            "valid_until": "2025-06-01",
-            "value": "1811.89",
-            "provenance": {
-              "status": "derived",
-              "location": {
-                "source_document": {
-                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "kind": "associazione",
-                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
-                },
-                "section": "Tabella retributiva"
-              },
-              "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
-            }
-          },
-          {
-            "valid_from": "2025-06-01",
-            "valid_until": "2025-12-01",
-            "value": "1866.89",
-            "provenance": {
-              "status": "derived",
-              "location": {
-                "source_document": {
-                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "kind": "associazione",
-                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
-                },
-                "section": "Tabella retributiva"
-              },
-              "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
-            }
-          },
-          {
-            "valid_from": "2025-12-01",
-            "valid_until": "2026-04-01",
-            "value": "1914.03",
-            "provenance": {
-              "status": "derived",
-              "location": {
-                "source_document": {
-                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "kind": "associazione",
-                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
-                },
-                "section": "Tabella retributiva"
-              },
-              "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
-            }
-          },
-          {
-            "valid_from": "2026-04-01",
+            "valid_from": "2026-07-01",
             "valid_until": "2026-12-01",
             "value": "1992.60",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "kind": "associazione",
-                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+                  "document_id": "cnel-hv51-245848-ccnl-2026",
+                  "title": "CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 9 luglio 2026 (archivio CNEL HV51, accordo 245848)",
+                  "kind": "cnel",
+                  "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+                  "published_on": "2026-07-09",
+                  "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
                 },
-                "section": "Tabella retributiva"
+                "page": "63",
+                "section": "Art. 119 - Paga conglobata",
+                "quote": "LIVELLO In vigore Dicembre 2026 I 1992,60 2086,89"
               },
+              "transformation": "Monthly paga base tabellare conglobata of the level, read on the page image of the CNEL scan.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-06T15:00:00Z",
+                "effective_from": "2026-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-06T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-06-ai-federdat-hv51"
               }
             }
           },
@@ -1045,21 +768,30 @@
             "valid_until": null,
             "value": "2086.89",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "kind": "associazione",
-                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+                  "document_id": "cnel-hv51-245848-ccnl-2026",
+                  "title": "CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 9 luglio 2026 (archivio CNEL HV51, accordo 245848)",
+                  "kind": "cnel",
+                  "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+                  "published_on": "2026-07-09",
+                  "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
                 },
-                "section": "Tabella retributiva"
+                "page": "63",
+                "section": "Art. 119 - Paga conglobata",
+                "quote": "LIVELLO In vigore Dicembre 2026 I 1992,60 2086,89"
               },
+              "transformation": "Monthly paga base tabellare conglobata of the level, read on the page image of the CNEL scan.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-06T15:00:00Z",
+                "effective_from": "2026-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-06T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-06-ai-federdat-hv51"
               }
             }
           }
@@ -1093,116 +825,65 @@
         "periods": [
           {
             "valid_from": "2023-06-01",
-            "valid_until": "2024-06-01",
-            "value": "2049.03",
+            "valid_until": "2026-07-01",
+            "value": "2068.30",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "kind": "associazione",
-                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+                  "document_id": "cnel-hv51-167336-ccnl-2023",
+                  "title": "CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 4 maggio 2023 (archivio CNEL HV51, accordo 167336)",
+                  "kind": "cnel",
+                  "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/167336",
+                  "published_on": "2023-05-04",
+                  "sha256": "40f3628a8d1cf28cf73f4445dd4c8013027c8e68933569ea36ae50c50061cb14"
                 },
-                "section": "Tabella retributiva"
+                "page": "63",
+                "section": "Art. 102 - Paga conglobata",
+                "quote": "LIVELLO paga Quadri 2068,30"
               },
+              "transformation": "Monthly paga base tabellare conglobata of the level, read on the page image of the CNEL scan.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-06T15:00:00Z",
+                "effective_from": "2023-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-06T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-06-ai-federdat-hv51"
               }
             }
           },
           {
-            "valid_from": "2024-06-01",
-            "valid_until": "2025-06-01",
-            "value": "2097.24",
-            "provenance": {
-              "status": "derived",
-              "location": {
-                "source_document": {
-                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "kind": "associazione",
-                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
-                },
-                "section": "Tabella retributiva"
-              },
-              "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
-            }
-          },
-          {
-            "valid_from": "2025-06-01",
-            "valid_until": "2025-12-01",
-            "value": "2164.74",
-            "provenance": {
-              "status": "derived",
-              "location": {
-                "source_document": {
-                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "kind": "associazione",
-                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
-                },
-                "section": "Tabella retributiva"
-              },
-              "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
-            }
-          },
-          {
-            "valid_from": "2025-12-01",
-            "valid_until": "2026-04-01",
-            "value": "2222.60",
-            "provenance": {
-              "status": "derived",
-              "location": {
-                "source_document": {
-                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "kind": "associazione",
-                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
-                },
-                "section": "Tabella retributiva"
-              },
-              "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
-            }
-          },
-          {
-            "valid_from": "2026-04-01",
+            "valid_from": "2026-07-01",
             "valid_until": "2026-12-01",
             "value": "2319.03",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "kind": "associazione",
-                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+                  "document_id": "cnel-hv51-245848-ccnl-2026",
+                  "title": "CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 9 luglio 2026 (archivio CNEL HV51, accordo 245848)",
+                  "kind": "cnel",
+                  "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+                  "published_on": "2026-07-09",
+                  "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
                 },
-                "section": "Tabella retributiva"
+                "page": "63",
+                "section": "Art. 119 - Paga conglobata",
+                "quote": "LIVELLO In vigore Dicembre 2026 Quadri 2319,03 2434,74"
               },
+              "transformation": "Monthly paga base tabellare conglobata of the level, read on the page image of the CNEL scan.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-06T15:00:00Z",
+                "effective_from": "2026-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-06T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-06-ai-federdat-hv51"
               }
             }
           },
@@ -1211,21 +892,30 @@
             "valid_until": null,
             "value": "2434.74",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                  "kind": "associazione",
-                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+                  "document_id": "cnel-hv51-245848-ccnl-2026",
+                  "title": "CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 9 luglio 2026 (archivio CNEL HV51, accordo 245848)",
+                  "kind": "cnel",
+                  "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+                  "published_on": "2026-07-09",
+                  "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
                 },
-                "section": "Tabella retributiva"
+                "page": "63",
+                "section": "Art. 119 - Paga conglobata",
+                "quote": "LIVELLO In vigore Dicembre 2026 Quadri 2319,03 2434,74"
               },
+              "transformation": "Monthly paga base tabellare conglobata of the level, read on the page image of the CNEL scan.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-06T15:00:00Z",
+                "effective_from": "2026-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-06T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-06-ai-federdat-hv51"
               }
             }
           }
@@ -1278,7 +968,7 @@
     },
     "seniority_increments": {
       "cadence_months": 36,
-      "maximum_count": 10,
+      "maximum_count": 6,
       "amount_by_level": {
         "VI": {
           "periods": [
@@ -1345,23 +1035,33 @@
         }
       },
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-            "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-            "kind": "associazione",
-            "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+            "document_id": "cnel-hv51-245848-ccnl-2026",
+            "title": "CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 9 luglio 2026 (archivio CNEL HV51, accordo 245848)",
+            "kind": "cnel",
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+            "published_on": "2026-07-09",
+            "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
           },
-          "section": "Scatti di anzianità"
+          "page": "64",
+          "section": "Art. 124 - Scatti di anzianità",
+          "quote": "Il lavoratore avrà diritto a sei scatti triennali. [...] Quadri 31,30 I 26,12 II 23,83 III 22,46 IV 21,13 V 20,52 VI 19,66"
         },
+        "transformation": "Six increments, one every 36 months, at the amounts of the level; paid from the month after the triennio. The 2023 text sets the same six.",
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-07T15:03:36",
-          "verification_status": "unverified",
-          "effective_from": "2020-01-01"
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-06T15:00:00Z",
+          "effective_from": "2023-06-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-06T15:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-06-ai-federdat-hv51"
         }
-      }
+      },
+      "apprentice_level_amount": true
     }
   },
   "apprenticeship": [
@@ -1391,9 +1091,9 @@
     "version": "2026.2",
     "effective_from": "2023-06-01",
     "effective_until": null,
-    "source": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf",
+    "source": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
     "verification_status": "unverified",
-    "source_hash": "585e3082e2ef6d10827e1103e41db8d9ce5b770ac56c9e5a04c4a39003ed4127",
+    "source_hash": "ffe734656774d99c76b51599675ef886abe0767ac363e677cf52be8213e96ba9",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1535,53 +1235,287 @@
     },
     "leave_rules": {
       "default_annual_days": "25",
-      "entitlement_tiers": [
-        {
-          "service_months_min": 0,
-          "annual_days": "25"
-        }
-      ],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "ccnl-vigilanza-privata-federdat-gpg-2024",
-            "title": "CCNL Vigilanza Privata FEDERDAT (GPG) 2023-2026",
-            "kind": "tabella_retributiva",
-            "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+            "document_id": "cnel-hv51-245848-ccnl-2026",
+            "title": "CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 9 luglio 2026 (archivio CNEL HV51, accordo 245848)",
+            "kind": "cnel",
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+            "published_on": "2026-07-09",
+            "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
           },
-          "section": "Art. ferie"
+          "page": "45",
+          "section": "Art. 89 - Ferie",
+          "quote": "25 giorni di lavoro quando si applica il sistema 5 + 1 (cinque giorni di lavoro e un giorno di riposo); 23 giorni di lavoro quando si applica il sistema 6 + 1 + 1 (sei giorni di lavoro, il giorno di riposo settimanale ed un giorno di permesso); 22 giorni di lavoro quando si applica il sistema 5 + 2 (amministrativi con orario di lavoro giornaliero di 8 ore in cinque giorni)."
         },
+        "transformation": "25 days a year on the 5+1 rota, the default when Employment.rota is not stated (art. 72 of the 2023 text is the same).",
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-08T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2024-02-16"
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-06T20:00:00Z",
+          "effective_from": "2023-06-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-06T20:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-06-ai-federdat-hv51"
+        }
+      },
+      "rota_annual_days": [
+        {
+          "rota": "5+1",
+          "annual_days": "25",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "cnel-hv51-245848-ccnl-2026",
+                "title": "CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 9 luglio 2026 (archivio CNEL HV51, accordo 245848)",
+                "kind": "cnel",
+                "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+                "published_on": "2026-07-09",
+                "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
+              },
+              "page": "45",
+              "section": "Art. 89 - Ferie",
+              "quote": "25 giorni di lavoro quando si applica il sistema 5 + 1 (cinque giorni di lavoro e un giorno di riposo); 23 giorni di lavoro quando si applica il sistema 6 + 1 + 1 (sei giorni di lavoro, il giorno di riposo settimanale ed un giorno di permesso); 22 giorni di lavoro quando si applica il sistema 5 + 2 (amministrativi con orario di lavoro giornaliero di 8 ore in cinque giorni)."
+            },
+            "transformation": "25 days on the 5+1 rota.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-06T20:00:00Z",
+              "effective_from": "2023-06-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-06T20:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-06-ai-federdat-hv51"
+            }
+          }
+        },
+        {
+          "rota": "6+1+1",
+          "annual_days": "23",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "cnel-hv51-245848-ccnl-2026",
+                "title": "CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 9 luglio 2026 (archivio CNEL HV51, accordo 245848)",
+                "kind": "cnel",
+                "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+                "published_on": "2026-07-09",
+                "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
+              },
+              "page": "45",
+              "section": "Art. 89 - Ferie",
+              "quote": "25 giorni di lavoro quando si applica il sistema 5 + 1 (cinque giorni di lavoro e un giorno di riposo); 23 giorni di lavoro quando si applica il sistema 6 + 1 + 1 (sei giorni di lavoro, il giorno di riposo settimanale ed un giorno di permesso); 22 giorni di lavoro quando si applica il sistema 5 + 2 (amministrativi con orario di lavoro giornaliero di 8 ore in cinque giorni)."
+            },
+            "transformation": "23 days on the 6+1+1 rota.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-06T20:00:00Z",
+              "effective_from": "2023-06-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-06T20:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-06-ai-federdat-hv51"
+            }
+          }
+        },
+        {
+          "rota": "5+2",
+          "annual_days": "22",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "cnel-hv51-245848-ccnl-2026",
+                "title": "CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 9 luglio 2026 (archivio CNEL HV51, accordo 245848)",
+                "kind": "cnel",
+                "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+                "published_on": "2026-07-09",
+                "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
+              },
+              "page": "45",
+              "section": "Art. 89 - Ferie",
+              "quote": "25 giorni di lavoro quando si applica il sistema 5 + 1 (cinque giorni di lavoro e un giorno di riposo); 23 giorni di lavoro quando si applica il sistema 6 + 1 + 1 (sei giorni di lavoro, il giorno di riposo settimanale ed un giorno di permesso); 22 giorni di lavoro quando si applica il sistema 5 + 2 (amministrativi con orario di lavoro giornaliero di 8 ore in cinque giorni)."
+            },
+            "transformation": "22 days on the 5+2 rota of the administrative staff.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-06T20:00:00Z",
+              "effective_from": "2023-06-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-06T20:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-06-ai-federdat-hv51"
+            }
+          }
+        }
+      ],
+      "ferie_accrual": {
+        "month_credit": "more_than_half",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "cnel-hv51-245848-ccnl-2026",
+              "title": "CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 9 luglio 2026 (archivio CNEL HV51, accordo 245848)",
+              "kind": "cnel",
+              "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+              "published_on": "2026-07-09",
+              "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
+            },
+            "page": "46",
+            "section": "Art. 89 - Ferie",
+            "quote": "In caso di risoluzione del rapporto di lavoro, spetteranno al lavoratore tanti dodicesimi del periodo di ferie quanti sono i mesi di effettivo servizio prestato per l'anno di competenza. Le frazioni di mese superiori a 15 giorni verranno considerate mese intero."
+          },
+          "transformation": "A twelfth of the days of the year for each month of service; a fraction of more than 15 days counts as a month.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-06T21:00:00Z",
+            "effective_from": "2023-06-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-06T21:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-06-ai-federdat-hv51"
+          }
+        }
+      },
+      "termination": {
+        "ferie_divisor": "26",
+        "permits_hourly": false,
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "cnel-hv51-245848-ccnl-2026",
+              "title": "CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 9 luglio 2026 (archivio CNEL HV51, accordo 245848)",
+              "kind": "cnel",
+              "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+              "published_on": "2026-07-09",
+              "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
+            },
+            "page": "63",
+            "section": "Art. 89 - Ferie; Art. 119 - Paga conglobata",
+            "quote": "In caso di risoluzione del rapporto di lavoro, spetteranno al lavoratore tanti dodicesimi del periodo di ferie quanti sono i mesi di effettivo servizio prestato per l'anno di competenza. Le frazioni di mese superiori a 15 giorni verranno considerate mese intero. [Art. 119] L'importo della retribuzione giornaliera si ottiene dividendo l'importo della retribuzione mensile per 26 (\"Istituti di vigilanza\")."
+          },
+          "transformation": "The twelfths of ferie left at the end of the employment are paid at the daily pay of art. 119, the monthly pay over 26: art. 89 owes them without naming their quota. The file has no permit buckets.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-06T21:00:00Z",
+            "effective_from": "2023-06-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-06T21:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-06-ai-federdat-hv51"
+          }
         }
       }
     },
     "sickness_rules": {
-      "carenza_integration_rate": "0.75",
-      "full_pay_integration_rate": "0.75",
+      "carenza_integration_rate": "1",
+      "full_pay_integration_rate": "1",
       "max_duration_days": 180,
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "ccnl-vigilanza-privata-federdat-gpg-2024",
-            "title": "CCNL Vigilanza Privata FEDERDAT (GPG) 2023-2026",
-            "kind": "tabella_retributiva",
-            "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+            "document_id": "cnel-hv51-245848-ccnl-2026",
+            "title": "CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 9 luglio 2026 (archivio CNEL HV51, accordo 245848)",
+            "kind": "cnel",
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+            "published_on": "2026-07-09",
+            "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
           },
-          "section": "Art. malattia"
+          "page": "51",
+          "section": "Art. 101 - Malattia; Art. 103 - Trattamento economico di malattia",
+          "quote": "ha diritto alla normale retribuzione netta mensile per un periodo massimo di 180 giorni. [Art. 103] 100% (cento per cento) della retribuzione di fatto per i primi tre giorni (periodi di carenza); 75% (settantacinque per cento) della retribuzione di fatto dal 4° al 20° giorno; 100% (cento per cento) della retribuzione di fatto dal 21° giorno in poi."
         },
+        "transformation": "The top-up reaches 100% of the pay for the three days of carenza, 75% for days 4-20 and 100% from day 21, for 180 days. The 2023 text (art. 86, p. 51) is the same. The job is kept for 240 days of several illnesses in a calendar year, 300 of one (art. 105): not modelled.",
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-08T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2024-02-16"
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-06T15:00:00Z",
+          "effective_from": "2023-06-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-06T15:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-06-ai-federdat-hv51"
         }
-      }
+      },
+      "day_bands": [
+        {
+          "day_from": 4,
+          "day_until": 21,
+          "integration_rate": "0.75"
+        },
+        {
+          "day_from": 21,
+          "day_until": null,
+          "integration_rate": "1"
+        }
+      ]
     }
+  },
+  "verification": {
+    "reviews": [
+      {
+        "id": "2026-11-06-ai-federdat-hv51",
+        "date": "2026-11-06",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "FEDERDAT CCNL of 4 May 2023 (CNEL 167336) and of 9 July 2026 (CNEL 245848): artt. 102/119 pay (p. 63, page images), 124 seniority (p. 64), 86/103 sickness (pp. 51), 32-33 apprenticeship, 4 validity.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+            "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
+          },
+          {
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/167336",
+            "sha256": "40f3628a8d1cf28cf73f4445dd4c8013027c8e68933569ea36ae50c50061cb14"
+          }
+        ],
+        "findings": [
+          "The file held the HV17 tables (six tranches 2023-2026): FEDERDAT pays one table from May 2023 and the renewal's two from July and December 2026.",
+          "Six increments, not ten; sickness 100% days 1-3, 75% days 4-20, 100% from day 21 (the file had 75% throughout)."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "meta",
+          "levels.base_salary",
+          "parameters.seniority_increments",
+          "work_rules.sickness_rules"
+        ]
+      },
+      {
+        "id": "2026-11-06-ai-vigilanza-privata-federdat-gpg-apprentice-seniority",
+        "date": "2026-11-06",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Apprentice seniority: artt. 32, 123-124 and 157 of the CCNL of 9 July 2026 (pp. 23, 64, 76, OCR).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+            "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
+          }
+        ],
+        "findings": [
+          "Apprentices accrue the level increments in full: art. 32 c. 1 (p. 23 of the CCNL of 9 July 2026) sets their pay 'in applicazione del principio di parità di trattamento' (no percentage), art. 123 (p. 64) counts seniority 'dal giorno in cui il lavoratore inizia di fatto la prestazione lavorativa nell'Istituto, quali che siano le mansioni', and the six triennial increments are fixed per level (art. 124; art. 157 for the servizi fiduciari)."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "parameters.seniority_increments"
+        ]
+      }
+    ]
   }
 }

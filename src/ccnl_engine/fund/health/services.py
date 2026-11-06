@@ -27,7 +27,6 @@ from ccnl_engine.decision.models import (
     CalculationIssue,
     CalculationStatus,
 )
-from ccnl_engine.employment.inputs import Permanent
 from ccnl_engine.extra_month.settlement.services import ExtraMonthSettlement
 from ccnl_engine.ledger.models import AccountKind
 from ccnl_engine.pay_item.models import (
@@ -181,7 +180,7 @@ def _covers(ctx: RunContext, fund: ContractualFund) -> bool:
         return False
     if fund.levels is not None and ctx.contract.level.code not in fund.levels:
         return False
-    if fund.permanent_only and not isinstance(ctx.request.contract_type, Permanent):
+    if fund.excludes_contract(ctx.request.contract_type):
         return False
     extra = ctx.run_kind in _EXTRA_KINDS
     if fund.charged_in_month is not None:
@@ -243,8 +242,11 @@ def _paid(ctx: RunContext, fund: ContractualFund) -> ExtraMonthSettlement:
     if _extra(ctx) and not fund.extra_months:
         return ExtraMonthSettlement()
     whole = fund.charged_in_month is not None
-    employer = _monthly(ctx, fund, _employer_share(ctx, fund), whole_year=whole)
-    employee = _monthly(ctx, fund, fund.employee, whole_year=whole)
+    reduced = _reduced(ctx, fund)
+    employer_share = fund.reduced_employer if reduced else None
+    employee_share = fund.reduced_employee if reduced else None
+    employer = _monthly(ctx, fund, employer_share or fund.employer, whole_year=whole)
+    employee = _monthly(ctx, fund, employee_share or fund.employee, whole_year=whole)
     solidarity = money(employer * fund.solidarity_rate)
     if fund.welfare:
         return _welfare(ctx, fund, employer)
@@ -298,19 +300,15 @@ def _paid(ctx: RunContext, fund: ContractualFund) -> ExtraMonthSettlement:
     )
 
 
-def _employer_share(ctx: RunContext, fund: ContractualFund) -> FundAmount:
-    """Return the employer share of the worker: reduced for short part time.
+def _reduced(ctx: RunContext, fund: ContractualFund) -> bool:
+    """Return whether the reduced shares of short part time apply.
 
     Returns:
-        ``fund.reduced_employer`` when the worker works at most
-        ``fund.reduced_up_to_weekly_hours`` a week, ``fund.employer``
-        otherwise.
+        True when the fund sets ``reduced_up_to_weekly_hours`` and the
+        worker works at most that many hours a week.
     """
-    limit, reduced = fund.reduced_up_to_weekly_hours, fund.reduced_employer
-    hours = ctx.request.weekly_hours
-    if limit is None or reduced is None or hours is None:
-        return fund.employer
-    return reduced if Decimal(hours.value) <= limit else fund.employer
+    limit, hours = fund.reduced_up_to_weekly_hours, ctx.request.weekly_hours
+    return limit is not None and hours is not None and Decimal(hours.value) <= limit
 
 
 def _welfare(

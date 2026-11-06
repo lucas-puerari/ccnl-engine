@@ -19,22 +19,6 @@
       }
     },
     {
-      "id": "asi_health_contribution",
-      "institute": "bilateral_funds",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = owed",
-      "rule": "HEALTH CONTRIBUTION: the ASI contribution of EUR 5, then 10 a month (Art. 87), is owed for every worker. Not modelled: the totals of every run are short of it.",
-      "calculation": "ccnl/cooperative-sociali:coverage.notes",
-      "state": "absent",
-      "remediation": "Model the ASI contribution per worker, then remove this note.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "cooperative-sociali/asi_health_contribution"
-        ]
-      }
-    },
-    {
       "id": "coop_sociali_unmodelled_elements",
       "institute": "base_salary",
       "variant": "all",

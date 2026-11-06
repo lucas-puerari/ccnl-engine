@@ -33,8 +33,8 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, bilateral_funds |
+| **Core payroll path** | ✅ |
+| **Limits of this contract** | bilateral_funds |
 
 2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
@@ -96,12 +96,12 @@ Latest effective values per level (monthly gross, EUR).
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning "impiegati-tecnici-agricoli/tranche_2025_01_missing · base_salary · impact yes · open"
-    TWO TRANCHES NOT FULLY MODELLED. The CCNL A021 (signed 18/06/2024) establishes two tranches: +5% retroactive to 01/04/2024 and +1,9% from 01/01/2025 (source: dottrinalavoro.it; FLAI PDF; ilccnl.it). The file models only the first tranche (valid_from 2024-07-01, which likely reflects the 01/04/2024 increase with the official CNEL deposit date). The 01/01/2025 tranche is missing: approximate values are L1~1718.81 (1686.76×1.019) but exact official amounts not yet retrieved. Update valid_from to 2024-04-01 and add 2025-01-01 periods when confirmed from official source.
+!!! note "impiegati-tecnici-agricoli/tranche_2025_01_missing · base_salary · impact yes · resolved"
+    NATIONAL MINIMA (Art. 31, p. 35 of the CCNL of 18 June 2024): one national table, 'Minimi nazionali di stipendio mensile conglobato a decorrere dal 01/07/2024' (Q 1.788,38 ... 6° 1.217,23). The +5% from 1 April 2024 and +1.9% from 1 January 2025 raise the territorial salaries, not the national minima; the table applies from 1 July 2024, or from the next territorial renewal (by 1 January 2027) where the territory renewed under the CCNL of 7 July 2021.
 
     **Applies when:** `base_salary` applies; from 2025-01-01.
 
-    **Remediation:** Add the 01/01/2025 tranche (+1.9%) from the official table and move the first tranche to 2024-04-01.
+    **Remediation:** Resolved: the national minima are the one table from 1 July 2024 (art. 31); the two percentages are territorial; read on 2026-11-06.
 
 !!! warning "impiegati-tecnici-agricoli/eban_agrifondo_missing · bilateral_funds · impact yes · open"
     BILATERAL FUNDS. EBAN (Ente Bilaterale Agricolo Nazionale) and Agrifondo (supplementary pension) bilateral contributions are not modelled.

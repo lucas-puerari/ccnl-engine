@@ -19,22 +19,6 @@
       }
     },
     {
-      "id": "apprentice_seniority",
-      "institute": "seniority",
-      "variant": "apprentice",
-      "discriminant": "applies_when.trigger = path",
-      "rule": "APPRENTICE SENIORITY: art. 158 c.1 (2010 text, p. 140) grants the six scatti 'a tutto il personale' and art. 58 pays the apprentice a percentage of the normale retribuzione of the qualified worker, which art. 148 defines with the scatti: apprentices accrue the level amount. The engine pays no increment during the apprenticeship; the run is affected when the apprentice has matured increments.",
-      "calculation": "ccnl/turismo-federalberghi:coverage.notes",
-      "state": "unverified",
-      "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "turismo-federalberghi/apprentice_seniority"
-        ]
-      }
-    },
-    {
       "id": "apprenticeship_durations_unsourced",
       "institute": "base_salary",
       "variant": "apprentice",
@@ -63,22 +47,6 @@
       "links": {
         "limitations": [
           "arrears_unused_deductions"
-        ]
-      }
-    },
-    {
-      "id": "balneari_reduction_hours",
-      "institute": "leave",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "LEAVE, STABILIMENTI BALNEARI (Art. 111 c.2): 108 hours of reduction a year instead of 104. The engine accrues the 104 hours of alberghi, pubblici esercizi, campeggi, alberghi diurni and agenzie di viaggi.",
-      "calculation": "ccnl/turismo-federalberghi:coverage.notes",
-      "state": "absent",
-      "remediation": "Add an employer fact for the comparto and accrue 108 hours for the stabilimenti balneari.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "turismo-federalberghi/balneari_reduction_hours"
         ]
       }
     },
@@ -407,10 +375,10 @@
       "institute": "sickness",
       "variant": "all",
       "discriminant": "applies_when.trigger = run",
-      "rule": "SICKNESS (art. 228, 2010 text p. 184): the CCNL integrates up to a share of the net daily pay without saying how the net pay is computed; the engine grosses up the INPS indemnity by the worker's INPS rate, as for the Commercio file. Day 1 of the carenza is the worker's when the illness lasts three days or less (c.5): the engine pays all three days. For fixed-term and seasonal workers no integration is due past the end of the contract (c.2).",
+      "rule": "SICKNESS (art. 228, 2010 text p. 184): the CCNL integrates up to a share of the net daily pay without saying how the net pay is computed; the engine grosses up the INPS indemnity by the worker's INPS rate, as for the Commercio file. For fixed-term and seasonal workers no integration is due past the end of the contract (c.2).",
       "calculation": "ccnl/turismo-federalberghi:coverage.notes",
       "state": "absent",
-      "remediation": "Model the net daily pay of art. 228, the unpaid first day of a short illness and the end of a fixed-term contract.",
+      "remediation": "Model the net daily pay of art. 228 and the end of a fixed-term contract.",
       "origin": "seeded",
       "links": {
         "limitations": [

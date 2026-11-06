@@ -3,22 +3,6 @@
   "ccnl_id": "gomma-plastica-federazione-gomma-plastica",
   "requirements": [
     {
-      "id": "apprentice_seniority",
-      "institute": "seniority",
-      "variant": "apprentice",
-      "discriminant": "applies_when.trigger = path",
-      "rule": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
-      "calculation": "ccnl/gomma-plastica-federazione-gomma-plastica:coverage.notes",
-      "state": "unverified",
-      "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "gomma-plastica-federazione-gomma-plastica/apprentice_seniority"
-        ]
-      }
-    },
-    {
       "id": "apprenticeship_period_boundaries",
       "institute": "base_salary",
       "variant": "apprentice",
@@ -287,22 +271,6 @@
       "links": {
         "limitations": [
           "provisional_ruleset"
-        ]
-      }
-    },
-    {
-      "id": "q_allowance_2023_unverified",
-      "institute": "base_salary",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "Q LEVEL INDENNITA' DI FUNZIONE 50.00 EUR/month (quadri ex L. 190/1985), cross-verified at April 2025 (lexplain.it total 2473.68 vs contratticcnl.it TEM 2423.68). valid_from set to 2023-01-01 for consistency with the first modelled tranche; not verified whether the amount was already 50 EUR in 2023.",
-      "calculation": "ccnl/gomma-plastica-federazione-gomma-plastica:coverage.notes",
-      "state": "unverified",
-      "remediation": "Source the Q indennità di funzione in force from 2023-01-01 to 2025-03-31.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "gomma-plastica-federazione-gomma-plastica/q_allowance_2023_unverified"
         ]
       }
     },

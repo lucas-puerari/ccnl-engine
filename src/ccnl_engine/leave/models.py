@@ -16,6 +16,7 @@ from typing import Self
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
+from ccnl_engine.employment.rota.inputs import Rota  # noqa: TC001
 from ccnl_engine.leave.permit.models import PermitRules  # noqa: TC001
 from ccnl_engine.leave.types import LeaveBucket, MonthCredit
 from ccnl_engine.provenance.source.rule.models import RuleProvenance  # noqa: TC001
@@ -25,6 +26,10 @@ __all__ = [
     "LeaveEntitlementTier",
     "LeaveRules",
     "LeaveTermination",
+    "PermitDeadline",
+    "RotaLeave",
+    "WeekDaysLeave",
+    "WeekDaysPermit",
 ]
 
 _ZERO = Decimal(0)
@@ -97,6 +102,90 @@ class LeaveTermination(BaseModel):
     provenance: RuleProvenance | None = None
 
 
+class WeekDaysPermit(BaseModel):
+    """The yearly hours of a permit bucket for a full-time week of some days.
+
+    Studi professionali art. 91 c. 2: 40 hours "su 5 (cinque) giorni", 66
+    "su 6 (sei) giorni".
+    """
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    bucket: LeaveBucket
+    hours: Decimal = Field(gt=_ZERO)
+    provenance: RuleProvenance
+
+
+class WeekDaysLeave(BaseModel):
+    """The ferie days of a year for a full-time week of ``days`` working days.
+
+    Studi professionali art. 99: 26 days "se l'orario è distribuito su 6
+    (sei) giorni", 22 in the "settimana corta".  ``ferie_divisor``, when
+    set, replaces the divisor of the indemnity for the ferie left at the
+    end of the employment (Pulizia artigianato art. 34: the daily pay is
+    the monthly pay over 22 or 26).  ``permit_hours`` replace the yearly
+    hours of their bucket, of any employer size.
+    """
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    days: int = Field(ge=5, le=6)
+    annual_days: Decimal = Field(gt=_ZERO)
+    ferie_divisor: Decimal | None = Field(default=None, gt=_ZERO)
+    permit_hours: tuple[WeekDaysPermit, ...] = ()
+    provenance: RuleProvenance
+
+
+class RotaLeave(BaseModel):
+    """Ferie days of a year of a security guard on a rota.
+
+    FEDERDAT art. 89: "25 giorni di lavoro quando si applica il sistema 5 + 1
+    [...] 23 giorni [...] 6 + 1 + 1 [...] 22 giorni [...] 5 + 2".
+
+    Attributes:
+        rota: The rota (``Employment.rota``).
+        annual_days: Ferie days of a year on it.
+        provenance: Source of the days.
+    """
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    rota: Rota
+    annual_days: Decimal = Field(gt=_ZERO)
+    provenance: RuleProvenance
+
+
+class PermitDeadline(BaseModel):
+    """When the permits not taken within their year are paid.
+
+    Commercio Art. 158: "I permessi non fruiti entro l'anno di maturazione
+    decadranno e verranno pagati con la retribuzione di fatto [...] oppure
+    potranno essere fruiti entro e non oltre il 30 giugno dell'anno
+    successivo".  The employer chooses (``EmployerProfile.permit_carryover``):
+    the residual of a year is paid with the December pay, or with the pay of
+    :attr:`carry_until_month` of the next year.
+
+    Attributes:
+        carry_until_month: Month of the next year by whose end the permits of
+            a year may still be taken (Commercio 6, 30 June; Studi 7).
+        buckets: Permit buckets the deadline covers.
+        carry_fixed: Whether the CCNL itself carries the permits to the
+            deadline, with no choice of the employer (Pulizia artigianato
+            Art. 23: "potranno essere utilizzati entro il 30 settembre
+            dell'anno successivo; qualora ciò non avvenga decadranno e
+            saranno pagati"); ``EmployerProfile.permit_carryover`` is then
+            not read.
+        provenance: Source of the clause.
+    """
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    carry_until_month: int = Field(ge=1, le=12)
+    buckets: tuple[LeaveBucket, ...] = Field(min_length=1)
+    carry_fixed: bool = False
+    provenance: RuleProvenance | None = None
+
+
 class LeaveRules(BaseModel):
     """Layer 3 rules for paid leave (ferie and permessi).
 
@@ -104,9 +193,14 @@ class LeaveRules(BaseModel):
     seniority-gated tier matches or when seniority is unknown.
     ``entitlement_tiers`` (optional) list tiers in any order; the engine
     selects the one with the highest ``service_months_min`` that the
-    worker has satisfied.  ``ferie_accrual``, ``permits`` and
+    worker has satisfied.  ``week_days_annual_days`` replace
+    ``default_annual_days`` for the working days of the full-time week
+    (``Employment.full_time_week_days``); they exclude seniority tiers.
+    ``ferie_accrual``, ``permits`` and
     ``termination`` are stated for a CCNL whose accrual was read; a CCNL
-    without them accrues no leave.
+    without them accrues no leave.  ``permit_deadline`` pays the permits
+    of a year not taken by its deadline.  ``rota_annual_days`` replace
+    ``default_annual_days`` for the rota of a guard (``Employment.rota``).
 
     ``provenance`` links this rule to its CCNL article.
     """
@@ -115,10 +209,13 @@ class LeaveRules(BaseModel):
 
     default_annual_days: Decimal = Field(gt=Decimal(0))
     entitlement_tiers: tuple[LeaveEntitlementTier, ...] = Field(default=())
+    week_days_annual_days: tuple[WeekDaysLeave, ...] = ()
     provenance: RuleProvenance | None = None
     ferie_accrual: FerieAccrual | None = None
     permits: tuple[PermitRules, ...] = ()
     termination: LeaveTermination | None = None
+    permit_deadline: PermitDeadline | None = None
+    rota_annual_days: tuple[RotaLeave, ...] = ()
 
     @model_validator(mode="after")
     def _distinct_buckets(self) -> Self:
@@ -130,6 +227,18 @@ class LeaveRules(BaseModel):
             msg = (
                 "permits need distinct buckets, and no ex_festivita bucket "
                 f"beside a rol pool that includes it; got {buckets}"
+            )
+            raise ValueError(msg)
+        deadline = self.permit_deadline
+        if deadline is not None and not set(deadline.buckets) <= set(buckets):
+            msg = f"permit_deadline names buckets without permits: {deadline.buckets}"
+            raise ValueError(msg)
+        if (self.week_days_annual_days or self.rota_annual_days) and (
+            self.entitlement_tiers
+        ):
+            msg = (
+                "week_days_annual_days and rota_annual_days exclude seniority "
+                "entitlement_tiers"
             )
             raise ValueError(msg)
         return self

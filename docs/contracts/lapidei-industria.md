@@ -32,9 +32,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | absence, base_salary, inps_employer, seniority |
+| **Limits of this contract** | absence, base_salary, inps_employer |
 
-5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -51,12 +51,15 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2022-11-24 |
-| **Last review** | — |
+| **Last review** | 2026-11-05 |
 | **Latest salary tranche** | 2027-07-01 |
 
 ## Review history
 
-No review is recorded.
+| Date | Reviewer | Scope | Outcome | Findings |
+|---|---|---|---|---|
+| 2026-11-05 | claude-opus-5-5 (ai) | The seniority increments of the apprentices, Apprendistato professionalizzante (accordo 15 marzo 2006), inquadramento e retribuzione (PDF p. 61), found by a separate research session and checked again on the page. | corrected | No increment during the apprenticeship: seniority_increments.apprentice_amount 0. |
+| 2026-11-05 | claude-opus-5-5 (ai) | Art. 18 (PDF p. 26) and art. 10 (PDF p. 21) of the 2008 complete text, text layer. | corrected | Art. 18: a holiday of b), c) or d) on a Sunday or the compensatory rest day pays 1/25 of the monthly pay on top: work_rules.sunday_holidays with divisor 25 and on_rest_day.<br>Art. 10: the hourly divisor is 174; no general daily divisor of the absences. |
 
 ## Salary table
 
@@ -100,11 +103,11 @@ percentage: 1.00
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
 !!! warning "lapidei-industria/daily_divisor_25 · absence · impact unknown · open"
-    HOURLY DIVISOR: 174. Daily divisor: 25.
+    DIVISORS: hourly 174 (art. 10 c. 1, p. 21). The 1/25 is the quota of a holiday on a Sunday or the compensatory rest day (art. 18, p. 26), in work_rules.sunday_holidays; the CCNL states no general daily divisor for the absences, which keep the unverified by_26.
 
     **Applies when:** `absence` applies.
 
-    **Remediation:** Read the CCNL clause on the quota giornaliera; set work_rules.absence_rules.daily_divisor_method to by_25 if it states 25 (the engine supports by_25), or correct the note.
+    **Remediation:** Find the daily quota of an unpaid absence of the CCNL (or of the payroll practice of the sector) and set work_rules.absence_rules.daily_divisor_method.
 
 !!! warning "lapidei-industria/apprenticeship_passthrough · base_salary · impact unknown · open"
     APPRENTICESHIP: 2022 CCNL Art. 3d changed system from sotto-inquadramento to percentage ('calcolate in percentuale...come da allegata tabella'). Pre-2022 system confirmed from full CCNL 2008 text (integrating Accordo 15/03/2006): 2 levels below destination for first half of apprenticeship, 1 level below for second half, no seniority increments accrued. Post-2022 percentage values from scanned allegata tabella not extractable (OCR-confirmed: image-only PDF). 2025-2028 rinnovo (12-page OCR) does not modify apprenticeship. Modelled as 1.00 passthrough pending actual 2022+ percentage values.
@@ -112,13 +115,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `base_salary` applies; contract type in apprentice.
 
     **Remediation:** Extract the post-2022 percentage table and model the percentage track.
-
-!!! warning "lapidei-industria/apprentice_seniority · seniority · impact unknown · open"
-    APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.
-
-    **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
-
-    **Remediation:** Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.
 
 !!! warning "lapidei-industria/cigo_rate_by_activity · inps_employer · impact yes · open"
     CIGO: the operai of the stone-working firms owe 3.30% ('operai delle imprese dell'industria e artigianato lapidei', D.Lgs. 148/2015 art. 13 c. 1 (Normattiva, text in force on 2026-10-14, https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2015-09-14;148~art13!vig=2026-10-14, snapshot sha256 3f7019a244e01d36ac8e7c9e25bcf058c777c8ed758418ba261d83867672c46a), lett. d); the industria table charges the 1.70% / 2.00% of lett. a-b, so the employer contributions of an operaio are understated by 1.60 or 1.30 points. Impiegati and quadri owe the 1.70% / 2.00% of lett. e-f the table already charges.
@@ -335,6 +331,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     ADDITIONAL MONTHS: 13 (tredicesima only).
     
     SENIORITY: 5 biennali (24-month) scatti. Per-level EUR amounts: F=6.65, E=7.69, D=8.31, C=8.82, CS=9.45, B=9.80, A=11.97, AS=13.01. Confirmed from ilccnl.it.
+    
+    APPRENTICE SENIORITY (Apprendistato professionalizzante (accordo 15 marzo 2006), inquadramento e retribuzione, p. 61): no increment during the apprenticeship: 'La retribuzione sarà corrispondente a quella prevista dal vigente c.c.n.l., esclusi gli scatti di anzianità, per il livello iniziale di inquadramento per metà del periodo di apprendistato.' seniority_increments.apprentice_amount 0. The 2025 renewal (OCR) does not mention apprenticeship or increments; the 2022 renewal was not read in full.
     
 
 ## Raw data

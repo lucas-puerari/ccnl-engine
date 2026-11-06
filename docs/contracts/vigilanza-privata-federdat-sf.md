@@ -2,22 +2,23 @@
 
 | | |
 |---|---|
-| **CNEL code** | `HV17` |
+| **CNEL code** | `HV51` |
 | **Sector** | vigilanza privata — servizi fiduciari (SF) |
 | **Family** | `vigilanza` |
 | **Tax sector** | `terziario` |
-| **Last renewal** | 2023-05-04 |
-| **Workers (est.)** | ~40k |
-| **Ruleset version** | `2026.2` |
+| **Last renewal** | 2026-07-09 |
+| **Workers (est.)** | — |
+| **Ruleset version** | `2026.1` |
 | **Readiness** | 🧪 Exploratory |
 
 [← Contracts index](index.md)
 
 ??? note "Signatories"
     - FEDERDAT
-    - FILCAMS-CGIL
-    - FISASCAT-CISL
-    - UILTUCS-UIL
+    - CIU Unionquadri
+    - FLAITS
+    - CONSIL
+    - CONFIAL
 
 ## Coverage
 
@@ -31,9 +32,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | seniority |
+| **Limits of this contract** | base_salary, contractual_funds, overtime |
 
-2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -41,7 +42,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 0 verified / 46 derived / 2 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 26 verified / 0 derived / 0 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -49,13 +50,16 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Last renewal** | 2023-05-04 |
-| **Last review** | — |
-| **Latest salary tranche** | 2026-04-01 |
+| **Last renewal** | 2026-07-09 |
+| **Last review** | 2026-11-06 |
+| **Latest salary tranche** | 2026-12-01 |
 
 ## Review history
 
-No review is recorded.
+| Date | Reviewer | Scope | Outcome | Findings |
+|---|---|---|---|---|
+| 2026-11-06 | claude-opus-5-5 (ai) | FEDERDAT CCNL of 4 May 2023 (CNEL 167336) and of 9 July 2026 (CNEL 245848), servizi fiduciari: artt. 139-141/156-158 pay, seniority, 13th (pp. 76-77, page images), 126/143 overtime (p. 72), 134/151 ferie (p. 74), 86/103 sickness (p. 51), 32 apprenticeship. | corrected | New file: the servizi fiduciari of the FEDERDAT CCNL had no ruleset (the old federdat-sf file held the HV17 tables, now vigilanza-privata-assiv-sf). |
+| 2026-11-06 | claude-opus-5-5 (ai) | Apprentice seniority: artt. 32, 123-124 and 157 of the CCNL of 9 July 2026 (pp. 23, 64, 76, OCR). | corrected | Apprentices accrue the level increments in full: art. 32 c. 1 (p. 23 of the CCNL of 9 July 2026) sets their pay 'in applicazione del principio di parità di trattamento' (no percentage), art. 123 (p. 64) counts seniority 'dal giorno in cui il lavoratore inizia di fatto la prestazione lavorativa nell'Istituto, quali che siano le mansioni', and the six triennial increments are fixed per level (art. 124; art. 157 for the servizi fiduciari). |
 
 ## Salary table
 
@@ -63,24 +67,24 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `A` | Livello A | € 2,032.24 | 2026-04-01 |
-| `B` | Livello B | € 1,849.18 | 2026-04-01 |
-| `C` | Livello C | € 1,556.29 | 2026-04-01 |
-| `D` | Livello D | € 1,300.00 | 2026-04-01 |
-| `E` | Livello E (entry, primi 9 mesi) | € 1,207.14 | 2026-04-01 |
+| `A` | Livello A (servizi fiduciari) | € 2,032.24 | 2026-12-01 |
+| `B` | Livello B (servizi fiduciari) | € 1,849.18 | 2026-12-01 |
+| `C` | Livello C (servizi fiduciari) | € 1,556.29 | 2026-12-01 |
+| `D` | Livello D (servizi fiduciari) | € 1,300.00 | 2026-12-01 |
+| `E` | Livello E (servizi fiduciari) | € 1,207.14 | 2026-12-01 |
 
 ## Seniority increments
 
 **Cadence:** every 36 months  
-**Maximum:** 10 increments
+**Maximum:** 6 increments
 
 | Level | Increment (monthly) |
 |---|---:|
-| `E` | € 17.50 |
-| `D` | € 19.00 |
-| `C` | € 22.00 |
-| `B` | € 26.00 |
-| `A` | € 29.00 |
+| `A` | € 21.00 |
+| `B` | € 19.00 |
+| `C` | € 17.00 |
+| `D` | € 15.00 |
+| `E` | € 0.00 |
 
 ## Apprenticeship
 
@@ -92,19 +96,26 @@ percentage: 1.00
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning "vigilanza-privata-federdat-sf/seniority_assumed_unchanged · seniority · impact unknown · open"
-    SENIORITY: amounts from UILTUCS tabelle PDF (Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf), cadence 36m: A=29.00, B=26.00, C=22.00, D=19.00, E=17.50 EUR/scatto. July 9 2026 renewal (FEDERDAT-CONFIAL) increased maximum_count from 6 to 10; per-scatto amounts for SF not independently verifiable from a post-rinnovo public source (ilccnl.it shows Q–III for GPG only; SF behind registration). Values assumed unchanged pending primary source confirmation.
+!!! warning "vigilanza-privata-federdat-sf/level_f_2023 · base_salary · impact yes · open"
+    LEVEL F: the 2023 table pays a level F (865.68 EUR, art. 139); the 2026 table has none. The file models the levels A-E.
 
-    **Applies when:** `seniority` applies; from 2026-07-09.
+    **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Confirm the post-rinnovo SF scatto amounts from a primary source.
+    **Remediation:** Add the level F of the 2023 table until the renewal of July 2026.
 
-!!! warning "vigilanza-privata-federdat-sf/apprentice_seniority · seniority · impact unknown · open"
-    APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.
+!!! warning "vigilanza-privata-federdat-sf/ordinary_hours_premiums · overtime · impact yes · open"
+    ORDINARY HOURS (Art. 143): the premiums of 40% on ordinary Sunday and holiday work by day and 50% on holiday work by night are modelled (supplement_bands SF_*); not modelled: the 50% of ordinary Sunday work by night of a worker whose rest day is another day, and the indennità sesto giorno of 10%.
 
-    **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
+    **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.
+    **Remediation:** Model the Sunday night premium and the sixth-day allowance of art. 143.
+
+!!! warning "vigilanza-privata-federdat-sf/health_and_bilateral_funds · contractual_funds · impact yes · open"
+    HEALTH AND BILATERAL FUNDS: the ente bilaterale EBILAV and the health fund of the CCNL are not modelled; their amounts were not read on the text.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Read the fund articles of the 2026 text and model them as health_funds.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
@@ -285,14 +296,15 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 | Document | Kind | Date | URL |
 |---|---|---|---|
-| Tabelle retributive GPG e SF, 2023-2026. SF: 14a mensilita introdotta dal 01/01/2024 (ipotesi accordo 16/02/2024). 8 tranches: 01/06/2023, 01/01/2024, 01/07/2024, 01/10/2024, 01/01/2025, 01/07/2025, 01/12/2025, 01/04/2026. | tabella_retributiva | 2024-02-16 | [↗](https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf) |
+| CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 9 luglio 2026 (archivio CNEL HV51, accordo 245848) | cnel | 2026-07-09 | [↗](https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848) |
+| CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 4 maggio 2023 (archivio CNEL HV51, accordo 167336) | cnel | 2023-05-04 | [↗](https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/167336) |
 
 ??? note "Coverage notes"
-    CCNL HV17 FEDERDAT SF (Servizi Fiduciari) section. Conglobated, divisor 173. 5 levels (A-E). 14a mensilita from 01/01/2024; before that 13 months. 8 tranches, last at 01/04/2026 (SF schedule). Level F absent from tables (may be entry/apprenticeship only; verify base CCNL 2013).
+    CCNL FEDERDAT (CNEL HV51), servizi fiduciari. Conglobated pay, 13 months, hourly divisor 173, daily 26 on six days and 22 on five (Employment.full_time_week_days). The CCNL of 4 May 2023 pays one table (art. 139) until the renewal of 9 July 2026, in force 'da luglio 2026' (art. 4: read as 1 July), whose art. 156 gives the amounts in force and those of December 2026.
     
-    Apprenticeship: 100% passthrough confirmed from CCNL FEDERDAT Art. 86: "L'Apprendista ha diritto per tutta la durata del periodo di apprendistato all'inquadramento e alla corrispondente retribuzione del livello finale di collocazione." (FESICA PDF, CCNL ISTITUTI AZIENDE VIGILANZA PRIVATA, Art. 86). Engine models this correctly as 100% of destination level salary.
+    APPRENTICESHIP (Art. 32, 2026 text): pay, classification and hours of the apprentice follow the CCNL 'in applicazione del principio di parità di trattamento': modelled as 100% of the level; three years at most (art. 33).
     
-    ADDITIONAL MONTHS: 13 for Jun 2023-Dec 2023 (pre-quattordicesima); 14 from 01/01/2024 onward (quattordicesima introduced by rinnovo July 2023 renewal, per fiscoetasse.com). Level E: entry-level for first 9 months of tenure per contract text — correct by design.
+    SICKNESS COMPORTO (Art. 105): the job is kept for 240 days of several illnesses in a calendar year, 300 of one; the file keeps the 180 paid days.
     
 
 ## Raw data

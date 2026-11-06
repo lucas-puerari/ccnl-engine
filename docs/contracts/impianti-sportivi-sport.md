@@ -31,7 +31,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, overtime, sickness |
+| **Limits of this contract** | base_salary, sickness |
 
 9 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
@@ -50,12 +50,14 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-01-12 |
-| **Last review** | — |
+| **Last review** | 2026-11-05 |
 | **Latest salary tranche** | 2026-07-01 |
 
 ## Review history
 
-No review is recorded.
+| Date | Reviewer | Scope | Outcome | Findings |
+|---|---|---|---|---|
+| 2026-11-05 | claude-opus-5-5 (ai) | Artt. 83-84 (PDF p. 76) of the CCNL of 12 January 2024, text layer. | corrected | Art. 83: 20% past the 48th weekly hour was missing.<br>Art. 84: the 10% is for ordinary night work only; the note claiming 50% + 10% on night overtime is resolved. |
 
 ## Salary table
 
@@ -114,19 +116,19 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Confirm the level VI track after the 2024 renewal and model its first semester.
 
-!!! warning "impianti-sportivi-sport/overtime_over_48h_band_missing · overtime · impact yes · open"
-    SIMPLIFICATION: Straordinario diurno. Art. 83 prevede 15% per ore 41-48 e 20% per ore oltre 48 settimanali. Modellato solo il 15% (caso dominante). Banda 20% (oltre 48h) non modellata.
+!!! note "impianti-sportivi-sport/overtime_over_48h_band_missing · overtime · impact yes · resolved"
+    OVERTIME (Art. 83, p. 76): 15% from the 41st to the 48th weekly hour (OT_DIURNO), 20% past the 48th (OT_DIURNO_OLTRE_48).
 
     **Applies when:** `overtime` applies.
 
-    **Remediation:** Model the 20% band over 48 weekly hours, or pass the multiplier on the overtime event.
+    **Remediation:** Resolved: overtime band OT_DIURNO_OLTRE_48 of 20% past 48 weekly hours, read on 2026-11-05.
 
-!!! warning "impianti-sportivi-sport/integration_75_days_4_20 · sickness · impact yes · open"
-    SIMPLIFICATION: Integrazione malattia (Art. 103). Struttura contrattuale: giorni 1-3 a carico del datore (100%), giorni 4-20 integrazione al 75%, giorni 21+ integrazione al 100%. Modellato: carenza_integration_rate=1.0, full_pay_integration_rate=1.0 (allineato alla fase finale). La finestra al 75% (gg. 4-20) non e modellata; il motore sovrastima la retribuzione per eventi di malattia breve. The sickness rules can hold day bands (sickness_rules.day_bands): the gap is in the data only (review of 2026-10-30).
+!!! note "impianti-sportivi-sport/integration_75_days_4_20 · sickness · impact yes · resolved"
+    SICKNESS INTEGRATION (Art. 103 b): days 1-3 paid by the employer at 100%, the top-up reaches 75% for days 4-20 and 100% from day 21 of the net daily pay; stored as sickness_rules.day_bands.
 
     **Applies when:** `sickness` applies.
 
-    **Remediation:** Add the day bands of Art. 103 (75% on days 4-20, 100% from day 21) to sickness_rules.day_bands, then resolve this limitation.
+    **Remediation:** Resolved: sickness_rules.day_bands hold 75% for days 4-20 and 100% from day 21 of Art. 103 b), read on 2026-10-30.
 
 !!! note "impianti-sportivi-sport/long_week_divisor_195 · workplace_injury · impact unknown · resolved"
     SIMPLIFICATION: Divisore orario. Art. 120 prevede 173 (40h) e 195 (45h). Solo il divisore 173 e modellato. Le assunzioni a 45h settimanali non sono gestite.
@@ -135,12 +137,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Resolved: work_rules.time_supplements.week_divisors holds 195 for a full_time_weekly_hours of 45 (Art. 120 lett. b, p. 90).
 
-!!! warning "impianti-sportivi-sport/night_overtime_cumulation · overtime · impact unknown · open"
-    SIMPLIFICATION: Cumulo notturno. Art. 83 ult. comma: 'Le varie maggiorazioni previste dal presente articolo non sono cumulabili tra loro' — esclude la cumulabilita tra i soli supplementi interni all'Art. 83 (15%/20%/30%/50%). Il supplemento del 10% di Art. 84 e un articolo separato e non e esplicitamente escluso dalla cumulabilita. Il motore applica entrambi alle ore notturne straordinarie (60% totale). Se le parti intendono il 50% inclusivo del 10%, il motore sovrastima di 10 punti sulle ore OT notturne.
+!!! note "impianti-sportivi-sport/night_overtime_cumulation · overtime · impact unknown · resolved"
+    NIGHT OVERTIME (Artt. 83-84, p. 76): the night overtime is paid at 50% (OT_NOTTURNO); the 10% of art. 84 is for 'le ore di lavoro ordinario prestate di notte' (LAVORO_NOTTURNO, ordinary night work only), so the two do not add up on an overtime hour.
 
     **Applies when:** `overtime` applies.
 
-    **Remediation:** Confirm with the parties whether the 50% night overtime band includes the 10% night supplement of Art. 84.
+    **Remediation:** Resolved: art. 84 covers ordinary night work only; LAVORO_NOTTURNO is not an overtime band, read on 2026-11-05.
 
 !!! warning "impianti-sportivi-sport/pre_2015_fourteenth_missing · base_salary · impact yes · open"
     SIMPLIFICATION: Quattordicesima transitoria. Art. 116 norma transitoria: i lavoratori in forza al 22/12/2015 ricevono un superminimo personale assorbibile equivalente alla quattordicesima folded-in (rata mensile decrescente fino al 31/10/2029). Per la popolazione corrente (post-2015): 13 mensilita. La quattordicesima residuale per i lavoratori ante-2015 non e modellata; it may be the same element as pre_2015_superminimo_missing, which a reading of Art. 116 settles. Allowances can depend on the date in service (Allowance.in_service_on) (review of 2026-10-30).

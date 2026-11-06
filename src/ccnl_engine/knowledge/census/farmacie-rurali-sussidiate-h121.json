@@ -55,10 +55,10 @@
       "institute": "base_salary",
       "variant": "all",
       "discriminant": "applies_when.trigger = run",
-      "rule": "SIMPLIFICATION: ISQ for Q2 and Q3 modelled at flat 100 EUR (the 2+ anni tier per Tabella C). Workers with 12+ anni receive 130 EUR (delta 30 EUR/month, max ~360 EUR/yr). The 12-year tier is not modelled, although an allowance can be gated on service months (service_months_threshold) (review of 2026-10-30)",
+      "rule": "ISQ (Art. 3 and Tabella C, p. 59 of the CCNL of 7 September 2021): Q2 and Q3 are paid 100 EUR and, after 12 years of 'anzianità complessiva maturata nel Livello 1° e nell'Area Q', 130 EUR, modelled on the months of service (isq up to 144, isq_12 from 144). Not modelled: a worker who served at a non-pharmacist level before level 1 reaches the 12 years later than the service months say.",
       "calculation": "ccnl/farmacie-rurali-sussidiate-h121:coverage.notes",
       "state": "absent",
-      "remediation": "Check whether the 12 anni of Tabella C count service or time in the quadro qualification; if service, split the ISQ of Q2/Q3 into a 100 EUR allowance with service_months_until=144 and a 130 EUR one with service_months_threshold=144 (Employment.seniority), otherwise add a worker fact for the qualification time.",
+      "remediation": "Count only the months in level 1 and Area Q when the employment history states them, then remove this note.",
       "origin": "seeded",
       "links": {
         "limitations": [

@@ -1,6 +1,6 @@
 {
-  "_description": "vigilanza-privata-federdat-sf — data checks 2026",
-  "ccnl_id": "vigilanza-privata-federdat-sf",
+  "_description": "vigilanza-privata-assiv-sf — data checks 2026",
+  "ccnl_id": "vigilanza-privata-assiv-sf",
   "salary_checks": [
     {
       "level_code": "E",
@@ -32,27 +32,27 @@
     {
       "level_code": "E",
       "as_of": "2023-06-01",
-      "expected_amount": "17.50"
+      "expected_amount": "0.00"
     },
     {
       "level_code": "D",
       "as_of": "2023-06-01",
-      "expected_amount": "19.00"
+      "expected_amount": "15.00"
     },
     {
       "level_code": "C",
       "as_of": "2023-06-01",
-      "expected_amount": "22.00"
+      "expected_amount": "17.00"
     },
     {
       "level_code": "B",
       "as_of": "2023-06-01",
-      "expected_amount": "26.00"
+      "expected_amount": "19.00"
     },
     {
       "level_code": "A",
       "as_of": "2023-06-01",
-      "expected_amount": "29.00"
+      "expected_amount": "21.00"
     }
   ],
   "apprenticeship_pct_checks": [

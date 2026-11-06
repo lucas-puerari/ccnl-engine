@@ -3,22 +3,6 @@
   "ccnl_id": "logistica-trasporto-confetra",
   "requirements": [
     {
-      "id": "apprentice_seniority",
-      "institute": "seniority",
-      "variant": "apprentice",
-      "discriminant": "applies_when.trigger = path",
-      "rule": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
-      "calculation": "ccnl/logistica-trasporto-confetra:coverage.notes",
-      "state": "unverified",
-      "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "logistica-trasporto-confetra/apprentice_seniority"
-        ]
-      }
-    },
-    {
       "id": "apprenticeship_pct_undeclared_components",
       "institute": "base_salary",
       "variant": "apprentice",
@@ -79,22 +63,6 @@
       "links": {
         "limitations": [
           "logistica-trasporto-confetra/edr_2021_in_daily_base"
-        ]
-      }
-    },
-    {
-      "id": "health_and_bilateral_funds",
-      "institute": "bilateral_funds",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = owed",
-      "rule": "HEALTH AND BILATERAL FUNDS: Sanilog (Art. 51, p. 64): 150 euro a year for each worker not in probation with a permanent contract or an apprenticeship, from the employer only, plus the 10% INPS solidarity contribution; Ebilog (Art. 52, p. 65): 3,50 euro a month from the employer and 0,50 euro from the worker, for 12 months, or an EAR of 8 euro a month paid to the worker by an employer outside the bilateral system. Not modelled.",
-      "calculation": "ccnl/logistica-trasporto-confetra:coverage.notes",
-      "state": "absent",
-      "remediation": "Pass the contributions as bilateral fund events, or model them per worker.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "logistica-trasporto-confetra/health_and_bilateral_funds"
         ]
       }
     },

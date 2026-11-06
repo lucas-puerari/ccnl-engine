@@ -8,7 +8,7 @@ from pydantic import BaseModel, ConfigDict, Field
 
 from ccnl_engine.provenance.source.rule.models import RuleProvenance
 
-__all__ = ["ExHolidayPay", "SundayHolidayPay"]
+__all__ = ["ExHolidayPay", "SundayHolidayPay", "WeekDaysDivisor"]
 
 
 class ExHolidayPay(BaseModel):
@@ -33,6 +33,15 @@ class ExHolidayPay(BaseModel):
     provenance: RuleProvenance
 
 
+class WeekDaysDivisor(BaseModel):
+    """The divisor of a clause's daily pay for a full-time week of ``days``."""
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    days: int = Field(ge=5, le=6)
+    divisor: Decimal = Field(gt=0)
+
+
 class SundayHolidayPay(BaseModel):
     """The CCNL clause that pays a holiday falling on a Sunday.
 
@@ -51,6 +60,24 @@ class SundayHolidayPay(BaseModel):
             pay (Concia art. 46 lett. g: the quadri function allowance).
         ex_november_fourth: The pay of 4 November in another month and
             share, in place of the quota of ``11-04``.
+        on_rest_day: The clause pays the holidays falling on the worker's
+            weekly rest day, whatever day it is (Turismo art. 127 c. 4: "A
+            tutto il personale assente nelle giornate di festività per riposo
+            settimanale [...] dovrà essere corrisposta una giornata di
+            retribuzione"), and ``11-04`` on 4 November itself (art. 128 c.
+            4); the statutory holidays on a Sunday stay paid by the law.
+        fourth_november_on_sunday: With ``on_rest_day``, ``11-04`` stays on
+            the first Sunday of November, paid when it is the rest day
+            (Pulizia artigianato art. 23: "il lavoratore beneficerà del
+            trattamento previsto per le festività che coincidono con la
+            domenica").
+        annual_share: The share of a twelfth of the annual pay (the monthly
+            pay times the CCNL's yearly payments) the divisor divides, for
+            a daily pay so defined (BCC art. 114: "il 90,66% di un
+            dodicesimo dell'ammontare annuo"); ``None`` for the monthly pay.
+        week_days_divisors: The divisor of a full-time week of the days
+            stated in ``Employment.full_time_week_days``, in place of
+            ``divisor`` (BCC art. 114: 26 on a six-day week).
         provenance: The CCNL clause.
     """
 
@@ -60,4 +87,8 @@ class SundayHolidayPay(BaseModel):
     divisor: Decimal | None = Field(default=None, gt=0)
     excluded: frozenset[str] = frozenset()
     ex_november_fourth: ExHolidayPay | None = None
+    on_rest_day: bool = False
+    fourth_november_on_sunday: bool = False
+    annual_share: Decimal | None = Field(default=None, gt=0, le=1)
+    week_days_divisors: tuple[WeekDaysDivisor, ...] = ()
     provenance: RuleProvenance

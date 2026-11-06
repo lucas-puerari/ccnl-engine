@@ -30,7 +30,7 @@ if TYPE_CHECKING:
     from ccnl_engine.employment.period.inputs import EmploymentPeriod
     from ccnl_engine.leave.balance.models import LeaveAccount
     from ccnl_engine.leave.models import LeaveRules
-    from ccnl_engine.leave.permit.models import PermitRules
+    from ccnl_engine.leave.permit.models import PermitRules, RampStep
     from ccnl_engine.leave.types import MonthCredit
 
 __all__ = ["AccrualFacts", "MonthService", "accrue_month", "month_service"]
@@ -78,6 +78,9 @@ class AccrualFacts:
         full_time_week: Full-time weekly hours of the contract, ``None``
             when not stated.
         subsector: Sub-sector of the employer, ``None`` when not stated.
+        entry_pay: Whether the worker was hired on the entry pay of the CCNL
+            (``Permanent.entry_pay``; Studi art. 56, the contratto di
+            reimpiego).
     """
 
     year: int
@@ -89,6 +92,7 @@ class AccrualFacts:
     part_time_ratio: Decimal | None = None
     full_time_week: Decimal | None = None
     subsector: str | None = None
+    entry_pay: bool = False
 
     @property
     def last_day(self) -> date:
@@ -183,8 +187,11 @@ def _permit(permit: PermitRules, facts: AccrualFacts) -> tuple[Decimal, bool]:
     credited, exact = _credit(permit.month_credit, facts.service)
     hours = permit.hours_for(facts.headcount, facts.full_time_week, facts.subsector)
     ramp = permit.ramp
-    if ramp is not None and ramp.covers(facts.headcount):
-        months = facts.months_since_hire()
+    months = facts.months_since_hire()
+    if facts.entry_pay and permit.entry_ramp:
+        hours *= _step_share(permit.entry_ramp, months)
+        exact = exact and months is not None
+    elif ramp is not None and ramp.covers(facts.headcount):
         if facts.hired_on is None or months is None:
             hours *= ramp.steps[0].share
             exact = False
@@ -193,6 +200,17 @@ def _permit(permit: PermitRules, facts: AccrualFacts) -> tuple[Decimal, bool]:
     if facts.part_time_ratio is not None:
         hours *= facts.part_time_ratio
     return (hours if credited else _ZERO), exact
+
+
+def _step_share(steps: tuple[RampStep, ...], months: int | None) -> Decimal:
+    """Return the share of the last step ``months`` of service reached.
+
+    Returns:
+        The share of the first step when the months are not known.
+    """
+    if months is None:
+        return steps[0].share
+    return [s for s in steps if s.service_months_min <= months][-1].share
 
 
 def accrue_month(

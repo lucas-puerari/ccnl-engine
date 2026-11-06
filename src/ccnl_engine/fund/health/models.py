@@ -15,7 +15,9 @@ from typing import Self
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from ccnl_engine.agreement.validity.rules import TimeSeries
+from ccnl_engine.employment.apprentice.inputs import Apprentice
 from ccnl_engine.employment.category.models import WorkerCategory
+from ccnl_engine.employment.inputs import Permanent
 from ccnl_engine.provenance.source.rule.models import RuleProvenance
 
 __all__ = ["ContractualFund", "FundAmount"]
@@ -56,6 +58,9 @@ class ContractualFund(BaseModel):
         categories: Worker categories it covers, ``None`` for all.
         levels: Level codes it covers, ``None`` for all.
         permanent_only: Whether only permanent workers are covered.
+        apprentices_permanent: Whether an apprentice counts as permanent for
+            ``permanent_only``, when the CCNL calls apprenticeship a contract
+            "a tempo indeterminato" (Cooperative sociali art. 28).
         group: Funds that are alternative ways to meet the same obligation
             (e.g. the EBM contribution of a firm with or without an internal
             RLS) share a group: the employer names the one it pays; naming
@@ -68,8 +73,11 @@ class ContractualFund(BaseModel):
         reduced_employer: Employer share of a part-timer working at most
             ``reduced_up_to_weekly_hours`` a week, when the fund sets one.
         reduced_up_to_weekly_hours: Weekly hours up to which the reduced
-            share applies.
+            shares apply.
         employee: Worker share a month, withheld from the pay.
+        reduced_employee: Worker share of a part-timer working at most
+            ``reduced_up_to_weekly_hours`` a week, when the fund sets one
+            (Multiservizi art. 66: ONBSI 0.25 EUR each below 20 hours).
         extra_months: Whether the shares are due on the extra months too.
         employee_deductible: Whether the worker share leaves the IRPEF base
             (a health fund of TUIR art. 51 c. 2 lett. a).
@@ -102,12 +110,14 @@ class ContractualFund(BaseModel):
     categories: frozenset[WorkerCategory] | None = None
     levels: frozenset[str] | None = None
     permanent_only: bool = False
+    apprentices_permanent: bool = False
     group: str | None = None
     rate_allowances: frozenset[str] = frozenset()
     employer: FundAmount
     reduced_employer: FundAmount | None = None
     reduced_up_to_weekly_hours: Decimal | None = Field(default=None, gt=0)
     employee: FundAmount | None = None
+    reduced_employee: FundAmount | None = None
     extra_months: bool = False
     employee_deductible: bool = False
     solidarity_rate: Decimal = Field(default=Decimal(0), ge=0, lt=1)
@@ -119,3 +129,15 @@ class ContractualFund(BaseModel):
     charged_in_month: TimeSeries | None = None
     welfare: bool = False
     provenance: RuleProvenance
+
+    def excludes_contract(self, contract_type: object) -> bool:
+        """Whether ``permanent_only`` leaves out a worker on ``contract_type``.
+
+        Returns:
+            True when only permanent workers are covered and the contract is
+            neither permanent nor an apprenticeship the fund counts as such.
+        """
+        covered = (
+            (Permanent, Apprentice) if self.apprentices_permanent else (Permanent,)
+        )
+        return self.permanent_only and not isinstance(contract_type, covered)

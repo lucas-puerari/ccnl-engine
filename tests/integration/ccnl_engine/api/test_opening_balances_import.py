@@ -16,18 +16,20 @@ the massimale, settled in December on the pay of the year above 56,224.00
 
 - Base of the earlier employer: 121,000.00; headroom 1,295.00.
 - IVS employee: 1,295.00 x 9.19% = 119.0105 -> 119.01.
-- Other employee rate: 2,211.43 x 0.30% = 6.63429 -> 6.63.
+- Employee INPS, one contribution at the whole rate, to cents once (the
+  base above the massimale at the minor rate only): 1,295.00 x 9.49% =
+  122.8955 -> 122.90, plus 916.00 x 0.30% = 2.748 -> 2.75: 125.65, of
+  which 6.64 beyond the IVS share.
 - Additional 1%: the base of September within the massimale, 1,295.00, is
   below 4,685.00: none.
-- Employee INPS: 119.01 + 6.63 = 125.64.
 
 Without the import the same run pays, on the base of 2,211 (INPS circ.
 208/2001), 203.19 of IVS and 6.63 of CIGS: 209.82.
 
 The same run in December settles the 1% of the year: 122,295.00 -
 56,224.00 = 66,071.00, x 1% = 660.71, less the 600.00 the earlier employer
-certifies it withheld: 60.71.  Employee INPS: 119.01 + 6.63 + 60.71 =
-186.35.
+certifies it withheld: 60.71.  Employee INPS: 125.65 + 60.71 =
+186.36.
 """
 
 from __future__ import annotations
@@ -111,7 +113,7 @@ class TestInpsBaseOfOtherEmployers:
     """The massimale is cumulative across the worker's employments."""
 
     def test_earlier_employer_base_caps_the_new_employment(self) -> None:
-        """121,000.00 elsewhere leaves 1,295.00 of IVS base: 138.59 employee."""
+        """121,000.00 elsewhere leaves 1,295.00 of IVS base: 125.65 employee."""
         result = _september(
             _imported(InpsBaseYtd(2026, other_employers=Decimal("121000.00")))
         )
@@ -119,9 +121,9 @@ class TestInpsBaseOfOtherEmployers:
         assert result.period_gross == C3_MINIMUM_FROM_JUNE_2026
         assert _employee_components(result) == {
             "ivs_employee": Decimal("119.01"),
-            "non_ivs_employee": Decimal("6.63"),
+            "non_ivs_employee": Decimal("6.64"),
         }
-        assert result.contribution_breakdown.employee == Decimal("125.64")
+        assert result.contribution_breakdown.employee == Decimal("125.65")
         base = result.closing_state.accrual.inps_base(2026)
         assert base.own == contribution_base(C3_MINIMUM_FROM_JUNE_2026)
         assert base.other_employers == Decimal("121000.00")
@@ -148,10 +150,10 @@ class TestInpsBaseOfOtherEmployers:
         assert result.period_gross == C3_MINIMUM_FROM_JUNE_2026
         assert _employee_components(result) == {
             "ivs_employee": Decimal("119.01"),
-            "non_ivs_employee": Decimal("6.63"),
+            "non_ivs_employee": Decimal("6.64"),
             "addizionale_1pct_conguaglio": Decimal("60.71"),
         }
-        assert result.contribution_breakdown.employee == Decimal("186.35")
+        assert result.contribution_breakdown.employee == Decimal("186.36")
         base = result.closing_state.accrual.inps_base(2026)
         assert base.additional_ivs == Decimal("60.71")
         assert base.additional_ivs_withheld == Decimal("660.71")

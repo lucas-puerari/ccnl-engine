@@ -33,7 +33,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, seniority, workplace_injury |
+| **Limits of this contract** | base_salary, seniority |
 
 4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
@@ -52,7 +52,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-03-29 |
-| **Last review** | 2026-10-18 |
+| **Last review** | 2026-11-05 |
 | **Latest salary tranche** | 2027-03-01 |
 
 ## Review history
@@ -61,6 +61,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|---|---|
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | confirmed | Art. 190 - Mensilita' supplementari (13a e 14a) (p. 202): "il lavoratore avrà diritto a tanti dodicesimi dell'ammontare della 13a mensilità, per quanti sono i mesi interi di servizio prestati nella cooperativa intendendosi per tali le frazioni di mese superiori ai 15 giorni.". Match: more_than 15. |
 | 2026-10-18 | claude-opus-5-5 (ai) | The paga base nazionale of the 9 levels on the four modelled tranches of the renewal of 29 March 2024 (1/05/2025, 1/12/2025, 1/11/2026, 1/03/2027), derived from the paga base printed by the economic renewal of 19 February 2019 plus the Art. 185 increments printed by the 2024 renewal; all texts as deposited at CNEL. | corrected | Ipotesi 29 marzo 2024 (CNEL 183889, 73-page scan read on the page image of PDF p. 70): Art. 185 prints only the per-level increments (01/04/2023, 01/04/2024, 01/05/2025, 01/12/2025, 01/11/2026, 01/03/2027; IV livello 30, 70, 30, 35, 35, 40 = 240), not the resulting minimi. The level labels (quadro, 1, 2, 3S, 3, 4S, 4, 5, 6) are the file codes; each row's increments sum to the printed TOTALE (within one or two cents of rounding, e.g. quadro 425,01 against 425,00).<br>The base is the 'Paga Base Nazionale dal 01.07.2019' table of the economic renewal of 19 February 2019 (CNEL 100291, p. 3; 'III° Liv.Super' = 3S, 'IV° Liv. Super' = 4S). No minimi increase applied between 1.7.2019 and 31.3.2023: the 2019 accord ran to 31.12.2019 in ultrattività, and the Protocollo straordinario of 12 December 2022 (CNEL 161824) granted una tantum amounts plus the 30-euro acconto from 1/4/2023 that Art. 185 lists as its first tranche.<br>35 of the 36 file values equal paga base 1.7.2019 + cumulated Art. 185 increments to the cent; 4S on 1/03/2027 is 1411.61 in the file against 1153.29 + 32.29 + 75.35 + 32.29 + 37.67 + 37.67 + 43.06 = 1411.62 and is corrected. The file's base_salary is the paga base nazionale (conglobata) only, with contingenza and terzo elemento as fixed allowances; this matches the item both tables print.<br>The file's coverage note calls the 2026-11-01 and 2027-03-01 tranches 'derived' by per-level ratios; they are printed increments in Art. 185 and the note can be updated.<br>The ruleset now names the CNEL deposit of the text signed by ANCC-Coop, Confcooperative Consumo e Utenza, AGCI Agrital, Filcams-CGIL, Fisascat-CISL and Uiltucs: source_type contracting_party.<br>Corrected to the printed table: 4S 2027-03-01: 1411.61 -> 1411.62. |
+| 2026-11-05 | claude-opus-5-5 (ai) | The hourly divisors of art. 187 (PDF p. 201) and the normal week of art. 113 (PDF pp. 151-152) of the 2011 official text, read by a separate research session and checked again on the text layer. | corrected | Art. 187 c. 2: 165 for 38 hours, 167 for 38.5, 168 for 40 and 39, 182 for 42, 184 from 42.5 to 44: work_rules.time_supplements.week_divisors, hourly_divisor_weekly_hours 38.<br>The coverage note cited art. 198 and a 195 divisor for 45 hours: art. 198 is the resignation for marriage and art. 187 sets no 45-hour divisor. |
 
 ## Salary table
 
@@ -116,12 +117,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Read the apprenticeship articles of the 2024 renewal (Arts. 75, 80-82) and update the tracks, then remove this limitation.
 
-!!! warning "distribuzione-cooperativa-ancc/long_week_divisors · workplace_injury · impact unknown · open"
-    HOURLY DIVISOR: 165 h/month used, per ilccnl.it (38h/week standard, all levels). Art. 198 of the CCNL also references 168 for 40h/week and higher divisors for extended shifts. Conflict: ilccnl.it states 165 as the contract divisor; Art. 198 lists 168 for 40h/week. Dominant workforce (post-2011 hires in a high-turnover retail sector on the 38h standard) is served by 165. 42h/week (182) and 45h/week (195) schedules not modelled.
+!!! note "distribuzione-cooperativa-ancc/long_week_divisors · workplace_injury · impact yes · resolved"
+    HOURLY DIVISOR: Art. 187 c. 2 (2011 official text, p. 201): 165 for the normal week of 38 hours (art. 113 c. 1), 167 for 38.5, 168 for 39 and 40, 182 for 42, 184 from 42.5 to 44. The engine keeps 165 and reads 168, 182 or 184 when Employment.full_time_weekly_hours is 39, 40, 42, 43 or 44; staff hired after 22 December 2011 work 40 hours (art. 113 c. 5) and state it. The half-hour weeks of 38.5 and 42.5 are not expressible: their rate is not derived. Art. 198 cited earlier is the resignation for marriage, not the divisor.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Source Art. 198 and add the 168, 182 and 195 divisors of the 40, 42 and 45 hour weeks with hourly_divisor_weekly_hours=38, so other weeks are not derived from 165.
+    **Remediation:** Resolved: work_rules.time_supplements.week_divisors holds 168, 182 and 184 for the weeks of 39, 40, 42, 43 and 44 hours.
 
 !!! warning "distribuzione-cooperativa-ancc/seniority_amounts_proxy_source · seniority · impact unknown · open"
     SENIORITY AMOUNTS: from kitech.it only (proxy source). No independent primary-source confirmation. Cadence (36 months) and maximum (10) confirmed from CCNL text via olympus.uniurb.it.

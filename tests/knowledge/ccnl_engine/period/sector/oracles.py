@@ -277,12 +277,20 @@ def _with_fund(pay: Pay, health: HealthFund | None) -> Pay:
 def _payment(pay: Pay, rates: Rates) -> Payment:
     paid = pay.gross - pay.absence
     base = _whole_euro(paid)
-    employee = _cents(base * rates.employee_ivs) + _cents(base * rates.employee_other)
-    employer = (
-        _cents(base * rates.employer_ivs)
-        + _cents(base * rates.employer_other)
-        + _cents(base * rates.employer_supplement)
+    # The payslip withholds one contribution at the whole employee rate,
+    # to cents once (FILCTEM CGIL 2024 guide p. 21: "1.672 x 9,49% = 158,67").
+    employee = _cents(base * (rates.employee_ivs + rates.employee_other))
+    # INPS charges one contribution on the month's base at the whole rate,
+    # "con arrotondamento ai centesimi" (Documento tecnico UniEmens,
+    # <Contributo>); the employer pays it less the employee's withheld share.
+    whole = (
+        rates.employee_ivs
+        + rates.employee_other
+        + rates.employer_ivs
+        + rates.employer_other
+        + rates.employer_supplement
     )
+    employer = _cents(base * whole) - employee
     quota = _cents(pay.tfr_base / _TFR_DIVISOR)
     deduction = _cents(base * rates.tfr_offset)
     accrual = quota - deduction
@@ -322,6 +330,31 @@ def _trattamento(taxable: Decimal, days: int) -> Decimal:
         msg = f"the band above 15,000 EUR grants a credit at {taxable}"
         raise ValueError(msg)
     return _ZERO
+
+
+def with_sunday_holidays(
+    pays: tuple[Pay, ...], month: int, days: int, divisor: int
+) -> tuple[Pay, ...]:
+    """Return ``pays`` with the Sunday holidays of ``month`` 2026 paid.
+
+    The regular run of ``month`` pays ``days`` further quotas of its own
+    monthly pay (a run with no other item) over ``divisor``, in the gross
+    and the TFR base: 1 November 2026 falls on a Sunday, the day 4 November
+    is celebrated (the first Sunday of November, L. 54/1977 art. 1 c. 2),
+    and so does 4 October (L. 151/2025) where the CCNL lists it.
+
+    Returns:
+        A copy of ``pays``.
+    """
+    run_id = f"2026-{month:02d}-regular"
+
+    def paid(pay: Pay) -> Pay:
+        if pay.run_id != run_id:
+            return pay
+        quota = _cents(pay.gross / divisor * days)
+        return replace(pay, gross=pay.gross + quota, tfr_base=pay.tfr_base + quota)
+
+    return tuple(paid(pay) for pay in pays)
 
 
 def sector_year(
@@ -430,8 +463,16 @@ def _industria_june() -> tuple[Pay, ...]:
     return (*pays, Pay(_run(6), june, june))
 
 
+#: Sez. Quarta, Titolo III, Art. 9 (CCNL 5 February 2021, pp. 164-165): a
+#: festività on a Sunday and 4 November on the first Sunday of November pay
+#: "una quota giornaliera della retribuzione di fatto, pari a 1/26 della
+#: retribuzione mensile fissa": two in November 2026.
 INDUSTRIA_YEAR = sector_year(
-    _industria_year(), _INDUSTRIA, _FULL_YEAR, terminated=False, health=METASALUTE
+    with_sunday_holidays(_industria_year(), 11, 2, 26),
+    _INDUSTRIA,
+    _FULL_YEAR,
+    terminated=False,
+    health=METASALUTE,
 )
 INDUSTRIA_JUNE = sector_year(
     _industria_june(), _INDUSTRIA, _HALF_YEAR, terminated=True, health=METASALUTE
@@ -462,7 +503,7 @@ def _part_time_june() -> tuple[Pay, ...]:
 
 
 PART_TIME_YEAR = sector_year(
-    _part_time(_industria_year_without_overtime()),
+    with_sunday_holidays(_part_time(_industria_year_without_overtime()), 11, 2, 26),
     _INDUSTRIA,
     _FULL_YEAR,
     terminated=False,
@@ -535,7 +576,7 @@ def _apprentice_june() -> tuple[Pay, ...]:
 
 
 APPRENTICE_YEAR = sector_year(
-    _apprentice(_industria_year_without_overtime()),
+    with_sunday_holidays(_apprentice(_industria_year_without_overtime()), 11, 2, 26),
     _APPRENTICE,
     _FULL_YEAR,
     terminated=False,
@@ -554,7 +595,7 @@ APPRENTICE_JUNE = sector_year(
 _FIXED_TERM = replace(_INDUSTRIA, employer_supplement=Decimal("0.0140"))
 
 FIXED_TERM_YEAR = sector_year(
-    _industria_year_without_overtime(),
+    with_sunday_holidays(_industria_year_without_overtime(), 11, 2, 26),
     _FIXED_TERM,
     _FULL_YEAR,
     terminated=True,
@@ -588,7 +629,11 @@ def _sickness_year() -> tuple[Pay, ...]:
 
 
 SICKNESS_YEAR = sector_year(
-    _sickness_year(), _INDUSTRIA, _FULL_YEAR, terminated=False, health=METASALUTE
+    with_sunday_holidays(_sickness_year(), 11, 2, 26),
+    _INDUSTRIA,
+    _FULL_YEAR,
+    terminated=False,
+    health=METASALUTE,
 )
 
 
@@ -815,7 +860,14 @@ def _turismo_june() -> tuple[Pay, ...]:
     )
 
 
-TURISMO_YEAR = sector_year(_turismo_year(), _TURISMO, _FULL_YEAR, terminated=False)
+#: Art. 127 c. 4 pays one day of a holiday on the rest day (Sunday unless
+#: stated): 1 November 2026; 4 November, a Wednesday, is no rest day.
+TURISMO_YEAR = sector_year(
+    with_sunday_holidays(_turismo_year(), 11, 1, 26),
+    _TURISMO,
+    _FULL_YEAR,
+    terminated=False,
+)
 TURISMO_JUNE = sector_year(_turismo_june(), _TURISMO, _HALF_YEAR, terminated=True)
 
 
@@ -1124,10 +1176,20 @@ def _fipe_june(tranche: int) -> tuple[Pay, ...]:
     )
 
 
-FIPE_YEAR = sector_year(_fipe_year(6), _FIPE_RATES, _FULL_YEAR, terminated=False)
+#: 1 November 2026, a Sunday and the default rest day, pays one twenty-sixth
+#: (art. 131 c. 4 and art. 159 of the 2018 text).
+FIPE_YEAR = sector_year(
+    with_sunday_holidays(_fipe_year(6), 11, 1, 26),
+    _FIPE_RATES,
+    _FULL_YEAR,
+    terminated=False,
+)
 FIPE_JUNE = sector_year(_fipe_june(6), _FIPE_RATES, _HALF_YEAR, terminated=True)
 RISTORAZIONE_YEAR = sector_year(
-    _fipe_year(9), _FIPE_RATES, _FULL_YEAR, terminated=False
+    with_sunday_holidays(_fipe_year(9), 11, 1, 26),
+    _FIPE_RATES,
+    _FULL_YEAR,
+    terminated=False,
 )
 RISTORAZIONE_JUNE = sector_year(_fipe_june(9), _FIPE_RATES, _HALF_YEAR, terminated=True)
 
@@ -1164,8 +1226,15 @@ def _confapi_june() -> tuple[Pay, ...]:
     return (*pays, Pay(_run(6), june, june))
 
 
+#: Art. 32 (CCNL 3 July 2017, p. 104) as Federmeccanica art. 9, at 1/26;
+#: the ipotesi of 4 June 2026 (p. 20) adds "San Francesco (4 ottobre)":
+#: one quota in October and two in November 2026.
 CONFAPI_YEAR = sector_year(
-    _confapi_year(), _INDUSTRIA, _FULL_YEAR, terminated=False, health=EBM_SALUTE
+    with_sunday_holidays(with_sunday_holidays(_confapi_year(), 10, 1, 26), 11, 2, 26),
+    _INDUSTRIA,
+    _FULL_YEAR,
+    terminated=False,
+    health=EBM_SALUTE,
 )
 CONFAPI_JUNE = sector_year(
     _confapi_june(), _INDUSTRIA, _HALF_YEAR, terminated=True, health=EBM_SALUTE
@@ -1244,8 +1313,14 @@ def _imp_june() -> tuple[Pay, ...]:
 
 #: Edilizia impiegato from 16 to 50 employees: the shares of the industria
 #: impiegato above, read on the same Assimpredil ANCE table 2/2026.
+#: Art. 61 (CCNL 19 April 2010, p. 75): a festività on a Sunday pays the
+#: monthly pay over 25; art. 43 (p. 66): 1/25 for 4 November with
+#: November: two in November 2026.
 EDILIZIA_IMPIEGATI_YEAR = sector_year(
-    _imp_year(), _INDUSTRIA, _FULL_YEAR, terminated=False
+    with_sunday_holidays(_imp_year(), 11, 2, 25),
+    _INDUSTRIA,
+    _FULL_YEAR,
+    terminated=False,
 )
 EDILIZIA_IMPIEGATI_JUNE = sector_year(
     _imp_june(), _INDUSTRIA, _HALF_YEAR, terminated=True

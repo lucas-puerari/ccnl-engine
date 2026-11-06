@@ -35,10 +35,10 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Core payroll path** | ⚠️ |
-| **Limits of this contract** | seniority |
+| **Core payroll path** | ✅ |
+| **Limits of this contract** | — |
 
-1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+0 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -55,7 +55,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-02-11 |
-| **Last review** | 2026-10-18 |
+| **Last review** | 2026-11-06 |
 | **Latest salary tranche** | 2027-10-01 |
 
 ## Review history
@@ -64,6 +64,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|---|---|
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | corrected | Art. 40 - Tredicesima e Quattordicesima mensilità (p. 96): "Nel caso di inizio o di cessazione del rapporto di lavoro durante l’anno o nel caso di assenza non retribuita, il lavoratore, non in prova, ha diritto a tanti dodicesimi dell’ammontare di tali mensilità quanti sono i mesi interi di servizio prestato, computando come mese intero la frazione di mese superiore a 15 giorni.". Added: more_than 15 (the file applied the engine default, at least 15 days). |
 | 2026-10-18 | claude-opus-5-5 (ai) | The minimi contrattuali integrati of the 14 levels on the four tranches of the ipotesi di accordo of 11 February 2025 (1/4/2025, 1/4/2026, 1/4/2027, 1/10/2027), against the table printed in the signed text deposited at CNEL. | corrected | The signed ipotesi of 11 February 2025 (CNEL K051, deposito 216334, 44-page scan without text layer, read on the page image of PDF p. 37) prints the table 'Minimi contrattuali integrati' with the parameter, the increment and the minimo of the 14 levels QS-C1 on 1/4/2025, 1/4/2026, 1/4/2027 and 1/10/2027 ('Aumento medio a regime €290 su parametro medio 179,76 valore punto 29,80'). The table level labels are the file codes.<br>41 of the 56 file values match; 15 (all on 1/4/2027 or 1/10/2027) differ by one cent and are corrected to the printed table.<br>Art. 38 c. 1 (PDF p. 34) defines the monthly pay as the minimo contrattuale integrato (minimi tabellari conglobated with the ex indennità di contingenza from 1 April 2013) and c. 3 adds the EDR of EUR 10,33 separately: the file's base_salary (minimo) with the EDR as a fixed allowance matches.<br>The appendix table on PDF p. 42 (5 categories, 'Aumento medio a regime € 220 su parametro medio 134,19') belongs to the separate area contrattuale in the appendix and is not used.<br>The ruleset now names the CNEL deposit of the text signed by the contracting parties (Elettricità Futura, Utilitalia, Energia Libera, Enel, GSE, Terna, Sogin, Filctem-CGIL, Flaei-CISL, Uiltec-UIL): source_type contracting_party.<br>Corrected to the printed table: Q 2027-04-01: 3858.47 -> 3858.48; Q 2027-10-01: 3947.60 -> 3947.61; ASS 2027-04-01: 3405.74 -> 3405.73; ASS 2027-10-01: 3484.42 -> 3484.41; AS 2027-04-01: 3187.64 -> 3187.65; AS 2027-10-01: 3261.27 -> 3261.28; A1 2027-04-01: 2913.65 -> 2913.66; A1 2027-10-01: 2980.96 -> 2980.97; BSS 2027-04-01: 2774.62 -> 2774.63; BS 2027-04-01: 2656.36 -> 2656.35; BS 2027-10-01: 2717.73 -> 2717.72; B1 2027-04-01: 2417.48 -> 2417.49; B2S 2027-04-01: 2257.70 -> 2257.71; CS 2027-04-01: 1862.65 -> 1862.64; CS 2027-10-01: 1905.68 -> 1905.67. |
+| 2026-11-06 | claude-opus-5-5 (ai) | Apprentice seniority: artt. 15, 39 of the CCNL of 18 July 2022 (pp. 31, 94) and art. 38 of the ipotesi of 11 February 2025 (p. 34, OCR). | corrected | Apprentices accrue the level increments at their percentage: art. 15 c. 5 (p. 31 of the CCNL of 18 July 2022) pays 'una retribuzione in misura percentuale e proporzionata all'anzianità di servizio'; art. 38 c. 1 (p. 34 of the ipotesi of 11 February 2025) makes the retribuzione mensile of the minimo contrattuale integrato 'e dai corrispettivi eventualmente spettanti a titolo di aumenti periodici di anzianità'; art. 39 (p. 94 of 2022) owes an increment each biennio of service. |
 
 ## Salary table
 
@@ -125,13 +126,6 @@ percentage: 1.00
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
-
-!!! warning "elettrico-elettricita-futura/apprentice_seniority · seniority · impact unknown · open"
-    APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.
-
-    **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
-
-    **Remediation:** Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

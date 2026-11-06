@@ -307,17 +307,17 @@
       }
     },
     {
-      "id": "rule_additional_months_2025_09_01",
+      "id": "rule_additional_months_2025_01_01",
       "institute": "base_salary",
       "variant": "all",
-      "rule": "agreement/organizzazioni-allevatori-aia.json#additional_months[2025-09-01]",
+      "rule": "agreement/organizzazioni-allevatori-aia.json#additional_months[2025-01-01]",
       "calculation": "base_salary",
       "state": "unverified",
       "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
       "origin": "seeded",
       "links": {
         "rules": [
-          "agreement/organizzazioni-allevatori-aia.json#additional_months[2025-09-01]"
+          "agreement/organizzazioni-allevatori-aia.json#additional_months[2025-01-01]"
         ]
       }
     },
@@ -350,22 +350,6 @@
       "links": {
         "limitations": [
           "sunday_holiday_ccnl_clause"
-        ]
-      }
-    },
-    {
-      "id": "third_tranche_sep_2026",
-      "institute": "base_salary",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "SIMPLIFICATION: Third tranche (Sep 2026) not modeled; per-level amounts not yet published in primary sources.",
-      "calculation": "ccnl/organizzazioni-allevatori-aia:coverage.notes",
-      "state": "absent",
-      "remediation": "Add the September 2026 tranche once the per-level amounts are published.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "organizzazioni-allevatori-aia/third_tranche_sep_2026"
         ]
       }
     },

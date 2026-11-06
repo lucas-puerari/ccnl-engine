@@ -3,22 +3,6 @@
   "ccnl_id": "pubblici-esercizi-fipe-angem-ristorazione-collettiva",
   "requirements": [
     {
-      "id": "apprentice_seniority",
-      "institute": "seniority",
-      "variant": "apprentice",
-      "discriminant": "applies_when.trigger = path",
-      "rule": "APPRENTICE SENIORITY: no clause says it in so many words. Art. 182 c. 1 (PDF p. 126) grants the six scatti 'A tutto il personale', art. 71 applies to the apprentice the normative treatment of the qualified worker, and art. 68 c. 1 pays a percentage of the qualified pay of the level, scatti included: the apprenticeship counts for the scatti and a matured scatto is paid at the apprentice percentage. The first scatto matures after 48 months, so only an apprentice with prior seniority reaches one; the engine pays no increment during the apprenticeship.",
-      "calculation": "ccnl/pubblici-esercizi-fipe-angem-ristorazione-collettiva:coverage.notes",
-      "state": "unverified",
-      "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "pubblici-esercizi-fipe-angem-ristorazione-collettiva/apprentice_seniority"
-        ]
-      }
-    },
-    {
       "id": "arrears_unused_deductions",
       "institute": "contract_renewal_arrears",
       "variant": "all",
@@ -63,22 +47,6 @@
       "links": {
         "limitations": [
           "pubblici-esercizi-fipe-angem-ristorazione-collettiva/guarantee_premium_2027"
-        ]
-      }
-    },
-    {
-      "id": "health_and_bilateral_funds",
-      "institute": "bilateral_funds",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = owed",
-      "rule": "HEALTH FUND: the Fondo Est is owed for every worker (CCNL 2018 art. 186); an employer that does not pay it owes the worker instead the elemento distinto of EUR 16.00 for 14 months (c. 12). Neither is modelled: the employer cost, and with the elemento the net pay, are short of it.",
-      "calculation": "ccnl/pubblici-esercizi-fipe-angem-ristorazione-collettiva:coverage.notes",
-      "state": "absent",
-      "remediation": "Model the contributions per worker, with a fact for an employer that pays the worker the alternative element instead, then remove this note.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "pubblici-esercizi-fipe-angem-ristorazione-collettiva/health_and_bilateral_funds"
         ]
       }
     },

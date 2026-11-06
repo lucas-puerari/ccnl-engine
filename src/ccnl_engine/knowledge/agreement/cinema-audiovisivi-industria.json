@@ -1905,7 +1905,7 @@
     "effective_until": "2027-12-31",
     "source": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153",
     "verification_status": "unverified",
-    "source_hash": "88d88590479ce5ef5f06f6c3442a74409798f313a2ebdf23316cdbdfe9a7cb0c",
+    "source_hash": "9a81791524e27188a3d86139c6cfa6bca4bc306b1cd38bdb3e084d6912b9f851",
     "published_at": "2026-09-18",
     "source_type": "commercial_secondary"
   },
@@ -2183,6 +2183,49 @@
           "review_id": "2026-10-31-ai-sickness-comporto"
         },
         "note": "Not modelled: the days of life-saving therapy (up to 60) left out of the pay limits and paid in full; the 6 months of unpaid aspettativa of a particularly serious illness. The troupe staff of the film productions are outside this CCNL."
+      }
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "04-25",
+        "05-01",
+        "06-02",
+        "01-01",
+        "01-06",
+        "easter",
+        "easter_monday",
+        "08-15",
+        "11-01",
+        "12-08",
+        "12-25",
+        "12-26",
+        "11-04"
+      ],
+      "divisor": "26",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "cinema-audiovisivi-industria-ccnl-testo",
+            "title": "CONTRATTO COLLETTIVO NAZIONALE DI LAVORO PER I DIPENDENTI DELL'INDUSTRIA CINEAUDIOVISIVA",
+            "kind": "associazione",
+            "url": "https://www.slc-cgil.it/images/CCNL_cineaudiovisivo_09072019.pdf",
+            "published_on": "2019-07-09",
+            "sha256": "aa5591694eecf78be4686fe19f5ec97b7667394edd5f3fdb66a40fbda517bdcc"
+          },
+          "page": "20",
+          "section": "Art. 28 - Festività, riposo settimanale diversi dalla domenica; Art. 29",
+          "quote": "Qualora una delle suddette festività cada di domenica ai lavoratori è dovuto, in aggiunta alla normale retribuzione mensile, l'importo di una quota giornaliera della retribuzione di fatto, pari a 1/26 della retribuzione mensile fissa ovvero ragguagliata ad 1/6 dell'orario settimanale normale per i lavoratori non retribuiti in misura fissa. [...] Per quanto riguarda la festività nazionale del 4 novembre la cui celebrazione è spostata alla domenica successiva, resta fermo il disposto di cui alla lett. a) del punto 3) dell'accordo interconfederale 26 gennaio 1977."
+        },
+        "transformation": "The festività of letters A) and B) of art. 28 (Easter Sunday among them, always a Sunday; but the Patrono) on a Sunday: the monthly pay of the chain over 26 (the workers paid a fixed monthly pay). 4 November: the accordo interconfederale 26 January 1977 the article recalls gives it the treatment of a holiday on a Sunday, as the industry CCNLs quoting it (Federmeccanica art. 9, Chimica art. 13) state.",
+        "note": "The 2019 text (valid from 18 January 2018 for three years) is expired and no later renewal was located. The accordo interconfederale of 1977 was not read: its 4 November treatment is inferred from the CCNLs that quote it. The Patrono is not in the national calendar and is not paid. 4 October, a holiday from 2026 (L. 151/2025), is not in the list: its Sunday stays open.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-04T14:00:00Z",
+          "effective_from": "2019-07-09",
+          "verification_status": "unverified"
+        }
       }
     }
   }

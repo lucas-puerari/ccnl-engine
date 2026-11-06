@@ -30,8 +30,8 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Core payroll path** | ⚠️ |
-| **Limits of this contract** | seniority |
+| **Core payroll path** | ✅ |
+| **Limits of this contract** | — |
 
 1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 0 verified / 38 derived / 1 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 1 verified / 37 derived / 1 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -50,12 +50,14 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-07-17 |
-| **Last review** | — |
+| **Last review** | 2026-11-06 |
 | **Latest salary tranche** | 2026-08-01 |
 
 ## Review history
 
-No review is recorded.
+| Date | Reviewer | Scope | Outcome | Findings |
+|---|---|---|---|---|
+| 2026-11-06 | claude-opus-5-5 (ai) | CCNL Calzaturiero, text of 17 July 2024: art. 46 seniority (p. 97). | corrected | Four biennial increments and a fifth after four years, not five triennial; the amounts per level match. |
 
 ## Salary table
 
@@ -76,21 +78,8 @@ Latest effective values per level (monthly gross, EUR).
 
 ## Seniority increments
 
-**Cadence:** every 36 months  
+**Cadence:** every 24 months  
 **Maximum:** 5 increments
-
-| Level | Increment (monthly) |
-|---|---:|
-| `8` | € 12.24 |
-| `7` | € 12.01 |
-| `6` | € 9.94 |
-| `5` | € 9.19 |
-| `4` | € 8.47 |
-| `3S` | € 7.98 |
-| `3` | € 7.98 |
-| `2S` | € 7.41 |
-| `2` | € 7.41 |
-| `1` | € 6.89 |
 
 ## Apprenticeship
 
@@ -110,12 +99,12 @@ percentage: 1.00
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning "calzaturiero-assocalzaturifici/seniority_secondary_source · seniority · impact unknown · open"
-    Seniority cadence is triennale (36 months) for all levels; maximum 5 scatti. Scatto amounts derived from businessonline.it article (2025) cross-checked with kitech.it current table.
+!!! note "calzaturiero-assocalzaturifici/seniority_secondary_source · seniority · impact unknown · resolved"
+    SENIORITY (Art. 46, p. 97 of the text of 17 July 2024): five increments, 'i primi quattro con cadenza biennale ed il quinto dopo un quadriennio', of 6.89 (1st) to 12.24 (8th) EUR a month.
 
     **Applies when:** `seniority` applies.
 
-    **Remediation:** Verify the seniority cadence and amounts against the primary CCNL text.
+    **Remediation:** Resolved: cadence and amounts read in art. 46 of the 2024 text on 2026-11-06.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

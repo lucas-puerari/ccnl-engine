@@ -50,31 +50,6 @@
       "expected_amount": "0.00"
     },
     {
-      "level_code": "7",
-      "as_of": "2024-04-01",
-      "expected_amount": "9.44"
-    },
-    {
-      "level_code": "6",
-      "as_of": "2024-04-01",
-      "expected_amount": "10.85"
-    },
-    {
-      "level_code": "5",
-      "as_of": "2024-04-01",
-      "expected_amount": "11.39"
-    },
-    {
-      "level_code": "4",
-      "as_of": "2024-04-01",
-      "expected_amount": "11.93"
-    },
-    {
-      "level_code": "3",
-      "as_of": "2024-04-01",
-      "expected_amount": "12.20"
-    },
-    {
       "level_code": "2",
       "as_of": "2024-04-01",
       "expected_amount": "29.44"

@@ -34,9 +34,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, bilateral_funds, overtime, seniority |
+| **Limits of this contract** | base_salary, overtime |
 
-6 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -53,7 +53,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-06-26 |
-| **Last review** | 2026-11-01 |
+| **Last review** | 2026-11-05 |
 | **Latest salary tranche** | 2027-12-01 |
 
 ## Review history
@@ -68,6 +68,8 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-17 | claude-opus-5-5 (ai) | The paga base and contingenza of every level from June 2024 against the accordo integrativo of 26 June 2024, the quattordicesima against the CCNL of 8 February 2018, and a year and a termination of a 4th level worker against a hand oracle. | confirmed | Accordo integrativo of 26 June 2024 (pp. 1-3): the 50 totals of contingenza and paga base of the ten levels from June 2024 to December 2027 match the file, with the tranches of 2025 and 2026 in September.<br>Art. 184 of the CCNL of 8 February 2018 (p. 128, scan read by OCR): quattordicesima of the pay in force on 30 June, paid with the July pay, in ratei of the twelve months before 1 July. Match.<br>Hand oracle (tests/knowledge/ccnl_engine/period/sector, scenarios ristorazione-year and ristorazione-june): a 4th level impiegato hired on 1 January 2026 by an employer with 10 employees, with the terziario rates up to 15 employees and the 0.77% sickness supplement of the pubblici esercizi taken apart; every payment and the year (gross, contributions, tax, net, TFR, employer cost) match the engine to the cent. The CCNL now covers every total of the definition of done. |
 | 2026-10-31 | claude-opus-5-5 (ai) | The basis of the indemnity for the leave not taken at the end of the employment, searched in the OCR of the signed text of 2018 (Artt. 114, 134, 135, 159, 160). | corrected | Art. 159 - Determinazione della retribuzione giornaliera (p. 116): the daily pay is the monthly pay divided by 26 for every contractual purpose: work_rules.leave_rules.termination; the accrual of the leave is not modelled, so the basis is not used yet. |
 | 2026-11-01 | claude-opus-5-5 (ai) | The notice of Artt. 208-209 (PDF pp. 143-144), checked by a separate session on the rendered pages. | confirmed | Art. 208 (PDF pp. 143-144, sha256 32a2831b... matched, page images read): 15 bands, A e B / 1 / 2 e 3 / 4 e 5 / 6S, 6 e 7 over the three service bands, the same for dismissal and resignation, no start day: work_rules.notice.<br>Art. 209 (p. 144): the indemnity is the normale retribuzione of the period, extra_months_included false; the exception of Art. 179 for the pubblici esercizi does not concern this file. |
+| 2026-11-05 | claude-opus-5-5 (ai) | The hourly divisor of the 44-hour week, Articolo 160 (PDF p. 116, printed p. 114), checked by a separate session on the page rendered at 200 and 400 dpi. | confirmed | Art. 160 c.1 (sha256 32a2831b... matched): 190 for a normal week of 44 hours, 172 for 40: work_rules.time_supplements.week_divisors 44/190.<br>The renewal of 5 June 2024 amends arts. 114, 135, 161, 183-184 and 199-202, not art. 160. |
+| 2026-11-05 | claude-opus-5-5 (ai) | Art. 186 (p. 17) of the renewal of 5 June 2024, OCR of the signed scan. | corrected | Art. 186 covers every sector of the CCNL: the Fondo Est of the Pubblici esercizi file applies to ristorazione collettiva, which had no health fund. |
 
 ## Salary table
 
@@ -126,13 +128,6 @@ percentage: 1.00
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning "pubblici-esercizi-fipe-angem-ristorazione-collettiva/apprentice_seniority · seniority · impact unknown · open"
-    APPRENTICE SENIORITY: no clause says it in so many words. Art. 182 c. 1 (PDF p. 126) grants the six scatti 'A tutto il personale', art. 71 applies to the apprentice the normative treatment of the qualified worker, and art. 68 c. 1 pays a percentage of the qualified pay of the level, scatti included: the apprenticeship counts for the scatti and a matured scatto is paid at the apprentice percentage. The first scatto matures after 48 months, so only an apprentice with prior seniority reaches one; the engine pays no increment during the apprenticeship.
-
-    **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
-
-    **Remediation:** Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.
-
 !!! warning "pubblici-esercizi-fipe-angem-ristorazione-collettiva/holiday_overtime_cumulation · overtime · impact unknown · open"
     HOLIDAY OVERTIME: Art. 126 (PDF p. 99) gives 30% by day and 60% by night for every overtime hour; Art. 132 (p. 103) gives 20% for the hours worked on a festività. No clause links them: art. 126 c. 3 excludes cumulation only with ordinary night work, art. 130 c. 2 only Sunday work with the festività, and the special parts (arts. 246-247, 263-264) and the 2024 renewal repeat or leave them. The engine pays holiday overtime at 30%/60% without the 20%.
 
@@ -147,12 +142,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Model the 2027 guarantee premium as a conditional allowance.
 
-!!! warning "pubblici-esercizi-fipe-angem-ristorazione-collettiva/health_and_bilateral_funds · bilateral_funds · impact yes · open"
-    HEALTH FUND: the Fondo Est is owed for every worker (CCNL 2018 art. 186); an employer that does not pay it owes the worker instead the elemento distinto of EUR 16.00 for 14 months (c. 12). Neither is modelled: the employer cost, and with the elemento the net pay, are short of it.
+!!! note "pubblici-esercizi-fipe-angem-ristorazione-collettiva/health_and_bilateral_funds · bilateral_funds · impact yes · resolved"
+    HEALTH FUND (art. 186): Fondo Est EUR 11/12 (15 from 2027) a month from the employer for the permanent non-quadri, and the element of EUR 16 on 14 months of an employer that does not pay it, as in the Pubblici esercizi file.
 
     **Applies when:** `bilateral_funds` applies.
 
-    **Remediation:** Model the contributions per worker, with a fact for an employer that pays the worker the alternative element instead, then remove this note.
+    **Remediation:** Resolved: parameters.health_funds fondo_est, read on 2026-11-05.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

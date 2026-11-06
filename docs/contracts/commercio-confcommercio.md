@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, leave, seniority, sickness |
+| **Limits of this contract** | base_salary, sickness |
 
-4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -130,13 +130,6 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Model the farmacista di parafarmacia apprenticeship of the Accordo 31/10/2024 once its text is found.
 
-!!! warning "commercio-confcommercio/apprentice_seniority · seniority · impact unknown · open"
-    APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.
-
-    **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
-
-    **Remediation:** Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.
-
 !!! warning "commercio-confcommercio/sickness_net_basis · sickness · impact unknown · open"
     SICKNESS (Art. 187): the CCNL integrates up to a share of the net daily pay ('retribuzione giornaliera netta') without saying how the net pay is computed. The engine grosses up the INPS indemnity by the worker's INPS rate (the 'lordizzazione' of payroll practice, Ordine dei Consulenti del Lavoro di Salerno) and tops it up to the measure of the gross daily quota; IRPEF is left out, as it falls on both. Day bands, carenza by event, the yearly comporto and the exclusion of apprentices are modelled.
 
@@ -144,12 +137,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Find a source (an interpretation of the parties, an INPS or Ministry text) that defines the net daily pay of Art. 187, align the computation, then resolve this limitation.
 
-!!! warning "commercio-confcommercio/permit_deadline_payout · leave · impact yes · open"
-    LEAVE, DEADLINE (Art. 158): the permits not taken within the year of accrual lapse and are paid with the retribuzione di fatto, or are carried and taken by 30 June of the following year; the text leaves the choice open. The engine carries the balances and pays the residual only at the end of the employment.
+!!! note "commercio-confcommercio/permit_deadline_payout · leave · impact yes · resolved"
+    LEAVE, DEADLINE (Art. 158): the permits not taken within the year of accrual are paid with the December pay, or carried and paid with the June pay of the next year for what is left, as the employer states in EmployerProfile.permit_carryover.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Add an employer fact for the alternative of Art. 158 and pay the residual permits at its deadline.
+    **Remediation:** Resolved: leave_rules.permit_deadline with the employer fact permit_carryover, read on 2026-11-06.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

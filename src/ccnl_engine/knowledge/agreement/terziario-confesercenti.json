@@ -271,7 +271,8 @@
           "verification_status": "verified",
           "review_id": "2026-10-13-ai-production"
         }
-      }
+      },
+      "apprentice_level_amount": true
     },
     "accrual_rule": {
       "min_days": 15,
@@ -4018,22 +4019,6 @@
         "text": "Apprenticeship type b (professionalizzante). Durations (Art. 64): II-V 36 months, VI 24 months; half-period 18 and 12 months. The 42 and 48 month profiles of Art. 68 Tabella B are in the unmodelled note."
       },
       {
-        "kind": "simplification",
-        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
-        "capability": "seniority",
-        "monetary_impact": "unknown",
-        "limitation": {
-          "variant": "apprentice_seniority",
-          "applies_when": {
-            "trigger": "path",
-            "contract_types": [
-              "apprentice"
-            ]
-          },
-          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
-        }
-      },
-      {
         "kind": "info",
         "text": "TERZO ELEMENTO NAZIONALE (Art. 215, TU p. 157): EUR 2.07 a month due only in the provinces where no provincial third element is in force (Art. 214); paid when EmployerProfile.provincial_pay_element is false, left out with a missing_fact blocker when it is not stated."
       },
@@ -4148,7 +4133,7 @@
       },
       {
         "kind": "simplification",
-        "text": "LEAVE, DEADLINE (Art. 158): the permits not taken within the year of accrual lapse and are paid with the retribuzione di fatto, or are carried and taken by 30 June of the following year; the text leaves the choice open. The engine carries the balances and pays the residual only at the end of the employment.",
+        "text": "LEAVE, DEADLINE (Art. 158): the permits not taken within the year of accrual are paid with the December pay, or carried and paid with the June pay of the next year for what is left, as the employer states in EmployerProfile.permit_carryover.",
         "capability": "leave",
         "monetary_impact": "yes",
         "limitation": {
@@ -4156,7 +4141,8 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Add an employer fact for the alternative of Art. 158 and pay the residual permits at its deadline."
+          "remediation": "Resolved: leave_rules.permit_deadline with the employer fact permit_carryover, read on 2026-11-06.",
+          "status": "resolved"
         }
       }
     ]
@@ -4168,7 +4154,7 @@
     "effective_until": "2027-03-31",
     "source": "https://www.confesercenti.it/wp-content/uploads/2023/01/CCNL_contratto-collettivo-nazionale.pdf",
     "verification_status": "unverified",
-    "source_hash": "508d39e4583cd8e41abd17a8f99ef629a8339b3d4ff699b67bd402b86d3e2489",
+    "source_hash": "66d38225f2eb05ff82e7447cfde15b82d35eca0151da710b0dd97ad86b0e994c",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -5085,6 +5071,40 @@
           },
           "transformation": "Ferie: residual days x monthly pay / 26, as quoted. Permits: residual hours x monthly pay / the hourly divisor of the file (168, Art. 211 quota oraria). The text pays the permits not taken at the deadline with the retribuzione di fatto of Art. 208 (Art. 158: 'I permessi non fruiti entro l’anno di maturazione decadranno e saranno pagati con la retribuzione di fatto di cui all’art. 208'); paying the residual hours at the end of the employment at the same hourly quota is the reading adopted, not a clause on termination. The monthly pay is the CCNL pay chain of the level (paga base, contingenza, scatti, CCNL allowances): an individual superminimo of the retribuzione di fatto is not an input."
         }
+      },
+      "permit_deadline": {
+        "carry_until_month": 6,
+        "buckets": [
+          "ex_festivita",
+          "rol"
+        ],
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "confesercenti-tu2019",
+              "title": "CCNL Terziario, Distribuzione e Servizi Confesercenti, Testo Unico 12 dicembre 2019",
+              "kind": "associazione",
+              "url": "https://www.confesercenti.it/wp-content/uploads/2023/01/CCNL_contratto-collettivo-nazionale.pdf",
+              "published_on": "2019-12-12",
+              "sha256": "18a2f10cf41209a56523473660321348214c1d8d54900257cf805ad8488f7ec0"
+            },
+            "page": "125",
+            "section": "Art. 158 - Permessi retribuiti",
+            "quote": "I permessi non fruiti entro l’anno di maturazione decadranno e saranno pagati con la retribuzione di fatto di cui all’art. 208 in atto al momento della scadenza, oppure potranno essere fruiti in epoca successiva e comunque non oltre il 30 giugno dell’anno successivo."
+          },
+          "transformation": "The permits of a year not taken lapse and are paid at the employer's choice (EmployerProfile.permit_carryover): with the December pay, or carried and paid with the pay of month 6 of the next year for what is left; the hours are paid at the basis of the residual leave of the termination.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-06T13:00:00Z",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-06T13:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-06-ai-permit-deadline",
+            "effective_from": "2019-01-01"
+          }
+        }
       }
     },
     "sickness_rules": {
@@ -5659,6 +5679,27 @@
         "independence": "same_process",
         "checked": [
           "work_rules.time_supplements.week_divisors"
+        ]
+      },
+      {
+        "id": "2026-11-06-ai-terziario-confesercenti-apprentice-seniority",
+        "date": "2026-11-06",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Apprentice seniority: artt. 53, 203 and 205 of the testo unico of 12 December 2019 (pp. 64, 152-153).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.confesercenti.it/wp-content/uploads/2023/01/CCNL_contratto-collettivo-nazionale.pdf",
+            "sha256": "18a2f10cf41209a56523473660321348214c1d8d54900257cf805ad8488f7ec0"
+          }
+        ],
+        "findings": [
+          "The apprentice is classified two then one level below with 'il conseguente trattamento economico'; 'il personale ha diritto a dieci scatti triennali' of fixed amounts per level, counting seniority 'dal giorno in cui il lavoratore è entrato a far parte dell'azienda, quali che siano le mansioni': the increments of the level the apprentice is paid at."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "parameters.seniority_increments"
         ]
       }
     ],

@@ -314,7 +314,9 @@
           "verification_status": "verified",
           "review_id": "2026-10-13-ai-production"
         }
-      }
+      },
+      "apprentice_level_amount": true,
+      "apprentice_pct_scaled": true
     },
     "employer_funds": [
       {
@@ -3078,23 +3080,7 @@
       },
       {
         "kind": "simplification",
-        "text": "APPRENTICE SENIORITY: art. 158 c.1 (2010 text, p. 140) grants the six scatti 'a tutto il personale' and art. 58 pays the apprentice a percentage of the normale retribuzione of the qualified worker, which art. 148 defines with the scatti: apprentices accrue the level amount. The engine pays no increment during the apprenticeship; the run is affected when the apprentice has matured increments.",
-        "capability": "seniority",
-        "monetary_impact": "unknown",
-        "limitation": {
-          "variant": "apprentice_seniority",
-          "applies_when": {
-            "trigger": "path",
-            "contract_types": [
-              "apprentice"
-            ]
-          },
-          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
-        }
-      },
-      {
-        "kind": "simplification",
-        "text": "SICKNESS (art. 228, 2010 text p. 184): the CCNL integrates up to a share of the net daily pay without saying how the net pay is computed; the engine grosses up the INPS indemnity by the worker's INPS rate, as for the Commercio file. Day 1 of the carenza is the worker's when the illness lasts three days or less (c.5): the engine pays all three days. For fixed-term and seasonal workers no integration is due past the end of the contract (c.2).",
+        "text": "SICKNESS (art. 228, 2010 text p. 184): the CCNL integrates up to a share of the net daily pay without saying how the net pay is computed; the engine grosses up the INPS indemnity by the worker's INPS rate, as for the Commercio file. For fixed-term and seasonal workers no integration is due past the end of the contract (c.2).",
         "capability": "sickness",
         "monetary_impact": "yes",
         "limitation": {
@@ -3102,7 +3088,7 @@
           "applies_when": {
             "trigger": "run"
           },
-          "remediation": "Model the net daily pay of art. 228, the unpaid first day of a short illness and the end of a fixed-term contract."
+          "remediation": "Model the net daily pay of art. 228 and the end of a fixed-term contract."
         }
       },
       {
@@ -3213,7 +3199,7 @@
       },
       {
         "kind": "simplification",
-        "text": "LEAVE, STABILIMENTI BALNEARI (Art. 111 c.2): 108 hours of reduction a year instead of 104. The engine accrues the 104 hours of alberghi, pubblici esercizi, campeggi, alberghi diurni and agenzie di viaggi.",
+        "text": "LEAVE, STABILIMENTI BALNEARI (Art. 111 c.2, p. 114): 108 hours of reduction a year instead of the 104 of alberghi, pubblici esercizi, campeggi, alberghi diurni and agenzie di viaggi, for an employer whose EmployerProfile.subsector is 'stabilimenti_balneari'.",
         "capability": "leave",
         "monetary_impact": "yes",
         "limitation": {
@@ -3221,7 +3207,8 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Add an employer fact for the comparto and accrue 108 hours for the stabilimenti balneari."
+          "remediation": "Resolved: rol annual_hours tier of 108 hours for the sub-sector stabilimenti_balneari, read on 2026-11-06.",
+          "status": "resolved"
         }
       },
       {
@@ -3245,7 +3232,7 @@
     "effective_until": null,
     "source": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
     "verification_status": "unverified",
-    "source_hash": "2026c9ef71b2655366c3e486ab4ab0d0815e062b5efef308544c0a5b476c4346",
+    "source_hash": "f03e80d156753fc79a5cbc860d2263984611310219f0a2c0c5f8dddf79f20a85",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3744,6 +3731,12 @@
           "annual_hours": [
             {
               "hours": "104"
+            },
+            {
+              "hours": "108",
+              "subsectors": [
+                "stabilimenti_balneari"
+              ]
             }
           ],
           "includes_ex_festivita": true,
@@ -3773,7 +3766,8 @@
               "verification_status": "verified",
               "review_id": "2026-10-19-ai-leave"
             },
-            "note": "One pool of 104 hours holding the 32 hours of the abolished festivities. The month fractions follow the cumulated rule of Art. 111 c.8, not modelled: a partial month accrues nothing and the balance is marked inexact. No new-hire ramp found in the 2010 text, the 2014 version and the 2024 ipotesi. Quote read on the OCR of the scan."
+            "note": "One pool of 104 hours holding the 32 hours of the abolished festivities. The month fractions follow the cumulated rule of Art. 111 c.8, not modelled: a partial month accrues nothing and the balance is marked inexact. No new-hire ramp found in the 2010 text, the 2014 version and the 2024 ipotesi. Quote read on the OCR of the scan.",
+            "transformation": "Art. 111 c.2: 108 hours for the stabilimenti balneari (EmployerProfile.subsector 'stabilimenti_balneari'), read on the OCR of p. 114 on 2026-11-06."
           }
         }
       ],
@@ -3806,6 +3800,39 @@
           },
           "transformation": "Ferie: residual days x monthly pay / 26. No clause on the end of the employment names a divisor: the daily pay of Art. 150, stated for every contractual purpose, is the pay of a day of ferie, and the 26 days of ferie are counted on a week of six days (Art. 129 c.1, p. 124), the week of the divisor. Permits: residual hours x monthly pay / 172, the hourly divisor of Art. 151 (p. 135) for a 40-hour week. Art. 111 c.7 (p. 114) pays the permits not taken by the deadline 'con la retribuzione in atto al momento della scadenza'; paying the residual hours at the end of the employment at that hourly pay is the reading adopted, as for Commercio, not a clause on termination. The 2014 version and the 2024 ipotesi read leave Artt. 150 and 151 unchanged."
         }
+      },
+      "permit_deadline": {
+        "carry_until_month": 6,
+        "buckets": [
+          "rol"
+        ],
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-turismo-2010",
+              "title": "CCNL Turismo 20 febbraio 2010, testo firmato (UILTuCS)",
+              "kind": "associazione",
+              "url": "http://www.uiltucs.it/pdf/turismo/CCNL_Turismo_Confcommercio_2010.pdf",
+              "published_on": "2010-02-20",
+              "sha256": "47f71f5f3f9eb7975837a888f08f8694ca5b1d9e403c85226446c080b7e0f9e4"
+            },
+            "page": "114",
+            "section": "Art. 111 c. 7 - Riduzione dell'orario",
+            "quote": "I permessi non goduti entro l'anno di maturazione saranno pagati con la retribuzione in atto al momento della scadenza oppure potranno essere fruiti, con le medesime modalità sopra previste, entro e non oltre il 30 giugno dell'anno seguente."
+          },
+          "transformation": "The permits of a year not taken lapse and are paid at the employer's choice (EmployerProfile.permit_carryover): with the December pay, or carried and paid with the pay of month 6 of the next year for what is left; the hours are paid at the basis of the residual leave of the termination.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-06T13:00:00Z",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-06T13:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-06-ai-permit-deadline",
+            "effective_from": "2010-01-01"
+          }
+        }
       }
     },
     "sickness_rules": {
@@ -3813,6 +3840,7 @@
       "full_pay_integration_rate": "1",
       "max_duration_days": 180,
       "net_basis": true,
+      "carenza_first_day_min_days": 3,
       "day_bands": [
         {
           "day_from": 4,
@@ -3841,7 +3869,7 @@
           "section": "Art. 228 c.1 b), c.2, c.5 - Trattamento di malattia (alberghi); identical art. 278 (campeggi)",
           "quote": "misura del ~etlnlllacillque per cento pt!r i giomi dal qmu10 .\\1 ventesimo e dd [...] (2) L'integrilzione è dovuta per Cl!l1tottanta giollli all'anno solare. [...] i successivi due giomi. Nel caso però che la I1lnlnHia sia riconosciuta per il"
         },
-        "transformation": "Integration up to 75% for days 4-20 and 100% from day 21 of the net daily pay (c.1 b); due for 180 days in a calendar year (c.2); the carenza is paid by the employer for days 2-3, and day 1 too when the illness lasts more than three days (c.5): modelled as all three days paid.",
+        "transformation": "Integration up to 75% for days 4-20 and 100% from day 21 of the net daily pay (c.1 b); due for 180 days in a calendar year (c.2); the carenza is paid by the employer for days 2-3, and day 1 too when the illness lasts more than three days (c.5: 'a carico del lavoratore per il primo giorno ed a carico del datore di lavoro per i successivi due giorni. Nel caso però che la malattia sia riconosciuta per il periodo eccedente i detti tre giorni l'intero periodo di carenza sarà a carico del datore di lavoro'): carenza_first_day_min_days 3, read on the OCR of p. 184 on 2026-11-05.",
         "note": "Not changed by the 2014 and 2024 renewals. Hotels are on the general INPS regime.",
         "extraction": {
           "method": "ai",
@@ -4133,6 +4161,49 @@
           "verified_by": "claude-opus-5-5",
           "verified_at": "2026-10-31T21:00:00Z",
           "review_id": "2026-10-31-ai"
+        }
+      }
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "04-25",
+        "05-01",
+        "06-02",
+        "01-01",
+        "01-06",
+        "easter_monday",
+        "08-15",
+        "11-01",
+        "12-08",
+        "12-25",
+        "12-26",
+        "11-04"
+      ],
+      "divisor": "26",
+      "on_rest_day": true,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-turismo-2010",
+            "title": "CCNL Turismo 20 febbraio 2010, testo firmato (UILTuCS)",
+            "kind": "associazione",
+            "url": "http://www.uiltucs.it/pdf/turismo/CCNL_Turismo_Confcommercio_2010.pdf",
+            "published_on": "2010-02-20",
+            "sha256": "47f71f5f3f9eb7975837a888f08f8694ca5b1d9e403c85226446c080b7e0f9e4"
+          },
+          "page": "122-123, 134",
+          "section": "Art. 127 c.1, c.4 - Festività; Art. 128 c.4 - IV novembre; Art. 150 - Retribuzione giornaliera",
+          "quote": "(4) A tutto il personale assente nelle giornate di festività, per riposo settimanale, per malattia, infortunio, dovrà essere corrisposta una giornata di retribuzione contrattuale senza alcuna maggiorazione. [Art. 128] (4) Al lavoratore assente nella stessa giornata per riposo settimanale dovrà essere corrisposta una giornata di retribuzione contrattuale senza alcuna maggiorazione. [Art. 150] (1) La retribuzione giornaliera si ottiene dividendo la retribuzione mensile per ventisei."
+        },
+        "transformation": "The national and weekday holidays of art. 127 c.1 (but the Patrono) and 4 November (art. 128) falling on the worker's weekly rest day (Employment.weekly_rest_day): one day of the monthly pay of the chain over 26 (art. 150). The statutory holidays on a Sunday stay paid by L. 260/1949 art. 5 when the rest day is another day.",
+        "note": "OCR text of the 2010 signed agreement; the 2014 renewal (guide of 18 January 2014) and the 2024 ipotesi of 5 July 2024 leave arts. 127-128 unchanged. 4 October, a holiday from 2026 (L. 151/2025), is not in the list: its rest day stays open. The Patrono is not in the national calendar and is not paid. A rotating rest day is not modelled. The absence for sickness or injury on a holiday (same comma) is left to the sickness treatment.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-04T12:00:00Z",
+          "effective_from": "2010-01-01",
+          "verification_status": "unverified"
         }
       }
     }

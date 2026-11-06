@@ -339,22 +339,6 @@
       }
     },
     {
-      "id": "rol_not_accrued",
-      "institute": "leave",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "LEAVE, ROL (Art. 91 cc.2-3, p. 47): 40 hours a year on a five-day week, 66 on a six-day week. The file accrues the 40 hours, the schedule it assumes for the 22 days of ferie; the 66 hours of a six-day week are not modelled (the weekly schedule is not an input). The hires within the 2024-2027 term accrue 50% from the twelfth month, 75% from the twenty-fourth to the thirty-sixth, 100% after; the clause states no share before the twelfth month, read as nothing, as Commercio's 'decorsi due anni' (steps 0, 11, 23, 36 completed months). The 50/75/100% of the contratto di reimpiego (c.4) is not modelled.",
-      "calculation": "ccnl/studi-professionali-confprofessioni:coverage.notes",
-      "state": "absent",
-      "remediation": "Add the weekly schedule as an employment fact for the 66 hours of a six-day week, and the contratto di reimpiego for its own ramp.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "studi-professionali-confprofessioni/rol_not_accrued"
-        ]
-      }
-    },
-    {
       "id": "rolling_comporto_and_serious_illness",
       "institute": "sickness",
       "variant": "all",
@@ -367,22 +351,6 @@
       "links": {
         "limitations": [
           "studi-professionali-confprofessioni/rolling_comporto_and_serious_illness"
-        ]
-      }
-    },
-    {
-      "id": "six_day_week_leave",
-      "institute": "leave",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "LEAVE: 22 working days for the settimana corta (Monday to Friday), 26 for a six-day week (Art. 99 CCNL 2024, p. 51). The file carries the 22 days; the engine cannot switch on the weekly schedule.",
-      "calculation": "ccnl/studi-professionali-confprofessioni:coverage.notes",
-      "state": "unverified",
-      "remediation": "Accept the weekly schedule (days per week) and accrue 26 days on a six-day week, or record the limitation as rol_not_accrued does for ROL.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "studi-professionali-confprofessioni/six_day_week_leave"
         ]
       }
     },

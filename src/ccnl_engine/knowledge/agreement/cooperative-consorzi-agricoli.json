@@ -51,7 +51,7 @@
       },
       {
         "kind": "simplification",
-        "text": "SENIORITY: operai Art. 61 (max 5 biennali) e impiegati Art. 49 (max 12 biennali) hanno importi differenti per livelli 3-7. Operai amounts confirmed from rinnovo 2024 (lavoro-economia.it, businessonline.it): L7=9.44, L6=10.85, L5=11.39, L4=11.93, L3=12.20, L2=29.44, L1=33.05 EUR/biennio. Modelled with operai amounts (dominant workforce in cooperatives) and maximum_count=12 (impiegati cap). Queries for operai with seniority_count>5 will overstate by at most 1-5 scatti. The engine supports per-category amounts and maxima (amount_by_level_by_category, maximum_count_by_category): the gap is in the data only (review of 2026-10-30).",
+        "text": "SENIORITY (artt. 49, 61): impiegati and operai have their own amounts and maxima (12 and 5 biennial increments), read by Employment.category; an impiegato of level 5 has no amount in art. 49.",
         "capability": "seniority",
         "monetary_impact": "yes",
         "limitation": {
@@ -62,7 +62,8 @@
             ],
             "seniority_months_from": 144
           },
-          "remediation": "Fill amount_by_level_by_category with the operai (Art. 61) and impiegati (Art. 49) amounts and maximum_count_by_category with 5 and 12."
+          "remediation": "Resolved: seniority_increments.amount_by_level_by_category and maximum_count_by_category, read on 2026-11-05.",
+          "status": "resolved"
         }
       },
       {
@@ -81,20 +82,9 @@
         }
       },
       {
-        "kind": "simplification",
-        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
+        "kind": "info",
         "capability": "seniority",
-        "monetary_impact": "unknown",
-        "limitation": {
-          "variant": "apprentice_seniority",
-          "applies_when": {
-            "trigger": "path",
-            "contract_types": [
-              "apprentice"
-            ]
-          },
-          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
-        }
+        "text": "APPRENTICE SENIORITY (Art. 24 - Apprendistato, p. 40 of https://www.uila.eu/web/wp-content/uploads/2022/04/03_08_2022-STESURA-CCNL-COOPERATIVE-AGRICOLE-2019-2023.pdf, sha256 586ec86c279b9cf2484217d15e0e663985d32c3ed31a4e649e1574a1f594004b): 'A tutti gli apprendisti operai, in quanto lavoratori a tempo indeterminato si applicano le norme del CCNL relative a tale categoria pertanto agli stessi gli istituti contrattuali saranno corrisposti alle normali scadenze e non attraverso il terzo elemento. Analogamente agli apprendisti impiegati sarà garantito lo stesso trattamento previsto per gli altri impiegati a tempo indeterminato.' Reading: the apprentice matures the increments of the level, at its amounts (seniority_increments.apprentice_level_amount). The renewal of 19 July 2024 does not amend art. 24."
       },
       {
         "kind": "simplification",
@@ -1469,55 +1459,10 @@
             }
           ]
         },
-        "7": {
-          "periods": [
-            {
-              "valid_from": "2024-04-01",
-              "valid_until": null,
-              "value": "9.44"
-            }
-          ]
-        },
-        "6": {
-          "periods": [
-            {
-              "valid_from": "2024-04-01",
-              "valid_until": null,
-              "value": "10.85"
-            }
-          ]
-        },
-        "5": {
-          "periods": [
-            {
-              "valid_from": "2024-04-01",
-              "valid_until": null,
-              "value": "11.39"
-            }
-          ]
-        },
-        "4": {
-          "periods": [
-            {
-              "valid_from": "2024-04-01",
-              "valid_until": null,
-              "value": "11.93"
-            }
-          ]
-        },
-        "3": {
-          "periods": [
-            {
-              "valid_from": "2024-04-01",
-              "valid_until": null,
-              "value": "12.20"
-            }
-          ]
-        },
         "2": {
           "periods": [
             {
-              "valid_from": "2024-04-01",
+              "valid_from": "1987-01-01",
               "valid_until": null,
               "value": "29.44"
             }
@@ -1526,7 +1471,7 @@
         "1": {
           "periods": [
             {
-              "valid_from": "2024-04-01",
+              "valid_from": "1987-01-01",
               "valid_until": null,
               "value": "33.05"
             }
@@ -1534,22 +1479,141 @@
         }
       },
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
-            "title": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
+            "document_id": "ccnl-cooperative-agricole-stesura-2022",
+            "title": "CCNL cooperative e consorzi agricoli, stesura 3 agosto 2022 del rinnovo 18 dicembre 2020 (UILA)",
             "kind": "associazione",
-            "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf"
+            "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/03_08_2022-STESURA-CCNL-COOPERATIVE-AGRICOLE-2019-2023.pdf",
+            "published_on": "2022-08-03",
+            "sha256": "586ec86c279b9cf2484217d15e0e663985d32c3ed31a4e649e1574a1f594004b"
           },
-          "section": "Scatti di anzianità"
+          "page": "67, 81",
+          "section": "Art. 49 - Scatti di anzianità (impiegati); Art. 61 - Scatti di anzianità (operai)",
+          "quote": "L'impiegato per l'anzianità di servizio prestato presso la stessa azienda ha diritto, per ogni biennio di anzianità, ad un aumento retributivo in cifra fissa. [...] 1° livello € 33,05 2° livello € 29,44 3° livello € 26,86 4° livello € 24,79 6° livello € 23,76 7° livello € 22,21 [...] Gli aumenti periodici per anzianità sono stabiliti nel numero massimo di 12 [Art. 61] Con decorrenza dal 1.7.2006 l’importo degli scatti di anzianità sarà quello stabilito nella tabella riportata di seguito [...] 3° € 12,20 4° € 11,93 5° € 11,39 6° € 10,85 7° € 9,44 [...] Tali aumenti periodici sono fissati nel numero massimo di 5"
         },
+        "transformation": "One increment every 24 months of service with the employer. Impiegati (art. 49): the amounts of levels 1-4, 6 and 7, at most 12. Operai a tempo indeterminato (art. 61): the amounts of levels 3-7 from 1 July 2006, at most 5. Levels 3-7 carry both, so the worker category is required there; levels 1 and 2 hold the impiegati amounts. Art. 49 lists no amount for an impiegato of level 5 (none is paid) and art. 61 none for the area non professionalizzati (kept at 0).",
+        "note": "The renewal of 19 July 2024 (verbale, OCR) does not amend artt. 49 and 61. Their notes a verbale keep a different earlier company discipline where in force.",
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-07T15:03:36",
-          "verification_status": "unverified",
-          "effective_from": "2020-01-01"
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-05T17:00:00Z",
+          "effective_from": "1987-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-05T17:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-05-ai-seniority-by-category"
         }
+      },
+      "apprentice_level_amount": true,
+      "amount_by_level_by_category": {
+        "operaio": {
+          "3": {
+            "periods": [
+              {
+                "valid_from": "2006-07-01",
+                "valid_until": null,
+                "value": "12.20"
+              }
+            ]
+          },
+          "4": {
+            "periods": [
+              {
+                "valid_from": "2006-07-01",
+                "valid_until": null,
+                "value": "11.93"
+              }
+            ]
+          },
+          "5": {
+            "periods": [
+              {
+                "valid_from": "2006-07-01",
+                "valid_until": null,
+                "value": "11.39"
+              }
+            ]
+          },
+          "6": {
+            "periods": [
+              {
+                "valid_from": "2006-07-01",
+                "valid_until": null,
+                "value": "10.85"
+              }
+            ]
+          },
+          "7": {
+            "periods": [
+              {
+                "valid_from": "2006-07-01",
+                "valid_until": null,
+                "value": "9.44"
+              }
+            ]
+          }
+        },
+        "impiegato": {
+          "1": {
+            "periods": [
+              {
+                "valid_from": "1987-01-01",
+                "valid_until": null,
+                "value": "33.05"
+              }
+            ]
+          },
+          "2": {
+            "periods": [
+              {
+                "valid_from": "1987-01-01",
+                "valid_until": null,
+                "value": "29.44"
+              }
+            ]
+          },
+          "3": {
+            "periods": [
+              {
+                "valid_from": "1987-01-01",
+                "valid_until": null,
+                "value": "26.86"
+              }
+            ]
+          },
+          "4": {
+            "periods": [
+              {
+                "valid_from": "1987-01-01",
+                "valid_until": null,
+                "value": "24.79"
+              }
+            ]
+          },
+          "6": {
+            "periods": [
+              {
+                "valid_from": "1987-01-01",
+                "valid_until": null,
+                "value": "23.76"
+              }
+            ]
+          },
+          "7": {
+            "periods": [
+              {
+                "valid_from": "1987-01-01",
+                "valid_until": null,
+                "value": "22.21"
+              }
+            ]
+          }
+        }
+      },
+      "maximum_count_by_category": {
+        "operaio": 5
       }
     },
     "accrual_rule": {
@@ -1614,7 +1678,7 @@
     "effective_until": null,
     "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "4dddc97fbd1963f15c875fe01a3ab62e3bf9c1638e93b3d446d4a41b64113ce2",
+    "source_hash": "270209ed3766bb445f6e775ed1c07d291645e5dc4178eb82a5cc21e92e209655",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1846,6 +1910,48 @@
         ],
         "findings": [
           "Art. 34 - 13ma e 14ma mensilita' (p. 52): \"La frazione di mese superiore a 15 giorni viene considerata come mese intero.\". Match: more_than 15."
+        ]
+      },
+      {
+        "id": "2026-11-05-ai-apprentice-seniority",
+        "date": "2026-11-05",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The seniority increments of the apprentices, Art. 24 - Apprendistato (PDF p. 40), found by a separate research session and checked again on the page.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/03_08_2022-STESURA-CCNL-COOPERATIVE-AGRICOLE-2019-2023.pdf",
+            "sha256": "586ec86c279b9cf2484217d15e0e663985d32c3ed31a4e649e1574a1f594004b"
+          }
+        ],
+        "findings": [
+          "The apprentice has the treatment of the permanent staff: seniority_increments.apprentice_level_amount."
+        ],
+        "independence": "separate_session",
+        "checked": [
+          "parameters.seniority_increments"
+        ]
+      },
+      {
+        "id": "2026-11-05-ai-seniority-by-category",
+        "date": "2026-11-05",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Artt. 49 and 61 (PDF pp. 67, 81) of the stesura of 3 August 2022, text layer.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/03_08_2022-STESURA-CCNL-COOPERATIVE-AGRICOLE-2019-2023.pdf",
+            "sha256": "586ec86c279b9cf2484217d15e0e663985d32c3ed31a4e649e1574a1f594004b"
+          }
+        ],
+        "findings": [
+          "Operai: at most 5 increments, not the 12 of the impiegati; impiegati of levels 3, 4, 6, 7: 26.86, 24.79, 23.76, 22.21, not the operai amounts the file paid them."
+        ],
+        "independence": "separate_session",
+        "checked": [
+          "parameters.seniority_increments"
         ]
       }
     ],

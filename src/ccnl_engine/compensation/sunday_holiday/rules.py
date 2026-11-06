@@ -4,6 +4,13 @@ L. 54/1977 art. 1 c. 2 moves the celebration of 4 November, no longer a
 holiday, to the first Sunday of November: a CCNL that grants it the
 treatment of a holiday on a Sunday pays it on that Sunday, which the
 holidays of the month list under the day code ``11-04``.
+
+L. 260/1949 art. 5 c. 3 names the Sunday of the calendar, not the worker's
+rest day: case law reads it as exceptional and exhaustive, and the Ordine
+dei Consulenti del Lavoro di Milano (2026, "Una proposta", sha256
+e85d84f4...) asks the legislator to move it to the rest day.  A CCNL that
+pays a holiday on the rest day (``on_rest_day``) adds those days to the
+statutory holidays on a Sunday.
 """
 
 from __future__ import annotations
@@ -13,6 +20,7 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.absence.models import DailyDivisorMethod
+from ccnl_engine.calendar.holiday.models import easter_sunday
 from ccnl_engine.pay_item.rounding.policies import money
 
 if TYPE_CHECKING:
@@ -22,6 +30,7 @@ if TYPE_CHECKING:
     from ccnl_engine.period.context.services import RunContext
 
 __all__ = [
+    "EASTER",
     "FOURTH_NOVEMBER",
     "STATUTORY",
     "divisor",
@@ -34,6 +43,8 @@ __all__ = [
 
 #: Day code of 4 November, celebrated on the first Sunday of November.
 FOURTH_NOVEMBER = "11-04"
+#: Day code of Easter Sunday, a holiday of some CCNLs only.
+EASTER = "easter"
 #: The festa nazionale, 25 April and 1 May (L. 260/1949 art. 5).
 STATUTORY = frozenset({"04-25", "05-01", "06-02"})
 _NOVEMBER = 11
@@ -66,26 +77,63 @@ def _first_sunday_of_november(year: int) -> dt.date:
     return first + dt.timedelta(days=(_SUNDAY - first.weekday()) % 7)
 
 
+def _rest_day(ctx: RunContext, clause: SundayHolidayPay | None) -> int:
+    """Return the weekday the clause pays a holiday on.
+
+    Returns:
+        Sunday (6) unless the clause pays the rest day, then the worker's.
+    """
+    if clause is None or not clause.on_rest_day:
+        return _SUNDAY
+    return ctx.request.weekly_rest_day.number
+
+
+def _fourth_november(year: int, clause: SundayHolidayPay | None) -> dt.date:
+    if (
+        clause is not None
+        and clause.on_rest_day
+        and not clause.fourth_november_on_sunday
+    ):
+        return dt.date(year, _NOVEMBER, 4)
+    return _first_sunday_of_november(year)
+
+
 def sundays(ctx: RunContext) -> list[tuple[str, dt.date, bool]]:
-    """Return the national holidays of the month that fall on a Sunday.
+    """Return the national holidays of the month on a Sunday or the rest day.
 
     Returns:
         Each day code, date and whether the holiday is a recent one (with a
-        ``valid_from``, as 4 October from 2026), within the employment; in
-        November, also 4 November on the first Sunday of the month.
+        ``valid_from``, as 4 October from 2026), within the employment: the
+        holidays on a Sunday, or on the worker's rest day for a clause that
+        pays it (with the statutory ones on a Sunday); in November, also 4
+        November on the first Sunday of the month, or on the 4th when it is
+        the rest day of such a clause (unless it keeps the Sunday); Easter
+        Sunday (``easter``), no holiday with civil effects, only when the
+        CCNL clause names it.
     """
     year, month = ctx.request.period_id.year, ctx.request.period_id.month
+    rules = ctx.contract.ccnl.work_rules
+    clause = None if rules is None else rules.sunday_holidays
+    rest = _rest_day(ctx, clause)
     found = []
     for holiday in ctx.repo.load_national_holidays().holidays:
         day = holiday.on(year)
-        if day is None or (day.month, day.weekday()) != (month, _SUNDAY):
+        if day is None or day.month != month:
             continue
-        if employed(ctx, day):
+        on_sunday = day.weekday() == _SUNDAY and holiday.day in STATUTORY
+        if (day.weekday() == rest or on_sunday) and employed(ctx, day):
             found.append((holiday.day, day, holiday.valid_from is not None))
-    if month == _NOVEMBER:
-        day = _first_sunday_of_november(year)
-        if employed(ctx, day):
-            found.append((FOURTH_NOVEMBER, day, False))
+    fourth = _fourth_november(year, clause)
+    if month == _NOVEMBER and fourth.weekday() == rest and employed(ctx, fourth):
+        found.append((FOURTH_NOVEMBER, fourth, False))
+    easter = easter_sunday(year)
+    if (
+        clause is not None
+        and EASTER in clause.holidays
+        and (easter.month, easter.weekday()) == (month, rest)
+        and employed(ctx, easter)
+    ):
+        found.append((EASTER, easter, False))
     return found
 
 

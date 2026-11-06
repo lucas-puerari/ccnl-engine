@@ -35,7 +35,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, bilateral_funds |
+| **Limits of this contract** | base_salary |
 
 3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
@@ -45,7 +45,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 57 verified / 93 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 59 verified / 94 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -54,7 +54,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2021-06-08 |
-| **Last review** | 2026-10-13 |
+| **Last review** | 2026-11-05 |
 | **Latest salary tranche** | 2029-03-01 |
 
 ## Review history
@@ -64,6 +64,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-09-18 | maintainer (human) | Whole file. The values checked were not recorded. | confirmed | The review recorded no list of the documents it read. |
 | 2026-10-13 | claude-opus-5-5 (ai) | Signatories of the renewals behind the salary periods from July 2025. | flagged | The renewal of 13 June 2025 (CNEL K511, deposits 234754 and 234752) is not signed by ANIP; the file pays its minima from July 2025. Declared as the limitation anip_unsigned_renewal; values left unchanged pending an ANIP amount. |
 | 2026-10-13 | claude-opus-5-5 (ai) | Limited scope, tier unchanged: the rules that do not depend on the missing ANIP amounts, read in the CNEL K511 deposits 105782 (2011 text) and 139292 (2021 renewal); the salary periods from July 2025 stay as they are. | corrected | 66 records verified: the 2021-2024 tabellare, contingenza and EDR of levels 1-7 and Q, the quadri allowance, the levels 1, 2par115, 4par125, 7 and Q, the divisor 173, the 14 monthly payments and their accrual rule, the overtime rates and 22 days of leave.<br>Added the payment days of the tredicesima (20 December) and quattordicesima (15 July, window July to June), arts. 20-21.<br>The 2par115 and 4par125 tabellare is computed (April 2013 amount plus the parametric increments): derived, descriptions corrected to the notes a verbale of art. 10.<br>Closed cigs_threshold_16_to_50: terziario.json already charges the CIGS above 15 employees (D.Lgs. 148/2015 arts. 20 and 23).<br>Closed apprentice_seniority: apprentices are paid tabellare, contingenza and EDR only (art. 12), apprentice_amount 0 (derived).<br>Corrected the notes on the July 2025 values (the 2021 fifth tranche is the operative ANIP amount), on scatti recomputed at every tranche, on the apprenticeship durations, on the 2025 signatories and on the worker estimate.<br>Declared multiservizi_unmodelled_rules: seniority and sickness by worker type, the 181-270 sickness band, the /22 divisor, the overtime base and premiums, the art. 24 allowances, the funds and the apprenticeship durations.<br>hourly_base_method gross_incl_allowances: the art. 38 premiums are on tabellare plus contingenza.<br>Left derived: the periods from July 2025 (renewal not signed by ANIP, re-cited to CNEL 234752), the seniority block, the contingenza of the parametric positions, levels 2 to 6 (mixed categories), absence and sickness rules.<br>The aggregator sources (oristano summary, redigo, kitech, ccnlportatili) are replaced by the CNEL deposits. |
+| 2026-11-05 | claude-opus-5-5 (ai) | The ferie days of the six-day week, Art. 42 Ferie (PDF p. 61), read by a separate research session and checked again on the text layer. | corrected | Art. 42 Ferie: 22 working days in the five-day week, 26 in the six-day week: work_rules.leave_rules.week_days_annual_days 6/26, read when Employment.full_time_week_days is 6. |
+| 2026-11-05 | claude-opus-5-5 (ai) | Ferie accrual, permits and their settlement: arts. 19 (PDF p. 40), 41 and 42 (pp. 60-61) of the 2011 definitive text, read by a separate research session and checked again on the text layer; the 2021 renewal read for amendments. | corrected | Art. 42: twelfths with the month over 15 days, 40 hours of reduced time a year: work_rules.leave_rules.ferie_accrual and permits.<br>Art. 41: the ex festività are compensatory permits for the days worked, not a yearly bank.<br>The 2025 renewal (72 hours according to the union summary) was not read in a primary text. |
+| 2026-11-05 | claude-opus-5-5 (ai) | Art. 66 (PDF p. 29) of the ipotesi of 8 June 2021, OCR of the scan. | corrected | ONBSI was not modelled: the contractual funds held no reduced worker share; the model now has reduced_employee. |
 
 ## Salary table
 
@@ -120,18 +123,18 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Use the 2021 renewal values for ANIP members, or the 2025 renewal once ANIP signs or joins it.
 
 !!! warning "multiservizi-anip/multiservizi_unmodelled_rules · base_salary · impact yes · open"
-    NOT MODELLED (CNEL 105782 and 139292): (1) worker type: levels 2 to 6 hold both impiegati and operai (art. 10), but the file keys seniority and category by level, so impiegati of levels 2-4 get the operai forfettaria instead of the biennial scatti of art. 22 and operai of levels 5-6 get scatti instead of the forfettaria (66.77, 82.99, p. 90); each scatto is priced on the tabellare in force at its maturation and capped at 50% of tabellare + 279.60, while the engine prices it at the run date. (2) Sickness (art. 51 as replaced in 2021, CNEL 139292 pp. 22-24): operai are topped up to 100% of the net retribuzione globale for days 1-180 and paid 50% of the gross one for days 181-270 (the file stops at day 180); impiegati get 100% for 5 months and 50% for 7; comporto 12 months in 36. (3) Absence: the daily quota is the monthly pay /22 on a 5-day week (art. 19, the norm of art. 30); the file divides by 26. (4) Overtime is paid on quote of the retribuzione globale and its premiums on the retribuzione base, tabellare plus contingenza (art. 38); the premiums for holiday work (50%) and night work (20% in rotating shifts, 30% otherwise), the part-time supplementary hours (+28%, elastic clauses +10%, art. 33 as amended in 2021) and the 40 ROL hours (art. 42). (5) The allowances of art. 24 (disagio 15% of tabellare a day, maneggio denaro 3%, riscossione 5%, hourly allowances) and the EDAR ad personam. (6) Funds: Previambiente 1% + 1% of tabellare and contingenza for members (art. 54); ASIM and ONBSI are the limitation health_and_bilateral_funds. (7) Apprenticeship durations of the accord of 19 July 2012 (destination 5 lasts 36 months, destinations 2, 3, 6 and 7 are missing).
+    NOT MODELLED (CNEL 105782 and 139292): (1) worker type: levels 2 to 6 hold both impiegati and operai (art. 10), but the file keys seniority and category by level, so impiegati of levels 2-4 get the operai forfettaria instead of the biennial scatti of art. 22 and operai of levels 5-6 get scatti instead of the forfettaria (66.77, 82.99, p. 90); each scatto is priced on the tabellare in force at its maturation and capped at 50% of tabellare + 279.60, while the engine prices it at the run date. (2) Sickness (art. 51 as replaced in 2021, CNEL 139292 pp. 22-24): operai are topped up to 100% of the net retribuzione globale for days 1-180 and paid 50% of the gross one for days 181-270 (the file stops at day 180); impiegati get 100% for 5 months and 50% for 7; comporto 12 months in 36. (3) Absence: the daily quota is the monthly pay /22 on a 5-day week (art. 19, the norm of art. 30); the file divides by 26 unless Employment.full_time_week_days states 5. (4) Overtime is paid on quote of the retribuzione globale and its premiums on the retribuzione base, tabellare plus contingenza (art. 38); the premiums for holiday work (50%) and night work (20% in rotating shifts, 30% otherwise), the part-time supplementary hours (+28%, elastic clauses +10%, art. 33 as amended in 2021) and the 40 ROL hours (art. 42). (5) The allowances of art. 24 (disagio 15% of tabellare a day, maneggio denaro 3%, riscossione 5%, hourly allowances) and the EDAR ad personam. (6) Funds: Previambiente 1% + 1% of tabellare and contingenza for members (art. 54); ASIM and ONBSI are the limitation health_and_bilateral_funds. (7) Apprenticeship durations of the accord of 19 July 2012 (destination 5 lasts 36 months, destinations 2, 3, 6 and 7 are missing).
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Key seniority and sickness by worker category, model the second sickness band, the /22 divisor, the art. 38 and art. 24 premiums, the funds and the apprenticeship durations of the 2012 accord.
+    **Remediation:** Key seniority and sickness by worker category, model the second sickness band, the /22 divisor as the default, the art. 38 and art. 24 premiums, the funds and the apprenticeship durations of the 2012 accord.
 
-!!! warning "multiservizi-anip/health_and_bilateral_funds · bilateral_funds · impact yes · open"
-    BILATERAL FUND: ONBSI 0.50 EUR of the employer and 0.50 of the worker a month on 12 months, 0.25 each below 20 hours a week (art. 66 as amended in 2021, CNEL 139292 p. 29), is not modelled: the contractual funds hold no reduced worker share. ASIM (art. 69) is modelled.
+!!! note "multiservizi-anip/health_and_bilateral_funds · bilateral_funds · impact yes · resolved"
+    BILATERAL FUND: ONBSI EUR 0.50 from the employer and 0.50 from the worker a month on 12 months, 0.25 each below 20 hours a week (art. 66 as amended in 2021, CNEL 139292 p. 29), and ASIM (art. 69) are modelled.
 
     **Applies when:** `bilateral_funds` applies.
 
-    **Remediation:** Model the ONBSI shares with the reduced worker share below 20 hours a week, then remove this note.
+    **Remediation:** Resolved: parameters.health_funds onbsi with reduced_employer and reduced_employee below 20 weekly hours, read on 2026-11-05.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
@@ -332,6 +335,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     INPS: terziario regime. Cleaning contractors are CIGS employers above 15 employees: D.Lgs. 148/2015 art. 20 c. 1 d) ('imprese appaltatrici di servizi di pulizia, anche se costituite in forma di cooperativa, che subiscano una riduzione di attività') and, from 1 January 2022, art. 20 c. 3-bis and art. 23 c. 1-bis ('a carico dei datori di lavoro che, nel semestre precedente la data di presentazione della domanda, abbiano occupato mediamente più di quindici dipendenti [...] è stabilito un contributo ordinario nella misura dello 0,90 per cento'). contribution/2026/terziario.json already charges the CIGS 0.90% (0.30% on the worker, INPS circ. 117/2022 all. 1) above 15 employees and the FIS of art. 29 below.
     
     Workers covered: no sourced figure. The earlier note (~403,000, INPS-UNIEMENS 2025) and meta.workers_estimate (~580k) disagree and neither cites a document.
+    
+    LEAVE (artt. 19, 41, 42 of the 2011 text): 22 days of ferie on five days, 26 on six (Employment.full_time_week_days), in twelfths with the month over 15 days; 40 hours a year of reduced time (art. 42). At termination a day of ferie is the monthly pay over 22 (26 on six days), an hour of permits over 173. The ex festività are compensatory permits for the abolished holidays worked (art. 41): not a bank, not accrued. The 2025 renewal (72 hours of permits according to the union summary) is not read in a primary text.
     
 
 ## Raw data

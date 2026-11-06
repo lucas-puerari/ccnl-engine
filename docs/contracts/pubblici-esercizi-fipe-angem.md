@@ -34,9 +34,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, leave, overtime, seniority, sickness |
+| **Limits of this contract** | base_salary, leave, overtime, sickness |
 
-9 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+8 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -53,7 +53,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-06-26 |
-| **Last review** | 2026-10-31 |
+| **Last review** | 2026-11-05 |
 | **Latest salary tranche** | 2027-12-01 |
 
 ## Review history
@@ -71,6 +71,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-20 | claude-opus-5-5 (ai) | The pricing of the seniority increments matured before a change of level (Art. 182 c. 5 - Scatti di anzianità). | corrected | Art. 182 c. 5 - Scatti di anzianità (p. 127): the earlier increments are repriced at the new level when the next one matures: seniority_increments.on_promotion. |
 | 2026-10-20 | claude-opus-5-5 (ai) | Whether the individual elements of the worker (superminimi, aumenti di merito, assegni ad personam) enter the hourly base of overtime and supplements (Art. 157 c. 1 - Elementi della retribuzione). | corrected | Art. 157 c. 1 - Elementi della retribuzione: individual elements excluded in the hourly base: work_rules.time_supplements.individual_elements. |
 | 2026-10-31 | claude-opus-5-5 (ai) | The basis of the indemnity for the leave not taken at the end of the employment, searched in the OCR of the signed text of 2018 (Artt. 114, 134, 135, 159, 160) and of the 2024 renewal. | corrected | Art. 159 - Determinazione della retribuzione giornaliera (p. 116): the daily pay is the monthly pay divided by 26 for every contractual purpose: the residual ferie are paid at it, and the permits at the hourly pay of Art. 160: work_rules.leave_rules.termination. |
+| 2026-11-05 | claude-opus-5-5 (ai) | The hourly divisor of the 44-hour week, Articolo 160 (PDF p. 116, printed p. 114), checked by a separate session on the page rendered at 200 and 400 dpi. | confirmed | Art. 160 c.1 (sha256 32a2831b... matched): 190 for a normal week of 44 hours, 172 for 40: work_rules.time_supplements.week_divisors 44/190.<br>The renewal of 5 June 2024 amends arts. 114, 135, 161, 183-184 and 199-202, not art. 160. |
 
 ## Salary table
 
@@ -142,13 +143,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Model the Art. 162 base-pay reduction for micro-enterprises with an employer-size input.
-
-!!! warning "pubblici-esercizi-fipe-angem/apprentice_seniority · seniority · impact unknown · open"
-    APPRENTICE SENIORITY: no clause says it in so many words. Art. 182 c. 1 (PDF p. 126) grants the six scatti 'A tutto il personale', art. 71 applies to the apprentice the normative treatment of the qualified worker, and art. 68 c. 1 pays a percentage of the qualified pay of the level, scatti included: the apprenticeship counts for the scatti and a matured scatto is paid at the apprentice percentage. The first scatto matures after 48 months, so only an apprentice with prior seniority reaches one; the engine pays no increment during the apprenticeship.
-
-    **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
-
-    **Remediation:** Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.
 
 !!! warning "pubblici-esercizi-fipe-angem/holiday_overtime_cumulation · overtime · impact unknown · open"
     HOLIDAY OVERTIME: Art. 126 (PDF p. 99) gives 30% by day and 60% by night for every overtime hour; Art. 132 (p. 103) gives 20% for the hours worked on a festività. No clause links them: art. 126 c. 3 excludes cumulation only with ordinary night work, art. 130 c. 2 only Sunday work with the festività, and the special parts (arts. 246-247, 263-264) and the 2024 renewal repeat or leave them. The engine pays holiday overtime at 30%/60% without the 20%.
@@ -375,7 +369,7 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     APPRENTICESHIP PROFILES: art. 72 c. 2 (PDF p. 75) gives 48 months to named profiles of levels 2 and 3 and 42 months to named profiles of level 4, and art. 68 c. 1 (p. 74) pays them 95% in the fourth year: tracks professionalizzante_48_mesi and professionalizzante_42_mesi. An apprentice of levels 2, 3 and 4 states Apprentice.track: professionalizzante for the 36 months of the other profiles.
     
-    HOURLY RATE AND SUPPLEMENTS (artt. 124, 130, 132, 157, 160 of the 2018 text, unchanged by the 2024 renewal): without a caller value the engine derives the hourly base (the art. 157 retribuzione over 172), the 25% on ordinary night hours from 24 to 6 (art. 124), the 20% on the hours worked on a festività (art. 132) and the 10% of the hourly paga base and contingenza on ordinary Sunday hours of a worker resting on another day (art. 130). Art. 132 also pays the festività hours themselves on top of the monthly pay: the engine posts the 20% only and the run is provisional. Not derived: holiday and night holiday overtime (art. 126 sets no rate; the bands OT_FESTIVO and OT_NOTTURNO_FESTIVO stay derived), the divisor 190 of the 44-hour week.
+    HOURLY RATE AND SUPPLEMENTS (artt. 124, 130, 132, 157, 160 of the 2018 text, unchanged by the 2024 renewal): without a caller value the engine derives the hourly base (the art. 157 retribuzione over 172), the 25% on ordinary night hours from 24 to 6 (art. 124), the 20% on the hours worked on a festività (art. 132) and the 10% of the hourly paga base and contingenza on ordinary Sunday hours of a worker resting on another day (art. 130). Art. 132 also pays the festività hours themselves on top of the monthly pay: the engine posts the 20% only and the run is provisional. Not derived: holiday and night holiday overtime (art. 126 sets no rate; the bands OT_FESTIVO and OT_NOTTURNO_FESTIVO stay derived). The 44-hour week divides by 190 (week_divisors).
     
     LEAVE AT TERMINATION: no clause of the 2018 text (OCR of the signed scan) or of the 2024 renewal names the indemnity for the ferie and permits not taken; the daily pay of Art. 159 (monthly pay / 26, 'valido a tutti i fini contrattuali', p. 116) prices a residual day of ferie, and the hourly pay of Art. 160 (/ 172) a residual hour of permits, the measure Art. 114 c.12 uses for the permits left at the deadline.
     

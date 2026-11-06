@@ -35,22 +35,6 @@
       }
     },
     {
-      "id": "cashier_allowance_missing",
-      "institute": "base_salary",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "SIMPLIFICATION: Indennita di cassa (EUR 55.00/month, cashiers only) not modeled — applies only to a subset of workers.",
-      "calculation": "ccnl/consorzi-agrari-assocap:coverage.notes",
-      "state": "absent",
-      "remediation": "Model the 55 EUR/month indennita di cassa as a role-gated allowance for cashiers.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "consorzi-agrari-assocap/cashier_allowance_missing"
-        ]
-      }
-    },
-    {
       "id": "disability_permit_tfr",
       "institute": "disability_permits",
       "variant": "all",
@@ -63,22 +47,6 @@
       "links": {
         "limitations": [
           "disability_permit_tfr"
-        ]
-      }
-    },
-    {
-      "id": "filcoop_health_fund_missing",
-      "institute": "contractual_funds",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "SIMPLIFICATION: FILCOOP SANITARIO bilateral health fund not modeled.",
-      "calculation": "ccnl/consorzi-agrari-assocap:coverage.notes",
-      "state": "absent",
-      "remediation": "Add FILCOOP SANITARIO to parameters.health_funds, with its source, so contractual_funds posts its shares.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "consorzi-agrari-assocap/filcoop_health_fund_missing"
         ]
       }
     },
@@ -366,22 +334,6 @@
       "links": {
         "limitations": [
           "sunday_holiday_ccnl_clause"
-        ]
-      }
-    },
-    {
-      "id": "tranche_2027_01_missing",
-      "institute": "base_salary",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "SIMPLIFICATION: Jan 2027 tranche not yet published per-level; not modeled.",
-      "calculation": "ccnl/consorzi-agrari-assocap:coverage.notes",
-      "state": "absent",
-      "remediation": "Add the January 2027 tranche per level once the official table is published.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "consorzi-agrari-assocap/tranche_2027_01_missing"
         ]
       }
     },

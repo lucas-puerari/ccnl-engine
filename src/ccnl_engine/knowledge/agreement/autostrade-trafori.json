@@ -61,7 +61,7 @@
       },
       {
         "kind": "simplification",
-        "text": "Apprenticeship: CCNL provides under-classification 2 levels below; the file models it as a 100% passthrough (one percentage track at 1.00), although the engine supports under_classification tracks (review of 2026-10-30).",
+        "text": "APPRENTICESHIP (Art. 10 cc. 7-8, pp. 20-21 of the stesura signed 5 July 2024): 36 months for every profile, paid 80% the first 12 months, 85% the next 12, 95% after; the renewal of 26 June 2026 does not amend art. 10.",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
@@ -69,23 +69,8 @@
           "applies_when": {
             "trigger": "run"
           },
-          "remediation": "Model the track as type under_classification (levels_below 2, then the CCNL periods) from the CCNL apprenticeship clause and drop the 100% passthrough."
-        }
-      },
-      {
-        "kind": "simplification",
-        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
-        "capability": "seniority",
-        "monetary_impact": "unknown",
-        "limitation": {
-          "variant": "apprentice_seniority",
-          "applies_when": {
-            "trigger": "path",
-            "contract_types": [
-              "apprentice"
-            ]
-          },
-          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
+          "remediation": "Resolved: percentages of art. 10, read on 2026-11-06.",
+          "status": "resolved"
         }
       }
     ]
@@ -4130,7 +4115,9 @@
           "verification_status": "unverified",
           "effective_from": "2020-01-01"
         }
-      }
+      },
+      "apprentice_level_amount": true,
+      "apprentice_pct_scaled": true
     }
   },
   "apprenticeship": [
@@ -4153,10 +4140,52 @@
       "periods": [
         {
           "months_from": 0,
+          "months_until": 12,
+          "percentage": "0.80"
+        },
+        {
+          "months_from": 12,
+          "months_until": 24,
+          "percentage": "0.85"
+        },
+        {
+          "months_from": 24,
+          "months_until": 36,
+          "percentage": "0.95"
+        },
+        {
+          "months_from": 36,
           "months_until": null,
           "percentage": "1.00"
         }
-      ]
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "autostrade-ccnl-2023-stesura-2024",
+            "title": "CCNL Autostrade e trafori 18 luglio 2023, stesura armonizzata firmata 5 luglio 2024",
+            "kind": "altro",
+            "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+            "published_on": "2024-07-05",
+            "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
+          },
+          "page": "20-21",
+          "section": "Art. 10 cc. 7-8 - Apprendistato professionalizzante",
+          "quote": "Il contratto di apprendistato professionalizzante ha una durata di 36 mesi, per tutti i profili formativi allegati al presente articolo. Per quanto concerne la retribuzione, come definita all'art. 32, la stessa sarà erogata con le seguenti modalità: - 80% per i primi 12 mesi; - 85% per i secondi 12 mesi; - 95% per i successivi mesi."
+        },
+        "transformation": "36 months: 80%, 85%, 95% by year, then the full pay.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-06T23:30:00Z",
+          "effective_from": "2023-07-18",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-06T23:30:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-06-ai-autostrade-art10"
+        }
+      }
     }
   ],
   "ruleset": {
@@ -4166,7 +4195,7 @@
     "effective_until": null,
     "source": "https://www.aiscat.it/contratto-collettivo-autostrade-trafori",
     "verification_status": "unverified",
-    "source_hash": "fb75ca44947bc1eac6d6e0d70a7bc5b5eea2b7c0cd0068593c146bd082d44e33",
+    "source_hash": "49644e081d20fcd007810c59cc0d901aef25d3a89b5912e6e21f2992e6d61a35",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -4392,5 +4421,32 @@
         }
       }
     }
+  },
+  "verification": {
+    "reviews": [
+      {
+        "id": "2026-11-06-ai-autostrade-art10",
+        "date": "2026-11-06",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 10 apprenticeship of the stesura of 5 July 2024 (pp. 20-21, OCR). Art. 32 c. 1 elements of the retribuzione (p. 54, OCR).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+            "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
+          }
+        ],
+        "findings": [
+          "Apprentices are paid 80/85/95% over 36 months, not 100% and not by under-classification as the note claimed.",
+          "Apprentices accrue the level seniority increments, scaled by the apprenticeship percentage (art. 32 c. 1 a) puts them in the stipendio)."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "apprenticeship",
+          "parameters.seniority_increments"
+        ]
+      }
+    ]
   }
 }

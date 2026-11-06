@@ -63,22 +63,6 @@
       {
         "kind": "info",
         "text": "Malattia: 100% mesi 1-12, 50% mesi 13+ — CCNL ANAS 2025-2027 Art. malattia. Modellato con SicknessTier (comporto standard). Il tasso si applica giorno per giorno secondo il mese di malattia (mesi di 30 giorni), anche nei periodi di paga a cavallo di soglia (review of 2026-10-30)."
-      },
-      {
-        "kind": "simplification",
-        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
-        "capability": "seniority",
-        "monetary_impact": "unknown",
-        "limitation": {
-          "variant": "apprentice_seniority",
-          "applies_when": {
-            "trigger": "path",
-            "contract_types": [
-              "apprentice"
-            ]
-          },
-          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
-        }
       }
     ]
   },
@@ -123,6 +107,27 @@
         "independence": "separate_session",
         "checked": [
           "work_rules.notice"
+        ]
+      },
+      {
+        "id": "2026-11-06-ai-anas-apprentice-seniority",
+        "date": "2026-11-06",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Apprentice seniority: artt. 25 and 110 of the CCNL ANAS 2025-2027 (pp. 36-38, 151, OCR).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf",
+            "sha256": "c81e33f8253fff7a7df65b5959f24e3cfaeabecda8a77d48b0739c1285ad9027"
+          }
+        ],
+        "findings": [
+          "Art. 25 c. 6 counts 'L'intero periodo di apprendistato' for seniority; c. 16 applies the 70/85/92% to the minimi, the contingenza 'ed alle altre voci retributive fissate per la posizione economica', and art. 110 fixes the increments per posizione economica: the level increments, scaled by the percentage."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "parameters.seniority_increments"
         ]
       }
     ]
@@ -1309,7 +1314,9 @@
           "verification_status": "unverified",
           "effective_from": "2020-01-01"
         }
-      }
+      },
+      "apprentice_level_amount": true,
+      "apprentice_pct_scaled": true
     },
     "accrual_rule": {
       "min_days": 15,
@@ -1384,7 +1391,7 @@
     "effective_until": null,
     "source": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "7c61c5b5a72195a43c875cb52dad1d30f637ed557fd16a2cf6acad0821d77d37",
+    "source_hash": "cdee24a036e28f8b80389255db852632cedf963511181d528b6d2306fe002b31",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

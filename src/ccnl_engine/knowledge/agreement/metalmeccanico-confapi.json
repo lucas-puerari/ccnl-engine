@@ -3044,7 +3044,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260604-CCNL-Unionmeccanica-Confapi-2025-2028.pdf",
     "verification_status": "unverified",
-    "source_hash": "99874a03dba7ad9a97ba00345479555d4c879fc7ef958941fe66f63b06d66f54",
+    "source_hash": "76cc3a3c983bd7acfb082c5327217aed29b7234a0e89566e4e0ecb167e57fa4d",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -4020,6 +4020,49 @@
           "verified_by": "claude-opus-5-5",
           "verified_at": "2026-10-31T21:00:00Z",
           "review_id": "2026-10-31-ai"
+        }
+      }
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "04-25",
+        "05-01",
+        "06-02",
+        "01-01",
+        "01-06",
+        "easter_monday",
+        "08-15",
+        "11-01",
+        "12-08",
+        "12-25",
+        "12-26",
+        "10-04",
+        "11-04"
+      ],
+      "divisor": "26",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-unionmeccanica-confapi-2017",
+            "title": "CCNL 3 luglio 2017 piccola e media industria metalmeccanica, orafa e installazione impianti (Unionmeccanica-Confapi, Fim-Cisl, Fiom-Cgil, Uilm-Uil), testo a stampa",
+            "kind": "associazione",
+            "url": "https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-Unionmeccanica.pdf",
+            "published_on": "2017-07-03",
+            "sha256": "c3e694dc561879c0b5ef510d0e931a16e3562f073a88e8a06a210fbf00451fad"
+          },
+          "page": "104",
+          "section": "Capitolo V, Art. 32 - Festività",
+          "quote": "Qualora, invece, una delle festività cada di domenica, ai lavoratori è dovuto, in aggiunta alla normale retribuzione mensile, l'importo di una quota giornaliera della retribuzione di fatto, pari a 1/26 della retribuzione mensile fissa. [...] Per quanto riguarda la festività del 4 novembre la cui celebrazione ha luogo nella prima domenica di novembre, il lavoratore beneficerà del trattamento previsto per le festività che coincidono con la domenica."
+        },
+        "transformation": "The festività of letters a) and b) of art. 32 (but SS. Pietro e Paolo, the Rome Patrono) on a Sunday, and 4 November on the first Sunday of November: the monthly pay of the chain over 26. The ipotesi of 4 June 2026 (Unionmeccanica-Confapi 2025-2028, sha256 ae59a64f4080..., p. 20) rewrites art. 32 after L. 8 ottobre 2025 n. 151 and adds 'San Francesco (4 ottobre)' to letter b).",
+        "note": "The Patrono is not in the national calendar and is not paid. The operai's 1 h 20' for each weekday holiday (art. 32, workers in force at 31 December 2008) and for the Epifania on a Saturday or Sunday is not modelled.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-03T16:00:00Z",
+          "effective_from": "2017-07-03",
+          "verification_status": "unverified"
         }
       }
     }

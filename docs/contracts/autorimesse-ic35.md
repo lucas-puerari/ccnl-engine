@@ -30,8 +30,8 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, welfare, workplace_injury |
+| **Core payroll path** | ✅ |
+| **Limits of this contract** | welfare |
 
 4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
@@ -50,12 +50,14 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-12-09 |
-| **Last review** | — |
+| **Last review** | 2026-11-05 |
 | **Latest salary tranche** | 2027-11-01 |
 
 ## Review history
 
-No review is recorded.
+| Date | Reviewer | Scope | Outcome | Findings |
+|---|---|---|---|---|
+| 2026-11-05 | claude-opus-5-5 (ai) | The hourly divisors of the 42- and 44-hour weeks, Art. 40 (PDF p. 86) and the weeks of Art. 19 (PDF p. 43) of the 2022 stesura, text layer. | corrected | Art. 40: 191 for the custodians and night watchmen (44 hours, art. 19 a), 182 for the drivers (42 hours, art. 19 b), 173 for the 40-hour week: work_rules.time_supplements.week_divisors 42/182 and 44/191, hourly_divisor_weekly_hours 40. |
 
 ## Salary table
 
@@ -98,7 +100,7 @@ Latest effective values per level (monthly gross, EUR).
 
 **professionalizzante** (type: `percentage`)  
 Destination levels: `Q1`, `Q2`, `A1`, `A2`, `B1`, `B2`, `B3`, `C1`, `C2`, `C3`, `C4`  
-percentage: 0.95
+percentage: 1.00
 
 ## Known simplifications
 
@@ -111,19 +113,19 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Post the ticket restaurant as a welfare item per day worked of at least 5 hours: 8.00 EUR a day from 2023-01-01, 10.00 EUR from 2027-04-01 (Art. 44/84).
 
-!!! warning "autorimesse-ic35/long_week_divisors · workplace_injury · impact unknown · open"
-    SIMPLIFICATION: Hourly divisor 173 applies to standard 40h/week staff. The 2019 CCNL notes 182 (autisti/drivers) and 191 (custodi/security) in specific roles. Only 173 modeled here: dominant case. Verify per-role divisor for drivers and security classifications.
+!!! note "autorimesse-ic35/long_week_divisors · workplace_injury · impact yes · resolved"
+    Art. 40 (2022 text, p. 86): the hourly pay is the monthly pay over 173 for the 40-hour week, 182 for the drivers (42 hours, art. 19 b) and 191 for the custodians and night watchmen (44 hours, art. 19 a). The engine reads 182 or 191 when Employment.full_time_weekly_hours is 42 or 44 (week_divisors); a 40-hour week keeps 173.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Add the 182 (42h, drivers) and 191 (44h, custodians) divisors keyed by the full-time week, set hourly_divisor_weekly_hours=40, and use the divisor of the stated week in the INAIL daily base.
+    **Remediation:** Resolved: work_rules.time_supplements.week_divisors holds 182 and 191, read for an employment whose full_time_weekly_hours is 42 or 44.
 
-!!! warning "autorimesse-ic35/apprenticeship_percentages_2019 · base_salary · impact unknown · open"
-    SIMPLIFICATION: Apprenticeship article numbers from 2019 CCNL may have changed in the current consolidated text (Art. numbering in 2025 verbale differs from 2019 PDF). The 85/90/95 percentage structure is from the 2019 source and is assumed unchanged.
+!!! note "autorimesse-ic35/apprenticeship_percentages_2019 · base_salary · impact unknown · resolved"
+    APPRENTICESHIP (Art. 32, p. 65 of the text of 15 December 2022): at most 24 months; pay 'nel primo anno: 85% della retribuzione globale; nel secondo anno: 90%'. The renewal of 9 December 2025 does not amend art. 32; after 24 months the full pay of the level.
 
     **Applies when:** `base_salary` applies; contract type in apprentice.
 
-    **Remediation:** Confirm the 85/90/95% apprenticeship percentages against the current consolidated text.
+    **Remediation:** Resolved: 85% and 90% over 24 months, art. 32 of the 2022 text, read on 2026-11-06.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

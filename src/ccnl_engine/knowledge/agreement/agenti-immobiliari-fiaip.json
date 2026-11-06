@@ -152,22 +152,6 @@
       {
         "kind": "info",
         "text": "Source provenance: values extracted from signed CCNL 19/05/2025 PDF distributed by FIAIP/EBNAIP. The direct PDF download URL was not recorded; the homepage https://www.ebnaip.it/ was used as the source anchor. All values verified page-by-page against the original document."
-      },
-      {
-        "kind": "simplification",
-        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
-        "capability": "seniority",
-        "monetary_impact": "unknown",
-        "limitation": {
-          "variant": "apprentice_seniority",
-          "applies_when": {
-            "trigger": "path",
-            "contract_types": [
-              "apprentice"
-            ]
-          },
-          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
-        }
       }
     ]
   },
@@ -259,6 +243,27 @@
         "independence": "separate_session",
         "checked": [
           "work_rules.notice"
+        ]
+      },
+      {
+        "id": "2026-11-06-ai-agenti-immobiliari-fiaip-apprentice-seniority",
+        "date": "2026-11-06",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Apprentice seniority: the CCNL Agenti immobiliari 2025 (apprenticeship and seniority articles).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.ebnaip.it/download.aspx?file=/public/ccnl/1_CCNL_CONTRATTO_COLLETTIVO_NAZIONALE_LAVORO_2025.pdf",
+            "sha256": "560d16410d3e41dc0bfb00bfe2a40ef65f2cd900234aeaee92018ed9fa21ead5"
+          }
+        ],
+        "findings": [
+          "The apprentice is classified one level below with 'lo stesso trattamento normativo'; 'Per l'anzianità di servizio maturata presso lo stesso datore di lavoro, il personale ha diritto a dieci scatti triennali': the increments of the level the apprentice is paid at."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "parameters.seniority_increments"
         ]
       }
     ]
@@ -382,7 +387,8 @@
             }
           ]
         }
-      }
+      },
+      "apprentice_level_amount": true
     },
     "accrual_rule": {
       "min_days": 15,
@@ -1698,7 +1704,7 @@
     "source": "https://www.fiaip.it/wp-content/uploads/2025/06/250519-Ipotesi-di-accordo-Fiaip-OOSS-firmata-1.pdf",
     "source_type": "contracting_party",
     "verification_status": "unverified",
-    "source_hash": "afd508727c2752c8596ebc5c3ce6cc76a69ee6c0e2b84ba39fab8dd6a340d352"
+    "source_hash": "c11e37755166ebb6b38dcd41c1fac3f61daf6b64e9bfbb746d258a5893aab398"
   },
   "work_rules": {
     "notice": {

@@ -3,7 +3,7 @@
 from decimal import Decimal
 from enum import StrEnum
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field
 
 from ccnl_engine.provenance.source.rule.models import RuleProvenance
 
@@ -37,6 +37,22 @@ class DailyDivisorMethod(StrEnum):
     BY_MONTH_HOURS = "by_month_hours"
 
 
+class WeekDaysMethod(BaseModel):
+    """The daily divisor of a full-time week of other days than the default.
+
+    Pulizia artigianato art. 34: "dividendo la retribuzione mensile per 22
+    nel caso di settimana corta e per 26 nel caso di prestazione su sei
+    giorni settimanali"; it applies when ``Employment.full_time_week_days``
+    states ``days``.
+    """
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    days: int = Field(ge=5, le=6)
+    method: DailyDivisorMethod
+    provenance: RuleProvenance
+
+
 class AbsenceRules(BaseModel):
     """Layer 3 rules for unpaid-absence (assenza non retribuita) deductions.
 
@@ -52,7 +68,8 @@ class AbsenceRules(BaseModel):
     * ``by_month_hours``: ``gross_monthly / Mondays to Fridays of the month``
       per Monday to Friday.
 
-    ``provenance`` links this rule to its source CCNL article.
+    ``provenance`` links this rule to its source CCNL article;
+    ``week_days_methods`` the methods of a stated full-time week.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -60,3 +77,4 @@ class AbsenceRules(BaseModel):
     daily_divisor_method: DailyDivisorMethod = DailyDivisorMethod.BY_26
     daily_hours: Decimal | None = None
     provenance: RuleProvenance | None = None
+    week_days_methods: tuple[WeekDaysMethod, ...] = ()

@@ -33,7 +33,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, bilateral_funds, inps_employer |
+| **Limits of this contract** | base_salary, inps_employer |
 
 4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
@@ -52,7 +52,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-11-20 |
-| **Last review** | 2026-10-17 |
+| **Last review** | 2026-11-06 |
 | **Latest salary tranche** | 2025-10-01 |
 
 ## Review history
@@ -62,6 +62,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-09-18 | maintainer (human) | Whole file. The values checked were not recorded. | confirmed | The review recorded no list of the documents it read. |
 | 2026-10-13 | claude-opus-5-5 (ai) | Every payable rule read again in the Legacoopsociali full text 2025 of the CCNL Cooperative sociali 2023-2025, with the Legacoop circular of 1 February 2024 and the CNEL T151 deposits of 26 January and 5 March 2024, for the reviewed tier. | corrected | 83 records verified; the two aggregator sources replaced by the Legacoopsociali full text.<br>32 salary periods differed by 1-3 cents from Art. 76 (A1, B, C3, D1, D3, E1, E2, E2Q, F2, F2Q, and F1, F1Q from October 2025): corrected.<br>Ferie 26 working days on a six-day week (Art. 60), not 20.<br>Sickness: 100% of the normale retribuzione from day 1 to day 180 (Art. 71), no 50% carenza.<br>Apprenticeship: the OSS of C2 on the 18-month track (Art. 28 N.3); apprentices accrue no seniority (Art. 28 I.5): the apprentice_seniority limitation closed.<br>Added Previdenza Cooperativa (Art. 86: employer 1.5%, worker minimum 1% of the TFR base).<br>C3 seniority 20.66 stays derived: Art. 80 prints 20,63, the cost tables 20.66.<br>Absence by_26 stays derived: Art. 41 deducts hours at 1/165.<br>Open: the INPS rate of the cost tables (28.03%) vs terziario, and the type-B exemptions of L. 381/1991.<br>The CCNL expired on 31 December 2025; no renewal found through October 2026. |
 | 2026-10-17 | claude-opus-5-5 (ai) | The INPS class of the employers of the CCNL against the INPS classification manual. | flagged | The activities of the social cooperatives of type A are classified by INPS in the terziario: CSC 70704 for 87.30.00, 88.10.00 and 88.91.00, 70706 for 87.20.00 (manual of May 2021, ATECO 2007, PDF pp. 265-266). The file applies the terziario rates: the class is confirmed.<br>The 28.03% of the Ministry cost tables (D.D. 30/2024) is still unexplained: no composition of the 2026 terziario rates gives it, and the tables state none. inps_rate_not_reconciled stays open; a cooperative may also fall in the DPR 602/1970 regime for its members, which the file does not model. |
+| 2026-11-06 | claude-opus-5-5 (ai) | Art. 87 health contribution in the 2025 coordinated text (p. 114). Art. 28 c. 1 apprenticeship (p. 55). | confirmed | 5 EUR a month from 1 May 2013 and 10 EUR from 1 January 2025, employer only, for the permanent workers.<br>Art. 28 calls apprenticeship 'contratto di lavoro a tempo indeterminato': the apprentices are owed the contribution. |
 
 ## Salary table
 
@@ -149,12 +150,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Model the ETDR, the night, shift and availability allowances, the professional allowances and the prova exclusion of sickness.
 
-!!! warning "cooperative-sociali/asi_health_contribution · bilateral_funds · impact yes · open"
-    HEALTH CONTRIBUTION: the ASI contribution of EUR 5, then 10 a month (Art. 87), is owed for every worker. Not modelled: the totals of every run are short of it.
+!!! note "cooperative-sociali/asi_health_contribution · bilateral_funds · impact yes · resolved"
+    HEALTH CONTRIBUTION (Art. 87, p. 114 of the 2025 coordinated text): 5 EUR a month from May 2013, 10 EUR from January 2025, on the employer, for the workers 'assunti a tempo indeterminato', apprentices included: art. 28 (p. 55) calls apprenticeship 'contratto di lavoro a tempo indeterminato'. Modelled as health_funds sanita_integrativa.
 
     **Applies when:** `bilateral_funds` applies.
 
-    **Remediation:** Model the ASI contribution per worker, then remove this note.
+    **Remediation:** Resolved: art. 87 with the apprentices of art. 28, read on 2026-11-06.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

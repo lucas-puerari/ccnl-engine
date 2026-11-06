@@ -27,6 +27,7 @@ PUBLIC_FACTS: Mapping[str, str] = MappingProxyType({
     "cigs_indotto": "EmployerProfile.cigs_indotto",
     "provincial_pay_element": "EmployerProfile.provincial_pay_element",
     "second_level_premium": "EmployerProfile.second_level_premium",
+    "permit_carryover": "EmployerProfile.permit_carryover",
     "subsector": "EmployerProfile.subsector",
     "inps_sector": "EmployerProfile.inps_sector",
     "just_cause": "EmploymentPeriod.just_cause",

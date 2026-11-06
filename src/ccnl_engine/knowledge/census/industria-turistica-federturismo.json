@@ -322,22 +322,6 @@
       }
     },
     {
-      "id": "seniority_cadence_unconfirmed",
-      "institute": "seniority",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "SENIORITY CADENCE: file uses 36 months. Search for H05B 2025 suggests 'ogni due anni di servizio' (24 months) for this contract (lavoro-economia.it H05B, adapt.it). Contrasts with Confcommercio turismo (H05A) which changed from 36 to 48 in 2024 renewal. Cadence needs confirmation from primary CCNL H05B text; if 24 months, file needs correction. Maximum scatti: 6 (confirmed).",
-      "calculation": "ccnl/industria-turistica-federturismo:coverage.notes",
-      "state": "unverified",
-      "remediation": "Confirm the seniority cadence (36 or 24 months) against the H05B text.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "industria-turistica-federturismo/seniority_cadence_unconfirmed"
-        ]
-      }
-    },
-    {
       "id": "sunday_holiday_ccnl_clause",
       "institute": "sunday_holiday",
       "variant": "all",

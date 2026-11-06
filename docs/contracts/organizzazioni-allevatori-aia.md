@@ -42,7 +42,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 1 verified / 20 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 40 verified / 7 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -51,14 +51,15 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-12-12 |
-| **Last review** | 2026-10-18 |
-| **Latest salary tranche** | 2025-09-01 |
+| **Last review** | 2026-11-06 |
+| **Latest salary tranche** | 2026-09-01 |
 
 ## Review history
 
 | Date | Reviewer | Scope | Outcome | Findings |
 |---|---|---|---|---|
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | corrected | Articolo 17 - Tredicesima e quattordicesima mensilità (p. html (no PDF; text inline on the web page)): "il dipendente ha diritto a tanti dodicesimi dell'ammontare della tredicesima e della quattordicesima mensilità quanti sono i mesi di servizio prestati nel periodo di riferimento. Le frazioni di mese superiori a 15 giorni si calcoleranno come mese intero; quelle uguali o inferiori a 15 giorni non saranno conteggiate.". Added: more_than 15 (the file applied the engine default, at least 15 days). |
+| 2026-11-06 | claude-opus-5-5 (ai) | Accordo economico of 12 December 2024, table of p. 23 (stipendi 1/1/2025, 1/7/2025, 1/9/2026). | corrected | The file held the 1 July 2025 stipendi dated from 1 September 2025; the January 2025 and September 2026 columns were missing. |
 
 ## Salary table
 
@@ -66,19 +67,19 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `1/2` | Area 1 Livello 2 (Quadri) | € 2,392.51 | 2025-09-01 |
-| `1/3` | Area 1 Livello 3 | € 2,288.35 | 2025-09-01 |
-| `1/4` | Area 1 Livello 4 | € 2,183.71 | 2025-09-01 |
-| `1/5` | Area 1 Livello 5 | € 2,105.96 | 2025-09-01 |
-| `2/1` | Area 2 Livello 1 | € 2,028.26 | 2025-09-01 |
-| `2/2` | Area 2 Livello 2 | € 1,974.23 | 2025-09-01 |
-| `2/3` | Area 2 Livello 3 | € 1,895.67 | 2025-09-01 |
-| `2/4A` | Area 2 Livello 4A | € 1,791.72 | 2025-09-01 |
-| `2/4B` | Area 2 Livello 4B | € 1,757.61 | 2025-09-01 |
-| `2/5` | Area 2 Livello 5 | € 1,737.68 | 2025-09-01 |
-| `2/6` | Area 2 Livello 6 | € 1,659.20 | 2025-09-01 |
-| `3/1` | Area 3 Livello 1 | € 1,500.21 | 2025-09-01 |
-| `3/2` | Area 3 Livello 2 | € 1,372.00 | 2025-09-01 |
+| `1/2` | Area 1 Livello 2 (Quadri) | € 2,399.31 | 2026-09-01 |
+| `1/3` | Area 1 Livello 3 | € 2,294.85 | 2026-09-01 |
+| `1/4` | Area 1 Livello 4 | € 2,189.92 | 2026-09-01 |
+| `1/5` | Area 1 Livello 5 | € 2,111.95 | 2026-09-01 |
+| `2/1` | Area 2 Livello 1 | € 2,034.03 | 2026-09-01 |
+| `2/2` | Area 2 Livello 2 | € 1,979.85 | 2026-09-01 |
+| `2/3` | Area 2 Livello 3 | € 1,901.06 | 2026-09-01 |
+| `2/4A` | Area 2 Livello 4A | € 1,796.81 | 2026-09-01 |
+| `2/4B` | Area 2 Livello 4B | € 1,762.61 | 2026-09-01 |
+| `2/5` | Area 2 Livello 5 | € 1,742.62 | 2026-09-01 |
+| `2/6` | Area 2 Livello 6 | € 1,663.92 | 2026-09-01 |
+| `3/1` | Area 3 Livello 1 | € 1,504.48 | 2026-09-01 |
+| `3/2` | Area 3 Livello 2 | € 1,375.90 | 2026-09-01 |
 
 ## Seniority increments
 
@@ -105,12 +106,12 @@ Latest effective values per level (monthly gross, EUR).
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning "organizzazioni-allevatori-aia/third_tranche_sep_2026 · base_salary · impact yes · open"
-    SIMPLIFICATION: Third tranche (Sep 2026) not modeled; per-level amounts not yet published in primary sources.
+!!! note "organizzazioni-allevatori-aia/third_tranche_sep_2026 · base_salary · impact yes · resolved"
+    BASE SALARY (accordo economico of 12 December 2024, p. 23 of the AIA text): the stipendi from 1 January 2025, 1 July 2025 and 1 September 2026, 5.8% in all on the pay of 31 December 2024 (1/2: 2,381.17 / 2,392.51 / 2,399.31 EUR).
 
     **Applies when:** `base_salary` applies; from 2026-09-01.
 
-    **Remediation:** Add the September 2026 tranche once the per-level amounts are published.
+    **Remediation:** Resolved: the three columns of the 2024 accordo, read on 2026-11-06.
 
 !!! warning "organizzazioni-allevatori-aia/quadri_function_allowance · base_salary · impact yes · open"
     SIMPLIFICATION: Indennita di funzione for area 1 Quadri (min 13% monthly) not modeled — variable floor amount, not expressible as fixed allowance.

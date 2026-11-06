@@ -6,6 +6,7 @@ from datetime import date
 from decimal import Decimal
 
 import pytest
+from pydantic import ValidationError
 
 from ccnl_engine.employment.period.inputs import EmploymentPeriod
 from ccnl_engine.leave.accrual.rules import (
@@ -247,3 +248,61 @@ def test_a_tier_in_force_later_does_not_count_yet() -> None:
 
     ferie = next(b for b in account.balances if b.bucket is LeaveBucket.FERIE)
     assert ferie.accrued_twelfths == Decimal(21)
+
+
+_ENTRY = (
+    RampStep(service_months_min=0, share=Decimal(0)),
+    RampStep(service_months_min=5, share=Decimal("0.5")),
+    RampStep(service_months_min=11, share=Decimal("0.75")),
+    RampStep(service_months_min=18, share=Decimal(1)),
+)
+
+
+@pytest.mark.parametrize(
+    ("hired", "hours", "exact"),
+    [
+        (date(2025, 9, 1), Decimal(0), True),
+        (date(2025, 8, 1), Decimal(36), True),
+        (date(2025, 2, 1), Decimal(54), True),
+        (date(2024, 8, 1), Decimal(54), True),
+        (date(2024, 7, 1), Decimal(72), True),
+        (None, Decimal(0), False),
+    ],
+)
+def test_entry_ramp_of_the_entry_pay(
+    hired: date | None, hours: Decimal, exact: bool
+) -> None:
+    """Studi art. 91 c.4: 50% from month 6, 75% from 12 to 18, then 100%.
+
+    On 31 January 2026 the hires of September 2025, August 2025, February
+    2025, August 2024 and July 2024 have 4, 5, 11, 17 and 18 months.
+    """
+    rol = _ROL.model_copy(update={"entry_ramp": _ENTRY})
+    rules = _RULES.model_copy(update={"permits": (rol,)})
+    account = accrue_month(
+        LeaveAccount(), rules, _facts(hired_on=hired, entry_pay=True)
+    )
+    (balance,) = [b for b in account.balances if b.bucket is LeaveBucket.ROL]
+
+    assert (balance.accrued_twelfths, balance.exact) == (hours, exact)
+
+
+def test_without_the_entry_pay_the_new_hire_ramp_applies() -> None:
+    """A hire of July 2024 on the ordinary pay: the 2011 ramp, nothing yet."""
+    rol = _ROL.model_copy(update={"entry_ramp": _ENTRY})
+    rules = _RULES.model_copy(update={"permits": (rol,)})
+    account = accrue_month(LeaveAccount(), rules, _facts(hired_on=date(2024, 7, 1)))
+    (balance,) = [b for b in account.balances if b.bucket is LeaveBucket.ROL]
+
+    assert balance.accrued_twelfths == Decimal(0)
+
+
+def test_entry_ramp_starts_at_zero() -> None:
+    """The steps of an entry ramp start at 0 months, in order."""
+    steps = (RampStep(service_months_min=1, share=Decimal(1)),)
+    with pytest.raises(ValidationError):
+        PermitRules(
+            bucket=LeaveBucket.ROL,
+            annual_hours=(PermitHours(hours=Decimal(40)),),
+            entry_ramp=steps,
+        )

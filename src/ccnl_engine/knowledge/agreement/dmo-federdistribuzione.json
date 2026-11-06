@@ -85,22 +85,6 @@
       },
       {
         "kind": "simplification",
-        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
-        "capability": "seniority",
-        "monetary_impact": "unknown",
-        "limitation": {
-          "variant": "apprentice_seniority",
-          "applies_when": {
-            "trigger": "path",
-            "contract_types": [
-              "apprentice"
-            ]
-          },
-          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
-        }
-      },
-      {
-        "kind": "simplification",
         "text": "SICKNESS (Art. 170): the CCNL integrates up to a share of the net daily pay ('retribuzione giornaliera netta') without saying how the net pay is computed. The engine grosses up the INPS indemnity by the worker's INPS rate and tops it up to the measure of the gross daily quota, as for the Commercio file. The exempt events of c. 3 are an input (SicknessEpisode.short_absence_exempt, read with carenza_by_event) (review of 2026-10-30).",
         "capability": "sickness",
         "monetary_impact": "yes",
@@ -167,7 +151,7 @@
       },
       {
         "kind": "simplification",
-        "text": "HEALTH AND BILATERAL FUNDS: E.Bi.Di.M. (Art. 18), Fondo EST (Art. 19) and, for the quadri, Cassa QuAS (Art. 20) are owed for every worker, with their worker shares; an employer that does not pay them owes the worker instead the EDR of 0.30% of paga base and contingenza (14 months), EUR 16.00 x 14 and EUR 37.00 x 14. Neither is modelled: the net pay and the employer cost are short of them.",
+        "text": "HEALTH AND BILATERAL FUNDS (artt. 18-20, pp. 15-16): E.Bi.Di.M. 0.10% + 0.05% of paga base and contingenza on 14 months, Fondo EST EUR 10 (13 from April 2025) + 2 a month for the permanent non-quadri, Cassa QuAS EUR 350/370/390 + 56 a year for the quadri; the elements of an employer that does not pay them (0.30%, EUR 16 and 37 on 14 months) when it states so in EmployerProfile.contractual_funds.",
         "capability": "bilateral_funds",
         "monetary_impact": "yes",
         "limitation": {
@@ -175,7 +159,8 @@
           "applies_when": {
             "trigger": "owed"
           },
-          "remediation": "Model the contributions per worker, with a fact for an employer that pays the worker the alternative element instead, then remove this note."
+          "remediation": "Resolved: parameters.health_funds ebidim, fondo_est and quas, read on 2026-11-05.",
+          "status": "resolved"
         }
       },
       {
@@ -363,7 +348,8 @@
           "review_id": "2026-10-13-ai-production"
         },
         "transformation": "Ten scatti every 36 months, amounts of the Art. 188 table ('IMPORTI dal 1° gennaio 1990'), in force for the whole ruleset."
-      }
+      },
+      "apprentice_level_amount": true
     },
     "accrual_rule": {
       "min_days": 15,
@@ -515,6 +501,245 @@
             "verified_at": "2026-10-13T07:00:31Z",
             "verification_status": "verified",
             "review_id": "2026-10-13-ai-production"
+          }
+        }
+      }
+    ],
+    "health_funds": [
+      {
+        "code": "ebidim",
+        "description": "E.Bi.Di.M., ente bilaterale della DMO, Art. 18",
+        "rate_allowances": [
+          "CONTINGENZA"
+        ],
+        "employer": {
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-04-01",
+                "valid_until": null,
+                "value": "0.001"
+              }
+            ]
+          }
+        },
+        "employee": {
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-04-01",
+                "valid_until": null,
+                "value": "0.0005"
+              }
+            ]
+          }
+        },
+        "extra_months": true,
+        "alternative": {
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-04-01",
+                "valid_until": null,
+                "value": "0.003"
+              }
+            ]
+          }
+        },
+        "alternative_extra_months": true,
+        "alternative_tfr": true,
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+              "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
+              "kind": "associazione",
+              "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+              "published_on": "2025-09-29",
+              "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
+            },
+            "page": "15",
+            "section": "Art. 18 cc. 1, 3-4 - E.Bi.Di.M.",
+            "quote": "Il contributo da destinare in favore di E.Bi.Di.M. è stabilito nella misura dello 0,10% a carico dell’azienda e dello 0,05% a carico del lavoratore su paga base e contingenza, per quattordici mensilità. [...] non assorbibile, di importo pari allo 0,30% di paga base e contingenza. 4. L’importo dell’EDR è corrisposto per 14 mensilità e rientra nella retribuzione di fatto di cui all’art. 191 del CCNL."
+          },
+          "transformation": "0.10% from the employer and 0.05% from the worker of paga base and contingenza on 14 months; an employer that does not pay owes the worker an EDR of 0.30% of paga base and contingenza on 14 months, in the retribuzione di fatto (TFR).",
+          "note": "From the first period of the file (1 April 2023); the TFR relevance of the elements is art. 191 (retribuzione di fatto) with art. 233 c. 3, which leaves out only the contributions of artt. 19, 20 and 95.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-05T18:00:00Z",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-05T18:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-05-ai-contractual-funds",
+            "effective_from": "2023-04-01"
+          }
+        }
+      },
+      {
+        "code": "fondo_est",
+        "description": "Fondo EST, assistenza sanitaria integrativa, Art. 19",
+        "levels": [
+          "I",
+          "II",
+          "III",
+          "IV",
+          "V",
+          "VI",
+          "VII"
+        ],
+        "permanent_only": true,
+        "employer": {
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2023-04-01",
+                "valid_until": "2025-04-01",
+                "value": "10.0"
+              },
+              {
+                "valid_from": "2025-04-01",
+                "valid_until": null,
+                "value": "13.0"
+              }
+            ]
+          }
+        },
+        "employee": {
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2023-04-01",
+                "valid_until": null,
+                "value": "2.0"
+              }
+            ]
+          }
+        },
+        "employee_deductible": true,
+        "solidarity_rate": "0.1",
+        "alternative": {
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2023-04-01",
+                "valid_until": null,
+                "value": "16.0"
+              }
+            ]
+          }
+        },
+        "alternative_extra_months": true,
+        "alternative_tfr": true,
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+              "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
+              "kind": "associazione",
+              "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+              "published_on": "2025-09-29",
+              "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
+            },
+            "page": "16",
+            "section": "Art. 19 cc. 2-4, 7 - Fondo EST",
+            "quote": "assunti a tempo indeterminato con contratto a tempo pieno e a tempo parziale, ad esclusione dei Quadri [...] a) Un contributo obbligatorio a carico dell’azienda pari a 10,00 euro mensili, sia per il personale assunto a tempo pieno sia per quello assunto a tempo parziale; b) Un contributo obbligatorio a carico del lavoratore pari a 2,00 euro mensili. [...] A decorrere dal 1° aprile 2025 [...] incrementato di euro 3,00 mensili, a carico del datore di lavoro. [...] assorbibile di importo pari ad euro 16,00 lordi, da corrispondere per 14 mensilità e che rientra nella retribuzione di fatto, di cui all’art. 191 del CCNL."
+          },
+          "transformation": "Permanent workers of levels I-VII, full or part time: EUR 10 a month from the employer (13 from 1 April 2025) and 2 from the worker, the 10% INPS solidarity contribution on the employer share; an employer that does not pay owes an element of EUR 16 on 14 months. The one-off EUR 30 of a first enrolment is not modelled.",
+          "note": "From the first period of the file (1 April 2023); the TFR relevance of the elements is art. 191 (retribuzione di fatto) with art. 233 c. 3, which leaves out only the contributions of artt. 19, 20 and 95.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-05T18:00:00Z",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-05T18:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-05-ai-contractual-funds",
+            "effective_from": "2023-04-01"
+          }
+        }
+      },
+      {
+        "code": "quas",
+        "description": "Cassa QuAS, assistenza sanitaria quadri, Art. 20",
+        "levels": [
+          "Q"
+        ],
+        "employer": {
+          "annual": {
+            "periods": [
+              {
+                "valid_from": "2023-04-01",
+                "valid_until": "2025-01-01",
+                "value": "350.0"
+              },
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": "2026-01-01",
+                "value": "370.0"
+              },
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "390.0"
+              }
+            ]
+          }
+        },
+        "employee": {
+          "annual": {
+            "periods": [
+              {
+                "valid_from": "2023-04-01",
+                "valid_until": null,
+                "value": "56.0"
+              }
+            ]
+          }
+        },
+        "employee_deductible": true,
+        "solidarity_rate": "0.1",
+        "alternative": {
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2023-04-01",
+                "valid_until": null,
+                "value": "37.0"
+              }
+            ]
+          }
+        },
+        "alternative_extra_months": true,
+        "alternative_tfr": true,
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+              "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
+              "kind": "associazione",
+              "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+              "published_on": "2025-09-29",
+              "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
+            },
+            "page": "16",
+            "section": "Art. 20 cc. 2-5, 7 - Cassa QuAS",
+            "quote": "con qualifica di Quadro [...] il contributo obbligatorio è pari a euro 350,00 a carico del datore di lavoro e di euro 56,00 a carico del lavoratore [...] A decorrere dal 1° gennaio 2025 [...] incrementato di euro 20,00 a carico del datore di lavoro [...] A decorrere dal 1° gennaio 2026 [...] incrementato di euro 20,00 [...] assorbibile di importo pari ad euro 37,00 lordi, da corrispondere per 14 mensilità e che rientra nella retribuzione di fatto"
+          },
+          "transformation": "Quadri: EUR 350 a year from the employer (370 from 2025, 390 from 2026) and 56 from the worker, charged a twelfth a month; an employer that does not pay owes an element of EUR 37 on 14 months. The one-off fee of a first enrolment is not modelled.",
+          "note": "From the first period of the file (1 April 2023); the TFR relevance of the elements is art. 191 (retribuzione di fatto) with art. 233 c. 3, which leaves out only the contributions of artt. 19, 20 and 95.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-05T18:00:00Z",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-05T18:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-05-ai-contractual-funds",
+            "effective_from": "2023-04-01"
           }
         }
       }
@@ -3704,7 +3929,7 @@
     "effective_until": null,
     "source": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
     "verification_status": "unverified",
-    "source_hash": "41b208a7f9e726cbcb61caac9074ba92677cac010489cd9e354bec221f7405b1",
+    "source_hash": "662e99190628851341cf5abc386c6c94390a91b6781b51cf87834ed9ec0ba30e",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -5215,6 +5440,48 @@
           "work_rules.time_supplements.supplement_bands",
           "work_rules.time_supplements.hourly_base_provenance",
           "work_rules.time_supplements.individual_elements"
+        ]
+      },
+      {
+        "id": "2026-11-05-ai-contractual-funds",
+        "date": "2026-11-05",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Artt. 18-20 (PDF pp. 15-16), 191 and 233 of the Testo Unico of 29 September 2025, text layer.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+            "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
+          }
+        ],
+        "findings": [
+          "The three funds and their alternative elements were not modelled: employer cost, worker shares and the EDR of an employer that does not pay them were missing."
+        ],
+        "independence": "separate_session",
+        "checked": [
+          "parameters.health_funds"
+        ]
+      },
+      {
+        "id": "2026-11-06-ai-dmo-federdistribuzione-apprentice-seniority",
+        "date": "2026-11-06",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Apprentice seniority: artt. 186 and 188 of the testo unico of 29 September 2025 (p. 56).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+            "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
+          }
+        ],
+        "findings": [
+          "The apprentice is classified two then one level below with 'il conseguente trattamento economico'; 'il personale ha diritto a dieci scatti triennali' of fixed amounts per level, counting seniority 'dal giorno in cui il lavoratore è entrato a far parte dell'azienda, quali che siano le mansioni': the increments of the level the apprentice is paid at."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "parameters.seniority_increments"
         ]
       }
     ],

@@ -77,7 +77,7 @@
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: ISQ for Q2 and Q3 modelled at flat 100 EUR (the 2+ anni tier per Tabella C). Workers with 12+ anni receive 130 EUR (delta 30 EUR/month, max ~360 EUR/yr). The 12-year tier is not modelled, although an allowance can be gated on service months (service_months_threshold) (review of 2026-10-30)",
+        "text": "ISQ (Art. 3 and Tabella C, p. 59 of the CCNL of 7 September 2021): Q2 and Q3 are paid 100 EUR and, after 12 years of 'anzianità complessiva maturata nel Livello 1° e nell'Area Q', 130 EUR, modelled on the months of service (isq up to 144, isq_12 from 144). Not modelled: a worker who served at a non-pharmacist level before level 1 reaches the 12 years later than the service months say.",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
@@ -89,7 +89,7 @@
               "Q3"
             ]
           },
-          "remediation": "Check whether the 12 anni of Tabella C count service or time in the quadro qualification; if service, split the ISQ of Q2/Q3 into a 100 EUR allowance with service_months_until=144 and a 130 EUR one with service_months_threshold=144 (Employment.seniority), otherwise add a worker fact for the qualification time."
+          "remediation": "Count only the months in level 1 and Area Q when the employment history states them, then remove this note."
         }
       },
       {
@@ -206,6 +206,27 @@
         "independence": "separate_session",
         "checked": [
           "work_rules.notice"
+        ]
+      },
+      {
+        "id": "2026-11-06-ai-farmacie-isq",
+        "date": "2026-11-06",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 3 Area Q and Tabella C (p. 59) of the CCNL of 7 September 2021.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://uiltucs.it/wp-content/uploads/2023/07/CCNL-per-i-Dipendenti-da-Farmacia-Privata-7-settembre-2021.pdf",
+            "sha256": "dfc1fc57234cb43fb5ab7a4a7e22d89c464b7784b344cedd288de560f170cea4"
+          }
+        ],
+        "findings": [
+          "Q2 and Q3 get 130 EUR after 12 years in level 1 and Area Q, 100 EUR before."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels.fixed_allowances"
         ]
       }
     ]
@@ -662,7 +683,7 @@
         },
         {
           "code": "isq",
-          "description": "Indennità Speciale Quadri - 100 EUR (2+ anni in Area Q, Tabella C)",
+          "description": "Indennità Speciale Quadri, fino a 12 anni (Art. 3, Tabella C)",
           "monthly": {
             "periods": [
               {
@@ -676,20 +697,71 @@
             "status": "derived",
             "location": {
               "source_document": {
-                "document_id": "contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
-                "title": "contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
+                "document_id": "farmacie-private-ccnl-2021-uiltucs",
+                "title": "CCNL Dipendenti da farmacia privata, 7 settembre 2021 (copia UILTuCS)",
                 "kind": "associazione",
-                "url": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf"
+                "url": "https://uiltucs.it/wp-content/uploads/2023/07/CCNL-per-i-Dipendenti-da-Farmacia-Privata-7-settembre-2021.pdf",
+                "published_on": "2021-09-07",
+                "sha256": "dfc1fc57234cb43fb5ab7a4a7e22d89c464b7784b344cedd288de560f170cea4"
               },
-              "section": "Tabella retributiva"
+              "page": "59",
+              "section": "Art. 3 - Area Q; Tabella C - Indennità speciale Quadri",
+              "quote": "Q2 + 12 anni (*) € 130,00 Q2 + 2 anni (*) € 100,00 Q3 + 12 anni (*) € 130,00 Q3 + 2 anni (*) € 100,00 (*) Anzianità complessiva maturata nel Livello 1° e nell'Area Q."
             },
+            "transformation": "100 EUR a month for 14 months; the years of Tabella C (level 1 and Area Q, the pharmacist collaboratore's career from hire, art. 3) read as months of service: 100 EUR up to 144 months, 130 EUR from 144.",
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-07T15:03:36",
-              "verification_status": "unverified",
-              "effective_from": "2020-01-01"
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-06T23:50:00Z",
+              "effective_from": "2021-11-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-06T23:50:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-06-ai-farmacie-isq"
             }
-          }
+          },
+          "service_months_until": 144
+        },
+        {
+          "code": "isq_12",
+          "description": "Indennità Speciale Quadri, dopo 12 anni (Art. 3, Tabella C)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-11-01",
+                "valid_until": null,
+                "value": "130.00"
+              }
+            ]
+          },
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "farmacie-private-ccnl-2021-uiltucs",
+                "title": "CCNL Dipendenti da farmacia privata, 7 settembre 2021 (copia UILTuCS)",
+                "kind": "associazione",
+                "url": "https://uiltucs.it/wp-content/uploads/2023/07/CCNL-per-i-Dipendenti-da-Farmacia-Privata-7-settembre-2021.pdf",
+                "published_on": "2021-09-07",
+                "sha256": "dfc1fc57234cb43fb5ab7a4a7e22d89c464b7784b344cedd288de560f170cea4"
+              },
+              "page": "59",
+              "section": "Art. 3 - Area Q; Tabella C - Indennità speciale Quadri",
+              "quote": "Q2 + 12 anni (*) € 130,00 Q2 + 2 anni (*) € 100,00 Q3 + 12 anni (*) € 130,00 Q3 + 2 anni (*) € 100,00 (*) Anzianità complessiva maturata nel Livello 1° e nell'Area Q."
+            },
+            "transformation": "130 EUR a month for 14 months; the years of Tabella C (level 1 and Area Q, the pharmacist collaboratore's career from hire, art. 3) read as months of service: 100 EUR up to 144 months, 130 EUR from 144.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-06T23:50:00Z",
+              "effective_from": "2021-11-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-06T23:50:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-06-ai-farmacie-isq"
+            }
+          },
+          "service_months_threshold": 144
         }
       ],
       "provenance": {
@@ -814,7 +886,7 @@
         },
         {
           "code": "isq",
-          "description": "Indennità Speciale Quadri - 100 EUR (2+ anni in Area Q, Tabella C)",
+          "description": "Indennità Speciale Quadri, fino a 12 anni (Art. 3, Tabella C)",
           "monthly": {
             "periods": [
               {
@@ -828,20 +900,71 @@
             "status": "derived",
             "location": {
               "source_document": {
-                "document_id": "contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
-                "title": "contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
+                "document_id": "farmacie-private-ccnl-2021-uiltucs",
+                "title": "CCNL Dipendenti da farmacia privata, 7 settembre 2021 (copia UILTuCS)",
                 "kind": "associazione",
-                "url": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf"
+                "url": "https://uiltucs.it/wp-content/uploads/2023/07/CCNL-per-i-Dipendenti-da-Farmacia-Privata-7-settembre-2021.pdf",
+                "published_on": "2021-09-07",
+                "sha256": "dfc1fc57234cb43fb5ab7a4a7e22d89c464b7784b344cedd288de560f170cea4"
               },
-              "section": "Tabella retributiva"
+              "page": "59",
+              "section": "Art. 3 - Area Q; Tabella C - Indennità speciale Quadri",
+              "quote": "Q2 + 12 anni (*) € 130,00 Q2 + 2 anni (*) € 100,00 Q3 + 12 anni (*) € 130,00 Q3 + 2 anni (*) € 100,00 (*) Anzianità complessiva maturata nel Livello 1° e nell'Area Q."
             },
+            "transformation": "100 EUR a month for 14 months; the years of Tabella C (level 1 and Area Q, the pharmacist collaboratore's career from hire, art. 3) read as months of service: 100 EUR up to 144 months, 130 EUR from 144.",
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-07T15:03:36",
-              "verification_status": "unverified",
-              "effective_from": "2020-01-01"
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-06T23:50:00Z",
+              "effective_from": "2021-11-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-06T23:50:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-06-ai-farmacie-isq"
             }
-          }
+          },
+          "service_months_until": 144
+        },
+        {
+          "code": "isq_12",
+          "description": "Indennità Speciale Quadri, dopo 12 anni (Art. 3, Tabella C)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-11-01",
+                "valid_until": null,
+                "value": "130.00"
+              }
+            ]
+          },
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "farmacie-private-ccnl-2021-uiltucs",
+                "title": "CCNL Dipendenti da farmacia privata, 7 settembre 2021 (copia UILTuCS)",
+                "kind": "associazione",
+                "url": "https://uiltucs.it/wp-content/uploads/2023/07/CCNL-per-i-Dipendenti-da-Farmacia-Privata-7-settembre-2021.pdf",
+                "published_on": "2021-09-07",
+                "sha256": "dfc1fc57234cb43fb5ab7a4a7e22d89c464b7784b344cedd288de560f170cea4"
+              },
+              "page": "59",
+              "section": "Art. 3 - Area Q; Tabella C - Indennità speciale Quadri",
+              "quote": "Q2 + 12 anni (*) € 130,00 Q2 + 2 anni (*) € 100,00 Q3 + 12 anni (*) € 130,00 Q3 + 2 anni (*) € 100,00 (*) Anzianità complessiva maturata nel Livello 1° e nell'Area Q."
+            },
+            "transformation": "130 EUR a month for 14 months; the years of Tabella C (level 1 and Area Q, the pharmacist collaboratore's career from hire, art. 3) read as months of service: 100 EUR up to 144 months, 130 EUR from 144.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-06T23:50:00Z",
+              "effective_from": "2021-11-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-06T23:50:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-06-ai-farmacie-isq"
+            }
+          },
+          "service_months_threshold": 144
         }
       ],
       "provenance": {
@@ -1597,7 +1720,7 @@
     "effective_until": null,
     "source": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf",
     "verification_status": "unverified",
-    "source_hash": "9a3a4316d40d1e0d3eb34e2f15b9acd5cd2da4bce50d3ab412c8e4c80bdcb9b7",
+    "source_hash": "6164a4c197078c9e21addb91ac4a8807181a26ad1658312f8a3f4f5edc78c69f",
     "published_at": "2026-11-01",
     "source_type": "contracting_party"
   },

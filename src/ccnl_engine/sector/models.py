@@ -120,12 +120,15 @@ class YearRules(BaseModel):
     ``tfr_settlement`` the separate taxation of the TFR paid on a
     termination in the year, ``None`` likewise.
     ``somma_esente`` comes from the year file shared by every sector and
-    carries the identity of that file.
+    carries the identity of that file.  ``sector`` is the INPS sector of the
+    files, which selects how INPS charges the contribution; ``None`` for
+    rules built outside the loader.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
 
     year: int
+    sector: TaxSector | None = None
     ruleset: RulesetIdentity | None = None
     inps_ruleset: RulesetIdentity | None = None
     irpef_brackets: tuple[IrpefBracket, ...]
