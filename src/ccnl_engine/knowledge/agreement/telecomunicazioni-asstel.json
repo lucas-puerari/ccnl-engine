@@ -104,22 +104,6 @@
           "variant": "industria_tax_sector_unverified",
           "remediation": "Verify the INPS classification of TLC employers and model the Fondo di Solidarieta Bilaterale TLC."
         }
-      },
-      {
-        "kind": "simplification",
-        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
-        "capability": "seniority",
-        "monetary_impact": "unknown",
-        "limitation": {
-          "variant": "apprentice_seniority",
-          "applies_when": {
-            "trigger": "path",
-            "contract_types": [
-              "apprentice"
-            ]
-          },
-          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
-        }
       }
     ]
   },
@@ -164,6 +148,27 @@
         ],
         "findings": [
           "Art. 36 (pp. 73-75) of the CCNL 12.11.2020: 180 days at the whole pay and 185 at 50%, summed over the three years before each new episode. The file kept 180 days of one illness: corrected to a cumulation over three years. A 2025 carenza reduction by event was seen only in a non-primary transcription and is not stored."
+        ]
+      },
+      {
+        "id": "2026-11-06-ai-telecomunicazioni-asstel-apprentice-seniority",
+        "date": "2026-11-06",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Apprentice seniority: artt. 20 and 41 of the CCNL of 12 November 2020 (pp. 32, 82).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.asstel.it/wp-content/uploads/2023/05/CCNL-TLC-Slc-Cgil-Fistel-Cisl-Uilcom-Uil-12-novembre-2020-nuovo.pdf",
+            "sha256": "67ac2f50eea25ec50d43e02f0f65aa89f6c850a7bcf5ca7dd78e98a1dfd785d4"
+          }
+        ],
+        "findings": [
+          "Art. 20: apprenticeship is 'un contratto a tempo indeterminato', the apprentice classified two then one level below; art. 41 c. 1: 'Il lavoratore ha diritto, per ogni biennio di servizio maturato [...] al riconoscimento di un importo in cifra fissa [...] per ciascun livello retributivo [...] a partire dalla data di assunzione': the increments of the level the apprentice is paid at."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "parameters.seniority_increments"
         ]
       }
     ]
@@ -295,7 +300,8 @@
           "verification_status": "unverified",
           "effective_from": "2020-01-01"
         }
-      }
+      },
+      "apprentice_level_amount": true
     },
     "accrual_rule": {
       "min_days": 15,
@@ -1513,7 +1519,7 @@
     "effective_until": null,
     "source": "https://www.asstel.it/lavoro-e-relazioni-industriali/ccnl-tlc/",
     "verification_status": "unverified",
-    "source_hash": "ec778aea79ce8c9d4a14510d35df2659b9308f86562603ef96dd065e1e5b2c2a",
+    "source_hash": "4106177a12d8b8ecc3b62e2d8bb71f4ec0d7705465b64ef0a881413d5321010c",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

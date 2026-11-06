@@ -111,22 +111,6 @@
           },
           "remediation": "Pay the una tantum (200 EUR in July 2024, 180 EUR in January 2025) outside the engine (ArrearsEvent) and record it as an open limitation."
         }
-      },
-      {
-        "kind": "simplification",
-        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
-        "capability": "seniority",
-        "monetary_impact": "unknown",
-        "limitation": {
-          "variant": "apprentice_seniority",
-          "applies_when": {
-            "trigger": "path",
-            "contract_types": [
-              "apprentice"
-            ]
-          },
-          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
-        }
       }
     ]
   },
@@ -171,6 +155,27 @@
         ],
         "findings": [
           "Art. 26 (pp. 20-21) of the shore-staff section: the comporto is 10 months of one illness and 330 days of several within the last three years, with the whole pay; the carenza of the 4th-6th event of the year is paid 50%, from the 7th 30%. The file kept a comporto of 180 days of one illness with no event reduction: corrected (max_duration_days 304, a window of 36 months and 330 days, carenza_by_event). The 18 months of a serious illness are not modelled."
+        ]
+      },
+      {
+        "id": "2026-11-06-ai-marittimi-industria-armatoriale-apprentice-seniority",
+        "date": "2026-11-06",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Apprentice seniority: Allegato 4 lett. a) (pp. 39, 41) and the aumenti periodici of the sezione personale di terra of 11 July 2024 (OCR).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
+            "sha256": "747f2eb3af9ec92581cd21f2dfe746554ef4336495cc1738d23579c284088cc3"
+          }
+        ],
+        "findings": [
+          "'Il periodo di apprendistato si computa ai fini dell'anzianità aziendale e di servizio' (p. 39); 'la percentuale si applica esclusivamente sul minimo contrattuale' (p. 41); the workers get an increment of a fixed amount per level each biennio: the level increments in full."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "parameters.seniority_increments"
         ]
       }
     ]
@@ -293,7 +298,8 @@
           "verification_status": "unverified",
           "effective_from": "2020-01-01"
         }
-      }
+      },
+      "apprentice_level_amount": true
     },
     "accrual_rule": {
       "min_days": 15,
@@ -1517,7 +1523,7 @@
     "effective_until": null,
     "source": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
     "verification_status": "verified",
-    "source_hash": "971d3f421c1ecd812bf361efffc88349baa75bdbf741c33a47d345eb840a1017",
+    "source_hash": "df1a86c2b4a695f7d93c694544840f293fdca7cb3010df71a8e4e4cda4c83bb3",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

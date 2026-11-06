@@ -33,7 +33,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | inps_employer, seniority |
 
-4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-11-11 |
-| **Last review** | 2026-10-31 |
+| **Last review** | 2026-11-06 |
 | **Latest salary tranche** | 2028-12-01 |
 
 ## Review history
@@ -59,6 +59,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|---|---|
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | confirmed | Art. 42 - 13ª mensilità (p. 83): "Nel caso di inizio o di cessazione del rapporto di lavoro durante il corso dell'anno, il lavoratore non in prova ha diritto a tanti dodicesimi dell'ammontare della tredicesima mensilità quanti sono i mesi di anzianità di servizio presso l’azienda. La frazione di mese superiore a quindici giorni va considerata a questi effetti come mese intero.". Match: more_than 15. |
 | 2026-10-31 | claude-opus-5-5 (ai) | The comporto and the sick pay of the CCNL counted over several illnesses (work_rules.sickness_rules), read on the signed text. | corrected | Art. 36 (pp. 73-75) of the CCNL 12.11.2020: 180 days at the whole pay and 185 at 50%, summed over the three years before each new episode. The file kept 180 days of one illness: corrected to a cumulation over three years. A 2025 carenza reduction by event was seen only in a non-primary transcription and is not stored. |
+| 2026-11-06 | claude-opus-5-5 (ai) | Apprentice seniority: artt. 20 and 41 of the CCNL of 12 November 2020 (pp. 32, 82). | corrected | Art. 20: apprenticeship is 'un contratto a tempo indeterminato', the apprentice classified two then one level below; art. 41 c. 1: 'Il lavoratore ha diritto, per ogni biennio di servizio maturato [...] al riconoscimento di un importo in cifra fissa [...] per ciascun livello retributivo [...] a partire dalla data di assunzione': the increments of the level the apprentice is paid at. |
 
 ## Salary table
 
@@ -115,13 +116,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `inps_employer` applies.
 
     **Remediation:** Verify the INPS classification of TLC employers and model the Fondo di Solidarieta Bilaterale TLC.
-
-!!! warning "telecomunicazioni-asstel/apprentice_seniority · seniority · impact unknown · open"
-    APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.
-
-    **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
-
-    **Remediation:** Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
