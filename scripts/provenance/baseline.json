@@ -761,8 +761,7 @@
       "concia-unic/rol_not_accrued"
     ],
     "agreement/consorzi-agrari-assocap.json": [
-      "consorzi-agrari-assocap/apprentice_inps_rates_unsourced",
-      "consorzi-agrari-assocap/filcoop_health_fund_missing"
+      "consorzi-agrari-assocap/apprentice_inps_rates_unsourced"
     ],
     "agreement/consorzi-di-bonifica-snebi.json": [
       "consorzi-di-bonifica-snebi/apprentice_inps_rates_unsourced",

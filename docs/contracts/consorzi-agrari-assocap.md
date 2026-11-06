@@ -31,7 +31,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | contractual_funds, inps_employer |
+| **Limits of this contract** | inps_employer |
 
 5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
@@ -59,7 +59,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|---|---|
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | corrected | Art. 41 - Tredicesima e quattordicesima mensilità (p. 40): "In caso di inizio o di cessazione del rapporto durante il corso dell'anno, salvo che la cessazione avvenga durante il periodo di prova, il dipendente avrà diritto a tanti dodicesimi dell'ammontare delle predette mensilità per quanti sono i mesi di durata del rapporto nel corso dell'anno stesso. Le frazioni di mese superiori a quindici giorni si calcoleranno mese intero, quelle eguali o inferiori non saranno conteggiate.". Added: more_than 15 (the file applied the engine default, at least 15 days). |
 | 2026-11-01 | claude-opus-5-5 (ai) | The notice clause (Art. 47 - Preavviso, comma 2, p. 42). | corrected | Notice bands by level and service checked against the PDF by a separate session (delegated search and independent verification): work_rules.notice. |
-| 2026-11-06 | claude-opus-5-5 (ai) | CCNL Consorzi agrari 2024-2027: Allegato A stipendi base (p. 47), art. 35 indennità di cassa (p. 34). | corrected | The 6th level of 2025 is 1,040.26, not 1,040.28; the 2027 column added; the cashier allowance of 55.00 EUR added. |
+| 2026-11-06 | claude-opus-5-5 (ai) | CCNL Consorzi agrari 2024-2027: Allegato A stipendi base (p. 47), art. 35 indennità di cassa (p. 34). Art. 37 FILCOOP SANITARIO (p. 37). | corrected | The 6th level of 2025 is 1,040.26, not 1,040.28; the 2027 column added; the cashier allowance of 55.00 EUR added.<br>FILCOOP SANITARIO added: 186 EUR a year, two thirds employer, one third worker, permanent workers. |
 
 ## Salary table
 
@@ -112,12 +112,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Resolved: IND_CASSA 55.00 EUR, role cassiere (art. 35), read on 2026-11-06.
 
-!!! warning "consorzi-agrari-assocap/filcoop_health_fund_missing · contractual_funds · impact yes · open"
-    SIMPLIFICATION: FILCOOP SANITARIO bilateral health fund not modeled.
+!!! note "consorzi-agrari-assocap/filcoop_health_fund_missing · contractual_funds · impact yes · resolved"
+    HEALTH FUND (Art. 37, p. 37): FILCOOP SANITARIO, 186 EUR a year for each permanent worker, two thirds the employer and one third the worker, modelled as health_funds filcoop_sanitario; a worker who opted out in writing owes none.
 
     **Applies when:** `contractual_funds` applies.
 
-    **Remediation:** Add FILCOOP SANITARIO to parameters.health_funds, with its source, so contractual_funds posts its shares.
+    **Remediation:** Resolved: FILCOOP SANITARIO of art. 37, read on 2026-11-06.
 
 !!! warning "consorzi-agrari-assocap/apprentice_inps_rates_unsourced · inps_employer · impact unknown · open"
     APPRENTICE INPS RATES: the apprentice rates of the sector (agricoltura) apply the 10% of L. 296/2006 art. 1 c. 773 plus the 1.61% NASpI, but no source found settles the disoccupazione and CISOA contributions of agricultural apprentices (INPS circ. 43/2026 gives no apprentice rates). The contributions of an apprentice may differ.
