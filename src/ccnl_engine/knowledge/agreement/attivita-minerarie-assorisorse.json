@@ -59,7 +59,7 @@
       },
       {
         "kind": "simplification",
-        "text": "ADDITIONAL MONTHS: 13 assumed (tredicesima only, standard for Confindustria-affiliated mining). Not explicitly confirmed from scanned PDF — verify against Art. gratifica natalizia.",
+        "text": "ADDITIONAL MONTHS: 13. The CCNL text of 20 December 2000 (CNEL 4575) pays one gratifica natalizia to the operai ('La gratifica natalizia è corrisposta nella misura di 1 mensilità', art. 11) and a 13a mensilità to the impiegati (art. 8); the renewals of 2017, 2022 and 2025 add no national fourteenth (the 2017 one mentions 'aziende che erogano la XIV' only as a company practice).",
         "capability": "base_salary",
         "monetary_impact": "unknown",
         "limitation": {
@@ -67,17 +67,19 @@
           "applies_when": {
             "trigger": "run"
           },
-          "remediation": "Read the gratifica natalizia / mensilità clause of the CCNL and confirm or correct additional_months."
+          "remediation": "Resolved: 13 months, art. 11 (operai) and art. 8 (impiegati) of the 2000 text, no national fourteenth in the renewals; read on 2026-11-06.",
+          "status": "resolved"
         }
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: Seniority increments (scatti di anzianita) not modeled — Art. anzianita not found in scanned PDF pages available (OCR coverage pages 1-10, table on page 9). Seniority amounts are unknown.",
+        "text": "SENIORITY: none. The renewal of 15 February 2017 (p. 16): 'L'istituto degli scatti di anzianità è abolito a far data dal 1 aprile 2017. Contestualmente i minimi di retribuzione verranno aumentati di Euro 25 lordi non parametrati'. The increments matured before, kept by each worker, are an individual element of pay.",
         "capability": "seniority",
         "monetary_impact": "yes",
         "limitation": {
           "variant": "seniority_not_modelled",
-          "remediation": "Source the seniority article and add the increments to the CCNL file."
+          "remediation": "Resolved: seniority increments abolished from 1 April 2017 (renewal of 15 February 2017, p. 16); read on 2026-11-06.",
+          "status": "resolved"
         }
       },
       {
@@ -1632,7 +1634,7 @@
     "effective_until": null,
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/miniere/220713_ATTIVITA%20MINERARIE_RINNOVO%20CCNL%202022-2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "715ffd34c88dda168a4d105150d3e32a50b6569edbea04c04ee53abb708aa049",
+    "source_hash": "dd2f5f93972834cf11defea6696e60cfc6fbae8afe9f0c310af44beb3a6e9c58",
     "published_at": "2026-09-18",
     "source_type": "contracting_party"
   }

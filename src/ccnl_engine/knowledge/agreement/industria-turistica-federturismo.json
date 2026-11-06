@@ -57,12 +57,13 @@
       },
       {
         "kind": "simplification",
-        "text": "SENIORITY CADENCE: file uses 36 months. Search for H05B 2025 suggests 'ogni due anni di servizio' (24 months) for this contract (lavoro-economia.it H05B, adapt.it). Contrasts with Confcommercio turismo (H05A) which changed from 36 to 48 in 2024 renewal. Cadence needs confirmation from primary CCNL H05B text; if 24 months, file needs correction. Maximum scatti: 6 (confirmed).",
+        "text": "SENIORITY CADENCE (Art. 114, p. 91 of the 2016 definitive text): 'A tutto il personale verranno riconosciuti sei scatti triennali [...] Gli scatti triennali decorreranno dal primo giorno del mese immediatamente successivo a quello in cui si compie il triennio': 36 months, six increments; the renewal of 21 December 2024 does not amend art. 114.",
         "capability": "seniority",
         "monetary_impact": "unknown",
         "limitation": {
           "variant": "seniority_cadence_unconfirmed",
-          "remediation": "Confirm the seniority cadence (36 or 24 months) against the H05B text."
+          "remediation": "Resolved: six triennial increments (art. 114); read on 2026-11-06.",
+          "status": "resolved"
         }
       },
       {
@@ -1787,7 +1788,7 @@
     "effective_until": null,
     "source": "https://www.federturismo.it/it/documenti/documenti/12210-circolare-tabelle-retributive-ccnl-news-16-gennaio-2025/file.html",
     "verification_status": "unverified",
-    "source_hash": "d584495c805c4b962cdb2f581fc271f19ba6c16d6ab761a5e0a22f8eb554d3f9",
+    "source_hash": "081620c486cfe87fe3d671c80e7c78c47b2037e436402cabcd84d9b6e60ce1ee",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

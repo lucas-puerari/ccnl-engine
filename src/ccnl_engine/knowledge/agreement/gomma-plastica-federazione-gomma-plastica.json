@@ -72,7 +72,7 @@
       },
       {
         "kind": "simplification",
-        "text": "Q LEVEL INDENNITA' DI FUNZIONE 50.00 EUR/month (quadri ex L. 190/1985), cross-verified at April 2025 (lexplain.it total 2473.68 vs contratticcnl.it TEM 2423.68). valid_from set to 2023-01-01 for consistency with the first modelled tranche; not verified whether the amount was already 50 EUR in 2023.",
+        "text": "Q LEVEL INDENNITA' DI FUNZIONE (p. 40 of the 2021 stesura): 'Ai lavoratori con qualifica di quadro è riconosciuto con decorrenza 1.9.2008 un nuovo elemento retributivo denominato \"Indennità di funzione\", pari a euro 50,00 lordi': the 50 EUR are in force from 2008, through the first modelled tranche of 2023; the renewal of 26 January 2023 does not amend it.",
         "capability": "base_salary",
         "monetary_impact": "unknown",
         "limitation": {
@@ -84,7 +84,8 @@
             ],
             "effective_until": "2025-04-01"
           },
-          "remediation": "Source the Q indennità di funzione in force from 2023-01-01 to 2025-03-31."
+          "remediation": "Resolved: 50 EUR from 1 September 2008 (2021 stesura, p. 40); read on 2026-11-06.",
+          "status": "resolved"
         }
       },
       {
@@ -2908,7 +2909,7 @@
     "effective_until": null,
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/251002-_GOMMAPLASTICA_RINNOVO%20CCNL%202026-2028_tabelle_minimi.pdf",
     "verification_status": "unverified",
-    "source_hash": "7f72956dde66e3a37af75b3415623f8d6759fc4f46e44d59f11d2fae9b81845b",
+    "source_hash": "139dc5fedf6ebcc838225e5782ba6f66d6769d27387c196ef3cd26f9904f342f",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

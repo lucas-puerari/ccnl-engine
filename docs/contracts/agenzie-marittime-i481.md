@@ -106,12 +106,12 @@ under-level: `1`
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning "agenzie-marittime-i481/level_1_seniority_zero · seniority · impact unknown · open"
-    SIMPLIFICATION: Level 1 seniority amount = 0.00. Art. 23 table (primary source) lists levels 2-7 only; level 1 is absent. Interpreted as no entitlement. Verify against consolidated CCNL text.
+!!! note "agenzie-marittime-i481/level_1_seniority_zero · seniority · impact unknown · resolved"
+    LEVEL 1 SENIORITY (Art. 23, p. 26; Art. 4, p. 11 of the 2021 text): the seniority table has no row for level 1, the 'primo livello di ingresso' of new hires, whose 'passaggio alla qualifica di appartenenza dovrà avvenire non oltre 12 mesi dalla data di assunzione': no worker stays at level 1 for the biennio of an increment. The 0.00 stands.
 
     **Applies when:** `seniority` applies; level in 1.
 
-    **Remediation:** Verify against the consolidated CCNL text whether level 1 accrues seniority increments.
+    **Remediation:** Resolved: level 1 is an entry level left within 12 months (art. 4), short of the biennio of art. 23; read on 2026-11-06.
 
 !!! warning "agenzie-marittime-i481/function_allowance_on_fourteenth · base_salary · impact unknown · open"
     SIMPLIFICATION: Whether indennita' di funzione rides the quattordicesima is unconfirmed. Modeled as a standard fixed_allowance (paid 14 mensilita'). If Art. 5 excludes it from the quattordicesima calculation, the annual figure is overstated by ~51.65 EUR/year.
