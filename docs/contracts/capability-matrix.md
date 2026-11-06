@@ -230,7 +230,7 @@ never grow.
 | 89 | [CCNL Operai Agricoli e Florovivaisti — Coldiretti/Confagricoltura/CIA](operai-agricoli-florovivaisti.md) | ⚠️ | base_salary, bilateral_funds, inail, inps_employee, overtime, seniority, sickness, territorial_supplement | 11 / 6 / 1 / 0 |
 | 90 | [CCNL Organizzazioni Allevatori, Consorzi ed Enti Zootecnici (AIA-FLAI-FAI-UILA)](organizzazioni-allevatori-aia.md) | ⚠️ | base_salary, inps_employer | 40 / 7 / 1 / 0 |
 | 91 | [CCNL Ortofrutticoli ed Agrumari (Import-Export)](ortofrutticoli-agrumari.md) | ⚠️ | base_salary, leave, seniority, sickness | 47 / 0 / 7 / 0 |
-| 92 | [CCNL Panificazione e Settori Affini — Industria (Assipan/Fiesa)](panificazione-assipan.md) | ⚠️ | seniority | 1 / 48 / 1 / 0 |
+| 92 | [CCNL Panificazione e Settori Affini — Industria (Assipan/Fiesa)](panificazione-assipan.md) | ✅ | — | 1 / 48 / 1 / 0 |
 | 93 | [CCNL Poste Italiane S.p.A. (personale non dirigente)](poste-italiane-k700.md) | ⚠️ | base_salary, inps_employer, seniority, sickness, una_tantum | 1 / 53 / 1 / 0 |
 | 94 | [CCNL RSA e Strutture Residenziali Socio-Assistenziali (AIOP)](rsa-aiop.md) | ⚠️ | base_salary, seniority, una_tantum | 0 / 32 / 1 / 0 |
 | 95 | [CCNL Radiotelevisivo — Settore Radiofonico](radiotelevisive-radiofonico.md) | ⚠️ | inps_employer, seniority | 13 / 0 / 8 / 0 |

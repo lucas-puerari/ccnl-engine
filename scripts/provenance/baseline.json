@@ -1095,9 +1095,6 @@
       "panificazione-artigianato-confartigianato/sickness_net_basis",
       "panificazione-artigianato-confartigianato/special_allowance_in_base"
     ],
-    "agreement/panificazione-assipan.json": [
-      "panificazione-assipan/apprentice_seniority"
-    ],
     "agreement/pelli-cuoio-industria-assopellettieri.json": [
       "pelli-cuoio-industria-assopellettieri/level_1_apprentice_reference"
     ],
