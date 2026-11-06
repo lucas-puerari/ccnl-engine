@@ -1,4 +1,4 @@
-"""Usage example: vigilanza-privata-assiv (HV40).
+"""Usage example: vigilanza-privata-assiv (HV17).
 
 CCNL Istituti e Imprese di Vigilanza Privata e Servizi Fiduciari -
 ASSIV/ANIVP/UNIV (GPG).

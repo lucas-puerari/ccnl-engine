@@ -256,81 +256,81 @@ class TestLoadVigilanzaPrivataFederdatGpg:
         assert appr.periods[0].percentage == Decimal("1.00")
 
 
-class TestLoadVigilanzaPrivataFederdatSf:
+class TestLoadVigilanzaPrivataAssivSf:
     """Unit tests for CCNL Vigilanza Privata FEDERDAT SF (HV17)."""
 
     def test_hv17_sf_loads(self) -> None:
         """Contract loads with correct id and CNEL code."""
-        ccnl = load_ccnl("vigilanza-privata-federdat-sf")
-        assert ccnl.meta.ccnl_id == "vigilanza-privata-federdat-sf"
+        ccnl = load_ccnl("vigilanza-privata-assiv-sf")
+        assert ccnl.meta.ccnl_id == "vigilanza-privata-assiv-sf"
         assert ccnl.meta.cnel_code == "HV17"
 
     def test_hv17_sf_has_5_levels(self) -> None:
         """Contract has exactly 5 levels: E D C B A."""
-        ccnl = load_ccnl("vigilanza-privata-federdat-sf")
+        ccnl = load_ccnl("vigilanza-privata-assiv-sf")
         assert len(ccnl.levels) == 5
         codes = {lv.code for lv in ccnl.levels}
         assert codes == {"E", "D", "C", "B", "A"}
 
     def test_hv17_sf_level_c_salary_tranche1(self) -> None:
         """Level C base salary at 01/06/2023 is 1333.43 EUR."""
-        ccnl = load_ccnl("vigilanza-privata-federdat-sf")
+        ccnl = load_ccnl("vigilanza-privata-assiv-sf")
         lv = next(lv for lv in ccnl.levels if lv.code == "C")
         assert lv.base_salary.value_at(date(2023, 6, 1)) == Decimal("1333.43")
 
     def test_hv17_sf_level_c_salary_last_tranche(self) -> None:
         """Level C base salary at 01/04/2026 is 1556.29 EUR."""
-        ccnl = load_ccnl("vigilanza-privata-federdat-sf")
+        ccnl = load_ccnl("vigilanza-privata-assiv-sf")
         lv = next(lv for lv in ccnl.levels if lv.code == "C")
         assert lv.base_salary.value_at(date(2026, 4, 1)) == Decimal("1556.29")
 
     def test_hv17_sf_level_ordering(self) -> None:
         """Level E is lowest (order 1), A is highest (order 5)."""
-        ccnl = load_ccnl("vigilanza-privata-federdat-sf")
+        ccnl = load_ccnl("vigilanza-privata-assiv-sf")
         by_order = sorted(ccnl.levels, key=lambda lv: lv.order)
         assert by_order[0].code == "E"
         assert by_order[-1].code == "A"
 
     def test_hv17_sf_additional_months_pre_2024(self) -> None:
         """Additional months before 01/01/2024 is 13."""
-        ccnl = load_ccnl("vigilanza-privata-federdat-sf")
+        ccnl = load_ccnl("vigilanza-privata-assiv-sf")
         assert ccnl.parameters.additional_months.value_at(date(2023, 6, 1)) == Decimal(
             13
         )
 
     def test_hv17_sf_additional_months_post_2024(self) -> None:
         """Additional months from 01/01/2024 onwards is 14."""
-        ccnl = load_ccnl("vigilanza-privata-federdat-sf")
+        ccnl = load_ccnl("vigilanza-privata-assiv-sf")
         assert ccnl.parameters.additional_months.value_at(date(2024, 1, 1)) == Decimal(
             14
         )
 
     def test_hv17_sf_hourly_divisor(self) -> None:
         """Hourly divisor is 173."""
-        ccnl = load_ccnl("vigilanza-privata-federdat-sf")
+        ccnl = load_ccnl("vigilanza-privata-assiv-sf")
         assert ccnl.parameters.hourly_divisor.value_at(date(2026, 4, 1)) == Decimal(173)
 
     def test_hv17_sf_no_fixed_allowances(self) -> None:
         """All SF levels have no fixed allowances (conglobated model)."""
-        ccnl = load_ccnl("vigilanza-privata-federdat-sf")
+        ccnl = load_ccnl("vigilanza-privata-assiv-sf")
         for lv in ccnl.levels:
             assert lv.fixed_allowances == ()
 
     def test_hv17_sf_tax_sector(self) -> None:
         """Tax sector is terziario."""
-        ccnl = load_ccnl("vigilanza-privata-federdat-sf")
+        ccnl = load_ccnl("vigilanza-privata-assiv-sf")
         assert ccnl.meta.tax_sector == TaxSector.TERZIARIO
 
     def test_hv17_sf_seniority_cadence(self) -> None:
-        """Seniority: 36-month cadence, max 10 scatti (raised by July 2026 rinnovo)."""
-        ccnl = load_ccnl("vigilanza-privata-federdat-sf")
+        """Seniority: 36-month cadence, six scatti (Parte servizi fiduciari Art. 25)."""
+        ccnl = load_ccnl("vigilanza-privata-assiv-sf")
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 36
-        assert si.maximum_count == 10
+        assert si.maximum_count == 6
 
     def test_hv17_sf_level_a_salary_mid_tranche(self) -> None:
         """Level A base salary at 01/10/2024 is 1886.32 EUR."""
-        ccnl = load_ccnl("vigilanza-privata-federdat-sf")
+        ccnl = load_ccnl("vigilanza-privata-assiv-sf")
         lv = next(lv for lv in ccnl.levels if lv.code == "A")
         assert lv.base_salary.value_at(date(2024, 10, 1)) == Decimal("1886.32")
 

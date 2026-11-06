@@ -2,7 +2,7 @@
 
 | | |
 |---|---|
-| **CNEL code** | `HV40` |
+| **CNEL code** | `HV17` |
 | **Sector** | vigilanza-privata |
 | **Family** | `vigilanza` |
 | **Tax sector** | `terziario` |

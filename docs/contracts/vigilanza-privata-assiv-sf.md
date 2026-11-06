@@ -1,4 +1,4 @@
-# CCNL Vigilanza Privata e Servizi Fiduciari FEDERDAT — SF
+# CCNL Istituti e Imprese di Vigilanza Privata e Servizi Fiduciari — ASSIV/ANIVP/UNIV (Servizi fiduciari)
 
 | | |
 |---|---|
@@ -6,7 +6,7 @@
 | **Sector** | vigilanza privata — servizi fiduciari (SF) |
 | **Family** | `vigilanza` |
 | **Tax sector** | `terziario` |
-| **Last renewal** | 2023-05-04 |
+| **Last renewal** | 2023-05-30 |
 | **Workers (est.)** | ~40k |
 | **Ruleset version** | `2026.2` |
 | **Readiness** | 🧪 Exploratory |
@@ -14,7 +14,12 @@
 [← Contracts index](index.md)
 
 ??? note "Signatories"
-    - FEDERDAT
+    - ASSIV
+    - ANIVP
+    - UNIV
+    - Legacoop Produzione e Servizi
+    - AGCI Servizi
+    - Confcooperative Lavoro e Servizi
     - FILCAMS-CGIL
     - FISASCAT-CISL
     - UILTUCS-UIL
@@ -31,7 +36,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | seniority |
+| **Limits of this contract** | base_salary, seniority |
 
 2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
@@ -41,7 +46,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 0 verified / 46 derived / 2 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 1 verified / 45 derived / 2 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -49,13 +54,15 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Last renewal** | 2023-05-04 |
-| **Last review** | — |
+| **Last renewal** | 2023-05-30 |
+| **Last review** | 2026-11-06 |
 | **Latest salary tranche** | 2026-04-01 |
 
 ## Review history
 
-No review is recorded.
+| Date | Reviewer | Scope | Outcome | Findings |
+|---|---|---|---|---|
+| 2026-11-06 | claude-opus-5-5 (ai) | CNEL archive of HV17 and HV51; CCNL 8 April 2013 Parte servizi fiduciari Art. 25 (PDF p. 117, page image); ipotesi 30 May 2023 (OCR, 43 pages); UILTUCS tables of 16 February 2024 (no seniority figures). | corrected | The file holds the HV17 pay tables (A-E 2023-2026 match the accordo of 16 February 2024), not those of FEDERDAT (HV51): renamed vigilanza-privata-assiv-sf, signatories of HV17.<br>Seniority: six triennial increments A 21, B 19, C 17, D 15, E none; the file had 29/26/22/19/17.50 and a maximum of 10 with no HV17 source.<br>The apprenticeship note quoted the FEDERDAT text: recorded as an open limitation. |
 
 ## Salary table
 
@@ -72,15 +79,15 @@ Latest effective values per level (monthly gross, EUR).
 ## Seniority increments
 
 **Cadence:** every 36 months  
-**Maximum:** 10 increments
+**Maximum:** 6 increments
 
 | Level | Increment (monthly) |
 |---|---:|
-| `E` | € 17.50 |
-| `D` | € 19.00 |
-| `C` | € 22.00 |
-| `B` | € 26.00 |
-| `A` | € 29.00 |
+| `A` | € 21.00 |
+| `B` | € 19.00 |
+| `C` | € 17.00 |
+| `D` | € 15.00 |
+| `E` | € 0.00 |
 
 ## Apprenticeship
 
@@ -92,14 +99,14 @@ percentage: 1.00
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning "vigilanza-privata-federdat-sf/seniority_assumed_unchanged · seniority · impact unknown · open"
-    SENIORITY: amounts from UILTUCS tabelle PDF (Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf), cadence 36m: A=29.00, B=26.00, C=22.00, D=19.00, E=17.50 EUR/scatto. July 9 2026 renewal (FEDERDAT-CONFIAL) increased maximum_count from 6 to 10; per-scatto amounts for SF not independently verifiable from a post-rinnovo public source (ilccnl.it shows Q–III for GPG only; SF behind registration). Values assumed unchanged pending primary source confirmation.
+!!! warning "vigilanza-privata-assiv-sf/apprenticeship_rule_unsourced · base_salary · impact unknown · open"
+    APPRENTICESHIP: modelled as 100% of the destination level. The art. 86 quoted before is of the FEDERDAT CCNL (CNEL HV51), not of this one; the apprenticeship clause of HV17 was not read.
 
-    **Applies when:** `seniority` applies; from 2026-07-09.
+    **Applies when:** `base_salary` applies; contract type in apprentice.
 
-    **Remediation:** Confirm the post-rinnovo SF scatto amounts from a primary source.
+    **Remediation:** Read the apprenticeship clause of the HV17 text for the servizi fiduciari and model its track.
 
-!!! warning "vigilanza-privata-federdat-sf/apprentice_seniority · seniority · impact unknown · open"
+!!! warning "vigilanza-privata-assiv-sf/apprentice_seniority · seniority · impact unknown · open"
     APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.
 
     **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
@@ -288,19 +295,19 @@ Each simplification below is a model limitation of the registry. An open limitat
 | Tabelle retributive GPG e SF, 2023-2026. SF: 14a mensilita introdotta dal 01/01/2024 (ipotesi accordo 16/02/2024). 8 tranches: 01/06/2023, 01/01/2024, 01/07/2024, 01/10/2024, 01/01/2025, 01/07/2025, 01/12/2025, 01/04/2026. | tabella_retributiva | 2024-02-16 | [↗](https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf) |
 
 ??? note "Coverage notes"
-    CCNL HV17 FEDERDAT SF (Servizi Fiduciari) section. Conglobated, divisor 173. 5 levels (A-E). 14a mensilita from 01/01/2024; before that 13 months. 8 tranches, last at 01/04/2026 (SF schedule). Level F absent from tables (may be entry/apprenticeship only; verify base CCNL 2013).
+    CCNL HV17 (ASSIV/ANIVP/UNIV with FILCAMS/FISASCAT/UILTUCS), Servizi Fiduciari section. Conglobated, divisor 173. 5 levels (A-E). 14a mensilita from 01/01/2024; before that 13 months. 8 tranches, last at 01/04/2026 (SF schedule). Level F absent from tables (may be entry/apprenticeship only; verify base CCNL 2013).
     
-    Apprenticeship: 100% passthrough confirmed from CCNL FEDERDAT Art. 86: "L'Apprendista ha diritto per tutta la durata del periodo di apprendistato all'inquadramento e alla corrispondente retribuzione del livello finale di collocazione." (FESICA PDF, CCNL ISTITUTI AZIENDE VIGILANZA PRIVATA, Art. 86). Engine models this correctly as 100% of destination level salary.
+    SENIORITY (Parte servizi fiduciari Art. 25, CCNL 2013, PDF p. 117): six triennial increments, A 21, B 19, C 17, D 15 EUR from February 2018, none for level E; unchanged by the ipotesi of 30 May 2023. The earlier amounts (29/26/22/19/17.50) and maximum of 10 came from no HV17 text.
     
     ADDITIONAL MONTHS: 13 for Jun 2023-Dec 2023 (pre-quattordicesima); 14 from 01/01/2024 onward (quattordicesima introduced by rinnovo July 2023 renewal, per fiscoetasse.com). Level E: entry-level for first 9 months of tenure per contract text — correct by design.
     
 
 ## Raw data
 
-The contract file this page is generated from: [`agreement/vigilanza-privata-federdat-sf.json`](https://github.com/lucas-puerari/ccnl-engine/blob/main/src/ccnl_engine/knowledge/agreement/vigilanza-privata-federdat-sf.json).
+The contract file this page is generated from: [`agreement/vigilanza-privata-assiv-sf.json`](https://github.com/lucas-puerari/ccnl-engine/blob/main/src/ccnl_engine/knowledge/agreement/vigilanza-privata-assiv-sf.json).
 
 ## Usage example
 
 ```python
---8<-- "docs/examples/agreement/vigilanza-privata-federdat-sf/example.py"
+--8<-- "docs/examples/agreement/vigilanza-privata-assiv-sf/example.py"
 ```
