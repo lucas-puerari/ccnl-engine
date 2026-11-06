@@ -27,7 +27,6 @@ from ccnl_engine.decision.models import (
     CalculationIssue,
     CalculationStatus,
 )
-from ccnl_engine.employment.inputs import Permanent
 from ccnl_engine.extra_month.settlement.services import ExtraMonthSettlement
 from ccnl_engine.ledger.models import AccountKind
 from ccnl_engine.pay_item.models import (
@@ -181,7 +180,7 @@ def _covers(ctx: RunContext, fund: ContractualFund) -> bool:
         return False
     if fund.levels is not None and ctx.contract.level.code not in fund.levels:
         return False
-    if fund.permanent_only and not isinstance(ctx.request.contract_type, Permanent):
+    if fund.excludes_contract(ctx.request.contract_type):
         return False
     extra = ctx.run_kind in _EXTRA_KINDS
     if fund.charged_in_month is not None:

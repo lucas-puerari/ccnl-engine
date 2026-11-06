@@ -770,7 +770,6 @@
       "cooperative-consorzi-agricoli/otd_terzo_elemento_missing"
     ],
     "agreement/cooperative-sociali.json": [
-      "cooperative-sociali/asi_health_contribution",
       "cooperative-sociali/coop_sociali_unmodelled_elements",
       "cooperative-sociali/inps_rate_not_reconciled",
       "cooperative-sociali/type_b_disadvantaged_exemption"
