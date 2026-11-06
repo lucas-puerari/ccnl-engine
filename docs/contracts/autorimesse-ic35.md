@@ -30,8 +30,8 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, welfare |
+| **Core payroll path** | ✅ |
+| **Limits of this contract** | welfare |
 
 4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
@@ -100,7 +100,7 @@ Latest effective values per level (monthly gross, EUR).
 
 **professionalizzante** (type: `percentage`)  
 Destination levels: `Q1`, `Q2`, `A1`, `A2`, `B1`, `B2`, `B3`, `C1`, `C2`, `C3`, `C4`  
-percentage: 0.95
+percentage: 1.00
 
 ## Known simplifications
 
@@ -120,12 +120,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Resolved: work_rules.time_supplements.week_divisors holds 182 and 191, read for an employment whose full_time_weekly_hours is 42 or 44.
 
-!!! warning "autorimesse-ic35/apprenticeship_percentages_2019 · base_salary · impact unknown · open"
-    SIMPLIFICATION: Apprenticeship article numbers from 2019 CCNL may have changed in the current consolidated text (Art. numbering in 2025 verbale differs from 2019 PDF). The 85/90/95 percentage structure is from the 2019 source and is assumed unchanged.
+!!! note "autorimesse-ic35/apprenticeship_percentages_2019 · base_salary · impact unknown · resolved"
+    APPRENTICESHIP (Art. 32, p. 65 of the text of 15 December 2022): at most 24 months; pay 'nel primo anno: 85% della retribuzione globale; nel secondo anno: 90%'. The renewal of 9 December 2025 does not amend art. 32; after 24 months the full pay of the level.
 
     **Applies when:** `base_salary` applies; contract type in apprentice.
 
-    **Remediation:** Confirm the 85/90/95% apprenticeship percentages against the current consolidated text.
+    **Remediation:** Resolved: 85% and 90% over 24 months, art. 32 of the 2022 text, read on 2026-11-06.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

@@ -55,7 +55,8 @@ def _check_seniority(ccnl: CCNL, fname: str, sc: dict[str, Any]) -> None:
         f"{fname}: seniority_checks declared but "
         "parameters.seniority_increments is None"
     )
-    ts = si.amount_by_level.get(sc["level_code"])
+    table = si.tiers[0].amount_by_level if si.tiers else si.amount_by_level
+    ts = table.get(sc["level_code"])
     assert ts is not None, (
         f"{fname}: seniority level {sc['level_code']!r} not found in amount_by_level"
     )

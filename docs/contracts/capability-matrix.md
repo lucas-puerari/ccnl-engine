@@ -61,8 +61,8 @@ formulas or caller-declared amounts.
 
 | Capability | Description | Scope | Layer | Implementation | Applies when | Handler | Facts | Variants | Label | Rules (v / d / a / m) |
 |---|---|---|---|---|---|---|---|---|---|---|
-| `base_salary` | Paga base contrattuale | core | gross | native | always | pipeline | — | — | simplified | 2340 / 3955 / 205 / 28 |
-| `seniority` | Scatti di anzianità | core | gross | native | decided | decision | `employment.seniority` | — | simplified | 29 / 94 / 13 / 0 |
+| `base_salary` | Paga base contrattuale | core | gross | native | always | pipeline | — | — | simplified | 2373 / 3940 / 205 / 28 |
+| `seniority` | Scatti di anzianità | core | gross | native | decided | decision | `employment.seniority` | — | simplified | 30 / 93 / 13 / 0 |
 | `worker_category` | Categoria lavoratore (dichiarata o fissata dal livello) | core | gross | native | decided | decision | `employment.category` | — | implemented | none bundled |
 | `inps_employee` | Contributi INPS a carico dipendente | core | net | native | always | pipeline | — | — | simplified | 25 / 24 / 45 / 0 |
 | `inps_employer` | Contributi INPS a carico azienda | core | net | native | always | pipeline | — | — | simplified | 33 / 24 / 53 / 0 |
@@ -156,7 +156,7 @@ never grow.
 | 15 | [CCNL Attivita Minerarie (ASSORISORSE)](attivita-minerarie-assorisorse.md) | ✅ | — | 36 / 0 / 2 / 1 |
 | 16 | [CCNL Attività Ferroviarie — AGENS](trasporto-ferroviario-agens.md) | ⚠️ | base_salary, inps_employer, seniority | 50 / 6 / 1 / 0 |
 | 17 | [CCNL Autoferrotranvieri e Internavigatori (Mobilita/TPL)](autoferrotranvieri-internavigatori.md) | ⚠️ | inps_employer, pension_fund_contribution | 0 / 139 / 1 / 0 |
-| 18 | [CCNL Autorimesse, Noleggio Automezzi e Parcheggi (ANIASA)](autorimesse-ic35.md) | ⚠️ | base_salary, welfare | 0 / 95 / 1 / 1 |
+| 18 | [CCNL Autorimesse, Noleggio Automezzi e Parcheggi (ANIASA)](autorimesse-ic35.md) | ✅ | welfare | 0 / 95 / 1 / 1 |
 | 19 | [CCNL Autostrade e Trafori Concessionari](autostrade-trafori.md) | ⚠️ | base_salary, seniority | 0 / 140 / 1 / 1 |
 | 20 | [CCNL CED, ICT, Professioni Digitali e STP (Assoced-UGL)](ced-assoced.md) | ⚠️ | base_salary, inps_employer, seniority | 0 / 44 / 1 / 1 |
 | 21 | [CCNL Carta e Cartone — Aziende Industriali (Assocarta)](carta-cartone-assocarta.md) | ⚠️ | base_salary | 14 / 61 / 1 / 0 |
@@ -174,7 +174,7 @@ never grow.
 | 33 | [CCNL Comparto Istruzione e Ricerca 2025-2027 (trattamento economico) - ARAN, Università, tecnologi a tempo indeterminato](universita-tecnologi-aran.md) | ⚠️ | base_salary, pension_fund_contribution, sickness | 2 / 4 / 1 / 0 |
 | 34 | [CCNL Comparto Sanità 2022-2024 — ARAN](sanita-aran.md) | ⚠️ | base_salary | 16 / 8 / 0 / 0 |
 | 35 | [CCNL Comunicazione, Informatica e Servizi Innovativi PMI — Settore Informatico](informatica-pmi-unimatica.md) | ⚠️ | base_salary, seniority | 2 / 39 / 1 / 0 |
-| 36 | [CCNL Consorzi Agrari (ASSOCAP-FLAI-FAI-UILA)](consorzi-agrari-assocap.md) | ⚠️ | base_salary, contractual_funds, inps_employer | 1 / 36 / 1 / 0 |
+| 36 | [CCNL Consorzi Agrari (ASSOCAP-FLAI-FAI-UILA)](consorzi-agrari-assocap.md) | ⚠️ | contractual_funds, inps_employer | 34 / 21 / 1 / 0 |
 | 37 | [CCNL Consorzi di Bonifica (SNEBI-FLAI-FAI-FILBI)](consorzi-di-bonifica-snebi.md) | ⚠️ | base_salary, inps_employer, seniority | 5 / 55 / 1 / 1 |
 | 38 | [CCNL Cooperative Sociali (Confcooperative/Legacoop/AGCI)](cooperative-sociali.md) | ⚠️ | base_salary, bilateral_funds, inps_employer | 62 / 1 / 0 / 0 |
 | 39 | [CCNL Cooperative e Consorzi Agricoli](cooperative-consorzi-agricoli.md) | ⚠️ | base_salary | 34 / 8 / 0 / 0 |
@@ -261,7 +261,7 @@ never grow.
 | 120 | [CCNL per i dipendenti dalle aziende di lavorazione della foglia di tabacco secco allo stato sciolto](tabacco-apti.md) | ✅ | pension_fund_contribution | 37 / 0 / 22 / 0 |
 | 121 | [CCNL per i dipendenti degli studi e delle attività professionali (Confprofessioni)](studi-professionali-confprofessioni.md) | ⚠️ | base_salary, sickness | 53 / 2 / 0 / 0 |
 | 122 | [CCNL per i dipendenti delle imprese artigiane esercenti servizi di pulizia, disinfezione, disinfestazione, derattizzazione e sanificazione](pulizia-artigianato-confartigianato.md) | ⚠️ | base_salary, bilateral_funds, holiday_work, inps_employer, night_work, overtime, seniority | 61 / 8 / 29 / 0 |
-| 123 | [CCNL per i lavoratori addetti all'industria delle calzature](calzaturiero-assocalzaturifici.md) | ⚠️ | seniority | 0 / 38 / 1 / 1 |
+| 123 | [CCNL per i lavoratori addetti all'industria delle calzature](calzaturiero-assocalzaturifici.md) | ✅ | — | 1 / 37 / 1 / 1 |
 | 124 | [CCNL per i lavoratori addetti all'industria orafa, argentiera e della gioielleria (Federorafi)](orafi-argentieri-industria-federorafi.md) | ✅ | — | 25 / 40 / 1 / 0 |
 | 125 | [CCNL per i lavoratori addetti alle industrie delle pelli e dei succedanei della pelle (Assopellettieri)](pelli-cuoio-industria-assopellettieri.md) | ⚠️ | base_salary | 0 / 35 / 1 / 1 |
 | 126 | [CCNL per i lavoratori dell'industria alimentare (Federalimentare)](alimentari-federalimentare.md) | ⚠️ | base_salary, overtime, sickness | 272 / 0 / 0 / 0 |

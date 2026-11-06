@@ -64,12 +64,13 @@
       },
       {
         "kind": "simplification",
-        "text": "Seniority cadence is triennale (36 months) for all levels; maximum 5 scatti. Scatto amounts derived from businessonline.it article (2025) cross-checked with kitech.it current table.",
+        "text": "SENIORITY (Art. 46, p. 97 of the text of 17 July 2024): five increments, 'i primi quattro con cadenza biennale ed il quinto dopo un quadriennio', of 6.89 (1st) to 12.24 (8th) EUR a month.",
         "capability": "seniority",
         "monetary_impact": "unknown",
         "limitation": {
           "variant": "seniority_secondary_source",
-          "remediation": "Verify the seniority cadence and amounts against the primary CCNL text."
+          "remediation": "Resolved: cadence and amounts read in art. 46 of the 2024 text on 2026-11-06.",
+          "status": "resolved"
         }
       },
       {
@@ -115,120 +116,286 @@
       ]
     },
     "seniority_increments": {
-      "cadence_months": 36,
+      "cadence_months": 24,
       "maximum_count": 5,
-      "amount_by_level": {
-        "8": {
-          "periods": [
-            {
-              "valid_from": "2024-08-01",
-              "valid_until": null,
-              "value": "12.24"
-            }
-          ]
-        },
-        "7": {
-          "periods": [
-            {
-              "valid_from": "2024-08-01",
-              "valid_until": null,
-              "value": "12.01"
-            }
-          ]
-        },
-        "6": {
-          "periods": [
-            {
-              "valid_from": "2024-08-01",
-              "valid_until": null,
-              "value": "9.94"
-            }
-          ]
-        },
-        "5": {
-          "periods": [
-            {
-              "valid_from": "2024-08-01",
-              "valid_until": null,
-              "value": "9.19"
-            }
-          ]
-        },
-        "4": {
-          "periods": [
-            {
-              "valid_from": "2024-08-01",
-              "valid_until": null,
-              "value": "8.47"
-            }
-          ]
-        },
-        "3S": {
-          "periods": [
-            {
-              "valid_from": "2024-08-01",
-              "valid_until": null,
-              "value": "7.98"
-            }
-          ]
-        },
-        "3": {
-          "periods": [
-            {
-              "valid_from": "2024-08-01",
-              "valid_until": null,
-              "value": "7.98"
-            }
-          ]
-        },
-        "2S": {
-          "periods": [
-            {
-              "valid_from": "2024-08-01",
-              "valid_until": null,
-              "value": "7.41"
-            }
-          ]
-        },
-        "2": {
-          "periods": [
-            {
-              "valid_from": "2024-08-01",
-              "valid_until": null,
-              "value": "7.41"
-            }
-          ]
-        },
-        "1": {
-          "periods": [
-            {
-              "valid_from": "2024-08-01",
-              "valid_until": null,
-              "value": "6.89"
-            }
-          ]
-        }
-      },
+      "amount_by_level": {},
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "calzaturieri-industria-e-minimi-retributivi",
-            "title": "calzaturieri-industria-e-minimi-retributivi",
-            "kind": "tabella_retributiva",
-            "url": "https://www.consulenza.it/Contenuti/News/news/9409/calzaturieri-industria-e-minimi-retributivi"
+            "document_id": "calzaturiero-ccnl-2024",
+            "title": "CCNL Calzaturiero, testo del 17 luglio 2024",
+            "kind": "associazione",
+            "url": "https://www.falc.biz/wp-content/uploads/2025/03/CCNL-contratto-collettivo-nazionale-di-lavoro-calzaturiero-2024.pdf",
+            "published_on": "2024-07-17",
+            "sha256": "fd48de9dd4aa81fd5ca97c3dd94099d085ac61666831e6da37fe2fbab19558cf"
           },
-          "section": "Scatti di anzianità"
+          "page": "97",
+          "section": "Art. 46 - Aumenti periodici di anzianità",
+          "quote": "Il lavoratore avrà diritto a maturare un massimo di cinque aumenti periodici di anzianità, di cui i primi quattro con cadenza biennale ed il quinto dopo un quadriennio."
         },
+        "transformation": "Two tiers: four increments every 24 months, then one after 48 months; the amounts of art. 46 per level (3S as 3, 2S as 2).",
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-07T15:03:36",
-          "verification_status": "unverified",
-          "effective_from": "2020-01-01"
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-06T17:00:00Z",
+          "effective_from": "2024-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-06T17:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-06-ai-calzaturiero-art46"
         }
       },
       "apprentice_level_amount": true,
-      "apprentice_pct_scaled": true
+      "apprentice_pct_scaled": true,
+      "tiers": [
+        {
+          "cadence_months": 24,
+          "maximum_count": 4,
+          "amount_by_level": {
+            "8": {
+              "periods": [
+                {
+                  "valid_from": "2024-08-01",
+                  "valid_until": null,
+                  "value": "12.24"
+                }
+              ]
+            },
+            "7": {
+              "periods": [
+                {
+                  "valid_from": "2024-08-01",
+                  "valid_until": null,
+                  "value": "12.01"
+                }
+              ]
+            },
+            "6": {
+              "periods": [
+                {
+                  "valid_from": "2024-08-01",
+                  "valid_until": null,
+                  "value": "9.94"
+                }
+              ]
+            },
+            "5": {
+              "periods": [
+                {
+                  "valid_from": "2024-08-01",
+                  "valid_until": null,
+                  "value": "9.19"
+                }
+              ]
+            },
+            "4": {
+              "periods": [
+                {
+                  "valid_from": "2024-08-01",
+                  "valid_until": null,
+                  "value": "8.47"
+                }
+              ]
+            },
+            "3S": {
+              "periods": [
+                {
+                  "valid_from": "2024-08-01",
+                  "valid_until": null,
+                  "value": "7.98"
+                }
+              ]
+            },
+            "3": {
+              "periods": [
+                {
+                  "valid_from": "2024-08-01",
+                  "valid_until": null,
+                  "value": "7.98"
+                }
+              ]
+            },
+            "2S": {
+              "periods": [
+                {
+                  "valid_from": "2024-08-01",
+                  "valid_until": null,
+                  "value": "7.41"
+                }
+              ]
+            },
+            "2": {
+              "periods": [
+                {
+                  "valid_from": "2024-08-01",
+                  "valid_until": null,
+                  "value": "7.41"
+                }
+              ]
+            },
+            "1": {
+              "periods": [
+                {
+                  "valid_from": "2024-08-01",
+                  "valid_until": null,
+                  "value": "6.89"
+                }
+              ]
+            }
+          },
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "calzaturiero-ccnl-2024",
+                "title": "CCNL Calzaturiero, testo del 17 luglio 2024",
+                "kind": "associazione",
+                "url": "https://www.falc.biz/wp-content/uploads/2025/03/CCNL-contratto-collettivo-nazionale-di-lavoro-calzaturiero-2024.pdf",
+                "published_on": "2024-07-17",
+                "sha256": "fd48de9dd4aa81fd5ca97c3dd94099d085ac61666831e6da37fe2fbab19558cf"
+              },
+              "page": "97",
+              "section": "Art. 46 - Aumenti periodici di anzianità",
+              "quote": "Il lavoratore avrà diritto a maturare un massimo di cinque aumenti periodici di anzianità, di cui i primi quattro con cadenza biennale ed il quinto dopo un quadriennio."
+            },
+            "transformation": "Two tiers: four increments every 24 months, then one after 48 months; the amounts of art. 46 per level (3S as 3, 2S as 2).",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-06T17:00:00Z",
+              "effective_from": "2024-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-06T17:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-06-ai-calzaturiero-art46"
+            }
+          }
+        },
+        {
+          "cadence_months": 48,
+          "maximum_count": 1,
+          "amount_by_level": {
+            "8": {
+              "periods": [
+                {
+                  "valid_from": "2024-08-01",
+                  "valid_until": null,
+                  "value": "12.24"
+                }
+              ]
+            },
+            "7": {
+              "periods": [
+                {
+                  "valid_from": "2024-08-01",
+                  "valid_until": null,
+                  "value": "12.01"
+                }
+              ]
+            },
+            "6": {
+              "periods": [
+                {
+                  "valid_from": "2024-08-01",
+                  "valid_until": null,
+                  "value": "9.94"
+                }
+              ]
+            },
+            "5": {
+              "periods": [
+                {
+                  "valid_from": "2024-08-01",
+                  "valid_until": null,
+                  "value": "9.19"
+                }
+              ]
+            },
+            "4": {
+              "periods": [
+                {
+                  "valid_from": "2024-08-01",
+                  "valid_until": null,
+                  "value": "8.47"
+                }
+              ]
+            },
+            "3S": {
+              "periods": [
+                {
+                  "valid_from": "2024-08-01",
+                  "valid_until": null,
+                  "value": "7.98"
+                }
+              ]
+            },
+            "3": {
+              "periods": [
+                {
+                  "valid_from": "2024-08-01",
+                  "valid_until": null,
+                  "value": "7.98"
+                }
+              ]
+            },
+            "2S": {
+              "periods": [
+                {
+                  "valid_from": "2024-08-01",
+                  "valid_until": null,
+                  "value": "7.41"
+                }
+              ]
+            },
+            "2": {
+              "periods": [
+                {
+                  "valid_from": "2024-08-01",
+                  "valid_until": null,
+                  "value": "7.41"
+                }
+              ]
+            },
+            "1": {
+              "periods": [
+                {
+                  "valid_from": "2024-08-01",
+                  "valid_until": null,
+                  "value": "6.89"
+                }
+              ]
+            }
+          },
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "calzaturiero-ccnl-2024",
+                "title": "CCNL Calzaturiero, testo del 17 luglio 2024",
+                "kind": "associazione",
+                "url": "https://www.falc.biz/wp-content/uploads/2025/03/CCNL-contratto-collettivo-nazionale-di-lavoro-calzaturiero-2024.pdf",
+                "published_on": "2024-07-17",
+                "sha256": "fd48de9dd4aa81fd5ca97c3dd94099d085ac61666831e6da37fe2fbab19558cf"
+              },
+              "page": "97",
+              "section": "Art. 46 - Aumenti periodici di anzianità",
+              "quote": "Il lavoratore avrà diritto a maturare un massimo di cinque aumenti periodici di anzianità, di cui i primi quattro con cadenza biennale ed il quinto dopo un quadriennio."
+            },
+            "transformation": "Two tiers: four increments every 24 months, then one after 48 months; the amounts of art. 46 per level (3S as 3, 2S as 2).",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-06T17:00:00Z",
+              "effective_from": "2024-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-06T17:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-06-ai-calzaturiero-art46"
+            }
+          }
+        }
+      ]
     }
   },
   "levels": [
@@ -1352,7 +1519,7 @@
     "effective_until": null,
     "source": "https://www.consulenza.it/Contenuti/News/news/9409/calzaturieri-industria-e-minimi-retributivi",
     "verification_status": "unverified",
-    "source_hash": "559d82a07c19178cb6c56f06135a0e544ab236f32131f3b0a4aee85443da7a50",
+    "source_hash": "850f77674aca174cb3f648d16e3af536ee8c2e79dd437b3a68480c9936b9b5b4",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -1542,5 +1709,30 @@
         }
       }
     }
+  },
+  "verification": {
+    "reviews": [
+      {
+        "id": "2026-11-06-ai-calzaturiero-art46",
+        "date": "2026-11-06",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "CCNL Calzaturiero, text of 17 July 2024: art. 46 seniority (p. 97).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.falc.biz/wp-content/uploads/2025/03/CCNL-contratto-collettivo-nazionale-di-lavoro-calzaturiero-2024.pdf",
+            "sha256": "fd48de9dd4aa81fd5ca97c3dd94099d085ac61666831e6da37fe2fbab19558cf"
+          }
+        ],
+        "findings": [
+          "Four biennial increments and a fifth after four years, not five triennial; the amounts per level match."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "parameters.seniority_increments"
+        ]
+      }
+    ]
   }
 }

@@ -116,7 +116,7 @@
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: Apprenticeship article numbers from 2019 CCNL may have changed in the current consolidated text (Art. numbering in 2025 verbale differs from 2019 PDF). The 85/90/95 percentage structure is from the 2019 source and is assumed unchanged.",
+        "text": "APPRENTICESHIP (Art. 32, p. 65 of the text of 15 December 2022): at most 24 months; pay 'nel primo anno: 85% della retribuzione globale; nel secondo anno: 90%'. The renewal of 9 December 2025 does not amend art. 32; after 24 months the full pay of the level.",
         "capability": "base_salary",
         "monetary_impact": "unknown",
         "limitation": {
@@ -126,7 +126,8 @@
               "apprentice"
             ]
           },
-          "remediation": "Confirm the 85/90/95% apprenticeship percentages against the current consolidated text."
+          "remediation": "Resolved: 85% and 90% over 24 months, art. 32 of the 2022 text, read on 2026-11-06.",
+          "status": "resolved"
         }
       },
       {
@@ -315,7 +316,7 @@
         {
           "months_from": 24,
           "months_until": null,
-          "percentage": "0.95"
+          "percentage": "1.00"
         }
       ]
     }
@@ -2936,7 +2937,7 @@
     "effective_until": null,
     "source": "https://www.filtcgil.it/images/Contratti/Mobilita/ic35-verbale-accordo-09122025.pdf",
     "verification_status": "unverified",
-    "source_hash": "ad369d00c724168037104a3fe027af74b6d099f71594635f85b9667afbae2b36",
+    "source_hash": "cd1051af98c6ad1ad77eaf0eba0c2e291b5bcc24310ebd09f7ed666335058e27",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
