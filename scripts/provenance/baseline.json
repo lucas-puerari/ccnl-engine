@@ -661,9 +661,6 @@
     "agreement/alimentari-pmi-unionalimentari.json": [
       "alimentari-pmi-unionalimentari/tranches_2027_2028"
     ],
-    "agreement/anas.json": [
-      "anas/apprentice_seniority"
-    ],
     "agreement/assicurazioni-ania.json": [
       "assicurazioni-ania/apprentice_seniority",
       "assicurazioni-ania/funzionari_economic_allowance",

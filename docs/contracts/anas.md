@@ -31,10 +31,10 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Core payroll path** | ⚠️ |
-| **Limits of this contract** | seniority |
+| **Core payroll path** | ✅ |
+| **Limits of this contract** | — |
 
-1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+0 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -51,7 +51,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-12-18 |
-| **Last review** | 2026-11-01 |
+| **Last review** | 2026-11-06 |
 | **Latest salary tranche** | 2027-07-01 |
 
 ## Review history
@@ -60,6 +60,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|---|---|
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | confirmed | Art. 106 - Tredicesima mensilita' (p. 149): "il dipendente ha diritto a tanti dodicesimi della tredicesima mensilità per quanti sono i mesi di servizio prestati, computando come mese intero la frazione di mese pari o superiore a 15 giorni.". Match: at_least 15. |
 | 2026-11-01 | claude-opus-5-5 (ai) | The notice clause (Art. 80 - Preavviso, p. 99). | corrected | Notice bands by level and service checked against the PDF by a separate session (delegated search and independent verification): work_rules.notice. |
+| 2026-11-06 | claude-opus-5-5 (ai) | Apprentice seniority: artt. 25 and 110 of the CCNL ANAS 2025-2027 (pp. 36-38, 151, OCR). | corrected | Art. 25 c. 6 counts 'L'intero periodo di apprendistato' for seniority; c. 16 applies the 70/85/92% to the minimi, the contingenza 'ed alle altre voci retributive fissate per la posizione economica', and art. 110 fixes the increments per posizione economica: the level increments, scaled by the percentage. |
 
 ## Salary table
 
@@ -99,13 +100,6 @@ percentage: 0.92
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
-
-!!! warning "anas/apprentice_seniority · seniority · impact unknown · open"
-    APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.
-
-    **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
-
-    **Remediation:** Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
