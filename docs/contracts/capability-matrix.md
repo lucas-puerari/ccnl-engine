@@ -140,7 +140,7 @@ never grow.
 | # | CCNL | Core | Limits | Rules (v / d / a / m) |
 |---|---|:---:|---|---|
 | 1 | [CCNL Acconciatura ed Estetica — Confartigianato/CNA](acconciatura-estetica-confartigianato.md) | ⚠️ | base_salary, inps_employer | 0 / 29 / 1 / 0 |
-| 2 | [CCNL Agenzie Marittime Raccomandatarie, Agenzie Aeree e Mediatori Marittimi](agenzie-marittime-i481.md) | ⚠️ | base_salary, seniority | 1 / 36 / 1 / 0 |
+| 2 | [CCNL Agenzie Marittime Raccomandatarie, Agenzie Aeree e Mediatori Marittimi](agenzie-marittime-i481.md) | ⚠️ | base_salary | 1 / 36 / 1 / 0 |
 | 3 | [CCNL Agenzie di Viaggio e Turismo — Fiavet/Confcommercio](agenzie-viaggio-fiavet.md) | ✅ | — | 0 / 69 / 1 / 0 |
 | 4 | [CCNL Alimentaristi Cooperative (Fedagripesca/Legacoop Agroalimentare/AGCI-Agrital)](alimentaristi-cooperative-e016.md) | ✅ | — | 2 / 69 / 1 / 0 |
 | 5 | [CCNL Area Alimentazione e Panificazione — Artigianato (Confartigianato/CNA)](panificazione-artigianato-confartigianato.md) | ⚠️ | base_salary, inps_employer, sickness, territorial_supplement | 1 / 47 / 0 / 0 |
@@ -181,7 +181,7 @@ never grow.
 | 40 | [CCNL Dipendenti Aziende Enti Pubblici Economici Federcasa](federcasa.md) | ⚠️ | base_salary, inps_employer, seniority | 1 / 23 / 1 / 0 |
 | 41 | [CCNL Dipendenti Piccola e Media Industria Alimentare (Unionalimentari-Confapi)](alimentari-pmi-unionalimentari.md) | ⚠️ | base_salary | 1 / 53 / 1 / 0 |
 | 42 | [CCNL Dipendenti da Proprietari di Fabbricati (Confedilizia)](portieri-fabbricati-confedilizia.md) | ⚠️ | base_salary | 0 / 38 / 1 / 0 |
-| 43 | [CCNL Dipendenti delle Farmacie Municipalizzate (ASSOFARM)](farmacie-municipalizzate-assofarm.md) | ⚠️ | inps_employer, seniority | 1 / 45 / 1 / 0 |
+| 43 | [CCNL Dipendenti delle Farmacie Municipalizzate (ASSOFARM)](farmacie-municipalizzate-assofarm.md) | ⚠️ | inps_employer | 1 / 45 / 1 / 0 |
 | 44 | [CCNL Dipendenti delle Farmacie Private](farmacie-private-h121.md) | ⚠️ | base_salary, seniority | 4 / 41 / 1 / 0 |
 | 45 | [CCNL Dipendenti delle Farmacie Private - Farmacie rurali sussidiate](farmacie-rurali-sussidiate-h121.md) | ⚠️ | base_salary, seniority | 4 / 41 / 1 / 0 |
 | 46 | [CCNL Distribuzione Cooperativa (ANCC-Coop / Confcooperative Consumo)](distribuzione-cooperativa-ancc.md) | ⚠️ | base_salary, seniority | 1 / 62 / 1 / 0 |
@@ -254,7 +254,7 @@ never grow.
 | 113 | [CCNL Vetro (Industrie) — Settori Meccanizzati (Prime Lavorazioni)](vetro-meccanizzato-assovetro.md) | ⚠️ | base_salary, seniority | 0 / 0 / 35 / 1 |
 | 114 | [CCNL Vigilanza Privata e Servizi Fiduciari FEDERDAT — GPG](vigilanza-privata-federdat-gpg.md) | ✅ | — | 24 / 5 / 1 / 1 |
 | 115 | [CCNL Vigilanza Privata e Servizi Fiduciari FEDERDAT — SF](vigilanza-privata-federdat-sf.md) | ⚠️ | base_salary, contractual_funds, overtime | 26 / 0 / 0 / 1 |
-| 116 | [CCNL per i dipendenti da agenti immobiliari professionali e mandatari a titolo oneroso](agenti-immobiliari-fiaip.md) | ⚠️ | base_salary, bilateral_funds, pension_fund_contribution, seniority | 29 / 1 / 2 / 0 |
+| 116 | [CCNL per i dipendenti da agenti immobiliari professionali e mandatari a titolo oneroso](agenti-immobiliari-fiaip.md) | ⚠️ | base_salary, bilateral_funds, pension_fund_contribution | 29 / 1 / 2 / 0 |
 | 117 | [CCNL per i dipendenti da autoscuole, scuole nautiche e studi di consulenza automobilistica](autoscuole-unasca.md) | ✅ | — | 1 / 32 / 1 / 0 |
 | 118 | [CCNL per i dipendenti da aziende dei settori Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo](pubblici-esercizi-fipe-angem.md) | ⚠️ | base_salary, leave, overtime, sickness | 68 / 4 / 0 / 0 |
 | 119 | [CCNL per i dipendenti da aziende dei settori Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo - Ristorazione collettiva (aziende dell'art. 1 c. 1 par. II)](pubblici-esercizi-fipe-angem-ristorazione-collettiva.md) | ⚠️ | base_salary, overtime | 62 / 6 / 0 / 0 |

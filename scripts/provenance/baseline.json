@@ -643,13 +643,11 @@
       "afam-aran/shared_rules_unchecked"
     ],
     "agreement/agenti-immobiliari-fiaip.json": [
-      "agenti-immobiliari-fiaip/apprentice_seniority",
       "agenti-immobiliari-fiaip/ebnaip_qsc_and_flat_quota",
       "agenti-immobiliari-fiaip/fonte_pension_fund",
       "agenti-immobiliari-fiaip/specialist_apprenticeship_track"
     ],
     "agreement/agenzie-marittime-i481.json": [
-      "agenzie-marittime-i481/apprentice_seniority",
       "agenzie-marittime-i481/function_allowance_on_fourteenth"
     ],
     "agreement/alimentari-federalimentare.json": [
@@ -863,7 +861,6 @@
       "esercizi-cinematografici-anec/sickness_net_basis"
     ],
     "agreement/farmacie-municipalizzate-assofarm.json": [
-      "farmacie-municipalizzate-assofarm/apprentice_seniority",
       "farmacie-municipalizzate-assofarm/terziario_rates_proxy"
     ],
     "agreement/farmacie-private-h121.json": [

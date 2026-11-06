@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | inps_employer, seniority |
+| **Limits of this contract** | inps_employer |
 
-2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2022-07-07 |
-| **Last review** | 2026-10-18 |
+| **Last review** | 2026-11-06 |
 | **Latest salary tranche** | 2024-07-01 |
 
 ## Review history
@@ -58,6 +58,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | Date | Reviewer | Scope | Outcome | Findings |
 |---|---|---|---|---|
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | confirmed | Articolo 20 - Tredicesima e quattordicesima mensilita' (p. 20): "Le frazioni di mese pari o superiori a 15 giorni vengono computate come mese intero e si trascurano quelle inferiori.". Match: at_least 15. |
+| 2026-11-06 | claude-opus-5-5 (ai) | Apprentice seniority: art. 23 (p. 21, OCR) and Allegato F of the CCNL of 7 July 2022, with art. 41 c. 1 D.Lgs. 81/2015. | corrected | Art. 23 c. 1: 'Il lavoratore a tempo indeterminato ha diritto a 15 scatti biennali di anzianità'; apprenticeship 'è un contratto di lavoro a tempo indeterminato' (D.Lgs. 81/2015 art. 41 c. 1) and the CCNL excludes no apprentice: the increments of the level the apprentice is paid at. |
 
 ## Salary table
 
@@ -115,13 +116,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `inps_employer` applies.
 
     **Remediation:** Verify the INPS classification against a sector circular, including ex-INPDAP legacy workers.
-
-!!! warning "farmacie-municipalizzate-assofarm/apprentice_seniority · seniority · impact unknown · open"
-    APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.
-
-    **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
-
-    **Remediation:** Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
