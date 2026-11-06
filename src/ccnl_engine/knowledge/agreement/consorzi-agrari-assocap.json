@@ -120,12 +120,13 @@
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: FILCOOP SANITARIO bilateral health fund not modeled.",
+        "text": "HEALTH FUND (Art. 37, p. 37): FILCOOP SANITARIO, 186 EUR a year for each permanent worker, two thirds the employer and one third the worker, modelled as health_funds filcoop_sanitario; a worker who opted out in writing owes none.",
         "capability": "contractual_funds",
         "monetary_impact": "yes",
         "limitation": {
           "variant": "filcoop_health_fund_missing",
-          "remediation": "Add FILCOOP SANITARIO to parameters.health_funds, with its source, so contractual_funds posts its shares."
+          "remediation": "Resolved: FILCOOP SANITARIO of art. 37, read on 2026-11-06.",
+          "status": "resolved"
         }
       },
       {
@@ -194,7 +195,7 @@
         "date": "2026-11-06",
         "reviewer": "claude-opus-5-5",
         "reviewer_kind": "ai",
-        "scope": "CCNL Consorzi agrari 2024-2027: Allegato A stipendi base (p. 47), art. 35 indennità di cassa (p. 34).",
+        "scope": "CCNL Consorzi agrari 2024-2027: Allegato A stipendi base (p. 47), art. 35 indennità di cassa (p. 34). Art. 37 FILCOOP SANITARIO (p. 37).",
         "outcome": "corrected",
         "sources": [
           {
@@ -203,12 +204,14 @@
           }
         ],
         "findings": [
-          "The 6th level of 2025 is 1,040.26, not 1,040.28; the 2027 column added; the cashier allowance of 55.00 EUR added."
+          "The 6th level of 2025 is 1,040.26, not 1,040.28; the 2027 column added; the cashier allowance of 55.00 EUR added.",
+          "FILCOOP SANITARIO added: 186 EUR a year, two thirds employer, one third worker, permanent workers."
         ],
         "independence": "same_process",
         "checked": [
           "levels.base_salary",
-          "levels.fixed_allowances"
+          "levels.fixed_allowances",
+          "parameters.health_funds"
         ]
       }
     ]
@@ -372,7 +375,65 @@
           "review_id": "2026-10-18-ai-accrual-rule"
         }
       }
-    }
+    },
+    "health_funds": [
+      {
+        "code": "filcoop_sanitario",
+        "description": "FILCOOP SANITARIO, Art. 37",
+        "permanent_only": true,
+        "employer": {
+          "annual": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": null,
+                "value": "124.00"
+              }
+            ]
+          }
+        },
+        "employee": {
+          "annual": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": null,
+                "value": "62.00"
+              }
+            ]
+          }
+        },
+        "employee_deductible": true,
+        "solidarity_rate": "0.1",
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "consorzi-agrari-ccnl-2024-2027",
+              "title": "CCNL Consorzi agrari 2024-2027, 12 dicembre 2023",
+              "kind": "associazione",
+              "url": "https://www.faicisl.it/attachments/article/2385/CCNL%20CONSORZI%20AGRARI%202024%20-%202027.pdf",
+              "published_on": "2023-12-12",
+              "sha256": "592a52c168c4c1724cc49e7d01c1b010723c5673c5ee88ae06cf60a9074b04ea"
+            },
+            "page": "37",
+            "section": "Art. 37 - Fondo sanitario integrativo",
+            "quote": "i dipendenti dei Consorzi Agrari con rapporto di lavoro a tempo indeterminato possono aderire al FILCOOP SANITARIO [...] Il contributo al Fondo è determinato nella misura annua di € 186,00 da ripartire in ragione di due terzi a carico del Consorzio e di un terzo a carico del lavoratore."
+          },
+          "transformation": "186 EUR a year: 124 the employer, 62 the worker, a twelfth a month; permanent workers, enrolled unless they opt out in writing (c. 2).",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-06T20:00:00Z",
+            "effective_from": "2024-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-06T20:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-06-ai-consorzi-agrari-allegato-a"
+          }
+        }
+      }
+    ]
   },
   "apprenticeship": [],
   "levels": [
@@ -2226,7 +2287,7 @@
     "effective_until": null,
     "source": "https://www.wolterskluwer.it/",
     "verification_status": "unverified",
-    "source_hash": "218727c4d9f3e90fc2db020bb44c4bad627887c9cd020e7ed22d83fb1075b20c",
+    "source_hash": "f7bf19e9047a3355820b946fc3ba7a3ba48779ecbb58bc1e087df6041fda9a23",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

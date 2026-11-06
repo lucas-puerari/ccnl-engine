@@ -541,7 +541,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/consorzi-agrari-assocap",
       "ruleset_version": "2026.2",
-      "source_hash": "218727c4d9f3e90fc2db020bb44c4bad627887c9cd020e7ed22d83fb1075b20c",
+      "source_hash": "f7bf19e9047a3355820b946fc3ba7a3ba48779ecbb58bc1e087df6041fda9a23",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/consorzi-agrari-assocap.json.gz"
@@ -3041,7 +3041,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "762050c2c677cb40321ab302adb36212ebac206825db60bb8146fc552dde6bb4",
+      "source_hash": "92e4f76fcba5a5300d9dcebe90babd19c7fed1848ae6c0dad663b256bf0e2544",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/consorzi-agrari-assocap.json.gz",

@@ -51,22 +51,6 @@
       }
     },
     {
-      "id": "filcoop_health_fund_missing",
-      "institute": "contractual_funds",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "SIMPLIFICATION: FILCOOP SANITARIO bilateral health fund not modeled.",
-      "calculation": "ccnl/consorzi-agrari-assocap:coverage.notes",
-      "state": "absent",
-      "remediation": "Add FILCOOP SANITARIO to parameters.health_funds, with its source, so contractual_funds posts its shares.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "consorzi-agrari-assocap/filcoop_health_fund_missing"
-        ]
-      }
-    },
-    {
       "id": "inps_minimum_base_exempt_category",
       "institute": "inps_employer",
       "variant": "all",
