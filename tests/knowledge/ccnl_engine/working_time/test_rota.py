@@ -7,14 +7,26 @@ quando si applica il sistema 5 + 2" (CCNL 9 luglio 2026, p. 45).
 
 from __future__ import annotations
 
+from datetime import date
 from decimal import Decimal
 
 import pytest
 from pydantic import ValidationError
 
+from ccnl_engine.balance.models import PeriodState
 from ccnl_engine.catalog.loaders import load_ccnl
+from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.employment.rota.inputs import Rota
+from ccnl_engine.inputs import EmploymentPeriod
 from ccnl_engine.leave.models import LeaveEntitlementTier
+from ccnl_engine.leave.types import LeaveBucket
+from ccnl_engine.period.requests import PeriodCalculationRequest
+from ccnl_engine.period.services import (
+    bundled_policies,
+    bundled_repository,
+    calculate_period,
+)
+from ccnl_engine.run.types import PeriodId
 from ccnl_engine.working_time.rota.rules import with_rota
 
 _GPG = "vigilanza-privata-federdat-gpg"
@@ -50,3 +62,32 @@ def test_rota_days_exclude_seniority_tiers() -> None:
     tier = LeaveEntitlementTier(service_months_min=0, annual_days=Decimal(25))
     with pytest.raises(ValidationError, match="rota_annual_days"):
         leave.model_validate({**leave.model_dump(), "entitlement_tiers": [tier]})
+
+
+@pytest.mark.parametrize(("rota", "twelfths"), [(None, "25"), (Rota.SIX_ONE_ONE, "23")])
+def test_a_month_accrues_a_twelfth_of_the_rota(
+    rota: Rota | None, twelfths: str
+) -> None:
+    """Art. 89: a twelfth of the days of the year for each month of service."""
+    result = calculate_period(
+        PeriodCalculationRequest(
+            employer=EmployerProfile(headcount=Headcount(10)),
+            period_id=PeriodId(year=2026, month=3),
+            payment_date=date(2026, 3, 27),
+            ccnl_id=_GPG,
+            level_code="IV",
+            opening_state=PeriodState.zero(),
+            roles=frozenset(),
+            employment_period=EmploymentPeriod(date(2026, 1, 1)),
+            rota=rota,
+        ),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
+    )
+    (ferie,) = [
+        b
+        for b in result.closing_state.accrual.leave.balances
+        if b.bucket is LeaveBucket.FERIE
+    ]
+
+    assert ferie.accrued_twelfths == Decimal(twelfths)
