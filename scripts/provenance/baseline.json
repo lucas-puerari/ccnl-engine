@@ -997,7 +997,6 @@
       "logistica-trasporto-confetra/sixth_day_overtime"
     ],
     "agreement/marittimi-industria-armatoriale.json": [
-      "marittimi-industria-armatoriale/apprentice_seniority",
       "marittimi-industria-armatoriale/level_superminimo_art_18",
       "marittimi-industria-armatoriale/una_tantum_2024_2025"
     ],
@@ -1192,7 +1191,6 @@
       "tabacco-apti/alifond_before_july_2025"
     ],
     "agreement/telecomunicazioni-asstel.json": [
-      "telecomunicazioni-asstel/apprentice_seniority",
       "telecomunicazioni-asstel/industria_tax_sector_unverified",
       "telecomunicazioni-asstel/seniority_adjacent_level_amounts"
     ],
