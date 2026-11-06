@@ -54,6 +54,7 @@ from ccnl_engine.employment.period.inputs import (
     TerminationCause,
 )
 from ccnl_engine.employment.rest_day.inputs import Weekday
+from ccnl_engine.employment.rota.inputs import Rota
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.event.types import WORK_EVENT_TYPES
 from ccnl_engine.extra_month.schedule.models import (
@@ -196,6 +197,7 @@ REQUEST_TYPES: Mapping[str, type] = MappingProxyType({
             TfrFundBalance,
             WeeklyHours,
             Weekday,
+            Rota,
             WorkCalendar,
             WorkerCategory,
             WorkPattern,

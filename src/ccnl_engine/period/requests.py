@@ -22,6 +22,7 @@ from ccnl_engine.employment.fact.inputs import (
 from ccnl_engine.employment.inputs import Apprentice, FixedTerm, Permanent
 from ccnl_engine.employment.period.inputs import EmploymentPeriod
 from ccnl_engine.employment.rest_day.inputs import Weekday
+from ccnl_engine.employment.rota.inputs import Rota
 from ccnl_engine.employment.week_days.inputs import check_week_days
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.irpef.declaration.inputs import PriorYearTaxFacts
@@ -60,8 +61,7 @@ class PeriodCalculationRequest:
             rules and INPS rates
             (:class:`~ccnl_engine.calendar.tax_year.rules.TaxYearPolicy`),
             and is propagated to every ledger entry and pay item.
-        ccnl_id: Slug (e.g. ``metalmeccanico-federmeccanica``) or CNEL
-            code (e.g. ``E042``) of the CCNL.
+        ccnl_id: Slug (``metalmeccanico-federmeccanica``) or CNEL code (``E042``).
         level_code: Worker's contractual level code, e.g. ``C3``.
         opening_state: State entering this period, with the history of
             the employment.  :meth:`PeriodState.zero` is the fact only for
@@ -84,17 +84,16 @@ class PeriodCalculationRequest:
             ``None`` is unknown: when the employer withholds,
             a ``residence_unknown`` decision and a ``requirement_unresolved``
             blocker on ``addizionale_regionale``.
-        comune_belfiore: Belfiore code for the municipal surtax, e.g.
-            ``"F257"``.  ``None`` is unknown, as for ``regione``, on
-            ``addizionale_comunale``.
+        comune_belfiore: Belfiore code for the municipal surtax (``"F257"``),
+            ``None`` unknown as for ``regione``, on ``addizionale_comunale``.
         weekly_hours: Contracted weekly hours, positive: the INPS bracket of
             a domestic CCNL, the part time below ``full_time_weekly_hours``.
         contributable_hours: Hours worked and paid subject to INPS
             contributions (domestic CCNLs).  ``ordinary_hours_worked``: the
             ordinary hours actually worked, which a CCNL with ``hourly_pay``
             pays (operai edili) and the Prevedi operai amount is due on.
-        full_time_weekly_hours: Full-time weekly hours, positive, at least
-            ``weekly_hours``; ``full_time_week_days`` its working days, 5 or 6.
+        full_time_weekly_hours: Full-time weekly hours, at least ``weekly_hours``;
+            ``full_time_week_days`` its days, 5 or 6; ``rota`` a guard's rota.
         work_pattern: Vertical or mixed part time: weekday hours summing to
             ``weekly_hours`` and the months worked.  A regular or termination run of a
             month not worked posts no monthly pay, and the months not worked accrue no
@@ -134,8 +133,7 @@ class PeriodCalculationRequest:
             known.  When its tax year is the competence year of the run, its
             INPS base of other employments is stated in ``opening_state``
             for that year, in place of the one the state carries.
-        pension_fund: Enrolment in a pension fund of the CCNL, if known
-            (``NoPensionFund``: not enrolled).
+        pension_fund: Enrolment in a CCNL pension fund (``NoPensionFund``: none).
         uncovered_runs: Runs of the competence year the year calculation left out
             because the bundle holds no pay rules on their date. They are reported once,
             as ``run_not_computed`` blockers of the year, so the opening state is not
@@ -166,6 +164,7 @@ class PeriodCalculationRequest:
     ordinary_hours_worked: ContributableHours | None = None
     full_time_weekly_hours: WeeklyHours | None = None
     full_time_week_days: int | None = None
+    rota: Rota | None = None
     work_pattern: WorkPattern | None = None
     weekly_rest_day: Weekday = Weekday.SUNDAY
     employment_period: EmploymentPeriod | None = None
@@ -297,6 +296,7 @@ class PeriodCalculationRequest:
             ("full_time_weekly_hours", self.full_time_weekly_hours, WeeklyHours, True),
             ("work_pattern", self.work_pattern, WorkPattern, True),
             ("weekly_rest_day", self.weekly_rest_day, Weekday, False),
+            ("rota", self.rota, Rota, True),
             ("employment_period", self.employment_period, EmploymentPeriod, True),
             ("seniority", self.seniority, SeniorityFact, True),
             ("sector", self.sector, EmploymentSector, True),

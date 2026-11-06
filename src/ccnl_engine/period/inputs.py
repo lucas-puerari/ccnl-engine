@@ -270,6 +270,7 @@ class PeriodInput:
             ordinary_hours_worked=facts.ordinary_hours_worked,
             full_time_weekly_hours=employment.full_time_weekly_hours,
             full_time_week_days=employment.full_time_week_days,
+            rota=employment.rota,
             work_pattern=employment.work_pattern,
             weekly_rest_day=employment.weekly_rest_day,
             employment_period=employment.employment_period,

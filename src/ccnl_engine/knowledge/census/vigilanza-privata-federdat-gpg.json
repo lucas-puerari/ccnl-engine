@@ -51,22 +51,6 @@
       }
     },
     {
-      "id": "leave_days_by_rota",
-      "institute": "leave",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "LEAVE (Art. 89, 2026 text): 25 days with the 5+1 rota, 23 with 6+1+1, 22 with 5+2. The file accrues the 25 days of the 5+1 rota.",
-      "calculation": "ccnl/vigilanza-privata-federdat-gpg:coverage.notes",
-      "state": "absent",
-      "remediation": "Add the rota of the guard (5+1, 6+1+1, 5+2) as an employment fact and accrue 25, 23 or 22 days.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "vigilanza-privata-federdat-gpg/leave_days_by_rota"
-        ]
-      }
-    },
-    {
       "id": "maternity_daily_base",
       "institute": "maternity_leave",
       "variant": "all",

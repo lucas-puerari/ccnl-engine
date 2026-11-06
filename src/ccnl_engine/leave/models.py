@@ -16,6 +16,7 @@ from typing import Self
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
+from ccnl_engine.employment.rota.inputs import Rota  # noqa: TC001
 from ccnl_engine.leave.permit.models import PermitRules  # noqa: TC001
 from ccnl_engine.leave.types import LeaveBucket, MonthCredit
 from ccnl_engine.provenance.source.rule.models import RuleProvenance  # noqa: TC001
@@ -25,6 +26,8 @@ __all__ = [
     "LeaveEntitlementTier",
     "LeaveRules",
     "LeaveTermination",
+    "PermitDeadline",
+    "RotaLeave",
     "WeekDaysLeave",
     "WeekDaysPermit",
 ]
@@ -133,6 +136,25 @@ class WeekDaysLeave(BaseModel):
     provenance: RuleProvenance
 
 
+class RotaLeave(BaseModel):
+    """Ferie days of a year of a security guard on a rota.
+
+    FEDERDAT art. 89: "25 giorni di lavoro quando si applica il sistema 5 + 1
+    [...] 23 giorni [...] 6 + 1 + 1 [...] 22 giorni [...] 5 + 2".
+
+    Attributes:
+        rota: The rota (``Employment.rota``).
+        annual_days: Ferie days of a year on it.
+        provenance: Source of the days.
+    """
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    rota: Rota
+    annual_days: Decimal = Field(gt=_ZERO)
+    provenance: RuleProvenance
+
+
 class PermitDeadline(BaseModel):
     """When the permits not taken within their year are paid.
 
@@ -177,7 +199,8 @@ class LeaveRules(BaseModel):
     ``ferie_accrual``, ``permits`` and
     ``termination`` are stated for a CCNL whose accrual was read; a CCNL
     without them accrues no leave.  ``permit_deadline`` pays the permits
-    of a year not taken by its deadline.
+    of a year not taken by its deadline.  ``rota_annual_days`` replace
+    ``default_annual_days`` for the rota of a guard (``Employment.rota``).
 
     ``provenance`` links this rule to its CCNL article.
     """
@@ -192,6 +215,7 @@ class LeaveRules(BaseModel):
     permits: tuple[PermitRules, ...] = ()
     termination: LeaveTermination | None = None
     permit_deadline: PermitDeadline | None = None
+    rota_annual_days: tuple[RotaLeave, ...] = ()
 
     @model_validator(mode="after")
     def _distinct_buckets(self) -> Self:
@@ -209,8 +233,13 @@ class LeaveRules(BaseModel):
         if deadline is not None and not set(deadline.buckets) <= set(buckets):
             msg = f"permit_deadline names buckets without permits: {deadline.buckets}"
             raise ValueError(msg)
-        if self.week_days_annual_days and self.entitlement_tiers:
-            msg = "week_days_annual_days exclude seniority entitlement_tiers"
+        if (self.week_days_annual_days or self.rota_annual_days) and (
+            self.entitlement_tiers
+        ):
+            msg = (
+                "week_days_annual_days and rota_annual_days exclude seniority "
+                "entitlement_tiers"
+            )
             raise ValueError(msg)
         return self
 

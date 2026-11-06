@@ -58,6 +58,7 @@ from ccnl_engine.employment.period.inputs import (
     TerminationCause,
 )
 from ccnl_engine.employment.rest_day.inputs import Weekday
+from ccnl_engine.employment.rota.inputs import Rota
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.event.facade import WorkEvent
 from ccnl_engine.extra_month.schedule.models import (
@@ -227,6 +228,7 @@ def _employment(contract: Contract) -> Employment:
         weekly_hours=WeeklyHours(Decimal(30)),
         full_time_weekly_hours=WeeklyHours(Decimal(40)),
         full_time_week_days=5,
+        rota=Rota.SIX_ONE_ONE,
         work_pattern=WorkPattern(
             weekday_hours=(Decimal(6),) * 5 + (Decimal(0),) * 2,
             months=frozenset(range(1, 12)),

@@ -74,7 +74,7 @@
       },
       {
         "kind": "simplification",
-        "text": "LEAVE (Art. 89, 2026 text): 25 days with the 5+1 rota, 23 with 6+1+1, 22 with 5+2. The file accrues the 25 days of the 5+1 rota.",
+        "text": "LEAVE (Art. 89, 2026 text): 25 days with the 5+1 rota, 23 with 6+1+1, 22 with 5+2, read by Employment.rota; without it the 25 days of the 5+1 rota.",
         "capability": "leave",
         "monetary_impact": "yes",
         "limitation": {
@@ -82,7 +82,8 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Add the rota of the guard (5+1, 6+1+1, 5+2) as an employment fact and accrue 25, 23 or 22 days."
+          "remediation": "Resolved: leave_rules.rota_annual_days with Employment.rota, read on 2026-11-06.",
+          "status": "resolved"
         }
       }
     ]
@@ -1107,7 +1108,7 @@
     "effective_until": null,
     "source": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
     "verification_status": "unverified",
-    "source_hash": "dc6f220f6188bc14fe4899a1dbd59fc1e053e0400ceb2fec50ee61b59aae4268",
+    "source_hash": "6422ae426bf9410f923ebed8e9f2564a53bd9736542b332c2af392d729e5d8ff",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1249,30 +1250,128 @@
     },
     "leave_rules": {
       "default_annual_days": "25",
-      "entitlement_tiers": [
-        {
-          "service_months_min": 0,
-          "annual_days": "25"
-        }
-      ],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "ccnl-vigilanza-privata-federdat-gpg-2024",
-            "title": "CCNL Vigilanza Privata FEDERDAT (GPG) 2023-2026",
-            "kind": "tabella_retributiva",
-            "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+            "document_id": "cnel-hv51-245848-ccnl-2026",
+            "title": "CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 9 luglio 2026 (archivio CNEL HV51, accordo 245848)",
+            "kind": "cnel",
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+            "published_on": "2026-07-09",
+            "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
           },
-          "section": "Art. ferie"
+          "page": "45",
+          "section": "Art. 89 - Ferie",
+          "quote": "25 giorni di lavoro quando si applica il sistema 5 + 1 (cinque giorni di lavoro e un giorno di riposo); 23 giorni di lavoro quando si applica il sistema 6 + 1 + 1 (sei giorni di lavoro, il giorno di riposo settimanale ed un giorno di permesso); 22 giorni di lavoro quando si applica il sistema 5 + 2 (amministrativi con orario di lavoro giornaliero di 8 ore in cinque giorni)."
         },
+        "transformation": "25 days a year on the 5+1 rota, the default when Employment.rota is not stated (art. 72 of the 2023 text is the same).",
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-08T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2024-02-16"
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-06T20:00:00Z",
+          "effective_from": "2023-06-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-06T20:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-06-ai-federdat-hv51"
         }
-      }
+      },
+      "rota_annual_days": [
+        {
+          "rota": "5+1",
+          "annual_days": "25",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "cnel-hv51-245848-ccnl-2026",
+                "title": "CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 9 luglio 2026 (archivio CNEL HV51, accordo 245848)",
+                "kind": "cnel",
+                "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+                "published_on": "2026-07-09",
+                "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
+              },
+              "page": "45",
+              "section": "Art. 89 - Ferie",
+              "quote": "25 giorni di lavoro quando si applica il sistema 5 + 1 (cinque giorni di lavoro e un giorno di riposo); 23 giorni di lavoro quando si applica il sistema 6 + 1 + 1 (sei giorni di lavoro, il giorno di riposo settimanale ed un giorno di permesso); 22 giorni di lavoro quando si applica il sistema 5 + 2 (amministrativi con orario di lavoro giornaliero di 8 ore in cinque giorni)."
+            },
+            "transformation": "25 days on the 5+1 rota.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-06T20:00:00Z",
+              "effective_from": "2023-06-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-06T20:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-06-ai-federdat-hv51"
+            }
+          }
+        },
+        {
+          "rota": "6+1+1",
+          "annual_days": "23",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "cnel-hv51-245848-ccnl-2026",
+                "title": "CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 9 luglio 2026 (archivio CNEL HV51, accordo 245848)",
+                "kind": "cnel",
+                "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+                "published_on": "2026-07-09",
+                "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
+              },
+              "page": "45",
+              "section": "Art. 89 - Ferie",
+              "quote": "25 giorni di lavoro quando si applica il sistema 5 + 1 (cinque giorni di lavoro e un giorno di riposo); 23 giorni di lavoro quando si applica il sistema 6 + 1 + 1 (sei giorni di lavoro, il giorno di riposo settimanale ed un giorno di permesso); 22 giorni di lavoro quando si applica il sistema 5 + 2 (amministrativi con orario di lavoro giornaliero di 8 ore in cinque giorni)."
+            },
+            "transformation": "23 days on the 6+1+1 rota.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-06T20:00:00Z",
+              "effective_from": "2023-06-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-06T20:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-06-ai-federdat-hv51"
+            }
+          }
+        },
+        {
+          "rota": "5+2",
+          "annual_days": "22",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "cnel-hv51-245848-ccnl-2026",
+                "title": "CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 9 luglio 2026 (archivio CNEL HV51, accordo 245848)",
+                "kind": "cnel",
+                "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+                "published_on": "2026-07-09",
+                "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
+              },
+              "page": "45",
+              "section": "Art. 89 - Ferie",
+              "quote": "25 giorni di lavoro quando si applica il sistema 5 + 1 (cinque giorni di lavoro e un giorno di riposo); 23 giorni di lavoro quando si applica il sistema 6 + 1 + 1 (sei giorni di lavoro, il giorno di riposo settimanale ed un giorno di permesso); 22 giorni di lavoro quando si applica il sistema 5 + 2 (amministrativi con orario di lavoro giornaliero di 8 ore in cinque giorni)."
+            },
+            "transformation": "22 days on the 5+2 rota of the administrative staff.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-06T20:00:00Z",
+              "effective_from": "2023-06-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-06T20:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-06-ai-federdat-hv51"
+            }
+          }
+        }
+      ]
     },
     "sickness_rules": {
       "carenza_integration_rate": "1",
