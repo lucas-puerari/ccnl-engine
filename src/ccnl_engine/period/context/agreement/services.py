@@ -7,7 +7,6 @@ those of the competence year of the run (:func:`with_competence_contributions`).
 from __future__ import annotations
 
 from dataclasses import dataclass
-from decimal import ROUND_HALF_UP, Context, Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.agreement.validity.rules import rule_scope
@@ -24,6 +23,8 @@ from ccnl_engine.employment.context.models import EffectiveDateContext, Temporal
 from ccnl_engine.errors import InvalidInputError, UnknownLevelError
 from ccnl_engine.fund.solidarity.models import with_solidarity_tiers
 from ccnl_engine.sickness.counting.rules import with_window_counting
+from ccnl_engine.working_time.flat_pay.rules import flat_pay_divisor
+from ccnl_engine.working_time.rota.rules import with_rota
 from ccnl_engine.working_time.subsector.rules import with_subsector
 from ccnl_engine.working_time.week.rules import with_week_days, with_week_divisor
 
@@ -32,7 +33,6 @@ if TYPE_CHECKING:
     from ccnl_engine.capability.registry.models import CapabilityCatalog
     from ccnl_engine.compensation.models import Level
     from ccnl_engine.employment.category.models import WorkerCategory
-    from ccnl_engine.employment.fact.inputs import WeeklyHours
     from ccnl_engine.period.ports import KnowledgeRepository
     from ccnl_engine.period.requests import PeriodCalculationRequest
     from ccnl_engine.sector.models import YearRules
@@ -149,12 +149,17 @@ def load_contract(
         UnknownLevelError: When the CCNL has no level ``request.level_code``.
     """
     period_id = request.period_id
-    ccnl = with_week_days(
-        with_week_divisor(
-            flat_pay_divisor(resolve_ccnl(repo, request.ccnl_id), request.weekly_hours),
-            request.full_time_weekly_hours,
+    ccnl = with_rota(
+        with_week_days(
+            with_week_divisor(
+                flat_pay_divisor(
+                    resolve_ccnl(repo, request.ccnl_id), request.weekly_hours
+                ),
+                request.full_time_weekly_hours,
+            ),
+            request.full_time_week_days,
         ),
-        request.full_time_week_days,
+        request.rota,
     )
     ccnl, sector_unknown = with_employer_sector(ccnl, request.employer.inps_sector)
     ccnl = with_window_counting(ccnl, request.employer.sickness_window_counting)
@@ -237,37 +242,6 @@ def load_contract(
         premium_unknown,
         subsector_unknown,
     )
-
-
-#: Weeks of a month: a weekly schedule times 52 / 12 is its monthly hours.
-_WEEKS_PER_MONTH = Context(prec=28).divide(Decimal(52), Decimal(12))
-_CENT = Decimal("0.01")
-
-
-def flat_pay_divisor(ccnl: CCNL, weekly_hours: WeeklyHours | None) -> CCNL:
-    """Return ``ccnl`` with the hourly divisor of the hours actually worked.
-
-    A regime that pays its minimum whatever the hours up to a ceiling
-    (``flat_pay_max_weekly_hours``, CCNL lavoro domestico art. 14 c. 2) has
-    an hourly rate of the monthly pay over the hours of the employment, not
-    over those of the ceiling: the divisor becomes ``weekly_hours x 52 / 12``
-    for the INPS hourly bracket, the overtime and the proration alike.
-
-    Returns:
-        ``ccnl`` unchanged outside such a regime or without weekly hours.
-    """
-    params = ccnl.parameters
-    if params.flat_pay_max_weekly_hours is None or weekly_hours is None:
-        return ccnl
-    hours = (weekly_hours.value * _WEEKS_PER_MONTH).quantize(
-        _CENT, rounding=ROUND_HALF_UP
-    )
-    periods = tuple(
-        p.model_copy(update={"value": hours}) for p in params.hourly_divisor.periods
-    )
-    divisor = params.hourly_divisor.model_copy(update={"periods": periods})
-    update = {"parameters": params.model_copy(update={"hourly_divisor": divisor})}
-    return ccnl.model_copy(update=update)
 
 
 def with_competence_contributions(

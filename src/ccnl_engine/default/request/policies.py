@@ -112,6 +112,9 @@ REQUEST_DEFAULTS: Mapping[str, FieldDefault] = {
     "Employment.full_time_week_days": absence_is_fact(
         "the daily divisor of the CCNL absence rule, whatever the week"
     ),
+    "Employment.rota": absence_is_fact(
+        "the leave days of the CCNL default rota (FEDERDAT: 5+1, 25 days)"
+    ),
     "Employment.work_pattern": absence_is_fact(
         "a horizontal part time or a full time: every month is worked and "
         "weekly_hours alone sets the part-time ratio"

@@ -2329,7 +2329,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/vigilanza-privata-federdat-gpg",
       "ruleset_version": "2026.2",
-      "source_hash": "dc6f220f6188bc14fe4899a1dbd59fc1e053e0400ceb2fec50ee61b59aae4268",
+      "source_hash": "6422ae426bf9410f923ebed8e9f2564a53bd9736542b332c2af392d729e5d8ff",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/vigilanza-privata-federdat-gpg.json.gz"
@@ -5121,7 +5121,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "693de1e96b33a069cdcb060fbd389b01798ebe36f3e63055329850a919d28d02",
+      "source_hash": "88a10f265ff8ecc5b22218ef8ab38e73bbb7fde38d1be91ad539c3379c79fd2e",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/vigilanza-privata-federdat-gpg.json.gz",

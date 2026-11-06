@@ -1323,8 +1323,7 @@
       "vigilanza-privata-assiv/terziario_tax_sector_unverified"
     ],
     "agreement/vigilanza-privata-federdat-gpg.json": [
-      "vigilanza-privata-federdat-gpg/apprentice_seniority",
-      "vigilanza-privata-federdat-gpg/leave_days_by_rota"
+      "vigilanza-privata-federdat-gpg/apprentice_seniority"
     ],
     "agreement/vigilanza-privata-federdat-sf.json": [
       "vigilanza-privata-federdat-sf/apprentice_seniority",

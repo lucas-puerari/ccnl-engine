@@ -29,6 +29,7 @@ from ccnl_engine.employment.fact.inputs import (
 from ccnl_engine.employment.fixed_term.inputs import FixedTerm
 from ccnl_engine.employment.period.inputs import EmploymentPeriod
 from ccnl_engine.employment.rest_day.inputs import Weekday, check_rest_day
+from ccnl_engine.employment.rota.inputs import Rota, check_rota
 from ccnl_engine.employment.week_days.inputs import check_week_days
 from ccnl_engine.pension_fund.inputs import (
     PENSION_FUND_TYPES,
@@ -106,6 +107,9 @@ class Employment:
         full_time_week_days: Working days of the full-time week, 5 or 6; a CCNL
             that sets the daily pay by the week (Pulizia art. 34: 22 or 26) uses
             it.  ``None`` keeps the CCNL default divisor.
+        rota: Rota of a security guard (``5+1``, ``6+1+1``, ``5+2``); a CCNL
+            that sets the ferie by rota (FEDERDAT art. 89: 25, 23 or 22 days)
+            uses it.  ``None`` keeps the CCNL default days.
         work_pattern: Vertical or mixed part time: the hours of each day of the week,
             whose sum must equal ``weekly_hours``, and the months of the year the worker
             works.  A month not worked pays no monthly pay and accrues no extra-month
@@ -188,6 +192,7 @@ class Employment:
     weekly_hours: WeeklyHours | None = None
     full_time_weekly_hours: WeeklyHours | None = None
     full_time_week_days: int | None = None
+    rota: Rota | None = None
     work_pattern: WorkPattern | None = None
     weekly_rest_day: Weekday = Weekday.SUNDAY
     seniority: SeniorityFact | None = None
@@ -237,6 +242,7 @@ class Employment:
         rest = check_rest_day(self.weekly_rest_day, self.work_pattern)
         object.__setattr__(self, "weekly_rest_day", rest)
         check_week_days(self.full_time_week_days)
+        object.__setattr__(self, "rota", check_rota(self.rota))
         elements = check_individual_elements(
             self.individual_elements, "Employment.individual_elements"
         )
