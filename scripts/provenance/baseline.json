@@ -1321,7 +1321,7 @@
     ],
     "agreement/vigilanza-privata-federdat-gpg.json": [
       "vigilanza-privata-federdat-gpg/apprentice_seniority",
-      "vigilanza-privata-federdat-gpg/seniority_assumed_unchanged"
+      "vigilanza-privata-federdat-gpg/leave_days_by_rota"
     ],
     "limitation/engine.json": [
       "apprenticeship_pct_undeclared_components",
