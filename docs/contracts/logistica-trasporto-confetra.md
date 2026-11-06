@@ -39,9 +39,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | absence, base_salary, overtime, seniority |
+| **Limits of this contract** | absence, base_salary, overtime |
 
-7 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+6 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -58,7 +58,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-12-06 |
-| **Last review** | 2026-11-05 |
+| **Last review** | 2026-11-06 |
 | **Latest salary tranche** | 2027-06-01 |
 
 ## Review history
@@ -83,6 +83,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-01 | claude-opus-5-5 (ai) | Hourly base of the time supplements (art. 13 c. 8, art. 61 c. 1) and the supplements of ordinary Sunday and holiday work (art. 12 c. 4), read in the text layer of the testo unico. AI review only: the same model extracted and checked the values. | corrected | hourly_base_method gross_incl_allowances (was minimo_tabellare), now verified: the retribuzione globale of art. 61 c. 1 divided by 168 (art. 13 c. 8), without the EDR of 2021; the engine derives the hourly rate of an event without one.<br>individual_elements included: art. 61 c. 1 punto 3 counts 'eventuali altri aumenti comunque denominati'.<br>Band FESTIVO added: 50% on holiday work within the ordinary hours (art. 12 c. 4). The night (20/15/25%) and Sunday (20% by day, 50% by night) rates of art. 12 c. 4 are left out: they depend on the guardian role, the shift and the hours of the Sunday, which the request does not carry. |
 | 2026-11-05 | claude-opus-5-5 (ai) | The daily divisor of a six-day week of the non-travelling staff, art. 61 c. 3, p. 86 of the testo unico. | confirmed | Art. 61 c. 3 divides by 26 the monthly pay of the non-travelling staff on a six-day week, by 22 otherwise: week_days_methods 6 -> by_26, read when Employment.full_time_week_days is 6. |
 | 2026-11-05 | claude-opus-5-5 (ai) | Artt. 51-52 (PDF pp. 64-65) of the Testo Unico of 25 September 2025, text layer. | corrected | Sanilog and Ebilog, owed for every worker of the CCNL, were not modelled: employer cost and worker share were short. |
+| 2026-11-06 | claude-opus-5-5 (ai) | Apprentice seniority: artt. 17 and 57 of the testo unico of 25 September 2025 (pp. 40-41, 73, 75). | corrected | Apprentices accrue the level increments in full: art. 17 c. 1 (pp. 40-41 of the testo unico of 25 September 2025) gives 'Ai lavoratori, per l'anzianità di servizio maturata presso la stessa azienda' a fixed amount of the level each biennio; art. 57 c. 7 (p. 73) counts the apprentice's probation 'agli effetti dell'anzianità di servizio'; cc. 8-9 and tables A-B (pp. 73, 75) apply the percentage to the 'minimo contrattuale' only. |
 
 ## Salary table
 
@@ -144,13 +145,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `absence` applies.
 
     **Remediation:** Exclude EDR_2021 from the daily base of absences and sickness (a relevance flag on the allowance), or source that it enters it.
-
-!!! warning "logistica-trasporto-confetra/apprentice_seniority · seniority · impact unknown · open"
-    APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.
-
-    **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
-
-    **Remediation:** Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.
 
 !!! warning "logistica-trasporto-confetra/sixth_day_overtime · overtime · impact yes · open"
     SIXTH DAY: Art. 13 c. 6 (p. 39) pays 50% for the overtime of the sixth day of a non-travelling worker whose normal week is spread over five days; the overtime bands have no such kind, so that overtime takes the 30% of the weekday band.
