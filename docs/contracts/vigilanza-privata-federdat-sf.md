@@ -42,7 +42,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 23 verified / 0 derived / 0 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 26 verified / 0 derived / 0 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -103,11 +103,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Add the level F of the 2023 table until the renewal of July 2026.
 
 !!! warning "vigilanza-privata-federdat-sf/ordinary_hours_premiums · overtime · impact yes · open"
-    ORDINARY SUNDAY AND HOLIDAY WORK (Art. 143): 40% by day, 50% by night, and the indennità sesto giorno of 10%, on ordinary hours, are not modelled; the overtime bands are.
+    ORDINARY HOURS (Art. 143): the premiums of 40% on ordinary Sunday and holiday work by day and 50% on holiday work by night are modelled (supplement_bands SF_*); not modelled: the 50% of ordinary Sunday work by night of a worker whose rest day is another day, and the indennità sesto giorno of 10%.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Model the premiums of art. 143 on ordinary Sunday, holiday and sixth-day work.
+    **Remediation:** Model the Sunday night premium and the sixth-day allowance of art. 143.
 
 !!! warning "vigilanza-privata-federdat-sf/health_and_bilateral_funds · contractual_funds · impact yes · open"
     HEALTH AND BILATERAL FUNDS: the ente bilaterale EBILAV and the health fund of the CCNL are not modelled; their amounts were not read on the text.
