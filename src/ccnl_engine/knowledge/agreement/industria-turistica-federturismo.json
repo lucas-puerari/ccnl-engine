@@ -80,22 +80,6 @@
         }
       },
       {
-        "kind": "simplification",
-        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
-        "capability": "seniority",
-        "monetary_impact": "unknown",
-        "limitation": {
-          "variant": "apprentice_seniority",
-          "applies_when": {
-            "trigger": "path",
-            "contract_types": [
-              "apprentice"
-            ]
-          },
-          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
-        }
-      },
-      {
         "kind": "info",
         "text": "TRATTAMENTO INTEGRATIVO SPECIALE (L. 199/2025 art. 1 cc. 18-21): for the work of 1 January - 30 September 2026 of a worker who asked for it (PriorYearTaxFacts.special_supplement_requested) with 2025 employment income up to 40,000 EUR, in an employer of food service, tourism or thermal establishments (EmployerProfile.activity), the engine pays 15% of the gross pay of the night hours and of the holiday overtime (AdE circ. 26/E/2023 par. 2: 'calcolata sulla retribuzione lorda'), outside income, as a credit the employer recovers in F24 (capability special_supplement)."
       }
@@ -124,6 +108,27 @@
           "The file's values were derived parametrically from A1 and D2 (an aggregator); 11 of them differ by one cent from the printed table and are corrected.",
           "The ruleset names this source, published by Federturismo Confindustria, a signatory: source_type contracting_party.",
           "Corrected to the printed table: A2 2025-01-01: 2164.27 -> 2164.26; A2 2027-04-01: 2315.87 -> 2315.88; B1 2025-01-01: 2016.87 -> 2016.88; B1 2027-04-01: 2158.18 -> 2158.17; C1 2025-06-01: 1771.22 -> 1771.21; C1 2027-04-01: 1861.27 -> 1861.28; C3 2025-01-01: 1540.03 -> 1540.02; C3 2025-06-01: 1568.17 -> 1568.16; C3 2027-04-01: 1647.90 -> 1647.91; D1 2025-01-01: 1481.04 -> 1481.05; D1 2027-04-01: 1584.79 -> 1584.80."
+        ]
+      },
+      {
+        "id": "2026-11-06-ai-industria-turistica-apprentice-seniority",
+        "date": "2026-11-06",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Apprentice seniority: artt. 40 and 106 of the testo definitivo of 14 November 2016 (pp. 56, 88).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filcams.cgil.it/media/ccnl_industriaturistica_14112016_pdf",
+            "sha256": "a7f019a2cdea2335ad438890d84daf0ec5f9f332b37790dcd9d3fe21f934ec54"
+          }
+        ],
+        "findings": [
+          "The apprentice's retribuzione is 'quella minima contrattualmente prevista' for his level, apart from the scatti of art. 106: none during the apprenticeship."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "parameters.seniority_increments"
         ]
       }
     ]
@@ -1727,6 +1732,42 @@
           "verification_status": "unverified",
           "effective_from": "2020-01-01"
         }
+      },
+      "apprentice_amount": {
+        "periods": [
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": null,
+            "value": "0.00",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "industria-turistica-ccnl-2016",
+                  "title": "CCNL Industria turistica, testo definitivo 14 novembre 2016",
+                  "kind": "altro",
+                  "url": "https://www.filcams.cgil.it/media/ccnl_industriaturistica_14112016_pdf",
+                  "published_on": "2016-11-14",
+                  "sha256": "a7f019a2cdea2335ad438890d84daf0ec5f9f332b37790dcd9d3fe21f934ec54"
+                },
+                "page": "56",
+                "section": "Art. 40 c. 7 - Apprendistato; Art. 106 c. 1",
+                "quote": "l'apprendista potrà essere inquadrato fino a due (2) livelli inferiori [...] e la retribuzione sarà corrispondente a quella minima contrattualmente prevista per tale livello di inquadramento. [Art. 106] Di norma, la retribuzione del lavoratore è distinta nelle seguenti voci: a) paga base nazionale conglobata [...] c) eventuali scatti di anzianità"
+              },
+              "transformation": "The apprentice is paid the minimum of the level he is classified at, which art. 106 keeps apart from the scatti: no increment during the apprenticeship; the period counts for seniority once the employment goes on (art. 40).",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T02:00:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T02:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-06-ai-industria-turistica-apprentice-seniority"
+              }
+            }
+          }
+        ]
       }
     },
     "accrual_rule": {
@@ -1788,7 +1829,7 @@
     "effective_until": null,
     "source": "https://www.federturismo.it/it/documenti/documenti/12210-circolare-tabelle-retributive-ccnl-news-16-gennaio-2025/file.html",
     "verification_status": "unverified",
-    "source_hash": "081620c486cfe87fe3d671c80e7c78c47b2037e436402cabcd84d9b6e60ce1ee",
+    "source_hash": "545f38dfb19116c0ae3cb0941579863355bccdda7d2877552ad3893d0f221574",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

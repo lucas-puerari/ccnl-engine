@@ -1190,7 +1190,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/industria-turistica-federturismo",
       "ruleset_version": "2026.2",
-      "source_hash": "081620c486cfe87fe3d671c80e7c78c47b2037e436402cabcd84d9b6e60ce1ee",
+      "source_hash": "545f38dfb19116c0ae3cb0941579863355bccdda7d2877552ad3893d0f221574",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/industria-turistica-federturismo.json.gz"
@@ -3781,7 +3781,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "85a8eab149ca43987ccd6ae072ea1d953e7393d3b18a3c7742a78c4044542776",
+      "source_hash": "1c45447b32fdcac0f39d00d6a0af91540af0281d6910cbc55d94854c5bbd9e6f",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/industria-turistica-federturismo.json.gz",
