@@ -21,12 +21,12 @@
     {
       "id": "asi_health_contribution",
       "institute": "bilateral_funds",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = owed",
-      "rule": "HEALTH CONTRIBUTION: the ASI contribution of EUR 5, then 10 a month (Art. 87), is owed for every worker. Not modelled: the totals of every run are short of it.",
+      "variant": "apprentice",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "HEALTH CONTRIBUTION (Art. 87, p. 114 of the 2025 coordinated text): 5 EUR a month from May 2013, 10 EUR from January 2025, on the employer, for the workers 'assunti a tempo indeterminato', modelled as health_funds sanita_integrativa. Not modelled: the apprentices, whose contract art. 28 calls 'a tempo indeterminato', are not charged.",
       "calculation": "ccnl/cooperative-sociali:coverage.notes",
       "state": "absent",
-      "remediation": "Model the ASI contribution per worker, then remove this note.",
+      "remediation": "Charge the contribution on the apprentices too, then remove this note.",
       "origin": "seeded",
       "links": {
         "limitations": [

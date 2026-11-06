@@ -609,7 +609,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/cooperative-sociali",
       "ruleset_version": "2026.2",
-      "source_hash": "40ea2658a716dd5ea913ef3d693c735812e24addbcd695b970797d17512d9dee",
+      "source_hash": "949f270347e7be609283a0b03b913eddc36af8a0d398b54a1166ada2653d4ac2",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/cooperative-sociali.json.gz"
@@ -3121,7 +3121,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "074c64cc31ffe7caf387181e626045bbe8f38594c9978a36055067707621c838",
+      "source_hash": "623ac1b4d24c9c0ae9cabda8a30651f20b79dc5719ac63b971d1981546d42e02",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/cooperative-sociali.json.gz",
