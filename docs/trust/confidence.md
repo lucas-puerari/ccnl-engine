@@ -84,7 +84,7 @@ does not report its gap as well.
 
 A `derived` rule (taken from a cited document location, with no recorded
 human check) lowers the evidence axis but does not block on its own. Only
-<!-- trust:rules-verified -->2911<!-- /trust:rules-verified --> payable rules of
+<!-- trust:rules-verified -->2934<!-- /trust:rules-verified --> payable rules of
 the bundle are `verified`, so requiring `verified` would block almost every
 result; the evidence axis keeps the difference visible instead.
 
@@ -223,8 +223,13 @@ limits, the `rulesets` and dates it affects, a `monetary_impact` (`yes`,
 The <!-- trust:simplification-notes -->548<!-- /trust:simplification-notes -->
 simplification notes of the bundle each state their impact on what the engine
 computes from the bundle:
-<!-- trust:simplification-yes -->281<!-- /trust:simplification-yes --> `yes`,
-<!-- trust:simplification-unknown -->213<!-- /trust:simplification-unknown --> `unknown`
+<<<<<<< HEAD
+<!-- trust:simplification-yes -->282<!-- /trust:simplification-yes --> `yes`,
+<!-- trust:simplification-unknown -->212<!-- /trust:simplification-unknown --> `unknown`
+=======
+<!-- trust:simplification-yes -->282<!-- /trust:simplification-yes --> `yes`,
+<!-- trust:simplification-unknown -->212<!-- /trust:simplification-unknown --> `unknown`
+>>>>>>> origin/main
 and <!-- trust:simplification-no -->54<!-- /trust:simplification-no --> `no` (the
 engine refuses the case, or takes the value from the caller). A file whose
 note can move an amount without declaring a limitation does not load, so the
@@ -246,7 +251,11 @@ classifies it by obligation:
 - an engine limitation applies only when the run takes its code path, and the
   run records the traversal (an apprentice in a midpoint period of a CCNL
   whose midpoint components are unsourced);
-- <!-- trust:limitations-outside-input -->192<!-- /trust:limitations-outside-input -->
+<<<<<<< HEAD
+- <!-- trust:limitations-outside-input -->193<!-- /trust:limitations-outside-input -->
+=======
+- <!-- trust:limitations-outside-input -->193<!-- /trust:limitations-outside-input -->
+>>>>>>> origin/main
   limitations depend on a fact the request cannot express (a hire date before
   a transitional regime, a fund the worker joins, a sector section): they are
   documented on the contract page and never recorded on a run. An amount

@@ -1,4 +1,4 @@
-"""Usage example: vigilanza-privata-federdat-gpg (HV17).
+"""Usage example: vigilanza-privata-federdat-gpg (HV51).
 
 CCNL Vigilanza Privata e Servizi Fiduciari FEDERDAT - GPG.
 
