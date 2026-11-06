@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 4 verified / 39 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 4 verified / 41 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2021-09-07 |
-| **Last review** | 2026-11-01 |
+| **Last review** | 2026-11-06 |
 | **Latest salary tranche** | 2021-11-01 |
 
 ## Review history
@@ -61,6 +61,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-31 | claude-opus-5-5 (ai) | The basis of the indemnity for the leave not taken at the end of the employment, read in the CCNL of 7 September 2021 (Artt. 24, 26, 28, 29, 55, 57). (copied from farmacie-private-h121: covers the rules the two tables share, not the paga base of Tabella B) | corrected | Art. 57 (p. 24): the daily quota of the retribuzione di fatto is the monthly pay divided by 26 and the hourly quota by 173: work_rules.leave_rules.termination; the accrual of the leave is not modelled, so the basis is not used yet. |
 | 2026-10-31 | claude-opus-5-5 (ai) | The measure and accrual of the ferie, the ex festività and the permits read in the CCNL of 7 September 2021 (Artt. 24, 26, 29, 51). (copied from farmacie-private-h121: covers the rules the two tables share, not the paga base of Tabella B) | corrected | Art. 26 (p. 17): 26 working days of ferie for every worker; the 28 days after 36 months of the earlier pay-table source are not in the text: entitlement_tiers corrected to one tier of 26.<br>Art. 29 (p. 17): twelfths of the ferie per month of effective service: work_rules.leave_rules.ferie_accrual.<br>Art. 24 (p. 16): 32 hours of ex festività and 40 further hours of permits a year: work_rules.leave_rules.permits.<br>Art. 24 (p. 16): the 40 hours of a hire from 1 November 2021 by a pharmacy of up to 40 employees at 0%, 50% after three years, 100% after six: permits[rol].ramp with headcount_max 40. |
 | 2026-11-01 | claude-opus-5-5 (ai) | The notice clause (Art. 73, p. 27). (copied from farmacie-private-h121: covers the rules the two tables share, not the paga base of Tabella B) | corrected | Notice bands by level and service checked against the PDF by a separate session (delegated search and independent verification): work_rules.notice. |
+| 2026-11-06 | claude-opus-5-5 (ai) | Art. 3 Area Q and Tabella C (p. 59) of the CCNL of 7 September 2021. | corrected | Q2 and Q3 get 130 EUR after 12 years in level 1 and Area Q, 100 EUR before. |
 
 ## Salary table
 
@@ -109,11 +110,11 @@ under-level: `1`
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
 !!! warning "farmacie-rurali-sussidiate-h121/isq_twelve_year_tier · base_salary · impact yes · open"
-    SIMPLIFICATION: ISQ for Q2 and Q3 modelled at flat 100 EUR (the 2+ anni tier per Tabella C). Workers with 12+ anni receive 130 EUR (delta 30 EUR/month, max ~360 EUR/yr). The 12-year tier is not modelled, although an allowance can be gated on service months (service_months_threshold) (review of 2026-10-30)
+    ISQ (Art. 3 and Tabella C, p. 59 of the CCNL of 7 September 2021): Q2 and Q3 are paid 100 EUR and, after 12 years of 'anzianità complessiva maturata nel Livello 1° e nell'Area Q', 130 EUR, modelled on the months of service (isq up to 144, isq_12 from 144). Not modelled: a worker who served at a non-pharmacist level before level 1 reaches the 12 years later than the service months say.
 
     **Applies when:** `base_salary` applies; level in Q2, Q3.
 
-    **Remediation:** Check whether the 12 anni of Tabella C count service or time in the quadro qualification; if service, split the ISQ of Q2/Q3 into a 100 EUR allowance with service_months_until=144 and a 130 EUR one with service_months_threshold=144 (Employment.seniority), otherwise add a worker fact for the qualification time.
+    **Remediation:** Count only the months in level 1 and Area Q when the employment history states them, then remove this note.
 
 !!! warning "farmacie-rurali-sussidiate-h121/apprentice_seniority · seniority · impact unknown · open"
     APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.
