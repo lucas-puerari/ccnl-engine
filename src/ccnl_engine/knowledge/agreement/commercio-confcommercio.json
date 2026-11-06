@@ -101,22 +101,6 @@
         "text": "CNEL code H011 confirmed by Il Sole 24 Ore / INPS UNIEMENS reference."
       },
       {
-        "kind": "simplification",
-        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
-        "capability": "seniority",
-        "monetary_impact": "unknown",
-        "limitation": {
-          "variant": "apprentice_seniority",
-          "applies_when": {
-            "trigger": "path",
-            "contract_types": [
-              "apprentice"
-            ]
-          },
-          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
-        }
-      },
-      {
         "kind": "info",
         "text": "TERZO ELEMENTO NAZIONALE (Art. 215): 2.07 EUR a month due only in the provinces where no provincial third element is in force; paid when EmployerProfile.provincial_pay_element is false, left out with a missing_fact blocker when it is not stated."
       },
@@ -358,7 +342,8 @@
           "verified_at": "2026-10-11T18:00:00Z",
           "review_id": "2026-10-11-ai"
         }
-      }
+      },
+      "apprentice_level_amount": true
     },
     "accrual_rule": {
       "min_days": 15,
@@ -3720,7 +3705,7 @@
     "effective_until": null,
     "source": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
     "verification_status": "unverified",
-    "source_hash": "9b00f8a83c5dd17c8bc273e4cd9f76169b7ffa6b80774e3f2a99aab31ccf5d0d",
+    "source_hash": "f56718bfc95c35a789c06ce26a60364d127ea423fd7d49eb9bac005d3494c5b5",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

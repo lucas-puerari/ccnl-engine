@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, seniority, sickness, territorial_supplement |
+| **Limits of this contract** | base_salary, sickness, territorial_supplement |
 
-8 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+7 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-09-29 |
-| **Last review** | 2026-11-05 |
+| **Last review** | 2026-11-06 |
 | **Latest salary tranche** | 2027-02-01 |
 
 ## Review history
@@ -68,6 +68,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-01 | claude-opus-5-5 (ai) | The notice of Artt. 231-236 (PDF pp. 64-66). | corrected | Artt. 231, 232, 233 c. 3, 236 c. 2 (pp. 64-66): calendar days by level and service for dismissal and resignation, from the 1st or the 16th, indemnity on the retribuzione di fatto with the 13th and 14th ratei, out of the TFR base: work_rules.notice. Found by a delegated search, checked again on the PDF text. |
 | 2026-11-02 | claude-opus-5-5 (ai) | The premiums on ordinary hours of Artt. 134, 136, 138 and 139 and the hourly base of Artt. 189, 191 and 194 (PDF pp. 42-44 and 57-58). | corrected | Art. 134 (p. 43): ordinary night 15%; art. 136 c. 7 (p. 43): Sunday 30%; art. 139 (p. 44): weekly rest day 30%; art. 138 (p. 44): holidays as straordinario festivo 30% (art. 132), the hour paid apart: supplement_bands DMO_*, as Commercio artt. 151-156.<br>Art. 194 (p. 58) divisor 168 at 40 hours; art. 189 (p. 57, read on the page image) normale retribuzione: paga base, contingenza, terzi elementi, scatti, other bargained elements; art. 191 adds the continuative individual elements: hourly_base_provenance and individual_elements hour_only, as Commercio artt. 206-211. |
 | 2026-11-05 | claude-opus-5-5 (ai) | Artt. 18-20 (PDF pp. 15-16), 191 and 233 of the Testo Unico of 29 September 2025, text layer. | corrected | The three funds and their alternative elements were not modelled: employer cost, worker shares and the EDR of an employer that does not pay them were missing. |
+| 2026-11-06 | claude-opus-5-5 (ai) | Apprentice seniority: artt. 186 and 188 of the testo unico of 29 September 2025 (p. 56). | corrected | The apprentice is classified two then one level below with 'il conseguente trattamento economico'; 'il personale ha diritto a dieci scatti triennali' of fixed amounts per level, counting seniority 'dal giorno in cui il lavoratore è entrato a far parte dell'azienda, quali che siano le mansioni': the increments of the level the apprentice is paid at. |
 
 ## Salary table
 
@@ -124,13 +125,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Model the provincial terzi elementi of Art. 198 as a territorial supplement.
-
-!!! warning "dmo-federdistribuzione/apprentice_seniority · seniority · impact unknown · open"
-    APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.
-
-    **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
-
-    **Remediation:** Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.
 
 !!! warning "dmo-federdistribuzione/sickness_net_basis · sickness · impact yes · open"
     SICKNESS (Art. 170): the CCNL integrates up to a share of the net daily pay ('retribuzione giornaliera netta') without saying how the net pay is computed. The engine grosses up the INPS indemnity by the worker's INPS rate and tops it up to the measure of the gross daily quota, as for the Commercio file. The exempt events of c. 3 are an input (SicknessEpisode.short_absence_exempt, read with carenza_by_event) (review of 2026-10-30).

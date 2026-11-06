@@ -243,8 +243,8 @@ never grow.
 | 102 | [CCNL Sistemazioni Idraulico-Forestali e Idraulico-Agraria (Impiegati)](sistemazioni-idraulico-forestali-impiegati.md) | ⚠️ | base_salary, inps_employer | 22 / 6 / 2 / 0 |
 | 103 | [CCNL Sistemazioni Idraulico-Forestali e Idraulico-Agraria (Operai OTI)](sistemazioni-idraulico-forestali-operai.md) | ⚠️ | base_salary, inps_employer, seniority, territorial_supplement | 16 / 5 / 2 / 0 |
 | 104 | [CCNL Telecomunicazioni — Assotelecomunicazioni (Asstel)](telecomunicazioni-asstel.md) | ⚠️ | inps_employer, seniority | 2 / 44 / 1 / 0 |
-| 105 | [CCNL Terziario Distribuzione e Servizi — Confesercenti](terziario-confesercenti.md) | ⚠️ | base_salary, overtime, seniority, sickness, territorial_supplement, una_tantum | 92 / 2 / 0 / 0 |
-| 106 | [CCNL Terziario, Distribuzione e Servizi (Confcommercio)](commercio-confcommercio.md) | ⚠️ | base_salary, seniority, sickness | 86 / 2 / 0 / 0 |
+| 105 | [CCNL Terziario Distribuzione e Servizi — Confesercenti](terziario-confesercenti.md) | ⚠️ | base_salary, overtime, sickness, territorial_supplement, una_tantum | 92 / 2 / 0 / 0 |
+| 106 | [CCNL Terziario, Distribuzione e Servizi (Confcommercio)](commercio-confcommercio.md) | ⚠️ | base_salary, sickness | 86 / 2 / 0 / 0 |
 | 107 | [CCNL Tessile-Abbigliamento-Moda PMI (Uniontessile-Confapi)](tessile-pmi-uniontessile.md) | ⚠️ | base_salary, pension_fund_contribution | 38 / 0 / 5 / 1 |
 | 108 | [CCNL Trasporto Aereo — Gestori Aeroportuali](trasporto-aereo-assaeroporti.md) | ⚠️ | base_salary, sickness | 1 / 94 / 1 / 0 |
 | 109 | [CCNL Trasporto a Fune (Funivie Terrestri ed Aeree) - ANEF](funivie-anef.md) | ⚠️ | seniority | 2 / 47 / 1 / 1 |
@@ -274,4 +274,4 @@ never grow.
 | 133 | [CCNL per i lavoratori dipendenti delle aziende termali](aziende-termali-federterme.md) | ⚠️ | base_salary, bilateral_funds, inps_employer, seniority | 0 / 65 / 1 / 0 |
 | 134 | [CCNL per il personale dipendente non dirigente delle imprese di assicurazione (ANIA)](assicurazioni-ania.md) | ⚠️ | base_salary, inps_employer, seniority | 0 / 30 / 1 / 1 |
 | 135 | [DPR 24 marzo 2025, n. 53 — Forze di Polizia ad ordinamento civile (Triennio 2022-2024)](forze-polizia-ordinamento-civile.md) | ⚠️ | base_salary, seniority | 0 / 70 / 1 / 1 |
-| 136 | [Distribuzione Moderna Organizzata — Federdistribuzione](dmo-federdistribuzione.md) | ⚠️ | base_salary, seniority, sickness, territorial_supplement | 93 / 3 / 0 / 0 |
+| 136 | [Distribuzione Moderna Organizzata — Federdistribuzione](dmo-federdistribuzione.md) | ⚠️ | base_salary, sickness, territorial_supplement | 93 / 3 / 0 / 0 |
