@@ -1649,7 +1649,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/organizzazioni-allevatori-aia",
       "ruleset_version": "2026.2",
-      "source_hash": "4f49d71ff4383af6a3377388599d5ff0a726b27c9943dc2f5538355e5b78099d",
+      "source_hash": "b108524af14cc55586342e4535fc9c9a486c9bcbed8d7c4a3fc6f5a8c410435e",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/organizzazioni-allevatori-aia.json.gz"
@@ -4321,7 +4321,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "92bf33769b33a7e4875950a810526a7e22b5d38921a200fe71503adcf1fba34d",
+      "source_hash": "6001cccc7c33fc38a60ee59279d0906a15407a6ab31bd2edf2b9310bd01dbea5",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/organizzazioni-allevatori-aia.json.gz",
