@@ -167,7 +167,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/anas",
       "ruleset_version": "2026.2",
-      "source_hash": "7c61c5b5a72195a43c875cb52dad1d30f637ed557fd16a2cf6acad0821d77d37",
+      "source_hash": "cdee24a036e28f8b80389255db852632cedf963511181d528b6d2306fe002b31",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/anas.json.gz"
@@ -2581,7 +2581,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "ddd69d3c9caa4ebb91b4a5b06ac4af0976fbe2b14713096c5098529658b0dde9",
+      "source_hash": "58e803c0465a7f4f1c08da48a15e8a7a7f50027f5ddf25b67e8447f1fe3fbf2b",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/anas.json.gz",
