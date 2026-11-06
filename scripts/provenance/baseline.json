@@ -858,9 +858,6 @@
       "edilizia-pmi-confapi-aniem/provincial_evr",
       "edilizia-pmi-confapi-aniem/territorial_sector_allowance"
     ],
-    "agreement/elettrico-elettricita-futura.json": [
-      "elettrico-elettricita-futura/apprentice_seniority"
-    ],
     "agreement/enti-ricerca-aran.json": [
       "enti-ricerca-aran/perseo_sirio_not_modelled",
       "enti-ricerca-aran/research_allowances_missing",
