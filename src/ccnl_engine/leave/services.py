@@ -251,7 +251,7 @@ def _deadline_payout(
     if deadline is None or ctx.run_kind is not RunKind.REGULAR:
         return None
     period = ctx.request.period_id
-    carry = ctx.request.employer.permit_carryover
+    carry = True if deadline.carry_fixed else ctx.request.employer.permit_carryover
     if carry is None:
         if period.month not in {12, deadline.carry_until_month}:
             return None

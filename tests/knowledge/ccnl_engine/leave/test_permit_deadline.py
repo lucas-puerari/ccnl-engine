@@ -34,7 +34,11 @@ _EX = LeaveBucket.EX_FESTIVITA
 
 
 def _run(
-    carryover: bool | None, period: PeriodId, *balances: LeaveBalance
+    carryover: bool | None,
+    period: PeriodId,
+    *balances: LeaveBalance,
+    slug: str = "commercio-confcommercio",
+    level: str = "4",
 ) -> PeriodResult:
     opening = PeriodState.zero()
     opening = replace(
@@ -47,8 +51,8 @@ def _run(
             ),
             period_id=period,
             payment_date=date(period.year, period.month, 27),
-            ccnl_id="commercio-confcommercio",
-            level_code="4",
+            ccnl_id=slug,
+            level_code=level,
             opening_state=opening,
             roles=frozenset(),
             employment_period=EmploymentPeriod(date(2026, 1, 1)),
@@ -128,3 +132,31 @@ def test_an_unknown_choice_names_the_fact() -> None:
     assert "permit_carryover" not in {
         b.detail for b in _run(None, PeriodId(2026, 11)).blockers
     }
+
+
+_PULIZIA = "pulizia-artigianato-confartigianato"
+
+
+@pytest.mark.parametrize(
+    ("period", "paid"),
+    [(PeriodId(2026, 12), {}), (PeriodId(2027, 9), {"ex": Decimal(32)})],
+)
+def test_pulizia_carries_the_ex_festivita_to_september(
+    period: PeriodId, paid: dict[str, Decimal]
+) -> None:
+    """Art. 23: used by 30 September of the next year, else paid; no choice.
+
+    Without the employer's choice the 2026 hours are kept in December and
+    paid with the September 2027 pay.
+    """
+    hours = Decimal(352) if period.year == 2026 else Decimal(384)
+    result = _run(
+        None,
+        period,
+        LeaveBalance(_EX, 2026, hours, Decimal(0)),
+        slug=_PULIZIA,
+        level="3",
+    )
+
+    assert _paid(result) == paid
+    assert "permit_carryover" not in {b.detail for b in result.blockers}
