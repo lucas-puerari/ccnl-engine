@@ -147,6 +147,12 @@ class PermitDeadline(BaseModel):
         carry_until_month: Month of the next year by whose end the permits of
             a year may still be taken (Commercio 6, 30 June; Studi 7).
         buckets: Permit buckets the deadline covers.
+        carry_fixed: Whether the CCNL itself carries the permits to the
+            deadline, with no choice of the employer (Pulizia artigianato
+            Art. 23: "potranno essere utilizzati entro il 30 settembre
+            dell'anno successivo; qualora ciò non avvenga decadranno e
+            saranno pagati"); ``EmployerProfile.permit_carryover`` is then
+            not read.
         provenance: Source of the clause.
     """
 
@@ -154,6 +160,7 @@ class PermitDeadline(BaseModel):
 
     carry_until_month: int = Field(ge=1, le=12)
     buckets: tuple[LeaveBucket, ...] = Field(min_length=1)
+    carry_fixed: bool = False
     provenance: RuleProvenance | None = None
 
 

@@ -1802,7 +1802,7 @@
       "valid_to": "2029-12-31",
       "ruleset_id": "ccnl/pulizia-artigianato-confartigianato",
       "ruleset_version": "2025.1",
-      "source_hash": "e00c9d731c3d362381883d1d5ace92ef3922a3588818c3833a495c638e99ad78",
+      "source_hash": "a760c010ad7961527761769f911ac78cc189ef946fafc8dedadfff4b53c27da1",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/pulizia-artigianato-confartigianato.json.gz"
