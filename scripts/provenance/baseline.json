@@ -455,17 +455,17 @@
       "levels[F].fixed_allowances[TER]": "assumed",
       "seniority_increments": "assumed"
     },
+    "agreement/vigilanza-privata-assiv-sf.json": {
+      "accrual_rule": "missing",
+      "additional_months[2023-06-01]": "assumed",
+      "additional_months[2024-01-01]": "assumed"
+    },
     "agreement/vigilanza-privata-assiv.json": {
       "additional_months[2023-06-01]": "assumed"
     },
     "agreement/vigilanza-privata-federdat-gpg.json": {
       "accrual_rule": "missing",
       "additional_months[2023-06-01]": "assumed"
-    },
-    "agreement/vigilanza-privata-federdat-sf.json": {
-      "accrual_rule": "missing",
-      "additional_months[2023-06-01]": "assumed",
-      "additional_months[2024-01-01]": "assumed"
     },
     "contribution/2027/agricoltura.json": {
       "apprentice": "assumed",
@@ -1313,6 +1313,10 @@
       "vetro-meccanizzato-assovetro/seniority_assumed_constant",
       "vetro-meccanizzato-assovetro/tranches_from_october_2026"
     ],
+    "agreement/vigilanza-privata-assiv-sf.json": [
+      "vigilanza-privata-assiv-sf/apprentice_seniority",
+      "vigilanza-privata-assiv-sf/apprenticeship_rule_unsourced"
+    ],
     "agreement/vigilanza-privata-assiv.json": [
       "vigilanza-privata-assiv/apprentice_seniority",
       "vigilanza-privata-assiv/terziario_tax_sector_unverified"
@@ -1320,10 +1324,6 @@
     "agreement/vigilanza-privata-federdat-gpg.json": [
       "vigilanza-privata-federdat-gpg/apprentice_seniority",
       "vigilanza-privata-federdat-gpg/seniority_assumed_unchanged"
-    ],
-    "agreement/vigilanza-privata-federdat-sf.json": [
-      "vigilanza-privata-federdat-sf/apprentice_seniority",
-      "vigilanza-privata-federdat-sf/seniority_assumed_unchanged"
     ],
     "limitation/engine.json": [
       "apprenticeship_pct_undeclared_components",
