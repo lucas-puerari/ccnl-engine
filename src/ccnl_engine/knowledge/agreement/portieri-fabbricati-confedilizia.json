@@ -89,7 +89,7 @@
       },
       {
         "kind": "simplification",
-        "text": "APPRENTICESHIP: percentage type per Art. 35-36 of the 2025 renewal. Art. 36 comma 6: 80% months 1-12, 85% months 13-24, 90% months 25-36. Two tracks exist: 36 months (B1, C3) and 24 months (B2, B4, C4, D1, D3). SIMPLIFICATION: all seven destinations use the single 36-month schedule; the five 24-month profiles are over-modelled by 12 months — an apprentice in those profiles is paid 90% during months 25-36 instead of 100%. Impact: slight under-payment for 1 year for 5 destination levels. B3, B5, D2, D4 have no CCNL apprenticeship provision; excluded from destination_levels.",
+        "text": "APPRENTICESHIP (Art. 36 cc. 5-6, p. 36 of the ipotesi of 30 October 2025): 36 months for B1 and C3, 24 for B2, B4, C4, D1 and D3, each split in thirds at 80%, 85% and 90% of the salario conglobato (8 months each for the 24-month profiles). B3, B5, D2 and D4 admit no apprenticeship.",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
@@ -104,7 +104,8 @@
               "D3"
             ]
           },
-          "remediation": "Add a professionalizzante_24 track (80% months 1-12, 85% months 13-24, 100% after) for B2, B4, C4, D1, D3 and keep professionalizzante_36 for B1 and C3; until then add a limitation for apprentices of these levels."
+          "remediation": "Resolved: two tracks of art. 36, read on 2026-11-06.",
+          "status": "resolved"
         }
       },
       {
@@ -1423,12 +1424,7 @@
       "name": "professionalizzante_36",
       "destination_levels": [
         "B1",
-        "B2",
-        "B4",
-        "C3",
-        "C4",
-        "D1",
-        "D3"
+        "C3"
       ],
       "periods": [
         {
@@ -1451,7 +1447,94 @@
           "months_until": null,
           "percentage": "1.00"
         }
-      ]
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "portieri-ipotesi-2025",
+            "title": "CCNL Dipendenti da proprietari di fabbricati, ipotesi di accordo 30 ottobre 2025",
+            "kind": "altro",
+            "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+            "published_on": "2025-10-30",
+            "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+          },
+          "page": "36",
+          "section": "Art. 36 cc. 5-6 - Apprendistato professionalizzante",
+          "quote": "24 mesi: per gli apprendisti destinati ad essere inseriti nei profili professionali B2), B4), C4), D1) e D3). 36 mesi: per [...] B1) e C3). [...] prima parte del periodo lavorativo, pari ad 1/3 della durata complessiva: 80%; seconda parte [...]: 85%; terza parte [...]: 90%."
+        },
+        "transformation": "36 months in thirds of 12: 80%, 85%, 90%, then the full pay.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-06T23:00:00Z",
+          "effective_from": "2025-10-30",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-06T23:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-06-ai-portieri-art36"
+        }
+      }
+    },
+    {
+      "type": "percentage",
+      "name": "professionalizzante_24",
+      "destination_levels": [
+        "B2",
+        "B4",
+        "C4",
+        "D1",
+        "D3"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 8,
+          "percentage": "0.80"
+        },
+        {
+          "months_from": 8,
+          "months_until": 16,
+          "percentage": "0.85"
+        },
+        {
+          "months_from": 16,
+          "months_until": 24,
+          "percentage": "0.90"
+        },
+        {
+          "months_from": 24,
+          "months_until": null,
+          "percentage": "1.00"
+        }
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "portieri-ipotesi-2025",
+            "title": "CCNL Dipendenti da proprietari di fabbricati, ipotesi di accordo 30 ottobre 2025",
+            "kind": "altro",
+            "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+            "published_on": "2025-10-30",
+            "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+          },
+          "page": "36",
+          "section": "Art. 36 cc. 5-6 - Apprendistato professionalizzante",
+          "quote": "24 mesi: per gli apprendisti destinati ad essere inseriti nei profili professionali B2), B4), C4), D1) e D3). 36 mesi: per [...] B1) e C3). [...] prima parte del periodo lavorativo, pari ad 1/3 della durata complessiva: 80%; seconda parte [...]: 85%; terza parte [...]: 90%."
+        },
+        "transformation": "24 months in thirds of 8: 80%, 85%, 90%, then the full pay.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-06T23:00:00Z",
+          "effective_from": "2025-10-30",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-06T23:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-06-ai-portieri-art36"
+        }
+      }
     }
   ],
   "ruleset": {
@@ -1461,7 +1544,7 @@
     "effective_until": null,
     "source": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/",
     "verification_status": "verified",
-    "source_hash": "1e3c3cd71250df4686348ead6d05f2bc0fa29bb6ada8628c7d0b4b2c715bdb8a",
+    "source_hash": "54c862559479b1e5d88e40b1ae1f99be9cbb2fdffad20ba3f32f497790378732",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1638,6 +1721,27 @@
         "independence": "separate_session",
         "checked": [
           "parameters.seniority_increments"
+        ]
+      },
+      {
+        "id": "2026-11-06-ai-portieri-art36",
+        "date": "2026-11-06",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 36 cc. 5-6 apprenticeship of the ipotesi of 30 October 2025 (p. 36, OCR).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+            "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+          }
+        ],
+        "findings": [
+          "The 24-month profiles run thirds of 8 months, not the 12-month periods of the 36-month track."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "apprenticeship"
         ]
       }
     ]
