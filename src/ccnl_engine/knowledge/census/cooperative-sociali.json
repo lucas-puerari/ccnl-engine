@@ -19,22 +19,6 @@
       }
     },
     {
-      "id": "asi_health_contribution",
-      "institute": "bilateral_funds",
-      "variant": "apprentice",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "HEALTH CONTRIBUTION (Art. 87, p. 114 of the 2025 coordinated text): 5 EUR a month from May 2013, 10 EUR from January 2025, on the employer, for the workers 'assunti a tempo indeterminato', modelled as health_funds sanita_integrativa. Not modelled: the apprentices, whose contract art. 28 calls 'a tempo indeterminato', are not charged.",
-      "calculation": "ccnl/cooperative-sociali:coverage.notes",
-      "state": "absent",
-      "remediation": "Charge the contribution on the apprentices too, then remove this note.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "cooperative-sociali/asi_health_contribution"
-        ]
-      }
-    },
-    {
       "id": "coop_sociali_unmodelled_elements",
       "institute": "base_salary",
       "variant": "all",

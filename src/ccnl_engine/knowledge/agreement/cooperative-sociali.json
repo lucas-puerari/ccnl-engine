@@ -140,18 +140,16 @@
       },
       {
         "kind": "simplification",
-        "text": "HEALTH CONTRIBUTION (Art. 87, p. 114 of the 2025 coordinated text): 5 EUR a month from May 2013, 10 EUR from January 2025, on the employer, for the workers 'assunti a tempo indeterminato', modelled as health_funds sanita_integrativa. Not modelled: the apprentices, whose contract art. 28 calls 'a tempo indeterminato', are not charged.",
+        "text": "HEALTH CONTRIBUTION (Art. 87, p. 114 of the 2025 coordinated text): 5 EUR a month from May 2013, 10 EUR from January 2025, on the employer, for the workers 'assunti a tempo indeterminato', apprentices included: art. 28 (p. 55) calls apprenticeship 'contratto di lavoro a tempo indeterminato'. Modelled as health_funds sanita_integrativa.",
         "capability": "bilateral_funds",
         "monetary_impact": "yes",
         "limitation": {
           "variant": "asi_health_contribution",
           "applies_when": {
-            "trigger": "run",
-            "contract_types": [
-              "apprentice"
-            ]
+            "trigger": "owed"
           },
-          "remediation": "Charge the contribution on the apprentices too, then remove this note."
+          "remediation": "Resolved: art. 87 with the apprentices of art. 28, read on 2026-11-06.",
+          "status": "resolved"
         }
       }
     ]
@@ -629,7 +627,8 @@
             "verification_status": "verified",
             "review_id": "2026-11-06-ai-coop-sociali-art87"
           }
-        }
+        },
+        "apprentices_permanent": true
       }
     ]
   },
@@ -3002,7 +3001,7 @@
     "effective_until": null,
     "source": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
     "verification_status": "unverified",
-    "source_hash": "949f270347e7be609283a0b03b913eddc36af8a0d398b54a1166ada2653d4ac2",
+    "source_hash": "0910f9edfc42a85a5c853585802930a87a10f6ef66dc62ecf168200ad1f21656",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3513,7 +3512,7 @@
         "date": "2026-11-06",
         "reviewer": "claude-opus-5-5",
         "reviewer_kind": "ai",
-        "scope": "Art. 87 health contribution in the 2025 coordinated text (p. 114).",
+        "scope": "Art. 87 health contribution in the 2025 coordinated text (p. 114). Art. 28 c. 1 apprenticeship (p. 55).",
         "outcome": "confirmed",
         "sources": [
           {
@@ -3522,7 +3521,8 @@
           }
         ],
         "findings": [
-          "5 EUR a month from 1 May 2013 and 10 EUR from 1 January 2025, employer only, for the permanent workers."
+          "5 EUR a month from 1 May 2013 and 10 EUR from 1 January 2025, employer only, for the permanent workers.",
+          "Art. 28 calls apprenticeship 'contratto di lavoro a tempo indeterminato': the apprentices are owed the contribution."
         ],
         "independence": "same_process",
         "checked": [

@@ -15,7 +15,9 @@ from typing import Self
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from ccnl_engine.agreement.validity.rules import TimeSeries
+from ccnl_engine.employment.apprentice.inputs import Apprentice
 from ccnl_engine.employment.category.models import WorkerCategory
+from ccnl_engine.employment.inputs import Permanent
 from ccnl_engine.provenance.source.rule.models import RuleProvenance
 
 __all__ = ["ContractualFund", "FundAmount"]
@@ -56,6 +58,9 @@ class ContractualFund(BaseModel):
         categories: Worker categories it covers, ``None`` for all.
         levels: Level codes it covers, ``None`` for all.
         permanent_only: Whether only permanent workers are covered.
+        apprentices_permanent: Whether an apprentice counts as permanent for
+            ``permanent_only``, when the CCNL calls apprenticeship a contract
+            "a tempo indeterminato" (Cooperative sociali art. 28).
         group: Funds that are alternative ways to meet the same obligation
             (e.g. the EBM contribution of a firm with or without an internal
             RLS) share a group: the employer names the one it pays; naming
@@ -105,6 +110,7 @@ class ContractualFund(BaseModel):
     categories: frozenset[WorkerCategory] | None = None
     levels: frozenset[str] | None = None
     permanent_only: bool = False
+    apprentices_permanent: bool = False
     group: str | None = None
     rate_allowances: frozenset[str] = frozenset()
     employer: FundAmount
@@ -123,3 +129,15 @@ class ContractualFund(BaseModel):
     charged_in_month: TimeSeries | None = None
     welfare: bool = False
     provenance: RuleProvenance
+
+    def excludes_contract(self, contract_type: object) -> bool:
+        """Whether ``permanent_only`` leaves out a worker on ``contract_type``.
+
+        Returns:
+            True when only permanent workers are covered and the contract is
+            neither permanent nor an apprenticeship the fund counts as such.
+        """
+        covered = (
+            (Permanent, Apprentice) if self.apprentices_permanent else (Permanent,)
+        )
+        return self.permanent_only and not isinstance(contract_type, covered)

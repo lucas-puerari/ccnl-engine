@@ -233,7 +233,7 @@ bundle build fails on an unmapped note.
 A limitation applies to a run only when its predicate holds. Its trigger
 classifies it by obligation:
 
-- <!-- trust:limitations-owed -->27<!-- /trust:limitations-owed -->
+- <!-- trust:limitations-owed -->28<!-- /trust:limitations-owed -->
   limitations are `owed`: an amount the CCNL owes for every worker it scopes
   that the engine does not compute (a health or bilateral fund, a provincial
   element owed in every province). They apply to every run of the CCNL
