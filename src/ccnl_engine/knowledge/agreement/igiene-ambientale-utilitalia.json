@@ -110,7 +110,7 @@
       },
       {
         "kind": "simplification",
-        "text": "BILATERAL FUNDS. FASDA healthcare (Fondo Assistenza Sanitaria Dipendenti Aziende di Servizi Ambientali) contributions are not modelled. Previambiente is modelled (art. 65 lett. A), with the TFR alone of c. 12 and the conversion of the seniority increments of lett. A) bis, for a new hire and for a worker already in service from the date of the request (review of 2026-10-30)",
+        "text": "FASDA (Art. 65 lett. B, pp. 165-166 of the 2025 consolidated text and the ipotesi of 9 December 2025): 84.50 EUR a quarter per worker on the employer from October 2023, 101.00 from October 2026, modelled as health_funds fasda (a twelfth of the year a month, with the 10% solidarity). Not modelled: the workers the fund leaves out (on probation, on one fixed-term contract under 12 months, part-time under 50%) are charged like the others.",
         "capability": "contractual_funds",
         "monetary_impact": "yes",
         "limitation": {
@@ -118,7 +118,7 @@
           "applies_when": {
             "trigger": "owed"
           },
-          "remediation": "Declare FASDA in parameters.health_funds with its contributions (or the elemento distinto in its place), then remove this limitation."
+          "remediation": "Exempt the workers on probation, on a fixed term under 12 months and part-time under 50%, then remove this note."
         }
       },
       {
@@ -1089,7 +1089,62 @@
           "verification_status": "unverified"
         }
       }
-    }
+    },
+    "health_funds": [
+      {
+        "code": "fasda",
+        "description": "FASDA, Art. 65 lett. B",
+        "employer": {
+          "annual": {
+            "periods": [
+              {
+                "valid_from": "2017-10-01",
+                "valid_until": "2023-10-01",
+                "value": "278.00"
+              },
+              {
+                "valid_from": "2023-10-01",
+                "valid_until": "2026-10-01",
+                "value": "338.00"
+              },
+              {
+                "valid_from": "2026-10-01",
+                "valid_until": null,
+                "value": "404.00"
+              }
+            ]
+          }
+        },
+        "solidarity_rate": "0.1",
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "igiene-ambientale-consolidato-2025-ipotesi-2025",
+              "title": "CCNL Igiene ambientale Utilitalia, testo consolidato 24 luglio 2025 con l'ipotesi di accordo del 9 dicembre 2025",
+              "kind": "altro",
+              "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf",
+              "published_on": "2025-12-09",
+              "sha256": "57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756"
+            },
+            "page": "165-166",
+            "section": "Art. 65 lett. B - FASDA; Rinnovi, ipotesi 9 dicembre 2025, punto b",
+            "quote": "A decorrere dal versamento trimestrale del 16 ottobre 2023 [...] aumentato alla misura complessiva di € 84,50 per ogni lavoratore dipendente. [...] A decorrere dal 1° ottobre 2026 (versamento del 16 ottobre 2026), il contributo che le Aziende versano al Fondo Fasda è incrementato di un importo aggiuntivo in misura fissa pari a 5,50 euro per 12 mensilità (16,50 euro trimestrali)."
+          },
+          "transformation": "The quarterly contribution on the employer (69.50 from October 2017, 84.50 from October 2023, 101.00 from October 2026) as four quarters a year, charged a twelfth a month; net of the solidarity contribution, which is added.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-06T22:00:00Z",
+            "effective_from": "2017-10-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-06T22:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-06-ai-igiene-fasda"
+          }
+        }
+      }
+    ]
   },
   "apprenticeship": [
     {
@@ -4259,7 +4314,7 @@
     "effective_until": "2027-12-31",
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551",
     "verification_status": "unverified",
-    "source_hash": "a534148ccd2efeacc8c56099a85c74db0b5cdb30d7f9b15cbe7f07f2e782b6fa",
+    "source_hash": "c6450626eeddaf7fd45ed867aefa884e66bebad49557086a8d22ca159b4ae7bb",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -4523,5 +4578,30 @@
         }
       }
     }
+  },
+  "verification": {
+    "reviews": [
+      {
+        "id": "2026-11-06-ai-igiene-fasda",
+        "date": "2026-11-06",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 65 lett. B FASDA (pp. 165-166) and the ipotesi of 9 December 2025 (p. 166).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf",
+            "sha256": "57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756"
+          }
+        ],
+        "findings": [
+          "FASDA was not modelled: 84.50 EUR a quarter on the employer from October 2023, 101.00 from October 2026."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "parameters.health_funds"
+        ]
+      }
+    ]
   }
 }

@@ -55,12 +55,14 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-12-09 |
-| **Last review** | — |
+| **Last review** | 2026-11-06 |
 | **Latest salary tranche** | 2027-12-01 |
 
 ## Review history
 
-No review is recorded.
+| Date | Reviewer | Scope | Outcome | Findings |
+|---|---|---|---|---|
+| 2026-11-06 | claude-opus-5-5 (ai) | Art. 65 lett. B FASDA (pp. 165-166) and the ipotesi of 9 December 2025 (p. 166). | corrected | FASDA was not modelled: 84.50 EUR a quarter on the employer from October 2023, 101.00 from October 2026. |
 
 ## Salary table
 
@@ -142,11 +144,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.
 
 !!! warning "igiene-ambientale-utilitalia/fasda_health_fund · contractual_funds · impact yes · open"
-    BILATERAL FUNDS. FASDA healthcare (Fondo Assistenza Sanitaria Dipendenti Aziende di Servizi Ambientali) contributions are not modelled. Previambiente is modelled (art. 65 lett. A), with the TFR alone of c. 12 and the conversion of the seniority increments of lett. A) bis, for a new hire and for a worker already in service from the date of the request (review of 2026-10-30)
+    FASDA (Art. 65 lett. B, pp. 165-166 of the 2025 consolidated text and the ipotesi of 9 December 2025): 84.50 EUR a quarter per worker on the employer from October 2023, 101.00 from October 2026, modelled as health_funds fasda (a twelfth of the year a month, with the 10% solidarity). Not modelled: the workers the fund leaves out (on probation, on one fixed-term contract under 12 months, part-time under 50%) are charged like the others.
 
     **Applies when:** `contractual_funds` applies.
 
-    **Remediation:** Declare FASDA in parameters.health_funds with its contributions (or the elemento distinto in its place), then remove this limitation.
+    **Remediation:** Exempt the workers on probation, on a fixed term under 12 months and part-time under 50%, then remove this note.
 
 !!! warning "igiene-ambientale-utilitalia/fund_paid_month · pension_fund_contribution · impact yes · open"
     Previambiente is due on the pay of the month (art. 65 c. 8): none for a month without pay, and 'commisurato alla retribuzione corrisposta' for a month with a paid absence, a rule the engine does not compute. A month paid in part (an unpaid absence, sickness, a partial month) keeps the full contributions of an enrolled worker.
