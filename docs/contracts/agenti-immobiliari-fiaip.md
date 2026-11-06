@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, bilateral_funds, pension_fund_contribution, seniority |
+| **Limits of this contract** | base_salary, bilateral_funds, pension_fund_contribution |
 
-7 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+6 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-05-19 |
-| **Last review** | 2026-11-01 |
+| **Last review** | 2026-11-06 |
 | **Latest salary tranche** | 2027-05-01 |
 
 ## Review history
@@ -61,6 +61,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-01 | claude-opus-5-5 (ai) | The indennità di funzione of the quadri, Art. 162 note (*) (p. 97). | corrected | Art. 162 note (*) (p. 97): 250.00 a month for 12 months to the quadri responsible for operational or local units: levels[Q].fixed_allowances[IND_FUNZIONE], role responsabile_unita, months_per_year 12. |
 | 2026-11-01 | claude-opus-5-5 (ai) | The una tantum of Art. 163 (pp. 97-98). | corrected | Art. 163 (pp. 97-98): two installments of the table (Q 149.47 ... IV 100.00 ... VI 87.28) from 1 September 2025 and 1 May 2026, full for a hire before 1 January 2024, by the months worked to 1 May 2025 for a hire from 1 January 2024: parameters.una_tantum[UT_2025]. |
 | 2026-11-01 | claude-opus-5-5 (ai) | The notice clause (Art. 176 (table); art. 177 (indemnity); art. 178 (TFR); art. 181 (resignations), p. 102-104). | corrected | Notice bands by level and service checked against the PDF by a separate session (delegated search and independent verification): work_rules.notice. |
+| 2026-11-06 | claude-opus-5-5 (ai) | Apprentice seniority: the CCNL Agenti immobiliari 2025 (apprenticeship and seniority articles). | corrected | The apprentice is classified one level below with 'lo stesso trattamento normativo'; 'Per l'anzianità di servizio maturata presso lo stesso datore di lavoro, il personale ha diritto a dieci scatti triennali': the increments of the level the apprentice is paid at. |
 
 ## Salary table
 
@@ -143,13 +144,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `pension_fund_contribution` applies.
 
     **Remediation:** Add the Fon.Te. employee and employer rates to the CCNL pension fund data.
-
-!!! warning "agenti-immobiliari-fiaip/apprentice_seniority · seniority · impact unknown · open"
-    APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.
-
-    **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
-
-    **Remediation:** Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

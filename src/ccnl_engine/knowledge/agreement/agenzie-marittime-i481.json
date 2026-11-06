@@ -121,22 +121,6 @@
           },
           "remediation": "Confirm from Art. 5 whether the indennita di funzione is paid in the quattordicesima."
         }
-      },
-      {
-        "kind": "simplification",
-        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
-        "capability": "seniority",
-        "monetary_impact": "unknown",
-        "limitation": {
-          "variant": "apprentice_seniority",
-          "applies_when": {
-            "trigger": "path",
-            "contract_types": [
-              "apprentice"
-            ]
-          },
-          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
-        }
       }
     ]
   },
@@ -160,6 +144,27 @@
         ],
         "findings": [
           "Art. 24 - Tredicesima mensilita' o gratifica natalizia (p. 27): \"Le frazioni di mese non superiori o eguali ai 15 giorni non saranno calcolate, mentre saranno considerate come mese intero se superiori ai 15 giorni.\". Match: more_than 15."
+        ]
+      },
+      {
+        "id": "2026-11-06-ai-agenzie-marittime-i481-apprentice-seniority",
+        "date": "2026-11-06",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Apprentice seniority: artt. 8, 20 and 23 of the CCNL 2021-2023.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/ccnl-agenziemarittime21-23.pdf",
+            "sha256": "6cef4caef940ce4fc26ce76bde9669d95d7e7a3cf74cf8bc36ed555c2a878d91"
+          }
+        ],
+        "findings": [
+          "Art. 8: 'Il contratto di apprendistato professionalizzante è un contratto di lavoro a tempo indeterminato' with periods of lower classification; art. 20 puts 'eventuali scatti di anzianità maturati ai sensi dell'art. 23' in the retribuzione globale; art. 23 owes an increment each biennio of service: the increments of the level the apprentice is paid at."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "parameters.seniority_increments"
         ]
       }
     ]
@@ -273,7 +278,8 @@
           "verification_status": "unverified",
           "effective_from": "2020-01-01"
         }
-      }
+      },
+      "apprentice_level_amount": true
     },
     "accrual_rule": {
       "min_days": 15,
@@ -1248,7 +1254,7 @@
     "effective_until": null,
     "source": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/ccnl-agenziemarittime21-23.pdf",
     "verification_status": "unverified",
-    "source_hash": "94f4ac2d9f1dc185374c5ce7b2dd97a93d0b0d6e085d1edd333acf9b824c382e",
+    "source_hash": "ee83a64f7d20aa9be55a3d9b09d9445fdf6de311839c71aa3ec41821fa641032",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
