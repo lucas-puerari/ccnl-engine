@@ -209,7 +209,7 @@
       },
       {
         "kind": "simplification",
-        "text": "LEAVE, ROL (Art. 91 cc.2-3, p. 47): 40 hours a year on a five-day week, 66 on a six-day week. The file accrues the 40 hours of the five-day week and the 66 of the six-day week when Employment.full_time_week_days is 6. The hires within the 2024-2027 term accrue 50% from the twelfth month, 75% from the twenty-fourth to the thirty-sixth, 100% after; the clause states no share before the twelfth month, read as nothing, as Commercio's 'decorsi due anni' (steps 0, 11, 23, 36 completed months). The 50/75/100% of the contratto di reimpiego (c.4) is not modelled.",
+        "text": "LEAVE, ROL (Art. 91 cc.2-3, p. 47): 40 hours a year on a five-day week, 66 on a six-day week. The file accrues the 40 hours of the five-day week and the 66 of the six-day week when Employment.full_time_week_days is 6. The hires within the 2024-2027 term accrue 50% from the twelfth month, 75% from the twenty-fourth to the thirty-sixth, 100% after; the clause states no share before the twelfth month, read as nothing, as Commercio's 'decorsi due anni' (steps 0, 11, 23, 36 completed months). The contratto di reimpiego (c.4, the entry pay of art. 56: Permanent.entry_pay) accrues 50% from the sixth month, 75% from the twelfth to the eighteenth, 100% after (permit entry_ramp).",
         "capability": "leave",
         "monetary_impact": "yes",
         "limitation": {
@@ -217,7 +217,8 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Add the contratto di reimpiego as an employment fact for its own ramp (Art. 91 c.4: 50% from the sixth month, 75% from the twelfth to the eighteenth)."
+          "remediation": "Resolved: rol entry_ramp of art. 91 c.4 for the contratto di reimpiego (Permanent.entry_pay), read on 2026-11-06.",
+          "status": "resolved"
         }
       },
       {
@@ -2395,7 +2396,7 @@
     "effective_until": null,
     "source": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
     "verification_status": "unverified",
-    "source_hash": "383fb0f2480928ef3978acdfcd9af755c9cdf3e687e79afabf1b641edf9f1147",
+    "source_hash": "37f5e5356e9e9da7d6f9bbc5d07f6afd83a6eb167e2d9ed1dec08f4f4c4353ba",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2909,7 +2910,7 @@
                 "verification_status": "verified",
                 "review_id": "2026-10-31-ai-leave-accrual"
               },
-              "transformation": "The hires within the term of the contract, from 16 February 2024 to 15 February 2027 (Validità del contratto, p. 1: 'ha durata triennale dal 16 febbraio 2024 fino al 15 febbraio 2027'), read as the workers the clause limits. Nothing before the twelfth month, 50% from the twelfth month after the hire, 75% from the twenty-fourth to the thirty-sixth, 100% after: the months counted are those the engine completes at the end of a month (11 completed months at the end of the twelfth), so the steps are 0, 11, 23 and 36. The 50/75/100% of the contratto di reimpiego (c.4) is not modelled."
+              "transformation": "The hires within the term of the contract, from 16 February 2024 to 15 February 2027 (Validità del contratto, p. 1: 'ha durata triennale dal 16 febbraio 2024 fino al 15 febbraio 2027'), read as the workers the clause limits. Nothing before the twelfth month, 50% from the twelfth month after the hire, 75% from the twenty-fourth to the thirty-sixth, 100% after: the months counted are those the engine completes at the end of a month (11 completed months at the end of the twelfth), so the steps are 0, 11, 23 and 36. The 50/75/100% of the contratto di reimpiego (c.4) is not modelled. Art. 91 c.4 (p. 47): 'Con riferimento ai lavoratori assunti con contratto di reimpiego di cui al Titolo XII art. 56 del presente CCNL, i permessi di cui alle lettere A e B saranno maturati nella misura del 50% a partire dal sesto mese successivo all’assunzione e nella misura del 75% a partire dal dodicesimo mese dalla data di assunzione fino al diciottesimo mese; nella misura del 100% per i mesi successivi': entry_ramp for a worker on the entry pay of art. 56 (Permanent.entry_pay), steps 0, 5, 11, 18 completed months as the ramp of c.3 reads them, nothing before the sixth month."
             }
           },
           "provenance": {
@@ -2938,7 +2939,25 @@
               "review_id": "2026-10-31-ai-leave-accrual"
             },
             "transformation": "40 hours: the reduction of the week of five days (lett. A, Monday to Friday), the schedule the file assumes for the 22 days of ferie (Art. 99); the six-day week of lett. B has 66 hours, not modelled. Whole months only (c.6, p. 47: 'un dodicesimo dei permessi di cui al presente articolo per ogni mese intero di servizio prestato')."
-          }
+          },
+          "entry_ramp": [
+            {
+              "service_months_min": 0,
+              "share": "0"
+            },
+            {
+              "service_months_min": 5,
+              "share": "0.5"
+            },
+            {
+              "service_months_min": 11,
+              "share": "0.75"
+            },
+            {
+              "service_months_min": 18,
+              "share": "1"
+            }
+          ]
         }
       ],
       "termination": {

@@ -31,7 +31,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, leave, sickness |
+| **Limits of this contract** | base_salary, sickness |
 
 9 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
@@ -181,12 +181,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Add a worker fact for extra months already paid.
 
-!!! warning "studi-professionali-confprofessioni/rol_not_accrued · leave · impact yes · open"
-    LEAVE, ROL (Art. 91 cc.2-3, p. 47): 40 hours a year on a five-day week, 66 on a six-day week. The file accrues the 40 hours of the five-day week and the 66 of the six-day week when Employment.full_time_week_days is 6. The hires within the 2024-2027 term accrue 50% from the twelfth month, 75% from the twenty-fourth to the thirty-sixth, 100% after; the clause states no share before the twelfth month, read as nothing, as Commercio's 'decorsi due anni' (steps 0, 11, 23, 36 completed months). The 50/75/100% of the contratto di reimpiego (c.4) is not modelled.
+!!! note "studi-professionali-confprofessioni/rol_not_accrued · leave · impact yes · resolved"
+    LEAVE, ROL (Art. 91 cc.2-3, p. 47): 40 hours a year on a five-day week, 66 on a six-day week. The file accrues the 40 hours of the five-day week and the 66 of the six-day week when Employment.full_time_week_days is 6. The hires within the 2024-2027 term accrue 50% from the twelfth month, 75% from the twenty-fourth to the thirty-sixth, 100% after; the clause states no share before the twelfth month, read as nothing, as Commercio's 'decorsi due anni' (steps 0, 11, 23, 36 completed months). The contratto di reimpiego (c.4, the entry pay of art. 56: Permanent.entry_pay) accrues 50% from the sixth month, 75% from the twelfth to the eighteenth, 100% after (permit entry_ramp).
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Add the contratto di reimpiego as an employment fact for its own ramp (Art. 91 c.4: 50% from the sixth month, 75% from the twelfth to the eighteenth).
+    **Remediation:** Resolved: rol entry_ramp of art. 91 c.4 for the contratto di reimpiego (Permanent.entry_pay), read on 2026-11-06.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

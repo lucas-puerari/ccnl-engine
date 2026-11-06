@@ -52,6 +52,18 @@ class RampStep(BaseModel):
     share: Decimal = Field(ge=_ZERO, le=_ONE)
 
 
+def _check_steps(steps: tuple[RampStep, ...]) -> None:
+    """Check the steps of a ramp start at 0 months and run in order.
+
+    Raises:
+        ValueError: When they do not.
+    """
+    months = [s.service_months_min for s in steps]
+    if months[0] != 0 or months != sorted(set(months)):
+        msg = f"ramp steps must start at 0 months, in order; got {months}"
+        raise ValueError(msg)
+
+
 class NewHireRamp(BaseModel):
     """Reduced hours of the workers hired after a date, by months of service.
 
@@ -77,10 +89,7 @@ class NewHireRamp(BaseModel):
 
     @model_validator(mode="after")
     def _ordered(self) -> Self:
-        months = [s.service_months_min for s in self.steps]
-        if months[0] != 0 or months != sorted(set(months)):
-            msg = f"ramp steps must start at 0 months, in order; got {months}"
-            raise ValueError(msg)
+        _check_steps(self.steps)
         return self
 
     def covers(self, headcount: int) -> bool:
@@ -146,6 +155,11 @@ class PermitRules(BaseModel):
         month_credit: Which months accrue a twelfth of the hours; ``None``
             when the text does not say how a month fraction counts.
         ramp: Reduced hours of the workers hired after a date.
+        entry_ramp: Shares of the hours of a worker hired on the entry pay
+            of the CCNL (``Permanent.entry_pay``), by months since the hire,
+            in place of :attr:`ramp` (Studi Art. 91 c.4: the contratto di
+            reimpiego of art. 56, 50% from the sixth month, 75% from the
+            twelfth to the eighteenth, 100% after); empty when none.
         day_hours: Hours that make one day when the text pays the hours left
             by the day (Studi Art. 98: the retribuzione normale giornaliera
             of each of the four festività of 8 hours): at the end of the
@@ -163,6 +177,7 @@ class PermitRules(BaseModel):
     includes_ex_festivita: bool = False
     month_credit: MonthCredit | None = None
     ramp: NewHireRamp | None = None
+    entry_ramp: tuple[RampStep, ...] = ()
     day_hours: Decimal | None = Field(default=None, gt=_ZERO)
     week_absorption: tuple[WeekAbsorption, ...] = ()
     provenance: RuleProvenance | None = None
@@ -185,6 +200,8 @@ class PermitRules(BaseModel):
                     f"without headcount_above and distinct sizes; got {sizes}"
                 )
                 raise ValueError(msg)
+        if self.entry_ramp:
+            _check_steps(self.entry_ramp)
         if () not in {h.subsectors for h in self.annual_hours}:
             msg = "annual_hours needs the tiers of the employers of no sub-sector"
             raise ValueError(msg)
