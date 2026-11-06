@@ -305,22 +305,6 @@
       }
     },
     {
-      "id": "seniority_secondary_source",
-      "institute": "seniority",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "Seniority cadence is triennale (36 months) for all levels; maximum 5 scatti. Scatto amounts derived from businessonline.it article (2025) cross-checked with kitech.it current table.",
-      "calculation": "ccnl/calzaturiero-assocalzaturifici:coverage.notes",
-      "state": "unverified",
-      "remediation": "Verify the seniority cadence and amounts against the primary CCNL text.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "calzaturiero-assocalzaturifici/seniority_secondary_source"
-        ]
-      }
-    },
-    {
       "id": "sickness_cumulation_window",
       "institute": "sickness",
       "variant": "all",

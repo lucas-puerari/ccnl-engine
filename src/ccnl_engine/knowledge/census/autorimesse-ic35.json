@@ -19,22 +19,6 @@
       }
     },
     {
-      "id": "apprenticeship_percentages_2019",
-      "institute": "base_salary",
-      "variant": "apprentice",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "SIMPLIFICATION: Apprenticeship article numbers from 2019 CCNL may have changed in the current consolidated text (Art. numbering in 2025 verbale differs from 2019 PDF). The 85/90/95 percentage structure is from the 2019 source and is assumed unchanged.",
-      "calculation": "ccnl/autorimesse-ic35:coverage.notes",
-      "state": "unverified",
-      "remediation": "Confirm the 85/90/95% apprenticeship percentages against the current consolidated text.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "autorimesse-ic35/apprenticeship_percentages_2019"
-        ]
-      }
-    },
-    {
       "id": "arrears_unused_deductions",
       "institute": "contract_renewal_arrears",
       "variant": "all",

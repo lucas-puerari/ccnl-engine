@@ -679,7 +679,6 @@
       "autoferrotranvieri-internavigatori/public_operator_inps_scheme"
     ],
     "agreement/autorimesse-ic35.json": [
-      "autorimesse-ic35/apprenticeship_percentages_2019",
       "autorimesse-ic35/meal_voucher"
     ],
     "agreement/autostrade-trafori.json": [
@@ -704,9 +703,6 @@
       "bcc-credito-cooperativo/art3_derogation_apprenticeship",
       "bcc-credito-cooperativo/inps_sector_rates_unsourced",
       "bcc-credito-cooperativo/pre_1998_cohort_scatti"
-    ],
-    "agreement/calzaturiero-assocalzaturifici.json": [
-      "calzaturiero-assocalzaturifici/seniority_secondary_source"
     ],
     "agreement/carta-cartone-assocarta.json": [
       "carta-cartone-assocarta/emc_absorption_unconfirmed"
@@ -766,9 +762,7 @@
     ],
     "agreement/consorzi-agrari-assocap.json": [
       "consorzi-agrari-assocap/apprentice_inps_rates_unsourced",
-      "consorzi-agrari-assocap/cashier_allowance_missing",
-      "consorzi-agrari-assocap/filcoop_health_fund_missing",
-      "consorzi-agrari-assocap/tranche_2027_01_missing"
+      "consorzi-agrari-assocap/filcoop_health_fund_missing"
     ],
     "agreement/consorzi-di-bonifica-snebi.json": [
       "consorzi-di-bonifica-snebi/apprentice_inps_rates_unsourced",

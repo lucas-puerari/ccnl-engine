@@ -92,7 +92,7 @@
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: Jan 2027 tranche not yet published per-level; not modeled.",
+        "text": "BASE SALARY (Allegato A, p. 47 of the CCNL of 12 December 2023): the stipendi base from 1 January 2025, 2026 and 2027 (6th level 1,040.26 / 1,070.87 / 1,101.48 EUR); the quadri take the 1st level.",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
@@ -100,12 +100,13 @@
           "applies_when": {
             "effective_from": "2027-01-01"
           },
-          "remediation": "Add the January 2027 tranche per level once the official table is published."
+          "remediation": "Resolved: the 2027 column of Allegato A, read on 2026-11-06.",
+          "status": "resolved"
         }
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: Indennita di cassa (EUR 55.00/month, cashiers only) not modeled — applies only to a subset of workers.",
+        "text": "CASHIER (Art. 35, p. 34): 55.00 EUR a month to the cassiere of the head office and the branches, modelled as IND_CASSA with role cassiere.",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
@@ -113,7 +114,8 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Model the 55 EUR/month indennita di cassa as a role-gated allowance for cashiers."
+          "remediation": "Resolved: IND_CASSA 55.00 EUR, role cassiere (art. 35), read on 2026-11-06.",
+          "status": "resolved"
         }
       },
       {
@@ -185,6 +187,28 @@
         "independence": "separate_session",
         "checked": [
           "work_rules.notice"
+        ]
+      },
+      {
+        "id": "2026-11-06-ai-consorzi-agrari-allegato-a",
+        "date": "2026-11-06",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "CCNL Consorzi agrari 2024-2027: Allegato A stipendi base (p. 47), art. 35 indennità di cassa (p. 34).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.faicisl.it/attachments/article/2385/CCNL%20CONSORZI%20AGRARI%202024%20-%202027.pdf",
+            "sha256": "592a52c168c4c1724cc49e7d01c1b010723c5673c5ee88ae06cf60a9074b04ea"
+          }
+        ],
+        "findings": [
+          "The 6th level of 2025 is 1,040.26, not 1,040.28; the 2027 column added; the cashier allowance of 55.00 EUR added."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels.base_salary",
+          "levels.fixed_allowances"
         ]
       }
     ]
@@ -366,42 +390,92 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "consorzi-agrari-assocap",
-                  "title": "consorzi-agrari-assocap",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.wolterskluwer.it/"
+                  "document_id": "consorzi-agrari-ccnl-2024-2027",
+                  "title": "CCNL Consorzi agrari 2024-2027, 12 dicembre 2023",
+                  "kind": "associazione",
+                  "url": "https://www.faicisl.it/attachments/article/2385/CCNL%20CONSORZI%20AGRARI%202024%20-%202027.pdf",
+                  "published_on": "2023-12-12",
+                  "sha256": "592a52c168c4c1724cc49e7d01c1b010723c5673c5ee88ae06cf60a9074b04ea"
                 },
-                "section": "Tabella retributiva"
+                "page": "47",
+                "section": "Allegato A - Tabella stipendi base",
+                "quote": "1° livello € 2.149,74 € 2.212,99 € 2.276,24"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-06T17:00:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-06T17:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-06-ai-consorzi-agrari-allegato-a"
+              },
+              "transformation": "The quadri take the stipendio base of the 1st level; the table has no Q row."
             }
           },
           {
             "valid_from": "2026-01-01",
-            "valid_until": null,
+            "valid_until": "2027-01-01",
             "value": "2212.99",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "consorzi-agrari-assocap",
-                  "title": "consorzi-agrari-assocap",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.wolterskluwer.it/"
+                  "document_id": "consorzi-agrari-ccnl-2024-2027",
+                  "title": "CCNL Consorzi agrari 2024-2027, 12 dicembre 2023",
+                  "kind": "associazione",
+                  "url": "https://www.faicisl.it/attachments/article/2385/CCNL%20CONSORZI%20AGRARI%202024%20-%202027.pdf",
+                  "published_on": "2023-12-12",
+                  "sha256": "592a52c168c4c1724cc49e7d01c1b010723c5673c5ee88ae06cf60a9074b04ea"
                 },
-                "section": "Tabella retributiva"
+                "page": "47",
+                "section": "Allegato A - Tabella stipendi base",
+                "quote": "1° livello € 2.149,74 € 2.212,99 € 2.276,24"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
-              }
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-06T17:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-06T17:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-06-ai-consorzi-agrari-allegato-a"
+              },
+              "transformation": "The quadri take the stipendio base of the 1st level; the table has no Q row."
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": null,
+            "value": "2276.24",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "consorzi-agrari-ccnl-2024-2027",
+                  "title": "CCNL Consorzi agrari 2024-2027, 12 dicembre 2023",
+                  "kind": "associazione",
+                  "url": "https://www.faicisl.it/attachments/article/2385/CCNL%20CONSORZI%20AGRARI%202024%20-%202027.pdf",
+                  "published_on": "2023-12-12",
+                  "sha256": "592a52c168c4c1724cc49e7d01c1b010723c5673c5ee88ae06cf60a9074b04ea"
+                },
+                "page": "47",
+                "section": "Allegato A - Tabella stipendi base",
+                "quote": "1° livello € 2.149,74 € 2.212,99 € 2.276,24"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-06T17:00:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-06T17:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-06-ai-consorzi-agrari-allegato-a"
+              },
+              "transformation": "The quadri take the stipendio base of the 1st level; the table has no Q row."
             }
           }
         ]
@@ -468,6 +542,47 @@
               "effective_from": "2020-01-01"
             }
           }
+        },
+        {
+          "code": "IND_CASSA",
+          "description": "Indennità di cassa (Art. 35): cassiere della sede centrale e delle sedi periferiche",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "55.00"
+              }
+            ]
+          },
+          "role": "cassiere",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "consorzi-agrari-ccnl-2024-2027",
+                "title": "CCNL Consorzi agrari 2024-2027, 12 dicembre 2023",
+                "kind": "associazione",
+                "url": "https://www.faicisl.it/attachments/article/2385/CCNL%20CONSORZI%20AGRARI%202024%20-%202027.pdf",
+                "published_on": "2023-12-12",
+                "sha256": "592a52c168c4c1724cc49e7d01c1b010723c5673c5ee88ae06cf60a9074b04ea"
+              },
+              "page": "34",
+              "section": "Art. 35 - Indennità varie",
+              "quote": "Ai lavoratori aventi responsabilità di cassa, in relazione all'effettivo e prevalente esercizio della mansione, competerà una indennità mensile, stabilita nelle seguenti misure: - cassiere della sede centrale e delle sedi periferiche del Consorzio: € 55,00."
+            },
+            "transformation": "A monthly allowance of the role cassiere, at every level.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-06T17:00:00Z",
+              "effective_from": "2024-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-06T17:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-06-ai-consorzi-agrari-allegato-a"
+            }
+          }
         }
       ],
       "provenance": {
@@ -500,44 +615,91 @@
             "valid_until": "2026-01-01",
             "value": "2149.74",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "consorzi-agrari-assocap",
-                  "title": "consorzi-agrari-assocap",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.wolterskluwer.it/"
+                  "document_id": "consorzi-agrari-ccnl-2024-2027",
+                  "title": "CCNL Consorzi agrari 2024-2027, 12 dicembre 2023",
+                  "kind": "associazione",
+                  "url": "https://www.faicisl.it/attachments/article/2385/CCNL%20CONSORZI%20AGRARI%202024%20-%202027.pdf",
+                  "published_on": "2023-12-12",
+                  "sha256": "592a52c168c4c1724cc49e7d01c1b010723c5673c5ee88ae06cf60a9074b04ea"
                 },
-                "section": "Tabella retributiva"
+                "page": "47",
+                "section": "Allegato A - Tabella stipendi base",
+                "quote": "1° livello € 2.149,74 € 2.212,99 € 2.276,24"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-06T17:00:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-06T17:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-06-ai-consorzi-agrari-allegato-a"
               }
             }
           },
           {
             "valid_from": "2026-01-01",
-            "valid_until": null,
+            "valid_until": "2027-01-01",
             "value": "2212.99",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "consorzi-agrari-assocap",
-                  "title": "consorzi-agrari-assocap",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.wolterskluwer.it/"
+                  "document_id": "consorzi-agrari-ccnl-2024-2027",
+                  "title": "CCNL Consorzi agrari 2024-2027, 12 dicembre 2023",
+                  "kind": "associazione",
+                  "url": "https://www.faicisl.it/attachments/article/2385/CCNL%20CONSORZI%20AGRARI%202024%20-%202027.pdf",
+                  "published_on": "2023-12-12",
+                  "sha256": "592a52c168c4c1724cc49e7d01c1b010723c5673c5ee88ae06cf60a9074b04ea"
                 },
-                "section": "Tabella retributiva"
+                "page": "47",
+                "section": "Allegato A - Tabella stipendi base",
+                "quote": "1° livello € 2.149,74 € 2.212,99 € 2.276,24"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-06T17:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-06T17:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-06-ai-consorzi-agrari-allegato-a"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": null,
+            "value": "2276.24",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "consorzi-agrari-ccnl-2024-2027",
+                  "title": "CCNL Consorzi agrari 2024-2027, 12 dicembre 2023",
+                  "kind": "associazione",
+                  "url": "https://www.faicisl.it/attachments/article/2385/CCNL%20CONSORZI%20AGRARI%202024%20-%202027.pdf",
+                  "published_on": "2023-12-12",
+                  "sha256": "592a52c168c4c1724cc49e7d01c1b010723c5673c5ee88ae06cf60a9074b04ea"
+                },
+                "page": "47",
+                "section": "Allegato A - Tabella stipendi base",
+                "quote": "1° livello € 2.149,74 € 2.212,99 € 2.276,24"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-06T17:00:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-06T17:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-06-ai-consorzi-agrari-allegato-a"
               }
             }
           }
@@ -605,6 +767,47 @@
               "effective_from": "2020-01-01"
             }
           }
+        },
+        {
+          "code": "IND_CASSA",
+          "description": "Indennità di cassa (Art. 35): cassiere della sede centrale e delle sedi periferiche",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "55.00"
+              }
+            ]
+          },
+          "role": "cassiere",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "consorzi-agrari-ccnl-2024-2027",
+                "title": "CCNL Consorzi agrari 2024-2027, 12 dicembre 2023",
+                "kind": "associazione",
+                "url": "https://www.faicisl.it/attachments/article/2385/CCNL%20CONSORZI%20AGRARI%202024%20-%202027.pdf",
+                "published_on": "2023-12-12",
+                "sha256": "592a52c168c4c1724cc49e7d01c1b010723c5673c5ee88ae06cf60a9074b04ea"
+              },
+              "page": "34",
+              "section": "Art. 35 - Indennità varie",
+              "quote": "Ai lavoratori aventi responsabilità di cassa, in relazione all'effettivo e prevalente esercizio della mansione, competerà una indennità mensile, stabilita nelle seguenti misure: - cassiere della sede centrale e delle sedi periferiche del Consorzio: € 55,00."
+            },
+            "transformation": "A monthly allowance of the role cassiere, at every level.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-06T17:00:00Z",
+              "effective_from": "2024-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-06T17:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-06-ai-consorzi-agrari-allegato-a"
+            }
+          }
         }
       ],
       "provenance": {
@@ -637,44 +840,91 @@
             "valid_until": "2026-01-01",
             "value": "1945.72",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "consorzi-agrari-assocap",
-                  "title": "consorzi-agrari-assocap",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.wolterskluwer.it/"
+                  "document_id": "consorzi-agrari-ccnl-2024-2027",
+                  "title": "CCNL Consorzi agrari 2024-2027, 12 dicembre 2023",
+                  "kind": "associazione",
+                  "url": "https://www.faicisl.it/attachments/article/2385/CCNL%20CONSORZI%20AGRARI%202024%20-%202027.pdf",
+                  "published_on": "2023-12-12",
+                  "sha256": "592a52c168c4c1724cc49e7d01c1b010723c5673c5ee88ae06cf60a9074b04ea"
                 },
-                "section": "Tabella retributiva"
+                "page": "47",
+                "section": "Allegato A - Tabella stipendi base",
+                "quote": "2° livello € 1.945,72 € 2.002,97 € 2.060,22"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-06T17:00:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-06T17:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-06-ai-consorzi-agrari-allegato-a"
               }
             }
           },
           {
             "valid_from": "2026-01-01",
-            "valid_until": null,
+            "valid_until": "2027-01-01",
             "value": "2002.97",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "consorzi-agrari-assocap",
-                  "title": "consorzi-agrari-assocap",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.wolterskluwer.it/"
+                  "document_id": "consorzi-agrari-ccnl-2024-2027",
+                  "title": "CCNL Consorzi agrari 2024-2027, 12 dicembre 2023",
+                  "kind": "associazione",
+                  "url": "https://www.faicisl.it/attachments/article/2385/CCNL%20CONSORZI%20AGRARI%202024%20-%202027.pdf",
+                  "published_on": "2023-12-12",
+                  "sha256": "592a52c168c4c1724cc49e7d01c1b010723c5673c5ee88ae06cf60a9074b04ea"
                 },
-                "section": "Tabella retributiva"
+                "page": "47",
+                "section": "Allegato A - Tabella stipendi base",
+                "quote": "2° livello € 1.945,72 € 2.002,97 € 2.060,22"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-06T17:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-06T17:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-06-ai-consorzi-agrari-allegato-a"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": null,
+            "value": "2060.22",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "consorzi-agrari-ccnl-2024-2027",
+                  "title": "CCNL Consorzi agrari 2024-2027, 12 dicembre 2023",
+                  "kind": "associazione",
+                  "url": "https://www.faicisl.it/attachments/article/2385/CCNL%20CONSORZI%20AGRARI%202024%20-%202027.pdf",
+                  "published_on": "2023-12-12",
+                  "sha256": "592a52c168c4c1724cc49e7d01c1b010723c5673c5ee88ae06cf60a9074b04ea"
+                },
+                "page": "47",
+                "section": "Allegato A - Tabella stipendi base",
+                "quote": "2° livello € 1.945,72 € 2.002,97 € 2.060,22"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-06T17:00:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-06T17:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-06-ai-consorzi-agrari-allegato-a"
               }
             }
           }
@@ -742,6 +992,47 @@
               "effective_from": "2020-01-01"
             }
           }
+        },
+        {
+          "code": "IND_CASSA",
+          "description": "Indennità di cassa (Art. 35): cassiere della sede centrale e delle sedi periferiche",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "55.00"
+              }
+            ]
+          },
+          "role": "cassiere",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "consorzi-agrari-ccnl-2024-2027",
+                "title": "CCNL Consorzi agrari 2024-2027, 12 dicembre 2023",
+                "kind": "associazione",
+                "url": "https://www.faicisl.it/attachments/article/2385/CCNL%20CONSORZI%20AGRARI%202024%20-%202027.pdf",
+                "published_on": "2023-12-12",
+                "sha256": "592a52c168c4c1724cc49e7d01c1b010723c5673c5ee88ae06cf60a9074b04ea"
+              },
+              "page": "34",
+              "section": "Art. 35 - Indennità varie",
+              "quote": "Ai lavoratori aventi responsabilità di cassa, in relazione all'effettivo e prevalente esercizio della mansione, competerà una indennità mensile, stabilita nelle seguenti misure: - cassiere della sede centrale e delle sedi periferiche del Consorzio: € 55,00."
+            },
+            "transformation": "A monthly allowance of the role cassiere, at every level.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-06T17:00:00Z",
+              "effective_from": "2024-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-06T17:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-06-ai-consorzi-agrari-allegato-a"
+            }
+          }
         }
       ],
       "provenance": {
@@ -774,44 +1065,91 @@
             "valid_until": "2026-01-01",
             "value": "1661.84",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "consorzi-agrari-assocap",
-                  "title": "consorzi-agrari-assocap",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.wolterskluwer.it/"
+                  "document_id": "consorzi-agrari-ccnl-2024-2027",
+                  "title": "CCNL Consorzi agrari 2024-2027, 12 dicembre 2023",
+                  "kind": "associazione",
+                  "url": "https://www.faicisl.it/attachments/article/2385/CCNL%20CONSORZI%20AGRARI%202024%20-%202027.pdf",
+                  "published_on": "2023-12-12",
+                  "sha256": "592a52c168c4c1724cc49e7d01c1b010723c5673c5ee88ae06cf60a9074b04ea"
                 },
-                "section": "Tabella retributiva"
+                "page": "47",
+                "section": "Allegato A - Tabella stipendi base",
+                "quote": "3° livello super € 1.661,84 € 1.710,74 € 1.759,64"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-06T17:00:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-06T17:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-06-ai-consorzi-agrari-allegato-a"
               }
             }
           },
           {
             "valid_from": "2026-01-01",
-            "valid_until": null,
+            "valid_until": "2027-01-01",
             "value": "1710.74",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "consorzi-agrari-assocap",
-                  "title": "consorzi-agrari-assocap",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.wolterskluwer.it/"
+                  "document_id": "consorzi-agrari-ccnl-2024-2027",
+                  "title": "CCNL Consorzi agrari 2024-2027, 12 dicembre 2023",
+                  "kind": "associazione",
+                  "url": "https://www.faicisl.it/attachments/article/2385/CCNL%20CONSORZI%20AGRARI%202024%20-%202027.pdf",
+                  "published_on": "2023-12-12",
+                  "sha256": "592a52c168c4c1724cc49e7d01c1b010723c5673c5ee88ae06cf60a9074b04ea"
                 },
-                "section": "Tabella retributiva"
+                "page": "47",
+                "section": "Allegato A - Tabella stipendi base",
+                "quote": "3° livello super € 1.661,84 € 1.710,74 € 1.759,64"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-06T17:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-06T17:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-06-ai-consorzi-agrari-allegato-a"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": null,
+            "value": "1759.64",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "consorzi-agrari-ccnl-2024-2027",
+                  "title": "CCNL Consorzi agrari 2024-2027, 12 dicembre 2023",
+                  "kind": "associazione",
+                  "url": "https://www.faicisl.it/attachments/article/2385/CCNL%20CONSORZI%20AGRARI%202024%20-%202027.pdf",
+                  "published_on": "2023-12-12",
+                  "sha256": "592a52c168c4c1724cc49e7d01c1b010723c5673c5ee88ae06cf60a9074b04ea"
+                },
+                "page": "47",
+                "section": "Allegato A - Tabella stipendi base",
+                "quote": "3° livello super € 1.661,84 € 1.710,74 € 1.759,64"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-06T17:00:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-06T17:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-06-ai-consorzi-agrari-allegato-a"
               }
             }
           }
@@ -848,6 +1186,47 @@
               "effective_from": "2020-01-01"
             }
           }
+        },
+        {
+          "code": "IND_CASSA",
+          "description": "Indennità di cassa (Art. 35): cassiere della sede centrale e delle sedi periferiche",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "55.00"
+              }
+            ]
+          },
+          "role": "cassiere",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "consorzi-agrari-ccnl-2024-2027",
+                "title": "CCNL Consorzi agrari 2024-2027, 12 dicembre 2023",
+                "kind": "associazione",
+                "url": "https://www.faicisl.it/attachments/article/2385/CCNL%20CONSORZI%20AGRARI%202024%20-%202027.pdf",
+                "published_on": "2023-12-12",
+                "sha256": "592a52c168c4c1724cc49e7d01c1b010723c5673c5ee88ae06cf60a9074b04ea"
+              },
+              "page": "34",
+              "section": "Art. 35 - Indennità varie",
+              "quote": "Ai lavoratori aventi responsabilità di cassa, in relazione all'effettivo e prevalente esercizio della mansione, competerà una indennità mensile, stabilita nelle seguenti misure: - cassiere della sede centrale e delle sedi periferiche del Consorzio: € 55,00."
+            },
+            "transformation": "A monthly allowance of the role cassiere, at every level.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-06T17:00:00Z",
+              "effective_from": "2024-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-06T17:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-06-ai-consorzi-agrari-allegato-a"
+            }
+          }
         }
       ],
       "provenance": {
@@ -880,44 +1259,91 @@
             "valid_until": "2026-01-01",
             "value": "1529.42",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "consorzi-agrari-assocap",
-                  "title": "consorzi-agrari-assocap",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.wolterskluwer.it/"
+                  "document_id": "consorzi-agrari-ccnl-2024-2027",
+                  "title": "CCNL Consorzi agrari 2024-2027, 12 dicembre 2023",
+                  "kind": "associazione",
+                  "url": "https://www.faicisl.it/attachments/article/2385/CCNL%20CONSORZI%20AGRARI%202024%20-%202027.pdf",
+                  "published_on": "2023-12-12",
+                  "sha256": "592a52c168c4c1724cc49e7d01c1b010723c5673c5ee88ae06cf60a9074b04ea"
                 },
-                "section": "Tabella retributiva"
+                "page": "47",
+                "section": "Allegato A - Tabella stipendi base",
+                "quote": "3° livello € 1.529,42 € 1.574,42 € 1.619,42"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-06T17:00:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-06T17:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-06-ai-consorzi-agrari-allegato-a"
               }
             }
           },
           {
             "valid_from": "2026-01-01",
-            "valid_until": null,
+            "valid_until": "2027-01-01",
             "value": "1574.42",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "consorzi-agrari-assocap",
-                  "title": "consorzi-agrari-assocap",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.wolterskluwer.it/"
+                  "document_id": "consorzi-agrari-ccnl-2024-2027",
+                  "title": "CCNL Consorzi agrari 2024-2027, 12 dicembre 2023",
+                  "kind": "associazione",
+                  "url": "https://www.faicisl.it/attachments/article/2385/CCNL%20CONSORZI%20AGRARI%202024%20-%202027.pdf",
+                  "published_on": "2023-12-12",
+                  "sha256": "592a52c168c4c1724cc49e7d01c1b010723c5673c5ee88ae06cf60a9074b04ea"
                 },
-                "section": "Tabella retributiva"
+                "page": "47",
+                "section": "Allegato A - Tabella stipendi base",
+                "quote": "3° livello € 1.529,42 € 1.574,42 € 1.619,42"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-06T17:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-06T17:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-06-ai-consorzi-agrari-allegato-a"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": null,
+            "value": "1619.42",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "consorzi-agrari-ccnl-2024-2027",
+                  "title": "CCNL Consorzi agrari 2024-2027, 12 dicembre 2023",
+                  "kind": "associazione",
+                  "url": "https://www.faicisl.it/attachments/article/2385/CCNL%20CONSORZI%20AGRARI%202024%20-%202027.pdf",
+                  "published_on": "2023-12-12",
+                  "sha256": "592a52c168c4c1724cc49e7d01c1b010723c5673c5ee88ae06cf60a9074b04ea"
+                },
+                "page": "47",
+                "section": "Allegato A - Tabella stipendi base",
+                "quote": "3° livello € 1.529,42 € 1.574,42 € 1.619,42"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-06T17:00:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-06T17:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-06-ai-consorzi-agrari-allegato-a"
               }
             }
           }
@@ -954,6 +1380,47 @@
               "effective_from": "2020-01-01"
             }
           }
+        },
+        {
+          "code": "IND_CASSA",
+          "description": "Indennità di cassa (Art. 35): cassiere della sede centrale e delle sedi periferiche",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "55.00"
+              }
+            ]
+          },
+          "role": "cassiere",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "consorzi-agrari-ccnl-2024-2027",
+                "title": "CCNL Consorzi agrari 2024-2027, 12 dicembre 2023",
+                "kind": "associazione",
+                "url": "https://www.faicisl.it/attachments/article/2385/CCNL%20CONSORZI%20AGRARI%202024%20-%202027.pdf",
+                "published_on": "2023-12-12",
+                "sha256": "592a52c168c4c1724cc49e7d01c1b010723c5673c5ee88ae06cf60a9074b04ea"
+              },
+              "page": "34",
+              "section": "Art. 35 - Indennità varie",
+              "quote": "Ai lavoratori aventi responsabilità di cassa, in relazione all'effettivo e prevalente esercizio della mansione, competerà una indennità mensile, stabilita nelle seguenti misure: - cassiere della sede centrale e delle sedi periferiche del Consorzio: € 55,00."
+            },
+            "transformation": "A monthly allowance of the role cassiere, at every level.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-06T17:00:00Z",
+              "effective_from": "2024-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-06T17:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-06-ai-consorzi-agrari-allegato-a"
+            }
+          }
         }
       ],
       "provenance": {
@@ -986,44 +1453,91 @@
             "valid_until": "2026-01-01",
             "value": "1426.84",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "consorzi-agrari-assocap",
-                  "title": "consorzi-agrari-assocap",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.wolterskluwer.it/"
+                  "document_id": "consorzi-agrari-ccnl-2024-2027",
+                  "title": "CCNL Consorzi agrari 2024-2027, 12 dicembre 2023",
+                  "kind": "associazione",
+                  "url": "https://www.faicisl.it/attachments/article/2385/CCNL%20CONSORZI%20AGRARI%202024%20-%202027.pdf",
+                  "published_on": "2023-12-12",
+                  "sha256": "592a52c168c4c1724cc49e7d01c1b010723c5673c5ee88ae06cf60a9074b04ea"
                 },
-                "section": "Tabella retributiva"
+                "page": "47",
+                "section": "Allegato A - Tabella stipendi base",
+                "quote": "4° livello super € 1.426,84 € 1.468,82 € 1.510,80"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-06T17:00:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-06T17:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-06-ai-consorzi-agrari-allegato-a"
               }
             }
           },
           {
             "valid_from": "2026-01-01",
-            "valid_until": null,
+            "valid_until": "2027-01-01",
             "value": "1468.82",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "consorzi-agrari-assocap",
-                  "title": "consorzi-agrari-assocap",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.wolterskluwer.it/"
+                  "document_id": "consorzi-agrari-ccnl-2024-2027",
+                  "title": "CCNL Consorzi agrari 2024-2027, 12 dicembre 2023",
+                  "kind": "associazione",
+                  "url": "https://www.faicisl.it/attachments/article/2385/CCNL%20CONSORZI%20AGRARI%202024%20-%202027.pdf",
+                  "published_on": "2023-12-12",
+                  "sha256": "592a52c168c4c1724cc49e7d01c1b010723c5673c5ee88ae06cf60a9074b04ea"
                 },
-                "section": "Tabella retributiva"
+                "page": "47",
+                "section": "Allegato A - Tabella stipendi base",
+                "quote": "4° livello super € 1.426,84 € 1.468,82 € 1.510,80"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-06T17:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-06T17:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-06-ai-consorzi-agrari-allegato-a"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": null,
+            "value": "1510.80",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "consorzi-agrari-ccnl-2024-2027",
+                  "title": "CCNL Consorzi agrari 2024-2027, 12 dicembre 2023",
+                  "kind": "associazione",
+                  "url": "https://www.faicisl.it/attachments/article/2385/CCNL%20CONSORZI%20AGRARI%202024%20-%202027.pdf",
+                  "published_on": "2023-12-12",
+                  "sha256": "592a52c168c4c1724cc49e7d01c1b010723c5673c5ee88ae06cf60a9074b04ea"
+                },
+                "page": "47",
+                "section": "Allegato A - Tabella stipendi base",
+                "quote": "4° livello super € 1.426,84 € 1.468,82 € 1.510,80"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-06T17:00:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-06T17:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-06-ai-consorzi-agrari-allegato-a"
               }
             }
           }
@@ -1060,6 +1574,47 @@
               "effective_from": "2020-01-01"
             }
           }
+        },
+        {
+          "code": "IND_CASSA",
+          "description": "Indennità di cassa (Art. 35): cassiere della sede centrale e delle sedi periferiche",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "55.00"
+              }
+            ]
+          },
+          "role": "cassiere",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "consorzi-agrari-ccnl-2024-2027",
+                "title": "CCNL Consorzi agrari 2024-2027, 12 dicembre 2023",
+                "kind": "associazione",
+                "url": "https://www.faicisl.it/attachments/article/2385/CCNL%20CONSORZI%20AGRARI%202024%20-%202027.pdf",
+                "published_on": "2023-12-12",
+                "sha256": "592a52c168c4c1724cc49e7d01c1b010723c5673c5ee88ae06cf60a9074b04ea"
+              },
+              "page": "34",
+              "section": "Art. 35 - Indennità varie",
+              "quote": "Ai lavoratori aventi responsabilità di cassa, in relazione all'effettivo e prevalente esercizio della mansione, competerà una indennità mensile, stabilita nelle seguenti misure: - cassiere della sede centrale e delle sedi periferiche del Consorzio: € 55,00."
+            },
+            "transformation": "A monthly allowance of the role cassiere, at every level.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-06T17:00:00Z",
+              "effective_from": "2024-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-06T17:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-06-ai-consorzi-agrari-allegato-a"
+            }
+          }
         }
       ],
       "provenance": {
@@ -1092,44 +1647,91 @@
             "valid_until": "2026-01-01",
             "value": "1336.36",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "consorzi-agrari-assocap",
-                  "title": "consorzi-agrari-assocap",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.wolterskluwer.it/"
+                  "document_id": "consorzi-agrari-ccnl-2024-2027",
+                  "title": "CCNL Consorzi agrari 2024-2027, 12 dicembre 2023",
+                  "kind": "associazione",
+                  "url": "https://www.faicisl.it/attachments/article/2385/CCNL%20CONSORZI%20AGRARI%202024%20-%202027.pdf",
+                  "published_on": "2023-12-12",
+                  "sha256": "592a52c168c4c1724cc49e7d01c1b010723c5673c5ee88ae06cf60a9074b04ea"
                 },
-                "section": "Tabella retributiva"
+                "page": "47",
+                "section": "Allegato A - Tabella stipendi base",
+                "quote": "4° livello € 1.336,36 € 1.375,68 € 1.415,00"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-06T17:00:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-06T17:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-06-ai-consorzi-agrari-allegato-a"
               }
             }
           },
           {
             "valid_from": "2026-01-01",
-            "valid_until": null,
+            "valid_until": "2027-01-01",
             "value": "1375.68",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "consorzi-agrari-assocap",
-                  "title": "consorzi-agrari-assocap",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.wolterskluwer.it/"
+                  "document_id": "consorzi-agrari-ccnl-2024-2027",
+                  "title": "CCNL Consorzi agrari 2024-2027, 12 dicembre 2023",
+                  "kind": "associazione",
+                  "url": "https://www.faicisl.it/attachments/article/2385/CCNL%20CONSORZI%20AGRARI%202024%20-%202027.pdf",
+                  "published_on": "2023-12-12",
+                  "sha256": "592a52c168c4c1724cc49e7d01c1b010723c5673c5ee88ae06cf60a9074b04ea"
                 },
-                "section": "Tabella retributiva"
+                "page": "47",
+                "section": "Allegato A - Tabella stipendi base",
+                "quote": "4° livello € 1.336,36 € 1.375,68 € 1.415,00"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-06T17:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-06T17:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-06-ai-consorzi-agrari-allegato-a"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": null,
+            "value": "1415.00",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "consorzi-agrari-ccnl-2024-2027",
+                  "title": "CCNL Consorzi agrari 2024-2027, 12 dicembre 2023",
+                  "kind": "associazione",
+                  "url": "https://www.faicisl.it/attachments/article/2385/CCNL%20CONSORZI%20AGRARI%202024%20-%202027.pdf",
+                  "published_on": "2023-12-12",
+                  "sha256": "592a52c168c4c1724cc49e7d01c1b010723c5673c5ee88ae06cf60a9074b04ea"
+                },
+                "page": "47",
+                "section": "Allegato A - Tabella stipendi base",
+                "quote": "4° livello € 1.336,36 € 1.375,68 € 1.415,00"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-06T17:00:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-06T17:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-06-ai-consorzi-agrari-allegato-a"
               }
             }
           }
@@ -1166,6 +1768,47 @@
               "effective_from": "2020-01-01"
             }
           }
+        },
+        {
+          "code": "IND_CASSA",
+          "description": "Indennità di cassa (Art. 35): cassiere della sede centrale e delle sedi periferiche",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "55.00"
+              }
+            ]
+          },
+          "role": "cassiere",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "consorzi-agrari-ccnl-2024-2027",
+                "title": "CCNL Consorzi agrari 2024-2027, 12 dicembre 2023",
+                "kind": "associazione",
+                "url": "https://www.faicisl.it/attachments/article/2385/CCNL%20CONSORZI%20AGRARI%202024%20-%202027.pdf",
+                "published_on": "2023-12-12",
+                "sha256": "592a52c168c4c1724cc49e7d01c1b010723c5673c5ee88ae06cf60a9074b04ea"
+              },
+              "page": "34",
+              "section": "Art. 35 - Indennità varie",
+              "quote": "Ai lavoratori aventi responsabilità di cassa, in relazione all'effettivo e prevalente esercizio della mansione, competerà una indennità mensile, stabilita nelle seguenti misure: - cassiere della sede centrale e delle sedi periferiche del Consorzio: € 55,00."
+            },
+            "transformation": "A monthly allowance of the role cassiere, at every level.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-06T17:00:00Z",
+              "effective_from": "2024-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-06T17:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-06-ai-consorzi-agrari-allegato-a"
+            }
+          }
         }
       ],
       "provenance": {
@@ -1198,44 +1841,91 @@
             "valid_until": "2026-01-01",
             "value": "1197.79",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "consorzi-agrari-assocap",
-                  "title": "consorzi-agrari-assocap",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.wolterskluwer.it/"
+                  "document_id": "consorzi-agrari-ccnl-2024-2027",
+                  "title": "CCNL Consorzi agrari 2024-2027, 12 dicembre 2023",
+                  "kind": "associazione",
+                  "url": "https://www.faicisl.it/attachments/article/2385/CCNL%20CONSORZI%20AGRARI%202024%20-%202027.pdf",
+                  "published_on": "2023-12-12",
+                  "sha256": "592a52c168c4c1724cc49e7d01c1b010723c5673c5ee88ae06cf60a9074b04ea"
                 },
-                "section": "Tabella retributiva"
+                "page": "47",
+                "section": "Allegato A - Tabella stipendi base",
+                "quote": "5° livello € 1.197,79 € 1.233,03 € 1.268,27"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-06T17:00:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-06T17:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-06-ai-consorzi-agrari-allegato-a"
               }
             }
           },
           {
             "valid_from": "2026-01-01",
-            "valid_until": null,
+            "valid_until": "2027-01-01",
             "value": "1233.03",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "consorzi-agrari-assocap",
-                  "title": "consorzi-agrari-assocap",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.wolterskluwer.it/"
+                  "document_id": "consorzi-agrari-ccnl-2024-2027",
+                  "title": "CCNL Consorzi agrari 2024-2027, 12 dicembre 2023",
+                  "kind": "associazione",
+                  "url": "https://www.faicisl.it/attachments/article/2385/CCNL%20CONSORZI%20AGRARI%202024%20-%202027.pdf",
+                  "published_on": "2023-12-12",
+                  "sha256": "592a52c168c4c1724cc49e7d01c1b010723c5673c5ee88ae06cf60a9074b04ea"
                 },
-                "section": "Tabella retributiva"
+                "page": "47",
+                "section": "Allegato A - Tabella stipendi base",
+                "quote": "5° livello € 1.197,79 € 1.233,03 € 1.268,27"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-06T17:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-06T17:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-06-ai-consorzi-agrari-allegato-a"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": null,
+            "value": "1268.27",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "consorzi-agrari-ccnl-2024-2027",
+                  "title": "CCNL Consorzi agrari 2024-2027, 12 dicembre 2023",
+                  "kind": "associazione",
+                  "url": "https://www.faicisl.it/attachments/article/2385/CCNL%20CONSORZI%20AGRARI%202024%20-%202027.pdf",
+                  "published_on": "2023-12-12",
+                  "sha256": "592a52c168c4c1724cc49e7d01c1b010723c5673c5ee88ae06cf60a9074b04ea"
+                },
+                "page": "47",
+                "section": "Allegato A - Tabella stipendi base",
+                "quote": "5° livello € 1.197,79 € 1.233,03 € 1.268,27"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-06T17:00:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-06T17:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-06-ai-consorzi-agrari-allegato-a"
               }
             }
           }
@@ -1272,6 +1962,47 @@
               "effective_from": "2020-01-01"
             }
           }
+        },
+        {
+          "code": "IND_CASSA",
+          "description": "Indennità di cassa (Art. 35): cassiere della sede centrale e delle sedi periferiche",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "55.00"
+              }
+            ]
+          },
+          "role": "cassiere",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "consorzi-agrari-ccnl-2024-2027",
+                "title": "CCNL Consorzi agrari 2024-2027, 12 dicembre 2023",
+                "kind": "associazione",
+                "url": "https://www.faicisl.it/attachments/article/2385/CCNL%20CONSORZI%20AGRARI%202024%20-%202027.pdf",
+                "published_on": "2023-12-12",
+                "sha256": "592a52c168c4c1724cc49e7d01c1b010723c5673c5ee88ae06cf60a9074b04ea"
+              },
+              "page": "34",
+              "section": "Art. 35 - Indennità varie",
+              "quote": "Ai lavoratori aventi responsabilità di cassa, in relazione all'effettivo e prevalente esercizio della mansione, competerà una indennità mensile, stabilita nelle seguenti misure: - cassiere della sede centrale e delle sedi periferiche del Consorzio: € 55,00."
+            },
+            "transformation": "A monthly allowance of the role cassiere, at every level.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-06T17:00:00Z",
+              "effective_from": "2024-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-06T17:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-06-ai-consorzi-agrari-allegato-a"
+            }
+          }
         }
       ],
       "provenance": {
@@ -1302,46 +2033,93 @@
           {
             "valid_from": "2025-01-01",
             "valid_until": "2026-01-01",
-            "value": "1040.28",
+            "value": "1040.26",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "consorzi-agrari-assocap",
-                  "title": "consorzi-agrari-assocap",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.wolterskluwer.it/"
+                  "document_id": "consorzi-agrari-ccnl-2024-2027",
+                  "title": "CCNL Consorzi agrari 2024-2027, 12 dicembre 2023",
+                  "kind": "associazione",
+                  "url": "https://www.faicisl.it/attachments/article/2385/CCNL%20CONSORZI%20AGRARI%202024%20-%202027.pdf",
+                  "published_on": "2023-12-12",
+                  "sha256": "592a52c168c4c1724cc49e7d01c1b010723c5673c5ee88ae06cf60a9074b04ea"
                 },
-                "section": "Tabella retributiva"
+                "page": "47",
+                "section": "Allegato A - Tabella stipendi base",
+                "quote": "6° livello € 1.040,26 € 1.070,87 € 1.101,48"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-06T17:00:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-06T17:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-06-ai-consorzi-agrari-allegato-a"
               }
             }
           },
           {
             "valid_from": "2026-01-01",
-            "valid_until": null,
+            "valid_until": "2027-01-01",
             "value": "1070.87",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "consorzi-agrari-assocap",
-                  "title": "consorzi-agrari-assocap",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.wolterskluwer.it/"
+                  "document_id": "consorzi-agrari-ccnl-2024-2027",
+                  "title": "CCNL Consorzi agrari 2024-2027, 12 dicembre 2023",
+                  "kind": "associazione",
+                  "url": "https://www.faicisl.it/attachments/article/2385/CCNL%20CONSORZI%20AGRARI%202024%20-%202027.pdf",
+                  "published_on": "2023-12-12",
+                  "sha256": "592a52c168c4c1724cc49e7d01c1b010723c5673c5ee88ae06cf60a9074b04ea"
                 },
-                "section": "Tabella retributiva"
+                "page": "47",
+                "section": "Allegato A - Tabella stipendi base",
+                "quote": "6° livello € 1.040,26 € 1.070,87 € 1.101,48"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-06T17:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-06T17:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-06-ai-consorzi-agrari-allegato-a"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": null,
+            "value": "1101.48",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "consorzi-agrari-ccnl-2024-2027",
+                  "title": "CCNL Consorzi agrari 2024-2027, 12 dicembre 2023",
+                  "kind": "associazione",
+                  "url": "https://www.faicisl.it/attachments/article/2385/CCNL%20CONSORZI%20AGRARI%202024%20-%202027.pdf",
+                  "published_on": "2023-12-12",
+                  "sha256": "592a52c168c4c1724cc49e7d01c1b010723c5673c5ee88ae06cf60a9074b04ea"
+                },
+                "page": "47",
+                "section": "Allegato A - Tabella stipendi base",
+                "quote": "6° livello € 1.040,26 € 1.070,87 € 1.101,48"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-06T17:00:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-06T17:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-06-ai-consorzi-agrari-allegato-a"
               }
             }
           }
@@ -1378,6 +2156,47 @@
               "effective_from": "2020-01-01"
             }
           }
+        },
+        {
+          "code": "IND_CASSA",
+          "description": "Indennità di cassa (Art. 35): cassiere della sede centrale e delle sedi periferiche",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "55.00"
+              }
+            ]
+          },
+          "role": "cassiere",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "consorzi-agrari-ccnl-2024-2027",
+                "title": "CCNL Consorzi agrari 2024-2027, 12 dicembre 2023",
+                "kind": "associazione",
+                "url": "https://www.faicisl.it/attachments/article/2385/CCNL%20CONSORZI%20AGRARI%202024%20-%202027.pdf",
+                "published_on": "2023-12-12",
+                "sha256": "592a52c168c4c1724cc49e7d01c1b010723c5673c5ee88ae06cf60a9074b04ea"
+              },
+              "page": "34",
+              "section": "Art. 35 - Indennità varie",
+              "quote": "Ai lavoratori aventi responsabilità di cassa, in relazione all'effettivo e prevalente esercizio della mansione, competerà una indennità mensile, stabilita nelle seguenti misure: - cassiere della sede centrale e delle sedi periferiche del Consorzio: € 55,00."
+            },
+            "transformation": "A monthly allowance of the role cassiere, at every level.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-06T17:00:00Z",
+              "effective_from": "2024-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-06T17:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-06-ai-consorzi-agrari-allegato-a"
+            }
+          }
         }
       ],
       "provenance": {
@@ -1407,7 +2226,7 @@
     "effective_until": null,
     "source": "https://www.wolterskluwer.it/",
     "verification_status": "unverified",
-    "source_hash": "c0c246ce82b4e6e8f157c4411e12358f9ba24058e18260941479e370016680bb",
+    "source_hash": "218727c4d9f3e90fc2db020bb44c4bad627887c9cd020e7ed22d83fb1075b20c",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
