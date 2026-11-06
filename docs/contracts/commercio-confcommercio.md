@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, seniority, sickness |
+| **Limits of this contract** | base_salary, sickness |
 
-4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -129,13 +129,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Model the farmacista di parafarmacia apprenticeship of the Accordo 31/10/2024 once its text is found.
-
-!!! warning "commercio-confcommercio/apprentice_seniority · seniority · impact unknown · open"
-    APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.
-
-    **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
-
-    **Remediation:** Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.
 
 !!! warning "commercio-confcommercio/sickness_net_basis · sickness · impact unknown · open"
     SICKNESS (Art. 187): the CCNL integrates up to a share of the net daily pay ('retribuzione giornaliera netta') without saying how the net pay is computed. The engine grosses up the INPS indemnity by the worker's INPS rate (the 'lordizzazione' of payroll practice, Ordine dei Consulenti del Lavoro di Salerno) and tops it up to the measure of the gross daily quota; IRPEF is left out, as it falls on both. Day bands, carenza by event, the yearly comporto and the exclusion of apprentices are modelled.

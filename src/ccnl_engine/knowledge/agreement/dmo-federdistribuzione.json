@@ -85,22 +85,6 @@
       },
       {
         "kind": "simplification",
-        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
-        "capability": "seniority",
-        "monetary_impact": "unknown",
-        "limitation": {
-          "variant": "apprentice_seniority",
-          "applies_when": {
-            "trigger": "path",
-            "contract_types": [
-              "apprentice"
-            ]
-          },
-          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
-        }
-      },
-      {
-        "kind": "simplification",
         "text": "SICKNESS (Art. 170): the CCNL integrates up to a share of the net daily pay ('retribuzione giornaliera netta') without saying how the net pay is computed. The engine grosses up the INPS indemnity by the worker's INPS rate and tops it up to the measure of the gross daily quota, as for the Commercio file. The exempt events of c. 3 are an input (SicknessEpisode.short_absence_exempt, read with carenza_by_event) (review of 2026-10-30).",
         "capability": "sickness",
         "monetary_impact": "yes",
@@ -364,7 +348,8 @@
           "review_id": "2026-10-13-ai-production"
         },
         "transformation": "Ten scatti every 36 months, amounts of the Art. 188 table ('IMPORTI dal 1° gennaio 1990'), in force for the whole ruleset."
-      }
+      },
+      "apprentice_level_amount": true
     },
     "accrual_rule": {
       "min_days": 15,
@@ -3944,7 +3929,7 @@
     "effective_until": null,
     "source": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
     "verification_status": "unverified",
-    "source_hash": "cd4fb8855aaf152187a954f819d686383e2961ea5b65f9c547401816644d2506",
+    "source_hash": "662e99190628851341cf5abc386c6c94390a91b6781b51cf87834ed9ec0ba30e",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -5476,6 +5461,27 @@
         "independence": "separate_session",
         "checked": [
           "parameters.health_funds"
+        ]
+      },
+      {
+        "id": "2026-11-06-ai-dmo-federdistribuzione-apprentice-seniority",
+        "date": "2026-11-06",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Apprentice seniority: artt. 186 and 188 of the testo unico of 29 September 2025 (p. 56).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+            "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
+          }
+        ],
+        "findings": [
+          "The apprentice is classified two then one level below with 'il conseguente trattamento economico'; 'il personale ha diritto a dieci scatti triennali' of fixed amounts per level, counting seniority 'dal giorno in cui il lavoratore è entrato a far parte dell'azienda, quali che siano le mansioni': the increments of the level the apprentice is paid at."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "parameters.seniority_increments"
         ]
       }
     ],
