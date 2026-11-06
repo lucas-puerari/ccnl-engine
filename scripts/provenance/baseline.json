@@ -682,8 +682,7 @@
       "autorimesse-ic35/meal_voucher"
     ],
     "agreement/autostrade-trafori.json": [
-      "autostrade-trafori/apprentice_seniority",
-      "autostrade-trafori/apprenticeship_full_pay_passthrough"
+      "autostrade-trafori/apprentice_seniority"
     ],
     "agreement/aziende-termali-federterme.json": [
       "aziende-termali-federterme/apprentice_seniority",

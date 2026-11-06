@@ -31,7 +31,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, seniority |
+| **Limits of this contract** | seniority |
 
 2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
@@ -50,12 +50,14 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2023-01-01 |
-| **Last review** | — |
+| **Last review** | 2026-11-06 |
 | **Latest salary tranche** | 2028-01-01 |
 
 ## Review history
 
-No review is recorded.
+| Date | Reviewer | Scope | Outcome | Findings |
+|---|---|---|---|---|
+| 2026-11-06 | claude-opus-5-5 (ai) | Art. 10 apprenticeship of the stesura of 5 July 2024 (pp. 20-21, OCR). | corrected | Apprentices are paid 80/85/95% over 36 months, not 100% and not by under-classification as the note claimed. |
 
 ## Salary table
 
@@ -104,12 +106,12 @@ percentage: 1.00
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning "autostrade-trafori/apprenticeship_full_pay_passthrough · base_salary · impact yes · open"
-    Apprenticeship: CCNL provides under-classification 2 levels below; the file models it as a 100% passthrough (one percentage track at 1.00), although the engine supports under_classification tracks (review of 2026-10-30).
+!!! note "autostrade-trafori/apprenticeship_full_pay_passthrough · base_salary · impact yes · resolved"
+    APPRENTICESHIP (Art. 10 cc. 7-8, pp. 20-21 of the stesura signed 5 July 2024): 36 months for every profile, paid 80% the first 12 months, 85% the next 12, 95% after; the renewal of 26 June 2026 does not amend art. 10.
 
     **Applies when:** `base_salary` applies.
 
-    **Remediation:** Model the track as type under_classification (levels_below 2, then the CCNL periods) from the CCNL apprenticeship clause and drop the 100% passthrough.
+    **Remediation:** Resolved: percentages of art. 10, read on 2026-11-06.
 
 !!! warning "autostrade-trafori/apprentice_seniority · seniority · impact unknown · open"
     APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.
