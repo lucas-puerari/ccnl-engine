@@ -36,9 +36,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, seniority |
+| **Limits of this contract** | base_salary |
 
-3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -55,12 +55,14 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-07-22 |
-| **Last review** | — |
+| **Last review** | 2026-11-06 |
 | **Latest salary tranche** | 2027-11-01 |
 
 ## Review history
 
-No review is recorded.
+| Date | Reviewer | Scope | Outcome | Findings |
+|---|---|---|---|---|
+| 2026-11-06 | claude-opus-5-5 (ai) | Apprentice seniority: art. 58 c. 1 of the accordo of 18 July 2018 (CNEL 90033, p. 116, OCR); the definition of the retribuzione read in the unified CCNL Turismo of 22 July 2003 (art. 140 c. 1 d) and its Federalberghi successor of 20 February 2010 (art. 148 c. 1 d). | corrected | The apprentice is paid a percentage of 'la normale retribuzione dei lavoratori qualificati di pari livello' (art. 58); the retribuzione 'è distinta nelle seguenti voci [...] eventuali scatti di anzianità' in the 2003 parent text, a clause the Federalberghi successor keeps; 'A tutto il personale verranno riconosciuti sei scatti' for uninterrupted service: the level increments, scaled by the percentage. The Confesercenti 2010 text itself was not read. |
 
 ## Salary table
 
@@ -120,13 +122,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `base_salary` applies.
 
     **Remediation:** Source the contract text and model under_classification tracks (2 levels below destination) instead of the 100% passthrough.
-
-!!! warning "turismo-confesercenti/apprentice_seniority · seniority · impact unknown · open"
-    APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.
-
-    **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
-
-    **Remediation:** Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

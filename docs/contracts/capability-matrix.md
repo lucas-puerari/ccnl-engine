@@ -248,7 +248,7 @@ never grow.
 | 107 | [CCNL Tessile-Abbigliamento-Moda PMI (Uniontessile-Confapi)](tessile-pmi-uniontessile.md) | ⚠️ | base_salary, pension_fund_contribution | 38 / 0 / 5 / 1 |
 | 108 | [CCNL Trasporto Aereo — Gestori Aeroportuali](trasporto-aereo-assaeroporti.md) | ⚠️ | base_salary, sickness | 1 / 94 / 1 / 0 |
 | 109 | [CCNL Trasporto a Fune (Funivie Terrestri ed Aeree) - ANEF](funivie-anef.md) | ⚠️ | seniority | 2 / 47 / 1 / 1 |
-| 110 | [CCNL Turismo (Assoturismo-Confesercenti)](turismo-confesercenti.md) | ⚠️ | base_salary, seniority | 0 / 57 / 1 / 0 |
+| 110 | [CCNL Turismo (Assoturismo-Confesercenti)](turismo-confesercenti.md) | ⚠️ | base_salary | 0 / 57 / 1 / 0 |
 | 111 | [CCNL Turismo — Federalberghi/Faita](turismo-federalberghi.md) | ⚠️ | base_salary, sickness | 78 / 1 / 0 / 0 |
 | 112 | [CCNL Turismo — Federalberghi/Faita - Alberghi a una e due stelle e campeggi minori](turismo-federalberghi-alberghi-minori.md) | ⚠️ | base_salary, sickness | 18 / 51 / 0 / 0 |
 | 113 | [CCNL Vetro (Industrie) — Settori Meccanizzati (Prime Lavorazioni)](vetro-meccanizzato-assovetro.md) | ⚠️ | base_salary, seniority | 0 / 0 / 35 / 1 |
