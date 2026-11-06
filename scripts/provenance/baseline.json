@@ -650,8 +650,7 @@
     ],
     "agreement/agenzie-marittime-i481.json": [
       "agenzie-marittime-i481/apprentice_seniority",
-      "agenzie-marittime-i481/function_allowance_on_fourteenth",
-      "agenzie-marittime-i481/level_1_seniority_zero"
+      "agenzie-marittime-i481/function_allowance_on_fourteenth"
     ],
     "agreement/agenzie-viaggio-fiavet.json": [
       "agenzie-viaggio-fiavet/apprentice_seniority"
@@ -674,10 +673,6 @@
       "assicurazioni-ania/inps_sector_rates_unsourced",
       "assicurazioni-ania/pre_1999_hire_table",
       "assicurazioni-ania/seniority_modal_class_difference"
-    ],
-    "agreement/attivita-minerarie-assorisorse.json": [
-      "attivita-minerarie-assorisorse/additional_months_unconfirmed",
-      "attivita-minerarie-assorisorse/seniority_not_modelled"
     ],
     "agreement/autoferrotranvieri-internavigatori.json": [
       "autoferrotranvieri-internavigatori/priamo_pension_fund",
@@ -929,8 +924,7 @@
     ],
     "agreement/gomma-plastica-federazione-gomma-plastica.json": [
       "gomma-plastica-federazione-gomma-plastica/apprentice_seniority",
-      "gomma-plastica-federazione-gomma-plastica/apprenticeship_period_boundaries",
-      "gomma-plastica-federazione-gomma-plastica/q_allowance_2023_unverified"
+      "gomma-plastica-federazione-gomma-plastica/apprenticeship_period_boundaries"
     ],
     "agreement/grafica-editoria-aieg.json": [
       "grafica-editoria-aieg/grafica_levels_unreconciled",
@@ -951,13 +945,11 @@
       "impianti-sportivi-sport/sickness_net_basis"
     ],
     "agreement/impiegati-tecnici-agricoli.json": [
-      "impiegati-tecnici-agricoli/eban_agrifondo_missing",
-      "impiegati-tecnici-agricoli/tranche_2025_01_missing"
+      "impiegati-tecnici-agricoli/eban_agrifondo_missing"
     ],
     "agreement/industria-turistica-federturismo.json": [
       "industria-turistica-federturismo/apprentice_seniority",
-      "industria-turistica-federturismo/apprenticeship_under_classification",
-      "industria-turistica-federturismo/seniority_cadence_unconfirmed"
+      "industria-turistica-federturismo/apprenticeship_under_classification"
     ],
     "agreement/informatica-pmi-unimatica.json": [
       "informatica-pmi-unimatica/apprentice_seniority",

@@ -3,22 +3,6 @@
   "ccnl_id": "attivita-minerarie-assorisorse",
   "requirements": [
     {
-      "id": "additional_months_unconfirmed",
-      "institute": "base_salary",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "ADDITIONAL MONTHS: 13 assumed (tredicesima only, standard for Confindustria-affiliated mining). Not explicitly confirmed from scanned PDF — verify against Art. gratifica natalizia.",
-      "calculation": "ccnl/attivita-minerarie-assorisorse:coverage.notes",
-      "state": "unverified",
-      "remediation": "Read the gratifica natalizia / mensilità clause of the CCNL and confirm or correct additional_months.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "attivita-minerarie-assorisorse/additional_months_unconfirmed"
-        ]
-      }
-    },
-    {
       "id": "arrears_unused_deductions",
       "institute": "contract_renewal_arrears",
       "variant": "all",
@@ -316,22 +300,6 @@
       "links": {
         "rules": [
           "agreement/attivita-minerarie-assorisorse.json#seniority_increments"
-        ]
-      }
-    },
-    {
-      "id": "seniority_not_modelled",
-      "institute": "seniority",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "SIMPLIFICATION: Seniority increments (scatti di anzianita) not modeled — Art. anzianita not found in scanned PDF pages available (OCR coverage pages 1-10, table on page 9). Seniority amounts are unknown.",
-      "calculation": "ccnl/attivita-minerarie-assorisorse:coverage.notes",
-      "state": "absent",
-      "remediation": "Source the seniority article and add the increments to the CCNL file.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "attivita-minerarie-assorisorse/seniority_not_modelled"
         ]
       }
     },

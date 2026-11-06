@@ -102,12 +102,12 @@ percentage: 1.00
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning "industria-turistica-federturismo/seniority_cadence_unconfirmed · seniority · impact unknown · open"
-    SENIORITY CADENCE: file uses 36 months. Search for H05B 2025 suggests 'ogni due anni di servizio' (24 months) for this contract (lavoro-economia.it H05B, adapt.it). Contrasts with Confcommercio turismo (H05A) which changed from 36 to 48 in 2024 renewal. Cadence needs confirmation from primary CCNL H05B text; if 24 months, file needs correction. Maximum scatti: 6 (confirmed).
+!!! note "industria-turistica-federturismo/seniority_cadence_unconfirmed · seniority · impact unknown · resolved"
+    SENIORITY CADENCE (Art. 114, p. 91 of the 2016 definitive text): 'A tutto il personale verranno riconosciuti sei scatti triennali [...] Gli scatti triennali decorreranno dal primo giorno del mese immediatamente successivo a quello in cui si compie il triennio': 36 months, six increments; the renewal of 21 December 2024 does not amend art. 114.
 
     **Applies when:** `seniority` applies.
 
-    **Remediation:** Confirm the seniority cadence (36 or 24 months) against the H05B text.
+    **Remediation:** Resolved: six triennial increments (art. 114); read on 2026-11-06.
 
 !!! warning "industria-turistica-federturismo/apprenticeship_under_classification · base_salary · impact yes · open"
     APPRENTICESHIP: under_classification 2 levels below destination is the contract rule. Modelled as 100% passthrough: the apprentice is paid the destination level. The engine can express it (apprenticeship type under_classification, levels_below relative to each destination level), but the periods are not sourced (review of 2026-10-30)

@@ -86,7 +86,7 @@
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: Level 1 seniority amount = 0.00. Art. 23 table (primary source) lists levels 2-7 only; level 1 is absent. Interpreted as no entitlement. Verify against consolidated CCNL text.",
+        "text": "LEVEL 1 SENIORITY (Art. 23, p. 26; Art. 4, p. 11 of the 2021 text): the seniority table has no row for level 1, the 'primo livello di ingresso' of new hires, whose 'passaggio alla qualifica di appartenenza dovrà avvenire non oltre 12 mesi dalla data di assunzione': no worker stays at level 1 for the biennio of an increment. The 0.00 stands.",
         "capability": "seniority",
         "monetary_impact": "unknown",
         "limitation": {
@@ -96,7 +96,8 @@
               "1"
             ]
           },
-          "remediation": "Verify against the consolidated CCNL text whether level 1 accrues seniority increments."
+          "remediation": "Resolved: level 1 is an entry level left within 12 months (art. 4), short of the biennio of art. 23; read on 2026-11-06.",
+          "status": "resolved"
         }
       },
       {
@@ -1247,7 +1248,7 @@
     "effective_until": null,
     "source": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/ccnl-agenziemarittime21-23.pdf",
     "verification_status": "unverified",
-    "source_hash": "3a3e58c67d43cd5772ffd34ea449914fc3b4c89898fa3d4816a1a4d0f6f24f74",
+    "source_hash": "94f4ac2d9f1dc185374c5ce7b2dd97a93d0b0d6e085d1edd333acf9b824c382e",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

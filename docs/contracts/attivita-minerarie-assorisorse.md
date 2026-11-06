@@ -30,8 +30,8 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, seniority |
+| **Core payroll path** | ✅ |
+| **Limits of this contract** | — |
 
 4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
@@ -90,19 +90,19 @@ percentage: 0.95
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning "attivita-minerarie-assorisorse/additional_months_unconfirmed · base_salary · impact unknown · open"
-    ADDITIONAL MONTHS: 13 assumed (tredicesima only, standard for Confindustria-affiliated mining). Not explicitly confirmed from scanned PDF — verify against Art. gratifica natalizia.
+!!! note "attivita-minerarie-assorisorse/additional_months_unconfirmed · base_salary · impact unknown · resolved"
+    ADDITIONAL MONTHS: 13. The CCNL text of 20 December 2000 (CNEL 4575) pays one gratifica natalizia to the operai ('La gratifica natalizia è corrisposta nella misura di 1 mensilità', art. 11) and a 13a mensilità to the impiegati (art. 8); the renewals of 2017, 2022 and 2025 add no national fourteenth (the 2017 one mentions 'aziende che erogano la XIV' only as a company practice).
 
     **Applies when:** `base_salary` applies.
 
-    **Remediation:** Read the gratifica natalizia / mensilità clause of the CCNL and confirm or correct additional_months.
+    **Remediation:** Resolved: 13 months, art. 11 (operai) and art. 8 (impiegati) of the 2000 text, no national fourteenth in the renewals; read on 2026-11-06.
 
-!!! warning "attivita-minerarie-assorisorse/seniority_not_modelled · seniority · impact yes · open"
-    SIMPLIFICATION: Seniority increments (scatti di anzianita) not modeled — Art. anzianita not found in scanned PDF pages available (OCR coverage pages 1-10, table on page 9). Seniority amounts are unknown.
+!!! note "attivita-minerarie-assorisorse/seniority_not_modelled · seniority · impact yes · resolved"
+    SENIORITY: none. The renewal of 15 February 2017 (p. 16): 'L'istituto degli scatti di anzianità è abolito a far data dal 1 aprile 2017. Contestualmente i minimi di retribuzione verranno aumentati di Euro 25 lordi non parametrati'. The increments matured before, kept by each worker, are an individual element of pay.
 
     **Applies when:** `seniority` applies.
 
-    **Remediation:** Source the seniority article and add the increments to the CCNL file.
+    **Remediation:** Resolved: seniority increments abolished from 1 April 2017 (renewal of 15 February 2017, p. 16); read on 2026-11-06.
 
 !!! note "attivita-minerarie-assorisorse/ocr_salary_values · base_salary · impact unknown · resolved"
     SIMPLIFICATION: Source PDF is scanned (image-based, CCITT compression). Salary values extracted via OCR (Ghostscript + Tesseract). Amounts verified by cross-checking parametrale ratios and incremental consistency.

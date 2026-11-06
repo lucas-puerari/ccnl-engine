@@ -96,7 +96,7 @@
       },
       {
         "kind": "simplification",
-        "text": "TWO TRANCHES NOT FULLY MODELLED. The CCNL A021 (signed 18/06/2024) establishes two tranches: +5% retroactive to 01/04/2024 and +1,9% from 01/01/2025 (source: dottrinalavoro.it; FLAI PDF; ilccnl.it). The file models only the first tranche (valid_from 2024-07-01, which likely reflects the 01/04/2024 increase with the official CNEL deposit date). The 01/01/2025 tranche is missing: approximate values are L1~1718.81 (1686.76×1.019) but exact official amounts not yet retrieved. Update valid_from to 2024-04-01 and add 2025-01-01 periods when confirmed from official source.",
+        "text": "NATIONAL MINIMA (Art. 31, p. 35 of the CCNL of 18 June 2024): one national table, 'Minimi nazionali di stipendio mensile conglobato a decorrere dal 01/07/2024' (Q 1.788,38 ... 6° 1.217,23). The +5% from 1 April 2024 and +1.9% from 1 January 2025 raise the territorial salaries, not the national minima; the table applies from 1 July 2024, or from the next territorial renewal (by 1 January 2027) where the territory renewed under the CCNL of 7 July 2021.",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
@@ -104,7 +104,8 @@
           "applies_when": {
             "effective_from": "2025-01-01"
           },
-          "remediation": "Add the 01/01/2025 tranche (+1.9%) from the official table and move the first tranche to 2024-04-01."
+          "remediation": "Resolved: the national minima are the one table from 1 July 2024 (art. 31); the two percentages are territorial; read on 2026-11-06.",
+          "status": "resolved"
         }
       },
       {
@@ -759,7 +760,7 @@
     "effective_until": "2027-12-31",
     "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-quadri-e-impiegati-agricoli-2024-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "634c13487401c29ffac424f385ef662b9a5db4c0420a9b0cd8577307c9bb4fa8",
+    "source_hash": "598d74270f1b20a75fdac364c400a187263174d50d0dba27e516357441e5032d",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
