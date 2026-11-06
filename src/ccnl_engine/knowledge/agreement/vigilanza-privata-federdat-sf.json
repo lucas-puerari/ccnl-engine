@@ -70,7 +70,7 @@
       },
       {
         "kind": "simplification",
-        "text": "ORDINARY SUNDAY AND HOLIDAY WORK (Art. 143): 40% by day, 50% by night, and the indennità sesto giorno of 10%, on ordinary hours, are not modelled; the overtime bands are.",
+        "text": "ORDINARY HOURS (Art. 143): the premiums of 40% on ordinary Sunday and holiday work by day and 50% on holiday work by night are modelled (supplement_bands SF_*); not modelled: the 50% of ordinary Sunday work by night of a worker whose rest day is another day, and the indennità sesto giorno of 10%.",
         "capability": "overtime",
         "monetary_impact": "yes",
         "limitation": {
@@ -78,7 +78,7 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Model the premiums of art. 143 on ordinary Sunday, holiday and sixth-day work."
+          "remediation": "Model the Sunday night premium and the sixth-day allowance of art. 143."
         }
       },
       {
@@ -963,7 +963,7 @@
     "effective_until": null,
     "source": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
     "verification_status": "unverified",
-    "source_hash": "3b685135c5ece07c0a16da9a4677522965ea938098af592497227f3b267d2817",
+    "source_hash": "0b7fd89d676b940791aed0ba93a27586293d5b174ec125bed9f66ab395aba489",
     "published_at": "2026-11-06",
     "source_type": "contracting_party"
   },
@@ -1180,6 +1180,137 @@
               "quote": "lavoro straordinario: diurno fino alla 48a ora 25%, dalla 49a ora 30% notturno 35% lavoro domenicale/festivo: diurno 40% notturno 50% lavoro straordinario domenicale/festivo: diurno 50% notturno 60%"
             },
             "transformation": "Straordinario domenicale/festivo notturno: 0.60 (art. 126 of the 2023 text is the same).",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-06T16:00:00Z",
+              "effective_from": "2023-06-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-06T16:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-06-ai-federdat-hv51"
+            }
+          }
+        }
+      ],
+      "supplement_bands": [
+        {
+          "code": "SF_DOMENICA",
+          "description": "Lavoro ordinario domenicale diurno (art. 143)",
+          "work": "sunday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-06-01",
+                "valid_until": null,
+                "value": "0.40",
+                "provenance": null
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "cnel-hv51-245848-ccnl-2026",
+                "title": "CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 9 luglio 2026 (archivio CNEL HV51, accordo 245848)",
+                "kind": "cnel",
+                "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+                "published_on": "2026-07-09",
+                "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
+              },
+              "page": "72",
+              "section": "Art. 143 - Lavoro straordinario e maggiorazioni",
+              "quote": "lavoro straordinario: diurno fino alla 48a ora 25%, dalla 49a ora 30% notturno 35% lavoro domenicale/festivo: diurno 40% notturno 50% lavoro straordinario domenicale/festivo: diurno 50% notturno 60%"
+            },
+            "transformation": "Lavoro ordinario domenicale diurno (art. 143): 0.40 of the hourly quota on the ordinary hours (art. 126 of the 2023 text is the same); the hours are in the monthly pay.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-06T16:00:00Z",
+              "effective_from": "2023-06-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-06T16:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-06-ai-federdat-hv51"
+            }
+          }
+        },
+        {
+          "code": "SF_FESTIVO",
+          "description": "Lavoro ordinario festivo diurno (art. 143)",
+          "work": "holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-06-01",
+                "valid_until": null,
+                "value": "0.40",
+                "provenance": null
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "cnel-hv51-245848-ccnl-2026",
+                "title": "CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 9 luglio 2026 (archivio CNEL HV51, accordo 245848)",
+                "kind": "cnel",
+                "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+                "published_on": "2026-07-09",
+                "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
+              },
+              "page": "72",
+              "section": "Art. 143 - Lavoro straordinario e maggiorazioni",
+              "quote": "lavoro straordinario: diurno fino alla 48a ora 25%, dalla 49a ora 30% notturno 35% lavoro domenicale/festivo: diurno 40% notturno 50% lavoro straordinario domenicale/festivo: diurno 50% notturno 60%"
+            },
+            "transformation": "Lavoro ordinario festivo diurno (art. 143): 0.40 of the hourly quota on the ordinary hours (art. 126 of the 2023 text is the same); the hours are in the monthly pay.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-06T16:00:00Z",
+              "effective_from": "2023-06-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-06T16:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-06-ai-federdat-hv51"
+            }
+          }
+        },
+        {
+          "code": "SF_FESTIVO_NOTTURNO",
+          "description": "Lavoro ordinario festivo notturno (art. 143)",
+          "work": "night_holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-06-01",
+                "valid_until": null,
+                "value": "0.50",
+                "provenance": null
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "cnel-hv51-245848-ccnl-2026",
+                "title": "CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 9 luglio 2026 (archivio CNEL HV51, accordo 245848)",
+                "kind": "cnel",
+                "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+                "published_on": "2026-07-09",
+                "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
+              },
+              "page": "72",
+              "section": "Art. 143 - Lavoro straordinario e maggiorazioni",
+              "quote": "lavoro straordinario: diurno fino alla 48a ora 25%, dalla 49a ora 30% notturno 35% lavoro domenicale/festivo: diurno 40% notturno 50% lavoro straordinario domenicale/festivo: diurno 50% notturno 60%"
+            },
+            "transformation": "Lavoro ordinario festivo notturno (art. 143): 0.50 of the hourly quota on the ordinary hours (art. 126 of the 2023 text is the same); the hours are in the monthly pay.",
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",

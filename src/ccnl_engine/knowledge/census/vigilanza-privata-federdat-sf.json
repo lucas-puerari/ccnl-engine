@@ -167,10 +167,10 @@
       "institute": "overtime",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "ORDINARY SUNDAY AND HOLIDAY WORK (Art. 143): 40% by day, 50% by night, and the indennità sesto giorno of 10%, on ordinary hours, are not modelled; the overtime bands are.",
+      "rule": "ORDINARY HOURS (Art. 143): the premiums of 40% on ordinary Sunday and holiday work by day and 50% on holiday work by night are modelled (supplement_bands SF_*); not modelled: the 50% of ordinary Sunday work by night of a worker whose rest day is another day, and the indennità sesto giorno of 10%.",
       "calculation": "ccnl/vigilanza-privata-federdat-sf:coverage.notes",
       "state": "absent",
-      "remediation": "Model the premiums of art. 143 on ordinary Sunday, holiday and sixth-day work.",
+      "remediation": "Model the Sunday night premium and the sixth-day allowance of art. 143.",
       "origin": "seeded",
       "links": {
         "limitations": [
