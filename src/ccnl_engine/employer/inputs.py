@@ -126,6 +126,13 @@ class EmployerProfile:
             elemento distinto instead.  ``None`` means not known: a run on a
             CCNL with such funds posts neither and has a ``missing_fact``
             blocker; an empty set states that the employer pays none.
+        permit_carryover: How the employer settles the permits not taken
+            within their year, on a CCNL that leaves the choice
+            (``LeaveRules.permit_deadline``, Commercio Art. 158): ``True``
+            carries them to the deadline of the next year, ``False`` pays
+            them with the December pay.  ``None`` means not known: the runs
+            of December and of the deadline pay nothing and have a
+            ``missing_fact`` blocker.
 
     Raises:
         InvalidInputError: When ``headcount`` is not a :class:`Headcount`,
@@ -133,8 +140,9 @@ class EmployerProfile:
             ``agricultural_zone`` not an :class:`AgriculturalZone` value,
             ``inps_sector`` not a :class:`TaxSector` value or
             ``public_life_insurance``, ``fis_reduction``,
-            ``provincial_pay_element``, ``second_level_premium`` or
-            ``sickness_window_counting`` is not a bool, or ``subsector`` is
+            ``provincial_pay_element``, ``second_level_premium``,
+            ``permit_carryover`` or ``sickness_window_counting`` is not a
+            bool, or ``subsector`` is
             not a non-blank string.
     """
 
@@ -150,6 +158,7 @@ class EmployerProfile:
     inps_sector: TaxSector | None = None
     contractual_funds: frozenset[str] | None = None
     sickness_window_counting: bool = False
+    permit_carryover: bool | None = None
     second_level_elements: tuple[SecondLevelElement, ...] = ()
 
     def __post_init__(self) -> None:  # noqa: D105
@@ -219,6 +228,7 @@ class EmployerProfile:
             "second_level_premium",
             "cigs_indotto",
             "sickness_window_counting",
+            "permit_carryover",
         ):
             value = getattr(self, name)
             if value is not None:

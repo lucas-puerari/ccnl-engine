@@ -207,6 +207,7 @@ def _base_case(
                 headcount=Headcount(60),
                 provincial_pay_element=False,
                 contractual_funds=_FUNDS_PAID,
+                permit_carryover=False,
             ),
             prior_year=PriorYearTaxFacts(employment_income=income),
             current_year=CurrentYearTaxFacts(

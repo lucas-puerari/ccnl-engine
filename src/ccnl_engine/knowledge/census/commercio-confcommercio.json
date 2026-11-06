@@ -227,22 +227,6 @@
       }
     },
     {
-      "id": "permit_deadline_payout",
-      "institute": "leave",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "LEAVE, DEADLINE (Art. 158): the permits not taken within the year of accrual lapse and are paid with the retribuzione di fatto, or are carried and taken by 30 June of the following year; the text leaves the choice open. The engine carries the balances and pays the residual only at the end of the employment.",
-      "calculation": "ccnl/commercio-confcommercio:coverage.notes",
-      "state": "absent",
-      "remediation": "Add an employer fact for the alternative of Art. 158 and pay the residual permits at its deadline.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "commercio-confcommercio/permit_deadline_payout"
-        ]
-      }
-    },
-    {
       "id": "personal_withholding_same_kind",
       "institute": "personal_withholdings",
       "variant": "all",

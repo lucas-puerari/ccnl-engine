@@ -133,6 +133,30 @@ class WeekDaysLeave(BaseModel):
     provenance: RuleProvenance
 
 
+class PermitDeadline(BaseModel):
+    """When the permits not taken within their year are paid.
+
+    Commercio Art. 158: "I permessi non fruiti entro l'anno di maturazione
+    decadranno e verranno pagati con la retribuzione di fatto [...] oppure
+    potranno essere fruiti entro e non oltre il 30 giugno dell'anno
+    successivo".  The employer chooses (``EmployerProfile.permit_carryover``):
+    the residual of a year is paid with the December pay, or with the pay of
+    :attr:`carry_until_month` of the next year.
+
+    Attributes:
+        carry_until_month: Month of the next year by whose end the permits of
+            a year may still be taken (Commercio 6, 30 June; Studi 7).
+        buckets: Permit buckets the deadline covers.
+        provenance: Source of the clause.
+    """
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    carry_until_month: int = Field(ge=1, le=12)
+    buckets: tuple[LeaveBucket, ...] = Field(min_length=1)
+    provenance: RuleProvenance | None = None
+
+
 class LeaveRules(BaseModel):
     """Layer 3 rules for paid leave (ferie and permessi).
 
@@ -145,7 +169,8 @@ class LeaveRules(BaseModel):
     (``Employment.full_time_week_days``); they exclude seniority tiers.
     ``ferie_accrual``, ``permits`` and
     ``termination`` are stated for a CCNL whose accrual was read; a CCNL
-    without them accrues no leave.
+    without them accrues no leave.  ``permit_deadline`` pays the permits
+    of a year not taken by its deadline.
 
     ``provenance`` links this rule to its CCNL article.
     """
@@ -159,6 +184,7 @@ class LeaveRules(BaseModel):
     ferie_accrual: FerieAccrual | None = None
     permits: tuple[PermitRules, ...] = ()
     termination: LeaveTermination | None = None
+    permit_deadline: PermitDeadline | None = None
 
     @model_validator(mode="after")
     def _distinct_buckets(self) -> Self:
@@ -171,6 +197,10 @@ class LeaveRules(BaseModel):
                 "permits need distinct buckets, and no ex_festivita bucket "
                 f"beside a rol pool that includes it; got {buckets}"
             )
+            raise ValueError(msg)
+        deadline = self.permit_deadline
+        if deadline is not None and not set(deadline.buckets) <= set(buckets):
+            msg = f"permit_deadline names buckets without permits: {deadline.buckets}"
             raise ValueError(msg)
         if self.week_days_annual_days and self.entitlement_tiers:
             msg = "week_days_annual_days exclude seniority entitlement_tiers"

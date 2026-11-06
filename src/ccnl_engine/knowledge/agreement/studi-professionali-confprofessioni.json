@@ -2396,7 +2396,7 @@
     "effective_until": null,
     "source": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
     "verification_status": "unverified",
-    "source_hash": "37f5e5356e9e9da7d6f9bbc5d07f6afd83a6eb167e2d9ed1dec08f4f4c4353ba",
+    "source_hash": "5a2666b96bffa916e6667b45ccac648b8f04610e7e7ff22922ffb2754bf87eb3",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3056,7 +3056,40 @@
             }
           ]
         }
-      ]
+      ],
+      "permit_deadline": {
+        "carry_until_month": 7,
+        "buckets": [
+          "rol"
+        ],
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-studi-professionali-2024-02-16",
+              "title": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024, testo integrale definitivo (Confprofessioni)",
+              "kind": "associazione",
+              "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+              "published_on": "2024-02-16",
+              "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
+            },
+            "page": "47",
+            "section": "Art. 91 c. 5 - Distribuzione dell'orario settimanale",
+            "quote": "I permessi non fruiti entro l’anno di maturazione decadranno e saranno pagati con la retribuzione di fatto in atto al momento della scadenza, ovvero potranno essere fruiti in epoca successiva e comunque non oltre il 31 luglio dell’anno successivo."
+          },
+          "transformation": "The permits of a year not taken lapse and are paid at the employer's choice (EmployerProfile.permit_carryover): with the December pay, or carried and paid with the pay of month 7 of the next year for what is left; the hours are paid at the basis of the residual leave of the termination.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-06T13:00:00Z",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-06T13:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-06-ai-permit-deadline",
+            "effective_from": "2024-02-16"
+          }
+        }
+      }
     },
     "sickness_rules": {
       "carenza_integration_rate": "1",

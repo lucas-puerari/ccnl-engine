@@ -19,7 +19,6 @@ of leave granted in advance is not sourced).
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
@@ -27,6 +26,12 @@ from ccnl_engine.decision.models import (
     CalculationDecision,
     CalculationIssue,
     CalculationStatus,
+)
+from ccnl_engine.leave.settlement.models import (
+    PERMIT_DEADLINE,
+    TERMINATION_RESIDUAL_LEAVE,
+    LeaveSettlement,
+    SettlementTerms,
 )
 from ccnl_engine.leave.types import LeaveBucket
 from ccnl_engine.ledger.models import AccountKind, LedgerEntry
@@ -39,82 +44,14 @@ from ccnl_engine.pay_item.services import (
 )
 
 if TYPE_CHECKING:
-    from datetime import date
-
     from ccnl_engine.leave.balance.models import LeaveAccount
-    from ccnl_engine.leave.handlers import LeaveTerms
     from ccnl_engine.leave.models import LeaveRules
-    from ccnl_engine.pay_item.facade import CompetencePeriod
-    from ccnl_engine.pay_item.policies import PolicyContext, PolicyResolver
 
-__all__ = [
-    "TERMINATION_RESIDUAL_LEAVE",
-    "LeaveSettlement",
-    "SettlementTerms",
-    "settle_leave",
-]
+__all__ = ["LEAVE_HISTORY_UNKNOWN", "settle_leave"]
 
-#: Capability of the indemnity for the residual leave.
-TERMINATION_RESIDUAL_LEAVE = "termination_residual_leave"
 _KIND = "leave_settlement_item"
 _ZERO = Decimal(0)
 _TWELVE = Decimal(12)
-
-
-@dataclass(frozen=True)
-class SettlementTerms:
-    """What the indemnity of a run that closes the employment is paid from.
-
-    Attributes:
-        leave: Leave rules of the CCNL, with its ruleset.
-        monthly_pay: Monthly pay of a fully employed month (the retribuzione
-            di fatto the CCNL divides).
-        hourly_divisor: Hourly divisor of the CCNL on the run date, ``None``
-            when not in force.
-        part_time_ratio: Weekly over full-time hours of a part-time worker,
-            ``None`` for a full-time worker: the hourly quota of a permit is
-            that of the full-time pay.
-        competence_period: Competence period of the run.
-        payment_date: Payment date of the run.
-        tag: Run identifier, the tag of the item ids.
-        resolver: Policy resolver of the pay-item kinds.
-        context: Context the policy is resolved in.
-    """
-
-    leave: LeaveTerms
-    monthly_pay: Decimal
-    hourly_divisor: Decimal | None
-    part_time_ratio: Decimal | None
-    competence_period: CompetencePeriod
-    payment_date: date
-    tag: str
-    resolver: PolicyResolver
-    context: PolicyContext
-
-
-@dataclass(frozen=True)
-class LeaveSettlement:
-    """Indemnity of the residual leave, the bases it enters and its decision.
-
-    Attributes:
-        account: The leave account after the settlement.
-        decision: The ``termination_residual_leave`` decision.
-        items: One leave settlement item per bucket paid.
-        entries: Cash-earning ledger entries of the items.
-        inps_base: Amount entering the INPS contribution base.
-        tfr_base: Amount entering the TFR base.
-        irpef_base: Amount entering the ordinary IRPEF base.
-        issues: Facts missing to pay the indemnity.
-    """
-
-    account: LeaveAccount
-    decision: CalculationDecision
-    items: tuple[PayItem, ...] = ()
-    entries: tuple[LedgerEntry, ...] = ()
-    inps_base: Decimal = _ZERO
-    tfr_base: Decimal = _ZERO
-    irpef_base: Decimal = _ZERO
-    issues: tuple[CalculationIssue, ...] = field(default=())
 
 
 #: Issue of a closing run whose imported balances miss the leave.
@@ -206,12 +143,20 @@ def _decision(
     leave = terms.leave
     rules = leave.rules
     basis = None if rules is None else rules.termination
-    provenance = None if basis is None else basis.provenance
+    deadline = terms.deadline
+    provenance = (
+        deadline.provenance
+        if deadline is not None
+        else None
+        if basis is None
+        else basis.provenance
+    )
+    field = "termination" if deadline is None else "permit_deadline"
     return CalculationDecision(
-        capability=TERMINATION_RESIDUAL_LEAVE,
+        capability=TERMINATION_RESIDUAL_LEAVE if deadline is None else PERMIT_DEADLINE,
         status=status,
         reason_code=reason,
-        rule=f"{leave.ruleset}:work_rules.leave_rules.termination",
+        rule=f"{leave.ruleset}:work_rules.leave_rules.{field}",
         rule_version=leave.version,
         inputs=inputs,
         source=None if provenance is None else provenance.location,
@@ -261,7 +206,9 @@ def settle_leave(account: LeaveAccount, terms: SettlementTerms) -> LeaveSettleme
                 payment_date=terms.payment_date,
                 quantity=twelfths / _TWELVE,
                 amount=amount,
-                source=f"residual {bucket} at termination, {bucket.unit}",
+                source=f"residual {bucket} at "
+                f"{'termination' if terms.deadline is None else 'the deadline'}, "
+                f"{bucket.unit}",
             )
         )
         entries.append(

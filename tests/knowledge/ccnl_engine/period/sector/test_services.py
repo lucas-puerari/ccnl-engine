@@ -598,6 +598,9 @@ def _year(name: str) -> CompetenceYearResult:
                 headcount=Headcount(s.headcount),
                 provincial_pay_element=s.provincial_pay_element,
                 contractual_funds=frozenset() if s.ccnl == _METAL else None,
+                # The permits of 2026 are carried to 2027 (art. 158): the
+                # year of the oracle pays none of them.
+                permit_carryover=True,
             ),
             default_facts=facts,
             periods=periods,

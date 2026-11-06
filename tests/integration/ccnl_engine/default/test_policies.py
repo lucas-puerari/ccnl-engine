@@ -55,6 +55,12 @@ _NOT_EXERCISED: dict[str, str] = {
         "tests/integration/ccnl_engine/fund/health/test_services.py shows its "
         "blocker"
     ),
+    "EmployerProfile.permit_carryover": (
+        "read only by a CCNL with a permit_deadline (Commercio art. 158) on "
+        "the runs of December and of the deadline, which the cases do not run; "
+        "tests/knowledge/ccnl_engine/leave/test_permit_deadline.py shows its "
+        "blocker"
+    ),
     "EmployerProfile.agricultural_zone": (
         "read by the agricoltura rates only, and the cases run the Concia D2 "
         "of industria; test_services_contract_agricultural_zone shows its blocker"
