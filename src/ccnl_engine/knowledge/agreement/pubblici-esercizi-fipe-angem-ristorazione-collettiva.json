@@ -95,22 +95,6 @@
       },
       {
         "kind": "simplification",
-        "text": "APPRENTICE SENIORITY: no clause says it in so many words. Art. 182 c. 1 (PDF p. 126) grants the six scatti 'A tutto il personale', art. 71 applies to the apprentice the normative treatment of the qualified worker, and art. 68 c. 1 pays a percentage of the qualified pay of the level, scatti included: the apprenticeship counts for the scatti and a matured scatto is paid at the apprentice percentage. The first scatto matures after 48 months, so only an apprentice with prior seniority reaches one; the engine pays no increment during the apprenticeship.",
-        "capability": "seniority",
-        "monetary_impact": "unknown",
-        "limitation": {
-          "variant": "apprentice_seniority",
-          "applies_when": {
-            "trigger": "path",
-            "contract_types": [
-              "apprentice"
-            ]
-          },
-          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
-        }
-      },
-      {
-        "kind": "simplification",
         "text": "HOLIDAY OVERTIME: Art. 126 (PDF p. 99) gives 30% by day and 60% by night for every overtime hour; Art. 132 (p. 103) gives 20% for the hours worked on a festività. No clause links them: art. 126 c. 3 excludes cumulation only with ordinary night work, art. 130 c. 2 only Sunday work with the festività, and the special parts (arts. 246-247, 263-264) and the 2024 renewal repeat or leave them. The engine pays holiday overtime at 30%/60% without the 20%.",
         "capability": "overtime",
         "monetary_impact": "unknown",
@@ -352,7 +336,9 @@
       },
       "excluded_from_extra_months": [
         "fourteenth"
-      ]
+      ],
+      "apprentice_level_amount": true,
+      "apprentice_pct_scaled": true
     },
     "employer_funds": [
       {
@@ -2660,7 +2646,7 @@
     "effective_until": null,
     "source": "https://www.fipe.it/wp-content/uploads/2025/02/Tabelle-retributive-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "2db5b42b81a3d211fb17387f5815677ce836db640a8f407bb45ff5b6bd339e43",
+    "source_hash": "ab1f3446817815c885c0408730cc8133992630bb1ac9e091168c81e28726d15b",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
