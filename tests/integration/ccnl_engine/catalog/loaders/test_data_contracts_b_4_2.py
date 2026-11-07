@@ -274,16 +274,17 @@ class TestLoadVigilanzaPrivataAssivSf:
         assert codes == {"E", "D", "C", "B", "A"}
 
     def test_hv17_sf_level_c_salary_tranche1(self) -> None:
-        """Level C base salary at 01/06/2023 is 1333.43 EUR."""
+        """Level C base salary at 01/06/2023 is 1196.00 EUR (p. 2)."""
         ccnl = load_ccnl("vigilanza-privata-assiv-sf")
         lv = next(lv for lv in ccnl.levels if lv.code == "C")
-        assert lv.base_salary.value_at(date(2023, 6, 1)) == Decimal("1333.43")
+        assert lv.base_salary.value_at(date(2023, 6, 1)) == Decimal("1196.00")
 
     def test_hv17_sf_level_c_salary_last_tranche(self) -> None:
-        """Level C base salary at 01/04/2026 is 1556.29 EUR."""
+        """Level C: 1534.00 from 01/04/2026, 1556.29 from 01/12/2026."""
         ccnl = load_ccnl("vigilanza-privata-assiv-sf")
         lv = next(lv for lv in ccnl.levels if lv.code == "C")
-        assert lv.base_salary.value_at(date(2026, 4, 1)) == Decimal("1556.29")
+        assert lv.base_salary.value_at(date(2026, 4, 1)) == Decimal("1534.00")
+        assert lv.base_salary.value_at(date(2026, 12, 1)) == Decimal("1556.29")
 
     def test_hv17_sf_level_ordering(self) -> None:
         """Level E is lowest (order 1), A is highest (order 5)."""
@@ -330,10 +331,10 @@ class TestLoadVigilanzaPrivataAssivSf:
         assert si.maximum_count == 6
 
     def test_hv17_sf_level_a_salary_mid_tranche(self) -> None:
-        """Level A base salary at 01/10/2024 is 1886.32 EUR."""
+        """Level A base salary at 01/10/2024 is 1813.36 EUR (p. 2)."""
         ccnl = load_ccnl("vigilanza-privata-assiv-sf")
         lv = next(lv for lv in ccnl.levels if lv.code == "A")
-        assert lv.base_salary.value_at(date(2024, 10, 1)) == Decimal("1886.32")
+        assert lv.base_salary.value_at(date(2024, 10, 1)) == Decimal("1813.36")
 
 
 class TestLoadSistemazioniIdraulicoForestaliImpiegati:
