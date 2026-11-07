@@ -55,7 +55,7 @@
       "institute": "seniority",
       "variant": "all",
       "discriminant": "applies_when.trigger = run",
-      "rule": "LEVEL 4s (pelli e cuoio, occhiali, giocattoli): the seniority table of the file has no 4s row and the art. 46 tables read do not set one, so a 4s worker accrues no seniority increments. Its category is left to Employment.category.",
+      "rule": "LEVEL 4s (pelli e cuoio, occhiali, giocattoli): the seniority table of the file has no 4s row and the art. 46 tables read do not set one, so a 4s worker accrues no seniority increments. No fixed allowance is modelled for it (the tables read set none), and its category is left to Employment.category.",
       "calculation": "ccnl/tessile-pmi-uniontessile:coverage.notes",
       "state": "absent",
       "remediation": "Source the seniority increment of level 4s, add it to amount_by_level, then remove this note.",

@@ -154,7 +154,7 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Source the apprentice rates of artigianato (an INPS circular or an association table of 2026), mark the apprentice block of contribution/2026/artigianato.json derived, then remove this note.
 
 !!! warning "tessile-moda-artigianato-confartigianato/chimica_ceramica_level_rules · seniority · impact yes · open"
-    SUB-SECTOR LEVELS (chimica 5s and 7, ceramica A-G): the seniority table of the file (art. 67, tessile sector) has no row for them and the pages read (verbale of 22 July 2024, pp. 5-6) do not set one, so they accrue no seniority increments; they are in no apprenticeship track (the three tracks are the abbigliamento groups) and their category is left to Employment.category.
+    SUB-SECTOR LEVELS (chimica 5s and 7, ceramica A-G): the seniority table of the file (art. 67, tessile sector) has no row for them and the pages read (verbale of 22 July 2024, pp. 5-6) do not set one, so they accrue no seniority increments; they are in no apprenticeship track (the three tracks are the abbigliamento groups) no fixed allowance is modelled for them (the pages read do not settle one, such as the indennità di funzione of 6S) and their category is left to Employment.category.
 
     **Applies when:** `seniority` applies; level in 5s, 7, A, B, C, D, E, F, G.
 

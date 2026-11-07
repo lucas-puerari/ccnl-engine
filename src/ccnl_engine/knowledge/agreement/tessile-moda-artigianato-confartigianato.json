@@ -178,7 +178,7 @@
       },
       {
         "kind": "simplification",
-        "text": "SUB-SECTOR LEVELS (chimica 5s and 7, ceramica A-G): the seniority table of the file (art. 67, tessile sector) has no row for them and the pages read (verbale of 22 July 2024, pp. 5-6) do not set one, so they accrue no seniority increments; they are in no apprenticeship track (the three tracks are the abbigliamento groups) and their category is left to Employment.category.",
+        "text": "SUB-SECTOR LEVELS (chimica 5s and 7, ceramica A-G): the seniority table of the file (art. 67, tessile sector) has no row for them and the pages read (verbale of 22 July 2024, pp. 5-6) do not set one, so they accrue no seniority increments; they are in no apprenticeship track (the three tracks are the abbigliamento groups) no fixed allowance is modelled for them (the pages read do not settle one, such as the indennità di funzione of 6S) and their category is left to Employment.category.",
         "capability": "seniority",
         "monetary_impact": "yes",
         "limitation": {
@@ -3979,7 +3979,7 @@
     "effective_until": null,
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
     "verification_status": "unverified",
-    "source_hash": "2484d07a380db84c56c4d1d8ca49a21dcf2d3fc1e9a38e4559daba7647a2ca70",
+    "source_hash": "539892b17a0686b28286262a338d0a6ec854c15113ab95e42cc55ed143e50275",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

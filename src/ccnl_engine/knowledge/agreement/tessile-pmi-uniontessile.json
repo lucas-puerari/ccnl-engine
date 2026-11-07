@@ -127,7 +127,7 @@
       },
       {
         "kind": "simplification",
-        "text": "LEVEL 4s (pelli e cuoio, occhiali, giocattoli): the seniority table of the file has no 4s row and the art. 46 tables read do not set one, so a 4s worker accrues no seniority increments. Its category is left to Employment.category.",
+        "text": "LEVEL 4s (pelli e cuoio, occhiali, giocattoli): the seniority table of the file has no 4s row and the art. 46 tables read do not set one, so a 4s worker accrues no seniority increments. No fixed allowance is modelled for it (the tables read set none), and its category is left to Employment.category.",
         "capability": "seniority",
         "monetary_impact": "yes",
         "limitation": {
@@ -5993,6 +5993,6 @@
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
     "source_type": "contracting_party",
     "verification_status": "unverified",
-    "source_hash": "b5a44df2b23b9b8f13841aa743c4c9ed97623392a6b4d54bb58e492552aac375"
+    "source_hash": "3010cdfd49238ad2719f1b8ac06d29b09799eb9c3d419c182673b4b139d1fc9e"
   }
 }

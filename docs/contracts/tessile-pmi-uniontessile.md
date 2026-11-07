@@ -124,7 +124,7 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Model the EDR in the pay of the CCNL and add them to the Fondapi base, then remove this note.
 
 !!! warning "tessile-pmi-uniontessile/level_4s_seniority · seniority · impact yes · open"
-    LEVEL 4s (pelli e cuoio, occhiali, giocattoli): the seniority table of the file has no 4s row and the art. 46 tables read do not set one, so a 4s worker accrues no seniority increments. Its category is left to Employment.category.
+    LEVEL 4s (pelli e cuoio, occhiali, giocattoli): the seniority table of the file has no 4s row and the art. 46 tables read do not set one, so a 4s worker accrues no seniority increments. No fixed allowance is modelled for it (the tables read set none), and its category is left to Employment.category.
 
     **Applies when:** `seniority` applies; level in 4s.
 
