@@ -147,7 +147,7 @@
       },
       {
         "kind": "simplification",
-        "text": "ELEMENTO PEREQUATIVO: the worker of a company without second-level bargaining is owed the elemento perequativo of 485 euro a year, paid with the June pay (Ministry of Labour cost table of June 2026, DD 82/2026, row A). The engine does not pay it: whether the company has second-level bargaining is not in the request.",
+        "text": "ELEMENTO PEREQUATIVO (Sez. Quarta Tit. IV Art. 13, pp. 177-178): 485 euro a year with the June pay to the worker in service on 1 January of a company without second-level bargaining (EmployerProfile.second_level_premium false), for the months of the year before over twelve; the engine pays it (parameters.equalisation_element). Left open: the pay above the CCNL the worker received in the year before (superminimi, premi annui, other pay subject to contributions) has no field in the request; the engine reads it from the individual elements of the run, each amount on 31 December of the year before at the part-time fraction, for each month served, on twelve monthly payments, so an element agreed since, the share of the extra months or a yearly premium of the year before is not seen. A run without the employment period pays none; a second-level element the employer states counts when in force in the year before.",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
@@ -155,7 +155,7 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Pass the elemento perequativo as a variable pay item, or add a fact for the second-level bargaining."
+          "remediation": "State the pay above the CCNL of the year before as a fact of the run, or pass the element as a bonus and leave the employer flag true."
         }
       },
       {
@@ -646,7 +646,38 @@
           "note": "250 EUR a year made available by February in 2026 and by 1 June from 2027, an employer cost outside the pay, the TFR and the bases (all-inclusive of the employer's tax and contribution costs), not reproportioned for part time. The years before 2026 (200 EUR) and the eligibility conditions (past probation, in force on 1 June or hired by 31 December, fixed terms of 3 months in the year) are not modelled."
         }
       }
-    ]
+    ],
+    "equalisation_element": {
+      "code": "elemento_perequativo",
+      "yearly": "485",
+      "paid_in_month": 6,
+      "month_min_days": 16,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-metalmeccanici-federmeccanica-2021-fiom",
+            "title": "CCNL 5 febbraio 2021 per l'industria metalmeccanica privata e della installazione di impianti (testo FIOM-CGIL)",
+            "kind": "associazione",
+            "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
+            "published_on": "2021-02-05",
+            "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
+          },
+          "page": "177-178",
+          "section": "Sez. Quarta, Titolo IV, Art. 13 - Elemento perequativo",
+          "quote": "A decorrere dal 2008, ai lavoratori in forza al 1° gennaio di ogni anno nelle aziende prive di contrattazione di secondo livello riguardante il Premio di risultato o altri istituti retributivi comunque soggetti a contribuzione e che nel corso dell'anno precedente (1° gennaio – 31 dicembre) abbiano percepito un trattamento retributivo composto esclusivamente da importi retributivi fissati dal CCNL (lavoratori privi di superminimi collettivi o individuali, premi annui o altri importi retributivi comunque soggetti a contribuzione), è corrisposta, a titolo perequativo, con la retribuzione del mese di giugno, una cifra annua pari a 260 euro, onnicomprensiva e non incidente sul Tfr ovvero una cifra inferiore fino a concorrenza in caso di presenza di retribuzioni aggiuntive a quelle fissate dal CCNL, in funzione della durata, anche non consecutiva, del rapporto di lavoro nel corso dell'anno precedente. La frazione di mese superiore a 15 giorni sarà considerata, a questi effetti, come mese intero. [...] A decorrere dal 1° gennaio 2014 l'Elemento Perequativo è elevato a 485 euro. Nel caso di risoluzione del rapporto di lavoro antecedentemente al momento di corresponsione dell'elemento perequativo, fermo restando i criteri di maturazione dello stesso, il suddetto importo verrà corrisposto all'atto della liquidazione delle competenze. L'elemento perequativo come sopra definito sarà ad ogni effetto di competenza dell'anno di erogazione"
+        },
+        "transformation": "485 EUR a year with the June pay (paid_in_month 6) to the worker in service on 1 January, for the months of the year before with more than 15 days of service (month_min_days 16) over twelve, in a firm without second-level bargaining (EmployerProfile.second_level_premium false); a termination run before June pays it with the settlement. Paid as an ordinary bonus: INPS base, taxed with the run as income of its year, out of the TFR base and of the extra months ('onnicomprensiva e non incidente sul Tfr').",
+        "note": "Printed pp. 177-178 (PDF pp. 181-182). The ipotesi of 22 November 2025 (sha256 37152685c306...) does not amend Art. 13: no clause on the element was found in its OCR text. The texts are silent on part time and apprentices: the engine pays the whole amount to both, prorated only by the months of service, as the clause prorates it 'in funzione della durata' of the employment; the pay above the CCNL of the year before is read from the individual elements of the run.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-07T10:00:00Z",
+          "effective_from": "2014-01-01",
+          "verification_status": "unverified"
+        }
+      }
+    }
   },
   "levels": [
     {
@@ -3332,7 +3363,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
     "verification_status": "unverified",
-    "source_hash": "0b9107b398bfae805dbdb0eb5fc465e1c0fc0afe964fae1bf80180838d97ab6a",
+    "source_hash": "11b088d132504800c80ac3d9368e83614a1258003e80abf05ce703cfeefce2e2",
     "published_at": "2026-09-08",
     "source_type": "contracting_party"
   },

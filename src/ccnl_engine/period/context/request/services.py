@@ -11,6 +11,7 @@ from typing import TYPE_CHECKING
 
 from ccnl_engine.compensation.change.rules import MonthChange, blended, month_change
 from ccnl_engine.compensation.element.services import _resolve_chain
+from ccnl_engine.compensation.equalisation.rules import equalisation_outcome
 from ccnl_engine.compensation.hourly.services import upcoming_percentages
 from ccnl_engine.compensation.proration.services import run_proration
 from ccnl_engine.compensation.una_tantum.rules import UNA_TANTUM, una_tantum_events
@@ -53,6 +54,7 @@ if TYPE_CHECKING:
     from ccnl_engine.period.context.agreement.services import RunContract
     from ccnl_engine.period.ports import KnowledgeRepository
     from ccnl_engine.period.requests import PeriodCalculationRequest
+    from ccnl_engine.run.models import RunKind
 
 __all__ = ["build_context"]
 
@@ -142,6 +144,25 @@ def _with_change(
     )
 
 
+def _with_equalisation(
+    request: PeriodCalculationRequest, contract: RunContract, kind: RunKind
+) -> tuple[PeriodCalculationRequest, RunContract]:
+    """Add the elemento perequativo the run pays to its events.
+
+    Returns:
+        The request with the bonus of the element, and the contract naming
+        the element left out when the employer does not state whether it
+        has second-level bargaining.
+    """
+    outcome = equalisation_outcome(request, contract.ccnl, kind)
+    if outcome.events:
+        request = replace(request, events=(*request.events, *outcome.events))
+    if outcome.unknown is not None:
+        unknown = (*contract.premium_unknown, outcome.unknown)
+        contract = replace(contract, premium_unknown=unknown)
+    return request, contract
+
+
 def build_context(
     request: PeriodCalculationRequest,
     repo: KnowledgeRepository,
@@ -171,6 +192,7 @@ def build_context(
     if met:
         chain = replace(chain, limitations=(*chain.limitations, UNA_TANTUM))
         request = replace(request, events=(*request.events, *una_tantum))
+    request, contract = _with_equalisation(request, contract, payment.run_id.kind)
     schedule = resolve_withholding_schedule(request, payment, contract.ccnl, competence)
     opening = request.opening_state
     withholding = schedule.position(payment, opening.cash.paid_runs)

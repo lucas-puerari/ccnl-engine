@@ -65,9 +65,10 @@ EMPLOYER_DEFAULTS: Mapping[str, FieldDefault] = {
         "base_salary",
         "employer.second_level_premium",
         _REPORTED,
-        "the element of guarantee a company premium replaces is left out; a "
-        "level that pays one (Unionalimentari elemento di garanzia "
-        "retributiva) has a missing_fact second_level_premium blocker",
+        "the element a company premium replaces is left out; a level that "
+        "pays one (Unionalimentari elemento di garanzia retributiva, the "
+        "June elemento perequativo of the metalmeccanici) has a missing_fact "
+        "second_level_premium blocker",
     ),
     "EmployerProfile.subsector": requires_fact(
         "overtime",
