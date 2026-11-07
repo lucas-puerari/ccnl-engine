@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-05-23 |
-| **Last review** | 2026-11-01 |
+| **Last review** | 2026-11-08 |
 | **Latest salary tranche** | 2026-08-01 |
 
 ## Review history
@@ -60,6 +60,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-17 | claude-opus-5-5 (ai) | The tabellari, contingenza and EDR of the eleven levels against the ANAV tables of the accordo of 6 October 2022, and the tranches and the EDR 2025 of the renewal of 23 May 2025. | corrected | Allegato n. 2 of the accordo of 6 October 2022, published by ANAV (text layer): the tabellare of October 2023, the contingenza and the EDR of the eleven levels move from assumed to verified (33 values). The signed CCNL scan (Allegato n. 5, p. 83) prints the same table at low resolution.<br>The renewal of 23 May 2025 prints only the increments at C2 (60 EUR from July 2025, 100 EUR from August 2026, EDR 2025 of 40 EUR), to reparametrise on the scale 100-200: the tranches and the EDR 2025 of each level are derived (33 values), with the increment rounded once, as the Allegato n. 2 of 2022 adds the aumento a regime in its last column (C4: 729,09 + 67,16 = 796,25, not the 796,26 of the three rounded tranches).<br>The ruleset names the renewal published by ANAV, the employer signatory: source_type contracting_party; the aggregator sources (redigo.info, kitech.it) are dropped.<br>Corrected: C4 2024-01-01: 796.26 -> 796.25; B2 2024-01-01: 1289.93 -> 1289.92; A1 2024-01-01: 1592.49 -> 1592.50; Q2 2024-01-01: 1592.49 -> 1592.50; Q1 2024-01-01: 1592.49 -> 1592.50. |
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | corrected | Articolo 48 - Tredicesima mensilità, comma 2 (p. 81): "il lavoratore non in prova avrà diritto a tanti dodicesimi dell'ammontare della tredicesima mensilità per quanti sono i mesi di servizio prestato. Le frazioni di mese non superiori ai 14 giorni non saranno calcolate, mentre saranno considerate come mese intero se superiori ai 14 giorni.". Added: more_than 14 (the file applied the engine default, at least 15 days). |
 | 2026-11-01 | claude-opus-5-5 (ai) | The una tantum of the renewal of 23 May 2025 (p. 1, OCR). | corrected | Renewal of 23 May 2025, p. 1: 600 EUR at C2 in two installments (June 2025, January 2026) for 1 January 2024 to 31 May 2025, staff in service on 23 May 2025, months with more than 15 days, part time by hours, outside the TFR: parameters.una_tantum[UT_2025]. |
+| 2026-11-08 | claude-opus-5-5 (ai) | The monthly values of the levels against the primary tables (text layer). | confirmed | 33 values found verbatim on the cited pages and marked verified; 3 left as they were (derived or not on a text page). |
 
 ## Salary table
 

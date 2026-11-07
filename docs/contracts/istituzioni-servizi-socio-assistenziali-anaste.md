@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🟢 Verified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 37 verified / 31 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 59 verified / 9 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-07-23 |
-| **Last review** | 2026-11-07 |
+| **Last review** | 2026-11-08 |
 | **Latest salary tranche** | 2028-01-01 |
 
 ## Review history
@@ -59,6 +59,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|---|---|
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | confirmed | Art. 74 - Tredicesima mensilità (p. 57): "4. Le frazioni di mese pari o superiori ai 15 giorni saranno considerate come mese intero.". Match: at_least 15. The quattordicesima differs: Art. 75: no separate 14th; an equivalent amount is already included in the minimo conglobato of art. 68, so no fraction rule applies to it. |
 | 2026-11-07 | claude-opus-5-5 (ai) | Art. 69 of the CCNL ANASTE 2026-2028 signed 9 October 2026: the tabellare from 1 October 2026, 1 January 2027 and 1 January 2028 (p. 64, page image). | corrected | Three tranches of the 2026-2028 renewal; the 'tabellare vigente' column equals the August 2025 values of the file. |
+| 2026-11-08 | claude-opus-5-5 (ai) | The monthly values of the levels against the primary tables (text layer). | confirmed | 52 values found verbatim on the cited pages and marked verified; 6 left as they were (derived or not on a text page). |
 
 ## Salary table
 

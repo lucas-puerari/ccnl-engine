@@ -150,6 +150,32 @@
         "checked": [
           "levels.base_salary"
         ]
+      },
+      {
+        "id": "2026-11-08-ai-istituzioni-servizi-socio-assistenziali-anaste-tables",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The monthly values of the levels against the primary tables (text layer).",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://snalv.it/docs/anaste25/pdf6.pdf",
+            "sha256": "0104ada3fe1307dce987c275b55e962e6db6230c0bc94d4182e406bb395c8c98"
+          },
+          {
+            "url": "https://www.anaste.com/download/?wpdmdl=11171",
+            "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
+          }
+        ],
+        "findings": [
+          "52 values found verbatim on the cited pages and marked verified; 6 left as they were (derived or not on a text page)."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels.base_salary",
+          "levels.fixed_allowances"
+        ]
       }
     ]
   },
@@ -354,21 +380,28 @@
             "valid_until": "2025-08-01",
             "value": "2014.24",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "pdf6-pdf",
-                  "title": "pdf6-pdf",
+                  "document_id": "istituzioni-servizi-socio-assistenziali-anaste-tables-0104ada3",
+                  "title": "istituzioni-servizi-socio-assistenziali-anaste: tabelle retributive (pdf6.pdf)",
                   "kind": "associazione",
-                  "url": "https://snalv.it/docs/anaste25/pdf6.pdf"
+                  "url": "https://snalv.it/docs/anaste25/pdf6.pdf",
+                  "sha256": "0104ada3fe1307dce987c275b55e962e6db6230c0bc94d4182e406bb395c8c98"
                 },
-                "section": "Tabella retributiva"
+                "page": "55",
+                "section": "Art. 69, minimi in vigore nel triennio 2020/2022",
+                "quote": "2.014,24 €              115,91 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2023-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-istituzioni-servizi-socio-assistenziali-anaste-tables"
               }
             }
           },
@@ -377,21 +410,28 @@
             "valid_until": "2026-10-01",
             "value": "2130.15",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "pdf6-pdf",
-                  "title": "pdf6-pdf",
+                  "document_id": "istituzioni-servizi-socio-assistenziali-anaste-tables-0104ada3",
+                  "title": "istituzioni-servizi-socio-assistenziali-anaste: tabelle retributive (pdf6.pdf)",
                   "kind": "associazione",
-                  "url": "https://snalv.it/docs/anaste25/pdf6.pdf"
+                  "url": "https://snalv.it/docs/anaste25/pdf6.pdf",
+                  "sha256": "0104ada3fe1307dce987c275b55e962e6db6230c0bc94d4182e406bb395c8c98"
                 },
-                "section": "Tabella retributiva"
+                "page": "55",
+                "section": "Art. 69, tabellare aggiornato (cf. A26 p.64, vigente)",
+                "quote": "Quadro                                                                  2.130,15 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2025-08-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-istituzioni-servizi-socio-assistenziali-anaste-tables"
               }
             }
           },
@@ -403,26 +443,25 @@
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "anaste-ccnl-2026-2028",
-                  "title": "CCNL ANASTE 2026-2028, testo sottoscritto il 9 ottobre 2026",
+                  "document_id": "istituzioni-servizi-socio-assistenziali-anaste-tables-e02bac8a",
+                  "title": "istituzioni-servizi-socio-assistenziali-anaste: tabelle retributive (anaste-2026.pdf)",
                   "kind": "associazione",
                   "url": "https://www.anaste.com/download/?wpdmdl=11171",
-                  "published_on": "2026-10-09",
                   "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
                 },
                 "page": "64",
-                "section": "Art. 69 c. 3 - Minimi contrattuali conglobati mensili",
-                "quote": "Quadro [...] Tabellare 1.10.2026 € 2184,70"
+                "section": "Art. 69, tabellare 1.10.2026",
+                "quote": "[Quadro][    € 2.130,15][        € 54,55|[__€ 2.184,70|[             € 34,09|[_   € 2218,79]        €34,09]    €2.252,88]"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T14:00:00Z",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
                 "effective_from": "2026-10-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T14:00:00Z",
+                "verified_at": "2026-11-08T05:00:00Z",
                 "verification_status": "verified",
-                "review_id": "2026-11-07-ai-anaste-2026-2028"
+                "review_id": "2026-11-08-ai-istituzioni-servizi-socio-assistenziali-anaste-tables"
               }
             }
           },
@@ -434,26 +473,25 @@
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "anaste-ccnl-2026-2028",
-                  "title": "CCNL ANASTE 2026-2028, testo sottoscritto il 9 ottobre 2026",
+                  "document_id": "istituzioni-servizi-socio-assistenziali-anaste-tables-e02bac8a",
+                  "title": "istituzioni-servizi-socio-assistenziali-anaste: tabelle retributive (anaste-2026.pdf)",
                   "kind": "associazione",
                   "url": "https://www.anaste.com/download/?wpdmdl=11171",
-                  "published_on": "2026-10-09",
                   "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
                 },
                 "page": "64",
-                "section": "Art. 69 c. 3 - Minimi contrattuali conglobati mensili",
-                "quote": "Quadro [...] Tabellare 1.1.2027 € 2218,79"
+                "section": "Art. 69, tabellare 1.1.2027",
+                "quote": "[Quadro][    € 2.130,15][        € 54,55|[__€ 2.184,70|[             € 34,09|[_   € 2218,79]        €34,09]    €2.252,88]"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T14:00:00Z",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
                 "effective_from": "2027-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T14:00:00Z",
+                "verified_at": "2026-11-08T05:00:00Z",
                 "verification_status": "verified",
-                "review_id": "2026-11-07-ai-anaste-2026-2028"
+                "review_id": "2026-11-08-ai-istituzioni-servizi-socio-assistenziali-anaste-tables"
               }
             }
           },
@@ -465,26 +503,25 @@
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "anaste-ccnl-2026-2028",
-                  "title": "CCNL ANASTE 2026-2028, testo sottoscritto il 9 ottobre 2026",
+                  "document_id": "istituzioni-servizi-socio-assistenziali-anaste-tables-e02bac8a",
+                  "title": "istituzioni-servizi-socio-assistenziali-anaste: tabelle retributive (anaste-2026.pdf)",
                   "kind": "associazione",
                   "url": "https://www.anaste.com/download/?wpdmdl=11171",
-                  "published_on": "2026-10-09",
                   "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
                 },
                 "page": "64",
-                "section": "Art. 69 c. 3 - Minimi contrattuali conglobati mensili",
-                "quote": "Quadro [...] Tabellare 1.1.2028 € 2252,88"
+                "section": "Art. 69, tabellare 1.1.2028",
+                "quote": "[Quadro][    € 2.130,15][        € 54,55|[__€ 2.184,70|[             € 34,09|[_   € 2218,79]        €34,09]    €2.252,88]"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T14:00:00Z",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
                 "effective_from": "2028-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T14:00:00Z",
+                "verified_at": "2026-11-08T05:00:00Z",
                 "verification_status": "verified",
-                "review_id": "2026-11-07-ai-anaste-2026-2028"
+                "review_id": "2026-11-08-ai-istituzioni-servizi-socio-assistenziali-anaste-tables"
               }
             }
           }
@@ -553,21 +590,28 @@
             "valid_until": "2025-08-01",
             "value": "1864.82",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "pdf6-pdf",
-                  "title": "pdf6-pdf",
+                  "document_id": "istituzioni-servizi-socio-assistenziali-anaste-tables-0104ada3",
+                  "title": "istituzioni-servizi-socio-assistenziali-anaste: tabelle retributive (pdf6.pdf)",
                   "kind": "associazione",
-                  "url": "https://snalv.it/docs/anaste25/pdf6.pdf"
+                  "url": "https://snalv.it/docs/anaste25/pdf6.pdf",
+                  "sha256": "0104ada3fe1307dce987c275b55e962e6db6230c0bc94d4182e406bb395c8c98"
                 },
-                "section": "Tabella retributiva"
+                "page": "55",
+                "section": "Art. 69, minimi in vigore nel triennio 2020/2022",
+                "quote": "10                    1.864,82 €              107,31 €                1.972,13 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2023-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-istituzioni-servizi-socio-assistenziali-anaste-tables"
               }
             }
           },
@@ -576,21 +620,28 @@
             "valid_until": "2026-10-01",
             "value": "1972.13",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "pdf6-pdf",
-                  "title": "pdf6-pdf",
+                  "document_id": "istituzioni-servizi-socio-assistenziali-anaste-tables-0104ada3",
+                  "title": "istituzioni-servizi-socio-assistenziali-anaste: tabelle retributive (pdf6.pdf)",
                   "kind": "associazione",
-                  "url": "https://snalv.it/docs/anaste25/pdf6.pdf"
+                  "url": "https://snalv.it/docs/anaste25/pdf6.pdf",
+                  "sha256": "0104ada3fe1307dce987c275b55e962e6db6230c0bc94d4182e406bb395c8c98"
                 },
-                "section": "Tabella retributiva"
+                "page": "55",
+                "section": "Art. 69, tabellare aggiornato (cf. A26 p.64, vigente)",
+                "quote": "10                    1.864,82 €              107,31 €                1.972,13 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2025-08-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-istituzioni-servizi-socio-assistenziali-anaste-tables"
               }
             }
           },
@@ -602,26 +653,25 @@
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "anaste-ccnl-2026-2028",
-                  "title": "CCNL ANASTE 2026-2028, testo sottoscritto il 9 ottobre 2026",
+                  "document_id": "istituzioni-servizi-socio-assistenziali-anaste-tables-e02bac8a",
+                  "title": "istituzioni-servizi-socio-assistenziali-anaste: tabelle retributive (anaste-2026.pdf)",
                   "kind": "associazione",
                   "url": "https://www.anaste.com/download/?wpdmdl=11171",
-                  "published_on": "2026-10-09",
                   "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
                 },
                 "page": "64",
-                "section": "Art. 69 c. 3 - Minimi contrattuali conglobati mensili",
-                "quote": "10 [...] Tabellare 1.10.2026 € 2022,63"
+                "section": "Art. 69, tabellare 1.10.2026",
+                "quote": "10      [    e197213]            €50,50] €2.022,63]]                 €31,56]      €2.054,19]        €31,56]    € 2.085,75"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T14:00:00Z",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
                 "effective_from": "2026-10-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T14:00:00Z",
+                "verified_at": "2026-11-08T05:00:00Z",
                 "verification_status": "verified",
-                "review_id": "2026-11-07-ai-anaste-2026-2028"
+                "review_id": "2026-11-08-ai-istituzioni-servizi-socio-assistenziali-anaste-tables"
               }
             }
           },
@@ -633,26 +683,25 @@
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "anaste-ccnl-2026-2028",
-                  "title": "CCNL ANASTE 2026-2028, testo sottoscritto il 9 ottobre 2026",
+                  "document_id": "istituzioni-servizi-socio-assistenziali-anaste-tables-e02bac8a",
+                  "title": "istituzioni-servizi-socio-assistenziali-anaste: tabelle retributive (anaste-2026.pdf)",
                   "kind": "associazione",
                   "url": "https://www.anaste.com/download/?wpdmdl=11171",
-                  "published_on": "2026-10-09",
                   "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
                 },
                 "page": "64",
-                "section": "Art. 69 c. 3 - Minimi contrattuali conglobati mensili",
-                "quote": "10 [...] Tabellare 1.1.2027 € 2054,19"
+                "section": "Art. 69, tabellare 1.1.2027",
+                "quote": "10      [    e197213]            €50,50] €2.022,63]]                 €31,56]      €2.054,19]        €31,56]    € 2.085,75"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T14:00:00Z",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
                 "effective_from": "2027-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T14:00:00Z",
+                "verified_at": "2026-11-08T05:00:00Z",
                 "verification_status": "verified",
-                "review_id": "2026-11-07-ai-anaste-2026-2028"
+                "review_id": "2026-11-08-ai-istituzioni-servizi-socio-assistenziali-anaste-tables"
               }
             }
           },
@@ -664,26 +713,25 @@
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "anaste-ccnl-2026-2028",
-                  "title": "CCNL ANASTE 2026-2028, testo sottoscritto il 9 ottobre 2026",
+                  "document_id": "istituzioni-servizi-socio-assistenziali-anaste-tables-e02bac8a",
+                  "title": "istituzioni-servizi-socio-assistenziali-anaste: tabelle retributive (anaste-2026.pdf)",
                   "kind": "associazione",
                   "url": "https://www.anaste.com/download/?wpdmdl=11171",
-                  "published_on": "2026-10-09",
                   "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
                 },
                 "page": "64",
-                "section": "Art. 69 c. 3 - Minimi contrattuali conglobati mensili",
-                "quote": "10 [...] Tabellare 1.1.2028 € 2085,75"
+                "section": "Art. 69, tabellare 1.1.2028",
+                "quote": "10      [    e197213]            €50,50] €2.022,63]]                 €31,56]      €2.054,19]        €31,56]    € 2.085,75"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T14:00:00Z",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
                 "effective_from": "2028-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T14:00:00Z",
+                "verified_at": "2026-11-08T05:00:00Z",
                 "verification_status": "verified",
-                "review_id": "2026-11-07-ai-anaste-2026-2028"
+                "review_id": "2026-11-08-ai-istituzioni-servizi-socio-assistenziali-anaste-tables"
               }
             }
           }
@@ -720,21 +768,28 @@
             "valid_until": "2025-08-01",
             "value": "1790.45",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "pdf6-pdf",
-                  "title": "pdf6-pdf",
+                  "document_id": "istituzioni-servizi-socio-assistenziali-anaste-tables-0104ada3",
+                  "title": "istituzioni-servizi-socio-assistenziali-anaste: tabelle retributive (pdf6.pdf)",
                   "kind": "associazione",
-                  "url": "https://snalv.it/docs/anaste25/pdf6.pdf"
+                  "url": "https://snalv.it/docs/anaste25/pdf6.pdf",
+                  "sha256": "0104ada3fe1307dce987c275b55e962e6db6230c0bc94d4182e406bb395c8c98"
                 },
-                "section": "Tabella retributiva"
+                "page": "55",
+                "section": "Art. 69, minimi in vigore nel triennio 2020/2022",
+                "quote": "9                    1.790,45 €              103,03 €                1.893,48 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2023-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-istituzioni-servizi-socio-assistenziali-anaste-tables"
               }
             }
           },
@@ -743,21 +798,28 @@
             "valid_until": "2026-10-01",
             "value": "1893.48",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "pdf6-pdf",
-                  "title": "pdf6-pdf",
+                  "document_id": "istituzioni-servizi-socio-assistenziali-anaste-tables-0104ada3",
+                  "title": "istituzioni-servizi-socio-assistenziali-anaste: tabelle retributive (pdf6.pdf)",
                   "kind": "associazione",
-                  "url": "https://snalv.it/docs/anaste25/pdf6.pdf"
+                  "url": "https://snalv.it/docs/anaste25/pdf6.pdf",
+                  "sha256": "0104ada3fe1307dce987c275b55e962e6db6230c0bc94d4182e406bb395c8c98"
                 },
-                "section": "Tabella retributiva"
+                "page": "55",
+                "section": "Art. 69, tabellare aggiornato (cf. A26 p.64, vigente)",
+                "quote": "9                    1.790,45 €              103,03 €                1.893,48 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2025-08-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-istituzioni-servizi-socio-assistenziali-anaste-tables"
               }
             }
           },
@@ -769,26 +831,25 @@
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "anaste-ccnl-2026-2028",
-                  "title": "CCNL ANASTE 2026-2028, testo sottoscritto il 9 ottobre 2026",
+                  "document_id": "istituzioni-servizi-socio-assistenziali-anaste-tables-e02bac8a",
+                  "title": "istituzioni-servizi-socio-assistenziali-anaste: tabelle retributive (anaste-2026.pdf)",
                   "kind": "associazione",
                   "url": "https://www.anaste.com/download/?wpdmdl=11171",
-                  "published_on": "2026-10-09",
                   "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
                 },
                 "page": "64",
-                "section": "Art. 69 c. 3 - Minimi contrattuali conglobati mensili",
-                "quote": "9 [...] Tabellare 1.10.2026 € 1941,97"
+                "section": "Art. 69, tabellare 1.10.2026",
+                "quote": "B       [    €1.893,45]          €48,49[ €1.941,97]                  €3030]       €1.972,27]        €30,30]    € 2.002,57"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T14:00:00Z",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
                 "effective_from": "2026-10-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T14:00:00Z",
+                "verified_at": "2026-11-08T05:00:00Z",
                 "verification_status": "verified",
-                "review_id": "2026-11-07-ai-anaste-2026-2028"
+                "review_id": "2026-11-08-ai-istituzioni-servizi-socio-assistenziali-anaste-tables"
               }
             }
           },
@@ -800,26 +861,25 @@
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "anaste-ccnl-2026-2028",
-                  "title": "CCNL ANASTE 2026-2028, testo sottoscritto il 9 ottobre 2026",
+                  "document_id": "istituzioni-servizi-socio-assistenziali-anaste-tables-e02bac8a",
+                  "title": "istituzioni-servizi-socio-assistenziali-anaste: tabelle retributive (anaste-2026.pdf)",
                   "kind": "associazione",
                   "url": "https://www.anaste.com/download/?wpdmdl=11171",
-                  "published_on": "2026-10-09",
                   "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
                 },
                 "page": "64",
-                "section": "Art. 69 c. 3 - Minimi contrattuali conglobati mensili",
-                "quote": "9 [...] Tabellare 1.1.2027 € 1972,27"
+                "section": "Art. 69, tabellare 1.1.2027",
+                "quote": "B       [    €1.893,45]          €48,49[ €1.941,97]                  €3030]       €1.972,27]        €30,30]    € 2.002,57"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T14:00:00Z",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
                 "effective_from": "2027-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T14:00:00Z",
+                "verified_at": "2026-11-08T05:00:00Z",
                 "verification_status": "verified",
-                "review_id": "2026-11-07-ai-anaste-2026-2028"
+                "review_id": "2026-11-08-ai-istituzioni-servizi-socio-assistenziali-anaste-tables"
               }
             }
           },
@@ -831,26 +891,25 @@
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "anaste-ccnl-2026-2028",
-                  "title": "CCNL ANASTE 2026-2028, testo sottoscritto il 9 ottobre 2026",
+                  "document_id": "istituzioni-servizi-socio-assistenziali-anaste-tables-e02bac8a",
+                  "title": "istituzioni-servizi-socio-assistenziali-anaste: tabelle retributive (anaste-2026.pdf)",
                   "kind": "associazione",
                   "url": "https://www.anaste.com/download/?wpdmdl=11171",
-                  "published_on": "2026-10-09",
                   "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
                 },
                 "page": "64",
-                "section": "Art. 69 c. 3 - Minimi contrattuali conglobati mensili",
-                "quote": "9 [...] Tabellare 1.1.2028 € 2002,57"
+                "section": "Art. 69, tabellare 1.1.2028",
+                "quote": "B       [    €1.893,45]          €48,49[ €1.941,97]                  €3030]       €1.972,27]        €30,30]    € 2.002,57"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T14:00:00Z",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
                 "effective_from": "2028-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T14:00:00Z",
+                "verified_at": "2026-11-08T05:00:00Z",
                 "verification_status": "verified",
-                "review_id": "2026-11-07-ai-anaste-2026-2028"
+                "review_id": "2026-11-08-ai-istituzioni-servizi-socio-assistenziali-anaste-tables"
               }
             }
           }
@@ -887,21 +946,28 @@
             "valid_until": "2025-08-01",
             "value": "1673.30",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "pdf6-pdf",
-                  "title": "pdf6-pdf",
+                  "document_id": "istituzioni-servizi-socio-assistenziali-anaste-tables-0104ada3",
+                  "title": "istituzioni-servizi-socio-assistenziali-anaste: tabelle retributive (pdf6.pdf)",
                   "kind": "associazione",
-                  "url": "https://snalv.it/docs/anaste25/pdf6.pdf"
+                  "url": "https://snalv.it/docs/anaste25/pdf6.pdf",
+                  "sha256": "0104ada3fe1307dce987c275b55e962e6db6230c0bc94d4182e406bb395c8c98"
                 },
-                "section": "Tabella retributiva"
+                "page": "55",
+                "section": "Art. 69, minimi in vigore nel triennio 2020/2022",
+                "quote": "8                    1.673,30 €                96,29 €               1.769,59 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2023-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-istituzioni-servizi-socio-assistenziali-anaste-tables"
               }
             }
           },
@@ -910,21 +976,28 @@
             "valid_until": "2026-10-01",
             "value": "1769.59",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "pdf6-pdf",
-                  "title": "pdf6-pdf",
+                  "document_id": "istituzioni-servizi-socio-assistenziali-anaste-tables-0104ada3",
+                  "title": "istituzioni-servizi-socio-assistenziali-anaste: tabelle retributive (pdf6.pdf)",
                   "kind": "associazione",
-                  "url": "https://snalv.it/docs/anaste25/pdf6.pdf"
+                  "url": "https://snalv.it/docs/anaste25/pdf6.pdf",
+                  "sha256": "0104ada3fe1307dce987c275b55e962e6db6230c0bc94d4182e406bb395c8c98"
                 },
-                "section": "Tabella retributiva"
+                "page": "55",
+                "section": "Art. 69, tabellare aggiornato (cf. A26 p.64, vigente)",
+                "quote": "8                    1.673,30 €                96,29 €               1.769,59 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2025-08-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-istituzioni-servizi-socio-assistenziali-anaste-tables"
               }
             }
           },
@@ -936,26 +1009,25 @@
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "anaste-ccnl-2026-2028",
-                  "title": "CCNL ANASTE 2026-2028, testo sottoscritto il 9 ottobre 2026",
+                  "document_id": "istituzioni-servizi-socio-assistenziali-anaste-tables-e02bac8a",
+                  "title": "istituzioni-servizi-socio-assistenziali-anaste: tabelle retributive (anaste-2026.pdf)",
                   "kind": "associazione",
                   "url": "https://www.anaste.com/download/?wpdmdl=11171",
-                  "published_on": "2026-10-09",
                   "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
                 },
                 "page": "64",
-                "section": "Art. 69 c. 3 - Minimi contrattuali conglobati mensili",
-                "quote": "8 [...] Tabellare 1.10.2026 € 1814,90"
+                "section": "Art. 69, tabellare 1.10.2026",
+                "quote": "(8      [    €1769,59]           €4531][ €1.814,90]                  €28,32][     €1.843,02]        €283       €1.871,54"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T14:00:00Z",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
                 "effective_from": "2026-10-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T14:00:00Z",
+                "verified_at": "2026-11-08T05:00:00Z",
                 "verification_status": "verified",
-                "review_id": "2026-11-07-ai-anaste-2026-2028"
+                "review_id": "2026-11-08-ai-istituzioni-servizi-socio-assistenziali-anaste-tables"
               }
             }
           },
@@ -998,26 +1070,25 @@
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "anaste-ccnl-2026-2028",
-                  "title": "CCNL ANASTE 2026-2028, testo sottoscritto il 9 ottobre 2026",
+                  "document_id": "istituzioni-servizi-socio-assistenziali-anaste-tables-e02bac8a",
+                  "title": "istituzioni-servizi-socio-assistenziali-anaste: tabelle retributive (anaste-2026.pdf)",
                   "kind": "associazione",
                   "url": "https://www.anaste.com/download/?wpdmdl=11171",
-                  "published_on": "2026-10-09",
                   "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
                 },
                 "page": "64",
-                "section": "Art. 69 c. 3 - Minimi contrattuali conglobati mensili",
-                "quote": "8 [...] Tabellare 1.1.2028 € 1871,54"
+                "section": "Art. 69, tabellare 1.1.2028",
+                "quote": "(8      [    €1769,59]           €4531][ €1.814,90]                  €28,32][     €1.843,02]        €283       €1.871,54"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T14:00:00Z",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
                 "effective_from": "2028-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T14:00:00Z",
+                "verified_at": "2026-11-08T05:00:00Z",
                 "verification_status": "verified",
-                "review_id": "2026-11-07-ai-anaste-2026-2028"
+                "review_id": "2026-11-08-ai-istituzioni-servizi-socio-assistenziali-anaste-tables"
               }
             }
           }
@@ -1054,21 +1125,28 @@
             "valid_until": "2025-08-01",
             "value": "1657.55",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "pdf6-pdf",
-                  "title": "pdf6-pdf",
+                  "document_id": "istituzioni-servizi-socio-assistenziali-anaste-tables-0104ada3",
+                  "title": "istituzioni-servizi-socio-assistenziali-anaste: tabelle retributive (pdf6.pdf)",
                   "kind": "associazione",
-                  "url": "https://snalv.it/docs/anaste25/pdf6.pdf"
+                  "url": "https://snalv.it/docs/anaste25/pdf6.pdf",
+                  "sha256": "0104ada3fe1307dce987c275b55e962e6db6230c0bc94d4182e406bb395c8c98"
                 },
-                "section": "Tabella retributiva"
+                "page": "55",
+                "section": "Art. 69, minimi in vigore nel triennio 2020/2022",
+                "quote": "7                    1.657,55 €                95,38 €               1.752,93 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2023-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-istituzioni-servizi-socio-assistenziali-anaste-tables"
               }
             }
           },
@@ -1077,21 +1155,28 @@
             "valid_until": "2026-10-01",
             "value": "1752.93",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "pdf6-pdf",
-                  "title": "pdf6-pdf",
+                  "document_id": "istituzioni-servizi-socio-assistenziali-anaste-tables-0104ada3",
+                  "title": "istituzioni-servizi-socio-assistenziali-anaste: tabelle retributive (pdf6.pdf)",
                   "kind": "associazione",
-                  "url": "https://snalv.it/docs/anaste25/pdf6.pdf"
+                  "url": "https://snalv.it/docs/anaste25/pdf6.pdf",
+                  "sha256": "0104ada3fe1307dce987c275b55e962e6db6230c0bc94d4182e406bb395c8c98"
                 },
-                "section": "Tabella retributiva"
+                "page": "55",
+                "section": "Art. 69, tabellare aggiornato (cf. A26 p.64, vigente)",
+                "quote": "7                    1.657,55 €                95,38 €               1.752,93 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2025-08-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-istituzioni-servizi-socio-assistenziali-anaste-tables"
               }
             }
           },
@@ -1134,26 +1219,25 @@
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "anaste-ccnl-2026-2028",
-                  "title": "CCNL ANASTE 2026-2028, testo sottoscritto il 9 ottobre 2026",
+                  "document_id": "istituzioni-servizi-socio-assistenziali-anaste-tables-e02bac8a",
+                  "title": "istituzioni-servizi-socio-assistenziali-anaste: tabelle retributive (anaste-2026.pdf)",
                   "kind": "associazione",
                   "url": "https://www.anaste.com/download/?wpdmdl=11171",
-                  "published_on": "2026-10-09",
                   "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
                 },
                 "page": "64",
-                "section": "Art. 69 c. 3 - Minimi contrattuali conglobati mensili",
-                "quote": "7 [...] Tabellare 1.1.2027 € 1825,87"
+                "section": "Art. 69, tabellare 1.1.2027",
+                "quote": "7       [    €1.75299            €4489 €1.797,87                     €28,03]]     €1.825,87)        €28,05]    €1.853,97]"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T14:00:00Z",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
                 "effective_from": "2027-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T14:00:00Z",
+                "verified_at": "2026-11-08T05:00:00Z",
                 "verification_status": "verified",
-                "review_id": "2026-11-07-ai-anaste-2026-2028"
+                "review_id": "2026-11-08-ai-istituzioni-servizi-socio-assistenziali-anaste-tables"
               }
             }
           },
@@ -1221,21 +1305,28 @@
             "valid_until": "2025-08-01",
             "value": "1604.06",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "pdf6-pdf",
-                  "title": "pdf6-pdf",
+                  "document_id": "istituzioni-servizi-socio-assistenziali-anaste-tables-0104ada3",
+                  "title": "istituzioni-servizi-socio-assistenziali-anaste: tabelle retributive (pdf6.pdf)",
                   "kind": "associazione",
-                  "url": "https://snalv.it/docs/anaste25/pdf6.pdf"
+                  "url": "https://snalv.it/docs/anaste25/pdf6.pdf",
+                  "sha256": "0104ada3fe1307dce987c275b55e962e6db6230c0bc94d4182e406bb395c8c98"
                 },
-                "section": "Tabella retributiva"
+                "page": "55",
+                "section": "Art. 69, minimi in vigore nel triennio 2020/2022",
+                "quote": "6                    1.604,06 €                92,31 €               1.696,37 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2023-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-istituzioni-servizi-socio-assistenziali-anaste-tables"
               }
             }
           },
@@ -1244,21 +1335,28 @@
             "valid_until": "2026-10-01",
             "value": "1696.37",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "pdf6-pdf",
-                  "title": "pdf6-pdf",
+                  "document_id": "istituzioni-servizi-socio-assistenziali-anaste-tables-0104ada3",
+                  "title": "istituzioni-servizi-socio-assistenziali-anaste: tabelle retributive (pdf6.pdf)",
                   "kind": "associazione",
-                  "url": "https://snalv.it/docs/anaste25/pdf6.pdf"
+                  "url": "https://snalv.it/docs/anaste25/pdf6.pdf",
+                  "sha256": "0104ada3fe1307dce987c275b55e962e6db6230c0bc94d4182e406bb395c8c98"
                 },
-                "section": "Tabella retributiva"
+                "page": "55",
+                "section": "Art. 69, tabellare aggiornato (cf. A26 p.64, vigente)",
+                "quote": "6                    1.604,06 €                92,31 €               1.696,37 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2025-08-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-istituzioni-servizi-socio-assistenziali-anaste-tables"
               }
             }
           },
@@ -1270,26 +1368,25 @@
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "anaste-ccnl-2026-2028",
-                  "title": "CCNL ANASTE 2026-2028, testo sottoscritto il 9 ottobre 2026",
+                  "document_id": "istituzioni-servizi-socio-assistenziali-anaste-tables-e02bac8a",
+                  "title": "istituzioni-servizi-socio-assistenziali-anaste: tabelle retributive (anaste-2026.pdf)",
                   "kind": "associazione",
                   "url": "https://www.anaste.com/download/?wpdmdl=11171",
-                  "published_on": "2026-10-09",
                   "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
                 },
                 "page": "64",
-                "section": "Art. 69 c. 3 - Minimi contrattuali conglobati mensili",
-                "quote": "6 [...] Tabellare 1.10.2026 € 1739,81"
+                "section": "Art. 69, tabellare 1.10.2026",
+                "quote": "6         Î{_ €1.696,37]         €4344        €1.739,81]]            €27,15]_€1.766,96]             €27,15]_€1.794,11]"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T14:00:00Z",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
                 "effective_from": "2026-10-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T14:00:00Z",
+                "verified_at": "2026-11-08T05:00:00Z",
                 "verification_status": "verified",
-                "review_id": "2026-11-07-ai-anaste-2026-2028"
+                "review_id": "2026-11-08-ai-istituzioni-servizi-socio-assistenziali-anaste-tables"
               }
             }
           },
@@ -1301,26 +1398,25 @@
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "anaste-ccnl-2026-2028",
-                  "title": "CCNL ANASTE 2026-2028, testo sottoscritto il 9 ottobre 2026",
+                  "document_id": "istituzioni-servizi-socio-assistenziali-anaste-tables-e02bac8a",
+                  "title": "istituzioni-servizi-socio-assistenziali-anaste: tabelle retributive (anaste-2026.pdf)",
                   "kind": "associazione",
                   "url": "https://www.anaste.com/download/?wpdmdl=11171",
-                  "published_on": "2026-10-09",
                   "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
                 },
                 "page": "64",
-                "section": "Art. 69 c. 3 - Minimi contrattuali conglobati mensili",
-                "quote": "6 [...] Tabellare 1.1.2027 € 1766,96"
+                "section": "Art. 69, tabellare 1.1.2027",
+                "quote": "6         Î{_ €1.696,37]         €4344        €1.739,81]]            €27,15]_€1.766,96]             €27,15]_€1.794,11]"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T14:00:00Z",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
                 "effective_from": "2027-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T14:00:00Z",
+                "verified_at": "2026-11-08T05:00:00Z",
                 "verification_status": "verified",
-                "review_id": "2026-11-07-ai-anaste-2026-2028"
+                "review_id": "2026-11-08-ai-istituzioni-servizi-socio-assistenziali-anaste-tables"
               }
             }
           },
@@ -1332,26 +1428,25 @@
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "anaste-ccnl-2026-2028",
-                  "title": "CCNL ANASTE 2026-2028, testo sottoscritto il 9 ottobre 2026",
+                  "document_id": "istituzioni-servizi-socio-assistenziali-anaste-tables-e02bac8a",
+                  "title": "istituzioni-servizi-socio-assistenziali-anaste: tabelle retributive (anaste-2026.pdf)",
                   "kind": "associazione",
                   "url": "https://www.anaste.com/download/?wpdmdl=11171",
-                  "published_on": "2026-10-09",
                   "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
                 },
                 "page": "64",
-                "section": "Art. 69 c. 3 - Minimi contrattuali conglobati mensili",
-                "quote": "6 [...] Tabellare 1.1.2028 € 1794,11"
+                "section": "Art. 69, tabellare 1.1.2028",
+                "quote": "6         Î{_ €1.696,37]         €4344        €1.739,81]]            €27,15]_€1.766,96]             €27,15]_€1.794,11]"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T14:00:00Z",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
                 "effective_from": "2028-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T14:00:00Z",
+                "verified_at": "2026-11-08T05:00:00Z",
                 "verification_status": "verified",
-                "review_id": "2026-11-07-ai-anaste-2026-2028"
+                "review_id": "2026-11-08-ai-istituzioni-servizi-socio-assistenziali-anaste-tables"
               }
             }
           }
@@ -1388,21 +1483,28 @@
             "valid_until": "2025-08-01",
             "value": "1547.98",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "pdf6-pdf",
-                  "title": "pdf6-pdf",
+                  "document_id": "istituzioni-servizi-socio-assistenziali-anaste-tables-0104ada3",
+                  "title": "istituzioni-servizi-socio-assistenziali-anaste: tabelle retributive (pdf6.pdf)",
                   "kind": "associazione",
-                  "url": "https://snalv.it/docs/anaste25/pdf6.pdf"
+                  "url": "https://snalv.it/docs/anaste25/pdf6.pdf",
+                  "sha256": "0104ada3fe1307dce987c275b55e962e6db6230c0bc94d4182e406bb395c8c98"
                 },
-                "section": "Tabella retributiva"
+                "page": "55",
+                "section": "Art. 69, minimi in vigore nel triennio 2020/2022",
+                "quote": "5                    1.547,98 €                89,08 €               1.637,06 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2023-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-istituzioni-servizi-socio-assistenziali-anaste-tables"
               }
             }
           },
@@ -1411,21 +1513,28 @@
             "valid_until": "2026-10-01",
             "value": "1637.06",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "pdf6-pdf",
-                  "title": "pdf6-pdf",
+                  "document_id": "istituzioni-servizi-socio-assistenziali-anaste-tables-0104ada3",
+                  "title": "istituzioni-servizi-socio-assistenziali-anaste: tabelle retributive (pdf6.pdf)",
                   "kind": "associazione",
-                  "url": "https://snalv.it/docs/anaste25/pdf6.pdf"
+                  "url": "https://snalv.it/docs/anaste25/pdf6.pdf",
+                  "sha256": "0104ada3fe1307dce987c275b55e962e6db6230c0bc94d4182e406bb395c8c98"
                 },
-                "section": "Tabella retributiva"
+                "page": "55",
+                "section": "Art. 69, tabellare aggiornato (cf. A26 p.64, vigente)",
+                "quote": "5                    1.547,98 €                89,08 €               1.637,06 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2025-08-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-istituzioni-servizi-socio-assistenziali-anaste-tables"
               }
             }
           },
@@ -1468,26 +1577,25 @@
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "anaste-ccnl-2026-2028",
-                  "title": "CCNL ANASTE 2026-2028, testo sottoscritto il 9 ottobre 2026",
+                  "document_id": "istituzioni-servizi-socio-assistenziali-anaste-tables-e02bac8a",
+                  "title": "istituzioni-servizi-socio-assistenziali-anaste: tabelle retributive (anaste-2026.pdf)",
                   "kind": "associazione",
                   "url": "https://www.anaste.com/download/?wpdmdl=11171",
-                  "published_on": "2026-10-09",
                   "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
                 },
                 "page": "64",
-                "section": "Art. 69 c. 3 - Minimi contrattuali conglobati mensili",
-                "quote": "5 [...] Tabellare 1.1.2027 € 1705,18"
+                "section": "Art. 69, tabellare 1.1.2027",
+                "quote": "5          [ €1.637,04]           €41,92[ €1.678,99]]                €26,20] €1.705,18]              €26,20] €1.731,38]"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T14:00:00Z",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
                 "effective_from": "2027-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T14:00:00Z",
+                "verified_at": "2026-11-08T05:00:00Z",
                 "verification_status": "verified",
-                "review_id": "2026-11-07-ai-anaste-2026-2028"
+                "review_id": "2026-11-08-ai-istituzioni-servizi-socio-assistenziali-anaste-tables"
               }
             }
           },
@@ -1499,26 +1607,25 @@
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "anaste-ccnl-2026-2028",
-                  "title": "CCNL ANASTE 2026-2028, testo sottoscritto il 9 ottobre 2026",
+                  "document_id": "istituzioni-servizi-socio-assistenziali-anaste-tables-e02bac8a",
+                  "title": "istituzioni-servizi-socio-assistenziali-anaste: tabelle retributive (anaste-2026.pdf)",
                   "kind": "associazione",
                   "url": "https://www.anaste.com/download/?wpdmdl=11171",
-                  "published_on": "2026-10-09",
                   "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
                 },
                 "page": "64",
-                "section": "Art. 69 c. 3 - Minimi contrattuali conglobati mensili",
-                "quote": "5 [...] Tabellare 1.1.2028 € 1731,38"
+                "section": "Art. 69, tabellare 1.1.2028",
+                "quote": "5          [ €1.637,04]           €41,92[ €1.678,99]]                €26,20] €1.705,18]              €26,20] €1.731,38]"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T14:00:00Z",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
                 "effective_from": "2028-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T14:00:00Z",
+                "verified_at": "2026-11-08T05:00:00Z",
                 "verification_status": "verified",
-                "review_id": "2026-11-07-ai-anaste-2026-2028"
+                "review_id": "2026-11-08-ai-istituzioni-servizi-socio-assistenziali-anaste-tables"
               }
             }
           }
@@ -1555,21 +1662,28 @@
             "valid_until": "2025-08-01",
             "value": "1477.10",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "pdf6-pdf",
-                  "title": "pdf6-pdf",
+                  "document_id": "istituzioni-servizi-socio-assistenziali-anaste-tables-0104ada3",
+                  "title": "istituzioni-servizi-socio-assistenziali-anaste: tabelle retributive (pdf6.pdf)",
                   "kind": "associazione",
-                  "url": "https://snalv.it/docs/anaste25/pdf6.pdf"
+                  "url": "https://snalv.it/docs/anaste25/pdf6.pdf",
+                  "sha256": "0104ada3fe1307dce987c275b55e962e6db6230c0bc94d4182e406bb395c8c98"
                 },
-                "section": "Tabella retributiva"
+                "page": "55",
+                "section": "Art. 69, minimi in vigore nel triennio 2020/2022",
+                "quote": "4                    1.477,10 €                85,00 €               1.562,10 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2023-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-istituzioni-servizi-socio-assistenziali-anaste-tables"
               }
             }
           },
@@ -1578,21 +1692,28 @@
             "valid_until": "2026-10-01",
             "value": "1562.10",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "pdf6-pdf",
-                  "title": "pdf6-pdf",
+                  "document_id": "istituzioni-servizi-socio-assistenziali-anaste-tables-0104ada3",
+                  "title": "istituzioni-servizi-socio-assistenziali-anaste: tabelle retributive (pdf6.pdf)",
                   "kind": "associazione",
-                  "url": "https://snalv.it/docs/anaste25/pdf6.pdf"
+                  "url": "https://snalv.it/docs/anaste25/pdf6.pdf",
+                  "sha256": "0104ada3fe1307dce987c275b55e962e6db6230c0bc94d4182e406bb395c8c98"
                 },
-                "section": "Tabella retributiva"
+                "page": "55",
+                "section": "Art. 69, tabellare aggiornato (cf. A26 p.64, vigente)",
+                "quote": "4                    1.477,10 €                85,00 €               1.562,10 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2025-08-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-istituzioni-servizi-socio-assistenziali-anaste-tables"
               }
             }
           },
@@ -1604,26 +1725,25 @@
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "anaste-ccnl-2026-2028",
-                  "title": "CCNL ANASTE 2026-2028, testo sottoscritto il 9 ottobre 2026",
+                  "document_id": "istituzioni-servizi-socio-assistenziali-anaste-tables-e02bac8a",
+                  "title": "istituzioni-servizi-socio-assistenziali-anaste: tabelle retributive (anaste-2026.pdf)",
                   "kind": "associazione",
                   "url": "https://www.anaste.com/download/?wpdmdl=11171",
-                  "published_on": "2026-10-09",
                   "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
                 },
                 "page": "64",
-                "section": "Art. 69 c. 3 - Minimi contrattuali conglobati mensili",
-                "quote": "4 [...] Tabellare 1.10.2026 € 1602,10"
+                "section": "Art. 69, tabellare 1.10.2026",
+                "quote": "4            €1.562,10]]          € 40,00][_ €1.602,10]]             €25,00] €1.627,10]              €25,00] €1.652,10]"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T14:00:00Z",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
                 "effective_from": "2026-10-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T14:00:00Z",
+                "verified_at": "2026-11-08T05:00:00Z",
                 "verification_status": "verified",
-                "review_id": "2026-11-07-ai-anaste-2026-2028"
+                "review_id": "2026-11-08-ai-istituzioni-servizi-socio-assistenziali-anaste-tables"
               }
             }
           },
@@ -1635,26 +1755,25 @@
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "anaste-ccnl-2026-2028",
-                  "title": "CCNL ANASTE 2026-2028, testo sottoscritto il 9 ottobre 2026",
+                  "document_id": "istituzioni-servizi-socio-assistenziali-anaste-tables-e02bac8a",
+                  "title": "istituzioni-servizi-socio-assistenziali-anaste: tabelle retributive (anaste-2026.pdf)",
                   "kind": "associazione",
                   "url": "https://www.anaste.com/download/?wpdmdl=11171",
-                  "published_on": "2026-10-09",
                   "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
                 },
                 "page": "64",
-                "section": "Art. 69 c. 3 - Minimi contrattuali conglobati mensili",
-                "quote": "4 [...] Tabellare 1.1.2027 € 1627,10"
+                "section": "Art. 69, tabellare 1.1.2027",
+                "quote": "4            €1.562,10]]          € 40,00][_ €1.602,10]]             €25,00] €1.627,10]              €25,00] €1.652,10]"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T14:00:00Z",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
                 "effective_from": "2027-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T14:00:00Z",
+                "verified_at": "2026-11-08T05:00:00Z",
                 "verification_status": "verified",
-                "review_id": "2026-11-07-ai-anaste-2026-2028"
+                "review_id": "2026-11-08-ai-istituzioni-servizi-socio-assistenziali-anaste-tables"
               }
             }
           },
@@ -1666,26 +1785,25 @@
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "anaste-ccnl-2026-2028",
-                  "title": "CCNL ANASTE 2026-2028, testo sottoscritto il 9 ottobre 2026",
+                  "document_id": "istituzioni-servizi-socio-assistenziali-anaste-tables-e02bac8a",
+                  "title": "istituzioni-servizi-socio-assistenziali-anaste: tabelle retributive (anaste-2026.pdf)",
                   "kind": "associazione",
                   "url": "https://www.anaste.com/download/?wpdmdl=11171",
-                  "published_on": "2026-10-09",
                   "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
                 },
                 "page": "64",
-                "section": "Art. 69 c. 3 - Minimi contrattuali conglobati mensili",
-                "quote": "4 [...] Tabellare 1.1.2028 € 1652,10"
+                "section": "Art. 69, tabellare 1.1.2028",
+                "quote": "4            €1.562,10]]          € 40,00][_ €1.602,10]]             €25,00] €1.627,10]              €25,00] €1.652,10]"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T14:00:00Z",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
                 "effective_from": "2028-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T14:00:00Z",
+                "verified_at": "2026-11-08T05:00:00Z",
                 "verification_status": "verified",
-                "review_id": "2026-11-07-ai-anaste-2026-2028"
+                "review_id": "2026-11-08-ai-istituzioni-servizi-socio-assistenziali-anaste-tables"
               }
             }
           }
@@ -1722,21 +1840,28 @@
             "valid_until": "2025-08-01",
             "value": "1442.05",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "pdf6-pdf",
-                  "title": "pdf6-pdf",
+                  "document_id": "istituzioni-servizi-socio-assistenziali-anaste-tables-0104ada3",
+                  "title": "istituzioni-servizi-socio-assistenziali-anaste: tabelle retributive (pdf6.pdf)",
                   "kind": "associazione",
-                  "url": "https://snalv.it/docs/anaste25/pdf6.pdf"
+                  "url": "https://snalv.it/docs/anaste25/pdf6.pdf",
+                  "sha256": "0104ada3fe1307dce987c275b55e962e6db6230c0bc94d4182e406bb395c8c98"
                 },
-                "section": "Tabella retributiva"
+                "page": "55",
+                "section": "Art. 69, minimi in vigore nel triennio 2020/2022",
+                "quote": "3                    1.442,05 €                82,98 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2023-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-istituzioni-servizi-socio-assistenziali-anaste-tables"
               }
             }
           },
@@ -1745,21 +1870,28 @@
             "valid_until": "2026-10-01",
             "value": "1525.03",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "pdf6-pdf",
-                  "title": "pdf6-pdf",
+                  "document_id": "istituzioni-servizi-socio-assistenziali-anaste-tables-0104ada3",
+                  "title": "istituzioni-servizi-socio-assistenziali-anaste: tabelle retributive (pdf6.pdf)",
                   "kind": "associazione",
-                  "url": "https://snalv.it/docs/anaste25/pdf6.pdf"
+                  "url": "https://snalv.it/docs/anaste25/pdf6.pdf",
+                  "sha256": "0104ada3fe1307dce987c275b55e962e6db6230c0bc94d4182e406bb395c8c98"
                 },
-                "section": "Tabella retributiva"
+                "page": "55",
+                "section": "Art. 69, tabellare aggiornato (cf. A26 p.64, vigente)",
+                "quote": "1.525,03 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2025-08-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-istituzioni-servizi-socio-assistenziali-anaste-tables"
               }
             }
           },
@@ -1802,26 +1934,25 @@
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "anaste-ccnl-2026-2028",
-                  "title": "CCNL ANASTE 2026-2028, testo sottoscritto il 9 ottobre 2026",
+                  "document_id": "istituzioni-servizi-socio-assistenziali-anaste-tables-e02bac8a",
+                  "title": "istituzioni-servizi-socio-assistenziali-anaste: tabelle retributive (anaste-2026.pdf)",
                   "kind": "associazione",
                   "url": "https://www.anaste.com/download/?wpdmdl=11171",
-                  "published_on": "2026-10-09",
                   "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
                 },
                 "page": "64",
-                "section": "Art. 69 c. 3 - Minimi contrattuali conglobati mensili",
-                "quote": "3S [...] Tabellare 1.1.2027 € 1588,49"
+                "section": "Art. 69, tabellare 1.1.2027",
+                "quote": "Bs         ] €1.525,09            € 39,05|[_ €1.564,0]               €24,41|| €1.588,49]             €24,41]|_€1.612,90)"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T14:00:00Z",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
                 "effective_from": "2027-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T14:00:00Z",
+                "verified_at": "2026-11-08T05:00:00Z",
                 "verification_status": "verified",
-                "review_id": "2026-11-07-ai-anaste-2026-2028"
+                "review_id": "2026-11-08-ai-istituzioni-servizi-socio-assistenziali-anaste-tables"
               }
             }
           },
@@ -1833,26 +1964,25 @@
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "anaste-ccnl-2026-2028",
-                  "title": "CCNL ANASTE 2026-2028, testo sottoscritto il 9 ottobre 2026",
+                  "document_id": "istituzioni-servizi-socio-assistenziali-anaste-tables-e02bac8a",
+                  "title": "istituzioni-servizi-socio-assistenziali-anaste: tabelle retributive (anaste-2026.pdf)",
                   "kind": "associazione",
                   "url": "https://www.anaste.com/download/?wpdmdl=11171",
-                  "published_on": "2026-10-09",
                   "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
                 },
                 "page": "64",
-                "section": "Art. 69 c. 3 - Minimi contrattuali conglobati mensili",
-                "quote": "3S [...] Tabellare 1.1.2028 € 1612,90"
+                "section": "Art. 69, tabellare 1.1.2028",
+                "quote": "Bs         ] €1.525,09            € 39,05|[_ €1.564,0]               €24,41|| €1.588,49]             €24,41]|_€1.612,90)"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T14:00:00Z",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
                 "effective_from": "2028-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T14:00:00Z",
+                "verified_at": "2026-11-08T05:00:00Z",
                 "verification_status": "verified",
-                "review_id": "2026-11-07-ai-anaste-2026-2028"
+                "review_id": "2026-11-08-ai-istituzioni-servizi-socio-assistenziali-anaste-tables"
               }
             }
           }
@@ -1889,21 +2019,28 @@
             "valid_until": "2025-08-01",
             "value": "1406.99",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "pdf6-pdf",
-                  "title": "pdf6-pdf",
+                  "document_id": "istituzioni-servizi-socio-assistenziali-anaste-tables-0104ada3",
+                  "title": "istituzioni-servizi-socio-assistenziali-anaste: tabelle retributive (pdf6.pdf)",
                   "kind": "associazione",
-                  "url": "https://snalv.it/docs/anaste25/pdf6.pdf"
+                  "url": "https://snalv.it/docs/anaste25/pdf6.pdf",
+                  "sha256": "0104ada3fe1307dce987c275b55e962e6db6230c0bc94d4182e406bb395c8c98"
                 },
-                "section": "Tabella retributiva"
+                "page": "55",
+                "section": "Art. 69, minimi in vigore nel triennio 2020/2022",
+                "quote": "2                    1.406,99 €                80,97 €               1.487,96 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2023-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-istituzioni-servizi-socio-assistenziali-anaste-tables"
               }
             }
           },
@@ -1912,21 +2049,28 @@
             "valid_until": "2026-10-01",
             "value": "1487.96",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "pdf6-pdf",
-                  "title": "pdf6-pdf",
+                  "document_id": "istituzioni-servizi-socio-assistenziali-anaste-tables-0104ada3",
+                  "title": "istituzioni-servizi-socio-assistenziali-anaste: tabelle retributive (pdf6.pdf)",
                   "kind": "associazione",
-                  "url": "https://snalv.it/docs/anaste25/pdf6.pdf"
+                  "url": "https://snalv.it/docs/anaste25/pdf6.pdf",
+                  "sha256": "0104ada3fe1307dce987c275b55e962e6db6230c0bc94d4182e406bb395c8c98"
                 },
-                "section": "Tabella retributiva"
+                "page": "55",
+                "section": "Art. 69, tabellare aggiornato (cf. A26 p.64, vigente)",
+                "quote": "2                    1.406,99 €                80,97 €               1.487,96 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2025-08-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-istituzioni-servizi-socio-assistenziali-anaste-tables"
               }
             }
           },
@@ -1969,26 +2113,25 @@
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "anaste-ccnl-2026-2028",
-                  "title": "CCNL ANASTE 2026-2028, testo sottoscritto il 9 ottobre 2026",
+                  "document_id": "istituzioni-servizi-socio-assistenziali-anaste-tables-e02bac8a",
+                  "title": "istituzioni-servizi-socio-assistenziali-anaste: tabelle retributive (anaste-2026.pdf)",
                   "kind": "associazione",
                   "url": "https://www.anaste.com/download/?wpdmdl=11171",
-                  "published_on": "2026-10-09",
                   "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
                 },
                 "page": "64",
-                "section": "Art. 69 c. 3 - Minimi contrattuali conglobati mensili",
-                "quote": "3 [...] Tabellare 1.1.2027 € 1549,87"
+                "section": "Art. 69, tabellare 1.1.2027",
+                "quote": "B          [ €1.487,9]            €38,10[ €1.526,0                   €2381] €1.549,87]               €23,81[ € 1.573,68]"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T14:00:00Z",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
                 "effective_from": "2027-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T14:00:00Z",
+                "verified_at": "2026-11-08T05:00:00Z",
                 "verification_status": "verified",
-                "review_id": "2026-11-07-ai-anaste-2026-2028"
+                "review_id": "2026-11-08-ai-istituzioni-servizi-socio-assistenziali-anaste-tables"
               }
             }
           },
@@ -2000,26 +2143,25 @@
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "anaste-ccnl-2026-2028",
-                  "title": "CCNL ANASTE 2026-2028, testo sottoscritto il 9 ottobre 2026",
+                  "document_id": "istituzioni-servizi-socio-assistenziali-anaste-tables-e02bac8a",
+                  "title": "istituzioni-servizi-socio-assistenziali-anaste: tabelle retributive (anaste-2026.pdf)",
                   "kind": "associazione",
                   "url": "https://www.anaste.com/download/?wpdmdl=11171",
-                  "published_on": "2026-10-09",
                   "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
                 },
                 "page": "64",
-                "section": "Art. 69 c. 3 - Minimi contrattuali conglobati mensili",
-                "quote": "3 [...] Tabellare 1.1.2028 € 1573,68"
+                "section": "Art. 69, tabellare 1.1.2028",
+                "quote": "B          [ €1.487,9]            €38,10[ €1.526,0                   €2381] €1.549,87]               €23,81[ € 1.573,68]"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T14:00:00Z",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
                 "effective_from": "2028-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T14:00:00Z",
+                "verified_at": "2026-11-08T05:00:00Z",
                 "verification_status": "verified",
-                "review_id": "2026-11-07-ai-anaste-2026-2028"
+                "review_id": "2026-11-08-ai-istituzioni-servizi-socio-assistenziali-anaste-tables"
               }
             }
           }
@@ -2056,21 +2198,28 @@
             "valid_until": "2025-08-01",
             "value": "1314.48",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "pdf6-pdf",
-                  "title": "pdf6-pdf",
+                  "document_id": "istituzioni-servizi-socio-assistenziali-anaste-tables-0104ada3",
+                  "title": "istituzioni-servizi-socio-assistenziali-anaste: tabelle retributive (pdf6.pdf)",
                   "kind": "associazione",
-                  "url": "https://snalv.it/docs/anaste25/pdf6.pdf"
+                  "url": "https://snalv.it/docs/anaste25/pdf6.pdf",
+                  "sha256": "0104ada3fe1307dce987c275b55e962e6db6230c0bc94d4182e406bb395c8c98"
                 },
-                "section": "Tabella retributiva"
+                "page": "55",
+                "section": "Art. 69, minimi in vigore nel triennio 2020/2022",
+                "quote": "1                    1.314,48 €                75,64 €               1.390,12 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2023-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-istituzioni-servizi-socio-assistenziali-anaste-tables"
               }
             }
           },
@@ -2079,21 +2228,28 @@
             "valid_until": "2026-10-01",
             "value": "1390.12",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "pdf6-pdf",
-                  "title": "pdf6-pdf",
+                  "document_id": "istituzioni-servizi-socio-assistenziali-anaste-tables-0104ada3",
+                  "title": "istituzioni-servizi-socio-assistenziali-anaste: tabelle retributive (pdf6.pdf)",
                   "kind": "associazione",
-                  "url": "https://snalv.it/docs/anaste25/pdf6.pdf"
+                  "url": "https://snalv.it/docs/anaste25/pdf6.pdf",
+                  "sha256": "0104ada3fe1307dce987c275b55e962e6db6230c0bc94d4182e406bb395c8c98"
                 },
-                "section": "Tabella retributiva"
+                "page": "55",
+                "section": "Art. 69, tabellare aggiornato (cf. A26 p.64, vigente)",
+                "quote": "1                    1.314,48 €                75,64 €               1.390,12 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2025-08-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-istituzioni-servizi-socio-assistenziali-anaste-tables"
               }
             }
           },
@@ -2105,26 +2261,25 @@
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "anaste-ccnl-2026-2028",
-                  "title": "CCNL ANASTE 2026-2028, testo sottoscritto il 9 ottobre 2026",
+                  "document_id": "istituzioni-servizi-socio-assistenziali-anaste-tables-e02bac8a",
+                  "title": "istituzioni-servizi-socio-assistenziali-anaste: tabelle retributive (anaste-2026.pdf)",
                   "kind": "associazione",
                   "url": "https://www.anaste.com/download/?wpdmdl=11171",
-                  "published_on": "2026-10-09",
                   "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
                 },
                 "page": "64",
-                "section": "Art. 69 c. 3 - Minimi contrattuali conglobati mensili",
-                "quote": "2 [...] Tabellare 1.10.2026 € 1425,72"
+                "section": "Art. 69, tabellare 1.10.2026",
+                "quote": "B          [ €1390,12             € 35,60|[__€ 1.425,72][            € 22,25]|_€ 1.447,97]|          € 22,25]|__€ 1.470,22]"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T14:00:00Z",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
                 "effective_from": "2026-10-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T14:00:00Z",
+                "verified_at": "2026-11-08T05:00:00Z",
                 "verification_status": "verified",
-                "review_id": "2026-11-07-ai-anaste-2026-2028"
+                "review_id": "2026-11-08-ai-istituzioni-servizi-socio-assistenziali-anaste-tables"
               }
             }
           },
@@ -2136,26 +2291,25 @@
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "anaste-ccnl-2026-2028",
-                  "title": "CCNL ANASTE 2026-2028, testo sottoscritto il 9 ottobre 2026",
+                  "document_id": "istituzioni-servizi-socio-assistenziali-anaste-tables-e02bac8a",
+                  "title": "istituzioni-servizi-socio-assistenziali-anaste: tabelle retributive (anaste-2026.pdf)",
                   "kind": "associazione",
                   "url": "https://www.anaste.com/download/?wpdmdl=11171",
-                  "published_on": "2026-10-09",
                   "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
                 },
                 "page": "64",
-                "section": "Art. 69 c. 3 - Minimi contrattuali conglobati mensili",
-                "quote": "2 [...] Tabellare 1.1.2027 € 1447,97"
+                "section": "Art. 69, tabellare 1.1.2027",
+                "quote": "B          [ €1390,12             € 35,60|[__€ 1.425,72][            € 22,25]|_€ 1.447,97]|          € 22,25]|__€ 1.470,22]"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T14:00:00Z",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
                 "effective_from": "2027-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T14:00:00Z",
+                "verified_at": "2026-11-08T05:00:00Z",
                 "verification_status": "verified",
-                "review_id": "2026-11-07-ai-anaste-2026-2028"
+                "review_id": "2026-11-08-ai-istituzioni-servizi-socio-assistenziali-anaste-tables"
               }
             }
           },
@@ -2167,26 +2321,25 @@
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "anaste-ccnl-2026-2028",
-                  "title": "CCNL ANASTE 2026-2028, testo sottoscritto il 9 ottobre 2026",
+                  "document_id": "istituzioni-servizi-socio-assistenziali-anaste-tables-e02bac8a",
+                  "title": "istituzioni-servizi-socio-assistenziali-anaste: tabelle retributive (anaste-2026.pdf)",
                   "kind": "associazione",
                   "url": "https://www.anaste.com/download/?wpdmdl=11171",
-                  "published_on": "2026-10-09",
                   "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
                 },
                 "page": "64",
-                "section": "Art. 69 c. 3 - Minimi contrattuali conglobati mensili",
-                "quote": "2 [...] Tabellare 1.1.2028 € 1470,22"
+                "section": "Art. 69, tabellare 1.1.2028",
+                "quote": "B          [ €1390,12             € 35,60|[__€ 1.425,72][            € 22,25]|_€ 1.447,97]|          € 22,25]|__€ 1.470,22]"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T14:00:00Z",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
                 "effective_from": "2028-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T14:00:00Z",
+                "verified_at": "2026-11-08T05:00:00Z",
                 "verification_status": "verified",
-                "review_id": "2026-11-07-ai-anaste-2026-2028"
+                "review_id": "2026-11-08-ai-istituzioni-servizi-socio-assistenziali-anaste-tables"
               }
             }
           }
@@ -2249,26 +2402,25 @@
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "anaste-ccnl-2026-2028",
-                  "title": "CCNL ANASTE 2026-2028, testo sottoscritto il 9 ottobre 2026",
+                  "document_id": "istituzioni-servizi-socio-assistenziali-anaste-tables-e02bac8a",
+                  "title": "istituzioni-servizi-socio-assistenziali-anaste: tabelle retributive (anaste-2026.pdf)",
                   "kind": "associazione",
                   "url": "https://www.anaste.com/download/?wpdmdl=11171",
-                  "published_on": "2026-10-09",
                   "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
                 },
                 "page": "64",
-                "section": "Art. 69 c. 3 - Minimi contrattuali conglobati mensili",
-                "quote": "1 [...] Tabellare 1.10.2026 € 1328,60"
+                "section": "Art. 69, tabellare 1.10.2026",
+                "quote": "I          [ €1.29543             €337 €1.328,60]                    €20,73] €1.349,33               € 20,73||_ € 1.370,06]"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T14:00:00Z",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
                 "effective_from": "2026-10-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T14:00:00Z",
+                "verified_at": "2026-11-08T05:00:00Z",
                 "verification_status": "verified",
-                "review_id": "2026-11-07-ai-anaste-2026-2028"
+                "review_id": "2026-11-08-ai-istituzioni-servizi-socio-assistenziali-anaste-tables"
               }
             }
           },
@@ -2280,26 +2432,25 @@
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "anaste-ccnl-2026-2028",
-                  "title": "CCNL ANASTE 2026-2028, testo sottoscritto il 9 ottobre 2026",
+                  "document_id": "istituzioni-servizi-socio-assistenziali-anaste-tables-e02bac8a",
+                  "title": "istituzioni-servizi-socio-assistenziali-anaste: tabelle retributive (anaste-2026.pdf)",
                   "kind": "associazione",
                   "url": "https://www.anaste.com/download/?wpdmdl=11171",
-                  "published_on": "2026-10-09",
                   "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
                 },
                 "page": "64",
-                "section": "Art. 69 c. 3 - Minimi contrattuali conglobati mensili",
-                "quote": "1 [...] Tabellare 1.1.2027 € 1349,33"
+                "section": "Art. 69, tabellare 1.1.2027",
+                "quote": "I          [ €1.29543             €337 €1.328,60]                    €20,73] €1.349,33               € 20,73||_ € 1.370,06]"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T14:00:00Z",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
                 "effective_from": "2027-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T14:00:00Z",
+                "verified_at": "2026-11-08T05:00:00Z",
                 "verification_status": "verified",
-                "review_id": "2026-11-07-ai-anaste-2026-2028"
+                "review_id": "2026-11-08-ai-istituzioni-servizi-socio-assistenziali-anaste-tables"
               }
             }
           },
@@ -2311,26 +2462,25 @@
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "anaste-ccnl-2026-2028",
-                  "title": "CCNL ANASTE 2026-2028, testo sottoscritto il 9 ottobre 2026",
+                  "document_id": "istituzioni-servizi-socio-assistenziali-anaste-tables-e02bac8a",
+                  "title": "istituzioni-servizi-socio-assistenziali-anaste: tabelle retributive (anaste-2026.pdf)",
                   "kind": "associazione",
                   "url": "https://www.anaste.com/download/?wpdmdl=11171",
-                  "published_on": "2026-10-09",
                   "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
                 },
                 "page": "64",
-                "section": "Art. 69 c. 3 - Minimi contrattuali conglobati mensili",
-                "quote": "1 [...] Tabellare 1.1.2028 € 1370,06"
+                "section": "Art. 69, tabellare 1.1.2028",
+                "quote": "I          [ €1.29543             €337 €1.328,60]                    €20,73] €1.349,33               € 20,73||_ € 1.370,06]"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T14:00:00Z",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
                 "effective_from": "2028-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T14:00:00Z",
+                "verified_at": "2026-11-08T05:00:00Z",
                 "verification_status": "verified",
-                "review_id": "2026-11-07-ai-anaste-2026-2028"
+                "review_id": "2026-11-08-ai-istituzioni-servizi-socio-assistenziali-anaste-tables"
               }
             }
           }
@@ -2472,7 +2622,7 @@
     "effective_until": null,
     "source": "https://snalv.it/docs/anaste25/pdf6.pdf",
     "verification_status": "verified",
-    "source_hash": "74a4f0c25138253cafc4a629dda416c15ac561f95dcc5d8a86b6299557e22d0f",
+    "source_hash": "f0964fda7263afaa2fc6006733f501cdf5e04a9c08403c64e9ea80754617d6f9",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

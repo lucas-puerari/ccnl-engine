@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 38 verified / 25 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 57 verified / 6 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-07-23 |
-| **Last review** | 2026-11-07 |
+| **Last review** | 2026-11-08 |
 | **Latest salary tranche** | 2028-01-01 |
 
 ## Review history
@@ -60,6 +60,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | corrected | Art. 26 Gratifica natalizia o 13° mensilità (p. 19): "Nel caso di inizio o cessazione del rapporto di lavoro durante il corso dell'anno, il lavoratore ha diritto a tanti dodicesimi della gratifica natalizia per quanti sono i mesi di servizio prestato presso l'azienda. Le frazioni di mese superiori a 15 giorni sono considerate come mese intero di servizio.". Added: more_than 15 (the file applied the engine default, at least 15 days). |
 | 2026-10-31 | claude-opus-5-5 (ai) | The comporto and the sick pay of the CCNL counted over several illnesses (work_rules.sickness_rules), read on the signed text. | corrected | Art. 35 of the CCNL 9.7.2019 (pp. 24-26, OCR of the signed scan): comporto 12 months, whole pay for 3, 5 or 8 months and half for 3, 4 or 4 by seniority, the absences of the 24 months before each new episode summed. The file kept 270 days of one illness at 100% with an unpaid carenza: corrected to a cumulation over two years with three seniority bands. |
 | 2026-11-07 | claude-opus-5-5 (ai) | Values a primary-text verification found different from the printed tables (text layer). | corrected | 36 values corrected to the amounts printed on the cited pages. |
+| 2026-11-08 | gpt-6-sol (ai) | Monthly values on scanned pages, each read twice from the page image by two independent sessions of another model, the second without being told the expected value. | confirmed | 19 values read identically by both readings and equal to the file. |
 
 ## Salary table
 

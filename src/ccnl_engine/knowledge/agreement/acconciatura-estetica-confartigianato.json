@@ -308,21 +308,28 @@
             "valid_until": "2024-05-01",
             "value": "1234.19",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-benessere-app-prof-fino-30-9-24-pdf",
-                  "title": "ccnl-benessere-app-prof-fino-30-9-24-pdf",
+                  "document_id": "acconciatura-estetica-confartigianato-src-142dcfe3",
+                  "title": "acconciatura-estetica-confartigianato: rinnovo2022.pdf",
                   "kind": "associazione",
-                  "url": "https://www.confartigianatomarcatrevigiana.it/wp-content/uploads/2024/09/ccnl-benessere-app.prof-fino-30.9.24.pdf"
+                  "url": "https://confartigianatomarcatrevigiana.it/wp-content/uploads/2022/10/CCNL-ACCONCIATURA-CON-TABELLE-10.10.2022.pdf",
+                  "sha256": "142dcfe339b3b9e1b0d6f49bf467f5ba01dddb6c8299c945e4cc39b905490d70"
                 },
-                "section": "Tabella retributiva"
+                "page": "26",
+                "section": "no text layer",
+                "quote": "4 | 1.205,90 € | 28,29 € | 1.234,19 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2023-02-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-acconciatura-estetica-confartigianato-double-read"
               }
             }
           },
@@ -331,21 +338,28 @@
             "valid_until": "2025-01-01",
             "value": "1300.19",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-benessere-app-prof-fino-30-9-24-pdf",
-                  "title": "ccnl-benessere-app-prof-fino-30-9-24-pdf",
+                  "document_id": "acconciatura-estetica-confartigianato-src-622a0618",
+                  "title": "acconciatura-estetica-confartigianato: tabelle2024.pdf",
                   "kind": "associazione",
-                  "url": "https://www.confartigianatomarcatrevigiana.it/wp-content/uploads/2024/09/ccnl-benessere-app.prof-fino-30.9.24.pdf"
+                  "url": "https://confartigianatomarcatrevigiana.it/wp-content/uploads/2024/05/CCNL-AREA-BENESSERE-ACC.TAB_.23.5.24.pdf",
+                  "sha256": "622a0618909c759371d74b11471a1573be59db188d2e20e7bcbe2f6164f73c88"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "no text layer",
+                "quote": "4 | 1.234,19 | 66,00 | 1300,19"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2024-05-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-acconciatura-estetica-confartigianato-double-read"
               }
             }
           },
@@ -354,21 +368,28 @@
             "valid_until": "2026-01-01",
             "value": "1347.33",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-benessere-app-prof-fino-30-9-24-pdf",
-                  "title": "ccnl-benessere-app-prof-fino-30-9-24-pdf",
+                  "document_id": "acconciatura-estetica-confartigianato-src-622a0618",
+                  "title": "acconciatura-estetica-confartigianato: tabelle2024.pdf",
                   "kind": "associazione",
-                  "url": "https://www.confartigianatomarcatrevigiana.it/wp-content/uploads/2024/09/ccnl-benessere-app.prof-fino-30.9.24.pdf"
+                  "url": "https://confartigianatomarcatrevigiana.it/wp-content/uploads/2024/05/CCNL-AREA-BENESSERE-ACC.TAB_.23.5.24.pdf",
+                  "sha256": "622a0618909c759371d74b11471a1573be59db188d2e20e7bcbe2f6164f73c88"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "no text layer",
+                "quote": "4 | 1300,19 | 47,14 | 1347,33"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-acconciatura-estetica-confartigianato-double-read"
               }
             }
           },
@@ -377,21 +398,28 @@
             "valid_until": "2026-10-01",
             "value": "1387.87",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-benessere-app-prof-fino-30-9-24-pdf",
-                  "title": "ccnl-benessere-app-prof-fino-30-9-24-pdf",
+                  "document_id": "acconciatura-estetica-confartigianato-src-622a0618",
+                  "title": "acconciatura-estetica-confartigianato: tabelle2024.pdf",
                   "kind": "associazione",
-                  "url": "https://www.confartigianatomarcatrevigiana.it/wp-content/uploads/2024/09/ccnl-benessere-app.prof-fino-30.9.24.pdf"
+                  "url": "https://confartigianatomarcatrevigiana.it/wp-content/uploads/2024/05/CCNL-AREA-BENESSERE-ACC.TAB_.23.5.24.pdf",
+                  "sha256": "622a0618909c759371d74b11471a1573be59db188d2e20e7bcbe2f6164f73c88"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "no text layer",
+                "quote": "4 | 1347,33 | 40,54 | 1387,87"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-acconciatura-estetica-confartigianato-double-read"
               }
             }
           },
@@ -400,21 +428,28 @@
             "valid_until": null,
             "value": "1406.73",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-benessere-app-prof-fino-30-9-24-pdf",
-                  "title": "ccnl-benessere-app-prof-fino-30-9-24-pdf",
+                  "document_id": "acconciatura-estetica-confartigianato-src-622a0618",
+                  "title": "acconciatura-estetica-confartigianato: tabelle2024.pdf",
                   "kind": "associazione",
-                  "url": "https://www.confartigianatomarcatrevigiana.it/wp-content/uploads/2024/09/ccnl-benessere-app.prof-fino-30.9.24.pdf"
+                  "url": "https://confartigianatomarcatrevigiana.it/wp-content/uploads/2024/05/CCNL-AREA-BENESSERE-ACC.TAB_.23.5.24.pdf",
+                  "sha256": "622a0618909c759371d74b11471a1573be59db188d2e20e7bcbe2f6164f73c88"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "no text layer",
+                "quote": "4 | 1387,87 | 18,86 | 1406,73"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-10-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-acconciatura-estetica-confartigianato-double-read"
               }
             }
           }
@@ -452,21 +487,28 @@
             "valid_until": "2024-05-01",
             "value": "1309.00",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-benessere-app-prof-fino-30-9-24-pdf",
-                  "title": "ccnl-benessere-app-prof-fino-30-9-24-pdf",
+                  "document_id": "acconciatura-estetica-confartigianato-src-142dcfe3",
+                  "title": "acconciatura-estetica-confartigianato: rinnovo2022.pdf",
                   "kind": "associazione",
-                  "url": "https://www.confartigianatomarcatrevigiana.it/wp-content/uploads/2024/09/ccnl-benessere-app.prof-fino-30.9.24.pdf"
+                  "url": "https://confartigianatomarcatrevigiana.it/wp-content/uploads/2022/10/CCNL-ACCONCIATURA-CON-TABELLE-10.10.2022.pdf",
+                  "sha256": "142dcfe339b3b9e1b0d6f49bf467f5ba01dddb6c8299c945e4cc39b905490d70"
                 },
-                "section": "Tabella retributiva"
+                "page": "26",
+                "section": "no text layer",
+                "quote": "3 | 1.279,00 € | 30,00 € | 1.309,00 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2023-02-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-acconciatura-estetica-confartigianato-double-read"
               }
             }
           },
@@ -475,21 +517,28 @@
             "valid_until": "2025-01-01",
             "value": "1379.00",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-benessere-app-prof-fino-30-9-24-pdf",
-                  "title": "ccnl-benessere-app-prof-fino-30-9-24-pdf",
+                  "document_id": "acconciatura-estetica-confartigianato-src-622a0618",
+                  "title": "acconciatura-estetica-confartigianato: tabelle2024.pdf",
                   "kind": "associazione",
-                  "url": "https://www.confartigianatomarcatrevigiana.it/wp-content/uploads/2024/09/ccnl-benessere-app.prof-fino-30.9.24.pdf"
+                  "url": "https://confartigianatomarcatrevigiana.it/wp-content/uploads/2024/05/CCNL-AREA-BENESSERE-ACC.TAB_.23.5.24.pdf",
+                  "sha256": "622a0618909c759371d74b11471a1573be59db188d2e20e7bcbe2f6164f73c88"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "no text layer",
+                "quote": "3 | 1.309,00 | 70,00 | 1379,00"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2024-05-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-acconciatura-estetica-confartigianato-double-read"
               }
             }
           },
@@ -498,21 +547,28 @@
             "valid_until": "2026-01-01",
             "value": "1429.00",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-benessere-app-prof-fino-30-9-24-pdf",
-                  "title": "ccnl-benessere-app-prof-fino-30-9-24-pdf",
+                  "document_id": "acconciatura-estetica-confartigianato-src-622a0618",
+                  "title": "acconciatura-estetica-confartigianato: tabelle2024.pdf",
                   "kind": "associazione",
-                  "url": "https://www.confartigianatomarcatrevigiana.it/wp-content/uploads/2024/09/ccnl-benessere-app.prof-fino-30.9.24.pdf"
+                  "url": "https://confartigianatomarcatrevigiana.it/wp-content/uploads/2024/05/CCNL-AREA-BENESSERE-ACC.TAB_.23.5.24.pdf",
+                  "sha256": "622a0618909c759371d74b11471a1573be59db188d2e20e7bcbe2f6164f73c88"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "no text layer",
+                "quote": "3 | 1379,00 | 50,00 | 1429,00"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-acconciatura-estetica-confartigianato-double-read"
               }
             }
           },
@@ -521,21 +577,28 @@
             "valid_until": "2026-10-01",
             "value": "1472.00",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-benessere-app-prof-fino-30-9-24-pdf",
-                  "title": "ccnl-benessere-app-prof-fino-30-9-24-pdf",
+                  "document_id": "acconciatura-estetica-confartigianato-src-622a0618",
+                  "title": "acconciatura-estetica-confartigianato: tabelle2024.pdf",
                   "kind": "associazione",
-                  "url": "https://www.confartigianatomarcatrevigiana.it/wp-content/uploads/2024/09/ccnl-benessere-app.prof-fino-30.9.24.pdf"
+                  "url": "https://confartigianatomarcatrevigiana.it/wp-content/uploads/2024/05/CCNL-AREA-BENESSERE-ACC.TAB_.23.5.24.pdf",
+                  "sha256": "622a0618909c759371d74b11471a1573be59db188d2e20e7bcbe2f6164f73c88"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "no text layer",
+                "quote": "3 | 1429,00 | 43,00 | 1472,00"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-acconciatura-estetica-confartigianato-double-read"
               }
             }
           },
@@ -544,21 +607,28 @@
             "valid_until": null,
             "value": "1492.00",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-benessere-app-prof-fino-30-9-24-pdf",
-                  "title": "ccnl-benessere-app-prof-fino-30-9-24-pdf",
+                  "document_id": "acconciatura-estetica-confartigianato-src-622a0618",
+                  "title": "acconciatura-estetica-confartigianato: tabelle2024.pdf",
                   "kind": "associazione",
-                  "url": "https://www.confartigianatomarcatrevigiana.it/wp-content/uploads/2024/09/ccnl-benessere-app.prof-fino-30.9.24.pdf"
+                  "url": "https://confartigianatomarcatrevigiana.it/wp-content/uploads/2024/05/CCNL-AREA-BENESSERE-ACC.TAB_.23.5.24.pdf",
+                  "sha256": "622a0618909c759371d74b11471a1573be59db188d2e20e7bcbe2f6164f73c88"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "no text layer",
+                "quote": "3 | 1472,00 | 20,00 | 1492,00"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-10-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-acconciatura-estetica-confartigianato-double-read"
               }
             }
           }
@@ -596,21 +666,28 @@
             "valid_until": "2024-05-01",
             "value": "1380.74",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-benessere-app-prof-fino-30-9-24-pdf",
-                  "title": "ccnl-benessere-app-prof-fino-30-9-24-pdf",
+                  "document_id": "acconciatura-estetica-confartigianato-src-142dcfe3",
+                  "title": "acconciatura-estetica-confartigianato: rinnovo2022.pdf",
                   "kind": "associazione",
-                  "url": "https://www.confartigianatomarcatrevigiana.it/wp-content/uploads/2024/09/ccnl-benessere-app.prof-fino-30.9.24.pdf"
+                  "url": "https://confartigianatomarcatrevigiana.it/wp-content/uploads/2022/10/CCNL-ACCONCIATURA-CON-TABELLE-10.10.2022.pdf",
+                  "sha256": "142dcfe339b3b9e1b0d6f49bf467f5ba01dddb6c8299c945e4cc39b905490d70"
                 },
-                "section": "Tabella retributiva"
+                "page": "26",
+                "section": "no text layer",
+                "quote": "2 | 1.349,10 € | 31,64 € | 1.380,74 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2023-02-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-acconciatura-estetica-confartigianato-double-read"
               }
             }
           },
@@ -619,21 +696,28 @@
             "valid_until": "2025-01-01",
             "value": "1454.58",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-benessere-app-prof-fino-30-9-24-pdf",
-                  "title": "ccnl-benessere-app-prof-fino-30-9-24-pdf",
+                  "document_id": "acconciatura-estetica-confartigianato-src-622a0618",
+                  "title": "acconciatura-estetica-confartigianato: tabelle2024.pdf",
                   "kind": "associazione",
-                  "url": "https://www.confartigianatomarcatrevigiana.it/wp-content/uploads/2024/09/ccnl-benessere-app.prof-fino-30.9.24.pdf"
+                  "url": "https://confartigianatomarcatrevigiana.it/wp-content/uploads/2024/05/CCNL-AREA-BENESSERE-ACC.TAB_.23.5.24.pdf",
+                  "sha256": "622a0618909c759371d74b11471a1573be59db188d2e20e7bcbe2f6164f73c88"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "no text layer",
+                "quote": "2 | 1.380,74 | 73,84 | 1454,58"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2024-05-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-acconciatura-estetica-confartigianato-double-read"
               }
             }
           },
@@ -642,21 +726,28 @@
             "valid_until": "2026-01-01",
             "value": "1507.32",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-benessere-app-prof-fino-30-9-24-pdf",
-                  "title": "ccnl-benessere-app-prof-fino-30-9-24-pdf",
+                  "document_id": "acconciatura-estetica-confartigianato-src-622a0618",
+                  "title": "acconciatura-estetica-confartigianato: tabelle2024.pdf",
                   "kind": "associazione",
-                  "url": "https://www.confartigianatomarcatrevigiana.it/wp-content/uploads/2024/09/ccnl-benessere-app.prof-fino-30.9.24.pdf"
+                  "url": "https://confartigianatomarcatrevigiana.it/wp-content/uploads/2024/05/CCNL-AREA-BENESSERE-ACC.TAB_.23.5.24.pdf",
+                  "sha256": "622a0618909c759371d74b11471a1573be59db188d2e20e7bcbe2f6164f73c88"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "no text layer",
+                "quote": "2 | 1454,58 | 52,74 | 1507,32"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-acconciatura-estetica-confartigianato-double-read"
               }
             }
           },
@@ -665,21 +756,28 @@
             "valid_until": "2026-10-01",
             "value": "1552.68",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-benessere-app-prof-fino-30-9-24-pdf",
-                  "title": "ccnl-benessere-app-prof-fino-30-9-24-pdf",
+                  "document_id": "acconciatura-estetica-confartigianato-src-622a0618",
+                  "title": "acconciatura-estetica-confartigianato: tabelle2024.pdf",
                   "kind": "associazione",
-                  "url": "https://www.confartigianatomarcatrevigiana.it/wp-content/uploads/2024/09/ccnl-benessere-app.prof-fino-30.9.24.pdf"
+                  "url": "https://confartigianatomarcatrevigiana.it/wp-content/uploads/2024/05/CCNL-AREA-BENESSERE-ACC.TAB_.23.5.24.pdf",
+                  "sha256": "622a0618909c759371d74b11471a1573be59db188d2e20e7bcbe2f6164f73c88"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "no text layer",
+                "quote": "2 | 1507,32 | 45,36 | 1552,68"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-acconciatura-estetica-confartigianato-double-read"
               }
             }
           },
@@ -688,21 +786,28 @@
             "valid_until": null,
             "value": "1573.78",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-benessere-app-prof-fino-30-9-24-pdf",
-                  "title": "ccnl-benessere-app-prof-fino-30-9-24-pdf",
+                  "document_id": "acconciatura-estetica-confartigianato-src-622a0618",
+                  "title": "acconciatura-estetica-confartigianato: tabelle2024.pdf",
                   "kind": "associazione",
-                  "url": "https://www.confartigianatomarcatrevigiana.it/wp-content/uploads/2024/09/ccnl-benessere-app.prof-fino-30.9.24.pdf"
+                  "url": "https://confartigianatomarcatrevigiana.it/wp-content/uploads/2024/05/CCNL-AREA-BENESSERE-ACC.TAB_.23.5.24.pdf",
+                  "sha256": "622a0618909c759371d74b11471a1573be59db188d2e20e7bcbe2f6164f73c88"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "no text layer",
+                "quote": "2 | 1552,68 | 21,10 | 1573,78"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-10-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-acconciatura-estetica-confartigianato-double-read"
               }
             }
           }
@@ -773,21 +878,28 @@
             "valid_until": "2024-05-01",
             "value": "1511.46",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-benessere-app-prof-fino-30-9-24-pdf",
-                  "title": "ccnl-benessere-app-prof-fino-30-9-24-pdf",
+                  "document_id": "acconciatura-estetica-confartigianato-src-142dcfe3",
+                  "title": "acconciatura-estetica-confartigianato: rinnovo2022.pdf",
                   "kind": "associazione",
-                  "url": "https://www.confartigianatomarcatrevigiana.it/wp-content/uploads/2024/09/ccnl-benessere-app.prof-fino-30.9.24.pdf"
+                  "url": "https://confartigianatomarcatrevigiana.it/wp-content/uploads/2022/10/CCNL-ACCONCIATURA-CON-TABELLE-10.10.2022.pdf",
+                  "sha256": "142dcfe339b3b9e1b0d6f49bf467f5ba01dddb6c8299c945e4cc39b905490d70"
                 },
-                "section": "Tabella retributiva"
+                "page": "26",
+                "section": "no text layer",
+                "quote": "1 | 1.476,82 € | 34,64 € | 1.511,46 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2023-02-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-acconciatura-estetica-confartigianato-double-read"
               }
             }
           },
@@ -796,21 +908,28 @@
             "valid_until": "2025-01-01",
             "value": "1592.29",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-benessere-app-prof-fino-30-9-24-pdf",
-                  "title": "ccnl-benessere-app-prof-fino-30-9-24-pdf",
+                  "document_id": "acconciatura-estetica-confartigianato-src-622a0618",
+                  "title": "acconciatura-estetica-confartigianato: tabelle2024.pdf",
                   "kind": "associazione",
-                  "url": "https://www.confartigianatomarcatrevigiana.it/wp-content/uploads/2024/09/ccnl-benessere-app.prof-fino-30.9.24.pdf"
+                  "url": "https://confartigianatomarcatrevigiana.it/wp-content/uploads/2024/05/CCNL-AREA-BENESSERE-ACC.TAB_.23.5.24.pdf",
+                  "sha256": "622a0618909c759371d74b11471a1573be59db188d2e20e7bcbe2f6164f73c88"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "no text layer",
+                "quote": "1 | 1.511,46 | 80,83 | 1592,29"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2024-05-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-acconciatura-estetica-confartigianato-double-read"
               }
             }
           },
@@ -819,21 +938,28 @@
             "valid_until": "2026-01-01",
             "value": "1650.02",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-benessere-app-prof-fino-30-9-24-pdf",
-                  "title": "ccnl-benessere-app-prof-fino-30-9-24-pdf",
+                  "document_id": "acconciatura-estetica-confartigianato-src-622a0618",
+                  "title": "acconciatura-estetica-confartigianato: tabelle2024.pdf",
                   "kind": "associazione",
-                  "url": "https://www.confartigianatomarcatrevigiana.it/wp-content/uploads/2024/09/ccnl-benessere-app.prof-fino-30.9.24.pdf"
+                  "url": "https://confartigianatomarcatrevigiana.it/wp-content/uploads/2024/05/CCNL-AREA-BENESSERE-ACC.TAB_.23.5.24.pdf",
+                  "sha256": "622a0618909c759371d74b11471a1573be59db188d2e20e7bcbe2f6164f73c88"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "no text layer",
+                "quote": "1 | 1592,29 | 57,73 | 1650,02"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-acconciatura-estetica-confartigianato-double-read"
               }
             }
           },
@@ -842,21 +968,28 @@
             "valid_until": "2026-10-01",
             "value": "1699.67",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-benessere-app-prof-fino-30-9-24-pdf",
-                  "title": "ccnl-benessere-app-prof-fino-30-9-24-pdf",
+                  "document_id": "acconciatura-estetica-confartigianato-src-622a0618",
+                  "title": "acconciatura-estetica-confartigianato: tabelle2024.pdf",
                   "kind": "associazione",
-                  "url": "https://www.confartigianatomarcatrevigiana.it/wp-content/uploads/2024/09/ccnl-benessere-app.prof-fino-30.9.24.pdf"
+                  "url": "https://confartigianatomarcatrevigiana.it/wp-content/uploads/2024/05/CCNL-AREA-BENESSERE-ACC.TAB_.23.5.24.pdf",
+                  "sha256": "622a0618909c759371d74b11471a1573be59db188d2e20e7bcbe2f6164f73c88"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "no text layer",
+                "quote": "1 | 1650,02 | 49,65 | 1699,67"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-acconciatura-estetica-confartigianato-double-read"
               }
             }
           },
@@ -865,21 +998,28 @@
             "valid_until": null,
             "value": "1722.76",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-benessere-app-prof-fino-30-9-24-pdf",
-                  "title": "ccnl-benessere-app-prof-fino-30-9-24-pdf",
+                  "document_id": "acconciatura-estetica-confartigianato-src-622a0618",
+                  "title": "acconciatura-estetica-confartigianato: tabelle2024.pdf",
                   "kind": "associazione",
-                  "url": "https://www.confartigianatomarcatrevigiana.it/wp-content/uploads/2024/09/ccnl-benessere-app.prof-fino-30.9.24.pdf"
+                  "url": "https://confartigianatomarcatrevigiana.it/wp-content/uploads/2024/05/CCNL-AREA-BENESSERE-ACC.TAB_.23.5.24.pdf",
+                  "sha256": "622a0618909c759371d74b11471a1573be59db188d2e20e7bcbe2f6164f73c88"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "no text layer",
+                "quote": "1 | 1699,67 | 23,09 | 1722,76"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-10-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-acconciatura-estetica-confartigianato-double-read"
               }
             }
           }
@@ -1051,7 +1191,7 @@
     "effective_until": null,
     "source": "https://www.confartigianatomarcatrevigiana.it/wp-content/uploads/2024/09/ccnl-benessere-app.prof-fino-30.9.24.pdf",
     "verification_status": "unverified",
-    "source_hash": "cb5d4c3c3350324ff93269f15d2be3e7053d781546caf8592ac2505d89ae6125",
+    "source_hash": "e884bf3bb9a9fdf02072cdbcdce344767c52fef1a8d10c7ab0ec3b8725a8a40d",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1273,5 +1413,35 @@
         "note": "Not modelled: the 12 more months of comporto, unpaid, in 24 consecutive months for the oncological and serious illnesses. The renewals of 2022 and 2024 were not read in full; their summaries list no change to the sickness article."
       }
     }
+  },
+  "verification": {
+    "reviews": [
+      {
+        "id": "2026-11-08-gpt-acconciatura-estetica-confartigianato-double-read",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Monthly values on scanned pages, each read twice from the page image by two independent sessions of another model, the second without being told the expected value.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://confartigianatomarcatrevigiana.it/wp-content/uploads/2022/10/CCNL-ACCONCIATURA-CON-TABELLE-10.10.2022.pdf",
+            "sha256": "142dcfe339b3b9e1b0d6f49bf467f5ba01dddb6c8299c945e4cc39b905490d70"
+          },
+          {
+            "url": "https://confartigianatomarcatrevigiana.it/wp-content/uploads/2024/05/CCNL-AREA-BENESSERE-ACC.TAB_.23.5.24.pdf",
+            "sha256": "622a0618909c759371d74b11471a1573be59db188d2e20e7bcbe2f6164f73c88"
+          }
+        ],
+        "findings": [
+          "20 values read identically by both readings and equal to the file."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "levels.base_salary",
+          "levels.fixed_allowances"
+        ]
+      }
+    ]
   }
 }
