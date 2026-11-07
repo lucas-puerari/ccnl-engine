@@ -81,7 +81,7 @@
       },
       {
         "kind": "simplification",
-        "text": "Art. 31: Saturday or sixth-day work (birra e malto, avicoli), the 5% of the two day shifts of the alimenti zootecnici on three continuous shifts (terza nota a verbale), and the ordinary night holiday work of the sub-sectors whose table has no such row. The other premiums on ordinary hours of each table are modelled (supplement_bands ALIM_*).",
+        "text": "Art. 31, terza nota a verbale: for alimenti zootecnici on three continuous alternating shifts, the two day shifts are paid 5% more; the condition (the shift pattern) is not an engine input, so the 5% is not paid. The Saturday or sixth-day work of birra e malto (50%) and avicoli (65%) is modelled (HolidayWorkKind.SATURDAY_SIXTH_DAY).",
         "capability": "overtime",
         "monetary_impact": "yes",
         "limitation": {
@@ -89,7 +89,7 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Model the Saturday premiums of the Art. 31 tables and the zootecnici day-shift 5%."
+          "remediation": "Model the 5% of the two day shifts of zootecnici three-shift operations once the shift pattern is an input."
         }
       },
       {
@@ -4141,7 +4141,7 @@
     "effective_until": null,
     "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "ac40f84abf911b956812b46c7a1c7821b4e52a61562b7666bf1d947928d6ec4f",
+    "source_hash": "6e7d096e87a3da6744504332c28d292cae79e3447130364b4411b6c5c263748e",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -13181,6 +13181,96 @@
               "verified_by": "claude-opus-5-5",
               "verified_at": "2026-11-02T16:41:58Z",
               "review_id": "2026-11-02-ai-night-holiday"
+            }
+          }
+        },
+        {
+          "code": "ALIM_SABATO_BIRRA_MALTO",
+          "description": "Lavoro effettuato il sabato o il sesto giorno (industria della birra e del malto, art. 31)",
+          "work": "saturday_sixth_day",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "0.50"
+              }
+            ]
+          },
+          "hours_paid_apart": null,
+          "subsectors": [
+            "birra_malto"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "89",
+              "section": "Art. 31, tabella maggiorazioni",
+              "quote": "10) Lavoro effettuato il sabato 0 il sesto giorno                          50%              50%"
+            },
+            "transformation": "65% of the hourly retribuzione mensile di fatto over 173, table 'macellazione e lavorazione delle specie avicole'. Whether the hours themselves are paid on top of the monthly pay is not settled ('oltre alla normale retribuzione, le maggiorazioni').",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-02T16:24:35Z",
+              "effective_from": "2023-12-01",
+              "verification_status": "verified",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-02T16:24:35Z",
+              "review_id": "2026-11-02-ai-ordinary-premiums"
+            }
+          }
+        },
+        {
+          "code": "ALIM_SABATO_AVICOLI",
+          "description": "Lavoro effettuato il sabato o il sesto giorno (macellazione e lavorazione delle specie avicole, art. 31)",
+          "work": "saturday_sixth_day",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "0.65"
+              }
+            ]
+          },
+          "hours_paid_apart": null,
+          "subsectors": [
+            "avicoli"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-alimentare-2024-03-01",
+                "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+                "published_on": "2024-03-01",
+                "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+              },
+              "page": "92",
+              "section": "Art. 31, tabella maggiorazioni",
+              "quote": "5) Lavoro eseguito il sabato 0 il sesto giorno                                                 65%"
+            },
+            "transformation": "65% of the hourly retribuzione mensile di fatto over 173, table 'macellazione e lavorazione delle specie avicole'. Whether the hours themselves are paid on top of the monthly pay is not settled ('oltre alla normale retribuzione, le maggiorazioni').",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-02T16:24:35Z",
+              "effective_from": "2023-12-01",
+              "verification_status": "verified",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-02T16:24:35Z",
+              "review_id": "2026-11-02-ai-ordinary-premiums"
             }
           }
         }

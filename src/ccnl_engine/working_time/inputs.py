@@ -128,6 +128,8 @@ class HolidayWorkKind(StrEnum):
         REST_DAY: Hours worked on the weekly rest day.
         NIGHT_HOLIDAY: Hours worked on a public holiday at night (lavoro
             festivo notturno), which a CCNL may pay at a rate of its own.
+        SATURDAY_SIXTH_DAY: Ordinary hours worked on Saturday or the sixth
+            day of the week (Alimentari art. 31).
     """
 
     HOLIDAY = "holiday"
@@ -135,6 +137,7 @@ class HolidayWorkKind(StrEnum):
     SUNDAY = "sunday"
     REST_DAY = "rest_day"
     NIGHT_HOLIDAY = "night_holiday"
+    SATURDAY_SIXTH_DAY = "saturday_sixth_day"
 
 
 class ShiftKind(StrEnum):
