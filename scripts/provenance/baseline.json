@@ -737,8 +737,7 @@
       "comunicazione-artigianato-confartigianato/inps_sector_rates_unsourced",
       "comunicazione-artigianato-confartigianato/level_category_not_declared",
       "comunicazione-artigianato-confartigianato/pmi_non_artigiane_tables",
-      "comunicazione-artigianato-confartigianato/previgente_apprenticeship_rules",
-      "comunicazione-artigianato-confartigianato/switchboard_apprenticeship_duration"
+      "comunicazione-artigianato-confartigianato/previgente_apprenticeship_rules"
     ],
     "agreement/concia-unic.json": [
       "concia-unic/higher_overtime_bands"

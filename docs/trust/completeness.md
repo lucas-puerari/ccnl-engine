@@ -14,7 +14,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 0/136 CCNLs.** Bundle: 272 weak rules, 414 open limitations (414 with a monetary impact).
+**Complete: 0/136 CCNLs.** Bundle: 272 weak rules, 413 open limitations (413 with a monetary impact).
 
 ## Declared window
 
@@ -77,7 +77,7 @@ Future data, registered apart from the gaps: a contract whose validity ends insi
 | [chimica-farmaceutica-federchimica](../contracts/chimica-farmaceutica-federchimica.md) | `chimica` | reviewed | — | 33 rows | 33 open requirements; 18 monetary limitations; 13 outside_input limitations; 22 non-native capabilities |
 | [cinema-audiovisivi-industria](../contracts/cinema-audiovisivi-industria.md) | `spettacolo-media` | exploratory | — | 22 rows | 22 open requirements; 1 weak rule; 18 monetary limitations; 1 outside_input limitation; 19 non-native capabilities |
 | [commercio-confcommercio](../contracts/commercio-confcommercio.md) | `commercio` | production | 2027-03-31 | 22 rows | 22 open requirements; 18 monetary limitations; 2 outside_input limitations; 21 non-native capabilities |
-| [comunicazione-artigianato-confartigianato](../contracts/comunicazione-artigianato-confartigianato.md) | `carta-grafica` | exploratory | — | 30 rows | 30 open requirements; 1 weak rule; 25 monetary limitations; 2 outside_input limitations; 21 non-native capabilities |
+| [comunicazione-artigianato-confartigianato](../contracts/comunicazione-artigianato-confartigianato.md) | `carta-grafica` | exploratory | — | 29 rows | 29 open requirements; 1 weak rule; 25 monetary limitations; 1 outside_input limitation; 21 non-native capabilities |
 | [concia-unic](../contracts/concia-unic.md) | `pelli-calzature` | reviewed | — | 20 rows | 20 open requirements; 18 monetary limitations; 18 non-native capabilities |
 | [consorzi-agrari-assocap](../contracts/consorzi-agrari-assocap.md) | `agricoltura` | exploratory | — | 22 rows | 22 open requirements; 1 weak rule; 19 monetary limitations; 19 non-native capabilities |
 | [consorzi-di-bonifica-snebi](../contracts/consorzi-di-bonifica-snebi.md) | `bonifica-forestazione` | exploratory | — | 26 rows | 26 open requirements; 2 weak rules; 21 monetary limitations; 1 outside_input limitation; 21 non-native capabilities |
