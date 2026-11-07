@@ -36,7 +36,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, inps_employer, sickness, territorial_supplement |
 
-7 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+6 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -53,7 +53,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-06-06 |
-| **Last review** | 2026-10-15 |
+| **Last review** | 2026-11-07 |
 | **Latest salary tranche** | 2026-04-01 |
 
 ## Review history
@@ -61,6 +61,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | Date | Reviewer | Scope | Outcome | Findings |
 |---|---|---|---|---|
 | 2026-10-15 | claude-opus-5-5 (ai) | Second review of the artigianato group: retribuzione tabellare and indennità speciale of the ten panificazione levels in the four tranches, monthly payments and scatti, against the signed CCNL of 6 June 2024. | corrected | 39 of the 40 base_salary values equal the tabellare of Art. 32 (pp. 45-47, a scan read from the images) plus the indennità speciale of Art. 33 (p. 48) plus 0.44. A1s from 1 April 2026 was 2248.73: it added the indennità di funzione of 36.15, which Art. 65 (p. 79) grants from 1994 to the quadri of the settore alimentare, not to a panificazione level from 2026. Corrected to 2212.58.<br>The ERR of 0.44 is not in the signed text and no party source states it: the base_salary records stay derived.<br>13 monthly payments: verified (Art. 36, tredicesima; Art. 33, the ex 14a ceased from August 1995).<br>Scatti of Art. 34-bis (p. 49): the ten amounts and the 5 bienni match; the record stays derived because it also holds the apprentice amount, not checked here. |
+| 2026-11-07 | gpt-6-sol (ai) | Composition of base_salary against arts. 32-33 of the 2024 text, and search of the signed texts for an ERR of 0,44 EUR. | corrected | Every base_salary was printed tabellare + art. 33 indennità speciale + 0.44 EUR.<br>No signed text establishes an ERR of 0,44 (art. 32 conglobates paga base, ex contingenza and EDR); the 0.44 was dropped from all 40 values. |
 
 ## Salary table
 
@@ -68,16 +69,16 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `A1S` | Level A1 Super — senior executive quadro / top-level manager | € 2,212.58 | 2026-04-01 |
-| `B1` | Level B1 — senior operations manager | € 2,165.67 | 2026-04-01 |
-| `A1` | Level A1 — production technical manager | € 2,056.93 | 2026-04-01 |
-| `A2` | Level A2 — specialist technician / department head | € 1,926.61 | 2026-04-01 |
-| `B2` | Level B2 — highly specialised operator | € 1,779.96 | 2026-04-01 |
-| `A3` | Level A3 — qualified production technician | € 1,764.45 | 2026-04-01 |
-| `B3S` | Level B3 Super — specialist operator with extended duties | € 1,732.79 | 2026-04-01 |
-| `B3` | Level B3 — specialist production operator | € 1,676.43 | 2026-04-01 |
-| `A4` | Level A4 — qualified support worker | € 1,671.86 | 2026-04-01 |
-| `B4` | Level B4 — general worker and first-time hire | € 1,589.80 | 2026-04-01 |
+| `A1S` | Level A1 Super — senior executive quadro / top-level manager | € 2,212.14 | 2026-04-01 |
+| `B1` | Level B1 — senior operations manager | € 2,165.23 | 2026-04-01 |
+| `A1` | Level A1 — production technical manager | € 2,056.49 | 2026-04-01 |
+| `A2` | Level A2 — specialist technician / department head | € 1,926.17 | 2026-04-01 |
+| `B2` | Level B2 — highly specialised operator | € 1,779.52 | 2026-04-01 |
+| `A3` | Level A3 — qualified production technician | € 1,764.01 | 2026-04-01 |
+| `B3S` | Level B3 Super — specialist operator with extended duties | € 1,732.35 | 2026-04-01 |
+| `B3` | Level B3 — specialist production operator | € 1,675.99 | 2026-04-01 |
+| `A4` | Level A4 — qualified support worker | € 1,671.42 | 2026-04-01 |
+| `B4` | Level B4 — general worker and first-time hire | € 1,589.36 | 2026-04-01 |
 
 ## Seniority increments
 
@@ -137,13 +138,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `base_salary` applies.
 
     **Remediation:** Model the indennità speciale of Art. 33 as a fixed allowance per level with its own apprenticeship_pct_relevant flag and thirteenth inclusion as the text states.
-
-!!! warning "panificazione-artigianato-confartigianato/err_unsourced · base_salary · impact unknown · open"
-    ERR: an Elemento Retributivo Residuo of 0.44 EUR a month is folded into every base_salary. The signed text of 6 June 2024 (Art. 32-33, pp. 45-48) states the tabellare and the indennità speciale but no ERR, and no party source was found for it: the base_salary records stay derived until the 0.44 is sourced or dropped.
-
-    **Applies when:** `base_salary` applies.
-
-    **Remediation:** Source the 0.44 EUR ERR or drop it from every base_salary.
 
 !!! warning "panificazione-artigianato-confartigianato/ert_veneto · territorial_supplement · impact yes · open"
     ERT (VENETO): Elemento Retributivo Territoriale Veneto (ERT, expired 31.12.2025) was a territorial supplement specific to Veneto. Not modeled at national level.
@@ -361,7 +355,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 | https://www.artser.it/approfondimenti/accordo-di-rinnovo-del-ccnl-area-alimentazione-e-panificazione.html | tabella_retributiva | — | [↗](https://www.artser.it/approfondimenti/accordo-di-rinnovo-del-ccnl-area-alimentazione-e-panificazione.html) |
 
 ??? note "Coverage notes"
-    SALARY MODEL: unified TOTALE as base_salary. Each level's TOTALE = Tabellare conglobato (contingenza+EDR absorbed, per Art. 32 + conglobamento clause) + Indennità Speciale per Panificazione (Art. 33, fixed per level since Aug 1995) + ERR (0.44 EUR/month, fixed). Ind.Speciale confirmed from Art. 33 table in UILA CCNL PDF: A1S=94.77, A1=88.06, A2=82.63, A3=75.92, A4=72.05, B1=92.19, B2=76.44, B3S=74.87, B3=72.56, B4=68.69. ERR=0.44. All folded into base_salary; fixed_allowances=[] for all levels. Cross-verified: artser.it tabellare A2 Apr 2024 = 1705.54; 1705.54 + 82.63 + 0.44 = 1788.61 exact match across all 4 tranches (diff constant 83.07 EUR). Art. 31 confirms hourly divisor 173.
+    SALARY MODEL: base_salary = retribuzione tabellare of Art. 32 (paga base, ex contingenza and EDR conglobated) + Indennità speciale per panificazione of Art. 33, fixed per level: A1S=94.77, A1=88.06, A2=82.63, A3=75.92, A4=72.05, B1=92.19, B2=76.44, B3S=74.87, B3=72.56, B4=68.69. fixed_allowances=[] for all levels. No signed text establishes the 0.44 EUR 'ERR' some pay tables add, so it is not paid. Art. 31 confirms hourly divisor 173.
     
     ADDITIONAL MONTHS: 13. Art. 33 (Ind.Speciale) replaced the quattordicesima from August 1995 ('viene a cessare, per tutti i lavoratori, la maturazione dei ratei relativi alla ex 14a mensilita'). Art. 36 (Gratifica natalizia) confirms only tredicesima remains. Source: UILA CCNL PDF Art. 33 and Art. 36.
     

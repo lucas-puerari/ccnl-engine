@@ -3,8 +3,8 @@
 Signed CCNL of 6 June 2024 (UILA UIL, sha256
 8a29e01b3f000b1d1896f8303c015cdd3301538a99ea30e2397ce56da8b2724e), read on
 15 October 2026: the base salary is the retribuzione tabellare of Art. 32
-(pp. 45-47) plus the indennità speciale of Art. 33 (p. 48) plus an ERR of
-0.44 the text does not state.  Every level at each of the four tranches,
+(pp. 45-47) plus the indennità speciale of Art. 33 (p. 48); no signed text
+states the 0.44 ERR some pay tables add.  Every level at each of the four tranches,
 the day before each later one still paying the tranche before.
 """
 
@@ -19,7 +19,6 @@ from ccnl_engine.catalog.loaders import load_ccnl
 
 _CCNL = load_ccnl("panificazione-artigianato-confartigianato")
 _TRANCHES = (date(2024, 4, 1), date(2025, 1, 1), date(2025, 11, 1), date(2026, 4, 1))
-_ERR = Decimal("0.44")
 #: Level, indennità speciale (Art. 33) and the tabellare of each tranche.
 _TABLE = (
     ("A1S", "94.77", ("1958.87", "2004.81", "2067.98", "2117.37")),
@@ -39,9 +38,9 @@ _TABLE = (
 def test_each_tranche_of_art_32(
     level: str, special: str, tabellari: tuple[str, ...]
 ) -> None:
-    """Tabellare, indennità speciale and ERR from each tranche."""
+    """Tabellare and indennità speciale from each tranche."""
     salary = _CCNL.level_by_code(level).base_salary
-    values = [Decimal(t) + Decimal(special) + _ERR for t in tabellari]
+    values = [Decimal(t) + Decimal(special) for t in tabellari]
 
     for start, value in zip(_TRANCHES, values, strict=True):
         assert salary.value_at(start) == value

@@ -1683,7 +1683,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/panificazione-artigianato-confartigianato",
       "ruleset_version": "2026.2",
-      "source_hash": "96c3579353bf0708f3c645fe31238a93c9989c6781096f648ff9785560cc56c9",
+      "source_hash": "db3ce34bbda5b898fef73f434e42710f36b570a8c1208d9ce9bb2ecbc287e5e2",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/panificazione-artigianato-confartigianato.json.gz"
@@ -4361,7 +4361,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "eb1cbbc6e048bdab0a7537cf59b772acb1c0ad9ab72b08e1539a624bad89b482",
+      "source_hash": "8c5976f5b633492bc6261a4a5371087916a1b4d72b5a14b22cbb8450f42f18c3",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/panificazione-artigianato-confartigianato.json.gz",
