@@ -10,7 +10,7 @@ from __future__ import annotations
 from dataclasses import replace
 from datetime import date
 from decimal import Decimal
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
 import pytest
 
@@ -50,6 +50,27 @@ _EMPLOYMENT = Employment(ccnl_id=_METAL, level_code="C3", contract_type=Permanen
 _OVERTIME = OvertimeEvent(
     event_date=date(_YEAR, 6, 10), hours=Decimal(2), hourly_rate=Decimal(15)
 )
+
+
+if TYPE_CHECKING:
+    from ccnl_engine import PeriodResult
+
+
+def _inps_employer(result: PeriodResult) -> Decimal:
+    """Return the employer contributions less the FSBA share on top of them.
+
+    Returns:
+        The employer contributions of the INPS rates alone.
+    """
+    fund = sum(
+        (
+            c.amount
+            for c in result.contribution_breakdown.components
+            if c.name == "solidarity_fund_employer"
+        ),
+        Decimal(0),
+    )
+    return result.contribution_breakdown.employer - fund
 
 
 def _period(
@@ -297,12 +318,12 @@ class TestPeriodInput:
         )
         base = default.period_gross
         assert impiegato.period_gross == base
-        assert default.contribution_breakdown.employer == (
-            base * Decimal("0.2693")
-        ).quantize(Decimal("0.01"))
-        assert impiegato.contribution_breakdown.employer == (
-            base * Decimal("0.2471")
-        ).quantize(Decimal("0.01"))
+        assert _inps_employer(default) == (base * Decimal("0.2693")).quantize(
+            Decimal("0.01")
+        )
+        assert _inps_employer(impiegato) == (base * Decimal("0.2471")).quantize(
+            Decimal("0.01")
+        )
 
 
 class TestYearInput:

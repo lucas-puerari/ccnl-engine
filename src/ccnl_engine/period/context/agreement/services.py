@@ -21,7 +21,10 @@ from ccnl_engine.contribution.fis.models import with_fis_reduction
 from ccnl_engine.contribution.zone.models import with_zone_reduction
 from ccnl_engine.employment.context.models import EffectiveDateContext, TemporalContext
 from ccnl_engine.errors import InvalidInputError, UnknownLevelError
-from ccnl_engine.fund.solidarity.models import with_solidarity_tiers
+from ccnl_engine.fund.solidarity.models import (
+    with_solidarity_headcount,
+    with_solidarity_tiers,
+)
 from ccnl_engine.sickness.counting.rules import with_window_counting
 from ccnl_engine.working_time.flat_pay.rules import flat_pay_divisor
 from ccnl_engine.working_time.rota.rules import with_rota
@@ -196,6 +199,7 @@ def load_contract(
         request.employer.second_level_elements,
         tctx.competence,
     )
+    ccnl = with_solidarity_headcount(ccnl, request.employer.headcount.value)
     try:
         level = ccnl.level_by_code(request.level_code)
     except ValueError:

@@ -44,7 +44,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 1 verified / 47 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 2 verified / 47 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -53,7 +53,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-06-06 |
-| **Last review** | 2026-11-07 |
+| **Last review** | 2026-11-08 |
 | **Latest salary tranche** | 2026-04-01 |
 
 ## Review history
@@ -62,6 +62,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|---|---|
 | 2026-10-15 | claude-opus-5-5 (ai) | Second review of the artigianato group: retribuzione tabellare and indennità speciale of the ten panificazione levels in the four tranches, monthly payments and scatti, against the signed CCNL of 6 June 2024. | corrected | 39 of the 40 base_salary values equal the tabellare of Art. 32 (pp. 45-47, a scan read from the images) plus the indennità speciale of Art. 33 (p. 48) plus 0.44. A1s from 1 April 2026 was 2248.73: it added the indennità di funzione of 36.15, which Art. 65 (p. 79) grants from 1994 to the quadri of the settore alimentare, not to a panificazione level from 2026. Corrected to 2212.58.<br>The ERR of 0.44 is not in the signed text and no party source states it: the base_salary records stay derived.<br>13 monthly payments: verified (Art. 36, tredicesima; Art. 33, the ex 14a ceased from August 1995).<br>Scatti of Art. 34-bis (p. 49): the ten amounts and the 5 bienni match; the record stays derived because it also holds the apprentice amount, not checked here. |
 | 2026-11-07 | gpt-6-sol (ai) | Composition of base_salary against arts. 32-33 of the 2024 text, and search of the signed texts for an ERR of 0,44 EUR. | corrected | Every base_salary was printed tabellare + art. 33 indennità speciale + 0.44 EUR.<br>No signed text establishes an ERR of 0,44 (art. 32 conglobates paga base, ex contingenza and EDR); the 0.44 was dropped from all 40 values. |
+| 2026-11-08 | claude-opus-5-5 (ai) | FSBA ordinary contribution, art. 3 of the 2024 regulation, read on the text layer (analysis by a separate model session). | corrected | Added parameters.solidarity_fund FSBA: 0.45%+0.15% up to 15 employees, 0.75%+0.25% above, on the INPS base, fixed terms included. |
 
 ## Salary table
 

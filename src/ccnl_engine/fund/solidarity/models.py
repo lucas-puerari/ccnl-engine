@@ -12,6 +12,8 @@ them, to the workers its decree covers.  A fund of a sector that would
 otherwise be in the FIS (the Fondo di solidarietà bilaterale per le
 attività professionali) charges a rate by headcount in place of the FIS and
 CIGS shares of the sector rates, to every worker the sector rates apply to.
+A fund of D.Lgs. 148/2015 art. 27 (the FSBA of the artigianato) charges a
+rate by headcount on top of sector rates that hold no such share.
 """
 
 from __future__ import annotations
@@ -24,9 +26,15 @@ from ccnl_engine.provenance.source.rule.models import RuleProvenance
 from ccnl_engine.types import PercentageRate
 
 if TYPE_CHECKING:
+    from ccnl_engine.agreement.facade import CCNL
     from ccnl_engine.sector.models import YearRules
 
-__all__ = ["SolidarityFund", "SolidarityTier", "with_solidarity_tiers"]
+__all__ = [
+    "SolidarityFund",
+    "SolidarityTier",
+    "with_solidarity_headcount",
+    "with_solidarity_tiers",
+]
 
 
 class SolidarityTier(BaseModel):
@@ -58,6 +66,11 @@ class SolidarityFund(BaseModel):
             the wage-integration shares (FIS, CIGS) of the sector rates:
             the tier of the employer replaces those shares in the INPS rates
             of every worker, apprentices and fixed terms included.
+        top_up_tiers: Rates by headcount of a fund on top of the sector
+            rates (FSBA): the tier of the employer is charged as the flat
+            rates are.
+        covers_fixed_term: Whether a fund on top of the sector rates also
+            charges the fixed-term workers (FSBA: every employee).
         provenance: Source of the rates and of the workers they cover.
     """
 
@@ -67,22 +80,24 @@ class SolidarityFund(BaseModel):
     employer_rate: PercentageRate | None = None
     employee_rate: PercentageRate | None = None
     wage_integration_tiers: tuple[SolidarityTier, ...] = ()
+    top_up_tiers: tuple[SolidarityTier, ...] = ()
+    covers_fixed_term: bool = False
     provenance: RuleProvenance
 
     @model_validator(mode="after")
     def _check_shape(self) -> Self:
         flat = self.employer_rate is not None and self.employee_rate is not None
         partial = (self.employer_rate is None) != (self.employee_rate is None)
-        tiered = bool(self.wage_integration_tiers)
-        if partial or flat == tiered:
+        shapes = flat + bool(self.wage_integration_tiers) + bool(self.top_up_tiers)
+        if partial or shapes != 1:
             msg = (
-                "a solidarity fund has either an employer and an employee rate "
-                "or wage_integration_tiers"
+                "a solidarity fund has either an employer and an employee rate, "
+                "wage_integration_tiers or top_up_tiers"
             )
             raise ValueError(msg)
-        open_tiers = sum(t.max_employees is None for t in self.wage_integration_tiers)
-        if tiered and open_tiers != 1:
-            msg = "wage_integration_tiers need exactly one open tier"
+        tiers = self.wage_integration_tiers or self.top_up_tiers
+        if tiers and sum(t.max_employees is None for t in tiers) != 1:
+            msg = "the tiers of a solidarity fund need exactly one open tier"
             raise ValueError(msg)
         return self
 
@@ -93,14 +108,33 @@ class SolidarityFund(BaseModel):
             The narrowest tier whose ``max_employees`` covers the headcount,
             else the open tier.
         """
+        tiers = self.wage_integration_tiers or self.top_up_tiers
         bounded = sorted(
-            (t for t in self.wage_integration_tiers if t.max_employees is not None),
+            (t for t in tiers if t.max_employees is not None),
             key=lambda t: t.max_employees or 0,
         )
         for tier in bounded:
             if tier.max_employees is not None and headcount <= tier.max_employees:
                 return tier
-        return next(t for t in self.wage_integration_tiers if t.max_employees is None)
+        return next(t for t in tiers if t.max_employees is None)
+
+    def for_headcount(self, headcount: int) -> Self:
+        """Return a fund on top of the sector rates as the flat rates it charges.
+
+        Returns:
+            The fund itself unless it has ``top_up_tiers``; else a copy with
+            the employer and employee rates of the employer's tier.
+        """
+        if not self.top_up_tiers:
+            return self
+        tier = self.tier(headcount)
+        return self.model_copy(
+            update={
+                "employer_rate": tier.employer_rate,
+                "employee_rate": tier.employee_rate,
+                "top_up_tiers": (),
+            }
+        )
 
 
 def with_solidarity_tiers(
@@ -150,3 +184,19 @@ def with_solidarity_tiers(
             }
         )
     return rules.model_copy(update={"inps": swapped, "apprentice": apprentice})
+
+
+def with_solidarity_headcount(ccnl: CCNL, headcount: int) -> CCNL:
+    """Return ``ccnl`` with a fund on top of the sector rates at its tier.
+
+    Returns:
+        ``ccnl`` unchanged unless its fund has ``top_up_tiers``; else a copy
+        whose fund charges the flat rates of the employer's tier.
+    """
+    fund = ccnl.parameters.solidarity_fund
+    if fund is None or not fund.top_up_tiers:
+        return ccnl
+    params = ccnl.parameters.model_copy(
+        update={"solidarity_fund": fund.for_headcount(headcount)}
+    )
+    return ccnl.model_copy(update={"parameters": params})

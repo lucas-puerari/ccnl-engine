@@ -995,7 +995,6 @@
       "metalmeccanico-artigianato/artisan_impiegati_sickness",
       "metalmeccanico-artigianato/artisan_saturday_overtime",
       "metalmeccanico-artigianato/centralinisti_apprenticeship",
-      "metalmeccanico-artigianato/health_and_bilateral_funds",
       "metalmeccanico-artigianato/inps_sector_rates_unsourced"
     ],
     "agreement/metalmeccanico-confapi.json": [
@@ -1099,7 +1098,6 @@
     "agreement/pulizia-artigianato-confartigianato.json": [
       "pulizia-artigianato-confartigianato/apprentice_inps_rates_unsourced",
       "pulizia-artigianato-confartigianato/apprenticeship_percentages_2022",
-      "pulizia-artigianato-confartigianato/health_and_bilateral_funds",
       "pulizia-artigianato-confartigianato/ind_fun_months_per_year",
       "pulizia-artigianato-confartigianato/inps_sector_rates_unsourced",
       "pulizia-artigianato-confartigianato/level_2_seniority_amount",
