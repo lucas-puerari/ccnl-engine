@@ -273,21 +273,28 @@
             "valid_until": "2025-10-01",
             "value": "2121.34",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "sintesi-ccnl-anef-pdf",
-                  "title": "sintesi-ccnl-anef-pdf",
+                  "document_id": "funivie-anef-tables-24f5d87b",
+                  "title": "funivie-anef: tabelle retributive (coordinated.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.funiviearabba.it/wp-content/uploads/2025/12/Sintesi-CCNL-ANEF.pdf"
+                  "url": "https://www.fitcisl.org/wp-content/uploads/2025/10/CCNL-Impianti-a-Fune-testo-unico-coordinato.pdf",
+                  "sha256": "24f5d87b3468ae8a25bb494f42cf3431764d1740e4cf4b5b3525c573cee62482"
                 },
-                "section": "Tabella retributiva"
+                "page": "49",
+                "section": "Allegato 1, minimi vigenti / tabella aumenti salariali",
+                "quote": "1s         210              € 2.121,34        € 2.179,27        € 2.280,65       € 2.410,99       € 289,65"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-05-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-funivie-anef-tables"
               }
             }
           },
@@ -296,21 +303,28 @@
             "valid_until": "2027-03-01",
             "value": "2179.27",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "sintesi-ccnl-anef-pdf",
-                  "title": "sintesi-ccnl-anef-pdf",
+                  "document_id": "funivie-anef-tables-24f5d87b",
+                  "title": "funivie-anef: tabelle retributive (coordinated.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.funiviearabba.it/wp-content/uploads/2025/12/Sintesi-CCNL-ANEF.pdf"
+                  "url": "https://www.fitcisl.org/wp-content/uploads/2025/10/CCNL-Impianti-a-Fune-testo-unico-coordinato.pdf",
+                  "sha256": "24f5d87b3468ae8a25bb494f42cf3431764d1740e4cf4b5b3525c573cee62482"
                 },
-                "section": "Tabella retributiva"
+                "page": "49",
+                "section": "Allegato 1, minimi vigenti / tabella aumenti salariali",
+                "quote": "1s         210              € 2.121,34        € 2.179,27        € 2.280,65       € 2.410,99       € 289,65"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-funivie-anef-tables"
               }
             }
           },
@@ -319,21 +333,28 @@
             "valid_until": "2028-03-01",
             "value": "2280.65",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "sintesi-ccnl-anef-pdf",
-                  "title": "sintesi-ccnl-anef-pdf",
+                  "document_id": "funivie-anef-tables-24f5d87b",
+                  "title": "funivie-anef: tabelle retributive (coordinated.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.funiviearabba.it/wp-content/uploads/2025/12/Sintesi-CCNL-ANEF.pdf"
+                  "url": "https://www.fitcisl.org/wp-content/uploads/2025/10/CCNL-Impianti-a-Fune-testo-unico-coordinato.pdf",
+                  "sha256": "24f5d87b3468ae8a25bb494f42cf3431764d1740e4cf4b5b3525c573cee62482"
                 },
-                "section": "Tabella retributiva"
+                "page": "49",
+                "section": "Allegato 1, minimi vigenti / tabella aumenti salariali",
+                "quote": "1s         210              € 2.121,34        € 2.179,27        € 2.280,65       € 2.410,99       € 289,65"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2027-03-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-funivie-anef-tables"
               }
             }
           },
@@ -342,21 +363,28 @@
             "valid_until": null,
             "value": "2410.99",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "sintesi-ccnl-anef-pdf",
-                  "title": "sintesi-ccnl-anef-pdf",
+                  "document_id": "funivie-anef-tables-24f5d87b",
+                  "title": "funivie-anef: tabelle retributive (coordinated.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.funiviearabba.it/wp-content/uploads/2025/12/Sintesi-CCNL-ANEF.pdf"
+                  "url": "https://www.fitcisl.org/wp-content/uploads/2025/10/CCNL-Impianti-a-Fune-testo-unico-coordinato.pdf",
+                  "sha256": "24f5d87b3468ae8a25bb494f42cf3431764d1740e4cf4b5b3525c573cee62482"
                 },
-                "section": "Tabella retributiva"
+                "page": "49",
+                "section": "Allegato 1, minimi vigenti / tabella aumenti salariali",
+                "quote": "1s         210              € 2.121,34        € 2.179,27        € 2.280,65       € 2.410,99       € 289,65"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2028-03-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-funivie-anef-tables"
               }
             }
           }
@@ -371,7 +399,32 @@
               {
                 "valid_from": "2025-05-01",
                 "valid_until": null,
-                "value": "528.67"
+                "value": "528.67",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "funivie-anef-tables-24f5d87b",
+                      "title": "funivie-anef: tabelle retributive (coordinated.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.fitcisl.org/wp-content/uploads/2025/10/CCNL-Impianti-a-Fune-testo-unico-coordinato.pdf",
+                      "sha256": "24f5d87b3468ae8a25bb494f42cf3431764d1740e4cf4b5b3525c573cee62482"
+                    },
+                    "page": "49",
+                    "section": "Allegato 2, tabella indennità di contingenza",
+                    "quote": "1S                                  528,67"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2025-05-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-funivie-anef-tables"
+                  }
+                }
               }
             ]
           },
@@ -402,7 +455,32 @@
               {
                 "valid_from": "2019-06-06",
                 "valid_until": null,
-                "value": "118.79"
+                "value": "118.79",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "funivie-anef-tables-d20eb826",
+                      "title": "funivie-anef: tabelle retributive (cnel-2019.pdf)",
+                      "kind": "associazione",
+                      "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105982",
+                      "sha256": "d20eb8268311fb67a0b63fc06e7a44c295ca21fc1c98d5af3ef0d5a1d2b49208"
+                    },
+                    "page": "13",
+                    "section": "Art. 5, comma 3, Disciplina dei quadri",
+                    "quote": "corrisposta ai lavoratori interessati una indennità di funzione di importo pari a € 118,79 mensili, senza"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2019-06-06",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-funivie-anef-tables"
+                  }
+                }
               }
             ]
           },
@@ -466,21 +544,28 @@
             "valid_until": "2025-10-01",
             "value": "1969.92",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "sintesi-ccnl-anef-pdf",
-                  "title": "sintesi-ccnl-anef-pdf",
+                  "document_id": "funivie-anef-tables-24f5d87b",
+                  "title": "funivie-anef: tabelle retributive (coordinated.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.funiviearabba.it/wp-content/uploads/2025/12/Sintesi-CCNL-ANEF.pdf"
+                  "url": "https://www.fitcisl.org/wp-content/uploads/2025/10/CCNL-Impianti-a-Fune-testo-unico-coordinato.pdf",
+                  "sha256": "24f5d87b3468ae8a25bb494f42cf3431764d1740e4cf4b5b3525c573cee62482"
                 },
-                "section": "Tabella retributiva"
+                "page": "49",
+                "section": "Allegato 1, minimi vigenti / tabella aumenti salariali",
+                "quote": "1          195              € 1.969,92        € 2.023,71        € 2.117,85       € 2.238,88       € 268,96"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-05-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-funivie-anef-tables"
               }
             }
           },
@@ -489,21 +574,28 @@
             "valid_until": "2027-03-01",
             "value": "2023.71",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "sintesi-ccnl-anef-pdf",
-                  "title": "sintesi-ccnl-anef-pdf",
+                  "document_id": "funivie-anef-tables-24f5d87b",
+                  "title": "funivie-anef: tabelle retributive (coordinated.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.funiviearabba.it/wp-content/uploads/2025/12/Sintesi-CCNL-ANEF.pdf"
+                  "url": "https://www.fitcisl.org/wp-content/uploads/2025/10/CCNL-Impianti-a-Fune-testo-unico-coordinato.pdf",
+                  "sha256": "24f5d87b3468ae8a25bb494f42cf3431764d1740e4cf4b5b3525c573cee62482"
                 },
-                "section": "Tabella retributiva"
+                "page": "49",
+                "section": "Allegato 1, minimi vigenti / tabella aumenti salariali",
+                "quote": "1          195              € 1.969,92        € 2.023,71        € 2.117,85       € 2.238,88       € 268,96"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-funivie-anef-tables"
               }
             }
           },
@@ -512,21 +604,28 @@
             "valid_until": "2028-03-01",
             "value": "2117.85",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "sintesi-ccnl-anef-pdf",
-                  "title": "sintesi-ccnl-anef-pdf",
+                  "document_id": "funivie-anef-tables-24f5d87b",
+                  "title": "funivie-anef: tabelle retributive (coordinated.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.funiviearabba.it/wp-content/uploads/2025/12/Sintesi-CCNL-ANEF.pdf"
+                  "url": "https://www.fitcisl.org/wp-content/uploads/2025/10/CCNL-Impianti-a-Fune-testo-unico-coordinato.pdf",
+                  "sha256": "24f5d87b3468ae8a25bb494f42cf3431764d1740e4cf4b5b3525c573cee62482"
                 },
-                "section": "Tabella retributiva"
+                "page": "49",
+                "section": "Allegato 1, minimi vigenti / tabella aumenti salariali",
+                "quote": "1          195              € 1.969,92        € 2.023,71        € 2.117,85       € 2.238,88       € 268,96"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2027-03-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-funivie-anef-tables"
               }
             }
           },
@@ -535,21 +634,28 @@
             "valid_until": null,
             "value": "2238.88",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "sintesi-ccnl-anef-pdf",
-                  "title": "sintesi-ccnl-anef-pdf",
+                  "document_id": "funivie-anef-tables-24f5d87b",
+                  "title": "funivie-anef: tabelle retributive (coordinated.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.funiviearabba.it/wp-content/uploads/2025/12/Sintesi-CCNL-ANEF.pdf"
+                  "url": "https://www.fitcisl.org/wp-content/uploads/2025/10/CCNL-Impianti-a-Fune-testo-unico-coordinato.pdf",
+                  "sha256": "24f5d87b3468ae8a25bb494f42cf3431764d1740e4cf4b5b3525c573cee62482"
                 },
-                "section": "Tabella retributiva"
+                "page": "49",
+                "section": "Allegato 1, minimi vigenti / tabella aumenti salariali",
+                "quote": "1          195              € 1.969,92        € 2.023,71        € 2.117,85       € 2.238,88       € 268,96"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2028-03-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-funivie-anef-tables"
               }
             }
           }
@@ -564,7 +670,32 @@
               {
                 "valid_from": "2025-05-01",
                 "valid_until": null,
-                "value": "526.67"
+                "value": "526.67",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "funivie-anef-tables-24f5d87b",
+                      "title": "funivie-anef: tabelle retributive (coordinated.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.fitcisl.org/wp-content/uploads/2025/10/CCNL-Impianti-a-Fune-testo-unico-coordinato.pdf",
+                      "sha256": "24f5d87b3468ae8a25bb494f42cf3431764d1740e4cf4b5b3525c573cee62482"
+                    },
+                    "page": "49",
+                    "section": "Allegato 2, tabella indennità di contingenza",
+                    "quote": "1                                  526,67"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2025-05-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-funivie-anef-tables"
+                  }
+                }
               }
             ]
           },
@@ -595,7 +726,32 @@
               {
                 "valid_from": "2019-06-06",
                 "valid_until": null,
-                "value": "118.79"
+                "value": "118.79",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "funivie-anef-tables-d20eb826",
+                      "title": "funivie-anef: tabelle retributive (cnel-2019.pdf)",
+                      "kind": "associazione",
+                      "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105982",
+                      "sha256": "d20eb8268311fb67a0b63fc06e7a44c295ca21fc1c98d5af3ef0d5a1d2b49208"
+                    },
+                    "page": "13",
+                    "section": "Art. 5, comma 3, Disciplina dei quadri",
+                    "quote": "corrisposta ai lavoratori interessati una indennità di funzione di importo pari a € 118,79 mensili, senza"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2019-06-06",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-funivie-anef-tables"
+                  }
+                }
               }
             ]
           },
@@ -659,21 +815,28 @@
             "valid_until": "2025-10-01",
             "value": "1778.21",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "sintesi-ccnl-anef-pdf",
-                  "title": "sintesi-ccnl-anef-pdf",
+                  "document_id": "funivie-anef-tables-24f5d87b",
+                  "title": "funivie-anef: tabelle retributive (coordinated.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.funiviearabba.it/wp-content/uploads/2025/12/Sintesi-CCNL-ANEF.pdf"
+                  "url": "https://www.fitcisl.org/wp-content/uploads/2025/10/CCNL-Impianti-a-Fune-testo-unico-coordinato.pdf",
+                  "sha256": "24f5d87b3468ae8a25bb494f42cf3431764d1740e4cf4b5b3525c573cee62482"
                 },
-                "section": "Tabella retributiva"
+                "page": "49",
+                "section": "Allegato 1, minimi vigenti / tabella aumenti salariali",
+                "quote": "2          176              € 1.778,21        € 1.826,76        € 1.911,73       € 2.020,97       € 242,76"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-05-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-funivie-anef-tables"
               }
             }
           },
@@ -682,21 +845,28 @@
             "valid_until": "2027-03-01",
             "value": "1826.76",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "sintesi-ccnl-anef-pdf",
-                  "title": "sintesi-ccnl-anef-pdf",
+                  "document_id": "funivie-anef-tables-24f5d87b",
+                  "title": "funivie-anef: tabelle retributive (coordinated.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.funiviearabba.it/wp-content/uploads/2025/12/Sintesi-CCNL-ANEF.pdf"
+                  "url": "https://www.fitcisl.org/wp-content/uploads/2025/10/CCNL-Impianti-a-Fune-testo-unico-coordinato.pdf",
+                  "sha256": "24f5d87b3468ae8a25bb494f42cf3431764d1740e4cf4b5b3525c573cee62482"
                 },
-                "section": "Tabella retributiva"
+                "page": "49",
+                "section": "Allegato 1, minimi vigenti / tabella aumenti salariali",
+                "quote": "2          176              € 1.778,21        € 1.826,76        € 1.911,73       € 2.020,97       € 242,76"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-funivie-anef-tables"
               }
             }
           },
@@ -705,21 +875,28 @@
             "valid_until": "2028-03-01",
             "value": "1911.73",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "sintesi-ccnl-anef-pdf",
-                  "title": "sintesi-ccnl-anef-pdf",
+                  "document_id": "funivie-anef-tables-24f5d87b",
+                  "title": "funivie-anef: tabelle retributive (coordinated.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.funiviearabba.it/wp-content/uploads/2025/12/Sintesi-CCNL-ANEF.pdf"
+                  "url": "https://www.fitcisl.org/wp-content/uploads/2025/10/CCNL-Impianti-a-Fune-testo-unico-coordinato.pdf",
+                  "sha256": "24f5d87b3468ae8a25bb494f42cf3431764d1740e4cf4b5b3525c573cee62482"
                 },
-                "section": "Tabella retributiva"
+                "page": "49",
+                "section": "Allegato 1, minimi vigenti / tabella aumenti salariali",
+                "quote": "2          176              € 1.778,21        € 1.826,76        € 1.911,73       € 2.020,97       € 242,76"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2027-03-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-funivie-anef-tables"
               }
             }
           },
@@ -728,21 +905,28 @@
             "valid_until": null,
             "value": "2020.97",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "sintesi-ccnl-anef-pdf",
-                  "title": "sintesi-ccnl-anef-pdf",
+                  "document_id": "funivie-anef-tables-24f5d87b",
+                  "title": "funivie-anef: tabelle retributive (coordinated.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.funiviearabba.it/wp-content/uploads/2025/12/Sintesi-CCNL-ANEF.pdf"
+                  "url": "https://www.fitcisl.org/wp-content/uploads/2025/10/CCNL-Impianti-a-Fune-testo-unico-coordinato.pdf",
+                  "sha256": "24f5d87b3468ae8a25bb494f42cf3431764d1740e4cf4b5b3525c573cee62482"
                 },
-                "section": "Tabella retributiva"
+                "page": "49",
+                "section": "Allegato 1, minimi vigenti / tabella aumenti salariali",
+                "quote": "2          176              € 1.778,21        € 1.826,76        € 1.911,73       € 2.020,97       € 242,76"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2028-03-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-funivie-anef-tables"
               }
             }
           }
@@ -757,7 +941,32 @@
               {
                 "valid_from": "2025-05-01",
                 "valid_until": null,
-                "value": "522.84"
+                "value": "522.84",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "funivie-anef-tables-24f5d87b",
+                      "title": "funivie-anef: tabelle retributive (coordinated.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.fitcisl.org/wp-content/uploads/2025/10/CCNL-Impianti-a-Fune-testo-unico-coordinato.pdf",
+                      "sha256": "24f5d87b3468ae8a25bb494f42cf3431764d1740e4cf4b5b3525c573cee62482"
+                    },
+                    "page": "49",
+                    "section": "Allegato 2, tabella indennità di contingenza",
+                    "quote": "2                                  522,84"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2025-05-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-funivie-anef-tables"
+                  }
+                }
               }
             ]
           },
@@ -811,21 +1020,28 @@
             "valid_until": "2025-10-01",
             "value": "1616.25",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "sintesi-ccnl-anef-pdf",
-                  "title": "sintesi-ccnl-anef-pdf",
+                  "document_id": "funivie-anef-tables-24f5d87b",
+                  "title": "funivie-anef: tabelle retributive (coordinated.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.funiviearabba.it/wp-content/uploads/2025/12/Sintesi-CCNL-ANEF.pdf"
+                  "url": "https://www.fitcisl.org/wp-content/uploads/2025/10/CCNL-Impianti-a-Fune-testo-unico-coordinato.pdf",
+                  "sha256": "24f5d87b3468ae8a25bb494f42cf3431764d1740e4cf4b5b3525c573cee62482"
                 },
-                "section": "Tabella retributiva"
+                "page": "49",
+                "section": "Allegato 1, minimi vigenti / tabella aumenti salariali",
+                "quote": "3          160              € 1.616,25        € 1.660,39        € 1.737,63       € 1.836,94       € 220,69"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-05-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-funivie-anef-tables"
               }
             }
           },
@@ -834,21 +1050,28 @@
             "valid_until": "2027-03-01",
             "value": "1660.39",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "sintesi-ccnl-anef-pdf",
-                  "title": "sintesi-ccnl-anef-pdf",
+                  "document_id": "funivie-anef-tables-24f5d87b",
+                  "title": "funivie-anef: tabelle retributive (coordinated.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.funiviearabba.it/wp-content/uploads/2025/12/Sintesi-CCNL-ANEF.pdf"
+                  "url": "https://www.fitcisl.org/wp-content/uploads/2025/10/CCNL-Impianti-a-Fune-testo-unico-coordinato.pdf",
+                  "sha256": "24f5d87b3468ae8a25bb494f42cf3431764d1740e4cf4b5b3525c573cee62482"
                 },
-                "section": "Tabella retributiva"
+                "page": "49",
+                "section": "Allegato 1, minimi vigenti / tabella aumenti salariali",
+                "quote": "3          160              € 1.616,25        € 1.660,39        € 1.737,63       € 1.836,94       € 220,69"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-funivie-anef-tables"
               }
             }
           },
@@ -857,21 +1080,28 @@
             "valid_until": "2028-03-01",
             "value": "1737.63",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "sintesi-ccnl-anef-pdf",
-                  "title": "sintesi-ccnl-anef-pdf",
+                  "document_id": "funivie-anef-tables-24f5d87b",
+                  "title": "funivie-anef: tabelle retributive (coordinated.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.funiviearabba.it/wp-content/uploads/2025/12/Sintesi-CCNL-ANEF.pdf"
+                  "url": "https://www.fitcisl.org/wp-content/uploads/2025/10/CCNL-Impianti-a-Fune-testo-unico-coordinato.pdf",
+                  "sha256": "24f5d87b3468ae8a25bb494f42cf3431764d1740e4cf4b5b3525c573cee62482"
                 },
-                "section": "Tabella retributiva"
+                "page": "49",
+                "section": "Allegato 1, minimi vigenti / tabella aumenti salariali",
+                "quote": "3          160              € 1.616,25        € 1.660,39        € 1.737,63       € 1.836,94       € 220,69"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2027-03-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-funivie-anef-tables"
               }
             }
           },
@@ -880,21 +1110,28 @@
             "valid_until": null,
             "value": "1836.94",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "sintesi-ccnl-anef-pdf",
-                  "title": "sintesi-ccnl-anef-pdf",
+                  "document_id": "funivie-anef-tables-24f5d87b",
+                  "title": "funivie-anef: tabelle retributive (coordinated.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.funiviearabba.it/wp-content/uploads/2025/12/Sintesi-CCNL-ANEF.pdf"
+                  "url": "https://www.fitcisl.org/wp-content/uploads/2025/10/CCNL-Impianti-a-Fune-testo-unico-coordinato.pdf",
+                  "sha256": "24f5d87b3468ae8a25bb494f42cf3431764d1740e4cf4b5b3525c573cee62482"
                 },
-                "section": "Tabella retributiva"
+                "page": "49",
+                "section": "Allegato 1, minimi vigenti / tabella aumenti salariali",
+                "quote": "3          160              € 1.616,25        € 1.660,39        € 1.737,63       € 1.836,94       € 220,69"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2028-03-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-funivie-anef-tables"
               }
             }
           }
@@ -909,7 +1146,32 @@
               {
                 "valid_from": "2025-05-01",
                 "valid_until": null,
-                "value": "520.34"
+                "value": "520.34",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "funivie-anef-tables-24f5d87b",
+                      "title": "funivie-anef: tabelle retributive (coordinated.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.fitcisl.org/wp-content/uploads/2025/10/CCNL-Impianti-a-Fune-testo-unico-coordinato.pdf",
+                      "sha256": "24f5d87b3468ae8a25bb494f42cf3431764d1740e4cf4b5b3525c573cee62482"
+                    },
+                    "page": "49",
+                    "section": "Allegato 2, tabella indennità di contingenza",
+                    "quote": "3                                  520,34"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2025-05-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-funivie-anef-tables"
+                  }
+                }
               }
             ]
           },
@@ -963,21 +1225,28 @@
             "valid_until": "2025-10-01",
             "value": "1464.59",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "sintesi-ccnl-anef-pdf",
-                  "title": "sintesi-ccnl-anef-pdf",
+                  "document_id": "funivie-anef-tables-24f5d87b",
+                  "title": "funivie-anef: tabelle retributive (coordinated.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.funiviearabba.it/wp-content/uploads/2025/12/Sintesi-CCNL-ANEF.pdf"
+                  "url": "https://www.fitcisl.org/wp-content/uploads/2025/10/CCNL-Impianti-a-Fune-testo-unico-coordinato.pdf",
+                  "sha256": "24f5d87b3468ae8a25bb494f42cf3431764d1740e4cf4b5b3525c573cee62482"
                 },
-                "section": "Tabella retributiva"
+                "page": "49",
+                "section": "Allegato 1, minimi vigenti / tabella aumenti salariali",
+                "quote": "4          145              € 1.464,59        € 1.504,59        € 1.574,59       € 1.664,59       € 200,00"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-05-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-funivie-anef-tables"
               }
             }
           },
@@ -986,21 +1255,28 @@
             "valid_until": "2027-03-01",
             "value": "1504.59",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "sintesi-ccnl-anef-pdf",
-                  "title": "sintesi-ccnl-anef-pdf",
+                  "document_id": "funivie-anef-tables-24f5d87b",
+                  "title": "funivie-anef: tabelle retributive (coordinated.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.funiviearabba.it/wp-content/uploads/2025/12/Sintesi-CCNL-ANEF.pdf"
+                  "url": "https://www.fitcisl.org/wp-content/uploads/2025/10/CCNL-Impianti-a-Fune-testo-unico-coordinato.pdf",
+                  "sha256": "24f5d87b3468ae8a25bb494f42cf3431764d1740e4cf4b5b3525c573cee62482"
                 },
-                "section": "Tabella retributiva"
+                "page": "49",
+                "section": "Allegato 1, minimi vigenti / tabella aumenti salariali",
+                "quote": "4          145              € 1.464,59        € 1.504,59        € 1.574,59       € 1.664,59       € 200,00"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-funivie-anef-tables"
               }
             }
           },
@@ -1009,21 +1285,28 @@
             "valid_until": "2028-03-01",
             "value": "1574.59",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "sintesi-ccnl-anef-pdf",
-                  "title": "sintesi-ccnl-anef-pdf",
+                  "document_id": "funivie-anef-tables-24f5d87b",
+                  "title": "funivie-anef: tabelle retributive (coordinated.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.funiviearabba.it/wp-content/uploads/2025/12/Sintesi-CCNL-ANEF.pdf"
+                  "url": "https://www.fitcisl.org/wp-content/uploads/2025/10/CCNL-Impianti-a-Fune-testo-unico-coordinato.pdf",
+                  "sha256": "24f5d87b3468ae8a25bb494f42cf3431764d1740e4cf4b5b3525c573cee62482"
                 },
-                "section": "Tabella retributiva"
+                "page": "49",
+                "section": "Allegato 1, minimi vigenti / tabella aumenti salariali",
+                "quote": "4          145              € 1.464,59        € 1.504,59        € 1.574,59       € 1.664,59       € 200,00"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2027-03-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-funivie-anef-tables"
               }
             }
           },
@@ -1032,21 +1315,28 @@
             "valid_until": null,
             "value": "1664.59",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "sintesi-ccnl-anef-pdf",
-                  "title": "sintesi-ccnl-anef-pdf",
+                  "document_id": "funivie-anef-tables-24f5d87b",
+                  "title": "funivie-anef: tabelle retributive (coordinated.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.funiviearabba.it/wp-content/uploads/2025/12/Sintesi-CCNL-ANEF.pdf"
+                  "url": "https://www.fitcisl.org/wp-content/uploads/2025/10/CCNL-Impianti-a-Fune-testo-unico-coordinato.pdf",
+                  "sha256": "24f5d87b3468ae8a25bb494f42cf3431764d1740e4cf4b5b3525c573cee62482"
                 },
-                "section": "Tabella retributiva"
+                "page": "49",
+                "section": "Allegato 1, minimi vigenti / tabella aumenti salariali",
+                "quote": "4          145              € 1.464,59        € 1.504,59        € 1.574,59       € 1.664,59       € 200,00"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2028-03-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-funivie-anef-tables"
               }
             }
           }
@@ -1061,7 +1351,32 @@
               {
                 "valid_from": "2025-05-01",
                 "valid_until": null,
-                "value": "517.73"
+                "value": "517.73",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "funivie-anef-tables-24f5d87b",
+                      "title": "funivie-anef: tabelle retributive (coordinated.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.fitcisl.org/wp-content/uploads/2025/10/CCNL-Impianti-a-Fune-testo-unico-coordinato.pdf",
+                      "sha256": "24f5d87b3468ae8a25bb494f42cf3431764d1740e4cf4b5b3525c573cee62482"
+                    },
+                    "page": "49",
+                    "section": "Allegato 2, tabella indennità di contingenza",
+                    "quote": "4                                  517,73"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2025-05-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-funivie-anef-tables"
+                  }
+                }
               }
             ]
           },
@@ -1115,21 +1430,28 @@
             "valid_until": "2025-10-01",
             "value": "1313.44",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "sintesi-ccnl-anef-pdf",
-                  "title": "sintesi-ccnl-anef-pdf",
+                  "document_id": "funivie-anef-tables-24f5d87b",
+                  "title": "funivie-anef: tabelle retributive (coordinated.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.funiviearabba.it/wp-content/uploads/2025/12/Sintesi-CCNL-ANEF.pdf"
+                  "url": "https://www.fitcisl.org/wp-content/uploads/2025/10/CCNL-Impianti-a-Fune-testo-unico-coordinato.pdf",
+                  "sha256": "24f5d87b3468ae8a25bb494f42cf3431764d1740e4cf4b5b3525c573cee62482"
                 },
-                "section": "Tabella retributiva"
+                "page": "49",
+                "section": "Allegato 1, minimi vigenti / tabella aumenti salariali",
+                "quote": "5          130              € 1.313,44        € 1.349,30        € 1.412,06       € 1.492,75       € 179,31"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-05-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-funivie-anef-tables"
               }
             }
           },
@@ -1138,21 +1460,28 @@
             "valid_until": "2027-03-01",
             "value": "1349.30",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "sintesi-ccnl-anef-pdf",
-                  "title": "sintesi-ccnl-anef-pdf",
+                  "document_id": "funivie-anef-tables-24f5d87b",
+                  "title": "funivie-anef: tabelle retributive (coordinated.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.funiviearabba.it/wp-content/uploads/2025/12/Sintesi-CCNL-ANEF.pdf"
+                  "url": "https://www.fitcisl.org/wp-content/uploads/2025/10/CCNL-Impianti-a-Fune-testo-unico-coordinato.pdf",
+                  "sha256": "24f5d87b3468ae8a25bb494f42cf3431764d1740e4cf4b5b3525c573cee62482"
                 },
-                "section": "Tabella retributiva"
+                "page": "49",
+                "section": "Allegato 1, minimi vigenti / tabella aumenti salariali",
+                "quote": "5          130              € 1.313,44        € 1.349,30        € 1.412,06       € 1.492,75       € 179,31"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-funivie-anef-tables"
               }
             }
           },
@@ -1161,21 +1490,28 @@
             "valid_until": "2028-03-01",
             "value": "1412.06",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "sintesi-ccnl-anef-pdf",
-                  "title": "sintesi-ccnl-anef-pdf",
+                  "document_id": "funivie-anef-tables-24f5d87b",
+                  "title": "funivie-anef: tabelle retributive (coordinated.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.funiviearabba.it/wp-content/uploads/2025/12/Sintesi-CCNL-ANEF.pdf"
+                  "url": "https://www.fitcisl.org/wp-content/uploads/2025/10/CCNL-Impianti-a-Fune-testo-unico-coordinato.pdf",
+                  "sha256": "24f5d87b3468ae8a25bb494f42cf3431764d1740e4cf4b5b3525c573cee62482"
                 },
-                "section": "Tabella retributiva"
+                "page": "49",
+                "section": "Allegato 1, minimi vigenti / tabella aumenti salariali",
+                "quote": "5          130              € 1.313,44        € 1.349,30        € 1.412,06       € 1.492,75       € 179,31"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2027-03-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-funivie-anef-tables"
               }
             }
           },
@@ -1184,21 +1520,28 @@
             "valid_until": null,
             "value": "1492.75",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "sintesi-ccnl-anef-pdf",
-                  "title": "sintesi-ccnl-anef-pdf",
+                  "document_id": "funivie-anef-tables-24f5d87b",
+                  "title": "funivie-anef: tabelle retributive (coordinated.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.funiviearabba.it/wp-content/uploads/2025/12/Sintesi-CCNL-ANEF.pdf"
+                  "url": "https://www.fitcisl.org/wp-content/uploads/2025/10/CCNL-Impianti-a-Fune-testo-unico-coordinato.pdf",
+                  "sha256": "24f5d87b3468ae8a25bb494f42cf3431764d1740e4cf4b5b3525c573cee62482"
                 },
-                "section": "Tabella retributiva"
+                "page": "49",
+                "section": "Allegato 1, minimi vigenti / tabella aumenti salariali",
+                "quote": "5          130              € 1.313,44        € 1.349,30        € 1.412,06       € 1.492,75       € 179,31"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2028-03-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-funivie-anef-tables"
               }
             }
           }
@@ -1213,7 +1556,32 @@
               {
                 "valid_from": "2025-05-01",
                 "valid_until": null,
-                "value": "515.65"
+                "value": "515.65",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "funivie-anef-tables-24f5d87b",
+                      "title": "funivie-anef: tabelle retributive (coordinated.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.fitcisl.org/wp-content/uploads/2025/10/CCNL-Impianti-a-Fune-testo-unico-coordinato.pdf",
+                      "sha256": "24f5d87b3468ae8a25bb494f42cf3431764d1740e4cf4b5b3525c573cee62482"
+                    },
+                    "page": "49",
+                    "section": "Allegato 2, tabella indennità di contingenza",
+                    "quote": "5                                  515,65"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2025-05-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-funivie-anef-tables"
+                  }
+                }
               }
             ]
           },
@@ -1267,21 +1635,28 @@
             "valid_until": "2025-10-01",
             "value": "1212.43",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "sintesi-ccnl-anef-pdf",
-                  "title": "sintesi-ccnl-anef-pdf",
+                  "document_id": "funivie-anef-tables-24f5d87b",
+                  "title": "funivie-anef: tabelle retributive (coordinated.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.funiviearabba.it/wp-content/uploads/2025/12/Sintesi-CCNL-ANEF.pdf"
+                  "url": "https://www.fitcisl.org/wp-content/uploads/2025/10/CCNL-Impianti-a-Fune-testo-unico-coordinato.pdf",
+                  "sha256": "24f5d87b3468ae8a25bb494f42cf3431764d1740e4cf4b5b3525c573cee62482"
                 },
-                "section": "Tabella retributiva"
+                "page": "49",
+                "section": "Allegato 1, minimi vigenti / tabella aumenti salariali",
+                "quote": "6          120              € 1.212,43        € 1.245,53        € 1.303,46       € 1.377,94       € 165,51"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-05-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-funivie-anef-tables"
               }
             }
           },
@@ -1290,21 +1665,28 @@
             "valid_until": "2027-03-01",
             "value": "1245.53",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "sintesi-ccnl-anef-pdf",
-                  "title": "sintesi-ccnl-anef-pdf",
+                  "document_id": "funivie-anef-tables-24f5d87b",
+                  "title": "funivie-anef: tabelle retributive (coordinated.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.funiviearabba.it/wp-content/uploads/2025/12/Sintesi-CCNL-ANEF.pdf"
+                  "url": "https://www.fitcisl.org/wp-content/uploads/2025/10/CCNL-Impianti-a-Fune-testo-unico-coordinato.pdf",
+                  "sha256": "24f5d87b3468ae8a25bb494f42cf3431764d1740e4cf4b5b3525c573cee62482"
                 },
-                "section": "Tabella retributiva"
+                "page": "49",
+                "section": "Allegato 1, minimi vigenti / tabella aumenti salariali",
+                "quote": "6          120              € 1.212,43        € 1.245,53        € 1.303,46       € 1.377,94       € 165,51"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-funivie-anef-tables"
               }
             }
           },
@@ -1313,21 +1695,28 @@
             "valid_until": "2028-03-01",
             "value": "1303.46",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "sintesi-ccnl-anef-pdf",
-                  "title": "sintesi-ccnl-anef-pdf",
+                  "document_id": "funivie-anef-tables-24f5d87b",
+                  "title": "funivie-anef: tabelle retributive (coordinated.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.funiviearabba.it/wp-content/uploads/2025/12/Sintesi-CCNL-ANEF.pdf"
+                  "url": "https://www.fitcisl.org/wp-content/uploads/2025/10/CCNL-Impianti-a-Fune-testo-unico-coordinato.pdf",
+                  "sha256": "24f5d87b3468ae8a25bb494f42cf3431764d1740e4cf4b5b3525c573cee62482"
                 },
-                "section": "Tabella retributiva"
+                "page": "49",
+                "section": "Allegato 1, minimi vigenti / tabella aumenti salariali",
+                "quote": "6          120              € 1.212,43        € 1.245,53        € 1.303,46       € 1.377,94       € 165,51"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2027-03-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-funivie-anef-tables"
               }
             }
           },
@@ -1336,21 +1725,28 @@
             "valid_until": null,
             "value": "1377.94",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "sintesi-ccnl-anef-pdf",
-                  "title": "sintesi-ccnl-anef-pdf",
+                  "document_id": "funivie-anef-tables-24f5d87b",
+                  "title": "funivie-anef: tabelle retributive (coordinated.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.funiviearabba.it/wp-content/uploads/2025/12/Sintesi-CCNL-ANEF.pdf"
+                  "url": "https://www.fitcisl.org/wp-content/uploads/2025/10/CCNL-Impianti-a-Fune-testo-unico-coordinato.pdf",
+                  "sha256": "24f5d87b3468ae8a25bb494f42cf3431764d1740e4cf4b5b3525c573cee62482"
                 },
-                "section": "Tabella retributiva"
+                "page": "49",
+                "section": "Allegato 1, minimi vigenti / tabella aumenti salariali",
+                "quote": "6          120              € 1.212,43        € 1.245,53        € 1.303,46       € 1.377,94       € 165,51"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2028-03-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-funivie-anef-tables"
               }
             }
           }
@@ -1365,7 +1761,32 @@
               {
                 "valid_from": "2025-05-01",
                 "valid_until": null,
-                "value": "514.67"
+                "value": "514.67",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "funivie-anef-tables-24f5d87b",
+                      "title": "funivie-anef: tabelle retributive (coordinated.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.fitcisl.org/wp-content/uploads/2025/10/CCNL-Impianti-a-Fune-testo-unico-coordinato.pdf",
+                      "sha256": "24f5d87b3468ae8a25bb494f42cf3431764d1740e4cf4b5b3525c573cee62482"
+                    },
+                    "page": "49",
+                    "section": "Allegato 2, tabella indennità di contingenza",
+                    "quote": "6                                  514,67"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2025-05-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-funivie-anef-tables"
+                  }
+                }
               }
             ]
           },
@@ -1419,21 +1840,28 @@
             "valid_until": "2025-10-01",
             "value": "1010.41",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "sintesi-ccnl-anef-pdf",
-                  "title": "sintesi-ccnl-anef-pdf",
+                  "document_id": "funivie-anef-tables-24f5d87b",
+                  "title": "funivie-anef: tabelle retributive (coordinated.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.funiviearabba.it/wp-content/uploads/2025/12/Sintesi-CCNL-ANEF.pdf"
+                  "url": "https://www.fitcisl.org/wp-content/uploads/2025/10/CCNL-Impianti-a-Fune-testo-unico-coordinato.pdf",
+                  "sha256": "24f5d87b3468ae8a25bb494f42cf3431764d1740e4cf4b5b3525c573cee62482"
                 },
-                "section": "Tabella retributiva"
+                "page": "49",
+                "section": "Allegato 1, minimi vigenti / tabella aumenti salariali",
+                "quote": "7          100              € 1.010,41        € 1.038,00        € 1.086,28       € 1.148,35       € 137,94"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-05-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-funivie-anef-tables"
               }
             }
           },
@@ -1442,21 +1870,28 @@
             "valid_until": "2027-03-01",
             "value": "1038.00",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "sintesi-ccnl-anef-pdf",
-                  "title": "sintesi-ccnl-anef-pdf",
+                  "document_id": "funivie-anef-tables-24f5d87b",
+                  "title": "funivie-anef: tabelle retributive (coordinated.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.funiviearabba.it/wp-content/uploads/2025/12/Sintesi-CCNL-ANEF.pdf"
+                  "url": "https://www.fitcisl.org/wp-content/uploads/2025/10/CCNL-Impianti-a-Fune-testo-unico-coordinato.pdf",
+                  "sha256": "24f5d87b3468ae8a25bb494f42cf3431764d1740e4cf4b5b3525c573cee62482"
                 },
-                "section": "Tabella retributiva"
+                "page": "49",
+                "section": "Allegato 1, minimi vigenti / tabella aumenti salariali",
+                "quote": "7          100              € 1.010,41        € 1.038,00        € 1.086,28       € 1.148,35       € 137,94"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-funivie-anef-tables"
               }
             }
           },
@@ -1465,21 +1900,28 @@
             "valid_until": "2028-03-01",
             "value": "1086.28",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "sintesi-ccnl-anef-pdf",
-                  "title": "sintesi-ccnl-anef-pdf",
+                  "document_id": "funivie-anef-tables-24f5d87b",
+                  "title": "funivie-anef: tabelle retributive (coordinated.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.funiviearabba.it/wp-content/uploads/2025/12/Sintesi-CCNL-ANEF.pdf"
+                  "url": "https://www.fitcisl.org/wp-content/uploads/2025/10/CCNL-Impianti-a-Fune-testo-unico-coordinato.pdf",
+                  "sha256": "24f5d87b3468ae8a25bb494f42cf3431764d1740e4cf4b5b3525c573cee62482"
                 },
-                "section": "Tabella retributiva"
+                "page": "49",
+                "section": "Allegato 1, minimi vigenti / tabella aumenti salariali",
+                "quote": "7          100              € 1.010,41        € 1.038,00        € 1.086,28       € 1.148,35       € 137,94"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2027-03-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-funivie-anef-tables"
               }
             }
           },
@@ -1488,21 +1930,28 @@
             "valid_until": null,
             "value": "1148.35",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "sintesi-ccnl-anef-pdf",
-                  "title": "sintesi-ccnl-anef-pdf",
+                  "document_id": "funivie-anef-tables-24f5d87b",
+                  "title": "funivie-anef: tabelle retributive (coordinated.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.funiviearabba.it/wp-content/uploads/2025/12/Sintesi-CCNL-ANEF.pdf"
+                  "url": "https://www.fitcisl.org/wp-content/uploads/2025/10/CCNL-Impianti-a-Fune-testo-unico-coordinato.pdf",
+                  "sha256": "24f5d87b3468ae8a25bb494f42cf3431764d1740e4cf4b5b3525c573cee62482"
                 },
-                "section": "Tabella retributiva"
+                "page": "49",
+                "section": "Allegato 1, minimi vigenti / tabella aumenti salariali",
+                "quote": "7          100              € 1.010,41        € 1.038,00        € 1.086,28       € 1.148,35       € 137,94"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2028-03-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-funivie-anef-tables"
               }
             }
           }
@@ -1517,7 +1966,32 @@
               {
                 "valid_from": "2025-05-01",
                 "valid_until": null,
-                "value": "511.21"
+                "value": "511.21",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "funivie-anef-tables-24f5d87b",
+                      "title": "funivie-anef: tabelle retributive (coordinated.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.fitcisl.org/wp-content/uploads/2025/10/CCNL-Impianti-a-Fune-testo-unico-coordinato.pdf",
+                      "sha256": "24f5d87b3468ae8a25bb494f42cf3431764d1740e4cf4b5b3525c573cee62482"
+                    },
+                    "page": "49",
+                    "section": "Allegato 2, tabella indennità di contingenza",
+                    "quote": "7                                  511,21"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2025-05-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-funivie-anef-tables"
+                  }
+                }
               }
             ]
           },
@@ -1568,7 +2042,7 @@
     "effective_until": null,
     "source": "https://www.funiviearabba.it/wp-content/uploads/2025/12/Sintesi-CCNL-ANEF.pdf",
     "verification_status": "unverified",
-    "source_hash": "6b00410464031cf1d921a5d66c2aff06d5e60969b29dde6fbdd419c5e6176494",
+    "source_hash": "c0a828f1d57dede0a5744b14e948d6c717713cd7f3bdd89b4c53d60d21c6af2f",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1823,6 +2297,32 @@
         ],
         "independence": "separate_session",
         "checked": [
+          "levels.fixed_allowances"
+        ]
+      },
+      {
+        "id": "2026-11-07-ai-funivie-anef-tables",
+        "date": "2026-11-07",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The monthly values of the levels against the primary tables (text layer).",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.fitcisl.org/wp-content/uploads/2025/10/CCNL-Impianti-a-Fune-testo-unico-coordinato.pdf",
+            "sha256": "24f5d87b3468ae8a25bb494f42cf3431764d1740e4cf4b5b3525c573cee62482"
+          },
+          {
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105982",
+            "sha256": "d20eb8268311fb67a0b63fc06e7a44c295ca21fc1c98d5af3ef0d5a1d2b49208"
+          }
+        ],
+        "findings": [
+          "42 values found verbatim on the cited pages and marked verified; 0 left as they were (derived or not on a text page)."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels.base_salary",
           "levels.fixed_allowances"
         ]
       }

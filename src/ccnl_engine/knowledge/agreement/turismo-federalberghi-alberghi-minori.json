@@ -635,27 +635,29 @@
             "valid_until": "2025-06-01",
             "value": "2298.57",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-turismo-2024-07-05",
-                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (Federalberghi, Faita, Confcommercio, Filcams, Fisascat, UILTuCS), scansione firmata, copia Federalberghi",
+                  "document_id": "turismo-federalberghi-alberghi-minori-src-a84052fc",
+                  "title": "turismo-federalberghi-alberghi-minori: 2024-federalberghi.pdf",
                   "kind": "associazione",
                   "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
-                  "published_on": "2024-07-05",
                   "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
                 },
                 "page": "43",
-                "section": "Art. 152 c. 2 (as replaced on 5 July 2024), column 'lug 2024', row A",
-                "quote": "Per il personale degli alberghi a una e due stelle e dei campeggi con un numero di presenze - licenza non superiore a milleduecento, i valori di paga base nazionale conglobata mensile sono i seguenti: [...] A 2.298,57 2.355,58 2.405,46 2.455,35 2.483,86"
+                "section": "Art. 152(2), alberghi a una/due stelle e campeggi <= 1200 presenze, paga base nazionale conglobata mensile",
+                "quote": "A 2.298,57 2.355,58 2.405,46 2.455,35 2.483,86"
               },
               "transformation": "The paga base of level A from lug 2024: 2298.57.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:08:10Z",
-                "verification_status": "unverified",
-                "effective_from": "2024-07-01"
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2024-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-turismo-federalberghi-alberghi-minori-double-read"
               }
             }
           },
@@ -664,27 +666,29 @@
             "valid_until": "2026-05-01",
             "value": "2355.58",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-turismo-2024-07-05",
-                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (Federalberghi, Faita, Confcommercio, Filcams, Fisascat, UILTuCS), scansione firmata, copia Federalberghi",
+                  "document_id": "turismo-federalberghi-alberghi-minori-src-a84052fc",
+                  "title": "turismo-federalberghi-alberghi-minori: 2024-federalberghi.pdf",
                   "kind": "associazione",
                   "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
-                  "published_on": "2024-07-05",
                   "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
                 },
                 "page": "43",
-                "section": "Art. 152 c. 2 (as replaced on 5 July 2024), column 'giu 2025', row A",
-                "quote": "Per il personale degli alberghi a una e due stelle e dei campeggi con un numero di presenze - licenza non superiore a milleduecento, i valori di paga base nazionale conglobata mensile sono i seguenti: [...] A 2.298,57 2.355,58 2.405,46 2.455,35 2.483,86"
+                "section": "Art. 152(2), alberghi a una/due stelle e campeggi <= 1200 presenze, paga base nazionale conglobata mensile",
+                "quote": "A 2.298,57 2.355,58 2.405,46 2.455,35 2.483,86"
               },
               "transformation": "The paga base of level A from giu 2025: 2355.58.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:08:10Z",
-                "verification_status": "unverified",
-                "effective_from": "2025-06-01"
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2025-06-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-turismo-federalberghi-alberghi-minori-double-read"
               }
             }
           },
@@ -693,27 +697,29 @@
             "valid_until": "2027-04-01",
             "value": "2405.46",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-turismo-2024-07-05",
-                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (Federalberghi, Faita, Confcommercio, Filcams, Fisascat, UILTuCS), scansione firmata, copia Federalberghi",
+                  "document_id": "turismo-federalberghi-alberghi-minori-src-a84052fc",
+                  "title": "turismo-federalberghi-alberghi-minori: 2024-federalberghi.pdf",
                   "kind": "associazione",
                   "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
-                  "published_on": "2024-07-05",
                   "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
                 },
                 "page": "43",
-                "section": "Art. 152 c. 2 (as replaced on 5 July 2024), column 'mag 2026', row A",
-                "quote": "Per il personale degli alberghi a una e due stelle e dei campeggi con un numero di presenze - licenza non superiore a milleduecento, i valori di paga base nazionale conglobata mensile sono i seguenti: [...] A 2.298,57 2.355,58 2.405,46 2.455,35 2.483,86"
+                "section": "Art. 152(2), alberghi a una/due stelle e campeggi <= 1200 presenze, paga base nazionale conglobata mensile",
+                "quote": "A 2.298,57 2.355,58 2.405,46 2.455,35 2.483,86"
               },
               "transformation": "The paga base of level A from mag 2026: 2405.46.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:08:10Z",
-                "verification_status": "unverified",
-                "effective_from": "2026-05-01"
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2026-05-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-turismo-federalberghi-alberghi-minori-double-read"
               }
             }
           },
@@ -722,27 +728,29 @@
             "valid_until": "2027-11-01",
             "value": "2455.35",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-turismo-2024-07-05",
-                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (Federalberghi, Faita, Confcommercio, Filcams, Fisascat, UILTuCS), scansione firmata, copia Federalberghi",
+                  "document_id": "turismo-federalberghi-alberghi-minori-src-a84052fc",
+                  "title": "turismo-federalberghi-alberghi-minori: 2024-federalberghi.pdf",
                   "kind": "associazione",
                   "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
-                  "published_on": "2024-07-05",
                   "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
                 },
                 "page": "43",
-                "section": "Art. 152 c. 2 (as replaced on 5 July 2024), column 'apr 2027', row A",
-                "quote": "Per il personale degli alberghi a una e due stelle e dei campeggi con un numero di presenze - licenza non superiore a milleduecento, i valori di paga base nazionale conglobata mensile sono i seguenti: [...] A 2.298,57 2.355,58 2.405,46 2.455,35 2.483,86"
+                "section": "Art. 152(2), alberghi a una/due stelle e campeggi <= 1200 presenze, paga base nazionale conglobata mensile",
+                "quote": "A 2.298,57 2.355,58 2.405,46 2.455,35 2.483,86"
               },
               "transformation": "The paga base of level A from apr 2027: 2455.35.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:08:10Z",
-                "verification_status": "unverified",
-                "effective_from": "2027-04-01"
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2027-04-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-turismo-federalberghi-alberghi-minori-double-read"
               }
             }
           },
@@ -751,27 +759,29 @@
             "valid_until": null,
             "value": "2483.86",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-turismo-2024-07-05",
-                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (Federalberghi, Faita, Confcommercio, Filcams, Fisascat, UILTuCS), scansione firmata, copia Federalberghi",
+                  "document_id": "turismo-federalberghi-alberghi-minori-src-a84052fc",
+                  "title": "turismo-federalberghi-alberghi-minori: 2024-federalberghi.pdf",
                   "kind": "associazione",
                   "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
-                  "published_on": "2024-07-05",
                   "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
                 },
                 "page": "43",
-                "section": "Art. 152 c. 2 (as replaced on 5 July 2024), column 'nov 2027', row A",
-                "quote": "Per il personale degli alberghi a una e due stelle e dei campeggi con un numero di presenze - licenza non superiore a milleduecento, i valori di paga base nazionale conglobata mensile sono i seguenti: [...] A 2.298,57 2.355,58 2.405,46 2.455,35 2.483,86"
+                "section": "Art. 152(2), alberghi a una/due stelle e campeggi <= 1200 presenze, paga base nazionale conglobata mensile",
+                "quote": "A 2.298,57 2.355,58 2.405,46 2.455,35 2.483,86"
               },
               "transformation": "The paga base of level A from nov 2027: 2483.86.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:08:10Z",
-                "verification_status": "unverified",
-                "effective_from": "2027-11-01"
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2027-11-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-turismo-federalberghi-alberghi-minori-double-read"
               }
             }
           }
@@ -885,27 +895,29 @@
             "valid_until": "2025-06-01",
             "value": "2128.24",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-turismo-2024-07-05",
-                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (Federalberghi, Faita, Confcommercio, Filcams, Fisascat, UILTuCS), scansione firmata, copia Federalberghi",
+                  "document_id": "turismo-federalberghi-alberghi-minori-src-a84052fc",
+                  "title": "turismo-federalberghi-alberghi-minori: 2024-federalberghi.pdf",
                   "kind": "associazione",
                   "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
-                  "published_on": "2024-07-05",
                   "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
                 },
                 "page": "43",
-                "section": "Art. 152 c. 2 (as replaced on 5 July 2024), column 'lug 2024', row B",
-                "quote": "Per il personale degli alberghi a una e due stelle e dei campeggi con un numero di presenze - licenza non superiore a milleduecento, i valori di paga base nazionale conglobata mensile sono i seguenti: [...] B 2.128,24 2.181,02 2.227,20 2.273,39 2.299,78"
+                "section": "Art. 152(2), alberghi a una/due stelle e campeggi <= 1200 presenze, paga base nazionale conglobata mensile",
+                "quote": "B 2.128,24 2.181,02 2.227,20 2.273,39 2.299,78"
               },
               "transformation": "The paga base of level B from lug 2024: 2128.24.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:08:10Z",
-                "verification_status": "unverified",
-                "effective_from": "2024-07-01"
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2024-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-turismo-federalberghi-alberghi-minori-double-read"
               }
             }
           },
@@ -914,27 +926,29 @@
             "valid_until": "2026-05-01",
             "value": "2181.02",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-turismo-2024-07-05",
-                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (Federalberghi, Faita, Confcommercio, Filcams, Fisascat, UILTuCS), scansione firmata, copia Federalberghi",
+                  "document_id": "turismo-federalberghi-alberghi-minori-src-a84052fc",
+                  "title": "turismo-federalberghi-alberghi-minori: 2024-federalberghi.pdf",
                   "kind": "associazione",
                   "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
-                  "published_on": "2024-07-05",
                   "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
                 },
                 "page": "43",
-                "section": "Art. 152 c. 2 (as replaced on 5 July 2024), column 'giu 2025', row B",
-                "quote": "Per il personale degli alberghi a una e due stelle e dei campeggi con un numero di presenze - licenza non superiore a milleduecento, i valori di paga base nazionale conglobata mensile sono i seguenti: [...] B 2.128,24 2.181,02 2.227,20 2.273,39 2.299,78"
+                "section": "Art. 152(2), alberghi a una/due stelle e campeggi <= 1200 presenze, paga base nazionale conglobata mensile",
+                "quote": "B 2.128,24 2.181,02 2.227,20 2.273,39 2.299,78"
               },
               "transformation": "The paga base of level B from giu 2025: 2181.02.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:08:10Z",
-                "verification_status": "unverified",
-                "effective_from": "2025-06-01"
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2025-06-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-turismo-federalberghi-alberghi-minori-double-read"
               }
             }
           },
@@ -943,27 +957,29 @@
             "valid_until": "2027-04-01",
             "value": "2227.20",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-turismo-2024-07-05",
-                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (Federalberghi, Faita, Confcommercio, Filcams, Fisascat, UILTuCS), scansione firmata, copia Federalberghi",
+                  "document_id": "turismo-federalberghi-alberghi-minori-src-a84052fc",
+                  "title": "turismo-federalberghi-alberghi-minori: 2024-federalberghi.pdf",
                   "kind": "associazione",
                   "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
-                  "published_on": "2024-07-05",
                   "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
                 },
                 "page": "43",
-                "section": "Art. 152 c. 2 (as replaced on 5 July 2024), column 'mag 2026', row B",
-                "quote": "Per il personale degli alberghi a una e due stelle e dei campeggi con un numero di presenze - licenza non superiore a milleduecento, i valori di paga base nazionale conglobata mensile sono i seguenti: [...] B 2.128,24 2.181,02 2.227,20 2.273,39 2.299,78"
+                "section": "Art. 152(2), alberghi a una/due stelle e campeggi <= 1200 presenze, paga base nazionale conglobata mensile",
+                "quote": "B 2.128,24 2.181,02 2.227,20 2.273,39 2.299,78"
               },
               "transformation": "The paga base of level B from mag 2026: 2227.20.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:08:10Z",
-                "verification_status": "unverified",
-                "effective_from": "2026-05-01"
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2026-05-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-turismo-federalberghi-alberghi-minori-double-read"
               }
             }
           },
@@ -972,27 +988,29 @@
             "valid_until": "2027-11-01",
             "value": "2273.39",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-turismo-2024-07-05",
-                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (Federalberghi, Faita, Confcommercio, Filcams, Fisascat, UILTuCS), scansione firmata, copia Federalberghi",
+                  "document_id": "turismo-federalberghi-alberghi-minori-src-a84052fc",
+                  "title": "turismo-federalberghi-alberghi-minori: 2024-federalberghi.pdf",
                   "kind": "associazione",
                   "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
-                  "published_on": "2024-07-05",
                   "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
                 },
                 "page": "43",
-                "section": "Art. 152 c. 2 (as replaced on 5 July 2024), column 'apr 2027', row B",
-                "quote": "Per il personale degli alberghi a una e due stelle e dei campeggi con un numero di presenze - licenza non superiore a milleduecento, i valori di paga base nazionale conglobata mensile sono i seguenti: [...] B 2.128,24 2.181,02 2.227,20 2.273,39 2.299,78"
+                "section": "Art. 152(2), alberghi a una/due stelle e campeggi <= 1200 presenze, paga base nazionale conglobata mensile",
+                "quote": "B 2.128,24 2.181,02 2.227,20 2.273,39 2.299,78"
               },
               "transformation": "The paga base of level B from apr 2027: 2273.39.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:08:10Z",
-                "verification_status": "unverified",
-                "effective_from": "2027-04-01"
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2027-04-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-turismo-federalberghi-alberghi-minori-double-read"
               }
             }
           },
@@ -1001,27 +1019,29 @@
             "valid_until": null,
             "value": "2299.78",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-turismo-2024-07-05",
-                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (Federalberghi, Faita, Confcommercio, Filcams, Fisascat, UILTuCS), scansione firmata, copia Federalberghi",
+                  "document_id": "turismo-federalberghi-alberghi-minori-src-a84052fc",
+                  "title": "turismo-federalberghi-alberghi-minori: 2024-federalberghi.pdf",
                   "kind": "associazione",
                   "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
-                  "published_on": "2024-07-05",
                   "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
                 },
                 "page": "43",
-                "section": "Art. 152 c. 2 (as replaced on 5 July 2024), column 'nov 2027', row B",
-                "quote": "Per il personale degli alberghi a una e due stelle e dei campeggi con un numero di presenze - licenza non superiore a milleduecento, i valori di paga base nazionale conglobata mensile sono i seguenti: [...] B 2.128,24 2.181,02 2.227,20 2.273,39 2.299,78"
+                "section": "Art. 152(2), alberghi a una/due stelle e campeggi <= 1200 presenze, paga base nazionale conglobata mensile",
+                "quote": "B 2.128,24 2.181,02 2.227,20 2.273,39 2.299,78"
               },
               "transformation": "The paga base of level B from nov 2027: 2299.78.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:08:10Z",
-                "verification_status": "unverified",
-                "effective_from": "2027-11-01"
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2027-11-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-turismo-federalberghi-alberghi-minori-double-read"
               }
             }
           }
@@ -1135,27 +1155,29 @@
             "valid_until": "2025-06-01",
             "value": "1982.17",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-turismo-2024-07-05",
-                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (Federalberghi, Faita, Confcommercio, Filcams, Fisascat, UILTuCS), scansione firmata, copia Federalberghi",
+                  "document_id": "turismo-federalberghi-alberghi-minori-src-a84052fc",
+                  "title": "turismo-federalberghi-alberghi-minori: 2024-federalberghi.pdf",
                   "kind": "associazione",
                   "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
-                  "published_on": "2024-07-05",
                   "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
                 },
                 "page": "43",
-                "section": "Art. 152 c. 2 (as replaced on 5 July 2024), column 'lug 2024', row 1",
-                "quote": "Per il personale degli alberghi a una e due stelle e dei campeggi con un numero di presenze - licenza non superiore a milleduecento, i valori di paga base nazionale conglobata mensile sono i seguenti: [...] 1 1.982,17 2.031,35 2.074,38 2.117,40 2.141,99"
+                "section": "Art. 152(2), alberghi a una/due stelle e campeggi <= 1200 presenze, paga base nazionale conglobata mensile",
+                "quote": "1 1.982,17 2.031,35 2.074,38 2.117,40 2.141,99"
               },
               "transformation": "The paga base of level 1 from lug 2024: 1982.17.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:08:10Z",
-                "verification_status": "unverified",
-                "effective_from": "2024-07-01"
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2024-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-turismo-federalberghi-alberghi-minori-double-read"
               }
             }
           },
@@ -1164,27 +1186,29 @@
             "valid_until": "2026-05-01",
             "value": "2031.35",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-turismo-2024-07-05",
-                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (Federalberghi, Faita, Confcommercio, Filcams, Fisascat, UILTuCS), scansione firmata, copia Federalberghi",
+                  "document_id": "turismo-federalberghi-alberghi-minori-src-a84052fc",
+                  "title": "turismo-federalberghi-alberghi-minori: 2024-federalberghi.pdf",
                   "kind": "associazione",
                   "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
-                  "published_on": "2024-07-05",
                   "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
                 },
                 "page": "43",
-                "section": "Art. 152 c. 2 (as replaced on 5 July 2024), column 'giu 2025', row 1",
-                "quote": "Per il personale degli alberghi a una e due stelle e dei campeggi con un numero di presenze - licenza non superiore a milleduecento, i valori di paga base nazionale conglobata mensile sono i seguenti: [...] 1 1.982,17 2.031,35 2.074,38 2.117,40 2.141,99"
+                "section": "Art. 152(2), alberghi a una/due stelle e campeggi <= 1200 presenze, paga base nazionale conglobata mensile",
+                "quote": "1 1.982,17 2.031,35 2.074,38 2.117,40 2.141,99"
               },
               "transformation": "The paga base of level 1 from giu 2025: 2031.35.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:08:10Z",
-                "verification_status": "unverified",
-                "effective_from": "2025-06-01"
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2025-06-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-turismo-federalberghi-alberghi-minori-double-read"
               }
             }
           },
@@ -1193,27 +1217,29 @@
             "valid_until": "2027-04-01",
             "value": "2074.38",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-turismo-2024-07-05",
-                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (Federalberghi, Faita, Confcommercio, Filcams, Fisascat, UILTuCS), scansione firmata, copia Federalberghi",
+                  "document_id": "turismo-federalberghi-alberghi-minori-src-a84052fc",
+                  "title": "turismo-federalberghi-alberghi-minori: 2024-federalberghi.pdf",
                   "kind": "associazione",
                   "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
-                  "published_on": "2024-07-05",
                   "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
                 },
                 "page": "43",
-                "section": "Art. 152 c. 2 (as replaced on 5 July 2024), column 'mag 2026', row 1",
-                "quote": "Per il personale degli alberghi a una e due stelle e dei campeggi con un numero di presenze - licenza non superiore a milleduecento, i valori di paga base nazionale conglobata mensile sono i seguenti: [...] 1 1.982,17 2.031,35 2.074,38 2.117,40 2.141,99"
+                "section": "Art. 152(2), alberghi a una/due stelle e campeggi <= 1200 presenze, paga base nazionale conglobata mensile",
+                "quote": "1 1.982,17 2.031,35 2.074,38 2.117,40 2.141,99"
               },
               "transformation": "The paga base of level 1 from mag 2026: 2074.38.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:08:10Z",
-                "verification_status": "unverified",
-                "effective_from": "2026-05-01"
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2026-05-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-turismo-federalberghi-alberghi-minori-double-read"
               }
             }
           },
@@ -1222,27 +1248,29 @@
             "valid_until": "2027-11-01",
             "value": "2117.40",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-turismo-2024-07-05",
-                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (Federalberghi, Faita, Confcommercio, Filcams, Fisascat, UILTuCS), scansione firmata, copia Federalberghi",
+                  "document_id": "turismo-federalberghi-alberghi-minori-src-a84052fc",
+                  "title": "turismo-federalberghi-alberghi-minori: 2024-federalberghi.pdf",
                   "kind": "associazione",
                   "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
-                  "published_on": "2024-07-05",
                   "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
                 },
                 "page": "43",
-                "section": "Art. 152 c. 2 (as replaced on 5 July 2024), column 'apr 2027', row 1",
-                "quote": "Per il personale degli alberghi a una e due stelle e dei campeggi con un numero di presenze - licenza non superiore a milleduecento, i valori di paga base nazionale conglobata mensile sono i seguenti: [...] 1 1.982,17 2.031,35 2.074,38 2.117,40 2.141,99"
+                "section": "Art. 152(2), alberghi a una/due stelle e campeggi <= 1200 presenze, paga base nazionale conglobata mensile",
+                "quote": "1 1.982,17 2.031,35 2.074,38 2.117,40 2.141,99"
               },
               "transformation": "The paga base of level 1 from apr 2027: 2117.40.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:08:10Z",
-                "verification_status": "unverified",
-                "effective_from": "2027-04-01"
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2027-04-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-turismo-federalberghi-alberghi-minori-double-read"
               }
             }
           },
@@ -1251,27 +1279,29 @@
             "valid_until": null,
             "value": "2141.99",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-turismo-2024-07-05",
-                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (Federalberghi, Faita, Confcommercio, Filcams, Fisascat, UILTuCS), scansione firmata, copia Federalberghi",
+                  "document_id": "turismo-federalberghi-alberghi-minori-src-a84052fc",
+                  "title": "turismo-federalberghi-alberghi-minori: 2024-federalberghi.pdf",
                   "kind": "associazione",
                   "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
-                  "published_on": "2024-07-05",
                   "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
                 },
                 "page": "43",
-                "section": "Art. 152 c. 2 (as replaced on 5 July 2024), column 'nov 2027', row 1",
-                "quote": "Per il personale degli alberghi a una e due stelle e dei campeggi con un numero di presenze - licenza non superiore a milleduecento, i valori di paga base nazionale conglobata mensile sono i seguenti: [...] 1 1.982,17 2.031,35 2.074,38 2.117,40 2.141,99"
+                "section": "Art. 152(2), alberghi a una/due stelle e campeggi <= 1200 presenze, paga base nazionale conglobata mensile",
+                "quote": "1 1.982,17 2.031,35 2.074,38 2.117,40 2.141,99"
               },
               "transformation": "The paga base of level 1 from nov 2027: 2141.99.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:08:10Z",
-                "verification_status": "unverified",
-                "effective_from": "2027-11-01"
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2027-11-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-turismo-federalberghi-alberghi-minori-double-read"
               }
             }
           }
@@ -1319,27 +1349,29 @@
             "valid_until": "2025-06-01",
             "value": "1812.35",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-turismo-2024-07-05",
-                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (Federalberghi, Faita, Confcommercio, Filcams, Fisascat, UILTuCS), scansione firmata, copia Federalberghi",
+                  "document_id": "turismo-federalberghi-alberghi-minori-src-a84052fc",
+                  "title": "turismo-federalberghi-alberghi-minori: 2024-federalberghi.pdf",
                   "kind": "associazione",
                   "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
-                  "published_on": "2024-07-05",
                   "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
                 },
                 "page": "43",
-                "section": "Art. 152 c. 2 (as replaced on 5 July 2024), column 'lug 2024', row 2",
-                "quote": "Per il personale degli alberghi a una e due stelle e dei campeggi con un numero di presenze - licenza non superiore a milleduecento, i valori di paga base nazionale conglobata mensile sono i seguenti: [...] 2 1.812,35 1.857,29 1.896,62 1.935,95 1.958,42"
+                "section": "Art. 152(2), alberghi a una/due stelle e campeggi <= 1200 presenze, paga base nazionale conglobata mensile",
+                "quote": "2 1.812,35 1.857,29 1.896,62 1.935,95 1.958,42"
               },
               "transformation": "The paga base of level 2 from lug 2024: 1812.35.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:08:10Z",
-                "verification_status": "unverified",
-                "effective_from": "2024-07-01"
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2024-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-turismo-federalberghi-alberghi-minori-double-read"
               }
             }
           },
@@ -1348,27 +1380,29 @@
             "valid_until": "2026-05-01",
             "value": "1857.29",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-turismo-2024-07-05",
-                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (Federalberghi, Faita, Confcommercio, Filcams, Fisascat, UILTuCS), scansione firmata, copia Federalberghi",
+                  "document_id": "turismo-federalberghi-alberghi-minori-src-a84052fc",
+                  "title": "turismo-federalberghi-alberghi-minori: 2024-federalberghi.pdf",
                   "kind": "associazione",
                   "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
-                  "published_on": "2024-07-05",
                   "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
                 },
                 "page": "43",
-                "section": "Art. 152 c. 2 (as replaced on 5 July 2024), column 'giu 2025', row 2",
-                "quote": "Per il personale degli alberghi a una e due stelle e dei campeggi con un numero di presenze - licenza non superiore a milleduecento, i valori di paga base nazionale conglobata mensile sono i seguenti: [...] 2 1.812,35 1.857,29 1.896,62 1.935,95 1.958,42"
+                "section": "Art. 152(2), alberghi a una/due stelle e campeggi <= 1200 presenze, paga base nazionale conglobata mensile",
+                "quote": "2 1.812,35 1.857,29 1.896,62 1.935,95 1.958,42"
               },
               "transformation": "The paga base of level 2 from giu 2025: 1857.29.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:08:10Z",
-                "verification_status": "unverified",
-                "effective_from": "2025-06-01"
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2025-06-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-turismo-federalberghi-alberghi-minori-double-read"
               }
             }
           },
@@ -1377,27 +1411,29 @@
             "valid_until": "2027-04-01",
             "value": "1896.62",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-turismo-2024-07-05",
-                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (Federalberghi, Faita, Confcommercio, Filcams, Fisascat, UILTuCS), scansione firmata, copia Federalberghi",
+                  "document_id": "turismo-federalberghi-alberghi-minori-src-a84052fc",
+                  "title": "turismo-federalberghi-alberghi-minori: 2024-federalberghi.pdf",
                   "kind": "associazione",
                   "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
-                  "published_on": "2024-07-05",
                   "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
                 },
                 "page": "43",
-                "section": "Art. 152 c. 2 (as replaced on 5 July 2024), column 'mag 2026', row 2",
-                "quote": "Per il personale degli alberghi a una e due stelle e dei campeggi con un numero di presenze - licenza non superiore a milleduecento, i valori di paga base nazionale conglobata mensile sono i seguenti: [...] 2 1.812,35 1.857,29 1.896,62 1.935,95 1.958,42"
+                "section": "Art. 152(2), alberghi a una/due stelle e campeggi <= 1200 presenze, paga base nazionale conglobata mensile",
+                "quote": "2 1.812,35 1.857,29 1.896,62 1.935,95 1.958,42"
               },
               "transformation": "The paga base of level 2 from mag 2026: 1896.62.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:08:10Z",
-                "verification_status": "unverified",
-                "effective_from": "2026-05-01"
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2026-05-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-turismo-federalberghi-alberghi-minori-double-read"
               }
             }
           },
@@ -1406,27 +1442,29 @@
             "valid_until": "2027-11-01",
             "value": "1935.95",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-turismo-2024-07-05",
-                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (Federalberghi, Faita, Confcommercio, Filcams, Fisascat, UILTuCS), scansione firmata, copia Federalberghi",
+                  "document_id": "turismo-federalberghi-alberghi-minori-src-a84052fc",
+                  "title": "turismo-federalberghi-alberghi-minori: 2024-federalberghi.pdf",
                   "kind": "associazione",
                   "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
-                  "published_on": "2024-07-05",
                   "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
                 },
                 "page": "43",
-                "section": "Art. 152 c. 2 (as replaced on 5 July 2024), column 'apr 2027', row 2",
-                "quote": "Per il personale degli alberghi a una e due stelle e dei campeggi con un numero di presenze - licenza non superiore a milleduecento, i valori di paga base nazionale conglobata mensile sono i seguenti: [...] 2 1.812,35 1.857,29 1.896,62 1.935,95 1.958,42"
+                "section": "Art. 152(2), alberghi a una/due stelle e campeggi <= 1200 presenze, paga base nazionale conglobata mensile",
+                "quote": "2 1.812,35 1.857,29 1.896,62 1.935,95 1.958,42"
               },
               "transformation": "The paga base of level 2 from apr 2027: 1935.95.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:08:10Z",
-                "verification_status": "unverified",
-                "effective_from": "2027-04-01"
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2027-04-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-turismo-federalberghi-alberghi-minori-double-read"
               }
             }
           },
@@ -1435,27 +1473,29 @@
             "valid_until": null,
             "value": "1958.42",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-turismo-2024-07-05",
-                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (Federalberghi, Faita, Confcommercio, Filcams, Fisascat, UILTuCS), scansione firmata, copia Federalberghi",
+                  "document_id": "turismo-federalberghi-alberghi-minori-src-a84052fc",
+                  "title": "turismo-federalberghi-alberghi-minori: 2024-federalberghi.pdf",
                   "kind": "associazione",
                   "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
-                  "published_on": "2024-07-05",
                   "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
                 },
                 "page": "43",
-                "section": "Art. 152 c. 2 (as replaced on 5 July 2024), column 'nov 2027', row 2",
-                "quote": "Per il personale degli alberghi a una e due stelle e dei campeggi con un numero di presenze - licenza non superiore a milleduecento, i valori di paga base nazionale conglobata mensile sono i seguenti: [...] 2 1.812,35 1.857,29 1.896,62 1.935,95 1.958,42"
+                "section": "Art. 152(2), alberghi a una/due stelle e campeggi <= 1200 presenze, paga base nazionale conglobata mensile",
+                "quote": "2 1.812,35 1.857,29 1.896,62 1.935,95 1.958,42"
               },
               "transformation": "The paga base of level 2 from nov 2027: 1958.42.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:08:10Z",
-                "verification_status": "unverified",
-                "effective_from": "2027-11-01"
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2027-11-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-turismo-federalberghi-alberghi-minori-double-read"
               }
             }
           }
@@ -1503,27 +1543,29 @@
             "valid_until": "2025-06-01",
             "value": "1709.80",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-turismo-2024-07-05",
-                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (Federalberghi, Faita, Confcommercio, Filcams, Fisascat, UILTuCS), scansione firmata, copia Federalberghi",
+                  "document_id": "turismo-federalberghi-alberghi-minori-src-a84052fc",
+                  "title": "turismo-federalberghi-alberghi-minori: 2024-federalberghi.pdf",
                   "kind": "associazione",
                   "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
-                  "published_on": "2024-07-05",
                   "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
                 },
                 "page": "43",
-                "section": "Art. 152 c. 2 (as replaced on 5 July 2024), column 'lug 2024', row 3",
-                "quote": "Per il personale degli alberghi a una e due stelle e dei campeggi con un numero di presenze - licenza non superiore a milleduecento, i valori di paga base nazionale conglobata mensile sono i seguenti: [...] 3 1.709,80 1.752,19 1.789,29 1.826,38 1.847,57"
+                "section": "Art. 152(2), alberghi a una/due stelle e campeggi <= 1200 presenze, paga base nazionale conglobata mensile",
+                "quote": "3 1.709,80 1.752,19 1.789,29 1.826,38 1.847,57"
               },
               "transformation": "The paga base of level 3 from lug 2024: 1709.80.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:08:10Z",
-                "verification_status": "unverified",
-                "effective_from": "2024-07-01"
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2024-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-turismo-federalberghi-alberghi-minori-double-read"
               }
             }
           },
@@ -1532,27 +1574,29 @@
             "valid_until": "2026-05-01",
             "value": "1752.19",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-turismo-2024-07-05",
-                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (Federalberghi, Faita, Confcommercio, Filcams, Fisascat, UILTuCS), scansione firmata, copia Federalberghi",
+                  "document_id": "turismo-federalberghi-alberghi-minori-src-a84052fc",
+                  "title": "turismo-federalberghi-alberghi-minori: 2024-federalberghi.pdf",
                   "kind": "associazione",
                   "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
-                  "published_on": "2024-07-05",
                   "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
                 },
                 "page": "43",
-                "section": "Art. 152 c. 2 (as replaced on 5 July 2024), column 'giu 2025', row 3",
-                "quote": "Per il personale degli alberghi a una e due stelle e dei campeggi con un numero di presenze - licenza non superiore a milleduecento, i valori di paga base nazionale conglobata mensile sono i seguenti: [...] 3 1.709,80 1.752,19 1.789,29 1.826,38 1.847,57"
+                "section": "Art. 152(2), alberghi a una/due stelle e campeggi <= 1200 presenze, paga base nazionale conglobata mensile",
+                "quote": "3 1.709,80 1.752,19 1.789,29 1.826,38 1.847,57"
               },
               "transformation": "The paga base of level 3 from giu 2025: 1752.19.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:08:10Z",
-                "verification_status": "unverified",
-                "effective_from": "2025-06-01"
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2025-06-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-turismo-federalberghi-alberghi-minori-double-read"
               }
             }
           },
@@ -1561,27 +1605,29 @@
             "valid_until": "2027-04-01",
             "value": "1789.29",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-turismo-2024-07-05",
-                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (Federalberghi, Faita, Confcommercio, Filcams, Fisascat, UILTuCS), scansione firmata, copia Federalberghi",
+                  "document_id": "turismo-federalberghi-alberghi-minori-src-a84052fc",
+                  "title": "turismo-federalberghi-alberghi-minori: 2024-federalberghi.pdf",
                   "kind": "associazione",
                   "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
-                  "published_on": "2024-07-05",
                   "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
                 },
                 "page": "43",
-                "section": "Art. 152 c. 2 (as replaced on 5 July 2024), column 'mag 2026', row 3",
-                "quote": "Per il personale degli alberghi a una e due stelle e dei campeggi con un numero di presenze - licenza non superiore a milleduecento, i valori di paga base nazionale conglobata mensile sono i seguenti: [...] 3 1.709,80 1.752,19 1.789,29 1.826,38 1.847,57"
+                "section": "Art. 152(2), alberghi a una/due stelle e campeggi <= 1200 presenze, paga base nazionale conglobata mensile",
+                "quote": "3 1.709,80 1.752,19 1.789,29 1.826,38 1.847,57"
               },
               "transformation": "The paga base of level 3 from mag 2026: 1789.29.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:08:10Z",
-                "verification_status": "unverified",
-                "effective_from": "2026-05-01"
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2026-05-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-turismo-federalberghi-alberghi-minori-double-read"
               }
             }
           },
@@ -1590,27 +1636,29 @@
             "valid_until": "2027-11-01",
             "value": "1826.38",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-turismo-2024-07-05",
-                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (Federalberghi, Faita, Confcommercio, Filcams, Fisascat, UILTuCS), scansione firmata, copia Federalberghi",
+                  "document_id": "turismo-federalberghi-alberghi-minori-src-a84052fc",
+                  "title": "turismo-federalberghi-alberghi-minori: 2024-federalberghi.pdf",
                   "kind": "associazione",
                   "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
-                  "published_on": "2024-07-05",
                   "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
                 },
                 "page": "43",
-                "section": "Art. 152 c. 2 (as replaced on 5 July 2024), column 'apr 2027', row 3",
-                "quote": "Per il personale degli alberghi a una e due stelle e dei campeggi con un numero di presenze - licenza non superiore a milleduecento, i valori di paga base nazionale conglobata mensile sono i seguenti: [...] 3 1.709,80 1.752,19 1.789,29 1.826,38 1.847,57"
+                "section": "Art. 152(2), alberghi a una/due stelle e campeggi <= 1200 presenze, paga base nazionale conglobata mensile",
+                "quote": "3 1.709,80 1.752,19 1.789,29 1.826,38 1.847,57"
               },
               "transformation": "The paga base of level 3 from apr 2027: 1826.38.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:08:10Z",
-                "verification_status": "unverified",
-                "effective_from": "2027-04-01"
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2027-04-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-turismo-federalberghi-alberghi-minori-double-read"
               }
             }
           },
@@ -1619,27 +1667,29 @@
             "valid_until": null,
             "value": "1847.57",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-turismo-2024-07-05",
-                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (Federalberghi, Faita, Confcommercio, Filcams, Fisascat, UILTuCS), scansione firmata, copia Federalberghi",
+                  "document_id": "turismo-federalberghi-alberghi-minori-src-a84052fc",
+                  "title": "turismo-federalberghi-alberghi-minori: 2024-federalberghi.pdf",
                   "kind": "associazione",
                   "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
-                  "published_on": "2024-07-05",
                   "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
                 },
                 "page": "43",
-                "section": "Art. 152 c. 2 (as replaced on 5 July 2024), column 'nov 2027', row 3",
-                "quote": "Per il personale degli alberghi a una e due stelle e dei campeggi con un numero di presenze - licenza non superiore a milleduecento, i valori di paga base nazionale conglobata mensile sono i seguenti: [...] 3 1.709,80 1.752,19 1.789,29 1.826,38 1.847,57"
+                "section": "Art. 152(2), alberghi a una/due stelle e campeggi <= 1200 presenze, paga base nazionale conglobata mensile",
+                "quote": "3 1.709,80 1.752,19 1.789,29 1.826,38 1.847,57"
               },
               "transformation": "The paga base of level 3 from nov 2027: 1847.57.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:08:10Z",
-                "verification_status": "unverified",
-                "effective_from": "2027-11-01"
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2027-11-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-turismo-federalberghi-alberghi-minori-double-read"
               }
             }
           }
@@ -1687,27 +1737,29 @@
             "valid_until": "2025-06-01",
             "value": "1613.98",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-turismo-2024-07-05",
-                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (Federalberghi, Faita, Confcommercio, Filcams, Fisascat, UILTuCS), scansione firmata, copia Federalberghi",
+                  "document_id": "turismo-federalberghi-alberghi-minori-src-a84052fc",
+                  "title": "turismo-federalberghi-alberghi-minori: 2024-federalberghi.pdf",
                   "kind": "associazione",
                   "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
-                  "published_on": "2024-07-05",
                   "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
                 },
                 "page": "43",
-                "section": "Art. 152 c. 2 (as replaced on 5 July 2024), column 'lug 2024', row 4",
-                "quote": "Per il personale degli alberghi a una e due stelle e dei campeggi con un numero di presenze - licenza non superiore a milleduecento, i valori di paga base nazionale conglobata mensile sono i seguenti: [...] 4 1.613,98 1.653,98 1.688,98 1.723,98 1.743,98"
+                "section": "Art. 152(2), alberghi a una/due stelle e campeggi <= 1200 presenze, paga base nazionale conglobata mensile",
+                "quote": "4 1.613,98 1.653,98 1.688,98 1.723,98 1.743,98"
               },
               "transformation": "The paga base of level 4 from lug 2024: 1613.98.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:08:10Z",
-                "verification_status": "unverified",
-                "effective_from": "2024-07-01"
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2024-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-turismo-federalberghi-alberghi-minori-double-read"
               }
             }
           },
@@ -1716,27 +1768,29 @@
             "valid_until": "2026-05-01",
             "value": "1653.98",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-turismo-2024-07-05",
-                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (Federalberghi, Faita, Confcommercio, Filcams, Fisascat, UILTuCS), scansione firmata, copia Federalberghi",
+                  "document_id": "turismo-federalberghi-alberghi-minori-src-a84052fc",
+                  "title": "turismo-federalberghi-alberghi-minori: 2024-federalberghi.pdf",
                   "kind": "associazione",
                   "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
-                  "published_on": "2024-07-05",
                   "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
                 },
                 "page": "43",
-                "section": "Art. 152 c. 2 (as replaced on 5 July 2024), column 'giu 2025', row 4",
-                "quote": "Per il personale degli alberghi a una e due stelle e dei campeggi con un numero di presenze - licenza non superiore a milleduecento, i valori di paga base nazionale conglobata mensile sono i seguenti: [...] 4 1.613,98 1.653,98 1.688,98 1.723,98 1.743,98"
+                "section": "Art. 152(2), alberghi a una/due stelle e campeggi <= 1200 presenze, paga base nazionale conglobata mensile",
+                "quote": "4 1.613,98 1.653,98 1.688,98 1.723,98 1.743,98"
               },
               "transformation": "The paga base of level 4 from giu 2025: 1653.98.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:08:10Z",
-                "verification_status": "unverified",
-                "effective_from": "2025-06-01"
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2025-06-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-turismo-federalberghi-alberghi-minori-double-read"
               }
             }
           },
@@ -1745,27 +1799,29 @@
             "valid_until": "2027-04-01",
             "value": "1688.98",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-turismo-2024-07-05",
-                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (Federalberghi, Faita, Confcommercio, Filcams, Fisascat, UILTuCS), scansione firmata, copia Federalberghi",
+                  "document_id": "turismo-federalberghi-alberghi-minori-src-a84052fc",
+                  "title": "turismo-federalberghi-alberghi-minori: 2024-federalberghi.pdf",
                   "kind": "associazione",
                   "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
-                  "published_on": "2024-07-05",
                   "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
                 },
                 "page": "43",
-                "section": "Art. 152 c. 2 (as replaced on 5 July 2024), column 'mag 2026', row 4",
-                "quote": "Per il personale degli alberghi a una e due stelle e dei campeggi con un numero di presenze - licenza non superiore a milleduecento, i valori di paga base nazionale conglobata mensile sono i seguenti: [...] 4 1.613,98 1.653,98 1.688,98 1.723,98 1.743,98"
+                "section": "Art. 152(2), alberghi a una/due stelle e campeggi <= 1200 presenze, paga base nazionale conglobata mensile",
+                "quote": "4 1.613,98 1.653,98 1.688,98 1.723,98 1.743,98"
               },
               "transformation": "The paga base of level 4 from mag 2026: 1688.98.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:08:10Z",
-                "verification_status": "unverified",
-                "effective_from": "2026-05-01"
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2026-05-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-turismo-federalberghi-alberghi-minori-double-read"
               }
             }
           },
@@ -1774,27 +1830,29 @@
             "valid_until": "2027-11-01",
             "value": "1723.98",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-turismo-2024-07-05",
-                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (Federalberghi, Faita, Confcommercio, Filcams, Fisascat, UILTuCS), scansione firmata, copia Federalberghi",
+                  "document_id": "turismo-federalberghi-alberghi-minori-src-a84052fc",
+                  "title": "turismo-federalberghi-alberghi-minori: 2024-federalberghi.pdf",
                   "kind": "associazione",
                   "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
-                  "published_on": "2024-07-05",
                   "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
                 },
                 "page": "43",
-                "section": "Art. 152 c. 2 (as replaced on 5 July 2024), column 'apr 2027', row 4",
-                "quote": "Per il personale degli alberghi a una e due stelle e dei campeggi con un numero di presenze - licenza non superiore a milleduecento, i valori di paga base nazionale conglobata mensile sono i seguenti: [...] 4 1.613,98 1.653,98 1.688,98 1.723,98 1.743,98"
+                "section": "Art. 152(2), alberghi a una/due stelle e campeggi <= 1200 presenze, paga base nazionale conglobata mensile",
+                "quote": "4 1.613,98 1.653,98 1.688,98 1.723,98 1.743,98"
               },
               "transformation": "The paga base of level 4 from apr 2027: 1723.98.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:08:10Z",
-                "verification_status": "unverified",
-                "effective_from": "2027-04-01"
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2027-04-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-turismo-federalberghi-alberghi-minori-double-read"
               }
             }
           },
@@ -1803,27 +1861,29 @@
             "valid_until": null,
             "value": "1743.98",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-turismo-2024-07-05",
-                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (Federalberghi, Faita, Confcommercio, Filcams, Fisascat, UILTuCS), scansione firmata, copia Federalberghi",
+                  "document_id": "turismo-federalberghi-alberghi-minori-src-a84052fc",
+                  "title": "turismo-federalberghi-alberghi-minori: 2024-federalberghi.pdf",
                   "kind": "associazione",
                   "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
-                  "published_on": "2024-07-05",
                   "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
                 },
                 "page": "43",
-                "section": "Art. 152 c. 2 (as replaced on 5 July 2024), column 'nov 2027', row 4",
-                "quote": "Per il personale degli alberghi a una e due stelle e dei campeggi con un numero di presenze - licenza non superiore a milleduecento, i valori di paga base nazionale conglobata mensile sono i seguenti: [...] 4 1.613,98 1.653,98 1.688,98 1.723,98 1.743,98"
+                "section": "Art. 152(2), alberghi a una/due stelle e campeggi <= 1200 presenze, paga base nazionale conglobata mensile",
+                "quote": "4 1.613,98 1.653,98 1.688,98 1.723,98 1.743,98"
               },
               "transformation": "The paga base of level 4 from nov 2027: 1743.98.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:08:10Z",
-                "verification_status": "unverified",
-                "effective_from": "2027-11-01"
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2027-11-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-turismo-federalberghi-alberghi-minori-double-read"
               }
             }
           }
@@ -1871,27 +1931,29 @@
             "valid_until": "2025-06-01",
             "value": "1513.73",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-turismo-2024-07-05",
-                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (Federalberghi, Faita, Confcommercio, Filcams, Fisascat, UILTuCS), scansione firmata, copia Federalberghi",
+                  "document_id": "turismo-federalberghi-alberghi-minori-src-a84052fc",
+                  "title": "turismo-federalberghi-alberghi-minori: 2024-federalberghi.pdf",
                   "kind": "associazione",
                   "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
-                  "published_on": "2024-07-05",
                   "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
                 },
                 "page": "43",
-                "section": "Art. 152 c. 2 (as replaced on 5 July 2024), column 'lug 2024', row 5",
-                "quote": "Per il personale degli alberghi a una e due stelle e dei campeggi con un numero di presenze - licenza non superiore a milleduecento, i valori di paga base nazionale conglobata mensile sono i seguenti: [...] 5 1.513,73 1.551,24 1.584,07 1.616,89 1.635,65"
+                "section": "Art. 152(2), alberghi a una/due stelle e campeggi <= 1200 presenze, paga base nazionale conglobata mensile",
+                "quote": "5 1.513,73 1.551,24 1.584,07 1.616,89 1.635,65"
               },
               "transformation": "The paga base of level 5 from lug 2024: 1513.73.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:08:10Z",
-                "verification_status": "unverified",
-                "effective_from": "2024-07-01"
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2024-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-turismo-federalberghi-alberghi-minori-double-read"
               }
             }
           },
@@ -1900,27 +1962,29 @@
             "valid_until": "2026-05-01",
             "value": "1551.24",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-turismo-2024-07-05",
-                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (Federalberghi, Faita, Confcommercio, Filcams, Fisascat, UILTuCS), scansione firmata, copia Federalberghi",
+                  "document_id": "turismo-federalberghi-alberghi-minori-src-a84052fc",
+                  "title": "turismo-federalberghi-alberghi-minori: 2024-federalberghi.pdf",
                   "kind": "associazione",
                   "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
-                  "published_on": "2024-07-05",
                   "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
                 },
                 "page": "43",
-                "section": "Art. 152 c. 2 (as replaced on 5 July 2024), column 'giu 2025', row 5",
-                "quote": "Per il personale degli alberghi a una e due stelle e dei campeggi con un numero di presenze - licenza non superiore a milleduecento, i valori di paga base nazionale conglobata mensile sono i seguenti: [...] 5 1.513,73 1.551,24 1.584,07 1.616,89 1.635,65"
+                "section": "Art. 152(2), alberghi a una/due stelle e campeggi <= 1200 presenze, paga base nazionale conglobata mensile",
+                "quote": "5 1.513,73 1.551,24 1.584,07 1.616,89 1.635,65"
               },
               "transformation": "The paga base of level 5 from giu 2025: 1551.24.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:08:10Z",
-                "verification_status": "unverified",
-                "effective_from": "2025-06-01"
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2025-06-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-turismo-federalberghi-alberghi-minori-double-read"
               }
             }
           },
@@ -1929,27 +1993,29 @@
             "valid_until": "2027-04-01",
             "value": "1584.07",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-turismo-2024-07-05",
-                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (Federalberghi, Faita, Confcommercio, Filcams, Fisascat, UILTuCS), scansione firmata, copia Federalberghi",
+                  "document_id": "turismo-federalberghi-alberghi-minori-src-a84052fc",
+                  "title": "turismo-federalberghi-alberghi-minori: 2024-federalberghi.pdf",
                   "kind": "associazione",
                   "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
-                  "published_on": "2024-07-05",
                   "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
                 },
                 "page": "43",
-                "section": "Art. 152 c. 2 (as replaced on 5 July 2024), column 'mag 2026', row 5",
-                "quote": "Per il personale degli alberghi a una e due stelle e dei campeggi con un numero di presenze - licenza non superiore a milleduecento, i valori di paga base nazionale conglobata mensile sono i seguenti: [...] 5 1.513,73 1.551,24 1.584,07 1.616,89 1.635,65"
+                "section": "Art. 152(2), alberghi a una/due stelle e campeggi <= 1200 presenze, paga base nazionale conglobata mensile",
+                "quote": "5 1.513,73 1.551,24 1.584,07 1.616,89 1.635,65"
               },
               "transformation": "The paga base of level 5 from mag 2026: 1584.07.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:08:10Z",
-                "verification_status": "unverified",
-                "effective_from": "2026-05-01"
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2026-05-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-turismo-federalberghi-alberghi-minori-double-read"
               }
             }
           },
@@ -1958,27 +2024,29 @@
             "valid_until": "2027-11-01",
             "value": "1616.89",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-turismo-2024-07-05",
-                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (Federalberghi, Faita, Confcommercio, Filcams, Fisascat, UILTuCS), scansione firmata, copia Federalberghi",
+                  "document_id": "turismo-federalberghi-alberghi-minori-src-a84052fc",
+                  "title": "turismo-federalberghi-alberghi-minori: 2024-federalberghi.pdf",
                   "kind": "associazione",
                   "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
-                  "published_on": "2024-07-05",
                   "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
                 },
                 "page": "43",
-                "section": "Art. 152 c. 2 (as replaced on 5 July 2024), column 'apr 2027', row 5",
-                "quote": "Per il personale degli alberghi a una e due stelle e dei campeggi con un numero di presenze - licenza non superiore a milleduecento, i valori di paga base nazionale conglobata mensile sono i seguenti: [...] 5 1.513,73 1.551,24 1.584,07 1.616,89 1.635,65"
+                "section": "Art. 152(2), alberghi a una/due stelle e campeggi <= 1200 presenze, paga base nazionale conglobata mensile",
+                "quote": "5 1.513,73 1.551,24 1.584,07 1.616,89 1.635,65"
               },
               "transformation": "The paga base of level 5 from apr 2027: 1616.89.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:08:10Z",
-                "verification_status": "unverified",
-                "effective_from": "2027-04-01"
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2027-04-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-turismo-federalberghi-alberghi-minori-double-read"
               }
             }
           },
@@ -1987,27 +2055,29 @@
             "valid_until": null,
             "value": "1635.65",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-turismo-2024-07-05",
-                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (Federalberghi, Faita, Confcommercio, Filcams, Fisascat, UILTuCS), scansione firmata, copia Federalberghi",
+                  "document_id": "turismo-federalberghi-alberghi-minori-src-a84052fc",
+                  "title": "turismo-federalberghi-alberghi-minori: 2024-federalberghi.pdf",
                   "kind": "associazione",
                   "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
-                  "published_on": "2024-07-05",
                   "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
                 },
                 "page": "43",
-                "section": "Art. 152 c. 2 (as replaced on 5 July 2024), column 'nov 2027', row 5",
-                "quote": "Per il personale degli alberghi a una e due stelle e dei campeggi con un numero di presenze - licenza non superiore a milleduecento, i valori di paga base nazionale conglobata mensile sono i seguenti: [...] 5 1.513,73 1.551,24 1.584,07 1.616,89 1.635,65"
+                "section": "Art. 152(2), alberghi a una/due stelle e campeggi <= 1200 presenze, paga base nazionale conglobata mensile",
+                "quote": "5 1.513,73 1.551,24 1.584,07 1.616,89 1.635,65"
               },
               "transformation": "The paga base of level 5 from nov 2027: 1635.65.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:08:10Z",
-                "verification_status": "unverified",
-                "effective_from": "2027-11-01"
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2027-11-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-turismo-federalberghi-alberghi-minori-double-read"
               }
             }
           }
@@ -2055,27 +2125,29 @@
             "valid_until": "2025-06-01",
             "value": "1455.81",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-turismo-2024-07-05",
-                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (Federalberghi, Faita, Confcommercio, Filcams, Fisascat, UILTuCS), scansione firmata, copia Federalberghi",
+                  "document_id": "turismo-federalberghi-alberghi-minori-src-a84052fc",
+                  "title": "turismo-federalberghi-alberghi-minori: 2024-federalberghi.pdf",
                   "kind": "associazione",
                   "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
-                  "published_on": "2024-07-05",
                   "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
                 },
                 "page": "43",
-                "section": "Art. 152 c. 2 (as replaced on 5 July 2024), column 'lug 2024', row 6s",
-                "quote": "Per il personale degli alberghi a una e due stelle e dei campeggi con un numero di presenze - licenza non superiore a milleduecento, i valori di paga base nazionale conglobata mensile sono i seguenti: [...] 6s 1.455,81 1.491,89 1.523,45 1.555,01 1.573,04"
+                "section": "Art. 152(2), alberghi a una/due stelle e campeggi <= 1200 presenze, paga base nazionale conglobata mensile",
+                "quote": "6s 1.455,81 1.491,89 1.523,45 1.555,01 1.573,04"
               },
               "transformation": "The paga base of level 6s from lug 2024: 1455.81.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:08:10Z",
-                "verification_status": "unverified",
-                "effective_from": "2024-07-01"
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2024-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-turismo-federalberghi-alberghi-minori-double-read"
               }
             }
           },
@@ -2084,27 +2156,29 @@
             "valid_until": "2026-05-01",
             "value": "1491.89",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-turismo-2024-07-05",
-                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (Federalberghi, Faita, Confcommercio, Filcams, Fisascat, UILTuCS), scansione firmata, copia Federalberghi",
+                  "document_id": "turismo-federalberghi-alberghi-minori-src-a84052fc",
+                  "title": "turismo-federalberghi-alberghi-minori: 2024-federalberghi.pdf",
                   "kind": "associazione",
                   "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
-                  "published_on": "2024-07-05",
                   "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
                 },
                 "page": "43",
-                "section": "Art. 152 c. 2 (as replaced on 5 July 2024), column 'giu 2025', row 6s",
-                "quote": "Per il personale degli alberghi a una e due stelle e dei campeggi con un numero di presenze - licenza non superiore a milleduecento, i valori di paga base nazionale conglobata mensile sono i seguenti: [...] 6s 1.455,81 1.491,89 1.523,45 1.555,01 1.573,04"
+                "section": "Art. 152(2), alberghi a una/due stelle e campeggi <= 1200 presenze, paga base nazionale conglobata mensile",
+                "quote": "6s 1.455,81 1.491,89 1.523,45 1.555,01 1.573,04"
               },
               "transformation": "The paga base of level 6s from giu 2025: 1491.89.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:08:10Z",
-                "verification_status": "unverified",
-                "effective_from": "2025-06-01"
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2025-06-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-turismo-federalberghi-alberghi-minori-double-read"
               }
             }
           },
@@ -2113,27 +2187,29 @@
             "valid_until": "2027-04-01",
             "value": "1523.45",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-turismo-2024-07-05",
-                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (Federalberghi, Faita, Confcommercio, Filcams, Fisascat, UILTuCS), scansione firmata, copia Federalberghi",
+                  "document_id": "turismo-federalberghi-alberghi-minori-src-a84052fc",
+                  "title": "turismo-federalberghi-alberghi-minori: 2024-federalberghi.pdf",
                   "kind": "associazione",
                   "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
-                  "published_on": "2024-07-05",
                   "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
                 },
                 "page": "43",
-                "section": "Art. 152 c. 2 (as replaced on 5 July 2024), column 'mag 2026', row 6s",
-                "quote": "Per il personale degli alberghi a una e due stelle e dei campeggi con un numero di presenze - licenza non superiore a milleduecento, i valori di paga base nazionale conglobata mensile sono i seguenti: [...] 6s 1.455,81 1.491,89 1.523,45 1.555,01 1.573,04"
+                "section": "Art. 152(2), alberghi a una/due stelle e campeggi <= 1200 presenze, paga base nazionale conglobata mensile",
+                "quote": "6s 1.455,81 1.491,89 1.523,45 1.555,01 1.573,04"
               },
               "transformation": "The paga base of level 6s from mag 2026: 1523.45.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:08:10Z",
-                "verification_status": "unverified",
-                "effective_from": "2026-05-01"
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2026-05-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-turismo-federalberghi-alberghi-minori-double-read"
               }
             }
           },
@@ -2142,27 +2218,29 @@
             "valid_until": "2027-11-01",
             "value": "1555.01",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-turismo-2024-07-05",
-                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (Federalberghi, Faita, Confcommercio, Filcams, Fisascat, UILTuCS), scansione firmata, copia Federalberghi",
+                  "document_id": "turismo-federalberghi-alberghi-minori-src-a84052fc",
+                  "title": "turismo-federalberghi-alberghi-minori: 2024-federalberghi.pdf",
                   "kind": "associazione",
                   "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
-                  "published_on": "2024-07-05",
                   "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
                 },
                 "page": "43",
-                "section": "Art. 152 c. 2 (as replaced on 5 July 2024), column 'apr 2027', row 6s",
-                "quote": "Per il personale degli alberghi a una e due stelle e dei campeggi con un numero di presenze - licenza non superiore a milleduecento, i valori di paga base nazionale conglobata mensile sono i seguenti: [...] 6s 1.455,81 1.491,89 1.523,45 1.555,01 1.573,04"
+                "section": "Art. 152(2), alberghi a una/due stelle e campeggi <= 1200 presenze, paga base nazionale conglobata mensile",
+                "quote": "6s 1.455,81 1.491,89 1.523,45 1.555,01 1.573,04"
               },
               "transformation": "The paga base of level 6s from apr 2027: 1555.01.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:08:10Z",
-                "verification_status": "unverified",
-                "effective_from": "2027-04-01"
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2027-04-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-turismo-federalberghi-alberghi-minori-double-read"
               }
             }
           },
@@ -2171,27 +2249,29 @@
             "valid_until": null,
             "value": "1573.04",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-turismo-2024-07-05",
-                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (Federalberghi, Faita, Confcommercio, Filcams, Fisascat, UILTuCS), scansione firmata, copia Federalberghi",
+                  "document_id": "turismo-federalberghi-alberghi-minori-src-a84052fc",
+                  "title": "turismo-federalberghi-alberghi-minori: 2024-federalberghi.pdf",
                   "kind": "associazione",
                   "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
-                  "published_on": "2024-07-05",
                   "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
                 },
                 "page": "43",
-                "section": "Art. 152 c. 2 (as replaced on 5 July 2024), column 'nov 2027', row 6s",
-                "quote": "Per il personale degli alberghi a una e due stelle e dei campeggi con un numero di presenze - licenza non superiore a milleduecento, i valori di paga base nazionale conglobata mensile sono i seguenti: [...] 6s 1.455,81 1.491,89 1.523,45 1.555,01 1.573,04"
+                "section": "Art. 152(2), alberghi a una/due stelle e campeggi <= 1200 presenze, paga base nazionale conglobata mensile",
+                "quote": "6s 1.455,81 1.491,89 1.523,45 1.555,01 1.573,04"
               },
               "transformation": "The paga base of level 6s from nov 2027: 1573.04.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:08:10Z",
-                "verification_status": "unverified",
-                "effective_from": "2027-11-01"
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2027-11-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-turismo-federalberghi-alberghi-minori-double-read"
               }
             }
           }
@@ -2239,27 +2319,29 @@
             "valid_until": "2025-06-01",
             "value": "1435.10",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-turismo-2024-07-05",
-                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (Federalberghi, Faita, Confcommercio, Filcams, Fisascat, UILTuCS), scansione firmata, copia Federalberghi",
+                  "document_id": "turismo-federalberghi-alberghi-minori-src-a84052fc",
+                  "title": "turismo-federalberghi-alberghi-minori: 2024-federalberghi.pdf",
                   "kind": "associazione",
                   "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
-                  "published_on": "2024-07-05",
                   "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
                 },
                 "page": "43",
-                "section": "Art. 152 c. 2 (as replaced on 5 July 2024), column 'lug 2024', row 6",
-                "quote": "Per il personale degli alberghi a una e due stelle e dei campeggi con un numero di presenze - licenza non superiore a milleduecento, i valori di paga base nazionale conglobata mensile sono i seguenti: [...] 6 1.435,10 1.470,66 1.501,77 1.532,89 1.550,67"
+                "section": "Art. 152(2), alberghi a una/due stelle e campeggi <= 1200 presenze, paga base nazionale conglobata mensile",
+                "quote": "6 1.435,10 1.470,66 1.501,77 1.532,89 1.550,67"
               },
               "transformation": "The paga base of level 6 from lug 2024: 1435.10.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:08:10Z",
-                "verification_status": "unverified",
-                "effective_from": "2024-07-01"
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2024-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-turismo-federalberghi-alberghi-minori-double-read"
               }
             }
           },
@@ -2268,27 +2350,29 @@
             "valid_until": "2026-05-01",
             "value": "1470.66",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-turismo-2024-07-05",
-                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (Federalberghi, Faita, Confcommercio, Filcams, Fisascat, UILTuCS), scansione firmata, copia Federalberghi",
+                  "document_id": "turismo-federalberghi-alberghi-minori-src-a84052fc",
+                  "title": "turismo-federalberghi-alberghi-minori: 2024-federalberghi.pdf",
                   "kind": "associazione",
                   "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
-                  "published_on": "2024-07-05",
                   "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
                 },
                 "page": "43",
-                "section": "Art. 152 c. 2 (as replaced on 5 July 2024), column 'giu 2025', row 6",
-                "quote": "Per il personale degli alberghi a una e due stelle e dei campeggi con un numero di presenze - licenza non superiore a milleduecento, i valori di paga base nazionale conglobata mensile sono i seguenti: [...] 6 1.435,10 1.470,66 1.501,77 1.532,89 1.550,67"
+                "section": "Art. 152(2), alberghi a una/due stelle e campeggi <= 1200 presenze, paga base nazionale conglobata mensile",
+                "quote": "6 1.435,10 1.470,66 1.501,77 1.532,89 1.550,67"
               },
               "transformation": "The paga base of level 6 from giu 2025: 1470.66.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:08:10Z",
-                "verification_status": "unverified",
-                "effective_from": "2025-06-01"
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2025-06-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-turismo-federalberghi-alberghi-minori-double-read"
               }
             }
           },
@@ -2297,27 +2381,29 @@
             "valid_until": "2027-04-01",
             "value": "1501.77",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-turismo-2024-07-05",
-                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (Federalberghi, Faita, Confcommercio, Filcams, Fisascat, UILTuCS), scansione firmata, copia Federalberghi",
+                  "document_id": "turismo-federalberghi-alberghi-minori-src-a84052fc",
+                  "title": "turismo-federalberghi-alberghi-minori: 2024-federalberghi.pdf",
                   "kind": "associazione",
                   "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
-                  "published_on": "2024-07-05",
                   "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
                 },
                 "page": "43",
-                "section": "Art. 152 c. 2 (as replaced on 5 July 2024), column 'mag 2026', row 6",
-                "quote": "Per il personale degli alberghi a una e due stelle e dei campeggi con un numero di presenze - licenza non superiore a milleduecento, i valori di paga base nazionale conglobata mensile sono i seguenti: [...] 6 1.435,10 1.470,66 1.501,77 1.532,89 1.550,67"
+                "section": "Art. 152(2), alberghi a una/due stelle e campeggi <= 1200 presenze, paga base nazionale conglobata mensile",
+                "quote": "6 1.435,10 1.470,66 1.501,77 1.532,89 1.550,67"
               },
               "transformation": "The paga base of level 6 from mag 2026: 1501.77.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:08:10Z",
-                "verification_status": "unverified",
-                "effective_from": "2026-05-01"
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2026-05-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-turismo-federalberghi-alberghi-minori-double-read"
               }
             }
           },
@@ -2326,27 +2412,29 @@
             "valid_until": "2027-11-01",
             "value": "1532.89",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-turismo-2024-07-05",
-                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (Federalberghi, Faita, Confcommercio, Filcams, Fisascat, UILTuCS), scansione firmata, copia Federalberghi",
+                  "document_id": "turismo-federalberghi-alberghi-minori-src-a84052fc",
+                  "title": "turismo-federalberghi-alberghi-minori: 2024-federalberghi.pdf",
                   "kind": "associazione",
                   "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
-                  "published_on": "2024-07-05",
                   "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
                 },
                 "page": "43",
-                "section": "Art. 152 c. 2 (as replaced on 5 July 2024), column 'apr 2027', row 6",
-                "quote": "Per il personale degli alberghi a una e due stelle e dei campeggi con un numero di presenze - licenza non superiore a milleduecento, i valori di paga base nazionale conglobata mensile sono i seguenti: [...] 6 1.435,10 1.470,66 1.501,77 1.532,89 1.550,67"
+                "section": "Art. 152(2), alberghi a una/due stelle e campeggi <= 1200 presenze, paga base nazionale conglobata mensile",
+                "quote": "6 1.435,10 1.470,66 1.501,77 1.532,89 1.550,67"
               },
               "transformation": "The paga base of level 6 from apr 2027: 1532.89.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:08:10Z",
-                "verification_status": "unverified",
-                "effective_from": "2027-04-01"
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2027-04-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-turismo-federalberghi-alberghi-minori-double-read"
               }
             }
           },
@@ -2355,27 +2443,29 @@
             "valid_until": null,
             "value": "1550.67",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-turismo-2024-07-05",
-                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (Federalberghi, Faita, Confcommercio, Filcams, Fisascat, UILTuCS), scansione firmata, copia Federalberghi",
+                  "document_id": "turismo-federalberghi-alberghi-minori-src-a84052fc",
+                  "title": "turismo-federalberghi-alberghi-minori: 2024-federalberghi.pdf",
                   "kind": "associazione",
                   "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
-                  "published_on": "2024-07-05",
                   "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
                 },
                 "page": "43",
-                "section": "Art. 152 c. 2 (as replaced on 5 July 2024), column 'nov 2027', row 6",
-                "quote": "Per il personale degli alberghi a una e due stelle e dei campeggi con un numero di presenze - licenza non superiore a milleduecento, i valori di paga base nazionale conglobata mensile sono i seguenti: [...] 6 1.435,10 1.470,66 1.501,77 1.532,89 1.550,67"
+                "section": "Art. 152(2), alberghi a una/due stelle e campeggi <= 1200 presenze, paga base nazionale conglobata mensile",
+                "quote": "6 1.435,10 1.470,66 1.501,77 1.532,89 1.550,67"
               },
               "transformation": "The paga base of level 6 from nov 2027: 1550.67.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:08:10Z",
-                "verification_status": "unverified",
-                "effective_from": "2027-11-01"
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2027-11-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-turismo-federalberghi-alberghi-minori-double-read"
               }
             }
           }
@@ -2423,27 +2513,29 @@
             "valid_until": "2025-06-01",
             "value": "1344.96",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-turismo-2024-07-05",
-                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (Federalberghi, Faita, Confcommercio, Filcams, Fisascat, UILTuCS), scansione firmata, copia Federalberghi",
+                  "document_id": "turismo-federalberghi-alberghi-minori-src-a84052fc",
+                  "title": "turismo-federalberghi-alberghi-minori: 2024-federalberghi.pdf",
                   "kind": "associazione",
                   "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
-                  "published_on": "2024-07-05",
                   "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
                 },
                 "page": "43",
-                "section": "Art. 152 c. 2 (as replaced on 5 July 2024), column 'lug 2024', row 7",
-                "quote": "Per il personale degli alberghi a una e due stelle e dei campeggi con un numero di presenze - licenza non superiore a milleduecento, i valori di paga base nazionale conglobata mensile sono i seguenti: [...] 7 1.344,96 1.378,29 1.407,44 1.436,60 1.453,26"
+                "section": "Art. 152(2), alberghi a una/due stelle e campeggi <= 1200 presenze, paga base nazionale conglobata mensile",
+                "quote": "7 1.344,96 1.378,29 1.407,44 1.436,60 1.453,26"
               },
               "transformation": "The paga base of level 7 from lug 2024: 1344.96.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:08:10Z",
-                "verification_status": "unverified",
-                "effective_from": "2024-07-01"
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2024-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-turismo-federalberghi-alberghi-minori-double-read"
               }
             }
           },
@@ -2452,27 +2544,29 @@
             "valid_until": "2026-05-01",
             "value": "1378.29",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-turismo-2024-07-05",
-                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (Federalberghi, Faita, Confcommercio, Filcams, Fisascat, UILTuCS), scansione firmata, copia Federalberghi",
+                  "document_id": "turismo-federalberghi-alberghi-minori-src-a84052fc",
+                  "title": "turismo-federalberghi-alberghi-minori: 2024-federalberghi.pdf",
                   "kind": "associazione",
                   "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
-                  "published_on": "2024-07-05",
                   "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
                 },
                 "page": "43",
-                "section": "Art. 152 c. 2 (as replaced on 5 July 2024), column 'giu 2025', row 7",
-                "quote": "Per il personale degli alberghi a una e due stelle e dei campeggi con un numero di presenze - licenza non superiore a milleduecento, i valori di paga base nazionale conglobata mensile sono i seguenti: [...] 7 1.344,96 1.378,29 1.407,44 1.436,60 1.453,26"
+                "section": "Art. 152(2), alberghi a una/due stelle e campeggi <= 1200 presenze, paga base nazionale conglobata mensile",
+                "quote": "7 1.344,96 1.378,29 1.407,44 1.436,60 1.453,26"
               },
               "transformation": "The paga base of level 7 from giu 2025: 1378.29.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:08:10Z",
-                "verification_status": "unverified",
-                "effective_from": "2025-06-01"
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2025-06-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-turismo-federalberghi-alberghi-minori-double-read"
               }
             }
           },
@@ -2481,27 +2575,29 @@
             "valid_until": "2027-04-01",
             "value": "1407.44",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-turismo-2024-07-05",
-                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (Federalberghi, Faita, Confcommercio, Filcams, Fisascat, UILTuCS), scansione firmata, copia Federalberghi",
+                  "document_id": "turismo-federalberghi-alberghi-minori-src-a84052fc",
+                  "title": "turismo-federalberghi-alberghi-minori: 2024-federalberghi.pdf",
                   "kind": "associazione",
                   "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
-                  "published_on": "2024-07-05",
                   "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
                 },
                 "page": "43",
-                "section": "Art. 152 c. 2 (as replaced on 5 July 2024), column 'mag 2026', row 7",
-                "quote": "Per il personale degli alberghi a una e due stelle e dei campeggi con un numero di presenze - licenza non superiore a milleduecento, i valori di paga base nazionale conglobata mensile sono i seguenti: [...] 7 1.344,96 1.378,29 1.407,44 1.436,60 1.453,26"
+                "section": "Art. 152(2), alberghi a una/due stelle e campeggi <= 1200 presenze, paga base nazionale conglobata mensile",
+                "quote": "7 1.344,96 1.378,29 1.407,44 1.436,60 1.453,26"
               },
               "transformation": "The paga base of level 7 from mag 2026: 1407.44.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:08:10Z",
-                "verification_status": "unverified",
-                "effective_from": "2026-05-01"
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2026-05-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-turismo-federalberghi-alberghi-minori-double-read"
               }
             }
           },
@@ -2510,27 +2606,29 @@
             "valid_until": "2027-11-01",
             "value": "1436.60",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-turismo-2024-07-05",
-                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (Federalberghi, Faita, Confcommercio, Filcams, Fisascat, UILTuCS), scansione firmata, copia Federalberghi",
+                  "document_id": "turismo-federalberghi-alberghi-minori-src-a84052fc",
+                  "title": "turismo-federalberghi-alberghi-minori: 2024-federalberghi.pdf",
                   "kind": "associazione",
                   "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
-                  "published_on": "2024-07-05",
                   "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
                 },
                 "page": "43",
-                "section": "Art. 152 c. 2 (as replaced on 5 July 2024), column 'apr 2027', row 7",
-                "quote": "Per il personale degli alberghi a una e due stelle e dei campeggi con un numero di presenze - licenza non superiore a milleduecento, i valori di paga base nazionale conglobata mensile sono i seguenti: [...] 7 1.344,96 1.378,29 1.407,44 1.436,60 1.453,26"
+                "section": "Art. 152(2), alberghi a una/due stelle e campeggi <= 1200 presenze, paga base nazionale conglobata mensile",
+                "quote": "7 1.344,96 1.378,29 1.407,44 1.436,60 1.453,26"
               },
               "transformation": "The paga base of level 7 from apr 2027: 1436.60.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:08:10Z",
-                "verification_status": "unverified",
-                "effective_from": "2027-04-01"
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2027-04-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-turismo-federalberghi-alberghi-minori-double-read"
               }
             }
           },
@@ -2539,27 +2637,29 @@
             "valid_until": null,
             "value": "1453.26",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-turismo-2024-07-05",
-                  "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (Federalberghi, Faita, Confcommercio, Filcams, Fisascat, UILTuCS), scansione firmata, copia Federalberghi",
+                  "document_id": "turismo-federalberghi-alberghi-minori-src-a84052fc",
+                  "title": "turismo-federalberghi-alberghi-minori: 2024-federalberghi.pdf",
                   "kind": "associazione",
                   "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
-                  "published_on": "2024-07-05",
                   "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
                 },
                 "page": "43",
-                "section": "Art. 152 c. 2 (as replaced on 5 July 2024), column 'nov 2027', row 7",
-                "quote": "Per il personale degli alberghi a una e due stelle e dei campeggi con un numero di presenze - licenza non superiore a milleduecento, i valori di paga base nazionale conglobata mensile sono i seguenti: [...] 7 1.344,96 1.378,29 1.407,44 1.436,60 1.453,26"
+                "section": "Art. 152(2), alberghi a una/due stelle e campeggi <= 1200 presenze, paga base nazionale conglobata mensile",
+                "quote": "7 1.344,96 1.378,29 1.407,44 1.436,60 1.453,26"
               },
               "transformation": "The paga base of level 7 from nov 2027: 1453.26.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T22:08:10Z",
-                "verification_status": "unverified",
-                "effective_from": "2027-11-01"
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2027-11-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-turismo-federalberghi-alberghi-minori-double-read"
               }
             }
           }
@@ -2812,7 +2912,7 @@
     "effective_until": null,
     "source": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
     "verification_status": "unverified",
-    "source_hash": "6658f3d40ac706583c243f19a0ce7b19253b624f4916c764d3b1d3a3bdf78a3b",
+    "source_hash": "23d944c2439f09c77e487b98015e2610f7bf06f62074b30e5bba246ec73f82a3",
     "published_at": "2026-11-01",
     "source_type": "contracting_party"
   },
@@ -4042,6 +4142,28 @@
           "2 values found verbatim on the cited pages and marked verified; 50 left as they were (derived or not on a text page)."
         ],
         "independence": "same_process",
+        "checked": [
+          "levels.base_salary",
+          "levels.fixed_allowances"
+        ]
+      },
+      {
+        "id": "2026-11-07-gpt-turismo-federalberghi-alberghi-minori-double-read",
+        "date": "2026-11-07",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Monthly values on scanned pages, each read twice from the page image by two independent sessions of another model, the second without being told the expected value.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
+            "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
+          }
+        ],
+        "findings": [
+          "50 values read identically by both readings and equal to the file."
+        ],
+        "independence": "separate_model",
         "checked": [
           "levels.base_salary",
           "levels.fixed_allowances"
