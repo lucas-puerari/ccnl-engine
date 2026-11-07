@@ -135,6 +135,28 @@
         "findings": [
           "Titolo IV - Retribuzione ed altri istituti economici, Art. 7 - Tredicesima mensilità (p. 123): \"il lavoratore ha diritto a tanti dodicesimi dell'ammontare della 13° mensilità quanti sono i mesi di anzianità di servizio presso l'azienda. La frazione di mese superiore a 15 giorni va considerata a questi effetti come mese intero.\". Added: more_than 15 (the file applied the engine default, at least 15 days)."
         ]
+      },
+      {
+        "id": "2026-11-07-ai-metalmeccanica-cooperative-tables",
+        "date": "2026-11-07",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The monthly values of the levels against the primary tables (text layer).",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.fiom-cgil.it/attachments/article/13099/verbale-di-incontro-23-giugno-2026-ipca-2025-cooperative-metalmeccaniche.pdf",
+            "sha256": "6a971bac9737318d0de22909dbde81c66caf9efe6f1d113d273cade26885cd1a"
+          }
+        ],
+        "findings": [
+          "36 values found verbatim on the cited pages and marked verified; 0 left as they were (derived or not on a text page)."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels.base_salary",
+          "levels.fixed_allowances"
+        ]
       }
     ]
   },
@@ -345,21 +367,28 @@
             "valid_until": "2026-06-01",
             "value": "1754.06",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanica-cooperative",
-                  "title": "metalmeccanica-cooperative",
-                  "kind": "tabella_retributiva",
-                  "url": "https://geps.it/rinnovo-ccnl-metalmeccanica-cooperative-2025-2028-10377/"
+                  "document_id": "metalmeccanica-cooperative-tables-6a971bac",
+                  "title": "metalmeccanica-cooperative: tabelle retributive (verbale-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.fiom-cgil.it/attachments/article/13099/verbale-di-incontro-23-giugno-2026-ipca-2025-cooperative-metalmeccaniche.pdf",
+                  "sha256": "6a971bac9737318d0de22909dbde81c66caf9efe6f1d113d273cade26885cd1a"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Tabella minimi retributivi — Minimo contrattuale dal 01/06/2025–01/06/2028",
+                "quote": "D1              1.719,67               1.754,06              1.789,14              1.824,92              1.861,42"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-metalmeccanica-cooperative-tables"
               }
             }
           },
@@ -368,21 +397,28 @@
             "valid_until": "2027-06-01",
             "value": "1789.14",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanica-cooperative",
-                  "title": "metalmeccanica-cooperative",
-                  "kind": "tabella_retributiva",
-                  "url": "https://geps.it/rinnovo-ccnl-metalmeccanica-cooperative-2025-2028-10377/"
+                  "document_id": "metalmeccanica-cooperative-tables-6a971bac",
+                  "title": "metalmeccanica-cooperative: tabelle retributive (verbale-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.fiom-cgil.it/attachments/article/13099/verbale-di-incontro-23-giugno-2026-ipca-2025-cooperative-metalmeccaniche.pdf",
+                  "sha256": "6a971bac9737318d0de22909dbde81c66caf9efe6f1d113d273cade26885cd1a"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Tabella minimi retributivi — Minimo contrattuale dal 01/06/2025–01/06/2028",
+                "quote": "D1              1.719,67               1.754,06              1.789,14              1.824,92              1.861,42"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2026-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-metalmeccanica-cooperative-tables"
               }
             }
           },
@@ -391,21 +427,28 @@
             "valid_until": "2028-06-01",
             "value": "1824.92",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanica-cooperative",
-                  "title": "metalmeccanica-cooperative",
-                  "kind": "tabella_retributiva",
-                  "url": "https://geps.it/rinnovo-ccnl-metalmeccanica-cooperative-2025-2028-10377/"
+                  "document_id": "metalmeccanica-cooperative-tables-6a971bac",
+                  "title": "metalmeccanica-cooperative: tabelle retributive (verbale-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.fiom-cgil.it/attachments/article/13099/verbale-di-incontro-23-giugno-2026-ipca-2025-cooperative-metalmeccaniche.pdf",
+                  "sha256": "6a971bac9737318d0de22909dbde81c66caf9efe6f1d113d273cade26885cd1a"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Tabella minimi retributivi — Minimo contrattuale dal 01/06/2025–01/06/2028",
+                "quote": "D1              1.719,67               1.754,06              1.789,14              1.824,92              1.861,42"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2027-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-metalmeccanica-cooperative-tables"
               }
             }
           },
@@ -414,21 +457,28 @@
             "valid_until": null,
             "value": "1861.42",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanica-cooperative",
-                  "title": "metalmeccanica-cooperative",
-                  "kind": "tabella_retributiva",
-                  "url": "https://geps.it/rinnovo-ccnl-metalmeccanica-cooperative-2025-2028-10377/"
+                  "document_id": "metalmeccanica-cooperative-tables-6a971bac",
+                  "title": "metalmeccanica-cooperative: tabelle retributive (verbale-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.fiom-cgil.it/attachments/article/13099/verbale-di-incontro-23-giugno-2026-ipca-2025-cooperative-metalmeccaniche.pdf",
+                  "sha256": "6a971bac9737318d0de22909dbde81c66caf9efe6f1d113d273cade26885cd1a"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Tabella minimi retributivi — Minimo contrattuale dal 01/06/2025–01/06/2028",
+                "quote": "D1              1.719,67               1.754,06              1.789,14              1.824,92              1.861,42"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2028-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-metalmeccanica-cooperative-tables"
               }
             }
           }
@@ -465,21 +515,28 @@
             "valid_until": "2026-06-01",
             "value": "1945.13",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanica-cooperative",
-                  "title": "metalmeccanica-cooperative",
-                  "kind": "tabella_retributiva",
-                  "url": "https://geps.it/rinnovo-ccnl-metalmeccanica-cooperative-2025-2028-10377/"
+                  "document_id": "metalmeccanica-cooperative-tables-6a971bac",
+                  "title": "metalmeccanica-cooperative: tabelle retributive (verbale-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.fiom-cgil.it/attachments/article/13099/verbale-di-incontro-23-giugno-2026-ipca-2025-cooperative-metalmeccaniche.pdf",
+                  "sha256": "6a971bac9737318d0de22909dbde81c66caf9efe6f1d113d273cade26885cd1a"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Tabella minimi retributivi — Minimo contrattuale dal 01/06/2025–01/06/2028",
+                "quote": "D2              1.906,99               1.945,13              1.984,03              2.023,71              2.064,18"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-metalmeccanica-cooperative-tables"
               }
             }
           },
@@ -488,21 +545,28 @@
             "valid_until": "2027-06-01",
             "value": "1984.03",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanica-cooperative",
-                  "title": "metalmeccanica-cooperative",
-                  "kind": "tabella_retributiva",
-                  "url": "https://geps.it/rinnovo-ccnl-metalmeccanica-cooperative-2025-2028-10377/"
+                  "document_id": "metalmeccanica-cooperative-tables-6a971bac",
+                  "title": "metalmeccanica-cooperative: tabelle retributive (verbale-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.fiom-cgil.it/attachments/article/13099/verbale-di-incontro-23-giugno-2026-ipca-2025-cooperative-metalmeccaniche.pdf",
+                  "sha256": "6a971bac9737318d0de22909dbde81c66caf9efe6f1d113d273cade26885cd1a"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Tabella minimi retributivi — Minimo contrattuale dal 01/06/2025–01/06/2028",
+                "quote": "D2              1.906,99               1.945,13              1.984,03              2.023,71              2.064,18"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2026-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-metalmeccanica-cooperative-tables"
               }
             }
           },
@@ -511,21 +575,28 @@
             "valid_until": "2028-06-01",
             "value": "2023.71",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanica-cooperative",
-                  "title": "metalmeccanica-cooperative",
-                  "kind": "tabella_retributiva",
-                  "url": "https://geps.it/rinnovo-ccnl-metalmeccanica-cooperative-2025-2028-10377/"
+                  "document_id": "metalmeccanica-cooperative-tables-6a971bac",
+                  "title": "metalmeccanica-cooperative: tabelle retributive (verbale-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.fiom-cgil.it/attachments/article/13099/verbale-di-incontro-23-giugno-2026-ipca-2025-cooperative-metalmeccaniche.pdf",
+                  "sha256": "6a971bac9737318d0de22909dbde81c66caf9efe6f1d113d273cade26885cd1a"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Tabella minimi retributivi — Minimo contrattuale dal 01/06/2025–01/06/2028",
+                "quote": "D2              1.906,99               1.945,13              1.984,03              2.023,71              2.064,18"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2027-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-metalmeccanica-cooperative-tables"
               }
             }
           },
@@ -534,21 +605,28 @@
             "valid_until": null,
             "value": "2064.18",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanica-cooperative",
-                  "title": "metalmeccanica-cooperative",
-                  "kind": "tabella_retributiva",
-                  "url": "https://geps.it/rinnovo-ccnl-metalmeccanica-cooperative-2025-2028-10377/"
+                  "document_id": "metalmeccanica-cooperative-tables-6a971bac",
+                  "title": "metalmeccanica-cooperative: tabelle retributive (verbale-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.fiom-cgil.it/attachments/article/13099/verbale-di-incontro-23-giugno-2026-ipca-2025-cooperative-metalmeccaniche.pdf",
+                  "sha256": "6a971bac9737318d0de22909dbde81c66caf9efe6f1d113d273cade26885cd1a"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Tabella minimi retributivi — Minimo contrattuale dal 01/06/2025–01/06/2028",
+                "quote": "D2              1.906,99               1.945,13              1.984,03              2.023,71              2.064,18"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2028-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-metalmeccanica-cooperative-tables"
               }
             }
           }
@@ -585,21 +663,28 @@
             "valid_until": "2026-06-01",
             "value": "1987.14",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanica-cooperative",
-                  "title": "metalmeccanica-cooperative",
-                  "kind": "tabella_retributiva",
-                  "url": "https://geps.it/rinnovo-ccnl-metalmeccanica-cooperative-2025-2028-10377/"
+                  "document_id": "metalmeccanica-cooperative-tables-6a971bac",
+                  "title": "metalmeccanica-cooperative: tabelle retributive (verbale-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.fiom-cgil.it/attachments/article/13099/verbale-di-incontro-23-giugno-2026-ipca-2025-cooperative-metalmeccaniche.pdf",
+                  "sha256": "6a971bac9737318d0de22909dbde81c66caf9efe6f1d113d273cade26885cd1a"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Tabella minimi retributivi — Minimo contrattuale dal 01/06/2025–01/06/2028",
+                "quote": "C1              1.948,18               1.987,14              2.026,88              2.067,42              2.108,77"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-metalmeccanica-cooperative-tables"
               }
             }
           },
@@ -608,21 +693,28 @@
             "valid_until": "2027-06-01",
             "value": "2026.88",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanica-cooperative",
-                  "title": "metalmeccanica-cooperative",
-                  "kind": "tabella_retributiva",
-                  "url": "https://geps.it/rinnovo-ccnl-metalmeccanica-cooperative-2025-2028-10377/"
+                  "document_id": "metalmeccanica-cooperative-tables-6a971bac",
+                  "title": "metalmeccanica-cooperative: tabelle retributive (verbale-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.fiom-cgil.it/attachments/article/13099/verbale-di-incontro-23-giugno-2026-ipca-2025-cooperative-metalmeccaniche.pdf",
+                  "sha256": "6a971bac9737318d0de22909dbde81c66caf9efe6f1d113d273cade26885cd1a"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Tabella minimi retributivi — Minimo contrattuale dal 01/06/2025–01/06/2028",
+                "quote": "C1              1.948,18               1.987,14              2.026,88              2.067,42              2.108,77"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2026-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-metalmeccanica-cooperative-tables"
               }
             }
           },
@@ -631,21 +723,28 @@
             "valid_until": "2028-06-01",
             "value": "2067.42",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanica-cooperative",
-                  "title": "metalmeccanica-cooperative",
-                  "kind": "tabella_retributiva",
-                  "url": "https://geps.it/rinnovo-ccnl-metalmeccanica-cooperative-2025-2028-10377/"
+                  "document_id": "metalmeccanica-cooperative-tables-6a971bac",
+                  "title": "metalmeccanica-cooperative: tabelle retributive (verbale-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.fiom-cgil.it/attachments/article/13099/verbale-di-incontro-23-giugno-2026-ipca-2025-cooperative-metalmeccaniche.pdf",
+                  "sha256": "6a971bac9737318d0de22909dbde81c66caf9efe6f1d113d273cade26885cd1a"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Tabella minimi retributivi — Minimo contrattuale dal 01/06/2025–01/06/2028",
+                "quote": "C1              1.948,18               1.987,14              2.026,88              2.067,42              2.108,77"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2027-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-metalmeccanica-cooperative-tables"
               }
             }
           },
@@ -654,21 +753,28 @@
             "valid_until": null,
             "value": "2108.77",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanica-cooperative",
-                  "title": "metalmeccanica-cooperative",
-                  "kind": "tabella_retributiva",
-                  "url": "https://geps.it/rinnovo-ccnl-metalmeccanica-cooperative-2025-2028-10377/"
+                  "document_id": "metalmeccanica-cooperative-tables-6a971bac",
+                  "title": "metalmeccanica-cooperative: tabelle retributive (verbale-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.fiom-cgil.it/attachments/article/13099/verbale-di-incontro-23-giugno-2026-ipca-2025-cooperative-metalmeccaniche.pdf",
+                  "sha256": "6a971bac9737318d0de22909dbde81c66caf9efe6f1d113d273cade26885cd1a"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Tabella minimi retributivi — Minimo contrattuale dal 01/06/2025–01/06/2028",
+                "quote": "C1              1.948,18               1.987,14              2.026,88              2.067,42              2.108,77"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2028-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-metalmeccanica-cooperative-tables"
               }
             }
           }
@@ -705,21 +811,28 @@
             "valid_until": "2026-06-01",
             "value": "2029.17",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanica-cooperative",
-                  "title": "metalmeccanica-cooperative",
-                  "kind": "tabella_retributiva",
-                  "url": "https://geps.it/rinnovo-ccnl-metalmeccanica-cooperative-2025-2028-10377/"
+                  "document_id": "metalmeccanica-cooperative-tables-6a971bac",
+                  "title": "metalmeccanica-cooperative: tabelle retributive (verbale-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.fiom-cgil.it/attachments/article/13099/verbale-di-incontro-23-giugno-2026-ipca-2025-cooperative-metalmeccaniche.pdf",
+                  "sha256": "6a971bac9737318d0de22909dbde81c66caf9efe6f1d113d273cade26885cd1a"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Tabella minimi retributivi — Minimo contrattuale dal 01/06/2025–01/06/2028",
+                "quote": "C2              1.989,38               2.029,17              2.069,75              2.111,14              2.153,36"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-metalmeccanica-cooperative-tables"
               }
             }
           },
@@ -728,21 +841,28 @@
             "valid_until": "2027-06-01",
             "value": "2069.75",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanica-cooperative",
-                  "title": "metalmeccanica-cooperative",
-                  "kind": "tabella_retributiva",
-                  "url": "https://geps.it/rinnovo-ccnl-metalmeccanica-cooperative-2025-2028-10377/"
+                  "document_id": "metalmeccanica-cooperative-tables-6a971bac",
+                  "title": "metalmeccanica-cooperative: tabelle retributive (verbale-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.fiom-cgil.it/attachments/article/13099/verbale-di-incontro-23-giugno-2026-ipca-2025-cooperative-metalmeccaniche.pdf",
+                  "sha256": "6a971bac9737318d0de22909dbde81c66caf9efe6f1d113d273cade26885cd1a"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Tabella minimi retributivi — Minimo contrattuale dal 01/06/2025–01/06/2028",
+                "quote": "C2              1.989,38               2.029,17              2.069,75              2.111,14              2.153,36"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2026-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-metalmeccanica-cooperative-tables"
               }
             }
           },
@@ -751,21 +871,28 @@
             "valid_until": "2028-06-01",
             "value": "2111.14",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanica-cooperative",
-                  "title": "metalmeccanica-cooperative",
-                  "kind": "tabella_retributiva",
-                  "url": "https://geps.it/rinnovo-ccnl-metalmeccanica-cooperative-2025-2028-10377/"
+                  "document_id": "metalmeccanica-cooperative-tables-6a971bac",
+                  "title": "metalmeccanica-cooperative: tabelle retributive (verbale-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.fiom-cgil.it/attachments/article/13099/verbale-di-incontro-23-giugno-2026-ipca-2025-cooperative-metalmeccaniche.pdf",
+                  "sha256": "6a971bac9737318d0de22909dbde81c66caf9efe6f1d113d273cade26885cd1a"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Tabella minimi retributivi — Minimo contrattuale dal 01/06/2025–01/06/2028",
+                "quote": "C2              1.989,38               2.029,17              2.069,75              2.111,14              2.153,36"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2027-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-metalmeccanica-cooperative-tables"
               }
             }
           },
@@ -774,21 +901,28 @@
             "valid_until": null,
             "value": "2153.36",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanica-cooperative",
-                  "title": "metalmeccanica-cooperative",
-                  "kind": "tabella_retributiva",
-                  "url": "https://geps.it/rinnovo-ccnl-metalmeccanica-cooperative-2025-2028-10377/"
+                  "document_id": "metalmeccanica-cooperative-tables-6a971bac",
+                  "title": "metalmeccanica-cooperative: tabelle retributive (verbale-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.fiom-cgil.it/attachments/article/13099/verbale-di-incontro-23-giugno-2026-ipca-2025-cooperative-metalmeccaniche.pdf",
+                  "sha256": "6a971bac9737318d0de22909dbde81c66caf9efe6f1d113d273cade26885cd1a"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Tabella minimi retributivi — Minimo contrattuale dal 01/06/2025–01/06/2028",
+                "quote": "C2              1.989,38               2.029,17              2.069,75              2.111,14              2.153,36"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2028-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-metalmeccanica-cooperative-tables"
               }
             }
           }
@@ -825,21 +959,28 @@
             "valid_until": "2026-06-01",
             "value": "2173.17",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanica-cooperative",
-                  "title": "metalmeccanica-cooperative",
-                  "kind": "tabella_retributiva",
-                  "url": "https://geps.it/rinnovo-ccnl-metalmeccanica-cooperative-2025-2028-10377/"
+                  "document_id": "metalmeccanica-cooperative-tables-6a971bac",
+                  "title": "metalmeccanica-cooperative: tabelle retributive (verbale-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.fiom-cgil.it/attachments/article/13099/verbale-di-incontro-23-giugno-2026-ipca-2025-cooperative-metalmeccaniche.pdf",
+                  "sha256": "6a971bac9737318d0de22909dbde81c66caf9efe6f1d113d273cade26885cd1a"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Tabella minimi retributivi — Minimo contrattuale dal 01/06/2025–01/06/2028",
+                "quote": "C3              2.130,56               2.173,17              2.216,63              2.260,96              2.306,18"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-metalmeccanica-cooperative-tables"
               }
             }
           },
@@ -848,21 +989,28 @@
             "valid_until": "2027-06-01",
             "value": "2216.63",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanica-cooperative",
-                  "title": "metalmeccanica-cooperative",
-                  "kind": "tabella_retributiva",
-                  "url": "https://geps.it/rinnovo-ccnl-metalmeccanica-cooperative-2025-2028-10377/"
+                  "document_id": "metalmeccanica-cooperative-tables-6a971bac",
+                  "title": "metalmeccanica-cooperative: tabelle retributive (verbale-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.fiom-cgil.it/attachments/article/13099/verbale-di-incontro-23-giugno-2026-ipca-2025-cooperative-metalmeccaniche.pdf",
+                  "sha256": "6a971bac9737318d0de22909dbde81c66caf9efe6f1d113d273cade26885cd1a"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Tabella minimi retributivi — Minimo contrattuale dal 01/06/2025–01/06/2028",
+                "quote": "C3              2.130,56               2.173,17              2.216,63              2.260,96              2.306,18"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2026-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-metalmeccanica-cooperative-tables"
               }
             }
           },
@@ -871,21 +1019,28 @@
             "valid_until": "2028-06-01",
             "value": "2260.96",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanica-cooperative",
-                  "title": "metalmeccanica-cooperative",
-                  "kind": "tabella_retributiva",
-                  "url": "https://geps.it/rinnovo-ccnl-metalmeccanica-cooperative-2025-2028-10377/"
+                  "document_id": "metalmeccanica-cooperative-tables-6a971bac",
+                  "title": "metalmeccanica-cooperative: tabelle retributive (verbale-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.fiom-cgil.it/attachments/article/13099/verbale-di-incontro-23-giugno-2026-ipca-2025-cooperative-metalmeccaniche.pdf",
+                  "sha256": "6a971bac9737318d0de22909dbde81c66caf9efe6f1d113d273cade26885cd1a"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Tabella minimi retributivi — Minimo contrattuale dal 01/06/2025–01/06/2028",
+                "quote": "C3              2.130,56               2.173,17              2.216,63              2.260,96              2.306,18"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2027-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-metalmeccanica-cooperative-tables"
               }
             }
           },
@@ -894,21 +1049,28 @@
             "valid_until": null,
             "value": "2306.18",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanica-cooperative",
-                  "title": "metalmeccanica-cooperative",
-                  "kind": "tabella_retributiva",
-                  "url": "https://geps.it/rinnovo-ccnl-metalmeccanica-cooperative-2025-2028-10377/"
+                  "document_id": "metalmeccanica-cooperative-tables-6a971bac",
+                  "title": "metalmeccanica-cooperative: tabelle retributive (verbale-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.fiom-cgil.it/attachments/article/13099/verbale-di-incontro-23-giugno-2026-ipca-2025-cooperative-metalmeccaniche.pdf",
+                  "sha256": "6a971bac9737318d0de22909dbde81c66caf9efe6f1d113d273cade26885cd1a"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Tabella minimi retributivi — Minimo contrattuale dal 01/06/2025–01/06/2028",
+                "quote": "C3              2.130,56               2.173,17              2.216,63              2.260,96              2.306,18"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2028-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-metalmeccanica-cooperative-tables"
               }
             }
           }
@@ -945,21 +1107,28 @@
             "valid_until": "2026-06-01",
             "value": "2329.32",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanica-cooperative",
-                  "title": "metalmeccanica-cooperative",
-                  "kind": "tabella_retributiva",
-                  "url": "https://geps.it/rinnovo-ccnl-metalmeccanica-cooperative-2025-2028-10377/"
+                  "document_id": "metalmeccanica-cooperative-tables-6a971bac",
+                  "title": "metalmeccanica-cooperative: tabelle retributive (verbale-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.fiom-cgil.it/attachments/article/13099/verbale-di-incontro-23-giugno-2026-ipca-2025-cooperative-metalmeccaniche.pdf",
+                  "sha256": "6a971bac9737318d0de22909dbde81c66caf9efe6f1d113d273cade26885cd1a"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Tabella minimi retributivi — Minimo contrattuale dal 01/06/2025–01/06/2028",
+                "quote": "B1              2.283,65               2.329,32              2.375,91              2.423,43              2.471,90"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-metalmeccanica-cooperative-tables"
               }
             }
           },
@@ -968,21 +1137,28 @@
             "valid_until": "2027-06-01",
             "value": "2375.91",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanica-cooperative",
-                  "title": "metalmeccanica-cooperative",
-                  "kind": "tabella_retributiva",
-                  "url": "https://geps.it/rinnovo-ccnl-metalmeccanica-cooperative-2025-2028-10377/"
+                  "document_id": "metalmeccanica-cooperative-tables-6a971bac",
+                  "title": "metalmeccanica-cooperative: tabelle retributive (verbale-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.fiom-cgil.it/attachments/article/13099/verbale-di-incontro-23-giugno-2026-ipca-2025-cooperative-metalmeccaniche.pdf",
+                  "sha256": "6a971bac9737318d0de22909dbde81c66caf9efe6f1d113d273cade26885cd1a"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Tabella minimi retributivi — Minimo contrattuale dal 01/06/2025–01/06/2028",
+                "quote": "B1              2.283,65               2.329,32              2.375,91              2.423,43              2.471,90"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2026-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-metalmeccanica-cooperative-tables"
               }
             }
           },
@@ -991,21 +1167,28 @@
             "valid_until": "2028-06-01",
             "value": "2423.43",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanica-cooperative",
-                  "title": "metalmeccanica-cooperative",
-                  "kind": "tabella_retributiva",
-                  "url": "https://geps.it/rinnovo-ccnl-metalmeccanica-cooperative-2025-2028-10377/"
+                  "document_id": "metalmeccanica-cooperative-tables-6a971bac",
+                  "title": "metalmeccanica-cooperative: tabelle retributive (verbale-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.fiom-cgil.it/attachments/article/13099/verbale-di-incontro-23-giugno-2026-ipca-2025-cooperative-metalmeccaniche.pdf",
+                  "sha256": "6a971bac9737318d0de22909dbde81c66caf9efe6f1d113d273cade26885cd1a"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Tabella minimi retributivi — Minimo contrattuale dal 01/06/2025–01/06/2028",
+                "quote": "B1              2.283,65               2.329,32              2.375,91              2.423,43              2.471,90"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2027-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-metalmeccanica-cooperative-tables"
               }
             }
           },
@@ -1014,21 +1197,28 @@
             "valid_until": null,
             "value": "2471.90",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanica-cooperative",
-                  "title": "metalmeccanica-cooperative",
-                  "kind": "tabella_retributiva",
-                  "url": "https://geps.it/rinnovo-ccnl-metalmeccanica-cooperative-2025-2028-10377/"
+                  "document_id": "metalmeccanica-cooperative-tables-6a971bac",
+                  "title": "metalmeccanica-cooperative: tabelle retributive (verbale-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.fiom-cgil.it/attachments/article/13099/verbale-di-incontro-23-giugno-2026-ipca-2025-cooperative-metalmeccaniche.pdf",
+                  "sha256": "6a971bac9737318d0de22909dbde81c66caf9efe6f1d113d273cade26885cd1a"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Tabella minimi retributivi — Minimo contrattuale dal 01/06/2025–01/06/2028",
+                "quote": "B1              2.283,65               2.329,32              2.375,91              2.423,43              2.471,90"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2028-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-metalmeccanica-cooperative-tables"
               }
             }
           }
@@ -1065,21 +1255,28 @@
             "valid_until": "2026-06-01",
             "value": "2498.99",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanica-cooperative",
-                  "title": "metalmeccanica-cooperative",
-                  "kind": "tabella_retributiva",
-                  "url": "https://geps.it/rinnovo-ccnl-metalmeccanica-cooperative-2025-2028-10377/"
+                  "document_id": "metalmeccanica-cooperative-tables-6a971bac",
+                  "title": "metalmeccanica-cooperative: tabelle retributive (verbale-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.fiom-cgil.it/attachments/article/13099/verbale-di-incontro-23-giugno-2026-ipca-2025-cooperative-metalmeccaniche.pdf",
+                  "sha256": "6a971bac9737318d0de22909dbde81c66caf9efe6f1d113d273cade26885cd1a"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Tabella minimi retributivi — Minimo contrattuale dal 01/06/2025–01/06/2028",
+                "quote": "B2              2.449,99               2.498,99              2.548,97              2.599,95              2.651,95"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-metalmeccanica-cooperative-tables"
               }
             }
           },
@@ -1088,21 +1285,28 @@
             "valid_until": "2027-06-01",
             "value": "2548.97",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanica-cooperative",
-                  "title": "metalmeccanica-cooperative",
-                  "kind": "tabella_retributiva",
-                  "url": "https://geps.it/rinnovo-ccnl-metalmeccanica-cooperative-2025-2028-10377/"
+                  "document_id": "metalmeccanica-cooperative-tables-6a971bac",
+                  "title": "metalmeccanica-cooperative: tabelle retributive (verbale-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.fiom-cgil.it/attachments/article/13099/verbale-di-incontro-23-giugno-2026-ipca-2025-cooperative-metalmeccaniche.pdf",
+                  "sha256": "6a971bac9737318d0de22909dbde81c66caf9efe6f1d113d273cade26885cd1a"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Tabella minimi retributivi — Minimo contrattuale dal 01/06/2025–01/06/2028",
+                "quote": "B2              2.449,99               2.498,99              2.548,97              2.599,95              2.651,95"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2026-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-metalmeccanica-cooperative-tables"
               }
             }
           },
@@ -1111,21 +1315,28 @@
             "valid_until": "2028-06-01",
             "value": "2599.95",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanica-cooperative",
-                  "title": "metalmeccanica-cooperative",
-                  "kind": "tabella_retributiva",
-                  "url": "https://geps.it/rinnovo-ccnl-metalmeccanica-cooperative-2025-2028-10377/"
+                  "document_id": "metalmeccanica-cooperative-tables-6a971bac",
+                  "title": "metalmeccanica-cooperative: tabelle retributive (verbale-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.fiom-cgil.it/attachments/article/13099/verbale-di-incontro-23-giugno-2026-ipca-2025-cooperative-metalmeccaniche.pdf",
+                  "sha256": "6a971bac9737318d0de22909dbde81c66caf9efe6f1d113d273cade26885cd1a"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Tabella minimi retributivi — Minimo contrattuale dal 01/06/2025–01/06/2028",
+                "quote": "B2              2.449,99               2.498,99              2.548,97              2.599,95              2.651,95"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2027-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-metalmeccanica-cooperative-tables"
               }
             }
           },
@@ -1134,21 +1345,28 @@
             "valid_until": null,
             "value": "2651.95",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanica-cooperative",
-                  "title": "metalmeccanica-cooperative",
-                  "kind": "tabella_retributiva",
-                  "url": "https://geps.it/rinnovo-ccnl-metalmeccanica-cooperative-2025-2028-10377/"
+                  "document_id": "metalmeccanica-cooperative-tables-6a971bac",
+                  "title": "metalmeccanica-cooperative: tabelle retributive (verbale-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.fiom-cgil.it/attachments/article/13099/verbale-di-incontro-23-giugno-2026-ipca-2025-cooperative-metalmeccaniche.pdf",
+                  "sha256": "6a971bac9737318d0de22909dbde81c66caf9efe6f1d113d273cade26885cd1a"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Tabella minimi retributivi — Minimo contrattuale dal 01/06/2025–01/06/2028",
+                "quote": "B2              2.449,99               2.498,99              2.548,97              2.599,95              2.651,95"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2028-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-metalmeccanica-cooperative-tables"
               }
             }
           }
@@ -1185,21 +1403,28 @@
             "valid_until": "2026-06-01",
             "value": "2717.15",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanica-cooperative",
-                  "title": "metalmeccanica-cooperative",
-                  "kind": "tabella_retributiva",
-                  "url": "https://geps.it/rinnovo-ccnl-metalmeccanica-cooperative-2025-2028-10377/"
+                  "document_id": "metalmeccanica-cooperative-tables-6a971bac",
+                  "title": "metalmeccanica-cooperative: tabelle retributive (verbale-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.fiom-cgil.it/attachments/article/13099/verbale-di-incontro-23-giugno-2026-ipca-2025-cooperative-metalmeccaniche.pdf",
+                  "sha256": "6a971bac9737318d0de22909dbde81c66caf9efe6f1d113d273cade26885cd1a"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Tabella minimi retributivi — Minimo contrattuale dal 01/06/2025–01/06/2028",
+                "quote": "B3              2.663,87               2.717,15              2.771,49              2.826,92              2.883,46"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-metalmeccanica-cooperative-tables"
               }
             }
           },
@@ -1208,21 +1433,28 @@
             "valid_until": "2027-06-01",
             "value": "2771.49",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanica-cooperative",
-                  "title": "metalmeccanica-cooperative",
-                  "kind": "tabella_retributiva",
-                  "url": "https://geps.it/rinnovo-ccnl-metalmeccanica-cooperative-2025-2028-10377/"
+                  "document_id": "metalmeccanica-cooperative-tables-6a971bac",
+                  "title": "metalmeccanica-cooperative: tabelle retributive (verbale-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.fiom-cgil.it/attachments/article/13099/verbale-di-incontro-23-giugno-2026-ipca-2025-cooperative-metalmeccaniche.pdf",
+                  "sha256": "6a971bac9737318d0de22909dbde81c66caf9efe6f1d113d273cade26885cd1a"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Tabella minimi retributivi — Minimo contrattuale dal 01/06/2025–01/06/2028",
+                "quote": "B3              2.663,87               2.717,15              2.771,49              2.826,92              2.883,46"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2026-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-metalmeccanica-cooperative-tables"
               }
             }
           },
@@ -1231,21 +1463,28 @@
             "valid_until": "2028-06-01",
             "value": "2826.92",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanica-cooperative",
-                  "title": "metalmeccanica-cooperative",
-                  "kind": "tabella_retributiva",
-                  "url": "https://geps.it/rinnovo-ccnl-metalmeccanica-cooperative-2025-2028-10377/"
+                  "document_id": "metalmeccanica-cooperative-tables-6a971bac",
+                  "title": "metalmeccanica-cooperative: tabelle retributive (verbale-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.fiom-cgil.it/attachments/article/13099/verbale-di-incontro-23-giugno-2026-ipca-2025-cooperative-metalmeccaniche.pdf",
+                  "sha256": "6a971bac9737318d0de22909dbde81c66caf9efe6f1d113d273cade26885cd1a"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Tabella minimi retributivi — Minimo contrattuale dal 01/06/2025–01/06/2028",
+                "quote": "B3              2.663,87               2.717,15              2.771,49              2.826,92              2.883,46"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2027-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-metalmeccanica-cooperative-tables"
               }
             }
           },
@@ -1254,21 +1493,28 @@
             "valid_until": null,
             "value": "2883.46",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanica-cooperative",
-                  "title": "metalmeccanica-cooperative",
-                  "kind": "tabella_retributiva",
-                  "url": "https://geps.it/rinnovo-ccnl-metalmeccanica-cooperative-2025-2028-10377/"
+                  "document_id": "metalmeccanica-cooperative-tables-6a971bac",
+                  "title": "metalmeccanica-cooperative: tabelle retributive (verbale-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.fiom-cgil.it/attachments/article/13099/verbale-di-incontro-23-giugno-2026-ipca-2025-cooperative-metalmeccaniche.pdf",
+                  "sha256": "6a971bac9737318d0de22909dbde81c66caf9efe6f1d113d273cade26885cd1a"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Tabella minimi retributivi — Minimo contrattuale dal 01/06/2025–01/06/2028",
+                "quote": "B3              2.663,87               2.717,15              2.771,49              2.826,92              2.883,46"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2028-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-metalmeccanica-cooperative-tables"
               }
             }
           }
@@ -1337,21 +1583,28 @@
             "valid_until": "2026-06-01",
             "value": "2994.63",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanica-cooperative",
-                  "title": "metalmeccanica-cooperative",
-                  "kind": "tabella_retributiva",
-                  "url": "https://geps.it/rinnovo-ccnl-metalmeccanica-cooperative-2025-2028-10377/"
+                  "document_id": "metalmeccanica-cooperative-tables-6a971bac",
+                  "title": "metalmeccanica-cooperative: tabelle retributive (verbale-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.fiom-cgil.it/attachments/article/13099/verbale-di-incontro-23-giugno-2026-ipca-2025-cooperative-metalmeccaniche.pdf",
+                  "sha256": "6a971bac9737318d0de22909dbde81c66caf9efe6f1d113d273cade26885cd1a"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Tabella minimi retributivi — Minimo contrattuale dal 01/06/2025–01/06/2028",
+                "quote": "A1              2.935,91               2.994,63              3.054,52              3.115,61              3.177,92"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-metalmeccanica-cooperative-tables"
               }
             }
           },
@@ -1360,21 +1613,28 @@
             "valid_until": "2027-06-01",
             "value": "3054.52",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanica-cooperative",
-                  "title": "metalmeccanica-cooperative",
-                  "kind": "tabella_retributiva",
-                  "url": "https://geps.it/rinnovo-ccnl-metalmeccanica-cooperative-2025-2028-10377/"
+                  "document_id": "metalmeccanica-cooperative-tables-6a971bac",
+                  "title": "metalmeccanica-cooperative: tabelle retributive (verbale-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.fiom-cgil.it/attachments/article/13099/verbale-di-incontro-23-giugno-2026-ipca-2025-cooperative-metalmeccaniche.pdf",
+                  "sha256": "6a971bac9737318d0de22909dbde81c66caf9efe6f1d113d273cade26885cd1a"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Tabella minimi retributivi — Minimo contrattuale dal 01/06/2025–01/06/2028",
+                "quote": "A1              2.935,91               2.994,63              3.054,52              3.115,61              3.177,92"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2026-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-metalmeccanica-cooperative-tables"
               }
             }
           },
@@ -1383,21 +1643,28 @@
             "valid_until": "2028-06-01",
             "value": "3115.61",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanica-cooperative",
-                  "title": "metalmeccanica-cooperative",
-                  "kind": "tabella_retributiva",
-                  "url": "https://geps.it/rinnovo-ccnl-metalmeccanica-cooperative-2025-2028-10377/"
+                  "document_id": "metalmeccanica-cooperative-tables-6a971bac",
+                  "title": "metalmeccanica-cooperative: tabelle retributive (verbale-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.fiom-cgil.it/attachments/article/13099/verbale-di-incontro-23-giugno-2026-ipca-2025-cooperative-metalmeccaniche.pdf",
+                  "sha256": "6a971bac9737318d0de22909dbde81c66caf9efe6f1d113d273cade26885cd1a"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Tabella minimi retributivi — Minimo contrattuale dal 01/06/2025–01/06/2028",
+                "quote": "A1              2.935,91               2.994,63              3.054,52              3.115,61              3.177,92"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2027-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-metalmeccanica-cooperative-tables"
               }
             }
           },
@@ -1406,21 +1673,28 @@
             "valid_until": null,
             "value": "3177.92",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "metalmeccanica-cooperative",
-                  "title": "metalmeccanica-cooperative",
-                  "kind": "tabella_retributiva",
-                  "url": "https://geps.it/rinnovo-ccnl-metalmeccanica-cooperative-2025-2028-10377/"
+                  "document_id": "metalmeccanica-cooperative-tables-6a971bac",
+                  "title": "metalmeccanica-cooperative: tabelle retributive (verbale-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.fiom-cgil.it/attachments/article/13099/verbale-di-incontro-23-giugno-2026-ipca-2025-cooperative-metalmeccaniche.pdf",
+                  "sha256": "6a971bac9737318d0de22909dbde81c66caf9efe6f1d113d273cade26885cd1a"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "Tabella minimi retributivi — Minimo contrattuale dal 01/06/2025–01/06/2028",
+                "quote": "A1              2.935,91               2.994,63              3.054,52              3.115,61              3.177,92"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2028-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-metalmeccanica-cooperative-tables"
               }
             }
           }
@@ -1523,7 +1797,7 @@
     "effective_until": null,
     "source": "https://geps.it/rinnovo-ccnl-metalmeccanica-cooperative-2025-2028-10377/",
     "verification_status": "unverified",
-    "source_hash": "b379299732140b26a2e352cbfa49ad7362bad12ad228a06affb14cbbbda26f42",
+    "source_hash": "4dcf82057f169c42df38b4237cfe55fe03605d50b3395059b9b5d3050fb44f4d",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

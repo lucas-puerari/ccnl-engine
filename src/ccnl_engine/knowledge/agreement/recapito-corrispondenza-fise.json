@@ -219,21 +219,28 @@
             "valid_until": "2024-09-01",
             "value": "2050.59",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "recapito-corrispondenza-fise",
-                  "title": "recapito-corrispondenza-fise",
+                  "document_id": "recapito-corrispondenza-fise-src-785ee3c3",
+                  "title": "recapito-corrispondenza-fise: accordo-fise-2023-11-14-slp.pdf",
                   "kind": "associazione",
-                  "url": "https://www.redigo.info/2023/11/20/ccnl-recapito-corrispondenza-fise-nuove-tabelle-dal-rinnovo-di-novembre-2023/"
+                  "url": "https://slp-cisl.it/wp-content/uploads/2023/11/2023.11.14-verbale-di-accordo-Agenzie-di-recapito-private-FISE.pdf",
+                  "sha256": "785ee3c31d65ddd27413b5950f4267476204f9b4a823601b904e0a245b7c6b50"
                 },
-                "section": "Tabella retributiva"
+                "page": "14",
+                "section": "Nuova Retribuzione base",
+                "quote": "1 | 1.998,42 | 2.050,59 | 2.111,46 | 2.172,33 | 2.224,51"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2024-02-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-recapito-corrispondenza-fise-double-read"
               }
             }
           },
@@ -242,21 +249,28 @@
             "valid_until": "2025-07-01",
             "value": "2111.46",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "recapito-corrispondenza-fise",
-                  "title": "recapito-corrispondenza-fise",
+                  "document_id": "recapito-corrispondenza-fise-src-785ee3c3",
+                  "title": "recapito-corrispondenza-fise: accordo-fise-2023-11-14-slp.pdf",
                   "kind": "associazione",
-                  "url": "https://www.redigo.info/2023/11/20/ccnl-recapito-corrispondenza-fise-nuove-tabelle-dal-rinnovo-di-novembre-2023/"
+                  "url": "https://slp-cisl.it/wp-content/uploads/2023/11/2023.11.14-verbale-di-accordo-Agenzie-di-recapito-private-FISE.pdf",
+                  "sha256": "785ee3c31d65ddd27413b5950f4267476204f9b4a823601b904e0a245b7c6b50"
                 },
-                "section": "Tabella retributiva"
+                "page": "14",
+                "section": "Nuova Retribuzione base",
+                "quote": "1 | 1.998,42 | 2.050,59 | 2.111,46 | 2.172,33 | 2.224,51"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2024-09-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-recapito-corrispondenza-fise-double-read"
               }
             }
           },
@@ -265,21 +279,28 @@
             "valid_until": "2026-06-01",
             "value": "2172.33",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "recapito-corrispondenza-fise",
-                  "title": "recapito-corrispondenza-fise",
+                  "document_id": "recapito-corrispondenza-fise-src-785ee3c3",
+                  "title": "recapito-corrispondenza-fise: accordo-fise-2023-11-14-slp.pdf",
                   "kind": "associazione",
-                  "url": "https://www.redigo.info/2023/11/20/ccnl-recapito-corrispondenza-fise-nuove-tabelle-dal-rinnovo-di-novembre-2023/"
+                  "url": "https://slp-cisl.it/wp-content/uploads/2023/11/2023.11.14-verbale-di-accordo-Agenzie-di-recapito-private-FISE.pdf",
+                  "sha256": "785ee3c31d65ddd27413b5950f4267476204f9b4a823601b904e0a245b7c6b50"
                 },
-                "section": "Tabella retributiva"
+                "page": "14",
+                "section": "Nuova Retribuzione base",
+                "quote": "1 | 1.998,42 | 2.050,59 | 2.111,46 | 2.172,33 | 2.224,51"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-recapito-corrispondenza-fise-double-read"
               }
             }
           },
@@ -288,21 +309,28 @@
             "valid_until": null,
             "value": "2224.51",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "recapito-corrispondenza-fise",
-                  "title": "recapito-corrispondenza-fise",
+                  "document_id": "recapito-corrispondenza-fise-src-785ee3c3",
+                  "title": "recapito-corrispondenza-fise: accordo-fise-2023-11-14-slp.pdf",
                   "kind": "associazione",
-                  "url": "https://www.redigo.info/2023/11/20/ccnl-recapito-corrispondenza-fise-nuove-tabelle-dal-rinnovo-di-novembre-2023/"
+                  "url": "https://slp-cisl.it/wp-content/uploads/2023/11/2023.11.14-verbale-di-accordo-Agenzie-di-recapito-private-FISE.pdf",
+                  "sha256": "785ee3c31d65ddd27413b5950f4267476204f9b4a823601b904e0a245b7c6b50"
                 },
-                "section": "Tabella retributiva"
+                "page": "14",
+                "section": "Nuova Retribuzione base",
+                "quote": "1 | 1.998,42 | 2.050,59 | 2.111,46 | 2.172,33 | 2.224,51"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2026-06-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-recapito-corrispondenza-fise-double-read"
               }
             }
           }
@@ -371,21 +399,28 @@
             "valid_until": "2024-09-01",
             "value": "1854.59",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "recapito-corrispondenza-fise",
-                  "title": "recapito-corrispondenza-fise",
+                  "document_id": "recapito-corrispondenza-fise-src-785ee3c3",
+                  "title": "recapito-corrispondenza-fise: accordo-fise-2023-11-14-slp.pdf",
                   "kind": "associazione",
-                  "url": "https://www.redigo.info/2023/11/20/ccnl-recapito-corrispondenza-fise-nuove-tabelle-dal-rinnovo-di-novembre-2023/"
+                  "url": "https://slp-cisl.it/wp-content/uploads/2023/11/2023.11.14-verbale-di-accordo-Agenzie-di-recapito-private-FISE.pdf",
+                  "sha256": "785ee3c31d65ddd27413b5950f4267476204f9b4a823601b904e0a245b7c6b50"
                 },
-                "section": "Tabella retributiva"
+                "page": "14",
+                "section": "Nuova Retribuzione base",
+                "quote": "2 | 1.808,94 | 1.854,59 | 1.907,85 | 1.961,11 | 2.006,77"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2024-02-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-recapito-corrispondenza-fise-double-read"
               }
             }
           },
@@ -394,21 +429,28 @@
             "valid_until": "2025-07-01",
             "value": "1907.85",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "recapito-corrispondenza-fise",
-                  "title": "recapito-corrispondenza-fise",
+                  "document_id": "recapito-corrispondenza-fise-src-785ee3c3",
+                  "title": "recapito-corrispondenza-fise: accordo-fise-2023-11-14-slp.pdf",
                   "kind": "associazione",
-                  "url": "https://www.redigo.info/2023/11/20/ccnl-recapito-corrispondenza-fise-nuove-tabelle-dal-rinnovo-di-novembre-2023/"
+                  "url": "https://slp-cisl.it/wp-content/uploads/2023/11/2023.11.14-verbale-di-accordo-Agenzie-di-recapito-private-FISE.pdf",
+                  "sha256": "785ee3c31d65ddd27413b5950f4267476204f9b4a823601b904e0a245b7c6b50"
                 },
-                "section": "Tabella retributiva"
+                "page": "14",
+                "section": "Nuova Retribuzione base",
+                "quote": "2 | 1.808,94 | 1.854,59 | 1.907,85 | 1.961,11 | 2.006,77"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2024-09-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-recapito-corrispondenza-fise-double-read"
               }
             }
           },
@@ -417,21 +459,28 @@
             "valid_until": "2026-06-01",
             "value": "1961.11",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "recapito-corrispondenza-fise",
-                  "title": "recapito-corrispondenza-fise",
+                  "document_id": "recapito-corrispondenza-fise-src-785ee3c3",
+                  "title": "recapito-corrispondenza-fise: accordo-fise-2023-11-14-slp.pdf",
                   "kind": "associazione",
-                  "url": "https://www.redigo.info/2023/11/20/ccnl-recapito-corrispondenza-fise-nuove-tabelle-dal-rinnovo-di-novembre-2023/"
+                  "url": "https://slp-cisl.it/wp-content/uploads/2023/11/2023.11.14-verbale-di-accordo-Agenzie-di-recapito-private-FISE.pdf",
+                  "sha256": "785ee3c31d65ddd27413b5950f4267476204f9b4a823601b904e0a245b7c6b50"
                 },
-                "section": "Tabella retributiva"
+                "page": "14",
+                "section": "Nuova Retribuzione base",
+                "quote": "2 | 1.808,94 | 1.854,59 | 1.907,85 | 1.961,11 | 2.006,77"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-recapito-corrispondenza-fise-double-read"
               }
             }
           },
@@ -440,21 +489,28 @@
             "valid_until": null,
             "value": "2006.77",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "recapito-corrispondenza-fise",
-                  "title": "recapito-corrispondenza-fise",
+                  "document_id": "recapito-corrispondenza-fise-src-785ee3c3",
+                  "title": "recapito-corrispondenza-fise: accordo-fise-2023-11-14-slp.pdf",
                   "kind": "associazione",
-                  "url": "https://www.redigo.info/2023/11/20/ccnl-recapito-corrispondenza-fise-nuove-tabelle-dal-rinnovo-di-novembre-2023/"
+                  "url": "https://slp-cisl.it/wp-content/uploads/2023/11/2023.11.14-verbale-di-accordo-Agenzie-di-recapito-private-FISE.pdf",
+                  "sha256": "785ee3c31d65ddd27413b5950f4267476204f9b4a823601b904e0a245b7c6b50"
                 },
-                "section": "Tabella retributiva"
+                "page": "14",
+                "section": "Nuova Retribuzione base",
+                "quote": "2 | 1.808,94 | 1.854,59 | 1.907,85 | 1.961,11 | 2.006,77"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2026-06-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-recapito-corrispondenza-fise-double-read"
               }
             }
           }
@@ -523,21 +579,28 @@
             "valid_until": "2024-09-01",
             "value": "1660.86",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "recapito-corrispondenza-fise",
-                  "title": "recapito-corrispondenza-fise",
+                  "document_id": "recapito-corrispondenza-fise-src-785ee3c3",
+                  "title": "recapito-corrispondenza-fise: accordo-fise-2023-11-14-slp.pdf",
                   "kind": "associazione",
-                  "url": "https://www.redigo.info/2023/11/20/ccnl-recapito-corrispondenza-fise-nuove-tabelle-dal-rinnovo-di-novembre-2023/"
+                  "url": "https://slp-cisl.it/wp-content/uploads/2023/11/2023.11.14-verbale-di-accordo-Agenzie-di-recapito-private-FISE.pdf",
+                  "sha256": "785ee3c31d65ddd27413b5950f4267476204f9b4a823601b904e0a245b7c6b50"
                 },
-                "section": "Tabella retributiva"
+                "page": "14",
+                "section": "Nuova Retribuzione base",
+                "quote": "3-S | 1.621,73 | 1.660,86 | 1.706,51 | 1.752,16 | 1.791,30"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2024-02-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-recapito-corrispondenza-fise-double-read"
               }
             }
           },
@@ -546,21 +609,28 @@
             "valid_until": "2025-07-01",
             "value": "1706.51",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "recapito-corrispondenza-fise",
-                  "title": "recapito-corrispondenza-fise",
+                  "document_id": "recapito-corrispondenza-fise-src-785ee3c3",
+                  "title": "recapito-corrispondenza-fise: accordo-fise-2023-11-14-slp.pdf",
                   "kind": "associazione",
-                  "url": "https://www.redigo.info/2023/11/20/ccnl-recapito-corrispondenza-fise-nuove-tabelle-dal-rinnovo-di-novembre-2023/"
+                  "url": "https://slp-cisl.it/wp-content/uploads/2023/11/2023.11.14-verbale-di-accordo-Agenzie-di-recapito-private-FISE.pdf",
+                  "sha256": "785ee3c31d65ddd27413b5950f4267476204f9b4a823601b904e0a245b7c6b50"
                 },
-                "section": "Tabella retributiva"
+                "page": "14",
+                "section": "Nuova Retribuzione base",
+                "quote": "3-S | 1.621,73 | 1.660,86 | 1.706,51 | 1.752,16 | 1.791,30"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2024-09-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-recapito-corrispondenza-fise-double-read"
               }
             }
           },
@@ -569,21 +639,28 @@
             "valid_until": "2026-06-01",
             "value": "1752.16",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "recapito-corrispondenza-fise",
-                  "title": "recapito-corrispondenza-fise",
+                  "document_id": "recapito-corrispondenza-fise-src-785ee3c3",
+                  "title": "recapito-corrispondenza-fise: accordo-fise-2023-11-14-slp.pdf",
                   "kind": "associazione",
-                  "url": "https://www.redigo.info/2023/11/20/ccnl-recapito-corrispondenza-fise-nuove-tabelle-dal-rinnovo-di-novembre-2023/"
+                  "url": "https://slp-cisl.it/wp-content/uploads/2023/11/2023.11.14-verbale-di-accordo-Agenzie-di-recapito-private-FISE.pdf",
+                  "sha256": "785ee3c31d65ddd27413b5950f4267476204f9b4a823601b904e0a245b7c6b50"
                 },
-                "section": "Tabella retributiva"
+                "page": "14",
+                "section": "Nuova Retribuzione base",
+                "quote": "3-S | 1.621,73 | 1.660,86 | 1.706,51 | 1.752,16 | 1.791,30"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-recapito-corrispondenza-fise-double-read"
               }
             }
           },
@@ -592,21 +669,28 @@
             "valid_until": null,
             "value": "1791.30",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "recapito-corrispondenza-fise",
-                  "title": "recapito-corrispondenza-fise",
+                  "document_id": "recapito-corrispondenza-fise-src-785ee3c3",
+                  "title": "recapito-corrispondenza-fise: accordo-fise-2023-11-14-slp.pdf",
                   "kind": "associazione",
-                  "url": "https://www.redigo.info/2023/11/20/ccnl-recapito-corrispondenza-fise-nuove-tabelle-dal-rinnovo-di-novembre-2023/"
+                  "url": "https://slp-cisl.it/wp-content/uploads/2023/11/2023.11.14-verbale-di-accordo-Agenzie-di-recapito-private-FISE.pdf",
+                  "sha256": "785ee3c31d65ddd27413b5950f4267476204f9b4a823601b904e0a245b7c6b50"
                 },
-                "section": "Tabella retributiva"
+                "page": "14",
+                "section": "Nuova Retribuzione base",
+                "quote": "3-S | 1.621,73 | 1.660,86 | 1.706,51 | 1.752,16 | 1.791,30"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2026-06-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-recapito-corrispondenza-fise-double-read"
               }
             }
           }
@@ -675,21 +759,28 @@
             "valid_until": "2024-09-01",
             "value": "1567.29",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "recapito-corrispondenza-fise",
-                  "title": "recapito-corrispondenza-fise",
+                  "document_id": "recapito-corrispondenza-fise-src-785ee3c3",
+                  "title": "recapito-corrispondenza-fise: accordo-fise-2023-11-14-slp.pdf",
                   "kind": "associazione",
-                  "url": "https://www.redigo.info/2023/11/20/ccnl-recapito-corrispondenza-fise-nuove-tabelle-dal-rinnovo-di-novembre-2023/"
+                  "url": "https://slp-cisl.it/wp-content/uploads/2023/11/2023.11.14-verbale-di-accordo-Agenzie-di-recapito-private-FISE.pdf",
+                  "sha256": "785ee3c31d65ddd27413b5950f4267476204f9b4a823601b904e0a245b7c6b50"
                 },
-                "section": "Tabella retributiva"
+                "page": "14",
+                "section": "Nuova Retribuzione base",
+                "quote": "3 | 1.531,29 | 1.567,29 | 1.609,29 | 1.651,29 | 1.687,29"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2024-02-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-recapito-corrispondenza-fise-double-read"
               }
             }
           },
@@ -698,21 +789,28 @@
             "valid_until": "2025-07-01",
             "value": "1609.29",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "recapito-corrispondenza-fise",
-                  "title": "recapito-corrispondenza-fise",
+                  "document_id": "recapito-corrispondenza-fise-src-785ee3c3",
+                  "title": "recapito-corrispondenza-fise: accordo-fise-2023-11-14-slp.pdf",
                   "kind": "associazione",
-                  "url": "https://www.redigo.info/2023/11/20/ccnl-recapito-corrispondenza-fise-nuove-tabelle-dal-rinnovo-di-novembre-2023/"
+                  "url": "https://slp-cisl.it/wp-content/uploads/2023/11/2023.11.14-verbale-di-accordo-Agenzie-di-recapito-private-FISE.pdf",
+                  "sha256": "785ee3c31d65ddd27413b5950f4267476204f9b4a823601b904e0a245b7c6b50"
                 },
-                "section": "Tabella retributiva"
+                "page": "14",
+                "section": "Nuova Retribuzione base",
+                "quote": "3 | 1.531,29 | 1.567,29 | 1.609,29 | 1.651,29 | 1.687,29"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2024-09-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-recapito-corrispondenza-fise-double-read"
               }
             }
           },
@@ -721,21 +819,28 @@
             "valid_until": "2026-06-01",
             "value": "1651.29",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "recapito-corrispondenza-fise",
-                  "title": "recapito-corrispondenza-fise",
+                  "document_id": "recapito-corrispondenza-fise-src-785ee3c3",
+                  "title": "recapito-corrispondenza-fise: accordo-fise-2023-11-14-slp.pdf",
                   "kind": "associazione",
-                  "url": "https://www.redigo.info/2023/11/20/ccnl-recapito-corrispondenza-fise-nuove-tabelle-dal-rinnovo-di-novembre-2023/"
+                  "url": "https://slp-cisl.it/wp-content/uploads/2023/11/2023.11.14-verbale-di-accordo-Agenzie-di-recapito-private-FISE.pdf",
+                  "sha256": "785ee3c31d65ddd27413b5950f4267476204f9b4a823601b904e0a245b7c6b50"
                 },
-                "section": "Tabella retributiva"
+                "page": "14",
+                "section": "Nuova Retribuzione base",
+                "quote": "3 | 1.531,29 | 1.567,29 | 1.609,29 | 1.651,29 | 1.687,29"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-recapito-corrispondenza-fise-double-read"
               }
             }
           },
@@ -744,21 +849,28 @@
             "valid_until": null,
             "value": "1687.29",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "recapito-corrispondenza-fise",
-                  "title": "recapito-corrispondenza-fise",
+                  "document_id": "recapito-corrispondenza-fise-src-785ee3c3",
+                  "title": "recapito-corrispondenza-fise: accordo-fise-2023-11-14-slp.pdf",
                   "kind": "associazione",
-                  "url": "https://www.redigo.info/2023/11/20/ccnl-recapito-corrispondenza-fise-nuove-tabelle-dal-rinnovo-di-novembre-2023/"
+                  "url": "https://slp-cisl.it/wp-content/uploads/2023/11/2023.11.14-verbale-di-accordo-Agenzie-di-recapito-private-FISE.pdf",
+                  "sha256": "785ee3c31d65ddd27413b5950f4267476204f9b4a823601b904e0a245b7c6b50"
                 },
-                "section": "Tabella retributiva"
+                "page": "14",
+                "section": "Nuova Retribuzione base",
+                "quote": "3 | 1.531,29 | 1.567,29 | 1.609,29 | 1.651,29 | 1.687,29"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2026-06-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-recapito-corrispondenza-fise-double-read"
               }
             }
           }
@@ -827,21 +939,28 @@
             "valid_until": "2024-09-01",
             "value": "1489.68",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "recapito-corrispondenza-fise",
-                  "title": "recapito-corrispondenza-fise",
+                  "document_id": "recapito-corrispondenza-fise-src-785ee3c3",
+                  "title": "recapito-corrispondenza-fise: accordo-fise-2023-11-14-slp.pdf",
                   "kind": "associazione",
-                  "url": "https://www.redigo.info/2023/11/20/ccnl-recapito-corrispondenza-fise-nuove-tabelle-dal-rinnovo-di-novembre-2023/"
+                  "url": "https://slp-cisl.it/wp-content/uploads/2023/11/2023.11.14-verbale-di-accordo-Agenzie-di-recapito-private-FISE.pdf",
+                  "sha256": "785ee3c31d65ddd27413b5950f4267476204f9b4a823601b904e0a245b7c6b50"
                 },
-                "section": "Tabella retributiva"
+                "page": "14",
+                "section": "Nuova Retribuzione base",
+                "quote": "4 | 1.456,29 | 1.489,68 | 1.528,64 | 1.567,59 | 1.600,99"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2024-02-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-recapito-corrispondenza-fise-double-read"
               }
             }
           },
@@ -850,21 +969,28 @@
             "valid_until": "2025-07-01",
             "value": "1528.64",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "recapito-corrispondenza-fise",
-                  "title": "recapito-corrispondenza-fise",
+                  "document_id": "recapito-corrispondenza-fise-src-785ee3c3",
+                  "title": "recapito-corrispondenza-fise: accordo-fise-2023-11-14-slp.pdf",
                   "kind": "associazione",
-                  "url": "https://www.redigo.info/2023/11/20/ccnl-recapito-corrispondenza-fise-nuove-tabelle-dal-rinnovo-di-novembre-2023/"
+                  "url": "https://slp-cisl.it/wp-content/uploads/2023/11/2023.11.14-verbale-di-accordo-Agenzie-di-recapito-private-FISE.pdf",
+                  "sha256": "785ee3c31d65ddd27413b5950f4267476204f9b4a823601b904e0a245b7c6b50"
                 },
-                "section": "Tabella retributiva"
+                "page": "14",
+                "section": "Nuova Retribuzione base",
+                "quote": "4 | 1.456,29 | 1.489,68 | 1.528,64 | 1.567,59 | 1.600,99"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2024-09-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-recapito-corrispondenza-fise-double-read"
               }
             }
           },
@@ -873,21 +999,28 @@
             "valid_until": "2026-06-01",
             "value": "1567.59",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "recapito-corrispondenza-fise",
-                  "title": "recapito-corrispondenza-fise",
+                  "document_id": "recapito-corrispondenza-fise-src-785ee3c3",
+                  "title": "recapito-corrispondenza-fise: accordo-fise-2023-11-14-slp.pdf",
                   "kind": "associazione",
-                  "url": "https://www.redigo.info/2023/11/20/ccnl-recapito-corrispondenza-fise-nuove-tabelle-dal-rinnovo-di-novembre-2023/"
+                  "url": "https://slp-cisl.it/wp-content/uploads/2023/11/2023.11.14-verbale-di-accordo-Agenzie-di-recapito-private-FISE.pdf",
+                  "sha256": "785ee3c31d65ddd27413b5950f4267476204f9b4a823601b904e0a245b7c6b50"
                 },
-                "section": "Tabella retributiva"
+                "page": "14",
+                "section": "Nuova Retribuzione base",
+                "quote": "4 | 1.456,29 | 1.489,68 | 1.528,64 | 1.567,59 | 1.600,99"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-recapito-corrispondenza-fise-double-read"
               }
             }
           },
@@ -896,21 +1029,28 @@
             "valid_until": null,
             "value": "1600.99",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "recapito-corrispondenza-fise",
-                  "title": "recapito-corrispondenza-fise",
+                  "document_id": "recapito-corrispondenza-fise-src-785ee3c3",
+                  "title": "recapito-corrispondenza-fise: accordo-fise-2023-11-14-slp.pdf",
                   "kind": "associazione",
-                  "url": "https://www.redigo.info/2023/11/20/ccnl-recapito-corrispondenza-fise-nuove-tabelle-dal-rinnovo-di-novembre-2023/"
+                  "url": "https://slp-cisl.it/wp-content/uploads/2023/11/2023.11.14-verbale-di-accordo-Agenzie-di-recapito-private-FISE.pdf",
+                  "sha256": "785ee3c31d65ddd27413b5950f4267476204f9b4a823601b904e0a245b7c6b50"
                 },
-                "section": "Tabella retributiva"
+                "page": "14",
+                "section": "Nuova Retribuzione base",
+                "quote": "4 | 1.456,29 | 1.489,68 | 1.528,64 | 1.567,59 | 1.600,99"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2026-06-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-recapito-corrispondenza-fise-double-read"
               }
             }
           }
@@ -979,21 +1119,28 @@
             "valid_until": "2024-09-01",
             "value": "1389.70",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "recapito-corrispondenza-fise",
-                  "title": "recapito-corrispondenza-fise",
+                  "document_id": "recapito-corrispondenza-fise-src-785ee3c3",
+                  "title": "recapito-corrispondenza-fise: accordo-fise-2023-11-14-slp.pdf",
                   "kind": "associazione",
-                  "url": "https://www.redigo.info/2023/11/20/ccnl-recapito-corrispondenza-fise-nuove-tabelle-dal-rinnovo-di-novembre-2023/"
+                  "url": "https://slp-cisl.it/wp-content/uploads/2023/11/2023.11.14-verbale-di-accordo-Agenzie-di-recapito-private-FISE.pdf",
+                  "sha256": "785ee3c31d65ddd27413b5950f4267476204f9b4a823601b904e0a245b7c6b50"
                 },
-                "section": "Tabella retributiva"
+                "page": "14",
+                "section": "Nuova Retribuzione base",
+                "quote": "5-S | 1.359,70 | 1.389,70 | 1.424,70 | 1.459,70 | 1.489,70"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2024-02-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-recapito-corrispondenza-fise-double-read"
               }
             }
           },
@@ -1002,21 +1149,28 @@
             "valid_until": "2025-07-01",
             "value": "1424.70",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "recapito-corrispondenza-fise",
-                  "title": "recapito-corrispondenza-fise",
+                  "document_id": "recapito-corrispondenza-fise-src-785ee3c3",
+                  "title": "recapito-corrispondenza-fise: accordo-fise-2023-11-14-slp.pdf",
                   "kind": "associazione",
-                  "url": "https://www.redigo.info/2023/11/20/ccnl-recapito-corrispondenza-fise-nuove-tabelle-dal-rinnovo-di-novembre-2023/"
+                  "url": "https://slp-cisl.it/wp-content/uploads/2023/11/2023.11.14-verbale-di-accordo-Agenzie-di-recapito-private-FISE.pdf",
+                  "sha256": "785ee3c31d65ddd27413b5950f4267476204f9b4a823601b904e0a245b7c6b50"
                 },
-                "section": "Tabella retributiva"
+                "page": "14",
+                "section": "Nuova Retribuzione base",
+                "quote": "5-S | 1.359,70 | 1.389,70 | 1.424,70 | 1.459,70 | 1.489,70"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2024-09-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-recapito-corrispondenza-fise-double-read"
               }
             }
           },
@@ -1025,21 +1179,28 @@
             "valid_until": "2026-06-01",
             "value": "1459.70",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "recapito-corrispondenza-fise",
-                  "title": "recapito-corrispondenza-fise",
+                  "document_id": "recapito-corrispondenza-fise-src-785ee3c3",
+                  "title": "recapito-corrispondenza-fise: accordo-fise-2023-11-14-slp.pdf",
                   "kind": "associazione",
-                  "url": "https://www.redigo.info/2023/11/20/ccnl-recapito-corrispondenza-fise-nuove-tabelle-dal-rinnovo-di-novembre-2023/"
+                  "url": "https://slp-cisl.it/wp-content/uploads/2023/11/2023.11.14-verbale-di-accordo-Agenzie-di-recapito-private-FISE.pdf",
+                  "sha256": "785ee3c31d65ddd27413b5950f4267476204f9b4a823601b904e0a245b7c6b50"
                 },
-                "section": "Tabella retributiva"
+                "page": "14",
+                "section": "Nuova Retribuzione base",
+                "quote": "5-S | 1.359,70 | 1.389,70 | 1.424,70 | 1.459,70 | 1.489,70"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-recapito-corrispondenza-fise-double-read"
               }
             }
           },
@@ -1048,21 +1209,28 @@
             "valid_until": null,
             "value": "1489.70",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "recapito-corrispondenza-fise",
-                  "title": "recapito-corrispondenza-fise",
+                  "document_id": "recapito-corrispondenza-fise-src-785ee3c3",
+                  "title": "recapito-corrispondenza-fise: accordo-fise-2023-11-14-slp.pdf",
                   "kind": "associazione",
-                  "url": "https://www.redigo.info/2023/11/20/ccnl-recapito-corrispondenza-fise-nuove-tabelle-dal-rinnovo-di-novembre-2023/"
+                  "url": "https://slp-cisl.it/wp-content/uploads/2023/11/2023.11.14-verbale-di-accordo-Agenzie-di-recapito-private-FISE.pdf",
+                  "sha256": "785ee3c31d65ddd27413b5950f4267476204f9b4a823601b904e0a245b7c6b50"
                 },
-                "section": "Tabella retributiva"
+                "page": "14",
+                "section": "Nuova Retribuzione base",
+                "quote": "5-S | 1.359,70 | 1.389,70 | 1.424,70 | 1.459,70 | 1.489,70"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2026-06-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-recapito-corrispondenza-fise-double-read"
               }
             }
           }
@@ -1131,21 +1299,28 @@
             "valid_until": "2024-09-01",
             "value": "1351.06",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "recapito-corrispondenza-fise",
-                  "title": "recapito-corrispondenza-fise",
+                  "document_id": "recapito-corrispondenza-fise-src-785ee3c3",
+                  "title": "recapito-corrispondenza-fise: accordo-fise-2023-11-14-slp.pdf",
                   "kind": "associazione",
-                  "url": "https://www.redigo.info/2023/11/20/ccnl-recapito-corrispondenza-fise-nuove-tabelle-dal-rinnovo-di-novembre-2023/"
+                  "url": "https://slp-cisl.it/wp-content/uploads/2023/11/2023.11.14-verbale-di-accordo-Agenzie-di-recapito-private-FISE.pdf",
+                  "sha256": "785ee3c31d65ddd27413b5950f4267476204f9b4a823601b904e0a245b7c6b50"
                 },
-                "section": "Tabella retributiva"
+                "page": "14",
+                "section": "Nuova Retribuzione base",
+                "quote": "5 | 1.322,36 | 1.351,06 | 1.384,53 | 1.418,01 | 1.446,71"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2024-02-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-recapito-corrispondenza-fise-double-read"
               }
             }
           },
@@ -1154,21 +1329,28 @@
             "valid_until": "2025-07-01",
             "value": "1384.53",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "recapito-corrispondenza-fise",
-                  "title": "recapito-corrispondenza-fise",
+                  "document_id": "recapito-corrispondenza-fise-src-785ee3c3",
+                  "title": "recapito-corrispondenza-fise: accordo-fise-2023-11-14-slp.pdf",
                   "kind": "associazione",
-                  "url": "https://www.redigo.info/2023/11/20/ccnl-recapito-corrispondenza-fise-nuove-tabelle-dal-rinnovo-di-novembre-2023/"
+                  "url": "https://slp-cisl.it/wp-content/uploads/2023/11/2023.11.14-verbale-di-accordo-Agenzie-di-recapito-private-FISE.pdf",
+                  "sha256": "785ee3c31d65ddd27413b5950f4267476204f9b4a823601b904e0a245b7c6b50"
                 },
-                "section": "Tabella retributiva"
+                "page": "14",
+                "section": "Nuova Retribuzione base",
+                "quote": "5 | 1.322,36 | 1.351,06 | 1.384,53 | 1.418,01 | 1.446,71"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2024-09-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-recapito-corrispondenza-fise-double-read"
               }
             }
           },
@@ -1177,21 +1359,28 @@
             "valid_until": "2026-06-01",
             "value": "1418.01",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "recapito-corrispondenza-fise",
-                  "title": "recapito-corrispondenza-fise",
+                  "document_id": "recapito-corrispondenza-fise-src-785ee3c3",
+                  "title": "recapito-corrispondenza-fise: accordo-fise-2023-11-14-slp.pdf",
                   "kind": "associazione",
-                  "url": "https://www.redigo.info/2023/11/20/ccnl-recapito-corrispondenza-fise-nuove-tabelle-dal-rinnovo-di-novembre-2023/"
+                  "url": "https://slp-cisl.it/wp-content/uploads/2023/11/2023.11.14-verbale-di-accordo-Agenzie-di-recapito-private-FISE.pdf",
+                  "sha256": "785ee3c31d65ddd27413b5950f4267476204f9b4a823601b904e0a245b7c6b50"
                 },
-                "section": "Tabella retributiva"
+                "page": "14",
+                "section": "Nuova Retribuzione base",
+                "quote": "5 | 1.322,36 | 1.351,06 | 1.384,53 | 1.418,01 | 1.446,71"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-recapito-corrispondenza-fise-double-read"
               }
             }
           },
@@ -1200,21 +1389,28 @@
             "valid_until": null,
             "value": "1446.71",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "recapito-corrispondenza-fise",
-                  "title": "recapito-corrispondenza-fise",
+                  "document_id": "recapito-corrispondenza-fise-src-785ee3c3",
+                  "title": "recapito-corrispondenza-fise: accordo-fise-2023-11-14-slp.pdf",
                   "kind": "associazione",
-                  "url": "https://www.redigo.info/2023/11/20/ccnl-recapito-corrispondenza-fise-nuove-tabelle-dal-rinnovo-di-novembre-2023/"
+                  "url": "https://slp-cisl.it/wp-content/uploads/2023/11/2023.11.14-verbale-di-accordo-Agenzie-di-recapito-private-FISE.pdf",
+                  "sha256": "785ee3c31d65ddd27413b5950f4267476204f9b4a823601b904e0a245b7c6b50"
                 },
-                "section": "Tabella retributiva"
+                "page": "14",
+                "section": "Nuova Retribuzione base",
+                "quote": "5 | 1.322,36 | 1.351,06 | 1.384,53 | 1.418,01 | 1.446,71"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2026-06-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-recapito-corrispondenza-fise-double-read"
               }
             }
           }
@@ -1283,21 +1479,28 @@
             "valid_until": "2024-09-01",
             "value": "1272.96",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "recapito-corrispondenza-fise",
-                  "title": "recapito-corrispondenza-fise",
+                  "document_id": "recapito-corrispondenza-fise-src-785ee3c3",
+                  "title": "recapito-corrispondenza-fise: accordo-fise-2023-11-14-slp.pdf",
                   "kind": "associazione",
-                  "url": "https://www.redigo.info/2023/11/20/ccnl-recapito-corrispondenza-fise-nuove-tabelle-dal-rinnovo-di-novembre-2023/"
+                  "url": "https://slp-cisl.it/wp-content/uploads/2023/11/2023.11.14-verbale-di-accordo-Agenzie-di-recapito-private-FISE.pdf",
+                  "sha256": "785ee3c31d65ddd27413b5950f4267476204f9b4a823601b904e0a245b7c6b50"
                 },
-                "section": "Tabella retributiva"
+                "page": "14",
+                "section": "Nuova Retribuzione base",
+                "quote": "6 | 1.246,87 | 1.272,96 | 1.303,39 | 1.333,83 | 1.359,91"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2024-02-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-recapito-corrispondenza-fise-double-read"
               }
             }
           },
@@ -1306,21 +1509,28 @@
             "valid_until": "2025-07-01",
             "value": "1303.39",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "recapito-corrispondenza-fise",
-                  "title": "recapito-corrispondenza-fise",
+                  "document_id": "recapito-corrispondenza-fise-src-785ee3c3",
+                  "title": "recapito-corrispondenza-fise: accordo-fise-2023-11-14-slp.pdf",
                   "kind": "associazione",
-                  "url": "https://www.redigo.info/2023/11/20/ccnl-recapito-corrispondenza-fise-nuove-tabelle-dal-rinnovo-di-novembre-2023/"
+                  "url": "https://slp-cisl.it/wp-content/uploads/2023/11/2023.11.14-verbale-di-accordo-Agenzie-di-recapito-private-FISE.pdf",
+                  "sha256": "785ee3c31d65ddd27413b5950f4267476204f9b4a823601b904e0a245b7c6b50"
                 },
-                "section": "Tabella retributiva"
+                "page": "14",
+                "section": "Nuova Retribuzione base",
+                "quote": "6 | 1.246,87 | 1.272,96 | 1.303,39 | 1.333,83 | 1.359,91"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2024-09-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-recapito-corrispondenza-fise-double-read"
               }
             }
           },
@@ -1329,21 +1539,28 @@
             "valid_until": "2026-06-01",
             "value": "1333.83",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "recapito-corrispondenza-fise",
-                  "title": "recapito-corrispondenza-fise",
+                  "document_id": "recapito-corrispondenza-fise-src-785ee3c3",
+                  "title": "recapito-corrispondenza-fise: accordo-fise-2023-11-14-slp.pdf",
                   "kind": "associazione",
-                  "url": "https://www.redigo.info/2023/11/20/ccnl-recapito-corrispondenza-fise-nuove-tabelle-dal-rinnovo-di-novembre-2023/"
+                  "url": "https://slp-cisl.it/wp-content/uploads/2023/11/2023.11.14-verbale-di-accordo-Agenzie-di-recapito-private-FISE.pdf",
+                  "sha256": "785ee3c31d65ddd27413b5950f4267476204f9b4a823601b904e0a245b7c6b50"
                 },
-                "section": "Tabella retributiva"
+                "page": "14",
+                "section": "Nuova Retribuzione base",
+                "quote": "6 | 1.246,87 | 1.272,96 | 1.303,39 | 1.333,83 | 1.359,91"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-recapito-corrispondenza-fise-double-read"
               }
             }
           },
@@ -1352,21 +1569,28 @@
             "valid_until": null,
             "value": "1359.91",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "recapito-corrispondenza-fise",
-                  "title": "recapito-corrispondenza-fise",
+                  "document_id": "recapito-corrispondenza-fise-src-785ee3c3",
+                  "title": "recapito-corrispondenza-fise: accordo-fise-2023-11-14-slp.pdf",
                   "kind": "associazione",
-                  "url": "https://www.redigo.info/2023/11/20/ccnl-recapito-corrispondenza-fise-nuove-tabelle-dal-rinnovo-di-novembre-2023/"
+                  "url": "https://slp-cisl.it/wp-content/uploads/2023/11/2023.11.14-verbale-di-accordo-Agenzie-di-recapito-private-FISE.pdf",
+                  "sha256": "785ee3c31d65ddd27413b5950f4267476204f9b4a823601b904e0a245b7c6b50"
                 },
-                "section": "Tabella retributiva"
+                "page": "14",
+                "section": "Nuova Retribuzione base",
+                "quote": "6 | 1.246,87 | 1.272,96 | 1.303,39 | 1.333,83 | 1.359,91"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2026-06-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-recapito-corrispondenza-fise-double-read"
               }
             }
           }
@@ -1432,7 +1656,7 @@
     "effective_until": null,
     "source": "https://www.redigo.info/2023/11/20/ccnl-recapito-corrispondenza-fise-nuove-tabelle-dal-rinnovo-di-novembre-2023/",
     "verification_status": "unverified",
-    "source_hash": "6e4cdaef520a496eb8492c75e9f8a26f3d9cc60feabb3444fc6aa60828b55d3f",
+    "source_hash": "ca2f30818e2c79d402afd5767d8cab13a9ffcf57e287817a16b9387247c45438",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -1658,5 +1882,31 @@
         }
       }
     }
+  },
+  "verification": {
+    "reviews": [
+      {
+        "id": "2026-11-07-gpt-recapito-corrispondenza-fise-double-read",
+        "date": "2026-11-07",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Monthly values on scanned pages, each read twice from the page image by two independent sessions of another model, the second without being told the expected value.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://slp-cisl.it/wp-content/uploads/2023/11/2023.11.14-verbale-di-accordo-Agenzie-di-recapito-private-FISE.pdf",
+            "sha256": "785ee3c31d65ddd27413b5950f4267476204f9b4a823601b904e0a245b7c6b50"
+          }
+        ],
+        "findings": [
+          "32 values read identically by both readings and equal to the file."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "levels.base_salary",
+          "levels.fixed_allowances"
+        ]
+      }
+    ]
   }
 }
