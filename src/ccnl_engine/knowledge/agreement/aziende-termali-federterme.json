@@ -474,7 +474,32 @@
               {
                 "valid_from": "2024-10-01",
                 "valid_until": null,
-                "value": "10.33"
+                "value": "10.32",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aziende-termali-federterme-src-5032131e",
+                      "title": "aziende-termali-federterme: ccnl-2024.pdf",
+                      "kind": "associazione",
+                      "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/AziendeTermali_CCNL_2024_2027_08102024.pdf",
+                      "sha256": "5032131e3e3742dabdea2ad11a074fb602c965cb9e0b34c77d73d04e9623c0a5"
+                    },
+                    "page": "69",
+                    "section": "Tabella retributiva",
+                    "quote": "Retribuzione di euro 10,32 mensili per 13 mensilità a copertura dell’intero periodo 1992 – 1993, che resterà allo stesso titolo acquisito per il futuro nella retribuzione. [read on the page image]"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T22:00:00Z",
+                    "effective_from": "2024-10-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T22:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-aziende-termali-federterme-corrections"
+                  }
+                }
               }
             ]
           },
@@ -681,7 +706,32 @@
               {
                 "valid_from": "2024-10-01",
                 "valid_until": null,
-                "value": "10.33"
+                "value": "10.32",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aziende-termali-federterme-src-5032131e",
+                      "title": "aziende-termali-federterme: ccnl-2024.pdf",
+                      "kind": "associazione",
+                      "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/AziendeTermali_CCNL_2024_2027_08102024.pdf",
+                      "sha256": "5032131e3e3742dabdea2ad11a074fb602c965cb9e0b34c77d73d04e9623c0a5"
+                    },
+                    "page": "69",
+                    "section": "Tabella retributiva",
+                    "quote": "Retribuzione di euro 10,32 mensili per 13 mensilità a copertura dell’intero periodo 1992 – 1993, che resterà allo stesso titolo acquisito per il futuro nella retribuzione. [read on the page image]"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T22:00:00Z",
+                    "effective_from": "2024-10-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T22:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-aziende-termali-federterme-corrections"
+                  }
+                }
               }
             ]
           },
@@ -888,7 +938,32 @@
               {
                 "valid_from": "2024-10-01",
                 "valid_until": null,
-                "value": "10.33"
+                "value": "10.32",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aziende-termali-federterme-src-5032131e",
+                      "title": "aziende-termali-federterme: ccnl-2024.pdf",
+                      "kind": "associazione",
+                      "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/AziendeTermali_CCNL_2024_2027_08102024.pdf",
+                      "sha256": "5032131e3e3742dabdea2ad11a074fb602c965cb9e0b34c77d73d04e9623c0a5"
+                    },
+                    "page": "69",
+                    "section": "Tabella retributiva",
+                    "quote": "Retribuzione di euro 10,32 mensili per 13 mensilità a copertura dell’intero periodo 1992 – 1993, che resterà allo stesso titolo acquisito per il futuro nella retribuzione. [read on the page image]"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T22:00:00Z",
+                    "effective_from": "2024-10-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T22:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-aziende-termali-federterme-corrections"
+                  }
+                }
               }
             ]
           },
@@ -1095,7 +1170,32 @@
               {
                 "valid_from": "2024-10-01",
                 "valid_until": null,
-                "value": "10.33"
+                "value": "10.32",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aziende-termali-federterme-src-5032131e",
+                      "title": "aziende-termali-federterme: ccnl-2024.pdf",
+                      "kind": "associazione",
+                      "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/AziendeTermali_CCNL_2024_2027_08102024.pdf",
+                      "sha256": "5032131e3e3742dabdea2ad11a074fb602c965cb9e0b34c77d73d04e9623c0a5"
+                    },
+                    "page": "69",
+                    "section": "Tabella retributiva",
+                    "quote": "Retribuzione di euro 10,32 mensili per 13 mensilità a copertura dell’intero periodo 1992 – 1993, che resterà allo stesso titolo acquisito per il futuro nella retribuzione. [read on the page image]"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T22:00:00Z",
+                    "effective_from": "2024-10-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T22:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-aziende-termali-federterme-corrections"
+                  }
+                }
               }
             ]
           },
@@ -1302,7 +1402,32 @@
               {
                 "valid_from": "2024-10-01",
                 "valid_until": null,
-                "value": "10.33"
+                "value": "10.32",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aziende-termali-federterme-src-5032131e",
+                      "title": "aziende-termali-federterme: ccnl-2024.pdf",
+                      "kind": "associazione",
+                      "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/AziendeTermali_CCNL_2024_2027_08102024.pdf",
+                      "sha256": "5032131e3e3742dabdea2ad11a074fb602c965cb9e0b34c77d73d04e9623c0a5"
+                    },
+                    "page": "69",
+                    "section": "Tabella retributiva",
+                    "quote": "Retribuzione di euro 10,32 mensili per 13 mensilità a copertura dell’intero periodo 1992 – 1993, che resterà allo stesso titolo acquisito per il futuro nella retribuzione. [read on the page image]"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T22:00:00Z",
+                    "effective_from": "2024-10-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T22:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-aziende-termali-federterme-corrections"
+                  }
+                }
               }
             ]
           },
@@ -1509,7 +1634,32 @@
               {
                 "valid_from": "2024-10-01",
                 "valid_until": null,
-                "value": "10.33"
+                "value": "10.32",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aziende-termali-federterme-src-5032131e",
+                      "title": "aziende-termali-federterme: ccnl-2024.pdf",
+                      "kind": "associazione",
+                      "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/AziendeTermali_CCNL_2024_2027_08102024.pdf",
+                      "sha256": "5032131e3e3742dabdea2ad11a074fb602c965cb9e0b34c77d73d04e9623c0a5"
+                    },
+                    "page": "69",
+                    "section": "Tabella retributiva",
+                    "quote": "Retribuzione di euro 10,32 mensili per 13 mensilità a copertura dell’intero periodo 1992 – 1993, che resterà allo stesso titolo acquisito per il futuro nella retribuzione. [read on the page image]"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T22:00:00Z",
+                    "effective_from": "2024-10-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T22:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-aziende-termali-federterme-corrections"
+                  }
+                }
               }
             ]
           },
@@ -1716,7 +1866,32 @@
               {
                 "valid_from": "2024-10-01",
                 "valid_until": null,
-                "value": "10.33"
+                "value": "10.32",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aziende-termali-federterme-src-5032131e",
+                      "title": "aziende-termali-federterme: ccnl-2024.pdf",
+                      "kind": "associazione",
+                      "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/AziendeTermali_CCNL_2024_2027_08102024.pdf",
+                      "sha256": "5032131e3e3742dabdea2ad11a074fb602c965cb9e0b34c77d73d04e9623c0a5"
+                    },
+                    "page": "69",
+                    "section": "Tabella retributiva",
+                    "quote": "Retribuzione di euro 10,32 mensili per 13 mensilità a copertura dell’intero periodo 1992 – 1993, che resterà allo stesso titolo acquisito per il futuro nella retribuzione. [read on the page image]"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T22:00:00Z",
+                    "effective_from": "2024-10-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T22:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-aziende-termali-federterme-corrections"
+                  }
+                }
               }
             ]
           },
@@ -1923,7 +2098,32 @@
               {
                 "valid_from": "2024-10-01",
                 "valid_until": null,
-                "value": "10.33"
+                "value": "10.32",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aziende-termali-federterme-src-5032131e",
+                      "title": "aziende-termali-federterme: ccnl-2024.pdf",
+                      "kind": "associazione",
+                      "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/AziendeTermali_CCNL_2024_2027_08102024.pdf",
+                      "sha256": "5032131e3e3742dabdea2ad11a074fb602c965cb9e0b34c77d73d04e9623c0a5"
+                    },
+                    "page": "69",
+                    "section": "Tabella retributiva",
+                    "quote": "Retribuzione di euro 10,32 mensili per 13 mensilità a copertura dell’intero periodo 1992 – 1993, che resterà allo stesso titolo acquisito per il futuro nella retribuzione. [read on the page image]"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T22:00:00Z",
+                    "effective_from": "2024-10-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T22:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-aziende-termali-federterme-corrections"
+                  }
+                }
               }
             ]
           },
@@ -2130,7 +2330,32 @@
               {
                 "valid_from": "2024-10-01",
                 "valid_until": null,
-                "value": "10.33"
+                "value": "10.32",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aziende-termali-federterme-src-5032131e",
+                      "title": "aziende-termali-federterme: ccnl-2024.pdf",
+                      "kind": "associazione",
+                      "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/AziendeTermali_CCNL_2024_2027_08102024.pdf",
+                      "sha256": "5032131e3e3742dabdea2ad11a074fb602c965cb9e0b34c77d73d04e9623c0a5"
+                    },
+                    "page": "69",
+                    "section": "Tabella retributiva",
+                    "quote": "Retribuzione di euro 10,32 mensili per 13 mensilità a copertura dell’intero periodo 1992 – 1993, che resterà allo stesso titolo acquisito per il futuro nella retribuzione. [read on the page image]"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T22:00:00Z",
+                    "effective_from": "2024-10-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T22:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-aziende-termali-federterme-corrections"
+                  }
+                }
               }
             ]
           },
@@ -2265,9 +2490,35 @@
     "effective_until": null,
     "source": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/AziendeTermali_CCNL_2024_2027_08102024.pdf",
     "verification_status": "unverified",
-    "source_hash": "2fb60a42590a13f07d4723ff8d52337387ec3d2841c9d02572be20ed4c5f7972",
+    "source_hash": "61ccb08c2e460bb9f091906ba3d27b9eac4f57f54c11210e5c6af916c70b3192",
     "published_at": "2026-09-12",
     "source_type": "commercial_secondary"
   },
-  "work_rules": null
+  "work_rules": null,
+  "verification": {
+    "reviews": [
+      {
+        "id": "2026-11-07-ai-aziende-termali-federterme-corrections",
+        "date": "2026-11-07",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Values a primary-text verification found different from the printed tables (text layer).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/AziendeTermali_CCNL_2024_2027_08102024.pdf",
+            "sha256": "5032131e3e3742dabdea2ad11a074fb602c965cb9e0b34c77d73d04e9623c0a5"
+          }
+        ],
+        "findings": [
+          "9 values corrected to the amounts printed on the cited pages."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels.base_salary",
+          "levels.fixed_allowances"
+        ]
+      }
+    ]
+  }
 }

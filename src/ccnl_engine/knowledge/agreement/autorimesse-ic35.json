@@ -376,7 +376,7 @@
           },
           {
             "valid_from": "2026-10-01",
-            "valid_until": "2027-05-01",
+            "valid_until": "2027-03-01",
             "value": "1053.85",
             "provenance": {
               "status": "derived",
@@ -398,7 +398,7 @@
             }
           },
           {
-            "valid_from": "2027-05-01",
+            "valid_from": "2027-03-01",
             "valid_until": "2027-11-01",
             "value": "1092.56",
             "provenance": {
@@ -613,7 +613,7 @@
           },
           {
             "valid_from": "2026-10-01",
-            "valid_until": "2027-05-01",
+            "valid_until": "2027-03-01",
             "value": "1348.94",
             "provenance": {
               "status": "derived",
@@ -635,7 +635,7 @@
             }
           },
           {
-            "valid_from": "2027-05-01",
+            "valid_from": "2027-03-01",
             "valid_until": "2027-11-01",
             "value": "1398.49",
             "provenance": {
@@ -850,7 +850,7 @@
           },
           {
             "valid_from": "2026-10-01",
-            "valid_until": "2027-05-01",
+            "valid_until": "2027-03-01",
             "value": "1454.32",
             "provenance": {
               "status": "derived",
@@ -872,7 +872,7 @@
             }
           },
           {
-            "valid_from": "2027-05-01",
+            "valid_from": "2027-03-01",
             "valid_until": "2027-11-01",
             "value": "1507.74",
             "provenance": {
@@ -1087,7 +1087,7 @@
           },
           {
             "valid_from": "2026-10-01",
-            "valid_until": "2027-05-01",
+            "valid_until": "2027-03-01",
             "value": "1633.48",
             "provenance": {
               "status": "derived",
@@ -1109,7 +1109,7 @@
             }
           },
           {
-            "valid_from": "2027-05-01",
+            "valid_from": "2027-03-01",
             "valid_until": "2027-11-01",
             "value": "1693.48",
             "provenance": {
@@ -1324,7 +1324,7 @@
           },
           {
             "valid_from": "2026-10-01",
-            "valid_until": "2027-05-01",
+            "valid_until": "2027-03-01",
             "value": "1696.71",
             "provenance": {
               "status": "derived",
@@ -1346,7 +1346,7 @@
             }
           },
           {
-            "valid_from": "2027-05-01",
+            "valid_from": "2027-03-01",
             "valid_until": "2027-11-01",
             "value": "1759.03",
             "provenance": {
@@ -1561,7 +1561,7 @@
           },
           {
             "valid_from": "2026-10-01",
-            "valid_until": "2027-05-01",
+            "valid_until": "2027-03-01",
             "value": "1770.48",
             "provenance": {
               "status": "derived",
@@ -1583,7 +1583,7 @@
             }
           },
           {
-            "valid_from": "2027-05-01",
+            "valid_from": "2027-03-01",
             "valid_until": "2027-11-01",
             "value": "1835.52",
             "provenance": {
@@ -1798,7 +1798,7 @@
           },
           {
             "valid_from": "2026-10-01",
-            "valid_until": "2027-05-01",
+            "valid_until": "2027-03-01",
             "value": "1854.79",
             "provenance": {
               "status": "derived",
@@ -1820,7 +1820,7 @@
             }
           },
           {
-            "valid_from": "2027-05-01",
+            "valid_from": "2027-03-01",
             "valid_until": "2027-11-01",
             "value": "1922.92",
             "provenance": {
@@ -2035,7 +2035,7 @@
           },
           {
             "valid_from": "2026-10-01",
-            "valid_until": "2027-05-01",
+            "valid_until": "2027-03-01",
             "value": "2033.94",
             "provenance": {
               "status": "derived",
@@ -2057,7 +2057,7 @@
             }
           },
           {
-            "valid_from": "2027-05-01",
+            "valid_from": "2027-03-01",
             "valid_until": "2027-11-01",
             "value": "2108.65",
             "provenance": {
@@ -2272,7 +2272,7 @@
           },
           {
             "valid_from": "2026-10-01",
-            "valid_until": "2027-05-01",
+            "valid_until": "2027-03-01",
             "value": "2160.40",
             "provenance": {
               "status": "derived",
@@ -2294,7 +2294,7 @@
             }
           },
           {
-            "valid_from": "2027-05-01",
+            "valid_from": "2027-03-01",
             "valid_until": "2027-11-01",
             "value": "2239.76",
             "provenance": {
@@ -2509,7 +2509,7 @@
           },
           {
             "valid_from": "2026-10-01",
-            "valid_until": "2027-05-01",
+            "valid_until": "2027-03-01",
             "value": "2160.40",
             "provenance": {
               "status": "derived",
@@ -2531,7 +2531,7 @@
             }
           },
           {
-            "valid_from": "2027-05-01",
+            "valid_from": "2027-03-01",
             "valid_until": "2027-11-01",
             "value": "2239.76",
             "provenance": {
@@ -2746,7 +2746,7 @@
           },
           {
             "valid_from": "2026-10-01",
-            "valid_until": "2027-05-01",
+            "valid_until": "2027-03-01",
             "value": "2160.40",
             "provenance": {
               "status": "derived",
@@ -2768,7 +2768,7 @@
             }
           },
           {
-            "valid_from": "2027-05-01",
+            "valid_from": "2027-03-01",
             "valid_until": "2027-11-01",
             "value": "2239.76",
             "provenance": {
@@ -2937,7 +2937,7 @@
     "effective_until": null,
     "source": "https://www.filtcgil.it/images/Contratti/Mobilita/ic35-verbale-accordo-09122025.pdf",
     "verification_status": "unverified",
-    "source_hash": "cd1051af98c6ad1ad77eaf0eba0c2e291b5bcc24310ebd09f7ed666335058e27",
+    "source_hash": "5d4327efbdf047a26f5851b785b3d9cc7889a565c96b2de95ea743d6e94b6e10",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3250,6 +3250,27 @@
         "independence": "same_process",
         "checked": [
           "work_rules.time_supplements.week_divisors"
+        ]
+      },
+      {
+        "id": "2026-11-07-ai-autorimesse-march-2027",
+        "date": "2026-11-07",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Allegato 1 of the verbale of 9 December 2025 (p. 20, page image): the dates of the new minimi.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/verbale_accordo_ccnl_09_dicembre_2025.pdf",
+            "sha256": "60f807daf3dab2bb082a2f5a549394515237e26aa51174e352c8c89161b989f2"
+          }
+        ],
+        "findings": [
+          "The third tranche runs 'dal mese di mar-27', not May 2027: the file missed March and April 2027 for every level; the amounts match."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels.base_salary"
         ]
       }
     ]

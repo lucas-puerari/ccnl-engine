@@ -247,7 +247,7 @@
       "institute": "pension_fund_contribution",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "EDR 2024: fixed_allowances per level, code 'edr_2024', 40 EUR at par.175 proportional to the parametro, active 2025-03-01 to 2026-04-30 (14 months). Per AGENS circular 20/03/2025 it is 'non computabile ai fini del TFR e della contribuzione al Fondo Priamo': modelled with tfr_relevant=false (Fondo Priamo is a bilateral pension fund, not modelled).",
+      "rule": "EDR 2024: fixed_allowances per level, code 'edr_2024', 40 EUR at par.175 proportional to the parametro, paid from March 2025 on 14 monthly payments a year ('verrà erogato per 14 mensilità', renewal of 2024), with no end date. Per AGENS circular 20/03/2025 it is 'non computabile ai fini del TFR e della contribuzione al Fondo Priamo': modelled with tfr_relevant=false (Fondo Priamo is a bilateral pension fund, not modelled).",
       "calculation": "ccnl/autoferrotranvieri-internavigatori:coverage.notes",
       "state": "absent",
       "remediation": "Source the Fondo Priamo contribution rates (employer, worker, TFR share) and add a PRIAMO entry to parameters.employer_funds; until then open a pension_fund_not_modelled-style limitation.",
