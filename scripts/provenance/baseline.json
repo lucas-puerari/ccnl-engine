@@ -653,8 +653,7 @@
     ],
     "agreement/alimentari-federalimentare.json": [
       "alimentari-federalimentare/first_level_apprentice_pay",
-      "alimentari-federalimentare/ordinary_hours_premiums",
-      "alimentari-federalimentare/sickness_disabled_fixed_term"
+      "alimentari-federalimentare/ordinary_hours_premiums"
     ],
     "agreement/assicurazioni-ania.json": [
       "assicurazioni-ania/funzionari_economic_allowance",

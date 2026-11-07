@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, overtime, sickness |
+| **Limits of this contract** | base_salary, overtime |
 
-4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -68,6 +68,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-02 | claude-opus-5-5 (ai) | The premiums on ordinary hours of the Art. 31 tables (PDF pp. 87-92) and their base (p. 85). | corrected | Art. 31 tables: rows of rest-day, holiday, night outside shifts, night shift (the 2009 rates of the notes) and Sunday with compensatory rest, by sub-sector and category: supplement_bands ALIM_* (SupplementBand.subsectors and categories).<br>Art. 31 base (p. 85): retribuzione mensile di fatto over 173 (minimo, contingenza, scatti, superminimo, aumento individuale): hourly_base_provenance verified, the other allowances excluded, individual elements included. The overtime bands now use the same base. |
 | 2026-11-02 | claude-opus-5-5 (ai) | The 'Lavoro notturno festivo' rows of the Art. 31 tables (PDF pp. 87-92). | corrected | Art. 31: the notturno festivo rows of carni group, vini-liquori, acque minerali, conserve vegetali and avicoli (HolidayWorkKind.NIGHT_HOLIDAY). |
 | 2026-11-05 | claude-opus-5-5 (ai) | Artt. 74 bis-quinquies (PDF pp. 155-158) and Allegato 38 (p. 424) of the CCNL of 1 March 2024, text layer. | corrected | The four contributions and the EDR of art. 74 bis were not modelled: employer cost, and the net pay with the EDR, were short. |
+| 2026-11-07 | claude-opus-5-5 (ai) | Art. 21 of the 2024 text (PDF p. 50), text layer. | corrected | Added work_rules.apprentice_sickness_rules: normal pay up to six months a year. |
 | 2026-11-08 | gpt-6-sol (ai) | CCNL top-ups of maternity and work injury, read from the signed text by a separate model session; every quote found on the PDF text layer. | confirmed | Added work_rules.insured_absence.maternity.<br>Added work_rules.insured_absence.injury. |
 | 2026-11-08 | gpt-6-sol (ai) | Employer top-up of the INAIL indemnity, read from the signed text by a separate model session (audit of the injury rules); quote checked on the text layer or the page image. | corrected | The injury rule had no top-up of the INAIL indemnity; added: {"integration_rate": "1", "net_basis": true} |
 | 2026-11-08 | claude-opus-5-5 (ai) | FASA coverage of art. 74 quater (PDF p. 157), text layer. | corrected | FASA was permanent-only; the text covers fixed terms of at least nine months in the calendar year: permanent_only false, minimum_fixed_term_months 9, fixed_term_months_in_year. |
@@ -120,13 +121,6 @@ Destination levels: `5`
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
-
-!!! warning "alimentari-federalimentare/sickness_disabled_fixed_term · sickness · impact yes · open"
-    SICKNESS (Art. 47): the 100% and 50% bands of the net normal pay and the comporto of 186 days in 17 months (up to 5 years) and 365 days in 24 months (over 5) are counted over the sickness of every episode in the window. Not modelled: the apprentice's 'retribuzione normale, per un massimo di sei mesi per ogni anno' (Art. 21, PDF p. 50). Modelled: the comporto of a fixed-term worker 'limitata al periodo massimo di 4 mesi' (prima nota a verbale, PDF p. 111), 120 days. Already right without a model: the fixed-term integration stops with the INPS indemnity (the days past the D.L. 463/1983 limit are unpaid), and the 90 more days of comporto of a disabled worker (L. 68/99) carry 'non decorrerà retribuzione né si avrà decorrenza di anzianità', which is what a day past the comporto already pays. The net pay is computed by grossing up the INPS indemnity by the worker's INPS rate, as for the Commercio file.
-
-    **Applies when:** `sickness` applies.
-
-    **Remediation:** Pay the apprentice the normal pay for up to six months a year (Art. 21), then resolve this limitation.
 
 !!! warning "alimentari-federalimentare/ordinary_hours_premiums · overtime · impact yes · open"
     Art. 31, terza nota a verbale: for alimenti zootecnici on three continuous alternating shifts, the two day shifts are paid 5% more; the condition (the shift pattern) is not an engine input, so the 5% is not paid. The Saturday or sixth-day work of birra e malto (50%) and avicoli (65%) is modelled (HolidayWorkKind.SATURDAY_SIXTH_DAY).
@@ -335,6 +329,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     APPRENTICESHIP under_classification (Art. 21 A, CCNL 1 March 2024): two levels below in the first period, one below in the second, the destination in the third, with the periods of the Durata table: levels 3, 3A, 2 at 10/12/14 months, level 4 at 6/14/16, level 1 at 10/10/16; level 5 at 24 months, at the destination from the second period (month 6), the first period at level 6 being the reading of 'two levels below' kept. Level 6 and 1S are not destinations. First-level and alta formazione apprenticeships are not modelled.
     
     ADDITIONAL MONTHS: 14, the tredicesima paid at Christmas and the quattordicesima (Art. 54).
+    
+    SICKNESS (Art. 47): the 100% and 50% bands of the net normal pay and the comporto of 186 days in 17 months (up to 5 years) and 365 days in 24 months (over 5) are counted over the sickness of every episode in the window. Modelled: the apprentice's 'retribuzione normale, per un massimo di sei mesi per ogni anno' (Art. 21, PDF p. 50), 100% of the gross pay for 180 days a calendar year; the comporto of a fixed-term worker 'limitata al periodo massimo di 4 mesi' (prima nota a verbale, PDF p. 111), 120 days. Already right without a model: the fixed-term integration stops with the INPS indemnity (the days past the D.L. 463/1983 limit are unpaid), and the 90 more days of comporto of a disabled worker (L. 68/99) carry 'non decorrerà retribuzione né si avrà decorrenza di anzianità', which is what a day past the comporto already pays. The net pay is computed by grossing up the INPS indemnity by the worker's INPS rate, as for the Commercio file.
     
     OVERTIME (Art. 31): the overtime rates above 40 hours (day, weekday night, holiday) of each sub-sector table, by EmployerProfile.subsector (carni, dolciari, alimenti_zootecnici, lattiero_caseari, vini_liquori, bevande_gassate, acque_minerali, distillatori, birra_malto, conserve_vegetali, alimentari_varie, risiera, molitoria_pastificazione, conserve_ittiche, avicoli) and category (the operai column, the impiegati column for impiegati and quadri). The intermedi, the involucri of p. 287 and the non-overtime rows (night not in shifts, shifts, Sunday with compensatory rest) are not modelled: the caller states those rates.
     

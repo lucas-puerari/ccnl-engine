@@ -192,6 +192,14 @@ class SicknessCumulation(BaseModel):
     fixed_term_comporto_days: int | None = Field(default=None, ge=1)
     restart_after_full_pay_months: int | None = Field(default=None, ge=1)
     periodic_checks_outside_comporto: bool = False
+    comporto_over_chain: bool = False
+
+    @model_validator(mode="after")
+    def _chain_needs_reset(self) -> Self:
+        if self.comporto_over_chain and self.reset_after_days is None:
+            msg = "comporto_over_chain needs reset_after_days"
+            raise ValueError(msg)
+        return self
 
     @model_validator(mode="after")
     def _ordered_bands(self) -> Self:

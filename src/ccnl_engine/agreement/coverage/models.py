@@ -14,14 +14,16 @@ CCNL, and the bundle invariants already forbid a gap in it.
 
 from __future__ import annotations
 
+from collections.abc import Mapping
 from typing import TYPE_CHECKING, Self
 
-from pydantic import BaseModel, ConfigDict, model_validator
+from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from ccnl_engine.absence.insured.models import InsuredAbsenceRules
 from ccnl_engine.absence.models import AbsenceRules
 from ccnl_engine.agreement.types import NoteKind
 from ccnl_engine.compensation.sunday_holiday.models import SundayHolidayPay
+from ccnl_engine.employment.category.models import WorkerCategory
 from ccnl_engine.leave.models import LeaveRules
 from ccnl_engine.limitation.models import (
     ModelLimitation,
@@ -122,7 +124,13 @@ class CoverageNote(BaseModel):
 
 
 class CCNLWorkRules(BaseModel):
-    """Container for work rules attached to a CCNL data file."""
+    """Container for work rules attached to a CCNL data file.
+
+    ``sickness_rules_by_category`` and ``apprentice_sickness_rules`` hold the
+    sickness rules of the workers a CCNL treats apart (Tabacco art. 34: the
+    impiegati; Alimentari art. 21: the apprentices); the run takes them in
+    place of ``sickness_rules`` (:mod:`ccnl_engine.sickness.variant`).
+    """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
 
@@ -130,6 +138,10 @@ class CCNLWorkRules(BaseModel):
     absence_rules: AbsenceRules | None = None
     leave_rules: LeaveRules | None = None
     sickness_rules: SicknessRules | None = None
+    sickness_rules_by_category: Mapping[WorkerCategory, SicknessRules] = Field(
+        default_factory=dict
+    )
+    apprentice_sickness_rules: SicknessRules | None = None
     insured_absence: InsuredAbsenceRules | None = None
     standby_rules: StandbyRules | None = None
     travel_allowance: CcnlTravelAllowance | None = None
