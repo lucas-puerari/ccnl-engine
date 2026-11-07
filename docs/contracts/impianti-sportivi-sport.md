@@ -33,7 +33,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, sickness |
 
-9 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+8 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -60,6 +60,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-05 | claude-opus-5-5 (ai) | Artt. 83-84 (PDF p. 76) of the CCNL of 12 January 2024, text layer. | corrected | Art. 83: 20% past the 48th weekly hour was missing.<br>Art. 84: the 10% is for ordinary night work only; the note claiming 50% + 10% on night overtime is resolved. |
 | 2026-11-08 | claude-opus-5-5 (ai) | The monthly values of the levels against the primary tables (text layer). | confirmed | 1 values found verbatim on the cited pages and marked verified; 28 left as they were (derived or not on a text page). |
 | 2026-11-08 | gpt-6-sol (ai) | Monthly values on scanned pages, each read twice from the page image by two independent sessions of another model, the second without being told the expected value. | confirmed | 28 values read identically by both readings and equal to the file. |
+| 2026-11-08 | gpt-6-sol (ai) | Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim. | confirmed | integration_75_days_4_20: JSON sickness_rules.day_bands is [4,21) at 0.75 and [21,infinity) at 1; carenza_integration_rate=1, net_basis=true and apprentices_excluded=true. SickPayRules.target_rate(index) selects the matching band and _segment_pay() tops up INPS to that target (does not add 75% on top). Th |
 
 ## Salary table
 
@@ -124,13 +125,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `overtime` applies.
 
     **Remediation:** Resolved: overtime band OT_DIURNO_OLTRE_48 of 20% past 48 weekly hours, read on 2026-11-05.
-
-!!! note "impianti-sportivi-sport/integration_75_days_4_20 · sickness · impact yes · resolved"
-    SICKNESS INTEGRATION (Art. 103 b): days 1-3 paid by the employer at 100%, the top-up reaches 75% for days 4-20 and 100% from day 21 of the net daily pay; stored as sickness_rules.day_bands.
-
-    **Applies when:** `sickness` applies.
-
-    **Remediation:** Resolved: sickness_rules.day_bands hold 75% for days 4-20 and 100% from day 21 of Art. 103 b), read on 2026-10-30.
 
 !!! note "impianti-sportivi-sport/long_week_divisor_195 · workplace_injury · impact unknown · resolved"
     SIMPLIFICATION: Divisore orario. Art. 120 prevede 173 (40h) e 195 (45h). Solo il divisore 173 e modellato. Le assunzioni a 45h settimanali non sono gestite.

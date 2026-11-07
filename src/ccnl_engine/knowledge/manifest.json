@@ -65,7 +65,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/agenti-immobiliari-fiaip",
       "ruleset_version": "2026.2",
-      "source_hash": "c11e37755166ebb6b38dcd41c1fac3f61daf6b64e9bfbb746d258a5893aab398",
+      "source_hash": "5581c753b8274f211ca2845a70645278655252729dd2ffdb8cf93282ef1f5fd9",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/agenti-immobiliari-fiaip.json.gz"
@@ -201,7 +201,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/attivita-minerarie-assorisorse",
       "ruleset_version": "2026.1",
-      "source_hash": "dd2f5f93972834cf11defea6696e60cfc6fbae8afe9f0c310af44beb3a6e9c58",
+      "source_hash": "484884a1fe5aec29340786bfbfdfb787eccaf0d114f4b7a74cb0400834ab74b2",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/attivita-minerarie-assorisorse.json.gz"
@@ -235,7 +235,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/autorimesse-ic35",
       "ruleset_version": "2026.2",
-      "source_hash": "45e7e9c44ed3808736e1de435a0181e0772f59a69bdb89dd30d67687d95c21ab",
+      "source_hash": "9d0d929f908aa590929f04a1140c123b31f037803389cd121738027f55856f68",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/autorimesse-ic35.json.gz"
@@ -490,7 +490,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/commercio-confcommercio",
       "ruleset_version": "2026.2",
-      "source_hash": "9e7675b8fcf9c2d419a030ef6505b73c50f0377c8d15ed82eff2add47fb0940a",
+      "source_hash": "f0c26539b1e7f1f8766731cbeb2f0fd44d21fb4b4db92b93d10f9e19e4d61cdb",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/commercio-confcommercio.json.gz"
@@ -541,7 +541,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/consorzi-agrari-assocap",
       "ruleset_version": "2026.2",
-      "source_hash": "f7bf19e9047a3355820b946fc3ba7a3ba48779ecbb58bc1e087df6041fda9a23",
+      "source_hash": "873c401a875d850a3eb63784f94c14f947ac988367222919153959cb34347d7e",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/consorzi-agrari-assocap.json.gz"
@@ -592,7 +592,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/cooperative-consorzi-agricoli",
       "ruleset_version": "2026.2",
-      "source_hash": "270209ed3766bb445f6e775ed1c07d291645e5dc4178eb82a5cc21e92e209655",
+      "source_hash": "727f96304cc62cf8b7fe2bd174dfed2adfc5880604d4a532efaa83c720cf2acd",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/cooperative-consorzi-agricoli.json.gz"
@@ -609,7 +609,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/cooperative-sociali",
       "ruleset_version": "2026.2",
-      "source_hash": "e0402b1f00a56f92f4967398b48ce3415c9e428351aa3279c33c9333dd796839",
+      "source_hash": "c6c4dc0954b6df280b7e985d8139311c356b2e841e96025ca5055bfc76e10860",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/cooperative-sociali.json.gz"
@@ -626,7 +626,7 @@
       "valid_to": "2024-12-31",
       "ruleset_id": "ccnl/dirigenza-funzioni-centrali-aran",
       "ruleset_version": "2026.2",
-      "source_hash": "fa2742eac5433001b76aad4188bea2d947807c5ba5a96310049ab5ceb327d230",
+      "source_hash": "03a77246805a7bedf95224f6dbffb504323668c9ac28186ccb4b49e60103e06c",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/dirigenza-funzioni-centrali-aran.json.gz"
@@ -694,7 +694,7 @@
       "valid_to": "2024-12-31",
       "ruleset_id": "ccnl/dirigenza-sanitaria-medico-veterinaria-aran",
       "ruleset_version": "2026.2",
-      "source_hash": "85abf1d565835b23e4a37afd3c2c5c66a032ee6b3bb1c21431177f8a095d03ff",
+      "source_hash": "1a760be6ce5a6533a0b4bb0b60127440e4060e8b92469624bc12082b41c7328b",
       "source_type": "institutional_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/dirigenza-sanitaria-medico-veterinaria-aran.json.gz"
@@ -728,7 +728,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/dmo-federdistribuzione",
       "ruleset_version": "2026.2",
-      "source_hash": "8071b9fd26d595874098e6c1d0a7c0ff6a8326952449061e9388621a700965f3",
+      "source_hash": "2dbe4d3cb86b20215b3694e749c8417436bc492b3a9389b080d443a983bd09c4",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/dmo-federdistribuzione.json.gz"
@@ -935,7 +935,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/farmacie-private-h121",
       "ruleset_version": "2026.2",
-      "source_hash": "b9d5fc63ea3e8066f589463dd4283978dbf0038aac2dcc383a32b19498274a0c",
+      "source_hash": "d9f6f1f417bca48e5a0ff89698f031bc5dd0baf46ea4ceafc289c2f517ee5c22",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/farmacie-private-h121.json.gz"
@@ -952,7 +952,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/farmacie-rurali-sussidiate-h121",
       "ruleset_version": "2026.2",
-      "source_hash": "5f00671d31748ad5a5897481d4889b3a02c6131d435d559348b96d749057c921",
+      "source_hash": "e6843553f720f7fd3c0734fec63a00a7d3cd338bdc80e7eeb9a9e6f173540b43",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/farmacie-rurali-sussidiate-h121.json.gz"
@@ -969,7 +969,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/federcasa",
       "ruleset_version": "2026.2",
-      "source_hash": "1597d0cdcc2c1ca54650e6512b3de647c243e235f62754336323f210026cf83a",
+      "source_hash": "b829048a3af2c58bbb1725b7c389234e0cb796a9cb261b1302191ec530efcd98",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/federcasa.json.gz"
@@ -1037,7 +1037,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/funivie-anef",
       "ruleset_version": "2026.2",
-      "source_hash": "c0a828f1d57dede0a5744b14e948d6c717713cd7f3bdd89b4c53d60d21c6af2f",
+      "source_hash": "8bc326ace2a61f2ee9d2f07d93ecf54cd3c9ceecfb783fcdb87b56cacd358c55",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/funivie-anef.json.gz"
@@ -1139,7 +1139,7 @@
       "valid_to": "2027-12-31",
       "ruleset_id": "ccnl/igiene-ambientale-utilitalia",
       "ruleset_version": "2026.2",
-      "source_hash": "d94629b9cc6c6bebd6b683d6672dcd87a6cee2d53ba12176ef752dc4ff303f87",
+      "source_hash": "c1f26444f4fd4583aed33486c109f394225f8c06eb722b57148f69eea666b332",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/igiene-ambientale-utilitalia.json.gz"
@@ -1156,7 +1156,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/impianti-sportivi-sport",
       "ruleset_version": "2024.1",
-      "source_hash": "e33ec2696c47c096aa0addb09be8462faf832e5267b366ad2b0f9e6de7c943ef",
+      "source_hash": "75f285b0c9c460f65e12d0a64ae49e022c95f9916560310afcace864636f2867",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/impianti-sportivi-sport.json.gz"
@@ -1173,7 +1173,7 @@
       "valid_to": "2027-12-31",
       "ruleset_id": "ccnl/impiegati-tecnici-agricoli",
       "ruleset_version": "2026.2",
-      "source_hash": "598d74270f1b20a75fdac364c400a187263174d50d0dba27e516357441e5032d",
+      "source_hash": "8379459355e7c15cad1c82aecb78cf28282f8d71ab5df35d5894530ee303bd1b",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/impiegati-tecnici-agricoli.json.gz"
@@ -1275,7 +1275,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/laterizi-industria-f021",
       "ruleset_version": "2026.2",
-      "source_hash": "c119027b60639cf259b5a50b274817fea76317f86fe014a7eaf411b49ff7b16a",
+      "source_hash": "ebb94a8f6cb52d8aec4755eb891b3141a4d1ee5722786c9551a17b5d5780dc16",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/laterizi-industria-f021.json.gz"
@@ -1343,7 +1343,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/lavoro-domestico-non-convivente",
       "ruleset_version": "2026.3",
-      "source_hash": "bca89a1561705e5296b72be3780f132d60736b7b3dc08d55dcc8af34f22c4ada",
+      "source_hash": "4a926eeb5f4e1a9a4a795faf3b740a20cef48e968e9c5b7638e18467691aa6b8",
       "source_type": "commercial_secondary",
       "owner": "maintainer",
       "wheel_resource": "agreement/lavoro-domestico-non-convivente.json.gz"
@@ -1547,7 +1547,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/multiservizi-anip",
       "ruleset_version": "2026.2",
-      "source_hash": "cdb187887df90269c53da9dd07f2b32be5db7cc118ec9e02b47aac360d6c3f65",
+      "source_hash": "3f9f38b953a40b2e8b96ca5a64a66406d3a810e5ef9988b70b0091ba245861bb",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/multiservizi-anip.json.gz"
@@ -1581,7 +1581,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/occhiali-occhialeria-industria",
       "ruleset_version": "2026.2",
-      "source_hash": "ecb7d3537e81c3051b97e9c26e42871b4ae02153617a45470d5afb951f06a112",
+      "source_hash": "1074f8446b49871b8ae8f7230de935061e9ff096a1692be8629f10b85c2b6e94",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/occhiali-occhialeria-industria.json.gz"
@@ -1615,7 +1615,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/operai-agricoli-florovivaisti",
       "ruleset_version": "2026.2",
-      "source_hash": "f899fcf252717318b934cf5c64094970005f6a268cb2fb74a491d75cc2d5d17e",
+      "source_hash": "2eb340536167d1479a276bd2c4c4d6948982ffa678e1e65344d85294cf4f9451",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/operai-agricoli-florovivaisti.json.gz"
@@ -1649,7 +1649,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/organizzazioni-allevatori-aia",
       "ruleset_version": "2026.2",
-      "source_hash": "b108524af14cc55586342e4535fc9c9a486c9bcbed8d7c4a3fc6f5a8c410435e",
+      "source_hash": "c87ba6fae4f0c11e8b8e20bc27078736b44b7105510dfaaeedac0344a43adcf3",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/organizzazioni-allevatori-aia.json.gz"
@@ -1734,7 +1734,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/portieri-fabbricati-confedilizia",
       "ruleset_version": "2026.2",
-      "source_hash": "4839f11c21f3b472ddcd6b7a26baad2238583f7a09237bde3946644d89b7f70b",
+      "source_hash": "6ddf62e4529d6734da91636cb37a2835513719e29f0ed5c7181ac183fa6686d2",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/portieri-fabbricati-confedilizia.json.gz"
@@ -1785,7 +1785,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/pubblici-esercizi-fipe-angem",
       "ruleset_version": "2026.2",
-      "source_hash": "51b9ee510aa7a4a7dc6968fb2d27d1b8a7bd1de5546a0d10f01e219cc5296fb6",
+      "source_hash": "651cc540857bb1fbe611ebed45399f288128e2cf6e2e3bb8844b765ab1bb18c8",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/pubblici-esercizi-fipe-angem.json.gz"
@@ -2006,7 +2006,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/sistemazioni-idraulico-forestali-operai",
       "ruleset_version": "2026.1",
-      "source_hash": "fe4b2125de91332739e0e9f3ba548af446946731470908d59b0b0636342335f2",
+      "source_hash": "9d22e699716aa296682847c0f5eb13f88e1f56f4abb8724b7cb918e1c0da566b",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/sistemazioni-idraulico-forestali-operai.json.gz"
@@ -2023,7 +2023,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/studi-professionali-confprofessioni",
       "ruleset_version": "2026.2",
-      "source_hash": "5a2666b96bffa916e6667b45ccac648b8f04610e7e7ff22922ffb2754bf87eb3",
+      "source_hash": "af67cccbca5392024dd7f81fe95e2b37787218b0ed7b417594ba8bea537c0a29",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/studi-professionali-confprofessioni.json.gz"
@@ -3141,7 +3141,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "811774fdff9025584a5d4fbd5716125827f6029500cc3f366500fac51b58fef8",
+      "source_hash": "578b5a1b570bca403552a29084e1408ffdff4fafe0b3100447f67d7c4c0b25b1",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/dirigenza-funzioni-centrali-aran.json.gz",
@@ -3521,7 +3521,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "24fe8de7626240cae35b065caf0e75c900473efed624f7a28a96564f3bf135e8",
+      "source_hash": "adc82a1bf27ed66983de65e16b41762da6061893ed539e82bb75959445ed8782",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/federcasa.json.gz",
@@ -3881,7 +3881,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "74965bc02251f319d9c63f55430d58a1dbaff11a8e6340e38c4280453fc1817a",
+      "source_hash": "b81e7685080c05a5f3cad7060f7a33aebb15527e6124c60418bf2087de7ef678",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/laterizi-industria-f021.json.gz",
@@ -4241,7 +4241,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "164926bbdc26186ef33ef5570b1f2c858039b682a68596e38041ae6ec27f4bda",
+      "source_hash": "d6c9646c04ee793307e72f0ecb9d0ebf60d8eaa7a039b8f12bd8989535a6c3f2",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/occhiali-occhialeria-industria.json.gz",
@@ -4281,7 +4281,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "40d736c2c80167f29348790c2f45278fb40547815b4749933cec48000e65fc07",
+      "source_hash": "1a93b70cc74f91e7ce115dac0a9fdcfc7ad34cf597a11712a5a03bfdab027cad",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/operai-agricoli-florovivaisti.json.gz",
@@ -4481,7 +4481,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "ae7bff0c281a1d66a440fa23c63cfb8f5d90fd29910e614cd45e50c7243901e8",
+      "source_hash": "fd25383e5c28ff9bfb3ef0ccd60e6ed84be8429eb9d650a8640ee1d17121c7eb",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/pubblici-esercizi-fipe-angem.json.gz",
@@ -4741,7 +4741,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "11255644be8bc30dd82d052a2421ac275573b414019a730765925d07605c1e4c",
+      "source_hash": "0bbac4a726bf1c85082d37afbbb1d53d8221a68e2be025c95301010fdd60d831",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/sistemazioni-idraulico-forestali-operai.json.gz",

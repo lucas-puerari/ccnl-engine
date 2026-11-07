@@ -35,9 +35,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, inps_employer, seniority, territorial_supplement |
+| **Limits of this contract** | base_salary, inps_employer, seniority |
 
-7 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+6 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -54,7 +54,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-12-04 |
-| **Last review** | 2026-11-01 |
+| **Last review** | 2026-11-08 |
 | **Latest salary tranche** | 2028-01-01 |
 
 ## Review history
@@ -63,6 +63,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|---|---|
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | corrected | Art. 14 - Mensilità aggiuntive (13ª e 14ª) (p. 43): "dette mensilità aggiuntive sono frazionabili in dodicesimi nell’ipotesi di inizio o di cessazione del rapporto nel corso dell’anno. [...] La frazione di mese superiore a 15 giorni viene considerata come un mese intero.". Added: more_than 15 (the file applied the engine default, at least 15 days). |
 | 2026-11-01 | claude-opus-5-5 (ai) | Minimum pay of the operai forestali con rapporto di lavoro a tempo indeterminato from 1 January 2026, 2027 and 2028 against the tables of the signed 2025 renewal (Allegati B, C, C1, scanned pages read as images). AI review only. | corrected | The 2026-2028 minimums now cite the TOTALE NAZIONALE CONGLOBATO of the signed tables (pp. 29-31) instead of a secondary site and the Art. 35 parameters.<br>Level 3 in 2027 and 2028 was 1 cent below the table (1.507,53 and 1.528,09) and level 4 in 2026 1 cent above (1.537,90). |
+| 2026-11-08 | gpt-6-sol (ai) | Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim. | confirmed | regional_seniority_cirl: For operai, the cited national agreement does not prescribe seniority increments: Art. 41 awards biennial increments to impiegati only; Art. 52 lists operai pay as national minimum plus regional supplementary salary, unchanged in the 2025 renewal. The agreement JSON has maximum_c |
 
 ## Salary table
 
@@ -103,13 +104,6 @@ Destination levels: `O5`
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
-
-!!! warning "sistemazioni-idraulico-forestali-operai/regional_seniority_cirl · territorial_supplement · impact yes · open"
-    Seniority operai: nessuno scatto di anzianita previsto a livello CCNL nazionale. Gli scatti sono disciplinati dai CIRL (contratti integrativi regionali). Modellati con importo zero e maximum_count=0.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Add the CIRL regional scatti outside the engine and record the limitation (as ert_veneto / provincial_third_elements).
 
 !!! warning "sistemazioni-idraulico-forestali-operai/structural_rules_from_2021_text · base_salary · impact unknown · open"
     Structural rules (Art. 7, 49, 52) taken from 2021 previgente CCNL text. The 2025 rinnovo PDF is image-only and full text is unavailable for independent verification.

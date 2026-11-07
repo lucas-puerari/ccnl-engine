@@ -36,7 +36,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, leave, overtime, sickness |
 
-8 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+7 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -73,6 +73,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-31 | claude-opus-5-5 (ai) | The basis of the indemnity for the leave not taken at the end of the employment, searched in the OCR of the signed text of 2018 (Artt. 114, 134, 135, 159, 160) and of the 2024 renewal. | corrected | Art. 159 - Determinazione della retribuzione giornaliera (p. 116): the daily pay is the monthly pay divided by 26 for every contractual purpose: the residual ferie are paid at it, and the permits at the hourly pay of Art. 160: work_rules.leave_rules.termination. |
 | 2026-11-05 | claude-opus-5-5 (ai) | The hourly divisor of the 44-hour week, Articolo 160 (PDF p. 116, printed p. 114), checked by a separate session on the page rendered at 200 and 400 dpi. | confirmed | Art. 160 c.1 (sha256 32a2831b... matched): 190 for a normal week of 44 hours, 172 for 40: work_rules.time_supplements.week_divisors 44/190.<br>The renewal of 5 June 2024 amends arts. 114, 135, 161, 183-184 and 199-202, not art. 160. |
 | 2026-11-08 | gpt-6-sol (ai) | Maternity top-up (art. 200, 2024 renewal) and work injury (arts. 191, 193, 2018 text), read by a separate model session and checked on the page images (no text layer). | confirmed | Added work_rules.insured_absence.maternity and .injury.<br>Injury: the research omitted the top-up of art. 191 c. 4 (to 100% from the day of the injury); added from the page image. |
+| 2026-11-08 | gpt-6-sol (ai) | Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim. | confirmed | contract_catering_tranche_dates: 2018 art. 1(1) II covers catering/collective catering; signed 2024 table specifies September 2025 and September 2026 for that scope. The caller-selected sibling pubblici-esercizi-fipe-angem-ristorazione-collettiva.json stores all ten levels with June 2024 -> September 2025 -> Sep |
 
 ## Salary table
 
@@ -130,13 +131,6 @@ percentage: 1.00
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
-
-!!! warning "pubblici-esercizi-fipe-angem/contract_catering_tranche_dates · base_salary · impact yes · open"
-    CONTRACT CATERING: collective catering companies apply the June 2025 and June 2026 tranches from September (accordo integrativo 26 June 2024, p. 3); they are modelled in pubblici-esercizi-fipe-angem-ristorazione-collettiva. This file holds the June dates of the other sub-sectors.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Use pubblici-esercizi-fipe-angem-ristorazione-collettiva for a collective catering company.
 
 !!! warning "pubblici-esercizi-fipe-angem/small_company_pay_reduction · base_salary · impact yes · open"
     SMALLER COMPANIES (Art. 162; accordo integrativo of 26 June 2024, pp. 4-6): the aziende minori dei pubblici esercizi and the stabilimenti balneari of the third and fourth category pay a reduced paga base, from 2.58 EUR less at level 7 to 5.68 EUR less at Qa, modelled as the base_salary_by_subsector aziende_minori (EmployerProfile.subsector). Not modelled: the lower contingenza of art. 163 c. 2 (up to 0.51 EUR), which the 2024 tables do not print.

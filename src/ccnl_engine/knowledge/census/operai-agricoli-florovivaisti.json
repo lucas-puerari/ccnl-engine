@@ -195,22 +195,6 @@
       }
     },
     {
-      "id": "inps_on_actual_not_conventional_pay",
-      "institute": "inps_employee",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "INPS CONTRIBUTION BASE. Agricultural OTI INPS contributions are legally computed on the 'retribuzione convenzionale' (set annually by INPS decree per DL 338/1989 Art. 1), NOT on the actual contractual salary. This engine applies rates to actual gross salary. The net INPS amounts will differ from statutory computations. Figures are indicative only.",
-      "calculation": "ccnl/operai-agricoli-florovivaisti:coverage.notes",
-      "state": "absent",
-      "remediation": "Compute agricultural INPS contributions on the retribuzione convenzionale set by INPS decree.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "operai-agricoli-florovivaisti/inps_on_actual_not_conventional_pay"
-        ]
-      }
-    },
-    {
       "id": "maternity_daily_base",
       "institute": "maternity_leave",
       "variant": "all",

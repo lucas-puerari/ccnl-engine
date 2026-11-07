@@ -95,20 +95,6 @@
         "text": "INDENNITA DI FUNZIONE: level 1Q receives +100.00 EUR/month additive to base_salary 1788.38. Modelled as fixed_allowance code IND_FUN. Source: lavoro-economia.it/ccnl/ccnl.aspx?c=3 (total 1888.38 'with function allowance')."
       },
       {
-        "kind": "simplification",
-        "text": "NATIONAL MINIMA (Art. 31, p. 35 of the CCNL of 18 June 2024): one national table, 'Minimi nazionali di stipendio mensile conglobato a decorrere dal 01/07/2024' (Q 1.788,38 ... 6° 1.217,23). The +5% from 1 April 2024 and +1.9% from 1 January 2025 raise the territorial salaries, not the national minima; the table applies from 1 July 2024, or from the next territorial renewal (by 1 January 2027) where the territory renewed under the CCNL of 7 July 2021.",
-        "capability": "base_salary",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "tranche_2025_01_missing",
-          "applies_when": {
-            "effective_from": "2025-01-01"
-          },
-          "remediation": "Resolved: the national minima are the one table from 1 July 2024 (art. 31); the two percentages are territorial; read on 2026-11-06.",
-          "status": "resolved"
-        }
-      },
-      {
         "kind": "info",
         "text": "INPS CONTRIBUTION BASE. The retribuzione convenzionale regime (INPS annual decree) applies to operai agricoli OTD/OTI (braccianti), NOT to impiegati agricoli. For impiegati OTI, contributions are computed on actual contractual salary pursuant to DL 338/1989 Art. 1 minimale (contribution base cannot fall below CCNL minimum). The engine applies rates to actual gross salary, which is correct for impiegati. Source: INPS Circ. 43/2026 covers operai only; standard regime applies to impiegati. (Confirmed by confagricolturapadova.it/wp-content/uploads/2020/02/Contributi_minimi_2020.pdf, laprevidenza.it.)"
       },
@@ -175,6 +161,31 @@
         "independence": "separate_session",
         "checked": [
           "work_rules.notice"
+        ]
+      },
+      {
+        "id": "2026-11-08-gpt-impiegati-tecnici-agricoli-stale-limitations",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.flai.it/wp-content/uploads/2022/09/CCNL-QUadri-e-impiegati-agric-202250.pdf",
+            "sha256": "d589ce43212f22a57e4da01e6cebed98b221d6d232193b67684e401b6be738a0"
+          },
+          {
+            "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-quadri-e-impiegati-agricoli-2024-2027.pdf",
+            "sha256": "94fba8a7cda3856266ed91ab8eec45264803a5396179772d67fbc995b7f7f076"
+          }
+        ],
+        "findings": [
+          "tranche_2025_01_missing: Art. 31 applies 5% (01/04/2024) and 1.9% (01/01/2025) to territorial contractual salaries, not a second national table. Tab. 1 has a single national minimum table dated 01/07/2024; all seven amounts match levels[*].base_salary, whose periods remain in force in 2025. The engine re"
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "coverage.notes"
         ]
       }
     ]
@@ -760,7 +771,7 @@
     "effective_until": "2027-12-31",
     "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-quadri-e-impiegati-agricoli-2024-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "598d74270f1b20a75fdac364c400a187263174d50d0dba27e516357441e5032d",
+    "source_hash": "8379459355e7c15cad1c82aecb78cf28282f8d71ab5df35d5894530ee303bd1b",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

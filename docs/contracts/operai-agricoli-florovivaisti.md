@@ -34,9 +34,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, bilateral_funds, inail, inps_employee, overtime, seniority, sickness, territorial_supplement |
+| **Limits of this contract** | base_salary, bilateral_funds, inail, overtime, seniority, sickness, territorial_supplement |
 
-15 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+13 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -53,7 +53,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2026-05-28 |
-| **Last review** | 2026-11-01 |
+| **Last review** | 2026-11-08 |
 | **Latest salary tranche** | 2026-06-01 |
 
 ## Review history
@@ -73,6 +73,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | corrected | Art. 52 - Tredicesima mensilità (p. 54-55): "l'operaio ha diritto a tanti dodicesimi dell'ammontare della tredicesima quanti sono i mesi di servizio prestati presso l'azienda. [...] La frazione di mese superiore ai quindici giorni viene considerata, a questi effetti, come mese intero.". Added: more_than 15 (the file applied the engine default, at least 15 days). |
 | 2026-10-18 | claude-opus-5-5 (ai) | Base salaries (minimi salariali di area mensili, operai agricoli, Areas 1-3) of every period, checked against the signed verbali of 23 May 2022 and 28 May 2026. | corrected | The 2023 values (1.389,15 / 1.266,90 / 944,62) match Allegato n. 1, Tabella n. 1 of the signed verbale of 23 May 2022 (scanned, OCR plus visual check of p. 33).<br>Date of the 2023 period: Art. 49 of the 2022 verbale applies the minimi from 1 June 2022 in provinces without a CPL under the CCNL 19 June 2018 and, elsewhere, from the CPL renewal date and not later than 1 January 2025; the accord of 27 October 2023 brought that date forward to 1 January 2024. The file start 2023-01-01 comes from the INPS label 'in vigore dall'1.1.2023' and is not a date stated by the parties; the value is in force throughout the file period in provinces without a CPL.<br>The 2025 values are not printed in any signatory text found: they follow from the 2022 minimi plus 5% (accord of 27 October 2023, signed text not located; the rule is reported by Confagricoltura Rovigo and Belluno) and are confirmed exactly by the 2026 minimi, which equal them times 1.051. Area 2 rounds 1330.245 half-up to 1330.25, which is the base the 2026 table uses (1330.25 x 1.051 = 1398.093).<br>The 2027 values are printed to three decimals (1532,999 / 1398,093 / 1042,434) and kept rounded to the cent.<br>Art. 50 of the 2026 verbale applies the new minimi (which already include both tranches) from 1 June 2026 in provinces without a CPL renewed under the CCNL of 23 May 2022, and elsewhere from the CPL renewal date and not later than 1 January 2029. No text supports a national minimo of 1025.57 / 1375.48 / 1508.20 for June to December 2026: those figures apply the 3.4% first tranche (which raises provincial salari contrattuali) to the 2025 minimi. The 2026-06-01 periods are left unbacked.<br>Maintainer decision: the 2026-06-01 periods take the printed minimi of Allegato n. 1 (p. 52), +5.1%, replacing the file values built on +3.4% (1508.20, 1375.48, 1025.57); the 2027-01-01 periods carried the same printed minimi and are merged into them.<br>Corrected to the printed table: Area1 2026-06-01: 1508.20 -> 1533.00; Area2 2026-06-01: 1375.48 -> 1398.09; Area3 2026-06-01: 1025.57 -> 1042.43. |
 | 2026-11-01 | claude-opus-5-5 (ai) | The notice clause (Art. 77 — Preavviso di risoluzione del rapporto (testo non modificato dal rinnovo 28 maggio 2026), p. 69–70). | corrected | Notice bands checked against the PDF by a separate session (delegated search and independent verification): work_rules.notice. |
+| 2026-11-08 | gpt-6-sol (ai) | Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim. | confirmed | inps_on_actual_not_conventional_pay: The cited DL 338/1989 rule establishes a minimum contributory base, not a fixed annual conventional base replacing actual contractual pay; the cited INPS annex tabulates CCNL minima. The engine calculates INPS on monthly_gross + event_inps_base, raised to any configured minimum. <br>mountain_zone_reductions: INPS 43/2026 §7 sets 75% ex-mountain and 68% disadvantaged, excluding the article 25(4) contribution. The 2026 agricultural contribution JSON sets mountain=0.75, disadvantaged=0.68 and excluded_rate=0.0030; EmployerProfile.agricultural_zone feeds with_zone_reduction, which reduce |
 
 ## Salary table
 
@@ -125,13 +126,6 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Model the OTF salary tables as a separate file.
 
-!!! warning "operai-agricoli-florovivaisti/inps_on_actual_not_conventional_pay · inps_employee · impact yes · open"
-    INPS CONTRIBUTION BASE. Agricultural OTI INPS contributions are legally computed on the 'retribuzione convenzionale' (set annually by INPS decree per DL 338/1989 Art. 1), NOT on the actual contractual salary. This engine applies rates to actual gross salary. The net INPS amounts will differ from statutory computations. Figures are indicative only.
-
-    **Applies when:** `inps_employee` applies.
-
-    **Remediation:** Compute agricultural INPS contributions on the retribuzione convenzionale set by INPS decree.
-
 !!! warning "operai-agricoli-florovivaisti/inail_agricultural_premium · inail · impact yes · open"
     INAIL NOT MODELLED. INAIL agricultural premium (8.50% unified from 2026 per new tariff) is not modelled. The engine does not track INAIL.
 
@@ -152,13 +146,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `bilateral_funds` applies.
 
     **Remediation:** Pass the provincial EBAN, FISA and Agrifondo contributions as bilateral fund events.
-
-!!! note "operai-agricoli-florovivaisti/mountain_zone_reductions · inps_employer · impact yes · resolved"
-    TERRITORIAL REDUCTIONS. INPS reductions for mountain/disadvantaged zones (75%/68%) are not modelled.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Resolved (review of 2026-10-30): EmployerProfile.agricultural_zone and contribution/zone/models.py with_zone_reduction apply the mountain and disadvantaged zone cuts of INPS circ. 43/2026 par. 7 (zone_reduction in contribution/2026/agricoltura.json); an unknown zone blocks the run. Tests: tests/integration/ccnl_engine/period/context/agreement/services/test_contract_agricultural_zone.py::test_mountain_zone_cuts_the_employer_contributions, ::test_unknown_zone_charges_the_full_rates_and_blocks.
 
 !!! warning "operai-agricoli-florovivaisti/apprentice_seniority · seniority · impact unknown · open"
     APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.

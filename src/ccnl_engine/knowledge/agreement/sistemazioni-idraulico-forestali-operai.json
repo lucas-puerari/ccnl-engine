@@ -59,19 +59,6 @@
       },
       {
         "kind": "simplification",
-        "text": "Seniority operai: nessuno scatto di anzianita previsto a livello CCNL nazionale. Gli scatti sono disciplinati dai CIRL (contratti integrativi regionali). Modellati con importo zero e maximum_count=0.",
-        "capability": "territorial_supplement",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "regional_seniority_cirl",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Add the CIRL regional scatti outside the engine and record the limitation (as ert_veneto / provincial_third_elements)."
-        }
-      },
-      {
-        "kind": "simplification",
         "text": "Serie retributiva starts 01/01/2026 (first tranche with primary-source data). Retroactive 2025 tabella not available in machine-readable form; pre-2026 amounts omitted.",
         "capability": "base_salary",
         "monetary_impact": "no"
@@ -190,6 +177,31 @@
         "findings": [
           "The 2026-2028 minimums now cite the TOTALE NAZIONALE CONGLOBATO of the signed tables (pp. 29-31) instead of a secondary site and the Art. 35 parameters.",
           "Level 3 in 2027 and 2028 was 1 cent below the table (1.507,53 and 1.528,09) and level 4 in 2026 1 cent above (1.537,90)."
+        ]
+      },
+      {
+        "id": "2026-11-08-gpt-sistemazioni-idraulico-forestali-operai-stale-limitations",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.flai.it/wp-content/uploads/2023/05/CCNL-Idraulico-Forestale-2023.pdf",
+            "sha256": "fb09d06825c27a3abb8081bec9e1645f17e51920559a6406323225d26b549461"
+          },
+          {
+            "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_idraulico-forestale-Accordo-di_rinnovo_2025.pdf",
+            "sha256": "d4349690b91ccd63f4d49dc573fbbe6a9aa04fa52e0f7a5efb60045d7f0b77d4"
+          }
+        ],
+        "findings": [
+          "regional_seniority_cirl: For operai, the cited national agreement does not prescribe seniority increments: Art. 41 awards biennial increments to impiegati only; Art. 52 lists operai pay as national minimum plus regional supplementary salary, unchanged in the 2025 renewal. The agreement JSON has maximum_c"
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "coverage.notes"
         ]
       }
     ]
@@ -1024,7 +1036,7 @@
     "source": "https://redigo.info/",
     "verification_status": "unverified",
     "published_at": "2026-09-11",
-    "source_hash": "fe4b2125de91332739e0e9f3ba548af446946731470908d59b0b0636342335f2",
+    "source_hash": "9d22e699716aa296682847c0f5eb13f88e1f56f4abb8724b7cb918e1c0da566b",
     "source_type": "commercial_secondary"
   },
   "work_rules": {

@@ -378,17 +378,6 @@
         "monetary_impact": "no"
       },
       {
-        "kind": "simplification",
-        "text": "Malattia: 100% mesi 1-9, 90% mesi 10-12, 50% mesi 13+ modellati con SicknessTier. Il motore classifica ogni giorno di malattia con il mese dell'episodio in cui cade, quindi un periodo di paga a cavallo di una soglia mensile applica a ciascun giorno il proprio tasso. Comporto max 18 mesi = 540 gg.",
-        "capability": "sickness",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "single_rate_across_tier_threshold",
-          "status": "resolved",
-          "remediation": "Resolved: sick days are classified one by one (ccnl_engine.sickness.day.rules); tested with an episode crossing the threshold of a tier within one month."
-        }
-      },
-      {
         "kind": "info",
         "text": "Rinnovo 2025-2027: ARAN ha convocato primo tavolo il 22/07/2026 presentando quantificazione economica con risorse ordinarie pari al 5,40%. Trattativa in corso al 2026-09-09; nessun accordo firmato. Fonte: consulentidellavoro.vi.it, vet33.it."
       },
@@ -405,7 +394,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf",
     "verification_status": "unverified",
-    "source_hash": "85abf1d565835b23e4a37afd3c2c5c66a032ee6b3bb1c21431177f8a095d03ff",
+    "source_hash": "1a760be6ce5a6533a0b4bb0b60127440e4060e8b92469624bc12082b41c7328b",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },
@@ -734,5 +723,30 @@
         }
       }
     }
+  },
+  "verification": {
+    "reviews": [
+      {
+        "id": "2026-11-08-gpt-dirigenza-sanitaria-medico-veterinaria-aran-stale-limitations",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_23_AREA-SANITA_2019-2021.pdf",
+            "sha256": "de9efc25f0ca29ea4fedf8ff7d9e3fa893a672c62f628dbb96d7cfa18bcd6375"
+          }
+        ],
+        "findings": [
+          "single_rate_across_tier_threshold: Verified source PDF SHA-256. Art. 38(10) sets successive nine-, three- and six-month sickness bands. The agreement JSON already declares [1,10) at 1, [10,13) at 0.9, and [13,infinity) at 0.5. SickPayRules.target_rate(index) selects the tier for each sick-day index; classify_days "
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "coverage.notes"
+        ]
+      }
+    ]
   }
 }

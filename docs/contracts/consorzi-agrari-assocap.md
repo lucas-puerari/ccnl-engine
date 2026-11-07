@@ -33,7 +33,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | inps_employer |
 
-5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2023-12-12 |
-| **Last review** | 2026-11-06 |
+| **Last review** | 2026-11-08 |
 | **Latest salary tranche** | 2027-01-01 |
 
 ## Review history
@@ -60,6 +60,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | corrected | Art. 41 - Tredicesima e quattordicesima mensilità (p. 40): "In caso di inizio o di cessazione del rapporto durante il corso dell'anno, salvo che la cessazione avvenga durante il periodo di prova, il dipendente avrà diritto a tanti dodicesimi dell'ammontare delle predette mensilità per quanti sono i mesi di durata del rapporto nel corso dell'anno stesso. Le frazioni di mese superiori a quindici giorni si calcoleranno mese intero, quelle eguali o inferiori non saranno conteggiate.". Added: more_than 15 (the file applied the engine default, at least 15 days). |
 | 2026-11-01 | claude-opus-5-5 (ai) | The notice clause (Art. 47 - Preavviso, comma 2, p. 42). | corrected | Notice bands by level and service checked against the PDF by a separate session (delegated search and independent verification): work_rules.notice. |
 | 2026-11-06 | claude-opus-5-5 (ai) | CCNL Consorzi agrari 2024-2027: Allegato A stipendi base (p. 47), art. 35 indennità di cassa (p. 34). Art. 37 FILCOOP SANITARIO (p. 37). | corrected | The 6th level of 2025 is 1,040.26, not 1,040.28; the 2027 column added; the cashier allowance of 55.00 EUR added.<br>FILCOOP SANITARIO added: 186 EUR a year, two thirds employer, one third worker, permanent workers. |
+| 2026-11-08 | gpt-6-sol (ai) | Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim. | confirmed | tranche_2027_01_missing: Allegato A gives the 2027-01-01 base salary for levels 1–6 (including 3S/4S); every value and effective date is already in levels[].base_salary.periods. Q also has the 1st-level value, but the table has no distinct Q row; this verdict does not independently validate Q equivalence |
 
 ## Salary table
 
@@ -97,13 +98,6 @@ Latest effective values per level (monthly gross, EUR).
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
-
-!!! note "consorzi-agrari-assocap/tranche_2027_01_missing · base_salary · impact yes · resolved"
-    BASE SALARY (Allegato A, p. 47 of the CCNL of 12 December 2023): the stipendi base from 1 January 2025, 2026 and 2027 (6th level 1,040.26 / 1,070.87 / 1,101.48 EUR); the quadri take the 1st level.
-
-    **Applies when:** `base_salary` applies; from 2027-01-01.
-
-    **Remediation:** Resolved: the 2027 column of Allegato A, read on 2026-11-06.
 
 !!! note "consorzi-agrari-assocap/cashier_allowance_missing · base_salary · impact yes · resolved"
     CASHIER (Art. 35, p. 34): 55.00 EUR a month to the cassiere of the head office and the branches, modelled as IND_CASSA with role cassiere.

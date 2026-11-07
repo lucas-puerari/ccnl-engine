@@ -51,22 +51,6 @@
       }
     },
     {
-      "id": "contract_catering_tranche_dates",
-      "institute": "base_salary",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "CONTRACT CATERING: collective catering companies apply the June 2025 and June 2026 tranches from September (accordo integrativo 26 June 2024, p. 3); they are modelled in pubblici-esercizi-fipe-angem-ristorazione-collettiva. This file holds the June dates of the other sub-sectors.",
-      "calculation": "ccnl/pubblici-esercizi-fipe-angem:coverage.notes",
-      "state": "absent",
-      "remediation": "Use pubblici-esercizi-fipe-angem-ristorazione-collettiva for a collective catering company.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "pubblici-esercizi-fipe-angem/contract_catering_tranche_dates"
-        ]
-      }
-    },
-    {
       "id": "disability_permit_tfr",
       "institute": "disability_permits",
       "variant": "all",

@@ -44,15 +44,16 @@ def test_each_tranche_of_the_table(level: str, amounts: tuple[str, ...]) -> None
 
 
 def test_operai_gaps_are_declared() -> None:
-    """The terzo elemento and the operai scatti block the runs they concern."""
+    """The terzo elemento blocks the OTD runs; art. 61 caps the operai at 5 scatti."""
     scopes = {
         note.limitation.variant: note.limitation.applies_when
         for note in _CCNL.coverage.notes
         if note.limitation is not None
     }
     otd = scopes["otd_terzo_elemento_missing"]
-    seniority = scopes["operai_seniority_over_five"]
 
     assert otd.contract_types == frozenset({"fixed_term"})
     assert otd.worker_categories == frozenset({"operaio"})
-    assert seniority.seniority_months_from == 144
+    assert "operai_seniority_over_five" not in scopes
+    increments = _CCNL.parameters.seniority_increments
+    assert increments.maximum_count_by_category == {"operaio": 5}

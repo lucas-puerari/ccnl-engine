@@ -121,20 +121,6 @@
       {
         "kind": "info",
         "text": "LEAVE, WEEKLY SCHEDULE: a 39-hour full-time week absorbs 36 hours of ROL and a 38-hour week 16 hours of ex festività and 56 of ROL, read from Employment.full_time_weekly_hours. The grandi magazzini, magazzini a prezzo unico, supermercati alimentari, cash&carry and ipermercati (Art. 134, EmployerProfile.subsector 'grande_distribuzione') on a 38-hour average absorb instead the 56 hours of Art. 158 c. 3 and the 16 of c. 4 and keep the ex festività."
-      },
-      {
-        "kind": "simplification",
-        "text": "LEAVE, DEADLINE (Art. 158): the permits not taken within the year of accrual are paid with the December pay, or carried and paid with the June pay of the next year for what is left, as the employer states in EmployerProfile.permit_carryover.",
-        "capability": "leave",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "permit_deadline_payout",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Resolved: leave_rules.permit_deadline with the employer fact permit_carryover, read on 2026-11-06.",
-          "status": "resolved"
-        }
       }
     ]
   },
@@ -3705,7 +3691,7 @@
     "effective_until": null,
     "source": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
     "verification_status": "unverified",
-    "source_hash": "9e7675b8fcf9c2d419a030ef6505b73c50f0377c8d15ed82eff2add47fb0940a",
+    "source_hash": "f0c26539b1e7f1f8766731cbeb2f0fd44d21fb4b4db92b93d10f9e19e4d61cdb",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -5470,6 +5456,27 @@
         "checked": [
           "work_rules.insured_absence.injury",
           "work_rules.insured_absence.maternity"
+        ]
+      },
+      {
+        "id": "2026-11-08-gpt-commercio-confcommercio-stale-limitations",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
+            "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016"
+          }
+        ],
+        "findings": [
+          "permit_deadline_payout: Art. 158 provides year-end payment at then-current retribuzione di fatto OR later use no later than 30 June of the next year. commercio-confcommercio.json already has permit_deadline carry_until_month=6 for ex_festivita and rol and marks this limitation resolved. leave/services.p"
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "coverage.notes"
         ]
       }
     ],
