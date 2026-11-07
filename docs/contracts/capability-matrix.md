@@ -61,7 +61,7 @@ formulas or caller-declared amounts.
 
 | Capability | Description | Scope | Layer | Implementation | Applies when | Handler | Facts | Variants | Label | Rules (v / d / a / m) |
 |---|---|---|---|---|---|---|---|---|---|---|
-| `base_salary` | Paga base contrattuale | core | gross | native | always | pipeline | — | — | simplified | 2412 / 3931 / 205 / 28 |
+| `base_salary` | Paga base contrattuale | core | gross | native | always | pipeline | — | — | simplified | 2452 / 3935 / 205 / 28 |
 | `seniority` | Scatti di anzianità | core | gross | native | decided | decision | `employment.seniority` | — | simplified | 30 / 93 / 13 / 0 |
 | `worker_category` | Categoria lavoratore (dichiarata o fissata dal livello) | core | gross | native | decided | decision | `employment.category` | — | implemented | none bundled |
 | `inps_employee` | Contributi INPS a carico dipendente | core | net | native | always | pipeline | — | — | simplified | 25 / 24 / 45 / 0 |
@@ -181,7 +181,7 @@ never grow.
 | 40 | [CCNL Dipendenti Aziende Enti Pubblici Economici Federcasa](federcasa.md) | ⚠️ | base_salary, inps_employer, seniority | 1 / 23 / 1 / 0 |
 | 41 | [CCNL Dipendenti Piccola e Media Industria Alimentare (Unionalimentari-Confapi)](alimentari-pmi-unionalimentari.md) | ⚠️ | base_salary | 1 / 53 / 1 / 0 |
 | 42 | [CCNL Dipendenti da Proprietari di Fabbricati (Confedilizia)](portieri-fabbricati-confedilizia.md) | ⚠️ | base_salary | 0 / 38 / 1 / 0 |
-| 43 | [CCNL Dipendenti delle Farmacie Municipalizzate (ASSOFARM)](farmacie-municipalizzate-assofarm.md) | ⚠️ | inps_employer | 1 / 45 / 1 / 0 |
+| 43 | [CCNL Dipendenti delle Farmacie Municipalizzate (ASSOFARM)](farmacie-municipalizzate-assofarm.md) | ⚠️ | base_salary, inps_employer | 41 / 49 / 1 / 0 |
 | 44 | [CCNL Dipendenti delle Farmacie Private](farmacie-private-h121.md) | ⚠️ | seniority | 4 / 41 / 1 / 0 |
 | 45 | [CCNL Dipendenti delle Farmacie Private - Farmacie rurali sussidiate](farmacie-rurali-sussidiate-h121.md) | ⚠️ | seniority | 4 / 41 / 1 / 0 |
 | 46 | [CCNL Distribuzione Cooperativa (ANCC-Coop / Confcooperative Consumo)](distribuzione-cooperativa-ancc.md) | ⚠️ | base_salary, seniority | 1 / 62 / 1 / 0 |

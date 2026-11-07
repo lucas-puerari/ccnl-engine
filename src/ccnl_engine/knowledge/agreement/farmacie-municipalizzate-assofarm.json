@@ -26,6 +26,15 @@
         "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf",
         "pages": [],
         "published_on": "2022-07-07"
+      },
+      {
+        "document_id": "assofarm-ipotesi-2027-2029",
+        "title": "Ipotesi di accordo di rinnovo CCNL Farmacie comunali 2027-2029, 15 settembre 2026",
+        "kind": "associazione",
+        "url": "https://www.assofarm.it/wp-content/uploads/2026/09/CCNL-Assofarm-2027-2029-firmato.pdf",
+        "pages": [],
+        "published_on": "2026-09-15",
+        "sha256": "063a3548487866acce38f2771d8b29271b07a993c954294288b244854be1aae5"
       }
     ],
     "extraction": {
@@ -92,6 +101,19 @@
       {
         "kind": "info",
         "text": "Function and Tech-Prof allowances shown in kitech for L2/L3/quadri sub-levels are EXCLUDED. They appear in no allegato of the signed CCNL; Art. 17 defines retribuzione di base as Tabelle A+B only. Verification: 1Q base+IQ=2456.91+160=2616.91 vs kitech 2758.68; delta 141.77 = sum of the two extra kitech lines — confirming they are historical/personal elements outside the contractual minimum. Exclusion is correct."
+      },
+      {
+        "kind": "simplification",
+        "text": "RENEWAL 2027-2029 (ipotesi of 15 September 2026, Allegati B-E pp. 20-22; the parties report the definitive signature of 23 October 2026, whose text is not public): the retribuzione base mensile from 1 October 2026, 1 July 2027, 1 July 2028 and 1 July 2029 is modelled; level 6 is abolished and paid as level 5 from 1 October 2026 (art. 10). Not modelled: the una tantum of Allegato D (two instalments with the January and July 2027 pay, 290.00 to 190.00 EUR per instalment by level), and the seniority of a former level 6 worker, kept at the level 6 amounts already matured.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "renewal_2027_2029",
+          "applies_when": {
+            "effective_from": "2026-10-01"
+          },
+          "remediation": "Check the definitive text of 23 October 2026, model the una tantum of Allegato D as una tantum items, then remove this note."
+        }
       }
     ]
   },
@@ -136,6 +158,27 @@
         "independence": "same_process",
         "checked": [
           "parameters.seniority_increments"
+        ]
+      },
+      {
+        "id": "2026-11-07-ai-assofarm-2027-2029",
+        "date": "2026-11-07",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Ipotesi Farmacie comunali 2027-2029 of 15 September 2026: art. 10 and Allegati B-E (pp. 10, 20-22, page images).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.assofarm.it/wp-content/uploads/2026/09/CCNL-Assofarm-2027-2029-firmato.pdf",
+            "sha256": "063a3548487866acce38f2771d8b29271b07a993c954294288b244854be1aae5"
+          }
+        ],
+        "findings": [
+          "Four tranches of the retribuzione base mensile from October 2026 to July 2029; level 6 abolished into level 5; quadri allowances and seniority amounts unchanged; the base of level 1C at 31 December 2024 is printed 2,266.38 (the file has 2,266.37)."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels.base_salary"
         ]
       }
     ]
@@ -411,7 +454,7 @@
           },
           {
             "valid_from": "2024-07-01",
-            "valid_until": null,
+            "valid_until": "2026-10-01",
             "value": "2456.91",
             "provenance": {
               "status": "derived",
@@ -429,6 +472,130 @@
                 "extraction_timestamp": "2026-09-07T15:03:36",
                 "verification_status": "unverified",
                 "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": "2027-07-01",
+            "value": "2596.11",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "assofarm-ipotesi-2027-2029",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Farmacie comunali 2027-2029, 15 settembre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.assofarm.it/wp-content/uploads/2026/09/CCNL-Assofarm-2027-2029-firmato.pdf",
+                  "published_on": "2026-09-15",
+                  "sha256": "063a3548487866acce38f2771d8b29271b07a993c954294288b244854be1aae5"
+                },
+                "page": "21",
+                "section": "Allegato B - Tabella incrementi retribuzione base mensile",
+                "quote": "1Q [...] R.B.M. al 01.10.2026 2596,11"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T16:00:00Z",
+                "effective_from": "2026-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T16:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assofarm-2027-2029"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": "2028-07-01",
+            "value": "2642.51",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "assofarm-ipotesi-2027-2029",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Farmacie comunali 2027-2029, 15 settembre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.assofarm.it/wp-content/uploads/2026/09/CCNL-Assofarm-2027-2029-firmato.pdf",
+                  "published_on": "2026-09-15",
+                  "sha256": "063a3548487866acce38f2771d8b29271b07a993c954294288b244854be1aae5"
+                },
+                "page": "21",
+                "section": "Allegato B - Tabella incrementi retribuzione base mensile",
+                "quote": "1Q [...] R.B.M. al 01.07.2027 2642,51"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T16:00:00Z",
+                "effective_from": "2027-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T16:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assofarm-2027-2029"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-07-01",
+            "valid_until": "2029-07-01",
+            "value": "2677.31",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "assofarm-ipotesi-2027-2029",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Farmacie comunali 2027-2029, 15 settembre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.assofarm.it/wp-content/uploads/2026/09/CCNL-Assofarm-2027-2029-firmato.pdf",
+                  "published_on": "2026-09-15",
+                  "sha256": "063a3548487866acce38f2771d8b29271b07a993c954294288b244854be1aae5"
+                },
+                "page": "21",
+                "section": "Allegato B - Tabella incrementi retribuzione base mensile",
+                "quote": "1Q [...] R.B.M. al 01.07.2028 2677,31"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T16:00:00Z",
+                "effective_from": "2028-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T16:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assofarm-2027-2029"
+              }
+            }
+          },
+          {
+            "valid_from": "2029-07-01",
+            "valid_until": null,
+            "value": "2712.11",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "assofarm-ipotesi-2027-2029",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Farmacie comunali 2027-2029, 15 settembre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.assofarm.it/wp-content/uploads/2026/09/CCNL-Assofarm-2027-2029-firmato.pdf",
+                  "published_on": "2026-09-15",
+                  "sha256": "063a3548487866acce38f2771d8b29271b07a993c954294288b244854be1aae5"
+                },
+                "page": "21",
+                "section": "Allegato B - Tabella incrementi retribuzione base mensile",
+                "quote": "1Q [...] R.B.M. al 01.07.2029 2712,11"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T16:00:00Z",
+                "effective_from": "2029-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T16:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assofarm-2027-2029"
               }
             }
           }
@@ -540,7 +707,7 @@
           },
           {
             "valid_from": "2024-07-01",
-            "valid_until": null,
+            "valid_until": "2026-10-01",
             "value": "2372.46",
             "provenance": {
               "status": "derived",
@@ -558,6 +725,130 @@
                 "extraction_timestamp": "2026-09-07T15:03:36",
                 "verification_status": "unverified",
                 "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": "2027-07-01",
+            "value": "2506.86",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "assofarm-ipotesi-2027-2029",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Farmacie comunali 2027-2029, 15 settembre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.assofarm.it/wp-content/uploads/2026/09/CCNL-Assofarm-2027-2029-firmato.pdf",
+                  "published_on": "2026-09-15",
+                  "sha256": "063a3548487866acce38f2771d8b29271b07a993c954294288b244854be1aae5"
+                },
+                "page": "21",
+                "section": "Allegato B - Tabella incrementi retribuzione base mensile",
+                "quote": "1S [...] R.B.M. al 01.10.2026 2506,86"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T16:00:00Z",
+                "effective_from": "2026-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T16:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assofarm-2027-2029"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": "2028-07-01",
+            "value": "2551.66",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "assofarm-ipotesi-2027-2029",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Farmacie comunali 2027-2029, 15 settembre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.assofarm.it/wp-content/uploads/2026/09/CCNL-Assofarm-2027-2029-firmato.pdf",
+                  "published_on": "2026-09-15",
+                  "sha256": "063a3548487866acce38f2771d8b29271b07a993c954294288b244854be1aae5"
+                },
+                "page": "21",
+                "section": "Allegato B - Tabella incrementi retribuzione base mensile",
+                "quote": "1S [...] R.B.M. al 01.07.2027 2551,66"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T16:00:00Z",
+                "effective_from": "2027-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T16:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assofarm-2027-2029"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-07-01",
+            "valid_until": "2029-07-01",
+            "value": "2585.26",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "assofarm-ipotesi-2027-2029",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Farmacie comunali 2027-2029, 15 settembre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.assofarm.it/wp-content/uploads/2026/09/CCNL-Assofarm-2027-2029-firmato.pdf",
+                  "published_on": "2026-09-15",
+                  "sha256": "063a3548487866acce38f2771d8b29271b07a993c954294288b244854be1aae5"
+                },
+                "page": "21",
+                "section": "Allegato B - Tabella incrementi retribuzione base mensile",
+                "quote": "1S [...] R.B.M. al 01.07.2028 2585,26"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T16:00:00Z",
+                "effective_from": "2028-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T16:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assofarm-2027-2029"
+              }
+            }
+          },
+          {
+            "valid_from": "2029-07-01",
+            "valid_until": null,
+            "value": "2618.86",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "assofarm-ipotesi-2027-2029",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Farmacie comunali 2027-2029, 15 settembre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.assofarm.it/wp-content/uploads/2026/09/CCNL-Assofarm-2027-2029-firmato.pdf",
+                  "published_on": "2026-09-15",
+                  "sha256": "063a3548487866acce38f2771d8b29271b07a993c954294288b244854be1aae5"
+                },
+                "page": "21",
+                "section": "Allegato B - Tabella incrementi retribuzione base mensile",
+                "quote": "1S [...] R.B.M. al 01.07.2029 2618,86"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T16:00:00Z",
+                "effective_from": "2029-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T16:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assofarm-2027-2029"
               }
             }
           }
@@ -669,7 +960,7 @@
           },
           {
             "valid_from": "2024-07-01",
-            "valid_until": null,
+            "valid_until": "2026-10-01",
             "value": "2266.37",
             "provenance": {
               "status": "derived",
@@ -687,6 +978,130 @@
                 "extraction_timestamp": "2026-09-07T15:03:36",
                 "verification_status": "unverified",
                 "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": "2027-07-01",
+            "value": "2394.78",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "assofarm-ipotesi-2027-2029",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Farmacie comunali 2027-2029, 15 settembre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.assofarm.it/wp-content/uploads/2026/09/CCNL-Assofarm-2027-2029-firmato.pdf",
+                  "published_on": "2026-09-15",
+                  "sha256": "063a3548487866acce38f2771d8b29271b07a993c954294288b244854be1aae5"
+                },
+                "page": "21",
+                "section": "Allegato B - Tabella incrementi retribuzione base mensile",
+                "quote": "1C [...] R.B.M. al 01.10.2026 2394,78"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T16:00:00Z",
+                "effective_from": "2026-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T16:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assofarm-2027-2029"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": "2028-07-01",
+            "value": "2437.58",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "assofarm-ipotesi-2027-2029",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Farmacie comunali 2027-2029, 15 settembre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.assofarm.it/wp-content/uploads/2026/09/CCNL-Assofarm-2027-2029-firmato.pdf",
+                  "published_on": "2026-09-15",
+                  "sha256": "063a3548487866acce38f2771d8b29271b07a993c954294288b244854be1aae5"
+                },
+                "page": "21",
+                "section": "Allegato B - Tabella incrementi retribuzione base mensile",
+                "quote": "1C [...] R.B.M. al 01.07.2027 2437,58"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T16:00:00Z",
+                "effective_from": "2027-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T16:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assofarm-2027-2029"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-07-01",
+            "valid_until": "2029-07-01",
+            "value": "2469.68",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "assofarm-ipotesi-2027-2029",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Farmacie comunali 2027-2029, 15 settembre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.assofarm.it/wp-content/uploads/2026/09/CCNL-Assofarm-2027-2029-firmato.pdf",
+                  "published_on": "2026-09-15",
+                  "sha256": "063a3548487866acce38f2771d8b29271b07a993c954294288b244854be1aae5"
+                },
+                "page": "21",
+                "section": "Allegato B - Tabella incrementi retribuzione base mensile",
+                "quote": "1C [...] R.B.M. al 01.07.2028 2469,68"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T16:00:00Z",
+                "effective_from": "2028-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T16:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assofarm-2027-2029"
+              }
+            }
+          },
+          {
+            "valid_from": "2029-07-01",
+            "valid_until": null,
+            "value": "2501.78",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "assofarm-ipotesi-2027-2029",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Farmacie comunali 2027-2029, 15 settembre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.assofarm.it/wp-content/uploads/2026/09/CCNL-Assofarm-2027-2029-firmato.pdf",
+                  "published_on": "2026-09-15",
+                  "sha256": "063a3548487866acce38f2771d8b29271b07a993c954294288b244854be1aae5"
+                },
+                "page": "21",
+                "section": "Allegato B - Tabella incrementi retribuzione base mensile",
+                "quote": "1C [...] R.B.M. al 01.07.2029 2501,78"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T16:00:00Z",
+                "effective_from": "2029-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T16:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assofarm-2027-2029"
               }
             }
           }
@@ -798,7 +1213,7 @@
           },
           {
             "valid_from": "2024-07-01",
-            "valid_until": null,
+            "valid_until": "2026-10-01",
             "value": "2109.97",
             "provenance": {
               "status": "derived",
@@ -816,6 +1231,130 @@
                 "extraction_timestamp": "2026-09-07T15:03:36",
                 "verification_status": "unverified",
                 "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": "2027-07-01",
+            "value": "2229.97",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "assofarm-ipotesi-2027-2029",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Farmacie comunali 2027-2029, 15 settembre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.assofarm.it/wp-content/uploads/2026/09/CCNL-Assofarm-2027-2029-firmato.pdf",
+                  "published_on": "2026-09-15",
+                  "sha256": "063a3548487866acce38f2771d8b29271b07a993c954294288b244854be1aae5"
+                },
+                "page": "21",
+                "section": "Allegato B - Tabella incrementi retribuzione base mensile",
+                "quote": "1_12 [...] R.B.M. al 01.10.2026 2229,97"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T16:00:00Z",
+                "effective_from": "2026-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T16:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assofarm-2027-2029"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": "2028-07-01",
+            "value": "2269.97",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "assofarm-ipotesi-2027-2029",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Farmacie comunali 2027-2029, 15 settembre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.assofarm.it/wp-content/uploads/2026/09/CCNL-Assofarm-2027-2029-firmato.pdf",
+                  "published_on": "2026-09-15",
+                  "sha256": "063a3548487866acce38f2771d8b29271b07a993c954294288b244854be1aae5"
+                },
+                "page": "21",
+                "section": "Allegato B - Tabella incrementi retribuzione base mensile",
+                "quote": "1_12 [...] R.B.M. al 01.07.2027 2269,97"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T16:00:00Z",
+                "effective_from": "2027-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T16:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assofarm-2027-2029"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-07-01",
+            "valid_until": "2029-07-01",
+            "value": "2299.97",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "assofarm-ipotesi-2027-2029",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Farmacie comunali 2027-2029, 15 settembre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.assofarm.it/wp-content/uploads/2026/09/CCNL-Assofarm-2027-2029-firmato.pdf",
+                  "published_on": "2026-09-15",
+                  "sha256": "063a3548487866acce38f2771d8b29271b07a993c954294288b244854be1aae5"
+                },
+                "page": "21",
+                "section": "Allegato B - Tabella incrementi retribuzione base mensile",
+                "quote": "1_12 [...] R.B.M. al 01.07.2028 2299,97"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T16:00:00Z",
+                "effective_from": "2028-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T16:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assofarm-2027-2029"
+              }
+            }
+          },
+          {
+            "valid_from": "2029-07-01",
+            "valid_until": null,
+            "value": "2329.97",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "assofarm-ipotesi-2027-2029",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Farmacie comunali 2027-2029, 15 settembre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.assofarm.it/wp-content/uploads/2026/09/CCNL-Assofarm-2027-2029-firmato.pdf",
+                  "published_on": "2026-09-15",
+                  "sha256": "063a3548487866acce38f2771d8b29271b07a993c954294288b244854be1aae5"
+                },
+                "page": "21",
+                "section": "Allegato B - Tabella incrementi retribuzione base mensile",
+                "quote": "1_12 [...] R.B.M. al 01.07.2029 2329,97"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T16:00:00Z",
+                "effective_from": "2029-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T16:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assofarm-2027-2029"
               }
             }
           }
@@ -927,7 +1466,7 @@
           },
           {
             "valid_from": "2024-07-01",
-            "valid_until": null,
+            "valid_until": "2026-10-01",
             "value": "2109.97",
             "provenance": {
               "status": "derived",
@@ -945,6 +1484,130 @@
                 "extraction_timestamp": "2026-09-07T15:03:36",
                 "verification_status": "unverified",
                 "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": "2027-07-01",
+            "value": "2229.97",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "assofarm-ipotesi-2027-2029",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Farmacie comunali 2027-2029, 15 settembre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.assofarm.it/wp-content/uploads/2026/09/CCNL-Assofarm-2027-2029-firmato.pdf",
+                  "published_on": "2026-09-15",
+                  "sha256": "063a3548487866acce38f2771d8b29271b07a993c954294288b244854be1aae5"
+                },
+                "page": "21",
+                "section": "Allegato B - Tabella incrementi retribuzione base mensile",
+                "quote": "1_2 [...] R.B.M. al 01.10.2026 2229,97"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T16:00:00Z",
+                "effective_from": "2026-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T16:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assofarm-2027-2029"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": "2028-07-01",
+            "value": "2269.97",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "assofarm-ipotesi-2027-2029",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Farmacie comunali 2027-2029, 15 settembre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.assofarm.it/wp-content/uploads/2026/09/CCNL-Assofarm-2027-2029-firmato.pdf",
+                  "published_on": "2026-09-15",
+                  "sha256": "063a3548487866acce38f2771d8b29271b07a993c954294288b244854be1aae5"
+                },
+                "page": "21",
+                "section": "Allegato B - Tabella incrementi retribuzione base mensile",
+                "quote": "1_2 [...] R.B.M. al 01.07.2027 2269,97"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T16:00:00Z",
+                "effective_from": "2027-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T16:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assofarm-2027-2029"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-07-01",
+            "valid_until": "2029-07-01",
+            "value": "2299.97",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "assofarm-ipotesi-2027-2029",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Farmacie comunali 2027-2029, 15 settembre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.assofarm.it/wp-content/uploads/2026/09/CCNL-Assofarm-2027-2029-firmato.pdf",
+                  "published_on": "2026-09-15",
+                  "sha256": "063a3548487866acce38f2771d8b29271b07a993c954294288b244854be1aae5"
+                },
+                "page": "21",
+                "section": "Allegato B - Tabella incrementi retribuzione base mensile",
+                "quote": "1_2 [...] R.B.M. al 01.07.2028 2299,97"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T16:00:00Z",
+                "effective_from": "2028-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T16:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assofarm-2027-2029"
+              }
+            }
+          },
+          {
+            "valid_from": "2029-07-01",
+            "valid_until": null,
+            "value": "2329.97",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "assofarm-ipotesi-2027-2029",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Farmacie comunali 2027-2029, 15 settembre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.assofarm.it/wp-content/uploads/2026/09/CCNL-Assofarm-2027-2029-firmato.pdf",
+                  "published_on": "2026-09-15",
+                  "sha256": "063a3548487866acce38f2771d8b29271b07a993c954294288b244854be1aae5"
+                },
+                "page": "21",
+                "section": "Allegato B - Tabella incrementi retribuzione base mensile",
+                "quote": "1_2 [...] R.B.M. al 01.07.2029 2329,97"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T16:00:00Z",
+                "effective_from": "2029-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T16:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assofarm-2027-2029"
               }
             }
           }
@@ -1056,7 +1719,7 @@
           },
           {
             "valid_from": "2024-07-01",
-            "valid_until": null,
+            "valid_until": "2026-10-01",
             "value": "2109.97",
             "provenance": {
               "status": "derived",
@@ -1074,6 +1737,130 @@
                 "extraction_timestamp": "2026-09-07T15:03:36",
                 "verification_status": "unverified",
                 "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": "2027-07-01",
+            "value": "2229.97",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "assofarm-ipotesi-2027-2029",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Farmacie comunali 2027-2029, 15 settembre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.assofarm.it/wp-content/uploads/2026/09/CCNL-Assofarm-2027-2029-firmato.pdf",
+                  "published_on": "2026-09-15",
+                  "sha256": "063a3548487866acce38f2771d8b29271b07a993c954294288b244854be1aae5"
+                },
+                "page": "21",
+                "section": "Allegato B - Tabella incrementi retribuzione base mensile",
+                "quote": "1 [...] R.B.M. al 01.10.2026 2229,97"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T16:00:00Z",
+                "effective_from": "2026-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T16:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assofarm-2027-2029"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": "2028-07-01",
+            "value": "2269.97",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "assofarm-ipotesi-2027-2029",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Farmacie comunali 2027-2029, 15 settembre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.assofarm.it/wp-content/uploads/2026/09/CCNL-Assofarm-2027-2029-firmato.pdf",
+                  "published_on": "2026-09-15",
+                  "sha256": "063a3548487866acce38f2771d8b29271b07a993c954294288b244854be1aae5"
+                },
+                "page": "21",
+                "section": "Allegato B - Tabella incrementi retribuzione base mensile",
+                "quote": "1 [...] R.B.M. al 01.07.2027 2269,97"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T16:00:00Z",
+                "effective_from": "2027-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T16:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assofarm-2027-2029"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-07-01",
+            "valid_until": "2029-07-01",
+            "value": "2299.97",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "assofarm-ipotesi-2027-2029",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Farmacie comunali 2027-2029, 15 settembre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.assofarm.it/wp-content/uploads/2026/09/CCNL-Assofarm-2027-2029-firmato.pdf",
+                  "published_on": "2026-09-15",
+                  "sha256": "063a3548487866acce38f2771d8b29271b07a993c954294288b244854be1aae5"
+                },
+                "page": "21",
+                "section": "Allegato B - Tabella incrementi retribuzione base mensile",
+                "quote": "1 [...] R.B.M. al 01.07.2028 2299,97"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T16:00:00Z",
+                "effective_from": "2028-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T16:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assofarm-2027-2029"
+              }
+            }
+          },
+          {
+            "valid_from": "2029-07-01",
+            "valid_until": null,
+            "value": "2329.97",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "assofarm-ipotesi-2027-2029",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Farmacie comunali 2027-2029, 15 settembre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.assofarm.it/wp-content/uploads/2026/09/CCNL-Assofarm-2027-2029-firmato.pdf",
+                  "published_on": "2026-09-15",
+                  "sha256": "063a3548487866acce38f2771d8b29271b07a993c954294288b244854be1aae5"
+                },
+                "page": "21",
+                "section": "Allegato B - Tabella incrementi retribuzione base mensile",
+                "quote": "1 [...] R.B.M. al 01.07.2029 2329,97"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T16:00:00Z",
+                "effective_from": "2029-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T16:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assofarm-2027-2029"
               }
             }
           }
@@ -1153,7 +1940,7 @@
           },
           {
             "valid_from": "2024-07-01",
-            "valid_until": null,
+            "valid_until": "2026-10-01",
             "value": "1872.16",
             "provenance": {
               "status": "derived",
@@ -1171,6 +1958,130 @@
                 "extraction_timestamp": "2026-09-07T15:03:36",
                 "verification_status": "unverified",
                 "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": "2027-07-01",
+            "value": "1980.16",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "assofarm-ipotesi-2027-2029",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Farmacie comunali 2027-2029, 15 settembre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.assofarm.it/wp-content/uploads/2026/09/CCNL-Assofarm-2027-2029-firmato.pdf",
+                  "published_on": "2026-09-15",
+                  "sha256": "063a3548487866acce38f2771d8b29271b07a993c954294288b244854be1aae5"
+                },
+                "page": "21",
+                "section": "Allegato B - Tabella incrementi retribuzione base mensile",
+                "quote": "2 [...] R.B.M. al 01.10.2026 1980,16"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T16:00:00Z",
+                "effective_from": "2026-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T16:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assofarm-2027-2029"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": "2028-07-01",
+            "value": "2016.16",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "assofarm-ipotesi-2027-2029",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Farmacie comunali 2027-2029, 15 settembre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.assofarm.it/wp-content/uploads/2026/09/CCNL-Assofarm-2027-2029-firmato.pdf",
+                  "published_on": "2026-09-15",
+                  "sha256": "063a3548487866acce38f2771d8b29271b07a993c954294288b244854be1aae5"
+                },
+                "page": "21",
+                "section": "Allegato B - Tabella incrementi retribuzione base mensile",
+                "quote": "2 [...] R.B.M. al 01.07.2027 2016,16"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T16:00:00Z",
+                "effective_from": "2027-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T16:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assofarm-2027-2029"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-07-01",
+            "valid_until": "2029-07-01",
+            "value": "2043.16",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "assofarm-ipotesi-2027-2029",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Farmacie comunali 2027-2029, 15 settembre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.assofarm.it/wp-content/uploads/2026/09/CCNL-Assofarm-2027-2029-firmato.pdf",
+                  "published_on": "2026-09-15",
+                  "sha256": "063a3548487866acce38f2771d8b29271b07a993c954294288b244854be1aae5"
+                },
+                "page": "21",
+                "section": "Allegato B - Tabella incrementi retribuzione base mensile",
+                "quote": "2 [...] R.B.M. al 01.07.2028 2043,16"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T16:00:00Z",
+                "effective_from": "2028-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T16:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assofarm-2027-2029"
+              }
+            }
+          },
+          {
+            "valid_from": "2029-07-01",
+            "valid_until": null,
+            "value": "2070.16",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "assofarm-ipotesi-2027-2029",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Farmacie comunali 2027-2029, 15 settembre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.assofarm.it/wp-content/uploads/2026/09/CCNL-Assofarm-2027-2029-firmato.pdf",
+                  "published_on": "2026-09-15",
+                  "sha256": "063a3548487866acce38f2771d8b29271b07a993c954294288b244854be1aae5"
+                },
+                "page": "21",
+                "section": "Allegato B - Tabella incrementi retribuzione base mensile",
+                "quote": "2 [...] R.B.M. al 01.07.2029 2070,16"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T16:00:00Z",
+                "effective_from": "2029-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T16:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assofarm-2027-2029"
               }
             }
           }
@@ -1250,7 +2161,7 @@
           },
           {
             "valid_from": "2024-07-01",
-            "valid_until": null,
+            "valid_until": "2026-10-01",
             "value": "1777.29",
             "provenance": {
               "status": "derived",
@@ -1268,6 +2179,130 @@
                 "extraction_timestamp": "2026-09-07T15:03:36",
                 "verification_status": "unverified",
                 "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": "2027-07-01",
+            "value": "1880.49",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "assofarm-ipotesi-2027-2029",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Farmacie comunali 2027-2029, 15 settembre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.assofarm.it/wp-content/uploads/2026/09/CCNL-Assofarm-2027-2029-firmato.pdf",
+                  "published_on": "2026-09-15",
+                  "sha256": "063a3548487866acce38f2771d8b29271b07a993c954294288b244854be1aae5"
+                },
+                "page": "21",
+                "section": "Allegato B - Tabella incrementi retribuzione base mensile",
+                "quote": "3 [...] R.B.M. al 01.10.2026 1880,49"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T16:00:00Z",
+                "effective_from": "2026-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T16:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assofarm-2027-2029"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": "2028-07-01",
+            "value": "1914.89",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "assofarm-ipotesi-2027-2029",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Farmacie comunali 2027-2029, 15 settembre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.assofarm.it/wp-content/uploads/2026/09/CCNL-Assofarm-2027-2029-firmato.pdf",
+                  "published_on": "2026-09-15",
+                  "sha256": "063a3548487866acce38f2771d8b29271b07a993c954294288b244854be1aae5"
+                },
+                "page": "21",
+                "section": "Allegato B - Tabella incrementi retribuzione base mensile",
+                "quote": "3 [...] R.B.M. al 01.07.2027 1914,89"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T16:00:00Z",
+                "effective_from": "2027-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T16:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assofarm-2027-2029"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-07-01",
+            "valid_until": "2029-07-01",
+            "value": "1940.69",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "assofarm-ipotesi-2027-2029",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Farmacie comunali 2027-2029, 15 settembre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.assofarm.it/wp-content/uploads/2026/09/CCNL-Assofarm-2027-2029-firmato.pdf",
+                  "published_on": "2026-09-15",
+                  "sha256": "063a3548487866acce38f2771d8b29271b07a993c954294288b244854be1aae5"
+                },
+                "page": "21",
+                "section": "Allegato B - Tabella incrementi retribuzione base mensile",
+                "quote": "3 [...] R.B.M. al 01.07.2028 1940,69"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T16:00:00Z",
+                "effective_from": "2028-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T16:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assofarm-2027-2029"
+              }
+            }
+          },
+          {
+            "valid_from": "2029-07-01",
+            "valid_until": null,
+            "value": "1966.49",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "assofarm-ipotesi-2027-2029",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Farmacie comunali 2027-2029, 15 settembre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.assofarm.it/wp-content/uploads/2026/09/CCNL-Assofarm-2027-2029-firmato.pdf",
+                  "published_on": "2026-09-15",
+                  "sha256": "063a3548487866acce38f2771d8b29271b07a993c954294288b244854be1aae5"
+                },
+                "page": "21",
+                "section": "Allegato B - Tabella incrementi retribuzione base mensile",
+                "quote": "3 [...] R.B.M. al 01.07.2029 1966,49"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T16:00:00Z",
+                "effective_from": "2029-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T16:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assofarm-2027-2029"
               }
             }
           }
@@ -1347,7 +2382,7 @@
           },
           {
             "valid_from": "2024-07-01",
-            "valid_until": null,
+            "valid_until": "2026-10-01",
             "value": "1652.61",
             "provenance": {
               "status": "derived",
@@ -1365,6 +2400,130 @@
                 "extraction_timestamp": "2026-09-07T15:03:36",
                 "verification_status": "unverified",
                 "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": "2027-07-01",
+            "value": "1769.81",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "assofarm-ipotesi-2027-2029",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Farmacie comunali 2027-2029, 15 settembre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.assofarm.it/wp-content/uploads/2026/09/CCNL-Assofarm-2027-2029-firmato.pdf",
+                  "published_on": "2026-09-15",
+                  "sha256": "063a3548487866acce38f2771d8b29271b07a993c954294288b244854be1aae5"
+                },
+                "page": "21",
+                "section": "Allegato B - Tabella incrementi retribuzione base mensile",
+                "quote": "4 [...] R.B.M. al 01.10.2026 1769,81"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T16:00:00Z",
+                "effective_from": "2026-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T16:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assofarm-2027-2029"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": "2028-07-01",
+            "value": "1802.21",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "assofarm-ipotesi-2027-2029",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Farmacie comunali 2027-2029, 15 settembre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.assofarm.it/wp-content/uploads/2026/09/CCNL-Assofarm-2027-2029-firmato.pdf",
+                  "published_on": "2026-09-15",
+                  "sha256": "063a3548487866acce38f2771d8b29271b07a993c954294288b244854be1aae5"
+                },
+                "page": "21",
+                "section": "Allegato B - Tabella incrementi retribuzione base mensile",
+                "quote": "4 [...] R.B.M. al 01.07.2027 1802,21"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T16:00:00Z",
+                "effective_from": "2027-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T16:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assofarm-2027-2029"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-07-01",
+            "valid_until": "2029-07-01",
+            "value": "1826.51",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "assofarm-ipotesi-2027-2029",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Farmacie comunali 2027-2029, 15 settembre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.assofarm.it/wp-content/uploads/2026/09/CCNL-Assofarm-2027-2029-firmato.pdf",
+                  "published_on": "2026-09-15",
+                  "sha256": "063a3548487866acce38f2771d8b29271b07a993c954294288b244854be1aae5"
+                },
+                "page": "21",
+                "section": "Allegato B - Tabella incrementi retribuzione base mensile",
+                "quote": "4 [...] R.B.M. al 01.07.2028 1826,51"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T16:00:00Z",
+                "effective_from": "2028-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T16:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assofarm-2027-2029"
+              }
+            }
+          },
+          {
+            "valid_from": "2029-07-01",
+            "valid_until": null,
+            "value": "1850.81",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "assofarm-ipotesi-2027-2029",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Farmacie comunali 2027-2029, 15 settembre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.assofarm.it/wp-content/uploads/2026/09/CCNL-Assofarm-2027-2029-firmato.pdf",
+                  "published_on": "2026-09-15",
+                  "sha256": "063a3548487866acce38f2771d8b29271b07a993c954294288b244854be1aae5"
+                },
+                "page": "21",
+                "section": "Allegato B - Tabella incrementi retribuzione base mensile",
+                "quote": "4 [...] R.B.M. al 01.07.2029 1850,81"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T16:00:00Z",
+                "effective_from": "2029-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T16:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assofarm-2027-2029"
               }
             }
           }
@@ -1444,7 +2603,7 @@
           },
           {
             "valid_from": "2024-07-01",
-            "valid_until": null,
+            "valid_until": "2026-10-01",
             "value": "1522.17",
             "provenance": {
               "status": "derived",
@@ -1462,6 +2621,130 @@
                 "extraction_timestamp": "2026-09-07T15:03:36",
                 "verification_status": "unverified",
                 "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": "2027-07-01",
+            "value": "1643.37",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "assofarm-ipotesi-2027-2029",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Farmacie comunali 2027-2029, 15 settembre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.assofarm.it/wp-content/uploads/2026/09/CCNL-Assofarm-2027-2029-firmato.pdf",
+                  "published_on": "2026-09-15",
+                  "sha256": "063a3548487866acce38f2771d8b29271b07a993c954294288b244854be1aae5"
+                },
+                "page": "21",
+                "section": "Allegato B - Tabella incrementi retribuzione base mensile",
+                "quote": "5 [...] R.B.M. al 01.10.2026 1643,37"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T16:00:00Z",
+                "effective_from": "2026-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T16:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assofarm-2027-2029"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": "2028-07-01",
+            "value": "1673.77",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "assofarm-ipotesi-2027-2029",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Farmacie comunali 2027-2029, 15 settembre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.assofarm.it/wp-content/uploads/2026/09/CCNL-Assofarm-2027-2029-firmato.pdf",
+                  "published_on": "2026-09-15",
+                  "sha256": "063a3548487866acce38f2771d8b29271b07a993c954294288b244854be1aae5"
+                },
+                "page": "21",
+                "section": "Allegato B - Tabella incrementi retribuzione base mensile",
+                "quote": "5 [...] R.B.M. al 01.07.2027 1673,77"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T16:00:00Z",
+                "effective_from": "2027-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T16:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assofarm-2027-2029"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-07-01",
+            "valid_until": "2029-07-01",
+            "value": "1696.57",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "assofarm-ipotesi-2027-2029",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Farmacie comunali 2027-2029, 15 settembre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.assofarm.it/wp-content/uploads/2026/09/CCNL-Assofarm-2027-2029-firmato.pdf",
+                  "published_on": "2026-09-15",
+                  "sha256": "063a3548487866acce38f2771d8b29271b07a993c954294288b244854be1aae5"
+                },
+                "page": "21",
+                "section": "Allegato B - Tabella incrementi retribuzione base mensile",
+                "quote": "5 [...] R.B.M. al 01.07.2028 1696,57"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T16:00:00Z",
+                "effective_from": "2028-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T16:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assofarm-2027-2029"
+              }
+            }
+          },
+          {
+            "valid_from": "2029-07-01",
+            "valid_until": null,
+            "value": "1719.37",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "assofarm-ipotesi-2027-2029",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Farmacie comunali 2027-2029, 15 settembre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.assofarm.it/wp-content/uploads/2026/09/CCNL-Assofarm-2027-2029-firmato.pdf",
+                  "published_on": "2026-09-15",
+                  "sha256": "063a3548487866acce38f2771d8b29271b07a993c954294288b244854be1aae5"
+                },
+                "page": "21",
+                "section": "Allegato B - Tabella incrementi retribuzione base mensile",
+                "quote": "5 [...] R.B.M. al 01.07.2029 1719,37"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T16:00:00Z",
+                "effective_from": "2029-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T16:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assofarm-2027-2029"
               }
             }
           }
@@ -1541,7 +2824,7 @@
           },
           {
             "valid_from": "2024-07-01",
-            "valid_until": null,
+            "valid_until": "2026-10-01",
             "value": "1421.48",
             "provenance": {
               "status": "derived",
@@ -1559,6 +2842,134 @@
                 "extraction_timestamp": "2026-09-07T15:03:36",
                 "verification_status": "unverified",
                 "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": "2027-07-01",
+            "value": "1643.37",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "assofarm-ipotesi-2027-2029",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Farmacie comunali 2027-2029, 15 settembre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.assofarm.it/wp-content/uploads/2026/09/CCNL-Assofarm-2027-2029-firmato.pdf",
+                  "published_on": "2026-09-15",
+                  "sha256": "063a3548487866acce38f2771d8b29271b07a993c954294288b244854be1aae5"
+                },
+                "page": "10, 21",
+                "section": "Art. 10 - abolizione del sesto livello; Allegato B",
+                "quote": "Il personale inquadrato al sesto livello precedentemente la data del 15 settembre 2026, per effetto dell'abolizione di tale livello, passa automaticamente al quinto livello con decorrenza dal 1° ottobre 2026."
+              },
+              "transformation": "Level 6 is abolished from 1 October 2026: its workers are paid the R.B.M. of level 5.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T16:00:00Z",
+                "effective_from": "2026-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T16:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assofarm-2027-2029"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": "2028-07-01",
+            "value": "1673.77",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "assofarm-ipotesi-2027-2029",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Farmacie comunali 2027-2029, 15 settembre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.assofarm.it/wp-content/uploads/2026/09/CCNL-Assofarm-2027-2029-firmato.pdf",
+                  "published_on": "2026-09-15",
+                  "sha256": "063a3548487866acce38f2771d8b29271b07a993c954294288b244854be1aae5"
+                },
+                "page": "10, 21",
+                "section": "Art. 10 - abolizione del sesto livello; Allegato B",
+                "quote": "Il personale inquadrato al sesto livello precedentemente la data del 15 settembre 2026, per effetto dell'abolizione di tale livello, passa automaticamente al quinto livello con decorrenza dal 1° ottobre 2026."
+              },
+              "transformation": "Level 6 is abolished from 1 October 2026: its workers are paid the R.B.M. of level 5.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T16:00:00Z",
+                "effective_from": "2027-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T16:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assofarm-2027-2029"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-07-01",
+            "valid_until": "2029-07-01",
+            "value": "1696.57",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "assofarm-ipotesi-2027-2029",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Farmacie comunali 2027-2029, 15 settembre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.assofarm.it/wp-content/uploads/2026/09/CCNL-Assofarm-2027-2029-firmato.pdf",
+                  "published_on": "2026-09-15",
+                  "sha256": "063a3548487866acce38f2771d8b29271b07a993c954294288b244854be1aae5"
+                },
+                "page": "10, 21",
+                "section": "Art. 10 - abolizione del sesto livello; Allegato B",
+                "quote": "Il personale inquadrato al sesto livello precedentemente la data del 15 settembre 2026, per effetto dell'abolizione di tale livello, passa automaticamente al quinto livello con decorrenza dal 1° ottobre 2026."
+              },
+              "transformation": "Level 6 is abolished from 1 October 2026: its workers are paid the R.B.M. of level 5.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T16:00:00Z",
+                "effective_from": "2028-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T16:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assofarm-2027-2029"
+              }
+            }
+          },
+          {
+            "valid_from": "2029-07-01",
+            "valid_until": null,
+            "value": "1719.37",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "assofarm-ipotesi-2027-2029",
+                  "title": "Ipotesi di accordo di rinnovo CCNL Farmacie comunali 2027-2029, 15 settembre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.assofarm.it/wp-content/uploads/2026/09/CCNL-Assofarm-2027-2029-firmato.pdf",
+                  "published_on": "2026-09-15",
+                  "sha256": "063a3548487866acce38f2771d8b29271b07a993c954294288b244854be1aae5"
+                },
+                "page": "10, 21",
+                "section": "Art. 10 - abolizione del sesto livello; Allegato B",
+                "quote": "Il personale inquadrato al sesto livello precedentemente la data del 15 settembre 2026, per effetto dell'abolizione di tale livello, passa automaticamente al quinto livello con decorrenza dal 1° ottobre 2026."
+              },
+              "transformation": "Level 6 is abolished from 1 October 2026: its workers are paid the R.B.M. of level 5.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T16:00:00Z",
+                "effective_from": "2029-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T16:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assofarm-2027-2029"
               }
             }
           }
@@ -1592,7 +3003,7 @@
     "effective_until": null,
     "source": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf",
     "verification_status": "unverified",
-    "source_hash": "52f3f1bfa75125bd45882f1b90e2671ac3b20d459d4b8620291435df1c444950",
+    "source_hash": "880ebb1a49b39f1f7c989a78a008fbb899e0f6f40356197ec374c741dadd1069",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
