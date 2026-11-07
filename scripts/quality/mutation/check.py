@@ -11,6 +11,10 @@ Two campaigns use it, both reading the per-mutant exit codes mutmut keeps in
   does: mutmut refuses a filter that matches no mutant), and
   ``--changed-since REF`` then scores those modules alone.
 
+A local run of a few modules (``make mutation MODULE=GLOB``) passes the same
+mutmut patterns with ``--modules GLOB``: only the modules with a mutant
+matching one of them are scored.
+
 Every module must reach ``--min-score`` on its own, and the core (the
 modules without a floor) together: a strong module never hides a weak one.
 A module listed in ``baseline.json`` entered the perimeter, or was first
@@ -25,9 +29,13 @@ survivor.
 A score without its perimeter and its date misleads: every check writes
 ``mutants/mutation-score.json`` with the commit, the UTC date, the minimum,
 the modules scored and the counts, and the workflows keep it as an
-artifact.  A check of the whole perimeter also writes the versioned record
-:data:`RECORD` (``scripts/quality/mutation/record.json``): the last full
-campaign the repository vouches for.
+artifact.  A check whose perimeter is the whole of ``source_paths`` also
+writes the versioned record :data:`RECORD`
+(``scripts/quality/mutation/record.json``): the last full campaign the
+repository vouches for.  A check of fewer modules (``--changed-since`` or
+``--modules``) never rewrites it, and its artifact says ``"scope":
+"partial"``, so the release dossier, which requires the whole perimeter,
+refuses it.
 
 Usage::
 
@@ -35,6 +43,8 @@ Usage::
     uv run python scripts/quality/mutation/check.py --changed-since REF \
         --print-globs
     uv run python scripts/quality/mutation/check.py --changed-since REF \
+        [--min-score FLOAT]
+    uv run python scripts/quality/mutation/check.py --modules GLOB [GLOB ...] \
         [--min-score FLOAT]
 
 Exit codes:
@@ -46,6 +56,7 @@ Exit codes:
 from __future__ import annotations
 
 import argparse
+import fnmatch
 import json
 import subprocess  # noqa: S404
 import sys
@@ -133,6 +144,32 @@ def has_mutants(module: str, root: Path = ROOT) -> bool:
     return bool(mutate_file_contents(module, code).mutant_names)
 
 
+def matching_modules(
+    globs: tuple[str, ...], perimeter: tuple[str, ...], root: Path = ROOT
+) -> tuple[str, ...]:
+    """Return the modules of ``perimeter`` a mutmut run filtered by ``globs`` mutates.
+
+    mutmut matches each pattern with :func:`fnmatch.fnmatch` against the
+    full mutant name (``ccnl_engine.irpef.rules.x_tax__mutmut_1``); the
+    same rule, applied to the mutants mutmut's generator yields, tells
+    which modules the run measured.
+
+    Returns:
+        The modules with a mutant matching one of ``globs``, in perimeter
+        order.
+    """
+    found: list[str] = []
+    for module in perimeter:
+        prefix = mutant_glob(module).removesuffix("*")
+        code = (root / module).read_text(encoding="utf-8")
+        names = mutate_file_contents(module, code).mutant_names
+        if any(
+            fnmatch.fnmatch(prefix + name, glob) for name in names for glob in globs
+        ):
+            found.append(module)
+    return tuple(found)
+
+
 def load_equivalent(path: Path = EQUIVALENT) -> dict[str, str]:
     """Return the mutants classified as equivalent, with the reason of each.
 
@@ -195,8 +232,18 @@ def record(
             perimeter.
 
     Returns:
-        The record written to ``mutants/mutation-score.json``.
+        The record written to ``mutants/mutation-score.json``; its
+        ``scope`` is ``full`` when ``perimeter`` is the whole of
+        ``source_paths``, else ``partial``.
+
+    Raises:
+        ValueError: When ``versioned`` asks to record a partial perimeter
+            as the last full campaign.
     """
+    full = list(perimeter) == list(source_paths())
+    if versioned and not full:
+        msg = "only a campaign of the whole source_paths writes record.json"
+        raise ValueError(msg)
     commit = subprocess.run(
         ["git", "rev-parse", "HEAD"],  # noqa: S607
         capture_output=True,
@@ -211,12 +258,12 @@ def record(
         "perimeter": list(perimeter),
         "scores": scores,
     }
-    text = json.dumps(entry, indent=2) + "\n"
     _RECORD_PATH.parent.mkdir(exist_ok=True)
-    _RECORD_PATH.write_text(text, encoding="utf-8")
+    artifact = {**entry, "scope": "full" if full else "partial"}
+    _RECORD_PATH.write_text(json.dumps(artifact, indent=2) + "\n", encoding="utf-8")
     if versioned:
-        RECORD.write_text(text, encoding="utf-8")
-    return entry
+        RECORD.write_text(json.dumps(entry, indent=2) + "\n", encoding="utf-8")
+    return artifact
 
 
 def _parser() -> argparse.ArgumentParser:
@@ -228,10 +275,17 @@ def _parser() -> argparse.ArgumentParser:
         metavar="FLOAT",
         help=f"Minimum kill rate 0-100 (default: {_DEFAULT_MIN_SCORE}).",
     )
-    parser.add_argument(
+    scope = parser.add_mutually_exclusive_group()
+    scope.add_argument(
         "--changed-since",
         metavar="REF",
         help="Score only the modules of the perimeter changed since REF.",
+    )
+    scope.add_argument(
+        "--modules",
+        nargs="+",
+        metavar="GLOB",
+        help="Score only the modules a mutmut run filtered by GLOB mutated.",
     )
     parser.add_argument(
         "--print-globs",
@@ -255,13 +309,24 @@ def _perimeter(args: argparse.Namespace) -> tuple[str, ...]:
     """Return the modules the arguments ask to score.
 
     Returns:
-        Every module of ``source_paths``, or those changed since the ref.
+        Every module of ``source_paths``, those changed since the ref, or
+        those the ``--modules`` patterns match.
 
     Raises:
         SystemExit: After printing the mutmut patterns with
             ``--print-globs``, or when no module of the perimeter changed
-            (with status 0).
+            (with status 0); when no module matches ``--modules`` (with
+            status 1).
     """
+    if args.modules:
+        matched = matching_modules(tuple(args.modules), source_paths())
+        if not matched:
+            patterns = " ".join(args.modules)
+            print(
+                f"ERROR: no module of source_paths matches {patterns}.", file=sys.stderr
+            )
+            raise SystemExit(1)
+        return matched
     if args.changed_since is None:
         return source_paths()
     modules = changed_modules(args.changed_since, source_paths())
@@ -324,9 +389,8 @@ def main() -> None:
     except (FileNotFoundError, json.JSONDecodeError, KeyError) as exc:
         print(f"ERROR: cannot read the mutmut results: {exc}", file=sys.stderr)
         sys.exit(1)
-    entry = record(
-        scores, perimeter, args.min_score, versioned=args.changed_since is None
-    )
+    full = list(perimeter) == list(source_paths())
+    entry = record(scores, perimeter, args.min_score, versioned=full)
     for name, result in scores.items():
         print(
             f"{name}: {result['score']:.1f}% ({int(result['killed'])} killed / "
@@ -334,6 +398,11 @@ def main() -> None:
             f"minimum {result['minimum']:.1f}%"
         )
     print(f"Commit {str(entry['commit'])[:12]}, {entry['date']}.")
+    if not full:
+        print(
+            f"Partial run: {len(perimeter)} of {len(source_paths())} modules; "
+            f"{RECORD.name} left unchanged."
+        )
     if failures:
         print("FAIL:\n  " + "\n  ".join(failures), file=sys.stderr)
         sys.exit(1)

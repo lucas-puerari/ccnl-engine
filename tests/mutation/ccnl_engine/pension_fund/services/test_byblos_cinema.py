@@ -5,10 +5,10 @@ carico delle aziende ed una contribuzione percentuale mensile per 12
 mensilità annue a carico del lavoratore dell'1% della retribuzione
 contrattuale".
 
-Level 3 in January 2026, seniority since 1 January 2022: 1383.48 minimum +
-two scatti of 16.34 = 1416.16.  Employer and employee 1% = 14.1616 ->
-14.16; solidarity 10% of 14.16 = 1.416 -> 1.42.  The tredicesima and the
-quattordicesima owe none.
+Level 3 in January 2026, seniority since 1 January 2022: 1405.55 minimum
+(verbale of 12 February 2026) + two scatti of 16.34 = 1438.23.  Employer and
+employee 1% = 14.3823 -> 14.38; solidarity 10% of 14.38 = 1.438 -> 1.44.
+The tredicesima and the quattordicesima owe none.
 """
 
 from __future__ import annotations
@@ -53,15 +53,15 @@ def _entry(result: PeriodResult, account: str) -> Decimal:
 
 
 def test_monthly_payment_on_the_minimum_and_the_scatti() -> None:
-    """1416.16 x 1% = 14.16 employer and employee, 1.42 solidarity."""
+    """1438.23 x 1% = 14.38 employer and employee, 1.44 solidarity."""
     result = regular_period(employment=_EMPLOYMENT, current_year=employment_only())
     (decision,) = [
         d for d in result.decisions if d.capability == "pension_fund_contribution"
     ]
-    assert decision.inputs["base"] == Decimal("1416.16")
-    assert _entry(result, "pension_fund_employer") == Decimal("14.16")
-    assert _entry(result, "pension_fund_employee") == Decimal("14.16")
-    assert decision.inputs["solidarity"] == Decimal("1.42")
+    assert decision.inputs["base"] == Decimal("1438.23")
+    assert _entry(result, "pension_fund_employer") == Decimal("14.38")
+    assert _entry(result, "pension_fund_employee") == Decimal("14.38")
+    assert decision.inputs["solidarity"] == Decimal("1.44")
 
 
 def test_extra_months_owe_none() -> None:
