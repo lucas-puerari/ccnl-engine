@@ -4346,7 +4346,7 @@
     "effective_until": null,
     "source": "https://www.fipe.it/wp-content/uploads/2025/02/Tabelle-retributive-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "7b37778f2d14eb99666c99237e3ee4b0b5e24aaacf9e67f6b30455f23da977c7",
+    "source_hash": "51b9ee510aa7a4a7dc6968fb2d27d1b8a7bd1de5546a0d10f01e219cc5296fb6",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -5278,6 +5278,71 @@
           "verification_status": "unverified"
         }
       }
+    },
+    "insured_absence": {
+      "maternity": {
+        "integration_rate": "1",
+        "net_basis": true,
+        "integration_days": 150,
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "fipe-it-wp-content-uploads-2024-06-contratto-ccnl-05_06_24-pdf",
+              "title": "CCNL rinnovo 5 giugno 2024, testo sottoscritto (FIPE)",
+              "kind": "associazione",
+              "url": "https://www.fipe.it/wp-content/uploads/2024/06/Contratto-CCNL-05_06_24.pdf",
+              "sha256": "b133dcca1351c72309389e53eeea21cb9b0459c82736423749206d6f11235c43"
+            },
+            "page": "21 (PDF 21)",
+            "section": "Articolo 200, comma 1 — Integrazione congedo di maternità",
+            "quote": "Durante il congedo di maternità (astensione obbligatoria) la lavoratrice ha diritto, per un periodo di cinque mesi, ad un’integrazione dell’indennità a carico dell’INPS, da corrispondersi dal datore di lavoro, a proprio carico, in modo da raggiungere complessivamente la misura del cento per cento della retribuzione giornaliera netta cui avrebbe avuto diritto in caso di normale svolgimento del rapporto."
+          },
+          "transformation": "Employer tops up INPS allowance to 100% of net daily pay during compulsory maternity leave for five months; five months is not converted to an integer number of days. Five months of the compulsory leave (art. 200 c. 1): 150 days; read on the page image (no text layer).",
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-08T04:00:00Z",
+            "effective_from": null,
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-08T04:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-08-gpt-pubblici-esercizi-fipe-angem-insured-absence"
+          }
+        }
+      },
+      "injury": {
+        "carenza_rate": "0.60",
+        "advanced": true,
+        "advanced_permanent_only": true,
+        "integration_rate": "1",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-ristorazione-2018-confcommerciomilano",
+              "title": "CCNL 8 febbraio 2018, testo sottoscritto (Confcommercio Milano)",
+              "kind": "associazione",
+              "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ccnl_ristorazione_2018.pdf",
+              "sha256": "32a2831b6ff1965adf82da1714f46ac6dc46102971012d6f646368837f72cf85"
+            },
+            "page": "132–133 (PDF 134–135)",
+            "section": "Articolo 191, commi 3–5; Articolo 193, comma 1",
+            "quote": "il datore di lavoro è tenuto a corrispondere ai lavoratori soggetti all’obbligo assicurativo contro gli infortuni sul lavoro l’intera retribuzione per la giornata in cui avviene l’infortunio ed una in [...] (4) Fatto salvo quanto previsto al comma precedente, in caso di infortunio il datore di lavoro corrisponderà una integrazione dell'indennità corrisposta dall'INAIL fino a raggiungere il cento per cento della retribuzione, sin dal giorno di cui si verifica l'infortunio."
+          },
+          "transformation": "Day of injury: full pay; following three days (carenza): 60% of normal daily pay. Art. 191(4–5) requires top-up of INAIL indemnity to 100% of pay when INAIL pays; Art. 193(1,5) provides INAIL advance to permanent employees, subject to INAIL authorization. See report for exact quotations and category distinctions. Art. 191 c. 3-4 and art. 193 (2018 text, PDF pp. 134-135, read on the page images): carenza at 60%, top-up of the INAIL indemnity to 100%, INAIL advanced to permanent workers.",
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-08T04:00:00Z",
+            "effective_from": null,
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-08T04:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-08-gpt-pubblici-esercizi-fipe-angem-insured-absence"
+          }
+        }
+      }
     }
   },
   "verification": {
@@ -5536,6 +5601,33 @@
         "independence": "separate_session",
         "checked": [
           "work_rules.time_supplements.week_divisors"
+        ]
+      },
+      {
+        "id": "2026-11-08-gpt-pubblici-esercizi-fipe-angem-insured-absence",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Maternity top-up (art. 200, 2024 renewal) and work injury (arts. 191, 193, 2018 text), read by a separate model session and checked on the page images (no text layer).",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ccnl_ristorazione_2018.pdf",
+            "sha256": "32a2831b6ff1965adf82da1714f46ac6dc46102971012d6f646368837f72cf85"
+          },
+          {
+            "url": "https://www.fipe.it/wp-content/uploads/2024/06/Contratto-CCNL-05_06_24.pdf",
+            "sha256": "b133dcca1351c72309389e53eeea21cb9b0459c82736423749206d6f11235c43"
+          }
+        ],
+        "findings": [
+          "Added work_rules.insured_absence.maternity and .injury.",
+          "Injury: the research omitted the top-up of art. 191 c. 4 (to 100% from the day of the injury); added from the page image."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.insured_absence.maternity",
+          "work_rules.insured_absence.injury"
         ]
       }
     ],

@@ -153,6 +153,29 @@
         "checked": [
           "parameters.seniority_increments"
         ]
+      },
+      {
+        "id": "2026-11-08-gpt-elettrico-elettricita-futura-insured-absence",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "CCNL top-ups of maternity and work injury, read from the signed text by a separate model session; every quote found on the PDF text layer.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://gme.mercatoelettrico.org/portals/0/Documents/en-us/20230116_CCNL_Elettrico.pdf",
+            "sha256": "d124da13a54fab3a4ae33be0dfb9b167cf0eabfcf474d36d55b018f1131b2297"
+          }
+        ],
+        "findings": [
+          "Added work_rules.insured_absence.maternity.",
+          "Added work_rules.insured_absence.injury."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.insured_absence.maternity",
+          "work_rules.insured_absence.injury"
+        ]
       }
     ]
   },
@@ -3036,7 +3059,7 @@
     "effective_until": null,
     "source": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/216334",
     "verification_status": "unverified",
-    "source_hash": "f1d6403d09f6ef36f3312ae1766532c9816276d8245f89b4a15b6416cd052595",
+    "source_hash": "cd9cc60182931d914c03f17e840f5faca3cc7e963adf94404d0a0bad7518b2ff",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3259,6 +3282,68 @@
           "extraction_timestamp": "2026-09-08T00:00:00",
           "verification_status": "unverified",
           "effective_from": "2025-01-01"
+        }
+      }
+    },
+    "insured_absence": {
+      "maternity": {
+        "integration_rate": "1",
+        "net_basis": false,
+        "integration_days": 150,
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-elettrico-2022",
+              "title": "CCNL elettrici 18 luglio 2022, testo integrale (GME)",
+              "kind": "associazione",
+              "url": "https://gme.mercatoelettrico.org/portals/0/Documents/en-us/20230116_CCNL_Elettrico.pdf",
+              "sha256": "d124da13a54fab3a4ae33be0dfb9b167cf0eabfcf474d36d55b018f1131b2297"
+            },
+            "page": "47",
+            "section": "Art. 20, comma 2",
+            "quote": "2. Peraltro, riconoscendo il valore sociale della maternità, le Aziende garantiranno alla lavoratrice, durante il periodo di congedo obbligatorio di maternità, la corresponsione del 100% della retribuzione del mese precedente a quello di inizio di detta astensione."
+          },
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-08T03:00:00Z",
+            "effective_from": null,
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-08T03:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-08-gpt-elettrico-elettricita-futura-insured-absence"
+          },
+          "transformation": "integration_days 150: the compulsory leave of art. 16 D.Lgs. 151/2001 (five months) the clause refers to"
+        }
+      },
+      "injury": {
+        "carenza_rate": "1",
+        "advanced": true,
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-elettrico-2022",
+              "title": "CCNL elettrici 18 luglio 2022, testo integrale (GME)",
+              "kind": "associazione",
+              "url": "https://gme.mercatoelettrico.org/portals/0/Documents/en-us/20230116_CCNL_Elettrico.pdf",
+              "sha256": "d124da13a54fab3a4ae33be0dfb9b167cf0eabfcf474d36d55b018f1131b2297"
+            },
+            "page": "48",
+            "section": "Art. 21, commi 8 (excerpt) e 9",
+            "quote": "9. Ferma restando la disciplina legislativa vigente in materia, il trattamento economico di malattia ed infortunio di cui al presente articolo, verrà assicurato mediante integrazione delle indennità corrisposte dagli Istituti assicuratori, che saranno anticipate dall’azienda alle normali scadenze retributive."
+          },
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-08T03:00:00Z",
+            "effective_from": null,
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-08T03:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-08-gpt-elettrico-elettricita-futura-insured-absence"
+          }
         }
       }
     }

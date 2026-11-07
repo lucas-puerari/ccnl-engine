@@ -3078,7 +3078,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260604-CCNL-Unionmeccanica-Confapi-2025-2028.pdf",
     "verification_status": "unverified",
-    "source_hash": "4d0999c4283fa441f2e2ee48215e13b24e1dd188541d9bcc7a1c7fb8ff807d9a",
+    "source_hash": "062e8fdb0c1b868e994eebbe9d48bff2dceb17f083212f0648e2a17418524795",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -4099,6 +4099,67 @@
           "verification_status": "unverified"
         }
       }
+    },
+    "insured_absence": {
+      "maternity": {
+        "integration_rate": "1",
+        "integration_days": 150,
+        "net_basis": false,
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-unionmeccanica-2017",
+              "title": "CCNL Unionmeccanica-Confapi 3 luglio 2017, testo delle parti firmatarie (FIM-CISL)",
+              "kind": "associazione",
+              "url": "https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-Unionmeccanica.pdf",
+              "sha256": "c3e694dc561879c0b5ef510d0e931a16e3562f073a88e8a06a210fbf00451fad"
+            },
+            "page": "140",
+            "section": "Art. 57 - Trattamento in caso di gravidanza e puerperio",
+            "quote": "In tal caso, alla lavoratrice assente, nei due mesi prima – ovvero nel mese prima del parto – e nei tre mesi – ovvero quattro mesi – ad esso successivi, sarà corrisposta l’intera retribuzione globale."
+          },
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-08T03:00:00Z",
+            "effective_from": null,
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-08T03:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-08-gpt-metalmeccanico-confapi-insured-absence"
+          },
+          "transformation": "integration_days 150: the compulsory leave of art. 16 D.Lgs. 151/2001 (five months) the clause refers to; net_basis false: the clause measures the retribuzione without saying netta"
+        }
+      },
+      "injury": {
+        "advanced": true,
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-unionmeccanica-2017",
+              "title": "CCNL Unionmeccanica-Confapi 3 luglio 2017, testo delle parti firmatarie (FIM-CISL)",
+              "kind": "associazione",
+              "url": "https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-Unionmeccanica.pdf",
+              "sha256": "c3e694dc561879c0b5ef510d0e931a16e3562f073a88e8a06a210fbf00451fad"
+            },
+            "page": "133",
+            "section": "Art. 54 - Infortuni sul lavoro e malattie professionali",
+            "quote": "Inoltre, le aziende corrisponderanno al lavoratore assente per infortunio o malattia professionale una integrazione di quanto egli percepisce, in forza di disposizioni legislative e/o di altre norme, fino al raggiungimento del normale trattamento economico complessivo netto che il lavoratore, se avesse lavorato per un periodo pari a quanto previsto ai soli commi 2 e 3 del punto 3) trattamento economico dell’articolo 55, operando a tal fine i relativi conguagli al termine del periodo di trattamento contrattuale."
+          },
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-08T03:00:00Z",
+            "effective_from": null,
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-08T03:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-08-gpt-metalmeccanico-confapi-insured-absence"
+          }
+        }
+      }
     }
   },
   "verification": {
@@ -4341,6 +4402,29 @@
         "independence": "same_process",
         "checked": [
           "parameters.equalisation_element"
+        ]
+      },
+      {
+        "id": "2026-11-08-gpt-metalmeccanico-confapi-insured-absence",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "CCNL top-ups of maternity and work injury, read from the signed text by a separate model session; every quote found on the PDF text layer.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-Unionmeccanica.pdf",
+            "sha256": "c3e694dc561879c0b5ef510d0e931a16e3562f073a88e8a06a210fbf00451fad"
+          }
+        ],
+        "findings": [
+          "Added work_rules.insured_absence.maternity.",
+          "Added work_rules.insured_absence.injury."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.insured_absence.maternity",
+          "work_rules.insured_absence.injury"
         ]
       }
     ],

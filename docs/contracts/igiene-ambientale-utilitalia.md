@@ -55,7 +55,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-12-09 |
-| **Last review** | 2026-11-07 |
+| **Last review** | 2026-11-08 |
 | **Latest salary tranche** | 2027-12-01 |
 
 ## Review history
@@ -64,6 +64,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|---|---|
 | 2026-11-06 | claude-opus-5-5 (ai) | Art. 65 lett. B FASDA (pp. 165-166) and the ipotesi of 9 December 2025 (p. 166). | corrected | FASDA was not modelled: 84.50 EUR a quarter on the employer from October 2023, 101.00 from October 2026. |
 | 2026-11-07 | claude-opus-5-5 (ai) | The 2027 tranches of the table 'nuovi parametri e confluenze' of the ipotesi of 9 December 2025 (pp. 96-97, text layer). | corrected | The II-IV tranches are parametric by level (Q +60.89/+67.66/+67.66, D2 +24.91/+27.68/+27.68); the file applied the C2s increments (36/40/40) to every level: 45 values corrected. |
+| 2026-11-08 | gpt-6-sol (ai) | CCNL top-ups of maternity and work injury, read from the signed text by a separate model session; every quote found on the PDF text layer. | confirmed | Added work_rules.insured_absence.maternity.<br>Added work_rules.insured_absence.injury. |
 
 ## Salary table
 
