@@ -77,7 +77,7 @@
       },
       {
         "kind": "simplification",
-        "text": "ISQ (Art. 3 and Tabella C, p. 59 of the CCNL of 7 September 2021): Q2 and Q3 are paid 100 EUR and, after 12 years of 'anzianità complessiva maturata nel Livello 1° e nell'Area Q', 130 EUR, modelled on the months of service (isq up to 144, isq_12 from 144). Not modelled: a worker who served at a non-pharmacist level before level 1 reaches the 12 years later than the service months say.",
+        "text": "ISQ (Art. 3 and Tabella C, p. 59 of the CCNL of 7 September 2021): Q2 and Q3 are paid 100 EUR and, after 12 years of 'anzianità complessiva maturata nel Livello 1° e nell'Area Q', 130 EUR (isq up to 144 months, isq_12 from 144), on the career months SeniorityFact.career_months states, or on the months of service when it is not stated.",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
@@ -89,7 +89,8 @@
               "Q3"
             ]
           },
-          "remediation": "Count only the months in level 1 and Area Q when the employment history states them, then remove this note."
+          "remediation": "Resolved: SeniorityFact.career_months carries the years in level 1 and Area Q.",
+          "status": "resolved"
         }
       },
       {
@@ -710,7 +711,8 @@
               "review_id": "2026-11-06-ai-farmacie-isq"
             }
           },
-          "service_months_until": 144
+          "service_months_until": 144,
+          "career_service": true
         },
         {
           "code": "isq_12",
@@ -751,7 +753,8 @@
               "review_id": "2026-11-06-ai-farmacie-isq"
             }
           },
-          "service_months_threshold": 144
+          "service_months_threshold": 144,
+          "career_service": true
         }
       ],
       "provenance": {
@@ -908,7 +911,8 @@
               "review_id": "2026-11-06-ai-farmacie-isq"
             }
           },
-          "service_months_until": 144
+          "service_months_until": 144,
+          "career_service": true
         },
         {
           "code": "isq_12",
@@ -949,7 +953,8 @@
               "review_id": "2026-11-06-ai-farmacie-isq"
             }
           },
-          "service_months_threshold": 144
+          "service_months_threshold": 144,
+          "career_service": true
         }
       ],
       "provenance": {
@@ -1675,7 +1680,7 @@
     "effective_until": null,
     "source": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf",
     "verification_status": "unverified",
-    "source_hash": "a1e124d4f9d4fff1ab080d8bfccd1d9cddcbc4a6aece8e33455da91a8b49172f",
+    "source_hash": "b9d5fc63ea3e8066f589463dd4283978dbf0038aac2dcc383a32b19498274a0c",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

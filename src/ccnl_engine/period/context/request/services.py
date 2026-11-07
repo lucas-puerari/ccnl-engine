@@ -103,6 +103,13 @@ def _base_chain(
             else request.employment_period.started_on
         ),
         seniority=request.seniority,
+        career_months=(
+            None
+            if request.seniority is None
+            else request.seniority.career_months_in_month(
+                contract.tctx.competence.year, contract.tctx.competence.month
+            )
+        ),
     )
 
 

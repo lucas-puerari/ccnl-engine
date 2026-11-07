@@ -87,6 +87,19 @@ class TestAllowanceActive:
         a = _allowance(service_months_threshold=24)
         assert _allowance_active(a, frozenset(), 12, _DAY) is False
 
+    @pytest.mark.parametrize(
+        ("career_service", "career", "active"),
+        [(True, 30, True), (True, None, False), (False, 30, False)],
+    )
+    def test_a_career_gate_reads_the_career_months(
+        self, career_service: bool, career: int | None, active: bool
+    ) -> None:
+        """The career months stand in for the 12 months of service, when stated."""
+        a = _allowance(service_months_threshold=24).model_copy(
+            update={"career_service": career_service}
+        )
+        assert _allowance_active(a, frozenset(), 12, _DAY, career) is active
+
     def test_not_in_force_returns_false(self) -> None:
         """Returns False in a ``not_applicable`` gap, before the rule exists."""
         monthly = TimeSeries(

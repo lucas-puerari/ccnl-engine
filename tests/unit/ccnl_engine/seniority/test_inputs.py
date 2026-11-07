@@ -123,3 +123,32 @@ class TestMonthsInMonth:
         fact = SeniorityFact.since(date(2026, 7, 1), _RECORDS)
         with pytest.raises(InvalidInputError, match="starts after 2026-06-30"):
             fact.months_in_month(2026, 6)
+
+
+class TestCareerMonths:
+    """The career a CCNL counts apart from the service (Farmacie Tabella C)."""
+
+    def test_ages_the_career_with_the_runs(self) -> None:
+        """100 career months on 15 March 2026 count 102 in June."""
+        fact = SeniorityFact(
+            months=40,
+            as_of=date(2026, 3, 15),
+            source=SenioritySource.EMPLOYER_RECORDS,
+            career_months=100,
+        )
+        assert fact.career_months_in_month(2026, 6) == 102
+
+    def test_an_unstated_career_reads_none(self) -> None:
+        """Without the career the gate falls back to the service months."""
+        fact = SeniorityFact.since(date(2020, 1, 1), SenioritySource.EMPLOYER_RECORDS)
+        assert fact.career_months_in_month(2026, 6) is None
+
+    def test_rejects_a_negative_career(self) -> None:
+        """The career months are a non-negative count."""
+        with pytest.raises(InvalidInputError, match="career_months"):
+            SeniorityFact(
+                months=0,
+                as_of=date(2026, 1, 1),
+                source=SenioritySource.EMPLOYER_RECORDS,
+                career_months=-1,
+            )
