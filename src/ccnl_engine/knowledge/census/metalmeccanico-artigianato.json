@@ -35,22 +35,6 @@
       }
     },
     {
-      "id": "artisan_impiegati_sickness",
-      "institute": "sickness",
-      "variant": "impiegato_quadro",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "SICKNESS OF THE IMPIEGATI: Art. 73 (p. 147) pays the impiegati the whole pay for 2 months and half for the next 4 up to 5 years of service, the whole for 3 months and half for the next 5 above; the file applies the operai rule of Art. 61.",
-      "calculation": "ccnl/metalmeccanico-artigianato:coverage.notes",
-      "state": "absent",
-      "remediation": "Model the Art. 73 bands for the impiegati by category.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "metalmeccanico-artigianato/artisan_impiegati_sickness"
-        ]
-      }
-    },
-    {
       "id": "centralinisti_apprenticeship",
       "institute": "base_salary",
       "variant": "all",
