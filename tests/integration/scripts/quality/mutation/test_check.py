@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import sys
 from pathlib import Path
 
 import pytest
@@ -15,6 +16,8 @@ from scripts.quality.mutation.check import (
     has_mutants,
     load_equivalent,
     load_floors,
+    main,
+    matching_modules,
     module_stats,
     mutant_glob,
     record,
@@ -146,21 +149,128 @@ def test_every_floor_is_a_module_of_the_perimeter_below_the_minimum() -> None:
     assert all(floor < 93.0 for floor in floors.values())
 
 
-@pytest.mark.parametrize("versioned", [True, False])
-def test_a_full_campaign_writes_the_versioned_record(
-    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, *, versioned: bool
-) -> None:
-    """The artifact always; the versioned record only for the whole perimeter."""
-    artifact, versioned_path = tmp_path / "m" / "score.json", tmp_path / "record.json"
-    monkeypatch.setattr("scripts.quality.mutation.check._RECORD_PATH", artifact)
-    monkeypatch.setattr("scripts.quality.mutation.check.RECORD", versioned_path)
+@pytest.fixture
+def written(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> tuple[Path, Path]:
+    """Point the artifact and the versioned record at a temporary directory.
 
-    entry = record({"core": {"score": 95.0}}, ("a.py",), 93.0, versioned=versioned)
+    Returns:
+        The artifact and the versioned record paths; the perimeter is
+        ``a.py`` and ``b.py``.
+    """
+    artifact, versioned = tmp_path / "m" / "score.json", tmp_path / "record.json"
+    monkeypatch.setattr("scripts.quality.mutation.check._RECORD_PATH", artifact)
+    monkeypatch.setattr("scripts.quality.mutation.check.RECORD", versioned)
+    monkeypatch.setattr(
+        "scripts.quality.mutation.check.source_paths", lambda: ("a.py", "b.py")
+    )
+    return artifact, versioned
+
+
+def test_a_full_campaign_writes_the_versioned_record(
+    written: tuple[Path, Path],
+) -> None:
+    """A check of the whole perimeter is the record the repository vouches for."""
+    artifact, versioned = written
+
+    entry = record({"core": {"score": 95.0}}, ("a.py", "b.py"), 93.0, versioned=True)
 
     assert json.loads(artifact.read_text(encoding="utf-8")) == entry
+    assert entry["scope"] == "full"
     assert entry["min_score"] == pytest.approx(93.0)
+    assert json.loads(versioned.read_text(encoding="utf-8"))["perimeter"] == [
+        "a.py",
+        "b.py",
+    ]
+
+
+def test_a_partial_check_is_marked_and_never_versioned(
+    written: tuple[Path, Path],
+) -> None:
+    """Fewer modules than source_paths: a partial artifact, no record.json."""
+    artifact, versioned = written
+
+    entry = record({"core": {"score": 95.0}}, ("a.py",), 93.0)
+
+    assert json.loads(artifact.read_text(encoding="utf-8"))["scope"] == "partial"
     assert entry["perimeter"] == ["a.py"]
-    assert versioned_path.exists() is versioned
+    assert not versioned.exists()
+    with pytest.raises(ValueError, match="whole source_paths"):
+        record({}, ("a.py",), 93.0, versioned=True)
+    assert not versioned.exists()
+
+
+@pytest.mark.parametrize(
+    ("argv", "perimeter", "scope"),
+    [
+        ([], ["a.py", "b.py"], "full"),
+        (["--modules", "a.*"], ["a.py"], "partial"),
+    ],
+)
+def test_the_command_versions_only_a_run_of_the_whole_perimeter(
+    written: tuple[Path, Path],
+    monkeypatch: pytest.MonkeyPatch,
+    argv: list[str],
+    perimeter: list[str],
+    scope: str,
+) -> None:
+    """``make mutation MODULE=GLOB`` scores the matched modules alone."""
+    artifact, versioned = written
+    monkeypatch.setattr(
+        "scripts.quality.mutation.check.matching_modules",
+        lambda globs, paths: tuple(p for p in paths if p.startswith(globs[0][0])),
+    )
+    monkeypatch.setattr(
+        "scripts.quality.mutation.check.evaluate", lambda *_a, **_k: ({}, [])
+    )
+    monkeypatch.setattr(sys, "argv", ["check.py", *argv])
+
+    main()
+
+    entry = json.loads(artifact.read_text(encoding="utf-8"))
+    assert entry["perimeter"] == perimeter
+    assert entry["scope"] == scope
+    assert versioned.exists() is (scope == "full")
+
+
+def test_modules_matching_no_pattern_is_an_error(
+    written: tuple[Path, Path], monkeypatch: pytest.MonkeyPatch
+) -> None:
+    """A pattern that selects nothing scores nothing: exit 1, nothing written."""
+    artifact, _ = written
+    monkeypatch.setattr(
+        "scripts.quality.mutation.check.matching_modules", lambda *_a: ()
+    )
+    monkeypatch.setattr(sys, "argv", ["check.py", "--modules", "nothing.*"])
+
+    with pytest.raises(SystemExit) as exc:
+        main()
+
+    assert exc.value.code == 1
+    assert not artifact.exists()
+
+
+@pytest.mark.parametrize(
+    ("glob", "expected"),
+    [
+        ("ccnl_engine.irpef.rules.*", ("src/ccnl_engine/irpef/rules.py",)),
+        (
+            "ccnl_engine.irpef.rules.x__marginal_tax__mutmut_1",
+            ("src/ccnl_engine/irpef/rules.py",),
+        ),
+        ("ccnl_engine.ledger.models.*", ()),
+        ("ccnl_engine.irpef.r*", ("src/ccnl_engine/irpef/rules.py",)),
+    ],
+)
+def test_a_pattern_selects_the_modules_whose_mutants_it_matches(
+    glob: str, expected: tuple[str, ...]
+) -> None:
+    """The rule of mutmut's filter: fnmatch on the full mutant name."""
+    perimeter = (
+        "src/ccnl_engine/irpef/rules.py",
+        "src/ccnl_engine/irpef/deduction/rules.py",
+        "src/ccnl_engine/ledger/models.py",
+    )
+    assert matching_modules((glob,), perimeter) == expected
 
 
 def test_every_equivalent_mutant_names_its_module_and_a_reason() -> None:

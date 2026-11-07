@@ -4,7 +4,17 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from scripts.quality.test_tree.check import EXCEPTIONS, ROOT, main, misplaced
+from scripts.quality.test_tree.check import (
+    EXCEPTIONS,
+    OUTSIDE_MUTATION,
+    ROOT,
+    main,
+    misplaced,
+    outside_mutation,
+)
+
+if TYPE_CHECKING:
+    import pytest
 
 if TYPE_CHECKING:
     from pathlib import Path
@@ -51,3 +61,41 @@ def test_the_mutation_category_mirrors_the_code(tmp_path: Path) -> None:
         path.mkdir(parents=True)
         (path / "test_x.py").touch()
     assert misplaced(tmp_path) == ["mutation/made_up"]
+
+
+def test_every_test_of_a_mutated_module_is_under_mutation() -> None:
+    """The real tree keeps every test of a mutated module in mutation/."""
+    assert outside_mutation() == []
+
+
+def test_every_test_kept_out_of_mutation_still_tests_a_mutated_module(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """A listed file that was moved or renamed is removed from the list."""
+    monkeypatch.setattr("scripts.quality.test_tree.check.OUTSIDE_MUTATION", {})
+
+    assert set(OUTSIDE_MUTATION) <= set(outside_mutation())
+
+
+def test_a_test_of_a_mutated_module_outside_mutation_is_reported(
+    tmp_path: Path,
+) -> None:
+    """Named after the module or in its directory, outside mutation/: reported."""
+    (tmp_path / "pyproject.toml").write_text(
+        '[tool.mutmut]\nsource_paths = ["src/ccnl_engine/irpef/rules.py"]\n',
+        encoding="utf-8",
+    )
+    files = (
+        "integration/ccnl_engine/irpef/test_rules_wiring.py",
+        "knowledge/ccnl_engine/irpef/rules/test_oracle.py",
+        "unit/ccnl_engine/irpef/test_rules.py",
+        "mutation/ccnl_engine/irpef/test_rules.py",
+        "unit/ccnl_engine/irpef/test_services.py",
+        "unit/ccnl_engine/irpef/test_rulesets.py",
+    )
+    for name in files:
+        path = tmp_path / "tests" / name
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.touch()
+
+    assert outside_mutation(tmp_path) == list(files[:3])
