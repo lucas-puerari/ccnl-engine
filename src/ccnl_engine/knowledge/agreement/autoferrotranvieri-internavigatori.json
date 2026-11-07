@@ -109,7 +109,7 @@
       },
       {
         "kind": "simplification",
-        "text": "EDR 2024: fixed_allowances per level, code 'edr_2024', 40 EUR at par.175 proportional to the parametro, active 2025-03-01 to 2026-04-30 (14 months). Per AGENS circular 20/03/2025 it is 'non computabile ai fini del TFR e della contribuzione al Fondo Priamo': modelled with tfr_relevant=false (Fondo Priamo is a bilateral pension fund, not modelled).",
+        "text": "EDR 2024: fixed_allowances per level, code 'edr_2024', 40 EUR at par.175 proportional to the parametro, paid from March 2025 on 14 monthly payments a year ('verrà erogato per 14 mensilità', renewal of 2024), with no end date. Per AGENS circular 20/03/2025 it is 'non computabile ai fini del TFR e della contribuzione al Fondo Priamo': modelled with tfr_relevant=false (Fondo Priamo is a bilateral pension fund, not modelled).",
         "capability": "pension_fund_contribution",
         "monetary_impact": "yes",
         "limitation": {
@@ -612,13 +612,8 @@
               },
               {
                 "valid_from": "2025-03-01",
-                "valid_until": "2026-05-01",
-                "value": "22.86"
-              },
-              {
-                "valid_from": "2026-05-01",
                 "valid_until": null,
-                "value": "0.00"
+                "value": "22.86"
               }
             ]
           },
@@ -752,13 +747,8 @@
               },
               {
                 "valid_from": "2025-03-01",
-                "valid_until": "2026-05-01",
-                "value": "25.14"
-              },
-              {
-                "valid_from": "2026-05-01",
                 "valid_until": null,
-                "value": "0.00"
+                "value": "25.14"
               }
             ]
           },
@@ -892,13 +882,8 @@
               },
               {
                 "valid_from": "2025-03-01",
-                "valid_until": "2026-05-01",
-                "value": "26.51"
-              },
-              {
-                "valid_from": "2026-05-01",
                 "valid_until": null,
-                "value": "0.00"
+                "value": "26.51"
               }
             ]
           },
@@ -1032,13 +1017,8 @@
               },
               {
                 "valid_from": "2025-03-01",
-                "valid_until": "2026-05-01",
-                "value": "27.66"
-              },
-              {
-                "valid_from": "2026-05-01",
                 "valid_until": null,
-                "value": "0.00"
+                "value": "27.66"
               }
             ]
           },
@@ -1172,13 +1152,8 @@
               },
               {
                 "valid_from": "2025-03-01",
-                "valid_until": "2026-05-01",
-                "value": "28.11"
-              },
-              {
-                "valid_from": "2026-05-01",
                 "valid_until": null,
-                "value": "0.00"
+                "value": "28.11"
               }
             ]
           },
@@ -1312,13 +1287,8 @@
               },
               {
                 "valid_from": "2025-03-01",
-                "valid_until": "2026-05-01",
-                "value": "29.49"
-              },
-              {
-                "valid_from": "2026-05-01",
                 "valid_until": null,
-                "value": "0.00"
+                "value": "29.49"
               }
             ]
           },
@@ -1452,13 +1422,8 @@
               },
               {
                 "valid_from": "2025-03-01",
-                "valid_until": "2026-05-01",
-                "value": "29.71"
-              },
-              {
-                "valid_from": "2026-05-01",
                 "valid_until": null,
-                "value": "0.00"
+                "value": "29.71"
               }
             ]
           },
@@ -1592,13 +1557,8 @@
               },
               {
                 "valid_from": "2025-03-01",
-                "valid_until": "2026-05-01",
-                "value": "30.86"
-              },
-              {
-                "valid_from": "2026-05-01",
                 "valid_until": null,
-                "value": "0.00"
+                "value": "30.86"
               }
             ]
           },
@@ -1732,13 +1692,8 @@
               },
               {
                 "valid_from": "2025-03-01",
-                "valid_until": "2026-05-01",
-                "value": "31.54"
-              },
-              {
-                "valid_from": "2026-05-01",
                 "valid_until": null,
-                "value": "0.00"
+                "value": "31.54"
               }
             ]
           },
@@ -1872,13 +1827,8 @@
               },
               {
                 "valid_from": "2025-03-01",
-                "valid_until": "2026-05-01",
-                "value": "31.77"
-              },
-              {
-                "valid_from": "2026-05-01",
                 "valid_until": null,
-                "value": "0.00"
+                "value": "31.77"
               }
             ]
           },
@@ -2012,13 +1962,8 @@
               },
               {
                 "valid_from": "2025-03-01",
-                "valid_until": "2026-05-01",
-                "value": "32.00"
-              },
-              {
-                "valid_from": "2026-05-01",
                 "valid_until": null,
-                "value": "0.00"
+                "value": "32.00"
               }
             ]
           },
@@ -2152,13 +2097,8 @@
               },
               {
                 "valid_from": "2025-03-01",
-                "valid_until": "2026-05-01",
-                "value": "32.69"
-              },
-              {
-                "valid_from": "2026-05-01",
                 "valid_until": null,
-                "value": "0.00"
+                "value": "32.69"
               }
             ]
           },
@@ -2292,13 +2232,8 @@
               },
               {
                 "valid_from": "2025-03-01",
-                "valid_until": "2026-05-01",
-                "value": "33.14"
-              },
-              {
-                "valid_from": "2026-05-01",
                 "valid_until": null,
-                "value": "0.00"
+                "value": "33.14"
               }
             ]
           },
@@ -2432,13 +2367,8 @@
               },
               {
                 "valid_from": "2025-03-01",
-                "valid_until": "2026-05-01",
-                "value": "34.51"
-              },
-              {
-                "valid_from": "2026-05-01",
                 "valid_until": null,
-                "value": "0.00"
+                "value": "34.51"
               }
             ]
           },
@@ -2572,13 +2502,8 @@
               },
               {
                 "valid_from": "2025-03-01",
-                "valid_until": "2026-05-01",
-                "value": "34.97"
-              },
-              {
-                "valid_from": "2026-05-01",
                 "valid_until": null,
-                "value": "0.00"
+                "value": "34.97"
               }
             ]
           },
@@ -2712,13 +2637,8 @@
               },
               {
                 "valid_from": "2025-03-01",
-                "valid_until": "2026-05-01",
-                "value": "35.20"
-              },
-              {
-                "valid_from": "2026-05-01",
                 "valid_until": null,
-                "value": "0.00"
+                "value": "35.20"
               }
             ]
           },
@@ -2852,13 +2772,8 @@
               },
               {
                 "valid_from": "2025-03-01",
-                "valid_until": "2026-05-01",
-                "value": "35.43"
-              },
-              {
-                "valid_from": "2026-05-01",
                 "valid_until": null,
-                "value": "0.00"
+                "value": "35.43"
               }
             ]
           },
@@ -2992,13 +2907,8 @@
               },
               {
                 "valid_from": "2025-03-01",
-                "valid_until": "2026-05-01",
-                "value": "36.11"
-              },
-              {
-                "valid_from": "2026-05-01",
                 "valid_until": null,
-                "value": "0.00"
+                "value": "36.11"
               }
             ]
           },
@@ -3132,13 +3042,8 @@
               },
               {
                 "valid_from": "2025-03-01",
-                "valid_until": "2026-05-01",
-                "value": "36.57"
-              },
-              {
-                "valid_from": "2026-05-01",
                 "valid_until": null,
-                "value": "0.00"
+                "value": "36.57"
               }
             ]
           },
@@ -3272,13 +3177,8 @@
               },
               {
                 "valid_from": "2025-03-01",
-                "valid_until": "2026-05-01",
-                "value": "37.71"
-              },
-              {
-                "valid_from": "2026-05-01",
                 "valid_until": null,
-                "value": "0.00"
+                "value": "37.71"
               }
             ]
           },
@@ -3412,13 +3312,8 @@
               },
               {
                 "valid_from": "2025-03-01",
-                "valid_until": "2026-05-01",
-                "value": "38.86"
-              },
-              {
-                "valid_from": "2026-05-01",
                 "valid_until": null,
-                "value": "0.00"
+                "value": "38.86"
               }
             ]
           },
@@ -3552,13 +3447,8 @@
               },
               {
                 "valid_from": "2025-03-01",
-                "valid_until": "2026-05-01",
-                "value": "40.00"
-              },
-              {
-                "valid_from": "2026-05-01",
                 "valid_until": null,
-                "value": "0.00"
+                "value": "40.00"
               }
             ]
           },
@@ -3692,13 +3582,8 @@
               },
               {
                 "valid_from": "2025-03-01",
-                "valid_until": "2026-05-01",
-                "value": "40.69"
-              },
-              {
-                "valid_from": "2026-05-01",
                 "valid_until": null,
-                "value": "0.00"
+                "value": "40.69"
               }
             ]
           },
@@ -3832,13 +3717,8 @@
               },
               {
                 "valid_from": "2025-03-01",
-                "valid_until": "2026-05-01",
-                "value": "41.14"
-              },
-              {
-                "valid_from": "2026-05-01",
                 "valid_until": null,
-                "value": "0.00"
+                "value": "41.14"
               }
             ]
           },
@@ -3972,13 +3852,8 @@
               },
               {
                 "valid_from": "2025-03-01",
-                "valid_until": "2026-05-01",
-                "value": "41.83"
-              },
-              {
-                "valid_from": "2026-05-01",
                 "valid_until": null,
-                "value": "0.00"
+                "value": "41.83"
               }
             ]
           },
@@ -4112,13 +3987,8 @@
               },
               {
                 "valid_from": "2025-03-01",
-                "valid_until": "2026-05-01",
-                "value": "42.97"
-              },
-              {
-                "valid_from": "2026-05-01",
                 "valid_until": null,
-                "value": "0.00"
+                "value": "42.97"
               }
             ]
           },
@@ -4252,13 +4122,8 @@
               },
               {
                 "valid_from": "2025-03-01",
-                "valid_until": "2026-05-01",
-                "value": "43.43"
-              },
-              {
-                "valid_from": "2026-05-01",
                 "valid_until": null,
-                "value": "0.00"
+                "value": "43.43"
               }
             ]
           },
@@ -4392,13 +4257,8 @@
               },
               {
                 "valid_from": "2025-03-01",
-                "valid_until": "2026-05-01",
-                "value": "44.11"
-              },
-              {
-                "valid_from": "2026-05-01",
                 "valid_until": null,
-                "value": "0.00"
+                "value": "44.11"
               }
             ]
           },
@@ -4532,13 +4392,8 @@
               },
               {
                 "valid_from": "2025-03-01",
-                "valid_until": "2026-05-01",
-                "value": "46.17"
-              },
-              {
-                "valid_from": "2026-05-01",
                 "valid_until": null,
-                "value": "0.00"
+                "value": "46.17"
               }
             ]
           },
@@ -4672,13 +4527,8 @@
               },
               {
                 "valid_from": "2025-03-01",
-                "valid_until": "2026-05-01",
-                "value": "46.86"
-              },
-              {
-                "valid_from": "2026-05-01",
                 "valid_until": null,
-                "value": "0.00"
+                "value": "46.86"
               }
             ]
           },
@@ -4812,13 +4662,8 @@
               },
               {
                 "valid_from": "2025-03-01",
-                "valid_until": "2026-05-01",
-                "value": "48.00"
-              },
-              {
-                "valid_from": "2026-05-01",
                 "valid_until": null,
-                "value": "0.00"
+                "value": "48.00"
               }
             ]
           },
@@ -4952,13 +4797,8 @@
               },
               {
                 "valid_from": "2025-03-01",
-                "valid_until": "2026-05-01",
-                "value": "52.57"
-              },
-              {
-                "valid_from": "2026-05-01",
                 "valid_until": null,
-                "value": "0.00"
+                "value": "52.57"
               }
             ]
           },
@@ -5092,13 +4932,8 @@
               },
               {
                 "valid_from": "2025-03-01",
-                "valid_until": "2026-05-01",
-                "value": "57.14"
-              },
-              {
-                "valid_from": "2026-05-01",
                 "valid_until": null,
-                "value": "0.00"
+                "value": "57.14"
               }
             ]
           },
@@ -5198,7 +5033,7 @@
     "effective_until": null,
     "source": "https://www.uiltrasporti.it/wp-content/uploads/2025/03/TABELLA-AUTOFERRO.pdf",
     "verification_status": "unverified",
-    "source_hash": "b8bc3a0d0e5184dd6711b1c585ecd74c7619caa0b08f91f1c0acef46a2c3cc3a",
+    "source_hash": "2b40f0431a30e9632636c8eef6aaee23f1b3ab1ae4552093cdbf0667299a1438",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -5415,5 +5250,30 @@
         "note": "Not modelled: two thirds instead of half of the reference pay past six months when the worker has more than two dependants (art. 4); the 30 months of comporto, 18 paid in full, of the serious illnesses of p. 4; the own rules of the area operativa staff of all. A) A.N. 27 novembre 2000 and of the apprentices (180 days in the calendar year). The source is a compilation of the signatory union that reproduces the national agreements; later renewals were not checked for changes to them."
       }
     }
+  },
+  "verification": {
+    "reviews": [
+      {
+        "id": "2026-11-07-ai-autoferro-edr-2024",
+        "date": "2026-11-07",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The EDR 2024 of the renewal of 2024 and the AGENS circular Inf. 002/25 (text layer).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.agens.it/wp-content/uploads/2025/03/Inf.-002_25.pdf",
+            "sha256": "57730252c0fb1d840b938dc3183b66a5c3f691a2574502c597f4e214402fb92a"
+          }
+        ],
+        "findings": [
+          "'viene istituito un nuovo Elemento Distinto della Retribuzione (EDR 2024) nella misura di 40 euro lordi mensili al parametro 175 che verrà erogato per 14 mensilità': a permanent element paid 14 times a year, not 14 payments; the file set it to zero from May 2026."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels.fixed_allowances"
+        ]
+      }
+    ]
   }
 }

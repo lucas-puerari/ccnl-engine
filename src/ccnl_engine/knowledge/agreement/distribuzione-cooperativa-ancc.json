@@ -223,6 +223,28 @@
         "checked": [
           "work_rules.time_supplements.week_divisors"
         ]
+      },
+      {
+        "id": "2026-11-07-ai-distribuzione-cooperativa-ancc-tables",
+        "date": "2026-11-07",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The monthly values of the levels against the primary tables (text layer).",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://uiltucs.it/wp-content/uploads/2018/12/CCNL_Cooperazione_2011.pdf",
+            "sha256": "8ecf93f628ae223f3fc7b3b0d39d89e58bf85fa8f067a698ccf93189a09329f0"
+          }
+        ],
+        "findings": [
+          "10 values found verbatim on the cited pages and marked verified; 36 left as they were (derived or not on a text page)."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels.base_salary",
+          "levels.fixed_allowances"
+        ]
       }
     ]
   },
@@ -560,7 +582,32 @@
               {
                 "valid_from": "2025-05-01",
                 "valid_until": null,
-                "value": "517.25"
+                "value": "517.25",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "distribuzione-cooperativa-ancc-tables-8ecf93f6",
+                      "title": "distribuzione-cooperativa-ancc: tabelle retributive (2011.pdf)",
+                      "kind": "associazione",
+                      "url": "https://uiltucs.it/wp-content/uploads/2018/12/CCNL_Cooperazione_2011.pdf",
+                      "sha256": "8ecf93f628ae223f3fc7b3b0d39d89e58bf85fa8f067a698ccf93189a09329f0"
+                    },
+                    "page": "359",
+                    "section": "Appendice 1, Tabelle indennità di contingenza",
+                    "quote": "6°                                                                     517,25"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2025-05-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-distribuzione-cooperativa-ancc-tables"
+                  }
+                }
               }
             ]
           },
@@ -767,7 +814,32 @@
               {
                 "valid_from": "2025-05-01",
                 "valid_until": null,
-                "value": "522.18"
+                "value": "522.18",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "distribuzione-cooperativa-ancc-tables-8ecf93f6",
+                      "title": "distribuzione-cooperativa-ancc: tabelle retributive (2011.pdf)",
+                      "kind": "associazione",
+                      "url": "https://uiltucs.it/wp-content/uploads/2018/12/CCNL_Cooperazione_2011.pdf",
+                      "sha256": "8ecf93f628ae223f3fc7b3b0d39d89e58bf85fa8f067a698ccf93189a09329f0"
+                    },
+                    "page": "359",
+                    "section": "Appendice 1, Tabelle indennità di contingenza",
+                    "quote": "5°                                                                     522,18"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2025-05-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-distribuzione-cooperativa-ancc-tables"
+                  }
+                }
               }
             ]
           },
@@ -974,7 +1046,32 @@
               {
                 "valid_from": "2025-05-01",
                 "valid_until": null,
-                "value": "524.49"
+                "value": "524.49",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "distribuzione-cooperativa-ancc-tables-8ecf93f6",
+                      "title": "distribuzione-cooperativa-ancc: tabelle retributive (2011.pdf)",
+                      "kind": "associazione",
+                      "url": "https://uiltucs.it/wp-content/uploads/2018/12/CCNL_Cooperazione_2011.pdf",
+                      "sha256": "8ecf93f628ae223f3fc7b3b0d39d89e58bf85fa8f067a698ccf93189a09329f0"
+                    },
+                    "page": "359",
+                    "section": "Appendice 1, Tabelle indennità di contingenza",
+                    "quote": "4°                                                                     524,49"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2025-05-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-distribuzione-cooperativa-ancc-tables"
+                  }
+                }
               }
             ]
           },
@@ -1181,7 +1278,32 @@
               {
                 "valid_from": "2025-05-01",
                 "valid_until": null,
-                "value": "525.92"
+                "value": "525.92",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "distribuzione-cooperativa-ancc-tables-8ecf93f6",
+                      "title": "distribuzione-cooperativa-ancc: tabelle retributive (2011.pdf)",
+                      "kind": "associazione",
+                      "url": "https://uiltucs.it/wp-content/uploads/2018/12/CCNL_Cooperazione_2011.pdf",
+                      "sha256": "8ecf93f628ae223f3fc7b3b0d39d89e58bf85fa8f067a698ccf93189a09329f0"
+                    },
+                    "page": "359",
+                    "section": "Appendice 1, Tabelle indennità di contingenza",
+                    "quote": "4° (par. 155)                                                          525,92"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2025-05-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-distribuzione-cooperativa-ancc-tables"
+                  }
+                }
               }
             ]
           },
@@ -1388,7 +1510,32 @@
               {
                 "valid_from": "2025-05-01",
                 "valid_until": null,
-                "value": "528.28"
+                "value": "528.28",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "distribuzione-cooperativa-ancc-tables-8ecf93f6",
+                      "title": "distribuzione-cooperativa-ancc: tabelle retributive (2011.pdf)",
+                      "kind": "associazione",
+                      "url": "https://uiltucs.it/wp-content/uploads/2018/12/CCNL_Cooperazione_2011.pdf",
+                      "sha256": "8ecf93f628ae223f3fc7b3b0d39d89e58bf85fa8f067a698ccf93189a09329f0"
+                    },
+                    "page": "359",
+                    "section": "Appendice 1, Tabelle indennità di contingenza",
+                    "quote": "3°                                                                     528,28"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2025-05-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-distribuzione-cooperativa-ancc-tables"
+                  }
+                }
               }
             ]
           },
@@ -1595,7 +1742,32 @@
               {
                 "valid_from": "2025-05-01",
                 "valid_until": null,
-                "value": "529.98"
+                "value": "529.98",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "distribuzione-cooperativa-ancc-tables-8ecf93f6",
+                      "title": "distribuzione-cooperativa-ancc: tabelle retributive (2011.pdf)",
+                      "kind": "associazione",
+                      "url": "https://uiltucs.it/wp-content/uploads/2018/12/CCNL_Cooperazione_2011.pdf",
+                      "sha256": "8ecf93f628ae223f3fc7b3b0d39d89e58bf85fa8f067a698ccf93189a09329f0"
+                    },
+                    "page": "359",
+                    "section": "Appendice 1, Tabelle indennità di contingenza",
+                    "quote": "3° (par. 180)                                                          529,98"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2025-05-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-distribuzione-cooperativa-ancc-tables"
+                  }
+                }
               }
             ]
           },
@@ -1802,7 +1974,32 @@
               {
                 "valid_from": "2025-05-01",
                 "valid_until": null,
-                "value": "533.85"
+                "value": "533.85",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "distribuzione-cooperativa-ancc-tables-8ecf93f6",
+                      "title": "distribuzione-cooperativa-ancc: tabelle retributive (2011.pdf)",
+                      "kind": "associazione",
+                      "url": "https://uiltucs.it/wp-content/uploads/2018/12/CCNL_Cooperazione_2011.pdf",
+                      "sha256": "8ecf93f628ae223f3fc7b3b0d39d89e58bf85fa8f067a698ccf93189a09329f0"
+                    },
+                    "page": "359",
+                    "section": "Appendice 1, Tabelle indennità di contingenza",
+                    "quote": "2°                                                                     533,85"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2025-05-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-distribuzione-cooperativa-ancc-tables"
+                  }
+                }
               }
             ]
           },
@@ -2009,7 +2206,32 @@
               {
                 "valid_from": "2025-05-01",
                 "valid_until": null,
-                "value": "538.83"
+                "value": "538.83",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "distribuzione-cooperativa-ancc-tables-8ecf93f6",
+                      "title": "distribuzione-cooperativa-ancc: tabelle retributive (2011.pdf)",
+                      "kind": "associazione",
+                      "url": "https://uiltucs.it/wp-content/uploads/2018/12/CCNL_Cooperazione_2011.pdf",
+                      "sha256": "8ecf93f628ae223f3fc7b3b0d39d89e58bf85fa8f067a698ccf93189a09329f0"
+                    },
+                    "page": "359",
+                    "section": "Appendice 1, Tabelle indennità di contingenza",
+                    "quote": "1°                                                                     538,83"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2025-05-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-distribuzione-cooperativa-ancc-tables"
+                  }
+                }
               }
             ]
           },
@@ -2217,7 +2439,32 @@
               {
                 "valid_from": "2025-05-01",
                 "valid_until": null,
-                "value": "541.85"
+                "value": "541.85",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "distribuzione-cooperativa-ancc-tables-8ecf93f6",
+                      "title": "distribuzione-cooperativa-ancc: tabelle retributive (2011.pdf)",
+                      "kind": "associazione",
+                      "url": "https://uiltucs.it/wp-content/uploads/2018/12/CCNL_Cooperazione_2011.pdf",
+                      "sha256": "8ecf93f628ae223f3fc7b3b0d39d89e58bf85fa8f067a698ccf93189a09329f0"
+                    },
+                    "page": "359",
+                    "section": "Appendice 1, Tabelle indennità di contingenza",
+                    "quote": "Quadri                                                                 541,85"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2025-05-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-distribuzione-cooperativa-ancc-tables"
+                  }
+                }
               }
             ]
           },
@@ -2279,7 +2526,32 @@
               {
                 "valid_from": "2025-05-01",
                 "valid_until": null,
-                "value": "250.76"
+                "value": "250.76",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "distribuzione-cooperativa-ancc-tables-8ecf93f6",
+                      "title": "distribuzione-cooperativa-ancc: tabelle retributive (2011.pdf)",
+                      "kind": "associazione",
+                      "url": "https://uiltucs.it/wp-content/uploads/2018/12/CCNL_Cooperazione_2011.pdf",
+                      "sha256": "8ecf93f628ae223f3fc7b3b0d39d89e58bf85fa8f067a698ccf93189a09329f0"
+                    },
+                    "page": "110",
+                    "section": "Art. 52(8), indennità di funzione dei Quadri",
+                    "quote": "euro 250,76 in caso diverso."
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2025-05-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-distribuzione-cooperativa-ancc-tables"
+                  }
+                }
               }
             ]
           },
@@ -2330,7 +2602,7 @@
     "effective_until": null,
     "source": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/183889",
     "verification_status": "unverified",
-    "source_hash": "d446cf05d19e8c2d3d7b0d5c576f9a703aae8c5a260013c0bd1a6a4345be4939",
+    "source_hash": "c75356563977ace024c69cbd2d4cd83d3d99577761e295e56c7ff176b37cd09c",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

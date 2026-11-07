@@ -38,6 +38,15 @@
         "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=396",
         "pages": [],
         "published_on": null
+      },
+      {
+        "document_id": "aran-fl-2025-2027",
+        "title": "CCNL comparto Funzioni locali 2025-2027, sottoscritto il 28 ottobre 2026",
+        "kind": "amministrazione",
+        "url": "https://www.aranagenzia.it/wp-content/uploads/2026/10/CCNL-comparto-FL-25-27-_-firmato-2.pdf",
+        "pages": [],
+        "published_on": "2026-10-28",
+        "sha256": "145dca441a06b77763fa7fe5915113bd71c0105b296ccae22a87a502b0db189e"
       }
     ],
     "extraction": {
@@ -260,7 +269,7 @@
           },
           {
             "valid_from": "2024-01-01",
-            "valid_until": "2026-01-01",
+            "valid_until": "2025-01-01",
             "value": "1637.12",
             "provenance": {
               "status": "verified",
@@ -291,35 +300,99 @@
             }
           },
           {
-            "valid_from": "2026-01-01",
-            "valid_until": null,
-            "value": "1646.09",
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1675.75",
             "provenance": {
-              "status": "verified",
+              "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-funzioni-locali-2022-2024",
-                  "title": "CCNL Comparto Funzioni Locali 2022-2024, 23 febbraio 2026",
+                  "document_id": "aran-fl-2025-2027",
+                  "title": "CCNL comparto Funzioni locali 2025-2027, sottoscritto il 28 ottobre 2026",
                   "kind": "amministrazione",
-                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf",
-                  "published_on": "2026-02-23",
-                  "sha256": "b08e21d819f677203e914f4925afbdf0dcd916fc92c1cdb260a1144f4656cd08"
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/10/CCNL-comparto-FL-25-27-_-firmato-2.pdf",
+                  "published_on": "2026-10-28",
+                  "sha256": "145dca441a06b77763fa7fe5915113bd71c0105b296ccae22a87a502b0db189e"
                 },
-                "page": "85",
-                "section": "Tabella B, retribuzione tabellare annua con il parziale conglobamento dell'indennità di comparto (seconda colonna); art. 60 c. 1: 'Con decorrenza primo gennaio dell’anno successivo a quello di sottoscrizione dell’Ipotesi di CCNL' (ipotesi del 3.11.2025)",
-                "quote": "OPERATORI 19.645,43 19.753,07"
+                "page": "55",
+                "section": "Art. 35 - Tabelle A e B",
+                "quote": "Tabella A OPERATORI Dal 1.1.2025 38,63; Tabella B 20.108,99"
               },
+              "transformation": "The tabellare of the CCNL of 23 February 2026 (1637.12) plus the monthly increment of Tabella A, which absorbs the earlier one; equal to Tabella B over 12.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-12T08:35:16Z",
+                "extraction_timestamp": "2026-11-07T21:00:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T21:00:00Z",
                 "verification_status": "verified",
+                "review_id": "2026-11-07-ai-fl-2025-2027"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1724.21",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "aran-fl-2025-2027",
+                  "title": "CCNL comparto Funzioni locali 2025-2027, sottoscritto il 28 ottobre 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/10/CCNL-comparto-FL-25-27-_-firmato-2.pdf",
+                  "published_on": "2026-10-28",
+                  "sha256": "145dca441a06b77763fa7fe5915113bd71c0105b296ccae22a87a502b0db189e"
+                },
+                "page": "55",
+                "section": "Art. 35 - Tabelle A e B",
+                "quote": "Tabella A OPERATORI Rideterminato dal 1.1.2026 78,12; Tabella B 20.690,51"
+              },
+              "transformation": "The tabellare of the CCNL of 23 February 2026 (1646.09) plus the monthly increment of Tabella A, which absorbs the earlier one; equal to Tabella B over 12.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T21:00:00Z",
                 "effective_from": "2026-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-12T08:35:16Z",
-                "review_id": "2026-10-12-ai"
+                "verified_at": "2026-11-07T21:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-fl-2025-2027"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": null,
+            "value": "1755.04",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "aran-fl-2025-2027",
+                  "title": "CCNL comparto Funzioni locali 2025-2027, sottoscritto il 28 ottobre 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/10/CCNL-comparto-FL-25-27-_-firmato-2.pdf",
+                  "published_on": "2026-10-28",
+                  "sha256": "145dca441a06b77763fa7fe5915113bd71c0105b296ccae22a87a502b0db189e"
+                },
+                "page": "55",
+                "section": "Art. 35 - Tabelle A e B",
+                "quote": "Tabella A OPERATORI Rideterminato dal 1.1.2027 108,95; Tabella B 21.060,47"
               },
-              "transformation": "Annual tabellare of the table over 12 (13 mensilità: the tredicesima is paid apart)."
+              "transformation": "The tabellare of the CCNL of 23 February 2026 (1646.09) plus the monthly increment of Tabella A, which absorbs the earlier one; equal to Tabella B over 12.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T21:00:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T21:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-fl-2025-2027"
+              }
             }
           }
         ]
@@ -337,8 +410,39 @@
               },
               {
                 "valid_from": "2026-01-01",
-                "valid_until": null,
+                "valid_until": "2027-07-01",
                 "value": "22.68"
+              },
+              {
+                "valid_from": "2027-07-01",
+                "valid_until": null,
+                "value": "32.42",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aran-fl-2025-2027",
+                      "title": "CCNL comparto Funzioni locali 2025-2027, sottoscritto il 28 ottobre 2026",
+                      "kind": "amministrazione",
+                      "url": "https://www.aranagenzia.it/wp-content/uploads/2026/10/CCNL-comparto-FL-25-27-_-firmato-2.pdf",
+                      "published_on": "2026-10-28",
+                      "sha256": "145dca441a06b77763fa7fe5915113bd71c0105b296ccae22a87a502b0db189e"
+                    },
+                    "page": "56",
+                    "section": "Art. 36-bis - Tabella C, valori mensili di uscita",
+                    "quote": "OPERATORI [...] incrementi mensili dal 1.7.2027 9,74 valori mensili di uscita 32,42"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T21:00:00Z",
+                    "effective_from": "2027-07-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T21:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-fl-2025-2027"
+                  }
+                }
               }
             ]
           },
@@ -430,7 +534,7 @@
           },
           {
             "valid_from": "2024-01-01",
-            "valid_until": "2026-01-01",
+            "valid_until": "2025-01-01",
             "value": "1704.38",
             "provenance": {
               "status": "verified",
@@ -461,35 +565,99 @@
             }
           },
           {
-            "valid_from": "2026-01-01",
-            "valid_until": null,
-            "value": "1715.27",
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1744.60",
             "provenance": {
-              "status": "verified",
+              "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-funzioni-locali-2022-2024",
-                  "title": "CCNL Comparto Funzioni Locali 2022-2024, 23 febbraio 2026",
+                  "document_id": "aran-fl-2025-2027",
+                  "title": "CCNL comparto Funzioni locali 2025-2027, sottoscritto il 28 ottobre 2026",
                   "kind": "amministrazione",
-                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf",
-                  "published_on": "2026-02-23",
-                  "sha256": "b08e21d819f677203e914f4925afbdf0dcd916fc92c1cdb260a1144f4656cd08"
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/10/CCNL-comparto-FL-25-27-_-firmato-2.pdf",
+                  "published_on": "2026-10-28",
+                  "sha256": "145dca441a06b77763fa7fe5915113bd71c0105b296ccae22a87a502b0db189e"
                 },
-                "page": "85",
-                "section": "Tabella B, retribuzione tabellare annua con il parziale conglobamento dell'indennità di comparto (seconda colonna); art. 60 c. 1: 'Con decorrenza primo gennaio dell’anno successivo a quello di sottoscrizione dell’Ipotesi di CCNL' (ipotesi del 3.11.2025)",
-                "quote": "OPERATORI ESPERTI 20.452,55 20.583,23"
+                "page": "55",
+                "section": "Art. 35 - Tabelle A e B",
+                "quote": "Tabella A OPERATORI_ESPERTI Dal 1.1.2025 40,22; Tabella B 20.935,19"
               },
+              "transformation": "The tabellare of the CCNL of 23 February 2026 (1704.38) plus the monthly increment of Tabella A, which absorbs the earlier one; equal to Tabella B over 12.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-12T08:35:16Z",
+                "extraction_timestamp": "2026-11-07T21:00:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T21:00:00Z",
                 "verification_status": "verified",
+                "review_id": "2026-11-07-ai-fl-2025-2027"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1796.60",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "aran-fl-2025-2027",
+                  "title": "CCNL comparto Funzioni locali 2025-2027, sottoscritto il 28 ottobre 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/10/CCNL-comparto-FL-25-27-_-firmato-2.pdf",
+                  "published_on": "2026-10-28",
+                  "sha256": "145dca441a06b77763fa7fe5915113bd71c0105b296ccae22a87a502b0db189e"
+                },
+                "page": "55",
+                "section": "Art. 35 - Tabelle A e B",
+                "quote": "Tabella A OPERATORI_ESPERTI Rideterminato dal 1.1.2026 81,33; Tabella B 21.559,19"
+              },
+              "transformation": "The tabellare of the CCNL of 23 February 2026 (1715.27) plus the monthly increment of Tabella A, which absorbs the earlier one; equal to Tabella B over 12.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T21:00:00Z",
                 "effective_from": "2026-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-12T08:35:16Z",
-                "review_id": "2026-10-12-ai"
+                "verified_at": "2026-11-07T21:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-fl-2025-2027"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": null,
+            "value": "1828.80",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "aran-fl-2025-2027",
+                  "title": "CCNL comparto Funzioni locali 2025-2027, sottoscritto il 28 ottobre 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/10/CCNL-comparto-FL-25-27-_-firmato-2.pdf",
+                  "published_on": "2026-10-28",
+                  "sha256": "145dca441a06b77763fa7fe5915113bd71c0105b296ccae22a87a502b0db189e"
+                },
+                "page": "55",
+                "section": "Art. 35 - Tabelle A e B",
+                "quote": "Tabella A OPERATORI_ESPERTI Rideterminato dal 1.1.2027 113,53; Tabella B 21.945,59"
               },
-              "transformation": "Annual tabellare of the table over 12 (13 mensilità: the tredicesima is paid apart)."
+              "transformation": "The tabellare of the CCNL of 23 February 2026 (1715.27) plus the monthly increment of Tabella A, which absorbs the earlier one; equal to Tabella B over 12.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T21:00:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T21:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-fl-2025-2027"
+              }
             }
           }
         ]
@@ -507,8 +675,39 @@
               },
               {
                 "valid_from": "2026-01-01",
-                "valid_until": null,
+                "valid_until": "2027-07-01",
                 "value": "27.52"
+              },
+              {
+                "valid_from": "2027-07-01",
+                "valid_until": null,
+                "value": "39.34",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aran-fl-2025-2027",
+                      "title": "CCNL comparto Funzioni locali 2025-2027, sottoscritto il 28 ottobre 2026",
+                      "kind": "amministrazione",
+                      "url": "https://www.aranagenzia.it/wp-content/uploads/2026/10/CCNL-comparto-FL-25-27-_-firmato-2.pdf",
+                      "published_on": "2026-10-28",
+                      "sha256": "145dca441a06b77763fa7fe5915113bd71c0105b296ccae22a87a502b0db189e"
+                    },
+                    "page": "56",
+                    "section": "Art. 36-bis - Tabella C, valori mensili di uscita",
+                    "quote": "OPERATORI_ESPERTI [...] incrementi mensili dal 1.7.2027 11,82 valori mensili di uscita 39,34"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T21:00:00Z",
+                    "effective_from": "2027-07-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T21:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-fl-2025-2027"
+                  }
+                }
               }
             ]
           },
@@ -600,7 +799,7 @@
           },
           {
             "valid_from": "2024-01-01",
-            "valid_until": "2026-01-01",
+            "valid_until": "2025-01-01",
             "value": "1915.55",
             "provenance": {
               "status": "verified",
@@ -631,35 +830,99 @@
             }
           },
           {
-            "valid_from": "2026-01-01",
-            "valid_until": null,
-            "value": "1928.23",
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1960.75",
             "provenance": {
-              "status": "verified",
+              "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-funzioni-locali-2022-2024",
-                  "title": "CCNL Comparto Funzioni Locali 2022-2024, 23 febbraio 2026",
+                  "document_id": "aran-fl-2025-2027",
+                  "title": "CCNL comparto Funzioni locali 2025-2027, sottoscritto il 28 ottobre 2026",
                   "kind": "amministrazione",
-                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf",
-                  "published_on": "2026-02-23",
-                  "sha256": "b08e21d819f677203e914f4925afbdf0dcd916fc92c1cdb260a1144f4656cd08"
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/10/CCNL-comparto-FL-25-27-_-firmato-2.pdf",
+                  "published_on": "2026-10-28",
+                  "sha256": "145dca441a06b77763fa7fe5915113bd71c0105b296ccae22a87a502b0db189e"
                 },
-                "page": "85",
-                "section": "Tabella B, retribuzione tabellare annua con il parziale conglobamento dell'indennità di comparto (seconda colonna); art. 60 c. 1: 'Con decorrenza primo gennaio dell’anno successivo a quello di sottoscrizione dell’Ipotesi di CCNL' (ipotesi del 3.11.2025)",
-                "quote": "ISTRUTTORI 22.986,59 23.138,75"
+                "page": "55",
+                "section": "Art. 35 - Tabelle A e B",
+                "quote": "Tabella A ISTRUTTORI Dal 1.1.2025 45,20; Tabella B 23.528,99"
               },
+              "transformation": "The tabellare of the CCNL of 23 February 2026 (1915.55) plus the monthly increment of Tabella A, which absorbs the earlier one; equal to Tabella B over 12.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-12T08:35:16Z",
+                "extraction_timestamp": "2026-11-07T21:00:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T21:00:00Z",
                 "verification_status": "verified",
+                "review_id": "2026-11-07-ai-fl-2025-2027"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "2019.63",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "aran-fl-2025-2027",
+                  "title": "CCNL comparto Funzioni locali 2025-2027, sottoscritto il 28 ottobre 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/10/CCNL-comparto-FL-25-27-_-firmato-2.pdf",
+                  "published_on": "2026-10-28",
+                  "sha256": "145dca441a06b77763fa7fe5915113bd71c0105b296ccae22a87a502b0db189e"
+                },
+                "page": "55",
+                "section": "Art. 35 - Tabelle A e B",
+                "quote": "Tabella A ISTRUTTORI Rideterminato dal 1.1.2026 91,40; Tabella B 24.235,55"
+              },
+              "transformation": "The tabellare of the CCNL of 23 February 2026 (1928.23) plus the monthly increment of Tabella A, which absorbs the earlier one; equal to Tabella B over 12.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T21:00:00Z",
                 "effective_from": "2026-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-12T08:35:16Z",
-                "review_id": "2026-10-12-ai"
+                "verified_at": "2026-11-07T21:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-fl-2025-2027"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": null,
+            "value": "2055.86",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "aran-fl-2025-2027",
+                  "title": "CCNL comparto Funzioni locali 2025-2027, sottoscritto il 28 ottobre 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/10/CCNL-comparto-FL-25-27-_-firmato-2.pdf",
+                  "published_on": "2026-10-28",
+                  "sha256": "145dca441a06b77763fa7fe5915113bd71c0105b296ccae22a87a502b0db189e"
+                },
+                "page": "55",
+                "section": "Art. 35 - Tabelle A e B",
+                "quote": "Tabella A ISTRUTTORI Rideterminato dal 1.1.2027 127,63; Tabella B 24.670,31"
               },
-              "transformation": "Annual tabellare of the table over 12 (13 mensilità: the tredicesima is paid apart)."
+              "transformation": "The tabellare of the CCNL of 23 February 2026 (1928.23) plus the monthly increment of Tabella A, which absorbs the earlier one; equal to Tabella B over 12.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T21:00:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T21:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-fl-2025-2027"
+              }
             }
           }
         ]
@@ -677,8 +940,39 @@
               },
               {
                 "valid_from": "2026-01-01",
-                "valid_until": null,
+                "valid_until": "2027-07-01",
                 "value": "32.06"
+              },
+              {
+                "valid_from": "2027-07-01",
+                "valid_until": null,
+                "value": "45.83",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aran-fl-2025-2027",
+                      "title": "CCNL comparto Funzioni locali 2025-2027, sottoscritto il 28 ottobre 2026",
+                      "kind": "amministrazione",
+                      "url": "https://www.aranagenzia.it/wp-content/uploads/2026/10/CCNL-comparto-FL-25-27-_-firmato-2.pdf",
+                      "published_on": "2026-10-28",
+                      "sha256": "145dca441a06b77763fa7fe5915113bd71c0105b296ccae22a87a502b0db189e"
+                    },
+                    "page": "56",
+                    "section": "Art. 36-bis - Tabella C, valori mensili di uscita",
+                    "quote": "ISTRUTTORI [...] incrementi mensili dal 1.7.2027 13,77 valori mensili di uscita 45,83"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T21:00:00Z",
+                    "effective_from": "2027-07-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T21:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-fl-2025-2027"
+                  }
+                }
               }
             ]
           },
@@ -770,7 +1064,7 @@
           },
           {
             "valid_from": "2024-01-01",
-            "valid_until": "2026-01-01",
+            "valid_until": "2025-01-01",
             "value": "2078.47",
             "provenance": {
               "status": "verified",
@@ -801,35 +1095,99 @@
             }
           },
           {
-            "valid_from": "2026-01-01",
-            "valid_until": null,
-            "value": "2092.84",
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "2127.51",
             "provenance": {
-              "status": "verified",
+              "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-funzioni-locali-2022-2024",
-                  "title": "CCNL Comparto Funzioni Locali 2022-2024, 23 febbraio 2026",
+                  "document_id": "aran-fl-2025-2027",
+                  "title": "CCNL comparto Funzioni locali 2025-2027, sottoscritto il 28 ottobre 2026",
                   "kind": "amministrazione",
-                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf",
-                  "published_on": "2026-02-23",
-                  "sha256": "b08e21d819f677203e914f4925afbdf0dcd916fc92c1cdb260a1144f4656cd08"
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/10/CCNL-comparto-FL-25-27-_-firmato-2.pdf",
+                  "published_on": "2026-10-28",
+                  "sha256": "145dca441a06b77763fa7fe5915113bd71c0105b296ccae22a87a502b0db189e"
                 },
-                "page": "85",
-                "section": "Tabella B, retribuzione tabellare annua con il parziale conglobamento dell'indennità di comparto (seconda colonna); art. 60 c. 1: 'Con decorrenza primo gennaio dell’anno successivo a quello di sottoscrizione dell’Ipotesi di CCNL' (ipotesi del 3.11.2025)",
-                "quote": "FUNZIONARI ED ELEVATA QUALIFICAZIONE 24.941,67 25.114,11"
+                "page": "55",
+                "section": "Art. 35 - Tabelle A e B",
+                "quote": "Tabella A FUNZIONARI_EQ Dal 1.1.2025 49,04; Tabella B 25.530,15"
               },
+              "transformation": "The tabellare of the CCNL of 23 February 2026 (2078.47) plus the monthly increment of Tabella A, which absorbs the earlier one; equal to Tabella B over 12.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-12T08:35:16Z",
+                "extraction_timestamp": "2026-11-07T21:00:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T21:00:00Z",
                 "verification_status": "verified",
+                "review_id": "2026-11-07-ai-fl-2025-2027"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "2192.02",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "aran-fl-2025-2027",
+                  "title": "CCNL comparto Funzioni locali 2025-2027, sottoscritto il 28 ottobre 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/10/CCNL-comparto-FL-25-27-_-firmato-2.pdf",
+                  "published_on": "2026-10-28",
+                  "sha256": "145dca441a06b77763fa7fe5915113bd71c0105b296ccae22a87a502b0db189e"
+                },
+                "page": "55",
+                "section": "Art. 35 - Tabelle A e B",
+                "quote": "Tabella A FUNZIONARI_EQ Rideterminato dal 1.1.2026 99,18; Tabella B 26.304,27"
+              },
+              "transformation": "The tabellare of the CCNL of 23 February 2026 (2092.84) plus the monthly increment of Tabella A, which absorbs the earlier one; equal to Tabella B over 12.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T21:00:00Z",
                 "effective_from": "2026-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-12T08:35:16Z",
-                "review_id": "2026-10-12-ai"
+                "verified_at": "2026-11-07T21:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-fl-2025-2027"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": null,
+            "value": "2231.36",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "aran-fl-2025-2027",
+                  "title": "CCNL comparto Funzioni locali 2025-2027, sottoscritto il 28 ottobre 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/10/CCNL-comparto-FL-25-27-_-firmato-2.pdf",
+                  "published_on": "2026-10-28",
+                  "sha256": "145dca441a06b77763fa7fe5915113bd71c0105b296ccae22a87a502b0db189e"
+                },
+                "page": "55",
+                "section": "Art. 35 - Tabelle A e B",
+                "quote": "Tabella A FUNZIONARI_EQ Rideterminato dal 1.1.2027 138,52; Tabella B 26.776,35"
               },
-              "transformation": "Annual tabellare of the table over 12 (13 mensilità: the tredicesima is paid apart)."
+              "transformation": "The tabellare of the CCNL of 23 February 2026 (2092.84) plus the monthly increment of Tabella A, which absorbs the earlier one; equal to Tabella B over 12.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T21:00:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T21:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-fl-2025-2027"
+              }
             }
           }
         ]
@@ -847,8 +1205,39 @@
               },
               {
                 "valid_from": "2026-01-01",
-                "valid_until": null,
+                "valid_until": "2027-07-01",
                 "value": "36.33"
+              },
+              {
+                "valid_from": "2027-07-01",
+                "valid_until": null,
+                "value": "51.94",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aran-fl-2025-2027",
+                      "title": "CCNL comparto Funzioni locali 2025-2027, sottoscritto il 28 ottobre 2026",
+                      "kind": "amministrazione",
+                      "url": "https://www.aranagenzia.it/wp-content/uploads/2026/10/CCNL-comparto-FL-25-27-_-firmato-2.pdf",
+                      "published_on": "2026-10-28",
+                      "sha256": "145dca441a06b77763fa7fe5915113bd71c0105b296ccae22a87a502b0db189e"
+                    },
+                    "page": "56",
+                    "section": "Art. 36-bis - Tabella C, valori mensili di uscita",
+                    "quote": "FUNZIONARI_EQ [...] incrementi mensili dal 1.7.2027 15,61 valori mensili di uscita 51,94"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T21:00:00Z",
+                    "effective_from": "2027-07-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T21:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-fl-2025-2027"
+                  }
+                }
               }
             ]
           },
@@ -937,7 +1326,7 @@
       },
       {
         "kind": "simplification",
-        "text": "2025-2027 RENEWAL NOT YET MODELLED. ARAN signed an ipotesi di CCNL Funzioni Locali 2025-2027 on 21 July 2026. Retroactive increases from Jan 1, 2025. Pending comitato di settore, Governo, and Corte dei conti certification. Average monthly increase will be around €136.76 from base; exact per-level amounts not yet verified for this file. STATUS CHECKED 2026-10-17: still an ipotesi (ARAN, 21 July 2026), under verification at the Ministry of Economy and Finance before the Council of Ministers and the Corte dei conti; the ARAN president expected the definitive signature around mid-October 2026, not confirmed on 2026-10-17 (lentepubblica.it, 'Rinnovo CCNL Enti Locali 2025-2027: tra un mese la firma definitiva?'). Model the tranches and the arrears from 2025-01-01 once it is signed.",
+        "text": "RENEWAL 2025-2027 (CCNL signed 28 October 2026, art. 35 and Tabelle A-B, art. 36-bis and Tabella C, pp. 47-48, 55-56): the tabellare from 1 January 2025, 2026 and 2027 and the indennità di comparto from 1 July 2027 are modelled. Arrears for the months already paid are a caller event (ArrearsEvent).",
         "capability": "base_salary",
         "monetary_impact": "unknown",
         "limitation": {
@@ -945,7 +1334,8 @@
           "applies_when": {
             "effective_from": "2025-01-01"
           },
-          "remediation": "Add the 2025-2027 per-level amounts once the CCNL is certified and signed."
+          "remediation": "Resolved: the definitive CCNL 2025-2027, read on 2026-11-07.",
+          "status": "resolved"
         }
       },
       {
@@ -969,7 +1359,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf",
     "verification_status": "unverified",
-    "source_hash": "657c12bd17ce0f53820bfb7bd0933bf288a1d0ae8446cdee872bbf130ceb32b8",
+    "source_hash": "2b11a3a67dd64da5b03633cb9ade6b95173b710cd02bf94080e59f7aee768737",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },
@@ -1431,6 +1821,28 @@
         "independence": "separate_session",
         "checked": [
           "work_rules.notice"
+        ]
+      },
+      {
+        "id": "2026-11-07-ai-fl-2025-2027",
+        "date": "2026-11-07",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "CCNL Funzioni locali 2025-2027 of 28 October 2026: artt. 35, 36, 36-bis and Tabelle A-C (pp. 47-48, 55-56, text layer).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2026/10/CCNL-comparto-FL-25-27-_-firmato-2.pdf",
+            "sha256": "145dca441a06b77763fa7fe5915113bd71c0105b296ccae22a87a502b0db189e"
+          }
+        ],
+        "findings": [
+          "Three tabellare tranches (each the 23 February 2026 tabellare plus the Tabella A increment, equal to Tabella B over 12) and the indennità di comparto from 1 July 2027 (Tabella C)."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels.base_salary",
+          "levels.fixed_allowances"
         ]
       }
     ],
