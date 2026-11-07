@@ -31,7 +31,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/acconciatura-estetica-confartigianato",
       "ruleset_version": "2026.2",
-      "source_hash": "cb5d4c3c3350324ff93269f15d2be3e7053d781546caf8592ac2505d89ae6125",
+      "source_hash": "e884bf3bb9a9fdf02072cdbcdce344767c52fef1a8d10c7ab0ec3b8725a8a40d",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/acconciatura-estetica-confartigianato.json.gz"
@@ -184,7 +184,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/assicurazioni-ania",
       "ruleset_version": "2026.2",
-      "source_hash": "1d40470d1b1c465146597c866999873733c785fa0af2b6e37753f12858b374d3",
+      "source_hash": "1f7e03a86b14c48ee90c91c4a25937b4d8d1791dddcff3484f77d5b5e7b3c444",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/assicurazioni-ania.json.gz"
@@ -473,7 +473,7 @@
       "valid_to": "2027-12-31",
       "ruleset_id": "ccnl/cinema-audiovisivi-industria",
       "ruleset_version": "2025.1",
-      "source_hash": "69efde20ac5cb10e595cf3fdbf3857c4288a428e7503310de9e21e2a63774a32",
+      "source_hash": "f3d5d9575a7f0bd9eb9a76718eb2e5098c989cd92b2fed819240fcd929457e81",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/cinema-audiovisivi-industria.json.gz"
@@ -1139,7 +1139,7 @@
       "valid_to": "2027-12-31",
       "ruleset_id": "ccnl/igiene-ambientale-utilitalia",
       "ruleset_version": "2026.2",
-      "source_hash": "ddcc7641fb3ef3b7ef757af1adfe0be77f59e48fa6b378064a452ae922b061e0",
+      "source_hash": "d94629b9cc6c6bebd6b683d6672dcd87a6cee2d53ba12176ef752dc4ff303f87",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/igiene-ambientale-utilitalia.json.gz"
@@ -1224,7 +1224,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/istituzioni-servizi-socio-assistenziali-anaste",
       "ruleset_version": "2026.2",
-      "source_hash": "74a4f0c25138253cafc4a629dda416c15ac561f95dcc5d8a86b6299557e22d0f",
+      "source_hash": "f0964fda7263afaa2fc6006733f501cdf5e04a9c08403c64e9ea80754617d6f9",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/istituzioni-servizi-socio-assistenziali-anaste.json.gz"
@@ -1564,7 +1564,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "ccnl/noleggio-autobus-conducente-anav",
       "ruleset_version": "1.0.0",
-      "source_hash": "11e0f8ad71421340844096c8634e174493e3bc608836093bd58e8c0cae3c062d",
+      "source_hash": "adc569ad424bf64a175bc2a00d448949f586f9bb57d3f26124d8b8c0ac660cea",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/noleggio-autobus-conducente-anav.json.gz"
@@ -1802,7 +1802,7 @@
       "valid_to": "2029-12-31",
       "ruleset_id": "ccnl/pulizia-artigianato-confartigianato",
       "ruleset_version": "2025.1",
-      "source_hash": "a760c010ad7961527761769f911ac78cc189ef946fafc8dedadfff4b53c27da1",
+      "source_hash": "93f1276891e3acdf0a74dafb0a081532a5fbd6c2d2a419c18e9dcfa1c61ff76d",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/pulizia-artigianato-confartigianato.json.gz"

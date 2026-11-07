@@ -53,7 +53,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-12-17 |
-| **Last review** | 2026-11-06 |
+| **Last review** | 2026-11-08 |
 | **Latest salary tranche** | 2029-12-01 |
 
 ## Review history
@@ -66,6 +66,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-05 | claude-opus-5-5 (ai) | Ferie, permits and their settlement: arts. 21 (PDF p. 12), 23-24 (p. 13) and 34 (p. 19) of the 2014 scan, read by a separate research session on the OCR and checked again on a new OCR; the renewals of 2022 and 2025 read for amendments. | corrected | Art. 24: 22/26 days by the days of the week, twelfths with the month over 15 days: work_rules.leave_rules.<br>Art. 23: 32 hours of ex festività, month of 15 days or more; art. 21: 16 hours of permits in twelfths; art. 34: daily pay /22 or /26, hourly /173. |
 | 2026-11-05 | claude-opus-5-5 (ai) | Art. 18 (p. 11) of the CCNL of 18 September 2014 (OCR of the scan) and the renewal of 27 October 2022 (p. 2). | corrected | EBNA (EUR 11.65 a month, or EUR 30 on 13 months unpaid) and SAN.ARTI. (EUR 10.42 a month, or EUR 25 on 13 months unpaid) were not modelled. |
 | 2026-11-06 | claude-opus-5-5 (ai) | Art. 23 (p. 13) of the CCNL of 18 September 2014, OCR of the signed scan. | corrected | The ex festività not used by 30 September of the next year lapse and are paid: the engine carried them to the end of the employment. |
+| 2026-11-08 | gpt-6-sol (ai) | Monthly values on scanned pages, each read twice from the page image by two independent sessions of another model, the second without being told the expected value. | confirmed | 8 values read identically by both readings and equal to the file. |
 
 ## Salary table
 

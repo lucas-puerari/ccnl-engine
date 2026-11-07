@@ -384,21 +384,28 @@
             "valid_until": "2027-01-01",
             "value": "2906.31",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "assicurazioni-ania",
-                  "title": "assicurazioni-ania",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.first-cisl.it/"
+                  "document_id": "assicurazioni-ania-src-72794030",
+                  "title": "assicurazioni-ania: tables2026.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fnaitalia.org/files/Tabelle-ANIA-e-ASSISTENZA-definitive.pdf",
+                  "sha256": "727940302d11c5ae4f54817580f0b0d12971b5d176d030bdfba7cbac3c5320bb"
                 },
-                "section": "Tabella retributiva"
+                "page": "7",
+                "section": "no text layer",
+                "quote": "cl 1  1-2-3-4  2.906,31  2.455,37  2.300,90  2.170,82  1.989,74  1.817,76  1.724,19"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-assicurazioni-ania-double-read"
               }
             }
           },
@@ -407,21 +414,28 @@
             "valid_until": "2028-01-01",
             "value": "3020.73",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "assicurazioni-ania",
-                  "title": "assicurazioni-ania",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.first-cisl.it/"
+                  "document_id": "assicurazioni-ania-src-72794030",
+                  "title": "assicurazioni-ania: tables2026.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fnaitalia.org/files/Tabelle-ANIA-e-ASSISTENZA-definitive.pdf",
+                  "sha256": "727940302d11c5ae4f54817580f0b0d12971b5d176d030bdfba7cbac3c5320bb"
                 },
-                "section": "Tabella retributiva"
+                "page": "7",
+                "section": "no text layer",
+                "quote": "cl 1  1-2-3-4  3.020,73  2.552,04  2.391,48  2.256,28  2.068,08  1.889,32  1.792,07"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-assicurazioni-ania-double-read"
               }
             }
           },
@@ -430,21 +444,28 @@
             "valid_until": null,
             "value": "3112.27",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "assicurazioni-ania",
-                  "title": "assicurazioni-ania",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.first-cisl.it/"
+                  "document_id": "assicurazioni-ania-src-72794030",
+                  "title": "assicurazioni-ania: tables2026.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fnaitalia.org/files/Tabelle-ANIA-e-ASSISTENZA-definitive.pdf",
+                  "sha256": "727940302d11c5ae4f54817580f0b0d12971b5d176d030bdfba7cbac3c5320bb"
                 },
-                "section": "Tabella retributiva"
+                "page": "9",
+                "section": "no text layer",
+                "quote": "cl 1  1-2-3-4  3.112,27  2.629,37  2.463,96  2.324,66  2.130,75  1.946,58  1.846,38"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-assicurazioni-ania-double-read"
               }
             }
           }
@@ -482,21 +503,28 @@
             "valid_until": "2027-01-01",
             "value": "2455.37",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "assicurazioni-ania",
-                  "title": "assicurazioni-ania",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.first-cisl.it/"
+                  "document_id": "assicurazioni-ania-src-72794030",
+                  "title": "assicurazioni-ania: tables2026.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fnaitalia.org/files/Tabelle-ANIA-e-ASSISTENZA-definitive.pdf",
+                  "sha256": "727940302d11c5ae4f54817580f0b0d12971b5d176d030bdfba7cbac3c5320bb"
                 },
-                "section": "Tabella retributiva"
+                "page": "7",
+                "section": "no text layer",
+                "quote": "cl 1  1-2-3-4  2.906,31  2.455,37  2.300,90  2.170,82  1.989,74  1.817,76  1.724,19"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-assicurazioni-ania-double-read"
               }
             }
           },
@@ -505,21 +533,28 @@
             "valid_until": "2028-01-01",
             "value": "2552.04",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "assicurazioni-ania",
-                  "title": "assicurazioni-ania",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.first-cisl.it/"
+                  "document_id": "assicurazioni-ania-src-72794030",
+                  "title": "assicurazioni-ania: tables2026.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fnaitalia.org/files/Tabelle-ANIA-e-ASSISTENZA-definitive.pdf",
+                  "sha256": "727940302d11c5ae4f54817580f0b0d12971b5d176d030bdfba7cbac3c5320bb"
                 },
-                "section": "Tabella retributiva"
+                "page": "7",
+                "section": "no text layer",
+                "quote": "cl 1  1-2-3-4  3.020,73  2.552,04  2.391,48  2.256,28  2.068,08  1.889,32  1.792,07"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-assicurazioni-ania-double-read"
               }
             }
           },
@@ -528,21 +563,28 @@
             "valid_until": null,
             "value": "2629.37",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "assicurazioni-ania",
-                  "title": "assicurazioni-ania",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.first-cisl.it/"
+                  "document_id": "assicurazioni-ania-src-72794030",
+                  "title": "assicurazioni-ania: tables2026.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fnaitalia.org/files/Tabelle-ANIA-e-ASSISTENZA-definitive.pdf",
+                  "sha256": "727940302d11c5ae4f54817580f0b0d12971b5d176d030bdfba7cbac3c5320bb"
                 },
-                "section": "Tabella retributiva"
+                "page": "9",
+                "section": "no text layer",
+                "quote": "cl 1  1-2-3-4  3.112,27  2.629,37  2.463,96  2.324,66  2.130,75  1.946,58  1.846,38"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-assicurazioni-ania-double-read"
               }
             }
           }
@@ -557,7 +599,32 @@
               {
                 "valid_from": "2026-01-01",
                 "valid_until": null,
-                "value": "74.09"
+                "value": "74.09",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "assicurazioni-ania-src-72794030",
+                      "title": "assicurazioni-ania: tables2026.pdf",
+                      "kind": "associazione",
+                      "url": "https://www.fnaitalia.org/files/Tabelle-ANIA-e-ASSISTENZA-definitive.pdf",
+                      "sha256": "727940302d11c5ae4f54817580f0b0d12971b5d176d030bdfba7cbac3c5320bb"
+                    },
+                    "page": "19",
+                    "section": "no text layer",
+                    "quote": "Valore dell' indennità in euro  dal 1.1.2026  1.037,27  74,09"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "effective_from": "2026-01-01",
+                    "verified_by": "gpt-6-sol",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-gpt-assicurazioni-ania-double-read"
+                  }
+                }
               }
             ]
           },
@@ -613,21 +680,28 @@
             "valid_until": "2027-01-01",
             "value": "2300.90",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "assicurazioni-ania",
-                  "title": "assicurazioni-ania",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.first-cisl.it/"
+                  "document_id": "assicurazioni-ania-src-72794030",
+                  "title": "assicurazioni-ania: tables2026.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fnaitalia.org/files/Tabelle-ANIA-e-ASSISTENZA-definitive.pdf",
+                  "sha256": "727940302d11c5ae4f54817580f0b0d12971b5d176d030bdfba7cbac3c5320bb"
                 },
-                "section": "Tabella retributiva"
+                "page": "7",
+                "section": "no text layer",
+                "quote": "cl 1  1-2-3-4  2.906,31  2.455,37  2.300,90  2.170,82  1.989,74  1.817,76  1.724,19"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-assicurazioni-ania-double-read"
               }
             }
           },
@@ -659,21 +733,28 @@
             "valid_until": null,
             "value": "2463.96",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "assicurazioni-ania",
-                  "title": "assicurazioni-ania",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.first-cisl.it/"
+                  "document_id": "assicurazioni-ania-src-72794030",
+                  "title": "assicurazioni-ania: tables2026.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fnaitalia.org/files/Tabelle-ANIA-e-ASSISTENZA-definitive.pdf",
+                  "sha256": "727940302d11c5ae4f54817580f0b0d12971b5d176d030bdfba7cbac3c5320bb"
                 },
-                "section": "Tabella retributiva"
+                "page": "9",
+                "section": "no text layer",
+                "quote": "cl 1  1-2-3-4  3.112,27  2.629,37  2.463,96  2.324,66  2.130,75  1.946,58  1.846,38"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-assicurazioni-ania-double-read"
               }
             }
           }
@@ -711,21 +792,28 @@
             "valid_until": "2027-01-01",
             "value": "2170.82",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "assicurazioni-ania",
-                  "title": "assicurazioni-ania",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.first-cisl.it/"
+                  "document_id": "assicurazioni-ania-src-72794030",
+                  "title": "assicurazioni-ania: tables2026.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fnaitalia.org/files/Tabelle-ANIA-e-ASSISTENZA-definitive.pdf",
+                  "sha256": "727940302d11c5ae4f54817580f0b0d12971b5d176d030bdfba7cbac3c5320bb"
                 },
-                "section": "Tabella retributiva"
+                "page": "7",
+                "section": "no text layer",
+                "quote": "cl 1  1-2-3-4  2.906,31  2.455,37  2.300,90  2.170,82  1.989,74  1.817,76  1.724,19"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-assicurazioni-ania-double-read"
               }
             }
           },
@@ -734,21 +822,28 @@
             "valid_until": "2028-01-01",
             "value": "2256.28",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "assicurazioni-ania",
-                  "title": "assicurazioni-ania",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.first-cisl.it/"
+                  "document_id": "assicurazioni-ania-src-72794030",
+                  "title": "assicurazioni-ania: tables2026.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fnaitalia.org/files/Tabelle-ANIA-e-ASSISTENZA-definitive.pdf",
+                  "sha256": "727940302d11c5ae4f54817580f0b0d12971b5d176d030bdfba7cbac3c5320bb"
                 },
-                "section": "Tabella retributiva"
+                "page": "7",
+                "section": "no text layer",
+                "quote": "cl 1  1-2-3-4  3.020,73  2.552,04  2.391,48  2.256,28  2.068,08  1.889,32  1.792,07"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-assicurazioni-ania-double-read"
               }
             }
           },
@@ -757,21 +852,28 @@
             "valid_until": null,
             "value": "2324.66",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "assicurazioni-ania",
-                  "title": "assicurazioni-ania",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.first-cisl.it/"
+                  "document_id": "assicurazioni-ania-src-72794030",
+                  "title": "assicurazioni-ania: tables2026.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fnaitalia.org/files/Tabelle-ANIA-e-ASSISTENZA-definitive.pdf",
+                  "sha256": "727940302d11c5ae4f54817580f0b0d12971b5d176d030bdfba7cbac3c5320bb"
                 },
-                "section": "Tabella retributiva"
+                "page": "9",
+                "section": "no text layer",
+                "quote": "cl 1  1-2-3-4  3.112,27  2.629,37  2.463,96  2.324,66  2.130,75  1.946,58  1.846,38"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-assicurazioni-ania-double-read"
               }
             }
           }
@@ -786,17 +888,92 @@
               {
                 "valid_from": "2026-01-01",
                 "valid_until": "2027-01-01",
-                "value": "57.26"
+                "value": "57.26",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "assicurazioni-ania-src-72794030",
+                      "title": "assicurazioni-ania: tables2026.pdf",
+                      "kind": "associazione",
+                      "url": "https://www.fnaitalia.org/files/Tabelle-ANIA-e-ASSISTENZA-definitive.pdf",
+                      "sha256": "727940302d11c5ae4f54817580f0b0d12971b5d176d030bdfba7cbac3c5320bb"
+                    },
+                    "page": "19",
+                    "section": "no text layer",
+                    "quote": "Valore dell' indennità in euro  dal 1.1.2026  801,64  57,26"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "effective_from": "2026-01-01",
+                    "verified_by": "gpt-6-sol",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-gpt-assicurazioni-ania-double-read"
+                  }
+                }
               },
               {
                 "valid_from": "2027-01-01",
                 "valid_until": "2028-01-01",
-                "value": "59.51"
+                "value": "59.51",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "assicurazioni-ania-src-72794030",
+                      "title": "assicurazioni-ania: tables2026.pdf",
+                      "kind": "associazione",
+                      "url": "https://www.fnaitalia.org/files/Tabelle-ANIA-e-ASSISTENZA-definitive.pdf",
+                      "sha256": "727940302d11c5ae4f54817580f0b0d12971b5d176d030bdfba7cbac3c5320bb"
+                    },
+                    "page": "19",
+                    "section": "no text layer",
+                    "quote": "Valore dell' indennità in euro  dal 1.1.2027  833,20  59,51"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "effective_from": "2027-01-01",
+                    "verified_by": "gpt-6-sol",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-gpt-assicurazioni-ania-double-read"
+                  }
+                }
               },
               {
                 "valid_from": "2028-01-01",
                 "valid_until": null,
-                "value": "61.32"
+                "value": "61.32",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "assicurazioni-ania-src-72794030",
+                      "title": "assicurazioni-ania: tables2026.pdf",
+                      "kind": "associazione",
+                      "url": "https://www.fnaitalia.org/files/Tabelle-ANIA-e-ASSISTENZA-definitive.pdf",
+                      "sha256": "727940302d11c5ae4f54817580f0b0d12971b5d176d030bdfba7cbac3c5320bb"
+                    },
+                    "page": "19",
+                    "section": "no text layer",
+                    "quote": "Valore dell' indennità in euro  dal 1.1.2028  858,45  61,32"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "effective_from": "2028-01-01",
+                    "verified_by": "gpt-6-sol",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-gpt-assicurazioni-ania-double-read"
+                  }
+                }
               }
             ]
           },
@@ -852,21 +1029,28 @@
             "valid_until": "2027-01-01",
             "value": "1989.74",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "assicurazioni-ania",
-                  "title": "assicurazioni-ania",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.first-cisl.it/"
+                  "document_id": "assicurazioni-ania-src-72794030",
+                  "title": "assicurazioni-ania: tables2026.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fnaitalia.org/files/Tabelle-ANIA-e-ASSISTENZA-definitive.pdf",
+                  "sha256": "727940302d11c5ae4f54817580f0b0d12971b5d176d030bdfba7cbac3c5320bb"
                 },
-                "section": "Tabella retributiva"
+                "page": "7",
+                "section": "no text layer",
+                "quote": "cl 1  1-2-3-4  2.906,31  2.455,37  2.300,90  2.170,82  1.989,74  1.817,76  1.724,19"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-assicurazioni-ania-double-read"
               }
             }
           },
@@ -875,21 +1059,28 @@
             "valid_until": "2028-01-01",
             "value": "2068.08",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "assicurazioni-ania",
-                  "title": "assicurazioni-ania",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.first-cisl.it/"
+                  "document_id": "assicurazioni-ania-src-72794030",
+                  "title": "assicurazioni-ania: tables2026.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fnaitalia.org/files/Tabelle-ANIA-e-ASSISTENZA-definitive.pdf",
+                  "sha256": "727940302d11c5ae4f54817580f0b0d12971b5d176d030bdfba7cbac3c5320bb"
                 },
-                "section": "Tabella retributiva"
+                "page": "7",
+                "section": "no text layer",
+                "quote": "cl 1  1-2-3-4  3.020,73  2.552,04  2.391,48  2.256,28  2.068,08  1.889,32  1.792,07"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-assicurazioni-ania-double-read"
               }
             }
           },
@@ -898,21 +1089,28 @@
             "valid_until": null,
             "value": "2130.75",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "assicurazioni-ania",
-                  "title": "assicurazioni-ania",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.first-cisl.it/"
+                  "document_id": "assicurazioni-ania-src-72794030",
+                  "title": "assicurazioni-ania: tables2026.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fnaitalia.org/files/Tabelle-ANIA-e-ASSISTENZA-definitive.pdf",
+                  "sha256": "727940302d11c5ae4f54817580f0b0d12971b5d176d030bdfba7cbac3c5320bb"
                 },
-                "section": "Tabella retributiva"
+                "page": "9",
+                "section": "no text layer",
+                "quote": "cl 1  1-2-3-4  3.112,27  2.629,37  2.463,96  2.324,66  2.130,75  1.946,58  1.846,38"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-assicurazioni-ania-double-read"
               }
             }
           }
@@ -950,21 +1148,28 @@
             "valid_until": "2027-01-01",
             "value": "1817.76",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "assicurazioni-ania",
-                  "title": "assicurazioni-ania",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.first-cisl.it/"
+                  "document_id": "assicurazioni-ania-src-72794030",
+                  "title": "assicurazioni-ania: tables2026.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fnaitalia.org/files/Tabelle-ANIA-e-ASSISTENZA-definitive.pdf",
+                  "sha256": "727940302d11c5ae4f54817580f0b0d12971b5d176d030bdfba7cbac3c5320bb"
                 },
-                "section": "Tabella retributiva"
+                "page": "7",
+                "section": "no text layer",
+                "quote": "cl 1  1-2-3-4  2.906,31  2.455,37  2.300,90  2.170,82  1.989,74  1.817,76  1.724,19"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-assicurazioni-ania-double-read"
               }
             }
           },
@@ -973,21 +1178,28 @@
             "valid_until": "2028-01-01",
             "value": "1889.32",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "assicurazioni-ania",
-                  "title": "assicurazioni-ania",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.first-cisl.it/"
+                  "document_id": "assicurazioni-ania-src-72794030",
+                  "title": "assicurazioni-ania: tables2026.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fnaitalia.org/files/Tabelle-ANIA-e-ASSISTENZA-definitive.pdf",
+                  "sha256": "727940302d11c5ae4f54817580f0b0d12971b5d176d030bdfba7cbac3c5320bb"
                 },
-                "section": "Tabella retributiva"
+                "page": "7",
+                "section": "no text layer",
+                "quote": "cl 1  1-2-3-4  3.020,73  2.552,04  2.391,48  2.256,28  2.068,08  1.889,32  1.792,07"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-assicurazioni-ania-double-read"
               }
             }
           },
@@ -996,21 +1208,28 @@
             "valid_until": null,
             "value": "1946.58",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "assicurazioni-ania",
-                  "title": "assicurazioni-ania",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.first-cisl.it/"
+                  "document_id": "assicurazioni-ania-src-72794030",
+                  "title": "assicurazioni-ania: tables2026.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fnaitalia.org/files/Tabelle-ANIA-e-ASSISTENZA-definitive.pdf",
+                  "sha256": "727940302d11c5ae4f54817580f0b0d12971b5d176d030bdfba7cbac3c5320bb"
                 },
-                "section": "Tabella retributiva"
+                "page": "9",
+                "section": "no text layer",
+                "quote": "cl 1  1-2-3-4  3.112,27  2.629,37  2.463,96  2.324,66  2.130,75  1.946,58  1.846,38"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-assicurazioni-ania-double-read"
               }
             }
           }
@@ -1048,21 +1267,28 @@
             "valid_until": "2027-01-01",
             "value": "1724.19",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "assicurazioni-ania",
-                  "title": "assicurazioni-ania",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.first-cisl.it/"
+                  "document_id": "assicurazioni-ania-src-72794030",
+                  "title": "assicurazioni-ania: tables2026.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fnaitalia.org/files/Tabelle-ANIA-e-ASSISTENZA-definitive.pdf",
+                  "sha256": "727940302d11c5ae4f54817580f0b0d12971b5d176d030bdfba7cbac3c5320bb"
                 },
-                "section": "Tabella retributiva"
+                "page": "7",
+                "section": "no text layer",
+                "quote": "cl 1  1-2-3-4  2.906,31  2.455,37  2.300,90  2.170,82  1.989,74  1.817,76  1.724,19"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-assicurazioni-ania-double-read"
               }
             }
           },
@@ -1071,21 +1297,28 @@
             "valid_until": "2028-01-01",
             "value": "1792.07",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "assicurazioni-ania",
-                  "title": "assicurazioni-ania",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.first-cisl.it/"
+                  "document_id": "assicurazioni-ania-src-72794030",
+                  "title": "assicurazioni-ania: tables2026.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fnaitalia.org/files/Tabelle-ANIA-e-ASSISTENZA-definitive.pdf",
+                  "sha256": "727940302d11c5ae4f54817580f0b0d12971b5d176d030bdfba7cbac3c5320bb"
                 },
-                "section": "Tabella retributiva"
+                "page": "7",
+                "section": "no text layer",
+                "quote": "cl 1  1-2-3-4  3.020,73  2.552,04  2.391,48  2.256,28  2.068,08  1.889,32  1.792,07"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-assicurazioni-ania-double-read"
               }
             }
           },
@@ -1094,21 +1327,28 @@
             "valid_until": null,
             "value": "1846.38",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "assicurazioni-ania",
-                  "title": "assicurazioni-ania",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.first-cisl.it/"
+                  "document_id": "assicurazioni-ania-src-72794030",
+                  "title": "assicurazioni-ania: tables2026.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fnaitalia.org/files/Tabelle-ANIA-e-ASSISTENZA-definitive.pdf",
+                  "sha256": "727940302d11c5ae4f54817580f0b0d12971b5d176d030bdfba7cbac3c5320bb"
                 },
-                "section": "Tabella retributiva"
+                "page": "9",
+                "section": "no text layer",
+                "quote": "cl 1  1-2-3-4  3.112,27  2.629,37  2.463,96  2.324,66  2.130,75  1.946,58  1.846,38"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-assicurazioni-ania-double-read"
               }
             }
           }
@@ -1202,7 +1442,7 @@
     "effective_until": null,
     "source": "https://www.first-cisl.it/",
     "verification_status": "unverified",
-    "source_hash": "1d40470d1b1c465146597c866999873733c785fa0af2b6e37753f12858b374d3",
+    "source_hash": "1f7e03a86b14c48ee90c91c4a25937b4d8d1791dddcff3484f77d5b5e7b3c444",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1414,6 +1654,28 @@
         "independence": "same_process",
         "checked": [
           "parameters.seniority_increments"
+        ]
+      },
+      {
+        "id": "2026-11-08-gpt-assicurazioni-ania-double-read",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Monthly values on scanned pages, each read twice from the page image by two independent sessions of another model, the second without being told the expected value.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.fnaitalia.org/files/Tabelle-ANIA-e-ASSISTENZA-definitive.pdf",
+            "sha256": "727940302d11c5ae4f54817580f0b0d12971b5d176d030bdfba7cbac3c5320bb"
+          }
+        ],
+        "findings": [
+          "24 values read identically by both readings and equal to the file."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "levels.base_salary",
+          "levels.fixed_allowances"
         ]
       }
     ]
