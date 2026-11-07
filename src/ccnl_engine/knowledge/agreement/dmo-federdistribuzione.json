@@ -170,6 +170,19 @@
       {
         "kind": "info",
         "text": "ORDINARY HOUR PREMIUMS (Testo Unico 29 September 2025, pp. 43-44): ordinary night 15% (art. 134), Sunday 30% (art. 136 c. 7, without a better second-level treatment), weekly rest day 30% (art. 139), holidays as straordinario festivo 30% with the hour paid apart (art. 138): work_rules.time_supplements.supplement_bands DMO_*."
+      },
+      {
+        "kind": "simplification",
+        "text": "INJURY (Art. 172 c. 2): the top-up reaches 100% of the net daily pay from day 21; the model applies one rate, 90% (the rate of days 5-20), so from day 21 the injury pay is 10 points short.",
+        "capability": "workplace_injury",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "injury_integration_bands",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model day bands for the injury top-up (60/90/100% of Art. 172)."
+        }
       }
     ]
   },
@@ -3929,7 +3942,7 @@
     "effective_until": null,
     "source": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
     "verification_status": "unverified",
-    "source_hash": "662e99190628851341cf5abc386c6c94390a91b6781b51cf87834ed9ec0ba30e",
+    "source_hash": "8071b9fd26d595874098e6c1d0a7c0ff6a8326952449061e9388621a700965f3",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -5233,6 +5246,72 @@
           "verification_status": "unverified"
         }
       }
+    },
+    "insured_absence": {
+      "maternity": {
+        "integration_rate": "1",
+        "net_basis": true,
+        "integration_days": 150,
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+              "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico sottoscritto 29 settembre 2025",
+              "kind": "associazione",
+              "url": "https://www.federdistribuzione.it/wp-content/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+              "published_on": "2025-09-29",
+              "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
+            },
+            "page": "54",
+            "section": "Art. 180, commi 8–9",
+            "quote": "9. Per i soli periodi indicati nel primo e secondo comma del presente articolo, l’indennità di cui\nal comma precedente verrà integrata dal datore di lavoro in modo da raggiungere 100% della\nretribuzione mensile netta cui la lavoratrice avrebbe avuto diritto in caso di normale svolgimento\ndel rapporto, salvo che l’indennità economica dell’INPS non raggiunga un importo superiore."
+          },
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-08T03:00:00Z",
+            "effective_from": null,
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-08T03:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-08-gpt-dmo-federdistribuzione-insured-absence"
+          },
+          "transformation": "integration_days 150: the compulsory leave of art. 16 D.Lgs. 151/2001 (five months) the clause refers to"
+        }
+      },
+      "injury": {
+        "carenza_rate": "0.60",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+              "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico sottoscritto 29 settembre 2025",
+              "kind": "associazione",
+              "url": "https://www.federdistribuzione.it/wp-content/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+              "published_on": "2025-09-29",
+              "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
+            },
+            "page": "53",
+            "section": "Art. 172, commi 1–2 e 5",
+            "quote": "2. A decorrere dal primo giorno successivo a quello dell’infortunio, verrà corrisposta dal datore\ndi lavoro al lavoratore non apprendista, assente per inabilità temporanea assoluta derivante da\ninfortunio sul lavoro, una integrazione dell’indennità corrisposta dall’INAIL fino a raggiungere\ncomplessivamente le seguenti misure:\n1) 60% (sessanta per cento) per i primi tre giorni (periodo di carenza);\n2) 90% (novanta per cento), per i giorni dal 5° al 20°;\n3) 100% (cento per cento) per i giorni dal 21° in poi della retribuzione giornaliera netta cui\nil lavoratore avrebbe avuto diritto in caso di normale svolgimento del rapporto. Per\nretribuzione giornaliera si intende la quota giornaliera della retribuzione di fatto di cui\nall’art. 191."
+          },
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-08T03:00:00Z",
+            "effective_from": null,
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-08T03:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-08-gpt-dmo-federdistribuzione-insured-absence"
+          },
+          "transformation": "Art. 172 c. 2 (testo unico 29/9/2025, p. 53): integration of the INAIL indemnity to 60% for the three carenza days, 90% for days 5-20, 100% from day 21, of the net daily pay; the model holds one rate: 90% (exact for days 5-20, 10 points short from day 21)."
+        },
+        "integration_rate": "0.90",
+        "net_basis": true
+      }
     }
   },
   "verification": {
@@ -5482,6 +5561,29 @@
         "independence": "same_process",
         "checked": [
           "parameters.seniority_increments"
+        ]
+      },
+      {
+        "id": "2026-11-08-gpt-dmo-federdistribuzione-insured-absence",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "CCNL top-ups of maternity and work injury, read from the signed text by a separate model session; every quote found on the PDF text layer.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.federdistribuzione.it/wp-content/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+            "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
+          }
+        ],
+        "findings": [
+          "Added work_rules.insured_absence.maternity.",
+          "Added work_rules.insured_absence.injury."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.insured_absence.maternity",
+          "work_rules.insured_absence.injury"
         ]
       }
     ],

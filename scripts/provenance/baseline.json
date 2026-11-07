@@ -790,6 +790,7 @@
     "agreement/dmo-federdistribuzione.json": [
       "dmo-federdistribuzione/commission_guarantee",
       "dmo-federdistribuzione/employment_support_contract",
+      "dmo-federdistribuzione/injury_integration_bands",
       "dmo-federdistribuzione/provincial_elements_missing",
       "dmo-federdistribuzione/sales_operators",
       "dmo-federdistribuzione/sickness_net_basis"
