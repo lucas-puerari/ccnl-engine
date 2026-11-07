@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🟢 Verified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 1 verified / 80 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 45 verified / 36 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-05-08 |
-| **Last review** | 2026-11-01 |
+| **Last review** | 2026-11-07 |
 | **Latest salary tranche** | 2027-10-01 |
 
 ## Review history
@@ -59,6 +59,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|---|---|
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | confirmed | Art. 49 - Tredicesima mensilita' o gratifica natalizia (p. 141): "Agli effetti di cui sopra la frazione di mese non superiore a 15 giorni non va considerata, mentre va considerata come mese intero la frazione di mese superiore ai 15 giorni.". Match: more_than 15. |
 | 2026-11-01 | claude-opus-5-5 (ai) | The notice clause (Art. 76, Preavviso di licenziamento e di dimissioni, p. 184-185). | corrected | Notice bands by level and service checked against the PDF by a separate session (delegated search and independent verification): work_rules.notice. |
+| 2026-11-07 | claude-opus-5-5 (ai) | The monthly values of the levels against the primary tables (text layer). | confirmed | 69 values found verbatim on the cited pages and marked verified; 4 left as they were (derived or not on a text page). |
 
 ## Salary table
 
