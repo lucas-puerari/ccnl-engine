@@ -1071,7 +1071,7 @@
       "valid_to": "2024-12-31",
       "ruleset_id": "ccnl/funzioni-locali-aran",
       "ruleset_version": "2026.2",
-      "source_hash": "657c12bd17ce0f53820bfb7bd0933bf288a1d0ae8446cdee872bbf130ceb32b8",
+      "source_hash": "2b11a3a67dd64da5b03633cb9ade6b95173b710cd02bf94080e59f7aee768737",
       "source_type": "institutional_secondary",
       "owner": "maintainer",
       "wheel_resource": "agreement/funzioni-locali-aran.json.gz"
@@ -3641,7 +3641,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "6a8b46338c86d2eb7aa59a3556a92c92bc43eae117aa0fe8d695508b62c6d364",
+      "source_hash": "9fb30998fc128fb476d8fd6fd8cec4364ae2c2335acda503fe932e6547897dbd",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/funzioni-locali-aran.json.gz",

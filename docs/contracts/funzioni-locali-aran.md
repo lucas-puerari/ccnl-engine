@@ -30,8 +30,8 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary |
+| **Core payroll path** | ✅ |
+| **Limits of this contract** | — |
 
 1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 18 verified / 9 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 14 verified / 21 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🟢 Verified | The confidence the ruleset declares as a whole |
 | **Readiness** | 👁 Reviewed | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -50,8 +50,8 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2026-02-23 |
-| **Last review** | 2026-11-01 |
-| **Latest salary tranche** | 2026-01-01 |
+| **Last review** | 2026-11-07 |
+| **Latest salary tranche** | 2027-01-01 |
 
 ## Review history
 
@@ -61,6 +61,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-12 | claude-opus-5-5 (ai) | Salary tables, additional months, hourly and daily divisors, overtime, leave, sickness and seniority, against the CCNL of 16 November 2022 and of 23 February 2026. | corrected | Salary amounts confirmed (annual table over 12).<br>The first period started on 2022-11-16, the signing date; the new classification of Tabella G applies from 1 April 2023 (art. 13 c. 1).<br>Overtime is in art. 32 c. 5 of the CCNL 16.11.2022, not in the CCNL 2022-2024.<br>Sickness: comporto of 18 months with 9 months at 100%, 3 at 90% and 6 at 50% (art. 36), not 270 days at 100%.<br>Leave: 26 days for the first three years of a first public employment (art. 28 cc. 4-5).<br>The 2025-2027 renewal is an ipotesi of 21 July 2026, not in force. |
 | 2026-10-17 | claude-opus-5-5 (ai) | Periodic review due 2026-12-31: the tabellare of 2024 and of the conglobamento of 2026 against Tabella B of the CCNL of 23 February 2026, and the status of the 2025-2027 renewal. | confirmed | Tabella B (p. 83): the eight annual amounts of the four areas, from 1 January 2024 and from the conglobamento, over 12 give the monthly amounts of the file (for example 24.941,67 / 12 = 2.078,47). Match.<br>The 2025-2027 renewal is still an ipotesi of 21 July 2026 under the checks of art. 47 D.Lgs. 165/2001 on 2026-10-17; the limitation renewal_2025_2027_missing stays open with the status recorded. The next review is moved to 2027-01-31 to model it once signed.<br>No verified reference case is added: it needs a provider output (a payslip or an official example) whose request the engine can state; the two Funzioni Locali payslips replayed pay individual elements (posizione, ad personam, IVC) that no request input states, so only their base salary is compared. |
 | 2026-11-01 | claude-opus-5-5 (ai) | The notice clause (Art. 39, commi 1–4 e 9, p. 55–56). | corrected | Notice bands by level, category and service checked against the PDF by a separate session (delegated search and independent verification): work_rules.notice. |
+| 2026-11-07 | claude-opus-5-5 (ai) | CCNL Funzioni locali 2025-2027 of 28 October 2026: artt. 35, 36, 36-bis and Tabelle A-C (pp. 47-48, 55-56, text layer). | corrected | Three tabellare tranches (each the 23 February 2026 tabellare plus the Tabella A increment, equal to Tabella B over 12) and the indennità di comparto from 1 July 2027 (Tabella C). |
 
 ## Salary table
 
@@ -68,10 +69,10 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `FUNZIONARI_EQ` | Funzionari ed Elevata Qualificazione (ex Area D) | € 2,092.84 | 2026-01-01 |
-| `ISTRUTTORI` | Istruttori (ex Area C) | € 1,928.23 | 2026-01-01 |
-| `OPERATORI_ESPERTI` | Operatori Esperti (ex Area B) | € 1,715.27 | 2026-01-01 |
-| `OPERATORI` | Operatori (ex Area A) | € 1,646.09 | 2026-01-01 |
+| `FUNZIONARI_EQ` | Funzionari ed Elevata Qualificazione (ex Area D) | € 2,231.36 | 2027-01-01 |
+| `ISTRUTTORI` | Istruttori (ex Area C) | € 2,055.86 | 2027-01-01 |
+| `OPERATORI_ESPERTI` | Operatori Esperti (ex Area B) | € 1,828.80 | 2027-01-01 |
+| `OPERATORI` | Operatori (ex Area A) | € 1,755.04 | 2027-01-01 |
 
 ## Seniority increments
 
@@ -82,12 +83,12 @@ Latest effective values per level (monthly gross, EUR).
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning "funzioni-locali-aran/renewal_2025_2027_missing · base_salary · impact unknown · open"
-    2025-2027 RENEWAL NOT YET MODELLED. ARAN signed an ipotesi di CCNL Funzioni Locali 2025-2027 on 21 July 2026. Retroactive increases from Jan 1, 2025. Pending comitato di settore, Governo, and Corte dei conti certification. Average monthly increase will be around €136.76 from base; exact per-level amounts not yet verified for this file. STATUS CHECKED 2026-10-17: still an ipotesi (ARAN, 21 July 2026), under verification at the Ministry of Economy and Finance before the Council of Ministers and the Corte dei conti; the ARAN president expected the definitive signature around mid-October 2026, not confirmed on 2026-10-17 (lentepubblica.it, 'Rinnovo CCNL Enti Locali 2025-2027: tra un mese la firma definitiva?'). Model the tranches and the arrears from 2025-01-01 once it is signed.
+!!! note "funzioni-locali-aran/renewal_2025_2027_missing · base_salary · impact unknown · resolved"
+    RENEWAL 2025-2027 (CCNL signed 28 October 2026, art. 35 and Tabelle A-B, art. 36-bis and Tabella C, pp. 47-48, 55-56): the tabellare from 1 January 2025, 2026 and 2027 and the indennità di comparto from 1 July 2027 are modelled. Arrears for the months already paid are a caller event (ArrearsEvent).
 
     **Applies when:** `base_salary` applies; from 2025-01-01.
 
-    **Remediation:** Add the 2025-2027 per-level amounts once the CCNL is certified and signed.
+    **Remediation:** Resolved: the definitive CCNL 2025-2027, read on 2026-11-07.
 
 !!! note "sickness_inps_daily_base · sickness · impact unknown · resolved"
     The INPS share of a sick day is computed on the INPS daily base of the episode, on the days INPS pays (the weekdays of an operaio, every day but the national holidays on a Sunday of an impiegato, point 7.3 of INPS circ. 134368/1981): the retribuzione media globale giornaliera of the month before the illness (INPS circ. 134368/1981 point 11; circ. 55/2024 Allegato 1), whole or partial month, impiegato or operaio, or for the lavoratori dello spettacolo the average pay of the last 40 daily contributions, capped for a fixed-term worker (INPS circ. 132/2021 par. 2.4). The base is a fact of the payroll history the episode states (SicknessEpisode.inps_base).
@@ -249,6 +250,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 |---|---|---|---|
 | CCNL Comparto Funzioni Locali triennio 2022-2024, firmato 23 febbraio 2026. Art. 56 (incrementi stipendi tabellari), Art. 60 (parziale conglobamento indennità di comparto), Tabella A (incrementi mensili per 13 mensilità), Tabella B (retribuzione tabellare annua per 12 mensilità + 13^). Orario settimanale 36h, divisore orario 156 da Art. 74 CCNL 16.11.2022. FP CGIL non firmatario. | altro | 2026-02-23 | [↗](https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf) |
 | SIMPLIFICATION: conferma codice CNEL S105 per CCNL Comparto Funzioni Locali (fonte secondaria lavoro-economia.it). | altro | — | [↗](https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=396) |
+| CCNL comparto Funzioni locali 2025-2027, sottoscritto il 28 ottobre 2026 | amministrazione | 2026-10-28 | [↗](https://www.aranagenzia.it/wp-content/uploads/2026/10/CCNL-comparto-FL-25-27-_-firmato-2.pdf) |
 
 ??? note "Coverage notes"
     Layer 2 implemented. Part-time: engine scales by part_time_pct. Fixed-term: PA is excluded from NASpI addizionale (lavoratori delle pubbliche amministrazioni in statutory exclusion list per INPS guidance); fixed_term_additional_rate=0.000 in tax file. Apprenticeship: no ARAN CCNL defines percentage or under-classification tracks; narrow high-qualification form under D.Lgs. 81/2015 Art. 47 exists for research profiles but is not operationalized in any examined CCNL.

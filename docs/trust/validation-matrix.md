@@ -36,7 +36,7 @@ output, or list what it still misses at each level in
 | `edilizia-cooperative-ancpl` | exploratory | primary | ordinary month | permanent, full time | — | — | base_salary (source-linked), gross (source-linked) | fixed_allowances (source-linked) | — | match | 2026-10-18 | — |
 | `edilizia-pmi-confapi-aniem` | exploratory | primary | ordinary month | permanent, full time | — | — | base_salary (source-linked), gross (source-linked) | fixed_allowances (source-linked) | — | match | 2026-10-18 | 2027-03-01 |
 | `funzioni-centrali-aran` | reviewed | primary | ordinary month | permanent, full time | — | — | base_salary (source-linked) | — | — | match | 2026-11-01 | 2027-12-31 |
-| `funzioni-locali-aran` | reviewed | real payslip | ordinary month | permanent, hours not stated | — | headcount 50 | base_salary (provider output) | — | — | match | 2026-11-01 | 2027-01-31 |
+| `funzioni-locali-aran` | reviewed | real payslip | ordinary month | permanent, hours not stated | — | headcount 50 | base_salary (provider output) | — | — | explained variance | 2026-11-07 | 2027-01-31 |
 | `industria-turistica-federturismo` | exploratory | real payslip | ordinary month | permanent, hours not stated | — | headcount 50 | base_salary (provider output) | — | — | match | 2026-11-06 | — |
 | `lavoro-domestico-convivente-orario-ridotto` | reviewed | primary | ordinary month | permanent, full time | — | — | base_salary (source-linked), gross (source-linked) | fixed_allowances (source-linked) | — | match | 2026-11-01 | 2027-01-31 |
 | `lavoro-domestico-convivente` | reviewed | primary | ordinary month | permanent, full time | — | — | base_salary (source-linked), gross (source-linked) | fixed_allowances (source-linked) | — | match | 2026-11-01 | 2027-01-31 |
