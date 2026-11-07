@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🟢 Verified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 1 verified / 31 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 37 verified / 31 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -50,14 +50,15 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-07-23 |
-| **Last review** | 2026-10-18 |
-| **Latest salary tranche** | 2025-08-01 |
+| **Last review** | 2026-11-07 |
+| **Latest salary tranche** | 2028-01-01 |
 
 ## Review history
 
 | Date | Reviewer | Scope | Outcome | Findings |
 |---|---|---|---|---|
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | confirmed | Art. 74 - Tredicesima mensilità (p. 57): "4. Le frazioni di mese pari o superiori ai 15 giorni saranno considerate come mese intero.". Match: at_least 15. The quattordicesima differs: Art. 75: no separate 14th; an equivalent amount is already included in the minimo conglobato of art. 68, so no fraction rule applies to it. |
+| 2026-11-07 | claude-opus-5-5 (ai) | Art. 69 of the CCNL ANASTE 2026-2028 signed 9 October 2026: the tabellare from 1 October 2026, 1 January 2027 and 1 January 2028 (p. 64, page image). | corrected | Three tranches of the 2026-2028 renewal; the 'tabellare vigente' column equals the August 2025 values of the file. |
 
 ## Salary table
 
@@ -65,18 +66,18 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `Q` | Quadro (dirigente di struttura o coordinatore senior) | € 2,130.15 | 2025-08-01 |
-| `10` | Livello 10 — Responsabile di area/servizio | € 1,972.13 | 2025-08-01 |
-| `9` | Livello 9 — Coordinatore/Professionista senior | € 1,893.48 | 2025-08-01 |
-| `8` | Livello 8 — Operatore specializzato senior | € 1,769.59 | 2025-08-01 |
-| `7` | Livello 7 — Operatore specializzato | € 1,752.93 | 2025-08-01 |
-| `6` | Livello 6 — Operatore qualificato senior | € 1,696.37 | 2025-08-01 |
-| `5` | Livello 5 — Operatore qualificato | € 1,637.06 | 2025-08-01 |
-| `4` | Livello 4 — Operatore | € 1,562.10 | 2025-08-01 |
-| `3S` | Livello 3 Super — Operatore ausiliario specializzato | € 1,525.03 | 2025-08-01 |
-| `3` | Livello 3 — Operatore ausiliario | € 1,487.96 | 2025-08-01 |
-| `2` | Livello 2 — Addetto generico | € 1,390.12 | 2025-08-01 |
-| `1` | Livello 1 — Addetto base (introdotto nel rinnovo 2025) | € 1,295.43 | 2023-01-01 |
+| `Q` | Quadro (dirigente di struttura o coordinatore senior) | € 2,252.88 | 2028-01-01 |
+| `10` | Livello 10 — Responsabile di area/servizio | € 2,085.75 | 2028-01-01 |
+| `9` | Livello 9 — Coordinatore/Professionista senior | € 2,002.57 | 2028-01-01 |
+| `8` | Livello 8 — Operatore specializzato senior | € 1,871.54 | 2028-01-01 |
+| `7` | Livello 7 — Operatore specializzato | € 1,853.92 | 2028-01-01 |
+| `6` | Livello 6 — Operatore qualificato senior | € 1,794.11 | 2028-01-01 |
+| `5` | Livello 5 — Operatore qualificato | € 1,731.38 | 2028-01-01 |
+| `4` | Livello 4 — Operatore | € 1,652.10 | 2028-01-01 |
+| `3S` | Livello 3 Super — Operatore ausiliario specializzato | € 1,612.90 | 2028-01-01 |
+| `3` | Livello 3 — Operatore ausiliario | € 1,573.68 | 2028-01-01 |
+| `2` | Livello 2 — Addetto generico | € 1,470.22 | 2028-01-01 |
+| `1` | Livello 1 — Addetto base (introdotto nel rinnovo 2025) | € 1,370.06 | 2028-01-01 |
 
 ## Seniority increments
 
@@ -306,6 +307,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 | Document | Kind | Date | URL |
 |---|---|---|---|
 | https://snalv.it/docs/anaste25/pdf6.pdf | altro | 2025-07-23 | [↗](https://snalv.it/docs/anaste25/pdf6.pdf) |
+| CCNL ANASTE 2026-2028, testo sottoscritto il 9 ottobre 2026 | associazione | 2026-10-09 | [↗](https://www.anaste.com/download/?wpdmdl=11171) |
 
 ??? note "Coverage notes"
     CONGLOBATED (Art. 69): minimo contrattuale conglobato includes base wage, contingenza and EDR. No separate contingenza or EDR column.
