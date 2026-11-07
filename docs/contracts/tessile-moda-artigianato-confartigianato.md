@@ -49,7 +49,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 61 verified / 11 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 62 verified / 11 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -58,7 +58,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-07-16 |
-| **Last review** | 2026-11-07 |
+| **Last review** | 2026-11-08 |
 | **Latest salary tranche** | 2026-10-01 |
 
 ## Review history
@@ -68,6 +68,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-18 | claude-opus-5-5 (ai) | base_salary of levels 1-6 and 6S, all four tranches (2024-07-01, 2025-01-01, 2025-10-01, 2026-10-01), against the Settore tessile abbigliamento table of the Verbale integrativo of 22 July 2024 published by Filctem CGIL (signatory). | corrected | Levels 1-6: all 24 periods match the 'Nuovi minimi contrattuali' table of the Settore tessile abbigliamento (Verbale integrativo 22 July 2024, p. 2, scanned PDF read by OCR and visual check) except level 5 from 2026-10-01: the table prints 1.813,56 (1.751,06 + the printed increment 62,50), the file had 1813.50.<br>Level 6S: the file stores the printed 6s minimo plus the quadri indennità di funzione of EUR 20,66 (art. 119 CCNL 14 Dec 2017; 6° super = quadri per art. 29). All four periods equal printed minimo + 20.66 and are recorded as derived on the CCNL text; the indennità is not repeated in the 2024 renewal and is assumed unchanged.<br>The minimi are conglobated tabellare amounts (single 'Retribuzione tabellare' column, no separate contingenza or EDR), consistent with the file's conglobated model.<br>The file models only the Settore tessile abbigliamento table. The same verbale prints distinct tables for calzaturiero (from 2026-10-01 and for level 6/6s already from 2024), lavorazioni a mano e su misura, pulitintolavanderie, occhialeria, chimica-concia-gomma-plastica-vetro and ceramica; those are not modelled.<br>Corrected to the printed table: 5 2026-10-01: 1813.50 -> 1813.56. |
 | 2026-10-31 | claude-opus-5-5 (ai) | The sick pay and the comporto of the CCNL (work_rules.sickness_rules), read on the signed text. | corrected | Art. 109 (pp. 126-127), operai Tessile, Abbigliamento, Calzaturiero: 80% for days 1-7, the first 3 not paid for an illness under 8 days, 100% of the net pay for days 8-180; Art. 97 (p. 116): 12 months. The file had a flat 80% and no carenza: corrected. Art. 97 holds both a 21-month and a 24-month paragraph on several illnesses, so no window is stored (note). |
 | 2026-11-07 | claude-opus-5-5 (ai) | The Nuovi minimi contrattuali of the chimica, concia, gomma, plastica, vetro (p. 5) and ceramica, terracotta, gres, decorazione di piastrelle (p. 6) tables of the verbale integrativo of 22 July 2024, page images. | confirmed | Chimica (p. 5): the 32 minimi of levels 1-7 and 5s for 1 July 2024, 1 January 2025, 1 October 2025 and 1 October 2026 read on the page image and added as the base_salary_by_subsector chimica of levels 1-6 and the chimica levels 5s and 7.<br>Ceramica (p. 6): the 28 minimi of levels A-G for the same four tranches read on the page image and added as the ceramica levels A-G. |
+| 2026-11-08 | claude-opus-5-5 (ai) | FSBA ordinary contribution, art. 3 of the 2024 regulation, read on the text layer (analysis by a separate model session). | corrected | Added parameters.solidarity_fund FSBA: 0.45%+0.15% up to 15 employees, 0.75%+0.25% above, on the INPS base, fixed terms included. |
 
 ## Salary table
 

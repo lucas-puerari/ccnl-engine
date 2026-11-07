@@ -62,7 +62,7 @@ def with_solidarity_fund(
         fund is None
         or fund.employee_rate is None
         or fund.employer_rate is None
-        or isinstance(inp.contract_type, FixedTerm)
+        or (isinstance(inp.contract_type, FixedTerm) and not fund.covers_fixed_term)
     ):
         return breakdown, _ZERO
     base = _base(breakdown)

@@ -31,7 +31,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/acconciatura-estetica-confartigianato",
       "ruleset_version": "2026.2",
-      "source_hash": "e884bf3bb9a9fdf02072cdbcdce344767c52fef1a8d10c7ab0ec3b8725a8a40d",
+      "source_hash": "531b2420141c50a70fa37776a249f1d0dcdb1c071cb648a2adf60bc886f3a588",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/acconciatura-estetica-confartigianato.json.gz"
@@ -507,7 +507,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/comunicazione-artigianato-confartigianato",
       "ruleset_version": "2026.2",
-      "source_hash": "c90cb3b50f52dcc3ad6443048a408281b8ffe04af0666fd837db494987bb3332",
+      "source_hash": "0c0fc276bdd9125246a558d63a846449d61a025fd62aa5fe6cca7389ee443799",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/comunicazione-artigianato-confartigianato.json.gz"
@@ -779,7 +779,7 @@
       "valid_to": "2028-09-30",
       "ruleset_id": "ccnl/edilizia-artigianato-cna",
       "ruleset_version": "2026.2",
-      "source_hash": "edadb65aa7dc0de2731e529fd37272cdfe627fa21ce8b49004aa0280a40b9a57",
+      "source_hash": "01d72c42748962282c6ba8869daf91aab8973a4dffa3c0f519206fff3e1afced",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/edilizia-artigianato-cna.json.gz"
@@ -1377,7 +1377,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/legno-lapidei-artigianato-confartigianato",
       "ruleset_version": "2026.2",
-      "source_hash": "10fcd395fc2db25d421dc218b2901dd10961b89737285a8d0ec12ea001deeead",
+      "source_hash": "9360054a0867ed8912d639f74fd4ca1247f7099d544f240c6d922eb021edd274",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/legno-lapidei-artigianato-confartigianato.json.gz"
@@ -1479,7 +1479,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/metalmeccanico-artigianato",
       "ruleset_version": "2026.2",
-      "source_hash": "54f075a20c0b58d99e2911e4235bd936b641aad28a30dd2afce9414644e83188",
+      "source_hash": "2e066e7d6b1f67e8fa78ca7bdf7e60f4effec354751f4a656633ca5ba2566a38",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/metalmeccanico-artigianato.json.gz"
@@ -1683,7 +1683,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/panificazione-artigianato-confartigianato",
       "ruleset_version": "2026.2",
-      "source_hash": "db3ce34bbda5b898fef73f434e42710f36b570a8c1208d9ce9bb2ecbc287e5e2",
+      "source_hash": "78fa9013328477ad40796937b3c041fc0ff5ba575129fb1e5b4391ccd3fb0f22",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/panificazione-artigianato-confartigianato.json.gz"
@@ -1802,7 +1802,7 @@
       "valid_to": "2029-12-31",
       "ruleset_id": "ccnl/pulizia-artigianato-confartigianato",
       "ruleset_version": "2025.1",
-      "source_hash": "93f1276891e3acdf0a74dafb0a081532a5fbd6c2d2a419c18e9dcfa1c61ff76d",
+      "source_hash": "ff8766159d1054dd70317bd3c545ec666e2afb43248cee8e343ddb9b5b32fcd2",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/pulizia-artigianato-confartigianato.json.gz"
@@ -2091,7 +2091,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/tessile-moda-artigianato-confartigianato",
       "ruleset_version": "2026.2",
-      "source_hash": "539892b17a0686b28286262a338d0a6ec854c15113ab95e42cc55ed143e50275",
+      "source_hash": "8c9efb8b79df0a59512744868c0df4583aaa2eca6929262e20335aaaf0de2e2b",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/tessile-moda-artigianato-confartigianato.json.gz"
@@ -4121,7 +4121,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "9bc1cb2a9251f1176b3b3ed1630d8e6cde5bda74a530039288f6cacc3cdef030",
+      "source_hash": "7eba0561635fff2ed08a2a72c65efee441076c75754f65382eaaec63530ac3fe",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/metalmeccanico-artigianato.json.gz",
@@ -4501,7 +4501,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "1ec1e6cf9680351c849bce93ebd9578524a7b4d9e3886d438b38ccd6882a56eb",
+      "source_hash": "6737d15962a2c4629ce777f6b65a05e6aa285031aeaee9dfc93d598b5896954d",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/pulizia-artigianato-confartigianato.json.gz",

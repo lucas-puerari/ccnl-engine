@@ -363,6 +363,48 @@
         },
         "note": "Applies to every institute that accrues by year, the gratifica natalizia of art. 36 included. Scanned text, read by OCR and checked on the page image."
       }
+    },
+    "solidarity_fund": {
+      "code": "FSBA",
+      "covers_fixed_term": true,
+      "top_up_tiers": [
+        {
+          "max_employees": 15,
+          "employer_rate": "0.0045",
+          "employee_rate": "0.0015"
+        },
+        {
+          "max_employees": null,
+          "employer_rate": "0.0075",
+          "employee_rate": "0.0025"
+        }
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "fsba-regolamento-2024",
+            "title": "Regolamento FSBA 11 settembre 2024",
+            "kind": "associazione",
+            "url": "https://www.fondofsba.it/wp-content/uploads/2024/11/Regolamento_FSBA_11_09_2024.pdf",
+            "sha256": "c345db470ee7a3427e302419a59ed5ce0733502b6a597c9f46fd5df37944b3db"
+          },
+          "page": "2",
+          "section": "Art. 3 Aliquote contributive",
+          "quote": "Datori di lavoro sino a 15 lavoratori 0,60% in relazione alla RIP – retribuzione imponibile ai fini previdenziali di cui 1/4 per il lavoratore e 3/4 per il datore di lavoro; Datori di lavoro - più di 15 lavoratori 0,60% + 0,40%"
+        },
+        "transformation": "Art. 3 c. 1 (from 1 January 2023): 0.60% of the INPS taxable pay up to 15 employees, 1.00% above, three quarters employer and one quarter worker; art. 1: employers of the artigianato (CSC 4, code 7B) are bound to FSBA, so every employee of the CCNL is charged, fixed terms included. Art. 3 c. 3 measures the headcount on the previous semester: the engine uses the employer headcount of the run. The additional 4% on the pay lost to ACIGS is not modelled.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-08T13:00:00Z",
+          "effective_from": "2023-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-08T13:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-08-ai-panificazione-artigianato-confartigianato-fsba"
+        }
+      }
     }
   },
   "levels": [
@@ -2140,7 +2182,7 @@
     "effective_until": null,
     "source": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "db3ce34bbda5b898fef73f434e42710f36b570a8c1208d9ce9bb2ecbc287e5e2",
+    "source_hash": "78fa9013328477ad40796937b3c041fc0ff5ba575129fb1e5b4391ccd3fb0f22",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2382,6 +2424,27 @@
         "independence": "separate_model",
         "checked": [
           "levels.base_salary"
+        ]
+      },
+      {
+        "id": "2026-11-08-ai-panificazione-artigianato-confartigianato-fsba",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "FSBA ordinary contribution, art. 3 of the 2024 regulation, read on the text layer (analysis by a separate model session).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.fondofsba.it/wp-content/uploads/2024/11/Regolamento_FSBA_11_09_2024.pdf",
+            "sha256": "c345db470ee7a3427e302419a59ed5ce0733502b6a597c9f46fd5df37944b3db"
+          }
+        ],
+        "findings": [
+          "Added parameters.solidarity_fund FSBA: 0.45%+0.15% up to 15 employees, 0.75%+0.25% above, on the INPS base, fixed terms included."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "parameters.solidarity_fund"
         ]
       }
     ],
