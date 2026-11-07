@@ -286,7 +286,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/aziende-termali-federterme",
       "ruleset_version": "2024.1",
-      "source_hash": "2fb60a42590a13f07d4723ff8d52337387ec3d2841c9d02572be20ed4c5f7972",
+      "source_hash": "61ccb08c2e460bb9f091906ba3d27b9eac4f57f54c11210e5c6af916c70b3192",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/aziende-termali-federterme.json.gz"
@@ -1088,7 +1088,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/gas-acqua-utilitalia",
       "ruleset_version": "2026.2",
-      "source_hash": "99bcac705563038b809ff4ec5129c07891ff7d6fd5c3590c13072fe9e373a5da",
+      "source_hash": "477927af7cc1e8382df331073b1db4083385c292bf989fcce3367052283ec865",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/gas-acqua-utilitalia.json.gz"
@@ -1258,7 +1258,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/lapidei-industria",
       "ruleset_version": "2026.2",
-      "source_hash": "392df801d86269c805f4333d6231669e0bfff3a3bdf66d2544d6ef9f5fe827a7",
+      "source_hash": "17a28171a604e2c3015cfd05319a6adc427f5b70a0d4b7592e1efadb2069ec43",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/lapidei-industria.json.gz"

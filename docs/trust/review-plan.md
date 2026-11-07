@@ -10,7 +10,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 |---|---:|---:|---:|---:|---:|---:|---|
 | pubblica-amministrazione | 14 | 7 548 000 | 14 | 217 | 186 | 0 | `funzioni-centrali-aran` |
 | terziario | 46 | 5 257 055 | 53 | 1612 | 1017 | 4 | `commercio-confcommercio`, `sanita-privata-aiop-aris` |
-| industria | 49 | 4 969 900 | 153 | 2106 | 1304 | 15 | `logistica-trasporto-confetra`, `metalmeccanico-federmeccanica` |
+| industria | 49 | 4 969 900 | 153 | 2093 | 1317 | 15 | `logistica-trasporto-confetra`, `metalmeccanico-federmeccanica` |
 | lavoro-domestico | 3 | 1 800 000 | 0 | 3 | 60 | 0 | `lavoro-domestico-non-convivente` |
 | artigianato | 8 | 1 244 505 | 34 | 256 | 158 | 2 | `metalmeccanico-artigianato` |
 | agricoltura | 9 | 752 860 | 12 | 164 | 170 | 5 | `operai-agricoli-florovivaisti` |
@@ -106,7 +106,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | [`calzaturiero-assocalzaturifici`](../contracts/calzaturiero-assocalzaturifici.md) | 75 000 | exploratory | 2 | 37 | 1 | aggregator | none | none |
 | [`trasporto-ferroviario-agens`](../contracts/trasporto-ferroviario-agens.md) | 75 000 | exploratory | 1 | 6 | 50 | aggregator | none | none |
 | [`grafica-editoria-aieg`](../contracts/grafica-editoria-aieg.md) | 70 000 | exploratory | 1 | 70 | 2 | aggregator | none | none |
-| [`gas-acqua-utilitalia`](../contracts/gas-acqua-utilitalia.md) | 65 000 | exploratory | 1 | 63 | 0 | party or official | none | none |
+| [`gas-acqua-utilitalia`](../contracts/gas-acqua-utilitalia.md) | 65 000 | exploratory | 1 | 53 | 10 | party or official | none | none |
 | [`igiene-ambientale-utilitalia`](../contracts/igiene-ambientale-utilitalia.md) | 65 000 | exploratory | 1 | 96 | 48 | aggregator | none | none |
 | [`elettrico-elettricita-futura`](../contracts/elettrico-elettricita-futura.md) | 60 000 | exploratory | 1 | 21 | 57 | aggregator | none | none |
 | [`chimica-affini-pmi-unionchimica`](../contracts/chimica-affini-pmi-unionchimica.md) | 56 000 | exploratory | 2 | 53 | 0 | aggregator | none | none |
@@ -124,7 +124,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | [`occhiali-occhialeria-industria`](../contracts/occhiali-occhialeria-industria.md) | 20 000 | exploratory | 2 | 11 | 77 | party or official | none | none |
 | [`informatica-pmi-unimatica`](../contracts/informatica-pmi-unimatica.md) | 20 000 | exploratory | 1 | 39 | 2 | party or official | none | none |
 | [`panificazione-assipan`](../contracts/panificazione-assipan.md) | 20 000 | exploratory | 1 | 48 | 1 | party or official | none | none |
-| [`lapidei-industria`](../contracts/lapidei-industria.md) | 18 000 | exploratory | 2 | 79 | 0 | aggregator | none | none |
+| [`lapidei-industria`](../contracts/lapidei-industria.md) | 18 000 | exploratory | 2 | 76 | 3 | aggregator | none | none |
 | [`orafi-argentieri-industria-federorafi`](../contracts/orafi-argentieri-industria-federorafi.md) | 18 000 | exploratory | 1 | 40 | 25 | party or official | none | none |
 | [`lavanderie-industriali-assosistema`](../contracts/lavanderie-industriali-assosistema.md) | 17 000 | exploratory | 2 | 37 | 0 | party or official | none | none |
 | [`pelli-cuoio-industria-assopellettieri`](../contracts/pelli-cuoio-industria-assopellettieri.md) | 17 000 | exploratory | 2 | 35 | 0 | party or official | none | none |
