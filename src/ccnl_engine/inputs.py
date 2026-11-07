@@ -34,6 +34,7 @@ from ccnl_engine.employer.inputs import (
     EmployerActivity,
     TaxSector,
 )
+from ccnl_engine.employment.apprentice.inputs import ApprenticeshipProgramme, DualHours
 from ccnl_engine.employment.category.models import WorkerCategory
 from ccnl_engine.employment.change.inputs import EmploymentChange
 from ccnl_engine.employment.fact.inputs import (
@@ -101,6 +102,7 @@ from ccnl_engine.withholding.deferral.inputs import DeferredShortfall
 __all__ = [
     "AgriculturalZone",
     "Apprentice",
+    "ApprenticeshipProgramme",
     "CalendarOverride",
     "CalendarOverrideReason",
     "CollectiveDismissal",
@@ -110,6 +112,7 @@ __all__ = [
     "DeferredShortfall",
     "Dependent",
     "DependentRelationship",
+    "DualHours",
     "EarnedIncrements",
     "EmployerActivity",
     "EmploymentChange",

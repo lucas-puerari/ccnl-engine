@@ -24,6 +24,7 @@ from ccnl_engine.agreement.validators import (
     _check_tier_level_codes,
     _collect_transition_dates,
 )
+from ccnl_engine.apprenticeship.dual.models import DualTrack
 from ccnl_engine.apprenticeship.models import (
     ApprenticeshipPercentage,
     ApprenticeshipTrack,
@@ -50,6 +51,8 @@ class CCNL(BaseModel):
         levels: Ordered list of classification levels from lowest to highest pay.
         apprenticeship: Apprenticeship tracks modelled for this CCNL. Empty
             when apprenticeship is out of scope or not yet modelled.
+        dual_apprenticeship: Pay of the first- and third-level apprentices
+            (D.Lgs. 81/2015 artt. 43 and 45); empty when not modelled.
         coverage: Notes on what the data file models; capability coverage
             derives from the capability registry and these notes.
         verification: Human-review confidence and traceability metadata.
@@ -73,6 +76,7 @@ class CCNL(BaseModel):
             "(out of scope or data unavailable)."
         ),
     )
+    dual_apprenticeship: tuple[DualTrack, ...] = ()
     coverage: CCNLCoverage
     verification: CCNLVerification = Field(default_factory=CCNLVerification)
     work_rules: CCNLWorkRules | None = None
@@ -85,6 +89,7 @@ class CCNL(BaseModel):
         self._assert_seniority_level_codes()
         self._assert_salary_order_non_decreasing()
         self._assert_apprenticeship_tracks()
+        self._assert_dual_levels()
         self._assert_provenance_complete()
         self._assert_limitation_levels()
         self._assert_divergence_limitations()
@@ -156,6 +161,14 @@ class CCNL(BaseModel):
         for ladder in pay_ladders(self.levels).values():
             for check_date in sorted(_collect_transition_dates(ladder)):
                 _check_salary_ordering_at_date(ladder, check_date)
+
+    def _assert_dual_levels(self) -> None:
+        codes = {level.code for level in self.levels}
+        for track in self.dual_apprenticeship:
+            named = {*track.destination_levels, track.reference_level} - {None}
+            if not named <= codes:
+                msg = f"dual track {track.name!r} names unknown levels {named - codes}"
+                raise ValueError(msg)
 
     def _assert_apprenticeship_tracks(self) -> None:
         names = [track.name for track in self.apprenticeship]

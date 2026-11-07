@@ -71,6 +71,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-07 | claude-opus-5-5 (ai) | Art. 21 of the 2024 text (PDF p. 50), text layer. | corrected | Added work_rules.apprentice_sickness_rules: normal pay up to six months a year. |
 | 2026-11-07 | claude-opus-5-5 (ai) | Art. 31 terza nota a verbale of the 2024 text (PDF p. 86), text layer. | corrected | Added supplement band ALIM_TURNO_DIURNO_ZOOTECNICI (5% on the day shifts). |
 | 2026-11-07 | claude-opus-5-5 (ai) | Art. 74 quinquies and its prima dichiarazione comune of the 2024 text (PDF p. 158), text layer. | corrected | Added health fund bilateralita_aspettativa_sindacale (EUR 1.50, 2.00 from 2025) in the bilateralita group. |
+| 2026-11-07 | claude-opus-5-5 (ai) | Art. 21 B and C of the 2024 text (PDF pp. 56 and 58; the table read on the page image). | corrected | Added dual_apprenticeship: five first-level tracks by course and one third-level track. |
 | 2026-11-08 | gpt-6-sol (ai) | CCNL top-ups of maternity and work injury, read from the signed text by a separate model session; every quote found on the PDF text layer. | confirmed | Added work_rules.insured_absence.maternity.<br>Added work_rules.insured_absence.injury. |
 | 2026-11-08 | gpt-6-sol (ai) | Employer top-up of the INAIL indemnity, read from the signed text by a separate model session (audit of the injury rules); quote checked on the text layer or the page image. | corrected | The injury rule had no top-up of the INAIL indemnity; added: {"integration_rate": "1", "net_basis": true} |
 | 2026-11-08 | claude-opus-5-5 (ai) | FASA coverage of art. 74 quater (PDF p. 157), text layer. | corrected | FASA was permanent-only; the text covers fixed terms of at least nine months in the calendar year: permanent_only false, minimum_fixed_term_months 9, fixed_term_months_in_year. |
@@ -125,11 +126,11 @@ Destination levels: `5`
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
 !!! warning "alimentari-federalimentare/first_level_apprentice_pay · base_salary · impact yes · open"
-    Art. 21 B-C: the pay of the first-level and alta formazione apprentices.
+    FIRST- AND THIRD-LEVEL APPRENTICES (Art. 21 B-C, PDF pp. 56-58): modelled in dual_apprenticeship (school hours unpaid, 20% of T.E.M. and I.A.R. for the training at the employer, the table percentages at the conventional level 3A for the first level, one or two levels below the destination for the third). Not modelled: the INPS contributions of the first-level apprentice (the engine applies the apprentice rates of the professionalising contract), and the first school year of qualifica and diploma, which the table leaves out (the run is refused).
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Model the first-level and alta formazione apprenticeship tracks.
+    **Remediation:** Source the INPS contribution regime of the first-level apprentice.
 
 !!! warning "alimentari-federalimentare/health_and_bilateral_funds · bilateral_funds · impact yes · open"
     HEALTH AND BILATERAL FUNDS (artt. 74 bis-quinquies, pp. 155-158): FASA EUR 12 (16 from 2025) for the permanent workers and the fixed terms of at least nine months in the calendar year, Cassa maternità EUR 3.50 (4.50), Cassa rischio vita EUR 30 a year and bilateralità EUR 2 (2.50) a month are modelled, with the EDR of EUR 20 of an employer outside the bilateralità, and the reduced bilateralità of EUR 1.50 (2.00 from 2025) of a company with better union-leave terms (fund bilateralita_aspettativa_sindacale). Not modelled: from 1 June 2029 the worker's optional EUR 2 a month to FASA, without which the enrolment and the company contribution end (art. 74 quater).

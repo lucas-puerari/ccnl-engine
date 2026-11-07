@@ -72,15 +72,18 @@
       },
       {
         "kind": "simplification",
-        "text": "Art. 21 B-C: the pay of the first-level and alta formazione apprentices.",
+        "text": "FIRST- AND THIRD-LEVEL APPRENTICES (Art. 21 B-C, PDF pp. 56-58): modelled in dual_apprenticeship (school hours unpaid, 20% of T.E.M. and I.A.R. for the training at the employer, the table percentages at the conventional level 3A for the first level, one or two levels below the destination for the third). Not modelled: the INPS contributions of the first-level apprentice (the engine applies the apprentice rates of the professionalising contract), and the first school year of qualifica and diploma, which the table leaves out (the run is refused).",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
           "variant": "first_level_apprentice_pay",
           "applies_when": {
-            "trigger": "outside_input"
+            "trigger": "outside_input",
+            "contract_types": [
+              "apprentice"
+            ]
           },
-          "remediation": "Model the first-level and alta formazione apprenticeship tracks."
+          "remediation": "Source the INPS contribution regime of the first-level apprentice."
         }
       },
       {
@@ -4188,7 +4191,7 @@
     "effective_until": null,
     "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "76aa26ba521d5a4b605d1a5910772d58fce41076f5288053d00a9de934f37139",
+    "source_hash": "eee73613ae16940fa70d923de86fc15586cd9b1e02d6fcd8e06e0dd6ca602826",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -14169,6 +14172,27 @@
         ]
       },
       {
+        "id": "2026-11-07-ai-alimentari-federalimentare-dual-apprenticeship",
+        "date": "2026-11-07",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 21 B and C of the 2024 text (PDF pp. 56 and 58; the table read on the page image).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+            "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+          }
+        ],
+        "findings": [
+          "Added dual_apprenticeship: five first-level tracks by course and one third-level track."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "dual_apprenticeship"
+        ]
+      },
+      {
         "id": "2026-11-08-gpt-alimentari-federalimentare-insured-absence",
         "date": "2026-11-08",
         "reviewer": "gpt-6-sol",
@@ -14236,5 +14260,373 @@
     ],
     "owner": "maintainer",
     "review_due": "2027-04-30"
-  }
+  },
+  "dual_apprenticeship": [
+    {
+      "name": "qualifica",
+      "programme": "first_level",
+      "destination_levels": [
+        "6",
+        "5",
+        "4",
+        "3",
+        "3A",
+        "2",
+        "1",
+        "1S"
+      ],
+      "reference_level": "3A",
+      "periods": [
+        {
+          "school_year": 2,
+          "work_rate": "0.55"
+        },
+        {
+          "school_year": 3,
+          "work_rate": "0.65"
+        }
+      ],
+      "work_elements": [
+        "base",
+        "IAR"
+      ],
+      "company_training_rate": "0.20",
+      "company_training_on": "reference",
+      "company_training_elements": [
+        "base",
+        "IAR"
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-industria-alimentare-2024-03-01",
+            "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+            "kind": "associazione",
+            "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+            "published_on": "2024-03-01",
+            "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+          },
+          "page": "56",
+          "section": "Art. 21 B) Inquadramento e retribuzione",
+          "quote": "Per le ore di formazione svolte nella istituzione formativa il datore di lavoro è esonerato da ogni obbligo retributivo. Per le ore di formazione a carico del datore di lavoro è riconosciuta al lavoratore una retribuzione costituita dal 20 per cento del trattamento economico minimo (T.E.M.) e dal 20% dell'incremento aggiuntivo della retribuzione (I.A.R.). Ai soli fini della determinazione della retribuzione dell'apprendista assunto con il contratto di cui al presente articolo, si farà riferimento convenzionalmente al livello 3°A del sistema di inquadramento di cui all'art. 26 CCNL. La retribuzione per le ore di lavoro svolte dall'apprendista, oltre il c.d. \"orario ordinamentale\", sarà determinata dall'applicazione delle percentuali di seguito riportate al trattamento economico minimo (T.E.M.) e all'incremento aggiuntivo della retribuzione (I.A.R.) [tabella] Qualifica di istruzione e formazione professionale: Secondo anno 55 %, Terzo anno 65 %"
+        },
+        "transformation": "Conventional level 3A whatever the destination level. Work hours: the percentage of the table row on T.E.M. (base salary) and I.A.R. only; training at the employer: 20% of T.E.M. and I.A.R. of level 3A; school hours unpaid. The text names no other element (ex contingenza, EDR, scatti): they are not paid to a first-level apprentice. A school year the table leaves out (year 1 of qualifica and diploma) is not paid.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-07T23:05:00Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-07T23:05:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-07-ai-alimentari-federalimentare-dual-apprenticeship"
+        }
+      }
+    },
+    {
+      "name": "diploma",
+      "programme": "first_level",
+      "destination_levels": [
+        "6",
+        "5",
+        "4",
+        "3",
+        "3A",
+        "2",
+        "1",
+        "1S"
+      ],
+      "reference_level": "3A",
+      "periods": [
+        {
+          "school_year": 2,
+          "work_rate": "0.55"
+        },
+        {
+          "school_year": 3,
+          "work_rate": "0.65"
+        },
+        {
+          "school_year": 4,
+          "work_rate": "0.70"
+        },
+        {
+          "school_year": 5,
+          "work_rate": "0.70"
+        }
+      ],
+      "work_elements": [
+        "base",
+        "IAR"
+      ],
+      "company_training_rate": "0.20",
+      "company_training_on": "reference",
+      "company_training_elements": [
+        "base",
+        "IAR"
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-industria-alimentare-2024-03-01",
+            "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+            "kind": "associazione",
+            "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+            "published_on": "2024-03-01",
+            "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+          },
+          "page": "56",
+          "section": "Art. 21 B) Inquadramento e retribuzione",
+          "quote": "Per le ore di formazione svolte nella istituzione formativa il datore di lavoro è esonerato da ogni obbligo retributivo. Per le ore di formazione a carico del datore di lavoro è riconosciuta al lavoratore una retribuzione costituita dal 20 per cento del trattamento economico minimo (T.E.M.) e dal 20% dell'incremento aggiuntivo della retribuzione (I.A.R.). Ai soli fini della determinazione della retribuzione dell'apprendista assunto con il contratto di cui al presente articolo, si farà riferimento convenzionalmente al livello 3°A del sistema di inquadramento di cui all'art. 26 CCNL. La retribuzione per le ore di lavoro svolte dall'apprendista, oltre il c.d. \"orario ordinamentale\", sarà determinata dall'applicazione delle percentuali di seguito riportate al trattamento economico minimo (T.E.M.) e all'incremento aggiuntivo della retribuzione (I.A.R.) [tabella] Diploma di istruzione e formazione professionale o di istruzione secondaria superiore: Secondo anno 55 %, Terzo anno 65 %, Quarto anno 70 %; (esclusivamente per i percorsi di istruzione statale quinquennale) Quinto anno 70 %"
+        },
+        "transformation": "Conventional level 3A whatever the destination level. Work hours: the percentage of the table row on T.E.M. (base salary) and I.A.R. only; training at the employer: 20% of T.E.M. and I.A.R. of level 3A; school hours unpaid. The text names no other element (ex contingenza, EDR, scatti): they are not paid to a first-level apprentice. A school year the table leaves out (year 1 of qualifica and diploma) is not paid.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-07T23:05:00Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-07T23:05:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-07-ai-alimentari-federalimentare-dual-apprenticeship"
+        }
+      }
+    },
+    {
+      "name": "diploma_dopo_qualifica",
+      "programme": "first_level",
+      "destination_levels": [
+        "6",
+        "5",
+        "4",
+        "3",
+        "3A",
+        "2",
+        "1",
+        "1S"
+      ],
+      "reference_level": "3A",
+      "periods": [
+        {
+          "work_rate": "0.70"
+        }
+      ],
+      "work_elements": [
+        "base",
+        "IAR"
+      ],
+      "company_training_rate": "0.20",
+      "company_training_on": "reference",
+      "company_training_elements": [
+        "base",
+        "IAR"
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-industria-alimentare-2024-03-01",
+            "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+            "kind": "associazione",
+            "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+            "published_on": "2024-03-01",
+            "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+          },
+          "page": "56",
+          "section": "Art. 21 B) Inquadramento e retribuzione",
+          "quote": "Per le ore di formazione svolte nella istituzione formativa il datore di lavoro è esonerato da ogni obbligo retributivo. Per le ore di formazione a carico del datore di lavoro è riconosciuta al lavoratore una retribuzione costituita dal 20 per cento del trattamento economico minimo (T.E.M.) e dal 20% dell'incremento aggiuntivo della retribuzione (I.A.R.). Ai soli fini della determinazione della retribuzione dell'apprendista assunto con il contratto di cui al presente articolo, si farà riferimento convenzionalmente al livello 3°A del sistema di inquadramento di cui all'art. 26 CCNL. La retribuzione per le ore di lavoro svolte dall'apprendista, oltre il c.d. \"orario ordinamentale\", sarà determinata dall'applicazione delle percentuali di seguito riportate al trattamento economico minimo (T.E.M.) e all'incremento aggiuntivo della retribuzione (I.A.R.) [tabella] Diploma di istruzione e formazione professionale per coloro che sono in possesso della qualifica di IeFP nell'ambito dell'indirizzo professionale corrispondente: Anno unico 70 %"
+        },
+        "transformation": "Conventional level 3A whatever the destination level. Work hours: the percentage of the table row on T.E.M. (base salary) and I.A.R. only; training at the employer: 20% of T.E.M. and I.A.R. of level 3A; school hours unpaid. The text names no other element (ex contingenza, EDR, scatti): they are not paid to a first-level apprentice. A school year the table leaves out (year 1 of qualifica and diploma) is not paid.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-07T23:05:00Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-07T23:05:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-07-ai-alimentari-federalimentare-dual-apprenticeship"
+        }
+      }
+    },
+    {
+      "name": "corso_integrativo",
+      "programme": "first_level",
+      "destination_levels": [
+        "6",
+        "5",
+        "4",
+        "3",
+        "3A",
+        "2",
+        "1",
+        "1S"
+      ],
+      "reference_level": "3A",
+      "periods": [
+        {
+          "school_year": 1,
+          "work_rate": "0.65"
+        },
+        {
+          "school_year": 2,
+          "work_rate": "0.70"
+        }
+      ],
+      "work_elements": [
+        "base",
+        "IAR"
+      ],
+      "company_training_rate": "0.20",
+      "company_training_on": "reference",
+      "company_training_elements": [
+        "base",
+        "IAR"
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-industria-alimentare-2024-03-01",
+            "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+            "kind": "associazione",
+            "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+            "published_on": "2024-03-01",
+            "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+          },
+          "page": "56",
+          "section": "Art. 21 B) Inquadramento e retribuzione",
+          "quote": "Per le ore di formazione svolte nella istituzione formativa il datore di lavoro è esonerato da ogni obbligo retributivo. Per le ore di formazione a carico del datore di lavoro è riconosciuta al lavoratore una retribuzione costituita dal 20 per cento del trattamento economico minimo (T.E.M.) e dal 20% dell'incremento aggiuntivo della retribuzione (I.A.R.). Ai soli fini della determinazione della retribuzione dell'apprendista assunto con il contratto di cui al presente articolo, si farà riferimento convenzionalmente al livello 3°A del sistema di inquadramento di cui all'art. 26 CCNL. La retribuzione per le ore di lavoro svolte dall'apprendista, oltre il c.d. \"orario ordinamentale\", sarà determinata dall'applicazione delle percentuali di seguito riportate al trattamento economico minimo (T.E.M.) e all'incremento aggiuntivo della retribuzione (I.A.R.) [tabella] Corso integrativo per l'ammissione all'esame di Stato: Primo anno 65 %, Secondo anno 70 %"
+        },
+        "transformation": "Conventional level 3A whatever the destination level. Work hours: the percentage of the table row on T.E.M. (base salary) and I.A.R. only; training at the employer: 20% of T.E.M. and I.A.R. of level 3A; school hours unpaid. The text names no other element (ex contingenza, EDR, scatti): they are not paid to a first-level apprentice. A school year the table leaves out (year 1 of qualifica and diploma) is not paid.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-07T23:05:00Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-07T23:05:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-07-ai-alimentari-federalimentare-dual-apprenticeship"
+        }
+      }
+    },
+    {
+      "name": "certificato_ifts",
+      "programme": "first_level",
+      "destination_levels": [
+        "6",
+        "5",
+        "4",
+        "3",
+        "3A",
+        "2",
+        "1",
+        "1S"
+      ],
+      "reference_level": "3A",
+      "periods": [
+        {
+          "work_rate": "0.70"
+        }
+      ],
+      "work_elements": [
+        "base",
+        "IAR"
+      ],
+      "company_training_rate": "0.20",
+      "company_training_on": "reference",
+      "company_training_elements": [
+        "base",
+        "IAR"
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-industria-alimentare-2024-03-01",
+            "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+            "kind": "associazione",
+            "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+            "published_on": "2024-03-01",
+            "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+          },
+          "page": "56",
+          "section": "Art. 21 B) Inquadramento e retribuzione",
+          "quote": "Per le ore di formazione svolte nella istituzione formativa il datore di lavoro è esonerato da ogni obbligo retributivo. Per le ore di formazione a carico del datore di lavoro è riconosciuta al lavoratore una retribuzione costituita dal 20 per cento del trattamento economico minimo (T.E.M.) e dal 20% dell'incremento aggiuntivo della retribuzione (I.A.R.). Ai soli fini della determinazione della retribuzione dell'apprendista assunto con il contratto di cui al presente articolo, si farà riferimento convenzionalmente al livello 3°A del sistema di inquadramento di cui all'art. 26 CCNL. La retribuzione per le ore di lavoro svolte dall'apprendista, oltre il c.d. \"orario ordinamentale\", sarà determinata dall'applicazione delle percentuali di seguito riportate al trattamento economico minimo (T.E.M.) e all'incremento aggiuntivo della retribuzione (I.A.R.) [tabella] Certificato di specializzazione tecnica superiore: Anno unico 70 %"
+        },
+        "transformation": "Conventional level 3A whatever the destination level. Work hours: the percentage of the table row on T.E.M. (base salary) and I.A.R. only; training at the employer: 20% of T.E.M. and I.A.R. of level 3A; school hours unpaid. The text names no other element (ex contingenza, EDR, scatti): they are not paid to a first-level apprentice. A school year the table leaves out (year 1 of qualifica and diploma) is not paid.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-07T23:05:00Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-07T23:05:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-07-ai-alimentari-federalimentare-dual-apprenticeship"
+        }
+      }
+    },
+    {
+      "name": "alta_formazione_ricerca",
+      "programme": "third_level",
+      "destination_levels": [
+        "4",
+        "3",
+        "3A",
+        "2",
+        "1",
+        "1S"
+      ],
+      "periods": [
+        {
+          "programme_months_up_to": 12,
+          "work_rate": "1",
+          "levels_below": 1
+        },
+        {
+          "half": 1,
+          "programme_months_over": 12,
+          "work_rate": "1",
+          "levels_below": 2
+        },
+        {
+          "half": 2,
+          "programme_months_over": 12,
+          "work_rate": "1",
+          "levels_below": 1
+        }
+      ],
+      "company_training_rate": "0.20",
+      "company_training_on": "reference",
+      "company_training_elements": [
+        "base",
+        "IAR"
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-industria-alimentare-2024-03-01",
+            "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+            "kind": "associazione",
+            "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+            "published_on": "2024-03-01",
+            "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+          },
+          "page": "58",
+          "section": "Art. 21 C) Inquadramento e retribuzione",
+          "quote": "Per le ore di formazione svolte nella istituzione formativa il datore di lavoro è esonerato da ogni obbligo retributivo. Per le ore di formazione a carico del datore di lavoro è riconosciuta al lavoratore una retribuzione pari al 20 per cento del trattamento economico minimo (T.E.M.) e dal 20% dell'incremento aggiuntivo della retribuzione (I.A.R.). L'apprendista assunto con il contratto di apprendistato di alta formazione e ricerca sarà inquadrato: A) Per i percorsi di durata superiore all'anno: per la prima metà del periodo di apprendistato: due livelli sotto a quello di destinazione finale; per la seconda metà del periodo di apprendistato: un livello sotto a quello di destinazione finale. B) Per percorsi di durata non superiore all'anno: per il periodo di apprendistato un livello sotto a quello di destinazione finale."
+        },
+        "transformation": "Work hours: the whole pay of the level two below the destination in the first half of a programme longer than 12 months, one below in the second half and in a programme of at most 12 months; training at the employer: 20% of T.E.M. and I.A.R. of that level; school hours unpaid. Destination levels with two levels below them (4 and above).",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-07T23:05:00Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-07T23:05:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-07-ai-alimentari-federalimentare-dual-apprenticeship"
+        }
+      }
+    }
+  ]
 }

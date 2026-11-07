@@ -73,6 +73,18 @@ _NOT_EXERCISED: dict[str, str] = {
         "a level with several tracks raises InvalidInputError without it, and "
         "the unique track of a level is the fact: no result to compare"
     ),
+    "Apprentice.school_year": (
+        "a dual track paying by school year raises MissingRequiredFactError "
+        "without it; no other run reads it: no result to compare"
+    ),
+    "Apprentice.programme_months": (
+        "a dual track paying by the half or length of the programme raises "
+        "MissingRequiredFactError without it: no result to compare"
+    ),
+    "Apprentice.hours": (
+        "a first- or third-level apprentice raises MissingRequiredFactError "
+        "without it; a professionalising one does not read it"
+    ),
     "Dependent.birth_date": (
         "a child without it raises InvalidInputError, and no other dependant "
         "reads it: no result to compare"

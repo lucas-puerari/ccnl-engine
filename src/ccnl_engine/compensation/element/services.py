@@ -7,10 +7,12 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.agreement.validity.rules import rule_scope
+from ccnl_engine.apprenticeship.dual.rules import dual_chain
 from ccnl_engine.apprenticeship.rules import _apprentice_chain
 from ccnl_engine.compensation.element.rules import _level_chain
 from ccnl_engine.compensation.element.types import ApprenticeshipScaling
 from ccnl_engine.compensation.entry.rules import entry_level
+from ccnl_engine.employment.apprentice.inputs import ApprenticeshipProgramme
 from ccnl_engine.employment.inputs import Apprentice, FixedTerm, Permanent
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.seniority.repricing.rules import (
@@ -27,6 +29,11 @@ if TYPE_CHECKING:
     from ccnl_engine.compensation.models import Level
     from ccnl_engine.employment.category.models import WorkerCategory
     from ccnl_engine.seniority.inputs import SeniorityFact
+
+_DUAL = frozenset({
+    ApprenticeshipProgramme.FIRST_LEVEL,
+    ApprenticeshipProgramme.THIRD_LEVEL,
+})
 
 
 def _seniority_count(
@@ -207,7 +214,18 @@ def _contract_chain(
     """
     count = _seniority_count(ccnl, level, seniority_months, worker_category)
     scaling: ApprenticeshipScaling | None = None
-    if isinstance(contract_type, Apprentice):
+    if isinstance(contract_type, Apprentice) and contract_type.programme in _DUAL:
+        chain = dual_chain(
+            ccnl,
+            level,
+            contract_type,
+            count,
+            roles,
+            as_of,
+            worker_category=worker_category,
+            seniority_months=seniority_months,
+        )
+    elif isinstance(contract_type, Apprentice):
         ccnl = _cohort_rules(ccnl, hired_on)
         chain, pct, _ = _apprentice_chain(
             ccnl,
