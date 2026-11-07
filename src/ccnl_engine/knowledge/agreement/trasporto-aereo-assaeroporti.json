@@ -167,6 +167,28 @@
         "checked": [
           "parameters.seniority_increments"
         ]
+      },
+      {
+        "id": "2026-11-07-ai-assaeroporti-tables",
+        "date": "2026-11-07",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The monthly values of the levels against the Parte specifica Gestori aeroportuali of 4 June 2025 (text layer).",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+            "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
+          }
+        ],
+        "findings": [
+          "66 printed monthly values found verbatim in the text and marked verified; 55 allowance values computed from a clause (maneggio denaro, contributo DPI) are not printed and keep their provenance."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels.base_salary",
+          "levels.fixed_allowances"
+        ]
       }
     ]
   },
@@ -395,21 +417,29 @@
             "valid_until": "2025-07-01",
             "value": "686.07",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
-                  "title": "ccnl-parte-specifica-versione-accessibile-pdf",
+                  "document_id": "assaeroporti-parte-specifica-2025",
+                  "title": "CCNL Trasporto aereo, Parte specifica Gestori aeroportuali, 4 giugno 2025",
                   "kind": "associazione",
-                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf"
+                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                  "published_on": "2025-06-04",
+                  "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
                 },
-                "section": "Tabella retributiva"
+                "page": "38",
+                "section": "Art. G20 - tabelle retributive",
+                "quote": "9         100        686,07      742,88      776,97       805,38      119,31"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T18:00:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T18:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assaeroporti-tables"
               }
             }
           },
@@ -418,21 +448,29 @@
             "valid_until": "2026-07-01",
             "value": "742.88",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
-                  "title": "ccnl-parte-specifica-versione-accessibile-pdf",
+                  "document_id": "assaeroporti-parte-specifica-2025",
+                  "title": "CCNL Trasporto aereo, Parte specifica Gestori aeroportuali, 4 giugno 2025",
                   "kind": "associazione",
-                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf"
+                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                  "published_on": "2025-06-04",
+                  "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
                 },
-                "section": "Tabella retributiva"
+                "page": "38",
+                "section": "Art. G20 - tabelle retributive",
+                "quote": "9         100        686,07      742,88      776,97       805,38      119,31"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T18:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T18:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assaeroporti-tables"
               }
             }
           },
@@ -441,21 +479,29 @@
             "valid_until": "2027-07-01",
             "value": "776.97",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
-                  "title": "ccnl-parte-specifica-versione-accessibile-pdf",
+                  "document_id": "assaeroporti-parte-specifica-2025",
+                  "title": "CCNL Trasporto aereo, Parte specifica Gestori aeroportuali, 4 giugno 2025",
                   "kind": "associazione",
-                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf"
+                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                  "published_on": "2025-06-04",
+                  "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
                 },
-                "section": "Tabella retributiva"
+                "page": "38",
+                "section": "Art. G20 - tabelle retributive",
+                "quote": "9         100        686,07      742,88      776,97       805,38      119,31"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T18:00:00Z",
+                "effective_from": "2026-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T18:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assaeroporti-tables"
               }
             }
           },
@@ -464,21 +510,29 @@
             "valid_until": null,
             "value": "805.38",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
-                  "title": "ccnl-parte-specifica-versione-accessibile-pdf",
+                  "document_id": "assaeroporti-parte-specifica-2025",
+                  "title": "CCNL Trasporto aereo, Parte specifica Gestori aeroportuali, 4 giugno 2025",
                   "kind": "associazione",
-                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf"
+                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                  "published_on": "2025-06-04",
+                  "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
                 },
-                "section": "Tabella retributiva"
+                "page": "38",
+                "section": "Art. G20 - tabelle retributive",
+                "quote": "9         100        686,07      742,88      776,97       805,38      119,31"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T18:00:00Z",
+                "effective_from": "2027-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T18:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assaeroporti-tables"
               }
             }
           }
@@ -493,7 +547,33 @@
               {
                 "valid_from": "2025-01-01",
                 "valid_until": null,
-                "value": "509.83"
+                "value": "509.83",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "assaeroporti-parte-specifica-2025",
+                      "title": "CCNL Trasporto aereo, Parte specifica Gestori aeroportuali, 4 giugno 2025",
+                      "kind": "associazione",
+                      "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                      "published_on": "2025-06-04",
+                      "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
+                    },
+                    "page": "39",
+                    "section": "Art. G20 - tabelle retributive",
+                    "quote": "9                 509,83"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T18:00:00Z",
+                    "effective_from": "2025-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T18:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-assaeroporti-tables"
+                  }
+                }
               }
             ]
           },
@@ -524,7 +604,33 @@
               {
                 "valid_from": "2025-01-01",
                 "valid_until": null,
-                "value": "27.23"
+                "value": "27.23",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "assaeroporti-parte-specifica-2025",
+                      "title": "CCNL Trasporto aereo, Parte specifica Gestori aeroportuali, 4 giugno 2025",
+                      "kind": "associazione",
+                      "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                      "published_on": "2025-06-04",
+                      "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
+                    },
+                    "page": "40",
+                    "section": "Art. G20 - tabelle retributive",
+                    "quote": "9                 27,23"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T18:00:00Z",
+                    "effective_from": "2025-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T18:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-assaeroporti-tables"
+                  }
+                }
               }
             ]
           },
@@ -676,21 +782,29 @@
             "valid_until": "2025-07-01",
             "value": "864.46",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
-                  "title": "ccnl-parte-specifica-versione-accessibile-pdf",
+                  "document_id": "assaeroporti-parte-specifica-2025",
+                  "title": "CCNL Trasporto aereo, Parte specifica Gestori aeroportuali, 4 giugno 2025",
                   "kind": "associazione",
-                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf"
+                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                  "published_on": "2025-06-04",
+                  "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
                 },
-                "section": "Tabella retributiva"
+                "page": "38",
+                "section": "Art. G20 - tabelle retributive",
+                "quote": "8         126        864,46      936,03      978,98      1.014,78     150,32"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T18:00:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T18:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assaeroporti-tables"
               }
             }
           },
@@ -699,21 +813,29 @@
             "valid_until": "2026-07-01",
             "value": "936.03",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
-                  "title": "ccnl-parte-specifica-versione-accessibile-pdf",
+                  "document_id": "assaeroporti-parte-specifica-2025",
+                  "title": "CCNL Trasporto aereo, Parte specifica Gestori aeroportuali, 4 giugno 2025",
                   "kind": "associazione",
-                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf"
+                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                  "published_on": "2025-06-04",
+                  "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
                 },
-                "section": "Tabella retributiva"
+                "page": "38",
+                "section": "Art. G20 - tabelle retributive",
+                "quote": "8         126        864,46      936,03      978,98      1.014,78     150,32"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T18:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T18:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assaeroporti-tables"
               }
             }
           },
@@ -722,21 +844,29 @@
             "valid_until": "2027-07-01",
             "value": "978.98",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
-                  "title": "ccnl-parte-specifica-versione-accessibile-pdf",
+                  "document_id": "assaeroporti-parte-specifica-2025",
+                  "title": "CCNL Trasporto aereo, Parte specifica Gestori aeroportuali, 4 giugno 2025",
                   "kind": "associazione",
-                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf"
+                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                  "published_on": "2025-06-04",
+                  "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
                 },
-                "section": "Tabella retributiva"
+                "page": "38",
+                "section": "Art. G20 - tabelle retributive",
+                "quote": "8         126        864,46      936,03      978,98      1.014,78     150,32"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T18:00:00Z",
+                "effective_from": "2026-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T18:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assaeroporti-tables"
               }
             }
           },
@@ -745,21 +875,29 @@
             "valid_until": null,
             "value": "1014.78",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
-                  "title": "ccnl-parte-specifica-versione-accessibile-pdf",
+                  "document_id": "assaeroporti-parte-specifica-2025",
+                  "title": "CCNL Trasporto aereo, Parte specifica Gestori aeroportuali, 4 giugno 2025",
                   "kind": "associazione",
-                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf"
+                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                  "published_on": "2025-06-04",
+                  "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
                 },
-                "section": "Tabella retributiva"
+                "page": "38",
+                "section": "Art. G20 - tabelle retributive",
+                "quote": "8         126        864,46      936,03      978,98      1.014,78     150,32"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T18:00:00Z",
+                "effective_from": "2027-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T18:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assaeroporti-tables"
               }
             }
           }
@@ -774,7 +912,33 @@
               {
                 "valid_from": "2025-01-01",
                 "valid_until": null,
-                "value": "513.95"
+                "value": "513.95",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "assaeroporti-parte-specifica-2025",
+                      "title": "CCNL Trasporto aereo, Parte specifica Gestori aeroportuali, 4 giugno 2025",
+                      "kind": "associazione",
+                      "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                      "published_on": "2025-06-04",
+                      "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
+                    },
+                    "page": "39",
+                    "section": "Art. G20 - tabelle retributive",
+                    "quote": "8                 513,95"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T18:00:00Z",
+                    "effective_from": "2025-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T18:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-assaeroporti-tables"
+                  }
+                }
               }
             ]
           },
@@ -805,7 +969,33 @@
               {
                 "valid_from": "2025-01-01",
                 "valid_until": null,
-                "value": "32.24"
+                "value": "32.24",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "assaeroporti-parte-specifica-2025",
+                      "title": "CCNL Trasporto aereo, Parte specifica Gestori aeroportuali, 4 giugno 2025",
+                      "kind": "associazione",
+                      "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                      "published_on": "2025-06-04",
+                      "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
+                    },
+                    "page": "40",
+                    "section": "Art. G20 - tabelle retributive",
+                    "quote": "8                 32,24"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T18:00:00Z",
+                    "effective_from": "2025-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T18:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-assaeroporti-tables"
+                  }
+                }
               }
             ]
           },
@@ -957,21 +1147,29 @@
             "valid_until": "2025-07-01",
             "value": "960.49",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
-                  "title": "ccnl-parte-specifica-versione-accessibile-pdf",
+                  "document_id": "assaeroporti-parte-specifica-2025",
+                  "title": "CCNL Trasporto aereo, Parte specifica Gestori aeroportuali, 4 giugno 2025",
                   "kind": "associazione",
-                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf"
+                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                  "published_on": "2025-06-04",
+                  "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
                 },
-                "section": "Tabella retributiva"
+                "page": "38",
+                "section": "Art. G20 - tabelle retributive",
+                "quote": "7         140        960,49     1.040,03     1.087,76    1.127,53     167,04"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T18:00:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T18:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assaeroporti-tables"
               }
             }
           },
@@ -980,21 +1178,29 @@
             "valid_until": "2026-07-01",
             "value": "1040.03",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
-                  "title": "ccnl-parte-specifica-versione-accessibile-pdf",
+                  "document_id": "assaeroporti-parte-specifica-2025",
+                  "title": "CCNL Trasporto aereo, Parte specifica Gestori aeroportuali, 4 giugno 2025",
                   "kind": "associazione",
-                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf"
+                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                  "published_on": "2025-06-04",
+                  "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
                 },
-                "section": "Tabella retributiva"
+                "page": "38",
+                "section": "Art. G20 - tabelle retributive",
+                "quote": "7         140        960,49     1.040,03     1.087,76    1.127,53     167,04"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T18:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T18:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assaeroporti-tables"
               }
             }
           },
@@ -1003,21 +1209,29 @@
             "valid_until": "2027-07-01",
             "value": "1087.76",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
-                  "title": "ccnl-parte-specifica-versione-accessibile-pdf",
+                  "document_id": "assaeroporti-parte-specifica-2025",
+                  "title": "CCNL Trasporto aereo, Parte specifica Gestori aeroportuali, 4 giugno 2025",
                   "kind": "associazione",
-                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf"
+                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                  "published_on": "2025-06-04",
+                  "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
                 },
-                "section": "Tabella retributiva"
+                "page": "38",
+                "section": "Art. G20 - tabelle retributive",
+                "quote": "7         140        960,49     1.040,03     1.087,76    1.127,53     167,04"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T18:00:00Z",
+                "effective_from": "2026-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T18:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assaeroporti-tables"
               }
             }
           },
@@ -1026,21 +1240,29 @@
             "valid_until": null,
             "value": "1127.53",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
-                  "title": "ccnl-parte-specifica-versione-accessibile-pdf",
+                  "document_id": "assaeroporti-parte-specifica-2025",
+                  "title": "CCNL Trasporto aereo, Parte specifica Gestori aeroportuali, 4 giugno 2025",
                   "kind": "associazione",
-                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf"
+                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                  "published_on": "2025-06-04",
+                  "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
                 },
-                "section": "Tabella retributiva"
+                "page": "38",
+                "section": "Art. G20 - tabelle retributive",
+                "quote": "7         140        960,49     1.040,03     1.087,76    1.127,53     167,04"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T18:00:00Z",
+                "effective_from": "2027-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T18:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assaeroporti-tables"
               }
             }
           }
@@ -1055,7 +1277,33 @@
               {
                 "valid_from": "2025-01-01",
                 "valid_until": null,
-                "value": "516.28"
+                "value": "516.28",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "assaeroporti-parte-specifica-2025",
+                      "title": "CCNL Trasporto aereo, Parte specifica Gestori aeroportuali, 4 giugno 2025",
+                      "kind": "associazione",
+                      "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                      "published_on": "2025-06-04",
+                      "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
+                    },
+                    "page": "39",
+                    "section": "Art. G20 - tabelle retributive",
+                    "quote": "7                 516,28"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T18:00:00Z",
+                    "effective_from": "2025-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T18:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-assaeroporti-tables"
+                  }
+                }
               }
             ]
           },
@@ -1086,7 +1334,33 @@
               {
                 "valid_from": "2025-01-01",
                 "valid_until": null,
-                "value": "34.93"
+                "value": "34.93",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "assaeroporti-parte-specifica-2025",
+                      "title": "CCNL Trasporto aereo, Parte specifica Gestori aeroportuali, 4 giugno 2025",
+                      "kind": "associazione",
+                      "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                      "published_on": "2025-06-04",
+                      "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
+                    },
+                    "page": "40",
+                    "section": "Art. G20 - tabelle retributive",
+                    "quote": "7                 34,93"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T18:00:00Z",
+                    "effective_from": "2025-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T18:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-assaeroporti-tables"
+                  }
+                }
               }
             ]
           },
@@ -1238,21 +1512,29 @@
             "valid_until": "2025-07-01",
             "value": "1070.28",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
-                  "title": "ccnl-parte-specifica-versione-accessibile-pdf",
+                  "document_id": "assaeroporti-parte-specifica-2025",
+                  "title": "CCNL Trasporto aereo, Parte specifica Gestori aeroportuali, 4 giugno 2025",
                   "kind": "associazione",
-                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf"
+                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                  "published_on": "2025-06-04",
+                  "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
                 },
-                "section": "Tabella retributiva"
+                "page": "38",
+                "section": "Art. G20 - tabelle retributive",
+                "quote": "6         156       1.070,28    1.158,89     1.212,08    1.256,39     186,11"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T18:00:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T18:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assaeroporti-tables"
               }
             }
           },
@@ -1261,21 +1543,29 @@
             "valid_until": "2026-07-01",
             "value": "1158.89",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
-                  "title": "ccnl-parte-specifica-versione-accessibile-pdf",
+                  "document_id": "assaeroporti-parte-specifica-2025",
+                  "title": "CCNL Trasporto aereo, Parte specifica Gestori aeroportuali, 4 giugno 2025",
                   "kind": "associazione",
-                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf"
+                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                  "published_on": "2025-06-04",
+                  "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
                 },
-                "section": "Tabella retributiva"
+                "page": "38",
+                "section": "Art. G20 - tabelle retributive",
+                "quote": "6         156       1.070,28    1.158,89     1.212,08    1.256,39     186,11"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T18:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T18:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assaeroporti-tables"
               }
             }
           },
@@ -1284,21 +1574,29 @@
             "valid_until": "2027-07-01",
             "value": "1212.08",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
-                  "title": "ccnl-parte-specifica-versione-accessibile-pdf",
+                  "document_id": "assaeroporti-parte-specifica-2025",
+                  "title": "CCNL Trasporto aereo, Parte specifica Gestori aeroportuali, 4 giugno 2025",
                   "kind": "associazione",
-                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf"
+                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                  "published_on": "2025-06-04",
+                  "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
                 },
-                "section": "Tabella retributiva"
+                "page": "38",
+                "section": "Art. G20 - tabelle retributive",
+                "quote": "6         156       1.070,28    1.158,89     1.212,08    1.256,39     186,11"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T18:00:00Z",
+                "effective_from": "2026-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T18:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assaeroporti-tables"
               }
             }
           },
@@ -1307,21 +1605,29 @@
             "valid_until": null,
             "value": "1256.39",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
-                  "title": "ccnl-parte-specifica-versione-accessibile-pdf",
+                  "document_id": "assaeroporti-parte-specifica-2025",
+                  "title": "CCNL Trasporto aereo, Parte specifica Gestori aeroportuali, 4 giugno 2025",
                   "kind": "associazione",
-                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf"
+                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                  "published_on": "2025-06-04",
+                  "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
                 },
-                "section": "Tabella retributiva"
+                "page": "38",
+                "section": "Art. G20 - tabelle retributive",
+                "quote": "6         156       1.070,28    1.158,89     1.212,08    1.256,39     186,11"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T18:00:00Z",
+                "effective_from": "2027-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T18:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assaeroporti-tables"
               }
             }
           }
@@ -1336,7 +1642,33 @@
               {
                 "valid_from": "2025-01-01",
                 "valid_until": null,
-                "value": "518.79"
+                "value": "518.79",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "assaeroporti-parte-specifica-2025",
+                      "title": "CCNL Trasporto aereo, Parte specifica Gestori aeroportuali, 4 giugno 2025",
+                      "kind": "associazione",
+                      "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                      "published_on": "2025-06-04",
+                      "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
+                    },
+                    "page": "39",
+                    "section": "Art. G20 - tabelle retributive",
+                    "quote": "6                 518,79"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T18:00:00Z",
+                    "effective_from": "2025-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T18:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-assaeroporti-tables"
+                  }
+                }
               }
             ]
           },
@@ -1367,7 +1699,33 @@
               {
                 "valid_from": "2025-01-01",
                 "valid_until": null,
-                "value": "38.01"
+                "value": "38.01",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "assaeroporti-parte-specifica-2025",
+                      "title": "CCNL Trasporto aereo, Parte specifica Gestori aeroportuali, 4 giugno 2025",
+                      "kind": "associazione",
+                      "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                      "published_on": "2025-06-04",
+                      "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
+                    },
+                    "page": "40",
+                    "section": "Art. G20 - tabelle retributive",
+                    "quote": "6                 38,01"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T18:00:00Z",
+                    "effective_from": "2025-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T18:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-assaeroporti-tables"
+                  }
+                }
               }
             ]
           },
@@ -1519,21 +1877,29 @@
             "valid_until": "2025-07-01",
             "value": "1138.88",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
-                  "title": "ccnl-parte-specifica-versione-accessibile-pdf",
+                  "document_id": "assaeroporti-parte-specifica-2025",
+                  "title": "CCNL Trasporto aereo, Parte specifica Gestori aeroportuali, 4 giugno 2025",
                   "kind": "associazione",
-                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf"
+                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                  "published_on": "2025-06-04",
+                  "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
                 },
-                "section": "Tabella retributiva"
+                "page": "38",
+                "section": "Art. G20 - tabelle retributive",
+                "quote": "5         166       1.138,88    1.233,18     1.289,77    1.336,93     198,05"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T18:00:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T18:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assaeroporti-tables"
               }
             }
           },
@@ -1542,21 +1908,29 @@
             "valid_until": "2026-07-01",
             "value": "1233.18",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
-                  "title": "ccnl-parte-specifica-versione-accessibile-pdf",
+                  "document_id": "assaeroporti-parte-specifica-2025",
+                  "title": "CCNL Trasporto aereo, Parte specifica Gestori aeroportuali, 4 giugno 2025",
                   "kind": "associazione",
-                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf"
+                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                  "published_on": "2025-06-04",
+                  "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
                 },
-                "section": "Tabella retributiva"
+                "page": "38",
+                "section": "Art. G20 - tabelle retributive",
+                "quote": "5         166       1.138,88    1.233,18     1.289,77    1.336,93     198,05"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T18:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T18:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assaeroporti-tables"
               }
             }
           },
@@ -1565,21 +1939,29 @@
             "valid_until": "2027-07-01",
             "value": "1289.77",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
-                  "title": "ccnl-parte-specifica-versione-accessibile-pdf",
+                  "document_id": "assaeroporti-parte-specifica-2025",
+                  "title": "CCNL Trasporto aereo, Parte specifica Gestori aeroportuali, 4 giugno 2025",
                   "kind": "associazione",
-                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf"
+                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                  "published_on": "2025-06-04",
+                  "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
                 },
-                "section": "Tabella retributiva"
+                "page": "38",
+                "section": "Art. G20 - tabelle retributive",
+                "quote": "5         166       1.138,88    1.233,18     1.289,77    1.336,93     198,05"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T18:00:00Z",
+                "effective_from": "2026-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T18:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assaeroporti-tables"
               }
             }
           },
@@ -1588,21 +1970,29 @@
             "valid_until": null,
             "value": "1336.93",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
-                  "title": "ccnl-parte-specifica-versione-accessibile-pdf",
+                  "document_id": "assaeroporti-parte-specifica-2025",
+                  "title": "CCNL Trasporto aereo, Parte specifica Gestori aeroportuali, 4 giugno 2025",
                   "kind": "associazione",
-                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf"
+                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                  "published_on": "2025-06-04",
+                  "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
                 },
-                "section": "Tabella retributiva"
+                "page": "38",
+                "section": "Art. G20 - tabelle retributive",
+                "quote": "5         166       1.138,88    1.233,18     1.289,77    1.336,93     198,05"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T18:00:00Z",
+                "effective_from": "2027-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T18:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assaeroporti-tables"
               }
             }
           }
@@ -1617,7 +2007,33 @@
               {
                 "valid_from": "2025-01-01",
                 "valid_until": null,
-                "value": "520.40"
+                "value": "520.40",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "assaeroporti-parte-specifica-2025",
+                      "title": "CCNL Trasporto aereo, Parte specifica Gestori aeroportuali, 4 giugno 2025",
+                      "kind": "associazione",
+                      "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                      "published_on": "2025-06-04",
+                      "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
+                    },
+                    "page": "39",
+                    "section": "Art. G20 - tabelle retributive",
+                    "quote": "5                 520,40"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T18:00:00Z",
+                    "effective_from": "2025-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T18:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-assaeroporti-tables"
+                  }
+                }
               }
             ]
           },
@@ -1648,7 +2064,33 @@
               {
                 "valid_from": "2025-01-01",
                 "valid_until": null,
-                "value": "39.93"
+                "value": "39.93",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "assaeroporti-parte-specifica-2025",
+                      "title": "CCNL Trasporto aereo, Parte specifica Gestori aeroportuali, 4 giugno 2025",
+                      "kind": "associazione",
+                      "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                      "published_on": "2025-06-04",
+                      "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
+                    },
+                    "page": "40",
+                    "section": "Art. G20 - tabelle retributive",
+                    "quote": "5                 39,93"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T18:00:00Z",
+                    "effective_from": "2025-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T18:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-assaeroporti-tables"
+                  }
+                }
               }
             ]
           },
@@ -1800,21 +2242,29 @@
             "valid_until": "2025-07-01",
             "value": "1207.47",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
-                  "title": "ccnl-parte-specifica-versione-accessibile-pdf",
+                  "document_id": "assaeroporti-parte-specifica-2025",
+                  "title": "CCNL Trasporto aereo, Parte specifica Gestori aeroportuali, 4 giugno 2025",
                   "kind": "associazione",
-                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf"
+                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                  "published_on": "2025-06-04",
+                  "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
                 },
-                "section": "Tabella retributiva"
+                "page": "38",
+                "section": "Art. G20 - tabelle retributive",
+                "quote": "4         176       1.207,47    1.307,47     1.367,47    1.417,47     210,00"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T18:00:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T18:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assaeroporti-tables"
               }
             }
           },
@@ -1823,21 +2273,29 @@
             "valid_until": "2026-07-01",
             "value": "1307.47",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
-                  "title": "ccnl-parte-specifica-versione-accessibile-pdf",
+                  "document_id": "assaeroporti-parte-specifica-2025",
+                  "title": "CCNL Trasporto aereo, Parte specifica Gestori aeroportuali, 4 giugno 2025",
                   "kind": "associazione",
-                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf"
+                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                  "published_on": "2025-06-04",
+                  "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
                 },
-                "section": "Tabella retributiva"
+                "page": "38",
+                "section": "Art. G20 - tabelle retributive",
+                "quote": "4         176       1.207,47    1.307,47     1.367,47    1.417,47     210,00"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T18:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T18:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assaeroporti-tables"
               }
             }
           },
@@ -1846,21 +2304,29 @@
             "valid_until": "2027-07-01",
             "value": "1367.47",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
-                  "title": "ccnl-parte-specifica-versione-accessibile-pdf",
+                  "document_id": "assaeroporti-parte-specifica-2025",
+                  "title": "CCNL Trasporto aereo, Parte specifica Gestori aeroportuali, 4 giugno 2025",
                   "kind": "associazione",
-                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf"
+                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                  "published_on": "2025-06-04",
+                  "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
                 },
-                "section": "Tabella retributiva"
+                "page": "38",
+                "section": "Art. G20 - tabelle retributive",
+                "quote": "4         176       1.207,47    1.307,47     1.367,47    1.417,47     210,00"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T18:00:00Z",
+                "effective_from": "2026-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T18:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assaeroporti-tables"
               }
             }
           },
@@ -1869,21 +2335,29 @@
             "valid_until": null,
             "value": "1417.47",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
-                  "title": "ccnl-parte-specifica-versione-accessibile-pdf",
+                  "document_id": "assaeroporti-parte-specifica-2025",
+                  "title": "CCNL Trasporto aereo, Parte specifica Gestori aeroportuali, 4 giugno 2025",
                   "kind": "associazione",
-                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf"
+                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                  "published_on": "2025-06-04",
+                  "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
                 },
-                "section": "Tabella retributiva"
+                "page": "38",
+                "section": "Art. G20 - tabelle retributive",
+                "quote": "4         176       1.207,47    1.307,47     1.367,47    1.417,47     210,00"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T18:00:00Z",
+                "effective_from": "2027-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T18:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assaeroporti-tables"
               }
             }
           }
@@ -1898,7 +2372,33 @@
               {
                 "valid_from": "2025-01-01",
                 "valid_until": null,
-                "value": "522.19"
+                "value": "522.19",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "assaeroporti-parte-specifica-2025",
+                      "title": "CCNL Trasporto aereo, Parte specifica Gestori aeroportuali, 4 giugno 2025",
+                      "kind": "associazione",
+                      "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                      "published_on": "2025-06-04",
+                      "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
+                    },
+                    "page": "39",
+                    "section": "Art. G20 - tabelle retributive",
+                    "quote": "4                 522,19"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T18:00:00Z",
+                    "effective_from": "2025-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T18:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-assaeroporti-tables"
+                  }
+                }
               }
             ]
           },
@@ -1929,7 +2429,33 @@
               {
                 "valid_from": "2025-01-01",
                 "valid_until": null,
-                "value": "41.85"
+                "value": "41.85",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "assaeroporti-parte-specifica-2025",
+                      "title": "CCNL Trasporto aereo, Parte specifica Gestori aeroportuali, 4 giugno 2025",
+                      "kind": "associazione",
+                      "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                      "published_on": "2025-06-04",
+                      "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
+                    },
+                    "page": "40",
+                    "section": "Art. G20 - tabelle retributive",
+                    "quote": "4                 41,85"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T18:00:00Z",
+                    "effective_from": "2025-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T18:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-assaeroporti-tables"
+                  }
+                }
               }
             ]
           },
@@ -2081,21 +2607,29 @@
             "valid_until": "2025-07-01",
             "value": "1337.84",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
-                  "title": "ccnl-parte-specifica-versione-accessibile-pdf",
+                  "document_id": "assaeroporti-parte-specifica-2025",
+                  "title": "CCNL Trasporto aereo, Parte specifica Gestori aeroportuali, 4 giugno 2025",
                   "kind": "associazione",
-                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf"
+                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                  "published_on": "2025-06-04",
+                  "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
                 },
-                "section": "Tabella retributiva"
+                "page": "38",
+                "section": "Art. G20 - tabelle retributive",
+                "quote": "3         195       1.337,84    1.448,62     1.515,09    1.570,49     232,65"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T18:00:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T18:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assaeroporti-tables"
               }
             }
           },
@@ -2104,21 +2638,29 @@
             "valid_until": "2026-07-01",
             "value": "1448.62",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
-                  "title": "ccnl-parte-specifica-versione-accessibile-pdf",
+                  "document_id": "assaeroporti-parte-specifica-2025",
+                  "title": "CCNL Trasporto aereo, Parte specifica Gestori aeroportuali, 4 giugno 2025",
                   "kind": "associazione",
-                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf"
+                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                  "published_on": "2025-06-04",
+                  "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
                 },
-                "section": "Tabella retributiva"
+                "page": "38",
+                "section": "Art. G20 - tabelle retributive",
+                "quote": "3         195       1.337,84    1.448,62     1.515,09    1.570,49     232,65"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T18:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T18:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assaeroporti-tables"
               }
             }
           },
@@ -2127,21 +2669,29 @@
             "valid_until": "2027-07-01",
             "value": "1515.09",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
-                  "title": "ccnl-parte-specifica-versione-accessibile-pdf",
+                  "document_id": "assaeroporti-parte-specifica-2025",
+                  "title": "CCNL Trasporto aereo, Parte specifica Gestori aeroportuali, 4 giugno 2025",
                   "kind": "associazione",
-                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf"
+                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                  "published_on": "2025-06-04",
+                  "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
                 },
-                "section": "Tabella retributiva"
+                "page": "38",
+                "section": "Art. G20 - tabelle retributive",
+                "quote": "3         195       1.337,84    1.448,62     1.515,09    1.570,49     232,65"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T18:00:00Z",
+                "effective_from": "2026-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T18:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assaeroporti-tables"
               }
             }
           },
@@ -2150,21 +2700,29 @@
             "valid_until": null,
             "value": "1570.49",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
-                  "title": "ccnl-parte-specifica-versione-accessibile-pdf",
+                  "document_id": "assaeroporti-parte-specifica-2025",
+                  "title": "CCNL Trasporto aereo, Parte specifica Gestori aeroportuali, 4 giugno 2025",
                   "kind": "associazione",
-                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf"
+                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                  "published_on": "2025-06-04",
+                  "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
                 },
-                "section": "Tabella retributiva"
+                "page": "38",
+                "section": "Art. G20 - tabelle retributive",
+                "quote": "3         195       1.337,84    1.448,62     1.515,09    1.570,49     232,65"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T18:00:00Z",
+                "effective_from": "2027-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T18:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assaeroporti-tables"
               }
             }
           }
@@ -2179,7 +2737,33 @@
               {
                 "valid_from": "2025-01-01",
                 "valid_until": null,
-                "value": "524.52"
+                "value": "524.52",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "assaeroporti-parte-specifica-2025",
+                      "title": "CCNL Trasporto aereo, Parte specifica Gestori aeroportuali, 4 giugno 2025",
+                      "kind": "associazione",
+                      "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                      "published_on": "2025-06-04",
+                      "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
+                    },
+                    "page": "39",
+                    "section": "Art. G20 - tabelle retributive",
+                    "quote": "3                 524,52"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T18:00:00Z",
+                    "effective_from": "2025-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T18:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-assaeroporti-tables"
+                  }
+                }
               }
             ]
           },
@@ -2210,7 +2794,33 @@
               {
                 "valid_from": "2025-01-01",
                 "valid_until": null,
-                "value": "45.51"
+                "value": "45.51",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "assaeroporti-parte-specifica-2025",
+                      "title": "CCNL Trasporto aereo, Parte specifica Gestori aeroportuali, 4 giugno 2025",
+                      "kind": "associazione",
+                      "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                      "published_on": "2025-06-04",
+                      "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
+                    },
+                    "page": "40",
+                    "section": "Art. G20 - tabelle retributive",
+                    "quote": "3                 45,51"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T18:00:00Z",
+                    "effective_from": "2025-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T18:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-assaeroporti-tables"
+                  }
+                }
               }
             ]
           },
@@ -2362,21 +2972,29 @@
             "valid_until": "2025-07-01",
             "value": "1440.75",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
-                  "title": "ccnl-parte-specifica-versione-accessibile-pdf",
+                  "document_id": "assaeroporti-parte-specifica-2025",
+                  "title": "CCNL Trasporto aereo, Parte specifica Gestori aeroportuali, 4 giugno 2025",
                   "kind": "associazione",
-                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf"
+                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                  "published_on": "2025-06-04",
+                  "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
                 },
-                "section": "Tabella retributiva"
+                "page": "38",
+                "section": "Art. G20 - tabelle retributive",
+                "quote": "2B         210       1.440,75    1.560,05     1.631,64    1.691,30     250,55"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T18:00:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T18:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assaeroporti-tables"
               }
             }
           },
@@ -2385,21 +3003,29 @@
             "valid_until": "2026-07-01",
             "value": "1560.05",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
-                  "title": "ccnl-parte-specifica-versione-accessibile-pdf",
+                  "document_id": "assaeroporti-parte-specifica-2025",
+                  "title": "CCNL Trasporto aereo, Parte specifica Gestori aeroportuali, 4 giugno 2025",
                   "kind": "associazione",
-                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf"
+                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                  "published_on": "2025-06-04",
+                  "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
                 },
-                "section": "Tabella retributiva"
+                "page": "38",
+                "section": "Art. G20 - tabelle retributive",
+                "quote": "2B         210       1.440,75    1.560,05     1.631,64    1.691,30     250,55"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T18:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T18:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assaeroporti-tables"
               }
             }
           },
@@ -2408,21 +3034,29 @@
             "valid_until": "2027-07-01",
             "value": "1631.64",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
-                  "title": "ccnl-parte-specifica-versione-accessibile-pdf",
+                  "document_id": "assaeroporti-parte-specifica-2025",
+                  "title": "CCNL Trasporto aereo, Parte specifica Gestori aeroportuali, 4 giugno 2025",
                   "kind": "associazione",
-                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf"
+                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                  "published_on": "2025-06-04",
+                  "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
                 },
-                "section": "Tabella retributiva"
+                "page": "38",
+                "section": "Art. G20 - tabelle retributive",
+                "quote": "2B         210       1.440,75    1.560,05     1.631,64    1.691,30     250,55"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T18:00:00Z",
+                "effective_from": "2026-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T18:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assaeroporti-tables"
               }
             }
           },
@@ -2431,21 +3065,29 @@
             "valid_until": null,
             "value": "1691.30",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
-                  "title": "ccnl-parte-specifica-versione-accessibile-pdf",
+                  "document_id": "assaeroporti-parte-specifica-2025",
+                  "title": "CCNL Trasporto aereo, Parte specifica Gestori aeroportuali, 4 giugno 2025",
                   "kind": "associazione",
-                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf"
+                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                  "published_on": "2025-06-04",
+                  "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
                 },
-                "section": "Tabella retributiva"
+                "page": "38",
+                "section": "Art. G20 - tabelle retributive",
+                "quote": "2B         210       1.440,75    1.560,05     1.631,64    1.691,30     250,55"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T18:00:00Z",
+                "effective_from": "2027-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T18:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assaeroporti-tables"
               }
             }
           }
@@ -2460,7 +3102,33 @@
               {
                 "valid_from": "2025-01-01",
                 "valid_until": null,
-                "value": "527.39"
+                "value": "527.39",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "assaeroporti-parte-specifica-2025",
+                      "title": "CCNL Trasporto aereo, Parte specifica Gestori aeroportuali, 4 giugno 2025",
+                      "kind": "associazione",
+                      "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                      "published_on": "2025-06-04",
+                      "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
+                    },
+                    "page": "39",
+                    "section": "Art. G20 - tabelle retributive",
+                    "quote": "2b                 527,39"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T18:00:00Z",
+                    "effective_from": "2025-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T18:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-assaeroporti-tables"
+                  }
+                }
               }
             ]
           },
@@ -2491,7 +3159,33 @@
               {
                 "valid_from": "2025-01-01",
                 "valid_until": null,
-                "value": "48.39"
+                "value": "48.39",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "assaeroporti-parte-specifica-2025",
+                      "title": "CCNL Trasporto aereo, Parte specifica Gestori aeroportuali, 4 giugno 2025",
+                      "kind": "associazione",
+                      "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                      "published_on": "2025-06-04",
+                      "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
+                    },
+                    "page": "40",
+                    "section": "Art. G20 - tabelle retributive",
+                    "quote": "2b                48,39"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T18:00:00Z",
+                    "effective_from": "2025-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T18:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-assaeroporti-tables"
+                  }
+                }
               }
             ]
           },
@@ -2643,21 +3337,29 @@
             "valid_until": "2025-07-01",
             "value": "1536.79",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
-                  "title": "ccnl-parte-specifica-versione-accessibile-pdf",
+                  "document_id": "assaeroporti-parte-specifica-2025",
+                  "title": "CCNL Trasporto aereo, Parte specifica Gestori aeroportuali, 4 giugno 2025",
                   "kind": "associazione",
-                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf"
+                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                  "published_on": "2025-06-04",
+                  "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
                 },
-                "section": "Tabella retributiva"
+                "page": "38",
+                "section": "Art. G20 - tabelle retributive",
+                "quote": "2A         224       1.536,79    1.664,05     1.740,42    1.804,05     267,26"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T18:00:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T18:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assaeroporti-tables"
               }
             }
           },
@@ -2666,21 +3368,29 @@
             "valid_until": "2026-07-01",
             "value": "1664.05",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
-                  "title": "ccnl-parte-specifica-versione-accessibile-pdf",
+                  "document_id": "assaeroporti-parte-specifica-2025",
+                  "title": "CCNL Trasporto aereo, Parte specifica Gestori aeroportuali, 4 giugno 2025",
                   "kind": "associazione",
-                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf"
+                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                  "published_on": "2025-06-04",
+                  "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
                 },
-                "section": "Tabella retributiva"
+                "page": "38",
+                "section": "Art. G20 - tabelle retributive",
+                "quote": "2A         224       1.536,79    1.664,05     1.740,42    1.804,05     267,26"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T18:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T18:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assaeroporti-tables"
               }
             }
           },
@@ -2689,21 +3399,29 @@
             "valid_until": "2027-07-01",
             "value": "1740.42",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
-                  "title": "ccnl-parte-specifica-versione-accessibile-pdf",
+                  "document_id": "assaeroporti-parte-specifica-2025",
+                  "title": "CCNL Trasporto aereo, Parte specifica Gestori aeroportuali, 4 giugno 2025",
                   "kind": "associazione",
-                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf"
+                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                  "published_on": "2025-06-04",
+                  "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
                 },
-                "section": "Tabella retributiva"
+                "page": "38",
+                "section": "Art. G20 - tabelle retributive",
+                "quote": "2A         224       1.536,79    1.664,05     1.740,42    1.804,05     267,26"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T18:00:00Z",
+                "effective_from": "2026-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T18:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assaeroporti-tables"
               }
             }
           },
@@ -2712,21 +3430,29 @@
             "valid_until": null,
             "value": "1804.05",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
-                  "title": "ccnl-parte-specifica-versione-accessibile-pdf",
+                  "document_id": "assaeroporti-parte-specifica-2025",
+                  "title": "CCNL Trasporto aereo, Parte specifica Gestori aeroportuali, 4 giugno 2025",
                   "kind": "associazione",
-                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf"
+                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                  "published_on": "2025-06-04",
+                  "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
                 },
-                "section": "Tabella retributiva"
+                "page": "38",
+                "section": "Art. G20 - tabelle retributive",
+                "quote": "2A         224       1.536,79    1.664,05     1.740,42    1.804,05     267,26"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T18:00:00Z",
+                "effective_from": "2027-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T18:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assaeroporti-tables"
               }
             }
           }
@@ -2741,7 +3467,33 @@
               {
                 "valid_from": "2025-01-01",
                 "valid_until": null,
-                "value": "530.07"
+                "value": "530.07",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "assaeroporti-parte-specifica-2025",
+                      "title": "CCNL Trasporto aereo, Parte specifica Gestori aeroportuali, 4 giugno 2025",
+                      "kind": "associazione",
+                      "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                      "published_on": "2025-06-04",
+                      "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
+                    },
+                    "page": "39",
+                    "section": "Art. G20 - tabelle retributive",
+                    "quote": "2a                 530,07"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T18:00:00Z",
+                    "effective_from": "2025-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T18:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-assaeroporti-tables"
+                  }
+                }
               }
             ]
           },
@@ -2772,7 +3524,33 @@
               {
                 "valid_from": "2025-01-01",
                 "valid_until": null,
-                "value": "51.09"
+                "value": "51.09",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "assaeroporti-parte-specifica-2025",
+                      "title": "CCNL Trasporto aereo, Parte specifica Gestori aeroportuali, 4 giugno 2025",
+                      "kind": "associazione",
+                      "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                      "published_on": "2025-06-04",
+                      "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
+                    },
+                    "page": "40",
+                    "section": "Art. G20 - tabelle retributive",
+                    "quote": "2a                51,09"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T18:00:00Z",
+                    "effective_from": "2025-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T18:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-assaeroporti-tables"
+                  }
+                }
               }
             ]
           },
@@ -2924,21 +3702,29 @@
             "valid_until": "2025-07-01",
             "value": "1680.87",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
-                  "title": "ccnl-parte-specifica-versione-accessibile-pdf",
+                  "document_id": "assaeroporti-parte-specifica-2025",
+                  "title": "CCNL Trasporto aereo, Parte specifica Gestori aeroportuali, 4 giugno 2025",
                   "kind": "associazione",
-                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf"
+                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                  "published_on": "2025-06-04",
+                  "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
                 },
-                "section": "Tabella retributiva"
+                "page": "38",
+                "section": "Art. G20 - tabelle retributive",
+                "quote": "1         245       1.680,87    1.820,06     1.903,58    1.973,18     292,31"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T18:00:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T18:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assaeroporti-tables"
               }
             }
           },
@@ -2947,21 +3733,29 @@
             "valid_until": "2026-07-01",
             "value": "1820.06",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
-                  "title": "ccnl-parte-specifica-versione-accessibile-pdf",
+                  "document_id": "assaeroporti-parte-specifica-2025",
+                  "title": "CCNL Trasporto aereo, Parte specifica Gestori aeroportuali, 4 giugno 2025",
                   "kind": "associazione",
-                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf"
+                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                  "published_on": "2025-06-04",
+                  "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
                 },
-                "section": "Tabella retributiva"
+                "page": "38",
+                "section": "Art. G20 - tabelle retributive",
+                "quote": "1         245       1.680,87    1.820,06     1.903,58    1.973,18     292,31"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T18:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T18:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assaeroporti-tables"
               }
             }
           },
@@ -2970,21 +3764,29 @@
             "valid_until": "2027-07-01",
             "value": "1903.58",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
-                  "title": "ccnl-parte-specifica-versione-accessibile-pdf",
+                  "document_id": "assaeroporti-parte-specifica-2025",
+                  "title": "CCNL Trasporto aereo, Parte specifica Gestori aeroportuali, 4 giugno 2025",
                   "kind": "associazione",
-                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf"
+                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                  "published_on": "2025-06-04",
+                  "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
                 },
-                "section": "Tabella retributiva"
+                "page": "38",
+                "section": "Art. G20 - tabelle retributive",
+                "quote": "1         245       1.680,87    1.820,06     1.903,58    1.973,18     292,31"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T18:00:00Z",
+                "effective_from": "2026-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T18:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assaeroporti-tables"
               }
             }
           },
@@ -2993,21 +3795,29 @@
             "valid_until": null,
             "value": "1973.18",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
-                  "title": "ccnl-parte-specifica-versione-accessibile-pdf",
+                  "document_id": "assaeroporti-parte-specifica-2025",
+                  "title": "CCNL Trasporto aereo, Parte specifica Gestori aeroportuali, 4 giugno 2025",
                   "kind": "associazione",
-                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf"
+                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                  "published_on": "2025-06-04",
+                  "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
                 },
-                "section": "Tabella retributiva"
+                "page": "38",
+                "section": "Art. G20 - tabelle retributive",
+                "quote": "1         245       1.680,87    1.820,06     1.903,58    1.973,18     292,31"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T18:00:00Z",
+                "effective_from": "2027-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T18:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assaeroporti-tables"
               }
             }
           }
@@ -3022,7 +3832,33 @@
               {
                 "valid_from": "2025-01-01",
                 "valid_until": null,
-                "value": "533.12"
+                "value": "533.12",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "assaeroporti-parte-specifica-2025",
+                      "title": "CCNL Trasporto aereo, Parte specifica Gestori aeroportuali, 4 giugno 2025",
+                      "kind": "associazione",
+                      "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                      "published_on": "2025-06-04",
+                      "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
+                    },
+                    "page": "39",
+                    "section": "Art. G20 - tabelle retributive",
+                    "quote": "1                 533,12"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T18:00:00Z",
+                    "effective_from": "2025-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T18:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-assaeroporti-tables"
+                  }
+                }
               }
             ]
           },
@@ -3053,7 +3889,33 @@
               {
                 "valid_from": "2025-01-01",
                 "valid_until": null,
-                "value": "55.12"
+                "value": "55.12",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "assaeroporti-parte-specifica-2025",
+                      "title": "CCNL Trasporto aereo, Parte specifica Gestori aeroportuali, 4 giugno 2025",
+                      "kind": "associazione",
+                      "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                      "published_on": "2025-06-04",
+                      "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
+                    },
+                    "page": "40",
+                    "section": "Art. G20 - tabelle retributive",
+                    "quote": "1                 55,12"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T18:00:00Z",
+                    "effective_from": "2025-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T18:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-assaeroporti-tables"
+                  }
+                }
               }
             ]
           },
@@ -3205,21 +4067,29 @@
             "valid_until": "2025-07-01",
             "value": "1852.38",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
-                  "title": "ccnl-parte-specifica-versione-accessibile-pdf",
+                  "document_id": "assaeroporti-parte-specifica-2025",
+                  "title": "CCNL Trasporto aereo, Parte specifica Gestori aeroportuali, 4 giugno 2025",
                   "kind": "associazione",
-                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf"
+                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                  "published_on": "2025-06-04",
+                  "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
                 },
-                "section": "Tabella retributiva"
+                "page": "38",
+                "section": "Art. G20 - tabelle retributive",
+                "quote": "1S         270       1.852,38    2.005,78     2.097,82    2.174,53     322,15"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T18:00:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T18:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assaeroporti-tables"
               }
             }
           },
@@ -3228,21 +4098,29 @@
             "valid_until": "2026-07-01",
             "value": "2005.78",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
-                  "title": "ccnl-parte-specifica-versione-accessibile-pdf",
+                  "document_id": "assaeroporti-parte-specifica-2025",
+                  "title": "CCNL Trasporto aereo, Parte specifica Gestori aeroportuali, 4 giugno 2025",
                   "kind": "associazione",
-                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf"
+                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                  "published_on": "2025-06-04",
+                  "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
                 },
-                "section": "Tabella retributiva"
+                "page": "38",
+                "section": "Art. G20 - tabelle retributive",
+                "quote": "1S         270       1.852,38    2.005,78     2.097,82    2.174,53     322,15"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T18:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T18:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assaeroporti-tables"
               }
             }
           },
@@ -3251,21 +4129,29 @@
             "valid_until": "2027-07-01",
             "value": "2097.82",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
-                  "title": "ccnl-parte-specifica-versione-accessibile-pdf",
+                  "document_id": "assaeroporti-parte-specifica-2025",
+                  "title": "CCNL Trasporto aereo, Parte specifica Gestori aeroportuali, 4 giugno 2025",
                   "kind": "associazione",
-                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf"
+                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                  "published_on": "2025-06-04",
+                  "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
                 },
-                "section": "Tabella retributiva"
+                "page": "38",
+                "section": "Art. G20 - tabelle retributive",
+                "quote": "1S         270       1.852,38    2.005,78     2.097,82    2.174,53     322,15"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T18:00:00Z",
+                "effective_from": "2026-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T18:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assaeroporti-tables"
               }
             }
           },
@@ -3274,21 +4160,29 @@
             "valid_until": null,
             "value": "2174.53",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
-                  "title": "ccnl-parte-specifica-versione-accessibile-pdf",
+                  "document_id": "assaeroporti-parte-specifica-2025",
+                  "title": "CCNL Trasporto aereo, Parte specifica Gestori aeroportuali, 4 giugno 2025",
                   "kind": "associazione",
-                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf"
+                  "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                  "published_on": "2025-06-04",
+                  "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
                 },
-                "section": "Tabella retributiva"
+                "page": "38",
+                "section": "Art. G20 - tabelle retributive",
+                "quote": "1S         270       1.852,38    2.005,78     2.097,82    2.174,53     322,15"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T18:00:00Z",
+                "effective_from": "2027-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T18:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-assaeroporti-tables"
               }
             }
           }
@@ -3303,7 +4197,33 @@
               {
                 "valid_from": "2025-01-01",
                 "valid_until": null,
-                "value": "536.70"
+                "value": "536.70",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "assaeroporti-parte-specifica-2025",
+                      "title": "CCNL Trasporto aereo, Parte specifica Gestori aeroportuali, 4 giugno 2025",
+                      "kind": "associazione",
+                      "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                      "published_on": "2025-06-04",
+                      "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
+                    },
+                    "page": "39",
+                    "section": "Art. G20 - tabelle retributive",
+                    "quote": "1s                536,70"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T18:00:00Z",
+                    "effective_from": "2025-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T18:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-assaeroporti-tables"
+                  }
+                }
               }
             ]
           },
@@ -3334,7 +4254,33 @@
               {
                 "valid_from": "2025-01-01",
                 "valid_until": null,
-                "value": "59.93"
+                "value": "59.93",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "assaeroporti-parte-specifica-2025",
+                      "title": "CCNL Trasporto aereo, Parte specifica Gestori aeroportuali, 4 giugno 2025",
+                      "kind": "associazione",
+                      "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+                      "published_on": "2025-06-04",
+                      "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
+                    },
+                    "page": "40",
+                    "section": "Art. G20 - tabelle retributive",
+                    "quote": "1s                59,93"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T18:00:00Z",
+                    "effective_from": "2025-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T18:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-assaeroporti-tables"
+                  }
+                }
               }
             ]
           },
@@ -3598,7 +4544,7 @@
     "effective_until": "2027-12-31",
     "source": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
     "verification_status": "unverified",
-    "source_hash": "5b03f1175b78f0ab9b3f20d3e67ae1aa34612e66573ff8bfaa520afcee887956",
+    "source_hash": "d31e1e5d554be523619dafb2c7bcf138fe3405d9689eb3a7f12832e339e5e8a6",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
