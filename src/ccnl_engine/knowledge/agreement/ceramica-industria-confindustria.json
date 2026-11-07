@@ -107,21 +107,28 @@
             "valid_until": "2025-07-01",
             "value": "1564.40",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "title": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf"
+                  "document_id": "ceramica-industria-confindustria-tables-9b93ef29",
+                  "title": "ceramica-industria-confindustria: tabelle retributive (240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
+                  "sha256": "9b93ef29503bb26488f68cfeaa5959552022692f9906703398a87d05244010c5"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "NUOVI MINIMI + IPO A PARTIRE DA SETTEMBRE 2024 / PIASTRELLE",
+                "quote": "F       €    1.564,40   €      -     €   1.591,61   €      -     €   1.625,62   €      -     €   1.666,45   €      -"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2024-09-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-ceramica-industria-confindustria-tables"
               }
             }
           },
@@ -130,21 +137,28 @@
             "valid_until": "2026-07-01",
             "value": "1591.61",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "title": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf"
+                  "document_id": "ceramica-industria-confindustria-tables-9b93ef29",
+                  "title": "ceramica-industria-confindustria: tabelle retributive (240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
+                  "sha256": "9b93ef29503bb26488f68cfeaa5959552022692f9906703398a87d05244010c5"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "NUOVI MINIMI + IPO A PARTIRE DA SETTEMBRE 2024 / PIASTRELLE",
+                "quote": "F       €    1.564,40   €      -     €   1.591,61   €      -     €   1.625,62   €      -     €   1.666,45   €      -"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-ceramica-industria-confindustria-tables"
               }
             }
           },
@@ -153,21 +167,28 @@
             "valid_until": "2027-06-01",
             "value": "1625.62",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "title": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf"
+                  "document_id": "ceramica-industria-confindustria-tables-9b93ef29",
+                  "title": "ceramica-industria-confindustria: tabelle retributive (240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
+                  "sha256": "9b93ef29503bb26488f68cfeaa5959552022692f9906703398a87d05244010c5"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "NUOVI MINIMI + IPO A PARTIRE DA SETTEMBRE 2024 / PIASTRELLE",
+                "quote": "F       €    1.564,40   €      -     €   1.591,61   €      -     €   1.625,62   €      -     €   1.666,45   €      -"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2026-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-ceramica-industria-confindustria-tables"
               }
             }
           },
@@ -176,21 +197,28 @@
             "valid_until": null,
             "value": "1666.45",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "title": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf"
+                  "document_id": "ceramica-industria-confindustria-tables-9b93ef29",
+                  "title": "ceramica-industria-confindustria: tabelle retributive (240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
+                  "sha256": "9b93ef29503bb26488f68cfeaa5959552022692f9906703398a87d05244010c5"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "NUOVI MINIMI + IPO A PARTIRE DA SETTEMBRE 2024 / PIASTRELLE",
+                "quote": "F       €    1.564,40   €      -     €   1.591,61   €      -     €   1.625,62   €      -     €   1.666,45   €      -"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2027-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-ceramica-industria-confindustria-tables"
               }
             }
           }
@@ -227,21 +255,28 @@
             "valid_until": "2025-07-01",
             "value": "1671.19",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "title": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf"
+                  "document_id": "ceramica-industria-confindustria-tables-9b93ef29",
+                  "title": "ceramica-industria-confindustria: tabelle retributive (240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
+                  "sha256": "9b93ef29503bb26488f68cfeaa5959552022692f9906703398a87d05244010c5"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "NUOVI MINIMI + IPO A PARTIRE DA SETTEMBRE 2024 / PIASTRELLE",
+                "quote": "E.1      €    1.671,19   €    76,37   €   1.701,12   €    79,64   €   1.738,53   €    83,73   €   1.783,43   €    88,62"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2024-09-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-ceramica-industria-confindustria-tables"
               }
             }
           },
@@ -250,21 +285,28 @@
             "valid_until": "2026-07-01",
             "value": "1701.12",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "title": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf"
+                  "document_id": "ceramica-industria-confindustria-tables-9b93ef29",
+                  "title": "ceramica-industria-confindustria: tabelle retributive (240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
+                  "sha256": "9b93ef29503bb26488f68cfeaa5959552022692f9906703398a87d05244010c5"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "NUOVI MINIMI + IPO A PARTIRE DA SETTEMBRE 2024 / PIASTRELLE",
+                "quote": "E.1      €    1.671,19   €    76,37   €   1.701,12   €    79,64   €   1.738,53   €    83,73   €   1.783,43   €    88,62"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-ceramica-industria-confindustria-tables"
               }
             }
           },
@@ -273,21 +315,28 @@
             "valid_until": "2027-06-01",
             "value": "1738.53",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "title": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf"
+                  "document_id": "ceramica-industria-confindustria-tables-9b93ef29",
+                  "title": "ceramica-industria-confindustria: tabelle retributive (240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
+                  "sha256": "9b93ef29503bb26488f68cfeaa5959552022692f9906703398a87d05244010c5"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "NUOVI MINIMI + IPO A PARTIRE DA SETTEMBRE 2024 / PIASTRELLE",
+                "quote": "E.1      €    1.671,19   €    76,37   €   1.701,12   €    79,64   €   1.738,53   €    83,73   €   1.783,43   €    88,62"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2026-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-ceramica-industria-confindustria-tables"
               }
             }
           },
@@ -296,21 +345,28 @@
             "valid_until": null,
             "value": "1783.43",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "title": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf"
+                  "document_id": "ceramica-industria-confindustria-tables-9b93ef29",
+                  "title": "ceramica-industria-confindustria: tabelle retributive (240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
+                  "sha256": "9b93ef29503bb26488f68cfeaa5959552022692f9906703398a87d05244010c5"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "NUOVI MINIMI + IPO A PARTIRE DA SETTEMBRE 2024 / PIASTRELLE",
+                "quote": "E.1      €    1.671,19   €    76,37   €   1.701,12   €    79,64   €   1.738,53   €    83,73   €   1.783,43   €    88,62"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2027-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-ceramica-industria-confindustria-tables"
               }
             }
           }
@@ -348,22 +404,122 @@
               {
                 "valid_from": "2024-09-01",
                 "valid_until": "2025-07-01",
-                "value": "76.37"
+                "value": "76.37",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "ceramica-industria-confindustria-tables-9b93ef29",
+                      "title": "ceramica-industria-confindustria: tabelle retributive (240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
+                      "sha256": "9b93ef29503bb26488f68cfeaa5959552022692f9906703398a87d05244010c5"
+                    },
+                    "page": "3",
+                    "section": "NUOVI MINIMI + IPO A PARTIRE DA SETTEMBRE 2024 / PIASTRELLE",
+                    "quote": "E.1      €    1.671,19   €    76,37   €   1.701,12   €    79,64   €   1.738,53   €    83,73   €   1.783,43   €    88,62"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2024-09-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-ceramica-industria-confindustria-tables"
+                  }
+                }
               },
               {
                 "valid_from": "2025-07-01",
                 "valid_until": "2026-07-01",
-                "value": "79.64"
+                "value": "79.64",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "ceramica-industria-confindustria-tables-9b93ef29",
+                      "title": "ceramica-industria-confindustria: tabelle retributive (240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
+                      "sha256": "9b93ef29503bb26488f68cfeaa5959552022692f9906703398a87d05244010c5"
+                    },
+                    "page": "3",
+                    "section": "NUOVI MINIMI + IPO A PARTIRE DA SETTEMBRE 2024 / PIASTRELLE",
+                    "quote": "E.1      €    1.671,19   €    76,37   €   1.701,12   €    79,64   €   1.738,53   €    83,73   €   1.783,43   €    88,62"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2025-07-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-ceramica-industria-confindustria-tables"
+                  }
+                }
               },
               {
                 "valid_from": "2026-07-01",
                 "valid_until": "2027-06-01",
-                "value": "83.73"
+                "value": "83.73",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "ceramica-industria-confindustria-tables-9b93ef29",
+                      "title": "ceramica-industria-confindustria: tabelle retributive (240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
+                      "sha256": "9b93ef29503bb26488f68cfeaa5959552022692f9906703398a87d05244010c5"
+                    },
+                    "page": "3",
+                    "section": "NUOVI MINIMI + IPO A PARTIRE DA SETTEMBRE 2024 / PIASTRELLE",
+                    "quote": "E.1      €    1.671,19   €    76,37   €   1.701,12   €    79,64   €   1.738,53   €    83,73   €   1.783,43   €    88,62"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2026-07-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-ceramica-industria-confindustria-tables"
+                  }
+                }
               },
               {
                 "valid_from": "2027-06-01",
                 "valid_until": null,
-                "value": "88.62"
+                "value": "88.62",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "ceramica-industria-confindustria-tables-9b93ef29",
+                      "title": "ceramica-industria-confindustria: tabelle retributive (240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
+                      "sha256": "9b93ef29503bb26488f68cfeaa5959552022692f9906703398a87d05244010c5"
+                    },
+                    "page": "3",
+                    "section": "NUOVI MINIMI + IPO A PARTIRE DA SETTEMBRE 2024 / PIASTRELLE",
+                    "quote": "E.1      €    1.671,19   €    76,37   €   1.701,12   €    79,64   €   1.738,53   €    83,73   €   1.783,43   €    88,62"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2027-06-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-ceramica-industria-confindustria-tables"
+                  }
+                }
               }
             ]
           },
@@ -394,21 +550,28 @@
             "valid_until": "2025-07-01",
             "value": "1671.19",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "title": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf"
+                  "document_id": "ceramica-industria-confindustria-tables-9b93ef29",
+                  "title": "ceramica-industria-confindustria: tabelle retributive (240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
+                  "sha256": "9b93ef29503bb26488f68cfeaa5959552022692f9906703398a87d05244010c5"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "NUOVI MINIMI + IPO A PARTIRE DA SETTEMBRE 2024 / PIASTRELLE",
+                "quote": "E.1      €    1.671,19   €    76,37   €   1.701,12   €    79,64   €   1.738,53   €    83,73   €   1.783,43   €    88,62"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2024-09-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-ceramica-industria-confindustria-tables"
               }
             }
           },
@@ -417,21 +580,28 @@
             "valid_until": "2026-07-01",
             "value": "1701.12",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "title": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf"
+                  "document_id": "ceramica-industria-confindustria-tables-9b93ef29",
+                  "title": "ceramica-industria-confindustria: tabelle retributive (240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
+                  "sha256": "9b93ef29503bb26488f68cfeaa5959552022692f9906703398a87d05244010c5"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "NUOVI MINIMI + IPO A PARTIRE DA SETTEMBRE 2024 / PIASTRELLE",
+                "quote": "E.1      €    1.671,19   €    76,37   €   1.701,12   €    79,64   €   1.738,53   €    83,73   €   1.783,43   €    88,62"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-ceramica-industria-confindustria-tables"
               }
             }
           },
@@ -440,21 +610,28 @@
             "valid_until": "2027-06-01",
             "value": "1738.53",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "title": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf"
+                  "document_id": "ceramica-industria-confindustria-tables-9b93ef29",
+                  "title": "ceramica-industria-confindustria: tabelle retributive (240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
+                  "sha256": "9b93ef29503bb26488f68cfeaa5959552022692f9906703398a87d05244010c5"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "NUOVI MINIMI + IPO A PARTIRE DA SETTEMBRE 2024 / PIASTRELLE",
+                "quote": "E.1      €    1.671,19   €    76,37   €   1.701,12   €    79,64   €   1.738,53   €    83,73   €   1.783,43   €    88,62"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2026-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-ceramica-industria-confindustria-tables"
               }
             }
           },
@@ -463,21 +640,28 @@
             "valid_until": null,
             "value": "1783.43",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "title": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf"
+                  "document_id": "ceramica-industria-confindustria-tables-9b93ef29",
+                  "title": "ceramica-industria-confindustria: tabelle retributive (240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
+                  "sha256": "9b93ef29503bb26488f68cfeaa5959552022692f9906703398a87d05244010c5"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "NUOVI MINIMI + IPO A PARTIRE DA SETTEMBRE 2024 / PIASTRELLE",
+                "quote": "E.1      €    1.671,19   €    76,37   €   1.701,12   €    79,64   €   1.738,53   €    83,73   €   1.783,43   €    88,62"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2027-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-ceramica-industria-confindustria-tables"
               }
             }
           }
@@ -514,21 +698,28 @@
             "valid_until": "2025-07-01",
             "value": "1839.71",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "title": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf"
+                  "document_id": "ceramica-industria-confindustria-tables-9b93ef29",
+                  "title": "ceramica-industria-confindustria: tabelle retributive (240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
+                  "sha256": "9b93ef29503bb26488f68cfeaa5959552022692f9906703398a87d05244010c5"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "NUOVI MINIMI + IPO A PARTIRE DA SETTEMBRE 2024 / PIASTRELLE",
+                "quote": "D.1      €    1.839,71   €   150,04   €   1.875,08   €   154,67   €   1.919,29   €   160,46   €   1.972,36   €   167,39"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2024-09-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-ceramica-industria-confindustria-tables"
               }
             }
           },
@@ -537,21 +728,28 @@
             "valid_until": "2026-07-01",
             "value": "1875.08",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "title": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf"
+                  "document_id": "ceramica-industria-confindustria-tables-9b93ef29",
+                  "title": "ceramica-industria-confindustria: tabelle retributive (240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
+                  "sha256": "9b93ef29503bb26488f68cfeaa5959552022692f9906703398a87d05244010c5"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "NUOVI MINIMI + IPO A PARTIRE DA SETTEMBRE 2024 / PIASTRELLE",
+                "quote": "D.1      €    1.839,71   €   150,04   €   1.875,08   €   154,67   €   1.919,29   €   160,46   €   1.972,36   €   167,39"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-ceramica-industria-confindustria-tables"
               }
             }
           },
@@ -560,21 +758,28 @@
             "valid_until": "2027-06-01",
             "value": "1919.29",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "title": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf"
+                  "document_id": "ceramica-industria-confindustria-tables-9b93ef29",
+                  "title": "ceramica-industria-confindustria: tabelle retributive (240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
+                  "sha256": "9b93ef29503bb26488f68cfeaa5959552022692f9906703398a87d05244010c5"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "NUOVI MINIMI + IPO A PARTIRE DA SETTEMBRE 2024 / PIASTRELLE",
+                "quote": "D.1      €    1.839,71   €   150,04   €   1.875,08   €   154,67   €   1.919,29   €   160,46   €   1.972,36   €   167,39"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2026-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-ceramica-industria-confindustria-tables"
               }
             }
           },
@@ -583,21 +788,28 @@
             "valid_until": null,
             "value": "1972.36",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "title": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf"
+                  "document_id": "ceramica-industria-confindustria-tables-9b93ef29",
+                  "title": "ceramica-industria-confindustria: tabelle retributive (240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
+                  "sha256": "9b93ef29503bb26488f68cfeaa5959552022692f9906703398a87d05244010c5"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "NUOVI MINIMI + IPO A PARTIRE DA SETTEMBRE 2024 / PIASTRELLE",
+                "quote": "D.1      €    1.839,71   €   150,04   €   1.875,08   €   154,67   €   1.919,29   €   160,46   €   1.972,36   €   167,39"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2027-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-ceramica-industria-confindustria-tables"
               }
             }
           }
@@ -635,22 +847,122 @@
               {
                 "valid_from": "2024-09-01",
                 "valid_until": "2025-07-01",
-                "value": "57.95"
+                "value": "57.95",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "ceramica-industria-confindustria-tables-9b93ef29",
+                      "title": "ceramica-industria-confindustria: tabelle retributive (240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
+                      "sha256": "9b93ef29503bb26488f68cfeaa5959552022692f9906703398a87d05244010c5"
+                    },
+                    "page": "3",
+                    "section": "NUOVI MINIMI + IPO A PARTIRE DA SETTEMBRE 2024 / PIASTRELLE",
+                    "quote": "D.2      €    1.839,71   €    57,95   €   1.875,08   €    60,13   €   1.919,29   €    62,86   €   1.972,36   €    66,12"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2024-09-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-ceramica-industria-confindustria-tables"
+                  }
+                }
               },
               {
                 "valid_from": "2025-07-01",
                 "valid_until": "2026-07-01",
-                "value": "60.13"
+                "value": "60.13",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "ceramica-industria-confindustria-tables-9b93ef29",
+                      "title": "ceramica-industria-confindustria: tabelle retributive (240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
+                      "sha256": "9b93ef29503bb26488f68cfeaa5959552022692f9906703398a87d05244010c5"
+                    },
+                    "page": "3",
+                    "section": "NUOVI MINIMI + IPO A PARTIRE DA SETTEMBRE 2024 / PIASTRELLE",
+                    "quote": "D.2      €    1.839,71   €    57,95   €   1.875,08   €    60,13   €   1.919,29   €    62,86   €   1.972,36   €    66,12"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2025-07-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-ceramica-industria-confindustria-tables"
+                  }
+                }
               },
               {
                 "valid_from": "2026-07-01",
                 "valid_until": "2027-06-01",
-                "value": "62.86"
+                "value": "62.86",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "ceramica-industria-confindustria-tables-9b93ef29",
+                      "title": "ceramica-industria-confindustria: tabelle retributive (240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
+                      "sha256": "9b93ef29503bb26488f68cfeaa5959552022692f9906703398a87d05244010c5"
+                    },
+                    "page": "3",
+                    "section": "NUOVI MINIMI + IPO A PARTIRE DA SETTEMBRE 2024 / PIASTRELLE",
+                    "quote": "D.2      €    1.839,71   €    57,95   €   1.875,08   €    60,13   €   1.919,29   €    62,86   €   1.972,36   €    66,12"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2026-07-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-ceramica-industria-confindustria-tables"
+                  }
+                }
               },
               {
                 "valid_from": "2027-06-01",
                 "valid_until": null,
-                "value": "66.12"
+                "value": "66.12",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "ceramica-industria-confindustria-tables-9b93ef29",
+                      "title": "ceramica-industria-confindustria: tabelle retributive (240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
+                      "sha256": "9b93ef29503bb26488f68cfeaa5959552022692f9906703398a87d05244010c5"
+                    },
+                    "page": "3",
+                    "section": "NUOVI MINIMI + IPO A PARTIRE DA SETTEMBRE 2024 / PIASTRELLE",
+                    "quote": "D.2      €    1.839,71   €    57,95   €   1.875,08   €    60,13   €   1.919,29   €    62,86   €   1.972,36   €    66,12"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2027-06-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-ceramica-industria-confindustria-tables"
+                  }
+                }
               }
             ]
           },
@@ -681,21 +993,28 @@
             "valid_until": "2025-07-01",
             "value": "1839.71",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "title": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf"
+                  "document_id": "ceramica-industria-confindustria-tables-9b93ef29",
+                  "title": "ceramica-industria-confindustria: tabelle retributive (240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
+                  "sha256": "9b93ef29503bb26488f68cfeaa5959552022692f9906703398a87d05244010c5"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "NUOVI MINIMI + IPO A PARTIRE DA SETTEMBRE 2024 / PIASTRELLE",
+                "quote": "D.1      €    1.839,71   €   150,04   €   1.875,08   €   154,67   €   1.919,29   €   160,46   €   1.972,36   €   167,39"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2024-09-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-ceramica-industria-confindustria-tables"
               }
             }
           },
@@ -704,21 +1023,28 @@
             "valid_until": "2026-07-01",
             "value": "1875.08",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "title": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf"
+                  "document_id": "ceramica-industria-confindustria-tables-9b93ef29",
+                  "title": "ceramica-industria-confindustria: tabelle retributive (240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
+                  "sha256": "9b93ef29503bb26488f68cfeaa5959552022692f9906703398a87d05244010c5"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "NUOVI MINIMI + IPO A PARTIRE DA SETTEMBRE 2024 / PIASTRELLE",
+                "quote": "D.1      €    1.839,71   €   150,04   €   1.875,08   €   154,67   €   1.919,29   €   160,46   €   1.972,36   €   167,39"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-ceramica-industria-confindustria-tables"
               }
             }
           },
@@ -727,21 +1053,28 @@
             "valid_until": "2027-06-01",
             "value": "1919.29",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "title": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf"
+                  "document_id": "ceramica-industria-confindustria-tables-9b93ef29",
+                  "title": "ceramica-industria-confindustria: tabelle retributive (240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
+                  "sha256": "9b93ef29503bb26488f68cfeaa5959552022692f9906703398a87d05244010c5"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "NUOVI MINIMI + IPO A PARTIRE DA SETTEMBRE 2024 / PIASTRELLE",
+                "quote": "D.1      €    1.839,71   €   150,04   €   1.875,08   €   154,67   €   1.919,29   €   160,46   €   1.972,36   €   167,39"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2026-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-ceramica-industria-confindustria-tables"
               }
             }
           },
@@ -750,21 +1083,28 @@
             "valid_until": null,
             "value": "1972.36",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "title": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf"
+                  "document_id": "ceramica-industria-confindustria-tables-9b93ef29",
+                  "title": "ceramica-industria-confindustria: tabelle retributive (240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
+                  "sha256": "9b93ef29503bb26488f68cfeaa5959552022692f9906703398a87d05244010c5"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "NUOVI MINIMI + IPO A PARTIRE DA SETTEMBRE 2024 / PIASTRELLE",
+                "quote": "D.1      €    1.839,71   €   150,04   €   1.875,08   €   154,67   €   1.919,29   €   160,46   €   1.972,36   €   167,39"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2027-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-ceramica-industria-confindustria-tables"
               }
             }
           }
@@ -802,22 +1142,122 @@
               {
                 "valid_from": "2024-09-01",
                 "valid_until": "2025-07-01",
-                "value": "150.04"
+                "value": "150.04",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "ceramica-industria-confindustria-tables-9b93ef29",
+                      "title": "ceramica-industria-confindustria: tabelle retributive (240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
+                      "sha256": "9b93ef29503bb26488f68cfeaa5959552022692f9906703398a87d05244010c5"
+                    },
+                    "page": "3",
+                    "section": "NUOVI MINIMI + IPO A PARTIRE DA SETTEMBRE 2024 / PIASTRELLE",
+                    "quote": "D.1      €    1.839,71   €   150,04   €   1.875,08   €   154,67   €   1.919,29   €   160,46   €   1.972,36   €   167,39"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2024-09-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-ceramica-industria-confindustria-tables"
+                  }
+                }
               },
               {
                 "valid_from": "2025-07-01",
                 "valid_until": "2026-07-01",
-                "value": "154.67"
+                "value": "154.67",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "ceramica-industria-confindustria-tables-9b93ef29",
+                      "title": "ceramica-industria-confindustria: tabelle retributive (240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
+                      "sha256": "9b93ef29503bb26488f68cfeaa5959552022692f9906703398a87d05244010c5"
+                    },
+                    "page": "3",
+                    "section": "NUOVI MINIMI + IPO A PARTIRE DA SETTEMBRE 2024 / PIASTRELLE",
+                    "quote": "D.1      €    1.839,71   €   150,04   €   1.875,08   €   154,67   €   1.919,29   €   160,46   €   1.972,36   €   167,39"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2025-07-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-ceramica-industria-confindustria-tables"
+                  }
+                }
               },
               {
                 "valid_from": "2026-07-01",
                 "valid_until": "2027-06-01",
-                "value": "160.46"
+                "value": "160.46",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "ceramica-industria-confindustria-tables-9b93ef29",
+                      "title": "ceramica-industria-confindustria: tabelle retributive (240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
+                      "sha256": "9b93ef29503bb26488f68cfeaa5959552022692f9906703398a87d05244010c5"
+                    },
+                    "page": "3",
+                    "section": "NUOVI MINIMI + IPO A PARTIRE DA SETTEMBRE 2024 / PIASTRELLE",
+                    "quote": "D.1      €    1.839,71   €   150,04   €   1.875,08   €   154,67   €   1.919,29   €   160,46   €   1.972,36   €   167,39"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2026-07-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-ceramica-industria-confindustria-tables"
+                  }
+                }
               },
               {
                 "valid_from": "2027-06-01",
                 "valid_until": null,
-                "value": "167.39"
+                "value": "167.39",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "ceramica-industria-confindustria-tables-9b93ef29",
+                      "title": "ceramica-industria-confindustria: tabelle retributive (240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
+                      "sha256": "9b93ef29503bb26488f68cfeaa5959552022692f9906703398a87d05244010c5"
+                    },
+                    "page": "3",
+                    "section": "NUOVI MINIMI + IPO A PARTIRE DA SETTEMBRE 2024 / PIASTRELLE",
+                    "quote": "D.1      €    1.839,71   €   150,04   €   1.875,08   €   154,67   €   1.919,29   €   160,46   €   1.972,36   €   167,39"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2027-06-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-ceramica-industria-confindustria-tables"
+                  }
+                }
               }
             ]
           },
@@ -848,21 +1288,28 @@
             "valid_until": "2025-07-01",
             "value": "1839.71",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "title": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf"
+                  "document_id": "ceramica-industria-confindustria-tables-9b93ef29",
+                  "title": "ceramica-industria-confindustria: tabelle retributive (240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
+                  "sha256": "9b93ef29503bb26488f68cfeaa5959552022692f9906703398a87d05244010c5"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "NUOVI MINIMI + IPO A PARTIRE DA SETTEMBRE 2024 / PIASTRELLE",
+                "quote": "D.1      €    1.839,71   €   150,04   €   1.875,08   €   154,67   €   1.919,29   €   160,46   €   1.972,36   €   167,39"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2024-09-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-ceramica-industria-confindustria-tables"
               }
             }
           },
@@ -871,21 +1318,28 @@
             "valid_until": "2026-07-01",
             "value": "1875.08",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "title": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf"
+                  "document_id": "ceramica-industria-confindustria-tables-9b93ef29",
+                  "title": "ceramica-industria-confindustria: tabelle retributive (240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
+                  "sha256": "9b93ef29503bb26488f68cfeaa5959552022692f9906703398a87d05244010c5"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "NUOVI MINIMI + IPO A PARTIRE DA SETTEMBRE 2024 / PIASTRELLE",
+                "quote": "D.1      €    1.839,71   €   150,04   €   1.875,08   €   154,67   €   1.919,29   €   160,46   €   1.972,36   €   167,39"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-ceramica-industria-confindustria-tables"
               }
             }
           },
@@ -894,21 +1348,28 @@
             "valid_until": "2027-06-01",
             "value": "1919.29",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "title": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf"
+                  "document_id": "ceramica-industria-confindustria-tables-9b93ef29",
+                  "title": "ceramica-industria-confindustria: tabelle retributive (240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
+                  "sha256": "9b93ef29503bb26488f68cfeaa5959552022692f9906703398a87d05244010c5"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "NUOVI MINIMI + IPO A PARTIRE DA SETTEMBRE 2024 / PIASTRELLE",
+                "quote": "D.1      €    1.839,71   €   150,04   €   1.875,08   €   154,67   €   1.919,29   €   160,46   €   1.972,36   €   167,39"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2026-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-ceramica-industria-confindustria-tables"
               }
             }
           },
@@ -917,21 +1378,28 @@
             "valid_until": null,
             "value": "1972.36",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "title": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf"
+                  "document_id": "ceramica-industria-confindustria-tables-9b93ef29",
+                  "title": "ceramica-industria-confindustria: tabelle retributive (240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
+                  "sha256": "9b93ef29503bb26488f68cfeaa5959552022692f9906703398a87d05244010c5"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "NUOVI MINIMI + IPO A PARTIRE DA SETTEMBRE 2024 / PIASTRELLE",
+                "quote": "D.1      €    1.839,71   €   150,04   €   1.875,08   €   154,67   €   1.919,29   €   160,46   €   1.972,36   €   167,39"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2027-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-ceramica-industria-confindustria-tables"
               }
             }
           }
@@ -968,21 +1436,28 @@
             "valid_until": "2025-07-01",
             "value": "2041.69",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "title": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf"
+                  "document_id": "ceramica-industria-confindustria-tables-9b93ef29",
+                  "title": "ceramica-industria-confindustria: tabelle retributive (240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
+                  "sha256": "9b93ef29503bb26488f68cfeaa5959552022692f9906703398a87d05244010c5"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "NUOVI MINIMI + IPO A PARTIRE DA SETTEMBRE 2024 / PIASTRELLE",
+                "quote": "C.1      €    2.041,69   €   116,89   €   2.082,50   €   119,62   €   2.133,51   €   123,03   €   2.194,75   €   127,10"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2024-09-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-ceramica-industria-confindustria-tables"
               }
             }
           },
@@ -991,21 +1466,28 @@
             "valid_until": "2026-07-01",
             "value": "2082.50",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "title": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf"
+                  "document_id": "ceramica-industria-confindustria-tables-9b93ef29",
+                  "title": "ceramica-industria-confindustria: tabelle retributive (240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
+                  "sha256": "9b93ef29503bb26488f68cfeaa5959552022692f9906703398a87d05244010c5"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "NUOVI MINIMI + IPO A PARTIRE DA SETTEMBRE 2024 / PIASTRELLE",
+                "quote": "C.1      €    2.041,69   €   116,89   €   2.082,50   €   119,62   €   2.133,51   €   123,03   €   2.194,75   €   127,10"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-ceramica-industria-confindustria-tables"
               }
             }
           },
@@ -1014,21 +1496,28 @@
             "valid_until": "2027-06-01",
             "value": "2133.51",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "title": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf"
+                  "document_id": "ceramica-industria-confindustria-tables-9b93ef29",
+                  "title": "ceramica-industria-confindustria: tabelle retributive (240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
+                  "sha256": "9b93ef29503bb26488f68cfeaa5959552022692f9906703398a87d05244010c5"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "NUOVI MINIMI + IPO A PARTIRE DA SETTEMBRE 2024 / PIASTRELLE",
+                "quote": "C.1      €    2.041,69   €   116,89   €   2.082,50   €   119,62   €   2.133,51   €   123,03   €   2.194,75   €   127,10"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2026-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-ceramica-industria-confindustria-tables"
               }
             }
           },
@@ -1037,21 +1526,28 @@
             "valid_until": null,
             "value": "2194.75",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "title": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf"
+                  "document_id": "ceramica-industria-confindustria-tables-9b93ef29",
+                  "title": "ceramica-industria-confindustria: tabelle retributive (240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
+                  "sha256": "9b93ef29503bb26488f68cfeaa5959552022692f9906703398a87d05244010c5"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "NUOVI MINIMI + IPO A PARTIRE DA SETTEMBRE 2024 / PIASTRELLE",
+                "quote": "C.1      €    2.041,69   €   116,89   €   2.082,50   €   119,62   €   2.133,51   €   123,03   €   2.194,75   €   127,10"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2027-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-ceramica-industria-confindustria-tables"
               }
             }
           }
@@ -1089,22 +1585,122 @@
               {
                 "valid_from": "2024-09-01",
                 "valid_until": "2025-07-01",
-                "value": "65.82"
+                "value": "65.82",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "ceramica-industria-confindustria-tables-9b93ef29",
+                      "title": "ceramica-industria-confindustria: tabelle retributive (240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
+                      "sha256": "9b93ef29503bb26488f68cfeaa5959552022692f9906703398a87d05244010c5"
+                    },
+                    "page": "3",
+                    "section": "NUOVI MINIMI + IPO A PARTIRE DA SETTEMBRE 2024 / PIASTRELLE",
+                    "quote": "C.2      €    2.041,69   €    65,82   €   2.082,50   €    67,18   €   2.133,51   €    68,88   €   2.194,75   €    70,93"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2024-09-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-ceramica-industria-confindustria-tables"
+                  }
+                }
               },
               {
                 "valid_from": "2025-07-01",
                 "valid_until": "2026-07-01",
-                "value": "67.18"
+                "value": "67.18",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "ceramica-industria-confindustria-tables-9b93ef29",
+                      "title": "ceramica-industria-confindustria: tabelle retributive (240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
+                      "sha256": "9b93ef29503bb26488f68cfeaa5959552022692f9906703398a87d05244010c5"
+                    },
+                    "page": "3",
+                    "section": "NUOVI MINIMI + IPO A PARTIRE DA SETTEMBRE 2024 / PIASTRELLE",
+                    "quote": "C.2      €    2.041,69   €    65,82   €   2.082,50   €    67,18   €   2.133,51   €    68,88   €   2.194,75   €    70,93"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2025-07-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-ceramica-industria-confindustria-tables"
+                  }
+                }
               },
               {
                 "valid_from": "2026-07-01",
                 "valid_until": "2027-06-01",
-                "value": "68.88"
+                "value": "68.88",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "ceramica-industria-confindustria-tables-9b93ef29",
+                      "title": "ceramica-industria-confindustria: tabelle retributive (240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
+                      "sha256": "9b93ef29503bb26488f68cfeaa5959552022692f9906703398a87d05244010c5"
+                    },
+                    "page": "3",
+                    "section": "NUOVI MINIMI + IPO A PARTIRE DA SETTEMBRE 2024 / PIASTRELLE",
+                    "quote": "C.2      €    2.041,69   €    65,82   €   2.082,50   €    67,18   €   2.133,51   €    68,88   €   2.194,75   €    70,93"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2026-07-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-ceramica-industria-confindustria-tables"
+                  }
+                }
               },
               {
                 "valid_from": "2027-06-01",
                 "valid_until": null,
-                "value": "70.93"
+                "value": "70.93",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "ceramica-industria-confindustria-tables-9b93ef29",
+                      "title": "ceramica-industria-confindustria: tabelle retributive (240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
+                      "sha256": "9b93ef29503bb26488f68cfeaa5959552022692f9906703398a87d05244010c5"
+                    },
+                    "page": "3",
+                    "section": "NUOVI MINIMI + IPO A PARTIRE DA SETTEMBRE 2024 / PIASTRELLE",
+                    "quote": "C.2      €    2.041,69   €    65,82   €   2.082,50   €    67,18   €   2.133,51   €    68,88   €   2.194,75   €    70,93"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2027-06-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-ceramica-industria-confindustria-tables"
+                  }
+                }
               }
             ]
           },
@@ -1135,21 +1731,28 @@
             "valid_until": "2025-07-01",
             "value": "2041.69",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "title": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf"
+                  "document_id": "ceramica-industria-confindustria-tables-9b93ef29",
+                  "title": "ceramica-industria-confindustria: tabelle retributive (240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
+                  "sha256": "9b93ef29503bb26488f68cfeaa5959552022692f9906703398a87d05244010c5"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "NUOVI MINIMI + IPO A PARTIRE DA SETTEMBRE 2024 / PIASTRELLE",
+                "quote": "C.1      €    2.041,69   €   116,89   €   2.082,50   €   119,62   €   2.133,51   €   123,03   €   2.194,75   €   127,10"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2024-09-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-ceramica-industria-confindustria-tables"
               }
             }
           },
@@ -1158,21 +1761,28 @@
             "valid_until": "2026-07-01",
             "value": "2082.50",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "title": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf"
+                  "document_id": "ceramica-industria-confindustria-tables-9b93ef29",
+                  "title": "ceramica-industria-confindustria: tabelle retributive (240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
+                  "sha256": "9b93ef29503bb26488f68cfeaa5959552022692f9906703398a87d05244010c5"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "NUOVI MINIMI + IPO A PARTIRE DA SETTEMBRE 2024 / PIASTRELLE",
+                "quote": "C.1      €    2.041,69   €   116,89   €   2.082,50   €   119,62   €   2.133,51   €   123,03   €   2.194,75   €   127,10"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-ceramica-industria-confindustria-tables"
               }
             }
           },
@@ -1181,21 +1791,28 @@
             "valid_until": "2027-06-01",
             "value": "2133.51",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "title": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf"
+                  "document_id": "ceramica-industria-confindustria-tables-9b93ef29",
+                  "title": "ceramica-industria-confindustria: tabelle retributive (240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
+                  "sha256": "9b93ef29503bb26488f68cfeaa5959552022692f9906703398a87d05244010c5"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "NUOVI MINIMI + IPO A PARTIRE DA SETTEMBRE 2024 / PIASTRELLE",
+                "quote": "C.1      €    2.041,69   €   116,89   €   2.082,50   €   119,62   €   2.133,51   €   123,03   €   2.194,75   €   127,10"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2026-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-ceramica-industria-confindustria-tables"
               }
             }
           },
@@ -1204,21 +1821,28 @@
             "valid_until": null,
             "value": "2194.75",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "title": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf"
+                  "document_id": "ceramica-industria-confindustria-tables-9b93ef29",
+                  "title": "ceramica-industria-confindustria: tabelle retributive (240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
+                  "sha256": "9b93ef29503bb26488f68cfeaa5959552022692f9906703398a87d05244010c5"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "NUOVI MINIMI + IPO A PARTIRE DA SETTEMBRE 2024 / PIASTRELLE",
+                "quote": "C.1      €    2.041,69   €   116,89   €   2.082,50   €   119,62   €   2.133,51   €   123,03   €   2.194,75   €   127,10"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2027-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-ceramica-industria-confindustria-tables"
               }
             }
           }
@@ -1256,22 +1880,122 @@
               {
                 "valid_from": "2024-09-01",
                 "valid_until": "2025-07-01",
-                "value": "116.89"
+                "value": "116.89",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "ceramica-industria-confindustria-tables-9b93ef29",
+                      "title": "ceramica-industria-confindustria: tabelle retributive (240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
+                      "sha256": "9b93ef29503bb26488f68cfeaa5959552022692f9906703398a87d05244010c5"
+                    },
+                    "page": "3",
+                    "section": "NUOVI MINIMI + IPO A PARTIRE DA SETTEMBRE 2024 / PIASTRELLE",
+                    "quote": "C.1      €    2.041,69   €   116,89   €   2.082,50   €   119,62   €   2.133,51   €   123,03   €   2.194,75   €   127,10"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2024-09-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-ceramica-industria-confindustria-tables"
+                  }
+                }
               },
               {
                 "valid_from": "2025-07-01",
                 "valid_until": "2026-07-01",
-                "value": "119.62"
+                "value": "119.62",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "ceramica-industria-confindustria-tables-9b93ef29",
+                      "title": "ceramica-industria-confindustria: tabelle retributive (240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
+                      "sha256": "9b93ef29503bb26488f68cfeaa5959552022692f9906703398a87d05244010c5"
+                    },
+                    "page": "3",
+                    "section": "NUOVI MINIMI + IPO A PARTIRE DA SETTEMBRE 2024 / PIASTRELLE",
+                    "quote": "C.1      €    2.041,69   €   116,89   €   2.082,50   €   119,62   €   2.133,51   €   123,03   €   2.194,75   €   127,10"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2025-07-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-ceramica-industria-confindustria-tables"
+                  }
+                }
               },
               {
                 "valid_from": "2026-07-01",
                 "valid_until": "2027-06-01",
-                "value": "123.03"
+                "value": "123.03",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "ceramica-industria-confindustria-tables-9b93ef29",
+                      "title": "ceramica-industria-confindustria: tabelle retributive (240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
+                      "sha256": "9b93ef29503bb26488f68cfeaa5959552022692f9906703398a87d05244010c5"
+                    },
+                    "page": "3",
+                    "section": "NUOVI MINIMI + IPO A PARTIRE DA SETTEMBRE 2024 / PIASTRELLE",
+                    "quote": "C.1      €    2.041,69   €   116,89   €   2.082,50   €   119,62   €   2.133,51   €   123,03   €   2.194,75   €   127,10"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2026-07-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-ceramica-industria-confindustria-tables"
+                  }
+                }
               },
               {
                 "valid_from": "2027-06-01",
                 "valid_until": null,
-                "value": "127.10"
+                "value": "127.10",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "ceramica-industria-confindustria-tables-9b93ef29",
+                      "title": "ceramica-industria-confindustria: tabelle retributive (240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
+                      "sha256": "9b93ef29503bb26488f68cfeaa5959552022692f9906703398a87d05244010c5"
+                    },
+                    "page": "3",
+                    "section": "NUOVI MINIMI + IPO A PARTIRE DA SETTEMBRE 2024 / PIASTRELLE",
+                    "quote": "C.1      €    2.041,69   €   116,89   €   2.082,50   €   119,62   €   2.133,51   €   123,03   €   2.194,75   €   127,10"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2027-06-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-ceramica-industria-confindustria-tables"
+                  }
+                }
               }
             ]
           },
@@ -1302,21 +2026,28 @@
             "valid_until": "2025-07-01",
             "value": "2041.69",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "title": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf"
+                  "document_id": "ceramica-industria-confindustria-tables-9b93ef29",
+                  "title": "ceramica-industria-confindustria: tabelle retributive (240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
+                  "sha256": "9b93ef29503bb26488f68cfeaa5959552022692f9906703398a87d05244010c5"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "NUOVI MINIMI + IPO A PARTIRE DA SETTEMBRE 2024 / PIASTRELLE",
+                "quote": "C.1      €    2.041,69   €   116,89   €   2.082,50   €   119,62   €   2.133,51   €   123,03   €   2.194,75   €   127,10"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2024-09-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-ceramica-industria-confindustria-tables"
               }
             }
           },
@@ -1325,21 +2056,28 @@
             "valid_until": "2026-07-01",
             "value": "2082.50",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "title": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf"
+                  "document_id": "ceramica-industria-confindustria-tables-9b93ef29",
+                  "title": "ceramica-industria-confindustria: tabelle retributive (240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
+                  "sha256": "9b93ef29503bb26488f68cfeaa5959552022692f9906703398a87d05244010c5"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "NUOVI MINIMI + IPO A PARTIRE DA SETTEMBRE 2024 / PIASTRELLE",
+                "quote": "C.1      €    2.041,69   €   116,89   €   2.082,50   €   119,62   €   2.133,51   €   123,03   €   2.194,75   €   127,10"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-ceramica-industria-confindustria-tables"
               }
             }
           },
@@ -1348,21 +2086,28 @@
             "valid_until": "2027-06-01",
             "value": "2133.51",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "title": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf"
+                  "document_id": "ceramica-industria-confindustria-tables-9b93ef29",
+                  "title": "ceramica-industria-confindustria: tabelle retributive (240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
+                  "sha256": "9b93ef29503bb26488f68cfeaa5959552022692f9906703398a87d05244010c5"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "NUOVI MINIMI + IPO A PARTIRE DA SETTEMBRE 2024 / PIASTRELLE",
+                "quote": "C.1      €    2.041,69   €   116,89   €   2.082,50   €   119,62   €   2.133,51   €   123,03   €   2.194,75   €   127,10"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2026-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-ceramica-industria-confindustria-tables"
               }
             }
           },
@@ -1371,21 +2116,28 @@
             "valid_until": null,
             "value": "2194.75",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "title": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf"
+                  "document_id": "ceramica-industria-confindustria-tables-9b93ef29",
+                  "title": "ceramica-industria-confindustria: tabelle retributive (240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
+                  "sha256": "9b93ef29503bb26488f68cfeaa5959552022692f9906703398a87d05244010c5"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "NUOVI MINIMI + IPO A PARTIRE DA SETTEMBRE 2024 / PIASTRELLE",
+                "quote": "C.1      €    2.041,69   €   116,89   €   2.082,50   €   119,62   €   2.133,51   €   123,03   €   2.194,75   €   127,10"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2027-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-ceramica-industria-confindustria-tables"
               }
             }
           }
@@ -1422,21 +2174,28 @@
             "valid_until": "2025-07-01",
             "value": "2341.71",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "title": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf"
+                  "document_id": "ceramica-industria-confindustria-tables-9b93ef29",
+                  "title": "ceramica-industria-confindustria: tabelle retributive (240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
+                  "sha256": "9b93ef29503bb26488f68cfeaa5959552022692f9906703398a87d05244010c5"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "NUOVI MINIMI + IPO A PARTIRE DA SETTEMBRE 2024 / PIASTRELLE",
+                "quote": "B.1      €    2.341,71   €   138,35   €   2.387,97   €   141,07   €   2.445,80   €   144,47   €   2.515,17   €   148,56"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2024-09-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-ceramica-industria-confindustria-tables"
               }
             }
           },
@@ -1445,21 +2204,28 @@
             "valid_until": "2026-07-01",
             "value": "2387.97",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "title": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf"
+                  "document_id": "ceramica-industria-confindustria-tables-9b93ef29",
+                  "title": "ceramica-industria-confindustria: tabelle retributive (240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
+                  "sha256": "9b93ef29503bb26488f68cfeaa5959552022692f9906703398a87d05244010c5"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "NUOVI MINIMI + IPO A PARTIRE DA SETTEMBRE 2024 / PIASTRELLE",
+                "quote": "B.1      €    2.341,71   €   138,35   €   2.387,97   €   141,07   €   2.445,80   €   144,47   €   2.515,17   €   148,56"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-ceramica-industria-confindustria-tables"
               }
             }
           },
@@ -1468,21 +2234,28 @@
             "valid_until": "2027-06-01",
             "value": "2445.80",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "title": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf"
+                  "document_id": "ceramica-industria-confindustria-tables-9b93ef29",
+                  "title": "ceramica-industria-confindustria: tabelle retributive (240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
+                  "sha256": "9b93ef29503bb26488f68cfeaa5959552022692f9906703398a87d05244010c5"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "NUOVI MINIMI + IPO A PARTIRE DA SETTEMBRE 2024 / PIASTRELLE",
+                "quote": "B.1      €    2.341,71   €   138,35   €   2.387,97   €   141,07   €   2.445,80   €   144,47   €   2.515,17   €   148,56"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2026-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-ceramica-industria-confindustria-tables"
               }
             }
           },
@@ -1491,21 +2264,28 @@
             "valid_until": null,
             "value": "2515.17",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "title": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf"
+                  "document_id": "ceramica-industria-confindustria-tables-9b93ef29",
+                  "title": "ceramica-industria-confindustria: tabelle retributive (240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
+                  "sha256": "9b93ef29503bb26488f68cfeaa5959552022692f9906703398a87d05244010c5"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "NUOVI MINIMI + IPO A PARTIRE DA SETTEMBRE 2024 / PIASTRELLE",
+                "quote": "B.1      €    2.341,71   €   138,35   €   2.387,97   €   141,07   €   2.445,80   €   144,47   €   2.515,17   €   148,56"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2027-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-ceramica-industria-confindustria-tables"
               }
             }
           }
@@ -1543,22 +2323,122 @@
               {
                 "valid_from": "2024-09-01",
                 "valid_until": "2025-07-01",
-                "value": "138.35"
+                "value": "138.35",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "ceramica-industria-confindustria-tables-9b93ef29",
+                      "title": "ceramica-industria-confindustria: tabelle retributive (240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
+                      "sha256": "9b93ef29503bb26488f68cfeaa5959552022692f9906703398a87d05244010c5"
+                    },
+                    "page": "3",
+                    "section": "NUOVI MINIMI + IPO A PARTIRE DA SETTEMBRE 2024 / PIASTRELLE",
+                    "quote": "B.1      €    2.341,71   €   138,35   €   2.387,97   €   141,07   €   2.445,80   €   144,47   €   2.515,17   €   148,56"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2024-09-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-ceramica-industria-confindustria-tables"
+                  }
+                }
               },
               {
                 "valid_from": "2025-07-01",
                 "valid_until": "2026-07-01",
-                "value": "141.07"
+                "value": "141.07",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "ceramica-industria-confindustria-tables-9b93ef29",
+                      "title": "ceramica-industria-confindustria: tabelle retributive (240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
+                      "sha256": "9b93ef29503bb26488f68cfeaa5959552022692f9906703398a87d05244010c5"
+                    },
+                    "page": "3",
+                    "section": "NUOVI MINIMI + IPO A PARTIRE DA SETTEMBRE 2024 / PIASTRELLE",
+                    "quote": "B.1      €    2.341,71   €   138,35   €   2.387,97   €   141,07   €   2.445,80   €   144,47   €   2.515,17   €   148,56"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2025-07-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-ceramica-industria-confindustria-tables"
+                  }
+                }
               },
               {
                 "valid_from": "2026-07-01",
                 "valid_until": "2027-06-01",
-                "value": "144.47"
+                "value": "144.47",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "ceramica-industria-confindustria-tables-9b93ef29",
+                      "title": "ceramica-industria-confindustria: tabelle retributive (240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
+                      "sha256": "9b93ef29503bb26488f68cfeaa5959552022692f9906703398a87d05244010c5"
+                    },
+                    "page": "3",
+                    "section": "NUOVI MINIMI + IPO A PARTIRE DA SETTEMBRE 2024 / PIASTRELLE",
+                    "quote": "B.1      €    2.341,71   €   138,35   €   2.387,97   €   141,07   €   2.445,80   €   144,47   €   2.515,17   €   148,56"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2026-07-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-ceramica-industria-confindustria-tables"
+                  }
+                }
               },
               {
                 "valid_from": "2027-06-01",
                 "valid_until": null,
-                "value": "148.56"
+                "value": "148.56",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "ceramica-industria-confindustria-tables-9b93ef29",
+                      "title": "ceramica-industria-confindustria: tabelle retributive (240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
+                      "sha256": "9b93ef29503bb26488f68cfeaa5959552022692f9906703398a87d05244010c5"
+                    },
+                    "page": "3",
+                    "section": "NUOVI MINIMI + IPO A PARTIRE DA SETTEMBRE 2024 / PIASTRELLE",
+                    "quote": "B.1      €    2.341,71   €   138,35   €   2.387,97   €   141,07   €   2.445,80   €   144,47   €   2.515,17   €   148,56"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2027-06-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-ceramica-industria-confindustria-tables"
+                  }
+                }
               }
             ]
           },
@@ -1589,21 +2469,28 @@
             "valid_until": "2025-07-01",
             "value": "2341.71",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "title": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf"
+                  "document_id": "ceramica-industria-confindustria-tables-9b93ef29",
+                  "title": "ceramica-industria-confindustria: tabelle retributive (240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
+                  "sha256": "9b93ef29503bb26488f68cfeaa5959552022692f9906703398a87d05244010c5"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "NUOVI MINIMI + IPO A PARTIRE DA SETTEMBRE 2024 / PIASTRELLE",
+                "quote": "B.1      €    2.341,71   €   138,35   €   2.387,97   €   141,07   €   2.445,80   €   144,47   €   2.515,17   €   148,56"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2024-09-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-ceramica-industria-confindustria-tables"
               }
             }
           },
@@ -1612,21 +2499,28 @@
             "valid_until": "2026-07-01",
             "value": "2387.97",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "title": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf"
+                  "document_id": "ceramica-industria-confindustria-tables-9b93ef29",
+                  "title": "ceramica-industria-confindustria: tabelle retributive (240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
+                  "sha256": "9b93ef29503bb26488f68cfeaa5959552022692f9906703398a87d05244010c5"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "NUOVI MINIMI + IPO A PARTIRE DA SETTEMBRE 2024 / PIASTRELLE",
+                "quote": "B.1      €    2.341,71   €   138,35   €   2.387,97   €   141,07   €   2.445,80   €   144,47   €   2.515,17   €   148,56"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-ceramica-industria-confindustria-tables"
               }
             }
           },
@@ -1635,21 +2529,28 @@
             "valid_until": "2027-06-01",
             "value": "2445.80",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "title": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf"
+                  "document_id": "ceramica-industria-confindustria-tables-9b93ef29",
+                  "title": "ceramica-industria-confindustria: tabelle retributive (240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
+                  "sha256": "9b93ef29503bb26488f68cfeaa5959552022692f9906703398a87d05244010c5"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "NUOVI MINIMI + IPO A PARTIRE DA SETTEMBRE 2024 / PIASTRELLE",
+                "quote": "B.1      €    2.341,71   €   138,35   €   2.387,97   €   141,07   €   2.445,80   €   144,47   €   2.515,17   €   148,56"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2026-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-ceramica-industria-confindustria-tables"
               }
             }
           },
@@ -1658,21 +2559,28 @@
             "valid_until": null,
             "value": "2515.17",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "title": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf"
+                  "document_id": "ceramica-industria-confindustria-tables-9b93ef29",
+                  "title": "ceramica-industria-confindustria: tabelle retributive (240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
+                  "sha256": "9b93ef29503bb26488f68cfeaa5959552022692f9906703398a87d05244010c5"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "NUOVI MINIMI + IPO A PARTIRE DA SETTEMBRE 2024 / PIASTRELLE",
+                "quote": "B.1      €    2.341,71   €   138,35   €   2.387,97   €   141,07   €   2.445,80   €   144,47   €   2.515,17   €   148,56"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2027-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-ceramica-industria-confindustria-tables"
               }
             }
           }
@@ -1709,21 +2617,28 @@
             "valid_until": "2025-07-01",
             "value": "2600.08",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "title": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf"
+                  "document_id": "ceramica-industria-confindustria-tables-9b93ef29",
+                  "title": "ceramica-industria-confindustria: tabelle retributive (240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
+                  "sha256": "9b93ef29503bb26488f68cfeaa5959552022692f9906703398a87d05244010c5"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "NUOVI MINIMI + IPO A PARTIRE DA SETTEMBRE 2024 / PIASTRELLE",
+                "quote": "A       €    2.600,08   €      -     €   2.651,78   €      -     €   2.716,41   €      -     €   2.793,96   €      -"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2024-09-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-ceramica-industria-confindustria-tables"
               }
             }
           },
@@ -1732,21 +2647,28 @@
             "valid_until": "2026-07-01",
             "value": "2651.78",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "title": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf"
+                  "document_id": "ceramica-industria-confindustria-tables-9b93ef29",
+                  "title": "ceramica-industria-confindustria: tabelle retributive (240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
+                  "sha256": "9b93ef29503bb26488f68cfeaa5959552022692f9906703398a87d05244010c5"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "NUOVI MINIMI + IPO A PARTIRE DA SETTEMBRE 2024 / PIASTRELLE",
+                "quote": "A       €    2.600,08   €      -     €   2.651,78   €      -     €   2.716,41   €      -     €   2.793,96   €      -"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-ceramica-industria-confindustria-tables"
               }
             }
           },
@@ -1755,21 +2677,28 @@
             "valid_until": "2027-06-01",
             "value": "2716.41",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "title": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf"
+                  "document_id": "ceramica-industria-confindustria-tables-9b93ef29",
+                  "title": "ceramica-industria-confindustria: tabelle retributive (240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
+                  "sha256": "9b93ef29503bb26488f68cfeaa5959552022692f9906703398a87d05244010c5"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "NUOVI MINIMI + IPO A PARTIRE DA SETTEMBRE 2024 / PIASTRELLE",
+                "quote": "A       €    2.600,08   €      -     €   2.651,78   €      -     €   2.716,41   €      -     €   2.793,96   €      -"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2026-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-ceramica-industria-confindustria-tables"
               }
             }
           },
@@ -1778,21 +2707,28 @@
             "valid_until": null,
             "value": "2793.96",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "title": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf"
+                  "document_id": "ceramica-industria-confindustria-tables-9b93ef29",
+                  "title": "ceramica-industria-confindustria: tabelle retributive (240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
+                  "sha256": "9b93ef29503bb26488f68cfeaa5959552022692f9906703398a87d05244010c5"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "NUOVI MINIMI + IPO A PARTIRE DA SETTEMBRE 2024 / PIASTRELLE",
+                "quote": "A       €    2.600,08   €      -     €   2.651,78   €      -     €   2.716,41   €      -     €   2.793,96   €      -"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2027-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-ceramica-industria-confindustria-tables"
               }
             }
           }
@@ -2010,7 +2946,7 @@
     "effective_until": null,
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
     "verification_status": "unverified",
-    "source_hash": "e11805343883245b90f453be37270347b4286566197779a441a0c5bec0dbb160",
+    "source_hash": "a7ddcc043a856a1a162cb9c1065a76d813cead3e8233e5acdad92b2af76eaa26",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2200,5 +3136,31 @@
         }
       }
     }
+  },
+  "verification": {
+    "reviews": [
+      {
+        "id": "2026-11-07-ai-ceramica-industria-confindustria-tables",
+        "date": "2026-11-07",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The monthly values of the levels against the primary tables (text layer).",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
+            "sha256": "9b93ef29503bb26488f68cfeaa5959552022692f9906703398a87d05244010c5"
+          }
+        ],
+        "findings": [
+          "72 values found verbatim on the cited pages and marked verified; 0 left as they were (derived or not on a text page)."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels.base_salary",
+          "levels.fixed_allowances"
+        ]
+      }
+    ]
   }
 }

@@ -1,5 +1,5 @@
 [build-system]
-requires = ["hatchling==1.32.4"]
+requires = ["hatchling==1.33.0"]
 build-backend = "hatchling.build"
 
 [project]
@@ -23,7 +23,7 @@ classifiers = [
 ]
 requires-python = ">=3.12"
 dependencies = [
-    "pydantic>=2.6",
+    "pydantic>=2.14.2",
 ]
 
 [project.urls]
@@ -41,9 +41,9 @@ docs = [
 dev = [
     "bandit>=1.9.4",
     "complexipy>=8.0",
-    "hatchling>=1.32.4",
-    "hypothesis>=6.170.12",
-    "mutmut>=3.8.0",
+    "hatchling>=1.33.0",
+    "hypothesis>=6.170.14",
+    "mutmut>=3.8.1",
     "mypy>=2.3.1",
     "pip-audit>=2.10.1",
     "pytest>=9.1.1",

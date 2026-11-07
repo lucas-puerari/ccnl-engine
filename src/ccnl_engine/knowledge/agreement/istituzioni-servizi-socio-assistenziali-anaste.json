@@ -25,6 +25,15 @@
         "url": "https://snalv.it/docs/anaste25/pdf6.pdf",
         "pages": [],
         "published_on": "2025-07-23"
+      },
+      {
+        "document_id": "anaste-ccnl-2026-2028",
+        "title": "CCNL ANASTE 2026-2028, testo sottoscritto il 9 ottobre 2026",
+        "kind": "associazione",
+        "url": "https://www.anaste.com/download/?wpdmdl=11171",
+        "pages": [],
+        "published_on": "2026-10-09",
+        "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
       }
     ],
     "extraction": {
@@ -119,6 +128,27 @@
         ],
         "findings": [
           "Art. 74 - Tredicesima mensilità (p. 57): \"4. Le frazioni di mese pari o superiori ai 15 giorni saranno considerate come mese intero.\". Match: at_least 15. The quattordicesima differs: Art. 75: no separate 14th; an equivalent amount is already included in the minimo conglobato of art. 68, so no fraction rule applies to it."
+        ]
+      },
+      {
+        "id": "2026-11-07-ai-anaste-2026-2028",
+        "date": "2026-11-07",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 69 of the CCNL ANASTE 2026-2028 signed 9 October 2026: the tabellare from 1 October 2026, 1 January 2027 and 1 January 2028 (p. 64, page image).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.anaste.com/download/?wpdmdl=11171",
+            "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
+          }
+        ],
+        "findings": [
+          "Three tranches of the 2026-2028 renewal; the 'tabellare vigente' column equals the August 2025 values of the file."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels.base_salary"
         ]
       }
     ]
@@ -344,7 +374,7 @@
           },
           {
             "valid_from": "2025-08-01",
-            "valid_until": null,
+            "valid_until": "2026-10-01",
             "value": "2130.15",
             "provenance": {
               "status": "derived",
@@ -362,6 +392,99 @@
                 "extraction_timestamp": "2026-09-07T15:03:36",
                 "verification_status": "unverified",
                 "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": "2027-01-01",
+            "value": "2184.70",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "anaste-ccnl-2026-2028",
+                  "title": "CCNL ANASTE 2026-2028, testo sottoscritto il 9 ottobre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.anaste.com/download/?wpdmdl=11171",
+                  "published_on": "2026-10-09",
+                  "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
+                },
+                "page": "64",
+                "section": "Art. 69 c. 3 - Minimi contrattuali conglobati mensili",
+                "quote": "Quadro [...] Tabellare 1.10.2026 € 2184,70"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T14:00:00Z",
+                "effective_from": "2026-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T14:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-anaste-2026-2028"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2028-01-01",
+            "value": "2218.79",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "anaste-ccnl-2026-2028",
+                  "title": "CCNL ANASTE 2026-2028, testo sottoscritto il 9 ottobre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.anaste.com/download/?wpdmdl=11171",
+                  "published_on": "2026-10-09",
+                  "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
+                },
+                "page": "64",
+                "section": "Art. 69 c. 3 - Minimi contrattuali conglobati mensili",
+                "quote": "Quadro [...] Tabellare 1.1.2027 € 2218,79"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T14:00:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T14:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-anaste-2026-2028"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "2252.88",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "anaste-ccnl-2026-2028",
+                  "title": "CCNL ANASTE 2026-2028, testo sottoscritto il 9 ottobre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.anaste.com/download/?wpdmdl=11171",
+                  "published_on": "2026-10-09",
+                  "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
+                },
+                "page": "64",
+                "section": "Art. 69 c. 3 - Minimi contrattuali conglobati mensili",
+                "quote": "Quadro [...] Tabellare 1.1.2028 € 2252,88"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T14:00:00Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T14:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-anaste-2026-2028"
               }
             }
           }
@@ -450,7 +573,7 @@
           },
           {
             "valid_from": "2025-08-01",
-            "valid_until": null,
+            "valid_until": "2026-10-01",
             "value": "1972.13",
             "provenance": {
               "status": "derived",
@@ -468,6 +591,99 @@
                 "extraction_timestamp": "2026-09-07T15:03:36",
                 "verification_status": "unverified",
                 "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": "2027-01-01",
+            "value": "2022.63",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "anaste-ccnl-2026-2028",
+                  "title": "CCNL ANASTE 2026-2028, testo sottoscritto il 9 ottobre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.anaste.com/download/?wpdmdl=11171",
+                  "published_on": "2026-10-09",
+                  "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
+                },
+                "page": "64",
+                "section": "Art. 69 c. 3 - Minimi contrattuali conglobati mensili",
+                "quote": "10 [...] Tabellare 1.10.2026 € 2022,63"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T14:00:00Z",
+                "effective_from": "2026-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T14:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-anaste-2026-2028"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2028-01-01",
+            "value": "2054.19",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "anaste-ccnl-2026-2028",
+                  "title": "CCNL ANASTE 2026-2028, testo sottoscritto il 9 ottobre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.anaste.com/download/?wpdmdl=11171",
+                  "published_on": "2026-10-09",
+                  "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
+                },
+                "page": "64",
+                "section": "Art. 69 c. 3 - Minimi contrattuali conglobati mensili",
+                "quote": "10 [...] Tabellare 1.1.2027 € 2054,19"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T14:00:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T14:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-anaste-2026-2028"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "2085.75",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "anaste-ccnl-2026-2028",
+                  "title": "CCNL ANASTE 2026-2028, testo sottoscritto il 9 ottobre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.anaste.com/download/?wpdmdl=11171",
+                  "published_on": "2026-10-09",
+                  "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
+                },
+                "page": "64",
+                "section": "Art. 69 c. 3 - Minimi contrattuali conglobati mensili",
+                "quote": "10 [...] Tabellare 1.1.2028 € 2085,75"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T14:00:00Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T14:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-anaste-2026-2028"
               }
             }
           }
@@ -524,7 +740,7 @@
           },
           {
             "valid_from": "2025-08-01",
-            "valid_until": null,
+            "valid_until": "2026-10-01",
             "value": "1893.48",
             "provenance": {
               "status": "derived",
@@ -542,6 +758,99 @@
                 "extraction_timestamp": "2026-09-07T15:03:36",
                 "verification_status": "unverified",
                 "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": "2027-01-01",
+            "value": "1941.97",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "anaste-ccnl-2026-2028",
+                  "title": "CCNL ANASTE 2026-2028, testo sottoscritto il 9 ottobre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.anaste.com/download/?wpdmdl=11171",
+                  "published_on": "2026-10-09",
+                  "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
+                },
+                "page": "64",
+                "section": "Art. 69 c. 3 - Minimi contrattuali conglobati mensili",
+                "quote": "9 [...] Tabellare 1.10.2026 € 1941,97"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T14:00:00Z",
+                "effective_from": "2026-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T14:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-anaste-2026-2028"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2028-01-01",
+            "value": "1972.27",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "anaste-ccnl-2026-2028",
+                  "title": "CCNL ANASTE 2026-2028, testo sottoscritto il 9 ottobre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.anaste.com/download/?wpdmdl=11171",
+                  "published_on": "2026-10-09",
+                  "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
+                },
+                "page": "64",
+                "section": "Art. 69 c. 3 - Minimi contrattuali conglobati mensili",
+                "quote": "9 [...] Tabellare 1.1.2027 € 1972,27"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T14:00:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T14:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-anaste-2026-2028"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "2002.57",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "anaste-ccnl-2026-2028",
+                  "title": "CCNL ANASTE 2026-2028, testo sottoscritto il 9 ottobre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.anaste.com/download/?wpdmdl=11171",
+                  "published_on": "2026-10-09",
+                  "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
+                },
+                "page": "64",
+                "section": "Art. 69 c. 3 - Minimi contrattuali conglobati mensili",
+                "quote": "9 [...] Tabellare 1.1.2028 € 2002,57"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T14:00:00Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T14:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-anaste-2026-2028"
               }
             }
           }
@@ -598,7 +907,7 @@
           },
           {
             "valid_from": "2025-08-01",
-            "valid_until": null,
+            "valid_until": "2026-10-01",
             "value": "1769.59",
             "provenance": {
               "status": "derived",
@@ -616,6 +925,99 @@
                 "extraction_timestamp": "2026-09-07T15:03:36",
                 "verification_status": "unverified",
                 "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": "2027-01-01",
+            "value": "1814.90",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "anaste-ccnl-2026-2028",
+                  "title": "CCNL ANASTE 2026-2028, testo sottoscritto il 9 ottobre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.anaste.com/download/?wpdmdl=11171",
+                  "published_on": "2026-10-09",
+                  "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
+                },
+                "page": "64",
+                "section": "Art. 69 c. 3 - Minimi contrattuali conglobati mensili",
+                "quote": "8 [...] Tabellare 1.10.2026 € 1814,90"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T14:00:00Z",
+                "effective_from": "2026-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T14:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-anaste-2026-2028"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2028-01-01",
+            "value": "1843.22",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "anaste-ccnl-2026-2028",
+                  "title": "CCNL ANASTE 2026-2028, testo sottoscritto il 9 ottobre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.anaste.com/download/?wpdmdl=11171",
+                  "published_on": "2026-10-09",
+                  "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
+                },
+                "page": "64",
+                "section": "Art. 69 c. 3 - Minimi contrattuali conglobati mensili",
+                "quote": "8 [...] Tabellare 1.1.2027 € 1843,22"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T14:00:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T14:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-anaste-2026-2028"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "1871.54",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "anaste-ccnl-2026-2028",
+                  "title": "CCNL ANASTE 2026-2028, testo sottoscritto il 9 ottobre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.anaste.com/download/?wpdmdl=11171",
+                  "published_on": "2026-10-09",
+                  "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
+                },
+                "page": "64",
+                "section": "Art. 69 c. 3 - Minimi contrattuali conglobati mensili",
+                "quote": "8 [...] Tabellare 1.1.2028 € 1871,54"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T14:00:00Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T14:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-anaste-2026-2028"
               }
             }
           }
@@ -672,7 +1074,7 @@
           },
           {
             "valid_from": "2025-08-01",
-            "valid_until": null,
+            "valid_until": "2026-10-01",
             "value": "1752.93",
             "provenance": {
               "status": "derived",
@@ -690,6 +1092,99 @@
                 "extraction_timestamp": "2026-09-07T15:03:36",
                 "verification_status": "unverified",
                 "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": "2027-01-01",
+            "value": "1797.82",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "anaste-ccnl-2026-2028",
+                  "title": "CCNL ANASTE 2026-2028, testo sottoscritto il 9 ottobre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.anaste.com/download/?wpdmdl=11171",
+                  "published_on": "2026-10-09",
+                  "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
+                },
+                "page": "64",
+                "section": "Art. 69 c. 3 - Minimi contrattuali conglobati mensili",
+                "quote": "7 [...] Tabellare 1.10.2026 € 1797,82"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T14:00:00Z",
+                "effective_from": "2026-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T14:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-anaste-2026-2028"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2028-01-01",
+            "value": "1825.87",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "anaste-ccnl-2026-2028",
+                  "title": "CCNL ANASTE 2026-2028, testo sottoscritto il 9 ottobre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.anaste.com/download/?wpdmdl=11171",
+                  "published_on": "2026-10-09",
+                  "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
+                },
+                "page": "64",
+                "section": "Art. 69 c. 3 - Minimi contrattuali conglobati mensili",
+                "quote": "7 [...] Tabellare 1.1.2027 € 1825,87"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T14:00:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T14:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-anaste-2026-2028"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "1853.92",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "anaste-ccnl-2026-2028",
+                  "title": "CCNL ANASTE 2026-2028, testo sottoscritto il 9 ottobre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.anaste.com/download/?wpdmdl=11171",
+                  "published_on": "2026-10-09",
+                  "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
+                },
+                "page": "64",
+                "section": "Art. 69 c. 3 - Minimi contrattuali conglobati mensili",
+                "quote": "7 [...] Tabellare 1.1.2028 € 1853,92"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T14:00:00Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T14:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-anaste-2026-2028"
               }
             }
           }
@@ -746,7 +1241,7 @@
           },
           {
             "valid_from": "2025-08-01",
-            "valid_until": null,
+            "valid_until": "2026-10-01",
             "value": "1696.37",
             "provenance": {
               "status": "derived",
@@ -764,6 +1259,99 @@
                 "extraction_timestamp": "2026-09-07T15:03:36",
                 "verification_status": "unverified",
                 "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": "2027-01-01",
+            "value": "1739.81",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "anaste-ccnl-2026-2028",
+                  "title": "CCNL ANASTE 2026-2028, testo sottoscritto il 9 ottobre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.anaste.com/download/?wpdmdl=11171",
+                  "published_on": "2026-10-09",
+                  "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
+                },
+                "page": "64",
+                "section": "Art. 69 c. 3 - Minimi contrattuali conglobati mensili",
+                "quote": "6 [...] Tabellare 1.10.2026 € 1739,81"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T14:00:00Z",
+                "effective_from": "2026-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T14:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-anaste-2026-2028"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2028-01-01",
+            "value": "1766.96",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "anaste-ccnl-2026-2028",
+                  "title": "CCNL ANASTE 2026-2028, testo sottoscritto il 9 ottobre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.anaste.com/download/?wpdmdl=11171",
+                  "published_on": "2026-10-09",
+                  "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
+                },
+                "page": "64",
+                "section": "Art. 69 c. 3 - Minimi contrattuali conglobati mensili",
+                "quote": "6 [...] Tabellare 1.1.2027 € 1766,96"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T14:00:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T14:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-anaste-2026-2028"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "1794.11",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "anaste-ccnl-2026-2028",
+                  "title": "CCNL ANASTE 2026-2028, testo sottoscritto il 9 ottobre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.anaste.com/download/?wpdmdl=11171",
+                  "published_on": "2026-10-09",
+                  "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
+                },
+                "page": "64",
+                "section": "Art. 69 c. 3 - Minimi contrattuali conglobati mensili",
+                "quote": "6 [...] Tabellare 1.1.2028 € 1794,11"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T14:00:00Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T14:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-anaste-2026-2028"
               }
             }
           }
@@ -820,7 +1408,7 @@
           },
           {
             "valid_from": "2025-08-01",
-            "valid_until": null,
+            "valid_until": "2026-10-01",
             "value": "1637.06",
             "provenance": {
               "status": "derived",
@@ -838,6 +1426,99 @@
                 "extraction_timestamp": "2026-09-07T15:03:36",
                 "verification_status": "unverified",
                 "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": "2027-01-01",
+            "value": "1678.98",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "anaste-ccnl-2026-2028",
+                  "title": "CCNL ANASTE 2026-2028, testo sottoscritto il 9 ottobre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.anaste.com/download/?wpdmdl=11171",
+                  "published_on": "2026-10-09",
+                  "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
+                },
+                "page": "64",
+                "section": "Art. 69 c. 3 - Minimi contrattuali conglobati mensili",
+                "quote": "5 [...] Tabellare 1.10.2026 € 1678,98"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T14:00:00Z",
+                "effective_from": "2026-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T14:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-anaste-2026-2028"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2028-01-01",
+            "value": "1705.18",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "anaste-ccnl-2026-2028",
+                  "title": "CCNL ANASTE 2026-2028, testo sottoscritto il 9 ottobre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.anaste.com/download/?wpdmdl=11171",
+                  "published_on": "2026-10-09",
+                  "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
+                },
+                "page": "64",
+                "section": "Art. 69 c. 3 - Minimi contrattuali conglobati mensili",
+                "quote": "5 [...] Tabellare 1.1.2027 € 1705,18"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T14:00:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T14:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-anaste-2026-2028"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "1731.38",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "anaste-ccnl-2026-2028",
+                  "title": "CCNL ANASTE 2026-2028, testo sottoscritto il 9 ottobre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.anaste.com/download/?wpdmdl=11171",
+                  "published_on": "2026-10-09",
+                  "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
+                },
+                "page": "64",
+                "section": "Art. 69 c. 3 - Minimi contrattuali conglobati mensili",
+                "quote": "5 [...] Tabellare 1.1.2028 € 1731,38"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T14:00:00Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T14:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-anaste-2026-2028"
               }
             }
           }
@@ -894,7 +1575,7 @@
           },
           {
             "valid_from": "2025-08-01",
-            "valid_until": null,
+            "valid_until": "2026-10-01",
             "value": "1562.10",
             "provenance": {
               "status": "derived",
@@ -912,6 +1593,99 @@
                 "extraction_timestamp": "2026-09-07T15:03:36",
                 "verification_status": "unverified",
                 "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": "2027-01-01",
+            "value": "1602.10",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "anaste-ccnl-2026-2028",
+                  "title": "CCNL ANASTE 2026-2028, testo sottoscritto il 9 ottobre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.anaste.com/download/?wpdmdl=11171",
+                  "published_on": "2026-10-09",
+                  "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
+                },
+                "page": "64",
+                "section": "Art. 69 c. 3 - Minimi contrattuali conglobati mensili",
+                "quote": "4 [...] Tabellare 1.10.2026 € 1602,10"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T14:00:00Z",
+                "effective_from": "2026-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T14:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-anaste-2026-2028"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2028-01-01",
+            "value": "1627.10",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "anaste-ccnl-2026-2028",
+                  "title": "CCNL ANASTE 2026-2028, testo sottoscritto il 9 ottobre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.anaste.com/download/?wpdmdl=11171",
+                  "published_on": "2026-10-09",
+                  "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
+                },
+                "page": "64",
+                "section": "Art. 69 c. 3 - Minimi contrattuali conglobati mensili",
+                "quote": "4 [...] Tabellare 1.1.2027 € 1627,10"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T14:00:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T14:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-anaste-2026-2028"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "1652.10",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "anaste-ccnl-2026-2028",
+                  "title": "CCNL ANASTE 2026-2028, testo sottoscritto il 9 ottobre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.anaste.com/download/?wpdmdl=11171",
+                  "published_on": "2026-10-09",
+                  "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
+                },
+                "page": "64",
+                "section": "Art. 69 c. 3 - Minimi contrattuali conglobati mensili",
+                "quote": "4 [...] Tabellare 1.1.2028 € 1652,10"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T14:00:00Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T14:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-anaste-2026-2028"
               }
             }
           }
@@ -968,7 +1742,7 @@
           },
           {
             "valid_from": "2025-08-01",
-            "valid_until": null,
+            "valid_until": "2026-10-01",
             "value": "1525.03",
             "provenance": {
               "status": "derived",
@@ -986,6 +1760,99 @@
                 "extraction_timestamp": "2026-09-07T15:03:36",
                 "verification_status": "unverified",
                 "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": "2027-01-01",
+            "value": "1564.08",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "anaste-ccnl-2026-2028",
+                  "title": "CCNL ANASTE 2026-2028, testo sottoscritto il 9 ottobre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.anaste.com/download/?wpdmdl=11171",
+                  "published_on": "2026-10-09",
+                  "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
+                },
+                "page": "64",
+                "section": "Art. 69 c. 3 - Minimi contrattuali conglobati mensili",
+                "quote": "3S [...] Tabellare 1.10.2026 € 1564,08"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T14:00:00Z",
+                "effective_from": "2026-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T14:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-anaste-2026-2028"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2028-01-01",
+            "value": "1588.49",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "anaste-ccnl-2026-2028",
+                  "title": "CCNL ANASTE 2026-2028, testo sottoscritto il 9 ottobre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.anaste.com/download/?wpdmdl=11171",
+                  "published_on": "2026-10-09",
+                  "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
+                },
+                "page": "64",
+                "section": "Art. 69 c. 3 - Minimi contrattuali conglobati mensili",
+                "quote": "3S [...] Tabellare 1.1.2027 € 1588,49"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T14:00:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T14:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-anaste-2026-2028"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "1612.90",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "anaste-ccnl-2026-2028",
+                  "title": "CCNL ANASTE 2026-2028, testo sottoscritto il 9 ottobre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.anaste.com/download/?wpdmdl=11171",
+                  "published_on": "2026-10-09",
+                  "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
+                },
+                "page": "64",
+                "section": "Art. 69 c. 3 - Minimi contrattuali conglobati mensili",
+                "quote": "3S [...] Tabellare 1.1.2028 € 1612,90"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T14:00:00Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T14:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-anaste-2026-2028"
               }
             }
           }
@@ -1042,7 +1909,7 @@
           },
           {
             "valid_from": "2025-08-01",
-            "valid_until": null,
+            "valid_until": "2026-10-01",
             "value": "1487.96",
             "provenance": {
               "status": "derived",
@@ -1060,6 +1927,99 @@
                 "extraction_timestamp": "2026-09-07T15:03:36",
                 "verification_status": "unverified",
                 "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": "2027-01-01",
+            "value": "1526.06",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "anaste-ccnl-2026-2028",
+                  "title": "CCNL ANASTE 2026-2028, testo sottoscritto il 9 ottobre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.anaste.com/download/?wpdmdl=11171",
+                  "published_on": "2026-10-09",
+                  "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
+                },
+                "page": "64",
+                "section": "Art. 69 c. 3 - Minimi contrattuali conglobati mensili",
+                "quote": "3 [...] Tabellare 1.10.2026 € 1526,06"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T14:00:00Z",
+                "effective_from": "2026-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T14:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-anaste-2026-2028"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2028-01-01",
+            "value": "1549.87",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "anaste-ccnl-2026-2028",
+                  "title": "CCNL ANASTE 2026-2028, testo sottoscritto il 9 ottobre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.anaste.com/download/?wpdmdl=11171",
+                  "published_on": "2026-10-09",
+                  "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
+                },
+                "page": "64",
+                "section": "Art. 69 c. 3 - Minimi contrattuali conglobati mensili",
+                "quote": "3 [...] Tabellare 1.1.2027 € 1549,87"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T14:00:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T14:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-anaste-2026-2028"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "1573.68",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "anaste-ccnl-2026-2028",
+                  "title": "CCNL ANASTE 2026-2028, testo sottoscritto il 9 ottobre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.anaste.com/download/?wpdmdl=11171",
+                  "published_on": "2026-10-09",
+                  "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
+                },
+                "page": "64",
+                "section": "Art. 69 c. 3 - Minimi contrattuali conglobati mensili",
+                "quote": "3 [...] Tabellare 1.1.2028 € 1573,68"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T14:00:00Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T14:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-anaste-2026-2028"
               }
             }
           }
@@ -1116,7 +2076,7 @@
           },
           {
             "valid_from": "2025-08-01",
-            "valid_until": null,
+            "valid_until": "2026-10-01",
             "value": "1390.12",
             "provenance": {
               "status": "derived",
@@ -1134,6 +2094,99 @@
                 "extraction_timestamp": "2026-09-07T15:03:36",
                 "verification_status": "unverified",
                 "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": "2027-01-01",
+            "value": "1425.72",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "anaste-ccnl-2026-2028",
+                  "title": "CCNL ANASTE 2026-2028, testo sottoscritto il 9 ottobre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.anaste.com/download/?wpdmdl=11171",
+                  "published_on": "2026-10-09",
+                  "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
+                },
+                "page": "64",
+                "section": "Art. 69 c. 3 - Minimi contrattuali conglobati mensili",
+                "quote": "2 [...] Tabellare 1.10.2026 € 1425,72"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T14:00:00Z",
+                "effective_from": "2026-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T14:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-anaste-2026-2028"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2028-01-01",
+            "value": "1447.97",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "anaste-ccnl-2026-2028",
+                  "title": "CCNL ANASTE 2026-2028, testo sottoscritto il 9 ottobre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.anaste.com/download/?wpdmdl=11171",
+                  "published_on": "2026-10-09",
+                  "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
+                },
+                "page": "64",
+                "section": "Art. 69 c. 3 - Minimi contrattuali conglobati mensili",
+                "quote": "2 [...] Tabellare 1.1.2027 € 1447,97"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T14:00:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T14:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-anaste-2026-2028"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "1470.22",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "anaste-ccnl-2026-2028",
+                  "title": "CCNL ANASTE 2026-2028, testo sottoscritto il 9 ottobre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.anaste.com/download/?wpdmdl=11171",
+                  "published_on": "2026-10-09",
+                  "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
+                },
+                "page": "64",
+                "section": "Art. 69 c. 3 - Minimi contrattuali conglobati mensili",
+                "quote": "2 [...] Tabellare 1.1.2028 € 1470,22"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T14:00:00Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T14:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-anaste-2026-2028"
               }
             }
           }
@@ -1167,7 +2220,7 @@
         "periods": [
           {
             "valid_from": "2023-01-01",
-            "valid_until": null,
+            "valid_until": "2026-10-01",
             "value": "1295.43",
             "provenance": {
               "status": "derived",
@@ -1185,6 +2238,99 @@
                 "extraction_timestamp": "2026-09-07T15:03:36",
                 "verification_status": "unverified",
                 "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": "2027-01-01",
+            "value": "1328.60",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "anaste-ccnl-2026-2028",
+                  "title": "CCNL ANASTE 2026-2028, testo sottoscritto il 9 ottobre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.anaste.com/download/?wpdmdl=11171",
+                  "published_on": "2026-10-09",
+                  "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
+                },
+                "page": "64",
+                "section": "Art. 69 c. 3 - Minimi contrattuali conglobati mensili",
+                "quote": "1 [...] Tabellare 1.10.2026 € 1328,60"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T14:00:00Z",
+                "effective_from": "2026-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T14:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-anaste-2026-2028"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2028-01-01",
+            "value": "1349.33",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "anaste-ccnl-2026-2028",
+                  "title": "CCNL ANASTE 2026-2028, testo sottoscritto il 9 ottobre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.anaste.com/download/?wpdmdl=11171",
+                  "published_on": "2026-10-09",
+                  "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
+                },
+                "page": "64",
+                "section": "Art. 69 c. 3 - Minimi contrattuali conglobati mensili",
+                "quote": "1 [...] Tabellare 1.1.2027 € 1349,33"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T14:00:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T14:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-anaste-2026-2028"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "1370.06",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "anaste-ccnl-2026-2028",
+                  "title": "CCNL ANASTE 2026-2028, testo sottoscritto il 9 ottobre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.anaste.com/download/?wpdmdl=11171",
+                  "published_on": "2026-10-09",
+                  "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
+                },
+                "page": "64",
+                "section": "Art. 69 c. 3 - Minimi contrattuali conglobati mensili",
+                "quote": "1 [...] Tabellare 1.1.2028 € 1370,06"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T14:00:00Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T14:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-anaste-2026-2028"
               }
             }
           }
@@ -1326,7 +2472,7 @@
     "effective_until": null,
     "source": "https://snalv.it/docs/anaste25/pdf6.pdf",
     "verification_status": "verified",
-    "source_hash": "8a659396edc7ba68bd5b40d73b0b808aa93a9d606865b54b775bc3521c6e9362",
+    "source_hash": "74a4f0c25138253cafc4a629dda416c15ac561f95dcc5d8a86b6299557e22d0f",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

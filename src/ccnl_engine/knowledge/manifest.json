@@ -99,7 +99,7 @@
       "valid_to": "2027-12-31",
       "ruleset_id": "ccnl/agenzie-viaggio-fiavet",
       "ruleset_version": "2026.2",
-      "source_hash": "1c39009aeb1d8d6076d80c45916ac474959510a9e36b650a972880b239cf7430",
+      "source_hash": "77dda4de7ab40f2396e59ebcdd941939f54ea0efefc77eb52f72736e401ff989",
       "source_type": "institutional_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/agenzie-viaggio-fiavet.json.gz"
@@ -388,7 +388,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/cemento-calce-gesso-industria",
       "ruleset_version": "2026.2",
-      "source_hash": "795cf74c0f477a8778819704a62f75db1b84197731cd7e226b2f18e49d2a69e1",
+      "source_hash": "5c7618a5c4fff7c9f6c0bddc1aaced47bc12b2cf01ed0940d8141dcb8a68dbbc",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/cemento-calce-gesso-industria.json.gz"
@@ -405,7 +405,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/ceramica-industria-confindustria",
       "ruleset_version": "2026.2",
-      "source_hash": "e11805343883245b90f453be37270347b4286566197779a441a0c5bec0dbb160",
+      "source_hash": "a7ddcc043a856a1a162cb9c1065a76d813cead3e8233e5acdad92b2af76eaa26",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/ceramica-industria-confindustria.json.gz"
@@ -422,7 +422,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/ceramica-sanitaria-stoviglieria-confindustria",
       "ruleset_version": "2026.2",
-      "source_hash": "1e97b5026d719ac2179be0f5f4463b31253476f880500c32b0000650cb0b111e",
+      "source_hash": "e5885d4f4bf1ce0197d413a67b68c3ba7ef1b3d75f01a438e5b59b3d98f2e69c",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/ceramica-sanitaria-stoviglieria-confindustria.json.gz"
@@ -881,7 +881,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/esercizi-cinematografici-anec",
       "ruleset_version": "2026.2",
-      "source_hash": "482cc3a687844e3b47ea27ce5928563523d1e0de0aa64708bd2e56c6b5c7d977",
+      "source_hash": "b26d1b654a928f14c88614ce691cbd8423e27a33c7ba7fe4691011a2d3285bbd",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/esercizi-cinematografici-anec.json.gz"
@@ -918,7 +918,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/farmacie-municipalizzate-assofarm",
       "ruleset_version": "2026.2",
-      "source_hash": "52f3f1bfa75125bd45882f1b90e2671ac3b20d459d4b8620291435df1c444950",
+      "source_hash": "880ebb1a49b39f1f7c989a78a008fbb899e0f6f40356197ec374c741dadd1069",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/farmacie-municipalizzate-assofarm.json.gz"
@@ -1139,7 +1139,7 @@
       "valid_to": "2027-12-31",
       "ruleset_id": "ccnl/igiene-ambientale-utilitalia",
       "ruleset_version": "2026.2",
-      "source_hash": "082e6a72053132377333b8137990a995ca42355a9376a888d1ed9b36579e2236",
+      "source_hash": "f6287e38435bbae7a531e6883492f55282f5687ce93450cbec11c2b82f96e53b",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/igiene-ambientale-utilitalia.json.gz"
@@ -1224,7 +1224,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/istituzioni-servizi-socio-assistenziali-anaste",
       "ruleset_version": "2026.2",
-      "source_hash": "8a659396edc7ba68bd5b40d73b0b808aa93a9d606865b54b775bc3521c6e9362",
+      "source_hash": "74a4f0c25138253cafc4a629dda416c15ac561f95dcc5d8a86b6299557e22d0f",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/istituzioni-servizi-socio-assistenziali-anaste.json.gz"
@@ -1360,7 +1360,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/legno-arredamento-federlegno",
       "ruleset_version": "2026.2",
-      "source_hash": "f0d580311d828df62e0345ae76a4dc2ae837dd7191fd6e000b519c12726f2aad",
+      "source_hash": "c67520cb84a967f03723ed4cc618ba45a0a81598b2e86a7be7542f63adf473f0",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/legno-arredamento-federlegno.json.gz"
@@ -3461,7 +3461,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "5ae585c15bd488b64c94c7630661149de05ee363bce8aa946d505b486daefdd2",
+      "source_hash": "33864afa92f46166be39af24b1c1f0194c55350feb642a9cb20225c6b8303249",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/farmacie-municipalizzate-assofarm.json.gz",
@@ -3981,7 +3981,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "24e3b8b7162ad3a412faae0805da0e1462c2397895627a0ad1f925b876b9d8d8",
+      "source_hash": "5e4c6e015218a9a16c731b133e426d1edb3dc5b9a84929bb2e812e8f6ab7d499",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/legno-arredamento-federlegno.json.gz",

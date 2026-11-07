@@ -271,21 +271,28 @@
             "valid_until": "2024-07-01",
             "value": "2210.16",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "20108-pdf",
-                  "title": "20108-pdf",
-                  "kind": "cnel",
-                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+                  "document_id": "agenzie-viaggio-fiavet-tables-4a110c78",
+                  "title": "agenzie-viaggio-fiavet: tabelle retributive (renewal-2024-ce-mu.pdf)",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/AgenzieViaggioTurismo_AccordoRinnovo_26.7.24.pdf",
+                  "sha256": "4a110c78751772f16c62ea511166996a2316c61bf8096c9259e67eb343874d68"
                 },
-                "section": "Tabella retributiva"
+                "page": "25",
+                "section": "Articolo 147(2), Paga base al 30.6.2024",
+                "quote": "A               2.210,16"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2024-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-agenzie-viaggio-fiavet-tables"
               }
             }
           },
@@ -438,21 +445,28 @@
             "valid_until": "2024-07-01",
             "value": "2046.20",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "20108-pdf",
-                  "title": "20108-pdf",
-                  "kind": "cnel",
-                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+                  "document_id": "agenzie-viaggio-fiavet-tables-4a110c78",
+                  "title": "agenzie-viaggio-fiavet: tabelle retributive (renewal-2024-ce-mu.pdf)",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/AgenzieViaggioTurismo_AccordoRinnovo_26.7.24.pdf",
+                  "sha256": "4a110c78751772f16c62ea511166996a2316c61bf8096c9259e67eb343874d68"
                 },
-                "section": "Tabella retributiva"
+                "page": "25",
+                "section": "Articolo 147(2), Paga base al 30.6.2024",
+                "quote": "B               2.046,20"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2024-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-agenzie-viaggio-fiavet-tables"
               }
             }
           },
@@ -605,21 +619,28 @@
             "valid_until": "2024-07-01",
             "value": "1906.44",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "20108-pdf",
-                  "title": "20108-pdf",
-                  "kind": "cnel",
-                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+                  "document_id": "agenzie-viaggio-fiavet-tables-4a110c78",
+                  "title": "agenzie-viaggio-fiavet: tabelle retributive (renewal-2024-ce-mu.pdf)",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/AgenzieViaggioTurismo_AccordoRinnovo_26.7.24.pdf",
+                  "sha256": "4a110c78751772f16c62ea511166996a2316c61bf8096c9259e67eb343874d68"
                 },
-                "section": "Tabella retributiva"
+                "page": "25",
+                "section": "Articolo 147(2), Paga base al 30.6.2024",
+                "quote": "1               1.906,44"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2024-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-agenzie-viaggio-fiavet-tables"
               }
             }
           },
@@ -772,21 +793,28 @@
             "valid_until": "2024-07-01",
             "value": "1742.47",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "20108-pdf",
-                  "title": "20108-pdf",
-                  "kind": "cnel",
-                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+                  "document_id": "agenzie-viaggio-fiavet-tables-4a110c78",
+                  "title": "agenzie-viaggio-fiavet: tabelle retributive (renewal-2024-ce-mu.pdf)",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/AgenzieViaggioTurismo_AccordoRinnovo_26.7.24.pdf",
+                  "sha256": "4a110c78751772f16c62ea511166996a2316c61bf8096c9259e67eb343874d68"
                 },
-                "section": "Tabella retributiva"
+                "page": "25",
+                "section": "Articolo 147(2), Paga base al 30.6.2024",
+                "quote": "2               1.742,47"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2024-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-agenzie-viaggio-fiavet-tables"
               }
             }
           },
@@ -939,21 +967,28 @@
             "valid_until": "2024-07-01",
             "value": "1643.37",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "20108-pdf",
-                  "title": "20108-pdf",
-                  "kind": "cnel",
-                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+                  "document_id": "agenzie-viaggio-fiavet-tables-4a110c78",
+                  "title": "agenzie-viaggio-fiavet: tabelle retributive (renewal-2024-ce-mu.pdf)",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/AgenzieViaggioTurismo_AccordoRinnovo_26.7.24.pdf",
+                  "sha256": "4a110c78751772f16c62ea511166996a2316c61bf8096c9259e67eb343874d68"
                 },
-                "section": "Tabella retributiva"
+                "page": "25",
+                "section": "Articolo 147(2), Paga base al 30.6.2024",
+                "quote": "3               1.643,37"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2024-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-agenzie-viaggio-fiavet-tables"
               }
             }
           },
@@ -1106,21 +1141,28 @@
             "valid_until": "2024-07-01",
             "value": "1550.69",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "20108-pdf",
-                  "title": "20108-pdf",
-                  "kind": "cnel",
-                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+                  "document_id": "agenzie-viaggio-fiavet-tables-4a110c78",
+                  "title": "agenzie-viaggio-fiavet: tabelle retributive (renewal-2024-ce-mu.pdf)",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/AgenzieViaggioTurismo_AccordoRinnovo_26.7.24.pdf",
+                  "sha256": "4a110c78751772f16c62ea511166996a2316c61bf8096c9259e67eb343874d68"
                 },
-                "section": "Tabella retributiva"
+                "page": "25",
+                "section": "Articolo 147(2), Paga base al 30.6.2024",
+                "quote": "4               1.550,69"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2024-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-agenzie-viaggio-fiavet-tables"
               }
             }
           },
@@ -1273,21 +1315,28 @@
             "valid_until": "2024-07-01",
             "value": "1454.28",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "20108-pdf",
-                  "title": "20108-pdf",
-                  "kind": "cnel",
-                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+                  "document_id": "agenzie-viaggio-fiavet-tables-4a110c78",
+                  "title": "agenzie-viaggio-fiavet: tabelle retributive (renewal-2024-ce-mu.pdf)",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/AgenzieViaggioTurismo_AccordoRinnovo_26.7.24.pdf",
+                  "sha256": "4a110c78751772f16c62ea511166996a2316c61bf8096c9259e67eb343874d68"
                 },
-                "section": "Tabella retributiva"
+                "page": "25",
+                "section": "Articolo 147(2), Paga base al 30.6.2024",
+                "quote": "5               1.454,28"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2024-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-agenzie-viaggio-fiavet-tables"
               }
             }
           },
@@ -1440,21 +1489,28 @@
             "valid_until": "2024-07-01",
             "value": "1398.37",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "20108-pdf",
-                  "title": "20108-pdf",
-                  "kind": "cnel",
-                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+                  "document_id": "agenzie-viaggio-fiavet-tables-4a110c78",
+                  "title": "agenzie-viaggio-fiavet: tabelle retributive (renewal-2024-ce-mu.pdf)",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/AgenzieViaggioTurismo_AccordoRinnovo_26.7.24.pdf",
+                  "sha256": "4a110c78751772f16c62ea511166996a2316c61bf8096c9259e67eb343874d68"
                 },
-                "section": "Tabella retributiva"
+                "page": "25",
+                "section": "Articolo 147(2), Paga base al 30.6.2024",
+                "quote": "6s               1.398,37"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2024-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-agenzie-viaggio-fiavet-tables"
               }
             }
           },
@@ -1607,21 +1663,28 @@
             "valid_until": "2024-07-01",
             "value": "1378.55",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "20108-pdf",
-                  "title": "20108-pdf",
-                  "kind": "cnel",
-                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+                  "document_id": "agenzie-viaggio-fiavet-tables-4a110c78",
+                  "title": "agenzie-viaggio-fiavet: tabelle retributive (renewal-2024-ce-mu.pdf)",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/AgenzieViaggioTurismo_AccordoRinnovo_26.7.24.pdf",
+                  "sha256": "4a110c78751772f16c62ea511166996a2316c61bf8096c9259e67eb343874d68"
                 },
-                "section": "Tabella retributiva"
+                "page": "25",
+                "section": "Articolo 147(2), Paga base al 30.6.2024",
+                "quote": "6               1.378,55"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2024-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-agenzie-viaggio-fiavet-tables"
               }
             }
           },
@@ -1774,21 +1837,28 @@
             "valid_until": "2024-07-01",
             "value": "1291.81",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "20108-pdf",
-                  "title": "20108-pdf",
-                  "kind": "cnel",
-                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+                  "document_id": "agenzie-viaggio-fiavet-tables-4a110c78",
+                  "title": "agenzie-viaggio-fiavet: tabelle retributive (renewal-2024-ce-mu.pdf)",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/AgenzieViaggioTurismo_AccordoRinnovo_26.7.24.pdf",
+                  "sha256": "4a110c78751772f16c62ea511166996a2316c61bf8096c9259e67eb343874d68"
                 },
-                "section": "Tabella retributiva"
+                "page": "25",
+                "section": "Articolo 147(2), Paga base al 30.6.2024",
+                "quote": "7               1.291,81"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2024-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-agenzie-viaggio-fiavet-tables"
               }
             }
           },
@@ -2014,7 +2084,7 @@
     "effective_until": "2027-12-31",
     "source": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf",
     "verification_status": "unverified",
-    "source_hash": "1c39009aeb1d8d6076d80c45916ac474959510a9e36b650a972880b239cf7430",
+    "source_hash": "77dda4de7ab40f2396e59ebcdd941939f54ea0efefc77eb52f72736e401ff989",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },
@@ -2228,6 +2298,28 @@
         "independence": "same_process",
         "checked": [
           "parameters.seniority_increments"
+        ]
+      },
+      {
+        "id": "2026-11-07-ai-agenzie-viaggio-fiavet-tables",
+        "date": "2026-11-07",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The monthly values of the levels against the primary tables (text layer).",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/AgenzieViaggioTurismo_AccordoRinnovo_26.7.24.pdf",
+            "sha256": "4a110c78751772f16c62ea511166996a2316c61bf8096c9259e67eb343874d68"
+          }
+        ],
+        "findings": [
+          "10 values found verbatim on the cited pages and marked verified; 50 left as they were (derived or not on a text page)."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels.base_salary",
+          "levels.fixed_allowances"
         ]
       }
     ]

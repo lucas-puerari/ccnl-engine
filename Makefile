@@ -42,8 +42,9 @@ test:
 # source_paths. MODULE narrows the run to a mutant name glob
 # (MODULE='ccnl_engine.fund.health.rules.*'); empty, every module. The run is
 # kept off the foreground: background QoS and lowest priority, a few mutmut
-# children and one thread per numeric library. A run of one module rewrites
-# scripts/quality/mutation/record.json: commit it only after a full run.
+# children and one thread per numeric library. With MODULE the check scores
+# only the modules the glob matches and leaves
+# scripts/quality/mutation/record.json alone: only a full run rewrites it.
 MUTATION_WORKERS ?= 2
 MODULE ?=
 MUTATION_ENV := OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 \
@@ -53,7 +54,8 @@ LOW_PRIORITY := $(if $(shell command -v taskpolicy),taskpolicy -b) nice -n 19
 mutation:
 	$(MUTATION_ENV) $(LOW_PRIORITY) uv run mutmut run \
 		--max-children $(MUTATION_WORKERS) $(if $(MODULE),'$(MODULE)')
-	uv run python scripts/quality/mutation/check.py --min-score 93.0
+	uv run python scripts/quality/mutation/check.py --min-score 93.0 \
+		$(if $(MODULE),--modules '$(MODULE)')
 
 # Generated artefacts: knowledge manifest and documentation pages
 
