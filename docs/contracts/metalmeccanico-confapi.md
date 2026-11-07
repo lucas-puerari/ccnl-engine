@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2017-07-03 |
-| **Last review** | 2026-11-07 |
+| **Last review** | 2026-11-08 |
 | **Latest salary tranche** | 2028-06-01 |
 
 ## Review history
@@ -67,6 +67,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-02 | claude-opus-5-5 (ai) | Art. 29 row h (PDF p. 101). | corrected | Art. 29 row h: notturno e festivo 60%, 55% for shift workers (role turnista). |
 | 2026-11-02 | claude-opus-5-5 (ai) | Art. 29 row b (PDF p. 101). | corrected | Art. 29 row b: ordinary night 25% until 22 (NightShiftEvent.before_22) and 35% after for the workers not on shifts, 25% for shift workers (role turnista). |
 | 2026-11-07 | claude-opus-5-5 (ai) | Art. 48 (PDF p. 122) and the renewals of 26 May 2021 and 4 June 2026 for amendments to it. | confirmed | Art. 48: 485 EUR a year with the June pay, to the workers in service on 1 January in firms without second-level bargaining with economic content, prorated by the months of the year before (a fraction above 15 days a month), reduced up to its amount by the pay above the CCNL, out of the TFR base, paid at the settlement on an earlier termination, of the competence of the year of payment.<br>The ipotesi of 26 May 2021 and the renewal of 4 June 2026 do not mention the element (OCR of their 23 and 41 pages). |
+| 2026-11-08 | gpt-6-sol (ai) | CCNL top-ups of maternity and work injury, read from the signed text by a separate model session; every quote found on the PDF text layer. | confirmed | Added work_rules.insured_absence.maternity.<br>Added work_rules.insured_absence.injury. |
 
 ## Salary table
 

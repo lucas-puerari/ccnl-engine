@@ -1946,7 +1946,7 @@
     "effective_until": null,
     "source": "https://www.sistemamodaitalia.com/",
     "verification_status": "unverified",
-    "source_hash": "19a809729a5a2393b944f2dced51ef714cf4d2b2ff227c9420c58bf717280840",
+    "source_hash": "a2617b982625533395742ef11a92f4ffd6bc1f491da7d1527a566b778de40a5a",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2135,6 +2135,72 @@
           "effective_from": "2022-01-01"
         }
       }
+    },
+    "insured_absence": {
+      "maternity": {
+        "integration_rate": "1",
+        "net_basis": true,
+        "integration_days": 150,
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "cnel-tessile-smi-2022-187819",
+              "title": "CCNL Tessile Abbigliamento Moda, testo 31 gennaio 2022 (CNEL)",
+              "kind": "associazione",
+              "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/187819",
+              "sha256": "77c269b3fa0d3d87efeb86e44ecd7b344f55cb3d125205d283e6ac58b97fb2b1"
+            },
+            "page": "99",
+            "section": "Art. 95, comma 1 (operaie); cf. artt. 102 e 112 (intermedie e impiegate)",
+            "quote": "In caso di gravidanza e puerperio, ferme restando le disposizioni di legge sulla tutela fisica ed economica delle lavoratrici madri, l’azienda deve integrare il trattamento mutualistico per il periodo di assenza fino al 100% della retribuzione netta normale mensile per i primi 5 mesi. Per la determinazione della retribuzione si fa riferimento all’art. 44 del presente contratto. Gli elementi del punto 2.2 si prendono in considerazione se corrisposti mensilmente e, comunque, fatte salve le diverse pattuizioni aziendali."
+          },
+          "transformation": "Top-up to 100% of net normal monthly remuneration for first five months; months not converted to days. integration_days 150: the compulsory leave of art. 16 D.Lgs. 151/2001 (five months) the clause refers to",
+          "note": "2024 signed renewal (PDF p. 34 for maternity) checked by OCR because it has no text layer; quotes from selectable 2022 signed text.",
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-08T03:00:00Z",
+            "effective_from": null,
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-08T03:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-08-gpt-tessile-smi-insured-absence"
+          }
+        }
+      },
+      "injury": {
+        "carenza_rate": "1",
+        "advanced": true,
+        "advanced_permanent_only": false,
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "cnel-tessile-smi-2022-187819",
+              "title": "CCNL Tessile Abbigliamento Moda, testo 31 gennaio 2022 (CNEL)",
+              "kind": "associazione",
+              "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/187819",
+              "sha256": "77c269b3fa0d3d87efeb86e44ecd7b344f55cb3d125205d283e6ac58b97fb2b1"
+            },
+            "page": "77",
+            "section": "Art. 61, integrazione e anticipazione",
+            "quote": "Al lavoratore sarà riconosciuto inoltre, a partire dal primo giorno di assenza e fino a guarigione clinica, un trattamento assistenziale a integrazione dell’indennità corrisposta dall’INAIL, fino a raggiungere il 100% della retribuzione netta. Per la determinazione della stessa si fa riferimento a quanto disposto dall’art. 44 del presente contratto. Gli elementi di cui al punto 2.2 si prendono in considerazione se corrisposti mensilmente e comunque fatte salve diverse pattuizioni aziendali."
+          },
+          "transformation": "From first day of absence through clinical recovery, up to 100% net, hence covers absence during carenza; advance on worker request per separate clause quoted in notes.",
+          "note": "2024 signed renewal (PDF p. 34 for maternity) checked by OCR because it has no text layer; quotes from selectable 2022 signed text.",
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-08T03:00:00Z",
+            "effective_from": null,
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-08T03:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-08-gpt-tessile-smi-insured-absence"
+          }
+        }
+      }
     }
   },
   "verification": {
@@ -2181,6 +2247,29 @@
         "checked": [
           "levels.base_salary",
           "levels.fixed_allowances"
+        ]
+      },
+      {
+        "id": "2026-11-08-gpt-tessile-smi-insured-absence",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "CCNL top-ups of maternity and work injury, read from the signed text by a separate model session; every quote found on the PDF text layer.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/187819",
+            "sha256": "77c269b3fa0d3d87efeb86e44ecd7b344f55cb3d125205d283e6ac58b97fb2b1"
+          }
+        ],
+        "findings": [
+          "Added work_rules.insured_absence.maternity.",
+          "Added work_rules.insured_absence.injury."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.insured_absence.maternity",
+          "work_rules.insured_absence.injury"
         ]
       }
     ]

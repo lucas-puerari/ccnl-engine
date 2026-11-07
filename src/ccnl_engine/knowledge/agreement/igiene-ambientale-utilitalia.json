@@ -4750,7 +4750,7 @@
     "effective_until": "2027-12-31",
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551",
     "verification_status": "unverified",
-    "source_hash": "f6287e38435bbae7a531e6883492f55282f5687ce93450cbec11c2b82f96e53b",
+    "source_hash": "ddcc7641fb3ef3b7ef757af1adfe0be77f59e48fa6b378064a452ae922b061e0",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -5013,6 +5013,69 @@
           "effective_from": "2023-03-01"
         }
       }
+    },
+    "insured_absence": {
+      "maternity": {
+        "integration_rate": "1",
+        "net_basis": true,
+        "integration_days": 150,
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "igiene-ambientale-consolidato-2026",
+              "title": "CCNL Igiene Ambientale — testo consolidato 24.07.2025 + ipotesi 09.12.2025",
+              "kind": "altro",
+              "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf",
+              "sha256": "57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756"
+            },
+            "page": "127",
+            "section": "Art. 45 A(2)",
+            "quote": "2. Durante il periodo di astensione obbligatoria dal lavoro per gravidanza e puerperio, l'azienda corrisponde alla dipendente una integrazione di quanto la stessa percepisce, in forza di disposizioni legislative e/o di altre norme, no al raggiungimento della intera retribuzione globale mensile netta di sua spettanza."
+          },
+          "note": "Text-layer consolidated edition, not signed; checked against image-only signed CNEL 2022 base contract deposit 222972, pp. 117 and 121.",
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-08T03:00:00Z",
+            "effective_from": null,
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-08T03:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-08-gpt-igiene-ambientale-utilitalia-insured-absence"
+          },
+          "transformation": "integration_days 150: the compulsory leave of art. 16 D.Lgs. 151/2001 (five months) the clause refers to"
+        }
+      },
+      "injury": {
+        "carenza_rate": "1",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "igiene-ambientale-consolidato-2026",
+              "title": "CCNL Igiene Ambientale — testo consolidato 24.07.2025 + ipotesi 09.12.2025",
+              "kind": "altro",
+              "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf",
+              "sha256": "57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756"
+            },
+            "page": "123",
+            "section": "Art. 44(3)",
+            "quote": "3. Per tutta la durata del periodo di conservazione del posto, l'azienda corrisponde al lavoratore la retribuzione globale netta mediante integrazione di quanto lo stesso percepisce, in forza di disposizioni legislative e/o di atti assicurativi, di previdenza o assistenziali, dall'istituto assicuratore, salvo quanto previsto dall'art.11, comma 16 e fatto salvo il trattamento economico per i primi tre giorni a carico dell'azienda stessa, pari al 100% della retribuzione globale mensile netta del lavoratore."
+          },
+          "note": "Text-layer consolidated edition, not signed; checked against image-only signed CNEL 2022 base contract deposit 222972, pp. 117 and 121.",
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-08T03:00:00Z",
+            "effective_from": null,
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-08T03:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-08-gpt-igiene-ambientale-utilitalia-insured-absence"
+          }
+        }
+      }
     }
   },
   "verification": {
@@ -5057,6 +5120,29 @@
         "independence": "same_process",
         "checked": [
           "levels.base_salary"
+        ]
+      },
+      {
+        "id": "2026-11-08-gpt-igiene-ambientale-utilitalia-insured-absence",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "CCNL top-ups of maternity and work injury, read from the signed text by a separate model session; every quote found on the PDF text layer.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf",
+            "sha256": "57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756"
+          }
+        ],
+        "findings": [
+          "Added work_rules.insured_absence.maternity.",
+          "Added work_rules.insured_absence.injury."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.insured_absence.maternity",
+          "work_rules.insured_absence.injury"
         ]
       }
     ]
