@@ -34,6 +34,15 @@
         "url": "https://www.lavorofacile.it/",
         "pages": [],
         "published_on": "2021-04-01"
+      },
+      {
+        "document_id": "unionalimentari-verbale-2025-05-28",
+        "title": "CCNL Alimentari PMI Unionalimentari Confapi, verbale di accordo di rinnovo 28 maggio 2025 (con rettifica 6 giugno 2025)",
+        "kind": "associazione",
+        "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-Unionalimentari-Confapi-Verbale-di-rettifica-28-06-25.pdf",
+        "pages": [],
+        "published_on": "2025-05-28",
+        "sha256": "0ab3ecf2d31a037aa18fb77aca31c5e97a1b1015487f5b068e9ca073224b4a17"
       }
     ],
     "extraction": {
@@ -82,7 +91,7 @@
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: Tranche 3 (01/04/2027) and tranche 4 (01/01/2028) not modeled. The circular text states tranche 3 as EUR 32 at parametro 137 (level 8 equivalent), but the per-level table shows the same 74.09 EUR increment as all other tranches for every level including level 4. Text and table are irreconcilable without a clarification from Unionalimentari. Engine returns Jan 2026 amounts for dates on or after 2026-01-01.",
+        "text": "TRANCHES 2027-2028 (art. 47 of the verbale signed 28 May 2025, p. 26): 70.00 EUR at parametro 137 from 1 April 2027 and again from 1 January 2028, modelled per level as printed (e.g. level 8 1,255.82 and 1,306.92). The association circular's prose giving 32 EUR for the third tranche is wrong; its table matches the verbale.",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
@@ -90,7 +99,8 @@
           "applies_when": {
             "effective_from": "2027-04-01"
           },
-          "remediation": "Add tranche 3 (01/04/2027) and tranche 4 (01/01/2028) once Unionalimentari clarifies the per-level amounts."
+          "remediation": "Resolved: the signed table of art. 47, read on 2026-11-07.",
+          "status": "resolved"
         }
       }
     ]
@@ -115,6 +125,27 @@
         ],
         "findings": [
           "Art. 48 - Tredicesima mensilità (p. 127): \"Nel caso di inizio o di cessazione del rapporto di lavoro durante il corso dell’anno, il lavoratore ha diritto a tanti dodicesimi della gratifica natalizia quanti sono i mesi di anzianità di servizio presso l’azienda. La frazione di mese superiore ai 15 giorni viene considerata a questi effetti mese intero.\". Added: more_than 15 (the file applied the engine default, at least 15 days)."
+        ]
+      },
+      {
+        "id": "2026-11-07-ai-unionalimentari-2027-2028",
+        "date": "2026-11-07",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 47 of the verbale of 28 May 2025 (p. 26, page image): the minimi from 1 April 2027 and 1 January 2028.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-Unionalimentari-Confapi-Verbale-di-rettifica-28-06-25.pdf",
+            "sha256": "0ab3ecf2d31a037aa18fb77aca31c5e97a1b1015487f5b068e9ca073224b4a17"
+          }
+        ],
+        "findings": [
+          "Two tranches of 70 EUR at parametro 137, reparametrised per level; the 2025 and 2026 columns equal the file."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels.base_salary"
         ]
       }
     ]
@@ -353,7 +384,7 @@
           },
           {
             "valid_from": "2026-01-01",
-            "valid_until": null,
+            "valid_until": "2027-04-01",
             "value": "2870.86",
             "provenance": {
               "status": "derived",
@@ -371,6 +402,68 @@
                 "extraction_timestamp": "2026-09-07T15:03:36",
                 "verification_status": "unverified",
                 "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-04-01",
+            "valid_until": "2028-01-01",
+            "value": "2988.37",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "unionalimentari-verbale-2025-05-28",
+                  "title": "CCNL Alimentari PMI Unionalimentari Confapi, verbale di accordo di rinnovo 28 maggio 2025 (con rettifica 6 giugno 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-Unionalimentari-Confapi-Verbale-di-rettifica-28-06-25.pdf",
+                  "published_on": "2025-05-28",
+                  "sha256": "0ab3ecf2d31a037aa18fb77aca31c5e97a1b1015487f5b068e9ca073224b4a17"
+                },
+                "page": "26",
+                "section": "Art. 47 - Tabella minimi mensili (esclusa panificazione)",
+                "quote": "Quadri [...] Minimi dal 1.4.2027 Incrementi 117,52 Minimi 2988,37"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T17:00:00Z",
+                "effective_from": "2027-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T17:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-unionalimentari-2027-2028"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "3105.89",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "unionalimentari-verbale-2025-05-28",
+                  "title": "CCNL Alimentari PMI Unionalimentari Confapi, verbale di accordo di rinnovo 28 maggio 2025 (con rettifica 6 giugno 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-Unionalimentari-Confapi-Verbale-di-rettifica-28-06-25.pdf",
+                  "published_on": "2025-05-28",
+                  "sha256": "0ab3ecf2d31a037aa18fb77aca31c5e97a1b1015487f5b068e9ca073224b4a17"
+                },
+                "page": "26",
+                "section": "Art. 47 - Tabella minimi mensili (esclusa panificazione)",
+                "quote": "Quadri [...] Minimi dal 1.1.2028 Incrementi 117,52 Minimi 3105,89"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T17:00:00Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T17:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-unionalimentari-2027-2028"
               }
             }
           }
@@ -539,7 +632,7 @@
           },
           {
             "valid_from": "2026-01-01",
-            "valid_until": null,
+            "valid_until": "2027-04-01",
             "value": "2770.86",
             "provenance": {
               "status": "derived",
@@ -557,6 +650,68 @@
                 "extraction_timestamp": "2026-09-07T15:03:36",
                 "verification_status": "unverified",
                 "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-04-01",
+            "valid_until": "2028-01-01",
+            "value": "2888.37",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "unionalimentari-verbale-2025-05-28",
+                  "title": "CCNL Alimentari PMI Unionalimentari Confapi, verbale di accordo di rinnovo 28 maggio 2025 (con rettifica 6 giugno 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-Unionalimentari-Confapi-Verbale-di-rettifica-28-06-25.pdf",
+                  "published_on": "2025-05-28",
+                  "sha256": "0ab3ecf2d31a037aa18fb77aca31c5e97a1b1015487f5b068e9ca073224b4a17"
+                },
+                "page": "26",
+                "section": "Art. 47 - Tabella minimi mensili (esclusa panificazione)",
+                "quote": "1° [...] Minimi dal 1.4.2027 Incrementi 117,52 Minimi 2888,37"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T17:00:00Z",
+                "effective_from": "2027-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T17:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-unionalimentari-2027-2028"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "3005.89",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "unionalimentari-verbale-2025-05-28",
+                  "title": "CCNL Alimentari PMI Unionalimentari Confapi, verbale di accordo di rinnovo 28 maggio 2025 (con rettifica 6 giugno 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-Unionalimentari-Confapi-Verbale-di-rettifica-28-06-25.pdf",
+                  "published_on": "2025-05-28",
+                  "sha256": "0ab3ecf2d31a037aa18fb77aca31c5e97a1b1015487f5b068e9ca073224b4a17"
+                },
+                "page": "26",
+                "section": "Art. 47 - Tabella minimi mensili (esclusa panificazione)",
+                "quote": "1° [...] Minimi dal 1.1.2028 Incrementi 117,52 Minimi 3005,89"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T17:00:00Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T17:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-unionalimentari-2027-2028"
               }
             }
           }
@@ -725,7 +880,7 @@
           },
           {
             "valid_from": "2026-01-01",
-            "valid_until": null,
+            "valid_until": "2027-04-01",
             "value": "2409.42",
             "provenance": {
               "status": "derived",
@@ -743,6 +898,68 @@
                 "extraction_timestamp": "2026-09-07T15:03:36",
                 "verification_status": "unverified",
                 "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-04-01",
+            "valid_until": "2028-01-01",
+            "value": "2511.61",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "unionalimentari-verbale-2025-05-28",
+                  "title": "CCNL Alimentari PMI Unionalimentari Confapi, verbale di accordo di rinnovo 28 maggio 2025 (con rettifica 6 giugno 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-Unionalimentari-Confapi-Verbale-di-rettifica-28-06-25.pdf",
+                  "published_on": "2025-05-28",
+                  "sha256": "0ab3ecf2d31a037aa18fb77aca31c5e97a1b1015487f5b068e9ca073224b4a17"
+                },
+                "page": "26",
+                "section": "Art. 47 - Tabella minimi mensili (esclusa panificazione)",
+                "quote": "2° [...] Minimi dal 1.4.2027 Incrementi 102,19 Minimi 2511,61"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T17:00:00Z",
+                "effective_from": "2027-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T17:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-unionalimentari-2027-2028"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "2613.80",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "unionalimentari-verbale-2025-05-28",
+                  "title": "CCNL Alimentari PMI Unionalimentari Confapi, verbale di accordo di rinnovo 28 maggio 2025 (con rettifica 6 giugno 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-Unionalimentari-Confapi-Verbale-di-rettifica-28-06-25.pdf",
+                  "published_on": "2025-05-28",
+                  "sha256": "0ab3ecf2d31a037aa18fb77aca31c5e97a1b1015487f5b068e9ca073224b4a17"
+                },
+                "page": "26",
+                "section": "Art. 47 - Tabella minimi mensili (esclusa panificazione)",
+                "quote": "2° [...] Minimi dal 1.1.2028 Incrementi 102,19 Minimi 2613,80"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T17:00:00Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T17:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-unionalimentari-2027-2028"
               }
             }
           }
@@ -911,7 +1128,7 @@
           },
           {
             "valid_from": "2026-01-01",
-            "valid_until": null,
+            "valid_until": "2027-04-01",
             "value": "1987.80",
             "provenance": {
               "status": "derived",
@@ -929,6 +1146,68 @@
                 "extraction_timestamp": "2026-09-07T15:03:36",
                 "verification_status": "unverified",
                 "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-04-01",
+            "valid_until": "2028-01-01",
+            "value": "2072.11",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "unionalimentari-verbale-2025-05-28",
+                  "title": "CCNL Alimentari PMI Unionalimentari Confapi, verbale di accordo di rinnovo 28 maggio 2025 (con rettifica 6 giugno 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-Unionalimentari-Confapi-Verbale-di-rettifica-28-06-25.pdf",
+                  "published_on": "2025-05-28",
+                  "sha256": "0ab3ecf2d31a037aa18fb77aca31c5e97a1b1015487f5b068e9ca073224b4a17"
+                },
+                "page": "26",
+                "section": "Art. 47 - Tabella minimi mensili (esclusa panificazione)",
+                "quote": "3° [...] Minimi dal 1.4.2027 Incrementi 84,31 Minimi 2072,11"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T17:00:00Z",
+                "effective_from": "2027-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T17:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-unionalimentari-2027-2028"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "2156.42",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "unionalimentari-verbale-2025-05-28",
+                  "title": "CCNL Alimentari PMI Unionalimentari Confapi, verbale di accordo di rinnovo 28 maggio 2025 (con rettifica 6 giugno 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-Unionalimentari-Confapi-Verbale-di-rettifica-28-06-25.pdf",
+                  "published_on": "2025-05-28",
+                  "sha256": "0ab3ecf2d31a037aa18fb77aca31c5e97a1b1015487f5b068e9ca073224b4a17"
+                },
+                "page": "26",
+                "section": "Art. 47 - Tabella minimi mensili (esclusa panificazione)",
+                "quote": "3° [...] Minimi dal 1.1.2028 Incrementi 84,31 Minimi 2156,42"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T17:00:00Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T17:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-unionalimentari-2027-2028"
               }
             }
           }
@@ -1097,7 +1376,7 @@
           },
           {
             "valid_from": "2026-01-01",
-            "valid_until": null,
+            "valid_until": "2027-04-01",
             "value": "1746.87",
             "provenance": {
               "status": "derived",
@@ -1115,6 +1394,68 @@
                 "extraction_timestamp": "2026-09-07T15:03:36",
                 "verification_status": "unverified",
                 "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-04-01",
+            "valid_until": "2028-01-01",
+            "value": "1820.95",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "unionalimentari-verbale-2025-05-28",
+                  "title": "CCNL Alimentari PMI Unionalimentari Confapi, verbale di accordo di rinnovo 28 maggio 2025 (con rettifica 6 giugno 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-Unionalimentari-Confapi-Verbale-di-rettifica-28-06-25.pdf",
+                  "published_on": "2025-05-28",
+                  "sha256": "0ab3ecf2d31a037aa18fb77aca31c5e97a1b1015487f5b068e9ca073224b4a17"
+                },
+                "page": "26",
+                "section": "Art. 47 - Tabella minimi mensili (esclusa panificazione)",
+                "quote": "4° [...] Minimi dal 1.4.2027 Incrementi 74,09 Minimi 1820,95"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T17:00:00Z",
+                "effective_from": "2027-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T17:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-unionalimentari-2027-2028"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "1895.04",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "unionalimentari-verbale-2025-05-28",
+                  "title": "CCNL Alimentari PMI Unionalimentari Confapi, verbale di accordo di rinnovo 28 maggio 2025 (con rettifica 6 giugno 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-Unionalimentari-Confapi-Verbale-di-rettifica-28-06-25.pdf",
+                  "published_on": "2025-05-28",
+                  "sha256": "0ab3ecf2d31a037aa18fb77aca31c5e97a1b1015487f5b068e9ca073224b4a17"
+                },
+                "page": "26",
+                "section": "Art. 47 - Tabella minimi mensili (esclusa panificazione)",
+                "quote": "4° [...] Minimi dal 1.1.2028 Incrementi 74,09 Minimi 1895,04"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T17:00:00Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T17:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-unionalimentari-2027-2028"
               }
             }
           }
@@ -1283,7 +1624,7 @@
           },
           {
             "valid_from": "2026-01-01",
-            "valid_until": null,
+            "valid_until": "2027-04-01",
             "value": "1566.15",
             "provenance": {
               "status": "derived",
@@ -1301,6 +1642,68 @@
                 "extraction_timestamp": "2026-09-07T15:03:36",
                 "verification_status": "unverified",
                 "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-04-01",
+            "valid_until": "2028-01-01",
+            "value": "1632.57",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "unionalimentari-verbale-2025-05-28",
+                  "title": "CCNL Alimentari PMI Unionalimentari Confapi, verbale di accordo di rinnovo 28 maggio 2025 (con rettifica 6 giugno 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-Unionalimentari-Confapi-Verbale-di-rettifica-28-06-25.pdf",
+                  "published_on": "2025-05-28",
+                  "sha256": "0ab3ecf2d31a037aa18fb77aca31c5e97a1b1015487f5b068e9ca073224b4a17"
+                },
+                "page": "26",
+                "section": "Art. 47 - Tabella minimi mensili (esclusa panificazione)",
+                "quote": "5° [...] Minimi dal 1.4.2027 Incrementi 66,42 Minimi 1632,57"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T17:00:00Z",
+                "effective_from": "2027-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T17:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-unionalimentari-2027-2028"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "1698.99",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "unionalimentari-verbale-2025-05-28",
+                  "title": "CCNL Alimentari PMI Unionalimentari Confapi, verbale di accordo di rinnovo 28 maggio 2025 (con rettifica 6 giugno 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-Unionalimentari-Confapi-Verbale-di-rettifica-28-06-25.pdf",
+                  "published_on": "2025-05-28",
+                  "sha256": "0ab3ecf2d31a037aa18fb77aca31c5e97a1b1015487f5b068e9ca073224b4a17"
+                },
+                "page": "26",
+                "section": "Art. 47 - Tabella minimi mensili (esclusa panificazione)",
+                "quote": "5° [...] Minimi dal 1.1.2028 Incrementi 66,42 Minimi 1698,99"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T17:00:00Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T17:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-unionalimentari-2027-2028"
               }
             }
           }
@@ -1469,7 +1872,7 @@
           },
           {
             "valid_from": "2026-01-01",
-            "valid_until": null,
+            "valid_until": "2027-04-01",
             "value": "1445.65",
             "provenance": {
               "status": "derived",
@@ -1487,6 +1890,68 @@
                 "extraction_timestamp": "2026-09-07T15:03:36",
                 "verification_status": "unverified",
                 "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-04-01",
+            "valid_until": "2028-01-01",
+            "value": "1506.96",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "unionalimentari-verbale-2025-05-28",
+                  "title": "CCNL Alimentari PMI Unionalimentari Confapi, verbale di accordo di rinnovo 28 maggio 2025 (con rettifica 6 giugno 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-Unionalimentari-Confapi-Verbale-di-rettifica-28-06-25.pdf",
+                  "published_on": "2025-05-28",
+                  "sha256": "0ab3ecf2d31a037aa18fb77aca31c5e97a1b1015487f5b068e9ca073224b4a17"
+                },
+                "page": "26",
+                "section": "Art. 47 - Tabella minimi mensili (esclusa panificazione)",
+                "quote": "6° [...] Minimi dal 1.4.2027 Incrementi 61,31 Minimi 1506,96"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T17:00:00Z",
+                "effective_from": "2027-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T17:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-unionalimentari-2027-2028"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "1568.28",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "unionalimentari-verbale-2025-05-28",
+                  "title": "CCNL Alimentari PMI Unionalimentari Confapi, verbale di accordo di rinnovo 28 maggio 2025 (con rettifica 6 giugno 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-Unionalimentari-Confapi-Verbale-di-rettifica-28-06-25.pdf",
+                  "published_on": "2025-05-28",
+                  "sha256": "0ab3ecf2d31a037aa18fb77aca31c5e97a1b1015487f5b068e9ca073224b4a17"
+                },
+                "page": "26",
+                "section": "Art. 47 - Tabella minimi mensili (esclusa panificazione)",
+                "quote": "6° [...] Minimi dal 1.1.2028 Incrementi 61,31 Minimi 1568,28"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T17:00:00Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T17:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-unionalimentari-2027-2028"
               }
             }
           }
@@ -1655,7 +2120,7 @@
           },
           {
             "valid_from": "2026-01-01",
-            "valid_until": null,
+            "valid_until": "2027-04-01",
             "value": "1325.20",
             "provenance": {
               "status": "derived",
@@ -1673,6 +2138,68 @@
                 "extraction_timestamp": "2026-09-07T15:03:36",
                 "verification_status": "unverified",
                 "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-04-01",
+            "valid_until": "2028-01-01",
+            "value": "1381.40",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "unionalimentari-verbale-2025-05-28",
+                  "title": "CCNL Alimentari PMI Unionalimentari Confapi, verbale di accordo di rinnovo 28 maggio 2025 (con rettifica 6 giugno 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-Unionalimentari-Confapi-Verbale-di-rettifica-28-06-25.pdf",
+                  "published_on": "2025-05-28",
+                  "sha256": "0ab3ecf2d31a037aa18fb77aca31c5e97a1b1015487f5b068e9ca073224b4a17"
+                },
+                "page": "26",
+                "section": "Art. 47 - Tabella minimi mensili (esclusa panificazione)",
+                "quote": "7° [...] Minimi dal 1.4.2027 Incrementi 56,20 Minimi 1381,40"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T17:00:00Z",
+                "effective_from": "2027-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T17:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-unionalimentari-2027-2028"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "1437.61",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "unionalimentari-verbale-2025-05-28",
+                  "title": "CCNL Alimentari PMI Unionalimentari Confapi, verbale di accordo di rinnovo 28 maggio 2025 (con rettifica 6 giugno 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-Unionalimentari-Confapi-Verbale-di-rettifica-28-06-25.pdf",
+                  "published_on": "2025-05-28",
+                  "sha256": "0ab3ecf2d31a037aa18fb77aca31c5e97a1b1015487f5b068e9ca073224b4a17"
+                },
+                "page": "26",
+                "section": "Art. 47 - Tabella minimi mensili (esclusa panificazione)",
+                "quote": "7° [...] Minimi dal 1.1.2028 Incrementi 56,20 Minimi 1437,61"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T17:00:00Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T17:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-unionalimentari-2027-2028"
               }
             }
           }
@@ -1841,7 +2368,7 @@
           },
           {
             "valid_from": "2026-01-01",
-            "valid_until": null,
+            "valid_until": "2027-04-01",
             "value": "1204.73",
             "provenance": {
               "status": "derived",
@@ -1859,6 +2386,68 @@
                 "extraction_timestamp": "2026-09-07T15:03:36",
                 "verification_status": "unverified",
                 "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-04-01",
+            "valid_until": "2028-01-01",
+            "value": "1255.82",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "unionalimentari-verbale-2025-05-28",
+                  "title": "CCNL Alimentari PMI Unionalimentari Confapi, verbale di accordo di rinnovo 28 maggio 2025 (con rettifica 6 giugno 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-Unionalimentari-Confapi-Verbale-di-rettifica-28-06-25.pdf",
+                  "published_on": "2025-05-28",
+                  "sha256": "0ab3ecf2d31a037aa18fb77aca31c5e97a1b1015487f5b068e9ca073224b4a17"
+                },
+                "page": "26",
+                "section": "Art. 47 - Tabella minimi mensili (esclusa panificazione)",
+                "quote": "8° [...] Minimi dal 1.4.2027 Incrementi 51,09 Minimi 1255,82"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T17:00:00Z",
+                "effective_from": "2027-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T17:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-unionalimentari-2027-2028"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "1306.92",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "unionalimentari-verbale-2025-05-28",
+                  "title": "CCNL Alimentari PMI Unionalimentari Confapi, verbale di accordo di rinnovo 28 maggio 2025 (con rettifica 6 giugno 2025)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-Unionalimentari-Confapi-Verbale-di-rettifica-28-06-25.pdf",
+                  "published_on": "2025-05-28",
+                  "sha256": "0ab3ecf2d31a037aa18fb77aca31c5e97a1b1015487f5b068e9ca073224b4a17"
+                },
+                "page": "26",
+                "section": "Art. 47 - Tabella minimi mensili (esclusa panificazione)",
+                "quote": "8° [...] Minimi dal 1.1.2028 Incrementi 51,09 Minimi 1306,92"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T17:00:00Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T17:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-unionalimentari-2027-2028"
               }
             }
           }
@@ -2004,7 +2593,7 @@
     "effective_until": null,
     "source": "https://www.unionalimentari.com/",
     "verification_status": "unverified",
-    "source_hash": "5dadd0ff0facaf742788bd18ae10964abd30f7d02e9a1135c8fd801e385c1ada",
+    "source_hash": "ee04aeb9065615fbb35439d31de64feb4628775a651671e2b129649ce75bb001",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
