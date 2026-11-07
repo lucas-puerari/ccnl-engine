@@ -61,7 +61,7 @@ formulas or caller-declared amounts.
 
 | Capability | Description | Scope | Layer | Implementation | Applies when | Handler | Facts | Variants | Label | Rules (v / d / a / m) |
 |---|---|---|---|---|---|---|---|---|---|---|
-| `base_salary` | Paga base contrattuale | core | gross | native | always | pipeline | — | — | simplified | 3606 / 2988 / 205 / 28 |
+| `base_salary` | Paga base contrattuale | core | gross | native | always | pipeline | — | — | simplified | 3651 / 2948 / 205 / 28 |
 | `seniority` | Scatti di anzianità | core | gross | native | decided | decision | `employment.seniority` | — | simplified | 30 / 93 / 13 / 0 |
 | `worker_category` | Categoria lavoratore (dichiarata o fissata dal livello) | core | gross | native | decided | decision | `employment.category` | — | implemented | none bundled |
 | `inps_employee` | Contributi INPS a carico dipendente | core | net | native | always | pipeline | — | — | simplified | 25 / 24 / 45 / 0 |
@@ -205,7 +205,7 @@ never grow.
 | 64 | [CCNL Industria Turistica (Federturismo Confindustria)](industria-turistica-federturismo.md) | ⚠️ | base_salary | 36 / 10 / 1 / 0 |
 | 65 | [CCNL Industrie Cineaudiovisive (ANICA)](cinema-audiovisivi-industria.md) | ⚠️ | bilateral_funds, inps_employer | 38 / 25 / 1 / 0 |
 | 66 | [CCNL Istituti e Imprese di Vigilanza Privata e Servizi Fiduciari — ASSIV/ANIVP/UNIV (GPG)](vigilanza-privata-assiv.md) | ⚠️ | inps_employer, seniority | 42 / 7 / 1 / 0 |
-| 67 | [CCNL Istituti e Imprese di Vigilanza Privata e Servizi Fiduciari — ASSIV/ANIVP/UNIV (Servizi fiduciari)](vigilanza-privata-assiv-sf.md) | ⚠️ | base_salary, seniority | 1 / 45 / 2 / 1 |
+| 67 | [CCNL Istituti e Imprese di Vigilanza Privata e Servizi Fiduciari — ASSIV/ANIVP/UNIV (Servizi fiduciari)](vigilanza-privata-assiv-sf.md) | ⚠️ | base_salary, seniority | 46 / 5 / 2 / 1 |
 | 68 | [CCNL Istituzioni Formative Private (Scuole Private Religiose) — AGIDAE](scuole-private-agidae.md) | ⚠️ | seniority | 1 / 43 / 1 / 0 |
 | 69 | [CCNL Istituzioni Socio-Assistenziali — UNEBA](uneba-uneba.md) | ⚠️ | base_salary, territorial_supplement | 1 / 41 / 1 / 0 |
 | 70 | [CCNL Istituzioni e Servizi Socio-Assistenziali (ANASTE)](istituzioni-servizi-socio-assistenziali-anaste.md) | ⚠️ | base_salary, una_tantum | 37 / 31 / 1 / 0 |

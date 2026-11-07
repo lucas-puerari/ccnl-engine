@@ -9,7 +9,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | Group | CCNLs | Workers | Weak | Derived | Verified | Aggregator | Anchor |
 |---|---:|---:|---:|---:|---:|---:|---|
 | pubblica-amministrazione | 14 | 7 548 000 | 14 | 229 | 182 | 0 | `funzioni-centrali-aran` |
-| terziario | 46 | 5 257 055 | 53 | 1395 | 1297 | 4 | `commercio-confcommercio`, `sanita-privata-aiop-aris` |
+| terziario | 46 | 5 257 055 | 53 | 1355 | 1342 | 4 | `commercio-confcommercio`, `sanita-privata-aiop-aris` |
 | industria | 49 | 4 969 900 | 153 | 1495 | 1949 | 15 | `logistica-trasporto-confetra`, `metalmeccanico-federmeccanica` |
 | lavoro-domestico | 3 | 1 800 000 | 0 | 3 | 60 | 0 | `lavoro-domestico-non-convivente` |
 | artigianato | 8 | 1 244 505 | 34 | 197 | 253 | 2 | `metalmeccanico-artigianato` |
@@ -62,7 +62,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | [`scuole-private-agidae`](../contracts/scuole-private-agidae.md) | 50 000 | exploratory | 1 | 43 | 1 | party or official | none | none |
 | [`vigilanza-privata-federdat-gpg`](../contracts/vigilanza-privata-federdat-gpg.md) | 45 000 | exploratory | 2 | 5 | 24 | party or official | none | none |
 | [`autorimesse-ic35`](../contracts/autorimesse-ic35.md) | 41 000 | exploratory | 2 | 95 | 0 | party or official | none | none |
-| [`vigilanza-privata-assiv-sf`](../contracts/vigilanza-privata-assiv-sf.md) | 40 000 | exploratory | 3 | 45 | 1 | party or official | none | none |
+| [`vigilanza-privata-assiv-sf`](../contracts/vigilanza-privata-assiv-sf.md) | 40 000 | exploratory | 3 | 5 | 46 | party or official | none | none |
 | [`industria-turistica-federturismo`](../contracts/industria-turistica-federturismo.md) | 40 000 | exploratory | 1 | 10 | 36 | aggregator | none | none |
 | [`portieri-fabbricati-confedilizia`](../contracts/portieri-fabbricati-confedilizia.md) | 40 000 | exploratory | 1 | 38 | 0 | party or official | none | none |
 | [`impianti-sportivi-sport`](../contracts/impianti-sportivi-sport.md) | 35 533 | exploratory | 2 | 32 | 0 | party or official | none | none |
