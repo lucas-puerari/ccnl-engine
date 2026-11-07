@@ -37,6 +37,7 @@ from ccnl_engine.compensation.second_level.inputs import (
 from ccnl_engine.contribution.ceiling.inputs import ContributionHistory
 from ccnl_engine.contribution.zone.models import AgriculturalZone
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
+from ccnl_engine.employment.apprentice.inputs import ApprenticeshipProgramme, DualHours
 from ccnl_engine.employment.category.models import WorkerCategory
 from ccnl_engine.employment.change.inputs import EmploymentChange
 from ccnl_engine.employment.fact.inputs import (
@@ -141,6 +142,7 @@ REQUEST_TYPES: Mapping[str, type] = MappingProxyType({
             *WORK_EVENT_TYPES,
             AgriculturalZone,
             Apprentice,
+            ApprenticeshipProgramme,
             CalendarOverride,
             CalendarOverrideReason,
             CompetenceYearPlan,
@@ -149,6 +151,7 @@ REQUEST_TYPES: Mapping[str, type] = MappingProxyType({
             ContributionHistory,
             CurrentYearTaxFacts,
             Dependent,
+            DualHours,
             DependentRelationship,
             EmployerActivity,
             EmployerProfile,

@@ -10,6 +10,10 @@ state types.
 
 ::: ccnl_engine.inputs.Apprentice
 
+::: ccnl_engine.inputs.ApprenticeshipProgramme
+
+::: ccnl_engine.inputs.DualHours
+
 ::: ccnl_engine.inputs.FixedTerm
 
 ::: ccnl_engine.inputs.NaspiExclusion

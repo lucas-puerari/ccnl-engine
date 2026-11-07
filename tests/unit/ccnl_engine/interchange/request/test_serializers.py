@@ -41,6 +41,7 @@ from ccnl_engine.compensation.second_level.inputs import (
 from ccnl_engine.contribution.ceiling.inputs import ContributionHistory
 from ccnl_engine.contribution.zone.models import AgriculturalZone
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
+from ccnl_engine.employment.apprentice.inputs import ApprenticeshipProgramme, DualHours
 from ccnl_engine.employment.category.models import WorkerCategory
 from ccnl_engine.employment.change.inputs import EmploymentChange
 from ccnl_engine.employment.fact.inputs import (
@@ -204,7 +205,14 @@ _CONTRACTS: dict[type, Contract] = {
     for contract in (
         Permanent(),
         FixedTerm(renewals=1, naspi_exclusion=next(iter(NaspiExclusion))),
-        Apprentice(months_elapsed=7, track="professionalizzante"),
+        Apprentice(
+            months_elapsed=7,
+            track="qualifica",
+            programme=ApprenticeshipProgramme.FIRST_LEVEL,
+            school_year=2,
+            programme_months=36,
+            hours=DualHours(Decimal(60), Decimal(20), Decimal(80)),
+        ),
     )
 }
 

@@ -78,12 +78,6 @@ _IMPORTED_LIST = absence_is_fact(
 
 #: Classification of each defaulted field of the fact types.
 FACT_DEFAULTS: Mapping[str, FieldDefault] = {
-    "Apprentice.track": requires_fact(
-        "base_salary",
-        "employment.contract_type.track",
-        _REPORTED,
-        "the unique track of the level; several tracks raise an input error",
-    ),
     "FixedTerm.renewals": requires_fact(
         "inps_employer",
         "employment.contract_type.renewals",
