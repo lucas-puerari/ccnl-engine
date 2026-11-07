@@ -9,11 +9,10 @@ share as a cost, with the INPS solidarity contribution on it, and withholds
 the worker share, out of the IRPEF base when the fund is a health fund; a
 fund not paid owes the worker its elemento distinto, an earning in the INPS
 and IRPEF bases (and the TFR base when the CCNL says so).  The shares are
-per capita: a fixed share is due in full whatever the part time, a share in
-percent follows the minimo of the run.  The element is pay: it follows the
-minimo of the run (part time, partial month, extra-month ratei) unless the
-CCNL owes it in full.  Left unstated, the choices are a missing fact: the
-owed funds are posted, the others are not, and the run is not payable.
+per capita (a share in percent follows the minimo of the run); the element
+is pay, following the minimo of the run unless the CCNL owes it in full.
+Left unstated, the choices are a missing fact: the owed funds are posted,
+the others are not, and the run is not payable.
 """
 
 from __future__ import annotations
@@ -28,6 +27,7 @@ from ccnl_engine.decision.models import (
     CalculationStatus,
 )
 from ccnl_engine.extra_month.settlement.services import ExtraMonthSettlement
+from ccnl_engine.fund.health.rules import excluded
 from ccnl_engine.ledger.models import AccountKind
 from ccnl_engine.pay_item.models import (
     EmployeeWithholdingItem,
@@ -180,7 +180,7 @@ def _covers(ctx: RunContext, fund: ContractualFund) -> bool:
         return False
     if fund.levels is not None and ctx.contract.level.code not in fund.levels:
         return False
-    if fund.excludes_contract(ctx.request.contract_type):
+    if excluded(fund, ctx):
         return False
     extra = ctx.run_kind in _EXTRA_KINDS
     if fund.charged_in_month is not None:

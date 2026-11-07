@@ -21,7 +21,13 @@ if TYPE_CHECKING:
     )
     from ccnl_engine.period.context.services import RunContext
 
-__all__ = ["contributing", "not_permanent", "short_fixed_term", "worked_days"]
+__all__ = [
+    "contributing",
+    "ends_within",
+    "not_permanent",
+    "short_fixed_term",
+    "worked_days",
+]
 
 _DAY = timedelta(days=1)
 
@@ -74,12 +80,22 @@ def short_fixed_term(spec: ContractualFundContribution, ctx: RunContext) -> bool
         or period.ended_on is None
     ):
         return False
-    start = period.started_on
-    year, month = divmod(start.month - 1 + spec.minimum_fixed_term_months, 12)
+    return ends_within(
+        period.started_on, period.ended_on, spec.minimum_fixed_term_months
+    )
+
+
+def ends_within(start: date, end: date, months: int) -> bool:
+    """Return whether an employment from ``start`` ends before ``months`` on.
+
+    Returns:
+        True when ``end`` precedes the same day ``months`` months after
+        ``start`` (the last day of a shorter month).
+    """
+    year, month = divmod(start.month - 1 + months, 12)
     first = date(start.year + year, month + 1, 1)
     month_end = date(first.year + first.month // 12, first.month % 12 + 1, 1) - _DAY
-    # "superiore a tre mesi": the end must reach the same day three months on.
-    return period.ended_on < first.replace(day=min(start.day, month_end.day))
+    return end < first.replace(day=min(start.day, month_end.day))
 
 
 def worked_days(ctx: RunContext) -> int:
