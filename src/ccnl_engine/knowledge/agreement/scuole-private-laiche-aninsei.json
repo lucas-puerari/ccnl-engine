@@ -61,7 +61,7 @@
       },
       {
         "kind": "simplification",
-        "text": "SENIORITY (Art. 24): salario di anzianita frozen as of 2025-01-01, milestone-based (hire-date brackets). Workers with 2+ years continuous service at 01/01/2025 receive 20 EUR/month; pre-2002 hires up to 90 EUR/month (grandfathered). New hires after ~2023-01-01 receive nothing. maximum_count=0 correctly models new-hire case (zero seniority). The engine cadence model cannot express hire-date milestones: long-tenure workers are understated. Structural engine limitation — no data gap.",
+        "text": "SENIORITY (Art. 24): salario di anzianità by hire-date band, modelled as cumulative cohort allowances (in_service_on): 90 EUR from 1/01/2025 for hires to 31/12/2001, down to 20 EUR for hires to 1/01/2023 (two years at 1/01/2025); later hires get none. Not modelled: for hires before 31/12/1995 the scatti di anzianità (5% every two years) received at 31/12/1997, which depend on the worker's history.",
         "capability": "seniority",
         "monetary_impact": "yes",
         "limitation": {
@@ -69,7 +69,7 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Model the Art. 24 salario di anzianità (20 EUR, up to 90 EUR for pre-2002 hires) with a hire-date bracket input or EarnedIncrements, and record the limitation."
+          "remediation": "Add the pre-1998 scatti of hires before 31/12/1995 as a worker fact when one is approved; the hire-date bands are modelled."
         }
       },
       {
@@ -353,7 +353,279 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "SAL_ANZ_2023",
+          "description": "Salario di anzianità art. 24, quota dei assunti fino al 1/01/2023 (due anni di servizio al 1/01/2025)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-06-15",
+                "valid_until": "2025-01-01",
+                "value": "0.00"
+              },
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "20.00"
+              }
+            ]
+          },
+          "in_service_on": "2023-01-01",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "aninsei-ccnl-2024-2027-foe",
+                "title": "CCNL ANINSEI 2024-2027 (15 giugno 2024)",
+                "kind": "associazione",
+                "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+              },
+              "page": "53-54",
+              "section": "Art. 24 Salario d'anzianità",
+              "quote": "assunti fino al 1/01/2023 (due anni di servizio al 1/01/2025): 20,00 dal 1/01/2025"
+            },
+            "transformation": "Art. 24 prints the total salario di anzianità by hire-date band; the totals are split into cumulative parts, each paid to those hired on or before the band's last day, so that a worker receives the printed total of the band. The band 1/09/2020-31/12/2023 is limited to hires by 1/01/2023 by the first paragraph (two years of uninterrupted service at 1/01/2025). Printed typos read as the column progression: '755,00' as 75,00, '31/12/01' (second occurrence) as 31/12/11, '1/0/25' as 1/01/2025. Paid in full to apprentices: art. 9.7 applies the 85/90/100% to the retribuzione tabellare only.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T00:30:00Z",
+              "effective_from": "2024-06-15",
+              "verification_status": "unverified"
+            }
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "SAL_ANZ_2020",
+          "description": "Salario di anzianità art. 24, quota dei assunti fino al 31/08/2020",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-06-15",
+                "valid_until": null,
+                "value": "15.00"
+              }
+            ]
+          },
+          "in_service_on": "2020-08-31",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "aninsei-ccnl-2024-2027-foe",
+                "title": "CCNL ANINSEI 2024-2027 (15 giugno 2024)",
+                "kind": "associazione",
+                "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+              },
+              "page": "53-54",
+              "section": "Art. 24 Salario d'anzianità",
+              "quote": "assunti fino al 31/08/2020: 15,00 al 1/09/2022, 35,00 complessivi dal 1/01/2025"
+            },
+            "transformation": "Art. 24 prints the total salario di anzianità by hire-date band; the totals are split into cumulative parts, each paid to those hired on or before the band's last day, so that a worker receives the printed total of the band. The band 1/09/2020-31/12/2023 is limited to hires by 1/01/2023 by the first paragraph (two years of uninterrupted service at 1/01/2025). Printed typos read as the column progression: '755,00' as 75,00, '31/12/01' (second occurrence) as 31/12/11, '1/0/25' as 1/01/2025. Paid in full to apprentices: art. 9.7 applies the 85/90/100% to the retribuzione tabellare only.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T00:30:00Z",
+              "effective_from": "2024-06-15",
+              "verification_status": "unverified"
+            }
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "SAL_ANZ_2013",
+          "description": "Salario di anzianità art. 24, quota dei assunti fino al 31/12/2013",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-06-15",
+                "valid_until": null,
+                "value": "10.00"
+              }
+            ]
+          },
+          "in_service_on": "2013-12-31",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "aninsei-ccnl-2024-2027-foe",
+                "title": "CCNL ANINSEI 2024-2027 (15 giugno 2024)",
+                "kind": "associazione",
+                "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+              },
+              "page": "53-54",
+              "section": "Art. 24 Salario d'anzianità",
+              "quote": "assunti fino al 31/12/2013: 25,00 al 1/09/2022, 45,00 dal 1/01/2025"
+            },
+            "transformation": "Art. 24 prints the total salario di anzianità by hire-date band; the totals are split into cumulative parts, each paid to those hired on or before the band's last day, so that a worker receives the printed total of the band. The band 1/09/2020-31/12/2023 is limited to hires by 1/01/2023 by the first paragraph (two years of uninterrupted service at 1/01/2025). Printed typos read as the column progression: '755,00' as 75,00, '31/12/01' (second occurrence) as 31/12/11, '1/0/25' as 1/01/2025. Paid in full to apprentices: art. 9.7 applies the 85/90/100% to the retribuzione tabellare only.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T00:30:00Z",
+              "effective_from": "2024-06-15",
+              "verification_status": "unverified"
+            }
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "SAL_ANZ_2011",
+          "description": "Salario di anzianità art. 24, quota dei assunti fino al 31/12/2011",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-06-15",
+                "valid_until": null,
+                "value": "10.00"
+              }
+            ]
+          },
+          "in_service_on": "2011-12-31",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "aninsei-ccnl-2024-2027-foe",
+                "title": "CCNL ANINSEI 2024-2027 (15 giugno 2024)",
+                "kind": "associazione",
+                "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+              },
+              "page": "53-54",
+              "section": "Art. 24 Salario d'anzianità",
+              "quote": "assunti fino al 31/12/2011: 35,00 al 1/09/2022, 55,00 dal 1/01/2025"
+            },
+            "transformation": "Art. 24 prints the total salario di anzianità by hire-date band; the totals are split into cumulative parts, each paid to those hired on or before the band's last day, so that a worker receives the printed total of the band. The band 1/09/2020-31/12/2023 is limited to hires by 1/01/2023 by the first paragraph (two years of uninterrupted service at 1/01/2025). Printed typos read as the column progression: '755,00' as 75,00, '31/12/01' (second occurrence) as 31/12/11, '1/0/25' as 1/01/2025. Paid in full to apprentices: art. 9.7 applies the 85/90/100% to the retribuzione tabellare only.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T00:30:00Z",
+              "effective_from": "2024-06-15",
+              "verification_status": "unverified"
+            }
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "SAL_ANZ_2009",
+          "description": "Salario di anzianità art. 24, quota dei assunti fino al 31/12/2009",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-06-15",
+                "valid_until": null,
+                "value": "10.00"
+              }
+            ]
+          },
+          "in_service_on": "2009-12-31",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "aninsei-ccnl-2024-2027-foe",
+                "title": "CCNL ANINSEI 2024-2027 (15 giugno 2024)",
+                "kind": "associazione",
+                "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+              },
+              "page": "53-54",
+              "section": "Art. 24 Salario d'anzianità",
+              "quote": "assunti fino al 31/12/2009: 45,00 al 1/09/2022, 65,00 dal 1/01/2025"
+            },
+            "transformation": "Art. 24 prints the total salario di anzianità by hire-date band; the totals are split into cumulative parts, each paid to those hired on or before the band's last day, so that a worker receives the printed total of the band. The band 1/09/2020-31/12/2023 is limited to hires by 1/01/2023 by the first paragraph (two years of uninterrupted service at 1/01/2025). Printed typos read as the column progression: '755,00' as 75,00, '31/12/01' (second occurrence) as 31/12/11, '1/0/25' as 1/01/2025. Paid in full to apprentices: art. 9.7 applies the 85/90/100% to the retribuzione tabellare only.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T00:30:00Z",
+              "effective_from": "2024-06-15",
+              "verification_status": "unverified"
+            }
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "SAL_ANZ_2005",
+          "description": "Salario di anzianità art. 24, quota dei assunti fino al 31/12/2005",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-06-15",
+                "valid_until": null,
+                "value": "10.00"
+              }
+            ]
+          },
+          "in_service_on": "2005-12-31",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "aninsei-ccnl-2024-2027-foe",
+                "title": "CCNL ANINSEI 2024-2027 (15 giugno 2024)",
+                "kind": "associazione",
+                "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+              },
+              "page": "53-54",
+              "section": "Art. 24 Salario d'anzianità",
+              "quote": "assunti fino al 31/12/2005: 55,00 al 1/09/2022, 75,00 dal 1/01/2025"
+            },
+            "transformation": "Art. 24 prints the total salario di anzianità by hire-date band; the totals are split into cumulative parts, each paid to those hired on or before the band's last day, so that a worker receives the printed total of the band. The band 1/09/2020-31/12/2023 is limited to hires by 1/01/2023 by the first paragraph (two years of uninterrupted service at 1/01/2025). Printed typos read as the column progression: '755,00' as 75,00, '31/12/01' (second occurrence) as 31/12/11, '1/0/25' as 1/01/2025. Paid in full to apprentices: art. 9.7 applies the 85/90/100% to the retribuzione tabellare only.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T00:30:00Z",
+              "effective_from": "2024-06-15",
+              "verification_status": "unverified"
+            }
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "SAL_ANZ_2001",
+          "description": "Salario di anzianità art. 24, quota dei assunti fino al 31/12/2001",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-06-15",
+                "valid_until": null,
+                "value": "15.00"
+              }
+            ]
+          },
+          "in_service_on": "2001-12-31",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "aninsei-ccnl-2024-2027-foe",
+                "title": "CCNL ANINSEI 2024-2027 (15 giugno 2024)",
+                "kind": "associazione",
+                "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+              },
+              "page": "53-54",
+              "section": "Art. 24 Salario d'anzianità",
+              "quote": "assunti fino al 31/12/2001: 70,00 al 1/09/2022, 90,00 dal 1/01/2025"
+            },
+            "transformation": "Art. 24 prints the total salario di anzianità by hire-date band; the totals are split into cumulative parts, each paid to those hired on or before the band's last day, so that a worker receives the printed total of the band. The band 1/09/2020-31/12/2023 is limited to hires by 1/01/2023 by the first paragraph (two years of uninterrupted service at 1/01/2025). Printed typos read as the column progression: '755,00' as 75,00, '31/12/01' (second occurrence) as 31/12/11, '1/0/25' as 1/01/2025. Paid in full to apprentices: art. 9.7 applies the 85/90/100% to the retribuzione tabellare only.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T00:30:00Z",
+              "effective_from": "2024-06-15",
+              "verification_status": "unverified"
+            }
+          },
+          "apprenticeship_pct_relevant": false
+        }
+      ],
       "provenance": {
         "status": "derived",
         "location": {
@@ -473,7 +745,279 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "SAL_ANZ_2023",
+          "description": "Salario di anzianità art. 24, quota dei assunti fino al 1/01/2023 (due anni di servizio al 1/01/2025)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-06-15",
+                "valid_until": "2025-01-01",
+                "value": "0.00"
+              },
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "20.00"
+              }
+            ]
+          },
+          "in_service_on": "2023-01-01",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "aninsei-ccnl-2024-2027-foe",
+                "title": "CCNL ANINSEI 2024-2027 (15 giugno 2024)",
+                "kind": "associazione",
+                "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+              },
+              "page": "53-54",
+              "section": "Art. 24 Salario d'anzianità",
+              "quote": "assunti fino al 1/01/2023 (due anni di servizio al 1/01/2025): 20,00 dal 1/01/2025"
+            },
+            "transformation": "Art. 24 prints the total salario di anzianità by hire-date band; the totals are split into cumulative parts, each paid to those hired on or before the band's last day, so that a worker receives the printed total of the band. The band 1/09/2020-31/12/2023 is limited to hires by 1/01/2023 by the first paragraph (two years of uninterrupted service at 1/01/2025). Printed typos read as the column progression: '755,00' as 75,00, '31/12/01' (second occurrence) as 31/12/11, '1/0/25' as 1/01/2025. Paid in full to apprentices: art. 9.7 applies the 85/90/100% to the retribuzione tabellare only.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T00:30:00Z",
+              "effective_from": "2024-06-15",
+              "verification_status": "unverified"
+            }
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "SAL_ANZ_2020",
+          "description": "Salario di anzianità art. 24, quota dei assunti fino al 31/08/2020",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-06-15",
+                "valid_until": null,
+                "value": "15.00"
+              }
+            ]
+          },
+          "in_service_on": "2020-08-31",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "aninsei-ccnl-2024-2027-foe",
+                "title": "CCNL ANINSEI 2024-2027 (15 giugno 2024)",
+                "kind": "associazione",
+                "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+              },
+              "page": "53-54",
+              "section": "Art. 24 Salario d'anzianità",
+              "quote": "assunti fino al 31/08/2020: 15,00 al 1/09/2022, 35,00 complessivi dal 1/01/2025"
+            },
+            "transformation": "Art. 24 prints the total salario di anzianità by hire-date band; the totals are split into cumulative parts, each paid to those hired on or before the band's last day, so that a worker receives the printed total of the band. The band 1/09/2020-31/12/2023 is limited to hires by 1/01/2023 by the first paragraph (two years of uninterrupted service at 1/01/2025). Printed typos read as the column progression: '755,00' as 75,00, '31/12/01' (second occurrence) as 31/12/11, '1/0/25' as 1/01/2025. Paid in full to apprentices: art. 9.7 applies the 85/90/100% to the retribuzione tabellare only.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T00:30:00Z",
+              "effective_from": "2024-06-15",
+              "verification_status": "unverified"
+            }
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "SAL_ANZ_2013",
+          "description": "Salario di anzianità art. 24, quota dei assunti fino al 31/12/2013",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-06-15",
+                "valid_until": null,
+                "value": "10.00"
+              }
+            ]
+          },
+          "in_service_on": "2013-12-31",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "aninsei-ccnl-2024-2027-foe",
+                "title": "CCNL ANINSEI 2024-2027 (15 giugno 2024)",
+                "kind": "associazione",
+                "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+              },
+              "page": "53-54",
+              "section": "Art. 24 Salario d'anzianità",
+              "quote": "assunti fino al 31/12/2013: 25,00 al 1/09/2022, 45,00 dal 1/01/2025"
+            },
+            "transformation": "Art. 24 prints the total salario di anzianità by hire-date band; the totals are split into cumulative parts, each paid to those hired on or before the band's last day, so that a worker receives the printed total of the band. The band 1/09/2020-31/12/2023 is limited to hires by 1/01/2023 by the first paragraph (two years of uninterrupted service at 1/01/2025). Printed typos read as the column progression: '755,00' as 75,00, '31/12/01' (second occurrence) as 31/12/11, '1/0/25' as 1/01/2025. Paid in full to apprentices: art. 9.7 applies the 85/90/100% to the retribuzione tabellare only.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T00:30:00Z",
+              "effective_from": "2024-06-15",
+              "verification_status": "unverified"
+            }
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "SAL_ANZ_2011",
+          "description": "Salario di anzianità art. 24, quota dei assunti fino al 31/12/2011",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-06-15",
+                "valid_until": null,
+                "value": "10.00"
+              }
+            ]
+          },
+          "in_service_on": "2011-12-31",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "aninsei-ccnl-2024-2027-foe",
+                "title": "CCNL ANINSEI 2024-2027 (15 giugno 2024)",
+                "kind": "associazione",
+                "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+              },
+              "page": "53-54",
+              "section": "Art. 24 Salario d'anzianità",
+              "quote": "assunti fino al 31/12/2011: 35,00 al 1/09/2022, 55,00 dal 1/01/2025"
+            },
+            "transformation": "Art. 24 prints the total salario di anzianità by hire-date band; the totals are split into cumulative parts, each paid to those hired on or before the band's last day, so that a worker receives the printed total of the band. The band 1/09/2020-31/12/2023 is limited to hires by 1/01/2023 by the first paragraph (two years of uninterrupted service at 1/01/2025). Printed typos read as the column progression: '755,00' as 75,00, '31/12/01' (second occurrence) as 31/12/11, '1/0/25' as 1/01/2025. Paid in full to apprentices: art. 9.7 applies the 85/90/100% to the retribuzione tabellare only.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T00:30:00Z",
+              "effective_from": "2024-06-15",
+              "verification_status": "unverified"
+            }
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "SAL_ANZ_2009",
+          "description": "Salario di anzianità art. 24, quota dei assunti fino al 31/12/2009",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-06-15",
+                "valid_until": null,
+                "value": "10.00"
+              }
+            ]
+          },
+          "in_service_on": "2009-12-31",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "aninsei-ccnl-2024-2027-foe",
+                "title": "CCNL ANINSEI 2024-2027 (15 giugno 2024)",
+                "kind": "associazione",
+                "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+              },
+              "page": "53-54",
+              "section": "Art. 24 Salario d'anzianità",
+              "quote": "assunti fino al 31/12/2009: 45,00 al 1/09/2022, 65,00 dal 1/01/2025"
+            },
+            "transformation": "Art. 24 prints the total salario di anzianità by hire-date band; the totals are split into cumulative parts, each paid to those hired on or before the band's last day, so that a worker receives the printed total of the band. The band 1/09/2020-31/12/2023 is limited to hires by 1/01/2023 by the first paragraph (two years of uninterrupted service at 1/01/2025). Printed typos read as the column progression: '755,00' as 75,00, '31/12/01' (second occurrence) as 31/12/11, '1/0/25' as 1/01/2025. Paid in full to apprentices: art. 9.7 applies the 85/90/100% to the retribuzione tabellare only.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T00:30:00Z",
+              "effective_from": "2024-06-15",
+              "verification_status": "unverified"
+            }
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "SAL_ANZ_2005",
+          "description": "Salario di anzianità art. 24, quota dei assunti fino al 31/12/2005",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-06-15",
+                "valid_until": null,
+                "value": "10.00"
+              }
+            ]
+          },
+          "in_service_on": "2005-12-31",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "aninsei-ccnl-2024-2027-foe",
+                "title": "CCNL ANINSEI 2024-2027 (15 giugno 2024)",
+                "kind": "associazione",
+                "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+              },
+              "page": "53-54",
+              "section": "Art. 24 Salario d'anzianità",
+              "quote": "assunti fino al 31/12/2005: 55,00 al 1/09/2022, 75,00 dal 1/01/2025"
+            },
+            "transformation": "Art. 24 prints the total salario di anzianità by hire-date band; the totals are split into cumulative parts, each paid to those hired on or before the band's last day, so that a worker receives the printed total of the band. The band 1/09/2020-31/12/2023 is limited to hires by 1/01/2023 by the first paragraph (two years of uninterrupted service at 1/01/2025). Printed typos read as the column progression: '755,00' as 75,00, '31/12/01' (second occurrence) as 31/12/11, '1/0/25' as 1/01/2025. Paid in full to apprentices: art. 9.7 applies the 85/90/100% to the retribuzione tabellare only.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T00:30:00Z",
+              "effective_from": "2024-06-15",
+              "verification_status": "unverified"
+            }
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "SAL_ANZ_2001",
+          "description": "Salario di anzianità art. 24, quota dei assunti fino al 31/12/2001",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-06-15",
+                "valid_until": null,
+                "value": "15.00"
+              }
+            ]
+          },
+          "in_service_on": "2001-12-31",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "aninsei-ccnl-2024-2027-foe",
+                "title": "CCNL ANINSEI 2024-2027 (15 giugno 2024)",
+                "kind": "associazione",
+                "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+              },
+              "page": "53-54",
+              "section": "Art. 24 Salario d'anzianità",
+              "quote": "assunti fino al 31/12/2001: 70,00 al 1/09/2022, 90,00 dal 1/01/2025"
+            },
+            "transformation": "Art. 24 prints the total salario di anzianità by hire-date band; the totals are split into cumulative parts, each paid to those hired on or before the band's last day, so that a worker receives the printed total of the band. The band 1/09/2020-31/12/2023 is limited to hires by 1/01/2023 by the first paragraph (two years of uninterrupted service at 1/01/2025). Printed typos read as the column progression: '755,00' as 75,00, '31/12/01' (second occurrence) as 31/12/11, '1/0/25' as 1/01/2025. Paid in full to apprentices: art. 9.7 applies the 85/90/100% to the retribuzione tabellare only.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T00:30:00Z",
+              "effective_from": "2024-06-15",
+              "verification_status": "unverified"
+            }
+          },
+          "apprenticeship_pct_relevant": false
+        }
+      ],
       "provenance": {
         "status": "derived",
         "location": {
@@ -593,7 +1137,279 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "SAL_ANZ_2023",
+          "description": "Salario di anzianità art. 24, quota dei assunti fino al 1/01/2023 (due anni di servizio al 1/01/2025)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-06-15",
+                "valid_until": "2025-01-01",
+                "value": "0.00"
+              },
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "20.00"
+              }
+            ]
+          },
+          "in_service_on": "2023-01-01",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "aninsei-ccnl-2024-2027-foe",
+                "title": "CCNL ANINSEI 2024-2027 (15 giugno 2024)",
+                "kind": "associazione",
+                "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+              },
+              "page": "53-54",
+              "section": "Art. 24 Salario d'anzianità",
+              "quote": "assunti fino al 1/01/2023 (due anni di servizio al 1/01/2025): 20,00 dal 1/01/2025"
+            },
+            "transformation": "Art. 24 prints the total salario di anzianità by hire-date band; the totals are split into cumulative parts, each paid to those hired on or before the band's last day, so that a worker receives the printed total of the band. The band 1/09/2020-31/12/2023 is limited to hires by 1/01/2023 by the first paragraph (two years of uninterrupted service at 1/01/2025). Printed typos read as the column progression: '755,00' as 75,00, '31/12/01' (second occurrence) as 31/12/11, '1/0/25' as 1/01/2025. Paid in full to apprentices: art. 9.7 applies the 85/90/100% to the retribuzione tabellare only.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T00:30:00Z",
+              "effective_from": "2024-06-15",
+              "verification_status": "unverified"
+            }
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "SAL_ANZ_2020",
+          "description": "Salario di anzianità art. 24, quota dei assunti fino al 31/08/2020",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-06-15",
+                "valid_until": null,
+                "value": "15.00"
+              }
+            ]
+          },
+          "in_service_on": "2020-08-31",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "aninsei-ccnl-2024-2027-foe",
+                "title": "CCNL ANINSEI 2024-2027 (15 giugno 2024)",
+                "kind": "associazione",
+                "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+              },
+              "page": "53-54",
+              "section": "Art. 24 Salario d'anzianità",
+              "quote": "assunti fino al 31/08/2020: 15,00 al 1/09/2022, 35,00 complessivi dal 1/01/2025"
+            },
+            "transformation": "Art. 24 prints the total salario di anzianità by hire-date band; the totals are split into cumulative parts, each paid to those hired on or before the band's last day, so that a worker receives the printed total of the band. The band 1/09/2020-31/12/2023 is limited to hires by 1/01/2023 by the first paragraph (two years of uninterrupted service at 1/01/2025). Printed typos read as the column progression: '755,00' as 75,00, '31/12/01' (second occurrence) as 31/12/11, '1/0/25' as 1/01/2025. Paid in full to apprentices: art. 9.7 applies the 85/90/100% to the retribuzione tabellare only.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T00:30:00Z",
+              "effective_from": "2024-06-15",
+              "verification_status": "unverified"
+            }
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "SAL_ANZ_2013",
+          "description": "Salario di anzianità art. 24, quota dei assunti fino al 31/12/2013",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-06-15",
+                "valid_until": null,
+                "value": "10.00"
+              }
+            ]
+          },
+          "in_service_on": "2013-12-31",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "aninsei-ccnl-2024-2027-foe",
+                "title": "CCNL ANINSEI 2024-2027 (15 giugno 2024)",
+                "kind": "associazione",
+                "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+              },
+              "page": "53-54",
+              "section": "Art. 24 Salario d'anzianità",
+              "quote": "assunti fino al 31/12/2013: 25,00 al 1/09/2022, 45,00 dal 1/01/2025"
+            },
+            "transformation": "Art. 24 prints the total salario di anzianità by hire-date band; the totals are split into cumulative parts, each paid to those hired on or before the band's last day, so that a worker receives the printed total of the band. The band 1/09/2020-31/12/2023 is limited to hires by 1/01/2023 by the first paragraph (two years of uninterrupted service at 1/01/2025). Printed typos read as the column progression: '755,00' as 75,00, '31/12/01' (second occurrence) as 31/12/11, '1/0/25' as 1/01/2025. Paid in full to apprentices: art. 9.7 applies the 85/90/100% to the retribuzione tabellare only.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T00:30:00Z",
+              "effective_from": "2024-06-15",
+              "verification_status": "unverified"
+            }
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "SAL_ANZ_2011",
+          "description": "Salario di anzianità art. 24, quota dei assunti fino al 31/12/2011",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-06-15",
+                "valid_until": null,
+                "value": "10.00"
+              }
+            ]
+          },
+          "in_service_on": "2011-12-31",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "aninsei-ccnl-2024-2027-foe",
+                "title": "CCNL ANINSEI 2024-2027 (15 giugno 2024)",
+                "kind": "associazione",
+                "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+              },
+              "page": "53-54",
+              "section": "Art. 24 Salario d'anzianità",
+              "quote": "assunti fino al 31/12/2011: 35,00 al 1/09/2022, 55,00 dal 1/01/2025"
+            },
+            "transformation": "Art. 24 prints the total salario di anzianità by hire-date band; the totals are split into cumulative parts, each paid to those hired on or before the band's last day, so that a worker receives the printed total of the band. The band 1/09/2020-31/12/2023 is limited to hires by 1/01/2023 by the first paragraph (two years of uninterrupted service at 1/01/2025). Printed typos read as the column progression: '755,00' as 75,00, '31/12/01' (second occurrence) as 31/12/11, '1/0/25' as 1/01/2025. Paid in full to apprentices: art. 9.7 applies the 85/90/100% to the retribuzione tabellare only.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T00:30:00Z",
+              "effective_from": "2024-06-15",
+              "verification_status": "unverified"
+            }
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "SAL_ANZ_2009",
+          "description": "Salario di anzianità art. 24, quota dei assunti fino al 31/12/2009",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-06-15",
+                "valid_until": null,
+                "value": "10.00"
+              }
+            ]
+          },
+          "in_service_on": "2009-12-31",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "aninsei-ccnl-2024-2027-foe",
+                "title": "CCNL ANINSEI 2024-2027 (15 giugno 2024)",
+                "kind": "associazione",
+                "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+              },
+              "page": "53-54",
+              "section": "Art. 24 Salario d'anzianità",
+              "quote": "assunti fino al 31/12/2009: 45,00 al 1/09/2022, 65,00 dal 1/01/2025"
+            },
+            "transformation": "Art. 24 prints the total salario di anzianità by hire-date band; the totals are split into cumulative parts, each paid to those hired on or before the band's last day, so that a worker receives the printed total of the band. The band 1/09/2020-31/12/2023 is limited to hires by 1/01/2023 by the first paragraph (two years of uninterrupted service at 1/01/2025). Printed typos read as the column progression: '755,00' as 75,00, '31/12/01' (second occurrence) as 31/12/11, '1/0/25' as 1/01/2025. Paid in full to apprentices: art. 9.7 applies the 85/90/100% to the retribuzione tabellare only.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T00:30:00Z",
+              "effective_from": "2024-06-15",
+              "verification_status": "unverified"
+            }
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "SAL_ANZ_2005",
+          "description": "Salario di anzianità art. 24, quota dei assunti fino al 31/12/2005",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-06-15",
+                "valid_until": null,
+                "value": "10.00"
+              }
+            ]
+          },
+          "in_service_on": "2005-12-31",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "aninsei-ccnl-2024-2027-foe",
+                "title": "CCNL ANINSEI 2024-2027 (15 giugno 2024)",
+                "kind": "associazione",
+                "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+              },
+              "page": "53-54",
+              "section": "Art. 24 Salario d'anzianità",
+              "quote": "assunti fino al 31/12/2005: 55,00 al 1/09/2022, 75,00 dal 1/01/2025"
+            },
+            "transformation": "Art. 24 prints the total salario di anzianità by hire-date band; the totals are split into cumulative parts, each paid to those hired on or before the band's last day, so that a worker receives the printed total of the band. The band 1/09/2020-31/12/2023 is limited to hires by 1/01/2023 by the first paragraph (two years of uninterrupted service at 1/01/2025). Printed typos read as the column progression: '755,00' as 75,00, '31/12/01' (second occurrence) as 31/12/11, '1/0/25' as 1/01/2025. Paid in full to apprentices: art. 9.7 applies the 85/90/100% to the retribuzione tabellare only.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T00:30:00Z",
+              "effective_from": "2024-06-15",
+              "verification_status": "unverified"
+            }
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "SAL_ANZ_2001",
+          "description": "Salario di anzianità art. 24, quota dei assunti fino al 31/12/2001",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-06-15",
+                "valid_until": null,
+                "value": "15.00"
+              }
+            ]
+          },
+          "in_service_on": "2001-12-31",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "aninsei-ccnl-2024-2027-foe",
+                "title": "CCNL ANINSEI 2024-2027 (15 giugno 2024)",
+                "kind": "associazione",
+                "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+              },
+              "page": "53-54",
+              "section": "Art. 24 Salario d'anzianità",
+              "quote": "assunti fino al 31/12/2001: 70,00 al 1/09/2022, 90,00 dal 1/01/2025"
+            },
+            "transformation": "Art. 24 prints the total salario di anzianità by hire-date band; the totals are split into cumulative parts, each paid to those hired on or before the band's last day, so that a worker receives the printed total of the band. The band 1/09/2020-31/12/2023 is limited to hires by 1/01/2023 by the first paragraph (two years of uninterrupted service at 1/01/2025). Printed typos read as the column progression: '755,00' as 75,00, '31/12/01' (second occurrence) as 31/12/11, '1/0/25' as 1/01/2025. Paid in full to apprentices: art. 9.7 applies the 85/90/100% to the retribuzione tabellare only.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T00:30:00Z",
+              "effective_from": "2024-06-15",
+              "verification_status": "unverified"
+            }
+          },
+          "apprenticeship_pct_relevant": false
+        }
+      ],
       "provenance": {
         "status": "derived",
         "location": {
@@ -713,7 +1529,279 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "SAL_ANZ_2023",
+          "description": "Salario di anzianità art. 24, quota dei assunti fino al 1/01/2023 (due anni di servizio al 1/01/2025)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-06-15",
+                "valid_until": "2025-01-01",
+                "value": "0.00"
+              },
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "20.00"
+              }
+            ]
+          },
+          "in_service_on": "2023-01-01",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "aninsei-ccnl-2024-2027-foe",
+                "title": "CCNL ANINSEI 2024-2027 (15 giugno 2024)",
+                "kind": "associazione",
+                "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+              },
+              "page": "53-54",
+              "section": "Art. 24 Salario d'anzianità",
+              "quote": "assunti fino al 1/01/2023 (due anni di servizio al 1/01/2025): 20,00 dal 1/01/2025"
+            },
+            "transformation": "Art. 24 prints the total salario di anzianità by hire-date band; the totals are split into cumulative parts, each paid to those hired on or before the band's last day, so that a worker receives the printed total of the band. The band 1/09/2020-31/12/2023 is limited to hires by 1/01/2023 by the first paragraph (two years of uninterrupted service at 1/01/2025). Printed typos read as the column progression: '755,00' as 75,00, '31/12/01' (second occurrence) as 31/12/11, '1/0/25' as 1/01/2025. Paid in full to apprentices: art. 9.7 applies the 85/90/100% to the retribuzione tabellare only.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T00:30:00Z",
+              "effective_from": "2024-06-15",
+              "verification_status": "unverified"
+            }
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "SAL_ANZ_2020",
+          "description": "Salario di anzianità art. 24, quota dei assunti fino al 31/08/2020",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-06-15",
+                "valid_until": null,
+                "value": "15.00"
+              }
+            ]
+          },
+          "in_service_on": "2020-08-31",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "aninsei-ccnl-2024-2027-foe",
+                "title": "CCNL ANINSEI 2024-2027 (15 giugno 2024)",
+                "kind": "associazione",
+                "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+              },
+              "page": "53-54",
+              "section": "Art. 24 Salario d'anzianità",
+              "quote": "assunti fino al 31/08/2020: 15,00 al 1/09/2022, 35,00 complessivi dal 1/01/2025"
+            },
+            "transformation": "Art. 24 prints the total salario di anzianità by hire-date band; the totals are split into cumulative parts, each paid to those hired on or before the band's last day, so that a worker receives the printed total of the band. The band 1/09/2020-31/12/2023 is limited to hires by 1/01/2023 by the first paragraph (two years of uninterrupted service at 1/01/2025). Printed typos read as the column progression: '755,00' as 75,00, '31/12/01' (second occurrence) as 31/12/11, '1/0/25' as 1/01/2025. Paid in full to apprentices: art. 9.7 applies the 85/90/100% to the retribuzione tabellare only.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T00:30:00Z",
+              "effective_from": "2024-06-15",
+              "verification_status": "unverified"
+            }
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "SAL_ANZ_2013",
+          "description": "Salario di anzianità art. 24, quota dei assunti fino al 31/12/2013",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-06-15",
+                "valid_until": null,
+                "value": "10.00"
+              }
+            ]
+          },
+          "in_service_on": "2013-12-31",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "aninsei-ccnl-2024-2027-foe",
+                "title": "CCNL ANINSEI 2024-2027 (15 giugno 2024)",
+                "kind": "associazione",
+                "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+              },
+              "page": "53-54",
+              "section": "Art. 24 Salario d'anzianità",
+              "quote": "assunti fino al 31/12/2013: 25,00 al 1/09/2022, 45,00 dal 1/01/2025"
+            },
+            "transformation": "Art. 24 prints the total salario di anzianità by hire-date band; the totals are split into cumulative parts, each paid to those hired on or before the band's last day, so that a worker receives the printed total of the band. The band 1/09/2020-31/12/2023 is limited to hires by 1/01/2023 by the first paragraph (two years of uninterrupted service at 1/01/2025). Printed typos read as the column progression: '755,00' as 75,00, '31/12/01' (second occurrence) as 31/12/11, '1/0/25' as 1/01/2025. Paid in full to apprentices: art. 9.7 applies the 85/90/100% to the retribuzione tabellare only.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T00:30:00Z",
+              "effective_from": "2024-06-15",
+              "verification_status": "unverified"
+            }
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "SAL_ANZ_2011",
+          "description": "Salario di anzianità art. 24, quota dei assunti fino al 31/12/2011",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-06-15",
+                "valid_until": null,
+                "value": "10.00"
+              }
+            ]
+          },
+          "in_service_on": "2011-12-31",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "aninsei-ccnl-2024-2027-foe",
+                "title": "CCNL ANINSEI 2024-2027 (15 giugno 2024)",
+                "kind": "associazione",
+                "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+              },
+              "page": "53-54",
+              "section": "Art. 24 Salario d'anzianità",
+              "quote": "assunti fino al 31/12/2011: 35,00 al 1/09/2022, 55,00 dal 1/01/2025"
+            },
+            "transformation": "Art. 24 prints the total salario di anzianità by hire-date band; the totals are split into cumulative parts, each paid to those hired on or before the band's last day, so that a worker receives the printed total of the band. The band 1/09/2020-31/12/2023 is limited to hires by 1/01/2023 by the first paragraph (two years of uninterrupted service at 1/01/2025). Printed typos read as the column progression: '755,00' as 75,00, '31/12/01' (second occurrence) as 31/12/11, '1/0/25' as 1/01/2025. Paid in full to apprentices: art. 9.7 applies the 85/90/100% to the retribuzione tabellare only.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T00:30:00Z",
+              "effective_from": "2024-06-15",
+              "verification_status": "unverified"
+            }
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "SAL_ANZ_2009",
+          "description": "Salario di anzianità art. 24, quota dei assunti fino al 31/12/2009",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-06-15",
+                "valid_until": null,
+                "value": "10.00"
+              }
+            ]
+          },
+          "in_service_on": "2009-12-31",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "aninsei-ccnl-2024-2027-foe",
+                "title": "CCNL ANINSEI 2024-2027 (15 giugno 2024)",
+                "kind": "associazione",
+                "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+              },
+              "page": "53-54",
+              "section": "Art. 24 Salario d'anzianità",
+              "quote": "assunti fino al 31/12/2009: 45,00 al 1/09/2022, 65,00 dal 1/01/2025"
+            },
+            "transformation": "Art. 24 prints the total salario di anzianità by hire-date band; the totals are split into cumulative parts, each paid to those hired on or before the band's last day, so that a worker receives the printed total of the band. The band 1/09/2020-31/12/2023 is limited to hires by 1/01/2023 by the first paragraph (two years of uninterrupted service at 1/01/2025). Printed typos read as the column progression: '755,00' as 75,00, '31/12/01' (second occurrence) as 31/12/11, '1/0/25' as 1/01/2025. Paid in full to apprentices: art. 9.7 applies the 85/90/100% to the retribuzione tabellare only.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T00:30:00Z",
+              "effective_from": "2024-06-15",
+              "verification_status": "unverified"
+            }
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "SAL_ANZ_2005",
+          "description": "Salario di anzianità art. 24, quota dei assunti fino al 31/12/2005",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-06-15",
+                "valid_until": null,
+                "value": "10.00"
+              }
+            ]
+          },
+          "in_service_on": "2005-12-31",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "aninsei-ccnl-2024-2027-foe",
+                "title": "CCNL ANINSEI 2024-2027 (15 giugno 2024)",
+                "kind": "associazione",
+                "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+              },
+              "page": "53-54",
+              "section": "Art. 24 Salario d'anzianità",
+              "quote": "assunti fino al 31/12/2005: 55,00 al 1/09/2022, 75,00 dal 1/01/2025"
+            },
+            "transformation": "Art. 24 prints the total salario di anzianità by hire-date band; the totals are split into cumulative parts, each paid to those hired on or before the band's last day, so that a worker receives the printed total of the band. The band 1/09/2020-31/12/2023 is limited to hires by 1/01/2023 by the first paragraph (two years of uninterrupted service at 1/01/2025). Printed typos read as the column progression: '755,00' as 75,00, '31/12/01' (second occurrence) as 31/12/11, '1/0/25' as 1/01/2025. Paid in full to apprentices: art. 9.7 applies the 85/90/100% to the retribuzione tabellare only.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T00:30:00Z",
+              "effective_from": "2024-06-15",
+              "verification_status": "unverified"
+            }
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "SAL_ANZ_2001",
+          "description": "Salario di anzianità art. 24, quota dei assunti fino al 31/12/2001",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-06-15",
+                "valid_until": null,
+                "value": "15.00"
+              }
+            ]
+          },
+          "in_service_on": "2001-12-31",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "aninsei-ccnl-2024-2027-foe",
+                "title": "CCNL ANINSEI 2024-2027 (15 giugno 2024)",
+                "kind": "associazione",
+                "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+              },
+              "page": "53-54",
+              "section": "Art. 24 Salario d'anzianità",
+              "quote": "assunti fino al 31/12/2001: 70,00 al 1/09/2022, 90,00 dal 1/01/2025"
+            },
+            "transformation": "Art. 24 prints the total salario di anzianità by hire-date band; the totals are split into cumulative parts, each paid to those hired on or before the band's last day, so that a worker receives the printed total of the band. The band 1/09/2020-31/12/2023 is limited to hires by 1/01/2023 by the first paragraph (two years of uninterrupted service at 1/01/2025). Printed typos read as the column progression: '755,00' as 75,00, '31/12/01' (second occurrence) as 31/12/11, '1/0/25' as 1/01/2025. Paid in full to apprentices: art. 9.7 applies the 85/90/100% to the retribuzione tabellare only.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T00:30:00Z",
+              "effective_from": "2024-06-15",
+              "verification_status": "unverified"
+            }
+          },
+          "apprenticeship_pct_relevant": false
+        }
+      ],
       "provenance": {
         "status": "derived",
         "location": {
@@ -833,7 +1921,279 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "SAL_ANZ_2023",
+          "description": "Salario di anzianità art. 24, quota dei assunti fino al 1/01/2023 (due anni di servizio al 1/01/2025)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-06-15",
+                "valid_until": "2025-01-01",
+                "value": "0.00"
+              },
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "20.00"
+              }
+            ]
+          },
+          "in_service_on": "2023-01-01",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "aninsei-ccnl-2024-2027-foe",
+                "title": "CCNL ANINSEI 2024-2027 (15 giugno 2024)",
+                "kind": "associazione",
+                "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+              },
+              "page": "53-54",
+              "section": "Art. 24 Salario d'anzianità",
+              "quote": "assunti fino al 1/01/2023 (due anni di servizio al 1/01/2025): 20,00 dal 1/01/2025"
+            },
+            "transformation": "Art. 24 prints the total salario di anzianità by hire-date band; the totals are split into cumulative parts, each paid to those hired on or before the band's last day, so that a worker receives the printed total of the band. The band 1/09/2020-31/12/2023 is limited to hires by 1/01/2023 by the first paragraph (two years of uninterrupted service at 1/01/2025). Printed typos read as the column progression: '755,00' as 75,00, '31/12/01' (second occurrence) as 31/12/11, '1/0/25' as 1/01/2025. Paid in full to apprentices: art. 9.7 applies the 85/90/100% to the retribuzione tabellare only.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T00:30:00Z",
+              "effective_from": "2024-06-15",
+              "verification_status": "unverified"
+            }
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "SAL_ANZ_2020",
+          "description": "Salario di anzianità art. 24, quota dei assunti fino al 31/08/2020",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-06-15",
+                "valid_until": null,
+                "value": "15.00"
+              }
+            ]
+          },
+          "in_service_on": "2020-08-31",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "aninsei-ccnl-2024-2027-foe",
+                "title": "CCNL ANINSEI 2024-2027 (15 giugno 2024)",
+                "kind": "associazione",
+                "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+              },
+              "page": "53-54",
+              "section": "Art. 24 Salario d'anzianità",
+              "quote": "assunti fino al 31/08/2020: 15,00 al 1/09/2022, 35,00 complessivi dal 1/01/2025"
+            },
+            "transformation": "Art. 24 prints the total salario di anzianità by hire-date band; the totals are split into cumulative parts, each paid to those hired on or before the band's last day, so that a worker receives the printed total of the band. The band 1/09/2020-31/12/2023 is limited to hires by 1/01/2023 by the first paragraph (two years of uninterrupted service at 1/01/2025). Printed typos read as the column progression: '755,00' as 75,00, '31/12/01' (second occurrence) as 31/12/11, '1/0/25' as 1/01/2025. Paid in full to apprentices: art. 9.7 applies the 85/90/100% to the retribuzione tabellare only.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T00:30:00Z",
+              "effective_from": "2024-06-15",
+              "verification_status": "unverified"
+            }
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "SAL_ANZ_2013",
+          "description": "Salario di anzianità art. 24, quota dei assunti fino al 31/12/2013",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-06-15",
+                "valid_until": null,
+                "value": "10.00"
+              }
+            ]
+          },
+          "in_service_on": "2013-12-31",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "aninsei-ccnl-2024-2027-foe",
+                "title": "CCNL ANINSEI 2024-2027 (15 giugno 2024)",
+                "kind": "associazione",
+                "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+              },
+              "page": "53-54",
+              "section": "Art. 24 Salario d'anzianità",
+              "quote": "assunti fino al 31/12/2013: 25,00 al 1/09/2022, 45,00 dal 1/01/2025"
+            },
+            "transformation": "Art. 24 prints the total salario di anzianità by hire-date band; the totals are split into cumulative parts, each paid to those hired on or before the band's last day, so that a worker receives the printed total of the band. The band 1/09/2020-31/12/2023 is limited to hires by 1/01/2023 by the first paragraph (two years of uninterrupted service at 1/01/2025). Printed typos read as the column progression: '755,00' as 75,00, '31/12/01' (second occurrence) as 31/12/11, '1/0/25' as 1/01/2025. Paid in full to apprentices: art. 9.7 applies the 85/90/100% to the retribuzione tabellare only.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T00:30:00Z",
+              "effective_from": "2024-06-15",
+              "verification_status": "unverified"
+            }
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "SAL_ANZ_2011",
+          "description": "Salario di anzianità art. 24, quota dei assunti fino al 31/12/2011",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-06-15",
+                "valid_until": null,
+                "value": "10.00"
+              }
+            ]
+          },
+          "in_service_on": "2011-12-31",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "aninsei-ccnl-2024-2027-foe",
+                "title": "CCNL ANINSEI 2024-2027 (15 giugno 2024)",
+                "kind": "associazione",
+                "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+              },
+              "page": "53-54",
+              "section": "Art. 24 Salario d'anzianità",
+              "quote": "assunti fino al 31/12/2011: 35,00 al 1/09/2022, 55,00 dal 1/01/2025"
+            },
+            "transformation": "Art. 24 prints the total salario di anzianità by hire-date band; the totals are split into cumulative parts, each paid to those hired on or before the band's last day, so that a worker receives the printed total of the band. The band 1/09/2020-31/12/2023 is limited to hires by 1/01/2023 by the first paragraph (two years of uninterrupted service at 1/01/2025). Printed typos read as the column progression: '755,00' as 75,00, '31/12/01' (second occurrence) as 31/12/11, '1/0/25' as 1/01/2025. Paid in full to apprentices: art. 9.7 applies the 85/90/100% to the retribuzione tabellare only.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T00:30:00Z",
+              "effective_from": "2024-06-15",
+              "verification_status": "unverified"
+            }
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "SAL_ANZ_2009",
+          "description": "Salario di anzianità art. 24, quota dei assunti fino al 31/12/2009",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-06-15",
+                "valid_until": null,
+                "value": "10.00"
+              }
+            ]
+          },
+          "in_service_on": "2009-12-31",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "aninsei-ccnl-2024-2027-foe",
+                "title": "CCNL ANINSEI 2024-2027 (15 giugno 2024)",
+                "kind": "associazione",
+                "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+              },
+              "page": "53-54",
+              "section": "Art. 24 Salario d'anzianità",
+              "quote": "assunti fino al 31/12/2009: 45,00 al 1/09/2022, 65,00 dal 1/01/2025"
+            },
+            "transformation": "Art. 24 prints the total salario di anzianità by hire-date band; the totals are split into cumulative parts, each paid to those hired on or before the band's last day, so that a worker receives the printed total of the band. The band 1/09/2020-31/12/2023 is limited to hires by 1/01/2023 by the first paragraph (two years of uninterrupted service at 1/01/2025). Printed typos read as the column progression: '755,00' as 75,00, '31/12/01' (second occurrence) as 31/12/11, '1/0/25' as 1/01/2025. Paid in full to apprentices: art. 9.7 applies the 85/90/100% to the retribuzione tabellare only.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T00:30:00Z",
+              "effective_from": "2024-06-15",
+              "verification_status": "unverified"
+            }
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "SAL_ANZ_2005",
+          "description": "Salario di anzianità art. 24, quota dei assunti fino al 31/12/2005",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-06-15",
+                "valid_until": null,
+                "value": "10.00"
+              }
+            ]
+          },
+          "in_service_on": "2005-12-31",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "aninsei-ccnl-2024-2027-foe",
+                "title": "CCNL ANINSEI 2024-2027 (15 giugno 2024)",
+                "kind": "associazione",
+                "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+              },
+              "page": "53-54",
+              "section": "Art. 24 Salario d'anzianità",
+              "quote": "assunti fino al 31/12/2005: 55,00 al 1/09/2022, 75,00 dal 1/01/2025"
+            },
+            "transformation": "Art. 24 prints the total salario di anzianità by hire-date band; the totals are split into cumulative parts, each paid to those hired on or before the band's last day, so that a worker receives the printed total of the band. The band 1/09/2020-31/12/2023 is limited to hires by 1/01/2023 by the first paragraph (two years of uninterrupted service at 1/01/2025). Printed typos read as the column progression: '755,00' as 75,00, '31/12/01' (second occurrence) as 31/12/11, '1/0/25' as 1/01/2025. Paid in full to apprentices: art. 9.7 applies the 85/90/100% to the retribuzione tabellare only.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T00:30:00Z",
+              "effective_from": "2024-06-15",
+              "verification_status": "unverified"
+            }
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "SAL_ANZ_2001",
+          "description": "Salario di anzianità art. 24, quota dei assunti fino al 31/12/2001",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-06-15",
+                "valid_until": null,
+                "value": "15.00"
+              }
+            ]
+          },
+          "in_service_on": "2001-12-31",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "aninsei-ccnl-2024-2027-foe",
+                "title": "CCNL ANINSEI 2024-2027 (15 giugno 2024)",
+                "kind": "associazione",
+                "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+              },
+              "page": "53-54",
+              "section": "Art. 24 Salario d'anzianità",
+              "quote": "assunti fino al 31/12/2001: 70,00 al 1/09/2022, 90,00 dal 1/01/2025"
+            },
+            "transformation": "Art. 24 prints the total salario di anzianità by hire-date band; the totals are split into cumulative parts, each paid to those hired on or before the band's last day, so that a worker receives the printed total of the band. The band 1/09/2020-31/12/2023 is limited to hires by 1/01/2023 by the first paragraph (two years of uninterrupted service at 1/01/2025). Printed typos read as the column progression: '755,00' as 75,00, '31/12/01' (second occurrence) as 31/12/11, '1/0/25' as 1/01/2025. Paid in full to apprentices: art. 9.7 applies the 85/90/100% to the retribuzione tabellare only.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T00:30:00Z",
+              "effective_from": "2024-06-15",
+              "verification_status": "unverified"
+            }
+          },
+          "apprenticeship_pct_relevant": false
+        }
+      ],
       "provenance": {
         "status": "derived",
         "location": {
@@ -953,7 +2313,279 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "SAL_ANZ_2023",
+          "description": "Salario di anzianità art. 24, quota dei assunti fino al 1/01/2023 (due anni di servizio al 1/01/2025)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-06-15",
+                "valid_until": "2025-01-01",
+                "value": "0.00"
+              },
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "20.00"
+              }
+            ]
+          },
+          "in_service_on": "2023-01-01",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "aninsei-ccnl-2024-2027-foe",
+                "title": "CCNL ANINSEI 2024-2027 (15 giugno 2024)",
+                "kind": "associazione",
+                "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+              },
+              "page": "53-54",
+              "section": "Art. 24 Salario d'anzianità",
+              "quote": "assunti fino al 1/01/2023 (due anni di servizio al 1/01/2025): 20,00 dal 1/01/2025"
+            },
+            "transformation": "Art. 24 prints the total salario di anzianità by hire-date band; the totals are split into cumulative parts, each paid to those hired on or before the band's last day, so that a worker receives the printed total of the band. The band 1/09/2020-31/12/2023 is limited to hires by 1/01/2023 by the first paragraph (two years of uninterrupted service at 1/01/2025). Printed typos read as the column progression: '755,00' as 75,00, '31/12/01' (second occurrence) as 31/12/11, '1/0/25' as 1/01/2025. Paid in full to apprentices: art. 9.7 applies the 85/90/100% to the retribuzione tabellare only.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T00:30:00Z",
+              "effective_from": "2024-06-15",
+              "verification_status": "unverified"
+            }
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "SAL_ANZ_2020",
+          "description": "Salario di anzianità art. 24, quota dei assunti fino al 31/08/2020",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-06-15",
+                "valid_until": null,
+                "value": "15.00"
+              }
+            ]
+          },
+          "in_service_on": "2020-08-31",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "aninsei-ccnl-2024-2027-foe",
+                "title": "CCNL ANINSEI 2024-2027 (15 giugno 2024)",
+                "kind": "associazione",
+                "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+              },
+              "page": "53-54",
+              "section": "Art. 24 Salario d'anzianità",
+              "quote": "assunti fino al 31/08/2020: 15,00 al 1/09/2022, 35,00 complessivi dal 1/01/2025"
+            },
+            "transformation": "Art. 24 prints the total salario di anzianità by hire-date band; the totals are split into cumulative parts, each paid to those hired on or before the band's last day, so that a worker receives the printed total of the band. The band 1/09/2020-31/12/2023 is limited to hires by 1/01/2023 by the first paragraph (two years of uninterrupted service at 1/01/2025). Printed typos read as the column progression: '755,00' as 75,00, '31/12/01' (second occurrence) as 31/12/11, '1/0/25' as 1/01/2025. Paid in full to apprentices: art. 9.7 applies the 85/90/100% to the retribuzione tabellare only.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T00:30:00Z",
+              "effective_from": "2024-06-15",
+              "verification_status": "unverified"
+            }
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "SAL_ANZ_2013",
+          "description": "Salario di anzianità art. 24, quota dei assunti fino al 31/12/2013",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-06-15",
+                "valid_until": null,
+                "value": "10.00"
+              }
+            ]
+          },
+          "in_service_on": "2013-12-31",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "aninsei-ccnl-2024-2027-foe",
+                "title": "CCNL ANINSEI 2024-2027 (15 giugno 2024)",
+                "kind": "associazione",
+                "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+              },
+              "page": "53-54",
+              "section": "Art. 24 Salario d'anzianità",
+              "quote": "assunti fino al 31/12/2013: 25,00 al 1/09/2022, 45,00 dal 1/01/2025"
+            },
+            "transformation": "Art. 24 prints the total salario di anzianità by hire-date band; the totals are split into cumulative parts, each paid to those hired on or before the band's last day, so that a worker receives the printed total of the band. The band 1/09/2020-31/12/2023 is limited to hires by 1/01/2023 by the first paragraph (two years of uninterrupted service at 1/01/2025). Printed typos read as the column progression: '755,00' as 75,00, '31/12/01' (second occurrence) as 31/12/11, '1/0/25' as 1/01/2025. Paid in full to apprentices: art. 9.7 applies the 85/90/100% to the retribuzione tabellare only.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T00:30:00Z",
+              "effective_from": "2024-06-15",
+              "verification_status": "unverified"
+            }
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "SAL_ANZ_2011",
+          "description": "Salario di anzianità art. 24, quota dei assunti fino al 31/12/2011",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-06-15",
+                "valid_until": null,
+                "value": "10.00"
+              }
+            ]
+          },
+          "in_service_on": "2011-12-31",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "aninsei-ccnl-2024-2027-foe",
+                "title": "CCNL ANINSEI 2024-2027 (15 giugno 2024)",
+                "kind": "associazione",
+                "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+              },
+              "page": "53-54",
+              "section": "Art. 24 Salario d'anzianità",
+              "quote": "assunti fino al 31/12/2011: 35,00 al 1/09/2022, 55,00 dal 1/01/2025"
+            },
+            "transformation": "Art. 24 prints the total salario di anzianità by hire-date band; the totals are split into cumulative parts, each paid to those hired on or before the band's last day, so that a worker receives the printed total of the band. The band 1/09/2020-31/12/2023 is limited to hires by 1/01/2023 by the first paragraph (two years of uninterrupted service at 1/01/2025). Printed typos read as the column progression: '755,00' as 75,00, '31/12/01' (second occurrence) as 31/12/11, '1/0/25' as 1/01/2025. Paid in full to apprentices: art. 9.7 applies the 85/90/100% to the retribuzione tabellare only.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T00:30:00Z",
+              "effective_from": "2024-06-15",
+              "verification_status": "unverified"
+            }
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "SAL_ANZ_2009",
+          "description": "Salario di anzianità art. 24, quota dei assunti fino al 31/12/2009",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-06-15",
+                "valid_until": null,
+                "value": "10.00"
+              }
+            ]
+          },
+          "in_service_on": "2009-12-31",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "aninsei-ccnl-2024-2027-foe",
+                "title": "CCNL ANINSEI 2024-2027 (15 giugno 2024)",
+                "kind": "associazione",
+                "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+              },
+              "page": "53-54",
+              "section": "Art. 24 Salario d'anzianità",
+              "quote": "assunti fino al 31/12/2009: 45,00 al 1/09/2022, 65,00 dal 1/01/2025"
+            },
+            "transformation": "Art. 24 prints the total salario di anzianità by hire-date band; the totals are split into cumulative parts, each paid to those hired on or before the band's last day, so that a worker receives the printed total of the band. The band 1/09/2020-31/12/2023 is limited to hires by 1/01/2023 by the first paragraph (two years of uninterrupted service at 1/01/2025). Printed typos read as the column progression: '755,00' as 75,00, '31/12/01' (second occurrence) as 31/12/11, '1/0/25' as 1/01/2025. Paid in full to apprentices: art. 9.7 applies the 85/90/100% to the retribuzione tabellare only.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T00:30:00Z",
+              "effective_from": "2024-06-15",
+              "verification_status": "unverified"
+            }
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "SAL_ANZ_2005",
+          "description": "Salario di anzianità art. 24, quota dei assunti fino al 31/12/2005",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-06-15",
+                "valid_until": null,
+                "value": "10.00"
+              }
+            ]
+          },
+          "in_service_on": "2005-12-31",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "aninsei-ccnl-2024-2027-foe",
+                "title": "CCNL ANINSEI 2024-2027 (15 giugno 2024)",
+                "kind": "associazione",
+                "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+              },
+              "page": "53-54",
+              "section": "Art. 24 Salario d'anzianità",
+              "quote": "assunti fino al 31/12/2005: 55,00 al 1/09/2022, 75,00 dal 1/01/2025"
+            },
+            "transformation": "Art. 24 prints the total salario di anzianità by hire-date band; the totals are split into cumulative parts, each paid to those hired on or before the band's last day, so that a worker receives the printed total of the band. The band 1/09/2020-31/12/2023 is limited to hires by 1/01/2023 by the first paragraph (two years of uninterrupted service at 1/01/2025). Printed typos read as the column progression: '755,00' as 75,00, '31/12/01' (second occurrence) as 31/12/11, '1/0/25' as 1/01/2025. Paid in full to apprentices: art. 9.7 applies the 85/90/100% to the retribuzione tabellare only.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T00:30:00Z",
+              "effective_from": "2024-06-15",
+              "verification_status": "unverified"
+            }
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "SAL_ANZ_2001",
+          "description": "Salario di anzianità art. 24, quota dei assunti fino al 31/12/2001",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-06-15",
+                "valid_until": null,
+                "value": "15.00"
+              }
+            ]
+          },
+          "in_service_on": "2001-12-31",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "aninsei-ccnl-2024-2027-foe",
+                "title": "CCNL ANINSEI 2024-2027 (15 giugno 2024)",
+                "kind": "associazione",
+                "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+              },
+              "page": "53-54",
+              "section": "Art. 24 Salario d'anzianità",
+              "quote": "assunti fino al 31/12/2001: 70,00 al 1/09/2022, 90,00 dal 1/01/2025"
+            },
+            "transformation": "Art. 24 prints the total salario di anzianità by hire-date band; the totals are split into cumulative parts, each paid to those hired on or before the band's last day, so that a worker receives the printed total of the band. The band 1/09/2020-31/12/2023 is limited to hires by 1/01/2023 by the first paragraph (two years of uninterrupted service at 1/01/2025). Printed typos read as the column progression: '755,00' as 75,00, '31/12/01' (second occurrence) as 31/12/11, '1/0/25' as 1/01/2025. Paid in full to apprentices: art. 9.7 applies the 85/90/100% to the retribuzione tabellare only.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T00:30:00Z",
+              "effective_from": "2024-06-15",
+              "verification_status": "unverified"
+            }
+          },
+          "apprenticeship_pct_relevant": false
+        }
+      ],
       "provenance": {
         "status": "derived",
         "location": {
@@ -1073,7 +2705,279 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "SAL_ANZ_2023",
+          "description": "Salario di anzianità art. 24, quota dei assunti fino al 1/01/2023 (due anni di servizio al 1/01/2025)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-06-15",
+                "valid_until": "2025-01-01",
+                "value": "0.00"
+              },
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "20.00"
+              }
+            ]
+          },
+          "in_service_on": "2023-01-01",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "aninsei-ccnl-2024-2027-foe",
+                "title": "CCNL ANINSEI 2024-2027 (15 giugno 2024)",
+                "kind": "associazione",
+                "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+              },
+              "page": "53-54",
+              "section": "Art. 24 Salario d'anzianità",
+              "quote": "assunti fino al 1/01/2023 (due anni di servizio al 1/01/2025): 20,00 dal 1/01/2025"
+            },
+            "transformation": "Art. 24 prints the total salario di anzianità by hire-date band; the totals are split into cumulative parts, each paid to those hired on or before the band's last day, so that a worker receives the printed total of the band. The band 1/09/2020-31/12/2023 is limited to hires by 1/01/2023 by the first paragraph (two years of uninterrupted service at 1/01/2025). Printed typos read as the column progression: '755,00' as 75,00, '31/12/01' (second occurrence) as 31/12/11, '1/0/25' as 1/01/2025. Paid in full to apprentices: art. 9.7 applies the 85/90/100% to the retribuzione tabellare only.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T00:30:00Z",
+              "effective_from": "2024-06-15",
+              "verification_status": "unverified"
+            }
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "SAL_ANZ_2020",
+          "description": "Salario di anzianità art. 24, quota dei assunti fino al 31/08/2020",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-06-15",
+                "valid_until": null,
+                "value": "15.00"
+              }
+            ]
+          },
+          "in_service_on": "2020-08-31",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "aninsei-ccnl-2024-2027-foe",
+                "title": "CCNL ANINSEI 2024-2027 (15 giugno 2024)",
+                "kind": "associazione",
+                "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+              },
+              "page": "53-54",
+              "section": "Art. 24 Salario d'anzianità",
+              "quote": "assunti fino al 31/08/2020: 15,00 al 1/09/2022, 35,00 complessivi dal 1/01/2025"
+            },
+            "transformation": "Art. 24 prints the total salario di anzianità by hire-date band; the totals are split into cumulative parts, each paid to those hired on or before the band's last day, so that a worker receives the printed total of the band. The band 1/09/2020-31/12/2023 is limited to hires by 1/01/2023 by the first paragraph (two years of uninterrupted service at 1/01/2025). Printed typos read as the column progression: '755,00' as 75,00, '31/12/01' (second occurrence) as 31/12/11, '1/0/25' as 1/01/2025. Paid in full to apprentices: art. 9.7 applies the 85/90/100% to the retribuzione tabellare only.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T00:30:00Z",
+              "effective_from": "2024-06-15",
+              "verification_status": "unverified"
+            }
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "SAL_ANZ_2013",
+          "description": "Salario di anzianità art. 24, quota dei assunti fino al 31/12/2013",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-06-15",
+                "valid_until": null,
+                "value": "10.00"
+              }
+            ]
+          },
+          "in_service_on": "2013-12-31",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "aninsei-ccnl-2024-2027-foe",
+                "title": "CCNL ANINSEI 2024-2027 (15 giugno 2024)",
+                "kind": "associazione",
+                "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+              },
+              "page": "53-54",
+              "section": "Art. 24 Salario d'anzianità",
+              "quote": "assunti fino al 31/12/2013: 25,00 al 1/09/2022, 45,00 dal 1/01/2025"
+            },
+            "transformation": "Art. 24 prints the total salario di anzianità by hire-date band; the totals are split into cumulative parts, each paid to those hired on or before the band's last day, so that a worker receives the printed total of the band. The band 1/09/2020-31/12/2023 is limited to hires by 1/01/2023 by the first paragraph (two years of uninterrupted service at 1/01/2025). Printed typos read as the column progression: '755,00' as 75,00, '31/12/01' (second occurrence) as 31/12/11, '1/0/25' as 1/01/2025. Paid in full to apprentices: art. 9.7 applies the 85/90/100% to the retribuzione tabellare only.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T00:30:00Z",
+              "effective_from": "2024-06-15",
+              "verification_status": "unverified"
+            }
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "SAL_ANZ_2011",
+          "description": "Salario di anzianità art. 24, quota dei assunti fino al 31/12/2011",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-06-15",
+                "valid_until": null,
+                "value": "10.00"
+              }
+            ]
+          },
+          "in_service_on": "2011-12-31",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "aninsei-ccnl-2024-2027-foe",
+                "title": "CCNL ANINSEI 2024-2027 (15 giugno 2024)",
+                "kind": "associazione",
+                "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+              },
+              "page": "53-54",
+              "section": "Art. 24 Salario d'anzianità",
+              "quote": "assunti fino al 31/12/2011: 35,00 al 1/09/2022, 55,00 dal 1/01/2025"
+            },
+            "transformation": "Art. 24 prints the total salario di anzianità by hire-date band; the totals are split into cumulative parts, each paid to those hired on or before the band's last day, so that a worker receives the printed total of the band. The band 1/09/2020-31/12/2023 is limited to hires by 1/01/2023 by the first paragraph (two years of uninterrupted service at 1/01/2025). Printed typos read as the column progression: '755,00' as 75,00, '31/12/01' (second occurrence) as 31/12/11, '1/0/25' as 1/01/2025. Paid in full to apprentices: art. 9.7 applies the 85/90/100% to the retribuzione tabellare only.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T00:30:00Z",
+              "effective_from": "2024-06-15",
+              "verification_status": "unverified"
+            }
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "SAL_ANZ_2009",
+          "description": "Salario di anzianità art. 24, quota dei assunti fino al 31/12/2009",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-06-15",
+                "valid_until": null,
+                "value": "10.00"
+              }
+            ]
+          },
+          "in_service_on": "2009-12-31",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "aninsei-ccnl-2024-2027-foe",
+                "title": "CCNL ANINSEI 2024-2027 (15 giugno 2024)",
+                "kind": "associazione",
+                "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+              },
+              "page": "53-54",
+              "section": "Art. 24 Salario d'anzianità",
+              "quote": "assunti fino al 31/12/2009: 45,00 al 1/09/2022, 65,00 dal 1/01/2025"
+            },
+            "transformation": "Art. 24 prints the total salario di anzianità by hire-date band; the totals are split into cumulative parts, each paid to those hired on or before the band's last day, so that a worker receives the printed total of the band. The band 1/09/2020-31/12/2023 is limited to hires by 1/01/2023 by the first paragraph (two years of uninterrupted service at 1/01/2025). Printed typos read as the column progression: '755,00' as 75,00, '31/12/01' (second occurrence) as 31/12/11, '1/0/25' as 1/01/2025. Paid in full to apprentices: art. 9.7 applies the 85/90/100% to the retribuzione tabellare only.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T00:30:00Z",
+              "effective_from": "2024-06-15",
+              "verification_status": "unverified"
+            }
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "SAL_ANZ_2005",
+          "description": "Salario di anzianità art. 24, quota dei assunti fino al 31/12/2005",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-06-15",
+                "valid_until": null,
+                "value": "10.00"
+              }
+            ]
+          },
+          "in_service_on": "2005-12-31",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "aninsei-ccnl-2024-2027-foe",
+                "title": "CCNL ANINSEI 2024-2027 (15 giugno 2024)",
+                "kind": "associazione",
+                "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+              },
+              "page": "53-54",
+              "section": "Art. 24 Salario d'anzianità",
+              "quote": "assunti fino al 31/12/2005: 55,00 al 1/09/2022, 75,00 dal 1/01/2025"
+            },
+            "transformation": "Art. 24 prints the total salario di anzianità by hire-date band; the totals are split into cumulative parts, each paid to those hired on or before the band's last day, so that a worker receives the printed total of the band. The band 1/09/2020-31/12/2023 is limited to hires by 1/01/2023 by the first paragraph (two years of uninterrupted service at 1/01/2025). Printed typos read as the column progression: '755,00' as 75,00, '31/12/01' (second occurrence) as 31/12/11, '1/0/25' as 1/01/2025. Paid in full to apprentices: art. 9.7 applies the 85/90/100% to the retribuzione tabellare only.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T00:30:00Z",
+              "effective_from": "2024-06-15",
+              "verification_status": "unverified"
+            }
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "SAL_ANZ_2001",
+          "description": "Salario di anzianità art. 24, quota dei assunti fino al 31/12/2001",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-06-15",
+                "valid_until": null,
+                "value": "15.00"
+              }
+            ]
+          },
+          "in_service_on": "2001-12-31",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "aninsei-ccnl-2024-2027-foe",
+                "title": "CCNL ANINSEI 2024-2027 (15 giugno 2024)",
+                "kind": "associazione",
+                "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+              },
+              "page": "53-54",
+              "section": "Art. 24 Salario d'anzianità",
+              "quote": "assunti fino al 31/12/2001: 70,00 al 1/09/2022, 90,00 dal 1/01/2025"
+            },
+            "transformation": "Art. 24 prints the total salario di anzianità by hire-date band; the totals are split into cumulative parts, each paid to those hired on or before the band's last day, so that a worker receives the printed total of the band. The band 1/09/2020-31/12/2023 is limited to hires by 1/01/2023 by the first paragraph (two years of uninterrupted service at 1/01/2025). Printed typos read as the column progression: '755,00' as 75,00, '31/12/01' (second occurrence) as 31/12/11, '1/0/25' as 1/01/2025. Paid in full to apprentices: art. 9.7 applies the 85/90/100% to the retribuzione tabellare only.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T00:30:00Z",
+              "effective_from": "2024-06-15",
+              "verification_status": "unverified"
+            }
+          },
+          "apprenticeship_pct_relevant": false
+        }
+      ],
       "provenance": {
         "status": "derived",
         "location": {
@@ -1193,7 +3097,279 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "SAL_ANZ_2023",
+          "description": "Salario di anzianità art. 24, quota dei assunti fino al 1/01/2023 (due anni di servizio al 1/01/2025)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-06-15",
+                "valid_until": "2025-01-01",
+                "value": "0.00"
+              },
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "20.00"
+              }
+            ]
+          },
+          "in_service_on": "2023-01-01",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "aninsei-ccnl-2024-2027-foe",
+                "title": "CCNL ANINSEI 2024-2027 (15 giugno 2024)",
+                "kind": "associazione",
+                "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+              },
+              "page": "53-54",
+              "section": "Art. 24 Salario d'anzianità",
+              "quote": "assunti fino al 1/01/2023 (due anni di servizio al 1/01/2025): 20,00 dal 1/01/2025"
+            },
+            "transformation": "Art. 24 prints the total salario di anzianità by hire-date band; the totals are split into cumulative parts, each paid to those hired on or before the band's last day, so that a worker receives the printed total of the band. The band 1/09/2020-31/12/2023 is limited to hires by 1/01/2023 by the first paragraph (two years of uninterrupted service at 1/01/2025). Printed typos read as the column progression: '755,00' as 75,00, '31/12/01' (second occurrence) as 31/12/11, '1/0/25' as 1/01/2025. Paid in full to apprentices: art. 9.7 applies the 85/90/100% to the retribuzione tabellare only.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T00:30:00Z",
+              "effective_from": "2024-06-15",
+              "verification_status": "unverified"
+            }
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "SAL_ANZ_2020",
+          "description": "Salario di anzianità art. 24, quota dei assunti fino al 31/08/2020",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-06-15",
+                "valid_until": null,
+                "value": "15.00"
+              }
+            ]
+          },
+          "in_service_on": "2020-08-31",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "aninsei-ccnl-2024-2027-foe",
+                "title": "CCNL ANINSEI 2024-2027 (15 giugno 2024)",
+                "kind": "associazione",
+                "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+              },
+              "page": "53-54",
+              "section": "Art. 24 Salario d'anzianità",
+              "quote": "assunti fino al 31/08/2020: 15,00 al 1/09/2022, 35,00 complessivi dal 1/01/2025"
+            },
+            "transformation": "Art. 24 prints the total salario di anzianità by hire-date band; the totals are split into cumulative parts, each paid to those hired on or before the band's last day, so that a worker receives the printed total of the band. The band 1/09/2020-31/12/2023 is limited to hires by 1/01/2023 by the first paragraph (two years of uninterrupted service at 1/01/2025). Printed typos read as the column progression: '755,00' as 75,00, '31/12/01' (second occurrence) as 31/12/11, '1/0/25' as 1/01/2025. Paid in full to apprentices: art. 9.7 applies the 85/90/100% to the retribuzione tabellare only.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T00:30:00Z",
+              "effective_from": "2024-06-15",
+              "verification_status": "unverified"
+            }
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "SAL_ANZ_2013",
+          "description": "Salario di anzianità art. 24, quota dei assunti fino al 31/12/2013",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-06-15",
+                "valid_until": null,
+                "value": "10.00"
+              }
+            ]
+          },
+          "in_service_on": "2013-12-31",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "aninsei-ccnl-2024-2027-foe",
+                "title": "CCNL ANINSEI 2024-2027 (15 giugno 2024)",
+                "kind": "associazione",
+                "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+              },
+              "page": "53-54",
+              "section": "Art. 24 Salario d'anzianità",
+              "quote": "assunti fino al 31/12/2013: 25,00 al 1/09/2022, 45,00 dal 1/01/2025"
+            },
+            "transformation": "Art. 24 prints the total salario di anzianità by hire-date band; the totals are split into cumulative parts, each paid to those hired on or before the band's last day, so that a worker receives the printed total of the band. The band 1/09/2020-31/12/2023 is limited to hires by 1/01/2023 by the first paragraph (two years of uninterrupted service at 1/01/2025). Printed typos read as the column progression: '755,00' as 75,00, '31/12/01' (second occurrence) as 31/12/11, '1/0/25' as 1/01/2025. Paid in full to apprentices: art. 9.7 applies the 85/90/100% to the retribuzione tabellare only.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T00:30:00Z",
+              "effective_from": "2024-06-15",
+              "verification_status": "unverified"
+            }
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "SAL_ANZ_2011",
+          "description": "Salario di anzianità art. 24, quota dei assunti fino al 31/12/2011",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-06-15",
+                "valid_until": null,
+                "value": "10.00"
+              }
+            ]
+          },
+          "in_service_on": "2011-12-31",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "aninsei-ccnl-2024-2027-foe",
+                "title": "CCNL ANINSEI 2024-2027 (15 giugno 2024)",
+                "kind": "associazione",
+                "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+              },
+              "page": "53-54",
+              "section": "Art. 24 Salario d'anzianità",
+              "quote": "assunti fino al 31/12/2011: 35,00 al 1/09/2022, 55,00 dal 1/01/2025"
+            },
+            "transformation": "Art. 24 prints the total salario di anzianità by hire-date band; the totals are split into cumulative parts, each paid to those hired on or before the band's last day, so that a worker receives the printed total of the band. The band 1/09/2020-31/12/2023 is limited to hires by 1/01/2023 by the first paragraph (two years of uninterrupted service at 1/01/2025). Printed typos read as the column progression: '755,00' as 75,00, '31/12/01' (second occurrence) as 31/12/11, '1/0/25' as 1/01/2025. Paid in full to apprentices: art. 9.7 applies the 85/90/100% to the retribuzione tabellare only.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T00:30:00Z",
+              "effective_from": "2024-06-15",
+              "verification_status": "unverified"
+            }
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "SAL_ANZ_2009",
+          "description": "Salario di anzianità art. 24, quota dei assunti fino al 31/12/2009",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-06-15",
+                "valid_until": null,
+                "value": "10.00"
+              }
+            ]
+          },
+          "in_service_on": "2009-12-31",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "aninsei-ccnl-2024-2027-foe",
+                "title": "CCNL ANINSEI 2024-2027 (15 giugno 2024)",
+                "kind": "associazione",
+                "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+              },
+              "page": "53-54",
+              "section": "Art. 24 Salario d'anzianità",
+              "quote": "assunti fino al 31/12/2009: 45,00 al 1/09/2022, 65,00 dal 1/01/2025"
+            },
+            "transformation": "Art. 24 prints the total salario di anzianità by hire-date band; the totals are split into cumulative parts, each paid to those hired on or before the band's last day, so that a worker receives the printed total of the band. The band 1/09/2020-31/12/2023 is limited to hires by 1/01/2023 by the first paragraph (two years of uninterrupted service at 1/01/2025). Printed typos read as the column progression: '755,00' as 75,00, '31/12/01' (second occurrence) as 31/12/11, '1/0/25' as 1/01/2025. Paid in full to apprentices: art. 9.7 applies the 85/90/100% to the retribuzione tabellare only.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T00:30:00Z",
+              "effective_from": "2024-06-15",
+              "verification_status": "unverified"
+            }
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "SAL_ANZ_2005",
+          "description": "Salario di anzianità art. 24, quota dei assunti fino al 31/12/2005",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-06-15",
+                "valid_until": null,
+                "value": "10.00"
+              }
+            ]
+          },
+          "in_service_on": "2005-12-31",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "aninsei-ccnl-2024-2027-foe",
+                "title": "CCNL ANINSEI 2024-2027 (15 giugno 2024)",
+                "kind": "associazione",
+                "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+              },
+              "page": "53-54",
+              "section": "Art. 24 Salario d'anzianità",
+              "quote": "assunti fino al 31/12/2005: 55,00 al 1/09/2022, 75,00 dal 1/01/2025"
+            },
+            "transformation": "Art. 24 prints the total salario di anzianità by hire-date band; the totals are split into cumulative parts, each paid to those hired on or before the band's last day, so that a worker receives the printed total of the band. The band 1/09/2020-31/12/2023 is limited to hires by 1/01/2023 by the first paragraph (two years of uninterrupted service at 1/01/2025). Printed typos read as the column progression: '755,00' as 75,00, '31/12/01' (second occurrence) as 31/12/11, '1/0/25' as 1/01/2025. Paid in full to apprentices: art. 9.7 applies the 85/90/100% to the retribuzione tabellare only.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T00:30:00Z",
+              "effective_from": "2024-06-15",
+              "verification_status": "unverified"
+            }
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "SAL_ANZ_2001",
+          "description": "Salario di anzianità art. 24, quota dei assunti fino al 31/12/2001",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-06-15",
+                "valid_until": null,
+                "value": "15.00"
+              }
+            ]
+          },
+          "in_service_on": "2001-12-31",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "aninsei-ccnl-2024-2027-foe",
+                "title": "CCNL ANINSEI 2024-2027 (15 giugno 2024)",
+                "kind": "associazione",
+                "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+              },
+              "page": "53-54",
+              "section": "Art. 24 Salario d'anzianità",
+              "quote": "assunti fino al 31/12/2001: 70,00 al 1/09/2022, 90,00 dal 1/01/2025"
+            },
+            "transformation": "Art. 24 prints the total salario di anzianità by hire-date band; the totals are split into cumulative parts, each paid to those hired on or before the band's last day, so that a worker receives the printed total of the band. The band 1/09/2020-31/12/2023 is limited to hires by 1/01/2023 by the first paragraph (two years of uninterrupted service at 1/01/2025). Printed typos read as the column progression: '755,00' as 75,00, '31/12/01' (second occurrence) as 31/12/11, '1/0/25' as 1/01/2025. Paid in full to apprentices: art. 9.7 applies the 85/90/100% to the retribuzione tabellare only.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T00:30:00Z",
+              "effective_from": "2024-06-15",
+              "verification_status": "unverified"
+            }
+          },
+          "apprenticeship_pct_relevant": false
+        }
+      ],
       "provenance": {
         "status": "derived",
         "location": {
@@ -1313,7 +3489,279 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "SAL_ANZ_2023",
+          "description": "Salario di anzianità art. 24, quota dei assunti fino al 1/01/2023 (due anni di servizio al 1/01/2025)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-06-15",
+                "valid_until": "2025-01-01",
+                "value": "0.00"
+              },
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "20.00"
+              }
+            ]
+          },
+          "in_service_on": "2023-01-01",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "aninsei-ccnl-2024-2027-foe",
+                "title": "CCNL ANINSEI 2024-2027 (15 giugno 2024)",
+                "kind": "associazione",
+                "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+              },
+              "page": "53-54",
+              "section": "Art. 24 Salario d'anzianità",
+              "quote": "assunti fino al 1/01/2023 (due anni di servizio al 1/01/2025): 20,00 dal 1/01/2025"
+            },
+            "transformation": "Art. 24 prints the total salario di anzianità by hire-date band; the totals are split into cumulative parts, each paid to those hired on or before the band's last day, so that a worker receives the printed total of the band. The band 1/09/2020-31/12/2023 is limited to hires by 1/01/2023 by the first paragraph (two years of uninterrupted service at 1/01/2025). Printed typos read as the column progression: '755,00' as 75,00, '31/12/01' (second occurrence) as 31/12/11, '1/0/25' as 1/01/2025. Paid in full to apprentices: art. 9.7 applies the 85/90/100% to the retribuzione tabellare only.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T00:30:00Z",
+              "effective_from": "2024-06-15",
+              "verification_status": "unverified"
+            }
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "SAL_ANZ_2020",
+          "description": "Salario di anzianità art. 24, quota dei assunti fino al 31/08/2020",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-06-15",
+                "valid_until": null,
+                "value": "15.00"
+              }
+            ]
+          },
+          "in_service_on": "2020-08-31",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "aninsei-ccnl-2024-2027-foe",
+                "title": "CCNL ANINSEI 2024-2027 (15 giugno 2024)",
+                "kind": "associazione",
+                "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+              },
+              "page": "53-54",
+              "section": "Art. 24 Salario d'anzianità",
+              "quote": "assunti fino al 31/08/2020: 15,00 al 1/09/2022, 35,00 complessivi dal 1/01/2025"
+            },
+            "transformation": "Art. 24 prints the total salario di anzianità by hire-date band; the totals are split into cumulative parts, each paid to those hired on or before the band's last day, so that a worker receives the printed total of the band. The band 1/09/2020-31/12/2023 is limited to hires by 1/01/2023 by the first paragraph (two years of uninterrupted service at 1/01/2025). Printed typos read as the column progression: '755,00' as 75,00, '31/12/01' (second occurrence) as 31/12/11, '1/0/25' as 1/01/2025. Paid in full to apprentices: art. 9.7 applies the 85/90/100% to the retribuzione tabellare only.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T00:30:00Z",
+              "effective_from": "2024-06-15",
+              "verification_status": "unverified"
+            }
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "SAL_ANZ_2013",
+          "description": "Salario di anzianità art. 24, quota dei assunti fino al 31/12/2013",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-06-15",
+                "valid_until": null,
+                "value": "10.00"
+              }
+            ]
+          },
+          "in_service_on": "2013-12-31",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "aninsei-ccnl-2024-2027-foe",
+                "title": "CCNL ANINSEI 2024-2027 (15 giugno 2024)",
+                "kind": "associazione",
+                "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+              },
+              "page": "53-54",
+              "section": "Art. 24 Salario d'anzianità",
+              "quote": "assunti fino al 31/12/2013: 25,00 al 1/09/2022, 45,00 dal 1/01/2025"
+            },
+            "transformation": "Art. 24 prints the total salario di anzianità by hire-date band; the totals are split into cumulative parts, each paid to those hired on or before the band's last day, so that a worker receives the printed total of the band. The band 1/09/2020-31/12/2023 is limited to hires by 1/01/2023 by the first paragraph (two years of uninterrupted service at 1/01/2025). Printed typos read as the column progression: '755,00' as 75,00, '31/12/01' (second occurrence) as 31/12/11, '1/0/25' as 1/01/2025. Paid in full to apprentices: art. 9.7 applies the 85/90/100% to the retribuzione tabellare only.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T00:30:00Z",
+              "effective_from": "2024-06-15",
+              "verification_status": "unverified"
+            }
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "SAL_ANZ_2011",
+          "description": "Salario di anzianità art. 24, quota dei assunti fino al 31/12/2011",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-06-15",
+                "valid_until": null,
+                "value": "10.00"
+              }
+            ]
+          },
+          "in_service_on": "2011-12-31",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "aninsei-ccnl-2024-2027-foe",
+                "title": "CCNL ANINSEI 2024-2027 (15 giugno 2024)",
+                "kind": "associazione",
+                "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+              },
+              "page": "53-54",
+              "section": "Art. 24 Salario d'anzianità",
+              "quote": "assunti fino al 31/12/2011: 35,00 al 1/09/2022, 55,00 dal 1/01/2025"
+            },
+            "transformation": "Art. 24 prints the total salario di anzianità by hire-date band; the totals are split into cumulative parts, each paid to those hired on or before the band's last day, so that a worker receives the printed total of the band. The band 1/09/2020-31/12/2023 is limited to hires by 1/01/2023 by the first paragraph (two years of uninterrupted service at 1/01/2025). Printed typos read as the column progression: '755,00' as 75,00, '31/12/01' (second occurrence) as 31/12/11, '1/0/25' as 1/01/2025. Paid in full to apprentices: art. 9.7 applies the 85/90/100% to the retribuzione tabellare only.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T00:30:00Z",
+              "effective_from": "2024-06-15",
+              "verification_status": "unverified"
+            }
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "SAL_ANZ_2009",
+          "description": "Salario di anzianità art. 24, quota dei assunti fino al 31/12/2009",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-06-15",
+                "valid_until": null,
+                "value": "10.00"
+              }
+            ]
+          },
+          "in_service_on": "2009-12-31",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "aninsei-ccnl-2024-2027-foe",
+                "title": "CCNL ANINSEI 2024-2027 (15 giugno 2024)",
+                "kind": "associazione",
+                "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+              },
+              "page": "53-54",
+              "section": "Art. 24 Salario d'anzianità",
+              "quote": "assunti fino al 31/12/2009: 45,00 al 1/09/2022, 65,00 dal 1/01/2025"
+            },
+            "transformation": "Art. 24 prints the total salario di anzianità by hire-date band; the totals are split into cumulative parts, each paid to those hired on or before the band's last day, so that a worker receives the printed total of the band. The band 1/09/2020-31/12/2023 is limited to hires by 1/01/2023 by the first paragraph (two years of uninterrupted service at 1/01/2025). Printed typos read as the column progression: '755,00' as 75,00, '31/12/01' (second occurrence) as 31/12/11, '1/0/25' as 1/01/2025. Paid in full to apprentices: art. 9.7 applies the 85/90/100% to the retribuzione tabellare only.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T00:30:00Z",
+              "effective_from": "2024-06-15",
+              "verification_status": "unverified"
+            }
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "SAL_ANZ_2005",
+          "description": "Salario di anzianità art. 24, quota dei assunti fino al 31/12/2005",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-06-15",
+                "valid_until": null,
+                "value": "10.00"
+              }
+            ]
+          },
+          "in_service_on": "2005-12-31",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "aninsei-ccnl-2024-2027-foe",
+                "title": "CCNL ANINSEI 2024-2027 (15 giugno 2024)",
+                "kind": "associazione",
+                "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+              },
+              "page": "53-54",
+              "section": "Art. 24 Salario d'anzianità",
+              "quote": "assunti fino al 31/12/2005: 55,00 al 1/09/2022, 75,00 dal 1/01/2025"
+            },
+            "transformation": "Art. 24 prints the total salario di anzianità by hire-date band; the totals are split into cumulative parts, each paid to those hired on or before the band's last day, so that a worker receives the printed total of the band. The band 1/09/2020-31/12/2023 is limited to hires by 1/01/2023 by the first paragraph (two years of uninterrupted service at 1/01/2025). Printed typos read as the column progression: '755,00' as 75,00, '31/12/01' (second occurrence) as 31/12/11, '1/0/25' as 1/01/2025. Paid in full to apprentices: art. 9.7 applies the 85/90/100% to the retribuzione tabellare only.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T00:30:00Z",
+              "effective_from": "2024-06-15",
+              "verification_status": "unverified"
+            }
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "SAL_ANZ_2001",
+          "description": "Salario di anzianità art. 24, quota dei assunti fino al 31/12/2001",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-06-15",
+                "valid_until": null,
+                "value": "15.00"
+              }
+            ]
+          },
+          "in_service_on": "2001-12-31",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "aninsei-ccnl-2024-2027-foe",
+                "title": "CCNL ANINSEI 2024-2027 (15 giugno 2024)",
+                "kind": "associazione",
+                "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+              },
+              "page": "53-54",
+              "section": "Art. 24 Salario d'anzianità",
+              "quote": "assunti fino al 31/12/2001: 70,00 al 1/09/2022, 90,00 dal 1/01/2025"
+            },
+            "transformation": "Art. 24 prints the total salario di anzianità by hire-date band; the totals are split into cumulative parts, each paid to those hired on or before the band's last day, so that a worker receives the printed total of the band. The band 1/09/2020-31/12/2023 is limited to hires by 1/01/2023 by the first paragraph (two years of uninterrupted service at 1/01/2025). Printed typos read as the column progression: '755,00' as 75,00, '31/12/01' (second occurrence) as 31/12/11, '1/0/25' as 1/01/2025. Paid in full to apprentices: art. 9.7 applies the 85/90/100% to the retribuzione tabellare only.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T00:30:00Z",
+              "effective_from": "2024-06-15",
+              "verification_status": "unverified"
+            }
+          },
+          "apprenticeship_pct_relevant": false
+        }
+      ],
       "provenance": {
         "status": "derived",
         "location": {
@@ -1380,7 +3828,7 @@
     "effective_until": null,
     "source": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
     "verification_status": "unverified",
-    "source_hash": "6088885b318628750bb058be307b399919d8d0688a67c2895856b11f1e780a65",
+    "source_hash": "8ef7a96c621c16b4ffc6006f4bcd1993e9ce6573b5f1ceea0e2cc2b2f35251cd",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

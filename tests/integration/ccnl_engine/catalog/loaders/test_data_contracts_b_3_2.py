@@ -136,11 +136,12 @@ class TestLoadScuolePrivatelaicheAninsei:
         ccnl = load_ccnl("scuole-private-laiche-aninsei")
         assert ccnl.parameters.hourly_divisor.value_at(date(2026, 1, 1)) == Decimal(165)
 
-    def test_scuole_private_laiche_aninsei_no_fixed_allowances(self) -> None:
-        """Conglobated model: all levels have no fixed allowances."""
+    def test_scuole_private_laiche_aninsei_only_salario_di_anzianita(self) -> None:
+        """Conglobated model: the only allowances are the art. 24 bands."""
         ccnl = load_ccnl("scuole-private-laiche-aninsei")
         for lv in ccnl.levels:
-            assert lv.fixed_allowances == ()
+            assert all(a.code.startswith("SAL_ANZ_") for a in lv.fixed_allowances)
+            assert len(lv.fixed_allowances) == 7
 
     def test_scuole_private_laiche_aninsei_tax_sector(self) -> None:
         """Tax sector is terziario."""
