@@ -136,7 +136,7 @@
         "monetary_impact": "unknown",
         "limitation": {
           "variant": "null_category_operaio_rate",
-          "remediation": "Resolved (review of 2026-10-30): a level without category takes the category the employment declares (employment/category/rules.py resolve_worker_category), and contribution/rate/rules.py inps_employer_rate applies employer_rate_by_category to it; a run that declares none gets the provisional issue employer_rate_category_assumed. Tests: tests/integration/ccnl_engine/contribution/rate/test_rules.py::test_declared_category_needs_no_issue, ::test_level_without_category_gets_a_provisional_issue.",
+          "remediation": "Resolved (review of 2026-10-30): a level without category takes the category the employment declares (employment/category/rules.py resolve_worker_category), and contribution/rate/rules.py inps_employer_rate applies employer_rate_by_category to it; a run that declares none gets the provisional issue employer_rate_category_assumed. Tests: tests/mutation/ccnl_engine/contribution/rate/test_rules_wiring.py::test_declared_category_needs_no_issue, ::test_level_without_category_gets_a_provisional_issue.",
           "status": "resolved"
         }
       },
@@ -1831,7 +1831,7 @@
     "effective_until": null,
     "source": "https://www.informaimpresa.it/wp-content/uploads/2024/03/Rinnovo-CCNL-Area-Legno-Lapidei_05.03.2024_Tabelle-retributive-e3d.pdf",
     "verification_status": "unverified",
-    "source_hash": "820814ef90c77703584500d3463defced3312a135e2b02efe28006bd41b8a439",
+    "source_hash": "10fcd395fc2db25d421dc218b2901dd10961b89737285a8d0ec12ea001deeead",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

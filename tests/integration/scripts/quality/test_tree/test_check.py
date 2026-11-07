@@ -41,3 +41,13 @@ def test_a_directory_that_mirrors_nothing_is_reported(tmp_path: Path) -> None:
         path.mkdir(parents=True)
         (path / "test_x.py").touch()
     assert misplaced(tmp_path) == ["unit/made_up"]
+
+
+def test_the_mutation_category_mirrors_the_code(tmp_path: Path) -> None:
+    """The tests mutmut runs follow the same mirror rule as the others."""
+    (tmp_path / "src" / "ccnl_engine" / "irpef").mkdir(parents=True)
+    for folder in ("irpef", "made_up"):
+        path = tmp_path / "tests" / "mutation" / "ccnl_engine" / folder
+        path.mkdir(parents=True)
+        (path / "test_x.py").touch()
+    assert misplaced(tmp_path) == ["mutation/made_up"]

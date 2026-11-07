@@ -48,17 +48,17 @@ _NOT_EXERCISED: dict[str, str] = {
         "read only for an impiegato whose month before the illness was not "
         "worked in full; the cases run an operaio of industria, and INPS does "
         "not cover the impiegati of industria; "
-        "tests/unit/ccnl_engine/sickness/base/test_rules.py shows the fallback"
+        "tests/mutation/ccnl_engine/sickness/base/test_rules.py shows the fallback"
     ),
     "EmployerProfile.contractual_funds": (
         "read only by a CCNL with health_funds, which the cases do not run; "
-        "tests/integration/ccnl_engine/fund/health/test_services.py shows its "
+        "tests/mutation/ccnl_engine/fund/health/test_services.py shows its "
         "blocker"
     ),
     "EmployerProfile.permit_carryover": (
         "read only by a CCNL with a permit_deadline (Commercio art. 158) on "
         "the runs of December and of the deadline, which the cases do not run; "
-        "tests/knowledge/ccnl_engine/leave/test_permit_deadline.py shows its "
+        "tests/mutation/ccnl_engine/leave/test_permit_deadline.py shows its "
         "blocker"
     ),
     "EmployerProfile.agricultural_zone": (
@@ -80,7 +80,7 @@ _NOT_EXERCISED: dict[str, str] = {
     "OpeningBalances.leave_balances": (
         "read only by the run that closes an employment of a CCNL with a "
         "sourced basis for the residual leave (Commercio), not the Concia D2 "
-        "of the cases; tests/integration/ccnl_engine/leave/settlement shows "
+        "of the cases; tests/mutation/ccnl_engine/leave/settlement shows "
         "its missing_fact"
     ),
 }

@@ -2,7 +2,7 @@
 
 The layout below follows the
 [Architecture contract](../docs/engine/architecture-contract-trees.md#test-tree):
-three categories, directories that mirror the code, test files named after the
+four categories, directories that mirror the code, test files named after the
 role of the module they test, or kept in the directory of that module.
 
 ## Categories
@@ -14,11 +14,24 @@ tests/
 │   └── ccnl_engine/   legal scenarios, normative oracles, reference and observed payslips
 ├── unit/
 │   └── ccnl_engine/   one pure function or object: no bundle, no I/O
-└── integration/
-    ├── ccnl_engine/   public API, loaders, repositories, pipeline, state
-    ├── demo/
-    └── scripts/       tooling and the static rules of the repository
+├── integration/
+│   ├── ccnl_engine/   public API, loaders, repositories, pipeline, state
+│   ├── demo/
+│   └── scripts/       tooling and the static rules of the repository
+└── mutation/
+    └── ccnl_engine/   the tests mutmut runs against the mutated modules
 ```
+
+`mutation/` holds every test of the modules listed in `[tool.mutmut]
+source_paths` of `pyproject.toml`, whatever its kind (unit, wiring or
+oracle): mutmut runs `tests/mutation` and nothing else, and `make check` runs
+it with the rest of the suite. A test that kills mutants of one of those
+modules goes there; a new module entering `source_paths` brings its tests
+with it. Where a unit and a wiring or oracle test of one module would share a
+name, the second takes the suffix `_wiring` or `_oracle`.
+`make mutation MODULE='ccnl_engine.fund.health.rules.*'` runs mutmut on one
+module at low priority with `MUTATION_WORKERS` (2) children, then checks the
+scores; without `MODULE` it runs every module.
 
 Under each category the path mirrors the code: a directory of
 `tests/<category>/ccnl_engine/` is a directory of `src/ccnl_engine/`, or
@@ -36,7 +49,8 @@ named after the module it tests: `src/ccnl_engine/x/y/z.py` is tested by
 Knowledge tests, the public API tests at the root of
 `integration/ccnl_engine/` and the repository-rule tests of
 `integration/scripts/` keep descriptive names
-(`test_pension_fund_prevedi.py`, `test_public_exports.py`).
+(`test_pension_fund_prevedi.py`, `test_public_exports.py`); so do the
+knowledge tests that sit in `mutation/`.
 
 A knowledge test, and a public API test, imports `ccnl_engine` only through
 the public API: the root and `ccnl_engine.inputs`, `.events`, `.results`
