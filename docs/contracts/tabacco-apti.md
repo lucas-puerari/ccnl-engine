@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ✅ |
-| **Limits of this contract** | pension_fund_contribution |
+| **Limits of this contract** | pension_fund_contribution, sickness |
 
-2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🧑 Manual | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 37 verified / 0 derived / 22 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 38 verified / 0 derived / 22 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🟡 Needs review | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-07-02 |
-| **Last review** | 2026-10-18 |
+| **Last review** | 2026-11-07 |
 | **Latest salary tranche** | 2028-01-01 |
 
 ## Review history
@@ -60,6 +60,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-09-18 | maintainer (human) | Whole file. The values checked were not recorded. | flagged | The review recorded no list of the documents it read.<br>Confidence set to needs_review: values to re-check. |
 | 2026-10-17 | claude-opus-5-5 (ai) | The minimi of the nine categories against Allegato A of the accordo di rinnovo of 2 July 2025. | confirmed | Allegato A (p. 13 of the signed scan, read by OCR and on the page image): the 36 minimi of the nine categories from January 2025 to January 2028 match the file (3°B from 1/1/2027 is printed '1420,1').<br>The ruleset names this source, published by UILA-UIL, a signatory: source_type contracting_party instead of estimated.<br>The contingenza and EDR of each category (18 rules) are not in the accordo and stay assumed. |
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | corrected | Articolo 33 - 13a e 14a MENSILITÀ (p. 43): "il lavoratore non in prova ha diritto a tanti dodicesimi dell’ammontare della 13a e della 14a mensilità per quanti sono i mesi interi di servizio prestati. Le frazioni di mese superiori a 15 giorni saranno calcolate come mese intero.". Added: more_than 15 (the file applied the engine default, at least 15 days). |
+| 2026-11-07 | claude-opus-5-5 (ai) | Art. 34 operai of the 2 July 2025 renewal, read on the page image, against the research of a separate model session. | corrected | The file had no sickness rule; the operai rule is added (100% from day 1 to day 180, comporto 180 days).<br>The renewal strikes 'netta' from the main clause: the separate research quoted it as net, the image shows it struck; the gross basis is used. |
 
 ## Salary table
 
@@ -113,12 +114,26 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Model the ALIFOND employer rate in force before 1 July 2025.
 
+!!! warning "tabacco-apti/sickness_rules · sickness · impact yes · open"
+    SICKNESS (Art. 34, renewal 2 July 2025 p. 8, CCNL 2021-2024 p. 44-45): modelled the operai rule (100% of the retribuzione normale from day 1 to day 180, comporto 180 days). Not modelled: impiegati (12 months, full and half stipendio 4+4, 5+5 or 6+6 months by seniority, interruptions summed unless one year apart); serious illness extending the comporto to 12 months unpaid; +90 days unpaid for certified disability (L. 68/99); life-saving therapy days outside the comporto; apprentices 100% for at most 6 months a year (art. 6). The sentence 'per le malattie che superano i sei giorni ... 100% della retribuzione normale netta anche per i giorni di carenza' was left unchanged by the renewal, while the main clause dropped 'netta': the gross basis of the main clause is used.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the impiegati regime and the comporto extensions of Art. 34.
+
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
 
     **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
 
     **Remediation:** Resolved: the remaining CCNLs are tracked by their own apprentice_seniority limitation.
+
+!!! warning "sickness_cumulation_window · sickness · impact unknown · open"
+    The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded. A CCNL whose comporto the engine counts over the calendar year (Commercio Art. 186 and the others with comporto_calendar_year) is not affected.
+
+    **Applies when:** `sickness` applies; the run takes the engine code path.
+
+    **Remediation:** Add the cumulation window of each CCNL to its sickness rule, with the source, and count the tier and the comporto over it.
 
 !!! warning "provisional_ruleset · irpef · impact unknown · open"
     The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.

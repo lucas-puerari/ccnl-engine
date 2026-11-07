@@ -13,6 +13,10 @@ updates:
     directory: "/"
     schedule:
       interval: "monthly"
+    # Raise a lower bound only when the new version falls outside it: the
+    # runtime floor of the package (e.g. pydantic>=2.6) must stay low enough
+    # for the Pyodide demo, which ships an older pydantic.
+    versioning-strategy: "increase-if-necessary"
     open-pull-requests-limit: 5
     commit-message:
       prefix: "build"

@@ -151,7 +151,7 @@ docs = [
 ]
 
 [package.metadata]
-requires-dist = [{ name = "pydantic", specifier = ">=2.14.2" }]
+requires-dist = [{ name = "pydantic", specifier = ">=2.6" }]
 
 [package.metadata.requires-dev]
 dev = [

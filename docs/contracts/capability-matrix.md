@@ -109,7 +109,7 @@ formulas or caller-declared amounts.
 | `standby` | Reperibilità (importi del CCNL per livello) | scenario | work_rules | native | event | event | — | — | implemented | none bundled |
 | `absence` | Assenze ingiustificate | scenario | work_rules | caller_supplied | event | event | — | — | caller-supplied | 15 / 0 / 0 / 0 |
 | `leave` | Ferie, ROL ed ex festività godute: retribuite nella paga del mese, scalano il saldo maturato | scenario | work_rules | native | event | event | — | — | implemented | 33 / 19 / 0 / 0 |
-| `sickness` | Malattia: episodi su più periodi, carenza, fasce INPS e integrazione CCNL | scenario | work_rules | native | event | event | — | multi_period_episode, inps_bands_and_carenza, ccnl_tiers | simplified | 56 / 202 / 7 / 0 |
+| `sickness` | Malattia: episodi su più periodi, carenza, fasce INPS e integrazione CCNL | scenario | work_rules | native | event | event | — | multi_period_episode, inps_bands_and_carenza, ccnl_tiers | simplified | 57 / 202 / 7 / 0 |
 | `fringe_benefit` | Fringe benefit (informativo) | scenario | work_rules | native | event | event | — | — | simplified | 0 / 1 / 1 / 0 |
 | `travel_allowance` | Indennità di trasferta (importo giornaliero dal chiamante, quota esente art. 51 c. 5 TUIR) | scenario | work_rules | caller_supplied | event | event | — | — | caller-supplied | none bundled |
 | `welfare` | Welfare aziendale (informativo) | scenario | work_rules | native | event | event | — | — | implemented | none bundled |
@@ -258,7 +258,7 @@ never grow.
 | 117 | [CCNL per i dipendenti da autoscuole, scuole nautiche e studi di consulenza automobilistica](autoscuole-unasca.md) | ✅ | — | 1 / 32 / 1 / 0 |
 | 118 | [CCNL per i dipendenti da aziende dei settori Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo](pubblici-esercizi-fipe-angem.md) | ⚠️ | base_salary, leave, overtime, sickness | 68 / 4 / 0 / 0 |
 | 119 | [CCNL per i dipendenti da aziende dei settori Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo - Ristorazione collettiva (aziende dell'art. 1 c. 1 par. II)](pubblici-esercizi-fipe-angem-ristorazione-collettiva.md) | ⚠️ | base_salary, overtime | 62 / 6 / 0 / 0 |
-| 120 | [CCNL per i dipendenti dalle aziende di lavorazione della foglia di tabacco secco allo stato sciolto](tabacco-apti.md) | ✅ | pension_fund_contribution | 37 / 0 / 22 / 0 |
+| 120 | [CCNL per i dipendenti dalle aziende di lavorazione della foglia di tabacco secco allo stato sciolto](tabacco-apti.md) | ✅ | pension_fund_contribution, sickness | 38 / 0 / 22 / 0 |
 | 121 | [CCNL per i dipendenti degli studi e delle attività professionali (Confprofessioni)](studi-professionali-confprofessioni.md) | ⚠️ | base_salary, sickness | 53 / 2 / 0 / 0 |
 | 122 | [CCNL per i dipendenti delle imprese artigiane esercenti servizi di pulizia, disinfezione, disinfestazione, derattizzazione e sanificazione](pulizia-artigianato-confartigianato.md) | ⚠️ | base_salary, bilateral_funds, holiday_work, inps_employer, night_work, overtime, seniority | 61 / 8 / 29 / 0 |
 | 123 | [CCNL per i lavoratori addetti all'industria delle calzature](calzaturiero-assocalzaturifici.md) | ✅ | — | 1 / 37 / 1 / 1 |
