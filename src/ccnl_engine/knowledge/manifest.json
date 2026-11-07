@@ -728,7 +728,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/dmo-federdistribuzione",
       "ruleset_version": "2026.2",
-      "source_hash": "662e99190628851341cf5abc386c6c94390a91b6781b51cf87834ed9ec0ba30e",
+      "source_hash": "8071b9fd26d595874098e6c1d0a7c0ff6a8326952449061e9388621a700965f3",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/dmo-federdistribuzione.json.gz"
@@ -2176,7 +2176,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/turismo-confesercenti",
       "ruleset_version": "2026.2",
-      "source_hash": "544f7bac8c52fb06f9f2384f334353ad1d9864095b5d8f5dd4bf9f664942eed5",
+      "source_hash": "885808f85bec14ce81c6d89de42e8f1ceda68bb19d5a5e95d2873be4ee5e98d2",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/turismo-confesercenti.json.gz"
@@ -3261,7 +3261,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "0652be071eeeb29edee3611a32a15167eff10a0666c4c07e3cbc57d6e4d6f252",
+      "source_hash": "b31e1897b2c317e01b4af38ada7afb5234aa6e7a2a51bc32860af6ae1e34ccff",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/dmo-federdistribuzione.json.gz",

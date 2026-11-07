@@ -5082,7 +5082,7 @@
     "effective_until": null,
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=257",
     "verification_status": "unverified",
-    "source_hash": "544f7bac8c52fb06f9f2384f334353ad1d9864095b5d8f5dd4bf9f664942eed5",
+    "source_hash": "885808f85bec14ce81c6d89de42e8f1ceda68bb19d5a5e95d2873be4ee5e98d2",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -5351,6 +5351,70 @@
           "effective_from": "2003-07-22"
         }
       }
+    },
+    "insured_absence": {
+      "injury": {
+        "advanced": true,
+        "advanced_permanent_only": true,
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "cnel-715",
+              "title": "CCNL Turismo Assoturismo-Confesercenti, 22 luglio 2003 (deposito CNEL, testo plain Latin-1 denominato .rtf)",
+              "kind": "associazione",
+              "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/715",
+              "sha256": "18cd59a16ab6d5d5b5a152b0502cda95218d83faf50c5adb05032f314e856171"
+            },
+            "page": null,
+            "section": "Articolo 164 - Anticipazione indennità INAIL, comma 1",
+            "quote": "1)\nIn  caso  di  infortunio sul lavoro, alle normali scadenze dei periodi  di\npaga,  il  datore  di lavoro corrisponderà al lavoratore assunto  a  tempo\nindeterminato,  a  titolo  di  anticipazione,  l'indennità  per  inabilità\ntemporanea assoluta e ne chiederà il rimborso all'Istituto assicuratore."
+          },
+          "note": "2003 deposit is plain text, not a PDF, so page number and pdftotext output are unavailable. Art. 164(5) conditions practice on INAIL authorization.",
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-08T03:00:00Z",
+            "effective_from": null,
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-08T03:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-08-gpt-turismo-confesercenti-insured-absence"
+          }
+        }
+      },
+      "maternity": {
+        "integration_rate": "1",
+        "integration_days": 150,
+        "net_basis": true,
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "cnel-194334",
+              "title": "Ipotesi di accordo CCNL Turismo Assoturismo-Confesercenti, 22 luglio 2024 (PDF firmato, scansione)",
+              "kind": "associazione",
+              "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+              "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
+            },
+            "page": "25",
+            "section": "Articolo 179 - Integrazione, comma 1",
+            "quote": "Durante l'astensione obbligatoria, la lavoratrice ha diritto, per un periodo di cinque mesi, ad un'integrazione dell'indennità a carico dell'INPS, da corrispondersi dal datore di lavoro, a proprio carico, in modo da raggiungere complessivamente la misura del cento per cento della retribuzione giornaliera netta"
+          },
+          "note": "Original signed PDF has no text layer; quote is pdftotext -layout output of Tesseract OCR derivative of page 25, checked against high-resolution OCR; five calendar months are not assumed to equal 150 days.",
+          "transformation": "Art. 179 as replaced by the renewal (scanned page 25, read on the page image): five months of the compulsory leave, 150 days, 100% of the net daily pay.",
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-08T09:00:00Z",
+            "effective_from": null,
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-08T09:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-08-gpt-turismo-confesercenti-insured-absence"
+          }
+        }
+      }
     }
   },
   "verification": {
@@ -5400,6 +5464,33 @@
         "checked": [
           "levels.base_salary",
           "levels.fixed_allowances"
+        ]
+      },
+      {
+        "id": "2026-11-08-gpt-turismo-confesercenti-insured-absence",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "CCNL top-ups of maternity and work injury, read from the signed text by a separate model session; every quote found on the PDF text layer.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/715",
+            "sha256": "18cd59a16ab6d5d5b5a152b0502cda95218d83faf50c5adb05032f314e856171"
+          },
+          {
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+            "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
+          }
+        ],
+        "findings": [
+          "Added work_rules.insured_absence.injury.",
+          "Added work_rules.insured_absence.maternity (checked on the page image, no text layer)."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.insured_absence.injury",
+          "work_rules.insured_absence.maternity"
         ]
       }
     ]
