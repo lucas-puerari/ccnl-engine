@@ -23,7 +23,7 @@ classifiers = [
 ]
 requires-python = ">=3.12"
 dependencies = [
-    "pydantic>=2.6",
+    "pydantic>=2.14.2",
 ]
 
 [project.urls]
