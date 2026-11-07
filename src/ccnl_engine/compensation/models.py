@@ -348,10 +348,10 @@ class Level(BaseModel):
         base_salary: Time-series of monthly base salaries for this level.
         base_salary_by_subsector: The base salary of an employer of a
             sub-sector (``EmployerProfile.subsector``) that pays another table.
+        subsectors: The only sub-sectors the level exists in, empty for all.
         fixed_allowances: Fixed monthly allowances of the level (EDR...).
-        category: Worker category fixed by this level. ``None`` when the
-            level hosts more than one category; the category then comes from
-            the employment facts (``Employment.category``).
+        category: Worker category fixed by this level, ``None`` when it
+            hosts more than one (``Employment.category`` then states it).
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -361,13 +361,13 @@ class Level(BaseModel):
     description: str
     base_salary: TimeSeries
     base_salary_by_subsector: dict[str, TimeSeries] = Field(default_factory=dict)
+    subsectors: tuple[str, ...] = ()
     fixed_allowances: tuple[Allowance, ...] = Field(default=())
     category: WorkerCategory | None = None
     provenance: RuleProvenance | None = None
 
     @model_validator(mode="after")
     def _check_salary_non_decreasing(self) -> Self:
-        # Compare only adjacent non-gap periods; gap periods carry no value.
         values: list[Decimal] = [
             p.value for p in self.base_salary.periods if p.value is not None
         ]

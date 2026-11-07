@@ -164,7 +164,10 @@ def load_contract(
     ccnl, sector_unknown = with_employer_sector(ccnl, request.employer.inps_sector)
     ccnl = with_window_counting(ccnl, request.employer.sickness_window_counting)
     ccnl, subsector_unknown = with_subsector(
-        ccnl, request.employer.subsector, _category(ccnl, request)
+        ccnl,
+        request.employer.subsector,
+        _category(ccnl, request),
+        level_code=request.level_code,
     )
     tctx = TemporalContext.from_period(
         period_id.year, period_id.month, request.payment_date

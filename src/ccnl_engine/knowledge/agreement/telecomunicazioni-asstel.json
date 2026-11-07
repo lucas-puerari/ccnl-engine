@@ -170,6 +170,49 @@
         "checked": [
           "parameters.seniority_increments"
         ]
+      },
+      {
+        "id": "2026-11-07-ai-telecomunicazioni-asstel-tables",
+        "date": "2026-11-07",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The monthly values of the levels against the primary tables (text layer).",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.fistelcisl.it/wp-content/uploads/2026/10/CCNL-TLC-TESTO-coordinato-stesura-finale-291026-3.pdf",
+            "sha256": "526cb1337fc738cb3997c8812223f50c0ab7343170876e48c233c448135b431f"
+          }
+        ],
+        "findings": [
+          "11 values found verbatim on the cited pages and marked verified; 27 left as they were (derived or not on a text page)."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels.base_salary",
+          "levels.fixed_allowances"
+        ]
+      },
+      {
+        "id": "2026-11-07-gpt-telecomunicazioni-asstel-double-read",
+        "date": "2026-11-07",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Monthly values of tabella b, Allegato 1, read from the page by an independent session of another model without being told the expected value.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.fistelcisl.it/wp-content/uploads/2026/10/CCNL-TLC-TESTO-coordinato-stesura-finale-291026-3.pdf",
+            "sha256": "526cb1337fc738cb3997c8812223f50c0ab7343170876e48c233c448135b431f"
+          }
+        ],
+        "findings": [
+          "27 values equal to the printed minimum plus the Elemento retributivo di settore of the same row (the reader returned the minimum column; the file stores the conglobated amount)."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "levels.base_salary"
+        ]
       }
     ]
   },
@@ -350,18 +393,26 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "telecomunicazioni-asstel",
-                  "title": "telecomunicazioni-asstel",
+                  "document_id": "telecomunicazioni-asstel-src-526cb133",
+                  "title": "telecomunicazioni-asstel: 2026-coordinato.pdf",
                   "kind": "associazione",
-                  "url": "https://www.asstel.it/lavoro-e-relazioni-industriali/ccnl-tlc/"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2026/10/CCNL-TLC-TESTO-coordinato-stesura-finale-291026-3.pdf",
+                  "sha256": "526cb1337fc738cb3997c8812223f50c0ab7343170876e48c233c448135b431f"
                 },
-                "section": "Tabella retributiva"
+                "page": "154",
+                "section": "Allegato 1, tabella b",
+                "quote": "1° (A1) | 100 | 511,26 | 10,33 | 1.375,40 | 1.405,52 | 1.435,64 | 1.494,68 | 24,28 | 1.518,96"
               },
+              "transformation": "Printed minimum (including ex contingenza and EDR) of the period plus the Elemento retributivo di settore printed in the same row; the December 2028 value is the row's printed total.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-telecomunicazioni-asstel-double-read"
               }
             }
           },
@@ -373,18 +424,26 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "telecomunicazioni-asstel",
-                  "title": "telecomunicazioni-asstel",
+                  "document_id": "telecomunicazioni-asstel-src-526cb133",
+                  "title": "telecomunicazioni-asstel: 2026-coordinato.pdf",
                   "kind": "associazione",
-                  "url": "https://www.asstel.it/lavoro-e-relazioni-industriali/ccnl-tlc/"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2026/10/CCNL-TLC-TESTO-coordinato-stesura-finale-291026-3.pdf",
+                  "sha256": "526cb1337fc738cb3997c8812223f50c0ab7343170876e48c233c448135b431f"
                 },
-                "section": "Tabella retributiva"
+                "page": "154",
+                "section": "Allegato 1, tabella b",
+                "quote": "1° (A1) | 100 | 511,26 | 10,33 | 1.375,40 | 1.405,52 | 1.435,64 | 1.494,68 | 24,28 | 1.518,96"
               },
+              "transformation": "Printed minimum (including ex contingenza and EDR) of the period plus the Elemento retributivo di settore printed in the same row; the December 2028 value is the row's printed total.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2026-12-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-telecomunicazioni-asstel-double-read"
               }
             }
           },
@@ -396,18 +455,26 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "telecomunicazioni-asstel",
-                  "title": "telecomunicazioni-asstel",
+                  "document_id": "telecomunicazioni-asstel-src-526cb133",
+                  "title": "telecomunicazioni-asstel: 2026-coordinato.pdf",
                   "kind": "associazione",
-                  "url": "https://www.asstel.it/lavoro-e-relazioni-industriali/ccnl-tlc/"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2026/10/CCNL-TLC-TESTO-coordinato-stesura-finale-291026-3.pdf",
+                  "sha256": "526cb1337fc738cb3997c8812223f50c0ab7343170876e48c233c448135b431f"
                 },
-                "section": "Tabella retributiva"
+                "page": "154",
+                "section": "Allegato 1, tabella b",
+                "quote": "1° (A1) | 100 | 511,26 | 10,33 | 1.375,40 | 1.405,52 | 1.435,64 | 1.494,68 | 24,28 | 1.518,96"
               },
+              "transformation": "Printed minimum (including ex contingenza and EDR) of the period plus the Elemento retributivo di settore printed in the same row; the December 2028 value is the row's printed total.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2027-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-telecomunicazioni-asstel-double-read"
               }
             }
           },
@@ -416,21 +483,28 @@
             "valid_until": null,
             "value": "1518.96",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "telecomunicazioni-asstel",
-                  "title": "telecomunicazioni-asstel",
+                  "document_id": "telecomunicazioni-asstel-tables-526cb133",
+                  "title": "telecomunicazioni-asstel: tabelle retributive (2026-coordinato.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.asstel.it/lavoro-e-relazioni-industriali/ccnl-tlc/"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2026/10/CCNL-TLC-TESTO-coordinato-stesura-finale-291026-3.pdf",
+                  "sha256": "526cb1337fc738cb3997c8812223f50c0ab7343170876e48c233c448135b431f"
                 },
-                "section": "Tabella retributiva"
+                "page": "154",
+                "section": "Allegato 1, parte generale, tabella b (TEM + ERS; ultima colonna TEM + TEC)",
+                "quote": "1°     100                         1.375,40     1.405,52    1.435,64    1.494,68     24,28   1.518,96"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2028-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-telecomunicazioni-asstel-tables"
               }
             }
           }
@@ -470,18 +544,26 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "telecomunicazioni-asstel",
-                  "title": "telecomunicazioni-asstel",
+                  "document_id": "telecomunicazioni-asstel-src-526cb133",
+                  "title": "telecomunicazioni-asstel: 2026-coordinato.pdf",
                   "kind": "associazione",
-                  "url": "https://www.asstel.it/lavoro-e-relazioni-industriali/ccnl-tlc/"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2026/10/CCNL-TLC-TESTO-coordinato-stesura-finale-291026-3.pdf",
+                  "sha256": "526cb1337fc738cb3997c8812223f50c0ab7343170876e48c233c448135b431f"
                 },
-                "section": "Tabella retributiva"
+                "page": "154",
+                "section": "Allegato 1, tabella b",
+                "quote": "2° (A2) | 118 | 514,03 | 10,33 | 1.531,85 | 1.567,39 | 1.602,93 | 1.672,59 | 28,65 | 1.701,25"
               },
+              "transformation": "Printed minimum (including ex contingenza and EDR) of the period plus the Elemento retributivo di settore printed in the same row; the December 2028 value is the row's printed total.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-telecomunicazioni-asstel-double-read"
               }
             }
           },
@@ -493,18 +575,26 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "telecomunicazioni-asstel",
-                  "title": "telecomunicazioni-asstel",
+                  "document_id": "telecomunicazioni-asstel-src-526cb133",
+                  "title": "telecomunicazioni-asstel: 2026-coordinato.pdf",
                   "kind": "associazione",
-                  "url": "https://www.asstel.it/lavoro-e-relazioni-industriali/ccnl-tlc/"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2026/10/CCNL-TLC-TESTO-coordinato-stesura-finale-291026-3.pdf",
+                  "sha256": "526cb1337fc738cb3997c8812223f50c0ab7343170876e48c233c448135b431f"
                 },
-                "section": "Tabella retributiva"
+                "page": "154",
+                "section": "Allegato 1, tabella b",
+                "quote": "2° (A2) | 118 | 514,03 | 10,33 | 1.531,85 | 1.567,39 | 1.602,93 | 1.672,59 | 28,65 | 1.701,25"
               },
+              "transformation": "Printed minimum (including ex contingenza and EDR) of the period plus the Elemento retributivo di settore printed in the same row; the December 2028 value is the row's printed total.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2026-12-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-telecomunicazioni-asstel-double-read"
               }
             }
           },
@@ -516,18 +606,26 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "telecomunicazioni-asstel",
-                  "title": "telecomunicazioni-asstel",
+                  "document_id": "telecomunicazioni-asstel-src-526cb133",
+                  "title": "telecomunicazioni-asstel: 2026-coordinato.pdf",
                   "kind": "associazione",
-                  "url": "https://www.asstel.it/lavoro-e-relazioni-industriali/ccnl-tlc/"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2026/10/CCNL-TLC-TESTO-coordinato-stesura-finale-291026-3.pdf",
+                  "sha256": "526cb1337fc738cb3997c8812223f50c0ab7343170876e48c233c448135b431f"
                 },
-                "section": "Tabella retributiva"
+                "page": "154",
+                "section": "Allegato 1, tabella b",
+                "quote": "2° (A2) | 118 | 514,03 | 10,33 | 1.531,85 | 1.567,39 | 1.602,93 | 1.672,59 | 28,65 | 1.701,25"
               },
+              "transformation": "Printed minimum (including ex contingenza and EDR) of the period plus the Elemento retributivo di settore printed in the same row; the December 2028 value is the row's printed total.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2027-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-telecomunicazioni-asstel-double-read"
               }
             }
           },
@@ -536,21 +634,28 @@
             "valid_until": null,
             "value": "1701.25",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "telecomunicazioni-asstel",
-                  "title": "telecomunicazioni-asstel",
+                  "document_id": "telecomunicazioni-asstel-tables-526cb133",
+                  "title": "telecomunicazioni-asstel: tabelle retributive (2026-coordinato.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.asstel.it/lavoro-e-relazioni-industriali/ccnl-tlc/"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2026/10/CCNL-TLC-TESTO-coordinato-stesura-finale-291026-3.pdf",
+                  "sha256": "526cb1337fc738cb3997c8812223f50c0ab7343170876e48c233c448135b431f"
                 },
-                "section": "Tabella retributiva"
+                "page": "154",
+                "section": "Allegato 1, parte generale, tabella b (TEM + ERS; ultima colonna TEM + TEC)",
+                "quote": "2°     118                         1.531,85     1.567,39    1.602,93    1.672,59     28,65   1.701,25"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2028-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-telecomunicazioni-asstel-tables"
               }
             }
           }
@@ -590,18 +695,26 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "telecomunicazioni-asstel",
-                  "title": "telecomunicazioni-asstel",
+                  "document_id": "telecomunicazioni-asstel-src-526cb133",
+                  "title": "telecomunicazioni-asstel: 2026-coordinato.pdf",
                   "kind": "associazione",
-                  "url": "https://www.asstel.it/lavoro-e-relazioni-industriali/ccnl-tlc/"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2026/10/CCNL-TLC-TESTO-coordinato-stesura-finale-291026-3.pdf",
+                  "sha256": "526cb1337fc738cb3997c8812223f50c0ab7343170876e48c233c448135b431f"
                 },
-                "section": "Tabella retributiva"
+                "page": "154",
+                "section": "Allegato 1, tabella b",
+                "quote": "3° (B1) | 134 | 516,07 | 10,33 | 1.670,50 | 1.710,86 | 1.751,22 | 1.830,33 | 32,48 | 1.862,81"
               },
+              "transformation": "Printed minimum (including ex contingenza and EDR) of the period plus the Elemento retributivo di settore printed in the same row; the December 2028 value is the row's printed total.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-telecomunicazioni-asstel-double-read"
               }
             }
           },
@@ -613,18 +726,26 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "telecomunicazioni-asstel",
-                  "title": "telecomunicazioni-asstel",
+                  "document_id": "telecomunicazioni-asstel-src-526cb133",
+                  "title": "telecomunicazioni-asstel: 2026-coordinato.pdf",
                   "kind": "associazione",
-                  "url": "https://www.asstel.it/lavoro-e-relazioni-industriali/ccnl-tlc/"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2026/10/CCNL-TLC-TESTO-coordinato-stesura-finale-291026-3.pdf",
+                  "sha256": "526cb1337fc738cb3997c8812223f50c0ab7343170876e48c233c448135b431f"
                 },
-                "section": "Tabella retributiva"
+                "page": "154",
+                "section": "Allegato 1, tabella b",
+                "quote": "3° (B1) | 134 | 516,07 | 10,33 | 1.670,50 | 1.710,86 | 1.751,22 | 1.830,33 | 32,48 | 1.862,81"
               },
+              "transformation": "Printed minimum (including ex contingenza and EDR) of the period plus the Elemento retributivo di settore printed in the same row; the December 2028 value is the row's printed total.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2026-12-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-telecomunicazioni-asstel-double-read"
               }
             }
           },
@@ -636,18 +757,26 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "telecomunicazioni-asstel",
-                  "title": "telecomunicazioni-asstel",
+                  "document_id": "telecomunicazioni-asstel-src-526cb133",
+                  "title": "telecomunicazioni-asstel: 2026-coordinato.pdf",
                   "kind": "associazione",
-                  "url": "https://www.asstel.it/lavoro-e-relazioni-industriali/ccnl-tlc/"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2026/10/CCNL-TLC-TESTO-coordinato-stesura-finale-291026-3.pdf",
+                  "sha256": "526cb1337fc738cb3997c8812223f50c0ab7343170876e48c233c448135b431f"
                 },
-                "section": "Tabella retributiva"
+                "page": "154",
+                "section": "Allegato 1, tabella b",
+                "quote": "3° (B1) | 134 | 516,07 | 10,33 | 1.670,50 | 1.710,86 | 1.751,22 | 1.830,33 | 32,48 | 1.862,81"
               },
+              "transformation": "Printed minimum (including ex contingenza and EDR) of the period plus the Elemento retributivo di settore printed in the same row; the December 2028 value is the row's printed total.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2027-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-telecomunicazioni-asstel-double-read"
               }
             }
           },
@@ -656,21 +785,28 @@
             "valid_until": null,
             "value": "1862.81",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "telecomunicazioni-asstel",
-                  "title": "telecomunicazioni-asstel",
+                  "document_id": "telecomunicazioni-asstel-tables-526cb133",
+                  "title": "telecomunicazioni-asstel: tabelle retributive (2026-coordinato.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.asstel.it/lavoro-e-relazioni-industriali/ccnl-tlc/"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2026/10/CCNL-TLC-TESTO-coordinato-stesura-finale-291026-3.pdf",
+                  "sha256": "526cb1337fc738cb3997c8812223f50c0ab7343170876e48c233c448135b431f"
                 },
-                "section": "Tabella retributiva"
+                "page": "154",
+                "section": "Allegato 1, parte generale, tabella b (TEM + ERS; ultima colonna TEM + TEC)",
+                "quote": "3°     134                         1.670,50     1.710,86    1.751,22    1.830,33     32,48   1.862,81"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2028-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-telecomunicazioni-asstel-tables"
               }
             }
           }
@@ -710,18 +846,26 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "telecomunicazioni-asstel",
-                  "title": "telecomunicazioni-asstel",
+                  "document_id": "telecomunicazioni-asstel-src-526cb133",
+                  "title": "telecomunicazioni-asstel: 2026-coordinato.pdf",
                   "kind": "associazione",
-                  "url": "https://www.asstel.it/lavoro-e-relazioni-industriali/ccnl-tlc/"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2026/10/CCNL-TLC-TESTO-coordinato-stesura-finale-291026-3.pdf",
+                  "sha256": "526cb1337fc738cb3997c8812223f50c0ab7343170876e48c233c448135b431f"
                 },
-                "section": "Tabella retributiva"
+                "page": "154",
+                "section": "Allegato 1, tabella b",
+                "quote": "4° (B2) | 149,65 | 517,83 | 10,33 | 1.805,89 | 1.850,97 | 1.896,05 | 1.984,40 | 36,05 | 2.020,45"
               },
+              "transformation": "Printed minimum (including ex contingenza and EDR) of the period plus the Elemento retributivo di settore printed in the same row; the December 2028 value is the row's printed total.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-telecomunicazioni-asstel-double-read"
               }
             }
           },
@@ -733,18 +877,26 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "telecomunicazioni-asstel",
-                  "title": "telecomunicazioni-asstel",
+                  "document_id": "telecomunicazioni-asstel-src-526cb133",
+                  "title": "telecomunicazioni-asstel: 2026-coordinato.pdf",
                   "kind": "associazione",
-                  "url": "https://www.asstel.it/lavoro-e-relazioni-industriali/ccnl-tlc/"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2026/10/CCNL-TLC-TESTO-coordinato-stesura-finale-291026-3.pdf",
+                  "sha256": "526cb1337fc738cb3997c8812223f50c0ab7343170876e48c233c448135b431f"
                 },
-                "section": "Tabella retributiva"
+                "page": "154",
+                "section": "Allegato 1, tabella b",
+                "quote": "4° (B2) | 149,65 | 517,83 | 10,33 | 1.805,89 | 1.850,97 | 1.896,05 | 1.984,40 | 36,05 | 2.020,45"
               },
+              "transformation": "Printed minimum (including ex contingenza and EDR) of the period plus the Elemento retributivo di settore printed in the same row; the December 2028 value is the row's printed total.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2026-12-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-telecomunicazioni-asstel-double-read"
               }
             }
           },
@@ -756,18 +908,26 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "telecomunicazioni-asstel",
-                  "title": "telecomunicazioni-asstel",
+                  "document_id": "telecomunicazioni-asstel-src-526cb133",
+                  "title": "telecomunicazioni-asstel: 2026-coordinato.pdf",
                   "kind": "associazione",
-                  "url": "https://www.asstel.it/lavoro-e-relazioni-industriali/ccnl-tlc/"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2026/10/CCNL-TLC-TESTO-coordinato-stesura-finale-291026-3.pdf",
+                  "sha256": "526cb1337fc738cb3997c8812223f50c0ab7343170876e48c233c448135b431f"
                 },
-                "section": "Tabella retributiva"
+                "page": "154",
+                "section": "Allegato 1, tabella b",
+                "quote": "4° (B2) | 149,65 | 517,83 | 10,33 | 1.805,89 | 1.850,97 | 1.896,05 | 1.984,40 | 36,05 | 2.020,45"
               },
+              "transformation": "Printed minimum (including ex contingenza and EDR) of the period plus the Elemento retributivo di settore printed in the same row; the December 2028 value is the row's printed total.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2027-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-telecomunicazioni-asstel-double-read"
               }
             }
           },
@@ -776,21 +936,28 @@
             "valid_until": null,
             "value": "2020.45",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "telecomunicazioni-asstel",
-                  "title": "telecomunicazioni-asstel",
+                  "document_id": "telecomunicazioni-asstel-tables-526cb133",
+                  "title": "telecomunicazioni-asstel: tabelle retributive (2026-coordinato.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.asstel.it/lavoro-e-relazioni-industriali/ccnl-tlc/"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2026/10/CCNL-TLC-TESTO-coordinato-stesura-finale-291026-3.pdf",
+                  "sha256": "526cb1337fc738cb3997c8812223f50c0ab7343170876e48c233c448135b431f"
                 },
-                "section": "Tabella retributiva"
+                "page": "154",
+                "section": "Allegato 1, parte generale, tabella b (TEM + ERS; ultima colonna TEM + TEC)",
+                "quote": "4°     149,65                      1.805,89     1.850,97    1.896,05    1.984,40     36,05   2.020,45"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2028-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-telecomunicazioni-asstel-tables"
               }
             }
           }
@@ -830,18 +997,26 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "telecomunicazioni-asstel",
-                  "title": "telecomunicazioni-asstel",
+                  "document_id": "telecomunicazioni-asstel-src-526cb133",
+                  "title": "telecomunicazioni-asstel: 2026-coordinato.pdf",
                   "kind": "associazione",
-                  "url": "https://www.asstel.it/lavoro-e-relazioni-industriali/ccnl-tlc/"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2026/10/CCNL-TLC-TESTO-coordinato-stesura-finale-291026-3.pdf",
+                  "sha256": "526cb1337fc738cb3997c8812223f50c0ab7343170876e48c233c448135b431f"
                 },
-                "section": "Tabella retributiva"
+                "page": "154",
+                "section": "Allegato 1, tabella b",
+                "quote": "5° (C1) | 166 | 521,08 | 10,33 | 1.948,73 | 1.998,73 | 2.048,73 | 2.146,73 | 40 | 2.186,73"
               },
+              "transformation": "Printed minimum (including ex contingenza and EDR) of the period plus the Elemento retributivo di settore printed in the same row; the December 2028 value is the row's printed total.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-telecomunicazioni-asstel-double-read"
               }
             }
           },
@@ -853,18 +1028,26 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "telecomunicazioni-asstel",
-                  "title": "telecomunicazioni-asstel",
+                  "document_id": "telecomunicazioni-asstel-src-526cb133",
+                  "title": "telecomunicazioni-asstel: 2026-coordinato.pdf",
                   "kind": "associazione",
-                  "url": "https://www.asstel.it/lavoro-e-relazioni-industriali/ccnl-tlc/"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2026/10/CCNL-TLC-TESTO-coordinato-stesura-finale-291026-3.pdf",
+                  "sha256": "526cb1337fc738cb3997c8812223f50c0ab7343170876e48c233c448135b431f"
                 },
-                "section": "Tabella retributiva"
+                "page": "154",
+                "section": "Allegato 1, tabella b",
+                "quote": "5° (C1) | 166 | 521,08 | 10,33 | 1.948,73 | 1.998,73 | 2.048,73 | 2.146,73 | 40 | 2.186,73"
               },
+              "transformation": "Printed minimum (including ex contingenza and EDR) of the period plus the Elemento retributivo di settore printed in the same row; the December 2028 value is the row's printed total.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2026-12-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-telecomunicazioni-asstel-double-read"
               }
             }
           },
@@ -876,18 +1059,26 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "telecomunicazioni-asstel",
-                  "title": "telecomunicazioni-asstel",
+                  "document_id": "telecomunicazioni-asstel-src-526cb133",
+                  "title": "telecomunicazioni-asstel: 2026-coordinato.pdf",
                   "kind": "associazione",
-                  "url": "https://www.asstel.it/lavoro-e-relazioni-industriali/ccnl-tlc/"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2026/10/CCNL-TLC-TESTO-coordinato-stesura-finale-291026-3.pdf",
+                  "sha256": "526cb1337fc738cb3997c8812223f50c0ab7343170876e48c233c448135b431f"
                 },
-                "section": "Tabella retributiva"
+                "page": "154",
+                "section": "Allegato 1, tabella b",
+                "quote": "5° (C1) | 166 | 521,08 | 10,33 | 1.948,73 | 1.998,73 | 2.048,73 | 2.146,73 | 40 | 2.186,73"
               },
+              "transformation": "Printed minimum (including ex contingenza and EDR) of the period plus the Elemento retributivo di settore printed in the same row; the December 2028 value is the row's printed total.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2027-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-telecomunicazioni-asstel-double-read"
               }
             }
           },
@@ -896,21 +1087,28 @@
             "valid_until": null,
             "value": "2186.73",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "telecomunicazioni-asstel",
-                  "title": "telecomunicazioni-asstel",
+                  "document_id": "telecomunicazioni-asstel-tables-526cb133",
+                  "title": "telecomunicazioni-asstel: tabelle retributive (2026-coordinato.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.asstel.it/lavoro-e-relazioni-industriali/ccnl-tlc/"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2026/10/CCNL-TLC-TESTO-coordinato-stesura-finale-291026-3.pdf",
+                  "sha256": "526cb1337fc738cb3997c8812223f50c0ab7343170876e48c233c448135b431f"
                 },
-                "section": "Tabella retributiva"
+                "page": "154",
+                "section": "Allegato 1, parte generale, tabella b (TEM + ERS; ultima colonna TEM + TEC)",
+                "quote": "5°     166                         1.948,73     1.998,73    2.048,73    2.146,73     40      2.186,73"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2028-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-telecomunicazioni-asstel-tables"
               }
             }
           }
@@ -950,18 +1148,26 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "telecomunicazioni-asstel",
-                  "title": "telecomunicazioni-asstel",
+                  "document_id": "telecomunicazioni-asstel-src-526cb133",
+                  "title": "telecomunicazioni-asstel: 2026-coordinato.pdf",
                   "kind": "associazione",
-                  "url": "https://www.asstel.it/lavoro-e-relazioni-industriali/ccnl-tlc/"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2026/10/CCNL-TLC-TESTO-coordinato-stesura-finale-291026-3.pdf",
+                  "sha256": "526cb1337fc738cb3997c8812223f50c0ab7343170876e48c233c448135b431f"
                 },
-                "section": "Tabella retributiva"
+                "page": "154",
+                "section": "Allegato 1, tabella b",
+                "quote": "5s° (C2) | 173,73 | 521,08 | 10,33 | 2.014,74 | 2.067,07 | 2.119,40 | 2221,96 | 41,86 | 2.263,82"
               },
+              "transformation": "Printed minimum (including ex contingenza and EDR) of the period plus the Elemento retributivo di settore printed in the same row; the December 2028 value is the row's printed total.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-telecomunicazioni-asstel-double-read"
               }
             }
           },
@@ -973,18 +1179,26 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "telecomunicazioni-asstel",
-                  "title": "telecomunicazioni-asstel",
+                  "document_id": "telecomunicazioni-asstel-src-526cb133",
+                  "title": "telecomunicazioni-asstel: 2026-coordinato.pdf",
                   "kind": "associazione",
-                  "url": "https://www.asstel.it/lavoro-e-relazioni-industriali/ccnl-tlc/"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2026/10/CCNL-TLC-TESTO-coordinato-stesura-finale-291026-3.pdf",
+                  "sha256": "526cb1337fc738cb3997c8812223f50c0ab7343170876e48c233c448135b431f"
                 },
-                "section": "Tabella retributiva"
+                "page": "154",
+                "section": "Allegato 1, tabella b",
+                "quote": "5s° (C2) | 173,73 | 521,08 | 10,33 | 2.014,74 | 2.067,07 | 2.119,40 | 2221,96 | 41,86 | 2.263,82"
               },
+              "transformation": "Printed minimum (including ex contingenza and EDR) of the period plus the Elemento retributivo di settore printed in the same row; the December 2028 value is the row's printed total.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2026-12-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-telecomunicazioni-asstel-double-read"
               }
             }
           },
@@ -996,18 +1210,26 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "telecomunicazioni-asstel",
-                  "title": "telecomunicazioni-asstel",
+                  "document_id": "telecomunicazioni-asstel-src-526cb133",
+                  "title": "telecomunicazioni-asstel: 2026-coordinato.pdf",
                   "kind": "associazione",
-                  "url": "https://www.asstel.it/lavoro-e-relazioni-industriali/ccnl-tlc/"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2026/10/CCNL-TLC-TESTO-coordinato-stesura-finale-291026-3.pdf",
+                  "sha256": "526cb1337fc738cb3997c8812223f50c0ab7343170876e48c233c448135b431f"
                 },
-                "section": "Tabella retributiva"
+                "page": "154",
+                "section": "Allegato 1, tabella b",
+                "quote": "5s° (C2) | 173,73 | 521,08 | 10,33 | 2.014,74 | 2.067,07 | 2.119,40 | 2221,96 | 41,86 | 2.263,82"
               },
+              "transformation": "Printed minimum (including ex contingenza and EDR) of the period plus the Elemento retributivo di settore printed in the same row; the December 2028 value is the row's printed total.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2027-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-telecomunicazioni-asstel-double-read"
               }
             }
           },
@@ -1016,21 +1238,28 @@
             "valid_until": null,
             "value": "2263.82",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "telecomunicazioni-asstel",
-                  "title": "telecomunicazioni-asstel",
+                  "document_id": "telecomunicazioni-asstel-tables-526cb133",
+                  "title": "telecomunicazioni-asstel: tabelle retributive (2026-coordinato.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.asstel.it/lavoro-e-relazioni-industriali/ccnl-tlc/"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2026/10/CCNL-TLC-TESTO-coordinato-stesura-finale-291026-3.pdf",
+                  "sha256": "526cb1337fc738cb3997c8812223f50c0ab7343170876e48c233c448135b431f"
                 },
-                "section": "Tabella retributiva"
+                "page": "154",
+                "section": "Allegato 1, parte generale, tabella b (TEM + ERS; ultima colonna TEM + TEC)",
+                "quote": "5s°    173,73                      2.014,74     2.067,07    2.119,40    2221,96      41,86   2.263,82"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2028-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-telecomunicazioni-asstel-tables"
               }
             }
           }
@@ -1070,18 +1299,26 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "telecomunicazioni-asstel",
-                  "title": "telecomunicazioni-asstel",
+                  "document_id": "telecomunicazioni-asstel-src-526cb133",
+                  "title": "telecomunicazioni-asstel: 2026-coordinato.pdf",
                   "kind": "associazione",
-                  "url": "https://www.asstel.it/lavoro-e-relazioni-industriali/ccnl-tlc/"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2026/10/CCNL-TLC-TESTO-coordinato-stesura-finale-291026-3.pdf",
+                  "sha256": "526cb1337fc738cb3997c8812223f50c0ab7343170876e48c233c448135b431f"
                 },
-                "section": "Tabella retributiva"
+                "page": "154",
+                "section": "Allegato 1, tabella b",
+                "quote": "6° (C3) | 202,76 | 526,99 | 10,33 | 2.268,50 | 2.329,57 | 2.390,64 | 2.510,34 | 48,94 | 2.559,28"
               },
+              "transformation": "Printed minimum (including ex contingenza and EDR) of the period plus the Elemento retributivo di settore printed in the same row; the December 2028 value is the row's printed total.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-telecomunicazioni-asstel-double-read"
               }
             }
           },
@@ -1093,18 +1330,26 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "telecomunicazioni-asstel",
-                  "title": "telecomunicazioni-asstel",
+                  "document_id": "telecomunicazioni-asstel-src-526cb133",
+                  "title": "telecomunicazioni-asstel: 2026-coordinato.pdf",
                   "kind": "associazione",
-                  "url": "https://www.asstel.it/lavoro-e-relazioni-industriali/ccnl-tlc/"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2026/10/CCNL-TLC-TESTO-coordinato-stesura-finale-291026-3.pdf",
+                  "sha256": "526cb1337fc738cb3997c8812223f50c0ab7343170876e48c233c448135b431f"
                 },
-                "section": "Tabella retributiva"
+                "page": "154",
+                "section": "Allegato 1, tabella b",
+                "quote": "6° (C3) | 202,76 | 526,99 | 10,33 | 2.268,50 | 2.329,57 | 2.390,64 | 2.510,34 | 48,94 | 2.559,28"
               },
+              "transformation": "Printed minimum (including ex contingenza and EDR) of the period plus the Elemento retributivo di settore printed in the same row; the December 2028 value is the row's printed total.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2026-12-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-telecomunicazioni-asstel-double-read"
               }
             }
           },
@@ -1116,18 +1361,26 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "telecomunicazioni-asstel",
-                  "title": "telecomunicazioni-asstel",
+                  "document_id": "telecomunicazioni-asstel-src-526cb133",
+                  "title": "telecomunicazioni-asstel: 2026-coordinato.pdf",
                   "kind": "associazione",
-                  "url": "https://www.asstel.it/lavoro-e-relazioni-industriali/ccnl-tlc/"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2026/10/CCNL-TLC-TESTO-coordinato-stesura-finale-291026-3.pdf",
+                  "sha256": "526cb1337fc738cb3997c8812223f50c0ab7343170876e48c233c448135b431f"
                 },
-                "section": "Tabella retributiva"
+                "page": "154",
+                "section": "Allegato 1, tabella b",
+                "quote": "6° (C3) | 202,76 | 526,99 | 10,33 | 2.268,50 | 2.329,57 | 2.390,64 | 2.510,34 | 48,94 | 2.559,28"
               },
+              "transformation": "Printed minimum (including ex contingenza and EDR) of the period plus the Elemento retributivo di settore printed in the same row; the December 2028 value is the row's printed total.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2027-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-telecomunicazioni-asstel-double-read"
               }
             }
           },
@@ -1136,21 +1389,28 @@
             "valid_until": null,
             "value": "2559.28",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "telecomunicazioni-asstel",
-                  "title": "telecomunicazioni-asstel",
+                  "document_id": "telecomunicazioni-asstel-tables-526cb133",
+                  "title": "telecomunicazioni-asstel: tabelle retributive (2026-coordinato.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.asstel.it/lavoro-e-relazioni-industriali/ccnl-tlc/"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2026/10/CCNL-TLC-TESTO-coordinato-stesura-finale-291026-3.pdf",
+                  "sha256": "526cb1337fc738cb3997c8812223f50c0ab7343170876e48c233c448135b431f"
                 },
-                "section": "Tabella retributiva"
+                "page": "154",
+                "section": "Allegato 1, parte generale, tabella b (TEM + ERS; ultima colonna TEM + TEC)",
+                "quote": "6°     202,76                      2.268,50     2.329,57    2.390,64    2.510,34     48,94   2.559,28"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2028-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-telecomunicazioni-asstel-tables"
               }
             }
           }
@@ -1190,18 +1450,26 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "telecomunicazioni-asstel",
-                  "title": "telecomunicazioni-asstel",
+                  "document_id": "telecomunicazioni-asstel-src-526cb133",
+                  "title": "telecomunicazioni-asstel: 2026-coordinato.pdf",
                   "kind": "associazione",
-                  "url": "https://www.asstel.it/lavoro-e-relazioni-industriali/ccnl-tlc/"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2026/10/CCNL-TLC-TESTO-coordinato-stesura-finale-291026-3.pdf",
+                  "sha256": "526cb1337fc738cb3997c8812223f50c0ab7343170876e48c233c448135b431f"
                 },
-                "section": "Tabella retributiva"
+                "page": "154",
+                "section": "Allegato 1, tabella b",
+                "quote": "7° (C4) | 228 | 530,91 | 10,33 | 2.487,93 | 2.556,60 | 2.625,27 | 2.759,87 | 54,99 | 2.814,86"
               },
+              "transformation": "Printed minimum (including ex contingenza and EDR) of the period plus the Elemento retributivo di settore printed in the same row; the December 2028 value is the row's printed total.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-telecomunicazioni-asstel-double-read"
               }
             }
           },
@@ -1213,18 +1481,26 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "telecomunicazioni-asstel",
-                  "title": "telecomunicazioni-asstel",
+                  "document_id": "telecomunicazioni-asstel-src-526cb133",
+                  "title": "telecomunicazioni-asstel: 2026-coordinato.pdf",
                   "kind": "associazione",
-                  "url": "https://www.asstel.it/lavoro-e-relazioni-industriali/ccnl-tlc/"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2026/10/CCNL-TLC-TESTO-coordinato-stesura-finale-291026-3.pdf",
+                  "sha256": "526cb1337fc738cb3997c8812223f50c0ab7343170876e48c233c448135b431f"
                 },
-                "section": "Tabella retributiva"
+                "page": "154",
+                "section": "Allegato 1, tabella b",
+                "quote": "7° (C4) | 228 | 530,91 | 10,33 | 2.487,93 | 2.556,60 | 2.625,27 | 2.759,87 | 54,99 | 2.814,86"
               },
+              "transformation": "Printed minimum (including ex contingenza and EDR) of the period plus the Elemento retributivo di settore printed in the same row; the December 2028 value is the row's printed total.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2026-12-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-telecomunicazioni-asstel-double-read"
               }
             }
           },
@@ -1236,18 +1512,26 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "telecomunicazioni-asstel",
-                  "title": "telecomunicazioni-asstel",
+                  "document_id": "telecomunicazioni-asstel-src-526cb133",
+                  "title": "telecomunicazioni-asstel: 2026-coordinato.pdf",
                   "kind": "associazione",
-                  "url": "https://www.asstel.it/lavoro-e-relazioni-industriali/ccnl-tlc/"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2026/10/CCNL-TLC-TESTO-coordinato-stesura-finale-291026-3.pdf",
+                  "sha256": "526cb1337fc738cb3997c8812223f50c0ab7343170876e48c233c448135b431f"
                 },
-                "section": "Tabella retributiva"
+                "page": "154",
+                "section": "Allegato 1, tabella b",
+                "quote": "7° (C4) | 228 | 530,91 | 10,33 | 2.487,93 | 2.556,60 | 2.625,27 | 2.759,87 | 54,99 | 2.814,86"
               },
+              "transformation": "Printed minimum (including ex contingenza and EDR) of the period plus the Elemento retributivo di settore printed in the same row; the December 2028 value is the row's printed total.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2027-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-telecomunicazioni-asstel-double-read"
               }
             }
           },
@@ -1256,21 +1540,28 @@
             "valid_until": null,
             "value": "2814.86",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "telecomunicazioni-asstel",
-                  "title": "telecomunicazioni-asstel",
+                  "document_id": "telecomunicazioni-asstel-tables-526cb133",
+                  "title": "telecomunicazioni-asstel: tabelle retributive (2026-coordinato.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.asstel.it/lavoro-e-relazioni-industriali/ccnl-tlc/"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2026/10/CCNL-TLC-TESTO-coordinato-stesura-finale-291026-3.pdf",
+                  "sha256": "526cb1337fc738cb3997c8812223f50c0ab7343170876e48c233c448135b431f"
                 },
-                "section": "Tabella retributiva"
+                "page": "154",
+                "section": "Allegato 1, parte generale, tabella b (TEM + ERS; ultima colonna TEM + TEC)",
+                "quote": "Q      228                         2.487,93     2.556,60    2.625,27    2.759,87     54,99   2.814,86"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2028-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-telecomunicazioni-asstel-tables"
               }
             }
           }
@@ -1285,7 +1576,32 @@
               {
                 "valid_from": "2026-01-01",
                 "valid_until": null,
-                "value": "59.39"
+                "value": "59.39",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "telecomunicazioni-asstel-tables-526cb133",
+                      "title": "telecomunicazioni-asstel: tabelle retributive (2026-coordinato.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.fistelcisl.it/wp-content/uploads/2026/10/CCNL-TLC-TESTO-coordinato-stesura-finale-291026-3.pdf",
+                      "sha256": "526cb1337fc738cb3997c8812223f50c0ab7343170876e48c233c448135b431f"
+                    },
+                    "page": "154",
+                    "section": "Allegato 1, parte generale, capoversi sopra tabella b",
+                    "quote": "elemento retributivo pari a € 59,39 lordi."
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2026-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-telecomunicazioni-asstel-tables"
+                  }
+                }
               }
             ]
           },
@@ -1342,18 +1658,26 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "telecomunicazioni-asstel",
-                  "title": "telecomunicazioni-asstel",
+                  "document_id": "telecomunicazioni-asstel-src-526cb133",
+                  "title": "telecomunicazioni-asstel: 2026-coordinato.pdf",
                   "kind": "associazione",
-                  "url": "https://www.asstel.it/lavoro-e-relazioni-industriali/ccnl-tlc/"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2026/10/CCNL-TLC-TESTO-coordinato-stesura-finale-291026-3.pdf",
+                  "sha256": "526cb1337fc738cb3997c8812223f50c0ab7343170876e48c233c448135b431f"
                 },
-                "section": "Tabella retributiva"
+                "page": "154",
+                "section": "Allegato 1, tabella b",
+                "quote": "Q (D1) | 228 | 530,91 | 10,33 | 2.487,93 | 2.556,60 | 2.625,27 | 2.759,87 | 54,99 | 2.814,86"
               },
+              "transformation": "Printed minimum (including ex contingenza and EDR) of the period plus the Elemento retributivo di settore printed in the same row; the December 2028 value is the row's printed total.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-telecomunicazioni-asstel-double-read"
               }
             }
           },
@@ -1365,18 +1689,26 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "telecomunicazioni-asstel",
-                  "title": "telecomunicazioni-asstel",
+                  "document_id": "telecomunicazioni-asstel-src-526cb133",
+                  "title": "telecomunicazioni-asstel: 2026-coordinato.pdf",
                   "kind": "associazione",
-                  "url": "https://www.asstel.it/lavoro-e-relazioni-industriali/ccnl-tlc/"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2026/10/CCNL-TLC-TESTO-coordinato-stesura-finale-291026-3.pdf",
+                  "sha256": "526cb1337fc738cb3997c8812223f50c0ab7343170876e48c233c448135b431f"
                 },
-                "section": "Tabella retributiva"
+                "page": "154",
+                "section": "Allegato 1, tabella b",
+                "quote": "Q (D1) | 228 | 530,91 | 10,33 | 2.487,93 | 2.556,60 | 2.625,27 | 2.759,87 | 54,99 | 2.814,86"
               },
+              "transformation": "Printed minimum (including ex contingenza and EDR) of the period plus the Elemento retributivo di settore printed in the same row; the December 2028 value is the row's printed total.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2026-12-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-telecomunicazioni-asstel-double-read"
               }
             }
           },
@@ -1388,18 +1720,26 @@
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "telecomunicazioni-asstel",
-                  "title": "telecomunicazioni-asstel",
+                  "document_id": "telecomunicazioni-asstel-src-526cb133",
+                  "title": "telecomunicazioni-asstel: 2026-coordinato.pdf",
                   "kind": "associazione",
-                  "url": "https://www.asstel.it/lavoro-e-relazioni-industriali/ccnl-tlc/"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2026/10/CCNL-TLC-TESTO-coordinato-stesura-finale-291026-3.pdf",
+                  "sha256": "526cb1337fc738cb3997c8812223f50c0ab7343170876e48c233c448135b431f"
                 },
-                "section": "Tabella retributiva"
+                "page": "154",
+                "section": "Allegato 1, tabella b",
+                "quote": "Q (D1) | 228 | 530,91 | 10,33 | 2.487,93 | 2.556,60 | 2.625,27 | 2.759,87 | 54,99 | 2.814,86"
               },
+              "transformation": "Printed minimum (including ex contingenza and EDR) of the period plus the Elemento retributivo di settore printed in the same row; the December 2028 value is the row's printed total.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2027-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-telecomunicazioni-asstel-double-read"
               }
             }
           },
@@ -1408,21 +1748,28 @@
             "valid_until": null,
             "value": "2814.86",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "telecomunicazioni-asstel",
-                  "title": "telecomunicazioni-asstel",
+                  "document_id": "telecomunicazioni-asstel-tables-526cb133",
+                  "title": "telecomunicazioni-asstel: tabelle retributive (2026-coordinato.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.asstel.it/lavoro-e-relazioni-industriali/ccnl-tlc/"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2026/10/CCNL-TLC-TESTO-coordinato-stesura-finale-291026-3.pdf",
+                  "sha256": "526cb1337fc738cb3997c8812223f50c0ab7343170876e48c233c448135b431f"
                 },
-                "section": "Tabella retributiva"
+                "page": "154",
+                "section": "Allegato 1, parte generale, tabella b (TEM + ERS; ultima colonna TEM + TEC)",
+                "quote": "Q      228                         2.487,93     2.556,60    2.625,27    2.759,87     54,99   2.814,86"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2028-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-telecomunicazioni-asstel-tables"
               }
             }
           }
@@ -1437,7 +1784,32 @@
               {
                 "valid_from": "2026-01-01",
                 "valid_until": null,
-                "value": "98.13"
+                "value": "98.13",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "telecomunicazioni-asstel-tables-526cb133",
+                      "title": "telecomunicazioni-asstel: tabelle retributive (2026-coordinato.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.fistelcisl.it/wp-content/uploads/2026/10/CCNL-TLC-TESTO-coordinato-stesura-finale-291026-3.pdf",
+                      "sha256": "526cb1337fc738cb3997c8812223f50c0ab7343170876e48c233c448135b431f"
+                    },
+                    "page": "154",
+                    "section": "Allegato 1, parte generale, capoversi sopra tabella b",
+                    "quote": "Ai Quadri è corrisposta un’indennità di funzione pari a € 98,13 mensili lordi, comprensivi"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2026-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-telecomunicazioni-asstel-tables"
+                  }
+                }
               }
             ]
           },
@@ -1519,7 +1891,7 @@
     "effective_until": null,
     "source": "https://www.asstel.it/lavoro-e-relazioni-industriali/ccnl-tlc/",
     "verification_status": "unverified",
-    "source_hash": "4106177a12d8b8ecc3b62e2d8bb71f4ec0d7705465b64ef0a881413d5321010c",
+    "source_hash": "c5973d3c5bc862e206409a6c938f30ab66d9577d122b518819dc25166435cc22",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
