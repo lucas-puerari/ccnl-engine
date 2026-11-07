@@ -10,7 +10,7 @@ pays (``EmployerProfile.contractual_funds``); the CCNL gives the amounts.
 from __future__ import annotations
 
 from decimal import Decimal
-from typing import Self
+from typing import Literal, Self
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
@@ -75,6 +75,10 @@ class ContractualFund(BaseModel):
             reads besides the base salary: the contingenza of a CCNL whose
             table lists it apart from the paga base (Commercio Art. 23,
             "paga base e contingenza").
+        rate_base: ``minimum`` reads the rate on the base salary and the
+            ``rate_allowances``; ``monthly_pay`` on the whole monthly pay
+            of the run, seniority and every cash allowance included
+            (Agenti immobiliari: the EBNAIP QSC on the "retribuzione").
         employer: Employer share a month.
         reduced_employer: Employer share of a part-timer working at most
             ``reduced_up_to_weekly_hours`` a week, when the fund sets one.
@@ -122,6 +126,7 @@ class ContractualFund(BaseModel):
     excludes_probation: bool = False
     group: str | None = None
     rate_allowances: frozenset[str] = frozenset()
+    rate_base: Literal["minimum", "monthly_pay"] = "minimum"
     employer: FundAmount
     reduced_employer: FundAmount | None = None
     reduced_up_to_weekly_hours: Decimal | None = Field(default=None, gt=0)
