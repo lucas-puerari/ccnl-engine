@@ -138,19 +138,6 @@
       },
       {
         "kind": "simplification",
-        "text": "The Prevedi table has no row for some levels of the bundle (a quadro level, or an operaio at a level the hourly table lacks): such a worker owes a contractual contribution the engine does not compute, and the run has the incomplete issue contractual_fund_not_computed.",
-        "capability": "pension_fund_contribution",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "contractual_fund_uncovered",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Source the Prevedi amount of the levels without a row and add it, then remove this note."
-        }
-      },
-      {
-        "kind": "simplification",
         "text": "INPS RATES: the employer and worker INPS rates of the sector (artigianato) are totals no 2026 INPS or association table confirms: the only component split found is the INPS guide of 2012 and the 2026 totals come from a software house page that does not prove its year. The contributions of every run rest on them.",
         "capability": "inps_employer",
         "monetary_impact": "unknown",
@@ -426,6 +413,30 @@
               "valid_from": "2020-03-01",
               "valid_until": null,
               "value": "20.50"
+            }
+          ]
+        },
+        "7Q": {
+          "periods": [
+            {
+              "valid_from": "2020-03-01",
+              "valid_until": null,
+              "value": "20.50",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "feneal-ccnl-edilizia-artigiani-pmi-2025",
+                    "title": "Testo integrale armonizzato 20 maggio 2025",
+                    "kind": "associazione",
+                    "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/20251222_CCNL_EDILIZIA-ARTIGIANI-E-PMI.pdf",
+                    "sha256": "0c6e4b8d8ade933714625ae443c2fce283ad503acf121c22bd5177dfe7bc5d94"
+                  },
+                  "page": "138",
+                  "section": "Art. 92, quadro (Art. 78 p. 121)",
+                  "quote": "               7                                     205                  € 20,50"
+                }
+              }
             }
           ]
         }
@@ -2479,7 +2490,7 @@
     "effective_until": "2028-09-30",
     "source": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/",
     "verification_status": "unverified",
-    "source_hash": "ebeb2c65e04ac7e93ec9ab8b239acf8edd9793cb5e951c30086780d1829fb867",
+    "source_hash": "edadb65aa7dc0de2731e529fd37272cdfe627fa21ce8b49004aa0280a40b9a57",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -2710,6 +2721,37 @@
         "checked": [
           "levels.base_salary",
           "levels.fixed_allowances"
+        ]
+      },
+      {
+        "id": "2026-11-08-gpt-edilizia-artigianato-cna-data-fixes",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Data fixes proposed by one session from the signed text and confirmed by a second independent session.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/20251222_CCNL_EDILIZIA-ARTIGIANI-E-PMI.pdf",
+            "sha256": "0c6e4b8d8ade933714625ae443c2fce283ad503acf121c22bd5177dfe7bc5d94"
+          },
+          {
+            "url": "https://www.prevedi.it/wp-content/uploads/2026/09/3722_Nota_Informativa_-_Informazioni_chiave_per_laderente_-_Scheda_I_destinatari_e_i_contributi.pdf",
+            "sha256": "195f6e83abef137bc3ad9ad832af61b633e1c923f202623d6bc16fdef2900de6"
+          },
+          {
+            "url": "https://prevedi.it/public/php_normative/documenti/2192_Accordo_del_4_luglio_2025_con_indicazioni_operative_CNCE-Prevedi.pdf",
+            "sha256": "1032c48b677856db1393189f84c855e0cda4bf5514e3af5b3a6792fed55fd257"
+          }
+        ],
+        "findings": [
+          "Closed contractual_fund_uncovered."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "levels",
+          "parameters",
+          "work_rules"
         ]
       }
     ]
