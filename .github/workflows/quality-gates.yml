@@ -84,7 +84,7 @@ jobs:
         run: uv run pytest -n auto
 
       - name: Upload coverage report (artifact)
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a  # v7
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9  # v7
         if: always()
         with:
           name: coverage-xml
@@ -172,7 +172,7 @@ jobs:
         run: uv run bandit -r src/ scripts/ -lll -iii -f json -o bandit-report.json || (cat bandit-report.json; exit 1)
 
       - name: Upload bandit report
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a  # v7
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9  # v7
         if: always()
         with:
           name: bandit-report
@@ -240,7 +240,7 @@ jobs:
         run: uv build
 
       - name: Upload the distribution the smoke tests install
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a  # v7
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9  # v7
         with:
           name: dist
           path: dist/
