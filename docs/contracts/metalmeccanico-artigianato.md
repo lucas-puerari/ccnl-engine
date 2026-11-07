@@ -34,9 +34,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, inps_employer, sickness |
+| **Limits of this contract** | base_salary, inps_employer |
 
-5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -77,6 +77,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | claude-opus-5-5 (ai) | FSBA ordinary contribution, art. 3 of the 2024 regulation, read on the text layer (analysis by a separate model session). | corrected | Added parameters.solidarity_fund FSBA: 0.45%+0.15% up to 15 employees, 0.75%+0.25% above, on the INPS base, fixed terms included.<br>Closed health_and_bilateral_funds (FSBA was its only remediation). |
 | 2026-11-08 | claude-opus-5-5 (ai) | Saturday overtime of the consolidated 2021 text (unchanged by the 2024 renewal), read on the text layer. | corrected | Added OT_SABATO (25%, first 3 hours) and OT_SABATO_OLTRE_3_ORE (50% beyond 3 hours a day) on the new OvertimeKind.SATURDAY; closed artisan_saturday_overtime. |
 | 2026-11-08 | gpt-6-sol (ai) | Art. 26 of the CCNL 17 December 2021 and the interconfederal agreement of 1 February 2018 it reproduces (pp. 89-93), not changed by the 2024 renewal. Every row of the extraction re-checked by a separate model session on the saved PDFs (verdict CONFIRMED). | confirmed | Added dual_apprenticeship for the first- and third-level apprentices. |
+| 2026-11-08 | claude-opus-5-5 (ai) | Art. 73 of the CCNL 17 December 2021 (PDF p. 147), text layer. | corrected | Added work_rules.sickness_rules_by_category for impiegati and quadri. |
 
 ## Salary table
 
@@ -143,13 +144,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Add an 'impiegati_centralinisti' track (70, 70, 75, 80% by semester, then 100%) selectable by Apprentice.track.
-
-!!! warning "metalmeccanico-artigianato/artisan_impiegati_sickness · sickness · impact yes · open"
-    SICKNESS OF THE IMPIEGATI: Art. 73 (p. 147) pays the impiegati the whole pay for 2 months and half for the next 4 up to 5 years of service, the whole for 3 months and half for the next 5 above; the file applies the operai rule of Art. 61.
-
-    **Applies when:** `sickness` applies; category in impiegato, quadro.
-
-    **Remediation:** Model the Art. 73 bands for the impiegati by category.
 
 !!! warning "metalmeccanico-artigianato/first_level_apprentice_contributions · inps_employer · impact yes · open"
     FIRST- AND THIRD-LEVEL APPRENTICES (Art. 26, accordo interconfederale 1 febbraio 2018): modelled in dual_apprenticeship (first level 45/55/60/70% by year at the conventional level, third level 70% then 80% of the tabellare by half, or 80%; training at the employer 10% of the work pay, school hours unpaid). Not modelled: the INPS contributions of the first-level apprentice.
@@ -359,6 +353,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     APPRENTICE SENIORITY: apprentices accrue no scatti before 1 January 2025; from that date they accrue scatti of 10 euro each, not scaled by the apprentice percentage, on the cadence of the other workers, and those in service on that date accrue from it ('la maturazione dell'anzianità di servizio ai fini del riconoscimento degli scatti decorre da pari data', Art. 27 as renewed on 19 November 2024, signed scan p. 6). At the end of the apprenticeship the matured scatti are revalued to the amount of the final level.
     
     TERM: the renewal of 19 November 2024 runs from 1 January 2023 to 31 December 2026 (Art. 2, signed scan) and keeps applying until the next renewal takes effect; the tabellare of 1 November 2026 stays in force after 2026 until a renewal is read.
+    
+    SICKNESS OF THE IMPIEGATI (Art. 73, PDF p. 147): the whole gross pay for 2 months and half for the next 4 up to 5 years of seniority, the whole for 3 months and half for the next 5 above, per illness; job kept 6 or 8 months for one illness and 10 months in the 24 before (work_rules.sickness_rules_by_category). The operai keep the rule of Art. 61.
     
 
 ## Raw data
