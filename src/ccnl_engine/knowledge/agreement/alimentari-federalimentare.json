@@ -107,7 +107,7 @@
       },
       {
         "kind": "simplification",
-        "text": "HEALTH AND BILATERAL FUNDS (artt. 74 bis-quinquies, pp. 155-158): FASA EUR 12 (16 from 2025), Cassa maternità EUR 3.50 (4.50), Cassa rischio vita EUR 30 a year and bilateralità EUR 2 (2.50) a month for the permanent workers, and the EDR of EUR 20 on 12 months of an employer outside the bilateralità, when it states so in EmployerProfile.contractual_funds.",
+        "text": "HEALTH AND BILATERAL FUNDS (artt. 74 bis-quinquies, pp. 155-158): FASA EUR 12 (16 from 2025) for the permanent workers and the fixed terms of at least nine months in the calendar year, Cassa maternità EUR 3.50 (4.50), Cassa rischio vita EUR 30 a year and bilateralità EUR 2 (2.50) a month are modelled, with the EDR of EUR 20 of an employer outside the bilateralità. Not modelled: the reduced bilateralità of EUR 1.50 for companies with better union-leave terms, the optional worker contribution of EUR 2 to FASA from June 2029, the cover of family members.",
         "capability": "bilateral_funds",
         "monetary_impact": "yes",
         "limitation": {
@@ -115,7 +115,7 @@
           "applies_when": {
             "trigger": "owed"
           },
-          "remediation": "Resolved: parameters.health_funds fasa, cassa_maternita, rischio_vita and bilateralita, read on 2026-11-05.",
+          "remediation": "Model the reduced bilateralità of EUR 1.50 of art. 74 quinquies (company union-leave terms) and the optional FASA worker contribution from June 2029.",
           "status": "resolved"
         }
       },
@@ -423,7 +423,7 @@
       {
         "code": "fasa",
         "description": "FASA, assistenza sanitaria integrativa, Art. 74 quater",
-        "permanent_only": true,
+        "permanent_only": false,
         "employer": {
           "monthly": {
             "periods": [
@@ -467,7 +467,7 @@
             "section": "Art. 74 quater cc. 1, 3-4 - FASA; Art. 74 bis cc. 2-3 - EDR",
             "quote": "a favore dei lavoratori con contratto di lavoro a tempo indeterminato e a tempo determinato con durata del rapporto pari o superiore a nove mesi nell’arco dell’anno solare [...] A partire dal 01.01.2022, l’importo [...] sarà pari a 12 euro al mese per 12 mensilità. Tale importo sarà incrementato di 4 euro/mese a partire dal 1° gennaio 2025. [Art. 74 bis] a decorrere dal 1° gennaio 2021 le imprese non aderenti alla bilateralità e che non versano il relativo contributo dovranno erogare a ciascun lavoratore un importo forfettario pari a euro 20 lordi mensili per dodici mensilità [...] non avrà riflesso alcuno sugli istituti contrattuali e di legge, diretti o/e indiretti di alcun genere"
           },
-          "transformation": "EUR 12 a month on 12 months from the employer (16 from 1 January 2025), with the 10% INPS solidarity of a health fund (L. 166/1991 art. 9-bis); the fixed-term workers of nine months or more in the year, also covered, are not modelled. An employer outside the bilateralità owes one EDR of EUR 20 a month on 12 months for FASA, the Cassa maternità, the Cassa rischio vita and the bilateralità of art. 74 quinquies, outside every institute (TFR included).",
+          "transformation": "EUR 12 a month on 12 months from the employer (16 from 1 January 2025), with the 10% INPS solidarity of a health fund (L. 166/1991 art. 9-bis); the fixed-term workers of nine months or more in the year, also covered, are not modelled. An employer outside the bilateralità owes one EDR of EUR 20 a month on 12 months for FASA, the Cassa maternità, the Cassa rischio vita and the bilateralità of art. 74 quinquies, outside every institute (TFR included). Art. 74 quater: permanent workers and fixed terms of at least nine months within the calendar year ('pari o superiore a nove mesi nell'arco dell'anno solare'), counted on the part of the fixed term in the year of the run.",
           "extraction": {
             "method": "ai",
             "model": "claude-opus-5-5",
@@ -478,7 +478,9 @@
             "verification_status": "verified",
             "review_id": "2026-11-05-ai-contractual-funds"
           }
-        }
+        },
+        "minimum_fixed_term_months": 9,
+        "fixed_term_months_in_year": true
       },
       {
         "code": "cassa_maternita",
@@ -4141,7 +4143,7 @@
     "effective_until": null,
     "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "dd01f5e21e140e29ef99c051f8c6d9489ebaff68792dba833c44d26fa085a85a",
+    "source_hash": "38dd0532101b9657598f69751a7dbe1542d044d7f57c83ba19134f7ed4b4e566",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -14023,6 +14025,27 @@
         "independence": "separate_model",
         "checked": [
           "work_rules.insured_absence.injury"
+        ]
+      },
+      {
+        "id": "2026-11-08-ai-alimentari-federalimentare-fasa-fixed-term",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "FASA coverage of art. 74 quater (PDF p. 157), text layer.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+            "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+          }
+        ],
+        "findings": [
+          "FASA was permanent-only; the text covers fixed terms of at least nine months in the calendar year: permanent_only false, minimum_fixed_term_months 9, fixed_term_months_in_year."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "parameters.health_funds"
         ]
       }
     ],

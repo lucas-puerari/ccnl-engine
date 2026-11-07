@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
@@ -22,8 +23,9 @@ def excluded(fund: ContractualFund, ctx: RunContext) -> bool:
     whose stated end comes before ``minimum_fixed_term_months``, a
     part-timer below ``minimum_weekly_hours`` and, for a fund that
     ``excludes_probation``, a month starting within the probation are left
-    out too.  A fixed
-    term without a stated end is covered.
+    out too, the months counted within the calendar year of the run for a
+    fund with ``fixed_term_months_in_year``.  A fixed term without a stated
+    end is covered.
 
     Returns:
         True when the worker is not covered.
@@ -42,10 +44,15 @@ def excluded(fund: ContractualFund, ctx: RunContext) -> bool:
         and ctx.contract.tctx.competence <= period.probation_until
     ):
         return True
-    return (
-        months is not None
-        and isinstance(request.contract_type, FixedTerm)
-        and period is not None
-        and period.ended_on is not None
-        and ends_within(period.started_on, period.ended_on, months)
-    )
+    if (
+        months is None
+        or not isinstance(request.contract_type, FixedTerm)
+        or period is None
+        or period.ended_on is None
+    ):
+        return False
+    start, end = period.started_on, period.ended_on
+    if fund.fixed_term_months_in_year:
+        year = ctx.contract.tctx.competence.year
+        start, end = max(start, date(year, 1, 1)), min(end, date(year, 12, 31))
+    return ends_within(start, end, months)
