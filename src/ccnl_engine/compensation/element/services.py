@@ -111,6 +111,7 @@ def _resolve_chain(
     full_time_weekly_hours: Decimal | None = None,
     hired_on: date | None = None,
     seniority: SeniorityFact | None = None,
+    career_months: int | None = None,
 ) -> tuple[MonthlyPayChain, ApprenticeshipScaling | None]:
     """Resolve the elementary pay chain for the period.
 
@@ -142,6 +143,7 @@ def _resolve_chain(
             roles=roles,
             worker_category=worker_category,
             hired_on=hired_on,
+            career_months=career_months,
         )
         if (
             seniority is not None
@@ -193,6 +195,7 @@ def _contract_chain(
     roles: frozenset[str],
     worker_category: WorkerCategory | None,
     hired_on: date | None,
+    career_months: int | None = None,
 ) -> tuple[MonthlyPayChain, ApprenticeshipScaling | None]:
     """Return the level or apprentice chain of the contract, full time.
 
@@ -231,6 +234,7 @@ def _contract_chain(
             is_apprentice=False,
             worker_category=worker_category,
             seniority_months=seniority_months,
+            career_months=career_months,
         )
     return chain, scaling
 

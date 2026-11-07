@@ -29,7 +29,7 @@ from ccnl_engine.inputs import (
 )
 
 
-def _isq(hired: date) -> dict[str, Decimal]:
+def _isq(hired: date, seniority: SeniorityFact | None = None) -> dict[str, Decimal]:
     result = PayrollEngine.bundled().calculate_period(
         PeriodInput(
             run=PayrollRun.regular(2026, 6),
@@ -39,7 +39,8 @@ def _isq(hired: date) -> dict[str, Decimal]:
                 level_code="Q3",
                 contract_type=Permanent(),
                 employment_period=EmploymentPeriod(hired, None),
-                seniority=SeniorityFact.since(hired, SenioritySource.EMPLOYER_RECORDS),
+                seniority=seniority
+                or SeniorityFact.since(hired, SenioritySource.EMPLOYER_RECORDS),
                 pension_fund=NoPensionFund(),
             ),
             employer=EmployerProfile(headcount=Headcount(10)),
@@ -60,3 +61,14 @@ def test_the_isq_follows_the_twelve_years(hired: date, code: str, amount: str) -
     """Ten years of service pay 100 EUR, thirteen pay 130 EUR."""
     (paid,) = _isq(hired).items()
     assert paid == (code, Decimal(amount))
+
+
+def test_the_career_months_decide_the_tier() -> None:
+    """Service since 2013, career in level 1 and Area Q since 2016: 100 EUR."""
+    fact = SeniorityFact(
+        months=36,
+        as_of=date(2016, 1, 1),
+        source=SenioritySource.EMPLOYER_RECORDS,
+        career_months=0,
+    )
+    assert _isq(date(2013, 1, 1), fact) == {"isq": Decimal("100.00")}

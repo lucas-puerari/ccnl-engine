@@ -139,6 +139,12 @@ REQUEST_DEFAULTS: Mapping[str, FieldDefault] = {
         "an adult hire: on a CCNL that counts the increments from an age the "
         "service counts from the start, without a blocker",
     ),
+    "SeniorityFact.career_months": requires_fact(
+        "base_salary",
+        "seniority.career_months",
+        _PENDING,
+        "the service months stand for the career of a career-gated allowance",
+    ),
     "Employment.seniority": requires_fact(
         "seniority",
         "employment.seniority",

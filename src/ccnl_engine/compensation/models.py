@@ -49,14 +49,12 @@ class Allowance(BaseModel):
     that day (Logistica Confetra art. 60 c. 8: the EDR of the workers "in
     servizio alla data del 26 gennaio 2011"): it is paid only when the
     employment started on or before it, and not when the start is unknown.
-    ``service_months_threshold`` makes the allowance conditional: it is
-    included only when the recognised seniority (``Employment.seniority``)
-    is known and is at least this many months on the run. When the
-    seniority is unknown, threshold-gated allowances are excluded and the
-    run names the missing fact: the engine cannot gate on service time
-    without knowing service time.  ``service_months_until`` closes the band
-    of seniority: the allowance is included only below it (the RPD of the
-    AFAM docenti, by band of anzianità di servizio).
+    ``service_months_threshold`` includes the allowance only when the
+    recognised seniority (``Employment.seniority``) is known and at least
+    this many months on the run; unknown, the run names the missing fact.
+    ``service_months_until`` closes the band (the RPD of the AFAM docenti).
+    ``career_service`` gates on ``SeniorityFact.career_months`` when stated
+    (Farmacie Tabella C: the years in level 1 and Area Q).
 
     ``part_time_proportionable=False`` marks allowances paid at their full
     contractual value whatever the part-time fraction (fixed welfare
@@ -89,6 +87,7 @@ class Allowance(BaseModel):
     replaced_by: Literal["provincial_element", "second_level_premium"] | None = None
     service_months_threshold: int | None = Field(default=None, ge=0)
     service_months_until: int | None = Field(default=None, ge=1)
+    career_service: bool = False
     in_service_on: date | None = None
     individual: bool = False
     provenance: RuleProvenance | None = None

@@ -864,12 +864,10 @@
       "farmacie-municipalizzate-assofarm/terziario_rates_proxy"
     ],
     "agreement/farmacie-private-h121.json": [
-      "farmacie-private-h121/apprentice_seniority",
-      "farmacie-private-h121/isq_twelve_year_tier"
+      "farmacie-private-h121/apprentice_seniority"
     ],
     "agreement/farmacie-rurali-sussidiate-h121.json": [
-      "farmacie-rurali-sussidiate-h121/apprentice_seniority",
-      "farmacie-rurali-sussidiate-h121/isq_twelve_year_tier"
+      "farmacie-rurali-sussidiate-h121/apprentice_seniority"
     ],
     "agreement/federcasa.json": [
       "federcasa/ivc_renewal_gap",
