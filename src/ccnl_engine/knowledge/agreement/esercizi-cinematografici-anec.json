@@ -24,6 +24,15 @@
         "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
         "pages": [],
         "published_on": "2025-10-16"
+      },
+      {
+        "document_id": "anec-verbale-ipca-2026-02-12",
+        "title": "Verbale di accordo ANEC, FISTel-CISL, UILCOM-UIL del 12 febbraio 2026, rivalutazione dei minimi tabellari (IPCA)",
+        "kind": "associazione",
+        "url": "https://anec.it/wp-content/uploads/2026/02/VerbaleTabelle-aggiornate-12-.02.2026.pdf",
+        "pages": [],
+        "published_on": "2026-02-12",
+        "sha256": "e6522a5586305ef79acc58d62615c19efb013abf640f7c8573cc0885aaca49cf"
       }
     ],
     "extraction": {
@@ -132,6 +141,27 @@
         ],
         "findings": [
           "Art. 20 - Tredicesima mensilita' o gratifica natalizia (p. 27): \"La frazione di mese superiore a 15 giorni sarà considerata, a tali effetti, come mese intero.\". Match: more_than 15."
+        ]
+      },
+      {
+        "id": "2026-11-07-ai-cinema-ipca-2026",
+        "date": "2026-11-07",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Verbale of 12 February 2026: the IPCA adjustment of the minimi from January 2026 (pp. 1-3).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://anec.it/wp-content/uploads/2026/02/VerbaleTabelle-aggiornate-12-.02.2026.pdf",
+            "sha256": "e6522a5586305ef79acc58d62615c19efb013abf640f7c8573cc0885aaca49cf"
+          }
+        ],
+        "findings": [
+          "The minimi rise 1.7% from January 2026 (26.58 EUR at level IV, reparametrised); the seniority amounts are unchanged."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels.base_salary"
         ]
       }
     ]
@@ -522,7 +552,7 @@
           },
           {
             "valid_from": "2025-07-01",
-            "valid_until": null,
+            "valid_until": "2026-01-01",
             "value": "1170.00",
             "provenance": {
               "status": "derived",
@@ -540,6 +570,37 @@
                 "extraction_timestamp": "2026-09-07T15:03:36",
                 "verification_status": "unverified",
                 "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "1186.72",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "anec-verbale-ipca-2026-02-12",
+                  "title": "Verbale di accordo ANEC, FISTel-CISL, UILCOM-UIL del 12 febbraio 2026, rivalutazione dei minimi tabellari (IPCA)",
+                  "kind": "associazione",
+                  "url": "https://anec.it/wp-content/uploads/2026/02/VerbaleTabelle-aggiornate-12-.02.2026.pdf",
+                  "published_on": "2026-02-12",
+                  "sha256": "e6522a5586305ef79acc58d62615c19efb013abf640f7c8573cc0885aaca49cf"
+                },
+                "page": "2",
+                "section": "Tabelle paga, Lordo dal 01/01/2026",
+                "quote": "a decorrere dalla busta paga di Gennaio 2026, i minimi tabellari vigenti per i lavoratori del settore, sono incrementati dell'1,7% [...] Lordo dal 01/01/2026 1186,72"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T13:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T13:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-cinema-ipca-2026"
               }
             }
           }
@@ -624,7 +685,7 @@
           },
           {
             "valid_from": "2025-07-01",
-            "valid_until": null,
+            "valid_until": "2026-01-01",
             "value": "1170.00",
             "provenance": {
               "status": "derived",
@@ -642,6 +703,37 @@
                 "extraction_timestamp": "2026-09-07T15:03:36",
                 "verification_status": "unverified",
                 "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "1186.72",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "anec-verbale-ipca-2026-02-12",
+                  "title": "Verbale di accordo ANEC, FISTel-CISL, UILCOM-UIL del 12 febbraio 2026, rivalutazione dei minimi tabellari (IPCA)",
+                  "kind": "associazione",
+                  "url": "https://anec.it/wp-content/uploads/2026/02/VerbaleTabelle-aggiornate-12-.02.2026.pdf",
+                  "published_on": "2026-02-12",
+                  "sha256": "e6522a5586305ef79acc58d62615c19efb013abf640f7c8573cc0885aaca49cf"
+                },
+                "page": "3",
+                "section": "Tabelle paga, Lordo dal 01/01/2026",
+                "quote": "a decorrere dalla busta paga di Gennaio 2026, i minimi tabellari vigenti per i lavoratori del settore, sono incrementati dell'1,7% [...] Lordo dal 01/01/2026 1186,72"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T13:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T13:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-cinema-ipca-2026"
               }
             }
           }
@@ -726,7 +818,7 @@
           },
           {
             "valid_from": "2025-07-01",
-            "valid_until": null,
+            "valid_until": "2026-01-01",
             "value": "1249.95",
             "provenance": {
               "status": "derived",
@@ -744,6 +836,37 @@
                 "extraction_timestamp": "2026-09-07T15:03:36",
                 "verification_status": "unverified",
                 "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "1268.67",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "anec-verbale-ipca-2026-02-12",
+                  "title": "Verbale di accordo ANEC, FISTel-CISL, UILCOM-UIL del 12 febbraio 2026, rivalutazione dei minimi tabellari (IPCA)",
+                  "kind": "associazione",
+                  "url": "https://anec.it/wp-content/uploads/2026/02/VerbaleTabelle-aggiornate-12-.02.2026.pdf",
+                  "published_on": "2026-02-12",
+                  "sha256": "e6522a5586305ef79acc58d62615c19efb013abf640f7c8573cc0885aaca49cf"
+                },
+                "page": "2",
+                "section": "Tabelle paga, Lordo dal 01/01/2026",
+                "quote": "a decorrere dalla busta paga di Gennaio 2026, i minimi tabellari vigenti per i lavoratori del settore, sono incrementati dell'1,7% [...] Lordo dal 01/01/2026 1268,67"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T13:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T13:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-cinema-ipca-2026"
               }
             }
           }
@@ -824,7 +947,7 @@
           },
           {
             "valid_from": "2025-07-01",
-            "valid_until": null,
+            "valid_until": "2026-01-01",
             "value": "1316.62",
             "provenance": {
               "status": "derived",
@@ -842,6 +965,37 @@
                 "extraction_timestamp": "2026-09-07T15:03:36",
                 "verification_status": "unverified",
                 "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "1337.01",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "anec-verbale-ipca-2026-02-12",
+                  "title": "Verbale di accordo ANEC, FISTel-CISL, UILCOM-UIL del 12 febbraio 2026, rivalutazione dei minimi tabellari (IPCA)",
+                  "kind": "associazione",
+                  "url": "https://anec.it/wp-content/uploads/2026/02/VerbaleTabelle-aggiornate-12-.02.2026.pdf",
+                  "published_on": "2026-02-12",
+                  "sha256": "e6522a5586305ef79acc58d62615c19efb013abf640f7c8573cc0885aaca49cf"
+                },
+                "page": "3",
+                "section": "Tabelle paga, Lordo dal 01/01/2026",
+                "quote": "a decorrere dalla busta paga di Gennaio 2026, i minimi tabellari vigenti per i lavoratori del settore, sono incrementati dell'1,7% [...] Lordo dal 01/01/2026 1337,01"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T13:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T13:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-cinema-ipca-2026"
               }
             }
           }
@@ -922,7 +1076,7 @@
           },
           {
             "valid_from": "2025-07-01",
-            "valid_until": null,
+            "valid_until": "2026-01-01",
             "value": "1383.48",
             "provenance": {
               "status": "derived",
@@ -940,6 +1094,37 @@
                 "extraction_timestamp": "2026-09-07T15:03:36",
                 "verification_status": "unverified",
                 "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "1405.55",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "anec-verbale-ipca-2026-02-12",
+                  "title": "Verbale di accordo ANEC, FISTel-CISL, UILCOM-UIL del 12 febbraio 2026, rivalutazione dei minimi tabellari (IPCA)",
+                  "kind": "associazione",
+                  "url": "https://anec.it/wp-content/uploads/2026/02/VerbaleTabelle-aggiornate-12-.02.2026.pdf",
+                  "published_on": "2026-02-12",
+                  "sha256": "e6522a5586305ef79acc58d62615c19efb013abf640f7c8573cc0885aaca49cf"
+                },
+                "page": "2",
+                "section": "Tabelle paga, Lordo dal 01/01/2026",
+                "quote": "a decorrere dalla busta paga di Gennaio 2026, i minimi tabellari vigenti per i lavoratori del settore, sono incrementati dell'1,7% [...] Lordo dal 01/01/2026 1405,55"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T13:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T13:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-cinema-ipca-2026"
               }
             }
           }
@@ -1020,7 +1205,7 @@
           },
           {
             "valid_from": "2025-07-01",
-            "valid_until": null,
+            "valid_until": "2026-01-01",
             "value": "1436.95",
             "provenance": {
               "status": "derived",
@@ -1038,6 +1223,37 @@
                 "extraction_timestamp": "2026-09-07T15:03:36",
                 "verification_status": "unverified",
                 "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "1460.35",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "anec-verbale-ipca-2026-02-12",
+                  "title": "Verbale di accordo ANEC, FISTel-CISL, UILCOM-UIL del 12 febbraio 2026, rivalutazione dei minimi tabellari (IPCA)",
+                  "kind": "associazione",
+                  "url": "https://anec.it/wp-content/uploads/2026/02/VerbaleTabelle-aggiornate-12-.02.2026.pdf",
+                  "published_on": "2026-02-12",
+                  "sha256": "e6522a5586305ef79acc58d62615c19efb013abf640f7c8573cc0885aaca49cf"
+                },
+                "page": "3",
+                "section": "Tabelle paga, Lordo dal 01/01/2026",
+                "quote": "a decorrere dalla busta paga di Gennaio 2026, i minimi tabellari vigenti per i lavoratori del settore, sono incrementati dell'1,7% [...] Lordo dal 01/01/2026 1460,35"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T13:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T13:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-cinema-ipca-2026"
               }
             }
           }
@@ -1118,7 +1334,7 @@
           },
           {
             "valid_from": "2025-07-01",
-            "valid_until": null,
+            "valid_until": "2026-01-01",
             "value": "1503.61",
             "provenance": {
               "status": "derived",
@@ -1136,6 +1352,37 @@
                 "extraction_timestamp": "2026-09-07T15:03:36",
                 "verification_status": "unverified",
                 "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "1528.69",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "anec-verbale-ipca-2026-02-12",
+                  "title": "Verbale di accordo ANEC, FISTel-CISL, UILCOM-UIL del 12 febbraio 2026, rivalutazione dei minimi tabellari (IPCA)",
+                  "kind": "associazione",
+                  "url": "https://anec.it/wp-content/uploads/2026/02/VerbaleTabelle-aggiornate-12-.02.2026.pdf",
+                  "published_on": "2026-02-12",
+                  "sha256": "e6522a5586305ef79acc58d62615c19efb013abf640f7c8573cc0885aaca49cf"
+                },
+                "page": "3",
+                "section": "Tabelle paga, Lordo dal 01/01/2026",
+                "quote": "a decorrere dalla busta paga di Gennaio 2026, i minimi tabellari vigenti per i lavoratori del settore, sono incrementati dell'1,7% [...] Lordo dal 01/01/2026 1528,69"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T13:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T13:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-cinema-ipca-2026"
               }
             }
           }
@@ -1216,7 +1463,7 @@
           },
           {
             "valid_from": "2025-07-01",
-            "valid_until": null,
+            "valid_until": "2026-01-01",
             "value": "1563.49",
             "provenance": {
               "status": "derived",
@@ -1234,6 +1481,37 @@
                 "extraction_timestamp": "2026-09-07T15:03:36",
                 "verification_status": "unverified",
                 "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "1590.07",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "anec-verbale-ipca-2026-02-12",
+                  "title": "Verbale di accordo ANEC, FISTel-CISL, UILCOM-UIL del 12 febbraio 2026, rivalutazione dei minimi tabellari (IPCA)",
+                  "kind": "associazione",
+                  "url": "https://anec.it/wp-content/uploads/2026/02/VerbaleTabelle-aggiornate-12-.02.2026.pdf",
+                  "published_on": "2026-02-12",
+                  "sha256": "e6522a5586305ef79acc58d62615c19efb013abf640f7c8573cc0885aaca49cf"
+                },
+                "page": "2",
+                "section": "Tabelle paga, Lordo dal 01/01/2026",
+                "quote": "a decorrere dalla busta paga di Gennaio 2026, i minimi tabellari vigenti per i lavoratori del settore, sono incrementati dell'1,7% [...] Lordo dal 01/01/2026 1590,07"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T13:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T13:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-cinema-ipca-2026"
               }
             }
           }
@@ -1314,7 +1592,7 @@
           },
           {
             "valid_from": "2025-07-01",
-            "valid_until": null,
+            "valid_until": "2026-01-01",
             "value": "1603.17",
             "provenance": {
               "status": "derived",
@@ -1332,6 +1610,37 @@
                 "extraction_timestamp": "2026-09-07T15:03:36",
                 "verification_status": "unverified",
                 "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "1630.75",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "anec-verbale-ipca-2026-02-12",
+                  "title": "Verbale di accordo ANEC, FISTel-CISL, UILCOM-UIL del 12 febbraio 2026, rivalutazione dei minimi tabellari (IPCA)",
+                  "kind": "associazione",
+                  "url": "https://anec.it/wp-content/uploads/2026/02/VerbaleTabelle-aggiornate-12-.02.2026.pdf",
+                  "published_on": "2026-02-12",
+                  "sha256": "e6522a5586305ef79acc58d62615c19efb013abf640f7c8573cc0885aaca49cf"
+                },
+                "page": "3",
+                "section": "Tabelle paga, Lordo dal 01/01/2026",
+                "quote": "a decorrere dalla busta paga di Gennaio 2026, i minimi tabellari vigenti per i lavoratori del settore, sono incrementati dell'1,7% [...] Lordo dal 01/01/2026 1630,75"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T13:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T13:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-cinema-ipca-2026"
               }
             }
           }
@@ -1412,7 +1721,7 @@
           },
           {
             "valid_from": "2025-07-01",
-            "valid_until": null,
+            "valid_until": "2026-01-01",
             "value": "1677.32",
             "provenance": {
               "status": "derived",
@@ -1430,6 +1739,37 @@
                 "extraction_timestamp": "2026-09-07T15:03:36",
                 "verification_status": "unverified",
                 "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "1706.74",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "anec-verbale-ipca-2026-02-12",
+                  "title": "Verbale di accordo ANEC, FISTel-CISL, UILCOM-UIL del 12 febbraio 2026, rivalutazione dei minimi tabellari (IPCA)",
+                  "kind": "associazione",
+                  "url": "https://anec.it/wp-content/uploads/2026/02/VerbaleTabelle-aggiornate-12-.02.2026.pdf",
+                  "published_on": "2026-02-12",
+                  "sha256": "e6522a5586305ef79acc58d62615c19efb013abf640f7c8573cc0885aaca49cf"
+                },
+                "page": "2",
+                "section": "Tabelle paga, Lordo dal 01/01/2026",
+                "quote": "a decorrere dalla busta paga di Gennaio 2026, i minimi tabellari vigenti per i lavoratori del settore, sono incrementati dell'1,7% [...] Lordo dal 01/01/2026 1706,74"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T13:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T13:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-cinema-ipca-2026"
               }
             }
           }
@@ -1510,7 +1850,7 @@
           },
           {
             "valid_from": "2025-07-01",
-            "valid_until": null,
+            "valid_until": "2026-01-01",
             "value": "1736.47",
             "provenance": {
               "status": "derived",
@@ -1528,6 +1868,37 @@
                 "extraction_timestamp": "2026-09-07T15:03:36",
                 "verification_status": "unverified",
                 "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "1767.40",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "anec-verbale-ipca-2026-02-12",
+                  "title": "Verbale di accordo ANEC, FISTel-CISL, UILCOM-UIL del 12 febbraio 2026, rivalutazione dei minimi tabellari (IPCA)",
+                  "kind": "associazione",
+                  "url": "https://anec.it/wp-content/uploads/2026/02/VerbaleTabelle-aggiornate-12-.02.2026.pdf",
+                  "published_on": "2026-02-12",
+                  "sha256": "e6522a5586305ef79acc58d62615c19efb013abf640f7c8573cc0885aaca49cf"
+                },
+                "page": "2",
+                "section": "Tabelle paga, Lordo dal 01/01/2026",
+                "quote": "a decorrere dalla busta paga di Gennaio 2026, i minimi tabellari vigenti per i lavoratori del settore, sono incrementati dell'1,7% [...] Lordo dal 01/01/2026 1767,40"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T13:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T13:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-cinema-ipca-2026"
               }
             }
           }
@@ -1608,7 +1979,7 @@
           },
           {
             "valid_from": "2025-07-01",
-            "valid_until": null,
+            "valid_until": "2026-01-01",
             "value": "1736.47",
             "provenance": {
               "status": "derived",
@@ -1626,6 +1997,37 @@
                 "extraction_timestamp": "2026-09-07T15:03:36",
                 "verification_status": "unverified",
                 "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "1767.40",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "anec-verbale-ipca-2026-02-12",
+                  "title": "Verbale di accordo ANEC, FISTel-CISL, UILCOM-UIL del 12 febbraio 2026, rivalutazione dei minimi tabellari (IPCA)",
+                  "kind": "associazione",
+                  "url": "https://anec.it/wp-content/uploads/2026/02/VerbaleTabelle-aggiornate-12-.02.2026.pdf",
+                  "published_on": "2026-02-12",
+                  "sha256": "e6522a5586305ef79acc58d62615c19efb013abf640f7c8573cc0885aaca49cf"
+                },
+                "page": "3",
+                "section": "Tabelle paga, Lordo dal 01/01/2026",
+                "quote": "a decorrere dalla busta paga di Gennaio 2026, i minimi tabellari vigenti per i lavoratori del settore, sono incrementati dell'1,7% [...] Lordo dal 01/01/2026 1767,40"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T13:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T13:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-cinema-ipca-2026"
               }
             }
           }
@@ -1706,7 +2108,7 @@
           },
           {
             "valid_from": "2025-07-01",
-            "valid_until": null,
+            "valid_until": "2026-01-01",
             "value": "1970.12",
             "provenance": {
               "status": "derived",
@@ -1724,6 +2126,37 @@
                 "extraction_timestamp": "2026-09-07T15:03:36",
                 "verification_status": "unverified",
                 "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "2006.90",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "anec-verbale-ipca-2026-02-12",
+                  "title": "Verbale di accordo ANEC, FISTel-CISL, UILCOM-UIL del 12 febbraio 2026, rivalutazione dei minimi tabellari (IPCA)",
+                  "kind": "associazione",
+                  "url": "https://anec.it/wp-content/uploads/2026/02/VerbaleTabelle-aggiornate-12-.02.2026.pdf",
+                  "published_on": "2026-02-12",
+                  "sha256": "e6522a5586305ef79acc58d62615c19efb013abf640f7c8573cc0885aaca49cf"
+                },
+                "page": "2",
+                "section": "Tabelle paga, Lordo dal 01/01/2026",
+                "quote": "a decorrere dalla busta paga di Gennaio 2026, i minimi tabellari vigenti per i lavoratori del settore, sono incrementati dell'1,7% [...] Lordo dal 01/01/2026 2006,90"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T13:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T13:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-cinema-ipca-2026"
               }
             }
           }
@@ -1804,7 +2237,7 @@
           },
           {
             "valid_from": "2025-07-01",
-            "valid_until": null,
+            "valid_until": "2026-01-01",
             "value": "1970.12",
             "provenance": {
               "status": "derived",
@@ -1822,6 +2255,37 @@
                 "extraction_timestamp": "2026-09-07T15:03:36",
                 "verification_status": "unverified",
                 "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "2006.90",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "anec-verbale-ipca-2026-02-12",
+                  "title": "Verbale di accordo ANEC, FISTel-CISL, UILCOM-UIL del 12 febbraio 2026, rivalutazione dei minimi tabellari (IPCA)",
+                  "kind": "associazione",
+                  "url": "https://anec.it/wp-content/uploads/2026/02/VerbaleTabelle-aggiornate-12-.02.2026.pdf",
+                  "published_on": "2026-02-12",
+                  "sha256": "e6522a5586305ef79acc58d62615c19efb013abf640f7c8573cc0885aaca49cf"
+                },
+                "page": "3",
+                "section": "Tabelle paga, Lordo dal 01/01/2026",
+                "quote": "a decorrere dalla busta paga di Gennaio 2026, i minimi tabellari vigenti per i lavoratori del settore, sono incrementati dell'1,7% [...] Lordo dal 01/01/2026 2006,90"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T13:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T13:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-cinema-ipca-2026"
               }
             }
           }
@@ -1902,7 +2366,7 @@
           },
           {
             "valid_from": "2025-07-01",
-            "valid_until": null,
+            "valid_until": "2026-01-01",
             "value": "2103.45",
             "provenance": {
               "status": "derived",
@@ -1920,6 +2384,37 @@
                 "extraction_timestamp": "2026-09-07T15:03:36",
                 "verification_status": "unverified",
                 "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "2143.57",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "anec-verbale-ipca-2026-02-12",
+                  "title": "Verbale di accordo ANEC, FISTel-CISL, UILCOM-UIL del 12 febbraio 2026, rivalutazione dei minimi tabellari (IPCA)",
+                  "kind": "associazione",
+                  "url": "https://anec.it/wp-content/uploads/2026/02/VerbaleTabelle-aggiornate-12-.02.2026.pdf",
+                  "published_on": "2026-02-12",
+                  "sha256": "e6522a5586305ef79acc58d62615c19efb013abf640f7c8573cc0885aaca49cf"
+                },
+                "page": "3",
+                "section": "Tabelle paga, Lordo dal 01/01/2026",
+                "quote": "a decorrere dalla busta paga di Gennaio 2026, i minimi tabellari vigenti per i lavoratori del settore, sono incrementati dell'1,7% [...] Lordo dal 01/01/2026 2143,57"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T13:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T13:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-cinema-ipca-2026"
               }
             }
           }
@@ -1953,7 +2448,7 @@
     "effective_until": null,
     "source": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "482cc3a687844e3b47ea27ce5928563523d1e0de0aa64708bd2e56c6b5c7d977",
+    "source_hash": "b26d1b654a928f14c88614ce691cbd8423e27a33c7ba7fe4691011a2d3285bbd",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
