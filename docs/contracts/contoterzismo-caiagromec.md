@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 20 verified / 29 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 25 verified / 24 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -59,6 +59,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|---|---|
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | corrected | Art. 20 - Mensilità aggiuntive (13ª e 14ª) (p. 22): "dette mensilità aggiuntive sono frazionabili in dodicesimi nell'ipotesi di inizio o di cessazione del rapporto nel corso dell'anno. [...] La frazione di mese superiore a 15 giorni è considerata come un mese intero.". Added: more_than 15 (the file applied the engine default, at least 15 days). |
 | 2026-11-07 | gpt-6-sol (ai) | Monthly values on scanned pages, each read twice from the page image by two independent sessions of another model, the second without being told the expected value. | confirmed | 37 values read identically by both readings and equal to the file. |
+| 2026-11-07 | claude-opus-5-5 (ai) | Values a primary-text verification found different from the printed tables (text layer). | corrected | 5 values corrected to the amounts printed on the cited pages. |
 
 ## Salary table
 
@@ -66,12 +67,12 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `1` | 1° livello | € 2,392.94 | 2027-06-01 |
-| `2` | 2° livello | € 2,241.78 | 2027-06-01 |
+| `1` | 1° livello | € 2,392.95 | 2027-06-01 |
+| `2` | 2° livello | € 2,241.77 | 2027-06-01 |
 | `3` | 3° livello | € 2,054.03 | 2027-06-01 |
-| `4` | 4° livello | € 1,862.10 | 2027-06-01 |
-| `5` | 5° livello | € 1,750.99 | 2027-06-01 |
-| `6` | 6° livello | € 1,489.41 | 2027-06-01 |
+| `4` | 4° livello | € 1,862.11 | 2027-06-01 |
+| `5` | 5° livello | € 1,751.00 | 2027-06-01 |
+| `6` | 6° livello | € 1,489.42 | 2027-06-01 |
 
 ## Seniority increments
 

@@ -575,7 +575,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/contoterzismo-caiagromec",
       "ruleset_version": "2026.2",
-      "source_hash": "5c82576b6fed083b448bfb12353be04e9258e007b6c4eed58577f4130b144472",
+      "source_hash": "83778e055386029cb767b2e517594abe61c73bc5bd6fbf596b337914a4b925eb",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/contoterzismo-caiagromec.json.gz"
