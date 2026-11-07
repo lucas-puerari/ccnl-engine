@@ -56,6 +56,7 @@ CALLER_MULTIPLIER_DIFFERS = "caller_multiplier_differs_from_ccnl"
 CCNL_BAND_APPLIED = "ccnl_overtime_band_applied"
 TIER_NOT_APPLIED = "overtime_tier_not_applied"
 _OVERTIME_PREFIX = "OT_"
+_FALLBACK = {WorkKind.REST_DAY: WorkKind.HOLIDAY, WorkKind.SATURDAY: WorkKind.WEEKDAY}
 
 
 @dataclass(frozen=True)
@@ -155,17 +156,16 @@ def _kind_bands(
 ) -> list[tuple[OvertimeBand, Decimal]]:
     """Return the unconditional percentage overtime bands of the event's kind.
 
-    Rest-day overtime takes the holiday bands when the CCNL has none of its
-    own.
+    Rest-day overtime takes the holiday bands, Saturday overtime the weekday
+    ones, when the CCNL has none of their own (``_FALLBACK``).
 
     Returns:
         ``(band, supplement)`` for each band in force on the event date.
     """
     kind = WorkKind(event.kind.value)
     found = _bands_of(bands, event, kind)
-    if not found and kind is WorkKind.REST_DAY:
-        # Most CCNLs pay rest-day overtime as straordinario festivo.
-        return _bands_of(bands, event, WorkKind.HOLIDAY)
+    if not found and kind in _FALLBACK:
+        return _bands_of(bands, event, _FALLBACK[kind])
     return found
 
 
@@ -181,8 +181,8 @@ def _hourly_band(
     hourly = TimeSupplementKind.INDENNITA_PER_HOUR
     kind = WorkKind(event.kind.value)
     found = _bands_of(bands, event, kind, hourly)
-    if not found and kind is WorkKind.REST_DAY:
-        found = _bands_of(bands, event, WorkKind.HOLIDAY, hourly)
+    if not found and kind in _FALLBACK:
+        found = _bands_of(bands, event, _FALLBACK[kind], hourly)
     return next(((b, r) for b, r in found if not _has_threshold(b)), None)
 
 

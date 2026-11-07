@@ -34,9 +34,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, inps_employer, overtime, sickness |
+| **Limits of this contract** | base_salary, inps_employer, sickness |
 
-5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -44,7 +44,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 70 verified / 12 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 71 verified / 12 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -75,6 +75,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-05 | claude-opus-5-5 (ai) | Artt. 11-12 (PDF pp. 28-32) of the CCNL of 17 December 2021, EBNA text, text layer. | corrected | EBNA (EUR 11.65 a month, or EUR 30 on 13 months unpaid) and SAN.ARTI. (EUR 10.42 a month, or EUR 25 on 13 months unpaid) were not modelled. |
 | 2026-11-07 | gpt-6-sol (ai) | Monthly values on scanned pages, each read twice from the page image by two independent sessions of another model, the second without being told the expected value. | confirmed | 31 values read identically by both readings and equal to the file. |
 | 2026-11-08 | claude-opus-5-5 (ai) | FSBA ordinary contribution, art. 3 of the 2024 regulation, read on the text layer (analysis by a separate model session). | corrected | Added parameters.solidarity_fund FSBA: 0.45%+0.15% up to 15 employees, 0.75%+0.25% above, on the INPS base, fixed terms included.<br>Closed health_and_bilateral_funds (FSBA was its only remediation). |
+| 2026-11-08 | claude-opus-5-5 (ai) | Saturday overtime of the consolidated 2021 text (unchanged by the 2024 renewal), read on the text layer. | corrected | Added OT_SABATO (25%, first 3 hours) and OT_SABATO_OLTRE_3_ORE (50% beyond 3 hours a day) on the new OvertimeKind.SATURDAY; closed artisan_saturday_overtime. |
 
 ## Salary table
 
@@ -141,13 +142,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Add an 'impiegati_centralinisti' track (70, 70, 75, 80% by semester, then 100%) selectable by Apprentice.track.
-
-!!! warning "metalmeccanico-artigianato/artisan_saturday_overtime · overtime · impact yes · open"
-    SATURDAY OVERTIME AND ORDINARY NIGHT AND HOLIDAY WORK: in a five-day week Saturday overtime is paid 25% for the first 3 hours and 50% after; ordinary night work is paid 15% and holiday work 45% (Art. 22, p. 84). The request has no Saturday kind and the bands hold only the overtime rates.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Add a Saturday kind with the 3-hour threshold, and bands for ordinary night and holiday work.
 
 !!! warning "metalmeccanico-artigianato/artisan_impiegati_sickness · sickness · impact yes · open"
     SICKNESS OF THE IMPIEGATI: Art. 73 (p. 147) pays the impiegati the whole pay for 2 months and half for the next 4 up to 5 years of service, the whole for 3 months and half for the next 5 above; the file applies the operai rule of Art. 61.
