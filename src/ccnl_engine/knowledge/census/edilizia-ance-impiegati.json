@@ -55,10 +55,10 @@
       "institute": "sickness",
       "variant": "all",
       "discriminant": "applies_when.trigger = run",
-      "rule": "SICKNESS (Art. 66): the employer pays the whole treatment of the elements 1-10 of Art. 44 (INPS pays no indemnity to the impiegati and quadri of industry) for six months, the comporto of a worker with up to two years of service. Not modelled: from two to six years the comporto of nine months with the last three at 50%, over six years twelve months with three months at 75% and three at 50%; for several illnesses or relapses the comporto of 9, 12 or 15 months in 30, whose three extra months are paid in full for the first and at 50% after. The engine stops at day 180 (days past it are marked beyond the comporto).",
+      "rule": "SICKNESS (Art. 66, PDF p. 78): the employer pays the elements 1-10 of Art. 44 (INPS pays no indemnity to the impiegati of industry). Modelled per illness: up to two years of seniority six months in full; from two to six years nine months, the last three at 50%; over six years twelve months, three at 75% and three at 50%; several illnesses or relapses keep the job 9, 12 or 15 months in 30. Not modelled: the pay of the three extra months of several illnesses ('intero trattamento economico per il primo mese e del 50% per i mesi restanti'): the text does not say whether they follow the aggregate of the illnesses or each illness's own period, so each illness takes its own schedule.",
       "calculation": "ccnl/edilizia-ance-impiegati:coverage.notes",
       "state": "absent",
-      "remediation": "Model the seniority bands of Art. 66 with equal full-pay days and the cumulated comporto in 30 months.",
+      "remediation": "Settle how the three extra months of art. 66 are counted across illnesses, then pay them.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -415,22 +415,6 @@
       "links": {
         "limitations": [
           "edilizia-ance-impiegati/quadri_absorption"
-        ]
-      }
-    },
-    {
-      "id": "sickness_cumulation_window",
-      "institute": "sickness",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = path",
-      "rule": "The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded. A CCNL whose comporto the engine counts over the calendar year (Commercio Art. 186 and the others with comporto_calendar_year) is not affected.",
-      "calculation": "ccnl_engine.sickness.day.rules (CCNL tier of a sick day)",
-      "state": "unverified",
-      "remediation": "Add the cumulation window of each CCNL to its sickness rule, with the source, and count the tier and the comporto over it.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "sickness_cumulation_window"
         ]
       }
     },
