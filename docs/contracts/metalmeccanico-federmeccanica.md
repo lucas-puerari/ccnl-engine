@@ -51,7 +51,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-11-22 |
-| **Last review** | 2026-10-31 |
+| **Last review** | 2026-11-08 |
 | **Latest salary tranche** | 2028-06-01 |
 
 ## Review history
@@ -75,6 +75,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-20 | claude-opus-5-5 (ai) | The pricing of the seniority increments matured before a change of level (Sez. Quarta, Titolo IV, Art. 6 - Aumenti periodici di anzianità). | corrected | Sez. Quarta, Titolo IV, Art. 6 - Aumenti periodici di anzianità (p. 176): the earlier increments take the amounts of the new level from the change: seniority_increments.on_promotion. |
 | 2026-10-20 | claude-opus-5-5 (ai) | Whether the individual elements of the worker (superminimi, aumenti di merito, assegni ad personam) enter the hourly base of overtime and supplements (Sez. Quarta, Titolo IV, Art. 3 - Mensilizzazione; Titolo III, Art. 7). | corrected | Sez. Quarta, Titolo IV, Art. 3 - Mensilizzazione; Titolo III, Art. 7: individual elements included in the hourly base: work_rules.time_supplements.individual_elements. |
 | 2026-10-31 | claude-opus-5-5 (ai) | The basis of the indemnity for the leave not taken at the end of the employment, searched for a divisor of the daily pay in the CCNL of 5 February 2021 (Sez. IV, Tit. III, Artt. 9, 10; Tit. IV, Art. 3) and in the OCR of the ipotesi of 22 November 2025. | confirmed | Art. 10 pays a day of ferie not taken at the 'retribuzione giornaliera globale di fatto' and no text read divides the monthly pay into it: the 1/26 of Art. 9 is limited to a festività on a Sunday. No termination basis is recorded. |
+| 2026-11-08 | gpt-6-sol (ai) | CCNL top-ups of maternity and work injury, read from the signed text by a separate model session; every quote found on the PDF text layer. | confirmed | Added work_rules.insured_absence.maternity.<br>Added work_rules.insured_absence.injury. |
 
 ## Salary table
 

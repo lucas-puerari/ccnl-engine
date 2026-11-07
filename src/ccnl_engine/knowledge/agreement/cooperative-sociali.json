@@ -3001,7 +3001,7 @@
     "effective_until": null,
     "source": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
     "verification_status": "unverified",
-    "source_hash": "0910f9edfc42a85a5c853585802930a87a10f6ef66dc62ecf168200ad1f21656",
+    "source_hash": "e0402b1f00a56f92f4967398b48ce3415c9e428351aa3279c33c9333dd796839",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3432,6 +3432,67 @@
           "review_id": "2026-10-31-ai"
         }
       }
+    },
+    "insured_absence": {
+      "maternity": {
+        "integration_rate": "1",
+        "integration_days": 150,
+        "net_basis": false,
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+              "title": "CCNL Cooperative sociali 2023–2025, testo completo (Legacoopsociali, 2025)",
+              "kind": "associazione",
+              "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+              "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+            },
+            "page": "99",
+            "section": "Art. 63 — Tutela della maternità",
+            "quote": "L’impresa cooperativa provvederà, ad integrare il trattamento assistenziale a carico degli enti competenti, limitatamente al periodo di astensione obbligatoria, fino al raggiungimento dell’80% della normale retribuzione. A partire dal 1° gennaio 2024, l’integrazione prevista al comma precedente raggiungerà il 100% della normale retribuzione."
+          },
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-08T03:00:00Z",
+            "effective_from": null,
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-08T03:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-08-gpt-cooperative-sociali-insured-absence"
+          },
+          "transformation": "integration_days 150: the compulsory leave of art. 16 D.Lgs. 151/2001 (five months) the clause refers to; net_basis false: the clause measures the retribuzione without saying netta"
+        }
+      },
+      "injury": {
+        "carenza_rate": "1",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-cooperative-sociali-2023-2025-legacoop",
+              "title": "CCNL Cooperative sociali 2023–2025, testo completo (Legacoopsociali, 2025)",
+              "kind": "associazione",
+              "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+              "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+            },
+            "page": "105",
+            "section": "Art. 72 — Infortunio sul lavoro e malattie professionali",
+            "quote": "Alla lavoratrice e al lavoratore sarà riconosciuto per infortunio sul lavoro, a partire dal 1° giorno di assenza e fino al 180° giorno, un trattamento assistenziale a integrazione di quanto corrisposto dall’istituto assicuratore fino al raggiungimento del 100% della normale retribuzione. La corresponsione dell’integrazione è subordinata al riconoscimento dell’infortunio da parte dell’ente assicuratore."
+          },
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-08T03:00:00Z",
+            "effective_from": null,
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-08T03:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-08-gpt-cooperative-sociali-insured-absence"
+          }
+        }
+      }
     }
   },
   "verification": {
@@ -3527,6 +3588,29 @@
         "independence": "same_process",
         "checked": [
           "parameters.health_funds"
+        ]
+      },
+      {
+        "id": "2026-11-08-gpt-cooperative-sociali-insured-absence",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "CCNL top-ups of maternity and work injury, read from the signed text by a separate model session; every quote found on the PDF text layer.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+            "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+          }
+        ],
+        "findings": [
+          "Added work_rules.insured_absence.maternity.",
+          "Added work_rules.insured_absence.injury."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.insured_absence.maternity",
+          "work_rules.insured_absence.injury"
         ]
       }
     ],
