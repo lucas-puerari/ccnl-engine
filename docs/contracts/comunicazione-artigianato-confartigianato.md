@@ -36,7 +36,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, inps_employer, worker_category |
 
-9 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+8 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -153,13 +153,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `base_salary` applies.
 
     **Remediation:** Model the pre-18/11/2024 percentage tables gated on the apprenticeship start date, or open a limitation.
-
-!!! warning "comunicazione-artigianato-confartigianato/switchboard_apprenticeship_duration · base_salary · impact yes · open"
-    APPRENTICESHIP (art. 36 Parte I, art. 3 Parte II, renewal 18 November 2024): each row of the table is a track (artigiane groups 1-3 with their 'figure a 2/3 anni', impiegati amministrativi, PMI); the caller picks the track with Apprentice.track where a level has several. The end of the apprenticeship at its maximum duration (2-5 years) is not modelled: the last percentage holds open-ended. Level 6 is not apprenticeable.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Model the end of the apprenticeship at the maximum duration of its track.
 
 !!! warning "comunicazione-artigianato-confartigianato/level_category_not_declared · worker_category · impact unknown · open"
     LEVEL CATEGORY: all levels left null. Multiple levels map to both operai and impiegati roles — a genuine one-to-many mapping the schema cannot represent as a single category value.
@@ -405,6 +398,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     LEVEL ORDERING: 6 (lowest) < 5 < 5bis < 4 < 3 < 2 < 1B < 1A (highest). Level 5bis has higher salary than level 5 — this is correct per the CCNL (5bis = specializzato BIS, above the basic specializzato).
     
     INPS: reuses 2026-artigianato.json (ARTIGIANATO sector).
+    
+    APPRENTICESHIP (art. 36 Parte I, art. 3 Parte II, renewal 18 November 2024): each row of the table is a track (artigiane groups 1-3 with their 'figure a 2/3 anni', impiegati amministrativi, PMI); the caller picks the track with Apprentice.track where a level has several. The last percentage of each track holds past its semesters on purpose: art. 6-bis prolongs the apprenticeship by every suspension of at least 30 days and counts the suspension towards the pay progression (renewal p. 8), so an apprentice may be past the table; the caller ends the apprenticeship (Apprentice) at its end. Level 6 is not apprenticeable.
     
 
 ## Raw data
