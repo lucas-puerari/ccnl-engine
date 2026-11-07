@@ -159,6 +159,28 @@
         "findings": [
           "Art. 96 - Tredicesima mensilità (p. 96): \"Nel caso di inizio o di cessazione del rapporto di lavoro nel corso dell'anno devono essere corrisposti tanti dodicesimi dell'ammontare della 13a mensilità per quanti sono i mesi di servizio prestato presso l'impresa. La frazione di mese non superiore ai 15 giorni non va considerata mentre deve essere considerata come mese intero la frazione di mese superiore ai 15 giorni.\". Added: more_than 15 (the file applied the engine default, at least 15 days)."
         ]
+      },
+      {
+        "id": "2026-11-07-ai-edilizia-cooperative-ancpl-tables",
+        "date": "2026-11-07",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The monthly values of the levels against the primary tables (text layer).",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2009/04/VERBALE-DI-ACCORDO-CCNL-COOPERATIVE.pdf",
+            "sha256": "0655507846614c2454c61dc922679ae02a35c1e10b66a5933409b3b92ec09748"
+          }
+        ],
+        "findings": [
+          "2 values found verbatim on the cited pages and marked verified; 30 left as they were (derived or not on a text page)."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels.base_salary",
+          "levels.fixed_allowances"
+        ]
       }
     ]
   },
@@ -1656,7 +1678,32 @@
               {
                 "valid_from": "2025-02-01",
                 "valid_until": null,
-                "value": "170.00"
+                "value": "170.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "edilizia-cooperative-ancpl-tables-06555078",
+                      "title": "edilizia-cooperative-ancpl: tabelle retributive (accordo2010.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2009/04/VERBALE-DI-ACCORDO-CCNL-COOPERATIVE.pdf",
+                      "sha256": "0655507846614c2454c61dc922679ae02a35c1e10b66a5933409b3b92ec09748"
+                    },
+                    "page": "19",
+                    "section": "Allegato 10 — Art. 15, punto 3, Quadri",
+                    "quote": "A decorrere dal 1° Luglio 2010 la misura minima mensile dell'indennità è elevata ad Euro 170,00. Con medesima"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2025-02-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-edilizia-cooperative-ancpl-tables"
+                  }
+                }
               }
             ]
           },
@@ -2007,7 +2054,32 @@
               {
                 "valid_from": "2025-02-01",
                 "valid_until": null,
-                "value": "170.00"
+                "value": "170.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "edilizia-cooperative-ancpl-tables-06555078",
+                      "title": "edilizia-cooperative-ancpl: tabelle retributive (accordo2010.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2009/04/VERBALE-DI-ACCORDO-CCNL-COOPERATIVE.pdf",
+                      "sha256": "0655507846614c2454c61dc922679ae02a35c1e10b66a5933409b3b92ec09748"
+                    },
+                    "page": "19",
+                    "section": "Allegato 10 — Art. 15, punto 3, Quadri",
+                    "quote": "A decorrere dal 1° Luglio 2010 la misura minima mensile dell'indennità è elevata ad Euro 170,00. Con medesima"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2025-02-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-edilizia-cooperative-ancpl-tables"
+                  }
+                }
               }
             ]
           },
@@ -2058,7 +2130,7 @@
     "effective_until": null,
     "source": "https://www.studiocani.com/ccnl-edilizia-industria-e-cooperative-aumento-dei-minimi-dal-1-marzo/",
     "verification_status": "unverified",
-    "source_hash": "8989bc3bb215afab7020e4b7830bac7f5a71d651cb86c532d651f741183ec05e",
+    "source_hash": "733e91eaf4c41f2f32e64b2cc695f3a8c2dcd0e1e9ff33e17ba26b41c559e513",
     "published_at": "2026-09-18",
     "source_type": "contracting_party"
   },

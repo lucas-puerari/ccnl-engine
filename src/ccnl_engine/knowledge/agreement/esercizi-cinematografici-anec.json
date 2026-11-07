@@ -163,6 +163,32 @@
         "checked": [
           "levels.base_salary"
         ]
+      },
+      {
+        "id": "2026-11-07-ai-esercizi-cinematografici-anec-tables",
+        "date": "2026-11-07",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The monthly values of the levels against the primary tables (text layer).",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
+            "sha256": "3bf774ddda3db69a37228fb7fb02ae6f451fe89a26ce64de78c771400185c382"
+          },
+          {
+            "url": "https://anec.it/wp-content/uploads/2026/02/VerbaleTabelle-aggiornate-12-.02.2026.pdf",
+            "sha256": "e6522a5586305ef79acc58d62615c19efb013abf640f7c8573cc0885aaca49cf"
+          }
+        ],
+        "findings": [
+          "60 values found verbatim on the cited pages and marked verified; 0 left as they were (derived or not on a text page)."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels.base_salary",
+          "levels.fixed_allowances"
+        ]
       }
     ]
   },
@@ -509,21 +535,28 @@
             "valid_until": "2024-11-01",
             "value": "1097.67",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
-                  "title": "ccnl-esercizi-cinematografici-2023-2026-pdf",
+                  "document_id": "esercizi-cinematografici-anec-tables-3bf774dd",
+                  "title": "esercizi-cinematografici-anec: tabelle retributive (ccnl.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
+                  "sha256": "3bf774ddda3db69a37228fb7fb02ae6f451fe89a26ce64de78c771400185c382"
                 },
-                "section": "Tabella retributiva"
+                "page": "59",
+                "section": "Tabelle paga Monosale e Multisale, Lordo dal 2023-01-01",
+                "quote": "Lordo dal 01/01/2023          1.097,67       1168,95          1.288,01       1.448,49       1.550,02       1.602,67       1.811,00"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2023-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-esercizi-cinematografici-anec-tables"
               }
             }
           },
@@ -532,21 +565,28 @@
             "valid_until": "2025-07-01",
             "value": "1135.41",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
-                  "title": "ccnl-esercizi-cinematografici-2023-2026-pdf",
+                  "document_id": "esercizi-cinematografici-anec-tables-3bf774dd",
+                  "title": "esercizi-cinematografici-anec: tabelle retributive (ccnl.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
+                  "sha256": "3bf774ddda3db69a37228fb7fb02ae6f451fe89a26ce64de78c771400185c382"
                 },
-                "section": "Tabella retributiva"
+                "page": "59",
+                "section": "Tabelle paga Monosale e Multisale, Lordo dal 2024-11-01",
+                "quote": "Lordo dal 01/11/2024          1.135,41      1.211,21          1.337,82       1.508,49       1.616,44       1.672,48       1.894,02"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2024-11-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-esercizi-cinematografici-anec-tables"
               }
             }
           },
@@ -555,21 +595,28 @@
             "valid_until": "2026-01-01",
             "value": "1170.00",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
-                  "title": "ccnl-esercizi-cinematografici-2023-2026-pdf",
+                  "document_id": "esercizi-cinematografici-anec-tables-3bf774dd",
+                  "title": "esercizi-cinematografici-anec: tabelle retributive (ccnl.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
+                  "sha256": "3bf774ddda3db69a37228fb7fb02ae6f451fe89a26ce64de78c771400185c382"
                 },
-                "section": "Tabella retributiva"
+                "page": "59",
+                "section": "Tabelle paga Monosale e Multisale, Lordo dal 2025-07-01",
+                "quote": "Lordo dal 01/07/2025          1.170,00      1.249,95          1.383,48       1.563,49       1.677,32       1.736,47       1.970,12"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-esercizi-cinematografici-anec-tables"
               }
             }
           },
@@ -581,26 +628,25 @@
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "anec-verbale-ipca-2026-02-12",
-                  "title": "Verbale di accordo ANEC, FISTel-CISL, UILCOM-UIL del 12 febbraio 2026, rivalutazione dei minimi tabellari (IPCA)",
+                  "document_id": "esercizi-cinematografici-anec-tables-e6522a55",
+                  "title": "esercizi-cinematografici-anec: tabelle retributive (ipca.pdf)",
                   "kind": "associazione",
                   "url": "https://anec.it/wp-content/uploads/2026/02/VerbaleTabelle-aggiornate-12-.02.2026.pdf",
-                  "published_on": "2026-02-12",
                   "sha256": "e6522a5586305ef79acc58d62615c19efb013abf640f7c8573cc0885aaca49cf"
                 },
                 "page": "2",
-                "section": "Tabelle paga, Lordo dal 01/01/2026",
-                "quote": "a decorrere dalla busta paga di Gennaio 2026, i minimi tabellari vigenti per i lavoratori del settore, sono incrementati dell'1,7% [...] Lordo dal 01/01/2026 1186,72"
+                "section": "Tabelle paga Monosale e Multisale, Lordo dal 2026-01-01",
+                "quote": "Lordo dal 01/01/2026                     1.186,72        1.268,67       1.405,55      1.590,07        1.706,74      1.767,40        2.006,90"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T13:00:00Z",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
                 "effective_from": "2026-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T13:00:00Z",
+                "verified_at": "2026-11-07T20:00:00Z",
                 "verification_status": "verified",
-                "review_id": "2026-11-07-ai-cinema-ipca-2026"
+                "review_id": "2026-11-07-ai-esercizi-cinematografici-anec-tables"
               }
             }
           }
@@ -642,21 +688,28 @@
             "valid_until": "2024-11-01",
             "value": "1097.67",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
-                  "title": "ccnl-esercizi-cinematografici-2023-2026-pdf",
+                  "document_id": "esercizi-cinematografici-anec-tables-3bf774dd",
+                  "title": "esercizi-cinematografici-anec: tabelle retributive (ccnl.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
+                  "sha256": "3bf774ddda3db69a37228fb7fb02ae6f451fe89a26ce64de78c771400185c382"
                 },
-                "section": "Tabella retributiva"
+                "page": "60",
+                "section": "Tabelle paga Multiplex, Lordo dal 2023-01-01",
+                "quote": "Lordo dal 01/01/2023        1.097,67     1.228,38     1.335,69     1.395,12     1.483,83     1.602,67        1.811,00         1.929,86"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2023-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-esercizi-cinematografici-anec-tables"
               }
             }
           },
@@ -665,21 +718,28 @@
             "valid_until": "2025-07-01",
             "value": "1135.41",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
-                  "title": "ccnl-esercizi-cinematografici-2023-2026-pdf",
+                  "document_id": "esercizi-cinematografici-anec-tables-3bf774dd",
+                  "title": "esercizi-cinematografici-anec: tabelle retributive (ccnl.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
+                  "sha256": "3bf774ddda3db69a37228fb7fb02ae6f451fe89a26ce64de78c771400185c382"
                 },
-                "section": "Tabella retributiva"
+                "page": "60",
+                "section": "Tabelle paga Multiplex, Lordo dal 2024-11-01",
+                "quote": "Lordo dal 01/11/2024        1.135,41     1.274,42     1.388,52     1.451,72     1.546,09     1.672,48        1.894,02         2.020,43"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2024-11-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-esercizi-cinematografici-anec-tables"
               }
             }
           },
@@ -688,21 +748,28 @@
             "valid_until": "2026-01-01",
             "value": "1170.00",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
-                  "title": "ccnl-esercizi-cinematografici-2023-2026-pdf",
+                  "document_id": "esercizi-cinematografici-anec-tables-3bf774dd",
+                  "title": "esercizi-cinematografici-anec: tabelle retributive (ccnl.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
+                  "sha256": "3bf774ddda3db69a37228fb7fb02ae6f451fe89a26ce64de78c771400185c382"
                 },
-                "section": "Tabella retributiva"
+                "page": "60",
+                "section": "Tabelle paga Multiplex, Lordo dal 2025-07-01",
+                "quote": "Lordo dal 01/07/2025        1.170,00     1.316,62     1.436,95     1.503,61     1.603,17     1.736,47        1.970,12         2.103,45"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-esercizi-cinematografici-anec-tables"
               }
             }
           },
@@ -714,26 +781,25 @@
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "anec-verbale-ipca-2026-02-12",
-                  "title": "Verbale di accordo ANEC, FISTel-CISL, UILCOM-UIL del 12 febbraio 2026, rivalutazione dei minimi tabellari (IPCA)",
+                  "document_id": "esercizi-cinematografici-anec-tables-e6522a55",
+                  "title": "esercizi-cinematografici-anec: tabelle retributive (ipca.pdf)",
                   "kind": "associazione",
                   "url": "https://anec.it/wp-content/uploads/2026/02/VerbaleTabelle-aggiornate-12-.02.2026.pdf",
-                  "published_on": "2026-02-12",
                   "sha256": "e6522a5586305ef79acc58d62615c19efb013abf640f7c8573cc0885aaca49cf"
                 },
                 "page": "3",
-                "section": "Tabelle paga, Lordo dal 01/01/2026",
-                "quote": "a decorrere dalla busta paga di Gennaio 2026, i minimi tabellari vigenti per i lavoratori del settore, sono incrementati dell'1,7% [...] Lordo dal 01/01/2026 1186,72"
+                "section": "Tabelle paga Multiplex, Lordo dal 2026-01-01",
+                "quote": "Lordo dal 01/01/2026                    1.186,72      1.337,01      1.460,35     1.528,69       1.630,75       1.767,40        2.006,90         2.143,57"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T13:00:00Z",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
                 "effective_from": "2026-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T13:00:00Z",
+                "verified_at": "2026-11-07T20:00:00Z",
                 "verification_status": "verified",
-                "review_id": "2026-11-07-ai-cinema-ipca-2026"
+                "review_id": "2026-11-07-ai-esercizi-cinematografici-anec-tables"
               }
             }
           }
@@ -775,21 +841,28 @@
             "valid_until": "2024-11-01",
             "value": "1168.95",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
-                  "title": "ccnl-esercizi-cinematografici-2023-2026-pdf",
+                  "document_id": "esercizi-cinematografici-anec-tables-3bf774dd",
+                  "title": "esercizi-cinematografici-anec: tabelle retributive (ccnl.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
+                  "sha256": "3bf774ddda3db69a37228fb7fb02ae6f451fe89a26ce64de78c771400185c382"
                 },
-                "section": "Tabella retributiva"
+                "page": "59",
+                "section": "Tabelle paga Monosale e Multisale, Lordo dal 2023-01-01",
+                "quote": "Lordo dal 01/01/2023          1.097,67       1168,95          1.288,01       1.448,49       1.550,02       1.602,67       1.811,00"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2023-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-esercizi-cinematografici-anec-tables"
               }
             }
           },
@@ -798,21 +871,28 @@
             "valid_until": "2025-07-01",
             "value": "1211.21",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
-                  "title": "ccnl-esercizi-cinematografici-2023-2026-pdf",
+                  "document_id": "esercizi-cinematografici-anec-tables-3bf774dd",
+                  "title": "esercizi-cinematografici-anec: tabelle retributive (ccnl.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
+                  "sha256": "3bf774ddda3db69a37228fb7fb02ae6f451fe89a26ce64de78c771400185c382"
                 },
-                "section": "Tabella retributiva"
+                "page": "59",
+                "section": "Tabelle paga Monosale e Multisale, Lordo dal 2024-11-01",
+                "quote": "Lordo dal 01/11/2024          1.135,41      1.211,21          1.337,82       1.508,49       1.616,44       1.672,48       1.894,02"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2024-11-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-esercizi-cinematografici-anec-tables"
               }
             }
           },
@@ -821,21 +901,28 @@
             "valid_until": "2026-01-01",
             "value": "1249.95",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
-                  "title": "ccnl-esercizi-cinematografici-2023-2026-pdf",
+                  "document_id": "esercizi-cinematografici-anec-tables-3bf774dd",
+                  "title": "esercizi-cinematografici-anec: tabelle retributive (ccnl.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
+                  "sha256": "3bf774ddda3db69a37228fb7fb02ae6f451fe89a26ce64de78c771400185c382"
                 },
-                "section": "Tabella retributiva"
+                "page": "59",
+                "section": "Tabelle paga Monosale e Multisale, Lordo dal 2025-07-01",
+                "quote": "Lordo dal 01/07/2025          1.170,00      1.249,95          1.383,48       1.563,49       1.677,32       1.736,47       1.970,12"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-esercizi-cinematografici-anec-tables"
               }
             }
           },
@@ -847,26 +934,25 @@
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "anec-verbale-ipca-2026-02-12",
-                  "title": "Verbale di accordo ANEC, FISTel-CISL, UILCOM-UIL del 12 febbraio 2026, rivalutazione dei minimi tabellari (IPCA)",
+                  "document_id": "esercizi-cinematografici-anec-tables-e6522a55",
+                  "title": "esercizi-cinematografici-anec: tabelle retributive (ipca.pdf)",
                   "kind": "associazione",
                   "url": "https://anec.it/wp-content/uploads/2026/02/VerbaleTabelle-aggiornate-12-.02.2026.pdf",
-                  "published_on": "2026-02-12",
                   "sha256": "e6522a5586305ef79acc58d62615c19efb013abf640f7c8573cc0885aaca49cf"
                 },
                 "page": "2",
-                "section": "Tabelle paga, Lordo dal 01/01/2026",
-                "quote": "a decorrere dalla busta paga di Gennaio 2026, i minimi tabellari vigenti per i lavoratori del settore, sono incrementati dell'1,7% [...] Lordo dal 01/01/2026 1268,67"
+                "section": "Tabelle paga Monosale e Multisale, Lordo dal 2026-01-01",
+                "quote": "Lordo dal 01/01/2026                     1.186,72        1.268,67       1.405,55      1.590,07        1.706,74      1.767,40        2.006,90"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T13:00:00Z",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
                 "effective_from": "2026-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T13:00:00Z",
+                "verified_at": "2026-11-07T20:00:00Z",
                 "verification_status": "verified",
-                "review_id": "2026-11-07-ai-cinema-ipca-2026"
+                "review_id": "2026-11-07-ai-esercizi-cinematografici-anec-tables"
               }
             }
           }
@@ -904,21 +990,28 @@
             "valid_until": "2024-11-01",
             "value": "1228.38",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
-                  "title": "ccnl-esercizi-cinematografici-2023-2026-pdf",
+                  "document_id": "esercizi-cinematografici-anec-tables-3bf774dd",
+                  "title": "esercizi-cinematografici-anec: tabelle retributive (ccnl.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
+                  "sha256": "3bf774ddda3db69a37228fb7fb02ae6f451fe89a26ce64de78c771400185c382"
                 },
-                "section": "Tabella retributiva"
+                "page": "60",
+                "section": "Tabelle paga Multiplex, Lordo dal 2023-01-01",
+                "quote": "Lordo dal 01/01/2023        1.097,67     1.228,38     1.335,69     1.395,12     1.483,83     1.602,67        1.811,00         1.929,86"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2023-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-esercizi-cinematografici-anec-tables"
               }
             }
           },
@@ -927,21 +1020,28 @@
             "valid_until": "2025-07-01",
             "value": "1274.42",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
-                  "title": "ccnl-esercizi-cinematografici-2023-2026-pdf",
+                  "document_id": "esercizi-cinematografici-anec-tables-3bf774dd",
+                  "title": "esercizi-cinematografici-anec: tabelle retributive (ccnl.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
+                  "sha256": "3bf774ddda3db69a37228fb7fb02ae6f451fe89a26ce64de78c771400185c382"
                 },
-                "section": "Tabella retributiva"
+                "page": "60",
+                "section": "Tabelle paga Multiplex, Lordo dal 2024-11-01",
+                "quote": "Lordo dal 01/11/2024        1.135,41     1.274,42     1.388,52     1.451,72     1.546,09     1.672,48        1.894,02         2.020,43"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2024-11-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-esercizi-cinematografici-anec-tables"
               }
             }
           },
@@ -950,21 +1050,28 @@
             "valid_until": "2026-01-01",
             "value": "1316.62",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
-                  "title": "ccnl-esercizi-cinematografici-2023-2026-pdf",
+                  "document_id": "esercizi-cinematografici-anec-tables-3bf774dd",
+                  "title": "esercizi-cinematografici-anec: tabelle retributive (ccnl.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
+                  "sha256": "3bf774ddda3db69a37228fb7fb02ae6f451fe89a26ce64de78c771400185c382"
                 },
-                "section": "Tabella retributiva"
+                "page": "60",
+                "section": "Tabelle paga Multiplex, Lordo dal 2025-07-01",
+                "quote": "Lordo dal 01/07/2025        1.170,00     1.316,62     1.436,95     1.503,61     1.603,17     1.736,47        1.970,12         2.103,45"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-esercizi-cinematografici-anec-tables"
               }
             }
           },
@@ -976,26 +1083,25 @@
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "anec-verbale-ipca-2026-02-12",
-                  "title": "Verbale di accordo ANEC, FISTel-CISL, UILCOM-UIL del 12 febbraio 2026, rivalutazione dei minimi tabellari (IPCA)",
+                  "document_id": "esercizi-cinematografici-anec-tables-e6522a55",
+                  "title": "esercizi-cinematografici-anec: tabelle retributive (ipca.pdf)",
                   "kind": "associazione",
                   "url": "https://anec.it/wp-content/uploads/2026/02/VerbaleTabelle-aggiornate-12-.02.2026.pdf",
-                  "published_on": "2026-02-12",
                   "sha256": "e6522a5586305ef79acc58d62615c19efb013abf640f7c8573cc0885aaca49cf"
                 },
                 "page": "3",
-                "section": "Tabelle paga, Lordo dal 01/01/2026",
-                "quote": "a decorrere dalla busta paga di Gennaio 2026, i minimi tabellari vigenti per i lavoratori del settore, sono incrementati dell'1,7% [...] Lordo dal 01/01/2026 1337,01"
+                "section": "Tabelle paga Multiplex, Lordo dal 2026-01-01",
+                "quote": "Lordo dal 01/01/2026                    1.186,72      1.337,01      1.460,35     1.528,69       1.630,75       1.767,40        2.006,90         2.143,57"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T13:00:00Z",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
                 "effective_from": "2026-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T13:00:00Z",
+                "verified_at": "2026-11-07T20:00:00Z",
                 "verification_status": "verified",
-                "review_id": "2026-11-07-ai-cinema-ipca-2026"
+                "review_id": "2026-11-07-ai-esercizi-cinematografici-anec-tables"
               }
             }
           }
@@ -1033,21 +1139,28 @@
             "valid_until": "2024-11-01",
             "value": "1288.01",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
-                  "title": "ccnl-esercizi-cinematografici-2023-2026-pdf",
+                  "document_id": "esercizi-cinematografici-anec-tables-3bf774dd",
+                  "title": "esercizi-cinematografici-anec: tabelle retributive (ccnl.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
+                  "sha256": "3bf774ddda3db69a37228fb7fb02ae6f451fe89a26ce64de78c771400185c382"
                 },
-                "section": "Tabella retributiva"
+                "page": "59",
+                "section": "Tabelle paga Monosale e Multisale, Lordo dal 2023-01-01",
+                "quote": "Lordo dal 01/01/2023          1.097,67       1168,95          1.288,01       1.448,49       1.550,02       1.602,67       1.811,00"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2023-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-esercizi-cinematografici-anec-tables"
               }
             }
           },
@@ -1056,21 +1169,28 @@
             "valid_until": "2025-07-01",
             "value": "1337.82",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
-                  "title": "ccnl-esercizi-cinematografici-2023-2026-pdf",
+                  "document_id": "esercizi-cinematografici-anec-tables-3bf774dd",
+                  "title": "esercizi-cinematografici-anec: tabelle retributive (ccnl.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
+                  "sha256": "3bf774ddda3db69a37228fb7fb02ae6f451fe89a26ce64de78c771400185c382"
                 },
-                "section": "Tabella retributiva"
+                "page": "59",
+                "section": "Tabelle paga Monosale e Multisale, Lordo dal 2024-11-01",
+                "quote": "Lordo dal 01/11/2024          1.135,41      1.211,21          1.337,82       1.508,49       1.616,44       1.672,48       1.894,02"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2024-11-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-esercizi-cinematografici-anec-tables"
               }
             }
           },
@@ -1079,21 +1199,28 @@
             "valid_until": "2026-01-01",
             "value": "1383.48",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
-                  "title": "ccnl-esercizi-cinematografici-2023-2026-pdf",
+                  "document_id": "esercizi-cinematografici-anec-tables-3bf774dd",
+                  "title": "esercizi-cinematografici-anec: tabelle retributive (ccnl.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
+                  "sha256": "3bf774ddda3db69a37228fb7fb02ae6f451fe89a26ce64de78c771400185c382"
                 },
-                "section": "Tabella retributiva"
+                "page": "59",
+                "section": "Tabelle paga Monosale e Multisale, Lordo dal 2025-07-01",
+                "quote": "Lordo dal 01/07/2025          1.170,00      1.249,95          1.383,48       1.563,49       1.677,32       1.736,47       1.970,12"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-esercizi-cinematografici-anec-tables"
               }
             }
           },
@@ -1105,26 +1232,25 @@
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "anec-verbale-ipca-2026-02-12",
-                  "title": "Verbale di accordo ANEC, FISTel-CISL, UILCOM-UIL del 12 febbraio 2026, rivalutazione dei minimi tabellari (IPCA)",
+                  "document_id": "esercizi-cinematografici-anec-tables-e6522a55",
+                  "title": "esercizi-cinematografici-anec: tabelle retributive (ipca.pdf)",
                   "kind": "associazione",
                   "url": "https://anec.it/wp-content/uploads/2026/02/VerbaleTabelle-aggiornate-12-.02.2026.pdf",
-                  "published_on": "2026-02-12",
                   "sha256": "e6522a5586305ef79acc58d62615c19efb013abf640f7c8573cc0885aaca49cf"
                 },
                 "page": "2",
-                "section": "Tabelle paga, Lordo dal 01/01/2026",
-                "quote": "a decorrere dalla busta paga di Gennaio 2026, i minimi tabellari vigenti per i lavoratori del settore, sono incrementati dell'1,7% [...] Lordo dal 01/01/2026 1405,55"
+                "section": "Tabelle paga Monosale e Multisale, Lordo dal 2026-01-01",
+                "quote": "Lordo dal 01/01/2026                     1.186,72        1.268,67       1.405,55      1.590,07        1.706,74      1.767,40        2.006,90"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T13:00:00Z",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
                 "effective_from": "2026-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T13:00:00Z",
+                "verified_at": "2026-11-07T20:00:00Z",
                 "verification_status": "verified",
-                "review_id": "2026-11-07-ai-cinema-ipca-2026"
+                "review_id": "2026-11-07-ai-esercizi-cinematografici-anec-tables"
               }
             }
           }
@@ -1162,21 +1288,28 @@
             "valid_until": "2024-11-01",
             "value": "1335.69",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
-                  "title": "ccnl-esercizi-cinematografici-2023-2026-pdf",
+                  "document_id": "esercizi-cinematografici-anec-tables-3bf774dd",
+                  "title": "esercizi-cinematografici-anec: tabelle retributive (ccnl.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
+                  "sha256": "3bf774ddda3db69a37228fb7fb02ae6f451fe89a26ce64de78c771400185c382"
                 },
-                "section": "Tabella retributiva"
+                "page": "60",
+                "section": "Tabelle paga Multiplex, Lordo dal 2023-01-01",
+                "quote": "Lordo dal 01/01/2023        1.097,67     1.228,38     1.335,69     1.395,12     1.483,83     1.602,67        1.811,00         1.929,86"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2023-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-esercizi-cinematografici-anec-tables"
               }
             }
           },
@@ -1185,21 +1318,28 @@
             "valid_until": "2025-07-01",
             "value": "1388.52",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
-                  "title": "ccnl-esercizi-cinematografici-2023-2026-pdf",
+                  "document_id": "esercizi-cinematografici-anec-tables-3bf774dd",
+                  "title": "esercizi-cinematografici-anec: tabelle retributive (ccnl.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
+                  "sha256": "3bf774ddda3db69a37228fb7fb02ae6f451fe89a26ce64de78c771400185c382"
                 },
-                "section": "Tabella retributiva"
+                "page": "60",
+                "section": "Tabelle paga Multiplex, Lordo dal 2024-11-01",
+                "quote": "Lordo dal 01/11/2024        1.135,41     1.274,42     1.388,52     1.451,72     1.546,09     1.672,48        1.894,02         2.020,43"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2024-11-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-esercizi-cinematografici-anec-tables"
               }
             }
           },
@@ -1208,21 +1348,28 @@
             "valid_until": "2026-01-01",
             "value": "1436.95",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
-                  "title": "ccnl-esercizi-cinematografici-2023-2026-pdf",
+                  "document_id": "esercizi-cinematografici-anec-tables-3bf774dd",
+                  "title": "esercizi-cinematografici-anec: tabelle retributive (ccnl.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
+                  "sha256": "3bf774ddda3db69a37228fb7fb02ae6f451fe89a26ce64de78c771400185c382"
                 },
-                "section": "Tabella retributiva"
+                "page": "60",
+                "section": "Tabelle paga Multiplex, Lordo dal 2025-07-01",
+                "quote": "Lordo dal 01/07/2025        1.170,00     1.316,62     1.436,95     1.503,61     1.603,17     1.736,47        1.970,12         2.103,45"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-esercizi-cinematografici-anec-tables"
               }
             }
           },
@@ -1234,26 +1381,25 @@
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "anec-verbale-ipca-2026-02-12",
-                  "title": "Verbale di accordo ANEC, FISTel-CISL, UILCOM-UIL del 12 febbraio 2026, rivalutazione dei minimi tabellari (IPCA)",
+                  "document_id": "esercizi-cinematografici-anec-tables-e6522a55",
+                  "title": "esercizi-cinematografici-anec: tabelle retributive (ipca.pdf)",
                   "kind": "associazione",
                   "url": "https://anec.it/wp-content/uploads/2026/02/VerbaleTabelle-aggiornate-12-.02.2026.pdf",
-                  "published_on": "2026-02-12",
                   "sha256": "e6522a5586305ef79acc58d62615c19efb013abf640f7c8573cc0885aaca49cf"
                 },
                 "page": "3",
-                "section": "Tabelle paga, Lordo dal 01/01/2026",
-                "quote": "a decorrere dalla busta paga di Gennaio 2026, i minimi tabellari vigenti per i lavoratori del settore, sono incrementati dell'1,7% [...] Lordo dal 01/01/2026 1460,35"
+                "section": "Tabelle paga Multiplex, Lordo dal 2026-01-01",
+                "quote": "Lordo dal 01/01/2026                    1.186,72      1.337,01      1.460,35     1.528,69       1.630,75       1.767,40        2.006,90         2.143,57"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T13:00:00Z",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
                 "effective_from": "2026-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T13:00:00Z",
+                "verified_at": "2026-11-07T20:00:00Z",
                 "verification_status": "verified",
-                "review_id": "2026-11-07-ai-cinema-ipca-2026"
+                "review_id": "2026-11-07-ai-esercizi-cinematografici-anec-tables"
               }
             }
           }
@@ -1291,21 +1437,28 @@
             "valid_until": "2024-11-01",
             "value": "1395.12",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
-                  "title": "ccnl-esercizi-cinematografici-2023-2026-pdf",
+                  "document_id": "esercizi-cinematografici-anec-tables-3bf774dd",
+                  "title": "esercizi-cinematografici-anec: tabelle retributive (ccnl.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
+                  "sha256": "3bf774ddda3db69a37228fb7fb02ae6f451fe89a26ce64de78c771400185c382"
                 },
-                "section": "Tabella retributiva"
+                "page": "60",
+                "section": "Tabelle paga Multiplex, Lordo dal 2023-01-01",
+                "quote": "Lordo dal 01/01/2023        1.097,67     1.228,38     1.335,69     1.395,12     1.483,83     1.602,67        1.811,00         1.929,86"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2023-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-esercizi-cinematografici-anec-tables"
               }
             }
           },
@@ -1314,21 +1467,28 @@
             "valid_until": "2025-07-01",
             "value": "1451.72",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
-                  "title": "ccnl-esercizi-cinematografici-2023-2026-pdf",
+                  "document_id": "esercizi-cinematografici-anec-tables-3bf774dd",
+                  "title": "esercizi-cinematografici-anec: tabelle retributive (ccnl.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
+                  "sha256": "3bf774ddda3db69a37228fb7fb02ae6f451fe89a26ce64de78c771400185c382"
                 },
-                "section": "Tabella retributiva"
+                "page": "60",
+                "section": "Tabelle paga Multiplex, Lordo dal 2024-11-01",
+                "quote": "Lordo dal 01/11/2024        1.135,41     1.274,42     1.388,52     1.451,72     1.546,09     1.672,48        1.894,02         2.020,43"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2024-11-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-esercizi-cinematografici-anec-tables"
               }
             }
           },
@@ -1337,21 +1497,28 @@
             "valid_until": "2026-01-01",
             "value": "1503.61",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
-                  "title": "ccnl-esercizi-cinematografici-2023-2026-pdf",
+                  "document_id": "esercizi-cinematografici-anec-tables-3bf774dd",
+                  "title": "esercizi-cinematografici-anec: tabelle retributive (ccnl.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
+                  "sha256": "3bf774ddda3db69a37228fb7fb02ae6f451fe89a26ce64de78c771400185c382"
                 },
-                "section": "Tabella retributiva"
+                "page": "60",
+                "section": "Tabelle paga Multiplex, Lordo dal 2025-07-01",
+                "quote": "Lordo dal 01/07/2025        1.170,00     1.316,62     1.436,95     1.503,61     1.603,17     1.736,47        1.970,12         2.103,45"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-esercizi-cinematografici-anec-tables"
               }
             }
           },
@@ -1363,26 +1530,25 @@
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "anec-verbale-ipca-2026-02-12",
-                  "title": "Verbale di accordo ANEC, FISTel-CISL, UILCOM-UIL del 12 febbraio 2026, rivalutazione dei minimi tabellari (IPCA)",
+                  "document_id": "esercizi-cinematografici-anec-tables-e6522a55",
+                  "title": "esercizi-cinematografici-anec: tabelle retributive (ipca.pdf)",
                   "kind": "associazione",
                   "url": "https://anec.it/wp-content/uploads/2026/02/VerbaleTabelle-aggiornate-12-.02.2026.pdf",
-                  "published_on": "2026-02-12",
                   "sha256": "e6522a5586305ef79acc58d62615c19efb013abf640f7c8573cc0885aaca49cf"
                 },
                 "page": "3",
-                "section": "Tabelle paga, Lordo dal 01/01/2026",
-                "quote": "a decorrere dalla busta paga di Gennaio 2026, i minimi tabellari vigenti per i lavoratori del settore, sono incrementati dell'1,7% [...] Lordo dal 01/01/2026 1528,69"
+                "section": "Tabelle paga Multiplex, Lordo dal 2026-01-01",
+                "quote": "Lordo dal 01/01/2026                    1.186,72      1.337,01      1.460,35     1.528,69       1.630,75       1.767,40        2.006,90         2.143,57"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T13:00:00Z",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
                 "effective_from": "2026-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T13:00:00Z",
+                "verified_at": "2026-11-07T20:00:00Z",
                 "verification_status": "verified",
-                "review_id": "2026-11-07-ai-cinema-ipca-2026"
+                "review_id": "2026-11-07-ai-esercizi-cinematografici-anec-tables"
               }
             }
           }
@@ -1420,21 +1586,28 @@
             "valid_until": "2024-11-01",
             "value": "1448.49",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
-                  "title": "ccnl-esercizi-cinematografici-2023-2026-pdf",
+                  "document_id": "esercizi-cinematografici-anec-tables-3bf774dd",
+                  "title": "esercizi-cinematografici-anec: tabelle retributive (ccnl.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
+                  "sha256": "3bf774ddda3db69a37228fb7fb02ae6f451fe89a26ce64de78c771400185c382"
                 },
-                "section": "Tabella retributiva"
+                "page": "59",
+                "section": "Tabelle paga Monosale e Multisale, Lordo dal 2023-01-01",
+                "quote": "Lordo dal 01/01/2023          1.097,67       1168,95          1.288,01       1.448,49       1.550,02       1.602,67       1.811,00"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2023-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-esercizi-cinematografici-anec-tables"
               }
             }
           },
@@ -1443,21 +1616,28 @@
             "valid_until": "2025-07-01",
             "value": "1508.49",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
-                  "title": "ccnl-esercizi-cinematografici-2023-2026-pdf",
+                  "document_id": "esercizi-cinematografici-anec-tables-3bf774dd",
+                  "title": "esercizi-cinematografici-anec: tabelle retributive (ccnl.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
+                  "sha256": "3bf774ddda3db69a37228fb7fb02ae6f451fe89a26ce64de78c771400185c382"
                 },
-                "section": "Tabella retributiva"
+                "page": "59",
+                "section": "Tabelle paga Monosale e Multisale, Lordo dal 2024-11-01",
+                "quote": "Lordo dal 01/11/2024          1.135,41      1.211,21          1.337,82       1.508,49       1.616,44       1.672,48       1.894,02"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2024-11-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-esercizi-cinematografici-anec-tables"
               }
             }
           },
@@ -1466,21 +1646,28 @@
             "valid_until": "2026-01-01",
             "value": "1563.49",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
-                  "title": "ccnl-esercizi-cinematografici-2023-2026-pdf",
+                  "document_id": "esercizi-cinematografici-anec-tables-3bf774dd",
+                  "title": "esercizi-cinematografici-anec: tabelle retributive (ccnl.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
+                  "sha256": "3bf774ddda3db69a37228fb7fb02ae6f451fe89a26ce64de78c771400185c382"
                 },
-                "section": "Tabella retributiva"
+                "page": "59",
+                "section": "Tabelle paga Monosale e Multisale, Lordo dal 2025-07-01",
+                "quote": "Lordo dal 01/07/2025          1.170,00      1.249,95          1.383,48       1.563,49       1.677,32       1.736,47       1.970,12"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-esercizi-cinematografici-anec-tables"
               }
             }
           },
@@ -1492,26 +1679,25 @@
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "anec-verbale-ipca-2026-02-12",
-                  "title": "Verbale di accordo ANEC, FISTel-CISL, UILCOM-UIL del 12 febbraio 2026, rivalutazione dei minimi tabellari (IPCA)",
+                  "document_id": "esercizi-cinematografici-anec-tables-e6522a55",
+                  "title": "esercizi-cinematografici-anec: tabelle retributive (ipca.pdf)",
                   "kind": "associazione",
                   "url": "https://anec.it/wp-content/uploads/2026/02/VerbaleTabelle-aggiornate-12-.02.2026.pdf",
-                  "published_on": "2026-02-12",
                   "sha256": "e6522a5586305ef79acc58d62615c19efb013abf640f7c8573cc0885aaca49cf"
                 },
                 "page": "2",
-                "section": "Tabelle paga, Lordo dal 01/01/2026",
-                "quote": "a decorrere dalla busta paga di Gennaio 2026, i minimi tabellari vigenti per i lavoratori del settore, sono incrementati dell'1,7% [...] Lordo dal 01/01/2026 1590,07"
+                "section": "Tabelle paga Monosale e Multisale, Lordo dal 2026-01-01",
+                "quote": "Lordo dal 01/01/2026                     1.186,72        1.268,67       1.405,55      1.590,07        1.706,74      1.767,40        2.006,90"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T13:00:00Z",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
                 "effective_from": "2026-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T13:00:00Z",
+                "verified_at": "2026-11-07T20:00:00Z",
                 "verification_status": "verified",
-                "review_id": "2026-11-07-ai-cinema-ipca-2026"
+                "review_id": "2026-11-07-ai-esercizi-cinematografici-anec-tables"
               }
             }
           }
@@ -1549,21 +1735,28 @@
             "valid_until": "2024-11-01",
             "value": "1483.83",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
-                  "title": "ccnl-esercizi-cinematografici-2023-2026-pdf",
+                  "document_id": "esercizi-cinematografici-anec-tables-3bf774dd",
+                  "title": "esercizi-cinematografici-anec: tabelle retributive (ccnl.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
+                  "sha256": "3bf774ddda3db69a37228fb7fb02ae6f451fe89a26ce64de78c771400185c382"
                 },
-                "section": "Tabella retributiva"
+                "page": "60",
+                "section": "Tabelle paga Multiplex, Lordo dal 2023-01-01",
+                "quote": "Lordo dal 01/01/2023        1.097,67     1.228,38     1.335,69     1.395,12     1.483,83     1.602,67        1.811,00         1.929,86"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2023-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-esercizi-cinematografici-anec-tables"
               }
             }
           },
@@ -1572,21 +1765,28 @@
             "valid_until": "2025-07-01",
             "value": "1546.09",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
-                  "title": "ccnl-esercizi-cinematografici-2023-2026-pdf",
+                  "document_id": "esercizi-cinematografici-anec-tables-3bf774dd",
+                  "title": "esercizi-cinematografici-anec: tabelle retributive (ccnl.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
+                  "sha256": "3bf774ddda3db69a37228fb7fb02ae6f451fe89a26ce64de78c771400185c382"
                 },
-                "section": "Tabella retributiva"
+                "page": "60",
+                "section": "Tabelle paga Multiplex, Lordo dal 2024-11-01",
+                "quote": "Lordo dal 01/11/2024        1.135,41     1.274,42     1.388,52     1.451,72     1.546,09     1.672,48        1.894,02         2.020,43"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2024-11-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-esercizi-cinematografici-anec-tables"
               }
             }
           },
@@ -1595,21 +1795,28 @@
             "valid_until": "2026-01-01",
             "value": "1603.17",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
-                  "title": "ccnl-esercizi-cinematografici-2023-2026-pdf",
+                  "document_id": "esercizi-cinematografici-anec-tables-3bf774dd",
+                  "title": "esercizi-cinematografici-anec: tabelle retributive (ccnl.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
+                  "sha256": "3bf774ddda3db69a37228fb7fb02ae6f451fe89a26ce64de78c771400185c382"
                 },
-                "section": "Tabella retributiva"
+                "page": "60",
+                "section": "Tabelle paga Multiplex, Lordo dal 2025-07-01",
+                "quote": "Lordo dal 01/07/2025        1.170,00     1.316,62     1.436,95     1.503,61     1.603,17     1.736,47        1.970,12         2.103,45"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-esercizi-cinematografici-anec-tables"
               }
             }
           },
@@ -1621,26 +1828,25 @@
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "anec-verbale-ipca-2026-02-12",
-                  "title": "Verbale di accordo ANEC, FISTel-CISL, UILCOM-UIL del 12 febbraio 2026, rivalutazione dei minimi tabellari (IPCA)",
+                  "document_id": "esercizi-cinematografici-anec-tables-e6522a55",
+                  "title": "esercizi-cinematografici-anec: tabelle retributive (ipca.pdf)",
                   "kind": "associazione",
                   "url": "https://anec.it/wp-content/uploads/2026/02/VerbaleTabelle-aggiornate-12-.02.2026.pdf",
-                  "published_on": "2026-02-12",
                   "sha256": "e6522a5586305ef79acc58d62615c19efb013abf640f7c8573cc0885aaca49cf"
                 },
                 "page": "3",
-                "section": "Tabelle paga, Lordo dal 01/01/2026",
-                "quote": "a decorrere dalla busta paga di Gennaio 2026, i minimi tabellari vigenti per i lavoratori del settore, sono incrementati dell'1,7% [...] Lordo dal 01/01/2026 1630,75"
+                "section": "Tabelle paga Multiplex, Lordo dal 2026-01-01",
+                "quote": "Lordo dal 01/01/2026                    1.186,72      1.337,01      1.460,35     1.528,69       1.630,75       1.767,40        2.006,90         2.143,57"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T13:00:00Z",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
                 "effective_from": "2026-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T13:00:00Z",
+                "verified_at": "2026-11-07T20:00:00Z",
                 "verification_status": "verified",
-                "review_id": "2026-11-07-ai-cinema-ipca-2026"
+                "review_id": "2026-11-07-ai-esercizi-cinematografici-anec-tables"
               }
             }
           }
@@ -1678,21 +1884,28 @@
             "valid_until": "2024-11-01",
             "value": "1550.02",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
-                  "title": "ccnl-esercizi-cinematografici-2023-2026-pdf",
+                  "document_id": "esercizi-cinematografici-anec-tables-3bf774dd",
+                  "title": "esercizi-cinematografici-anec: tabelle retributive (ccnl.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
+                  "sha256": "3bf774ddda3db69a37228fb7fb02ae6f451fe89a26ce64de78c771400185c382"
                 },
-                "section": "Tabella retributiva"
+                "page": "59",
+                "section": "Tabelle paga Monosale e Multisale, Lordo dal 2023-01-01",
+                "quote": "Lordo dal 01/01/2023          1.097,67       1168,95          1.288,01       1.448,49       1.550,02       1.602,67       1.811,00"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2023-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-esercizi-cinematografici-anec-tables"
               }
             }
           },
@@ -1701,21 +1914,28 @@
             "valid_until": "2025-07-01",
             "value": "1616.44",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
-                  "title": "ccnl-esercizi-cinematografici-2023-2026-pdf",
+                  "document_id": "esercizi-cinematografici-anec-tables-3bf774dd",
+                  "title": "esercizi-cinematografici-anec: tabelle retributive (ccnl.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
+                  "sha256": "3bf774ddda3db69a37228fb7fb02ae6f451fe89a26ce64de78c771400185c382"
                 },
-                "section": "Tabella retributiva"
+                "page": "59",
+                "section": "Tabelle paga Monosale e Multisale, Lordo dal 2024-11-01",
+                "quote": "Lordo dal 01/11/2024          1.135,41      1.211,21          1.337,82       1.508,49       1.616,44       1.672,48       1.894,02"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2024-11-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-esercizi-cinematografici-anec-tables"
               }
             }
           },
@@ -1724,21 +1944,28 @@
             "valid_until": "2026-01-01",
             "value": "1677.32",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
-                  "title": "ccnl-esercizi-cinematografici-2023-2026-pdf",
+                  "document_id": "esercizi-cinematografici-anec-tables-3bf774dd",
+                  "title": "esercizi-cinematografici-anec: tabelle retributive (ccnl.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
+                  "sha256": "3bf774ddda3db69a37228fb7fb02ae6f451fe89a26ce64de78c771400185c382"
                 },
-                "section": "Tabella retributiva"
+                "page": "59",
+                "section": "Tabelle paga Monosale e Multisale, Lordo dal 2025-07-01",
+                "quote": "Lordo dal 01/07/2025          1.170,00      1.249,95          1.383,48       1.563,49       1.677,32       1.736,47       1.970,12"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-esercizi-cinematografici-anec-tables"
               }
             }
           },
@@ -1750,26 +1977,25 @@
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "anec-verbale-ipca-2026-02-12",
-                  "title": "Verbale di accordo ANEC, FISTel-CISL, UILCOM-UIL del 12 febbraio 2026, rivalutazione dei minimi tabellari (IPCA)",
+                  "document_id": "esercizi-cinematografici-anec-tables-e6522a55",
+                  "title": "esercizi-cinematografici-anec: tabelle retributive (ipca.pdf)",
                   "kind": "associazione",
                   "url": "https://anec.it/wp-content/uploads/2026/02/VerbaleTabelle-aggiornate-12-.02.2026.pdf",
-                  "published_on": "2026-02-12",
                   "sha256": "e6522a5586305ef79acc58d62615c19efb013abf640f7c8573cc0885aaca49cf"
                 },
                 "page": "2",
-                "section": "Tabelle paga, Lordo dal 01/01/2026",
-                "quote": "a decorrere dalla busta paga di Gennaio 2026, i minimi tabellari vigenti per i lavoratori del settore, sono incrementati dell'1,7% [...] Lordo dal 01/01/2026 1706,74"
+                "section": "Tabelle paga Monosale e Multisale, Lordo dal 2026-01-01",
+                "quote": "Lordo dal 01/01/2026                     1.186,72        1.268,67       1.405,55      1.590,07        1.706,74      1.767,40        2.006,90"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T13:00:00Z",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
                 "effective_from": "2026-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T13:00:00Z",
+                "verified_at": "2026-11-07T20:00:00Z",
                 "verification_status": "verified",
-                "review_id": "2026-11-07-ai-cinema-ipca-2026"
+                "review_id": "2026-11-07-ai-esercizi-cinematografici-anec-tables"
               }
             }
           }
@@ -1807,21 +2033,28 @@
             "valid_until": "2024-11-01",
             "value": "1602.67",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
-                  "title": "ccnl-esercizi-cinematografici-2023-2026-pdf",
+                  "document_id": "esercizi-cinematografici-anec-tables-3bf774dd",
+                  "title": "esercizi-cinematografici-anec: tabelle retributive (ccnl.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
+                  "sha256": "3bf774ddda3db69a37228fb7fb02ae6f451fe89a26ce64de78c771400185c382"
                 },
-                "section": "Tabella retributiva"
+                "page": "59",
+                "section": "Tabelle paga Monosale e Multisale, Lordo dal 2023-01-01",
+                "quote": "Lordo dal 01/01/2023          1.097,67       1168,95          1.288,01       1.448,49       1.550,02       1.602,67       1.811,00"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2023-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-esercizi-cinematografici-anec-tables"
               }
             }
           },
@@ -1830,21 +2063,28 @@
             "valid_until": "2025-07-01",
             "value": "1672.48",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
-                  "title": "ccnl-esercizi-cinematografici-2023-2026-pdf",
+                  "document_id": "esercizi-cinematografici-anec-tables-3bf774dd",
+                  "title": "esercizi-cinematografici-anec: tabelle retributive (ccnl.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
+                  "sha256": "3bf774ddda3db69a37228fb7fb02ae6f451fe89a26ce64de78c771400185c382"
                 },
-                "section": "Tabella retributiva"
+                "page": "59",
+                "section": "Tabelle paga Monosale e Multisale, Lordo dal 2024-11-01",
+                "quote": "Lordo dal 01/11/2024          1.135,41      1.211,21          1.337,82       1.508,49       1.616,44       1.672,48       1.894,02"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2024-11-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-esercizi-cinematografici-anec-tables"
               }
             }
           },
@@ -1853,21 +2093,28 @@
             "valid_until": "2026-01-01",
             "value": "1736.47",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
-                  "title": "ccnl-esercizi-cinematografici-2023-2026-pdf",
+                  "document_id": "esercizi-cinematografici-anec-tables-3bf774dd",
+                  "title": "esercizi-cinematografici-anec: tabelle retributive (ccnl.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
+                  "sha256": "3bf774ddda3db69a37228fb7fb02ae6f451fe89a26ce64de78c771400185c382"
                 },
-                "section": "Tabella retributiva"
+                "page": "59",
+                "section": "Tabelle paga Monosale e Multisale, Lordo dal 2025-07-01",
+                "quote": "Lordo dal 01/07/2025          1.170,00      1.249,95          1.383,48       1.563,49       1.677,32       1.736,47       1.970,12"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-esercizi-cinematografici-anec-tables"
               }
             }
           },
@@ -1879,26 +2126,25 @@
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "anec-verbale-ipca-2026-02-12",
-                  "title": "Verbale di accordo ANEC, FISTel-CISL, UILCOM-UIL del 12 febbraio 2026, rivalutazione dei minimi tabellari (IPCA)",
+                  "document_id": "esercizi-cinematografici-anec-tables-e6522a55",
+                  "title": "esercizi-cinematografici-anec: tabelle retributive (ipca.pdf)",
                   "kind": "associazione",
                   "url": "https://anec.it/wp-content/uploads/2026/02/VerbaleTabelle-aggiornate-12-.02.2026.pdf",
-                  "published_on": "2026-02-12",
                   "sha256": "e6522a5586305ef79acc58d62615c19efb013abf640f7c8573cc0885aaca49cf"
                 },
                 "page": "2",
-                "section": "Tabelle paga, Lordo dal 01/01/2026",
-                "quote": "a decorrere dalla busta paga di Gennaio 2026, i minimi tabellari vigenti per i lavoratori del settore, sono incrementati dell'1,7% [...] Lordo dal 01/01/2026 1767,40"
+                "section": "Tabelle paga Monosale e Multisale, Lordo dal 2026-01-01",
+                "quote": "Lordo dal 01/01/2026                     1.186,72        1.268,67       1.405,55      1.590,07        1.706,74      1.767,40        2.006,90"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T13:00:00Z",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
                 "effective_from": "2026-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T13:00:00Z",
+                "verified_at": "2026-11-07T20:00:00Z",
                 "verification_status": "verified",
-                "review_id": "2026-11-07-ai-cinema-ipca-2026"
+                "review_id": "2026-11-07-ai-esercizi-cinematografici-anec-tables"
               }
             }
           }
@@ -1936,21 +2182,28 @@
             "valid_until": "2024-11-01",
             "value": "1602.67",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
-                  "title": "ccnl-esercizi-cinematografici-2023-2026-pdf",
+                  "document_id": "esercizi-cinematografici-anec-tables-3bf774dd",
+                  "title": "esercizi-cinematografici-anec: tabelle retributive (ccnl.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
+                  "sha256": "3bf774ddda3db69a37228fb7fb02ae6f451fe89a26ce64de78c771400185c382"
                 },
-                "section": "Tabella retributiva"
+                "page": "60",
+                "section": "Tabelle paga Multiplex, Lordo dal 2023-01-01",
+                "quote": "Lordo dal 01/01/2023        1.097,67     1.228,38     1.335,69     1.395,12     1.483,83     1.602,67        1.811,00         1.929,86"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2023-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-esercizi-cinematografici-anec-tables"
               }
             }
           },
@@ -1959,21 +2212,28 @@
             "valid_until": "2025-07-01",
             "value": "1672.48",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
-                  "title": "ccnl-esercizi-cinematografici-2023-2026-pdf",
+                  "document_id": "esercizi-cinematografici-anec-tables-3bf774dd",
+                  "title": "esercizi-cinematografici-anec: tabelle retributive (ccnl.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
+                  "sha256": "3bf774ddda3db69a37228fb7fb02ae6f451fe89a26ce64de78c771400185c382"
                 },
-                "section": "Tabella retributiva"
+                "page": "60",
+                "section": "Tabelle paga Multiplex, Lordo dal 2024-11-01",
+                "quote": "Lordo dal 01/11/2024        1.135,41     1.274,42     1.388,52     1.451,72     1.546,09     1.672,48        1.894,02         2.020,43"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2024-11-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-esercizi-cinematografici-anec-tables"
               }
             }
           },
@@ -1982,21 +2242,28 @@
             "valid_until": "2026-01-01",
             "value": "1736.47",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
-                  "title": "ccnl-esercizi-cinematografici-2023-2026-pdf",
+                  "document_id": "esercizi-cinematografici-anec-tables-3bf774dd",
+                  "title": "esercizi-cinematografici-anec: tabelle retributive (ccnl.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
+                  "sha256": "3bf774ddda3db69a37228fb7fb02ae6f451fe89a26ce64de78c771400185c382"
                 },
-                "section": "Tabella retributiva"
+                "page": "60",
+                "section": "Tabelle paga Multiplex, Lordo dal 2025-07-01",
+                "quote": "Lordo dal 01/07/2025        1.170,00     1.316,62     1.436,95     1.503,61     1.603,17     1.736,47        1.970,12         2.103,45"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-esercizi-cinematografici-anec-tables"
               }
             }
           },
@@ -2008,26 +2275,25 @@
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "anec-verbale-ipca-2026-02-12",
-                  "title": "Verbale di accordo ANEC, FISTel-CISL, UILCOM-UIL del 12 febbraio 2026, rivalutazione dei minimi tabellari (IPCA)",
+                  "document_id": "esercizi-cinematografici-anec-tables-e6522a55",
+                  "title": "esercizi-cinematografici-anec: tabelle retributive (ipca.pdf)",
                   "kind": "associazione",
                   "url": "https://anec.it/wp-content/uploads/2026/02/VerbaleTabelle-aggiornate-12-.02.2026.pdf",
-                  "published_on": "2026-02-12",
                   "sha256": "e6522a5586305ef79acc58d62615c19efb013abf640f7c8573cc0885aaca49cf"
                 },
                 "page": "3",
-                "section": "Tabelle paga, Lordo dal 01/01/2026",
-                "quote": "a decorrere dalla busta paga di Gennaio 2026, i minimi tabellari vigenti per i lavoratori del settore, sono incrementati dell'1,7% [...] Lordo dal 01/01/2026 1767,40"
+                "section": "Tabelle paga Multiplex, Lordo dal 2026-01-01",
+                "quote": "Lordo dal 01/01/2026                    1.186,72      1.337,01      1.460,35     1.528,69       1.630,75       1.767,40        2.006,90         2.143,57"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T13:00:00Z",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
                 "effective_from": "2026-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T13:00:00Z",
+                "verified_at": "2026-11-07T20:00:00Z",
                 "verification_status": "verified",
-                "review_id": "2026-11-07-ai-cinema-ipca-2026"
+                "review_id": "2026-11-07-ai-esercizi-cinematografici-anec-tables"
               }
             }
           }
@@ -2065,21 +2331,28 @@
             "valid_until": "2024-11-01",
             "value": "1811.00",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
-                  "title": "ccnl-esercizi-cinematografici-2023-2026-pdf",
+                  "document_id": "esercizi-cinematografici-anec-tables-3bf774dd",
+                  "title": "esercizi-cinematografici-anec: tabelle retributive (ccnl.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
+                  "sha256": "3bf774ddda3db69a37228fb7fb02ae6f451fe89a26ce64de78c771400185c382"
                 },
-                "section": "Tabella retributiva"
+                "page": "59",
+                "section": "Tabelle paga Monosale e Multisale, Lordo dal 2023-01-01",
+                "quote": "Lordo dal 01/01/2023          1.097,67       1168,95          1.288,01       1.448,49       1.550,02       1.602,67       1.811,00"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2023-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-esercizi-cinematografici-anec-tables"
               }
             }
           },
@@ -2088,21 +2361,28 @@
             "valid_until": "2025-07-01",
             "value": "1894.02",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
-                  "title": "ccnl-esercizi-cinematografici-2023-2026-pdf",
+                  "document_id": "esercizi-cinematografici-anec-tables-3bf774dd",
+                  "title": "esercizi-cinematografici-anec: tabelle retributive (ccnl.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
+                  "sha256": "3bf774ddda3db69a37228fb7fb02ae6f451fe89a26ce64de78c771400185c382"
                 },
-                "section": "Tabella retributiva"
+                "page": "59",
+                "section": "Tabelle paga Monosale e Multisale, Lordo dal 2024-11-01",
+                "quote": "Lordo dal 01/11/2024          1.135,41      1.211,21          1.337,82       1.508,49       1.616,44       1.672,48       1.894,02"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2024-11-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-esercizi-cinematografici-anec-tables"
               }
             }
           },
@@ -2111,21 +2391,28 @@
             "valid_until": "2026-01-01",
             "value": "1970.12",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
-                  "title": "ccnl-esercizi-cinematografici-2023-2026-pdf",
+                  "document_id": "esercizi-cinematografici-anec-tables-3bf774dd",
+                  "title": "esercizi-cinematografici-anec: tabelle retributive (ccnl.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
+                  "sha256": "3bf774ddda3db69a37228fb7fb02ae6f451fe89a26ce64de78c771400185c382"
                 },
-                "section": "Tabella retributiva"
+                "page": "59",
+                "section": "Tabelle paga Monosale e Multisale, Lordo dal 2025-07-01",
+                "quote": "Lordo dal 01/07/2025          1.170,00      1.249,95          1.383,48       1.563,49       1.677,32       1.736,47       1.970,12"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-esercizi-cinematografici-anec-tables"
               }
             }
           },
@@ -2137,26 +2424,25 @@
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "anec-verbale-ipca-2026-02-12",
-                  "title": "Verbale di accordo ANEC, FISTel-CISL, UILCOM-UIL del 12 febbraio 2026, rivalutazione dei minimi tabellari (IPCA)",
+                  "document_id": "esercizi-cinematografici-anec-tables-e6522a55",
+                  "title": "esercizi-cinematografici-anec: tabelle retributive (ipca.pdf)",
                   "kind": "associazione",
                   "url": "https://anec.it/wp-content/uploads/2026/02/VerbaleTabelle-aggiornate-12-.02.2026.pdf",
-                  "published_on": "2026-02-12",
                   "sha256": "e6522a5586305ef79acc58d62615c19efb013abf640f7c8573cc0885aaca49cf"
                 },
                 "page": "2",
-                "section": "Tabelle paga, Lordo dal 01/01/2026",
-                "quote": "a decorrere dalla busta paga di Gennaio 2026, i minimi tabellari vigenti per i lavoratori del settore, sono incrementati dell'1,7% [...] Lordo dal 01/01/2026 2006,90"
+                "section": "Tabelle paga Monosale e Multisale, Lordo dal 2026-01-01",
+                "quote": "Lordo dal 01/01/2026                     1.186,72        1.268,67       1.405,55      1.590,07        1.706,74      1.767,40        2.006,90"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T13:00:00Z",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
                 "effective_from": "2026-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T13:00:00Z",
+                "verified_at": "2026-11-07T20:00:00Z",
                 "verification_status": "verified",
-                "review_id": "2026-11-07-ai-cinema-ipca-2026"
+                "review_id": "2026-11-07-ai-esercizi-cinematografici-anec-tables"
               }
             }
           }
@@ -2194,21 +2480,28 @@
             "valid_until": "2024-11-01",
             "value": "1811.00",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
-                  "title": "ccnl-esercizi-cinematografici-2023-2026-pdf",
+                  "document_id": "esercizi-cinematografici-anec-tables-3bf774dd",
+                  "title": "esercizi-cinematografici-anec: tabelle retributive (ccnl.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
+                  "sha256": "3bf774ddda3db69a37228fb7fb02ae6f451fe89a26ce64de78c771400185c382"
                 },
-                "section": "Tabella retributiva"
+                "page": "60",
+                "section": "Tabelle paga Multiplex, Lordo dal 2023-01-01",
+                "quote": "Lordo dal 01/01/2023        1.097,67     1.228,38     1.335,69     1.395,12     1.483,83     1.602,67        1.811,00         1.929,86"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2023-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-esercizi-cinematografici-anec-tables"
               }
             }
           },
@@ -2217,21 +2510,28 @@
             "valid_until": "2025-07-01",
             "value": "1894.02",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
-                  "title": "ccnl-esercizi-cinematografici-2023-2026-pdf",
+                  "document_id": "esercizi-cinematografici-anec-tables-3bf774dd",
+                  "title": "esercizi-cinematografici-anec: tabelle retributive (ccnl.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
+                  "sha256": "3bf774ddda3db69a37228fb7fb02ae6f451fe89a26ce64de78c771400185c382"
                 },
-                "section": "Tabella retributiva"
+                "page": "60",
+                "section": "Tabelle paga Multiplex, Lordo dal 2024-11-01",
+                "quote": "Lordo dal 01/11/2024        1.135,41     1.274,42     1.388,52     1.451,72     1.546,09     1.672,48        1.894,02         2.020,43"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2024-11-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-esercizi-cinematografici-anec-tables"
               }
             }
           },
@@ -2240,21 +2540,28 @@
             "valid_until": "2026-01-01",
             "value": "1970.12",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
-                  "title": "ccnl-esercizi-cinematografici-2023-2026-pdf",
+                  "document_id": "esercizi-cinematografici-anec-tables-3bf774dd",
+                  "title": "esercizi-cinematografici-anec: tabelle retributive (ccnl.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
+                  "sha256": "3bf774ddda3db69a37228fb7fb02ae6f451fe89a26ce64de78c771400185c382"
                 },
-                "section": "Tabella retributiva"
+                "page": "60",
+                "section": "Tabelle paga Multiplex, Lordo dal 2025-07-01",
+                "quote": "Lordo dal 01/07/2025        1.170,00     1.316,62     1.436,95     1.503,61     1.603,17     1.736,47        1.970,12         2.103,45"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-esercizi-cinematografici-anec-tables"
               }
             }
           },
@@ -2266,26 +2573,25 @@
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "anec-verbale-ipca-2026-02-12",
-                  "title": "Verbale di accordo ANEC, FISTel-CISL, UILCOM-UIL del 12 febbraio 2026, rivalutazione dei minimi tabellari (IPCA)",
+                  "document_id": "esercizi-cinematografici-anec-tables-e6522a55",
+                  "title": "esercizi-cinematografici-anec: tabelle retributive (ipca.pdf)",
                   "kind": "associazione",
                   "url": "https://anec.it/wp-content/uploads/2026/02/VerbaleTabelle-aggiornate-12-.02.2026.pdf",
-                  "published_on": "2026-02-12",
                   "sha256": "e6522a5586305ef79acc58d62615c19efb013abf640f7c8573cc0885aaca49cf"
                 },
                 "page": "3",
-                "section": "Tabelle paga, Lordo dal 01/01/2026",
-                "quote": "a decorrere dalla busta paga di Gennaio 2026, i minimi tabellari vigenti per i lavoratori del settore, sono incrementati dell'1,7% [...] Lordo dal 01/01/2026 2006,90"
+                "section": "Tabelle paga Multiplex, Lordo dal 2026-01-01",
+                "quote": "Lordo dal 01/01/2026                    1.186,72      1.337,01      1.460,35     1.528,69       1.630,75       1.767,40        2.006,90         2.143,57"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T13:00:00Z",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
                 "effective_from": "2026-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T13:00:00Z",
+                "verified_at": "2026-11-07T20:00:00Z",
                 "verification_status": "verified",
-                "review_id": "2026-11-07-ai-cinema-ipca-2026"
+                "review_id": "2026-11-07-ai-esercizi-cinematografici-anec-tables"
               }
             }
           }
@@ -2323,21 +2629,28 @@
             "valid_until": "2024-11-01",
             "value": "1929.86",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
-                  "title": "ccnl-esercizi-cinematografici-2023-2026-pdf",
+                  "document_id": "esercizi-cinematografici-anec-tables-3bf774dd",
+                  "title": "esercizi-cinematografici-anec: tabelle retributive (ccnl.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
+                  "sha256": "3bf774ddda3db69a37228fb7fb02ae6f451fe89a26ce64de78c771400185c382"
                 },
-                "section": "Tabella retributiva"
+                "page": "60",
+                "section": "Tabelle paga Multiplex, Lordo dal 2023-01-01",
+                "quote": "Lordo dal 01/01/2023        1.097,67     1.228,38     1.335,69     1.395,12     1.483,83     1.602,67        1.811,00         1.929,86"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2023-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-esercizi-cinematografici-anec-tables"
               }
             }
           },
@@ -2346,21 +2659,28 @@
             "valid_until": "2025-07-01",
             "value": "2020.43",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
-                  "title": "ccnl-esercizi-cinematografici-2023-2026-pdf",
+                  "document_id": "esercizi-cinematografici-anec-tables-3bf774dd",
+                  "title": "esercizi-cinematografici-anec: tabelle retributive (ccnl.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
+                  "sha256": "3bf774ddda3db69a37228fb7fb02ae6f451fe89a26ce64de78c771400185c382"
                 },
-                "section": "Tabella retributiva"
+                "page": "60",
+                "section": "Tabelle paga Multiplex, Lordo dal 2024-11-01",
+                "quote": "Lordo dal 01/11/2024        1.135,41     1.274,42     1.388,52     1.451,72     1.546,09     1.672,48        1.894,02         2.020,43"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2024-11-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-esercizi-cinematografici-anec-tables"
               }
             }
           },
@@ -2369,21 +2689,28 @@
             "valid_until": "2026-01-01",
             "value": "2103.45",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
-                  "title": "ccnl-esercizi-cinematografici-2023-2026-pdf",
+                  "document_id": "esercizi-cinematografici-anec-tables-3bf774dd",
+                  "title": "esercizi-cinematografici-anec: tabelle retributive (ccnl.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf"
+                  "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
+                  "sha256": "3bf774ddda3db69a37228fb7fb02ae6f451fe89a26ce64de78c771400185c382"
                 },
-                "section": "Tabella retributiva"
+                "page": "60",
+                "section": "Tabelle paga Multiplex, Lordo dal 2025-07-01",
+                "quote": "Lordo dal 01/07/2025        1.170,00     1.316,62     1.436,95     1.503,61     1.603,17     1.736,47        1.970,12         2.103,45"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-esercizi-cinematografici-anec-tables"
               }
             }
           },
@@ -2395,26 +2722,25 @@
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "anec-verbale-ipca-2026-02-12",
-                  "title": "Verbale di accordo ANEC, FISTel-CISL, UILCOM-UIL del 12 febbraio 2026, rivalutazione dei minimi tabellari (IPCA)",
+                  "document_id": "esercizi-cinematografici-anec-tables-e6522a55",
+                  "title": "esercizi-cinematografici-anec: tabelle retributive (ipca.pdf)",
                   "kind": "associazione",
                   "url": "https://anec.it/wp-content/uploads/2026/02/VerbaleTabelle-aggiornate-12-.02.2026.pdf",
-                  "published_on": "2026-02-12",
                   "sha256": "e6522a5586305ef79acc58d62615c19efb013abf640f7c8573cc0885aaca49cf"
                 },
                 "page": "3",
-                "section": "Tabelle paga, Lordo dal 01/01/2026",
-                "quote": "a decorrere dalla busta paga di Gennaio 2026, i minimi tabellari vigenti per i lavoratori del settore, sono incrementati dell'1,7% [...] Lordo dal 01/01/2026 2143,57"
+                "section": "Tabelle paga Multiplex, Lordo dal 2026-01-01",
+                "quote": "Lordo dal 01/01/2026                    1.186,72      1.337,01      1.460,35     1.528,69       1.630,75       1.767,40        2.006,90         2.143,57"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T13:00:00Z",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
                 "effective_from": "2026-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T13:00:00Z",
+                "verified_at": "2026-11-07T20:00:00Z",
                 "verification_status": "verified",
-                "review_id": "2026-11-07-ai-cinema-ipca-2026"
+                "review_id": "2026-11-07-ai-esercizi-cinematografici-anec-tables"
               }
             }
           }
@@ -2448,7 +2774,7 @@
     "effective_until": null,
     "source": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "b26d1b654a928f14c88614ce691cbd8423e27a33c7ba7fe4691011a2d3285bbd",
+    "source_hash": "7164599ae177a2bcf49b366eb0cd32a02be47caafff1adc2c9e193b11ada7001",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

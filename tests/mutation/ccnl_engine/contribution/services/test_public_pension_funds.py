@@ -37,7 +37,7 @@ pytestmark = pytest.mark.legal_scenario
     ("slug", "level", "employee", "employer"),
     [
         ("funzioni-centrali-aran", "FUNZIONARI", "203.86", "539.17"),
-        ("funzioni-locali-aran", "ISTRUTTORI", "180.35", "466.55"),
+        ("funzioni-locali-aran", "ISTRUTTORI", "188.75", "488.30"),
     ],
     ids=["ctps", "cpdel"],
 )

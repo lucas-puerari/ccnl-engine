@@ -50,12 +50,14 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-10-08 |
-| **Last review** | — |
+| **Last review** | 2026-11-07 |
 | **Latest salary tranche** | 2026-12-01 |
 
 ## Review history
 
-No review is recorded.
+| Date | Reviewer | Scope | Outcome | Findings |
+|---|---|---|---|---|
+| 2026-11-07 | claude-opus-5-5 (ai) | Values a primary-text verification found different from the printed tables (text layer). | corrected | 9 values corrected to the amounts printed on the cited pages. |
 
 ## Salary table
 
