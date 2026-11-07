@@ -9,8 +9,8 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | Group | CCNLs | Workers | Weak | Derived | Verified | Aggregator | Anchor |
 |---|---:|---:|---:|---:|---:|---:|---|
 | pubblica-amministrazione | 14 | 7 548 000 | 14 | 217 | 186 | 0 | `funzioni-centrali-aran` |
-| terziario | 46 | 5 257 055 | 53 | 1608 | 941 | 4 | `commercio-confcommercio`, `sanita-privata-aiop-aris` |
-| industria | 49 | 4 969 900 | 153 | 2154 | 1240 | 15 | `logistica-trasporto-confetra`, `metalmeccanico-federmeccanica` |
+| terziario | 46 | 5 257 055 | 53 | 1608 | 977 | 4 | `commercio-confcommercio`, `sanita-privata-aiop-aris` |
+| industria | 49 | 4 969 900 | 153 | 2154 | 1256 | 15 | `logistica-trasporto-confetra`, `metalmeccanico-federmeccanica` |
 | lavoro-domestico | 3 | 1 800 000 | 0 | 3 | 60 | 0 | `lavoro-domestico-non-convivente` |
 | artigianato | 8 | 1 244 505 | 34 | 256 | 158 | 2 | `metalmeccanico-artigianato` |
 | agricoltura | 9 | 752 860 | 12 | 164 | 170 | 5 | `operai-agricoli-florovivaisti` |
@@ -53,7 +53,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | [`sanita-privata-aiop-aris`](../contracts/sanita-privata-aiop-aris.md) (anchor) | 150 000 | exploratory | 0 | 2 | 36 | party or official | maintainer | 2027-06-30 |
 | [`uneba-uneba`](../contracts/uneba-uneba.md) | 130 000 | exploratory | 1 | 41 | 1 | party or official | none | none |
 | [`autoferrotranvieri-internavigatori`](../contracts/autoferrotranvieri-internavigatori.md) | 120 000 | exploratory | 1 | 139 | 0 | party or official | none | none |
-| [`istituzioni-servizi-socio-assistenziali-anaste`](../contracts/istituzioni-servizi-socio-assistenziali-anaste.md) | 120 000 | exploratory | 1 | 31 | 1 | party or official | none | none |
+| [`istituzioni-servizi-socio-assistenziali-anaste`](../contracts/istituzioni-servizi-socio-assistenziali-anaste.md) | 120 000 | exploratory | 1 | 31 | 37 | party or official | none | none |
 | [`vigilanza-privata-assiv`](../contracts/vigilanza-privata-assiv.md) | 85 000 | exploratory | 1 | 49 | 0 | party or official | none | none |
 | [`distribuzione-cooperativa-ancc`](../contracts/distribuzione-cooperativa-ancc.md) | 63 000 | exploratory | 1 | 62 | 1 | aggregator | none | none |
 | [`ortofrutticoli-agrumari`](../contracts/ortofrutticoli-agrumari.md) | 60 000 | exploratory | 7 | 0 | 47 | aggregator | none | none |
@@ -102,7 +102,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | [`telecomunicazioni-asstel`](../contracts/telecomunicazioni-asstel.md) | 110 000 | exploratory | 1 | 44 | 2 | party or official | none | none |
 | [`metalmeccanico-confimi-pmi`](../contracts/metalmeccanico-confimi-pmi.md) | 100 000 | exploratory | 0 | 46 | 1 | aggregator | none | none |
 | [`gomma-plastica-federazione-gomma-plastica`](../contracts/gomma-plastica-federazione-gomma-plastica.md) | 90 000 | exploratory | 2 | 7 | 70 | aggregator | none | none |
-| [`legno-arredamento-federlegno`](../contracts/legno-arredamento-federlegno.md) | 90 000 | exploratory | 1 | 88 | 1 | aggregator | none | none |
+| [`legno-arredamento-federlegno`](../contracts/legno-arredamento-federlegno.md) | 90 000 | exploratory | 1 | 88 | 17 | aggregator | none | none |
 | [`calzaturiero-assocalzaturifici`](../contracts/calzaturiero-assocalzaturifici.md) | 75 000 | exploratory | 2 | 37 | 1 | aggregator | none | none |
 | [`trasporto-ferroviario-agens`](../contracts/trasporto-ferroviario-agens.md) | 75 000 | exploratory | 1 | 6 | 50 | aggregator | none | none |
 | [`grafica-editoria-aieg`](../contracts/grafica-editoria-aieg.md) | 70 000 | exploratory | 1 | 70 | 2 | aggregator | none | none |
