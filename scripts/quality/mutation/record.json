@@ -1,5 +1,5 @@
 {
-  "commit": "d6ed877a83e73ccf428e297220b77c6a2c546404",
+  "commit": "49c92576d984c23f892a18812691e29cd043515b",
   "date": "2026-11-07",
   "min_score": 93.0,
   "perimeter": [
@@ -160,12 +160,12 @@
   ],
   "scores": {
     "core": {
-      "killed": 10471,
+      "killed": 10478,
       "survived": 307,
       "other": 5,
       "not_checked": 71,
       "equivalent": 18,
-      "total": 10783,
+      "total": 10790,
       "score": 97.1,
       "minimum": 93.0
     },
@@ -870,12 +870,12 @@
       "minimum": 77.4
     },
     "src/ccnl_engine/fund/health/rules.py": {
-      "killed": 25,
+      "killed": 32,
       "survived": 0,
       "other": 0,
       "not_checked": 0,
       "equivalent": 0,
-      "total": 25,
+      "total": 32,
       "score": 100.0,
       "minimum": 93.0
     },
