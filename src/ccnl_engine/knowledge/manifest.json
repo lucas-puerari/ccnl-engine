@@ -82,7 +82,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/agenzie-marittime-i481",
       "ruleset_version": "2026.2",
-      "source_hash": "ee83a64f7d20aa9be55a3d9b09d9445fdf6de311839c71aa3ec41821fa641032",
+      "source_hash": "d524823a5297f60269677cc49e82417810f51315874c8aac0112f80d05a7c6ef",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/agenzie-marittime-i481.json.gz"
@@ -167,7 +167,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/anas",
       "ruleset_version": "2026.2",
-      "source_hash": "cdee24a036e28f8b80389255db852632cedf963511181d528b6d2306fe002b31",
+      "source_hash": "fe0fe0b5553ede32bc09f857a5d040a811e7f21ea36fd913de3f1e31e8a896e9",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/anas.json.gz"
@@ -337,7 +337,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/calzaturiero-assocalzaturifici",
       "ruleset_version": "2026.2",
-      "source_hash": "850f77674aca174cb3f648d16e3af536ee8c2e79dd437b3a68480c9936b9b5b4",
+      "source_hash": "5ec741d2218244cb72132ff488df2efe12f33426eb4192510acee084438b898e",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/calzaturiero-assocalzaturifici.json.gz"
@@ -507,7 +507,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/comunicazione-artigianato-confartigianato",
       "ruleset_version": "2026.2",
-      "source_hash": "28e093ac8f1548b169f6caccefe00aa24d612030e4149d9244d904cb5fdbf644",
+      "source_hash": "c90cb3b50f52dcc3ad6443048a408281b8ffe04af0666fd837db494987bb3332",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/comunicazione-artigianato-confartigianato.json.gz"
@@ -796,7 +796,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/edilizia-cooperative-ancpl",
       "ruleset_version": "2026.1",
-      "source_hash": "733e91eaf4c41f2f32e64b2cc695f3a8c2dcd0e1e9ff33e17ba26b41c559e513",
+      "source_hash": "80708b8798c29eea9149a5bff8645b097ef0beeaa0e5610382bdcb920e4d2aa1",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/edilizia-cooperative-ancpl.json.gz"
@@ -918,7 +918,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/farmacie-municipalizzate-assofarm",
       "ruleset_version": "2026.2",
-      "source_hash": "880ebb1a49b39f1f7c989a78a008fbb899e0f6f40356197ec374c741dadd1069",
+      "source_hash": "21e02b5fe70d82f36ab7870520937bbe7e2feb56620d299698582c3e33108e26",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/farmacie-municipalizzate-assofarm.json.gz"
@@ -986,7 +986,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/fiori-recisi-ancef",
       "ruleset_version": "2026.2",
-      "source_hash": "16bd52ee1d1d258c2f8a3e390d70bf1ca83daf1a5c07cbea20442c556965780f",
+      "source_hash": "623ccb9b0232dcc0a1e27105a42f507f2d2428c5d8e9e5537ac5e3884e1ead78",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/fiori-recisi-ancef.json.gz"
@@ -1156,7 +1156,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/impianti-sportivi-sport",
       "ruleset_version": "2024.1",
-      "source_hash": "66cd9880392a8fc0a9a63e9743a23c1b02cc9c15cae9095d7771682b0e5ec2de",
+      "source_hash": "e33ec2696c47c096aa0addb09be8462faf832e5267b366ad2b0f9e6de7c943ef",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/impianti-sportivi-sport.json.gz"
@@ -1428,7 +1428,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/marittimi-industria-armatoriale",
       "ruleset_version": "2026.2",
-      "source_hash": "df1a86c2b4a695f7d93c694544840f293fdca7cb3010df71a8e4e4cda4c83bb3",
+      "source_hash": "39d9cb519224cc52f2441639aba4a0b9481c17b4df46731f2787e4719d0f1e79",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/marittimi-industria-armatoriale.json.gz"
@@ -1513,7 +1513,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/metalmeccanico-confimi-pmi",
       "ruleset_version": "2025.1",
-      "source_hash": "4dbcf2aeaa88b2568f819f99b849acf70e13634c1fa1fd80603027135df5c7e4",
+      "source_hash": "030e0000fddb44aee2bbc76de9dfbacae987c164caab756eabcd4ec32c8f458a",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/metalmeccanico-confimi-pmi.json.gz"
@@ -1632,7 +1632,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/orafi-argentieri-industria-federorafi",
       "ruleset_version": "2026.2",
-      "source_hash": "a8caa358a2525e7dda92b40709c2f48cd6ffc8ec15e66aed37879eec9a5946b2",
+      "source_hash": "daaf6c8e53b6d7ea1f8351738302f0ddd5f023fcdf2d937b2fd2242e5f777c8b",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/orafi-argentieri-industria-federorafi.json.gz"
@@ -1700,7 +1700,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "ccnl/panificazione-assipan",
       "ruleset_version": "2026.2",
-      "source_hash": "2cc19e0224feab01cc502f2732d3132f58857ef2041b1d96498d040e924c3e9d",
+      "source_hash": "6251a173e575def173ecea74a99174a620f8591cff966e583e286cd2098b5516",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/panificazione-assipan.json.gz"
@@ -1717,7 +1717,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/pelli-cuoio-industria-assopellettieri",
       "ruleset_version": "2026.2",
-      "source_hash": "ccf325748dba204b3110773b6e8946856778cbb388faba40d60f333d4d0a83be",
+      "source_hash": "9a96f76ad9b0ab51cdc0ca7e9f7402a17d59b3d0503a7b3d7ea56f0eeec4f405",
       "source_type": "institutional_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/pelli-cuoio-industria-assopellettieri.json.gz"
@@ -1734,7 +1734,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/portieri-fabbricati-confedilizia",
       "ruleset_version": "2026.2",
-      "source_hash": "54c862559479b1e5d88e40b1ae1f99be9cbb2fdffad20ba3f32f497790378732",
+      "source_hash": "4839f11c21f3b472ddcd6b7a26baad2238583f7a09237bde3946644d89b7f70b",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/portieri-fabbricati-confedilizia.json.gz"
@@ -1870,7 +1870,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/rsa-aiop",
       "ruleset_version": "2026.2",
-      "source_hash": "be139198f13682a0dd2963f7b3b92b822a992522f1f5b0224c379424ac904275",
+      "source_hash": "cdd48d41e2583c9c5740530c4b2938a014175230db8fcd08806e0bbf7dc04f9e",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/rsa-aiop.json.gz"

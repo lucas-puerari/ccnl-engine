@@ -398,21 +398,28 @@
             "valid_until": "2025-07-01",
             "value": "1415.36",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "comunicazione-artigianato",
-                  "title": "comunicazione-artigianato",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.redigo.info/ccnl/comunicazione-artigianato"
+                  "document_id": "comunicazione-artigianato-confartigianato-src-d1c98be9",
+                  "title": "comunicazione-artigianato-confartigianato: cnel-198585.pdf",
+                  "kind": "associazione",
+                  "url": "https://azstcnesa0002prodwe001.blob.core.windows.net/archivio-contratti/archivio%2F2024%2Ff4a6ea18-aef2-440d-ae47-d1e9f3dac3a4%2F20536.pdf",
+                  "sha256": "d1c98be93c3e6a4041b1e09d6a7d7222edc6aebbcb3be0d5d2b1b9dd8f8622ca"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "no text layer",
+                "quote": "6 € 1.357,71 € 1.415,36 € 1.452,42 € 1.489,48 € 1.522,42"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2024-12-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-comunicazione-artigianato-confartigianato-double-read"
               }
             }
           },
@@ -421,21 +428,28 @@
             "valid_until": "2026-03-01",
             "value": "1452.42",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "comunicazione-artigianato",
-                  "title": "comunicazione-artigianato",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.redigo.info/ccnl/comunicazione-artigianato"
+                  "document_id": "comunicazione-artigianato-confartigianato-src-d1c98be9",
+                  "title": "comunicazione-artigianato-confartigianato: cnel-198585.pdf",
+                  "kind": "associazione",
+                  "url": "https://azstcnesa0002prodwe001.blob.core.windows.net/archivio-contratti/archivio%2F2024%2Ff4a6ea18-aef2-440d-ae47-d1e9f3dac3a4%2F20536.pdf",
+                  "sha256": "d1c98be93c3e6a4041b1e09d6a7d7222edc6aebbcb3be0d5d2b1b9dd8f8622ca"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "no text layer",
+                "quote": "6 € 1.357,71 € 1.415,36 € 1.452,42 € 1.489,48 € 1.522,42"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-comunicazione-artigianato-confartigianato-double-read"
               }
             }
           },
@@ -444,21 +458,28 @@
             "valid_until": "2026-11-01",
             "value": "1489.48",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "comunicazione-artigianato",
-                  "title": "comunicazione-artigianato",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.redigo.info/ccnl/comunicazione-artigianato"
+                  "document_id": "comunicazione-artigianato-confartigianato-src-d1c98be9",
+                  "title": "comunicazione-artigianato-confartigianato: cnel-198585.pdf",
+                  "kind": "associazione",
+                  "url": "https://azstcnesa0002prodwe001.blob.core.windows.net/archivio-contratti/archivio%2F2024%2Ff4a6ea18-aef2-440d-ae47-d1e9f3dac3a4%2F20536.pdf",
+                  "sha256": "d1c98be93c3e6a4041b1e09d6a7d7222edc6aebbcb3be0d5d2b1b9dd8f8622ca"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "no text layer",
+                "quote": "6 € 1.357,71 € 1.415,36 € 1.452,42 € 1.489,48 € 1.522,42"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-03-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-comunicazione-artigianato-confartigianato-double-read"
               }
             }
           },
@@ -467,21 +488,28 @@
             "valid_until": null,
             "value": "1522.42",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "comunicazione-artigianato",
-                  "title": "comunicazione-artigianato",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.redigo.info/ccnl/comunicazione-artigianato"
+                  "document_id": "comunicazione-artigianato-confartigianato-src-d1c98be9",
+                  "title": "comunicazione-artigianato-confartigianato: cnel-198585.pdf",
+                  "kind": "associazione",
+                  "url": "https://azstcnesa0002prodwe001.blob.core.windows.net/archivio-contratti/archivio%2F2024%2Ff4a6ea18-aef2-440d-ae47-d1e9f3dac3a4%2F20536.pdf",
+                  "sha256": "d1c98be93c3e6a4041b1e09d6a7d7222edc6aebbcb3be0d5d2b1b9dd8f8622ca"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "no text layer",
+                "quote": "6 € 1.357,71 € 1.415,36 € 1.452,42 € 1.489,48 € 1.522,42"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-11-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-comunicazione-artigianato-confartigianato-double-read"
               }
             }
           }
@@ -519,21 +547,28 @@
             "valid_until": "2025-07-01",
             "value": "1503.02",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "comunicazione-artigianato",
-                  "title": "comunicazione-artigianato",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.redigo.info/ccnl/comunicazione-artigianato"
+                  "document_id": "comunicazione-artigianato-confartigianato-src-d1c98be9",
+                  "title": "comunicazione-artigianato-confartigianato: cnel-198585.pdf",
+                  "kind": "associazione",
+                  "url": "https://azstcnesa0002prodwe001.blob.core.windows.net/archivio-contratti/archivio%2F2024%2Ff4a6ea18-aef2-440d-ae47-d1e9f3dac3a4%2F20536.pdf",
+                  "sha256": "d1c98be93c3e6a4041b1e09d6a7d7222edc6aebbcb3be0d5d2b1b9dd8f8622ca"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "no text layer",
+                "quote": "5 € 1.441,80 € 1.503,02 € 1.542,38 € 1.581,74 € 1.616,72"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2024-12-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-comunicazione-artigianato-confartigianato-double-read"
               }
             }
           },
@@ -542,21 +577,28 @@
             "valid_until": "2026-03-01",
             "value": "1542.38",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "comunicazione-artigianato",
-                  "title": "comunicazione-artigianato",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.redigo.info/ccnl/comunicazione-artigianato"
+                  "document_id": "comunicazione-artigianato-confartigianato-src-d1c98be9",
+                  "title": "comunicazione-artigianato-confartigianato: cnel-198585.pdf",
+                  "kind": "associazione",
+                  "url": "https://azstcnesa0002prodwe001.blob.core.windows.net/archivio-contratti/archivio%2F2024%2Ff4a6ea18-aef2-440d-ae47-d1e9f3dac3a4%2F20536.pdf",
+                  "sha256": "d1c98be93c3e6a4041b1e09d6a7d7222edc6aebbcb3be0d5d2b1b9dd8f8622ca"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "no text layer",
+                "quote": "5 € 1.441,80 € 1.503,02 € 1.542,38 € 1.581,74 € 1.616,72"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-comunicazione-artigianato-confartigianato-double-read"
               }
             }
           },
@@ -565,21 +607,28 @@
             "valid_until": "2026-11-01",
             "value": "1581.74",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "comunicazione-artigianato",
-                  "title": "comunicazione-artigianato",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.redigo.info/ccnl/comunicazione-artigianato"
+                  "document_id": "comunicazione-artigianato-confartigianato-src-d1c98be9",
+                  "title": "comunicazione-artigianato-confartigianato: cnel-198585.pdf",
+                  "kind": "associazione",
+                  "url": "https://azstcnesa0002prodwe001.blob.core.windows.net/archivio-contratti/archivio%2F2024%2Ff4a6ea18-aef2-440d-ae47-d1e9f3dac3a4%2F20536.pdf",
+                  "sha256": "d1c98be93c3e6a4041b1e09d6a7d7222edc6aebbcb3be0d5d2b1b9dd8f8622ca"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "no text layer",
+                "quote": "5 € 1.441,80 € 1.503,02 € 1.542,38 € 1.581,74 € 1.616,72"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-03-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-comunicazione-artigianato-confartigianato-double-read"
               }
             }
           },
@@ -588,21 +637,28 @@
             "valid_until": null,
             "value": "1616.72",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "comunicazione-artigianato",
-                  "title": "comunicazione-artigianato",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.redigo.info/ccnl/comunicazione-artigianato"
+                  "document_id": "comunicazione-artigianato-confartigianato-src-d1c98be9",
+                  "title": "comunicazione-artigianato-confartigianato: cnel-198585.pdf",
+                  "kind": "associazione",
+                  "url": "https://azstcnesa0002prodwe001.blob.core.windows.net/archivio-contratti/archivio%2F2024%2Ff4a6ea18-aef2-440d-ae47-d1e9f3dac3a4%2F20536.pdf",
+                  "sha256": "d1c98be93c3e6a4041b1e09d6a7d7222edc6aebbcb3be0d5d2b1b9dd8f8622ca"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "no text layer",
+                "quote": "5 € 1.441,80 € 1.503,02 € 1.542,38 € 1.581,74 € 1.616,72"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-11-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-comunicazione-artigianato-confartigianato-double-read"
               }
             }
           }
@@ -640,21 +696,28 @@
             "valid_until": "2025-07-01",
             "value": "1572.03",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "comunicazione-artigianato",
-                  "title": "comunicazione-artigianato",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.redigo.info/ccnl/comunicazione-artigianato"
+                  "document_id": "comunicazione-artigianato-confartigianato-src-d1c98be9",
+                  "title": "comunicazione-artigianato-confartigianato: cnel-198585.pdf",
+                  "kind": "associazione",
+                  "url": "https://azstcnesa0002prodwe001.blob.core.windows.net/archivio-contratti/archivio%2F2024%2Ff4a6ea18-aef2-440d-ae47-d1e9f3dac3a4%2F20536.pdf",
+                  "sha256": "d1c98be93c3e6a4041b1e09d6a7d7222edc6aebbcb3be0d5d2b1b9dd8f8622ca"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "no text layer",
+                "quote": "5 BIS € 1.508,00 € 1.572,03 € 1.613,19 € 1.654,35 € 1.690,94"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2024-12-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-comunicazione-artigianato-confartigianato-double-read"
               }
             }
           },
@@ -663,21 +726,28 @@
             "valid_until": "2026-03-01",
             "value": "1613.19",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "comunicazione-artigianato",
-                  "title": "comunicazione-artigianato",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.redigo.info/ccnl/comunicazione-artigianato"
+                  "document_id": "comunicazione-artigianato-confartigianato-src-d1c98be9",
+                  "title": "comunicazione-artigianato-confartigianato: cnel-198585.pdf",
+                  "kind": "associazione",
+                  "url": "https://azstcnesa0002prodwe001.blob.core.windows.net/archivio-contratti/archivio%2F2024%2Ff4a6ea18-aef2-440d-ae47-d1e9f3dac3a4%2F20536.pdf",
+                  "sha256": "d1c98be93c3e6a4041b1e09d6a7d7222edc6aebbcb3be0d5d2b1b9dd8f8622ca"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "no text layer",
+                "quote": "5 BIS € 1.508,00 € 1.572,03 € 1.613,19 € 1.654,35 € 1.690,94"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-comunicazione-artigianato-confartigianato-double-read"
               }
             }
           },
@@ -686,21 +756,28 @@
             "valid_until": "2026-11-01",
             "value": "1654.35",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "comunicazione-artigianato",
-                  "title": "comunicazione-artigianato",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.redigo.info/ccnl/comunicazione-artigianato"
+                  "document_id": "comunicazione-artigianato-confartigianato-src-d1c98be9",
+                  "title": "comunicazione-artigianato-confartigianato: cnel-198585.pdf",
+                  "kind": "associazione",
+                  "url": "https://azstcnesa0002prodwe001.blob.core.windows.net/archivio-contratti/archivio%2F2024%2Ff4a6ea18-aef2-440d-ae47-d1e9f3dac3a4%2F20536.pdf",
+                  "sha256": "d1c98be93c3e6a4041b1e09d6a7d7222edc6aebbcb3be0d5d2b1b9dd8f8622ca"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "no text layer",
+                "quote": "5 BIS € 1.508,00 € 1.572,03 € 1.613,19 € 1.654,35 € 1.690,94"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-03-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-comunicazione-artigianato-confartigianato-double-read"
               }
             }
           },
@@ -709,21 +786,28 @@
             "valid_until": null,
             "value": "1690.94",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "comunicazione-artigianato",
-                  "title": "comunicazione-artigianato",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.redigo.info/ccnl/comunicazione-artigianato"
+                  "document_id": "comunicazione-artigianato-confartigianato-src-d1c98be9",
+                  "title": "comunicazione-artigianato-confartigianato: cnel-198585.pdf",
+                  "kind": "associazione",
+                  "url": "https://azstcnesa0002prodwe001.blob.core.windows.net/archivio-contratti/archivio%2F2024%2Ff4a6ea18-aef2-440d-ae47-d1e9f3dac3a4%2F20536.pdf",
+                  "sha256": "d1c98be93c3e6a4041b1e09d6a7d7222edc6aebbcb3be0d5d2b1b9dd8f8622ca"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "no text layer",
+                "quote": "5 BIS € 1.508,00 € 1.572,03 € 1.613,19 € 1.654,35 € 1.690,94"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-11-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-comunicazione-artigianato-confartigianato-double-read"
               }
             }
           }
@@ -761,21 +845,28 @@
             "valid_until": "2025-07-01",
             "value": "1718.56",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "comunicazione-artigianato",
-                  "title": "comunicazione-artigianato",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.redigo.info/ccnl/comunicazione-artigianato"
+                  "document_id": "comunicazione-artigianato-confartigianato-src-d1c98be9",
+                  "title": "comunicazione-artigianato-confartigianato: cnel-198585.pdf",
+                  "kind": "associazione",
+                  "url": "https://azstcnesa0002prodwe001.blob.core.windows.net/archivio-contratti/archivio%2F2024%2Ff4a6ea18-aef2-440d-ae47-d1e9f3dac3a4%2F20536.pdf",
+                  "sha256": "d1c98be93c3e6a4041b1e09d6a7d7222edc6aebbcb3be0d5d2b1b9dd8f8622ca"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "no text layer",
+                "quote": "4 € 1.648,56 € 1.718,56 € 1.763,56 € 1.808,56 € 1.848,56"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2024-12-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-comunicazione-artigianato-confartigianato-double-read"
               }
             }
           },
@@ -784,21 +875,28 @@
             "valid_until": "2026-03-01",
             "value": "1763.56",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "comunicazione-artigianato",
-                  "title": "comunicazione-artigianato",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.redigo.info/ccnl/comunicazione-artigianato"
+                  "document_id": "comunicazione-artigianato-confartigianato-src-d1c98be9",
+                  "title": "comunicazione-artigianato-confartigianato: cnel-198585.pdf",
+                  "kind": "associazione",
+                  "url": "https://azstcnesa0002prodwe001.blob.core.windows.net/archivio-contratti/archivio%2F2024%2Ff4a6ea18-aef2-440d-ae47-d1e9f3dac3a4%2F20536.pdf",
+                  "sha256": "d1c98be93c3e6a4041b1e09d6a7d7222edc6aebbcb3be0d5d2b1b9dd8f8622ca"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "no text layer",
+                "quote": "4 € 1.648,56 € 1.718,56 € 1.763,56 € 1.808,56 € 1.848,56"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-comunicazione-artigianato-confartigianato-double-read"
               }
             }
           },
@@ -807,21 +905,28 @@
             "valid_until": "2026-11-01",
             "value": "1808.56",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "comunicazione-artigianato",
-                  "title": "comunicazione-artigianato",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.redigo.info/ccnl/comunicazione-artigianato"
+                  "document_id": "comunicazione-artigianato-confartigianato-src-d1c98be9",
+                  "title": "comunicazione-artigianato-confartigianato: cnel-198585.pdf",
+                  "kind": "associazione",
+                  "url": "https://azstcnesa0002prodwe001.blob.core.windows.net/archivio-contratti/archivio%2F2024%2Ff4a6ea18-aef2-440d-ae47-d1e9f3dac3a4%2F20536.pdf",
+                  "sha256": "d1c98be93c3e6a4041b1e09d6a7d7222edc6aebbcb3be0d5d2b1b9dd8f8622ca"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "no text layer",
+                "quote": "4 € 1.648,56 € 1.718,56 € 1.763,56 € 1.808,56 € 1.848,56"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-03-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-comunicazione-artigianato-confartigianato-double-read"
               }
             }
           },
@@ -830,21 +935,28 @@
             "valid_until": null,
             "value": "1848.56",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "comunicazione-artigianato",
-                  "title": "comunicazione-artigianato",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.redigo.info/ccnl/comunicazione-artigianato"
+                  "document_id": "comunicazione-artigianato-confartigianato-src-d1c98be9",
+                  "title": "comunicazione-artigianato-confartigianato: cnel-198585.pdf",
+                  "kind": "associazione",
+                  "url": "https://azstcnesa0002prodwe001.blob.core.windows.net/archivio-contratti/archivio%2F2024%2Ff4a6ea18-aef2-440d-ae47-d1e9f3dac3a4%2F20536.pdf",
+                  "sha256": "d1c98be93c3e6a4041b1e09d6a7d7222edc6aebbcb3be0d5d2b1b9dd8f8622ca"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "no text layer",
+                "quote": "4 € 1.648,56 € 1.718,56 € 1.763,56 € 1.808,56 € 1.848,56"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-11-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-comunicazione-artigianato-confartigianato-double-read"
               }
             }
           }
@@ -882,21 +994,28 @@
             "valid_until": "2025-07-01",
             "value": "1852.12",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "comunicazione-artigianato",
-                  "title": "comunicazione-artigianato",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.redigo.info/ccnl/comunicazione-artigianato"
+                  "document_id": "comunicazione-artigianato-confartigianato-src-d1c98be9",
+                  "title": "comunicazione-artigianato-confartigianato: cnel-198585.pdf",
+                  "kind": "associazione",
+                  "url": "https://azstcnesa0002prodwe001.blob.core.windows.net/archivio-contratti/archivio%2F2024%2Ff4a6ea18-aef2-440d-ae47-d1e9f3dac3a4%2F20536.pdf",
+                  "sha256": "d1c98be93c3e6a4041b1e09d6a7d7222edc6aebbcb3be0d5d2b1b9dd8f8622ca"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "no text layer",
+                "quote": "3 € 1.776,68 € 1.852,12 € 1.900,62 € 1.949,12 € 1.992,23"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2024-12-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-comunicazione-artigianato-confartigianato-double-read"
               }
             }
           },
@@ -905,21 +1024,28 @@
             "valid_until": "2026-03-01",
             "value": "1900.62",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "comunicazione-artigianato",
-                  "title": "comunicazione-artigianato",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.redigo.info/ccnl/comunicazione-artigianato"
+                  "document_id": "comunicazione-artigianato-confartigianato-src-d1c98be9",
+                  "title": "comunicazione-artigianato-confartigianato: cnel-198585.pdf",
+                  "kind": "associazione",
+                  "url": "https://azstcnesa0002prodwe001.blob.core.windows.net/archivio-contratti/archivio%2F2024%2Ff4a6ea18-aef2-440d-ae47-d1e9f3dac3a4%2F20536.pdf",
+                  "sha256": "d1c98be93c3e6a4041b1e09d6a7d7222edc6aebbcb3be0d5d2b1b9dd8f8622ca"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "no text layer",
+                "quote": "3 € 1.776,68 € 1.852,12 € 1.900,62 € 1.949,12 € 1.992,23"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-comunicazione-artigianato-confartigianato-double-read"
               }
             }
           },
@@ -928,21 +1054,28 @@
             "valid_until": "2026-11-01",
             "value": "1949.12",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "comunicazione-artigianato",
-                  "title": "comunicazione-artigianato",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.redigo.info/ccnl/comunicazione-artigianato"
+                  "document_id": "comunicazione-artigianato-confartigianato-src-d1c98be9",
+                  "title": "comunicazione-artigianato-confartigianato: cnel-198585.pdf",
+                  "kind": "associazione",
+                  "url": "https://azstcnesa0002prodwe001.blob.core.windows.net/archivio-contratti/archivio%2F2024%2Ff4a6ea18-aef2-440d-ae47-d1e9f3dac3a4%2F20536.pdf",
+                  "sha256": "d1c98be93c3e6a4041b1e09d6a7d7222edc6aebbcb3be0d5d2b1b9dd8f8622ca"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "no text layer",
+                "quote": "3 € 1.776,68 € 1.852,12 € 1.900,62 € 1.949,12 € 1.992,23"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-03-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-comunicazione-artigianato-confartigianato-double-read"
               }
             }
           },
@@ -951,21 +1084,28 @@
             "valid_until": null,
             "value": "1992.23",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "comunicazione-artigianato",
-                  "title": "comunicazione-artigianato",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.redigo.info/ccnl/comunicazione-artigianato"
+                  "document_id": "comunicazione-artigianato-confartigianato-src-d1c98be9",
+                  "title": "comunicazione-artigianato-confartigianato: cnel-198585.pdf",
+                  "kind": "associazione",
+                  "url": "https://azstcnesa0002prodwe001.blob.core.windows.net/archivio-contratti/archivio%2F2024%2Ff4a6ea18-aef2-440d-ae47-d1e9f3dac3a4%2F20536.pdf",
+                  "sha256": "d1c98be93c3e6a4041b1e09d6a7d7222edc6aebbcb3be0d5d2b1b9dd8f8622ca"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "no text layer",
+                "quote": "3 € 1.776,68 € 1.852,12 € 1.900,62 € 1.949,12 € 1.992,23"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-11-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-comunicazione-artigianato-confartigianato-double-read"
               }
             }
           }
@@ -1003,21 +1143,28 @@
             "valid_until": "2025-07-01",
             "value": "1974.78",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "comunicazione-artigianato",
-                  "title": "comunicazione-artigianato",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.redigo.info/ccnl/comunicazione-artigianato"
+                  "document_id": "comunicazione-artigianato-confartigianato-src-d1c98be9",
+                  "title": "comunicazione-artigianato-confartigianato: cnel-198585.pdf",
+                  "kind": "associazione",
+                  "url": "https://azstcnesa0002prodwe001.blob.core.windows.net/archivio-contratti/archivio%2F2024%2Ff4a6ea18-aef2-440d-ae47-d1e9f3dac3a4%2F20536.pdf",
+                  "sha256": "d1c98be93c3e6a4041b1e09d6a7d7222edc6aebbcb3be0d5d2b1b9dd8f8622ca"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "no text layer",
+                "quote": "2 € 1.894,34 € 1.974,78 € 2.026,49 € 2.078,20 € 2.124,16"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2024-12-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-comunicazione-artigianato-confartigianato-double-read"
               }
             }
           },
@@ -1026,21 +1173,28 @@
             "valid_until": "2026-03-01",
             "value": "2026.49",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "comunicazione-artigianato",
-                  "title": "comunicazione-artigianato",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.redigo.info/ccnl/comunicazione-artigianato"
+                  "document_id": "comunicazione-artigianato-confartigianato-src-d1c98be9",
+                  "title": "comunicazione-artigianato-confartigianato: cnel-198585.pdf",
+                  "kind": "associazione",
+                  "url": "https://azstcnesa0002prodwe001.blob.core.windows.net/archivio-contratti/archivio%2F2024%2Ff4a6ea18-aef2-440d-ae47-d1e9f3dac3a4%2F20536.pdf",
+                  "sha256": "d1c98be93c3e6a4041b1e09d6a7d7222edc6aebbcb3be0d5d2b1b9dd8f8622ca"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "no text layer",
+                "quote": "2 € 1.894,34 € 1.974,78 € 2.026,49 € 2.078,20 € 2.124,16"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-comunicazione-artigianato-confartigianato-double-read"
               }
             }
           },
@@ -1049,21 +1203,28 @@
             "valid_until": "2026-11-01",
             "value": "2078.20",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "comunicazione-artigianato",
-                  "title": "comunicazione-artigianato",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.redigo.info/ccnl/comunicazione-artigianato"
+                  "document_id": "comunicazione-artigianato-confartigianato-src-d1c98be9",
+                  "title": "comunicazione-artigianato-confartigianato: cnel-198585.pdf",
+                  "kind": "associazione",
+                  "url": "https://azstcnesa0002prodwe001.blob.core.windows.net/archivio-contratti/archivio%2F2024%2Ff4a6ea18-aef2-440d-ae47-d1e9f3dac3a4%2F20536.pdf",
+                  "sha256": "d1c98be93c3e6a4041b1e09d6a7d7222edc6aebbcb3be0d5d2b1b9dd8f8622ca"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "no text layer",
+                "quote": "2 € 1.894,34 € 1.974,78 € 2.026,49 € 2.078,20 € 2.124,16"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-03-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-comunicazione-artigianato-confartigianato-double-read"
               }
             }
           },
@@ -1072,21 +1233,28 @@
             "valid_until": null,
             "value": "2124.16",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "comunicazione-artigianato",
-                  "title": "comunicazione-artigianato",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.redigo.info/ccnl/comunicazione-artigianato"
+                  "document_id": "comunicazione-artigianato-confartigianato-src-d1c98be9",
+                  "title": "comunicazione-artigianato-confartigianato: cnel-198585.pdf",
+                  "kind": "associazione",
+                  "url": "https://azstcnesa0002prodwe001.blob.core.windows.net/archivio-contratti/archivio%2F2024%2Ff4a6ea18-aef2-440d-ae47-d1e9f3dac3a4%2F20536.pdf",
+                  "sha256": "d1c98be93c3e6a4041b1e09d6a7d7222edc6aebbcb3be0d5d2b1b9dd8f8622ca"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "no text layer",
+                "quote": "2 € 1.894,34 € 1.974,78 € 2.026,49 € 2.078,20 € 2.124,16"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-11-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-comunicazione-artigianato-confartigianato-double-read"
               }
             }
           }
@@ -1147,21 +1315,28 @@
             "valid_until": "2026-03-01",
             "value": "2160.15",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "comunicazione-artigianato",
-                  "title": "comunicazione-artigianato",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.redigo.info/ccnl/comunicazione-artigianato"
+                  "document_id": "comunicazione-artigianato-confartigianato-src-d1c98be9",
+                  "title": "comunicazione-artigianato-confartigianato: cnel-198585.pdf",
+                  "kind": "associazione",
+                  "url": "https://azstcnesa0002prodwe001.blob.core.windows.net/archivio-contratti/archivio%2F2024%2Ff4a6ea18-aef2-440d-ae47-d1e9f3dac3a4%2F20536.pdf",
+                  "sha256": "d1c98be93c3e6a4041b1e09d6a7d7222edc6aebbcb3be0d5d2b1b9dd8f8622ca"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "no text layer",
+                "quote": "1 B € 2.019,29 € 2.105,03 € 2.160,15 € 2.215,27 € 2.264,27"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-comunicazione-artigianato-confartigianato-double-read"
               }
             }
           },
@@ -1170,21 +1345,28 @@
             "valid_until": "2026-11-01",
             "value": "2215.27",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "comunicazione-artigianato",
-                  "title": "comunicazione-artigianato",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.redigo.info/ccnl/comunicazione-artigianato"
+                  "document_id": "comunicazione-artigianato-confartigianato-src-d1c98be9",
+                  "title": "comunicazione-artigianato-confartigianato: cnel-198585.pdf",
+                  "kind": "associazione",
+                  "url": "https://azstcnesa0002prodwe001.blob.core.windows.net/archivio-contratti/archivio%2F2024%2Ff4a6ea18-aef2-440d-ae47-d1e9f3dac3a4%2F20536.pdf",
+                  "sha256": "d1c98be93c3e6a4041b1e09d6a7d7222edc6aebbcb3be0d5d2b1b9dd8f8622ca"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "no text layer",
+                "quote": "1 B € 2.019,29 € 2.105,03 € 2.160,15 € 2.215,27 € 2.264,27"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-03-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-comunicazione-artigianato-confartigianato-double-read"
               }
             }
           },
@@ -1193,21 +1375,28 @@
             "valid_until": null,
             "value": "2264.27",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "comunicazione-artigianato",
-                  "title": "comunicazione-artigianato",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.redigo.info/ccnl/comunicazione-artigianato"
+                  "document_id": "comunicazione-artigianato-confartigianato-src-d1c98be9",
+                  "title": "comunicazione-artigianato-confartigianato: cnel-198585.pdf",
+                  "kind": "associazione",
+                  "url": "https://azstcnesa0002prodwe001.blob.core.windows.net/archivio-contratti/archivio%2F2024%2Ff4a6ea18-aef2-440d-ae47-d1e9f3dac3a4%2F20536.pdf",
+                  "sha256": "d1c98be93c3e6a4041b1e09d6a7d7222edc6aebbcb3be0d5d2b1b9dd8f8622ca"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "no text layer",
+                "quote": "1 B € 2.019,29 € 2.105,03 € 2.160,15 € 2.215,27 € 2.264,27"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-11-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-comunicazione-artigianato-confartigianato-double-read"
               }
             }
           }
@@ -1343,7 +1532,32 @@
               {
                 "valid_from": "2024-12-01",
                 "valid_until": null,
-                "value": "51.65"
+                "value": "51.65",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "comunicazione-artigianato-confartigianato-src-440fbbd1",
+                      "title": "comunicazione-artigianato-confartigianato: cnel-97874.pdf",
+                      "kind": "associazione",
+                      "url": "https://azstcnesa0002prodwe001.blob.core.windows.net/archivio-contratti/archivio%2F2018%2F%2F18664.pdf",
+                      "sha256": "440fbbd1d70618844562748f4bdc95f41384214b6dbe2db98a33111d59b0f4b0"
+                    },
+                    "page": "58",
+                    "section": "no text layer",
+                    "quote": "A far data dal 1° settembre 1990 al personale con qualifica di quadro sarà riconosciuta una indennità di funzione di euro 51,65 con assorbimento del superminimo individuale fino a concorrenza del 50% di tale importo."
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "effective_from": "2024-12-01",
+                    "verified_by": "gpt-6-sol",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-gpt-comunicazione-artigianato-confartigianato-double-read"
+                  }
+                }
               }
             ]
           },
@@ -1469,7 +1683,7 @@
     "effective_until": null,
     "source": "https://www.redigo.info/ccnl/comunicazione-artigianato",
     "verification_status": "unverified",
-    "source_hash": "28e093ac8f1548b169f6caccefe00aa24d612030e4149d9244d904cb5fdbf644",
+    "source_hash": "c90cb3b50f52dcc3ad6443048a408281b8ffe04af0666fd837db494987bb3332",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -1663,5 +1877,35 @@
         }
       }
     }
+  },
+  "verification": {
+    "reviews": [
+      {
+        "id": "2026-11-08-gpt-comunicazione-artigianato-confartigianato-double-read",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Monthly values on scanned pages, each read twice from the page image by two independent sessions of another model, the second without being told the expected value.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://azstcnesa0002prodwe001.blob.core.windows.net/archivio-contratti/archivio%2F2024%2Ff4a6ea18-aef2-440d-ae47-d1e9f3dac3a4%2F20536.pdf",
+            "sha256": "d1c98be93c3e6a4041b1e09d6a7d7222edc6aebbcb3be0d5d2b1b9dd8f8622ca"
+          },
+          {
+            "url": "https://azstcnesa0002prodwe001.blob.core.windows.net/archivio-contratti/archivio%2F2018%2F%2F18664.pdf",
+            "sha256": "440fbbd1d70618844562748f4bdc95f41384214b6dbe2db98a33111d59b0f4b0"
+          }
+        ],
+        "findings": [
+          "28 values read identically by both readings and equal to the file."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "levels.base_salary",
+          "levels.fixed_allowances"
+        ]
+      }
+    ]
   }
 }

@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 41 verified / 49 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 73 verified / 17 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2022-07-07 |
-| **Last review** | 2026-11-07 |
+| **Last review** | 2026-11-08 |
 | **Latest salary tranche** | 2029-07-01 |
 
 ## Review history
@@ -60,6 +60,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | confirmed | Articolo 20 - Tredicesima e quattordicesima mensilita' (p. 20): "Le frazioni di mese pari o superiori a 15 giorni vengono computate come mese intero e si trascurano quelle inferiori.". Match: at_least 15. |
 | 2026-11-06 | claude-opus-5-5 (ai) | Apprentice seniority: art. 23 (p. 21, OCR) and Allegato F of the CCNL of 7 July 2022, with art. 41 c. 1 D.Lgs. 81/2015. | corrected | Art. 23 c. 1: 'Il lavoratore a tempo indeterminato ha diritto a 15 scatti biennali di anzianità'; apprenticeship 'è un contratto di lavoro a tempo indeterminato' (D.Lgs. 81/2015 art. 41 c. 1) and the CCNL excludes no apprentice: the increments of the level the apprentice is paid at. |
 | 2026-11-07 | claude-opus-5-5 (ai) | Ipotesi Farmacie comunali 2027-2029 of 15 September 2026: art. 10 and Allegati B-E (pp. 10, 20-22, page images). | corrected | Four tranches of the retribuzione base mensile from October 2026 to July 2029; level 6 abolished into level 5; quadri allowances and seniority amounts unchanged; the base of level 1C at 31 December 2024 is printed 2,266.38 (the file has 2,266.37). |
+| 2026-11-08 | gpt-6-sol (ai) | Monthly values on scanned pages, each read twice from the page image by two independent sessions of another model, the second without being told the expected value. | confirmed | 37 values read identically by both readings and equal to the file. |
 
 ## Salary table
 

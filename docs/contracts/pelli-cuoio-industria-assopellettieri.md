@@ -42,7 +42,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 0 verified / 35 derived / 1 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 28 verified / 7 derived / 1 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -51,12 +51,14 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2023-05-26 |
-| **Last review** | — |
+| **Last review** | 2026-11-08 |
 | **Latest salary tranche** | 2025-12-01 |
 
 ## Review history
 
-No review is recorded.
+| Date | Reviewer | Scope | Outcome | Findings |
+|---|---|---|---|---|
+| 2026-11-08 | claude-opus-5-5 (ai) | The monthly values of the levels against the primary tables (text layer). | confirmed | 28 values found verbatim on the cited pages and marked verified; 0 left as they were (derived or not on a text page). |
 
 ## Salary table
 

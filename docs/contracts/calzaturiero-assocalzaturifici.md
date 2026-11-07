@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 1 verified / 37 derived / 1 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 32 verified / 6 derived / 1 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-07-17 |
-| **Last review** | 2026-11-06 |
+| **Last review** | 2026-11-08 |
 | **Latest salary tranche** | 2026-08-01 |
 
 ## Review history
@@ -58,6 +58,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | Date | Reviewer | Scope | Outcome | Findings |
 |---|---|---|---|---|
 | 2026-11-06 | claude-opus-5-5 (ai) | CCNL Calzaturiero, text of 17 July 2024: art. 46 seniority (p. 97). | corrected | Four biennial increments and a fifth after four years, not five triennial; the amounts per level match. |
+| 2026-11-08 | claude-opus-5-5 (ai) | The monthly values of the levels against the primary tables (text layer). | confirmed | 32 values found verbatim on the cited pages and marked verified; 0 left as they were (derived or not on a text page). |
 
 ## Salary table
 

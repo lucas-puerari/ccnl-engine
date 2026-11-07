@@ -325,21 +325,28 @@
             "valid_until": "2023-10-01",
             "value": "1105.00",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-rsa-aiop-2012-pdf",
-                  "title": "ccnl-rsa-aiop-2012-pdf",
+                  "document_id": "rsa-aiop-tables-a857ab65",
+                  "title": "rsa-aiop: tabelle retributive (ccnl-2012.pdf)",
                   "kind": "associazione",
-                  "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf"
+                  "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf",
+                  "sha256": "a857ab65ee5a6101fb8ae50099804c1229815a1c676b798896a2ea7ed0260919"
                 },
-                "section": "Tabella retributiva"
+                "page": "25",
+                "section": "Articolo 49 — Retribuzione tabellare",
+                "quote": "A          1.105,00        1.105,00"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2012-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-rsa-aiop-tables"
               }
             }
           },
@@ -348,21 +355,28 @@
             "valid_until": null,
             "value": "1223.57",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-rsa-aiop-2012-pdf",
-                  "title": "ccnl-rsa-aiop-2012-pdf",
+                  "document_id": "rsa-aiop-tables-5369af74",
+                  "title": "rsa-aiop: tabelle retributive (accordo-2023.pdf)",
                   "kind": "associazione",
-                  "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf"
+                  "url": "https://www.frgeditore.it/images/cop/pdf/titolo-6/ccnl/rsa/63_accordo_3-10-2023_aiop.pdf",
+                  "sha256": "5369af742968cdbf536ec3535b8da42bf73a52104390fc9c029e11a7e96635f2"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Allegato A — RETRIBUZIONE TABELLARE",
+                "quote": "A                1.105,00                     118,57                                      1.223,57"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2023-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-rsa-aiop-tables"
               }
             }
           }
@@ -399,21 +413,28 @@
             "valid_until": "2023-10-01",
             "value": "1185.00",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-rsa-aiop-2012-pdf",
-                  "title": "ccnl-rsa-aiop-2012-pdf",
+                  "document_id": "rsa-aiop-tables-a857ab65",
+                  "title": "rsa-aiop: tabelle retributive (ccnl-2012.pdf)",
                   "kind": "associazione",
-                  "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf"
+                  "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf",
+                  "sha256": "a857ab65ee5a6101fb8ae50099804c1229815a1c676b798896a2ea7ed0260919"
                 },
-                "section": "Tabella retributiva"
+                "page": "25",
+                "section": "Articolo 49 — Retribuzione tabellare",
+                "quote": "B          1.185,00        1.185,00"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2012-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-rsa-aiop-tables"
               }
             }
           },
@@ -422,21 +443,28 @@
             "valid_until": null,
             "value": "1311.68",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-rsa-aiop-2012-pdf",
-                  "title": "ccnl-rsa-aiop-2012-pdf",
+                  "document_id": "rsa-aiop-tables-5369af74",
+                  "title": "rsa-aiop: tabelle retributive (accordo-2023.pdf)",
                   "kind": "associazione",
-                  "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf"
+                  "url": "https://www.frgeditore.it/images/cop/pdf/titolo-6/ccnl/rsa/63_accordo_3-10-2023_aiop.pdf",
+                  "sha256": "5369af742968cdbf536ec3535b8da42bf73a52104390fc9c029e11a7e96635f2"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Allegato A — RETRIBUZIONE TABELLARE",
+                "quote": "B                1.185,00                     126,68                                      1.311,68"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2023-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-rsa-aiop-tables"
               }
             }
           }
@@ -473,21 +501,28 @@
             "valid_until": "2023-10-01",
             "value": "1285.00",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-rsa-aiop-2012-pdf",
-                  "title": "ccnl-rsa-aiop-2012-pdf",
+                  "document_id": "rsa-aiop-tables-a857ab65",
+                  "title": "rsa-aiop: tabelle retributive (ccnl-2012.pdf)",
                   "kind": "associazione",
-                  "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf"
+                  "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf",
+                  "sha256": "a857ab65ee5a6101fb8ae50099804c1229815a1c676b798896a2ea7ed0260919"
                 },
-                "section": "Tabella retributiva"
+                "page": "25",
+                "section": "Articolo 49 — Retribuzione tabellare",
+                "quote": "D1          1.285,00        1.285,00"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2012-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-rsa-aiop-tables"
               }
             }
           },
@@ -496,21 +531,28 @@
             "valid_until": null,
             "value": "1419.80",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-rsa-aiop-2012-pdf",
-                  "title": "ccnl-rsa-aiop-2012-pdf",
+                  "document_id": "rsa-aiop-tables-5369af74",
+                  "title": "rsa-aiop: tabelle retributive (accordo-2023.pdf)",
                   "kind": "associazione",
-                  "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf"
+                  "url": "https://www.frgeditore.it/images/cop/pdf/titolo-6/ccnl/rsa/63_accordo_3-10-2023_aiop.pdf",
+                  "sha256": "5369af742968cdbf536ec3535b8da42bf73a52104390fc9c029e11a7e96635f2"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Allegato A — RETRIBUZIONE TABELLARE",
+                "quote": "D1               1.285,00                     134,80                                      1.419,80"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2023-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-rsa-aiop-tables"
               }
             }
           }
@@ -547,21 +589,28 @@
             "valid_until": "2023-10-01",
             "value": "1285.00",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-rsa-aiop-2012-pdf",
-                  "title": "ccnl-rsa-aiop-2012-pdf",
+                  "document_id": "rsa-aiop-tables-a857ab65",
+                  "title": "rsa-aiop: tabelle retributive (ccnl-2012.pdf)",
                   "kind": "associazione",
-                  "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf"
+                  "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf",
+                  "sha256": "a857ab65ee5a6101fb8ae50099804c1229815a1c676b798896a2ea7ed0260919"
                 },
-                "section": "Tabella retributiva"
+                "page": "25",
+                "section": "Articolo 49 — Retribuzione tabellare",
+                "quote": "D1          1.285,00        1.285,00"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2012-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-rsa-aiop-tables"
               }
             }
           },
@@ -570,21 +619,28 @@
             "valid_until": null,
             "value": "1419.80",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-rsa-aiop-2012-pdf",
-                  "title": "ccnl-rsa-aiop-2012-pdf",
+                  "document_id": "rsa-aiop-tables-5369af74",
+                  "title": "rsa-aiop: tabelle retributive (accordo-2023.pdf)",
                   "kind": "associazione",
-                  "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf"
+                  "url": "https://www.frgeditore.it/images/cop/pdf/titolo-6/ccnl/rsa/63_accordo_3-10-2023_aiop.pdf",
+                  "sha256": "5369af742968cdbf536ec3535b8da42bf73a52104390fc9c029e11a7e96635f2"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Allegato A — RETRIBUZIONE TABELLARE",
+                "quote": "D1               1.285,00                     134,80                                      1.419,80"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2023-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-rsa-aiop-tables"
               }
             }
           }
@@ -621,21 +677,28 @@
             "valid_until": "2023-10-01",
             "value": "1325.00",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-rsa-aiop-2012-pdf",
-                  "title": "ccnl-rsa-aiop-2012-pdf",
+                  "document_id": "rsa-aiop-tables-a857ab65",
+                  "title": "rsa-aiop: tabelle retributive (ccnl-2012.pdf)",
                   "kind": "associazione",
-                  "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf"
+                  "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf",
+                  "sha256": "a857ab65ee5a6101fb8ae50099804c1229815a1c676b798896a2ea7ed0260919"
                 },
-                "section": "Tabella retributiva"
+                "page": "25",
+                "section": "Articolo 49 — Retribuzione tabellare",
+                "quote": "D2          1.325,00        1.325,00"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2012-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-rsa-aiop-tables"
               }
             }
           },
@@ -644,21 +707,28 @@
             "valid_until": null,
             "value": "1463.33",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-rsa-aiop-2012-pdf",
-                  "title": "ccnl-rsa-aiop-2012-pdf",
+                  "document_id": "rsa-aiop-tables-5369af74",
+                  "title": "rsa-aiop: tabelle retributive (accordo-2023.pdf)",
                   "kind": "associazione",
-                  "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf"
+                  "url": "https://www.frgeditore.it/images/cop/pdf/titolo-6/ccnl/rsa/63_accordo_3-10-2023_aiop.pdf",
+                  "sha256": "5369af742968cdbf536ec3535b8da42bf73a52104390fc9c029e11a7e96635f2"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Allegato A — RETRIBUZIONE TABELLARE",
+                "quote": "D2               1.325,00                     138,33                                      1.463,33"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2023-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-rsa-aiop-tables"
               }
             }
           }
@@ -695,21 +765,28 @@
             "valid_until": "2023-10-01",
             "value": "1355.00",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-rsa-aiop-2012-pdf",
-                  "title": "ccnl-rsa-aiop-2012-pdf",
+                  "document_id": "rsa-aiop-tables-a857ab65",
+                  "title": "rsa-aiop: tabelle retributive (ccnl-2012.pdf)",
                   "kind": "associazione",
-                  "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf"
+                  "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf",
+                  "sha256": "a857ab65ee5a6101fb8ae50099804c1229815a1c676b798896a2ea7ed0260919"
                 },
-                "section": "Tabella retributiva"
+                "page": "25",
+                "section": "Articolo 49 — Retribuzione tabellare",
+                "quote": "D3          1.355,00        1.355,00"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2012-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-rsa-aiop-tables"
               }
             }
           },
@@ -718,21 +795,28 @@
             "valid_until": null,
             "value": "1496.06",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-rsa-aiop-2012-pdf",
-                  "title": "ccnl-rsa-aiop-2012-pdf",
+                  "document_id": "rsa-aiop-tables-5369af74",
+                  "title": "rsa-aiop: tabelle retributive (accordo-2023.pdf)",
                   "kind": "associazione",
-                  "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf"
+                  "url": "https://www.frgeditore.it/images/cop/pdf/titolo-6/ccnl/rsa/63_accordo_3-10-2023_aiop.pdf",
+                  "sha256": "5369af742968cdbf536ec3535b8da42bf73a52104390fc9c029e11a7e96635f2"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Allegato A — RETRIBUZIONE TABELLARE",
+                "quote": "D3               1.355,00                     141,06                                      1.496,06"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2023-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-rsa-aiop-tables"
               }
             }
           }
@@ -769,21 +853,28 @@
             "valid_until": "2023-10-01",
             "value": "1405.00",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-rsa-aiop-2012-pdf",
-                  "title": "ccnl-rsa-aiop-2012-pdf",
+                  "document_id": "rsa-aiop-tables-a857ab65",
+                  "title": "rsa-aiop: tabelle retributive (ccnl-2012.pdf)",
                   "kind": "associazione",
-                  "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf"
+                  "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf",
+                  "sha256": "a857ab65ee5a6101fb8ae50099804c1229815a1c676b798896a2ea7ed0260919"
                 },
-                "section": "Tabella retributiva"
+                "page": "25",
+                "section": "Articolo 49 — Retribuzione tabellare",
+                "quote": "E1          1.405,00        1.405,00"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2012-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-rsa-aiop-tables"
               }
             }
           },
@@ -792,21 +883,28 @@
             "valid_until": null,
             "value": "1550.56",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-rsa-aiop-2012-pdf",
-                  "title": "ccnl-rsa-aiop-2012-pdf",
+                  "document_id": "rsa-aiop-tables-5369af74",
+                  "title": "rsa-aiop: tabelle retributive (accordo-2023.pdf)",
                   "kind": "associazione",
-                  "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf"
+                  "url": "https://www.frgeditore.it/images/cop/pdf/titolo-6/ccnl/rsa/63_accordo_3-10-2023_aiop.pdf",
+                  "sha256": "5369af742968cdbf536ec3535b8da42bf73a52104390fc9c029e11a7e96635f2"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Allegato A — RETRIBUZIONE TABELLARE",
+                "quote": "E1               1.405,00                     145,56                                      1.550,56"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2023-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-rsa-aiop-tables"
               }
             }
           }
@@ -843,21 +941,28 @@
             "valid_until": "2023-10-01",
             "value": "1455.00",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-rsa-aiop-2012-pdf",
-                  "title": "ccnl-rsa-aiop-2012-pdf",
+                  "document_id": "rsa-aiop-tables-a857ab65",
+                  "title": "rsa-aiop: tabelle retributive (ccnl-2012.pdf)",
                   "kind": "associazione",
-                  "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf"
+                  "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf",
+                  "sha256": "a857ab65ee5a6101fb8ae50099804c1229815a1c676b798896a2ea7ed0260919"
                 },
-                "section": "Tabella retributiva"
+                "page": "25",
+                "section": "Articolo 49 — Retribuzione tabellare",
+                "quote": "E2          1.455,00        1.455,00"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2012-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-rsa-aiop-tables"
               }
             }
           },
@@ -866,21 +971,28 @@
             "valid_until": null,
             "value": "1746.00",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-rsa-aiop-2012-pdf",
-                  "title": "ccnl-rsa-aiop-2012-pdf",
+                  "document_id": "rsa-aiop-tables-5369af74",
+                  "title": "rsa-aiop: tabelle retributive (accordo-2023.pdf)",
                   "kind": "associazione",
-                  "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf"
+                  "url": "https://www.frgeditore.it/images/cop/pdf/titolo-6/ccnl/rsa/63_accordo_3-10-2023_aiop.pdf",
+                  "sha256": "5369af742968cdbf536ec3535b8da42bf73a52104390fc9c029e11a7e96635f2"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Allegato A — RETRIBUZIONE TABELLARE",
+                "quote": "E2               1.455,00                     291,00                                      1.746,00"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2023-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-rsa-aiop-tables"
               }
             }
           }
@@ -917,21 +1029,28 @@
             "valid_until": "2023-10-01",
             "value": "1505.00",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-rsa-aiop-2012-pdf",
-                  "title": "ccnl-rsa-aiop-2012-pdf",
+                  "document_id": "rsa-aiop-tables-a857ab65",
+                  "title": "rsa-aiop: tabelle retributive (ccnl-2012.pdf)",
                   "kind": "associazione",
-                  "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf"
+                  "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf",
+                  "sha256": "a857ab65ee5a6101fb8ae50099804c1229815a1c676b798896a2ea7ed0260919"
                 },
-                "section": "Tabella retributiva"
+                "page": "25",
+                "section": "Articolo 49 — Retribuzione tabellare",
+                "quote": "E3          1.505,00        1.505,00"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2012-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-rsa-aiop-tables"
               }
             }
           },
@@ -940,21 +1059,28 @@
             "valid_until": null,
             "value": "1806.00",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-rsa-aiop-2012-pdf",
-                  "title": "ccnl-rsa-aiop-2012-pdf",
+                  "document_id": "rsa-aiop-tables-5369af74",
+                  "title": "rsa-aiop: tabelle retributive (accordo-2023.pdf)",
                   "kind": "associazione",
-                  "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf"
+                  "url": "https://www.frgeditore.it/images/cop/pdf/titolo-6/ccnl/rsa/63_accordo_3-10-2023_aiop.pdf",
+                  "sha256": "5369af742968cdbf536ec3535b8da42bf73a52104390fc9c029e11a7e96635f2"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Allegato A — RETRIBUZIONE TABELLARE",
+                "quote": "E3               1.505,00                     301,00                                      1.806,00"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2023-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-rsa-aiop-tables"
               }
             }
           }
@@ -991,21 +1117,28 @@
             "valid_until": "2023-10-01",
             "value": "1905.00",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-rsa-aiop-2012-pdf",
-                  "title": "ccnl-rsa-aiop-2012-pdf",
+                  "document_id": "rsa-aiop-tables-a857ab65",
+                  "title": "rsa-aiop: tabelle retributive (ccnl-2012.pdf)",
                   "kind": "associazione",
-                  "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf"
+                  "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf",
+                  "sha256": "a857ab65ee5a6101fb8ae50099804c1229815a1c676b798896a2ea7ed0260919"
                 },
-                "section": "Tabella retributiva"
+                "page": "25",
+                "section": "Articolo 49 — Retribuzione tabellare",
+                "quote": "F          1.905,00        1.905,00"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2012-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-rsa-aiop-tables"
               }
             }
           },
@@ -1014,21 +1147,28 @@
             "valid_until": null,
             "value": "2095.50",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-rsa-aiop-2012-pdf",
-                  "title": "ccnl-rsa-aiop-2012-pdf",
+                  "document_id": "rsa-aiop-tables-5369af74",
+                  "title": "rsa-aiop: tabelle retributive (accordo-2023.pdf)",
                   "kind": "associazione",
-                  "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf"
+                  "url": "https://www.frgeditore.it/images/cop/pdf/titolo-6/ccnl/rsa/63_accordo_3-10-2023_aiop.pdf",
+                  "sha256": "5369af742968cdbf536ec3535b8da42bf73a52104390fc9c029e11a7e96635f2"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Allegato A — RETRIBUZIONE TABELLARE",
+                "quote": "F                1.905,00                     190,50                                      2.095,50"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2023-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-rsa-aiop-tables"
               }
             }
           }
@@ -1065,21 +1205,28 @@
             "valid_until": "2023-10-01",
             "value": "2505.00",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-rsa-aiop-2012-pdf",
-                  "title": "ccnl-rsa-aiop-2012-pdf",
+                  "document_id": "rsa-aiop-tables-a857ab65",
+                  "title": "rsa-aiop: tabelle retributive (ccnl-2012.pdf)",
                   "kind": "associazione",
-                  "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf"
+                  "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf",
+                  "sha256": "a857ab65ee5a6101fb8ae50099804c1229815a1c676b798896a2ea7ed0260919"
                 },
-                "section": "Tabella retributiva"
+                "page": "25",
+                "section": "Articolo 49 — Retribuzione tabellare",
+                "quote": "G          2.505,00        2.505,00"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2012-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-rsa-aiop-tables"
               }
             }
           },
@@ -1088,21 +1235,28 @@
             "valid_until": null,
             "value": "2749.49",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-rsa-aiop-2012-pdf",
-                  "title": "ccnl-rsa-aiop-2012-pdf",
+                  "document_id": "rsa-aiop-tables-5369af74",
+                  "title": "rsa-aiop: tabelle retributive (accordo-2023.pdf)",
                   "kind": "associazione",
-                  "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf"
+                  "url": "https://www.frgeditore.it/images/cop/pdf/titolo-6/ccnl/rsa/63_accordo_3-10-2023_aiop.pdf",
+                  "sha256": "5369af742968cdbf536ec3535b8da42bf73a52104390fc9c029e11a7e96635f2"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Allegato A — RETRIBUZIONE TABELLARE",
+                "quote": "G                2.505,00                     244,49                                      2.749,49"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2023-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-rsa-aiop-tables"
               }
             }
           }
@@ -1139,21 +1293,28 @@
             "valid_until": "2023-10-01",
             "value": "3005.00",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-rsa-aiop-2012-pdf",
-                  "title": "ccnl-rsa-aiop-2012-pdf",
+                  "document_id": "rsa-aiop-tables-a857ab65",
+                  "title": "rsa-aiop: tabelle retributive (ccnl-2012.pdf)",
                   "kind": "associazione",
-                  "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf"
+                  "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf",
+                  "sha256": "a857ab65ee5a6101fb8ae50099804c1229815a1c676b798896a2ea7ed0260919"
                 },
-                "section": "Tabella retributiva"
+                "page": "25",
+                "section": "Articolo 49 — Retribuzione tabellare",
+                "quote": "H          3.005,00        3.005,00"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2012-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-rsa-aiop-tables"
               }
             }
           },
@@ -1162,21 +1323,28 @@
             "valid_until": null,
             "value": "3294.68",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-rsa-aiop-2012-pdf",
-                  "title": "ccnl-rsa-aiop-2012-pdf",
+                  "document_id": "rsa-aiop-tables-5369af74",
+                  "title": "rsa-aiop: tabelle retributive (accordo-2023.pdf)",
                   "kind": "associazione",
-                  "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf"
+                  "url": "https://www.frgeditore.it/images/cop/pdf/titolo-6/ccnl/rsa/63_accordo_3-10-2023_aiop.pdf",
+                  "sha256": "5369af742968cdbf536ec3535b8da42bf73a52104390fc9c029e11a7e96635f2"
                 },
-                "section": "Tabella retributiva"
+                "page": "2",
+                "section": "Allegato A — RETRIBUZIONE TABELLARE",
+                "quote": "H                3.005,00                     289,68                                      3.294,68"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2023-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-rsa-aiop-tables"
               }
             }
           }
@@ -1210,7 +1378,7 @@
     "effective_until": null,
     "source": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf",
     "verification_status": "unverified",
-    "source_hash": "be139198f13682a0dd2963f7b3b92b822a992522f1f5b0224c379424ac904275",
+    "source_hash": "cdd48d41e2583c9c5740530c4b2938a014175230db8fcd08806e0bbf7dc04f9e",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1436,5 +1604,35 @@
         }
       }
     }
+  },
+  "verification": {
+    "reviews": [
+      {
+        "id": "2026-11-08-ai-rsa-aiop-tables",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The monthly values of the levels against the primary tables (text layer).",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf",
+            "sha256": "a857ab65ee5a6101fb8ae50099804c1229815a1c676b798896a2ea7ed0260919"
+          },
+          {
+            "url": "https://www.frgeditore.it/images/cop/pdf/titolo-6/ccnl/rsa/63_accordo_3-10-2023_aiop.pdf",
+            "sha256": "5369af742968cdbf536ec3535b8da42bf73a52104390fc9c029e11a7e96635f2"
+          }
+        ],
+        "findings": [
+          "24 values found verbatim on the cited pages and marked verified; 0 left as they were (derived or not on a text page)."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels.base_salary",
+          "levels.fixed_allowances"
+        ]
+      }
+    ]
   }
 }

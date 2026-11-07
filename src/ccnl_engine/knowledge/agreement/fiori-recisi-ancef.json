@@ -140,6 +140,28 @@
         "findings": [
           "Articolo 46 - 13° Mensilità (p. 29): \"Nel caso di inizio o di cessazione del rapporto di lavoro durante il corso dell’anno, e sempre che sia superato il periodo di prova, il lavoratore avrà diritto a tanti dodicesimi dell’ammontare della tredicesima mensilità per quanti sono i mesi di servizio prestati nell’azienda, intendendo per mese intero, le frazioni pari o superiori a 15 giorni.\". Added: at_least 15 (the file applied the engine default, at least 15 days)."
         ]
+      },
+      {
+        "id": "2026-11-08-ai-fiori-recisi-ancef-tables",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The monthly values of the levels against the primary tables (text layer).",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.ancef.eu/wp-content/uploads/2025/01/Librettro-Ancef-A5-con-copertina-per-uso-digitale.pdf",
+            "sha256": "371f86a796d33168137e99730c70c9df1c580d789695644fad8cef6eda69d8fd"
+          }
+        ],
+        "findings": [
+          "30 values found verbatim on the cited pages and marked verified; 2 left as they were (derived or not on a text page)."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels.base_salary",
+          "levels.fixed_allowances"
+        ]
       }
     ]
   },
@@ -368,21 +390,28 @@
             "valid_until": "2024-01-01",
             "value": "2563.88",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "fiori-recisi-ancef",
-                  "title": "fiori-recisi-ancef",
-                  "kind": "rivista",
-                  "url": "https://www.ccnlportatili.it/ccnl/fiori-recisi/"
+                  "document_id": "fiori-recisi-ancef-tables-371f86a7",
+                  "title": "fiori-recisi-ancef: tabelle retributive (ancef-2023-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.ancef.eu/wp-content/uploads/2025/01/Librettro-Ancef-A5-con-copertina-per-uso-digitale.pdf",
+                  "sha256": "371f86a796d33168137e99730c70c9df1c580d789695644fad8cef6eda69d8fd"
                 },
-                "section": "Tabella retributiva"
+                "page": "27",
+                "section": "Articolo 45 – Retribuzione; Tabelle Paga a valere dal 1.01.2023",
+                "quote": "Quadri         225         2023.98        529.57           10.33    2.563,88"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2023-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-fiori-recisi-ancef-tables"
               }
             }
           },
@@ -391,21 +420,28 @@
             "valid_until": "2025-01-01",
             "value": "2597.97",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "fiori-recisi-ancef",
-                  "title": "fiori-recisi-ancef",
-                  "kind": "rivista",
-                  "url": "https://www.ccnlportatili.it/ccnl/fiori-recisi/"
+                  "document_id": "fiori-recisi-ancef-tables-371f86a7",
+                  "title": "fiori-recisi-ancef: tabelle retributive (ancef-2023-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.ancef.eu/wp-content/uploads/2025/01/Librettro-Ancef-A5-con-copertina-per-uso-digitale.pdf",
+                  "sha256": "371f86a796d33168137e99730c70c9df1c580d789695644fad8cef6eda69d8fd"
                 },
-                "section": "Tabella retributiva"
+                "page": "28",
+                "section": "Articolo 45 – Retribuzione; Tabelle Paga a valere dal 1.01.2024",
+                "quote": "Quadri        225       2058.07       529.57      10.33      2.597,97"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2024-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-fiori-recisi-ancef-tables"
               }
             }
           },
@@ -414,21 +450,28 @@
             "valid_until": "2026-01-01",
             "value": "2649.11",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "fiori-recisi-ancef",
-                  "title": "fiori-recisi-ancef",
-                  "kind": "rivista",
-                  "url": "https://www.ccnlportatili.it/ccnl/fiori-recisi/"
+                  "document_id": "fiori-recisi-ancef-tables-371f86a7",
+                  "title": "fiori-recisi-ancef: tabelle retributive (ancef-2023-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.ancef.eu/wp-content/uploads/2025/01/Librettro-Ancef-A5-con-copertina-per-uso-digitale.pdf",
+                  "sha256": "371f86a796d33168137e99730c70c9df1c580d789695644fad8cef6eda69d8fd"
                 },
-                "section": "Tabella retributiva"
+                "page": "28",
+                "section": "Articolo 45 – Retribuzione; Tabelle Paga a valere dal 1.01.2025",
+                "quote": "Quadri        225       2109.21       529.57      10.33      2.649,11"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-fiori-recisi-ancef-tables"
               }
             }
           },
@@ -437,21 +480,28 @@
             "valid_until": null,
             "value": "2700.25",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "fiori-recisi-ancef",
-                  "title": "fiori-recisi-ancef",
-                  "kind": "rivista",
-                  "url": "https://www.ccnlportatili.it/ccnl/fiori-recisi/"
+                  "document_id": "fiori-recisi-ancef-tables-371f86a7",
+                  "title": "fiori-recisi-ancef: tabelle retributive (ancef-2023-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.ancef.eu/wp-content/uploads/2025/01/Librettro-Ancef-A5-con-copertina-per-uso-digitale.pdf",
+                  "sha256": "371f86a796d33168137e99730c70c9df1c580d789695644fad8cef6eda69d8fd"
                 },
-                "section": "Tabella retributiva"
+                "page": "28",
+                "section": "Articolo 45 – Retribuzione; Tabelle Paga a valere dal 1.01.2026",
+                "quote": "Quadri        225       2160.35       529.57      10.33      2.700,25"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-fiori-recisi-ancef-tables"
               }
             }
           }
@@ -488,21 +538,28 @@
             "valid_until": "2024-01-01",
             "value": "2339.01",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "fiori-recisi-ancef",
-                  "title": "fiori-recisi-ancef",
-                  "kind": "rivista",
-                  "url": "https://www.ccnlportatili.it/ccnl/fiori-recisi/"
+                  "document_id": "fiori-recisi-ancef-tables-371f86a7",
+                  "title": "fiori-recisi-ancef: tabelle retributive (ancef-2023-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.ancef.eu/wp-content/uploads/2025/01/Librettro-Ancef-A5-con-copertina-per-uso-digitale.pdf",
+                  "sha256": "371f86a796d33168137e99730c70c9df1c580d789695644fad8cef6eda69d8fd"
                 },
-                "section": "Tabella retributiva"
+                "page": "27",
+                "section": "Articolo 45 – Retribuzione; Tabelle Paga a valere dal 1.01.2023",
+                "quote": "1/S           200         1799.11        529.57           10.33    2.339,01"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2023-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-fiori-recisi-ancef-tables"
               }
             }
           },
@@ -511,21 +568,28 @@
             "valid_until": "2025-01-01",
             "value": "2369.31",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "fiori-recisi-ancef",
-                  "title": "fiori-recisi-ancef",
-                  "kind": "rivista",
-                  "url": "https://www.ccnlportatili.it/ccnl/fiori-recisi/"
+                  "document_id": "fiori-recisi-ancef-tables-371f86a7",
+                  "title": "fiori-recisi-ancef: tabelle retributive (ancef-2023-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.ancef.eu/wp-content/uploads/2025/01/Librettro-Ancef-A5-con-copertina-per-uso-digitale.pdf",
+                  "sha256": "371f86a796d33168137e99730c70c9df1c580d789695644fad8cef6eda69d8fd"
                 },
-                "section": "Tabella retributiva"
+                "page": "28",
+                "section": "Articolo 45 – Retribuzione; Tabelle Paga a valere dal 1.01.2024",
+                "quote": "1/S          200       1829.41       529.57      10.33      2.369,31"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2024-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-fiori-recisi-ancef-tables"
               }
             }
           },
@@ -534,21 +598,28 @@
             "valid_until": "2026-01-01",
             "value": "2414.76",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "fiori-recisi-ancef",
-                  "title": "fiori-recisi-ancef",
-                  "kind": "rivista",
-                  "url": "https://www.ccnlportatili.it/ccnl/fiori-recisi/"
+                  "document_id": "fiori-recisi-ancef-tables-371f86a7",
+                  "title": "fiori-recisi-ancef: tabelle retributive (ancef-2023-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.ancef.eu/wp-content/uploads/2025/01/Librettro-Ancef-A5-con-copertina-per-uso-digitale.pdf",
+                  "sha256": "371f86a796d33168137e99730c70c9df1c580d789695644fad8cef6eda69d8fd"
                 },
-                "section": "Tabella retributiva"
+                "page": "28",
+                "section": "Articolo 45 – Retribuzione; Tabelle Paga a valere dal 1.01.2025",
+                "quote": "1/S          200       1874.86       529.57      10.33      2.414,76"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-fiori-recisi-ancef-tables"
               }
             }
           },
@@ -557,21 +628,28 @@
             "valid_until": null,
             "value": "2460.21",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "fiori-recisi-ancef",
-                  "title": "fiori-recisi-ancef",
-                  "kind": "rivista",
-                  "url": "https://www.ccnlportatili.it/ccnl/fiori-recisi/"
+                  "document_id": "fiori-recisi-ancef-tables-371f86a7",
+                  "title": "fiori-recisi-ancef: tabelle retributive (ancef-2023-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.ancef.eu/wp-content/uploads/2025/01/Librettro-Ancef-A5-con-copertina-per-uso-digitale.pdf",
+                  "sha256": "371f86a796d33168137e99730c70c9df1c580d789695644fad8cef6eda69d8fd"
                 },
-                "section": "Tabella retributiva"
+                "page": "28",
+                "section": "Articolo 45 – Retribuzione; Tabelle Paga a valere dal 1.01.2026",
+                "quote": "1/S          200       1920.31       529.57      10.33      2.460,21"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-fiori-recisi-ancef-tables"
               }
             }
           }
@@ -608,21 +686,28 @@
             "valid_until": "2024-01-01",
             "value": "2081.12",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "fiori-recisi-ancef",
-                  "title": "fiori-recisi-ancef",
-                  "kind": "rivista",
-                  "url": "https://www.ccnlportatili.it/ccnl/fiori-recisi/"
+                  "document_id": "fiori-recisi-ancef-tables-371f86a7",
+                  "title": "fiori-recisi-ancef: tabelle retributive (ancef-2023-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.ancef.eu/wp-content/uploads/2025/01/Librettro-Ancef-A5-con-copertina-per-uso-digitale.pdf",
+                  "sha256": "371f86a796d33168137e99730c70c9df1c580d789695644fad8cef6eda69d8fd"
                 },
-                "section": "Tabella retributiva"
+                "page": "27",
+                "section": "Articolo 45 – Retribuzione; Tabelle Paga a valere dal 1.01.2023",
+                "quote": "1           172         1547.24        523.55           10.33    2.081,12"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2023-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-fiori-recisi-ancef-tables"
               }
             }
           },
@@ -631,21 +716,28 @@
             "valid_until": "2025-01-01",
             "value": "2107.18",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "fiori-recisi-ancef",
-                  "title": "fiori-recisi-ancef",
-                  "kind": "rivista",
-                  "url": "https://www.ccnlportatili.it/ccnl/fiori-recisi/"
+                  "document_id": "fiori-recisi-ancef-tables-371f86a7",
+                  "title": "fiori-recisi-ancef: tabelle retributive (ancef-2023-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.ancef.eu/wp-content/uploads/2025/01/Librettro-Ancef-A5-con-copertina-per-uso-digitale.pdf",
+                  "sha256": "371f86a796d33168137e99730c70c9df1c580d789695644fad8cef6eda69d8fd"
                 },
-                "section": "Tabella retributiva"
+                "page": "28",
+                "section": "Articolo 45 – Retribuzione; Tabelle Paga a valere dal 1.01.2024",
+                "quote": "1          172       1573.30       523.55      10.33      2.107,18"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2024-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-fiori-recisi-ancef-tables"
               }
             }
           },
@@ -654,21 +746,28 @@
             "valid_until": "2026-01-01",
             "value": "2146.27",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "fiori-recisi-ancef",
-                  "title": "fiori-recisi-ancef",
-                  "kind": "rivista",
-                  "url": "https://www.ccnlportatili.it/ccnl/fiori-recisi/"
+                  "document_id": "fiori-recisi-ancef-tables-371f86a7",
+                  "title": "fiori-recisi-ancef: tabelle retributive (ancef-2023-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.ancef.eu/wp-content/uploads/2025/01/Librettro-Ancef-A5-con-copertina-per-uso-digitale.pdf",
+                  "sha256": "371f86a796d33168137e99730c70c9df1c580d789695644fad8cef6eda69d8fd"
                 },
-                "section": "Tabella retributiva"
+                "page": "28",
+                "section": "Articolo 45 – Retribuzione; Tabelle Paga a valere dal 1.01.2025",
+                "quote": "1          172       1612.39       523.55      10.33      2.146,27"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-fiori-recisi-ancef-tables"
               }
             }
           },
@@ -677,21 +776,28 @@
             "valid_until": null,
             "value": "2185.36",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "fiori-recisi-ancef",
-                  "title": "fiori-recisi-ancef",
-                  "kind": "rivista",
-                  "url": "https://www.ccnlportatili.it/ccnl/fiori-recisi/"
+                  "document_id": "fiori-recisi-ancef-tables-371f86a7",
+                  "title": "fiori-recisi-ancef: tabelle retributive (ancef-2023-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.ancef.eu/wp-content/uploads/2025/01/Librettro-Ancef-A5-con-copertina-per-uso-digitale.pdf",
+                  "sha256": "371f86a796d33168137e99730c70c9df1c580d789695644fad8cef6eda69d8fd"
                 },
-                "section": "Tabella retributiva"
+                "page": "28",
+                "section": "Articolo 45 – Retribuzione; Tabelle Paga a valere dal 1.01.2026",
+                "quote": "1          172       1651.48       523.55      10.33      2.185,36"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-fiori-recisi-ancef-tables"
               }
             }
           }
@@ -728,21 +834,28 @@
             "valid_until": "2024-01-01",
             "value": "1832.61",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "fiori-recisi-ancef",
-                  "title": "fiori-recisi-ancef",
-                  "kind": "rivista",
-                  "url": "https://www.ccnlportatili.it/ccnl/fiori-recisi/"
+                  "document_id": "fiori-recisi-ancef-tables-371f86a7",
+                  "title": "fiori-recisi-ancef: tabelle retributive (ancef-2023-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.ancef.eu/wp-content/uploads/2025/01/Librettro-Ancef-A5-con-copertina-per-uso-digitale.pdf",
+                  "sha256": "371f86a796d33168137e99730c70c9df1c580d789695644fad8cef6eda69d8fd"
                 },
-                "section": "Tabella retributiva"
+                "page": "27",
+                "section": "Articolo 45 – Retribuzione; Tabelle Paga a valere dal 1.01.2023",
+                "quote": "2           145         1304.35        517.93           10.33    1.832,61"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2023-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-fiori-recisi-ancef-tables"
               }
             }
           },
@@ -751,21 +864,28 @@
             "valid_until": "2025-01-01",
             "value": "1854.58",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "fiori-recisi-ancef",
-                  "title": "fiori-recisi-ancef",
-                  "kind": "rivista",
-                  "url": "https://www.ccnlportatili.it/ccnl/fiori-recisi/"
+                  "document_id": "fiori-recisi-ancef-tables-371f86a7",
+                  "title": "fiori-recisi-ancef: tabelle retributive (ancef-2023-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.ancef.eu/wp-content/uploads/2025/01/Librettro-Ancef-A5-con-copertina-per-uso-digitale.pdf",
+                  "sha256": "371f86a796d33168137e99730c70c9df1c580d789695644fad8cef6eda69d8fd"
                 },
-                "section": "Tabella retributiva"
+                "page": "28",
+                "section": "Articolo 45 – Retribuzione; Tabelle Paga a valere dal 1.01.2024",
+                "quote": "2          145       1326.32       517.93      10.33      1.854,58"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2024-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-fiori-recisi-ancef-tables"
               }
             }
           },
@@ -774,21 +894,28 @@
             "valid_until": "2026-01-01",
             "value": "1887.53",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "fiori-recisi-ancef",
-                  "title": "fiori-recisi-ancef",
-                  "kind": "rivista",
-                  "url": "https://www.ccnlportatili.it/ccnl/fiori-recisi/"
+                  "document_id": "fiori-recisi-ancef-tables-371f86a7",
+                  "title": "fiori-recisi-ancef: tabelle retributive (ancef-2023-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.ancef.eu/wp-content/uploads/2025/01/Librettro-Ancef-A5-con-copertina-per-uso-digitale.pdf",
+                  "sha256": "371f86a796d33168137e99730c70c9df1c580d789695644fad8cef6eda69d8fd"
                 },
-                "section": "Tabella retributiva"
+                "page": "28",
+                "section": "Articolo 45 – Retribuzione; Tabelle Paga a valere dal 1.01.2025",
+                "quote": "2          145       1359.27       517.93      10.33      1.887,53"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-fiori-recisi-ancef-tables"
               }
             }
           },
@@ -797,21 +924,28 @@
             "valid_until": null,
             "value": "1920.48",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "fiori-recisi-ancef",
-                  "title": "fiori-recisi-ancef",
-                  "kind": "rivista",
-                  "url": "https://www.ccnlportatili.it/ccnl/fiori-recisi/"
+                  "document_id": "fiori-recisi-ancef-tables-371f86a7",
+                  "title": "fiori-recisi-ancef: tabelle retributive (ancef-2023-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.ancef.eu/wp-content/uploads/2025/01/Librettro-Ancef-A5-con-copertina-per-uso-digitale.pdf",
+                  "sha256": "371f86a796d33168137e99730c70c9df1c580d789695644fad8cef6eda69d8fd"
                 },
-                "section": "Tabella retributiva"
+                "page": "28",
+                "section": "Articolo 45 – Retribuzione; Tabelle Paga a valere dal 1.01.2026",
+                "quote": "2          145       1392.22       517.93      10.33      1.920,48"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-fiori-recisi-ancef-tables"
               }
             }
           }
@@ -848,21 +982,28 @@
             "valid_until": "2024-01-01",
             "value": "1712.57",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "fiori-recisi-ancef",
-                  "title": "fiori-recisi-ancef",
-                  "kind": "rivista",
-                  "url": "https://www.ccnlportatili.it/ccnl/fiori-recisi/"
+                  "document_id": "fiori-recisi-ancef-tables-371f86a7",
+                  "title": "fiori-recisi-ancef: tabelle retributive (ancef-2023-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.ancef.eu/wp-content/uploads/2025/01/Librettro-Ancef-A5-con-copertina-per-uso-digitale.pdf",
+                  "sha256": "371f86a796d33168137e99730c70c9df1c580d789695644fad8cef6eda69d8fd"
                 },
-                "section": "Tabella retributiva"
+                "page": "27",
+                "section": "Articolo 45 – Retribuzione; Tabelle Paga a valere dal 1.01.2023",
+                "quote": "3           132         1187.42        514.82           10.33    1.712,57"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2023-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-fiori-recisi-ancef-tables"
               }
             }
           },
@@ -871,21 +1012,28 @@
             "valid_until": "2025-01-01",
             "value": "1732.57",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "fiori-recisi-ancef",
-                  "title": "fiori-recisi-ancef",
-                  "kind": "rivista",
-                  "url": "https://www.ccnlportatili.it/ccnl/fiori-recisi/"
+                  "document_id": "fiori-recisi-ancef-tables-371f86a7",
+                  "title": "fiori-recisi-ancef: tabelle retributive (ancef-2023-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.ancef.eu/wp-content/uploads/2025/01/Librettro-Ancef-A5-con-copertina-per-uso-digitale.pdf",
+                  "sha256": "371f86a796d33168137e99730c70c9df1c580d789695644fad8cef6eda69d8fd"
                 },
-                "section": "Tabella retributiva"
+                "page": "28",
+                "section": "Articolo 45 – Retribuzione; Tabelle Paga a valere dal 1.01.2024",
+                "quote": "3          132       1207.42       514.82      10.33      1.732,57"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2024-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-fiori-recisi-ancef-tables"
               }
             }
           },
@@ -894,21 +1042,28 @@
             "valid_until": "2026-01-01",
             "value": "1762.57",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "fiori-recisi-ancef",
-                  "title": "fiori-recisi-ancef",
-                  "kind": "rivista",
-                  "url": "https://www.ccnlportatili.it/ccnl/fiori-recisi/"
+                  "document_id": "fiori-recisi-ancef-tables-371f86a7",
+                  "title": "fiori-recisi-ancef: tabelle retributive (ancef-2023-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.ancef.eu/wp-content/uploads/2025/01/Librettro-Ancef-A5-con-copertina-per-uso-digitale.pdf",
+                  "sha256": "371f86a796d33168137e99730c70c9df1c580d789695644fad8cef6eda69d8fd"
                 },
-                "section": "Tabella retributiva"
+                "page": "28",
+                "section": "Articolo 45 – Retribuzione; Tabelle Paga a valere dal 1.01.2025",
+                "quote": "3          132       1237.42       514.82      10.33      1.762,57"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-fiori-recisi-ancef-tables"
               }
             }
           },
@@ -917,21 +1072,28 @@
             "valid_until": null,
             "value": "1792.57",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "fiori-recisi-ancef",
-                  "title": "fiori-recisi-ancef",
-                  "kind": "rivista",
-                  "url": "https://www.ccnlportatili.it/ccnl/fiori-recisi/"
+                  "document_id": "fiori-recisi-ancef-tables-371f86a7",
+                  "title": "fiori-recisi-ancef: tabelle retributive (ancef-2023-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.ancef.eu/wp-content/uploads/2025/01/Librettro-Ancef-A5-con-copertina-per-uso-digitale.pdf",
+                  "sha256": "371f86a796d33168137e99730c70c9df1c580d789695644fad8cef6eda69d8fd"
                 },
-                "section": "Tabella retributiva"
+                "page": "28",
+                "section": "Articolo 45 – Retribuzione; Tabelle Paga a valere dal 1.01.2026",
+                "quote": "3          132       1267.42       514.82      10.33      1.792,57"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-fiori-recisi-ancef-tables"
               }
             }
           }
@@ -968,21 +1130,28 @@
             "valid_until": "2024-01-01",
             "value": "1583.74",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "fiori-recisi-ancef",
-                  "title": "fiori-recisi-ancef",
-                  "kind": "rivista",
-                  "url": "https://www.ccnlportatili.it/ccnl/fiori-recisi/"
+                  "document_id": "fiori-recisi-ancef-tables-371f86a7",
+                  "title": "fiori-recisi-ancef: tabelle retributive (ancef-2023-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.ancef.eu/wp-content/uploads/2025/01/Librettro-Ancef-A5-con-copertina-per-uso-digitale.pdf",
+                  "sha256": "371f86a796d33168137e99730c70c9df1c580d789695644fad8cef6eda69d8fd"
                 },
-                "section": "Tabella retributiva"
+                "page": "27",
+                "section": "Articolo 45 – Retribuzione; Tabelle Paga a valere dal 1.01.2023",
+                "quote": "4           118         1061.48        511.93           10.33    1.583,74"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2023-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-fiori-recisi-ancef-tables"
               }
             }
           },
@@ -991,21 +1160,28 @@
             "valid_until": "2025-01-01",
             "value": "1601.62",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "fiori-recisi-ancef",
-                  "title": "fiori-recisi-ancef",
-                  "kind": "rivista",
-                  "url": "https://www.ccnlportatili.it/ccnl/fiori-recisi/"
+                  "document_id": "fiori-recisi-ancef-tables-371f86a7",
+                  "title": "fiori-recisi-ancef: tabelle retributive (ancef-2023-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.ancef.eu/wp-content/uploads/2025/01/Librettro-Ancef-A5-con-copertina-per-uso-digitale.pdf",
+                  "sha256": "371f86a796d33168137e99730c70c9df1c580d789695644fad8cef6eda69d8fd"
                 },
-                "section": "Tabella retributiva"
+                "page": "28",
+                "section": "Articolo 45 – Retribuzione; Tabelle Paga a valere dal 1.01.2024",
+                "quote": "4          118       1079.36       511.93      10.33      1.601,62"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2024-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-fiori-recisi-ancef-tables"
               }
             }
           },
@@ -1014,21 +1190,28 @@
             "valid_until": "2026-01-01",
             "value": "1628.44",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "fiori-recisi-ancef",
-                  "title": "fiori-recisi-ancef",
-                  "kind": "rivista",
-                  "url": "https://www.ccnlportatili.it/ccnl/fiori-recisi/"
+                  "document_id": "fiori-recisi-ancef-tables-371f86a7",
+                  "title": "fiori-recisi-ancef: tabelle retributive (ancef-2023-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.ancef.eu/wp-content/uploads/2025/01/Librettro-Ancef-A5-con-copertina-per-uso-digitale.pdf",
+                  "sha256": "371f86a796d33168137e99730c70c9df1c580d789695644fad8cef6eda69d8fd"
                 },
-                "section": "Tabella retributiva"
+                "page": "28",
+                "section": "Articolo 45 – Retribuzione; Tabelle Paga a valere dal 1.01.2025",
+                "quote": "4          118       1106.18       511.93      10.33      1.628,44"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-fiori-recisi-ancef-tables"
               }
             }
           },
@@ -1037,21 +1220,28 @@
             "valid_until": null,
             "value": "1655.26",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "fiori-recisi-ancef",
-                  "title": "fiori-recisi-ancef",
-                  "kind": "rivista",
-                  "url": "https://www.ccnlportatili.it/ccnl/fiori-recisi/"
+                  "document_id": "fiori-recisi-ancef-tables-371f86a7",
+                  "title": "fiori-recisi-ancef: tabelle retributive (ancef-2023-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.ancef.eu/wp-content/uploads/2025/01/Librettro-Ancef-A5-con-copertina-per-uso-digitale.pdf",
+                  "sha256": "371f86a796d33168137e99730c70c9df1c580d789695644fad8cef6eda69d8fd"
                 },
-                "section": "Tabella retributiva"
+                "page": "28",
+                "section": "Articolo 45 – Retribuzione; Tabelle Paga a valere dal 1.01.2026",
+                "quote": "4          118       1133.00       511.93      10.33      1.655,26"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-fiori-recisi-ancef-tables"
               }
             }
           }
@@ -1111,21 +1301,28 @@
             "valid_until": "2025-01-01",
             "value": "1526.97",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "fiori-recisi-ancef",
-                  "title": "fiori-recisi-ancef",
-                  "kind": "rivista",
-                  "url": "https://www.ccnlportatili.it/ccnl/fiori-recisi/"
+                  "document_id": "fiori-recisi-ancef-tables-371f86a7",
+                  "title": "fiori-recisi-ancef: tabelle retributive (ancef-2023-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.ancef.eu/wp-content/uploads/2025/01/Librettro-Ancef-A5-con-copertina-per-uso-digitale.pdf",
+                  "sha256": "371f86a796d33168137e99730c70c9df1c580d789695644fad8cef6eda69d8fd"
                 },
-                "section": "Tabella retributiva"
+                "page": "28",
+                "section": "Articolo 45 – Retribuzione; Tabelle Paga a valere dal 1.01.2024",
+                "quote": "5          110       1006.17       510.47      10.33      1.526,97"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2024-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-fiori-recisi-ancef-tables"
               }
             }
           },
@@ -1134,21 +1331,28 @@
             "valid_until": "2026-01-01",
             "value": "1551.97",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "fiori-recisi-ancef",
-                  "title": "fiori-recisi-ancef",
-                  "kind": "rivista",
-                  "url": "https://www.ccnlportatili.it/ccnl/fiori-recisi/"
+                  "document_id": "fiori-recisi-ancef-tables-371f86a7",
+                  "title": "fiori-recisi-ancef: tabelle retributive (ancef-2023-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.ancef.eu/wp-content/uploads/2025/01/Librettro-Ancef-A5-con-copertina-per-uso-digitale.pdf",
+                  "sha256": "371f86a796d33168137e99730c70c9df1c580d789695644fad8cef6eda69d8fd"
                 },
-                "section": "Tabella retributiva"
+                "page": "28",
+                "section": "Articolo 45 – Retribuzione; Tabelle Paga a valere dal 1.01.2025",
+                "quote": "5          110       1031.17       510.47      10.33      1.551,97"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-fiori-recisi-ancef-tables"
               }
             }
           },
@@ -1157,21 +1361,28 @@
             "valid_until": null,
             "value": "1576.97",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "fiori-recisi-ancef",
-                  "title": "fiori-recisi-ancef",
-                  "kind": "rivista",
-                  "url": "https://www.ccnlportatili.it/ccnl/fiori-recisi/"
+                  "document_id": "fiori-recisi-ancef-tables-371f86a7",
+                  "title": "fiori-recisi-ancef: tabelle retributive (ancef-2023-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.ancef.eu/wp-content/uploads/2025/01/Librettro-Ancef-A5-con-copertina-per-uso-digitale.pdf",
+                  "sha256": "371f86a796d33168137e99730c70c9df1c580d789695644fad8cef6eda69d8fd"
                 },
-                "section": "Tabella retributiva"
+                "page": "28",
+                "section": "Articolo 45 – Retribuzione; Tabelle Paga a valere dal 1.01.2026",
+                "quote": "5          110       1056.17       510.47      10.33      1.576,97"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-fiori-recisi-ancef-tables"
               }
             }
           }
@@ -1231,21 +1442,28 @@
             "valid_until": "2025-01-01",
             "value": "1433.19",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "fiori-recisi-ancef",
-                  "title": "fiori-recisi-ancef",
-                  "kind": "rivista",
-                  "url": "https://www.ccnlportatili.it/ccnl/fiori-recisi/"
+                  "document_id": "fiori-recisi-ancef-tables-371f86a7",
+                  "title": "fiori-recisi-ancef: tabelle retributive (ancef-2023-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.ancef.eu/wp-content/uploads/2025/01/Librettro-Ancef-A5-con-copertina-per-uso-digitale.pdf",
+                  "sha256": "371f86a796d33168137e99730c70c9df1c580d789695644fad8cef6eda69d8fd"
                 },
-                "section": "Tabella retributiva"
+                "page": "28",
+                "section": "Articolo 45 – Retribuzione; Tabelle Paga a valere dal 1.01.2024",
+                "quote": "6          100       914.70        508.16      10.33      1.433,19"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2024-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-fiori-recisi-ancef-tables"
               }
             }
           },
@@ -1254,21 +1472,28 @@
             "valid_until": "2026-01-01",
             "value": "1455.92",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "fiori-recisi-ancef",
-                  "title": "fiori-recisi-ancef",
-                  "kind": "rivista",
-                  "url": "https://www.ccnlportatili.it/ccnl/fiori-recisi/"
+                  "document_id": "fiori-recisi-ancef-tables-371f86a7",
+                  "title": "fiori-recisi-ancef: tabelle retributive (ancef-2023-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.ancef.eu/wp-content/uploads/2025/01/Librettro-Ancef-A5-con-copertina-per-uso-digitale.pdf",
+                  "sha256": "371f86a796d33168137e99730c70c9df1c580d789695644fad8cef6eda69d8fd"
                 },
-                "section": "Tabella retributiva"
+                "page": "28",
+                "section": "Articolo 45 – Retribuzione; Tabelle Paga a valere dal 1.01.2025",
+                "quote": "6          100       937.43        508.16      10.33      1.455,92"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-fiori-recisi-ancef-tables"
               }
             }
           },
@@ -1277,21 +1502,28 @@
             "valid_until": null,
             "value": "1478.65",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "fiori-recisi-ancef",
-                  "title": "fiori-recisi-ancef",
-                  "kind": "rivista",
-                  "url": "https://www.ccnlportatili.it/ccnl/fiori-recisi/"
+                  "document_id": "fiori-recisi-ancef-tables-371f86a7",
+                  "title": "fiori-recisi-ancef: tabelle retributive (ancef-2023-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.ancef.eu/wp-content/uploads/2025/01/Librettro-Ancef-A5-con-copertina-per-uso-digitale.pdf",
+                  "sha256": "371f86a796d33168137e99730c70c9df1c580d789695644fad8cef6eda69d8fd"
                 },
-                "section": "Tabella retributiva"
+                "page": "28",
+                "section": "Articolo 45 – Retribuzione; Tabelle Paga a valere dal 1.01.2026",
+                "quote": "6          100       960.16        508.16      10.33      1.478,65"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-fiori-recisi-ancef-tables"
               }
             }
           }
@@ -1325,7 +1557,7 @@
     "effective_until": null,
     "source": "https://www.ccnlportatili.it/ccnl/fiori-recisi/",
     "verification_status": "unverified",
-    "source_hash": "16bd52ee1d1d258c2f8a3e390d70bf1ca83daf1a5c07cbea20442c556965780f",
+    "source_hash": "623ccb9b0232dcc0a1e27105a42f507f2d2428c5d8e9e5537ac5e3884e1ead78",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

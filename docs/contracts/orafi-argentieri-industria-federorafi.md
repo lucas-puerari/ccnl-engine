@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 25 verified / 40 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 32 verified / 33 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2021-12-23 |
-| **Last review** | 2026-11-01 |
+| **Last review** | 2026-11-08 |
 | **Latest salary tranche** | 2028-06-01 |
 
 ## Review history
@@ -59,6 +59,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|---|---|
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | confirmed | Disciplina speciale Parte prima, Art. 12 - Gratifica natalizia (operai); also Parte terza Art. 8 - Tredicesima mensilità, p. 93 (p. 85): "Nel caso di inizio o di cessazione del rapporto di lavoro durante il corso dell’anno, il lavoratore ha diritto a tanti dodicesimi della gratifica natalizia quanti sono i mesi di anzianità di servizio presso l’azienda. La frazione di mese superiore ai 15 giorni viene considerata a questi effetti come mese intero.". Match: more_than 15. |
 | 2026-11-01 | claude-opus-5-5 (ai) | Minimum pay from 1 October 2026 against the table of the signed 2026 renewal (scanned page 4 read as an image, checked against the FIOM-CGIL table of the same amounts). AI review only. | corrected | Added the minimums of 01/10/2026, 01/06/2027 and 01/06/2028 for levels 2 to 7 (7Q as 7); each equals the minimum of June 2025 plus the increment of the table 'Incrementi mensili' on the same page (2ª: 1574,39 + 42,85 = 1617,24).<br>Limitation renewal_2026_tables resolved. |
+| 2026-11-08 | claude-opus-5-5 (ai) | The monthly values of the levels against the primary tables (text layer). | confirmed | 9 values found verbatim on the cited pages and marked verified; 21 left as they were (derived or not on a text page). |
 
 ## Salary table
 
