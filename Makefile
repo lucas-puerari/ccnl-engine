@@ -1,4 +1,4 @@
-.PHONY: setup format check lint typecheck complexity architecture test generate rehash docs demo
+.PHONY: setup format check lint typecheck complexity architecture test mutation generate rehash docs demo
 
 SITE := demo/release/site
 # Parallel test workers: a few, not one per core (each loads the whole bundle).
@@ -37,6 +37,23 @@ architecture:
 
 test:
 	uv run pytest -n $(PYTEST_WORKERS)
+
+# Mutation testing: mutmut runs tests/mutation against [tool.mutmut]
+# source_paths. MODULE narrows the run to a mutant name glob
+# (MODULE='ccnl_engine.fund.health.rules.*'); empty, every module. The run is
+# kept off the foreground: background QoS and lowest priority, a few mutmut
+# children and one thread per numeric library. A run of one module rewrites
+# scripts/quality/mutation/record.json: commit it only after a full run.
+MUTATION_WORKERS ?= 2
+MODULE ?=
+MUTATION_ENV := OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 \
+	VECLIB_MAXIMUM_THREADS=1 NUMEXPR_NUM_THREADS=1
+LOW_PRIORITY := $(if $(shell command -v taskpolicy),taskpolicy -b) nice -n 19
+
+mutation:
+	$(MUTATION_ENV) $(LOW_PRIORITY) uv run mutmut run \
+		--max-children $(MUTATION_WORKERS) $(if $(MODULE),'$(MODULE)')
+	uv run python scripts/quality/mutation/check.py --min-score 93.0
 
 # Generated artefacts: knowledge manifest and documentation pages
 

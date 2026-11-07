@@ -745,7 +745,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/edilizia-ance-impiegati",
       "ruleset_version": "2026.2",
-      "source_hash": "eb1092aa8b51c6064066150285efeabc3f9a59c0dca68e2b1cbc27a61b6ff0d6",
+      "source_hash": "de2a19910f4effa8ebf5042b3d07152dae45340a1ba1d562a49ce3aaf0826e9b",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/edilizia-ance-impiegati.json.gz"
@@ -1309,7 +1309,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/lavoro-domestico-convivente-orario-ridotto",
       "ruleset_version": "2026.3",
-      "source_hash": "117a8c1955e6646c5b363beb80f839ecb77cc6bf2b8797eb3d51c9af79b3dca6",
+      "source_hash": "a4d7c356524b2e776bf91338d68983b2a91bd2cea82cb24bc133b74e3c76dd07",
       "source_type": "commercial_secondary",
       "owner": "maintainer",
       "wheel_resource": "agreement/lavoro-domestico-convivente-orario-ridotto.json.gz"
@@ -1326,7 +1326,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/lavoro-domestico-convivente",
       "ruleset_version": "2026.3",
-      "source_hash": "49c945e6c713e2f9d0a112886f72892c8ace2053260045e4f47daabf90f90e1b",
+      "source_hash": "92a1df63c11c3ddfe8527e4802b090a8b50ef06db75dff1dd84ad1eb0471f420",
       "source_type": "commercial_secondary",
       "owner": "maintainer",
       "wheel_resource": "agreement/lavoro-domestico-convivente.json.gz"
@@ -1377,7 +1377,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/legno-lapidei-artigianato-confartigianato",
       "ruleset_version": "2026.2",
-      "source_hash": "820814ef90c77703584500d3463defced3312a135e2b02efe28006bd41b8a439",
+      "source_hash": "10fcd395fc2db25d421dc218b2901dd10961b89737285a8d0ec12ea001deeead",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/legno-lapidei-artigianato-confartigianato.json.gz"
@@ -2074,7 +2074,7 @@
       "valid_to": "2027-03-31",
       "ruleset_id": "ccnl/terziario-confesercenti",
       "ruleset_version": "2026.2",
-      "source_hash": "66d38225f2eb05ff82e7447cfde15b82d35eca0151da710b0dd97ad86b0e994c",
+      "source_hash": "473b0bada7cfd9432bf87291cd4f786f7915af97a50b0207824369d280c06cdc",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/terziario-confesercenti.json.gz"
@@ -4821,7 +4821,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "a69df7390bce4fd4181e2d19ab7cb13a3eb3b626ca90d445cc7113ff9d5f9888",
+      "source_hash": "175237756efeb997fc5847a014c93708a76cdd25378b88c79797ee1fa8b1311e",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/terziario-confesercenti.json.gz",
@@ -5521,7 +5521,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "0aa2210cef8eb61bf5a96e056710bd4f720496f474127067359a59411ce7722c",
+      "source_hash": "c59758b23ddc421bbac72153242e20cf0862fb35053a5227a70352268b374881",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "limitation/engine.json.gz",

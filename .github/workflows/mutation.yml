@@ -5,6 +5,8 @@ name: Mutation Testing
 # so a regression in them cannot merge before the next weekly campaign.
 # The release calls the full campaign on the tagged commit and publishes
 # only when it passes.
+# mutmut kills the mutants with the tests of tests/mutation/ alone
+# ([tool.mutmut] pytest_add_cli_args_test_selection).
 # Every campaign records the commit, the date and the modules its score
 # covers (mutants/mutation-score.json).
 

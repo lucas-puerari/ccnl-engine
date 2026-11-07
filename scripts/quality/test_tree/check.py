@@ -5,7 +5,8 @@ directory that holds a test module is a directory of ``src/ccnl_engine/``,
 or the directory of one module (``period/services/`` for
 ``period/services.py``), which holds the tests of that module.  The
 directories listed in :data:`EXCEPTIONS` group knowledge tests by theme
-and say why; nothing else is allowed.
+and say why; nothing else is allowed.  ``tests/mutation/`` is a category
+like the others: it holds the tests mutmut runs (``[tool.mutmut]``).
 
 Usage::
 
@@ -23,17 +24,17 @@ from typing import Final
 __all__ = ["EXCEPTIONS", "ROOT", "main", "misplaced"]
 
 ROOT: Final = Path(__file__).resolve().parents[3]
-_CATEGORIES: Final = ("unit", "integration", "knowledge")
+_CATEGORIES: Final = ("unit", "integration", "knowledge", "mutation")
 #: Test directories that mirror no code, each with its reason.
 EXCEPTIONS: Final = {
     "knowledge/boundary": "thresholds and tranches tested across concepts",
-    "knowledge/compensation/afam": "the pay of one public CCNL, end to end",
     "knowledge/period/sector": "scenarios of the sector tax files, end to end",
     "knowledge/period/validation_packet": "validation packets and their runner",
-    "knowledge/seniority/fasce": "seniority bands of the CCNL data",
-    "knowledge/seniority/promotion": "promotions across CCNL levels",
     "integration/seniority/earned": "seniority earned across runs",
     "integration/year/change": "employment changes inside a competence year",
+    "mutation/compensation/afam": "the pay of one public CCNL, end to end",
+    "mutation/seniority/fasce": "seniority bands of the CCNL data",
+    "mutation/seniority/promotion": "promotions across CCNL levels",
 }
 
 

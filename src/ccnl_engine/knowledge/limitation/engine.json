@@ -314,7 +314,7 @@
         "trigger": "path"
       },
       "source": "ccnl_engine.sickness.base.rules (daily base); ccnl_engine.sickness.pay.handlers (INPS share of a sick day)",
-      "remediation": "Resolved: the INPS share is computed on the base of every regime of the bundle; an episode that states no base the engine can read has the missing_fact issue sickness_inps_base_unknown (fact inps_base), which blocks the run. Tests: tests/integration/ccnl_engine/sickness/base/test_rules.py, tests/unit/ccnl_engine/sickness/base/test_rules.py."
+      "remediation": "Resolved: the INPS share is computed on the base of every regime of the bundle; an episode that states no base the engine can read has the missing_fact issue sickness_inps_base_unknown (fact inps_base), which blocks the run. Tests: tests/mutation/ccnl_engine/sickness/base/test_rules_wiring.py, tests/mutation/ccnl_engine/sickness/base/test_rules.py."
     },
     {
       "id": "sickness_cumulation_window",
@@ -2796,7 +2796,7 @@
       "applies_when": {
         "trigger": "path"
       },
-      "source": "ccnl_engine.absence.insured.extraordinary.handlers._handle_extraordinary_leave; tests/integration/ccnl_engine/absence/insured/extraordinary/test_handlers.py; INPS circ. 64/2001 par. 4 ('la retribuzione del mese preso a riferimento (comprensiva della quota parte di tredicesima mensilità, ecc.), se il mese è lavorato a tempo pieno, va moltiplicata per 12 e divisa per 365 giorni (366 se le assenze cadono in un anno bisestile) [...] Se invece nel mese preso a riferimento l'attività è stata svolta in regime di contratto di lavoro a part time verticale, la retribuzione percepita nel mese stesso va divisa per il numero dei giorni retribuiti, compresi quelli festivi o comunque di riposo'; INPS content fragment sha256 de3751ac274d81141df627d3c95b220fbf6bcbafed78fefa4f94871a755c427e); D.Lgs. 151/2001 art. 42 c. 5-ter",
+      "source": "ccnl_engine.absence.insured.extraordinary.handlers._handle_extraordinary_leave; tests/mutation/ccnl_engine/absence/insured/extraordinary/test_handlers.py; INPS circ. 64/2001 par. 4 ('la retribuzione del mese preso a riferimento (comprensiva della quota parte di tredicesima mensilità, ecc.), se il mese è lavorato a tempo pieno, va moltiplicata per 12 e divisa per 365 giorni (366 se le assenze cadono in un anno bisestile) [...] Se invece nel mese preso a riferimento l'attività è stata svolta in regime di contratto di lavoro a part time verticale, la retribuzione percepita nel mese stesso va divisa per il numero dei giorni retribuiti, compresi quelli festivi o comunque di riposo'; INPS content fragment sha256 de3751ac274d81141df627d3c95b220fbf6bcbafed78fefa4f94871a755c427e); D.Lgs. 151/2001 art. 42 c. 5-ter",
       "remediation": "Resolved: ExtraordinaryLeaveEvent.last_month_paid_days divides the pay of a vertical part time by its paid days (INPS circ. 64/2001 par. 4); a leave that does not state them is paid on the full-time measure with the provisional issue extraordinary_paid_days_unknown, which names the fact."
     },
     {
@@ -2950,7 +2950,7 @@
       "totals": [
         "employer_cost"
       ],
-      "source": "ccnl_engine.termination.naspi.services.naspi_dismissal; tests/integration/ccnl_engine/termination/naspi/test_services.py; L. 92/2012 art. 2 cc. 31-35 (Normattiva, sha256 d40853a1e6c1e20173298f832828aff3e5838ec01aa7994575ed3bd8e1716f6e); INPS circ. 44/2013 (sha256 921fa38bef69508119c546fd0179ceff3e272224bd4ddea8f2e2949e09c89f07); INPS msg. 594/2018 (sha256 f035fc25dc30190d0ef3895fced7b461d6f1b788821f20fdb0bc516d2e7ae500)",
+      "source": "ccnl_engine.termination.naspi.services.naspi_dismissal; tests/mutation/ccnl_engine/termination/naspi/test_services_wiring.py; L. 92/2012 art. 2 cc. 31-35 (Normattiva, sha256 d40853a1e6c1e20173298f832828aff3e5838ec01aa7994575ed3bd8e1716f6e); INPS circ. 44/2013 (sha256 921fa38bef69508119c546fd0179ceff3e272224bd4ddea8f2e2949e09c89f07); INPS msg. 594/2018 (sha256 f035fc25dc30190d0ef3895fced7b461d6f1b788821f20fdb0bc516d2e7ae500)",
       "remediation": "Resolved: EmploymentPeriod.naspi_case states the cases that owe, leave out or multiply the contribution; an end that could be one and does not state it is decided from its cause alone with the provisional issue naspi_dismissal_case_unknown, which names the fact."
     },
     {
@@ -3120,7 +3120,7 @@
           "fixed_term"
         ]
       },
-      "source": "ccnl_engine.sickness.issue.rules.fixed_term_fact; tests/unit/ccnl_engine/sickness/day/test_agricultural.py; INPS, Indennità di malattia e visite mediche di controllo (scheda informativa, aggiornata al 21/09/2026, page sha256 2c123881b7667eed21bc6971e82ea1106f53eb759d5943e7e964227fe7c67a06), Lavoratori dipendenti: quanto spetta; INPS, Guida alla tutela previdenziale della malattia, settembre 2024, p. 4 (sha256 a1e151fbffb42a87a9d93b748dc70ceeeffea1a4f246932d44259aa573144c7b)",
+      "source": "ccnl_engine.sickness.issue.rules.fixed_term_fact; tests/mutation/ccnl_engine/sickness/day/test_agricultural.py; INPS, Indennità di malattia e visite mediche di controllo (scheda informativa, aggiornata al 21/09/2026, page sha256 2c123881b7667eed21bc6971e82ea1106f53eb759d5943e7e964227fe7c67a06), Lavoratori dipendenti: quanto spetta; INPS, Guida alla tutela previdenziale della malattia, settembre 2024, p. 4 (sha256 a1e151fbffb42a87a9d93b748dc70ceeeffea1a4f246932d44259aa573144c7b)",
       "remediation": "Resolved: SicknessEpisode.agricultural_days limits the days INPS pays (ccnl_engine.sickness.agricultural.rules); an episode that does not state them is paid up to 180 days a year with the provisional issue sickness_agricultural_days_unknown, which names the fact."
     },
     {
