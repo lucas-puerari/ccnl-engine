@@ -218,7 +218,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/autoferrotranvieri-internavigatori",
       "ruleset_version": "2026.2",
-      "source_hash": "b8bc3a0d0e5184dd6711b1c585ecd74c7619caa0b08f91f1c0acef46a2c3cc3a",
+      "source_hash": "2b40f0431a30e9632636c8eef6aaee23f1b3ab1ae4552093cdbf0667299a1438",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/autoferrotranvieri-internavigatori.json.gz"
@@ -2641,7 +2641,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "195fc6d67b5196a306379b04d6baad020619ccf024fb3bc4d8db48e9ab5bbab0",
+      "source_hash": "c4742a6404bf871c3e3e446a73ec0807b84edf54fe26d401d93de966816c2427",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/autoferrotranvieri-internavigatori.json.gz",
