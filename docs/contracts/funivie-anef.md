@@ -42,7 +42,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 2 verified / 47 derived / 1 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 34 verified / 15 derived / 1 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -51,7 +51,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-05-16 |
-| **Last review** | 2026-11-05 |
+| **Last review** | 2026-11-07 |
 | **Latest salary tranche** | 2028-03-01 |
 
 ## Review history
@@ -59,6 +59,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | Date | Reviewer | Scope | Outcome | Findings |
 |---|---|---|---|---|
 | 2026-11-05 | claude-opus-5-5 (ai) | The Quadri function allowance of Art. 5 (PDF p. 15) of the 2025 coordinated text, text layer, and Art. 5 c. 3 of the 2019 text (p. 13). | corrected | Art. 5 c. 3: EUR 118.79 a month to the workers of levels I super and I recognised in writing as Quadri, not absorbed by an individual superminimo; unchanged by the renewals of 19 July 2022 and 16 May 2025. |
+| 2026-11-07 | claude-opus-5-5 (ai) | The monthly values of the levels against the primary tables (text layer). | confirmed | 42 values found verbatim on the cited pages and marked verified; 0 left as they were (derived or not on a text page). |
 
 ## Salary table
 

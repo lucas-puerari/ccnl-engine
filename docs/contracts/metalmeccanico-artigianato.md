@@ -44,7 +44,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 38 verified / 43 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 69 verified / 12 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -53,7 +53,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-11-19 |
-| **Last review** | 2026-11-05 |
+| **Last review** | 2026-11-07 |
 | **Latest salary tranche** | 2026-11-01 |
 
 ## Review history
@@ -73,6 +73,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'fondi sanitari, previdenza complementare, bilateralità e quote a carico di lavoratore e datore': the amounts of the declared contributions, read on the full text published by a party. | confirmed | Bilateralità 11,65 euro a month, FSBA 0,45% + 0,15%, San.Arti 10,42 euro a month and the E.a.r. of 30 and 25 euro read on pp. 30-32: the declared limitation now states every amount. |
 | 2026-10-31 | claude-opus-5-5 (ai) | The comporto and the sick pay of the CCNL counted over several illnesses (work_rules.sickness_rules), read on the signed text. | corrected | Art. 61 (pp. 137-138): the job is kept 9 months for one illness and 10 months 'nell'arco dei 24 mesi precedenti' for several; the integration lasts at most 150 days. The file stored the 150 days as max_duration_days, the comporto: corrected to 274 days of one illness and 304 within 24 months (comporto_windows), the integration ending on day 150 by a tier of rate 0 from the sixth month. |
 | 2026-11-05 | claude-opus-5-5 (ai) | Artt. 11-12 (PDF pp. 28-32) of the CCNL of 17 December 2021, EBNA text, text layer. | corrected | EBNA (EUR 11.65 a month, or EUR 30 on 13 months unpaid) and SAN.ARTI. (EUR 10.42 a month, or EUR 25 on 13 months unpaid) were not modelled. |
+| 2026-11-07 | gpt-6-sol (ai) | Monthly values on scanned pages, each read twice from the page image by two independent sessions of another model, the second without being told the expected value. | confirmed | 31 values read identically by both readings and equal to the file. |
 
 ## Salary table
 
