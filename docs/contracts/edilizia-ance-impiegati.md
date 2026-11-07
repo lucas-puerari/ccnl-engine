@@ -66,6 +66,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-02 | claude-opus-5-5 (ai) | The premiums on ordinary hours of Art. 54 (PDF p. 71) and their base of Art. 44 (pp. 66-67). | corrected | Art. 54: supplement_bands ANCE_IMP_* (night 34%, night in periodic shifts 10%, festivo 45%); festivo notturno 50% left as the narrowed limitation.<br>Art. 44 points 1-6, 8, 9 over 173: hourly_base_provenance verified, individual elements included (point 3).<br>A separate session without the reasoning of the extraction re-read art. 54 (p. 71) and art. 44 (pp. 66-67) on the PDF and confirmed the table (34%, 10%, 45%, festivo notturno 50%), the elements 1-6, 8, 9 and the divisor 173; it found the EDR named in neither article: its place in point 9 stays a reading. |
 | 2026-11-02 | claude-opus-5-5 (ai) | Art. 54 (PDF p. 71). | corrected | Art. 54 (p. 71): 'lavoro festivo notturno escluso quello compreso in turni periodici' 50%, confirmed by a separate session without the reasoning of the extraction; no other row covers ordinary night holiday work, and none gives the rate of the periodic shifts it excludes (kept as the ordinary_hours_premiums limitation). |
 | 2026-11-08 | gpt-6-sol (ai) | Art. 92 in the ANCE text of 4 April 2019 (pp. 4-8), applied to contracts from 1 April 2019. Every row of the extraction re-checked by a separate model session on the saved PDFs (verdict CONFIRMED). | confirmed | Added dual_apprenticeship for the first- and third-level apprentices. |
+| 2026-11-08 | gpt-6-sol (ai) | Art. 66 of the CCNL edilizia industria 2010 (PDF p. 78), the encoding checked line by line against the text by a separate model session. | corrected | Replaced the six-month rule with the seniority bands of one illness and the 30-month comporto of art. 66.<br>The separate session read the 30-month periods as job retention only: the pay of the three extra months of several illnesses is left as a limitation. |
 
 ## Salary table
 
@@ -121,11 +122,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.
 
 !!! warning "edilizia-ance-impiegati/edilizia_impiegati_sickness · sickness · impact yes · open"
-    SICKNESS (Art. 66): the employer pays the whole treatment of the elements 1-10 of Art. 44 (INPS pays no indemnity to the impiegati and quadri of industry) for six months, the comporto of a worker with up to two years of service. Not modelled: from two to six years the comporto of nine months with the last three at 50%, over six years twelve months with three months at 75% and three at 50%; for several illnesses or relapses the comporto of 9, 12 or 15 months in 30, whose three extra months are paid in full for the first and at 50% after. The engine stops at day 180 (days past it are marked beyond the comporto).
+    SICKNESS (Art. 66, PDF p. 78): the employer pays the elements 1-10 of Art. 44 (INPS pays no indemnity to the impiegati of industry). Modelled per illness: up to two years of seniority six months in full; from two to six years nine months, the last three at 50%; over six years twelve months, three at 75% and three at 50%; several illnesses or relapses keep the job 9, 12 or 15 months in 30. Not modelled: the pay of the three extra months of several illnesses ('intero trattamento economico per il primo mese e del 50% per i mesi restanti'): the text does not say whether they follow the aggregate of the illnesses or each illness's own period, so each illness takes its own schedule.
 
-    **Applies when:** `sickness` applies; seniority of at least 24 months.
+    **Applies when:** `sickness` applies.
 
-    **Remediation:** Model the seniority bands of Art. 66 with equal full-pay days and the cumulated comporto in 30 months.
+    **Remediation:** Settle how the three extra months of art. 66 are counted across illnesses, then pay them.
 
 !!! warning "edilizia-ance-impiegati/provincial_evr · territorial_supplement · impact yes · open"
     Art. 46: the EVR set by the provincial agreements.
@@ -196,13 +197,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `sickness` applies; the run takes the engine code path.
 
     **Remediation:** Resolved: the INPS share is computed on the base of every regime of the bundle; an episode that states no base the engine can read has the missing_fact issue sickness_inps_base_unknown (fact inps_base), which blocks the run. Tests: tests/mutation/ccnl_engine/sickness/base/test_rules_wiring.py, tests/mutation/ccnl_engine/sickness/base/test_rules.py.
-
-!!! warning "sickness_cumulation_window · sickness · impact unknown · open"
-    The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded. A CCNL whose comporto the engine counts over the calendar year (Commercio Art. 186 and the others with comporto_calendar_year) is not affected.
-
-    **Applies when:** `sickness` applies; the run takes the engine code path.
-
-    **Remediation:** Add the cumulation window of each CCNL to its sickness rule, with the source, and count the tier and the comporto over it.
 
 !!! warning "provisional_ruleset · irpef · impact unknown · open"
     The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.

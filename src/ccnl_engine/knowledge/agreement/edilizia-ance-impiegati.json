@@ -118,16 +118,15 @@
       },
       {
         "kind": "simplification",
-        "text": "SICKNESS (Art. 66): the employer pays the whole treatment of the elements 1-10 of Art. 44 (INPS pays no indemnity to the impiegati and quadri of industry) for six months, the comporto of a worker with up to two years of service. Not modelled: from two to six years the comporto of nine months with the last three at 50%, over six years twelve months with three months at 75% and three at 50%; for several illnesses or relapses the comporto of 9, 12 or 15 months in 30, whose three extra months are paid in full for the first and at 50% after. The engine stops at day 180 (days past it are marked beyond the comporto).",
+        "text": "SICKNESS (Art. 66, PDF p. 78): the employer pays the elements 1-10 of Art. 44 (INPS pays no indemnity to the impiegati of industry). Modelled per illness: up to two years of seniority six months in full; from two to six years nine months, the last three at 50%; over six years twelve months, three at 75% and three at 50%; several illnesses or relapses keep the job 9, 12 or 15 months in 30. Not modelled: the pay of the three extra months of several illnesses ('intero trattamento economico per il primo mese e del 50% per i mesi restanti'): the text does not say whether they follow the aggregate of the illnesses or each illness's own period, so each illness takes its own schedule.",
         "capability": "sickness",
         "monetary_impact": "yes",
         "limitation": {
           "variant": "edilizia_impiegati_sickness",
           "applies_when": {
-            "trigger": "run",
-            "seniority_months_from": 24
+            "trigger": "run"
           },
-          "remediation": "Model the seniority bands of Art. 66 with equal full-pay days and the cumulated comporto in 30 months."
+          "remediation": "Settle how the three extra months of art. 66 are counted across illnesses, then pay them."
         }
       },
       {
@@ -2429,7 +2428,7 @@
     "effective_until": null,
     "source": "https://ance.it/wp-content/uploads/allegati/Tabella_nuovi_minimi_orari-_CCNL_2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "784e914f8f1b31ad3198eafd75add46e510c2d24935f0923dfbe7995e49e16a6",
+    "source_hash": "b0e328acfb29719c04820354144af6234adf57b5862b30a26df919bc182d4397",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2909,7 +2908,54 @@
     "sickness_rules": {
       "carenza_integration_rate": "1",
       "full_pay_integration_rate": "1",
-      "max_duration_days": 180,
+      "net_basis": false,
+      "cumulation": {
+        "window_years": 3,
+        "reset_after_days": 1,
+        "reduced_integration_rate": "0",
+        "bands": [
+          {
+            "seniority_months_from": 0,
+            "full_pay_days": 180,
+            "comporto_days": 270,
+            "single_comporto_days": 180,
+            "window_months": 30
+          },
+          {
+            "seniority_months_from": 25,
+            "full_pay_days": 180,
+            "comporto_days": 360,
+            "single_comporto_days": 270,
+            "window_months": 30,
+            "steps": [
+              {
+                "day_from": 181,
+                "day_until": 271,
+                "integration_rate": "0.5"
+              }
+            ]
+          },
+          {
+            "seniority_months_from": 73,
+            "full_pay_days": 180,
+            "comporto_days": 450,
+            "single_comporto_days": 360,
+            "window_months": 30,
+            "steps": [
+              {
+                "day_from": 181,
+                "day_until": 271,
+                "integration_rate": "0.75"
+              },
+              {
+                "day_from": 271,
+                "day_until": 361,
+                "integration_rate": "0.5"
+              }
+            ]
+          }
+        ]
+      },
       "provenance": {
         "status": "verified",
         "location": {
@@ -2922,19 +2968,18 @@
             "sha256": "ddd11bb850de2e7c642eb662b59e40e36c66e3a534162c505aa1c9a94ac5a00b"
           },
           "page": "78",
-          "section": "Art. 66 Trattamento in caso di malattia (impiegati)",
-          "quote": "1) per anzianità di servizio fino a due anni compiuti: conservazione del posto e"
+          "section": "Art. 66 Trattamento in caso di malattia",
+          "quote": "1) per anzianità di servizio fino a due anni compiuti: conservazione del posto e corresponsione dell'intero trattamento economico per sei mesi; 2) per anzianità di servizio da oltre due anni e fino a sei anni compiuti: conservazione del posto per nove mesi e corresponsione dell'intero trattamento economico per i primi sei mesi e del 50% per i restanti mesi; 3) per anzianità di servizio superiore a sei anni compiuti: conservazione del posto per dodici mesi e corresponsione dell'intero trattamento economico per i primi sei mesi, del 75% per i successivi tre mesi e del 50% per i restanti mesi. Nel caso di più malattie o di ricadute nella stessa malattia non potranno essere superati i seguenti periodi massimi complessivi di conservazione del posto: a) mesi nove in un periodo di trenta mesi per gli aventi anzianità di cui al punto 1); b) mesi dodici in un periodo di trenta mesi per gli aventi anzianità di cui al punto 2); c) mesi quindici in un periodo di trenta mesi per gli aventi anzianità di cui al punto 3). Per i tre mesi aggiuntivi di cui alle lettere a), b) e c) del comma precedente, l'impiegato ha diritto alla corresponsione dell'intero trattamento economico per il primo mese e del 50% per i mesi restanti."
         },
-        "transformation": "The whole treatment for six months, the comporto of a worker with up to two years of service, from the first day (no carenza); the longer comporto and the reduced months of higher seniority are declared in the coverage notes.",
+        "transformation": "Months of 30 days. Each illness (after at least a day of work) takes its own schedule: up to 24 completed months of seniority, full pay days 1-180, kept 180 days; from 25 to 72 months, full 1-180 and 50% 181-270, kept 270; from 73 months, full 1-180, 75% 181-270, 50% 271-360, kept 360. Several illnesses: the job is kept 270, 360 or 450 days of sickness in the 30 months before. The employer pays the elements 1-10 of art. 44 (INPS pays no indemnity to the impiegati of industry). The 'non in prova' condition is not modelled.",
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-10-13T07:47:58Z",
-          "effective_from": "2025-02-01",
-          "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-10-13T07:47:58Z",
+          "extraction_timestamp": "2026-11-08T01:30:00Z",
+          "verified_by": "gpt-6-sol",
+          "verified_at": "2026-11-08T01:30:00Z",
           "verification_status": "verified",
-          "review_id": "2026-10-13-ai-production"
+          "review_id": "2026-11-08-gpt-edilizia-ance-impiegati-sickness"
         }
       }
     },
@@ -3140,6 +3185,28 @@
         "independence": "separate_model",
         "checked": [
           "dual_apprenticeship"
+        ]
+      },
+      {
+        "id": "2026-11-08-gpt-edilizia-ance-impiegati-sickness",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Art. 66 of the CCNL edilizia industria 2010 (PDF p. 78), the encoding checked line by line against the text by a separate model session.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL_EDILIZIA_INDUSTRIA_2010_TESTO_COMPLETO.pdf",
+            "sha256": "ddd11bb850de2e7c642eb662b59e40e36c66e3a534162c505aa1c9a94ac5a00b"
+          }
+        ],
+        "findings": [
+          "Replaced the six-month rule with the seniority bands of one illness and the 30-month comporto of art. 66.",
+          "The separate session read the 30-month periods as job retention only: the pay of the three extra months of several illnesses is left as a limitation."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.sickness_rules"
         ]
       }
     ],
