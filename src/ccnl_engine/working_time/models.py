@@ -42,6 +42,7 @@ class WorkKind(StrEnum):
     HOLIDAY = "holiday"
     REST_DAY = "rest_day"
     NIGHT_HOLIDAY = "night_holiday"
+    SATURDAY = "saturday"
     SUPPLEMENTARE = "supplementare"
 
 

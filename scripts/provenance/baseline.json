@@ -993,7 +993,6 @@
     "agreement/metalmeccanico-artigianato.json": [
       "metalmeccanico-artigianato/apprentice_inps_rates_unsourced",
       "metalmeccanico-artigianato/artisan_impiegati_sickness",
-      "metalmeccanico-artigianato/artisan_saturday_overtime",
       "metalmeccanico-artigianato/centralinisti_apprenticeship",
       "metalmeccanico-artigianato/inps_sector_rates_unsourced"
     ],
