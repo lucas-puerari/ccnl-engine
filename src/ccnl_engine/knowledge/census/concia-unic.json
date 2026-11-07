@@ -275,22 +275,6 @@
       }
     },
     {
-      "id": "rol_not_accrued",
-      "institute": "leave",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "LEAVE: Art. 42 of the CCNL testo definitivo 21/01/2021 (CNEL B101, physical p. 62): 4 weeks (20 days) up to the 10th year of service completed; 4 weeks + 2 days beyond the 10th year (120 months); 4 weeks + 3 days beyond the 15th (180 months); 5 weeks (25 days) beyond the 18th (216 months). ROL 68 ore/anno not modelled.",
-      "calculation": "ccnl/concia-unic:coverage.notes",
-      "state": "absent",
-      "remediation": "Add a rol bucket of 68 hours a year to leave_rules with its accrual and payout (Art. 42 / ROL article).",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "concia-unic/rol_not_accrued"
-        ]
-      }
-    },
-    {
       "id": "sunday_holiday_ccnl_clause",
       "institute": "sunday_holiday",
       "variant": "all",

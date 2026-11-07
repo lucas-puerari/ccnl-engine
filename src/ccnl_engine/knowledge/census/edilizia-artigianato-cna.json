@@ -99,22 +99,6 @@
       }
     },
     {
-      "id": "contractual_fund_uncovered",
-      "institute": "pension_fund_contribution",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "The Prevedi table has no row for some levels of the bundle (a quadro level, or an operaio at a level the hourly table lacks): such a worker owes a contractual contribution the engine does not compute, and the run has the incomplete issue contractual_fund_not_computed.",
-      "calculation": "ccnl/edilizia-artigianato-cna:coverage.notes",
-      "state": "absent",
-      "remediation": "Source the Prevedi amount of the levels without a row and add it, then remove this note.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "edilizia-artigianato-cna/contractual_fund_uncovered"
-        ]
-      }
-    },
-    {
       "id": "disability_permit_tfr",
       "institute": "disability_permits",
       "variant": "all",

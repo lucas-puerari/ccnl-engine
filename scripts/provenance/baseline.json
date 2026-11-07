@@ -741,8 +741,7 @@
       "comunicazione-artigianato-confartigianato/switchboard_apprenticeship_duration"
     ],
     "agreement/concia-unic.json": [
-      "concia-unic/higher_overtime_bands",
-      "concia-unic/rol_not_accrued"
+      "concia-unic/higher_overtime_bands"
     ],
     "agreement/consorzi-agrari-assocap.json": [
       "consorzi-agrari-assocap/apprentice_inps_rates_unsourced"
@@ -827,7 +826,6 @@
       "edilizia-artigianato-cna/apprentice_seniority",
       "edilizia-artigianato-cna/cassa_edile_accruals_missing",
       "edilizia-artigianato-cna/cigo_rate_by_activity",
-      "edilizia-artigianato-cna/contractual_fund_uncovered",
       "edilizia-artigianato-cna/inps_sector_rates_unsourced"
     ],
     "agreement/edilizia-cooperative-ancpl.json": [
@@ -890,7 +888,6 @@
       "gomma-plastica-federazione-gomma-plastica/apprenticeship_period_boundaries"
     ],
     "agreement/grafica-editoria-aieg.json": [
-      "grafica-editoria-aieg/grafica_levels_unreconciled",
       "grafica-editoria-aieg/pre_july_2026_amounts_missing"
     ],
     "agreement/igiene-ambientale-utilitalia.json": [

@@ -35,22 +35,6 @@
       }
     },
     {
-      "id": "grafica_levels_unreconciled",
-      "institute": "base_salary",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "LEVELS E, D2, A, AS: the file values exceed the sum of the printed items (minimo of 01/10/2022 + contingenza + EDR + cumulative TEM increments, FISTel compendium pp. 172, 176, 173, 19) by a constant amount at every tranche: E +14.74, D2 +16.77, A +30.81, AS +36.47, about one 2022 tranche. No signatory prints the post-2024 totals, so the values are kept from the aggregator and not verified.",
-      "calculation": "ccnl/grafica-editoria-aieg:coverage.notes",
-      "state": "absent",
-      "remediation": "Read a printed post-2024 table of the signatories (testo a stampa) and reconcile levels E, D2, A and AS.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "grafica-editoria-aieg/grafica_levels_unreconciled"
-        ]
-      }
-    },
-    {
       "id": "maternity_daily_base",
       "institute": "maternity_leave",
       "variant": "all",
