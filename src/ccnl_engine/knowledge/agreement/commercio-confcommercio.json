@@ -3705,7 +3705,7 @@
     "effective_until": null,
     "source": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
     "verification_status": "unverified",
-    "source_hash": "760b7b3b3ddc516f8cfc18804d56ac4d33bc25f8909793dcb2845b86ba3b8c45",
+    "source_hash": "9e7675b8fcf9c2d419a030ef6505b73c50f0377c8d15ed82eff2add47fb0940a",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -5068,9 +5068,9 @@
               "url": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
               "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016"
             },
-            "page": "181 (PDF page; printed 179)",
+            "page": "181",
             "section": "Art. 189 - Trattamento economico di infortunio",
-            "quote": "A decorrere dal primo giorno successivo a quello dell’infortunio, verrà corrisposta\ndal datore di lavoro al lavoratore non apprendista, assente per inabilità temporanea\nassoluta derivante da infortunio sul lavoro, una integrazione dell’indennità corrispo-\nsta dall’INAIL fino a raggiungere complessivamente le seguenti misure:\n1)      60% (sessanta per cento) per i primi tre giorni (periodo di carenza);\n2)      90% (novanta per cento), per i giorni dal 5° al 20°;"
+            "quote": "A decorrere dal primo giorno successivo a quello dell’infortunio, verrà corrisposta\ndal datore di lavoro al lavoratore non apprendista, assente per inabilità temporanea\nassoluta derivante da infortunio sul lavoro, una integrazione dell’indennità corrisposta dall’INAIL fino a raggiungere complessivamente le seguenti misure:\n1)      60% (sessanta per cento) per i primi tre giorni (periodo di carenza);\n2)      90% (novanta per cento), per i giorni dal 5° al 20°;"
           },
           "extraction": {
             "method": "ai",
@@ -5082,6 +5082,37 @@
             "verification_status": "verified",
             "review_id": "2026-11-08-gpt-commercio-confcommercio-insured-absence"
           }
+        }
+      },
+      "maternity": {
+        "integration_rate": "1",
+        "net_basis": true,
+        "integration_days": 150,
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "uiltucs-tu2019",
+              "title": "CCNL per i dipendenti da aziende del Terziario della Distribuzione e dei Servizi, Testo Unico 30 luglio 2019",
+              "kind": "associazione",
+              "url": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
+              "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016"
+            },
+            "page": "186–187",
+            "section": "Art. 197 - Congedo di maternità e di paternità",
+            "quote": "Per i soli periodi indicati nel primo e secondo comma del presente articolo, l’indennità di cui al comma precedente verrà integrata dal datore di lavoro in modo da [...] raggiungere 100% della retribuzione mensile netta cui la lavoratrice avrebbe avuto\ndiritto in caso di normale svolgimento del rapporto, salvo che l’indennità economica\ndell’INPS non raggiunga un importo superiore."
+          },
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-08T03:00:00Z",
+            "effective_from": null,
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-08T03:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-08-gpt-commercio-confcommercio-insured-absence"
+          },
+          "transformation": "integration_days 150: the compulsory leave of art. 16 D.Lgs. 151/2001 (five months) the clause refers to"
         }
       }
     }
@@ -5432,11 +5463,13 @@
           }
         ],
         "findings": [
-          "Added work_rules.insured_absence.injury."
+          "Added work_rules.insured_absence.injury.",
+          "Added work_rules.insured_absence.maternity."
         ],
         "independence": "separate_model",
         "checked": [
-          "work_rules.insured_absence.injury"
+          "work_rules.insured_absence.injury",
+          "work_rules.insured_absence.maternity"
         ]
       }
     ],
