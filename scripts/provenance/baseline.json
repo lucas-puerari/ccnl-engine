@@ -982,6 +982,7 @@
     "agreement/logistica-trasporto-confetra.json": [
       "logistica-trasporto-confetra/edr_2021_in_daily_base",
       "logistica-trasporto-confetra/level_6j_2025",
+      "logistica-trasporto-confetra/maternity_sixth_month",
       "logistica-trasporto-confetra/sixth_day_overtime"
     ],
     "agreement/marittimi-industria-armatoriale.json": [
@@ -1032,7 +1033,8 @@
     ],
     "agreement/multiservizi-anip.json": [
       "multiservizi-anip/anip_unsigned_renewal",
-      "multiservizi-anip/multiservizi_unmodelled_rules"
+      "multiservizi-anip/multiservizi_unmodelled_rules",
+      "multiservizi-anip/renewal_not_signed_by_anip"
     ],
     "agreement/noleggio-autobus-conducente-anav.json": [
       "noleggio-autobus-conducente-anav/apprentice_seniority",

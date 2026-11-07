@@ -53,7 +53,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-02-21 |
-| **Last review** | 2026-11-02 |
+| **Last review** | 2026-11-08 |
 | **Latest salary tranche** | 2027-03-01 |
 
 ## Review history
@@ -74,6 +74,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-01 | claude-opus-5-5 (ai) | The notice of the operai, Art. 32 (p. 55). | corrected | Art. 32 (p. 55): 7 calendar days up to three years, 10 beyond, from any day, indemnity at the pay of the period: work_rules.notice. Found by a delegated search, checked on the PDF text. |
 | 2026-11-02 | claude-opus-5-5 (ai) | The premiums on ordinary hours of Art. 19 (PDF p. 40) and the hourly base of Art. 24 point 3 (p. 49). | corrected | Art. 19 nn. 2, 4-8, 12: supplement_bands ANCE_* (festivo 45%, night 28%, guardiano 8%, continuous night 16%, day shift 9%, night shift 12%, Sunday with compensatory rest 8%).<br>Art. 24 point 3: the base of the premiums is paga base di fatto, ex contingenza and indennità territoriale di settore: the EDR was in the hourly base of the overtime bands and is now excluded (hourly_base_excluded); the superminimo enters (individual_elements included). |
 | 2026-11-02 | claude-opus-5-5 (ai) | Art. 19 n. 10 (PDF p. 40). | corrected | Art. 19 n. 10: festivo notturno 50% (HolidayWorkKind.NIGHT_HOLIDAY). |
+| 2026-11-08 | gpt-6-sol (ai) | CCNL top-ups of maternity and work injury, read from the signed text by a separate model session; every quote found on the PDF text layer. | confirmed | Added work_rules.insured_absence.maternity. |
 
 ## Salary table
 

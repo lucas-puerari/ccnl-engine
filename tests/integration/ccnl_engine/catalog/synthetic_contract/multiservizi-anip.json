@@ -35,22 +35,22 @@
     {
       "level_code": "5",
       "as_of": "2029-03-01",
-      "expected_monthly": "1276.96"
+      "expected_monthly": "1276.94"
     },
     {
       "level_code": "6",
       "as_of": "2029-03-01",
-      "expected_monthly": "1587.07"
+      "expected_monthly": "1587.08"
     },
     {
       "level_code": "7",
       "as_of": "2029-03-01",
-      "expected_monthly": "1833.35"
+      "expected_monthly": "1833.34"
     },
     {
       "level_code": "Q",
       "as_of": "2029-03-01",
-      "expected_monthly": "2006.64"
+      "expected_monthly": "2006.65"
     }
   ],
   "seniority_checks": [

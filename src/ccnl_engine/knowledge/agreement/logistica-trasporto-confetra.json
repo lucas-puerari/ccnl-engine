@@ -181,6 +181,19 @@
       {
         "kind": "source",
         "text": "INPS SECTOR OF THE EMPLOYER: INPS classifies an employer by the activity it carries out (art. 49 L. 88/1989), not by the CCNL it applies. The Manuale di classificazione dei datori di lavoro of May 2021 (ATECO 2007, PDF pp. 199-206) gives CSC 11501 (industria, trasporti) to 49.41.00 trasporto di merci su strada and 49.42.00 traslochi, 11505 (industria) to 52.24 movimento merci and 52.21.90, 11506 to 52.21.40 interporti, 11507 to 53.20.00 corrieri, and 70401 (terziario, intermediari) to 52.10.10 magazzini di custodia e deposito, 52.29.10 spedizionieri, 52.29.21 intermediari dei trasporti and 52.29.22 servizi logistici. The employers of this CCNL are therefore in the industria or in the terziario: meta.inps_sectors lists both and EmployerProfile.inps_sector chooses; without it the run reads the industria and has a missing_fact inps_sector blocker. INPS circ. 71/2025 moved the classification to ATECO 2025 from 1 April 2025 and announced a new edition of the manual, not found in this review: the CSC above are those of the 2021 edition."
+      },
+      {
+        "kind": "simplification",
+        "text": "MATERNITY (Art. 64 c. 1 b, testo unico 25 September 2025, p. 90): the employer tops up to the full retribuzione globale for the first five months (modelled, 150 days) and to 50% in the sixth month (not modelled).",
+        "capability": "maternity_leave",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "maternity_sixth_month",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the 50% top-up of the sixth month of Art. 64."
+        }
       }
     ]
   },
@@ -2718,7 +2731,7 @@
     "effective_until": null,
     "source": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
     "verification_status": "unverified",
-    "source_hash": "38913a3b865bdbbcd798198b79fbe56ac7d04dd74c65c94a1fd1ba9c966775a4",
+    "source_hash": "e771eb4ddbfd486b2f6abfcf3b1435dd400a17e4ac2129b6552d1df2535c1aeb",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3421,6 +3434,68 @@
           "review_id": "2026-11-01-ai-notice-2"
         }
       }
+    },
+    "insured_absence": {
+      "maternity": {
+        "integration_rate": "1",
+        "integration_days": 150,
+        "net_basis": false,
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "confetra-testo-unico-2025",
+              "title": "CCNL Logistica, Trasporto Merci e Spedizione, testo unico sottoscritto il 25 settembre 2025 (Confetra)",
+              "kind": "associazione",
+              "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+              "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+            },
+            "page": "90",
+            "section": "Parte speciale, sezione prima, Art. 64, comma 1(b)",
+            "quote": "corrispondere ad ogni fine mese, mediante integrazione con gli stessi criteri previsti dal precedente art.63 di quanto le lavoratrici percepiscono per atti di previdenza a cui l'azienda è tenuta per disposizioni di legge, l'intera retribuzione globale mensile per i primi 5 mesi della sua assenza ed il 50% di essa per il 6° mese."
+          },
+          "transformation": "First five months: 100% of monthly global pay inclusive of social-insurance payments; sixth month 50%. No conversion of months to days or assertion of net basis. integration_days 150: the compulsory leave of art. 16 D.Lgs. 151/2001 (five months) the clause refers to; net_basis false: the clause measures the retribuzione without saying netta",
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-08T03:00:00Z",
+            "effective_from": null,
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-08T03:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-08-gpt-logistica-trasporto-confetra-insured-absence"
+          }
+        }
+      },
+      "injury": {
+        "advanced": true,
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "confetra-testo-unico-2025",
+              "title": "CCNL Logistica, Trasporto Merci e Spedizione, testo unico sottoscritto il 25 settembre 2025 (Confetra)",
+              "kind": "associazione",
+              "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+              "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+            },
+            "page": "89",
+            "section": "Parte speciale, sezione prima, Art. 63, lettera B), commi 5 bis, 9–10",
+            "quote": "In caso di infortunio sul lavoro all’azienda che non si avvalga del sistema di compensazione diretta con l’Istituto assicuratore, è data facoltà di recuperare l’anticipazione corrisposta, in occasione del secondo periodo di retribuzione mensile successivo a quello in cui la medesima è avvenuta, ovvero al momento della liquidazione da parte dell’Istituto assicuratore."
+          },
+          "transformation": "Section-one employer advances INAIL indemnity; recovery is conditional. No permanent-only restriction. Injury target and duration vary by seniority under Art. 63(B)(5 bis) and (A)(12).",
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-08T03:00:00Z",
+            "effective_from": null,
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-08T03:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-08-gpt-logistica-trasporto-confetra-insured-absence"
+          }
+        }
+      }
     }
   },
   "verification": {
@@ -3818,6 +3893,29 @@
         "independence": "same_process",
         "checked": [
           "parameters.seniority_increments"
+        ]
+      },
+      {
+        "id": "2026-11-08-gpt-logistica-trasporto-confetra-insured-absence",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "CCNL top-ups of maternity and work injury, read from the signed text by a separate model session; every quote found on the PDF text layer.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+            "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+          }
+        ],
+        "findings": [
+          "Added work_rules.insured_absence.maternity.",
+          "Added work_rules.insured_absence.injury."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.insured_absence.maternity",
+          "work_rules.insured_absence.injury"
         ]
       }
     ],

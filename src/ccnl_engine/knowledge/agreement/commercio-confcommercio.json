@@ -3705,7 +3705,7 @@
     "effective_until": null,
     "source": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
     "verification_status": "unverified",
-    "source_hash": "f56718bfc95c35a789c06ce26a60364d127ea423fd7d49eb9bac005d3494c5b5",
+    "source_hash": "760b7b3b3ddc516f8cfc18804d56ac4d33bc25f8909793dcb2845b86ba3b8c45",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -5054,6 +5054,36 @@
           "verification_status": "unverified"
         }
       }
+    },
+    "insured_absence": {
+      "injury": {
+        "carenza_rate": "0.60",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "uiltucs-tu2019",
+              "title": "CCNL per i dipendenti da aziende del Terziario della Distribuzione e dei Servizi, Testo Unico 30 luglio 2019",
+              "kind": "associazione",
+              "url": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
+              "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016"
+            },
+            "page": "181 (PDF page; printed 179)",
+            "section": "Art. 189 - Trattamento economico di infortunio",
+            "quote": "A decorrere dal primo giorno successivo a quello dell’infortunio, verrà corrisposta\ndal datore di lavoro al lavoratore non apprendista, assente per inabilità temporanea\nassoluta derivante da infortunio sul lavoro, una integrazione dell’indennità corrispo-\nsta dall’INAIL fino a raggiungere complessivamente le seguenti misure:\n1)      60% (sessanta per cento) per i primi tre giorni (periodo di carenza);\n2)      90% (novanta per cento), per i giorni dal 5° al 20°;"
+          },
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-08T03:00:00Z",
+            "effective_from": null,
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-08T03:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-08-gpt-commercio-confcommercio-insured-absence"
+          }
+        }
+      }
     }
   },
   "verification": {
@@ -5386,6 +5416,27 @@
         "independence": "separate_session",
         "checked": [
           "work_rules.time_supplements.week_divisors"
+        ]
+      },
+      {
+        "id": "2026-11-08-gpt-commercio-confcommercio-insured-absence",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "CCNL top-ups of maternity and work injury, read from the signed text by a separate model session; every quote found on the PDF text layer.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
+            "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016"
+          }
+        ],
+        "findings": [
+          "Added work_rules.insured_absence.injury."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.insured_absence.injury"
         ]
       }
     ],

@@ -52,7 +52,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-11-20 |
-| **Last review** | 2026-11-06 |
+| **Last review** | 2026-11-08 |
 | **Latest salary tranche** | 2025-10-01 |
 
 ## Review history
@@ -63,6 +63,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-13 | claude-opus-5-5 (ai) | Every payable rule read again in the Legacoopsociali full text 2025 of the CCNL Cooperative sociali 2023-2025, with the Legacoop circular of 1 February 2024 and the CNEL T151 deposits of 26 January and 5 March 2024, for the reviewed tier. | corrected | 83 records verified; the two aggregator sources replaced by the Legacoopsociali full text.<br>32 salary periods differed by 1-3 cents from Art. 76 (A1, B, C3, D1, D3, E1, E2, E2Q, F2, F2Q, and F1, F1Q from October 2025): corrected.<br>Ferie 26 working days on a six-day week (Art. 60), not 20.<br>Sickness: 100% of the normale retribuzione from day 1 to day 180 (Art. 71), no 50% carenza.<br>Apprenticeship: the OSS of C2 on the 18-month track (Art. 28 N.3); apprentices accrue no seniority (Art. 28 I.5): the apprentice_seniority limitation closed.<br>Added Previdenza Cooperativa (Art. 86: employer 1.5%, worker minimum 1% of the TFR base).<br>C3 seniority 20.66 stays derived: Art. 80 prints 20,63, the cost tables 20.66.<br>Absence by_26 stays derived: Art. 41 deducts hours at 1/165.<br>Open: the INPS rate of the cost tables (28.03%) vs terziario, and the type-B exemptions of L. 381/1991.<br>The CCNL expired on 31 December 2025; no renewal found through October 2026. |
 | 2026-10-17 | claude-opus-5-5 (ai) | The INPS class of the employers of the CCNL against the INPS classification manual. | flagged | The activities of the social cooperatives of type A are classified by INPS in the terziario: CSC 70704 for 87.30.00, 88.10.00 and 88.91.00, 70706 for 87.20.00 (manual of May 2021, ATECO 2007, PDF pp. 265-266). The file applies the terziario rates: the class is confirmed.<br>The 28.03% of the Ministry cost tables (D.D. 30/2024) is still unexplained: no composition of the 2026 terziario rates gives it, and the tables state none. inps_rate_not_reconciled stays open; a cooperative may also fall in the DPR 602/1970 regime for its members, which the file does not model. |
 | 2026-11-06 | claude-opus-5-5 (ai) | Art. 87 health contribution in the 2025 coordinated text (p. 114). Art. 28 c. 1 apprenticeship (p. 55). | confirmed | 5 EUR a month from 1 May 2013 and 10 EUR from 1 January 2025, employer only, for the permanent workers.<br>Art. 28 calls apprenticeship 'contratto di lavoro a tempo indeterminato': the apprentices are owed the contribution. |
+| 2026-11-08 | gpt-6-sol (ai) | CCNL top-ups of maternity and work injury, read from the signed text by a separate model session; every quote found on the PDF text layer. | confirmed | Added work_rules.insured_absence.maternity.<br>Added work_rules.insured_absence.injury. |
 
 ## Salary table
 
