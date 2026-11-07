@@ -33,7 +33,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ✅ |
 | **Limits of this contract** | — |
 
-4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2022-07-13 |
-| **Last review** | 2026-10-17 |
+| **Last review** | 2026-11-08 |
 | **Latest salary tranche** | 2025-01-01 |
 
 ## Review history
@@ -58,6 +58,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | Date | Reviewer | Scope | Outcome | Findings |
 |---|---|---|---|---|
 | 2026-10-17 | claude-opus-5-5 (ai) | The minimi of the nine levels against Art. 17 of the renewal of 13 July 2022. | corrected | Art. 17 (p. 9 of the scan, read by OCR and on the page image): the 36 minimi of the nine levels at 1-1-2022, 1-1-2023, 1-12-2023 and 1-1-2025 move from assumed to verified.<br>Corrected: level 8 at 1-1-2022 is printed 1.557,23, and 1.557,23 + 33,33 (the first tranche at parameter 100) gives the 1.590,56 printed for 1-1-2023; the file held 1.557,28. |
+| 2026-11-08 | gpt-6-sol (ai) | Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim. | confirmed | seniority_not_modelled: The 2017 renewal abolishes new scatti from 1 April 2017. The agreement sets maximum_count=0 and amount_by_level={}, so no new increments accrue. For a worker with a documented post-absorption residual, SeniorityFact.earned.monthly is returned unchanged by earned_seniority (zero r |
 
 ## Salary table
 
@@ -96,13 +97,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `base_salary` applies.
 
     **Remediation:** Resolved: 13 months, art. 11 (operai) and art. 8 (impiegati) of the 2000 text, no national fourteenth in the renewals; read on 2026-11-06.
-
-!!! note "attivita-minerarie-assorisorse/seniority_not_modelled · seniority · impact yes · resolved"
-    SENIORITY: none. The renewal of 15 February 2017 (p. 16): 'L'istituto degli scatti di anzianità è abolito a far data dal 1 aprile 2017. Contestualmente i minimi di retribuzione verranno aumentati di Euro 25 lordi non parametrati'. The increments matured before, kept by each worker, are an individual element of pay.
-
-    **Applies when:** `seniority` applies.
-
-    **Remediation:** Resolved: seniority increments abolished from 1 April 2017 (renewal of 15 February 2017, p. 16); read on 2026-11-06.
 
 !!! note "attivita-minerarie-assorisorse/ocr_salary_values · base_salary · impact unknown · resolved"
     SIMPLIFICATION: Source PDF is scanned (image-based, CCITT compression). Salary values extracted via OCR (Ghostscript + Tesseract). Amounts verified by cross-checking parametrale ratios and incremental consistency.

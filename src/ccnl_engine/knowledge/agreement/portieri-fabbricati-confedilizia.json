@@ -89,27 +89,6 @@
       },
       {
         "kind": "simplification",
-        "text": "APPRENTICESHIP (Art. 36 cc. 5-6, p. 36 of the ipotesi of 30 October 2025): 36 months for B1 and C3, 24 for B2, B4, C4, D1 and D3, each split in thirds at 80%, 85% and 90% of the salario conglobato (8 months each for the 24-month profiles). B3, B5, D2 and D4 admit no apprenticeship.",
-        "capability": "base_salary",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "apprenticeship_24_month_profiles",
-          "applies_when": {
-            "trigger": "run",
-            "levels": [
-              "B2",
-              "B4",
-              "C4",
-              "D1",
-              "D3"
-            ]
-          },
-          "remediation": "Resolved: two tracks of art. 36, read on 2026-11-06.",
-          "status": "resolved"
-        }
-      },
-      {
-        "kind": "simplification",
         "text": "B5 PART-TIME NOTE: Art. 122 provides a 15% hourly premium for B5 (pulitori/lavascale) with weekly schedule below 8 hours. Not modelled (SIMPLIFICATION).",
         "capability": "base_salary",
         "monetary_impact": "yes",
@@ -1775,7 +1754,7 @@
     "effective_until": null,
     "source": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/",
     "verification_status": "verified",
-    "source_hash": "4839f11c21f3b472ddcd6b7a26baad2238583f7a09237bde3946644d89b7f70b",
+    "source_hash": "6ddf62e4529d6734da91636cb37a2835513719e29f0ed5c7181ac183fa6686d2",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1995,6 +1974,27 @@
         "checked": [
           "levels.base_salary",
           "levels.fixed_allowances"
+        ]
+      },
+      {
+        "id": "2026-11-08-gpt-portieri-fabbricati-confedilizia-stale-limitations",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+            "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+          }
+        ],
+        "findings": [
+          "apprenticeship_24_month_profiles: Art. 36(5–6), PDF p. 36, requires 24 months for B2/B4/C4/D1/D3, with 80/85/90% of the qualified worker’s salario conglobato in equal thirds. The existing professionalizzante_24 track has precisely these destination levels and 0–8/8–16/16–24 month percentages; the engine selects t"
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "coverage.notes"
         ]
       }
     ]

@@ -37,7 +37,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary |
 
-4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -69,6 +69,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-05 | claude-opus-5-5 (ai) | Art. 66 (PDF p. 29) of the ipotesi of 8 June 2021, OCR of the scan. | corrected | ONBSI was not modelled: the contractual funds held no reduced worker share; the model now has reduced_employee. |
 | 2026-11-07 | claude-opus-5-5 (ai) | Values a primary-text verification found different from the printed tables (text layer). | corrected | 31 values corrected to the amounts printed on the cited pages. |
 | 2026-11-08 | gpt-6-sol (ai) | CCNL top-ups of maternity and work injury, read from the signed text by a separate model session; every quote found on the PDF text layer. | confirmed | Added work_rules.insured_absence.maternity.<br>Added work_rules.insured_absence.injury. |
+| 2026-11-08 | gpt-6-sol (ai) | Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim. | confirmed | health_and_bilateral_funds: For modeled runs from July 2021, parameters.health_funds already contains ASIM employer EUR 4/month through 28 weekly hours and EUR 6 above, permanent workers only, and ONBSI EUR 0.25 per party under 20 weekly hours and EUR 0.50 per party otherwise, on ordinary months only (12, n |
 
 ## Salary table
 
@@ -130,13 +131,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Key seniority and sickness by worker category, model the second sickness band, the /22 divisor as the default, the art. 38 and art. 24 premiums, the funds and the apprenticeship durations of the 2012 accord.
-
-!!! note "multiservizi-anip/health_and_bilateral_funds · bilateral_funds · impact yes · resolved"
-    BILATERAL FUND: ONBSI EUR 0.50 from the employer and 0.50 from the worker a month on 12 months, 0.25 each below 20 hours a week (art. 66 as amended in 2021, CNEL 139292 p. 29), and ASIM (art. 69) are modelled.
-
-    **Applies when:** `bilateral_funds` applies.
-
-    **Remediation:** Resolved: parameters.health_funds onbsi with reduced_employer and reduced_employee below 20 weekly hours, read on 2026-11-05.
 
 !!! warning "multiservizi-anip/renewal_not_signed_by_anip · base_salary · impact unknown · open"
     SIGNATORIES: the minimums from 1 July 2025 are those of the renewal of 13 June 2025 and of its integrative agreement of 6 August 2025 (CNEL 234754, 234752), signed by AGCI Servizi, Confcooperative Lavoro e Servizi, Legacoop Produzione e Servizi, Unionservizi Confapi and the three unions, not by ANIP-Confindustria. The last tables ANIP signed are those of the 8 June 2021 renewal (CNEL 139292: fifth tranche July 2025, level 2 779.21), with the IPCA consuntivo of art. 73 and arts. 73-bis/ter. The 2025 tables are kept because the sector applies them; whether an ANIP member must pay them is not established.

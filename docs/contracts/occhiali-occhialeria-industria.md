@@ -30,10 +30,10 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary |
+| **Core payroll path** | ✅ |
+| **Limits of this contract** | — |
 
-2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+0 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2023-12-04 |
-| **Last review** | 2026-11-06 |
+| **Last review** | 2026-11-08 |
 | **Latest salary tranche** | 2028-11-01 |
 
 ## Review history
@@ -59,6 +59,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|---|---|
 | 2026-10-18 | claude-opus-5-5 (ai) | The Elemento Retributivo Nazionale (conglobated minimo, TEM) of the ten levels against the signed ipotesi of the 2023-2025 renewal (28 April 2023, ERN table for 1.05.2023, 1.03.2024, 1.02.2025) and of the 2026-2028 renewal (30 January 2026, ERN table for March 2026 to November 2028), both published by FILCTEM-CGIL, a signatory. | corrected | The two FILCTEM-CGIL scans (signed by ANFAO, Filctem, Femca, Uiltec) print the ERN per level for every tranche of the file: 2023 ipotesi PDF p. 22, 2026 ipotesi PDF p. 30 (All. 1). Both are image-only scans read on the page images (tesseract garbles the 2026 table). Level codes map one to one (Q, 6, 5S, 5, 4S, 4, 3S, 3, 2, 1); the 2023 table labels them by area and step professionale (e.g. '4° S Qualificata Consolidato').<br>The ERN is the conglobated tabular minimum and matches the file's base_salary meaning; the Q indennita di funzione is not in the ERN (Q ERN is only a few euro above level 6), consistent with the file's separate allowance.<br>Level 1 MAG.2027: the 2026 table prints 1.661,71, a transposition of 1.661,17 (1.622,04 + 39,13; 1.661,17 + 35,21 = 1.696,38 printed for MAG.28). The file's 1661.17 is kept as a derived value.<br>Level 4S 1.03.2024 and 1.02.2025: the 2023 table prints 2.014,69 and 2.074,05, but its own increments give 2.016,18 and 2.075,54, and the 2026 table (2.126,94 - 51,40) implies 2.075,54. The definitive text of 4 December 2023 reportedly corrected some minimi but is not published by a signatory; both periods are left unbacked.<br>One-cent residuals between the two signed tables remain for levels 6 and 5S (2025 ERN 2.448,66 and 2.323,28 vs 2.448,67 and 2.323,29 implied by the 2026 ERN minus the first 2026 tranche); each period is backed by the table that prints it.<br>Consistency check (base + printed increment) on both tables: 2023 table off by -0,01 for level 6 at 1.03.2024 (2.319,66 + 58,98 = 2.378,64 vs 2.378,63 printed) and by -1,49 for 4S; 2026 table consistent except the level 1 MAG.2027 transposition. Rule applied: a printed value stays a verified row unless a later signed table contradicts it by more than rounding (4S, unbacked); one-cent residuals are kept as printed and reported here.<br>The ruleset names a FILCTEM-CGIL document, a signatory: source_type contracting_party.<br>Corrected to the printed table: Q 2026-10-01: 2546.53 -> 2546.54; Q 2027-05-01: 2604.87 -> 2604.88; Q 2028-05-01: 2657.38 -> 2657.39; Q 2028-11-01: 2680.72 -> 2680.73; 6 2026-10-01: 2539.80 -> 2539.79; 6 2027-05-01: 2596.76 -> 2596.74; 6 2028-05-01: 2648.02 -> 2647.99; 6 2028-11-01: 2670.80 -> 2670.77; 5S 2027-05-01: 2467.76 -> 2467.75; 5S 2028-05-01: 2517.77 -> 2517.76; 5S 2028-11-01: 2540.00 -> 2539.99; 4S 2026-10-01: 2158.67 -> 2157.78; 4S 2027-05-01: 2211.56 -> 2209.18; 4S 2028-05-01: 2259.16 -> 2255.44; 4S 2028-11-01: 2280.32 -> 2276.00; 3S 2028-11-01: 2125.83 -> 2125.84; 2 2028-05-01: 1948.54 -> 1948.53; 2 2028-11-01: 1966.32 -> 1966.31; 1 2028-05-01: 1696.39 -> 1696.38; 1 2028-11-01: 1712.04 -> 1712.03. |
 | 2026-11-06 | claude-opus-5-5 (ai) | Art. 24 apprenticeship of the CCNL of 10 June 2021 (pp. 39-40); the renewal of 30 January 2026 searched for an amendment. | corrected | The apprentices are under-classified (two levels, one, then the destination), not paid 100%: the 2026 percentages abrogated are those of the PPVA premium per step. |
+| 2026-11-08 | gpt-6-sol (ai) | Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim. | confirmed | level_1_entry_rate: The 2021 classification clause (also present in the 2023 definitive-text scan) assigns the single 1°/Operativa-Base classification for six months to first hires without sector experience, and also assigns it to non-production cleaning/manual workers; it does not create an 'L1 ing<br>apprenticeship_full_pay: Art. 24 specifies classification AND corresponding economic treatment: destination 3 through Q: 36 months in 10/10/16 periods at two levels below, one below, then destination; destination 2: 24 months in 6/6/12 periods, at level 1 for the first six months and level 2 from the sta |
 
 ## Salary table
 
@@ -106,20 +107,6 @@ Destination levels: `2`
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
-
-!!! warning "occhiali-occhialeria-industria/level_1_entry_rate · base_salary · impact yes · open"
-    LEVEL 1 sub-level: the CCNL provides automatic advancement from entry sub-level (L1 ingresso) to L1 standard after 6 months. The file models only the post-advance minimum throughout, which is the relevant value for permanent workers and for workers beyond their 6th month. The entry sub-level undervaluation during the first 6 months is a deliberate structural simplification.
-
-    **Applies when:** `base_salary` applies; level in 1.
-
-    **Remediation:** Model the L1 ingresso minimum for the first 6 months of service (a level or a seniority-gated reduction), or record the limitation.
-
-!!! note "occhiali-occhialeria-industria/apprenticeship_full_pay · base_salary · impact yes · resolved"
-    APPRENTICESHIP (Art. 24, pp. 39-40 of the CCNL of 10 June 2021, table in force from 1 July 2017, kept by the text of 28 April 2023): two levels below the destination for 10 months, one below for 10, the destination for the last 16 (2°: level 1 for 6 months, then the 2°). The renewal of 30 January 2026 does not amend art. 24: its 'ripartizione in percentuale' per step is that of the Premio di professionalità a valore aggiunto.
-
-    **Applies when:** `base_salary` applies; contract type in apprentice.
-
-    **Remediation:** Resolved: under-classification of art. 24, read on 2026-11-06.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

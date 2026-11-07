@@ -36,7 +36,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | assistance_contribution, base_salary, inps_employer, seniority |
 
-8 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+7 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -53,7 +53,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-10-28 |
-| **Last review** | 2026-10-15 |
+| **Last review** | 2026-11-08 |
 | **Latest salary tranche** | 2026-01-01 |
 
 ## Review history
@@ -66,6 +66,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-15 | claude-opus-5-5 (ai) | Registry check: CNEL code, name, signatories and term against the 21st CNEL report of CCNLs in force (30 June 2025) and the term clause of the text read in the P1 review. | confirmed | CNEL H501 matches (FIDALDO, which groups ASSINDATCOLF, and DOMINA with FILCAMS, FISASCAT, UILTUCS, FEDERCOLF).<br>Term: the ipotesi of 28 October 2025 applies from 1 November 2025; its expiry is reported as 31 October 2028 (CNEL filing) or 31 December 2028 (press); not read in the text, left open. |
 | 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'confrontare lordo, netto e costo azienda con esempi indipendenti': a run of the engine against the worked examples of a third-party guide (money.it, Costo colf e badanti 2026). | confirmed | Level CS, 2026: the hourly minimum 8,30 matches. 20 hours a week (effective hourly pay up to 9,61): 0,43 euro an hour of the worker and 1,27 of the employer; 30 hours a week (over 24 hours): 0,31 and 0,93. The engine applies the same bands. Match.<br>Deviation: the monthly pay of 20 hours is 719.34, half the rounded full-time 1438.67, against 8,30 x 20 x 52 / 12 = 719.33: one cent of rounding; decision: accepted and noted. The guide is a third-party page (hash of the copy read on 15 October 2026); Cas.Sa.Colf, tredicesima and TFR are not quantified there. |
 | 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'ferie, permessi, festività, assenze, malattia e comporto': the sickness rule against the signed text of 28 October 2025. | confirmed | Art. 27 (p. 37): the three seniority bands, the 365-day count and the 50% / 100% pay match the file: verified. The +50% for oncological illness (c. 6) is declared. |
+| 2026-11-08 | gpt-6-sol (ai) | Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim. | confirmed | domestic_oncological_comporto: Art. 27(4)-(7) applies to non-conviventi: the ASL-documented oncological illness extends job-retention periods by 50%, not the 8/10/15 paid-day caps. The existing sickness bands have ordinary 10/45/180 and extended 15/68/270; the engine selects serious_comporto_days when Sickness |
 
 ## Salary table
 
@@ -150,13 +151,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `base_salary` applies; from 2027-01-01.
 
     **Remediation:** Add the minimi of 2027 set by the Commissione nazionale with their source, then remove this note.
-
-!!! note "lavoro-domestico-non-convivente/domestic_oncological_comporto · sickness · impact yes · resolved"
-    ONCOLOGICAL ILLNESS: the periods of Art. 27 c. 4 rise by 50% for an oncological illness documented by the ASL (c. 6, p. 37); the file applies the ordinary periods and the request does not state the illness.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Resolved as a duplicate of lavoro-domestico-non-convivente/oncological_comporto, resolved in turn: both track the 50% longer comporto of Art. 27 c. 6 for an oncological illness.
 
 !!! note "sickness_inps_daily_base · sickness · impact unknown · resolved"
     The INPS share of a sick day is computed on the INPS daily base of the episode, on the days INPS pays (the weekdays of an operaio, every day but the national holidays on a Sunday of an impiegato, point 7.3 of INPS circ. 134368/1981): the retribuzione media globale giornaliera of the month before the illness (INPS circ. 134368/1981 point 11; circ. 55/2024 Allegato 1), whole or partial month, impiegato or operaio, or for the lavoratori dello spettacolo the average pay of the last 40 daily contributions, capped for a fixed-term worker (INPS circ. 132/2021 par. 2.4). The base is a fact of the payroll history the episode states (SicknessEpisode.inps_base).

@@ -96,20 +96,6 @@
       },
       {
         "kind": "simplification",
-        "text": "BASE SALARY (accordo economico of 12 December 2024, p. 23 of the AIA text): the stipendi from 1 January 2025, 1 July 2025 and 1 September 2026, 5.8% in all on the pay of 31 December 2024 (1/2: 2,381.17 / 2,392.51 / 2,399.31 EUR).",
-        "capability": "base_salary",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "third_tranche_sep_2026",
-          "applies_when": {
-            "effective_from": "2026-09-01"
-          },
-          "remediation": "Resolved: the three columns of the 2024 accordo, read on 2026-11-06.",
-          "status": "resolved"
-        }
-      },
-      {
-        "kind": "simplification",
         "text": "SIMPLIFICATION: Indennita di funzione for area 1 Quadri (min 13% monthly) not modeled — variable floor amount, not expressible as fixed allowance.",
         "capability": "base_salary",
         "monetary_impact": "yes",
@@ -185,6 +171,27 @@
         "independence": "same_process",
         "checked": [
           "levels.base_salary"
+        ]
+      },
+      {
+        "id": "2026-11-08-gpt-organizzazioni-allevatori-aia-stale-limitations",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.aia.it/download/ccnl/?wpdmdl=1787",
+            "sha256": "0d98962630c8e46ecb1c07a8e7f727c2d145e653d9430c1e78960cf914fdc528"
+          }
+        ],
+        "findings": [
+          "third_tranche_sep_2026: All 13 levels in the agreement JSON have the exact 1/9/2026 stipendio from the signed renewal, effective 2026-09-01 with no end date; the previous period ends exclusively on that day. The engine reads base_salary.value_at(as_of), so this third tranche is paid on and after that da"
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "coverage.notes"
         ]
       }
     ]
@@ -1969,7 +1976,7 @@
     "effective_until": null,
     "source": "https://www.wolterskluwer.it/",
     "verification_status": "unverified",
-    "source_hash": "b108524af14cc55586342e4535fc9c9a486c9bcbed8d7c4a3fc6f5a8c410435e",
+    "source_hash": "c87ba6fae4f0c11e8b8e20bc27078736b44b7105510dfaaeedac0344a43adcf3",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

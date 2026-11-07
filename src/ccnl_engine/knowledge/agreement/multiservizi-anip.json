@@ -138,20 +138,6 @@
         }
       },
       {
-        "kind": "simplification",
-        "text": "BILATERAL FUND: ONBSI EUR 0.50 from the employer and 0.50 from the worker a month on 12 months, 0.25 each below 20 hours a week (art. 66 as amended in 2021, CNEL 139292 p. 29), and ASIM (art. 69) are modelled.",
-        "capability": "bilateral_funds",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "health_and_bilateral_funds",
-          "applies_when": {
-            "trigger": "owed"
-          },
-          "remediation": "Resolved: parameters.health_funds onbsi with reduced_employer and reduced_employee below 20 weekly hours, read on 2026-11-05.",
-          "status": "resolved"
-        }
-      },
-      {
         "kind": "info",
         "capability": "leave",
         "text": "LEAVE (artt. 19, 41, 42 of the 2011 text): 22 days of ferie on five days, 26 on six (Employment.full_time_week_days), in twelfths with the month over 15 days; 40 hours a year of reduced time (art. 42). At termination a day of ferie is the monthly pay over 22 (26 on six days), an hour of permits over 173. The ex festività are compensatory permits for the abolished holidays worked (art. 41): not a bank, not accrued. The 2025 renewal (72 hours of permits according to the union summary) is not read in a primary text."
@@ -5654,7 +5640,7 @@
     "effective_until": null,
     "source": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/139292",
     "verification_status": "unverified",
-    "source_hash": "cdb187887df90269c53da9dd07f2b32be5db7cc118ec9e02b47aac360d6c3f65",
+    "source_hash": "3f9f38b953a40b2e8b96ca5a64a66406d3a810e5ef9988b70b0091ba245861bb",
     "published_at": "2026-09-07",
     "source_type": "official_primary"
   },
@@ -6334,6 +6320,31 @@
         "checked": [
           "work_rules.insured_absence.maternity",
           "work_rules.insured_absence.injury"
+        ]
+      },
+      {
+        "id": "2026-11-08-gpt-multiservizi-anip-stale-limitations",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+            "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+          },
+          {
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/139292",
+            "sha256": "4a87d6d51d2c4ccf7d28a9e2708cd45ee122fdebea7d8f8420cdb38e448f6167"
+          }
+        ],
+        "findings": [
+          "health_and_bilateral_funds: For modeled runs from July 2021, parameters.health_funds already contains ASIM employer EUR 4/month through 28 weekly hours and EUR 6 above, permanent workers only, and ONBSI EUR 0.25 per party under 20 weekly hours and EUR 0.50 per party otherwise, on ordinary months only (12, n"
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "coverage.notes"
         ]
       }
     ]

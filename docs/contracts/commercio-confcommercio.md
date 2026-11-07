@@ -33,7 +33,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, sickness |
 
-3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -74,6 +74,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-01 | claude-opus-5-5 (ai) | The indennità di cassa e maneggio denaro of Art. 218 (p. 200), checked by a separate session from the PDF. | confirmed | Art. 218 (PDF p. 200, sha256 76420e3a... matched): 5% of the paga base nazionale conglobata of Art. 212, to the staff normally at the till with full responsibility for it and bound to make good its shortfalls: levels[*].fixed_allowances[IND_CASSA], role cassiere.<br>Art. 206 (p. 195) and Art. 212 (pp. 197-198): the paga base is item a), apart from the contingenza and the terzi elementi; base_salary holds the first column of each quoted row only. 40 values out of 40 recomputed, no difference (round half up; level 2 from 2027-02-01, 90.125, is 90.13).<br>Artt. 208, 220, 221 (pp. 196, 200-201) and Art. 249 (pp. 216-217): no exclusion reaches the allowance, so it is in the retribuzione di fatto, the 13th, the 14th and the TFR.<br>The renewal of 2024 (Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf) is a scan without a text layer: it was not searched for a change to Art. 218. |
 | 2026-11-01 | claude-opus-5-5 (ai) | The hourly divisors of the 42 and 45 hour weeks, Art. 211 (p. 197), checked by a separate session from the PDF. | confirmed | Art. 211 (PDF p. 197, sha256 76420e3a... matched): 168 for a normal week of 40 hours, 182 for 42, 195 for 45, for the quota oraria 'sia normale che di fatto': work_rules.time_supplements.hourly_divisor_weekly_hours 40 and week_divisors 42/182, 45/195.<br>Art. 89 (p. 95): a part-time worker takes the divisor of Art. 211 of the full-time week, so the divisor is chosen by Employment.full_time_weekly_hours. Artt. 130 c. 2 and 147 set the 45-hour normal week of fuel-station and discontinuous workers; Art. 134 keeps the normal week at 40 (state 40, not 38).<br>The renewal of 2024 has a text layer only on its last four pages (accordo integrativo 28 March 2024, no change to Art. 211); the scanned body was not searched. |
 | 2026-11-08 | gpt-6-sol (ai) | CCNL top-ups of maternity and work injury, read from the signed text by a separate model session; every quote found on the PDF text layer. | confirmed | Added work_rules.insured_absence.injury.<br>Added work_rules.insured_absence.maternity. |
+| 2026-11-08 | gpt-6-sol (ai) | Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim. | confirmed | permit_deadline_payout: Art. 158 provides year-end payment at then-current retribuzione di fatto OR later use no later than 30 June of the next year. commercio-confcommercio.json already has permit_deadline carry_until_month=6 for ex_festivita and rol and marks this limitation resolved. leave/services.p |
 
 ## Salary table
 
@@ -137,13 +138,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `sickness` applies.
 
     **Remediation:** Find a source (an interpretation of the parties, an INPS or Ministry text) that defines the net daily pay of Art. 187, align the computation, then resolve this limitation.
-
-!!! note "commercio-confcommercio/permit_deadline_payout · leave · impact yes · resolved"
-    LEAVE, DEADLINE (Art. 158): the permits not taken within the year of accrual are paid with the December pay, or carried and paid with the June pay of the next year for what is left, as the employer states in EmployerProfile.permit_carryover.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Resolved: leave_rules.permit_deadline with the employer fact permit_carryover, read on 2026-11-06.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

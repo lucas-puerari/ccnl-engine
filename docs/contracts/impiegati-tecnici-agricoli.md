@@ -36,7 +36,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ✅ |
 | **Limits of this contract** | bilateral_funds |
 
-2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -53,7 +53,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-06-18 |
-| **Last review** | 2026-11-01 |
+| **Last review** | 2026-11-08 |
 | **Latest salary tranche** | 2024-07-01 |
 
 ## Review history
@@ -62,6 +62,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|---|---|
 | 2026-10-18 | claude-opus-5-5 (ai) | The minimi nazionali di stipendio mensile conglobato of the seven categories against the signed CCNL of 18 June 2024. | confirmed | Art. 31, Tab. 1 (PDF p. 35, signed scan with text layer, read on the page image): the minimi nazionali di stipendio mensile conglobato from 01/07/2024 for Q and categories 1-6 match the 7 values of the file (file 1Q = Q, 1-6 = 1°-6°); they move to verified. Q is printed as 1.788,38 without the indennità di funzione, which Art. 18 lett. b (p. 24, 'una indennità mensile pari a 100 euro, da corrispondersi per 14 mensilità') grants on top, as the file models it.<br>Art. 31 (p. 34) applies the 5% from 1/04/2024 and 1.9% from 1/01/2025 to the stipendi contrattuali of the territorial contracts, not to the national minimi; Tab. 1 has a single date, 01/07/2024 (for territorial contracts renewed under the CCNL 7/07/2021 the minimi apply from the date of their next renewal and no later than 1/01/2027, p. 35). The coverage note that calls the 2025 tranche of the national table missing is wrong: there is no 2025 national minimo, and the open-ended period is correct.<br>The national minimo is conglobated (minimo base + contingenza + EDR, footnote p. 34 citing the Verbale 4.6.2008), matching the file's base_salary; territorial contracts may set higher stipendi contrattuali, and the minimo di stipendio integrativo is outside this table.<br>The ruleset names this source, published by FLAI-CGIL, a signatory: source_type contracting_party. |
 | 2026-11-01 | claude-opus-5-5 (ai) | The notice clause (Art. 51 - Preavviso di risoluzione del rapporto, p. 47-48). | corrected | Notice bands by level, category and service checked against the PDF by a separate session (delegated search and independent verification): work_rules.notice. |
+| 2026-11-08 | gpt-6-sol (ai) | Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim. | confirmed | tranche_2025_01_missing: Art. 31 applies 5% (01/04/2024) and 1.9% (01/01/2025) to territorial contractual salaries, not a second national table. Tab. 1 has a single national minimum table dated 01/07/2024; all seven amounts match levels[*].base_salary, whose periods remain in force in 2025. The engine re |
 
 ## Salary table
 
@@ -95,13 +96,6 @@ Latest effective values per level (monthly gross, EUR).
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
-
-!!! note "impiegati-tecnici-agricoli/tranche_2025_01_missing · base_salary · impact yes · resolved"
-    NATIONAL MINIMA (Art. 31, p. 35 of the CCNL of 18 June 2024): one national table, 'Minimi nazionali di stipendio mensile conglobato a decorrere dal 01/07/2024' (Q 1.788,38 ... 6° 1.217,23). The +5% from 1 April 2024 and +1.9% from 1 January 2025 raise the territorial salaries, not the national minima; the table applies from 1 July 2024, or from the next territorial renewal (by 1 January 2027) where the territory renewed under the CCNL of 7 July 2021.
-
-    **Applies when:** `base_salary` applies; from 2025-01-01.
-
-    **Remediation:** Resolved: the national minima are the one table from 1 July 2024 (art. 31); the two percentages are territorial; read on 2026-11-06.
 
 !!! warning "impiegati-tecnici-agricoli/eban_agrifondo_missing · bilateral_funds · impact yes · open"
     BILATERAL FUNDS. EBAN (Ente Bilaterale Agricolo Nazionale) and Agrifondo (supplementary pension) bilateral contributions are not modelled.

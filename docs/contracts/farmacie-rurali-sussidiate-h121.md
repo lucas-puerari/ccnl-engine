@@ -33,7 +33,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | seniority |
 
-2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2021-09-07 |
-| **Last review** | 2026-11-06 |
+| **Last review** | 2026-11-08 |
 | **Latest salary tranche** | 2021-11-01 |
 
 ## Review history
@@ -62,6 +62,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-31 | claude-opus-5-5 (ai) | The measure and accrual of the ferie, the ex festività and the permits read in the CCNL of 7 September 2021 (Artt. 24, 26, 29, 51). (copied from farmacie-private-h121: covers the rules the two tables share, not the paga base of Tabella B) | corrected | Art. 26 (p. 17): 26 working days of ferie for every worker; the 28 days after 36 months of the earlier pay-table source are not in the text: entitlement_tiers corrected to one tier of 26.<br>Art. 29 (p. 17): twelfths of the ferie per month of effective service: work_rules.leave_rules.ferie_accrual.<br>Art. 24 (p. 16): 32 hours of ex festività and 40 further hours of permits a year: work_rules.leave_rules.permits.<br>Art. 24 (p. 16): the 40 hours of a hire from 1 November 2021 by a pharmacy of up to 40 employees at 0%, 50% after three years, 100% after six: permits[rol].ramp with headcount_max 40. |
 | 2026-11-01 | claude-opus-5-5 (ai) | The notice clause (Art. 73, p. 27). (copied from farmacie-private-h121: covers the rules the two tables share, not the paga base of Tabella B) | corrected | Notice bands by level and service checked against the PDF by a separate session (delegated search and independent verification): work_rules.notice. |
 | 2026-11-06 | claude-opus-5-5 (ai) | Art. 3 Area Q and Tabella C (p. 59) of the CCNL of 7 September 2021. | corrected | Q2 and Q3 get 130 EUR after 12 years in level 1 and Area Q, 100 EUR before. |
+| 2026-11-08 | gpt-6-sol (ai) | Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim. | confirmed | isq_twelve_year_tier: The rural agreement already defines mutually exclusive Q2 and Q3 ISQ allowances: EUR 100.00 for career seniority below 144 months and EUR 130.00 from 144 months, effective 2021-11-01. _allowance_active selects the latter at >=144 months and the former at <144; the period calculat |
 
 ## Salary table
 
@@ -108,13 +109,6 @@ under-level: `1`
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
-
-!!! note "farmacie-rurali-sussidiate-h121/isq_twelve_year_tier · base_salary · impact yes · resolved"
-    ISQ (Art. 3 and Tabella C, p. 59 of the CCNL of 7 September 2021): Q2 and Q3 are paid 100 EUR and, after 12 years of 'anzianità complessiva maturata nel Livello 1° e nell'Area Q', 130 EUR (isq up to 144 months, isq_12 from 144), on the career months SeniorityFact.career_months states, or on the months of service when it is not stated.
-
-    **Applies when:** `base_salary` applies; level in Q2, Q3.
-
-    **Remediation:** Resolved: SeniorityFact.career_months carries the years in level 1 and Area Q.
 
 !!! warning "farmacie-rurali-sussidiate-h121/apprentice_seniority · seniority · impact unknown · open"
     APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.

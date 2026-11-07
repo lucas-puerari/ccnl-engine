@@ -761,9 +761,6 @@
       "cooperative-sociali/inps_rate_not_reconciled",
       "cooperative-sociali/type_b_disadvantaged_exemption"
     ],
-    "agreement/dirigenza-funzioni-centrali-aran.json": [
-      "dirigenza-funzioni-centrali-aran/position_variable_and_result_pay"
-    ],
     "agreement/dirigenza-funzioni-locali-aran.json": [
       "dirigenza-funzioni-locali-aran/position_pay"
     ],
@@ -870,7 +867,6 @@
     ],
     "agreement/federcasa.json": [
       "federcasa/ivc_renewal_gap",
-      "federcasa/pre_2018_seniority_cohort",
       "federcasa/terziario_rates_proxy"
     ],
     "agreement/fiori-recisi-ancef.json": [
@@ -936,8 +932,7 @@
     ],
     "agreement/laterizi-industria-f021.json": [
       "laterizi-industria-f021/apprentice_seniority",
-      "laterizi-industria-f021/asq_seniority_from_as",
-      "laterizi-industria-f021/level_e_first_period_one_below"
+      "laterizi-industria-f021/asq_seniority_from_as"
     ],
     "agreement/lavanderie-industriali-assosistema.json": [
       "lavanderie-industriali-assosistema/tranches_from_october_2027"
@@ -1043,9 +1038,6 @@
       "noleggio-autobus-conducente-anav/seniority_from_ic35",
       "noleggio-autobus-conducente-anav/t0_table_back_calculated"
     ],
-    "agreement/occhiali-occhialeria-industria.json": [
-      "occhiali-occhialeria-industria/level_1_entry_rate"
-    ],
     "agreement/ooss-unsic-confsal.json": [
       "ooss-unsic-confsal/apprentice_seniority",
       "ooss-unsic-confsal/level_5_apprentice_one_level_below",
@@ -1061,7 +1053,6 @@
       "operai-agricoli-florovivaisti/florovivaisti_sickness_integration",
       "operai-agricoli-florovivaisti/florovivaisti_tables",
       "operai-agricoli-florovivaisti/inail_agricultural_premium",
-      "operai-agricoli-florovivaisti/inps_on_actual_not_conventional_pay",
       "operai-agricoli-florovivaisti/otd_terzo_elemento",
       "operai-agricoli-florovivaisti/provincial_supplement",
       "operai-agricoli-florovivaisti/super_profile_scatti"
@@ -1104,7 +1095,6 @@
     "agreement/pubblici-esercizi-fipe-angem.json": [
       "pubblici-esercizi-fipe-angem/balneari_and_seasonal_hours",
       "pubblici-esercizi-fipe-angem/balneari_diurni_rules",
-      "pubblici-esercizi-fipe-angem/contract_catering_tranche_dates",
       "pubblici-esercizi-fipe-angem/guarantee_premium_2027",
       "pubblici-esercizi-fipe-angem/holiday_overtime_cumulation",
       "pubblici-esercizi-fipe-angem/small_company_pay_reduction"
@@ -1165,7 +1155,6 @@
       "sistemazioni-idraulico-forestali-operai/apprentice_inps_rates_unsourced",
       "sistemazioni-idraulico-forestali-operai/apprentice_seniority",
       "sistemazioni-idraulico-forestali-operai/apprenticeship_duration_mapping",
-      "sistemazioni-idraulico-forestali-operai/regional_seniority_cirl",
       "sistemazioni-idraulico-forestali-operai/structural_rules_from_2021_text"
     ],
     "agreement/studi-professionali-confprofessioni.json": [

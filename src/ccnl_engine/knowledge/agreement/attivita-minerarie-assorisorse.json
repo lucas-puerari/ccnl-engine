@@ -73,17 +73,6 @@
       },
       {
         "kind": "simplification",
-        "text": "SENIORITY: none. The renewal of 15 February 2017 (p. 16): 'L'istituto degli scatti di anzianità è abolito a far data dal 1 aprile 2017. Contestualmente i minimi di retribuzione verranno aumentati di Euro 25 lordi non parametrati'. The increments matured before, kept by each worker, are an individual element of pay.",
-        "capability": "seniority",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "seniority_not_modelled",
-          "remediation": "Resolved: seniority increments abolished from 1 April 2017 (renewal of 15 February 2017, p. 16); read on 2026-11-06.",
-          "status": "resolved"
-        }
-      },
-      {
-        "kind": "simplification",
         "text": "SIMPLIFICATION: Source PDF is scanned (image-based, CCITT compression). Salary values extracted via OCR (Ghostscript + Tesseract). Amounts verified by cross-checking parametrale ratios and incremental consistency.",
         "capability": "base_salary",
         "monetary_impact": "unknown",
@@ -125,6 +114,39 @@
         "findings": [
           "Art. 17 (p. 9 of the scan, read by OCR and on the page image): the 36 minimi of the nine levels at 1-1-2022, 1-1-2023, 1-12-2023 and 1-1-2025 move from assumed to verified.",
           "Corrected: level 8 at 1-1-2022 is printed 1.557,23, and 1.557,23 + 33,33 (the first tranche at parameter 100) gives the 1.590,56 printed for 1-1-2023; the file held 1.557,28."
+        ]
+      },
+      {
+        "id": "2026-11-08-gpt-attivita-minerarie-assorisorse-stale-limitations",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/miniere/250711_ATTIVITA%20MINERARIE_RINNOVO%20CCNL%202025-2028.pdf",
+            "sha256": "ac6d4ba308485a0ffde054a582207cc6d072dc99c08ca5d4334d3d9ca85e08ce"
+          },
+          {
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/miniere/220713_ATTIVITA%20MINERARIE_RINNOVO%20CCNL%202022-2025.pdf",
+            "sha256": "f06f40ae1f2c48cf9df9f5c7cf510851cbd15e38f7cede5d574a50f8a451bf6c"
+          },
+          {
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/miniere/170215_MINIERE_RINNOVO%20CCNL%202016-2019.pdf",
+            "sha256": "fce64a969e6b787339585e45dd451523990ba61178adfaba12193a8fef68683c"
+          },
+          {
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/4575",
+            "sha256": "8b057b5311af58405ba44fa7326a61d8d406bf2355c13bf3efc082f246359027"
+          }
+        ],
+        "findings": [
+          "seniority_not_modelled: The 2017 renewal abolishes new scatti from 1 April 2017. The agreement sets maximum_count=0 and amount_by_level={}, so no new increments accrue. For a worker with a documented post-absorption residual, SeniorityFact.earned.monthly is returned unchanged by earned_seniority (zero r"
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "coverage.notes"
         ]
       }
     ]
@@ -1634,7 +1656,7 @@
     "effective_until": null,
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/miniere/220713_ATTIVITA%20MINERARIE_RINNOVO%20CCNL%202022-2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "dd2f5f93972834cf11defea6696e60cfc6fbae8afe9f0c310af44beb3a6e9c58",
+    "source_hash": "484884a1fe5aec29340786bfbfdfb787eccaf0d114f4b7a74cb0400834ab74b2",
     "published_at": "2026-09-18",
     "source_type": "contracting_party"
   }

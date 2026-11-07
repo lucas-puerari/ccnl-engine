@@ -111,19 +111,6 @@
       },
       {
         "kind": "simplification",
-        "text": "Seniority amounts use the 10%-reduced values (post-01/01/2018 cohort per Art. 73.4). Workers hired before ~1990 may still have pre-2018 grandfathered scatti at full amounts (engine cannot model the two cohorts separately). New-hire case is exact; long-tenure pre-2018 cohort is understated by ~10%. Structural engine limitation.",
-        "capability": "seniority",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "pre_2018_seniority_cohort",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Pay the scatti matured before 01/01/2018 at the full amount (Art. 73.4), from the seniority start date or a worker fact."
-        }
-      },
-      {
-        "kind": "simplification",
         "text": "CCNL expired 31/12/2024. Art. 4 B.5-8 mandates IVC (Indennità Vacanza Contrattuale) at 30% of IPCA (~Mar 2025) and 50% (~Sep 2025) during the renewal gap. Engine models tabellare only; IVC during the gap is not included. This is a structural out-of-scope element (ultrattività compensation, not a tabellare change).",
         "capability": "base_salary",
         "monetary_impact": "yes",
@@ -158,6 +145,27 @@
         ],
         "findings": [
           "Art. 76 - Tredicesima e quattordicesima mensilità (p. 68): \"In tali casi il lavoratore non in prova ha diritto a tanti dodicesimi dell'ammontare delle predette mensilità quanti sono i mesi interi di servizio prestato. Le frazioni di mese superiore a quindici giorni vanno computate come un mese intero.\". Match: more_than 15."
+        ]
+      },
+      {
+        "id": "2026-11-08-gpt-federcasa-stale-limitations",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://cislfp.it/wp-content/uploads/2024/11/CCNL-Federcasa-2022-2024.pdf",
+            "sha256": "4c9e5b5a0a22a0712fbbe475c9cc77248f0e0a33b3c338fab6881915146c2c0c"
+          }
+        ],
+        "findings": [
+          "pre_2018_seniority_cohort: Art. 73(4) preserves increments matured before 01/01/2018 at their full amounts; later increments use the 10%-reduced column. federcasa.json has 24-month cadence, maximum 14, and the reduced amounts (A1 €25.20). The existing SeniorityFact.earned (count, monthly, as_of) is paid un"
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "coverage.notes"
         ]
       }
     ]
@@ -1213,7 +1221,7 @@
     "effective_until": null,
     "source": "https://cislfp.it/wp-content/uploads/2024/11/CCNL-Federcasa-2022-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "1597d0cdcc2c1ca54650e6512b3de647c243e235f62754336323f210026cf83a",
+    "source_hash": "b829048a3af2c58bbb1725b7c389234e0cb796a9cb261b1302191ec530efcd98",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

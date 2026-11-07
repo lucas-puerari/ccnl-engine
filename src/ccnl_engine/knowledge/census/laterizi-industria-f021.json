@@ -67,22 +67,6 @@
       }
     },
     {
-      "id": "level_e_first_period_one_below",
-      "institute": "base_salary",
-      "variant": "apprentice",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "APPRENTICESHIP — level E period 1: the CCNL Art. 9 prescribes 2 levels below destination for period 1 in all tracks. For destination E (order=2), 2 below would reach order=0 which does not exist. Engine level_by_order raises ValueError for missing orders. SIMPLIFICATION: E track period 1 uses levels_below=1 (pay at level F, order=1), the lowest available level below E. Duration: 6+6 months.",
-      "calculation": "ccnl/laterizi-industria-f021:coverage.notes",
-      "state": "absent",
-      "remediation": "Confirm the level E first period against Art. 9 and model it once a level two below exists.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "laterizi-industria-f021/level_e_first_period_one_below"
-        ]
-      }
-    },
-    {
       "id": "maternity_daily_base",
       "institute": "maternity_leave",
       "variant": "all",

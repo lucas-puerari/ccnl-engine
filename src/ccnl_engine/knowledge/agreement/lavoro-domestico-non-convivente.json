@@ -195,20 +195,6 @@
           },
           "remediation": "Add the minimi of 2027 set by the Commissione nazionale with their source, then remove this note."
         }
-      },
-      {
-        "kind": "simplification",
-        "text": "ONCOLOGICAL ILLNESS: the periods of Art. 27 c. 4 rise by 50% for an oncological illness documented by the ASL (c. 6, p. 37); the file applies the ordinary periods and the request does not state the illness.",
-        "capability": "sickness",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "domestic_oncological_comporto",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Resolved as a duplicate of lavoro-domestico-non-convivente/oncological_comporto, resolved in turn: both track the 50% longer comporto of Art. 27 c. 6 for an oncological illness.",
-          "status": "resolved"
-        }
       }
     ]
   },
@@ -1007,7 +993,7 @@
     "effective_until": null,
     "source": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "bca89a1561705e5296b72be3780f132d60736b7b3dc08d55dcc8af34f22c4ada",
+    "source_hash": "4a926eeb5f4e1a9a4a795faf3b740a20cef48e968e9c5b7638e18467691aa6b8",
     "published_at": "2026-10-07",
     "source_type": "commercial_secondary"
   },
@@ -1424,6 +1410,31 @@
         ],
         "findings": [
           "Art. 27 (p. 37): the three seniority bands, the 365-day count and the 50% / 100% pay match the file: verified. The +50% for oncological illness (c. 6) is declared."
+        ]
+      },
+      {
+        "id": "2026-11-08-gpt-lavoro-domestico-non-convivente-stale-limitations",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
+            "sha256": "122ca6a72196a835976abac7fb988dc1502973941d52891a546512347fdc9dcf"
+          },
+          {
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/188040",
+            "sha256": "6b991eae5dcb6eaa94d8b89b9d46e37f41cb6dafec754e6e4a11cdf01561e5d6"
+          }
+        ],
+        "findings": [
+          "domestic_oncological_comporto: Art. 27(4)-(7) applies to non-conviventi: the ASL-documented oncological illness extends job-retention periods by 50%, not the 8/10/15 paid-day caps. The existing sickness bands have ordinary 10/45/180 and extended 15/68/270; the engine selects serious_comporto_days when Sickness"
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "coverage.notes"
         ]
       }
     ],

@@ -74,24 +74,6 @@
       },
       {
         "kind": "simplification",
-        "text": "QUADRI (Art. 5, p. 15 of the 2025 coordinated text): the indennità di funzione of EUR 118.79 a month is paid to the level 1S and 1 workers holding the role 'quadro' (Employment.roles), recognised in writing by the employer.",
-        "capability": "base_salary",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "quadri_function_allowance",
-          "applies_when": {
-            "trigger": "run",
-            "levels": [
-              "1S",
-              "1"
-            ]
-          },
-          "remediation": "Resolved: fixed allowance IND_FUNZIONE_QUADRO of levels 1S and 1 with role 'quadro', read on 2026-11-05.",
-          "status": "resolved"
-        }
-      },
-      {
-        "kind": "simplification",
         "text": "Allegato 3.1 (grandfathered scatti for workers hired before 30/04/2016) not modelled. Only Allegato 3 (standard post-2016 cohort) amounts implemented. Structural scope decision: pre-2016 grandfathered amounts affect a declining cohort; the new-hire case is exact.",
         "capability": "seniority",
         "monetary_impact": "yes",
@@ -2042,7 +2024,7 @@
     "effective_until": null,
     "source": "https://www.funiviearabba.it/wp-content/uploads/2025/12/Sintesi-CCNL-ANEF.pdf",
     "verification_status": "unverified",
-    "source_hash": "c0a828f1d57dede0a5744b14e948d6c717713cd7f3bdd89b4c53d60d21c6af2f",
+    "source_hash": "8bc326ace2a61f2ee9d2f07d93ecf54cd3c9ceecfb783fcdb87b56cacd358c55",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2324,6 +2306,35 @@
         "checked": [
           "levels.base_salary",
           "levels.fixed_allowances"
+        ]
+      },
+      {
+        "id": "2026-11-08-gpt-funivie-anef-stale-limitations",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.fitcisl.org/wp-content/uploads/2025/10/CCNL-Impianti-a-Fune-testo-unico-coordinato.pdf",
+            "sha256": "24f5d87b3468ae8a25bb494f42cf3431764d1740e4cf4b5b3525c573cee62482"
+          },
+          {
+            "url": "https://www.fitcisl.org/wp-content/uploads/2022/09/20221222_Tpl__CCNL-Addetti-Impianti-a-Fune.pdf",
+            "sha256": "3c408df369b39d099a10b4fa20bb158d319e5a9318cc352359453e10700727b9"
+          },
+          {
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105982",
+            "sha256": "d20eb8268311fb67a0b63fc06e7a44c295ca21fc1c98d5af3ef0d5a1d2b49208"
+          }
+        ],
+        "findings": [
+          "quadri_function_allowance: Art. 5(1),(3) pays EUR 118.79 monthly to employer-recognised quadri of levels I super and I, without absorbing an individual superminimo or prejudicing second-level payments. funivie-anef.json already defines IND_FUNZIONE_QUADRO on both 1S and 1 at 118.79/month with role='quadro'"
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "coverage.notes"
         ]
       }
     ]

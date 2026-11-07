@@ -35,7 +35,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary |
 
-3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -52,7 +52,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-07-19 |
-| **Last review** | 2026-11-05 |
+| **Last review** | 2026-11-08 |
 | **Latest salary tranche** | 2027-02-01 |
 
 ## Review history
@@ -63,6 +63,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | confirmed | Art. 34 - 13ma e 14ma mensilita' (p. 52): "La frazione di mese superiore a 15 giorni viene considerata come mese intero.". Match: more_than 15. |
 | 2026-11-05 | claude-opus-5-5 (ai) | The seniority increments of the apprentices, Art. 24 - Apprendistato (PDF p. 40), found by a separate research session and checked again on the page. | corrected | The apprentice has the treatment of the permanent staff: seniority_increments.apprentice_level_amount. |
 | 2026-11-05 | claude-opus-5-5 (ai) | Artt. 49 and 61 (PDF pp. 67, 81) of the stesura of 3 August 2022, text layer. | corrected | Operai: at most 5 increments, not the 12 of the impiegati; impiegati of levels 3, 4, 6, 7: 26.86, 24.79, 23.76, 22.21, not the operai amounts the file paid them. |
+| 2026-11-08 | gpt-6-sol (ai) | Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim. | confirmed | operai_seniority_over_five: Art. 61 caps permanent operai at five biennial increments, not six at 144 months. The agreement already specifies cadence_months=24, maximum_count_by_category.operaio=5 and the 2006-07-01 category-specific amounts for levels 3–7. compensation/element/services.py passes worker_cat |
 
 ## Salary table
 
@@ -99,13 +100,6 @@ percentage: 1.00
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
-
-!!! note "cooperative-consorzi-agricoli/operai_seniority_over_five · seniority · impact yes · resolved"
-    SENIORITY (artt. 49, 61): impiegati and operai have their own amounts and maxima (12 and 5 biennial increments), read by Employment.category; an impiegato of level 5 has no amount in art. 49.
-
-    **Applies when:** `seniority` applies; category in operaio; seniority of at least 144 months.
-
-    **Remediation:** Resolved: seniority_increments.amount_by_level_by_category and maximum_count_by_category, read on 2026-11-05.
 
 !!! warning "cooperative-consorzi-agricoli/apprenticeship_passthrough · base_salary · impact unknown · open"
     Apprendistato: regola non reperita nel PDF 2024. Modellato come 100% passthrough.

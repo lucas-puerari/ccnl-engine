@@ -33,7 +33,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ✅ |
 | **Limits of this contract** | welfare |
 
-4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -60,6 +60,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-05 | claude-opus-5-5 (ai) | The hourly divisors of the 42- and 44-hour weeks, Art. 40 (PDF p. 86) and the weeks of Art. 19 (PDF p. 43) of the 2022 stesura, text layer. | corrected | Art. 40: 191 for the custodians and night watchmen (44 hours, art. 19 a), 182 for the drivers (42 hours, art. 19 b), 173 for the 40-hour week: work_rules.time_supplements.week_divisors 42/182 and 44/191, hourly_divisor_weekly_hours 40. |
 | 2026-11-07 | claude-opus-5-5 (ai) | Allegato 1 of the verbale of 9 December 2025 (p. 20, page image): the dates of the new minimi. | corrected | The third tranche runs 'dal mese di mar-27', not May 2027: the file missed March and April 2027 for every level; the amounts match. |
 | 2026-11-08 | gpt-6-sol (ai) | Monthly values on scanned pages, each read twice from the page image by two independent sessions of another model, the second without being told the expected value. | confirmed | 88 values read identically by both readings and equal to the file. |
+| 2026-11-08 | gpt-6-sol (ai) | Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim. | confirmed | long_week_divisors: Art. 19 assigns 42 hours to car drivers and 44 to custodians/night watchmen (mixed duties: 40); art. 40 sets hourly divisors 182, 191, and 173 respectively. autorimesse-ic35.json already has 40/173 and week_divisors 42/182 and 44/191. load_contract calls with_week_divisor using r |
 
 ## Salary table
 
@@ -114,13 +115,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Post the ticket restaurant as a welfare item per day worked of at least 5 hours: 8.00 EUR a day from 2023-01-01, 10.00 EUR from 2027-04-01 (Art. 44/84).
-
-!!! note "autorimesse-ic35/long_week_divisors · workplace_injury · impact yes · resolved"
-    Art. 40 (2022 text, p. 86): the hourly pay is the monthly pay over 173 for the 40-hour week, 182 for the drivers (42 hours, art. 19 b) and 191 for the custodians and night watchmen (44 hours, art. 19 a). The engine reads 182 or 191 when Employment.full_time_weekly_hours is 42 or 44 (week_divisors); a 40-hour week keeps 173.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Resolved: work_rules.time_supplements.week_divisors holds 182 and 191, read for an employment whose full_time_weekly_hours is 42 or 44.
 
 !!! note "autorimesse-ic35/apprenticeship_percentages_2019 · base_salary · impact unknown · resolved"
     APPRENTICESHIP (Art. 32, p. 65 of the text of 15 December 2022): at most 24 months; pay 'nel primo anno: 85% della retribuzione globale; nel secondo anno: 90%'. The renewal of 9 December 2025 does not amend art. 32; after 24 months the full pay of the level.

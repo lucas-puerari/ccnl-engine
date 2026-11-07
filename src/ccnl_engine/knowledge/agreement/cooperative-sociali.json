@@ -137,20 +137,6 @@
           },
           "remediation": "Model the ETDR, the night, shift and availability allowances, the professional allowances and the prova exclusion of sickness."
         }
-      },
-      {
-        "kind": "simplification",
-        "text": "HEALTH CONTRIBUTION (Art. 87, p. 114 of the 2025 coordinated text): 5 EUR a month from May 2013, 10 EUR from January 2025, on the employer, for the workers 'assunti a tempo indeterminato', apprentices included: art. 28 (p. 55) calls apprenticeship 'contratto di lavoro a tempo indeterminato'. Modelled as health_funds sanita_integrativa.",
-        "capability": "bilateral_funds",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "asi_health_contribution",
-          "applies_when": {
-            "trigger": "owed"
-          },
-          "remediation": "Resolved: art. 87 with the apprentices of art. 28, read on 2026-11-06.",
-          "status": "resolved"
-        }
       }
     ]
   },
@@ -3001,7 +2987,7 @@
     "effective_until": null,
     "source": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
     "verification_status": "unverified",
-    "source_hash": "e0402b1f00a56f92f4967398b48ce3415c9e428351aa3279c33c9333dd796839",
+    "source_hash": "c6c4dc0954b6df280b7e985d8139311c356b2e841e96025ca5055bfc76e10860",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3611,6 +3597,27 @@
         "checked": [
           "work_rules.insured_absence.maternity",
           "work_rules.insured_absence.injury"
+        ]
+      },
+      {
+        "id": "2026-11-08-gpt-cooperative-sociali-stale-limitations",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+            "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+          }
+        ],
+        "findings": [
+          "asi_health_contribution: Art. 87 covers permanent employees from 2013-05-01 at €5 employer/month, increased by €5 to €10 from 2025-01-01; Art. 28(A)(1), PDF p. 55, calls apprenticeship an open-ended contract. cooperative-sociali.json already specifies these periods and amounts, permanent_only=true and ap"
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "coverage.notes"
         ]
       }
     ],

@@ -34,7 +34,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, inps_employer |
 
-4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -51,7 +51,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-12-12 |
-| **Last review** | 2026-11-06 |
+| **Last review** | 2026-11-08 |
 | **Latest salary tranche** | 2026-09-01 |
 
 ## Review history
@@ -60,6 +60,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|---|---|
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | corrected | Articolo 17 - Tredicesima e quattordicesima mensilità (p. html (no PDF; text inline on the web page)): "il dipendente ha diritto a tanti dodicesimi dell'ammontare della tredicesima e della quattordicesima mensilità quanti sono i mesi di servizio prestati nel periodo di riferimento. Le frazioni di mese superiori a 15 giorni si calcoleranno come mese intero; quelle uguali o inferiori a 15 giorni non saranno conteggiate.". Added: more_than 15 (the file applied the engine default, at least 15 days). |
 | 2026-11-06 | claude-opus-5-5 (ai) | Accordo economico of 12 December 2024, table of p. 23 (stipendi 1/1/2025, 1/7/2025, 1/9/2026). | corrected | The file held the 1 July 2025 stipendi dated from 1 September 2025; the January 2025 and September 2026 columns were missing. |
+| 2026-11-08 | gpt-6-sol (ai) | Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim. | confirmed | third_tranche_sep_2026: All 13 levels in the agreement JSON have the exact 1/9/2026 stipendio from the signed renewal, effective 2026-09-01 with no end date; the previous period ends exclusively on that day. The engine reads base_salary.value_at(as_of), so this third tranche is paid on and after that da |
 
 ## Salary table
 
@@ -105,13 +106,6 @@ Latest effective values per level (monthly gross, EUR).
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
-
-!!! note "organizzazioni-allevatori-aia/third_tranche_sep_2026 · base_salary · impact yes · resolved"
-    BASE SALARY (accordo economico of 12 December 2024, p. 23 of the AIA text): the stipendi from 1 January 2025, 1 July 2025 and 1 September 2026, 5.8% in all on the pay of 31 December 2024 (1/2: 2,381.17 / 2,392.51 / 2,399.31 EUR).
-
-    **Applies when:** `base_salary` applies; from 2026-09-01.
-
-    **Remediation:** Resolved: the three columns of the 2024 accordo, read on 2026-11-06.
 
 !!! warning "organizzazioni-allevatori-aia/quadri_function_allowance · base_salary · impact yes · open"
     SIMPLIFICATION: Indennita di funzione for area 1 Quadri (min 13% monthly) not modeled — variable floor amount, not expressible as fixed allowance.

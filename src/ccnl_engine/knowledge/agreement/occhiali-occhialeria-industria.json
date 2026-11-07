@@ -63,40 +63,8 @@
         "text": "SENIORITY: 5 biennali (24-month) scatti. Per-level amounts (EUR): 1=6.84, 2=7.36, 3=3S=7.80, 4=4S=8.26, 5=5S=9.76, 6=Q=11.65."
       },
       {
-        "kind": "simplification",
-        "text": "LEVEL 1 sub-level: the CCNL provides automatic advancement from entry sub-level (L1 ingresso) to L1 standard after 6 months. The file models only the post-advance minimum throughout, which is the relevant value for permanent workers and for workers beyond their 6th month. The entry sub-level undervaluation during the first 6 months is a deliberate structural simplification.",
-        "capability": "base_salary",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "level_1_entry_rate",
-          "applies_when": {
-            "trigger": "run",
-            "levels": [
-              "1"
-            ]
-          },
-          "remediation": "Model the L1 ingresso minimum for the first 6 months of service (a level or a seniority-gated reduction), or record the limitation."
-        }
-      },
-      {
         "kind": "info",
         "text": "TRANCHES 01/10/2026 through 01/11/2028: L4 reference increments confirmed from primary source (CISL communique CCNL occhialeria 30/01/2026: +30, +50, +45, +20 EUR at L4). All-level amounts derived via the parametric ratio matrix from confirmed 01/03/2026 per-level deltas. The CCNL occhialeria uses a declared parametric system; parametric derivation is contractually consistent."
-      },
-      {
-        "kind": "simplification",
-        "text": "APPRENTICESHIP (Art. 24, pp. 39-40 of the CCNL of 10 June 2021, table in force from 1 July 2017, kept by the text of 28 April 2023): two levels below the destination for 10 months, one below for 10, the destination for the last 16 (2°: level 1 for 6 months, then the 2°). The renewal of 30 January 2026 does not amend art. 24: its 'ripartizione in percentuale' per step is that of the Premio di professionalità a valore aggiunto.",
-        "capability": "base_salary",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "apprenticeship_full_pay",
-          "applies_when": {
-            "contract_types": [
-              "apprentice"
-            ]
-          },
-          "remediation": "Resolved: under-classification of art. 24, read on 2026-11-06.",
-          "status": "resolved"
-        }
       },
       {
         "kind": "info",
@@ -160,6 +128,40 @@
         "independence": "same_process",
         "checked": [
           "apprenticeship"
+        ]
+      },
+      {
+        "id": "2026-11-08-gpt-occhiali-occhialeria-industria-stale-limitations",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/152279",
+            "sha256": "abb4d8a7c8d35e84ecc4208eaea781883c15f1bee2364067113ffcd1eb61c4ff"
+          },
+          {
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/176781",
+            "sha256": "f32ae476b175e22d8b918c7f3e07f5472d91852505dc29e3ab022547f3b139c1"
+          },
+          {
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/230428_OCCHIALI_RINNOVO%20CCNL%202023%202025.pdf",
+            "sha256": "dc5d33a21e61b0801df70a2d22363a842fcf5dc7264634daf1ae5cce1e67749c"
+          },
+          {
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/260130_OCCHIALI_RINNOVO%20CCNL%202026_2028.pdf",
+            "sha256": "d89575d27ada28b26a5397b086ce9ca472aca6dfc66f28f70f2654e0fb82d79c"
+          }
+        ],
+        "findings": [
+          "level_1_entry_rate: The 2021 classification clause (also present in the 2023 definitive-text scan) assigns the single 1°/Operativa-Base classification for six months to first hires without sector experience, and also assigns it to non-production cleaning/manual workers; it does not create an 'L1 ing",
+          "apprenticeship_full_pay: Art. 24 specifies classification AND corresponding economic treatment: destination 3 through Q: 36 months in 10/10/16 periods at two levels below, one below, then destination; destination 2: 24 months in 6/6/12 periods, at level 1 for the first six months and level 2 from the sta"
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "coverage.notes"
         ]
       }
     ]
@@ -3271,7 +3273,7 @@
     "effective_until": null,
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/260130_OCCHIALI_RINNOVO%20CCNL%202026_2028.pdf",
     "verification_status": "verified",
-    "source_hash": "ecb7d3537e81c3051b97e9c26e42871b4ae02153617a45470d5afb951f06a112",
+    "source_hash": "1074f8446b49871b8ae8f7230de935061e9ff096a1692be8629f10b85c2b6e94",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

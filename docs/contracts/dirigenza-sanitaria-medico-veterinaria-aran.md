@@ -37,7 +37,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, workplace_injury |
 
-7 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+6 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -54,12 +54,14 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2026-02-27 |
-| **Last review** | — |
+| **Last review** | 2026-11-08 |
 | **Latest salary tranche** | 2024-01-01 |
 
 ## Review history
 
-No review is recorded.
+| Date | Reviewer | Scope | Outcome | Findings |
+|---|---|---|---|---|
+| 2026-11-08 | gpt-6-sol (ai) | Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim. | confirmed | single_rate_across_tier_threshold: Verified source PDF SHA-256. Art. 38(10) sets successive nine-, three- and six-month sickness bands. The agreement JSON already declares [1,10) at 1, [10,13) at 0.9, and [13,infinity) at 0.5. SickPayRules.target_rate(index) selects the tier for each sick-day index; classify_days  |
 
 ## Salary table
 
@@ -112,13 +114,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `base_salary` applies; before 2024-01-01.
 
     **Remediation:** Source the tabellare of the CCNL 19.12.2019 from the previgente contract text.
-
-!!! note "dirigenza-sanitaria-medico-veterinaria-aran/single_rate_across_tier_threshold · sickness · impact yes · resolved"
-    Malattia: 100% mesi 1-9, 90% mesi 10-12, 50% mesi 13+ modellati con SicknessTier. Il motore classifica ogni giorno di malattia con il mese dell'episodio in cui cade, quindi un periodo di paga a cavallo di una soglia mensile applica a ciascun giorno il proprio tasso. Comporto max 18 mesi = 540 gg.
-
-    **Applies when:** `sickness` applies.
-
-    **Remediation:** Resolved: sick days are classified one by one (ccnl_engine.sickness.day.rules); tested with an episode crossing the threshold of a tier within one month.
 
 !!! note "sickness_inps_daily_base · sickness · impact unknown · resolved"
     The INPS share of a sick day is computed on the INPS daily base of the episode, on the days INPS pays (the weekdays of an operaio, every day but the national holidays on a Sunday of an impiegato, point 7.3 of INPS circ. 134368/1981): the retribuzione media globale giornaliera of the month before the illness (INPS circ. 134368/1981 point 11; circ. 55/2024 Allegato 1), whole or partial month, impiegato or operaio, or for the lavoratori dello spettacolo the average pay of the last 40 daily contributions, capped for a fixed-term worker (INPS circ. 132/2021 par. 2.4). The base is a fact of the payroll history the episode states (SicknessEpisode.inps_base).

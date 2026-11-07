@@ -243,22 +243,6 @@
       }
     },
     {
-      "id": "pre_2018_seniority_cohort",
-      "institute": "seniority",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Seniority amounts use the 10%-reduced values (post-01/01/2018 cohort per Art. 73.4). Workers hired before ~1990 may still have pre-2018 grandfathered scatti at full amounts (engine cannot model the two cohorts separately). New-hire case is exact; long-tenure pre-2018 cohort is understated by ~10%. Structural engine limitation.",
-      "calculation": "ccnl/federcasa:coverage.notes",
-      "state": "absent",
-      "remediation": "Pay the scatti matured before 01/01/2018 at the full amount (Art. 73.4), from the seniority start date or a worker fact.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "federcasa/pre_2018_seniority_cohort"
-        ]
-      }
-    },
-    {
       "id": "provisional_inps_ruleset",
       "institute": "inps_employer",
       "variant": "all",

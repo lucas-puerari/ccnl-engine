@@ -92,20 +92,6 @@
       },
       {
         "kind": "simplification",
-        "text": "BASE SALARY (Allegato A, p. 47 of the CCNL of 12 December 2023): the stipendi base from 1 January 2025, 2026 and 2027 (6th level 1,040.26 / 1,070.87 / 1,101.48 EUR); the quadri take the 1st level.",
-        "capability": "base_salary",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "tranche_2027_01_missing",
-          "applies_when": {
-            "effective_from": "2027-01-01"
-          },
-          "remediation": "Resolved: the 2027 column of Allegato A, read on 2026-11-06.",
-          "status": "resolved"
-        }
-      },
-      {
-        "kind": "simplification",
         "text": "CASHIER (Art. 35, p. 34): 55.00 EUR a month to the cassiere of the head office and the branches, modelled as IND_CASSA with role cassiere.",
         "capability": "base_salary",
         "monetary_impact": "yes",
@@ -212,6 +198,27 @@
           "levels.base_salary",
           "levels.fixed_allowances",
           "parameters.health_funds"
+        ]
+      },
+      {
+        "id": "2026-11-08-gpt-consorzi-agrari-assocap-stale-limitations",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.faicisl.it/attachments/article/2385/CCNL%20CONSORZI%20AGRARI%202024%20-%202027.pdf",
+            "sha256": "592a52c168c4c1724cc49e7d01c1b010723c5673c5ee88ae06cf60a9074b04ea"
+          }
+        ],
+        "findings": [
+          "tranche_2027_01_missing: Allegato A gives the 2027-01-01 base salary for levels 1–6 (including 3S/4S); every value and effective date is already in levels[].base_salary.periods. Q also has the 1st-level value, but the table has no distinct Q row; this verdict does not independently validate Q equivalence"
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "coverage.notes"
         ]
       }
     ]
@@ -2287,7 +2294,7 @@
     "effective_until": null,
     "source": "https://www.wolterskluwer.it/",
     "verification_status": "unverified",
-    "source_hash": "f7bf19e9047a3355820b946fc3ba7a3ba48779ecbb58bc1e087df6041fda9a23",
+    "source_hash": "873c401a875d850a3eb63784f94c14f947ac988367222919153959cb34347d7e",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
