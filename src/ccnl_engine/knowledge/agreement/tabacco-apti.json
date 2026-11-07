@@ -83,6 +83,19 @@
       {
         "kind": "info",
         "text": "APPRENTICE SENIORITY (Art. 6, p. 23 of the CCNL 2021-2024): a third of the apprenticeship counts for the aumenti periodici of the confirmed apprentice; no increment during it (seniority_increments.apprentice_amount 0.00)."
+      },
+      {
+        "kind": "simplification",
+        "text": "SICKNESS (Art. 34, renewal 2 July 2025 p. 8, CCNL 2021-2024 p. 44-45): modelled the operai rule (100% of the retribuzione normale from day 1 to day 180, comporto 180 days). Not modelled: impiegati (12 months, full and half stipendio 4+4, 5+5 or 6+6 months by seniority, interruptions summed unless one year apart); serious illness extending the comporto to 12 months unpaid; +90 days unpaid for certified disability (L. 68/99); life-saving therapy days outside the comporto; apprentices 100% for at most 6 months a year (art. 6). The sentence 'per le malattie che superano i sei giorni ... 100% della retribuzione normale netta anche per i giorni di carenza' was left unchanged by the renewal, while the main clause dropped 'netta': the gross basis of the main clause is used.",
+        "capability": "sickness",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "sickness_rules",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the impiegati regime and the comporto extensions of Art. 34."
+        }
       }
     ]
   },
@@ -136,6 +149,28 @@
         ],
         "findings": [
           "Articolo 33 - 13a e 14a MENSILITÀ (p. 43): \"il lavoratore non in prova ha diritto a tanti dodicesimi dell’ammontare della 13a e della 14a mensilità per quanti sono i mesi interi di servizio prestati. Le frazioni di mese superiori a 15 giorni saranno calcolate come mese intero.\". Added: more_than 15 (the file applied the engine default, at least 15 days)."
+        ]
+      },
+      {
+        "id": "2026-11-07-ai-tabacco-apti-sickness",
+        "date": "2026-11-07",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 34 operai of the 2 July 2025 renewal, read on the page image, against the research of a separate model session.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf",
+            "sha256": "8e1bf94e59348560f8e0fbd4974a5287b78cf019d0a66bcda3de636f9c8df1d3"
+          }
+        ],
+        "findings": [
+          "The file had no sickness rule; the operai rule is added (100% from day 1 to day 180, comporto 180 days).",
+          "The renewal strikes 'netta' from the main clause: the separate research quoted it as net, the image shows it struck; the gross basis is used."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.sickness_rules"
         ]
       }
     ]
@@ -2446,7 +2481,7 @@
     "source": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf",
     "source_type": "contracting_party",
     "verification_status": "unverified",
-    "source_hash": "698c4aa35b1e08c7db50cb7deaeda18de669875e6515110bcf01db1cb3240f64"
+    "source_hash": "1f7ddd60d235d03ec40178ff722d281b2631676567a9e376131b126ed10f9c81"
   },
   "work_rules": {
     "sunday_holidays": {
@@ -2487,6 +2522,38 @@
           "extraction_timestamp": "2026-11-04T15:00:00Z",
           "effective_from": "2021-01-01",
           "verification_status": "unverified"
+        }
+      }
+    },
+    "sickness_rules": {
+      "carenza_integration_rate": "1",
+      "full_pay_integration_rate": "1",
+      "net_basis": false,
+      "max_duration_days": 180,
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "tabacco-rinnovo-2025-2028-uila",
+            "title": "Accordo di rinnovo CCNL Tabacco 2 luglio 2025 (UILA copy)",
+            "kind": "associazione",
+            "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf",
+            "sha256": "8e1bf94e59348560f8e0fbd4974a5287b78cf019d0a66bcda3de636f9c8df1d3"
+          },
+          "page": "8",
+          "section": "Art. 34 Trattamento di malattia, Operai",
+          "quote": "A partire dal 1° giorno di malattia e fino al termine della malattia stessa, ed in ogni caso fino al termine massimo del 180° giorno di malattia [...] un'integrazione del trattamento erogato dall'INPS fino a raggiungere il 100% della retribuzione normale [...] ai lavoratori fissi, per un periodo di 180 giorni."
+        },
+        "transformation": "Operai: integration of the INPS allowance to 100% of the retribuzione normale from day 1 to day 180 ('netta' is struck out in the renewal, read on the page image), comporto 180 days for the permanent workers.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-08T02:00:00Z",
+          "effective_from": "2025-07-02",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-08T02:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-07-ai-tabacco-apti-sickness"
         }
       }
     }
