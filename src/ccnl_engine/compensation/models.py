@@ -342,14 +342,13 @@ class Level(BaseModel):
     """A single classification level (*livello di inquadramento*).
 
     Attributes:
-        code: Short alphanumeric code identifying the level within the CCNL
-            (e.g. ``"D3"``, ``"A1"``). Used in ``Scenario.level_code``.
-        order: Numeric ranking from lowest to highest seniority/pay (1 = lowest).
-            Used by ``CCNL.level_by_order``.
+        code: Code of the level within the CCNL (e.g. ``"D3"``).
+        order: Ranking from lowest to highest pay (1 = lowest).
         description: Human-readable name of the classification level.
         base_salary: Time-series of monthly base salaries for this level.
-        fixed_allowances: List of fixed monthly allowances attached to the
-            level (e.g. EDR, contingenza). May be empty.
+        base_salary_by_subsector: The base salary of an employer of a
+            sub-sector (``EmployerProfile.subsector``) that pays another table.
+        fixed_allowances: Fixed monthly allowances of the level (EDR...).
         category: Worker category fixed by this level. ``None`` when the
             level hosts more than one category; the category then comes from
             the employment facts (``Employment.category``).
@@ -361,6 +360,7 @@ class Level(BaseModel):
     order: int
     description: str
     base_salary: TimeSeries
+    base_salary_by_subsector: dict[str, TimeSeries] = Field(default_factory=dict)
     fixed_allowances: tuple[Allowance, ...] = Field(default=())
     category: WorkerCategory | None = None
     provenance: RuleProvenance | None = None

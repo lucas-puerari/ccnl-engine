@@ -30,9 +30,9 @@ def subsectors_of(ccnl: CCNL) -> frozenset[str]:
     """Return the sub-sectors the time bands and permits of ``ccnl`` name.
 
     Returns:
-        Every sub-sector code of the overtime and supplement bands and of the
-        week absorptions and yearly hours of the permits, empty when none
-        names one.
+        Every sub-sector code of the overtime and supplement bands, of the
+        week absorptions and yearly hours of the permits and of the pay
+        tables of the levels, empty when none names one.
     """
     rules = ccnl.work_rules
     supplements = None if rules is None else rules.time_supplements
@@ -48,7 +48,8 @@ def subsectors_of(ccnl: CCNL) -> frozenset[str]:
     }
     tiers = {code for p in permits for h in p.annual_hours for code in h.subsectors}
     named = {code for band in bands for code in band.subsectors}
-    return frozenset(named | absorbed | tiers)
+    tables = {code for level in ccnl.levels for code in level.base_salary_by_subsector}
+    return frozenset(named | absorbed | tiers | tables)
 
 
 def with_subsector(
@@ -79,6 +80,7 @@ def with_subsector(
         raise InvalidInputError(
             msg, field="EmployerProfile.subsector", feature="employer_facts"
         )
+    ccnl = _with_pay_table(ccnl, subsector)
     rules = ccnl.work_rules
     supplements = None if rules is None else rules.time_supplements
     bands: tuple[OvertimeBand | SupplementBand, ...] = (
@@ -127,3 +129,28 @@ def _applies(
     return (not band.subsectors or subsector in band.subsectors) and (
         not band.categories or category in band.categories
     )
+
+
+def _with_pay_table(ccnl: CCNL, subsector: str | None) -> CCNL:
+    """Return the CCNL with the base salary of the stated sub-sector.
+
+    A level whose ``base_salary_by_subsector`` names the sub-sector is paid
+    that table (Pubblici esercizi art. 162: the paga base of the aziende
+    minori); without a stated sub-sector the levels keep their own table.
+
+    Returns:
+        The CCNL, unchanged when no level has a table of the sub-sector.
+    """
+    if subsector is None or not any(
+        subsector in level.base_salary_by_subsector for level in ccnl.levels
+    ):
+        return ccnl
+    levels = tuple(
+        level.model_copy(
+            update={"base_salary": level.base_salary_by_subsector[subsector]}
+        )
+        if subsector in level.base_salary_by_subsector
+        else level
+        for level in ccnl.levels
+    )
+    return ccnl.model_copy(update={"levels": levels})
