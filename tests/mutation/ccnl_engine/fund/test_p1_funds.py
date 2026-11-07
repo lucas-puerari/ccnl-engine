@@ -32,7 +32,6 @@ def test_logistica_priamo() -> None:
     "slug",
     [
         "logistica-trasporto-confetra",
-        "metalmeccanico-artigianato",
     ],
 )
 def test_health_and_bilateral_funds_are_declared(slug: str) -> None:

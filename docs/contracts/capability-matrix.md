@@ -64,8 +64,8 @@ formulas or caller-declared amounts.
 | `base_salary` | Paga base contrattuale | core | gross | native | always | pipeline | — | — | simplified | 4506 / 2093 / 205 / 28 |
 | `seniority` | Scatti di anzianità | core | gross | native | decided | decision | `employment.seniority` | — | simplified | 30 / 93 / 13 / 0 |
 | `worker_category` | Categoria lavoratore (dichiarata o fissata dal livello) | core | gross | native | decided | decision | `employment.category` | — | implemented | none bundled |
-| `inps_employee` | Contributi INPS a carico dipendente | core | net | native | always | pipeline | — | — | simplified | 25 / 24 / 45 / 0 |
-| `inps_employer` | Contributi INPS a carico azienda | core | net | native | always | pipeline | — | — | simplified | 33 / 24 / 53 / 0 |
+| `inps_employee` | Contributi INPS a carico dipendente | core | net | native | always | pipeline | — | — | simplified | 33 / 24 / 45 / 0 |
+| `inps_employer` | Contributi INPS a carico azienda | core | net | native | always | pipeline | — | — | simplified | 41 / 24 / 53 / 0 |
 | `inail` | Premio INAIL a carico azienda | outside_input | net | unsupported | outside_input | — | `employer.inail_tariff_rate` | — | unavailable | none bundled |
 | `contribution_exemption` | Esonero contributivo | outside_input | net | unsupported | outside_input | — | `employer.contribution_exemption` | — | unavailable | none bundled |
 | `fiscal_adjustment` | Conguaglio IRPEF da assistenza fiscale o periodo precedente | outside_input | net | unsupported | outside_input | — | `facts.fiscal_adjustment` | — | unavailable | none bundled |
@@ -139,19 +139,19 @@ never grow.
 
 | # | CCNL | Core | Limits | Rules (v / d / a / m) |
 |---|---|:---:|---|---|
-| 1 | [CCNL Acconciatura ed Estetica — Confartigianato/CNA](acconciatura-estetica-confartigianato.md) | ⚠️ | base_salary, inps_employer | 20 / 9 / 1 / 0 |
+| 1 | [CCNL Acconciatura ed Estetica — Confartigianato/CNA](acconciatura-estetica-confartigianato.md) | ⚠️ | base_salary, inps_employer | 21 / 9 / 1 / 0 |
 | 2 | [CCNL Agenzie Marittime Raccomandatarie, Agenzie Aeree e Mediatori Marittimi](agenzie-marittime-i481.md) | ⚠️ | base_salary | 1 / 36 / 1 / 0 |
 | 3 | [CCNL Agenzie di Viaggio e Turismo — Fiavet/Confcommercio](agenzie-viaggio-fiavet.md) | ✅ | — | 10 / 59 / 1 / 0 |
 | 4 | [CCNL Alimentaristi Cooperative (Fedagripesca/Legacoop Agroalimentare/AGCI-Agrital)](alimentaristi-cooperative-e016.md) | ✅ | — | 42 / 29 / 1 / 0 |
-| 5 | [CCNL Area Alimentazione e Panificazione — Artigianato (Confartigianato/CNA)](panificazione-artigianato-confartigianato.md) | ⚠️ | base_salary, inps_employer, sickness, territorial_supplement | 1 / 47 / 0 / 0 |
-| 6 | [CCNL Area Comunicazione — Artigianato](comunicazione-artigianato-confartigianato.md) | ⚠️ | base_salary, inps_employer, worker_category | 27 / 13 / 1 / 0 |
+| 5 | [CCNL Area Alimentazione e Panificazione — Artigianato (Confartigianato/CNA)](panificazione-artigianato-confartigianato.md) | ⚠️ | base_salary, inps_employer, sickness, territorial_supplement | 2 / 47 / 0 / 0 |
+| 6 | [CCNL Area Comunicazione — Artigianato](comunicazione-artigianato-confartigianato.md) | ⚠️ | base_salary, inps_employer, worker_category | 28 / 13 / 1 / 0 |
 | 7 | [CCNL Area Dirigenza Funzioni Centrali 2022-2024 — ARAN](dirigenza-funzioni-centrali-aran.md) | ✅ | — | 0 / 15 / 0 / 0 |
 | 8 | [CCNL Area Dirigenza Funzioni Locali 2022-2024 — ARAN](dirigenza-funzioni-locali-aran.md) | ⚠️ | base_salary | 0 / 11 / 0 / 0 |
 | 9 | [CCNL Area Dirigenza Istruzione e Ricerca 2022-2024 — ARAN](dirigenza-istruzione-ricerca-aran.md) | ✅ | workplace_injury | 0 / 15 / 0 / 0 |
-| 10 | [CCNL Area Legno-Lapidei — Artigianato](legno-lapidei-artigianato-confartigianato.md) | ⚠️ | base_salary, inps_employer | 33 / 6 / 1 / 0 |
+| 10 | [CCNL Area Legno-Lapidei — Artigianato](legno-lapidei-artigianato-confartigianato.md) | ⚠️ | base_salary, inps_employer | 34 / 6 / 1 / 0 |
 | 11 | [CCNL Area Sanità 2022-2024 — ARAN (Dirigenti Medici e Veterinari SSN)](dirigenza-sanitaria-medico-veterinaria-aran.md) | ⚠️ | base_salary, workplace_injury | 0 / 8 / 1 / 1 |
 | 12 | [CCNL Area Sanità 2022-2024 — ARAN (Dirigenti Sanitari: psicologi, farmacisti, biologi, fisici, chimici)](dirigenza-sanitaria-area-sanita-aran.md) | ⚠️ | base_salary, workplace_injury | 0 / 10 / 0 / 0 |
-| 13 | [CCNL Area Tessile-Moda e Chimica-Ceramica — Artigianato](tessile-moda-artigianato-confartigianato.md) | ⚠️ | base_salary, inps_employer, seniority | 61 / 11 / 1 / 0 |
+| 13 | [CCNL Area Tessile-Moda e Chimica-Ceramica — Artigianato](tessile-moda-artigianato-confartigianato.md) | ⚠️ | base_salary, inps_employer, seniority | 62 / 11 / 1 / 0 |
 | 14 | [CCNL Attivita Agromeccaniche (Contoterzismo) CAI Agromec-FAI-FLAI-UILA](contoterzismo-caiagromec.md) | ✅ | — | 25 / 24 / 1 / 0 |
 | 15 | [CCNL Attivita Minerarie (ASSORISORSE)](attivita-minerarie-assorisorse.md) | ✅ | — | 36 / 0 / 2 / 1 |
 | 16 | [CCNL Attività Ferroviarie — AGENS](trasporto-ferroviario-agens.md) | ⚠️ | base_salary, inps_employer, seniority | 50 / 6 / 1 / 0 |
@@ -186,7 +186,7 @@ never grow.
 | 45 | [CCNL Dipendenti delle Farmacie Private - Farmacie rurali sussidiate](farmacie-rurali-sussidiate-h121.md) | ⚠️ | seniority | 4 / 41 / 1 / 0 |
 | 46 | [CCNL Distribuzione Cooperativa (ANCC-Coop / Confcooperative Consumo)](distribuzione-cooperativa-ancc.md) | ⚠️ | base_salary, seniority | 10 / 53 / 1 / 0 |
 | 47 | [CCNL Edilizia PMI CONFAPI ANIEM](edilizia-pmi-confapi-aniem.md) | ⚠️ | base_salary, bilateral_funds, pension_fund_contribution, seniority, territorial_supplement | 15 / 30 / 1 / 0 |
-| 48 | [CCNL Edilizia e Affini Artigianato](edilizia-artigianato-cna.md) | ⚠️ | bilateral_funds, inps_employer, seniority | 28 / 45 / 1 / 0 |
+| 48 | [CCNL Edilizia e Affini Artigianato](edilizia-artigianato-cna.md) | ⚠️ | bilateral_funds, inps_employer, seniority | 29 / 45 / 1 / 0 |
 | 49 | [CCNL Edilizia — Cooperative (ANCPL/Legacoop/Confcooperative/AGCI)](edilizia-cooperative-ancpl.md) | ⚠️ | bilateral_funds, seniority | 25 / 33 / 1 / 0 |
 | 50 | [CCNL Edilizia — Industria (ANCE), impiegati e quadri](edilizia-ance-impiegati.md) | ⚠️ | base_salary, overtime, seniority, sickness, territorial_supplement | 37 / 23 / 0 / 0 |
 | 51 | [CCNL Edilizia — Industria (ANCE), operai](edilizia-ance.md) | ⚠️ | base_salary, bilateral_funds, overtime, sickness, territorial_supplement | 43 / 7 / 0 / 0 |
@@ -221,7 +221,7 @@ never grow.
 | 80 | [CCNL Marittimi — Industria Armatoriale (CONFITARMA)](marittimi-industria-armatoriale.md) | ⚠️ | base_salary, una_tantum | 26 / 15 / 1 / 0 |
 | 81 | [CCNL Materiali da Costruzione PMI — Lapidei (CONFAPI ANIEM)](materiali-costruzione-lapidei-confapi.md) | ⚠️ | inps_employer, pension_fund_contribution | 41 / 8 / 21 / 0 |
 | 82 | [CCNL Metalmeccanica - Cooperative](metalmeccanica-cooperative.md) | ⚠️ | base_salary, inps_employer | 37 / 9 / 1 / 0 |
-| 83 | [CCNL Metalmeccanica e Installazione di Impianti — Artigianato](metalmeccanico-artigianato.md) | ⚠️ | base_salary, bilateral_funds, inps_employer, overtime, sickness | 69 / 12 / 0 / 0 |
+| 83 | [CCNL Metalmeccanica e Installazione di Impianti — Artigianato](metalmeccanico-artigianato.md) | ⚠️ | base_salary, inps_employer, overtime, sickness | 70 / 12 / 0 / 0 |
 | 84 | [CCNL Metalmeccanici Piccola Industria (CONFIMI IMPRESA MECCANICA)](metalmeccanico-confimi-pmi.md) | ✅ | overtime | 25 / 22 / 0 / 0 |
 | 85 | [CCNL Metalmeccanici Piccola Industria (Unionmeccanica-Confapi)](metalmeccanico-confapi.md) | ⚠️ | base_salary, leave, overtime, pension_fund_contribution, sickness | 69 / 7 / 0 / 0 |
 | 86 | [CCNL Metalmeccanici e Installatori di Impianti (Federmeccanica-Assistal)](metalmeccanico-federmeccanica.md) | ⚠️ | base_salary, leave, overtime | 90 / 1 / 0 / 0 |
@@ -260,7 +260,7 @@ never grow.
 | 119 | [CCNL per i dipendenti da aziende dei settori Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo - Ristorazione collettiva (aziende dell'art. 1 c. 1 par. II)](pubblici-esercizi-fipe-angem-ristorazione-collettiva.md) | ⚠️ | base_salary, overtime | 62 / 6 / 0 / 0 |
 | 120 | [CCNL per i dipendenti dalle aziende di lavorazione della foglia di tabacco secco allo stato sciolto](tabacco-apti.md) | ✅ | sickness | 38 / 0 / 24 / 0 |
 | 121 | [CCNL per i dipendenti degli studi e delle attività professionali (Confprofessioni)](studi-professionali-confprofessioni.md) | ⚠️ | base_salary, sickness | 53 / 2 / 0 / 0 |
-| 122 | [CCNL per i dipendenti delle imprese artigiane esercenti servizi di pulizia, disinfezione, disinfestazione, derattizzazione e sanificazione](pulizia-artigianato-confartigianato.md) | ⚠️ | base_salary, bilateral_funds, holiday_work, inps_employer, night_work, overtime, seniority | 61 / 8 / 29 / 0 |
+| 122 | [CCNL per i dipendenti delle imprese artigiane esercenti servizi di pulizia, disinfezione, disinfestazione, derattizzazione e sanificazione](pulizia-artigianato-confartigianato.md) | ⚠️ | base_salary, holiday_work, inps_employer, night_work, overtime, seniority | 62 / 8 / 29 / 0 |
 | 123 | [CCNL per i lavoratori addetti all'industria delle calzature](calzaturiero-assocalzaturifici.md) | ✅ | — | 32 / 6 / 1 / 1 |
 | 124 | [CCNL per i lavoratori addetti all'industria orafa, argentiera e della gioielleria (Federorafi)](orafi-argentieri-industria-federorafi.md) | ✅ | — | 32 / 33 / 1 / 0 |
 | 125 | [CCNL per i lavoratori addetti alle industrie delle pelli e dei succedanei della pelle (Assopellettieri)](pelli-cuoio-industria-assopellettieri.md) | ⚠️ | base_salary | 28 / 7 / 1 / 1 |

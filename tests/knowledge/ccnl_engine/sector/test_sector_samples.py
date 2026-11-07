@@ -33,6 +33,7 @@ from __future__ import annotations
 import json
 from dataclasses import replace
 from decimal import ROUND_HALF_UP, Decimal
+from operator import itemgetter
 from typing import Any
 
 import pytest
@@ -129,13 +130,34 @@ def _expected(
     return employee_side, _side(base, rate, Decimal(employer["ivs_rate"]))
 
 
-def _solidarity(slug: str, base: Decimal) -> tuple[Decimal, Decimal]:
+def _solidarity(
+    slug: str, base: Decimal, *, fixed_term: bool
+) -> tuple[Decimal, Decimal]:
+    """Return the worker and employer shares of the CCNL fund on top.
+
+    A flat fund charges the permanent workers; a fund by headcount
+    (``top_up_tiers``, FSBA) the tier of ``_HEADCOUNT``, fixed terms too when
+    ``covers_fixed_term``.
+
+    Returns:
+        The worker and the employer share, zero without a fund owed.
+    """
     path = KNOWLEDGE_DIR / "agreement" / f"{slug}.json"
     fund = json.loads(path.read_text(encoding="utf-8"))["parameters"].get(
         "solidarity_fund"
     )
-    if fund is None:
+    if fund is None or (fixed_term and not fund.get("covers_fixed_term", False)):
         return Decimal(0), Decimal(0)
+    tiers = fund.get("top_up_tiers") or []
+    if tiers:
+        bounded = sorted(
+            (t for t in tiers if t["max_employees"] is not None),
+            key=itemgetter("max_employees"),
+        )
+        fund = next(
+            (t for t in bounded if t["max_employees"] >= _HEADCOUNT),
+            next(t for t in tiers if t["max_employees"] is None),
+        )
     return (
         _cents(base * Decimal(fund["employee_rate"])),
         _cents(base * Decimal(fund["employer_rate"])),
@@ -195,7 +217,7 @@ def test_permanent_and_fixed_term_contributions(
     result = _run(slug, level, WorkerCategory(category), contract)
     base = _base(result, sector)
     employee, employer = _expected(sector, base, category, fixed_term=fixed_term)
-    fund = (Decimal(0), Decimal(0)) if fixed_term else _solidarity(slug, base)
+    fund = _solidarity(slug, base, fixed_term=fixed_term)
 
     assert _actual(result) == (employee + fund[0], employer + fund[1])
 

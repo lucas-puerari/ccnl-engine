@@ -99,22 +99,6 @@
       }
     },
     {
-      "id": "health_and_bilateral_funds",
-      "institute": "bilateral_funds",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = owed",
-      "rule": "HEALTH AND BILATERAL FUNDS (EBNA text, artt. 11-12, pp. 28-32): EBNA EUR 11.65 a month (EUR 30 on 13 months to the worker of an employer outside the bilateralità) and SAN.ARTI. EUR 10.42 a month (E.A.R. of EUR 25 on 13 months) are modelled. Not modelled: the FSBA, 0.45% from the employer and 0.15% from the worker of the INPS base (from 1 January 2016).",
-      "calculation": "ccnl/metalmeccanico-artigianato:coverage.notes",
-      "state": "absent",
-      "remediation": "Model the FSBA contribution (0.45% from the employer and 0.15% from the worker of the INPS base), which the contractual funds cannot hold on that base, then remove this note.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "metalmeccanico-artigianato/health_and_bilateral_funds"
-        ]
-      }
-    },
-    {
       "id": "inps_sector_rates_unsourced",
       "institute": "inps_employer",
       "variant": "all",

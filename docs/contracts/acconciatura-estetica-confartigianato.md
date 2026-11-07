@@ -44,7 +44,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 20 verified / 9 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 21 verified / 9 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -61,6 +61,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | Date | Reviewer | Scope | Outcome | Findings |
 |---|---|---|---|---|
 | 2026-11-08 | gpt-6-sol (ai) | Monthly values on scanned pages, each read twice from the page image by two independent sessions of another model, the second without being told the expected value. | confirmed | 20 values read identically by both readings and equal to the file. |
+| 2026-11-08 | claude-opus-5-5 (ai) | FSBA ordinary contribution, art. 3 of the 2024 regulation, read on the text layer (analysis by a separate model session). | corrected | Added parameters.solidarity_fund FSBA: 0.45%+0.15% up to 15 employees, 0.75%+0.25% above, on the INPS base, fixed terms included. |
 
 ## Salary table
 
