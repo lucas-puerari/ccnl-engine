@@ -213,6 +213,28 @@
         "checked": [
           "parameters.una_tantum"
         ]
+      },
+      {
+        "id": "2026-11-08-ai-noleggio-autobus-conducente-anav-tables",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The monthly values of the levels against the primary tables (text layer).",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://anav.it/wp-content/uploads/2022/10/aumentoretributivonoleggio-07102022.pdf",
+            "sha256": "f72f715d17951b1ff825be4186ec64b5fb26ca5b4f38ad18d78ab19d8f9279bb"
+          }
+        ],
+        "findings": [
+          "33 values found verbatim on the cited pages and marked verified; 3 left as they were (derived or not on a text page)."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels.base_salary",
+          "levels.fixed_allowances"
+        ]
       }
     ]
   },
@@ -517,25 +539,25 @@
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "anav-allegato-2-aumento-retributivo-2022",
-                  "title": "ANAV, Allegato n. 2 all'accordo nazionale del 6 ottobre 2022: aumenti salariali e nuove retribuzioni tabellari del CCNL noleggio autobus con conducente",
+                  "document_id": "noleggio-autobus-conducente-anav-tables-f72f715d",
+                  "title": "noleggio-autobus-conducente-anav: tabelle retributive (2022-anav.pdf)",
                   "kind": "associazione",
                   "url": "https://anav.it/wp-content/uploads/2022/10/aumentoretributivonoleggio-07102022.pdf",
                   "sha256": "f72f715d17951b1ff825be4186ec64b5fb26ca5b4f38ad18d78ab19d8f9279bb"
                 },
                 "page": "1",
-                "section": "Allegato n. 2, column n 'nuove retribuzioni tabellari da erogare con la retribuzione relativa al mese di ott-23', row C4",
-                "quote": "C4 100 ... 511,44 10,33 ... 796,25"
+                "section": "Allegato n. 2, colonna n (ott-23), riga C4",
+                "quote": "C4      100         729,09       511,44        10,33          67,16          22,39                 22,39                 22,39                751,48               773,87                796,25"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-17T11:53:52Z",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
                 "effective_from": "2024-01-01",
-                "verification_status": "verified",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-17T11:53:52Z",
-                "review_id": "2026-10-17-ai-tables"
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-noleggio-autobus-conducente-anav-tables"
               }
             }
           },
@@ -608,22 +630,28 @@
                 "valid_until": null,
                 "value": "511.44",
                 "provenance": {
-                  "status": "assumed",
+                  "status": "verified",
                   "location": {
                     "source_document": {
-                      "document_id": "kitech-ic36-548-tabella-retributiva",
-                      "title": "kitech-ic36-548-tabella-retributiva",
-                      "kind": "tabella_retributiva",
-                      "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                      "document_id": "noleggio-autobus-conducente-anav-tables-f72f715d",
+                      "title": "noleggio-autobus-conducente-anav: tabelle retributive (2022-anav.pdf)",
+                      "kind": "associazione",
+                      "url": "https://anav.it/wp-content/uploads/2022/10/aumentoretributivonoleggio-07102022.pdf",
+                      "sha256": "f72f715d17951b1ff825be4186ec64b5fb26ca5b4f38ad18d78ab19d8f9279bb"
                     },
-                    "section": "Tabella retributiva"
+                    "page": "1",
+                    "section": "Allegato n. 2, colonna d (contingenza), riga C4",
+                    "quote": "C4      100         729,09       511,44        10,33          67,16          22,39                 22,39                 22,39                751,48               773,87                796,25"
                   },
                   "extraction": {
                     "method": "ai",
-                    "model": "claude-sonnet-4-6",
-                    "extraction_timestamp": "2026-09-18T00:00:00",
-                    "verification_status": "unverified",
-                    "effective_from": "2024-01-01"
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2024-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-noleggio-autobus-conducente-anav-tables"
                   }
                 }
               }
@@ -665,22 +693,28 @@
                 "valid_until": null,
                 "value": "10.33",
                 "provenance": {
-                  "status": "assumed",
+                  "status": "verified",
                   "location": {
                     "source_document": {
-                      "document_id": "kitech-ic36-548-tabella-retributiva",
-                      "title": "kitech-ic36-548-tabella-retributiva",
-                      "kind": "tabella_retributiva",
-                      "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                      "document_id": "noleggio-autobus-conducente-anav-tables-f72f715d",
+                      "title": "noleggio-autobus-conducente-anav: tabelle retributive (2022-anav.pdf)",
+                      "kind": "associazione",
+                      "url": "https://anav.it/wp-content/uploads/2022/10/aumentoretributivonoleggio-07102022.pdf",
+                      "sha256": "f72f715d17951b1ff825be4186ec64b5fb26ca5b4f38ad18d78ab19d8f9279bb"
                     },
-                    "section": "Tabella retributiva"
+                    "page": "1",
+                    "section": "Allegato n. 2, colonna e (e.d.r., x 13 mensilità), riga C4",
+                    "quote": "C4      100         729,09       511,44        10,33          67,16          22,39                 22,39                 22,39                751,48               773,87                796,25"
                   },
                   "extraction": {
                     "method": "ai",
-                    "model": "claude-sonnet-4-6",
-                    "extraction_timestamp": "2026-09-18T00:00:00",
-                    "verification_status": "unverified",
-                    "effective_from": "2024-01-01"
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2024-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-noleggio-autobus-conducente-anav-tables"
                   }
                 }
               }
@@ -807,25 +841,25 @@
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "anav-allegato-2-aumento-retributivo-2022",
-                  "title": "ANAV, Allegato n. 2 all'accordo nazionale del 6 ottobre 2022: aumenti salariali e nuove retribuzioni tabellari del CCNL noleggio autobus con conducente",
+                  "document_id": "noleggio-autobus-conducente-anav-tables-f72f715d",
+                  "title": "noleggio-autobus-conducente-anav: tabelle retributive (2022-anav.pdf)",
                   "kind": "associazione",
                   "url": "https://anav.it/wp-content/uploads/2022/10/aumentoretributivonoleggio-07102022.pdf",
                   "sha256": "f72f715d17951b1ff825be4186ec64b5fb26ca5b4f38ad18d78ab19d8f9279bb"
                 },
                 "page": "1",
-                "section": "Allegato n. 2, column n 'nuove retribuzioni tabellari da erogare con la retribuzione relativa al mese di ott-23', row C3",
-                "quote": "C3 125 ... 515,67 10,33 ... 995,30"
+                "section": "Allegato n. 2, colonna n (ott-23), riga C3",
+                "quote": "C3      125         911,35       515,67        10,33          83,96          27,99                 27,99                 27,99                939,33               967,32                995,30"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-17T11:53:52Z",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
                 "effective_from": "2024-01-01",
-                "verification_status": "verified",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-17T11:53:52Z",
-                "review_id": "2026-10-17-ai-tables"
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-noleggio-autobus-conducente-anav-tables"
               }
             }
           },
@@ -898,22 +932,28 @@
                 "valid_until": null,
                 "value": "515.67",
                 "provenance": {
-                  "status": "assumed",
+                  "status": "verified",
                   "location": {
                     "source_document": {
-                      "document_id": "kitech-ic36-548-tabella-retributiva",
-                      "title": "kitech-ic36-548-tabella-retributiva",
-                      "kind": "tabella_retributiva",
-                      "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                      "document_id": "noleggio-autobus-conducente-anav-tables-f72f715d",
+                      "title": "noleggio-autobus-conducente-anav: tabelle retributive (2022-anav.pdf)",
+                      "kind": "associazione",
+                      "url": "https://anav.it/wp-content/uploads/2022/10/aumentoretributivonoleggio-07102022.pdf",
+                      "sha256": "f72f715d17951b1ff825be4186ec64b5fb26ca5b4f38ad18d78ab19d8f9279bb"
                     },
-                    "section": "Tabella retributiva"
+                    "page": "1",
+                    "section": "Allegato n. 2, colonna d (contingenza), riga C3",
+                    "quote": "C3      125         911,35       515,67        10,33          83,96          27,99                 27,99                 27,99                939,33               967,32                995,30"
                   },
                   "extraction": {
                     "method": "ai",
-                    "model": "claude-sonnet-4-6",
-                    "extraction_timestamp": "2026-09-18T00:00:00",
-                    "verification_status": "unverified",
-                    "effective_from": "2024-01-01"
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2024-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-noleggio-autobus-conducente-anav-tables"
                   }
                 }
               }
@@ -955,22 +995,28 @@
                 "valid_until": null,
                 "value": "10.33",
                 "provenance": {
-                  "status": "assumed",
+                  "status": "verified",
                   "location": {
                     "source_document": {
-                      "document_id": "kitech-ic36-548-tabella-retributiva",
-                      "title": "kitech-ic36-548-tabella-retributiva",
-                      "kind": "tabella_retributiva",
-                      "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                      "document_id": "noleggio-autobus-conducente-anav-tables-f72f715d",
+                      "title": "noleggio-autobus-conducente-anav: tabelle retributive (2022-anav.pdf)",
+                      "kind": "associazione",
+                      "url": "https://anav.it/wp-content/uploads/2022/10/aumentoretributivonoleggio-07102022.pdf",
+                      "sha256": "f72f715d17951b1ff825be4186ec64b5fb26ca5b4f38ad18d78ab19d8f9279bb"
                     },
-                    "section": "Tabella retributiva"
+                    "page": "1",
+                    "section": "Allegato n. 2, colonna e (e.d.r., x 13 mensilità), riga C3",
+                    "quote": "C4      100         729,09       511,44        10,33          67,16          22,39                 22,39                 22,39                751,48               773,87                796,25"
                   },
                   "extraction": {
                     "method": "ai",
-                    "model": "claude-sonnet-4-6",
-                    "extraction_timestamp": "2026-09-18T00:00:00",
-                    "verification_status": "unverified",
-                    "effective_from": "2024-01-01"
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2024-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-noleggio-autobus-conducente-anav-tables"
                   }
                 }
               }
@@ -1097,25 +1143,25 @@
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "anav-allegato-2-aumento-retributivo-2022",
-                  "title": "ANAV, Allegato n. 2 all'accordo nazionale del 6 ottobre 2022: aumenti salariali e nuove retribuzioni tabellari del CCNL noleggio autobus con conducente",
+                  "document_id": "noleggio-autobus-conducente-anav-tables-f72f715d",
+                  "title": "noleggio-autobus-conducente-anav: tabelle retributive (2022-anav.pdf)",
                   "kind": "associazione",
                   "url": "https://anav.it/wp-content/uploads/2022/10/aumentoretributivonoleggio-07102022.pdf",
                   "sha256": "f72f715d17951b1ff825be4186ec64b5fb26ca5b4f38ad18d78ab19d8f9279bb"
                 },
                 "page": "1",
-                "section": "Allegato n. 2, column n 'nuove retribuzioni tabellari da erogare con la retribuzione relativa al mese di ott-23', row C2",
-                "quote": "C2 134 ... 517,26 10,33 ... 1.066,97"
+                "section": "Allegato n. 2, colonna n (ott-23), riga C2",
+                "quote": "C2      134         976,97       517,26        10,33          90,00          30,00                 30,00                 30,00               1.006,97             1036,97               1.066,97"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-17T11:53:52Z",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
                 "effective_from": "2024-01-01",
-                "verification_status": "verified",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-17T11:53:52Z",
-                "review_id": "2026-10-17-ai-tables"
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-noleggio-autobus-conducente-anav-tables"
               }
             }
           },
@@ -1188,22 +1234,28 @@
                 "valid_until": null,
                 "value": "517.26",
                 "provenance": {
-                  "status": "assumed",
+                  "status": "verified",
                   "location": {
                     "source_document": {
-                      "document_id": "kitech-ic36-548-tabella-retributiva",
-                      "title": "kitech-ic36-548-tabella-retributiva",
-                      "kind": "tabella_retributiva",
-                      "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                      "document_id": "noleggio-autobus-conducente-anav-tables-f72f715d",
+                      "title": "noleggio-autobus-conducente-anav: tabelle retributive (2022-anav.pdf)",
+                      "kind": "associazione",
+                      "url": "https://anav.it/wp-content/uploads/2022/10/aumentoretributivonoleggio-07102022.pdf",
+                      "sha256": "f72f715d17951b1ff825be4186ec64b5fb26ca5b4f38ad18d78ab19d8f9279bb"
                     },
-                    "section": "Tabella retributiva"
+                    "page": "1",
+                    "section": "Allegato n. 2, colonna d (contingenza), riga C2",
+                    "quote": "C2      134         976,97       517,26        10,33          90,00          30,00                 30,00                 30,00               1.006,97             1036,97               1.066,97"
                   },
                   "extraction": {
                     "method": "ai",
-                    "model": "claude-sonnet-4-6",
-                    "extraction_timestamp": "2026-09-18T00:00:00",
-                    "verification_status": "unverified",
-                    "effective_from": "2024-01-01"
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2024-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-noleggio-autobus-conducente-anav-tables"
                   }
                 }
               }
@@ -1245,22 +1297,28 @@
                 "valid_until": null,
                 "value": "10.33",
                 "provenance": {
-                  "status": "assumed",
+                  "status": "verified",
                   "location": {
                     "source_document": {
-                      "document_id": "kitech-ic36-548-tabella-retributiva",
-                      "title": "kitech-ic36-548-tabella-retributiva",
-                      "kind": "tabella_retributiva",
-                      "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                      "document_id": "noleggio-autobus-conducente-anav-tables-f72f715d",
+                      "title": "noleggio-autobus-conducente-anav: tabelle retributive (2022-anav.pdf)",
+                      "kind": "associazione",
+                      "url": "https://anav.it/wp-content/uploads/2022/10/aumentoretributivonoleggio-07102022.pdf",
+                      "sha256": "f72f715d17951b1ff825be4186ec64b5fb26ca5b4f38ad18d78ab19d8f9279bb"
                     },
-                    "section": "Tabella retributiva"
+                    "page": "1",
+                    "section": "Allegato n. 2, colonna e (e.d.r., x 13 mensilità), riga C2",
+                    "quote": "C4      100         729,09       511,44        10,33          67,16          22,39                 22,39                 22,39                751,48               773,87                796,25"
                   },
                   "extraction": {
                     "method": "ai",
-                    "model": "claude-sonnet-4-6",
-                    "extraction_timestamp": "2026-09-18T00:00:00",
-                    "verification_status": "unverified",
-                    "effective_from": "2024-01-01"
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2024-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-noleggio-autobus-conducente-anav-tables"
                   }
                 }
               }
@@ -1387,25 +1445,25 @@
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "anav-allegato-2-aumento-retributivo-2022",
-                  "title": "ANAV, Allegato n. 2 all'accordo nazionale del 6 ottobre 2022: aumenti salariali e nuove retribuzioni tabellari del CCNL noleggio autobus con conducente",
+                  "document_id": "noleggio-autobus-conducente-anav-tables-f72f715d",
+                  "title": "noleggio-autobus-conducente-anav: tabelle retributive (2022-anav.pdf)",
                   "kind": "associazione",
                   "url": "https://anav.it/wp-content/uploads/2022/10/aumentoretributivonoleggio-07102022.pdf",
                   "sha256": "f72f715d17951b1ff825be4186ec64b5fb26ca5b4f38ad18d78ab19d8f9279bb"
                 },
                 "page": "1",
-                "section": "Allegato n. 2, column n 'nuove retribuzioni tabellari da erogare con la retribuzione relativa al mese di ott-23', row C1",
-                "quote": "C1 152 ... 520,75 10,33 ... 1.210,30"
+                "section": "Allegato n. 2, colonna n (ott-23), riga C1",
+                "quote": "C1      152        1.108,21      520,75        10,33         102,09          34,03                 34,03                 34,03               1.142,24             1.176,27              1.210,30"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-17T11:53:52Z",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
                 "effective_from": "2024-01-01",
-                "verification_status": "verified",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-17T11:53:52Z",
-                "review_id": "2026-10-17-ai-tables"
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-noleggio-autobus-conducente-anav-tables"
               }
             }
           },
@@ -1478,22 +1536,28 @@
                 "valid_until": null,
                 "value": "520.75",
                 "provenance": {
-                  "status": "assumed",
+                  "status": "verified",
                   "location": {
                     "source_document": {
-                      "document_id": "kitech-ic36-548-tabella-retributiva",
-                      "title": "kitech-ic36-548-tabella-retributiva",
-                      "kind": "tabella_retributiva",
-                      "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                      "document_id": "noleggio-autobus-conducente-anav-tables-f72f715d",
+                      "title": "noleggio-autobus-conducente-anav: tabelle retributive (2022-anav.pdf)",
+                      "kind": "associazione",
+                      "url": "https://anav.it/wp-content/uploads/2022/10/aumentoretributivonoleggio-07102022.pdf",
+                      "sha256": "f72f715d17951b1ff825be4186ec64b5fb26ca5b4f38ad18d78ab19d8f9279bb"
                     },
-                    "section": "Tabella retributiva"
+                    "page": "1",
+                    "section": "Allegato n. 2, colonna d (contingenza), riga C1",
+                    "quote": "C1      152        1.108,21      520,75        10,33         102,09          34,03                 34,03                 34,03               1.142,24             1.176,27              1.210,30"
                   },
                   "extraction": {
                     "method": "ai",
-                    "model": "claude-sonnet-4-6",
-                    "extraction_timestamp": "2026-09-18T00:00:00",
-                    "verification_status": "unverified",
-                    "effective_from": "2024-01-01"
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2024-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-noleggio-autobus-conducente-anav-tables"
                   }
                 }
               }
@@ -1535,22 +1599,28 @@
                 "valid_until": null,
                 "value": "10.33",
                 "provenance": {
-                  "status": "assumed",
+                  "status": "verified",
                   "location": {
                     "source_document": {
-                      "document_id": "kitech-ic36-548-tabella-retributiva",
-                      "title": "kitech-ic36-548-tabella-retributiva",
-                      "kind": "tabella_retributiva",
-                      "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                      "document_id": "noleggio-autobus-conducente-anav-tables-f72f715d",
+                      "title": "noleggio-autobus-conducente-anav: tabelle retributive (2022-anav.pdf)",
+                      "kind": "associazione",
+                      "url": "https://anav.it/wp-content/uploads/2022/10/aumentoretributivonoleggio-07102022.pdf",
+                      "sha256": "f72f715d17951b1ff825be4186ec64b5fb26ca5b4f38ad18d78ab19d8f9279bb"
                     },
-                    "section": "Tabella retributiva"
+                    "page": "1",
+                    "section": "Allegato n. 2, colonna e (e.d.r., x 13 mensilità), riga C1",
+                    "quote": "C4      100         729,09       511,44        10,33          67,16          22,39                 22,39                 22,39                751,48               773,87                796,25"
                   },
                   "extraction": {
                     "method": "ai",
-                    "model": "claude-sonnet-4-6",
-                    "extraction_timestamp": "2026-09-18T00:00:00",
-                    "verification_status": "unverified",
-                    "effective_from": "2024-01-01"
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2024-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-noleggio-autobus-conducente-anav-tables"
                   }
                 }
               }
@@ -1677,25 +1747,25 @@
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "anav-allegato-2-aumento-retributivo-2022",
-                  "title": "ANAV, Allegato n. 2 all'accordo nazionale del 6 ottobre 2022: aumenti salariali e nuove retribuzioni tabellari del CCNL noleggio autobus con conducente",
+                  "document_id": "noleggio-autobus-conducente-anav-tables-f72f715d",
+                  "title": "noleggio-autobus-conducente-anav: tabelle retributive (2022-anav.pdf)",
                   "kind": "associazione",
                   "url": "https://anav.it/wp-content/uploads/2022/10/aumentoretributivonoleggio-07102022.pdf",
                   "sha256": "f72f715d17951b1ff825be4186ec64b5fb26ca5b4f38ad18d78ab19d8f9279bb"
                 },
                 "page": "1",
-                "section": "Allegato n. 2, column n 'nuove retribuzioni tabellari da erogare con la retribuzione relativa al mese di ott-23', row B3",
-                "quote": "B3 155 ... 521,06 10,33 ... 1.234,19"
+                "section": "Allegato n. 2, colonna n (ott-23), riga B3",
+                "quote": "B3      155        1.130,09      521,06        10,33         104,10          34,70                 34,70                 34,70               1.164,79             1.199,49              1.234,19"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-17T11:53:52Z",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
                 "effective_from": "2024-01-01",
-                "verification_status": "verified",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-17T11:53:52Z",
-                "review_id": "2026-10-17-ai-tables"
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-noleggio-autobus-conducente-anav-tables"
               }
             }
           },
@@ -1768,22 +1838,28 @@
                 "valid_until": null,
                 "value": "521.06",
                 "provenance": {
-                  "status": "assumed",
+                  "status": "verified",
                   "location": {
                     "source_document": {
-                      "document_id": "kitech-ic36-548-tabella-retributiva",
-                      "title": "kitech-ic36-548-tabella-retributiva",
-                      "kind": "tabella_retributiva",
-                      "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                      "document_id": "noleggio-autobus-conducente-anav-tables-f72f715d",
+                      "title": "noleggio-autobus-conducente-anav: tabelle retributive (2022-anav.pdf)",
+                      "kind": "associazione",
+                      "url": "https://anav.it/wp-content/uploads/2022/10/aumentoretributivonoleggio-07102022.pdf",
+                      "sha256": "f72f715d17951b1ff825be4186ec64b5fb26ca5b4f38ad18d78ab19d8f9279bb"
                     },
-                    "section": "Tabella retributiva"
+                    "page": "1",
+                    "section": "Allegato n. 2, colonna d (contingenza), riga B3",
+                    "quote": "B3      155        1.130,09      521,06        10,33         104,10          34,70                 34,70                 34,70               1.164,79             1.199,49              1.234,19"
                   },
                   "extraction": {
                     "method": "ai",
-                    "model": "claude-sonnet-4-6",
-                    "extraction_timestamp": "2026-09-18T00:00:00",
-                    "verification_status": "unverified",
-                    "effective_from": "2024-01-01"
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2024-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-noleggio-autobus-conducente-anav-tables"
                   }
                 }
               }
@@ -1825,22 +1901,28 @@
                 "valid_until": null,
                 "value": "10.33",
                 "provenance": {
-                  "status": "assumed",
+                  "status": "verified",
                   "location": {
                     "source_document": {
-                      "document_id": "kitech-ic36-548-tabella-retributiva",
-                      "title": "kitech-ic36-548-tabella-retributiva",
-                      "kind": "tabella_retributiva",
-                      "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                      "document_id": "noleggio-autobus-conducente-anav-tables-f72f715d",
+                      "title": "noleggio-autobus-conducente-anav: tabelle retributive (2022-anav.pdf)",
+                      "kind": "associazione",
+                      "url": "https://anav.it/wp-content/uploads/2022/10/aumentoretributivonoleggio-07102022.pdf",
+                      "sha256": "f72f715d17951b1ff825be4186ec64b5fb26ca5b4f38ad18d78ab19d8f9279bb"
                     },
-                    "section": "Tabella retributiva"
+                    "page": "1",
+                    "section": "Allegato n. 2, colonna e (e.d.r., x 13 mensilità), riga B3",
+                    "quote": "C4      100         729,09       511,44        10,33          67,16          22,39                 22,39                 22,39                751,48               773,87                796,25"
                   },
                   "extraction": {
                     "method": "ai",
-                    "model": "claude-sonnet-4-6",
-                    "extraction_timestamp": "2026-09-18T00:00:00",
-                    "verification_status": "unverified",
-                    "effective_from": "2024-01-01"
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2024-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-noleggio-autobus-conducente-anav-tables"
                   }
                 }
               }
@@ -1967,25 +2049,25 @@
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "anav-allegato-2-aumento-retributivo-2022",
-                  "title": "ANAV, Allegato n. 2 all'accordo nazionale del 6 ottobre 2022: aumenti salariali e nuove retribuzioni tabellari del CCNL noleggio autobus con conducente",
+                  "document_id": "noleggio-autobus-conducente-anav-tables-f72f715d",
+                  "title": "noleggio-autobus-conducente-anav: tabelle retributive (2022-anav.pdf)",
                   "kind": "associazione",
                   "url": "https://anav.it/wp-content/uploads/2022/10/aumentoretributivonoleggio-07102022.pdf",
                   "sha256": "f72f715d17951b1ff825be4186ec64b5fb26ca5b4f38ad18d78ab19d8f9279bb"
                 },
                 "page": "1",
-                "section": "Allegato n. 2, column n 'nuove retribuzioni tabellari da erogare con la retribuzione relativa al mese di ott-23', row B2",
-                "quote": "B2 162 ... 522,46 10,33 ... 1.289,92"
+                "section": "Allegato n. 2, colonna n (ott-23), riga B2",
+                "quote": "B2      162        1.181,11      522,46        10,33         108,81          36,27                 36,27                 36,27               1.217,38             1.253,65              1.289,92"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-17T11:53:52Z",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
                 "effective_from": "2024-01-01",
-                "verification_status": "verified",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-17T11:53:52Z",
-                "review_id": "2026-10-17-ai-tables"
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-noleggio-autobus-conducente-anav-tables"
               }
             }
           },
@@ -2058,22 +2140,28 @@
                 "valid_until": null,
                 "value": "522.46",
                 "provenance": {
-                  "status": "assumed",
+                  "status": "verified",
                   "location": {
                     "source_document": {
-                      "document_id": "kitech-ic36-548-tabella-retributiva",
-                      "title": "kitech-ic36-548-tabella-retributiva",
-                      "kind": "tabella_retributiva",
-                      "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                      "document_id": "noleggio-autobus-conducente-anav-tables-f72f715d",
+                      "title": "noleggio-autobus-conducente-anav: tabelle retributive (2022-anav.pdf)",
+                      "kind": "associazione",
+                      "url": "https://anav.it/wp-content/uploads/2022/10/aumentoretributivonoleggio-07102022.pdf",
+                      "sha256": "f72f715d17951b1ff825be4186ec64b5fb26ca5b4f38ad18d78ab19d8f9279bb"
                     },
-                    "section": "Tabella retributiva"
+                    "page": "1",
+                    "section": "Allegato n. 2, colonna d (contingenza), riga B2",
+                    "quote": "B2      162        1.181,11      522,46        10,33         108,81          36,27                 36,27                 36,27               1.217,38             1.253,65              1.289,92"
                   },
                   "extraction": {
                     "method": "ai",
-                    "model": "claude-sonnet-4-6",
-                    "extraction_timestamp": "2026-09-18T00:00:00",
-                    "verification_status": "unverified",
-                    "effective_from": "2024-01-01"
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2024-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-noleggio-autobus-conducente-anav-tables"
                   }
                 }
               }
@@ -2115,22 +2203,28 @@
                 "valid_until": null,
                 "value": "10.33",
                 "provenance": {
-                  "status": "assumed",
+                  "status": "verified",
                   "location": {
                     "source_document": {
-                      "document_id": "kitech-ic36-548-tabella-retributiva",
-                      "title": "kitech-ic36-548-tabella-retributiva",
-                      "kind": "tabella_retributiva",
-                      "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                      "document_id": "noleggio-autobus-conducente-anav-tables-f72f715d",
+                      "title": "noleggio-autobus-conducente-anav: tabelle retributive (2022-anav.pdf)",
+                      "kind": "associazione",
+                      "url": "https://anav.it/wp-content/uploads/2022/10/aumentoretributivonoleggio-07102022.pdf",
+                      "sha256": "f72f715d17951b1ff825be4186ec64b5fb26ca5b4f38ad18d78ab19d8f9279bb"
                     },
-                    "section": "Tabella retributiva"
+                    "page": "1",
+                    "section": "Allegato n. 2, colonna e (e.d.r., x 13 mensilità), riga B2",
+                    "quote": "C4      100         729,09       511,44        10,33          67,16          22,39                 22,39                 22,39                751,48               773,87                796,25"
                   },
                   "extraction": {
                     "method": "ai",
-                    "model": "claude-sonnet-4-6",
-                    "extraction_timestamp": "2026-09-18T00:00:00",
-                    "verification_status": "unverified",
-                    "effective_from": "2024-01-01"
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2024-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-noleggio-autobus-conducente-anav-tables"
                   }
                 }
               }
@@ -2257,25 +2351,25 @@
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "anav-allegato-2-aumento-retributivo-2022",
-                  "title": "ANAV, Allegato n. 2 all'accordo nazionale del 6 ottobre 2022: aumenti salariali e nuove retribuzioni tabellari del CCNL noleggio autobus con conducente",
+                  "document_id": "noleggio-autobus-conducente-anav-tables-f72f715d",
+                  "title": "noleggio-autobus-conducente-anav: tabelle retributive (2022-anav.pdf)",
                   "kind": "associazione",
                   "url": "https://anav.it/wp-content/uploads/2022/10/aumentoretributivonoleggio-07102022.pdf",
                   "sha256": "f72f715d17951b1ff825be4186ec64b5fb26ca5b4f38ad18d78ab19d8f9279bb"
                 },
                 "page": "1",
-                "section": "Allegato n. 2, column n 'nuove retribuzioni tabellari da erogare con la retribuzione relativa al mese di ott-23', row B1",
-                "quote": "B1 170 ... 524,10 10,33 ... 1.353,62"
+                "section": "Allegato n. 2, colonna n (ott-23), riga B1",
+                "quote": "B1      170        1.239,44      524,10        10,33         114,18          38,06                 38,06                 38,06               1.277,50             1.315,56              1.353,62"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-17T11:53:52Z",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
                 "effective_from": "2024-01-01",
-                "verification_status": "verified",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-17T11:53:52Z",
-                "review_id": "2026-10-17-ai-tables"
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-noleggio-autobus-conducente-anav-tables"
               }
             }
           },
@@ -2348,22 +2442,28 @@
                 "valid_until": null,
                 "value": "524.10",
                 "provenance": {
-                  "status": "assumed",
+                  "status": "verified",
                   "location": {
                     "source_document": {
-                      "document_id": "kitech-ic36-548-tabella-retributiva",
-                      "title": "kitech-ic36-548-tabella-retributiva",
-                      "kind": "tabella_retributiva",
-                      "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                      "document_id": "noleggio-autobus-conducente-anav-tables-f72f715d",
+                      "title": "noleggio-autobus-conducente-anav: tabelle retributive (2022-anav.pdf)",
+                      "kind": "associazione",
+                      "url": "https://anav.it/wp-content/uploads/2022/10/aumentoretributivonoleggio-07102022.pdf",
+                      "sha256": "f72f715d17951b1ff825be4186ec64b5fb26ca5b4f38ad18d78ab19d8f9279bb"
                     },
-                    "section": "Tabella retributiva"
+                    "page": "1",
+                    "section": "Allegato n. 2, colonna d (contingenza), riga B1",
+                    "quote": "B1      170        1.239,44      524,10        10,33         114,18          38,06                 38,06                 38,06               1.277,50             1.315,56              1.353,62"
                   },
                   "extraction": {
                     "method": "ai",
-                    "model": "claude-sonnet-4-6",
-                    "extraction_timestamp": "2026-09-18T00:00:00",
-                    "verification_status": "unverified",
-                    "effective_from": "2024-01-01"
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2024-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-noleggio-autobus-conducente-anav-tables"
                   }
                 }
               }
@@ -2405,22 +2505,28 @@
                 "valid_until": null,
                 "value": "10.33",
                 "provenance": {
-                  "status": "assumed",
+                  "status": "verified",
                   "location": {
                     "source_document": {
-                      "document_id": "kitech-ic36-548-tabella-retributiva",
-                      "title": "kitech-ic36-548-tabella-retributiva",
-                      "kind": "tabella_retributiva",
-                      "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                      "document_id": "noleggio-autobus-conducente-anav-tables-f72f715d",
+                      "title": "noleggio-autobus-conducente-anav: tabelle retributive (2022-anav.pdf)",
+                      "kind": "associazione",
+                      "url": "https://anav.it/wp-content/uploads/2022/10/aumentoretributivonoleggio-07102022.pdf",
+                      "sha256": "f72f715d17951b1ff825be4186ec64b5fb26ca5b4f38ad18d78ab19d8f9279bb"
                     },
-                    "section": "Tabella retributiva"
+                    "page": "1",
+                    "section": "Allegato n. 2, colonna e (e.d.r., x 13 mensilità), riga B1",
+                    "quote": "C4      100         729,09       511,44        10,33          67,16          22,39                 22,39                 22,39                751,48               773,87                796,25"
                   },
                   "extraction": {
                     "method": "ai",
-                    "model": "claude-sonnet-4-6",
-                    "extraction_timestamp": "2026-09-18T00:00:00",
-                    "verification_status": "unverified",
-                    "effective_from": "2024-01-01"
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2024-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-noleggio-autobus-conducente-anav-tables"
                   }
                 }
               }
@@ -2547,25 +2653,25 @@
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "anav-allegato-2-aumento-retributivo-2022",
-                  "title": "ANAV, Allegato n. 2 all'accordo nazionale del 6 ottobre 2022: aumenti salariali e nuove retribuzioni tabellari del CCNL noleggio autobus con conducente",
+                  "document_id": "noleggio-autobus-conducente-anav-tables-f72f715d",
+                  "title": "noleggio-autobus-conducente-anav: tabelle retributive (2022-anav.pdf)",
                   "kind": "associazione",
                   "url": "https://anav.it/wp-content/uploads/2022/10/aumentoretributivonoleggio-07102022.pdf",
                   "sha256": "f72f715d17951b1ff825be4186ec64b5fb26ca5b4f38ad18d78ab19d8f9279bb"
                 },
                 "page": "1",
-                "section": "Allegato n. 2, column n 'nuove retribuzioni tabellari da erogare con la retribuzione relativa al mese di ott-23', row A2",
-                "quote": "A2 188 ... 527,49 10,33 ... 1.496,94"
+                "section": "Allegato n. 2, colonna n (ott-23), riga A2",
+                "quote": "A2      188        1.370,67      527,49        10,33         126,27          42,09                 42,09                 42,09               1.412,76             1.454,85              1.496,94"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-17T11:53:52Z",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
                 "effective_from": "2024-01-01",
-                "verification_status": "verified",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-17T11:53:52Z",
-                "review_id": "2026-10-17-ai-tables"
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-noleggio-autobus-conducente-anav-tables"
               }
             }
           },
@@ -2638,22 +2744,28 @@
                 "valid_until": null,
                 "value": "527.49",
                 "provenance": {
-                  "status": "assumed",
+                  "status": "verified",
                   "location": {
                     "source_document": {
-                      "document_id": "kitech-ic36-548-tabella-retributiva",
-                      "title": "kitech-ic36-548-tabella-retributiva",
-                      "kind": "tabella_retributiva",
-                      "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                      "document_id": "noleggio-autobus-conducente-anav-tables-f72f715d",
+                      "title": "noleggio-autobus-conducente-anav: tabelle retributive (2022-anav.pdf)",
+                      "kind": "associazione",
+                      "url": "https://anav.it/wp-content/uploads/2022/10/aumentoretributivonoleggio-07102022.pdf",
+                      "sha256": "f72f715d17951b1ff825be4186ec64b5fb26ca5b4f38ad18d78ab19d8f9279bb"
                     },
-                    "section": "Tabella retributiva"
+                    "page": "1",
+                    "section": "Allegato n. 2, colonna d (contingenza), riga A2",
+                    "quote": "A2      188        1.370,67      527,49        10,33         126,27          42,09                 42,09                 42,09               1.412,76             1.454,85              1.496,94"
                   },
                   "extraction": {
                     "method": "ai",
-                    "model": "claude-sonnet-4-6",
-                    "extraction_timestamp": "2026-09-18T00:00:00",
-                    "verification_status": "unverified",
-                    "effective_from": "2024-01-01"
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2024-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-noleggio-autobus-conducente-anav-tables"
                   }
                 }
               }
@@ -2695,22 +2807,28 @@
                 "valid_until": null,
                 "value": "10.33",
                 "provenance": {
-                  "status": "assumed",
+                  "status": "verified",
                   "location": {
                     "source_document": {
-                      "document_id": "kitech-ic36-548-tabella-retributiva",
-                      "title": "kitech-ic36-548-tabella-retributiva",
-                      "kind": "tabella_retributiva",
-                      "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                      "document_id": "noleggio-autobus-conducente-anav-tables-f72f715d",
+                      "title": "noleggio-autobus-conducente-anav: tabelle retributive (2022-anav.pdf)",
+                      "kind": "associazione",
+                      "url": "https://anav.it/wp-content/uploads/2022/10/aumentoretributivonoleggio-07102022.pdf",
+                      "sha256": "f72f715d17951b1ff825be4186ec64b5fb26ca5b4f38ad18d78ab19d8f9279bb"
                     },
-                    "section": "Tabella retributiva"
+                    "page": "1",
+                    "section": "Allegato n. 2, colonna e (e.d.r., x 13 mensilità), riga A2",
+                    "quote": "C4      100         729,09       511,44        10,33          67,16          22,39                 22,39                 22,39                751,48               773,87                796,25"
                   },
                   "extraction": {
                     "method": "ai",
-                    "model": "claude-sonnet-4-6",
-                    "extraction_timestamp": "2026-09-18T00:00:00",
-                    "verification_status": "unverified",
-                    "effective_from": "2024-01-01"
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2024-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-noleggio-autobus-conducente-anav-tables"
                   }
                 }
               }
@@ -2837,25 +2955,25 @@
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "anav-allegato-2-aumento-retributivo-2022",
-                  "title": "ANAV, Allegato n. 2 all'accordo nazionale del 6 ottobre 2022: aumenti salariali e nuove retribuzioni tabellari del CCNL noleggio autobus con conducente",
+                  "document_id": "noleggio-autobus-conducente-anav-tables-f72f715d",
+                  "title": "noleggio-autobus-conducente-anav: tabelle retributive (2022-anav.pdf)",
                   "kind": "associazione",
                   "url": "https://anav.it/wp-content/uploads/2022/10/aumentoretributivonoleggio-07102022.pdf",
                   "sha256": "f72f715d17951b1ff825be4186ec64b5fb26ca5b4f38ad18d78ab19d8f9279bb"
                 },
                 "page": "1",
-                "section": "Allegato n. 2, column n 'nuove retribuzioni tabellari da erogare con la retribuzione relativa al mese di ott-23', row A1",
-                "quote": "A1 200 ... 529,75 10,33 ... 1.592,50"
+                "section": "Allegato n. 2, colonna n (ott-23), riga A1",
+                "quote": "A1      200        1.458,17      529,75        10,33         134,33          44,78                 44,78                 44,78               1.502,94             1.547,72              1.592,50"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-17T11:53:52Z",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
                 "effective_from": "2024-01-01",
-                "verification_status": "verified",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-17T11:53:52Z",
-                "review_id": "2026-10-17-ai-tables"
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-noleggio-autobus-conducente-anav-tables"
               }
             }
           },
@@ -2928,22 +3046,28 @@
                 "valid_until": null,
                 "value": "529.75",
                 "provenance": {
-                  "status": "assumed",
+                  "status": "verified",
                   "location": {
                     "source_document": {
-                      "document_id": "kitech-ic36-548-tabella-retributiva",
-                      "title": "kitech-ic36-548-tabella-retributiva",
-                      "kind": "tabella_retributiva",
-                      "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                      "document_id": "noleggio-autobus-conducente-anav-tables-f72f715d",
+                      "title": "noleggio-autobus-conducente-anav: tabelle retributive (2022-anav.pdf)",
+                      "kind": "associazione",
+                      "url": "https://anav.it/wp-content/uploads/2022/10/aumentoretributivonoleggio-07102022.pdf",
+                      "sha256": "f72f715d17951b1ff825be4186ec64b5fb26ca5b4f38ad18d78ab19d8f9279bb"
                     },
-                    "section": "Tabella retributiva"
+                    "page": "1",
+                    "section": "Allegato n. 2, colonna d (contingenza), riga A1",
+                    "quote": "A1      200        1.458,17      529,75        10,33         134,33          44,78                 44,78                 44,78               1.502,94             1.547,72              1.592,50"
                   },
                   "extraction": {
                     "method": "ai",
-                    "model": "claude-sonnet-4-6",
-                    "extraction_timestamp": "2026-09-18T00:00:00",
-                    "verification_status": "unverified",
-                    "effective_from": "2024-01-01"
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2024-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-noleggio-autobus-conducente-anav-tables"
                   }
                 }
               }
@@ -2985,22 +3109,28 @@
                 "valid_until": null,
                 "value": "10.33",
                 "provenance": {
-                  "status": "assumed",
+                  "status": "verified",
                   "location": {
                     "source_document": {
-                      "document_id": "kitech-ic36-548-tabella-retributiva",
-                      "title": "kitech-ic36-548-tabella-retributiva",
-                      "kind": "tabella_retributiva",
-                      "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                      "document_id": "noleggio-autobus-conducente-anav-tables-f72f715d",
+                      "title": "noleggio-autobus-conducente-anav: tabelle retributive (2022-anav.pdf)",
+                      "kind": "associazione",
+                      "url": "https://anav.it/wp-content/uploads/2022/10/aumentoretributivonoleggio-07102022.pdf",
+                      "sha256": "f72f715d17951b1ff825be4186ec64b5fb26ca5b4f38ad18d78ab19d8f9279bb"
                     },
-                    "section": "Tabella retributiva"
+                    "page": "1",
+                    "section": "Allegato n. 2, colonna e (e.d.r., x 13 mensilità), riga A1",
+                    "quote": "C4      100         729,09       511,44        10,33          67,16          22,39                 22,39                 22,39                751,48               773,87                796,25"
                   },
                   "extraction": {
                     "method": "ai",
-                    "model": "claude-sonnet-4-6",
-                    "extraction_timestamp": "2026-09-18T00:00:00",
-                    "verification_status": "unverified",
-                    "effective_from": "2024-01-01"
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2024-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-noleggio-autobus-conducente-anav-tables"
                   }
                 }
               }
@@ -3127,25 +3257,25 @@
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "anav-allegato-2-aumento-retributivo-2022",
-                  "title": "ANAV, Allegato n. 2 all'accordo nazionale del 6 ottobre 2022: aumenti salariali e nuove retribuzioni tabellari del CCNL noleggio autobus con conducente",
+                  "document_id": "noleggio-autobus-conducente-anav-tables-f72f715d",
+                  "title": "noleggio-autobus-conducente-anav: tabelle retributive (2022-anav.pdf)",
                   "kind": "associazione",
                   "url": "https://anav.it/wp-content/uploads/2022/10/aumentoretributivonoleggio-07102022.pdf",
                   "sha256": "f72f715d17951b1ff825be4186ec64b5fb26ca5b4f38ad18d78ab19d8f9279bb"
                 },
                 "page": "1",
-                "section": "Allegato n. 2, column n 'nuove retribuzioni tabellari da erogare con la retribuzione relativa al mese di ott-23', row Q2",
-                "quote": "Q2 200 ... 529,75 10,33 ... 1.592,50"
+                "section": "Allegato n. 2, colonna n (ott-23), riga Q2",
+                "quote": "A1      200        1.458,17      529,75        10,33         134,33          44,78                 44,78                 44,78               1.502,94             1.547,72              1.592,50"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-17T11:53:52Z",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
                 "effective_from": "2024-01-01",
-                "verification_status": "verified",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-17T11:53:52Z",
-                "review_id": "2026-10-17-ai-tables"
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-noleggio-autobus-conducente-anav-tables"
               }
             }
           },
@@ -3218,22 +3348,28 @@
                 "valid_until": null,
                 "value": "529.75",
                 "provenance": {
-                  "status": "assumed",
+                  "status": "verified",
                   "location": {
                     "source_document": {
-                      "document_id": "kitech-ic36-548-tabella-retributiva",
-                      "title": "kitech-ic36-548-tabella-retributiva",
-                      "kind": "tabella_retributiva",
-                      "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                      "document_id": "noleggio-autobus-conducente-anav-tables-f72f715d",
+                      "title": "noleggio-autobus-conducente-anav: tabelle retributive (2022-anav.pdf)",
+                      "kind": "associazione",
+                      "url": "https://anav.it/wp-content/uploads/2022/10/aumentoretributivonoleggio-07102022.pdf",
+                      "sha256": "f72f715d17951b1ff825be4186ec64b5fb26ca5b4f38ad18d78ab19d8f9279bb"
                     },
-                    "section": "Tabella retributiva"
+                    "page": "1",
+                    "section": "Allegato n. 2, colonna d (contingenza), riga Q2",
+                    "quote": "A1      200        1.458,17      529,75        10,33         134,33          44,78                 44,78                 44,78               1.502,94             1.547,72              1.592,50"
                   },
                   "extraction": {
                     "method": "ai",
-                    "model": "claude-sonnet-4-6",
-                    "extraction_timestamp": "2026-09-18T00:00:00",
-                    "verification_status": "unverified",
-                    "effective_from": "2024-01-01"
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2024-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-noleggio-autobus-conducente-anav-tables"
                   }
                 }
               }
@@ -3275,22 +3411,28 @@
                 "valid_until": null,
                 "value": "10.33",
                 "provenance": {
-                  "status": "assumed",
+                  "status": "verified",
                   "location": {
                     "source_document": {
-                      "document_id": "kitech-ic36-548-tabella-retributiva",
-                      "title": "kitech-ic36-548-tabella-retributiva",
-                      "kind": "tabella_retributiva",
-                      "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                      "document_id": "noleggio-autobus-conducente-anav-tables-f72f715d",
+                      "title": "noleggio-autobus-conducente-anav: tabelle retributive (2022-anav.pdf)",
+                      "kind": "associazione",
+                      "url": "https://anav.it/wp-content/uploads/2022/10/aumentoretributivonoleggio-07102022.pdf",
+                      "sha256": "f72f715d17951b1ff825be4186ec64b5fb26ca5b4f38ad18d78ab19d8f9279bb"
                     },
-                    "section": "Tabella retributiva"
+                    "page": "1",
+                    "section": "Allegato n. 2, colonna e (e.d.r., x 13 mensilità), riga Q2",
+                    "quote": "C4      100         729,09       511,44        10,33          67,16          22,39                 22,39                 22,39                751,48               773,87                796,25"
                   },
                   "extraction": {
                     "method": "ai",
-                    "model": "claude-sonnet-4-6",
-                    "extraction_timestamp": "2026-09-18T00:00:00",
-                    "verification_status": "unverified",
-                    "effective_from": "2024-01-01"
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2024-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-noleggio-autobus-conducente-anav-tables"
                   }
                 }
               }
@@ -3468,25 +3610,25 @@
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "anav-allegato-2-aumento-retributivo-2022",
-                  "title": "ANAV, Allegato n. 2 all'accordo nazionale del 6 ottobre 2022: aumenti salariali e nuove retribuzioni tabellari del CCNL noleggio autobus con conducente",
+                  "document_id": "noleggio-autobus-conducente-anav-tables-f72f715d",
+                  "title": "noleggio-autobus-conducente-anav: tabelle retributive (2022-anav.pdf)",
                   "kind": "associazione",
                   "url": "https://anav.it/wp-content/uploads/2022/10/aumentoretributivonoleggio-07102022.pdf",
                   "sha256": "f72f715d17951b1ff825be4186ec64b5fb26ca5b4f38ad18d78ab19d8f9279bb"
                 },
                 "page": "1",
-                "section": "Allegato n. 2, column n 'nuove retribuzioni tabellari da erogare con la retribuzione relativa al mese di ott-23', row Q1",
-                "quote": "Q1 200 ... 529,75 10,33 ... 1.592,50"
+                "section": "Allegato n. 2, colonna n (ott-23), riga Q1",
+                "quote": "A1      200        1.458,17      529,75        10,33         134,33          44,78                 44,78                 44,78               1.502,94             1.547,72              1.592,50"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-17T11:53:52Z",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
                 "effective_from": "2024-01-01",
-                "verification_status": "verified",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-10-17T11:53:52Z",
-                "review_id": "2026-10-17-ai-tables"
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-noleggio-autobus-conducente-anav-tables"
               }
             }
           },
@@ -3559,22 +3701,28 @@
                 "valid_until": null,
                 "value": "529.75",
                 "provenance": {
-                  "status": "assumed",
+                  "status": "verified",
                   "location": {
                     "source_document": {
-                      "document_id": "kitech-ic36-548-tabella-retributiva",
-                      "title": "kitech-ic36-548-tabella-retributiva",
-                      "kind": "tabella_retributiva",
-                      "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                      "document_id": "noleggio-autobus-conducente-anav-tables-f72f715d",
+                      "title": "noleggio-autobus-conducente-anav: tabelle retributive (2022-anav.pdf)",
+                      "kind": "associazione",
+                      "url": "https://anav.it/wp-content/uploads/2022/10/aumentoretributivonoleggio-07102022.pdf",
+                      "sha256": "f72f715d17951b1ff825be4186ec64b5fb26ca5b4f38ad18d78ab19d8f9279bb"
                     },
-                    "section": "Tabella retributiva"
+                    "page": "1",
+                    "section": "Allegato n. 2, colonna d (contingenza), riga Q1",
+                    "quote": "A1      200        1.458,17      529,75        10,33         134,33          44,78                 44,78                 44,78               1.502,94             1.547,72              1.592,50"
                   },
                   "extraction": {
                     "method": "ai",
-                    "model": "claude-sonnet-4-6",
-                    "extraction_timestamp": "2026-09-18T00:00:00",
-                    "verification_status": "unverified",
-                    "effective_from": "2024-01-01"
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2024-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-noleggio-autobus-conducente-anav-tables"
                   }
                 }
               }
@@ -3616,22 +3764,28 @@
                 "valid_until": null,
                 "value": "10.33",
                 "provenance": {
-                  "status": "assumed",
+                  "status": "verified",
                   "location": {
                     "source_document": {
-                      "document_id": "kitech-ic36-548-tabella-retributiva",
-                      "title": "kitech-ic36-548-tabella-retributiva",
-                      "kind": "tabella_retributiva",
-                      "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                      "document_id": "noleggio-autobus-conducente-anav-tables-f72f715d",
+                      "title": "noleggio-autobus-conducente-anav: tabelle retributive (2022-anav.pdf)",
+                      "kind": "associazione",
+                      "url": "https://anav.it/wp-content/uploads/2022/10/aumentoretributivonoleggio-07102022.pdf",
+                      "sha256": "f72f715d17951b1ff825be4186ec64b5fb26ca5b4f38ad18d78ab19d8f9279bb"
                     },
-                    "section": "Tabella retributiva"
+                    "page": "1",
+                    "section": "Allegato n. 2, colonna e (e.d.r., x 13 mensilità), riga Q1",
+                    "quote": "C4      100         729,09       511,44        10,33          67,16          22,39                 22,39                 22,39                751,48               773,87                796,25"
                   },
                   "extraction": {
                     "method": "ai",
-                    "model": "claude-sonnet-4-6",
-                    "extraction_timestamp": "2026-09-18T00:00:00",
-                    "verification_status": "unverified",
-                    "effective_from": "2024-01-01"
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2024-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-noleggio-autobus-conducente-anav-tables"
                   }
                 }
               }
@@ -3803,7 +3957,7 @@
     "effective_until": "2026-12-31",
     "source": "https://anav.it/wp-content/uploads/2025/05/accordo-nazionale-di-rinnovo-del-ccnl-noleggio-autobus-con-conducente-e-le-relativie-attivita-correlate-23-maggio-2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "11e0f8ad71421340844096c8634e174493e3bc608836093bd58e8c0cae3c062d",
+    "source_hash": "adc569ad424bf64a175bc2a00d448949f586f9bb57d3f26124d8b8c0ac660cea",
     "published_at": "2026-09-18",
     "source_type": "contracting_party"
   }

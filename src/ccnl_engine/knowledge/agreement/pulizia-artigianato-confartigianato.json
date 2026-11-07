@@ -353,6 +353,32 @@
         "checked": [
           "work_rules.leave_rules.permit_deadline"
         ]
+      },
+      {
+        "id": "2026-11-08-gpt-pulizia-artigianato-confartigianato-double-read",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Monthly values on scanned pages, each read twice from the page image by two independent sessions of another model, the second without being told the expected value.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.informaimpresa.it/wp-content/uploads/2014/09/CCNL-Pulizie-18-sette-2014_Firmato-84b.pdf",
+            "sha256": "3b9549505ed29bae42278201160fadfb7427d07ec4113228eeb09aefb33b212e"
+          },
+          {
+            "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
+            "sha256": "037e5a830b9027e280d0a84285afe7c69190550e5704b236270ba6ebd62f6424"
+          }
+        ],
+        "findings": [
+          "8 values read identically by both readings and equal to the file."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "levels.base_salary",
+          "levels.fixed_allowances"
+        ]
       }
     ]
   },
@@ -1373,7 +1399,32 @@
               {
                 "valid_from": "2022-11-01",
                 "valid_until": null,
-                "value": "25.82"
+                "value": "25.82",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "pulizia-artigianato-confartigianato-src-3b954950",
+                      "title": "pulizia-artigianato-confartigianato: ccnl-2014.pdf",
+                      "kind": "associazione",
+                      "url": "https://www.informaimpresa.it/wp-content/uploads/2014/09/CCNL-Pulizie-18-sette-2014_Firmato-84b.pdf",
+                      "sha256": "3b9549505ed29bae42278201160fadfb7427d07ec4113228eeb09aefb33b212e"
+                    },
+                    "page": "10",
+                    "section": "no text layer",
+                    "quote": "6. A decorrere dalla data di riconoscimento della qualifica di quadro da parte dell'azienda verrà corrisposta ai lavoratori interessati una indennità di funzione di importo pari a euro 25,82 mensili lorde da computarsi su tutti gli istituti contrattuali."
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "effective_from": "2022-11-01",
+                    "verified_by": "gpt-6-sol",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-gpt-pulizia-artigianato-confartigianato-double-read"
+                  }
+                }
               }
             ]
           },
@@ -1416,7 +1467,32 @@
               {
                 "valid_from": "2022-11-01",
                 "valid_until": "2025-01-01",
-                "value": "15.00"
+                "value": "15.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "pulizia-artigianato-confartigianato-src-037e5a83",
+                      "title": "pulizia-artigianato-confartigianato: rinnovo-2022.pdf",
+                      "kind": "associazione",
+                      "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
+                      "sha256": "037e5a830b9027e280d0a84285afe7c69190550e5704b236270ba6ebd62f6424"
+                    },
+                    "page": "27",
+                    "section": "Articolo 36 – Elemento Distinto e Aggiuntivo della Retribuzione – Nuovo",
+                    "quote": "A copertura del vuoto temporale contrattuale, ai soli lavoratori in forza alla data di sottoscrizione del presente accordo verrà corrisposto mensilmente un Elemento Distinto e Aggiuntivo della Retribuzione pari a 15 euro per 26 mesi consecutivi a partire dall’1.11.2022."
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "effective_from": "2022-11-01",
+                    "verified_by": "gpt-6-sol",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-gpt-pulizia-artigianato-confartigianato-double-read"
+                  }
+                }
               },
               {
                 "valid_from": "2025-01-01",
@@ -1860,7 +1936,32 @@
               {
                 "valid_from": "2022-11-01",
                 "valid_until": "2025-01-01",
-                "value": "15.00"
+                "value": "15.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "pulizia-artigianato-confartigianato-src-037e5a83",
+                      "title": "pulizia-artigianato-confartigianato: rinnovo-2022.pdf",
+                      "kind": "associazione",
+                      "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
+                      "sha256": "037e5a830b9027e280d0a84285afe7c69190550e5704b236270ba6ebd62f6424"
+                    },
+                    "page": "27",
+                    "section": "Articolo 36 – Elemento Distinto e Aggiuntivo della Retribuzione – Nuovo",
+                    "quote": "A copertura del vuoto temporale contrattuale, ai soli lavoratori in forza alla data di sottoscrizione del presente accordo verrà corrisposto mensilmente un Elemento Distinto e Aggiuntivo della Retribuzione pari a 15 euro per 26 mesi consecutivi a partire dall’1.11.2022."
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "effective_from": "2022-11-01",
+                    "verified_by": "gpt-6-sol",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-gpt-pulizia-artigianato-confartigianato-double-read"
+                  }
+                }
               },
               {
                 "valid_from": "2025-01-01",
@@ -2304,7 +2405,32 @@
               {
                 "valid_from": "2022-11-01",
                 "valid_until": "2025-01-01",
-                "value": "15.00"
+                "value": "15.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "pulizia-artigianato-confartigianato-src-037e5a83",
+                      "title": "pulizia-artigianato-confartigianato: rinnovo-2022.pdf",
+                      "kind": "associazione",
+                      "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
+                      "sha256": "037e5a830b9027e280d0a84285afe7c69190550e5704b236270ba6ebd62f6424"
+                    },
+                    "page": "27",
+                    "section": "Articolo 36 – Elemento Distinto e Aggiuntivo della Retribuzione – Nuovo",
+                    "quote": "A copertura del vuoto temporale contrattuale, ai soli lavoratori in forza alla data di sottoscrizione del presente accordo verrà corrisposto mensilmente un Elemento Distinto e Aggiuntivo della Retribuzione pari a 15 euro per 26 mesi consecutivi a partire dall’1.11.2022."
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "effective_from": "2022-11-01",
+                    "verified_by": "gpt-6-sol",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-gpt-pulizia-artigianato-confartigianato-double-read"
+                  }
+                }
               },
               {
                 "valid_from": "2025-01-01",
@@ -2748,7 +2874,32 @@
               {
                 "valid_from": "2022-11-01",
                 "valid_until": "2025-01-01",
-                "value": "15.00"
+                "value": "15.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "pulizia-artigianato-confartigianato-src-037e5a83",
+                      "title": "pulizia-artigianato-confartigianato: rinnovo-2022.pdf",
+                      "kind": "associazione",
+                      "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
+                      "sha256": "037e5a830b9027e280d0a84285afe7c69190550e5704b236270ba6ebd62f6424"
+                    },
+                    "page": "27",
+                    "section": "Articolo 36 – Elemento Distinto e Aggiuntivo della Retribuzione – Nuovo",
+                    "quote": "A copertura del vuoto temporale contrattuale, ai soli lavoratori in forza alla data di sottoscrizione del presente accordo verrà corrisposto mensilmente un Elemento Distinto e Aggiuntivo della Retribuzione pari a 15 euro per 26 mesi consecutivi a partire dall’1.11.2022."
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "effective_from": "2022-11-01",
+                    "verified_by": "gpt-6-sol",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-gpt-pulizia-artigianato-confartigianato-double-read"
+                  }
+                }
               },
               {
                 "valid_from": "2025-01-01",
@@ -3192,7 +3343,32 @@
               {
                 "valid_from": "2022-11-01",
                 "valid_until": "2025-01-01",
-                "value": "15.00"
+                "value": "15.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "pulizia-artigianato-confartigianato-src-037e5a83",
+                      "title": "pulizia-artigianato-confartigianato: rinnovo-2022.pdf",
+                      "kind": "associazione",
+                      "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
+                      "sha256": "037e5a830b9027e280d0a84285afe7c69190550e5704b236270ba6ebd62f6424"
+                    },
+                    "page": "27",
+                    "section": "Articolo 36 – Elemento Distinto e Aggiuntivo della Retribuzione – Nuovo",
+                    "quote": "A copertura del vuoto temporale contrattuale, ai soli lavoratori in forza alla data di sottoscrizione del presente accordo verrà corrisposto mensilmente un Elemento Distinto e Aggiuntivo della Retribuzione pari a 15 euro per 26 mesi consecutivi a partire dall’1.11.2022."
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "effective_from": "2022-11-01",
+                    "verified_by": "gpt-6-sol",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-gpt-pulizia-artigianato-confartigianato-double-read"
+                  }
+                }
               },
               {
                 "valid_from": "2025-01-01",
@@ -3636,7 +3812,32 @@
               {
                 "valid_from": "2022-11-01",
                 "valid_until": "2025-01-01",
-                "value": "15.00"
+                "value": "15.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "pulizia-artigianato-confartigianato-src-037e5a83",
+                      "title": "pulizia-artigianato-confartigianato: rinnovo-2022.pdf",
+                      "kind": "associazione",
+                      "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
+                      "sha256": "037e5a830b9027e280d0a84285afe7c69190550e5704b236270ba6ebd62f6424"
+                    },
+                    "page": "27",
+                    "section": "Articolo 36 – Elemento Distinto e Aggiuntivo della Retribuzione – Nuovo",
+                    "quote": "A copertura del vuoto temporale contrattuale, ai soli lavoratori in forza alla data di sottoscrizione del presente accordo verrà corrisposto mensilmente un Elemento Distinto e Aggiuntivo della Retribuzione pari a 15 euro per 26 mesi consecutivi a partire dall’1.11.2022."
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "effective_from": "2022-11-01",
+                    "verified_by": "gpt-6-sol",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-gpt-pulizia-artigianato-confartigianato-double-read"
+                  }
+                }
               },
               {
                 "valid_from": "2025-01-01",
@@ -4080,7 +4281,32 @@
               {
                 "valid_from": "2022-11-01",
                 "valid_until": "2025-01-01",
-                "value": "15.00"
+                "value": "15.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "pulizia-artigianato-confartigianato-src-037e5a83",
+                      "title": "pulizia-artigianato-confartigianato: rinnovo-2022.pdf",
+                      "kind": "associazione",
+                      "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
+                      "sha256": "037e5a830b9027e280d0a84285afe7c69190550e5704b236270ba6ebd62f6424"
+                    },
+                    "page": "27",
+                    "section": "Articolo 36 – Elemento Distinto e Aggiuntivo della Retribuzione – Nuovo",
+                    "quote": "A copertura del vuoto temporale contrattuale, ai soli lavoratori in forza alla data di sottoscrizione del presente accordo verrà corrisposto mensilmente un Elemento Distinto e Aggiuntivo della Retribuzione pari a 15 euro per 26 mesi consecutivi a partire dall’1.11.2022."
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "effective_from": "2022-11-01",
+                    "verified_by": "gpt-6-sol",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-gpt-pulizia-artigianato-confartigianato-double-read"
+                  }
+                }
               },
               {
                 "valid_from": "2025-01-01",
@@ -4157,7 +4383,7 @@
     "source": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
     "verification_status": "unverified",
     "published_at": "2026-09-12",
-    "source_hash": "a760c010ad7961527761769f911ac78cc189ef946fafc8dedadfff4b53c27da1",
+    "source_hash": "93f1276891e3acdf0a74dafb0a081532a5fbd6c2d2a419c18e9dcfa1c61ff76d",
     "source_type": "commercial_secondary"
   },
   "work_rules": {

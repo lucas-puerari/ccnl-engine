@@ -46,7 +46,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 48 verified / 96 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 68 verified / 76 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -65,6 +65,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-06 | claude-opus-5-5 (ai) | Art. 65 lett. B FASDA (pp. 165-166) and the ipotesi of 9 December 2025 (p. 166). | corrected | FASDA was not modelled: 84.50 EUR a quarter on the employer from October 2023, 101.00 from October 2026. |
 | 2026-11-07 | claude-opus-5-5 (ai) | The 2027 tranches of the table 'nuovi parametri e confluenze' of the ipotesi of 9 December 2025 (pp. 96-97, text layer). | corrected | The II-IV tranches are parametric by level (Q +60.89/+67.66/+67.66, D2 +24.91/+27.68/+27.68); the file applied the C2s increments (36/40/40) to every level: 45 values corrected. |
 | 2026-11-08 | gpt-6-sol (ai) | CCNL top-ups of maternity and work injury, read from the signed text by a separate model session; every quote found on the PDF text layer. | confirmed | Added work_rules.insured_absence.maternity.<br>Added work_rules.insured_absence.injury. |
+| 2026-11-08 | claude-opus-5-5 (ai) | The monthly values of the levels against the primary tables (text layer). | confirmed | 84 values found verbatim on the cited pages and marked verified; 16 left as they were (derived or not on a text page). |
 
 ## Salary table
 
