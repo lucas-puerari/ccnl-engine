@@ -52,7 +52,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2023-11-23 |
-| **Last review** | 2026-10-31 |
+| **Last review** | 2026-11-08 |
 | **Latest salary tranche** | 2026-03-01 |
 
 ## Review history
@@ -68,6 +68,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'part-time, tempo determinato, apprendistato e periodo di prova', re-read on the full text published by a party. | corrected | Art. 36 (p. 53): one level below for 18 months, then the destination; all 3a area profiles are destinations: 3A1 added (from 1e2A); the apprenticeship_destination_levels limitation is resolved. |
 | 2026-10-17 | claude-opus-5-5 (ai) | Periodic review due 2026-12-31: the stipendi from 2023 and the scatti against the CCNL ABI of 23 November 2023, the hourly divisor, and the readiness of the file. | flagged | The 36 stipendi of the nine levels from 2023 and the scatti (QD4 and QD3 95,31, QD2 to 3A1 41,55, 1a and 2a area 29,07) are printed in the texts read. Match.<br>Flagged: the hourly divisor of the file (162, then 160) has no provenance. Art. 114 c. 15 of the testo coordinato computes the paga oraria 'secondo il comune criterio (1/360 della retribuzione annua per ogni giornata diviso 7,4)': on thirteen monthly payments the monthly pay over 204,92, not over 160. Every amount the engine derives from the hourly divisor (absence deductions, the hourly rate of the overtime bands) is affected; the elements of the 'retribuzione annua' were not read.<br>Not promoted to reviewed: verification.confidence is unverified and the hourly divisor is unsourced. The two derived rules (the solidarity fund rates and the absence rule) stay derived. |
 | 2026-10-31 | claude-opus-5-5 (ai) | The sick pay and the comporto of the CCNL (work_rules.sickness_rules), read on the signed text. | corrected | Art. 66 (p. 99): c. 1 keeps the job and the whole pay for 6, 8, 12, 15, 18, 22 months by seniority; c. 2 lets the bank count instead over the 48 months before the last day, with 8 to 24 months. The file stored the option of c. 2 as the rule: corrected to the bands of c. 1 for one illness, the option of c. 2 in the note. |
+| 2026-11-08 | claude-opus-5-5 (ai) | Art. 103 c. 3 of the coordinated text (p. 142), text layer. | corrected | Added seniority_increments.freezes 2013-01-01 to 2014-08-01: 'Nel periodo 1° gennaio 2013 – 31 luglio 2014 non matura l'anzianità ... ai fini degli scatti di anzianità'. |
 
 ## Salary table
 
@@ -133,11 +134,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Source who receives the importo ex ristrutturazione and model it with the scatti, then remove this note.
 
 !!! warning "bancari-abi/scatti_freeze_2013_2014 · seniority · impact yes · open"
-    SCATTI FREEZE 2013-2014: no seniority for the scatti and the importo ex ristrutturazione accrues from 1 January 2013 to 31 July 2014 (Art. 103 c. 3, testo coordinato p. 142); staff in service on 19 December 1994 keep 12 scatti (Art. 94 c. 2, Art. 103 c. 2). The engine counts the seniority of the request without the freeze.
+    SCATTI: the freeze of 1 January 2013 - 31 July 2014 (Art. 103 c. 3, testo coordinato p. 142) is modelled (seniority_increments.freezes: the months the engine ages across it do not count; the months the caller states are kept as recognised). Staff in service on 19 December 1994 keep a maximum of 12 scatti (Art. 94 c. 2, Art. 103 c. 2): the engine caps every worker at 8.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** State the seniority of a worker in service in 2013-2014 net of the 19 months of the freeze.
+    **Remediation:** Cap the scatti at 12 for the staff in service on 19 December 1994.
 
 !!! warning "bancari-abi/abi_saturday_overtime_and_hourly_base · overtime · impact yes · open"
     OVERTIME, SATURDAY AND HOURLY BASE: Saturday overtime is paid 30% (Art. 114 c. 15), and the request has no Saturday kind. The hourly pay of overtime and of holiday work is 1/360 of the annual pay for each day divided by 7,4 (Art. 114 c. 15): the hourly divisor carries the 360 x 7,4 / 13, but the engine applies it to the minimo tabellare, and the elements of the 'retribuzione annua' (scatti and other fixed items) were not read.
