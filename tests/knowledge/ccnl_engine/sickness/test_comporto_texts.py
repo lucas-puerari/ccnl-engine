@@ -113,12 +113,20 @@ def test_federcasa_leaves_the_hospital_stays_out_of_its_window() -> None:
 
 
 def test_alimentari_pmi_widens_the_window_after_five_years() -> None:
-    """180 days in 17 months, 365 in 24 from the 61st month of seniority."""
-    windows = _sickness("alimentari-pmi-unionalimentari").comporto_windows
+    """Art. 36: 180 days in 17 months, 365 in 24 from the 61st month.
+
+    Summed over different illnesses; full net pay for 180 days, then half.
+    """
+    rules = _sickness("alimentari-pmi-unionalimentari")
+    cumulation = rules.cumulation
+    assert cumulation is not None
 
     assert [
-        (w.seniority_months_from, w.window_months, w.comporto_days) for w in windows
-    ] == [(0, 17, 180), (61, 24, 365)]
+        (b.seniority_months_from, b.window_months, b.comporto_days, b.full_pay_days)
+        for b in cumulation.bands
+    ] == [(0, 17, 180, 180), (61, 24, 365, 180)]
+    assert cumulation.reduced_integration_rate == Decimal("0.5")
+    assert rules.net_basis
 
 
 def test_formazione_pays_two_tiers_over_eighteen_months() -> None:
