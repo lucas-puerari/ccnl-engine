@@ -305,21 +305,28 @@
             "valid_until": "2025-06-01",
             "value": "1350.12",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-257",
-                  "title": "ccnl-aspx-c-257",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=257"
+                  "document_id": "turismo-confesercenti-src-55c6a826",
+                  "title": "turismo-confesercenti: 194334.pdf",
+                  "kind": "associazione",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                  "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
                 },
-                "section": "Tabella retributiva"
+                "page": "80",
+                "section": "Aziende alberghiere e complessi turistico-ricettivi — Articolo «Paga base nazionale conglobata dal 1° luglio 2024», comma 1, tabella",
+                "quote": "7 1.350,12 1.383,45 1.412,60 1.441,76 1.458,42"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2024-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-turismo-confesercenti-double-read"
               }
             }
           },
@@ -328,21 +335,28 @@
             "valid_until": "2026-05-01",
             "value": "1383.45",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-257",
-                  "title": "ccnl-aspx-c-257",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=257"
+                  "document_id": "turismo-confesercenti-src-55c6a826",
+                  "title": "turismo-confesercenti: 194334.pdf",
+                  "kind": "associazione",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                  "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
                 },
-                "section": "Tabella retributiva"
+                "page": "80",
+                "section": "Aziende alberghiere e complessi turistico-ricettivi — Articolo «Paga base nazionale conglobata dal 1° luglio 2024», comma 1, tabella",
+                "quote": "7 1.350,12 1.383,45 1.412,60 1.441,76 1.458,42"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2025-06-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-turismo-confesercenti-double-read"
               }
             }
           },
@@ -351,21 +365,28 @@
             "valid_until": "2027-04-01",
             "value": "1412.60",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-257",
-                  "title": "ccnl-aspx-c-257",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=257"
+                  "document_id": "turismo-confesercenti-src-55c6a826",
+                  "title": "turismo-confesercenti: 194334.pdf",
+                  "kind": "associazione",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                  "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
                 },
-                "section": "Tabella retributiva"
+                "page": "80",
+                "section": "Aziende alberghiere e complessi turistico-ricettivi — Articolo «Paga base nazionale conglobata dal 1° luglio 2024», comma 1, tabella",
+                "quote": "7 1.350,12 1.383,45 1.412,60 1.441,76 1.458,42"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-05-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-turismo-confesercenti-double-read"
               }
             }
           },
@@ -374,21 +395,28 @@
             "valid_until": "2027-11-01",
             "value": "1441.76",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-257",
-                  "title": "ccnl-aspx-c-257",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=257"
+                  "document_id": "turismo-confesercenti-src-55c6a826",
+                  "title": "turismo-confesercenti: 194334.pdf",
+                  "kind": "associazione",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                  "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
                 },
-                "section": "Tabella retributiva"
+                "page": "80",
+                "section": "Aziende alberghiere e complessi turistico-ricettivi — Articolo «Paga base nazionale conglobata dal 1° luglio 2024», comma 1, tabella",
+                "quote": "7 1.350,12 1.383,45 1.412,60 1.441,76 1.458,42"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2027-04-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-turismo-confesercenti-double-read"
               }
             }
           },
@@ -397,21 +425,28 @@
             "valid_until": null,
             "value": "1458.42",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-257",
-                  "title": "ccnl-aspx-c-257",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=257"
+                  "document_id": "turismo-confesercenti-src-55c6a826",
+                  "title": "turismo-confesercenti: 194334.pdf",
+                  "kind": "associazione",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                  "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
                 },
-                "section": "Tabella retributiva"
+                "page": "80",
+                "section": "Aziende alberghiere e complessi turistico-ricettivi — Articolo «Paga base nazionale conglobata dal 1° luglio 2024», comma 1, tabella",
+                "quote": "7 1.350,12 1.383,45 1.412,60 1.441,76 1.458,42"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2027-11-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-turismo-confesercenti-double-read"
               }
             }
           }
@@ -748,21 +783,28 @@
             "valid_until": "2025-06-01",
             "value": "1440.78",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-257",
-                  "title": "ccnl-aspx-c-257",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=257"
+                  "document_id": "turismo-confesercenti-src-55c6a826",
+                  "title": "turismo-confesercenti: 194334.pdf",
+                  "kind": "associazione",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                  "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
                 },
-                "section": "Tabella retributiva"
+                "page": "80",
+                "section": "Aziende alberghiere e complessi turistico-ricettivi — Articolo «Paga base nazionale conglobata dal 1° luglio 2024», comma 1, tabella",
+                "quote": "6 1.440,78 1.476,34 1.507,45 1.538,57 1.556,35"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2024-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-turismo-confesercenti-double-read"
               }
             }
           },
@@ -771,21 +813,28 @@
             "valid_until": "2026-05-01",
             "value": "1476.34",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-257",
-                  "title": "ccnl-aspx-c-257",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=257"
+                  "document_id": "turismo-confesercenti-src-55c6a826",
+                  "title": "turismo-confesercenti: 194334.pdf",
+                  "kind": "associazione",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                  "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
                 },
-                "section": "Tabella retributiva"
+                "page": "80",
+                "section": "Aziende alberghiere e complessi turistico-ricettivi — Articolo «Paga base nazionale conglobata dal 1° luglio 2024», comma 1, tabella",
+                "quote": "6 1.440,78 1.476,34 1.507,45 1.538,57 1.556,35"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2025-06-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-turismo-confesercenti-double-read"
               }
             }
           },
@@ -794,21 +843,28 @@
             "valid_until": "2027-04-01",
             "value": "1507.45",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-257",
-                  "title": "ccnl-aspx-c-257",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=257"
+                  "document_id": "turismo-confesercenti-src-55c6a826",
+                  "title": "turismo-confesercenti: 194334.pdf",
+                  "kind": "associazione",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                  "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
                 },
-                "section": "Tabella retributiva"
+                "page": "80",
+                "section": "Aziende alberghiere e complessi turistico-ricettivi — Articolo «Paga base nazionale conglobata dal 1° luglio 2024», comma 1, tabella",
+                "quote": "6 1.440,78 1.476,34 1.507,45 1.538,57 1.556,35"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-05-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-turismo-confesercenti-double-read"
               }
             }
           },
@@ -817,21 +873,28 @@
             "valid_until": "2027-11-01",
             "value": "1538.57",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-257",
-                  "title": "ccnl-aspx-c-257",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=257"
+                  "document_id": "turismo-confesercenti-src-55c6a826",
+                  "title": "turismo-confesercenti: 194334.pdf",
+                  "kind": "associazione",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                  "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
                 },
-                "section": "Tabella retributiva"
+                "page": "80",
+                "section": "Aziende alberghiere e complessi turistico-ricettivi — Articolo «Paga base nazionale conglobata dal 1° luglio 2024», comma 1, tabella",
+                "quote": "6 1.440,78 1.476,34 1.507,45 1.538,57 1.556,35"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2027-04-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-turismo-confesercenti-double-read"
               }
             }
           },
@@ -840,21 +903,28 @@
             "valid_until": null,
             "value": "1556.35",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-257",
-                  "title": "ccnl-aspx-c-257",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=257"
+                  "document_id": "turismo-confesercenti-src-55c6a826",
+                  "title": "turismo-confesercenti: 194334.pdf",
+                  "kind": "associazione",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                  "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
                 },
-                "section": "Tabella retributiva"
+                "page": "80",
+                "section": "Aziende alberghiere e complessi turistico-ricettivi — Articolo «Paga base nazionale conglobata dal 1° luglio 2024», comma 1, tabella",
+                "quote": "6 1.440,78 1.476,34 1.507,45 1.538,57 1.556,35"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2027-11-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-turismo-confesercenti-double-read"
               }
             }
           }
@@ -1191,21 +1261,28 @@
             "valid_until": "2025-06-01",
             "value": "1461.49",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-257",
-                  "title": "ccnl-aspx-c-257",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=257"
+                  "document_id": "turismo-confesercenti-src-55c6a826",
+                  "title": "turismo-confesercenti: 194334.pdf",
+                  "kind": "associazione",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                  "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
                 },
-                "section": "Tabella retributiva"
+                "page": "80",
+                "section": "Aziende alberghiere e complessi turistico-ricettivi — Articolo «Paga base nazionale conglobata dal 1° luglio 2024», comma 1, tabella",
+                "quote": "6s 1.461,49 1.497,57 1.529,13 1.560,69 1.578,72"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2024-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-turismo-confesercenti-double-read"
               }
             }
           },
@@ -1214,21 +1291,28 @@
             "valid_until": "2026-05-01",
             "value": "1497.57",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-257",
-                  "title": "ccnl-aspx-c-257",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=257"
+                  "document_id": "turismo-confesercenti-src-55c6a826",
+                  "title": "turismo-confesercenti: 194334.pdf",
+                  "kind": "associazione",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                  "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
                 },
-                "section": "Tabella retributiva"
+                "page": "80",
+                "section": "Aziende alberghiere e complessi turistico-ricettivi — Articolo «Paga base nazionale conglobata dal 1° luglio 2024», comma 1, tabella",
+                "quote": "6s 1.461,49 1.497,57 1.529,13 1.560,69 1.578,72"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2025-06-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-turismo-confesercenti-double-read"
               }
             }
           },
@@ -1237,21 +1321,28 @@
             "valid_until": "2027-04-01",
             "value": "1529.13",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-257",
-                  "title": "ccnl-aspx-c-257",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=257"
+                  "document_id": "turismo-confesercenti-src-55c6a826",
+                  "title": "turismo-confesercenti: 194334.pdf",
+                  "kind": "associazione",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                  "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
                 },
-                "section": "Tabella retributiva"
+                "page": "80",
+                "section": "Aziende alberghiere e complessi turistico-ricettivi — Articolo «Paga base nazionale conglobata dal 1° luglio 2024», comma 1, tabella",
+                "quote": "6s 1.461,49 1.497,57 1.529,13 1.560,69 1.578,72"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-05-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-turismo-confesercenti-double-read"
               }
             }
           },
@@ -1260,21 +1351,28 @@
             "valid_until": "2027-11-01",
             "value": "1560.69",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-257",
-                  "title": "ccnl-aspx-c-257",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=257"
+                  "document_id": "turismo-confesercenti-src-55c6a826",
+                  "title": "turismo-confesercenti: 194334.pdf",
+                  "kind": "associazione",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                  "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
                 },
-                "section": "Tabella retributiva"
+                "page": "80",
+                "section": "Aziende alberghiere e complessi turistico-ricettivi — Articolo «Paga base nazionale conglobata dal 1° luglio 2024», comma 1, tabella",
+                "quote": "6s 1.461,49 1.497,57 1.529,13 1.560,69 1.578,72"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2027-04-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-turismo-confesercenti-double-read"
               }
             }
           },
@@ -1283,21 +1381,28 @@
             "valid_until": null,
             "value": "1578.72",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-257",
-                  "title": "ccnl-aspx-c-257",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=257"
+                  "document_id": "turismo-confesercenti-src-55c6a826",
+                  "title": "turismo-confesercenti: 194334.pdf",
+                  "kind": "associazione",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                  "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
                 },
-                "section": "Tabella retributiva"
+                "page": "80",
+                "section": "Aziende alberghiere e complessi turistico-ricettivi — Articolo «Paga base nazionale conglobata dal 1° luglio 2024», comma 1, tabella",
+                "quote": "6s 1.461,49 1.497,57 1.529,13 1.560,69 1.578,72"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2027-11-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-turismo-confesercenti-double-read"
               }
             }
           }
@@ -1634,21 +1739,28 @@
             "valid_until": "2025-06-01",
             "value": "1519.93",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-257",
-                  "title": "ccnl-aspx-c-257",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=257"
+                  "document_id": "turismo-confesercenti-src-55c6a826",
+                  "title": "turismo-confesercenti: 194334.pdf",
+                  "kind": "associazione",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                  "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
                 },
-                "section": "Tabella retributiva"
+                "page": "80",
+                "section": "Aziende alberghiere e complessi turistico-ricettivi — Articolo «Paga base nazionale conglobata dal 1° luglio 2024», comma 1, tabella",
+                "quote": "5 1.519,93 1.557,44 1.590,27 1.623,09 1.641,85"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2024-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-turismo-confesercenti-double-read"
               }
             }
           },
@@ -1657,21 +1769,28 @@
             "valid_until": "2026-05-01",
             "value": "1557.44",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-257",
-                  "title": "ccnl-aspx-c-257",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=257"
+                  "document_id": "turismo-confesercenti-src-55c6a826",
+                  "title": "turismo-confesercenti: 194334.pdf",
+                  "kind": "associazione",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                  "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
                 },
-                "section": "Tabella retributiva"
+                "page": "80",
+                "section": "Aziende alberghiere e complessi turistico-ricettivi — Articolo «Paga base nazionale conglobata dal 1° luglio 2024», comma 1, tabella",
+                "quote": "5 1.519,93 1.557,44 1.590,27 1.623,09 1.641,85"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2025-06-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-turismo-confesercenti-double-read"
               }
             }
           },
@@ -1680,21 +1799,28 @@
             "valid_until": "2027-04-01",
             "value": "1590.27",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-257",
-                  "title": "ccnl-aspx-c-257",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=257"
+                  "document_id": "turismo-confesercenti-src-55c6a826",
+                  "title": "turismo-confesercenti: 194334.pdf",
+                  "kind": "associazione",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                  "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
                 },
-                "section": "Tabella retributiva"
+                "page": "80",
+                "section": "Aziende alberghiere e complessi turistico-ricettivi — Articolo «Paga base nazionale conglobata dal 1° luglio 2024», comma 1, tabella",
+                "quote": "5 1.519,93 1.557,44 1.590,27 1.623,09 1.641,85"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-05-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-turismo-confesercenti-double-read"
               }
             }
           },
@@ -1703,21 +1829,28 @@
             "valid_until": "2027-11-01",
             "value": "1623.09",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-257",
-                  "title": "ccnl-aspx-c-257",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=257"
+                  "document_id": "turismo-confesercenti-src-55c6a826",
+                  "title": "turismo-confesercenti: 194334.pdf",
+                  "kind": "associazione",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                  "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
                 },
-                "section": "Tabella retributiva"
+                "page": "80",
+                "section": "Aziende alberghiere e complessi turistico-ricettivi — Articolo «Paga base nazionale conglobata dal 1° luglio 2024», comma 1, tabella",
+                "quote": "5 1.519,93 1.557,44 1.590,27 1.623,09 1.641,85"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2027-04-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-turismo-confesercenti-double-read"
               }
             }
           },
@@ -1726,21 +1859,28 @@
             "valid_until": null,
             "value": "1641.85",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-257",
-                  "title": "ccnl-aspx-c-257",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=257"
+                  "document_id": "turismo-confesercenti-src-55c6a826",
+                  "title": "turismo-confesercenti: 194334.pdf",
+                  "kind": "associazione",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                  "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
                 },
-                "section": "Tabella retributiva"
+                "page": "80",
+                "section": "Aziende alberghiere e complessi turistico-ricettivi — Articolo «Paga base nazionale conglobata dal 1° luglio 2024», comma 1, tabella",
+                "quote": "5 1.519,93 1.557,44 1.590,27 1.623,09 1.641,85"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2027-11-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-turismo-confesercenti-double-read"
               }
             }
           }
@@ -2077,21 +2217,28 @@
             "valid_until": "2025-06-01",
             "value": "1620.69",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-257",
-                  "title": "ccnl-aspx-c-257",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=257"
+                  "document_id": "turismo-confesercenti-src-55c6a826",
+                  "title": "turismo-confesercenti: 194334.pdf",
+                  "kind": "associazione",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                  "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
                 },
-                "section": "Tabella retributiva"
+                "page": "80",
+                "section": "Aziende alberghiere e complessi turistico-ricettivi — Articolo «Paga base nazionale conglobata dal 1° luglio 2024», comma 1, tabella",
+                "quote": "4 1.620,69 1.660,69 1.695,69 1.730,69 1.750,69"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2024-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-turismo-confesercenti-double-read"
               }
             }
           },
@@ -2100,21 +2247,28 @@
             "valid_until": "2026-05-01",
             "value": "1660.69",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-257",
-                  "title": "ccnl-aspx-c-257",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=257"
+                  "document_id": "turismo-confesercenti-src-55c6a826",
+                  "title": "turismo-confesercenti: 194334.pdf",
+                  "kind": "associazione",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                  "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
                 },
-                "section": "Tabella retributiva"
+                "page": "80",
+                "section": "Aziende alberghiere e complessi turistico-ricettivi — Articolo «Paga base nazionale conglobata dal 1° luglio 2024», comma 1, tabella",
+                "quote": "4 1.620,69 1.660,69 1.695,69 1.730,69 1.750,69"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2025-06-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-turismo-confesercenti-double-read"
               }
             }
           },
@@ -2123,21 +2277,28 @@
             "valid_until": "2027-04-01",
             "value": "1695.69",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-257",
-                  "title": "ccnl-aspx-c-257",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=257"
+                  "document_id": "turismo-confesercenti-src-55c6a826",
+                  "title": "turismo-confesercenti: 194334.pdf",
+                  "kind": "associazione",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                  "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
                 },
-                "section": "Tabella retributiva"
+                "page": "80",
+                "section": "Aziende alberghiere e complessi turistico-ricettivi — Articolo «Paga base nazionale conglobata dal 1° luglio 2024», comma 1, tabella",
+                "quote": "4 1.620,69 1.660,69 1.695,69 1.730,69 1.750,69"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-05-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-turismo-confesercenti-double-read"
               }
             }
           },
@@ -2146,21 +2307,28 @@
             "valid_until": "2027-11-01",
             "value": "1730.69",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-257",
-                  "title": "ccnl-aspx-c-257",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=257"
+                  "document_id": "turismo-confesercenti-src-55c6a826",
+                  "title": "turismo-confesercenti: 194334.pdf",
+                  "kind": "associazione",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                  "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
                 },
-                "section": "Tabella retributiva"
+                "page": "80",
+                "section": "Aziende alberghiere e complessi turistico-ricettivi — Articolo «Paga base nazionale conglobata dal 1° luglio 2024», comma 1, tabella",
+                "quote": "4 1.620,69 1.660,69 1.695,69 1.730,69 1.750,69"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2027-04-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-turismo-confesercenti-double-read"
               }
             }
           },
@@ -2169,21 +2337,28 @@
             "valid_until": null,
             "value": "1750.69",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-257",
-                  "title": "ccnl-aspx-c-257",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=257"
+                  "document_id": "turismo-confesercenti-src-55c6a826",
+                  "title": "turismo-confesercenti: 194334.pdf",
+                  "kind": "associazione",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                  "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
                 },
-                "section": "Tabella retributiva"
+                "page": "80",
+                "section": "Aziende alberghiere e complessi turistico-ricettivi — Articolo «Paga base nazionale conglobata dal 1° luglio 2024», comma 1, tabella",
+                "quote": "4 1.620,69 1.660,69 1.695,69 1.730,69 1.750,69"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2027-11-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-turismo-confesercenti-double-read"
               }
             }
           }
@@ -2520,21 +2695,28 @@
             "valid_until": "2025-06-01",
             "value": "1717.55",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-257",
-                  "title": "ccnl-aspx-c-257",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=257"
+                  "document_id": "turismo-confesercenti-src-55c6a826",
+                  "title": "turismo-confesercenti: 194334.pdf",
+                  "kind": "associazione",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                  "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
                 },
-                "section": "Tabella retributiva"
+                "page": "80",
+                "section": "Aziende alberghiere e complessi turistico-ricettivi — Articolo «Paga base nazionale conglobata dal 1° luglio 2024», comma 1, tabella",
+                "quote": "3 1.717,55 1.759,94 1.797,04 1.834,13 1.855,32"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2024-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-turismo-confesercenti-double-read"
               }
             }
           },
@@ -2543,21 +2725,28 @@
             "valid_until": "2026-05-01",
             "value": "1759.94",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-257",
-                  "title": "ccnl-aspx-c-257",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=257"
+                  "document_id": "turismo-confesercenti-src-55c6a826",
+                  "title": "turismo-confesercenti: 194334.pdf",
+                  "kind": "associazione",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                  "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
                 },
-                "section": "Tabella retributiva"
+                "page": "80",
+                "section": "Aziende alberghiere e complessi turistico-ricettivi — Articolo «Paga base nazionale conglobata dal 1° luglio 2024», comma 1, tabella",
+                "quote": "3 1.717,55 1.759,94 1.797,04 1.834,13 1.855,32"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2025-06-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-turismo-confesercenti-double-read"
               }
             }
           },
@@ -2566,21 +2755,28 @@
             "valid_until": "2027-04-01",
             "value": "1797.04",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-257",
-                  "title": "ccnl-aspx-c-257",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=257"
+                  "document_id": "turismo-confesercenti-src-55c6a826",
+                  "title": "turismo-confesercenti: 194334.pdf",
+                  "kind": "associazione",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                  "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
                 },
-                "section": "Tabella retributiva"
+                "page": "80",
+                "section": "Aziende alberghiere e complessi turistico-ricettivi — Articolo «Paga base nazionale conglobata dal 1° luglio 2024», comma 1, tabella",
+                "quote": "3 1.717,55 1.759,94 1.797,04 1.834,13 1.855,32"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-05-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-turismo-confesercenti-double-read"
               }
             }
           },
@@ -2589,21 +2785,28 @@
             "valid_until": "2027-11-01",
             "value": "1834.13",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-257",
-                  "title": "ccnl-aspx-c-257",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=257"
+                  "document_id": "turismo-confesercenti-src-55c6a826",
+                  "title": "turismo-confesercenti: 194334.pdf",
+                  "kind": "associazione",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                  "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
                 },
-                "section": "Tabella retributiva"
+                "page": "80",
+                "section": "Aziende alberghiere e complessi turistico-ricettivi — Articolo «Paga base nazionale conglobata dal 1° luglio 2024», comma 1, tabella",
+                "quote": "3 1.717,55 1.759,94 1.797,04 1.834,13 1.855,32"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2027-04-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-turismo-confesercenti-double-read"
               }
             }
           },
@@ -2612,21 +2815,28 @@
             "valid_until": null,
             "value": "1855.32",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-257",
-                  "title": "ccnl-aspx-c-257",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=257"
+                  "document_id": "turismo-confesercenti-src-55c6a826",
+                  "title": "turismo-confesercenti: 194334.pdf",
+                  "kind": "associazione",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                  "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
                 },
-                "section": "Tabella retributiva"
+                "page": "80",
+                "section": "Aziende alberghiere e complessi turistico-ricettivi — Articolo «Paga base nazionale conglobata dal 1° luglio 2024», comma 1, tabella",
+                "quote": "3 1.717,55 1.759,94 1.797,04 1.834,13 1.855,32"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2027-11-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-turismo-confesercenti-double-read"
               }
             }
           }
@@ -2963,21 +3173,28 @@
             "valid_until": "2025-06-01",
             "value": "1821.13",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-257",
-                  "title": "ccnl-aspx-c-257",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=257"
+                  "document_id": "turismo-confesercenti-src-55c6a826",
+                  "title": "turismo-confesercenti: 194334.pdf",
+                  "kind": "associazione",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                  "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
                 },
-                "section": "Tabella retributiva"
+                "page": "80",
+                "section": "Aziende alberghiere e complessi turistico-ricettivi — Articolo «Paga base nazionale conglobata dal 1° luglio 2024», comma 1, tabella",
+                "quote": "2 1.821,13 1.866,07 1.905,40 1.944,73 1.967,20"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2024-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-turismo-confesercenti-double-read"
               }
             }
           },
@@ -2986,21 +3203,28 @@
             "valid_until": "2026-05-01",
             "value": "1866.07",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-257",
-                  "title": "ccnl-aspx-c-257",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=257"
+                  "document_id": "turismo-confesercenti-src-55c6a826",
+                  "title": "turismo-confesercenti: 194334.pdf",
+                  "kind": "associazione",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                  "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
                 },
-                "section": "Tabella retributiva"
+                "page": "80",
+                "section": "Aziende alberghiere e complessi turistico-ricettivi — Articolo «Paga base nazionale conglobata dal 1° luglio 2024», comma 1, tabella",
+                "quote": "2 1.821,13 1.866,07 1.905,40 1.944,73 1.967,20"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2025-06-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-turismo-confesercenti-double-read"
               }
             }
           },
@@ -3009,21 +3233,28 @@
             "valid_until": "2027-04-01",
             "value": "1905.40",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-257",
-                  "title": "ccnl-aspx-c-257",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=257"
+                  "document_id": "turismo-confesercenti-src-55c6a826",
+                  "title": "turismo-confesercenti: 194334.pdf",
+                  "kind": "associazione",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                  "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
                 },
-                "section": "Tabella retributiva"
+                "page": "80",
+                "section": "Aziende alberghiere e complessi turistico-ricettivi — Articolo «Paga base nazionale conglobata dal 1° luglio 2024», comma 1, tabella",
+                "quote": "2 1.821,13 1.866,07 1.905,40 1.944,73 1.967,20"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-05-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-turismo-confesercenti-double-read"
               }
             }
           },
@@ -3032,21 +3263,28 @@
             "valid_until": "2027-11-01",
             "value": "1944.73",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-257",
-                  "title": "ccnl-aspx-c-257",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=257"
+                  "document_id": "turismo-confesercenti-src-55c6a826",
+                  "title": "turismo-confesercenti: 194334.pdf",
+                  "kind": "associazione",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                  "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
                 },
-                "section": "Tabella retributiva"
+                "page": "80",
+                "section": "Aziende alberghiere e complessi turistico-ricettivi — Articolo «Paga base nazionale conglobata dal 1° luglio 2024», comma 1, tabella",
+                "quote": "2 1.821,13 1.866,07 1.905,40 1.944,73 1.967,20"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2027-04-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-turismo-confesercenti-double-read"
               }
             }
           },
@@ -3055,21 +3293,28 @@
             "valid_until": null,
             "value": "1967.20",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-257",
-                  "title": "ccnl-aspx-c-257",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=257"
+                  "document_id": "turismo-confesercenti-src-55c6a826",
+                  "title": "turismo-confesercenti: 194334.pdf",
+                  "kind": "associazione",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                  "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
                 },
-                "section": "Tabella retributiva"
+                "page": "80",
+                "section": "Aziende alberghiere e complessi turistico-ricettivi — Articolo «Paga base nazionale conglobata dal 1° luglio 2024», comma 1, tabella",
+                "quote": "2 1.821,13 1.866,07 1.905,40 1.944,73 1.967,20"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2027-11-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-turismo-confesercenti-double-read"
               }
             }
           }
@@ -3406,21 +3651,28 @@
             "valid_until": "2025-06-01",
             "value": "1992.50",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-257",
-                  "title": "ccnl-aspx-c-257",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=257"
+                  "document_id": "turismo-confesercenti-src-55c6a826",
+                  "title": "turismo-confesercenti: 194334.pdf",
+                  "kind": "associazione",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                  "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
                 },
-                "section": "Tabella retributiva"
+                "page": "80",
+                "section": "Aziende alberghiere e complessi turistico-ricettivi — Articolo «Paga base nazionale conglobata dal 1° luglio 2024», comma 1, tabella",
+                "quote": "1 1.992,50 2.041,68 2.084,71 2.127,73 2.152,32"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2024-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-turismo-confesercenti-double-read"
               }
             }
           },
@@ -3429,21 +3681,28 @@
             "valid_until": "2026-05-01",
             "value": "2041.68",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-257",
-                  "title": "ccnl-aspx-c-257",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=257"
+                  "document_id": "turismo-confesercenti-src-55c6a826",
+                  "title": "turismo-confesercenti: 194334.pdf",
+                  "kind": "associazione",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                  "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
                 },
-                "section": "Tabella retributiva"
+                "page": "80",
+                "section": "Aziende alberghiere e complessi turistico-ricettivi — Articolo «Paga base nazionale conglobata dal 1° luglio 2024», comma 1, tabella",
+                "quote": "1 1.992,50 2.041,68 2.084,71 2.127,73 2.152,32"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2025-06-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-turismo-confesercenti-double-read"
               }
             }
           },
@@ -3452,21 +3711,28 @@
             "valid_until": "2027-04-01",
             "value": "2084.71",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-257",
-                  "title": "ccnl-aspx-c-257",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=257"
+                  "document_id": "turismo-confesercenti-src-55c6a826",
+                  "title": "turismo-confesercenti: 194334.pdf",
+                  "kind": "associazione",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                  "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
                 },
-                "section": "Tabella retributiva"
+                "page": "80",
+                "section": "Aziende alberghiere e complessi turistico-ricettivi — Articolo «Paga base nazionale conglobata dal 1° luglio 2024», comma 1, tabella",
+                "quote": "1 1.992,50 2.041,68 2.084,71 2.127,73 2.152,32"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-05-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-turismo-confesercenti-double-read"
               }
             }
           },
@@ -3475,21 +3741,28 @@
             "valid_until": "2027-11-01",
             "value": "2127.73",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-257",
-                  "title": "ccnl-aspx-c-257",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=257"
+                  "document_id": "turismo-confesercenti-src-55c6a826",
+                  "title": "turismo-confesercenti: 194334.pdf",
+                  "kind": "associazione",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                  "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
                 },
-                "section": "Tabella retributiva"
+                "page": "80",
+                "section": "Aziende alberghiere e complessi turistico-ricettivi — Articolo «Paga base nazionale conglobata dal 1° luglio 2024», comma 1, tabella",
+                "quote": "1 1.992,50 2.041,68 2.084,71 2.127,73 2.152,32"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2027-04-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-turismo-confesercenti-double-read"
               }
             }
           },
@@ -3498,21 +3771,28 @@
             "valid_until": null,
             "value": "2152.32",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-257",
-                  "title": "ccnl-aspx-c-257",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=257"
+                  "document_id": "turismo-confesercenti-src-55c6a826",
+                  "title": "turismo-confesercenti: 194334.pdf",
+                  "kind": "associazione",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                  "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
                 },
-                "section": "Tabella retributiva"
+                "page": "80",
+                "section": "Aziende alberghiere e complessi turistico-ricettivi — Articolo «Paga base nazionale conglobata dal 1° luglio 2024», comma 1, tabella",
+                "quote": "1 1.992,50 2.041,68 2.084,71 2.127,73 2.152,32"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2027-11-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-turismo-confesercenti-double-read"
               }
             }
           }
@@ -3849,21 +4129,28 @@
             "valid_until": "2025-06-01",
             "value": "2138.57",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-257",
-                  "title": "ccnl-aspx-c-257",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=257"
+                  "document_id": "turismo-confesercenti-src-55c6a826",
+                  "title": "turismo-confesercenti: 194334.pdf",
+                  "kind": "associazione",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                  "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
                 },
-                "section": "Tabella retributiva"
+                "page": "80",
+                "section": "Aziende alberghiere e complessi turistico-ricettivi — Articolo «Paga base nazionale conglobata dal 1° luglio 2024», comma 1, tabella",
+                "quote": "B 2.138,57 2.191,35 2.237,53 2.283,72 2.310,11"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2024-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-turismo-confesercenti-double-read"
               }
             }
           },
@@ -3872,21 +4159,28 @@
             "valid_until": "2026-05-01",
             "value": "2191.35",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-257",
-                  "title": "ccnl-aspx-c-257",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=257"
+                  "document_id": "turismo-confesercenti-src-55c6a826",
+                  "title": "turismo-confesercenti: 194334.pdf",
+                  "kind": "associazione",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                  "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
                 },
-                "section": "Tabella retributiva"
+                "page": "80",
+                "section": "Aziende alberghiere e complessi turistico-ricettivi — Articolo «Paga base nazionale conglobata dal 1° luglio 2024», comma 1, tabella",
+                "quote": "B 2.138,57 2.191,35 2.237,53 2.283,72 2.310,11"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2025-06-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-turismo-confesercenti-double-read"
               }
             }
           },
@@ -3895,21 +4189,28 @@
             "valid_until": "2027-04-01",
             "value": "2237.53",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-257",
-                  "title": "ccnl-aspx-c-257",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=257"
+                  "document_id": "turismo-confesercenti-src-55c6a826",
+                  "title": "turismo-confesercenti: 194334.pdf",
+                  "kind": "associazione",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                  "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
                 },
-                "section": "Tabella retributiva"
+                "page": "80",
+                "section": "Aziende alberghiere e complessi turistico-ricettivi — Articolo «Paga base nazionale conglobata dal 1° luglio 2024», comma 1, tabella",
+                "quote": "B 2.138,57 2.191,35 2.237,53 2.283,72 2.310,11"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-05-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-turismo-confesercenti-double-read"
               }
             }
           },
@@ -3918,21 +4219,28 @@
             "valid_until": "2027-11-01",
             "value": "2283.72",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-257",
-                  "title": "ccnl-aspx-c-257",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=257"
+                  "document_id": "turismo-confesercenti-src-55c6a826",
+                  "title": "turismo-confesercenti: 194334.pdf",
+                  "kind": "associazione",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                  "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
                 },
-                "section": "Tabella retributiva"
+                "page": "80",
+                "section": "Aziende alberghiere e complessi turistico-ricettivi — Articolo «Paga base nazionale conglobata dal 1° luglio 2024», comma 1, tabella",
+                "quote": "B 2.138,57 2.191,35 2.237,53 2.283,72 2.310,11"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2027-04-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-turismo-confesercenti-double-read"
               }
             }
           },
@@ -3941,21 +4249,28 @@
             "valid_until": null,
             "value": "2310.11",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-257",
-                  "title": "ccnl-aspx-c-257",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=257"
+                  "document_id": "turismo-confesercenti-src-55c6a826",
+                  "title": "turismo-confesercenti: 194334.pdf",
+                  "kind": "associazione",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                  "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
                 },
-                "section": "Tabella retributiva"
+                "page": "80",
+                "section": "Aziende alberghiere e complessi turistico-ricettivi — Articolo «Paga base nazionale conglobata dal 1° luglio 2024», comma 1, tabella",
+                "quote": "B 2.138,57 2.191,35 2.237,53 2.283,72 2.310,11"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2027-11-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-turismo-confesercenti-double-read"
               }
             }
           }
@@ -4292,21 +4607,28 @@
             "valid_until": "2025-06-01",
             "value": "2309.93",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-257",
-                  "title": "ccnl-aspx-c-257",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=257"
+                  "document_id": "turismo-confesercenti-src-55c6a826",
+                  "title": "turismo-confesercenti: 194334.pdf",
+                  "kind": "associazione",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                  "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
                 },
-                "section": "Tabella retributiva"
+                "page": "80",
+                "section": "Aziende alberghiere e complessi turistico-ricettivi — Articolo «Paga base nazionale conglobata dal 1° luglio 2024», comma 1, tabella",
+                "quote": "A 2.309,93 2.366,94 2.416,82 2.466,71 2.495,22"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2024-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-turismo-confesercenti-double-read"
               }
             }
           },
@@ -4315,21 +4637,28 @@
             "valid_until": "2026-05-01",
             "value": "2366.94",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-257",
-                  "title": "ccnl-aspx-c-257",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=257"
+                  "document_id": "turismo-confesercenti-src-55c6a826",
+                  "title": "turismo-confesercenti: 194334.pdf",
+                  "kind": "associazione",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                  "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
                 },
-                "section": "Tabella retributiva"
+                "page": "80",
+                "section": "Aziende alberghiere e complessi turistico-ricettivi — Articolo «Paga base nazionale conglobata dal 1° luglio 2024», comma 1, tabella",
+                "quote": "A 2.309,93 2.366,94 2.416,82 2.466,71 2.495,22"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2025-06-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-turismo-confesercenti-double-read"
               }
             }
           },
@@ -4338,21 +4667,28 @@
             "valid_until": "2027-04-01",
             "value": "2416.82",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-257",
-                  "title": "ccnl-aspx-c-257",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=257"
+                  "document_id": "turismo-confesercenti-src-55c6a826",
+                  "title": "turismo-confesercenti: 194334.pdf",
+                  "kind": "associazione",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                  "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
                 },
-                "section": "Tabella retributiva"
+                "page": "80",
+                "section": "Aziende alberghiere e complessi turistico-ricettivi — Articolo «Paga base nazionale conglobata dal 1° luglio 2024», comma 1, tabella",
+                "quote": "A 2.309,93 2.366,94 2.416,82 2.466,71 2.495,22"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-05-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-turismo-confesercenti-double-read"
               }
             }
           },
@@ -4361,21 +4697,28 @@
             "valid_until": "2027-11-01",
             "value": "2466.71",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-257",
-                  "title": "ccnl-aspx-c-257",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=257"
+                  "document_id": "turismo-confesercenti-src-55c6a826",
+                  "title": "turismo-confesercenti: 194334.pdf",
+                  "kind": "associazione",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                  "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
                 },
-                "section": "Tabella retributiva"
+                "page": "80",
+                "section": "Aziende alberghiere e complessi turistico-ricettivi — Articolo «Paga base nazionale conglobata dal 1° luglio 2024», comma 1, tabella",
+                "quote": "A 2.309,93 2.366,94 2.416,82 2.466,71 2.495,22"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2027-04-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-turismo-confesercenti-double-read"
               }
             }
           },
@@ -4384,21 +4727,28 @@
             "valid_until": null,
             "value": "2495.22",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-257",
-                  "title": "ccnl-aspx-c-257",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=257"
+                  "document_id": "turismo-confesercenti-src-55c6a826",
+                  "title": "turismo-confesercenti: 194334.pdf",
+                  "kind": "associazione",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                  "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
                 },
-                "section": "Tabella retributiva"
+                "page": "80",
+                "section": "Aziende alberghiere e complessi turistico-ricettivi — Articolo «Paga base nazionale conglobata dal 1° luglio 2024», comma 1, tabella",
+                "quote": "A 2.309,93 2.366,94 2.416,82 2.466,71 2.495,22"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2027-11-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-turismo-confesercenti-double-read"
               }
             }
           }
@@ -4732,7 +5082,7 @@
     "effective_until": null,
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=257",
     "verification_status": "unverified",
-    "source_hash": "d7699f2df212689c90713fb4a790d1a533aaf4db026e05ab1f0d2d0abea0ddac",
+    "source_hash": "544f7bac8c52fb06f9f2384f334353ad1d9864095b5d8f5dd4bf9f664942eed5",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -5028,6 +5378,28 @@
         "independence": "same_process",
         "checked": [
           "parameters.seniority_increments"
+        ]
+      },
+      {
+        "id": "2026-11-08-gpt-turismo-confesercenti-double-read",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Monthly values on scanned pages, each read twice from the page image by two independent sessions of another model, the second without being told the expected value.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+            "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
+          }
+        ],
+        "findings": [
+          "50 values read identically by both readings and equal to the file."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "levels.base_salary",
+          "levels.fixed_allowances"
         ]
       }
     ]

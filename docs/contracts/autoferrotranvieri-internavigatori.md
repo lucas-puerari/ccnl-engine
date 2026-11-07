@@ -54,7 +54,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-12-11 |
-| **Last review** | 2026-11-07 |
+| **Last review** | 2026-11-08 |
 | **Latest salary tranche** | 2026-08-01 |
 
 ## Review history
@@ -62,6 +62,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | Date | Reviewer | Scope | Outcome | Findings |
 |---|---|---|---|---|
 | 2026-11-07 | claude-opus-5-5 (ai) | The EDR 2024 of the renewal of 2024 and the AGENS circular Inf. 002/25 (text layer). | corrected | 'viene istituito un nuovo Elemento Distinto della Retribuzione (EDR 2024) nella misura di 40 euro lordi mensili al parametro 175 che verrà erogato per 14 mensilità': a permanent element paid 14 times a year, not 14 payments; the file set it to zero from May 2026. |
+| 2026-11-08 | claude-opus-5-5 (ai) | The monthly values of the levels against the primary tables (text layer). | confirmed | 33 values found verbatim on the cited pages and marked verified; 75 left as they were (derived or not on a text page). |
 
 ## Salary table
 
