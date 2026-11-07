@@ -215,6 +215,28 @@
         "checked": [
           "levels.base_salary"
         ]
+      },
+      {
+        "id": "2026-11-08-gpt-legno-arredamento-federlegno-double-read",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Monthly values on scanned pages, each read twice from the page image by two independent sessions of another model, the second without being told the expected value.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/LEGNO/rinnovo_contratto_collettivo_legno_industria_20_giugno_23.pdf",
+            "sha256": "69cbcd0c3d83609bab90d5c9578dd262d7c6b4092144bac06e45989688f5e3a7"
+          }
+        ],
+        "findings": [
+          "32 values read identically by both readings and equal to the file."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "levels.base_salary",
+          "levels.fixed_allowances"
+        ]
       }
     ]
   },
@@ -580,7 +602,32 @@
               {
                 "valid_from": "2023-07-01",
                 "valid_until": null,
-                "value": "512.16"
+                "value": "512.16",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legno-arredamento-federlegno-src-69cbcd0c",
+                      "title": "legno-arredamento-federlegno: renewal-2023.pdf",
+                      "kind": "associazione",
+                      "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/LEGNO/rinnovo_contratto_collettivo_legno_industria_20_giugno_23.pdf",
+                      "sha256": "69cbcd0c3d83609bab90d5c9578dd262d7c6b4092144bac06e45989688f5e3a7"
+                    },
+                    "page": "3",
+                    "section": "no text layer",
+                    "quote": "1° AE1 100,0 1.011,23 512,16 10,33 1.533,72 102,20 1.635,92"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "effective_from": "2023-07-01",
+                    "verified_by": "gpt-6-sol",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-gpt-legno-arredamento-federlegno-double-read"
+                  }
+                }
               }
             ]
           },
@@ -611,7 +658,32 @@
               {
                 "valid_from": "2023-07-01",
                 "valid_until": null,
-                "value": "10.33"
+                "value": "10.33",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legno-arredamento-federlegno-src-69cbcd0c",
+                      "title": "legno-arredamento-federlegno: renewal-2023.pdf",
+                      "kind": "associazione",
+                      "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/LEGNO/rinnovo_contratto_collettivo_legno_industria_20_giugno_23.pdf",
+                      "sha256": "69cbcd0c3d83609bab90d5c9578dd262d7c6b4092144bac06e45989688f5e3a7"
+                    },
+                    "page": "3",
+                    "section": "no text layer",
+                    "quote": "1° AE1 100,0 1.011,23 512,16 10,33 1.533,72 102,20 1.635,92"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "effective_from": "2023-07-01",
+                    "verified_by": "gpt-6-sol",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-gpt-legno-arredamento-federlegno-double-read"
+                  }
+                }
               }
             ]
           },
@@ -791,7 +863,32 @@
               {
                 "valid_from": "2023-07-01",
                 "valid_until": null,
-                "value": "514.79"
+                "value": "514.79",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legno-arredamento-federlegno-src-69cbcd0c",
+                      "title": "legno-arredamento-federlegno: renewal-2023.pdf",
+                      "kind": "associazione",
+                      "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/LEGNO/rinnovo_contratto_collettivo_legno_industria_20_giugno_23.pdf",
+                      "sha256": "69cbcd0c3d83609bab90d5c9578dd262d7c6b4092144bac06e45989688f5e3a7"
+                    },
+                    "page": "3",
+                    "section": "no text layer",
+                    "quote": "2° AE2 119,0 1.201,85 514,79 10,33 1.726,97 121,62 1.848,59"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "effective_from": "2023-07-01",
+                    "verified_by": "gpt-6-sol",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-gpt-legno-arredamento-federlegno-double-read"
+                  }
+                }
               }
             ]
           },
@@ -822,7 +919,32 @@
               {
                 "valid_from": "2023-07-01",
                 "valid_until": null,
-                "value": "10.33"
+                "value": "10.33",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legno-arredamento-federlegno-src-69cbcd0c",
+                      "title": "legno-arredamento-federlegno: renewal-2023.pdf",
+                      "kind": "associazione",
+                      "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/LEGNO/rinnovo_contratto_collettivo_legno_industria_20_giugno_23.pdf",
+                      "sha256": "69cbcd0c3d83609bab90d5c9578dd262d7c6b4092144bac06e45989688f5e3a7"
+                    },
+                    "page": "3",
+                    "section": "no text layer",
+                    "quote": "2° AE2 119,0 1.201,85 514,79 10,33 1.726,97 121,62 1.848,59"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "effective_from": "2023-07-01",
+                    "verified_by": "gpt-6-sol",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-gpt-legno-arredamento-federlegno-double-read"
+                  }
+                }
               }
             ]
           },
@@ -1002,7 +1124,32 @@
               {
                 "valid_from": "2023-07-01",
                 "valid_until": null,
-                "value": "516.53"
+                "value": "516.53",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legno-arredamento-federlegno-src-69cbcd0c",
+                      "title": "legno-arredamento-federlegno: renewal-2023.pdf",
+                      "kind": "associazione",
+                      "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/LEGNO/rinnovo_contratto_collettivo_legno_industria_20_giugno_23.pdf",
+                      "sha256": "69cbcd0c3d83609bab90d5c9578dd262d7c6b4092144bac06e45989688f5e3a7"
+                    },
+                    "page": "3",
+                    "section": "no text layer",
+                    "quote": "3° AE3 126,5 1.277,20 516,53 10,33 1.804,06 129,28 1.933,34"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "effective_from": "2023-07-01",
+                    "verified_by": "gpt-6-sol",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-gpt-legno-arredamento-federlegno-double-read"
+                  }
+                }
               }
             ]
           },
@@ -1033,7 +1180,32 @@
               {
                 "valid_from": "2023-07-01",
                 "valid_until": null,
-                "value": "10.33"
+                "value": "10.33",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legno-arredamento-federlegno-src-69cbcd0c",
+                      "title": "legno-arredamento-federlegno: renewal-2023.pdf",
+                      "kind": "associazione",
+                      "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/LEGNO/rinnovo_contratto_collettivo_legno_industria_20_giugno_23.pdf",
+                      "sha256": "69cbcd0c3d83609bab90d5c9578dd262d7c6b4092144bac06e45989688f5e3a7"
+                    },
+                    "page": "3",
+                    "section": "no text layer",
+                    "quote": "3° AE3 126,5 1.277,20 516,53 10,33 1.804,06 129,28 1.933,34"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "effective_from": "2023-07-01",
+                    "verified_by": "gpt-6-sol",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-gpt-legno-arredamento-federlegno-double-read"
+                  }
+                }
               }
             ]
           },
@@ -1207,7 +1379,32 @@
               {
                 "valid_from": "2023-07-01",
                 "valid_until": null,
-                "value": "517.76"
+                "value": "517.76",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legno-arredamento-federlegno-src-69cbcd0c",
+                      "title": "legno-arredamento-federlegno: renewal-2023.pdf",
+                      "kind": "associazione",
+                      "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/LEGNO/rinnovo_contratto_collettivo_legno_industria_20_giugno_23.pdf",
+                      "sha256": "69cbcd0c3d83609bab90d5c9578dd262d7c6b4092144bac06e45989688f5e3a7"
+                    },
+                    "page": "3",
+                    "section": "no text layer",
+                    "quote": "4° AE4/AS1 134,0 1.352,54 517,76 10,33 1.880,63 136,95 2.017,57"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "effective_from": "2023-07-01",
+                    "verified_by": "gpt-6-sol",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-gpt-legno-arredamento-federlegno-double-read"
+                  }
+                }
               }
             ]
           },
@@ -1238,7 +1435,32 @@
               {
                 "valid_from": "2023-07-01",
                 "valid_until": null,
-                "value": "10.33"
+                "value": "10.33",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legno-arredamento-federlegno-src-69cbcd0c",
+                      "title": "legno-arredamento-federlegno: renewal-2023.pdf",
+                      "kind": "associazione",
+                      "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/LEGNO/rinnovo_contratto_collettivo_legno_industria_20_giugno_23.pdf",
+                      "sha256": "69cbcd0c3d83609bab90d5c9578dd262d7c6b4092144bac06e45989688f5e3a7"
+                    },
+                    "page": "3",
+                    "section": "no text layer",
+                    "quote": "4° AE4/AS1 134,0 1.352,54 517,76 10,33 1.880,63 136,95 2.017,57"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "effective_from": "2023-07-01",
+                    "verified_by": "gpt-6-sol",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-gpt-legno-arredamento-federlegno-double-read"
+                  }
+                }
               }
             ]
           },
@@ -1412,7 +1634,32 @@
               {
                 "valid_from": "2023-07-01",
                 "valid_until": null,
-                "value": "517.76"
+                "value": "517.76",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legno-arredamento-federlegno-src-69cbcd0c",
+                      "title": "legno-arredamento-federlegno: renewal-2023.pdf",
+                      "kind": "associazione",
+                      "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/LEGNO/rinnovo_contratto_collettivo_legno_industria_20_giugno_23.pdf",
+                      "sha256": "69cbcd0c3d83609bab90d5c9578dd262d7c6b4092144bac06e45989688f5e3a7"
+                    },
+                    "page": "3",
+                    "section": "no text layer",
+                    "quote": "4° AE4/AS1 134,0 1.352,54 517,76 10,33 1.880,63 136,95 2.017,57"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "effective_from": "2023-07-01",
+                    "verified_by": "gpt-6-sol",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-gpt-legno-arredamento-federlegno-double-read"
+                  }
+                }
               }
             ]
           },
@@ -1443,7 +1690,32 @@
               {
                 "valid_from": "2023-07-01",
                 "valid_until": null,
-                "value": "10.33"
+                "value": "10.33",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legno-arredamento-federlegno-src-69cbcd0c",
+                      "title": "legno-arredamento-federlegno: renewal-2023.pdf",
+                      "kind": "associazione",
+                      "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/LEGNO/rinnovo_contratto_collettivo_legno_industria_20_giugno_23.pdf",
+                      "sha256": "69cbcd0c3d83609bab90d5c9578dd262d7c6b4092144bac06e45989688f5e3a7"
+                    },
+                    "page": "3",
+                    "section": "no text layer",
+                    "quote": "4° AE4/AS1 134,0 1.352,54 517,76 10,33 1.880,63 136,95 2.017,57"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "effective_from": "2023-07-01",
+                    "verified_by": "gpt-6-sol",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-gpt-legno-arredamento-federlegno-double-read"
+                  }
+                }
               }
             ]
           },
@@ -1622,7 +1894,32 @@
               {
                 "valid_from": "2023-07-01",
                 "valid_until": null,
-                "value": "518.45"
+                "value": "518.45",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legno-arredamento-federlegno-src-69cbcd0c",
+                      "title": "legno-arredamento-federlegno: renewal-2023.pdf",
+                      "kind": "associazione",
+                      "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/LEGNO/rinnovo_contratto_collettivo_legno_industria_20_giugno_23.pdf",
+                      "sha256": "69cbcd0c3d83609bab90d5c9578dd262d7c6b4092144bac06e45989688f5e3a7"
+                    },
+                    "page": "3",
+                    "section": "no text layer",
+                    "quote": "5° AC1/AS2 140,0 1.412,95 518,45 10,33 1.941,73 143,08 2.084,81"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "effective_from": "2023-07-01",
+                    "verified_by": "gpt-6-sol",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-gpt-legno-arredamento-federlegno-double-read"
+                  }
+                }
               }
             ]
           },
@@ -1653,7 +1950,32 @@
               {
                 "valid_from": "2023-07-01",
                 "valid_until": null,
-                "value": "10.33"
+                "value": "10.33",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legno-arredamento-federlegno-src-69cbcd0c",
+                      "title": "legno-arredamento-federlegno: renewal-2023.pdf",
+                      "kind": "associazione",
+                      "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/LEGNO/rinnovo_contratto_collettivo_legno_industria_20_giugno_23.pdf",
+                      "sha256": "69cbcd0c3d83609bab90d5c9578dd262d7c6b4092144bac06e45989688f5e3a7"
+                    },
+                    "page": "3",
+                    "section": "no text layer",
+                    "quote": "5° AC1/AS2 140,0 1.412,95 518,45 10,33 1.941,73 143,08 2.084,81"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "effective_from": "2023-07-01",
+                    "verified_by": "gpt-6-sol",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-gpt-legno-arredamento-federlegno-double-read"
+                  }
+                }
               }
             ]
           },
@@ -1832,7 +2154,32 @@
               {
                 "valid_from": "2023-07-01",
                 "valid_until": null,
-                "value": "518.45"
+                "value": "518.45",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legno-arredamento-federlegno-src-69cbcd0c",
+                      "title": "legno-arredamento-federlegno: renewal-2023.pdf",
+                      "kind": "associazione",
+                      "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/LEGNO/rinnovo_contratto_collettivo_legno_industria_20_giugno_23.pdf",
+                      "sha256": "69cbcd0c3d83609bab90d5c9578dd262d7c6b4092144bac06e45989688f5e3a7"
+                    },
+                    "page": "3",
+                    "section": "no text layer",
+                    "quote": "5° AC1/AS2 140,0 1.412,95 518,45 10,33 1.941,73 143,08 2.084,81"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "effective_from": "2023-07-01",
+                    "verified_by": "gpt-6-sol",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-gpt-legno-arredamento-federlegno-double-read"
+                  }
+                }
               }
             ]
           },
@@ -1863,7 +2210,32 @@
               {
                 "valid_from": "2023-07-01",
                 "valid_until": null,
-                "value": "10.33"
+                "value": "10.33",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legno-arredamento-federlegno-src-69cbcd0c",
+                      "title": "legno-arredamento-federlegno: renewal-2023.pdf",
+                      "kind": "associazione",
+                      "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/LEGNO/rinnovo_contratto_collettivo_legno_industria_20_giugno_23.pdf",
+                      "sha256": "69cbcd0c3d83609bab90d5c9578dd262d7c6b4092144bac06e45989688f5e3a7"
+                    },
+                    "page": "3",
+                    "section": "no text layer",
+                    "quote": "5° AC1/AS2 140,0 1.412,95 518,45 10,33 1.941,73 143,08 2.084,81"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "effective_from": "2023-07-01",
+                    "verified_by": "gpt-6-sol",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-gpt-legno-arredamento-federlegno-double-read"
+                  }
+                }
               }
             ]
           },
@@ -2036,7 +2408,32 @@
               {
                 "valid_from": "2023-07-01",
                 "valid_until": null,
-                "value": "521.02"
+                "value": "521.02",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legno-arredamento-federlegno-src-69cbcd0c",
+                      "title": "legno-arredamento-federlegno: renewal-2023.pdf",
+                      "kind": "associazione",
+                      "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/LEGNO/rinnovo_contratto_collettivo_legno_industria_20_giugno_23.pdf",
+                      "sha256": "69cbcd0c3d83609bab90d5c9578dd262d7c6b4092144bac06e45989688f5e3a7"
+                    },
+                    "page": "3",
+                    "section": "no text layer",
+                    "quote": "6° AS3 147,5 1.488,87 521,02 10,33 2.020,22 150,75 2.170,96"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "effective_from": "2023-07-01",
+                    "verified_by": "gpt-6-sol",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-gpt-legno-arredamento-federlegno-double-read"
+                  }
+                }
               }
             ]
           },
@@ -2067,7 +2464,32 @@
               {
                 "valid_from": "2023-07-01",
                 "valid_until": null,
-                "value": "10.33"
+                "value": "10.33",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legno-arredamento-federlegno-src-69cbcd0c",
+                      "title": "legno-arredamento-federlegno: renewal-2023.pdf",
+                      "kind": "associazione",
+                      "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/LEGNO/rinnovo_contratto_collettivo_legno_industria_20_giugno_23.pdf",
+                      "sha256": "69cbcd0c3d83609bab90d5c9578dd262d7c6b4092144bac06e45989688f5e3a7"
+                    },
+                    "page": "3",
+                    "section": "no text layer",
+                    "quote": "6° AS3 147,5 1.488,87 521,02 10,33 2.020,22 150,75 2.170,96"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "effective_from": "2023-07-01",
+                    "verified_by": "gpt-6-sol",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-gpt-legno-arredamento-federlegno-double-read"
+                  }
+                }
               }
             ]
           },
@@ -2246,7 +2668,32 @@
               {
                 "valid_from": "2023-07-01",
                 "valid_until": null,
-                "value": "522.41"
+                "value": "522.41",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legno-arredamento-federlegno-src-69cbcd0c",
+                      "title": "legno-arredamento-federlegno: renewal-2023.pdf",
+                      "kind": "associazione",
+                      "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/LEGNO/rinnovo_contratto_collettivo_legno_industria_20_giugno_23.pdf",
+                      "sha256": "69cbcd0c3d83609bab90d5c9578dd262d7c6b4092144bac06e45989688f5e3a7"
+                    },
+                    "page": "3",
+                    "section": "no text layer",
+                    "quote": "7° AC3/AC2/AS4 155,0 1.563,67 522,41 10,33 2.096,41 158,41 2.254,82"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "effective_from": "2023-07-01",
+                    "verified_by": "gpt-6-sol",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-gpt-legno-arredamento-federlegno-double-read"
+                  }
+                }
               }
             ]
           },
@@ -2277,7 +2724,32 @@
               {
                 "valid_from": "2023-07-01",
                 "valid_until": null,
-                "value": "10.33"
+                "value": "10.33",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legno-arredamento-federlegno-src-69cbcd0c",
+                      "title": "legno-arredamento-federlegno: renewal-2023.pdf",
+                      "kind": "associazione",
+                      "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/LEGNO/rinnovo_contratto_collettivo_legno_industria_20_giugno_23.pdf",
+                      "sha256": "69cbcd0c3d83609bab90d5c9578dd262d7c6b4092144bac06e45989688f5e3a7"
+                    },
+                    "page": "3",
+                    "section": "no text layer",
+                    "quote": "7° AC3/AC2/AS4 155,0 1.563,67 522,41 10,33 2.096,41 158,41 2.254,82"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "effective_from": "2023-07-01",
+                    "verified_by": "gpt-6-sol",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-gpt-legno-arredamento-federlegno-double-read"
+                  }
+                }
               }
             ]
           },
@@ -2456,7 +2928,32 @@
               {
                 "valid_from": "2023-07-01",
                 "valid_until": null,
-                "value": "522.41"
+                "value": "522.41",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legno-arredamento-federlegno-src-69cbcd0c",
+                      "title": "legno-arredamento-federlegno: renewal-2023.pdf",
+                      "kind": "associazione",
+                      "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/LEGNO/rinnovo_contratto_collettivo_legno_industria_20_giugno_23.pdf",
+                      "sha256": "69cbcd0c3d83609bab90d5c9578dd262d7c6b4092144bac06e45989688f5e3a7"
+                    },
+                    "page": "3",
+                    "section": "no text layer",
+                    "quote": "7° AC3/AC2/AS4 155,0 1.563,67 522,41 10,33 2.096,41 158,41 2.254,82"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "effective_from": "2023-07-01",
+                    "verified_by": "gpt-6-sol",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-gpt-legno-arredamento-federlegno-double-read"
+                  }
+                }
               }
             ]
           },
@@ -2487,7 +2984,32 @@
               {
                 "valid_from": "2023-07-01",
                 "valid_until": null,
-                "value": "10.33"
+                "value": "10.33",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legno-arredamento-federlegno-src-69cbcd0c",
+                      "title": "legno-arredamento-federlegno: renewal-2023.pdf",
+                      "kind": "associazione",
+                      "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/LEGNO/rinnovo_contratto_collettivo_legno_industria_20_giugno_23.pdf",
+                      "sha256": "69cbcd0c3d83609bab90d5c9578dd262d7c6b4092144bac06e45989688f5e3a7"
+                    },
+                    "page": "3",
+                    "section": "no text layer",
+                    "quote": "7° AC3/AC2/AS4 155,0 1.563,67 522,41 10,33 2.096,41 158,41 2.254,82"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "effective_from": "2023-07-01",
+                    "verified_by": "gpt-6-sol",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-gpt-legno-arredamento-federlegno-double-read"
+                  }
+                }
               }
             ]
           },
@@ -2666,7 +3188,32 @@
               {
                 "valid_from": "2023-07-01",
                 "valid_until": null,
-                "value": "522.41"
+                "value": "522.41",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legno-arredamento-federlegno-src-69cbcd0c",
+                      "title": "legno-arredamento-federlegno: renewal-2023.pdf",
+                      "kind": "associazione",
+                      "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/LEGNO/rinnovo_contratto_collettivo_legno_industria_20_giugno_23.pdf",
+                      "sha256": "69cbcd0c3d83609bab90d5c9578dd262d7c6b4092144bac06e45989688f5e3a7"
+                    },
+                    "page": "3",
+                    "section": "no text layer",
+                    "quote": "7° AC3/AC2/AS4 155,0 1.563,67 522,41 10,33 2.096,41 158,41 2.254,82"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "effective_from": "2023-07-01",
+                    "verified_by": "gpt-6-sol",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-gpt-legno-arredamento-federlegno-double-read"
+                  }
+                }
               }
             ]
           },
@@ -2697,7 +3244,32 @@
               {
                 "valid_from": "2023-07-01",
                 "valid_until": null,
-                "value": "10.33"
+                "value": "10.33",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legno-arredamento-federlegno-src-69cbcd0c",
+                      "title": "legno-arredamento-federlegno: renewal-2023.pdf",
+                      "kind": "associazione",
+                      "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/LEGNO/rinnovo_contratto_collettivo_legno_industria_20_giugno_23.pdf",
+                      "sha256": "69cbcd0c3d83609bab90d5c9578dd262d7c6b4092144bac06e45989688f5e3a7"
+                    },
+                    "page": "3",
+                    "section": "no text layer",
+                    "quote": "7° AC3/AC2/AS4 155,0 1.563,67 522,41 10,33 2.096,41 158,41 2.254,82"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "effective_from": "2023-07-01",
+                    "verified_by": "gpt-6-sol",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-gpt-legno-arredamento-federlegno-double-read"
+                  }
+                }
               }
             ]
           },
@@ -2876,7 +3448,32 @@
               {
                 "valid_from": "2023-07-01",
                 "valid_until": null,
-                "value": "525.22"
+                "value": "525.22",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legno-arredamento-federlegno-src-69cbcd0c",
+                      "title": "legno-arredamento-federlegno: renewal-2023.pdf",
+                      "kind": "associazione",
+                      "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/LEGNO/rinnovo_contratto_collettivo_legno_industria_20_giugno_23.pdf",
+                      "sha256": "69cbcd0c3d83609bab90d5c9578dd262d7c6b4092144bac06e45989688f5e3a7"
+                    },
+                    "page": "3",
+                    "section": "no text layer",
+                    "quote": "8° AC4 170,0 1.714,33 525,22 10,33 2.249,88 173,74 2.423,62"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "effective_from": "2023-07-01",
+                    "verified_by": "gpt-6-sol",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-gpt-legno-arredamento-federlegno-double-read"
+                  }
+                }
               }
             ]
           },
@@ -2907,7 +3504,32 @@
               {
                 "valid_from": "2023-07-01",
                 "valid_until": null,
-                "value": "10.33"
+                "value": "10.33",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legno-arredamento-federlegno-src-69cbcd0c",
+                      "title": "legno-arredamento-federlegno: renewal-2023.pdf",
+                      "kind": "associazione",
+                      "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/LEGNO/rinnovo_contratto_collettivo_legno_industria_20_giugno_23.pdf",
+                      "sha256": "69cbcd0c3d83609bab90d5c9578dd262d7c6b4092144bac06e45989688f5e3a7"
+                    },
+                    "page": "3",
+                    "section": "no text layer",
+                    "quote": "8° AC4 170,0 1.714,33 525,22 10,33 2.249,88 173,74 2.423,62"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "effective_from": "2023-07-01",
+                    "verified_by": "gpt-6-sol",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-gpt-legno-arredamento-federlegno-double-read"
+                  }
+                }
               }
             ]
           },
@@ -3086,7 +3708,32 @@
               {
                 "valid_from": "2023-07-01",
                 "valid_until": null,
-                "value": "527.94"
+                "value": "527.94",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legno-arredamento-federlegno-src-69cbcd0c",
+                      "title": "legno-arredamento-federlegno: renewal-2023.pdf",
+                      "kind": "associazione",
+                      "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/LEGNO/rinnovo_contratto_collettivo_legno_industria_20_giugno_23.pdf",
+                      "sha256": "69cbcd0c3d83609bab90d5c9578dd262d7c6b4092144bac06e45989688f5e3a7"
+                    },
+                    "page": "3",
+                    "section": "no text layer",
+                    "quote": "9° AC5 185,0 1.864,95 527,94 10,33 2.403,22 189,07 2.592,29"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "effective_from": "2023-07-01",
+                    "verified_by": "gpt-6-sol",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-gpt-legno-arredamento-federlegno-double-read"
+                  }
+                }
               }
             ]
           },
@@ -3117,7 +3764,32 @@
               {
                 "valid_from": "2023-07-01",
                 "valid_until": null,
-                "value": "10.33"
+                "value": "10.33",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legno-arredamento-federlegno-src-69cbcd0c",
+                      "title": "legno-arredamento-federlegno: renewal-2023.pdf",
+                      "kind": "associazione",
+                      "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/LEGNO/rinnovo_contratto_collettivo_legno_industria_20_giugno_23.pdf",
+                      "sha256": "69cbcd0c3d83609bab90d5c9578dd262d7c6b4092144bac06e45989688f5e3a7"
+                    },
+                    "page": "3",
+                    "section": "no text layer",
+                    "quote": "9° AC5 185,0 1.864,95 527,94 10,33 2.403,22 189,07 2.592,29"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "effective_from": "2023-07-01",
+                    "verified_by": "gpt-6-sol",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-gpt-legno-arredamento-federlegno-double-read"
+                  }
+                }
               }
             ]
           },
@@ -3297,7 +3969,32 @@
               {
                 "valid_from": "2023-07-01",
                 "valid_until": null,
-                "value": "529.75"
+                "value": "529.75",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legno-arredamento-federlegno-src-69cbcd0c",
+                      "title": "legno-arredamento-federlegno: renewal-2023.pdf",
+                      "kind": "associazione",
+                      "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/LEGNO/rinnovo_contratto_collettivo_legno_industria_20_giugno_23.pdf",
+                      "sha256": "69cbcd0c3d83609bab90d5c9578dd262d7c6b4092144bac06e45989688f5e3a7"
+                    },
+                    "page": "3",
+                    "section": "no text layer",
+                    "quote": "10° AD1 195,0 1.965,41 529,75 10,33 2.505,49 199,29 2.704,78"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "effective_from": "2023-07-01",
+                    "verified_by": "gpt-6-sol",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-gpt-legno-arredamento-federlegno-double-read"
+                  }
+                }
               }
             ]
           },
@@ -3328,7 +4025,32 @@
               {
                 "valid_from": "2023-07-01",
                 "valid_until": null,
-                "value": "10.33"
+                "value": "10.33",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legno-arredamento-federlegno-src-69cbcd0c",
+                      "title": "legno-arredamento-federlegno: renewal-2023.pdf",
+                      "kind": "associazione",
+                      "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/LEGNO/rinnovo_contratto_collettivo_legno_industria_20_giugno_23.pdf",
+                      "sha256": "69cbcd0c3d83609bab90d5c9578dd262d7c6b4092144bac06e45989688f5e3a7"
+                    },
+                    "page": "3",
+                    "section": "no text layer",
+                    "quote": "10° AD1 195,0 1.965,41 529,75 10,33 2.505,49 199,29 2.704,78"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "effective_from": "2023-07-01",
+                    "verified_by": "gpt-6-sol",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-gpt-legno-arredamento-federlegno-double-read"
+                  }
+                }
               }
             ]
           },
@@ -3508,7 +4230,32 @@
               {
                 "valid_from": "2023-07-01",
                 "valid_until": null,
-                "value": "531.91"
+                "value": "531.91",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legno-arredamento-federlegno-src-69cbcd0c",
+                      "title": "legno-arredamento-federlegno: renewal-2023.pdf",
+                      "kind": "associazione",
+                      "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/LEGNO/rinnovo_contratto_collettivo_legno_industria_20_giugno_23.pdf",
+                      "sha256": "69cbcd0c3d83609bab90d5c9578dd262d7c6b4092144bac06e45989688f5e3a7"
+                    },
+                    "page": "3",
+                    "section": "no text layer",
+                    "quote": "11° AD2 205,0 2.066,47 531,91 10,33 2.608,71 209,51 2.818,22"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "effective_from": "2023-07-01",
+                    "verified_by": "gpt-6-sol",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-gpt-legno-arredamento-federlegno-double-read"
+                  }
+                }
               }
             ]
           },
@@ -3539,7 +4286,32 @@
               {
                 "valid_from": "2023-07-01",
                 "valid_until": null,
-                "value": "10.33"
+                "value": "10.33",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legno-arredamento-federlegno-src-69cbcd0c",
+                      "title": "legno-arredamento-federlegno: renewal-2023.pdf",
+                      "kind": "associazione",
+                      "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/LEGNO/rinnovo_contratto_collettivo_legno_industria_20_giugno_23.pdf",
+                      "sha256": "69cbcd0c3d83609bab90d5c9578dd262d7c6b4092144bac06e45989688f5e3a7"
+                    },
+                    "page": "3",
+                    "section": "no text layer",
+                    "quote": "11° AD2 205,0 2.066,47 531,91 10,33 2.608,71 209,51 2.818,22"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "effective_from": "2023-07-01",
+                    "verified_by": "gpt-6-sol",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-gpt-legno-arredamento-federlegno-double-read"
+                  }
+                }
               }
             ]
           },
@@ -3719,7 +4491,32 @@
               {
                 "valid_from": "2023-07-01",
                 "valid_until": null,
-                "value": "531.91"
+                "value": "531.91",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legno-arredamento-federlegno-src-69cbcd0c",
+                      "title": "legno-arredamento-federlegno: renewal-2023.pdf",
+                      "kind": "associazione",
+                      "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/LEGNO/rinnovo_contratto_collettivo_legno_industria_20_giugno_23.pdf",
+                      "sha256": "69cbcd0c3d83609bab90d5c9578dd262d7c6b4092144bac06e45989688f5e3a7"
+                    },
+                    "page": "3",
+                    "section": "no text layer",
+                    "quote": "12° AD3 (Quadri) 210,0 2.115,59 531,91 10,33 2.657,83 214,62 2.872,45"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "effective_from": "2023-07-01",
+                    "verified_by": "gpt-6-sol",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-gpt-legno-arredamento-federlegno-double-read"
+                  }
+                }
               }
             ]
           },
@@ -3750,7 +4547,32 @@
               {
                 "valid_from": "2023-07-01",
                 "valid_until": null,
-                "value": "10.33"
+                "value": "10.33",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legno-arredamento-federlegno-src-69cbcd0c",
+                      "title": "legno-arredamento-federlegno: renewal-2023.pdf",
+                      "kind": "associazione",
+                      "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/LEGNO/rinnovo_contratto_collettivo_legno_industria_20_giugno_23.pdf",
+                      "sha256": "69cbcd0c3d83609bab90d5c9578dd262d7c6b4092144bac06e45989688f5e3a7"
+                    },
+                    "page": "3",
+                    "section": "no text layer",
+                    "quote": "12° AD3 (Quadri) 210,0 2.115,59 531,91 10,33 2.657,83 214,62 2.872,45"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "effective_from": "2023-07-01",
+                    "verified_by": "gpt-6-sol",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-gpt-legno-arredamento-federlegno-double-read"
+                  }
+                }
               }
             ]
           },
@@ -4043,7 +4865,7 @@
     "effective_until": null,
     "source": "https://www.filleacgil.net/images/DAL-2024/MATERIALI_dipartimento/LEGNO-ARREDO/Verbale_di_accordo_Adeguamento_minimi_anno_2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "c67520cb84a967f03723ed4cc618ba45a0a81598b2e86a7be7542f63adf473f0",
+    "source_hash": "151999011b7f2485a1426694c227ec1ba8e342630639b44eb18d968348bb3dcc",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

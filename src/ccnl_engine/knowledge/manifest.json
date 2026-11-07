@@ -371,7 +371,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/ced-assoced",
       "ruleset_version": "2026.2",
-      "source_hash": "a81d9dce282e5cb73b5ec422b11b090031edd1c9984a07cd1b41878e8f92cc5a",
+      "source_hash": "169c4317700124ddf5a6292366529d68996a99d42998f40ad7c76b8e3b7565ae",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/ced-assoced.json.gz"
@@ -711,7 +711,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/distribuzione-cooperativa-ancc",
       "ruleset_version": "2026.2",
-      "source_hash": "8909936169cc6f230ebcff7f2a131c2b3a6a517be0feb07523e308ad6112bf7b",
+      "source_hash": "ee7e8ab64950a22a2bd81fc750014f30cb568437ad8dda4e04882ca5e7c00df3",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/distribuzione-cooperativa-ancc.json.gz"
@@ -1088,7 +1088,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/gas-acqua-utilitalia",
       "ruleset_version": "2026.2",
-      "source_hash": "477927af7cc1e8382df331073b1db4083385c292bf989fcce3367052283ec865",
+      "source_hash": "d905ab9953cd57d501f03937184e12baf503afd617361b73507a94e63a704878",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/gas-acqua-utilitalia.json.gz"
@@ -1360,7 +1360,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/legno-arredamento-federlegno",
       "ruleset_version": "2026.2",
-      "source_hash": "c67520cb84a967f03723ed4cc618ba45a0a81598b2e86a7be7542f63adf473f0",
+      "source_hash": "151999011b7f2485a1426694c227ec1ba8e342630639b44eb18d968348bb3dcc",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/legno-arredamento-federlegno.json.gz"
@@ -1938,7 +1938,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/scuole-private-agidae",
       "ruleset_version": "2026.2",
-      "source_hash": "564e9b0ce4aa2ac566fca7c8cdd0bb997790575d896b75eee64539b1aa2766d4",
+      "source_hash": "229e4da20fac65f6d1d8733b0608082dafd551c1e2e2ea7869b0b6f439cf343b",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/scuole-private-agidae.json.gz"
@@ -1955,7 +1955,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/scuole-private-laiche-aninsei",
       "ruleset_version": "2026.2",
-      "source_hash": "8ef7a96c621c16b4ffc6006f4bcd1993e9ce6573b5f1ceea0e2cc2b2f35251cd",
+      "source_hash": "5533fa37df5a36dad9b162c4d809ad2229bfb1efcb4a13a09ac3f69b8fdd949a",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/scuole-private-laiche-aninsei.json.gz"
@@ -2227,7 +2227,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/uneba-uneba",
       "ruleset_version": "2026.2",
-      "source_hash": "3533f560d2d441de04dac1caaeba06d98fb46f43606d77e4432407856b9bd60d",
+      "source_hash": "ece7cbc117a025ea495e20678b2ca172ef975a464716a7eb77b8eff693966249",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/uneba-uneba.json.gz"

@@ -137,6 +137,28 @@
         "findings": [
           "Art. 44 - Tredicesima mensilità (p. 44): \"Nel caso di inizio o di cessazione del rapporto di lavoro durante il corso dell’anno la lavoratrice ed il lavoratore avranno diritto a tanti dodicesimi dell’ammontare della 13° mensilità per quanti sono i mesi di servizio prestato. Le frazioni di mese pari o superiori ai 15 giorni saranno considerate come mese intero.\". Match: at_least 15."
         ]
+      },
+      {
+        "id": "2026-11-08-gpt-uneba-uneba-double-read",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Monthly values on scanned pages, each read twice from the page image by two independent sessions of another model, the second without being told the expected value.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf",
+            "sha256": "19110c35ba9e9ce8c4993b36336ff34949da482728846d3351a9278f442a1727"
+          }
+        ],
+        "findings": [
+          "34 values read identically by both readings and equal to the file."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "levels.base_salary",
+          "levels.fixed_allowances"
+        ]
       }
     ]
   },
@@ -363,21 +385,28 @@
             "valid_until": "2025-07-01",
             "value": "1293.12",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "contratto-uneba-2025-testo-firmato-pdf",
-                  "title": "contratto-uneba-2025-testo-firmato-pdf",
+                  "document_id": "uneba-uneba-src-19110c35",
+                  "title": "uneba-uneba: contratto-uneba-2025-testo-firmato.pdf",
                   "kind": "associazione",
-                  "url": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf"
+                  "url": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf",
+                  "sha256": "19110c35ba9e9ce8c4993b36336ff34949da482728846d3351a9278f442a1727"
                 },
-                "section": "Tabella retributiva"
+                "page": "11",
+                "section": "no text layer",
+                "quote": "6°  1.293,12 €  1.337,17 €  1.359,20 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2024-10-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-uneba-uneba-double-read"
               }
             }
           },
@@ -386,21 +415,28 @@
             "valid_until": "2026-03-01",
             "value": "1337.17",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "contratto-uneba-2025-testo-firmato-pdf",
-                  "title": "contratto-uneba-2025-testo-firmato-pdf",
+                  "document_id": "uneba-uneba-src-19110c35",
+                  "title": "uneba-uneba: contratto-uneba-2025-testo-firmato.pdf",
                   "kind": "associazione",
-                  "url": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf"
+                  "url": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf",
+                  "sha256": "19110c35ba9e9ce8c4993b36336ff34949da482728846d3351a9278f442a1727"
                 },
-                "section": "Tabella retributiva"
+                "page": "11",
+                "section": "no text layer",
+                "quote": "6°  1.293,12 €  1.337,17 €  1.359,20 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-uneba-uneba-double-read"
               }
             }
           },
@@ -409,21 +445,28 @@
             "valid_until": null,
             "value": "1359.20",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "contratto-uneba-2025-testo-firmato-pdf",
-                  "title": "contratto-uneba-2025-testo-firmato-pdf",
+                  "document_id": "uneba-uneba-src-19110c35",
+                  "title": "uneba-uneba: contratto-uneba-2025-testo-firmato.pdf",
                   "kind": "associazione",
-                  "url": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf"
+                  "url": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf",
+                  "sha256": "19110c35ba9e9ce8c4993b36336ff34949da482728846d3351a9278f442a1727"
                 },
-                "section": "Tabella retributiva"
+                "page": "11",
+                "section": "no text layer",
+                "quote": "6°  1.293,12 €  1.337,17 €  1.359,20 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-03-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-uneba-uneba-double-read"
               }
             }
           }
@@ -460,21 +503,28 @@
             "valid_until": "2025-07-01",
             "value": "1328.08",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "contratto-uneba-2025-testo-firmato-pdf",
-                  "title": "contratto-uneba-2025-testo-firmato-pdf",
+                  "document_id": "uneba-uneba-src-19110c35",
+                  "title": "uneba-uneba: contratto-uneba-2025-testo-firmato.pdf",
                   "kind": "associazione",
-                  "url": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf"
+                  "url": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf",
+                  "sha256": "19110c35ba9e9ce8c4993b36336ff34949da482728846d3351a9278f442a1727"
                 },
-                "section": "Tabella retributiva"
+                "page": "11",
+                "section": "no text layer",
+                "quote": "6° S  1.328,08 €  1.373,32 €  1.395,94 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2024-10-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-uneba-uneba-double-read"
               }
             }
           },
@@ -483,21 +533,28 @@
             "valid_until": "2026-03-01",
             "value": "1373.32",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "contratto-uneba-2025-testo-firmato-pdf",
-                  "title": "contratto-uneba-2025-testo-firmato-pdf",
+                  "document_id": "uneba-uneba-src-19110c35",
+                  "title": "uneba-uneba: contratto-uneba-2025-testo-firmato.pdf",
                   "kind": "associazione",
-                  "url": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf"
+                  "url": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf",
+                  "sha256": "19110c35ba9e9ce8c4993b36336ff34949da482728846d3351a9278f442a1727"
                 },
-                "section": "Tabella retributiva"
+                "page": "11",
+                "section": "no text layer",
+                "quote": "6° S  1.328,08 €  1.373,32 €  1.395,94 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-uneba-uneba-double-read"
               }
             }
           },
@@ -506,21 +563,28 @@
             "valid_until": null,
             "value": "1395.94",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "contratto-uneba-2025-testo-firmato-pdf",
-                  "title": "contratto-uneba-2025-testo-firmato-pdf",
+                  "document_id": "uneba-uneba-src-19110c35",
+                  "title": "uneba-uneba: contratto-uneba-2025-testo-firmato.pdf",
                   "kind": "associazione",
-                  "url": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf"
+                  "url": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf",
+                  "sha256": "19110c35ba9e9ce8c4993b36336ff34949da482728846d3351a9278f442a1727"
                 },
-                "section": "Tabella retributiva"
+                "page": "11",
+                "section": "no text layer",
+                "quote": "6° S  1.328,08 €  1.373,32 €  1.395,94 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-03-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-uneba-uneba-double-read"
               }
             }
           }
@@ -557,21 +621,28 @@
             "valid_until": "2025-07-01",
             "value": "1363.01",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "contratto-uneba-2025-testo-firmato-pdf",
-                  "title": "contratto-uneba-2025-testo-firmato-pdf",
+                  "document_id": "uneba-uneba-src-19110c35",
+                  "title": "uneba-uneba: contratto-uneba-2025-testo-firmato.pdf",
                   "kind": "associazione",
-                  "url": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf"
+                  "url": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf",
+                  "sha256": "19110c35ba9e9ce8c4993b36336ff34949da482728846d3351a9278f442a1727"
                 },
-                "section": "Tabella retributiva"
+                "page": "11",
+                "section": "no text layer",
+                "quote": "5°  1.363,01 €  1.409,44 €  1.432,66 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2024-10-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-uneba-uneba-double-read"
               }
             }
           },
@@ -580,21 +651,28 @@
             "valid_until": "2026-03-01",
             "value": "1409.44",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "contratto-uneba-2025-testo-firmato-pdf",
-                  "title": "contratto-uneba-2025-testo-firmato-pdf",
+                  "document_id": "uneba-uneba-src-19110c35",
+                  "title": "uneba-uneba: contratto-uneba-2025-testo-firmato.pdf",
                   "kind": "associazione",
-                  "url": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf"
+                  "url": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf",
+                  "sha256": "19110c35ba9e9ce8c4993b36336ff34949da482728846d3351a9278f442a1727"
                 },
-                "section": "Tabella retributiva"
+                "page": "11",
+                "section": "no text layer",
+                "quote": "5°  1.363,01 €  1.409,44 €  1.432,66 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-uneba-uneba-double-read"
               }
             }
           },
@@ -603,21 +681,28 @@
             "valid_until": null,
             "value": "1432.66",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "contratto-uneba-2025-testo-firmato-pdf",
-                  "title": "contratto-uneba-2025-testo-firmato-pdf",
+                  "document_id": "uneba-uneba-src-19110c35",
+                  "title": "uneba-uneba: contratto-uneba-2025-testo-firmato.pdf",
                   "kind": "associazione",
-                  "url": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf"
+                  "url": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf",
+                  "sha256": "19110c35ba9e9ce8c4993b36336ff34949da482728846d3351a9278f442a1727"
                 },
-                "section": "Tabella retributiva"
+                "page": "11",
+                "section": "no text layer",
+                "quote": "5°  1.363,01 €  1.409,44 €  1.432,66 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-03-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-uneba-uneba-double-read"
               }
             }
           }
@@ -654,21 +739,28 @@
             "valid_until": "2025-07-01",
             "value": "1397.99",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "contratto-uneba-2025-testo-firmato-pdf",
-                  "title": "contratto-uneba-2025-testo-firmato-pdf",
+                  "document_id": "uneba-uneba-src-19110c35",
+                  "title": "uneba-uneba: contratto-uneba-2025-testo-firmato.pdf",
                   "kind": "associazione",
-                  "url": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf"
+                  "url": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf",
+                  "sha256": "19110c35ba9e9ce8c4993b36336ff34949da482728846d3351a9278f442a1727"
                 },
-                "section": "Tabella retributiva"
+                "page": "11",
+                "section": "no text layer",
+                "quote": "5° S  1.397,99 €  1.445,61 €  1.469,42 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2024-10-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-uneba-uneba-double-read"
               }
             }
           },
@@ -677,21 +769,28 @@
             "valid_until": "2026-03-01",
             "value": "1445.61",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "contratto-uneba-2025-testo-firmato-pdf",
-                  "title": "contratto-uneba-2025-testo-firmato-pdf",
+                  "document_id": "uneba-uneba-src-19110c35",
+                  "title": "uneba-uneba: contratto-uneba-2025-testo-firmato.pdf",
                   "kind": "associazione",
-                  "url": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf"
+                  "url": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf",
+                  "sha256": "19110c35ba9e9ce8c4993b36336ff34949da482728846d3351a9278f442a1727"
                 },
-                "section": "Tabella retributiva"
+                "page": "11",
+                "section": "no text layer",
+                "quote": "5° S  1.397,99 €  1.445,61 €  1.469,42 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-uneba-uneba-double-read"
               }
             }
           },
@@ -700,21 +799,28 @@
             "valid_until": null,
             "value": "1469.42",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "contratto-uneba-2025-testo-firmato-pdf",
-                  "title": "contratto-uneba-2025-testo-firmato-pdf",
+                  "document_id": "uneba-uneba-src-19110c35",
+                  "title": "uneba-uneba: contratto-uneba-2025-testo-firmato.pdf",
                   "kind": "associazione",
-                  "url": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf"
+                  "url": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf",
+                  "sha256": "19110c35ba9e9ce8c4993b36336ff34949da482728846d3351a9278f442a1727"
                 },
-                "section": "Tabella retributiva"
+                "page": "11",
+                "section": "no text layer",
+                "quote": "5° S  1.397,99 €  1.445,61 €  1.469,42 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-03-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-uneba-uneba-double-read"
               }
             }
           }
@@ -751,21 +857,28 @@
             "valid_until": "2025-07-01",
             "value": "1421.27",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "contratto-uneba-2025-testo-firmato-pdf",
-                  "title": "contratto-uneba-2025-testo-firmato-pdf",
+                  "document_id": "uneba-uneba-src-19110c35",
+                  "title": "uneba-uneba: contratto-uneba-2025-testo-firmato.pdf",
                   "kind": "associazione",
-                  "url": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf"
+                  "url": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf",
+                  "sha256": "19110c35ba9e9ce8c4993b36336ff34949da482728846d3351a9278f442a1727"
                 },
-                "section": "Tabella retributiva"
+                "page": "11",
+                "section": "no text layer",
+                "quote": "4°  1.421,27 €  1.469,69 €  1.493,89 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2024-10-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-uneba-uneba-double-read"
               }
             }
           },
@@ -774,21 +887,28 @@
             "valid_until": "2026-03-01",
             "value": "1469.69",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "contratto-uneba-2025-testo-firmato-pdf",
-                  "title": "contratto-uneba-2025-testo-firmato-pdf",
+                  "document_id": "uneba-uneba-src-19110c35",
+                  "title": "uneba-uneba: contratto-uneba-2025-testo-firmato.pdf",
                   "kind": "associazione",
-                  "url": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf"
+                  "url": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf",
+                  "sha256": "19110c35ba9e9ce8c4993b36336ff34949da482728846d3351a9278f442a1727"
                 },
-                "section": "Tabella retributiva"
+                "page": "11",
+                "section": "no text layer",
+                "quote": "4°  1.421,27 €  1.469,69 €  1.493,89 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-uneba-uneba-double-read"
               }
             }
           },
@@ -797,21 +917,28 @@
             "valid_until": null,
             "value": "1493.89",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "contratto-uneba-2025-testo-firmato-pdf",
-                  "title": "contratto-uneba-2025-testo-firmato-pdf",
+                  "document_id": "uneba-uneba-src-19110c35",
+                  "title": "uneba-uneba: contratto-uneba-2025-testo-firmato.pdf",
                   "kind": "associazione",
-                  "url": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf"
+                  "url": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf",
+                  "sha256": "19110c35ba9e9ce8c4993b36336ff34949da482728846d3351a9278f442a1727"
                 },
-                "section": "Tabella retributiva"
+                "page": "11",
+                "section": "no text layer",
+                "quote": "4°  1.421,27 €  1.469,69 €  1.493,89 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-03-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-uneba-uneba-double-read"
               }
             }
           }
@@ -848,21 +975,28 @@
             "valid_until": "2025-07-01",
             "value": "1467.86",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "contratto-uneba-2025-testo-firmato-pdf",
-                  "title": "contratto-uneba-2025-testo-firmato-pdf",
+                  "document_id": "uneba-uneba-src-19110c35",
+                  "title": "uneba-uneba: contratto-uneba-2025-testo-firmato.pdf",
                   "kind": "associazione",
-                  "url": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf"
+                  "url": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf",
+                  "sha256": "19110c35ba9e9ce8c4993b36336ff34949da482728846d3351a9278f442a1727"
                 },
-                "section": "Tabella retributiva"
+                "page": "11",
+                "section": "no text layer",
+                "quote": "4° S  1.467,86 €  1.517,86 €  1.542,86 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2024-10-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-uneba-uneba-double-read"
               }
             }
           },
@@ -871,21 +1005,28 @@
             "valid_until": "2026-03-01",
             "value": "1517.86",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "contratto-uneba-2025-testo-firmato-pdf",
-                  "title": "contratto-uneba-2025-testo-firmato-pdf",
+                  "document_id": "uneba-uneba-src-19110c35",
+                  "title": "uneba-uneba: contratto-uneba-2025-testo-firmato.pdf",
                   "kind": "associazione",
-                  "url": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf"
+                  "url": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf",
+                  "sha256": "19110c35ba9e9ce8c4993b36336ff34949da482728846d3351a9278f442a1727"
                 },
-                "section": "Tabella retributiva"
+                "page": "11",
+                "section": "no text layer",
+                "quote": "4° S  1.467,86 €  1.517,86 €  1.542,86 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-uneba-uneba-double-read"
               }
             }
           },
@@ -894,21 +1035,28 @@
             "valid_until": null,
             "value": "1542.86",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "contratto-uneba-2025-testo-firmato-pdf",
-                  "title": "contratto-uneba-2025-testo-firmato-pdf",
+                  "document_id": "uneba-uneba-src-19110c35",
+                  "title": "uneba-uneba: contratto-uneba-2025-testo-firmato.pdf",
                   "kind": "associazione",
-                  "url": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf"
+                  "url": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf",
+                  "sha256": "19110c35ba9e9ce8c4993b36336ff34949da482728846d3351a9278f442a1727"
                 },
-                "section": "Tabella retributiva"
+                "page": "11",
+                "section": "no text layer",
+                "quote": "4° S  1.467,86 €  1.517,86 €  1.542,86 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-03-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-uneba-uneba-double-read"
               }
             }
           }
@@ -945,21 +1093,28 @@
             "valid_until": "2025-07-01",
             "value": "1549.40",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "contratto-uneba-2025-testo-firmato-pdf",
-                  "title": "contratto-uneba-2025-testo-firmato-pdf",
+                  "document_id": "uneba-uneba-src-19110c35",
+                  "title": "uneba-uneba: contratto-uneba-2025-testo-firmato.pdf",
                   "kind": "associazione",
-                  "url": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf"
+                  "url": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf",
+                  "sha256": "19110c35ba9e9ce8c4993b36336ff34949da482728846d3351a9278f442a1727"
                 },
-                "section": "Tabella retributiva"
+                "page": "11",
+                "section": "no text layer",
+                "quote": "3°  1.549,40 €  1.602,17 €  1.628,56 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2024-10-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-uneba-uneba-double-read"
               }
             }
           },
@@ -968,21 +1123,28 @@
             "valid_until": "2026-03-01",
             "value": "1602.17",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "contratto-uneba-2025-testo-firmato-pdf",
-                  "title": "contratto-uneba-2025-testo-firmato-pdf",
+                  "document_id": "uneba-uneba-src-19110c35",
+                  "title": "uneba-uneba: contratto-uneba-2025-testo-firmato.pdf",
                   "kind": "associazione",
-                  "url": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf"
+                  "url": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf",
+                  "sha256": "19110c35ba9e9ce8c4993b36336ff34949da482728846d3351a9278f442a1727"
                 },
-                "section": "Tabella retributiva"
+                "page": "11",
+                "section": "no text layer",
+                "quote": "3°  1.549,40 €  1.602,17 €  1.628,56 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-uneba-uneba-double-read"
               }
             }
           },
@@ -991,21 +1153,28 @@
             "valid_until": null,
             "value": "1628.56",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "contratto-uneba-2025-testo-firmato-pdf",
-                  "title": "contratto-uneba-2025-testo-firmato-pdf",
+                  "document_id": "uneba-uneba-src-19110c35",
+                  "title": "uneba-uneba: contratto-uneba-2025-testo-firmato.pdf",
                   "kind": "associazione",
-                  "url": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf"
+                  "url": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf",
+                  "sha256": "19110c35ba9e9ce8c4993b36336ff34949da482728846d3351a9278f442a1727"
                 },
-                "section": "Tabella retributiva"
+                "page": "11",
+                "section": "no text layer",
+                "quote": "3°  1.549,40 €  1.602,17 €  1.628,56 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-03-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-uneba-uneba-double-read"
               }
             }
           }
@@ -1042,21 +1211,28 @@
             "valid_until": "2025-07-01",
             "value": "1607.64",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "contratto-uneba-2025-testo-firmato-pdf",
-                  "title": "contratto-uneba-2025-testo-firmato-pdf",
+                  "document_id": "uneba-uneba-src-19110c35",
+                  "title": "uneba-uneba: contratto-uneba-2025-testo-firmato.pdf",
                   "kind": "associazione",
-                  "url": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf"
+                  "url": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf",
+                  "sha256": "19110c35ba9e9ce8c4993b36336ff34949da482728846d3351a9278f442a1727"
                 },
-                "section": "Tabella retributiva"
+                "page": "11",
+                "section": "no text layer",
+                "quote": "3° S  1.607,64 €  1.662,40 €  1.689,78 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2024-10-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-uneba-uneba-double-read"
               }
             }
           },
@@ -1065,21 +1241,28 @@
             "valid_until": "2026-03-01",
             "value": "1662.40",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "contratto-uneba-2025-testo-firmato-pdf",
-                  "title": "contratto-uneba-2025-testo-firmato-pdf",
+                  "document_id": "uneba-uneba-src-19110c35",
+                  "title": "uneba-uneba: contratto-uneba-2025-testo-firmato.pdf",
                   "kind": "associazione",
-                  "url": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf"
+                  "url": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf",
+                  "sha256": "19110c35ba9e9ce8c4993b36336ff34949da482728846d3351a9278f442a1727"
                 },
-                "section": "Tabella retributiva"
+                "page": "11",
+                "section": "no text layer",
+                "quote": "3° S  1.607,64 €  1.662,40 €  1.689,78 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-uneba-uneba-double-read"
               }
             }
           },
@@ -1088,21 +1271,28 @@
             "valid_until": null,
             "value": "1689.78",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "contratto-uneba-2025-testo-firmato-pdf",
-                  "title": "contratto-uneba-2025-testo-firmato-pdf",
+                  "document_id": "uneba-uneba-src-19110c35",
+                  "title": "uneba-uneba: contratto-uneba-2025-testo-firmato.pdf",
                   "kind": "associazione",
-                  "url": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf"
+                  "url": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf",
+                  "sha256": "19110c35ba9e9ce8c4993b36336ff34949da482728846d3351a9278f442a1727"
                 },
-                "section": "Tabella retributiva"
+                "page": "11",
+                "section": "no text layer",
+                "quote": "3° S  1.607,64 €  1.662,40 €  1.689,78 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-03-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-uneba-uneba-double-read"
               }
             }
           }
@@ -1139,21 +1329,28 @@
             "valid_until": "2025-07-01",
             "value": "1735.81",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "contratto-uneba-2025-testo-firmato-pdf",
-                  "title": "contratto-uneba-2025-testo-firmato-pdf",
+                  "document_id": "uneba-uneba-src-19110c35",
+                  "title": "uneba-uneba: contratto-uneba-2025-testo-firmato.pdf",
                   "kind": "associazione",
-                  "url": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf"
+                  "url": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf",
+                  "sha256": "19110c35ba9e9ce8c4993b36336ff34949da482728846d3351a9278f442a1727"
                 },
-                "section": "Tabella retributiva"
+                "page": "11",
+                "section": "no text layer",
+                "quote": "2°  1.735,81 €  1.794,93 €  1.824,49 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2024-10-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-uneba-uneba-double-read"
               }
             }
           },
@@ -1162,21 +1359,28 @@
             "valid_until": "2026-03-01",
             "value": "1794.93",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "contratto-uneba-2025-testo-firmato-pdf",
-                  "title": "contratto-uneba-2025-testo-firmato-pdf",
+                  "document_id": "uneba-uneba-src-19110c35",
+                  "title": "uneba-uneba: contratto-uneba-2025-testo-firmato.pdf",
                   "kind": "associazione",
-                  "url": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf"
+                  "url": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf",
+                  "sha256": "19110c35ba9e9ce8c4993b36336ff34949da482728846d3351a9278f442a1727"
                 },
-                "section": "Tabella retributiva"
+                "page": "11",
+                "section": "no text layer",
+                "quote": "2°  1.735,81 €  1.794,93 €  1.824,49 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-uneba-uneba-double-read"
               }
             }
           },
@@ -1185,21 +1389,28 @@
             "valid_until": null,
             "value": "1824.49",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "contratto-uneba-2025-testo-firmato-pdf",
-                  "title": "contratto-uneba-2025-testo-firmato-pdf",
+                  "document_id": "uneba-uneba-src-19110c35",
+                  "title": "uneba-uneba: contratto-uneba-2025-testo-firmato.pdf",
                   "kind": "associazione",
-                  "url": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf"
+                  "url": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf",
+                  "sha256": "19110c35ba9e9ce8c4993b36336ff34949da482728846d3351a9278f442a1727"
                 },
-                "section": "Tabella retributiva"
+                "page": "11",
+                "section": "no text layer",
+                "quote": "2°  1.735,81 €  1.794,93 €  1.824,49 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-03-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-uneba-uneba-double-read"
               }
             }
           }
@@ -1236,21 +1447,28 @@
             "valid_until": "2025-07-01",
             "value": "1840.65",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "contratto-uneba-2025-testo-firmato-pdf",
-                  "title": "contratto-uneba-2025-testo-firmato-pdf",
+                  "document_id": "uneba-uneba-src-19110c35",
+                  "title": "uneba-uneba: contratto-uneba-2025-testo-firmato.pdf",
                   "kind": "associazione",
-                  "url": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf"
+                  "url": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf",
+                  "sha256": "19110c35ba9e9ce8c4993b36336ff34949da482728846d3351a9278f442a1727"
                 },
-                "section": "Tabella retributiva"
+                "page": "11",
+                "section": "no text layer",
+                "quote": "1°  1.840,65 €  1.903,35 €  1.934,70 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2024-10-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-uneba-uneba-double-read"
               }
             }
           },
@@ -1259,21 +1477,28 @@
             "valid_until": "2026-03-01",
             "value": "1903.35",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "contratto-uneba-2025-testo-firmato-pdf",
-                  "title": "contratto-uneba-2025-testo-firmato-pdf",
+                  "document_id": "uneba-uneba-src-19110c35",
+                  "title": "uneba-uneba: contratto-uneba-2025-testo-firmato.pdf",
                   "kind": "associazione",
-                  "url": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf"
+                  "url": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf",
+                  "sha256": "19110c35ba9e9ce8c4993b36336ff34949da482728846d3351a9278f442a1727"
                 },
-                "section": "Tabella retributiva"
+                "page": "11",
+                "section": "no text layer",
+                "quote": "1°  1.840,65 €  1.903,35 €  1.934,70 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-uneba-uneba-double-read"
               }
             }
           },
@@ -1282,21 +1507,28 @@
             "valid_until": null,
             "value": "1934.70",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "contratto-uneba-2025-testo-firmato-pdf",
-                  "title": "contratto-uneba-2025-testo-firmato-pdf",
+                  "document_id": "uneba-uneba-src-19110c35",
+                  "title": "uneba-uneba: contratto-uneba-2025-testo-firmato.pdf",
                   "kind": "associazione",
-                  "url": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf"
+                  "url": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf",
+                  "sha256": "19110c35ba9e9ce8c4993b36336ff34949da482728846d3351a9278f442a1727"
                 },
-                "section": "Tabella retributiva"
+                "page": "11",
+                "section": "no text layer",
+                "quote": "1°  1.840,65 €  1.903,35 €  1.934,70 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-03-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-uneba-uneba-double-read"
               }
             }
           }
@@ -1333,21 +1565,28 @@
             "valid_until": "2025-07-01",
             "value": "1957.15",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "contratto-uneba-2025-testo-firmato-pdf",
-                  "title": "contratto-uneba-2025-testo-firmato-pdf",
+                  "document_id": "uneba-uneba-src-19110c35",
+                  "title": "uneba-uneba: contratto-uneba-2025-testo-firmato.pdf",
                   "kind": "associazione",
-                  "url": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf"
+                  "url": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf",
+                  "sha256": "19110c35ba9e9ce8c4993b36336ff34949da482728846d3351a9278f442a1727"
                 },
-                "section": "Tabella retributiva"
+                "page": "11",
+                "section": "no text layer",
+                "quote": "Quadro  1.957,15 €  2.023,82 €  2.057,15 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2024-10-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-uneba-uneba-double-read"
               }
             }
           },
@@ -1356,21 +1595,28 @@
             "valid_until": "2026-03-01",
             "value": "2023.82",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "contratto-uneba-2025-testo-firmato-pdf",
-                  "title": "contratto-uneba-2025-testo-firmato-pdf",
+                  "document_id": "uneba-uneba-src-19110c35",
+                  "title": "uneba-uneba: contratto-uneba-2025-testo-firmato.pdf",
                   "kind": "associazione",
-                  "url": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf"
+                  "url": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf",
+                  "sha256": "19110c35ba9e9ce8c4993b36336ff34949da482728846d3351a9278f442a1727"
                 },
-                "section": "Tabella retributiva"
+                "page": "11",
+                "section": "no text layer",
+                "quote": "Quadro  1.957,15 €  2.023,82 €  2.057,15 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-uneba-uneba-double-read"
               }
             }
           },
@@ -1379,21 +1625,28 @@
             "valid_until": null,
             "value": "2057.15",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "contratto-uneba-2025-testo-firmato-pdf",
-                  "title": "contratto-uneba-2025-testo-firmato-pdf",
+                  "document_id": "uneba-uneba-src-19110c35",
+                  "title": "uneba-uneba: contratto-uneba-2025-testo-firmato.pdf",
                   "kind": "associazione",
-                  "url": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf"
+                  "url": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf",
+                  "sha256": "19110c35ba9e9ce8c4993b36336ff34949da482728846d3351a9278f442a1727"
                 },
-                "section": "Tabella retributiva"
+                "page": "11",
+                "section": "no text layer",
+                "quote": "Quadro  1.957,15 €  2.023,82 €  2.057,15 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-03-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-uneba-uneba-double-read"
               }
             }
           }
@@ -1408,7 +1661,32 @@
               {
                 "valid_from": "2024-10-01",
                 "valid_until": null,
-                "value": "100.00"
+                "value": "100.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "uneba-uneba-src-19110c35",
+                      "title": "uneba-uneba: contratto-uneba-2025-testo-firmato.pdf",
+                      "kind": "associazione",
+                      "url": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf",
+                      "sha256": "19110c35ba9e9ce8c4993b36336ff34949da482728846d3351a9278f442a1727"
+                    },
+                    "page": "12",
+                    "section": "no text layer",
+                    "quote": "Alla categoria Quadri verrà corrisposta mensilmente, per 14 mensilità, una indennità di funzioni pari a €. 100,00 mensili lorde, valide ad ogni effetto di legge e di contratto."
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "effective_from": "2024-10-01",
+                    "verified_by": "gpt-6-sol",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-gpt-uneba-uneba-double-read"
+                  }
+                }
               }
             ]
           },
@@ -1563,7 +1841,7 @@
     "effective_until": null,
     "source": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf",
     "verification_status": "unverified",
-    "source_hash": "3533f560d2d441de04dac1caaeba06d98fb46f43606d77e4432407856b9bd60d",
+    "source_hash": "ece7cbc117a025ea495e20678b2ca172ef975a464716a7eb77b8eff693966249",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

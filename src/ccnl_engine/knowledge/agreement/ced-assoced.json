@@ -227,21 +227,28 @@
             "valid_until": "2026-06-01",
             "value": "1392.83",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
-                  "title": "stesura-ccnl-ced-09-marzo-2022-pdf",
+                  "document_id": "ced-assoced-tables-e197c24e",
+                  "title": "ced-assoced: tabelle retributive (2025-searchable.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf"
+                  "url": "https://www.ccnlced.it/ccnl-ced-ict-professioni-digitali-stp/ccnlced-ict-professioni-digitali-stp/accordo-ccnlced-versione-con-indice-e-testo-ricercabile-del-28-luglio-2025.pdf",
+                  "sha256": "e197c24e9028d8f0924893d9bab708107b1ffb015d963ee06c8c2ddbe87a772e"
                 },
-                "section": "Tabella retributiva"
+                "page": "28",
+                "section": "Art. 172, Tabella A – PAGA BASE CONTRATTUALE LORDA",
+                "quote": "VI           € 1.392,83           € 1.426,80           € 1.460,77           € 1.494,74           € 135,89"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2025-09-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-ced-assoced-tables"
               }
             }
           },
@@ -250,21 +257,28 @@
             "valid_until": "2027-03-01",
             "value": "1426.80",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
-                  "title": "stesura-ccnl-ced-09-marzo-2022-pdf",
+                  "document_id": "ced-assoced-tables-e197c24e",
+                  "title": "ced-assoced: tabelle retributive (2025-searchable.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf"
+                  "url": "https://www.ccnlced.it/ccnl-ced-ict-professioni-digitali-stp/ccnlced-ict-professioni-digitali-stp/accordo-ccnlced-versione-con-indice-e-testo-ricercabile-del-28-luglio-2025.pdf",
+                  "sha256": "e197c24e9028d8f0924893d9bab708107b1ffb015d963ee06c8c2ddbe87a772e"
                 },
-                "section": "Tabella retributiva"
+                "page": "28",
+                "section": "Art. 172, Tabella A – PAGA BASE CONTRATTUALE LORDA",
+                "quote": "VI           € 1.392,83           € 1.426,80           € 1.460,77           € 1.494,74           € 135,89"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2026-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-ced-assoced-tables"
               }
             }
           },
@@ -273,21 +287,28 @@
             "valid_until": "2028-01-01",
             "value": "1460.77",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
-                  "title": "stesura-ccnl-ced-09-marzo-2022-pdf",
+                  "document_id": "ced-assoced-tables-e197c24e",
+                  "title": "ced-assoced: tabelle retributive (2025-searchable.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf"
+                  "url": "https://www.ccnlced.it/ccnl-ced-ict-professioni-digitali-stp/ccnlced-ict-professioni-digitali-stp/accordo-ccnlced-versione-con-indice-e-testo-ricercabile-del-28-luglio-2025.pdf",
+                  "sha256": "e197c24e9028d8f0924893d9bab708107b1ffb015d963ee06c8c2ddbe87a772e"
                 },
-                "section": "Tabella retributiva"
+                "page": "28",
+                "section": "Art. 172, Tabella A – PAGA BASE CONTRATTUALE LORDA",
+                "quote": "VI           € 1.392,83           € 1.426,80           € 1.460,77           € 1.494,74           € 135,89"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2027-03-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-ced-assoced-tables"
               }
             }
           },
@@ -296,21 +317,28 @@
             "valid_until": null,
             "value": "1494.74",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
-                  "title": "stesura-ccnl-ced-09-marzo-2022-pdf",
+                  "document_id": "ced-assoced-tables-e197c24e",
+                  "title": "ced-assoced: tabelle retributive (2025-searchable.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf"
+                  "url": "https://www.ccnlced.it/ccnl-ced-ict-professioni-digitali-stp/ccnlced-ict-professioni-digitali-stp/accordo-ccnlced-versione-con-indice-e-testo-ricercabile-del-28-luglio-2025.pdf",
+                  "sha256": "e197c24e9028d8f0924893d9bab708107b1ffb015d963ee06c8c2ddbe87a772e"
                 },
-                "section": "Tabella retributiva"
+                "page": "28",
+                "section": "Art. 172, Tabella A – PAGA BASE CONTRATTUALE LORDA",
+                "quote": "VI           € 1.392,83           € 1.426,80           € 1.460,77           € 1.494,74           € 135,89"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-ced-assoced-tables"
               }
             }
           }
@@ -348,21 +376,28 @@
             "valid_until": "2026-06-01",
             "value": "1649.30",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
-                  "title": "stesura-ccnl-ced-09-marzo-2022-pdf",
+                  "document_id": "ced-assoced-tables-e197c24e",
+                  "title": "ced-assoced: tabelle retributive (2025-searchable.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf"
+                  "url": "https://www.ccnlced.it/ccnl-ced-ict-professioni-digitali-stp/ccnlced-ict-professioni-digitali-stp/accordo-ccnlced-versione-con-indice-e-testo-ricercabile-del-28-luglio-2025.pdf",
+                  "sha256": "e197c24e9028d8f0924893d9bab708107b1ffb015d963ee06c8c2ddbe87a772e"
                 },
-                "section": "Tabella retributiva"
+                "page": "28",
+                "section": "Art. 172, Tabella A – PAGA BASE CONTRATTUALE LORDA",
+                "quote": "V            € 1.649,30           € 1.689,53           € 1.729,75           € 1.769,98           € 160,91"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2025-09-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-ced-assoced-tables"
               }
             }
           },
@@ -371,21 +406,28 @@
             "valid_until": "2027-03-01",
             "value": "1689.53",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
-                  "title": "stesura-ccnl-ced-09-marzo-2022-pdf",
+                  "document_id": "ced-assoced-tables-e197c24e",
+                  "title": "ced-assoced: tabelle retributive (2025-searchable.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf"
+                  "url": "https://www.ccnlced.it/ccnl-ced-ict-professioni-digitali-stp/ccnlced-ict-professioni-digitali-stp/accordo-ccnlced-versione-con-indice-e-testo-ricercabile-del-28-luglio-2025.pdf",
+                  "sha256": "e197c24e9028d8f0924893d9bab708107b1ffb015d963ee06c8c2ddbe87a772e"
                 },
-                "section": "Tabella retributiva"
+                "page": "28",
+                "section": "Art. 172, Tabella A – PAGA BASE CONTRATTUALE LORDA",
+                "quote": "V            € 1.649,30           € 1.689,53           € 1.729,75           € 1.769,98           € 160,91"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2026-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-ced-assoced-tables"
               }
             }
           },
@@ -394,21 +436,28 @@
             "valid_until": "2028-01-01",
             "value": "1729.75",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
-                  "title": "stesura-ccnl-ced-09-marzo-2022-pdf",
+                  "document_id": "ced-assoced-tables-e197c24e",
+                  "title": "ced-assoced: tabelle retributive (2025-searchable.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf"
+                  "url": "https://www.ccnlced.it/ccnl-ced-ict-professioni-digitali-stp/ccnlced-ict-professioni-digitali-stp/accordo-ccnlced-versione-con-indice-e-testo-ricercabile-del-28-luglio-2025.pdf",
+                  "sha256": "e197c24e9028d8f0924893d9bab708107b1ffb015d963ee06c8c2ddbe87a772e"
                 },
-                "section": "Tabella retributiva"
+                "page": "28",
+                "section": "Art. 172, Tabella A – PAGA BASE CONTRATTUALE LORDA",
+                "quote": "V            € 1.649,30           € 1.689,53           € 1.729,75           € 1.769,98           € 160,91"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2027-03-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-ced-assoced-tables"
               }
             }
           },
@@ -417,21 +466,28 @@
             "valid_until": null,
             "value": "1769.98",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
-                  "title": "stesura-ccnl-ced-09-marzo-2022-pdf",
+                  "document_id": "ced-assoced-tables-e197c24e",
+                  "title": "ced-assoced: tabelle retributive (2025-searchable.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf"
+                  "url": "https://www.ccnlced.it/ccnl-ced-ict-professioni-digitali-stp/ccnlced-ict-professioni-digitali-stp/accordo-ccnlced-versione-con-indice-e-testo-ricercabile-del-28-luglio-2025.pdf",
+                  "sha256": "e197c24e9028d8f0924893d9bab708107b1ffb015d963ee06c8c2ddbe87a772e"
                 },
-                "section": "Tabella retributiva"
+                "page": "28",
+                "section": "Art. 172, Tabella A – PAGA BASE CONTRATTUALE LORDA",
+                "quote": "V            € 1.649,30           € 1.689,53           € 1.729,75           € 1.769,98           € 160,91"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-ced-assoced-tables"
               }
             }
           }
@@ -469,21 +525,28 @@
             "valid_until": "2026-06-01",
             "value": "1732.26",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
-                  "title": "stesura-ccnl-ced-09-marzo-2022-pdf",
+                  "document_id": "ced-assoced-tables-e197c24e",
+                  "title": "ced-assoced: tabelle retributive (2025-searchable.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf"
+                  "url": "https://www.ccnlced.it/ccnl-ced-ict-professioni-digitali-stp/ccnlced-ict-professioni-digitali-stp/accordo-ccnlced-versione-con-indice-e-testo-ricercabile-del-28-luglio-2025.pdf",
+                  "sha256": "e197c24e9028d8f0924893d9bab708107b1ffb015d963ee06c8c2ddbe87a772e"
                 },
-                "section": "Tabella retributiva"
+                "page": "28",
+                "section": "Art. 172, Tabella A – PAGA BASE CONTRATTUALE LORDA",
+                "quote": "IV           € 1.732,26           € 1.774,51           € 1.816,76           € 1.859,01           € 169,00"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2025-09-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-ced-assoced-tables"
               }
             }
           },
@@ -492,21 +555,28 @@
             "valid_until": "2027-03-01",
             "value": "1774.51",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
-                  "title": "stesura-ccnl-ced-09-marzo-2022-pdf",
+                  "document_id": "ced-assoced-tables-e197c24e",
+                  "title": "ced-assoced: tabelle retributive (2025-searchable.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf"
+                  "url": "https://www.ccnlced.it/ccnl-ced-ict-professioni-digitali-stp/ccnlced-ict-professioni-digitali-stp/accordo-ccnlced-versione-con-indice-e-testo-ricercabile-del-28-luglio-2025.pdf",
+                  "sha256": "e197c24e9028d8f0924893d9bab708107b1ffb015d963ee06c8c2ddbe87a772e"
                 },
-                "section": "Tabella retributiva"
+                "page": "28",
+                "section": "Art. 172, Tabella A – PAGA BASE CONTRATTUALE LORDA",
+                "quote": "IV           € 1.732,26           € 1.774,51           € 1.816,76           € 1.859,01           € 169,00"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2026-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-ced-assoced-tables"
               }
             }
           },
@@ -515,21 +585,28 @@
             "valid_until": "2028-01-01",
             "value": "1816.76",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
-                  "title": "stesura-ccnl-ced-09-marzo-2022-pdf",
+                  "document_id": "ced-assoced-tables-e197c24e",
+                  "title": "ced-assoced: tabelle retributive (2025-searchable.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf"
+                  "url": "https://www.ccnlced.it/ccnl-ced-ict-professioni-digitali-stp/ccnlced-ict-professioni-digitali-stp/accordo-ccnlced-versione-con-indice-e-testo-ricercabile-del-28-luglio-2025.pdf",
+                  "sha256": "e197c24e9028d8f0924893d9bab708107b1ffb015d963ee06c8c2ddbe87a772e"
                 },
-                "section": "Tabella retributiva"
+                "page": "28",
+                "section": "Art. 172, Tabella A – PAGA BASE CONTRATTUALE LORDA",
+                "quote": "IV           € 1.732,26           € 1.774,51           € 1.816,76           € 1.859,01           € 169,00"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2027-03-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-ced-assoced-tables"
               }
             }
           },
@@ -538,21 +615,28 @@
             "valid_until": null,
             "value": "1859.01",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
-                  "title": "stesura-ccnl-ced-09-marzo-2022-pdf",
+                  "document_id": "ced-assoced-tables-e197c24e",
+                  "title": "ced-assoced: tabelle retributive (2025-searchable.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf"
+                  "url": "https://www.ccnlced.it/ccnl-ced-ict-professioni-digitali-stp/ccnlced-ict-professioni-digitali-stp/accordo-ccnlced-versione-con-indice-e-testo-ricercabile-del-28-luglio-2025.pdf",
+                  "sha256": "e197c24e9028d8f0924893d9bab708107b1ffb015d963ee06c8c2ddbe87a772e"
                 },
-                "section": "Tabella retributiva"
+                "page": "28",
+                "section": "Art. 172, Tabella A – PAGA BASE CONTRATTUALE LORDA",
+                "quote": "IV           € 1.732,26           € 1.774,51           € 1.816,76           € 1.859,01           € 169,00"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-ced-assoced-tables"
               }
             }
           }
@@ -590,21 +674,28 @@
             "valid_until": "2026-06-01",
             "value": "1861.71",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
-                  "title": "stesura-ccnl-ced-09-marzo-2022-pdf",
+                  "document_id": "ced-assoced-tables-e197c24e",
+                  "title": "ced-assoced: tabelle retributive (2025-searchable.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf"
+                  "url": "https://www.ccnlced.it/ccnl-ced-ict-professioni-digitali-stp/ccnlced-ict-professioni-digitali-stp/accordo-ccnlced-versione-con-indice-e-testo-ricercabile-del-28-luglio-2025.pdf",
+                  "sha256": "e197c24e9028d8f0924893d9bab708107b1ffb015d963ee06c8c2ddbe87a772e"
                 },
-                "section": "Tabella retributiva"
+                "page": "28",
+                "section": "Art. 172, Tabella A – PAGA BASE CONTRATTUALE LORDA",
+                "quote": "III          € 1.861,71           € 1.907,12           € 1.952,52           € 1.997,93           € 181,63"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2025-09-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-ced-assoced-tables"
               }
             }
           },
@@ -613,21 +704,28 @@
             "valid_until": "2027-03-01",
             "value": "1907.12",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
-                  "title": "stesura-ccnl-ced-09-marzo-2022-pdf",
+                  "document_id": "ced-assoced-tables-e197c24e",
+                  "title": "ced-assoced: tabelle retributive (2025-searchable.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf"
+                  "url": "https://www.ccnlced.it/ccnl-ced-ict-professioni-digitali-stp/ccnlced-ict-professioni-digitali-stp/accordo-ccnlced-versione-con-indice-e-testo-ricercabile-del-28-luglio-2025.pdf",
+                  "sha256": "e197c24e9028d8f0924893d9bab708107b1ffb015d963ee06c8c2ddbe87a772e"
                 },
-                "section": "Tabella retributiva"
+                "page": "28",
+                "section": "Art. 172, Tabella A – PAGA BASE CONTRATTUALE LORDA",
+                "quote": "III          € 1.861,71           € 1.907,12           € 1.952,52           € 1.997,93           € 181,63"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2026-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-ced-assoced-tables"
               }
             }
           },
@@ -636,21 +734,28 @@
             "valid_until": "2028-01-01",
             "value": "1952.52",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
-                  "title": "stesura-ccnl-ced-09-marzo-2022-pdf",
+                  "document_id": "ced-assoced-tables-e197c24e",
+                  "title": "ced-assoced: tabelle retributive (2025-searchable.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf"
+                  "url": "https://www.ccnlced.it/ccnl-ced-ict-professioni-digitali-stp/ccnlced-ict-professioni-digitali-stp/accordo-ccnlced-versione-con-indice-e-testo-ricercabile-del-28-luglio-2025.pdf",
+                  "sha256": "e197c24e9028d8f0924893d9bab708107b1ffb015d963ee06c8c2ddbe87a772e"
                 },
-                "section": "Tabella retributiva"
+                "page": "28",
+                "section": "Art. 172, Tabella A – PAGA BASE CONTRATTUALE LORDA",
+                "quote": "III          € 1.861,71           € 1.907,12           € 1.952,52           € 1.997,93           € 181,63"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2027-03-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-ced-assoced-tables"
               }
             }
           },
@@ -659,21 +764,28 @@
             "valid_until": null,
             "value": "1997.93",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
-                  "title": "stesura-ccnl-ced-09-marzo-2022-pdf",
+                  "document_id": "ced-assoced-tables-e197c24e",
+                  "title": "ced-assoced: tabelle retributive (2025-searchable.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf"
+                  "url": "https://www.ccnlced.it/ccnl-ced-ict-professioni-digitali-stp/ccnlced-ict-professioni-digitali-stp/accordo-ccnlced-versione-con-indice-e-testo-ricercabile-del-28-luglio-2025.pdf",
+                  "sha256": "e197c24e9028d8f0924893d9bab708107b1ffb015d963ee06c8c2ddbe87a772e"
                 },
-                "section": "Tabella retributiva"
+                "page": "28",
+                "section": "Art. 172, Tabella A – PAGA BASE CONTRATTUALE LORDA",
+                "quote": "III          € 1.861,71           € 1.907,12           € 1.952,52           € 1.997,93           € 181,63"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-ced-assoced-tables"
               }
             }
           }
@@ -711,21 +823,28 @@
             "valid_until": "2026-06-01",
             "value": "1988.66",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
-                  "title": "stesura-ccnl-ced-09-marzo-2022-pdf",
+                  "document_id": "ced-assoced-tables-e197c24e",
+                  "title": "ced-assoced: tabelle retributive (2025-searchable.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf"
+                  "url": "https://www.ccnlced.it/ccnl-ced-ict-professioni-digitali-stp/ccnlced-ict-professioni-digitali-stp/accordo-ccnlced-versione-con-indice-e-testo-ricercabile-del-28-luglio-2025.pdf",
+                  "sha256": "e197c24e9028d8f0924893d9bab708107b1ffb015d963ee06c8c2ddbe87a772e"
                 },
-                "section": "Tabella retributiva"
+                "page": "28",
+                "section": "Art. 172, Tabella A – PAGA BASE CONTRATTUALE LORDA",
+                "quote": "IIIS         € 1.988,66           € 2.037,17           € 2.085,67           € 2.134,17           € 194,02"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2025-09-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-ced-assoced-tables"
               }
             }
           },
@@ -734,21 +853,28 @@
             "valid_until": "2027-03-01",
             "value": "2037.17",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
-                  "title": "stesura-ccnl-ced-09-marzo-2022-pdf",
+                  "document_id": "ced-assoced-tables-e197c24e",
+                  "title": "ced-assoced: tabelle retributive (2025-searchable.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf"
+                  "url": "https://www.ccnlced.it/ccnl-ced-ict-professioni-digitali-stp/ccnlced-ict-professioni-digitali-stp/accordo-ccnlced-versione-con-indice-e-testo-ricercabile-del-28-luglio-2025.pdf",
+                  "sha256": "e197c24e9028d8f0924893d9bab708107b1ffb015d963ee06c8c2ddbe87a772e"
                 },
-                "section": "Tabella retributiva"
+                "page": "28",
+                "section": "Art. 172, Tabella A – PAGA BASE CONTRATTUALE LORDA",
+                "quote": "IIIS         € 1.988,66           € 2.037,17           € 2.085,67           € 2.134,17           € 194,02"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2026-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-ced-assoced-tables"
               }
             }
           },
@@ -757,21 +883,28 @@
             "valid_until": "2028-01-01",
             "value": "2085.67",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
-                  "title": "stesura-ccnl-ced-09-marzo-2022-pdf",
+                  "document_id": "ced-assoced-tables-e197c24e",
+                  "title": "ced-assoced: tabelle retributive (2025-searchable.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf"
+                  "url": "https://www.ccnlced.it/ccnl-ced-ict-professioni-digitali-stp/ccnlced-ict-professioni-digitali-stp/accordo-ccnlced-versione-con-indice-e-testo-ricercabile-del-28-luglio-2025.pdf",
+                  "sha256": "e197c24e9028d8f0924893d9bab708107b1ffb015d963ee06c8c2ddbe87a772e"
                 },
-                "section": "Tabella retributiva"
+                "page": "28",
+                "section": "Art. 172, Tabella A – PAGA BASE CONTRATTUALE LORDA",
+                "quote": "IIIS         € 1.988,66           € 2.037,17           € 2.085,67           € 2.134,17           € 194,02"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2027-03-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-ced-assoced-tables"
               }
             }
           },
@@ -780,21 +913,28 @@
             "valid_until": null,
             "value": "2134.17",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
-                  "title": "stesura-ccnl-ced-09-marzo-2022-pdf",
+                  "document_id": "ced-assoced-tables-e197c24e",
+                  "title": "ced-assoced: tabelle retributive (2025-searchable.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf"
+                  "url": "https://www.ccnlced.it/ccnl-ced-ict-professioni-digitali-stp/ccnlced-ict-professioni-digitali-stp/accordo-ccnlced-versione-con-indice-e-testo-ricercabile-del-28-luglio-2025.pdf",
+                  "sha256": "e197c24e9028d8f0924893d9bab708107b1ffb015d963ee06c8c2ddbe87a772e"
                 },
-                "section": "Tabella retributiva"
+                "page": "28",
+                "section": "Art. 172, Tabella A – PAGA BASE CONTRATTUALE LORDA",
+                "quote": "IIIS         € 1.988,66           € 2.037,17           € 2.085,67           € 2.134,17           € 194,02"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-ced-assoced-tables"
               }
             }
           }
@@ -832,21 +972,28 @@
             "valid_until": "2026-06-01",
             "value": "2074.17",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
-                  "title": "stesura-ccnl-ced-09-marzo-2022-pdf",
+                  "document_id": "ced-assoced-tables-e197c24e",
+                  "title": "ced-assoced: tabelle retributive (2025-searchable.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf"
+                  "url": "https://www.ccnlced.it/ccnl-ced-ict-professioni-digitali-stp/ccnlced-ict-professioni-digitali-stp/accordo-ccnlced-versione-con-indice-e-testo-ricercabile-del-28-luglio-2025.pdf",
+                  "sha256": "e197c24e9028d8f0924893d9bab708107b1ffb015d963ee06c8c2ddbe87a772e"
                 },
-                "section": "Tabella retributiva"
+                "page": "28",
+                "section": "Art. 172, Tabella A – PAGA BASE CONTRATTUALE LORDA",
+                "quote": "II           € 2.074,17           € 2.124,76           € 2.175,35           € 2.225,94           € 202,36"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2025-09-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-ced-assoced-tables"
               }
             }
           },
@@ -855,21 +1002,28 @@
             "valid_until": "2027-03-01",
             "value": "2124.76",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
-                  "title": "stesura-ccnl-ced-09-marzo-2022-pdf",
+                  "document_id": "ced-assoced-tables-e197c24e",
+                  "title": "ced-assoced: tabelle retributive (2025-searchable.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf"
+                  "url": "https://www.ccnlced.it/ccnl-ced-ict-professioni-digitali-stp/ccnlced-ict-professioni-digitali-stp/accordo-ccnlced-versione-con-indice-e-testo-ricercabile-del-28-luglio-2025.pdf",
+                  "sha256": "e197c24e9028d8f0924893d9bab708107b1ffb015d963ee06c8c2ddbe87a772e"
                 },
-                "section": "Tabella retributiva"
+                "page": "28",
+                "section": "Art. 172, Tabella A – PAGA BASE CONTRATTUALE LORDA",
+                "quote": "II           € 2.074,17           € 2.124,76           € 2.175,35           € 2.225,94           € 202,36"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2026-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-ced-assoced-tables"
               }
             }
           },
@@ -878,21 +1032,28 @@
             "valid_until": "2028-01-01",
             "value": "2175.35",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
-                  "title": "stesura-ccnl-ced-09-marzo-2022-pdf",
+                  "document_id": "ced-assoced-tables-e197c24e",
+                  "title": "ced-assoced: tabelle retributive (2025-searchable.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf"
+                  "url": "https://www.ccnlced.it/ccnl-ced-ict-professioni-digitali-stp/ccnlced-ict-professioni-digitali-stp/accordo-ccnlced-versione-con-indice-e-testo-ricercabile-del-28-luglio-2025.pdf",
+                  "sha256": "e197c24e9028d8f0924893d9bab708107b1ffb015d963ee06c8c2ddbe87a772e"
                 },
-                "section": "Tabella retributiva"
+                "page": "28",
+                "section": "Art. 172, Tabella A – PAGA BASE CONTRATTUALE LORDA",
+                "quote": "II           € 2.074,17           € 2.124,76           € 2.175,35           € 2.225,94           € 202,36"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2027-03-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-ced-assoced-tables"
               }
             }
           },
@@ -901,21 +1062,28 @@
             "valid_until": null,
             "value": "2225.94",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
-                  "title": "stesura-ccnl-ced-09-marzo-2022-pdf",
+                  "document_id": "ced-assoced-tables-e197c24e",
+                  "title": "ced-assoced: tabelle retributive (2025-searchable.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf"
+                  "url": "https://www.ccnlced.it/ccnl-ced-ict-professioni-digitali-stp/ccnlced-ict-professioni-digitali-stp/accordo-ccnlced-versione-con-indice-e-testo-ricercabile-del-28-luglio-2025.pdf",
+                  "sha256": "e197c24e9028d8f0924893d9bab708107b1ffb015d963ee06c8c2ddbe87a772e"
                 },
-                "section": "Tabella retributiva"
+                "page": "28",
+                "section": "Art. 172, Tabella A – PAGA BASE CONTRATTUALE LORDA",
+                "quote": "II           € 2.074,17           € 2.124,76           € 2.175,35           € 2.225,94           € 202,36"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-ced-assoced-tables"
               }
             }
           }
@@ -953,21 +1121,28 @@
             "valid_until": "2026-06-01",
             "value": "2316.80",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
-                  "title": "stesura-ccnl-ced-09-marzo-2022-pdf",
+                  "document_id": "ced-assoced-tables-e197c24e",
+                  "title": "ced-assoced: tabelle retributive (2025-searchable.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf"
+                  "url": "https://www.ccnlced.it/ccnl-ced-ict-professioni-digitali-stp/ccnlced-ict-professioni-digitali-stp/accordo-ccnlced-versione-con-indice-e-testo-ricercabile-del-28-luglio-2025.pdf",
+                  "sha256": "e197c24e9028d8f0924893d9bab708107b1ffb015d963ee06c8c2ddbe87a772e"
                 },
-                "section": "Tabella retributiva"
+                "page": "28",
+                "section": "Art. 172, Tabella A – PAGA BASE CONTRATTUALE LORDA",
+                "quote": "I            € 2.316,80           € 2.373,31           € 2.429,81           € 2.486,32           € 226,03"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2025-09-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-ced-assoced-tables"
               }
             }
           },
@@ -976,21 +1151,28 @@
             "valid_until": "2027-03-01",
             "value": "2373.31",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
-                  "title": "stesura-ccnl-ced-09-marzo-2022-pdf",
+                  "document_id": "ced-assoced-tables-e197c24e",
+                  "title": "ced-assoced: tabelle retributive (2025-searchable.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf"
+                  "url": "https://www.ccnlced.it/ccnl-ced-ict-professioni-digitali-stp/ccnlced-ict-professioni-digitali-stp/accordo-ccnlced-versione-con-indice-e-testo-ricercabile-del-28-luglio-2025.pdf",
+                  "sha256": "e197c24e9028d8f0924893d9bab708107b1ffb015d963ee06c8c2ddbe87a772e"
                 },
-                "section": "Tabella retributiva"
+                "page": "28",
+                "section": "Art. 172, Tabella A – PAGA BASE CONTRATTUALE LORDA",
+                "quote": "I            € 2.316,80           € 2.373,31           € 2.429,81           € 2.486,32           € 226,03"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2026-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-ced-assoced-tables"
               }
             }
           },
@@ -999,21 +1181,28 @@
             "valid_until": "2028-01-01",
             "value": "2429.81",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
-                  "title": "stesura-ccnl-ced-09-marzo-2022-pdf",
+                  "document_id": "ced-assoced-tables-e197c24e",
+                  "title": "ced-assoced: tabelle retributive (2025-searchable.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf"
+                  "url": "https://www.ccnlced.it/ccnl-ced-ict-professioni-digitali-stp/ccnlced-ict-professioni-digitali-stp/accordo-ccnlced-versione-con-indice-e-testo-ricercabile-del-28-luglio-2025.pdf",
+                  "sha256": "e197c24e9028d8f0924893d9bab708107b1ffb015d963ee06c8c2ddbe87a772e"
                 },
-                "section": "Tabella retributiva"
+                "page": "28",
+                "section": "Art. 172, Tabella A – PAGA BASE CONTRATTUALE LORDA",
+                "quote": "I            € 2.316,80           € 2.373,31           € 2.429,81           € 2.486,32           € 226,03"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2027-03-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-ced-assoced-tables"
               }
             }
           },
@@ -1022,21 +1211,28 @@
             "valid_until": null,
             "value": "2486.32",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
-                  "title": "stesura-ccnl-ced-09-marzo-2022-pdf",
+                  "document_id": "ced-assoced-tables-e197c24e",
+                  "title": "ced-assoced: tabelle retributive (2025-searchable.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf"
+                  "url": "https://www.ccnlced.it/ccnl-ced-ict-professioni-digitali-stp/ccnlced-ict-professioni-digitali-stp/accordo-ccnlced-versione-con-indice-e-testo-ricercabile-del-28-luglio-2025.pdf",
+                  "sha256": "e197c24e9028d8f0924893d9bab708107b1ffb015d963ee06c8c2ddbe87a772e"
                 },
-                "section": "Tabella retributiva"
+                "page": "28",
+                "section": "Art. 172, Tabella A – PAGA BASE CONTRATTUALE LORDA",
+                "quote": "I            € 2.316,80           € 2.373,31           € 2.429,81           € 2.486,32           € 226,03"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-ced-assoced-tables"
               }
             }
           }
@@ -1074,21 +1270,28 @@
             "valid_until": "2026-06-01",
             "value": "2698.46",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
-                  "title": "stesura-ccnl-ced-09-marzo-2022-pdf",
+                  "document_id": "ced-assoced-tables-e197c24e",
+                  "title": "ced-assoced: tabelle retributive (2025-searchable.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf"
+                  "url": "https://www.ccnlced.it/ccnl-ced-ict-professioni-digitali-stp/ccnlced-ict-professioni-digitali-stp/accordo-ccnlced-versione-con-indice-e-testo-ricercabile-del-28-luglio-2025.pdf",
+                  "sha256": "e197c24e9028d8f0924893d9bab708107b1ffb015d963ee06c8c2ddbe87a772e"
                 },
-                "section": "Tabella retributiva"
+                "page": "28",
+                "section": "Art. 172, Tabella A – PAGA BASE CONTRATTUALE LORDA",
+                "quote": "Quadri       € 2.698,46           € 2.764,28           € 2.830,09           € 2.895,91           € 263,26"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2025-09-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-ced-assoced-tables"
               }
             }
           },
@@ -1097,21 +1300,28 @@
             "valid_until": "2027-03-01",
             "value": "2764.28",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
-                  "title": "stesura-ccnl-ced-09-marzo-2022-pdf",
+                  "document_id": "ced-assoced-tables-e197c24e",
+                  "title": "ced-assoced: tabelle retributive (2025-searchable.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf"
+                  "url": "https://www.ccnlced.it/ccnl-ced-ict-professioni-digitali-stp/ccnlced-ict-professioni-digitali-stp/accordo-ccnlced-versione-con-indice-e-testo-ricercabile-del-28-luglio-2025.pdf",
+                  "sha256": "e197c24e9028d8f0924893d9bab708107b1ffb015d963ee06c8c2ddbe87a772e"
                 },
-                "section": "Tabella retributiva"
+                "page": "28",
+                "section": "Art. 172, Tabella A – PAGA BASE CONTRATTUALE LORDA",
+                "quote": "Quadri       € 2.698,46           € 2.764,28           € 2.830,09           € 2.895,91           € 263,26"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2026-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-ced-assoced-tables"
               }
             }
           },
@@ -1120,21 +1330,28 @@
             "valid_until": "2028-01-01",
             "value": "2830.09",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
-                  "title": "stesura-ccnl-ced-09-marzo-2022-pdf",
+                  "document_id": "ced-assoced-tables-e197c24e",
+                  "title": "ced-assoced: tabelle retributive (2025-searchable.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf"
+                  "url": "https://www.ccnlced.it/ccnl-ced-ict-professioni-digitali-stp/ccnlced-ict-professioni-digitali-stp/accordo-ccnlced-versione-con-indice-e-testo-ricercabile-del-28-luglio-2025.pdf",
+                  "sha256": "e197c24e9028d8f0924893d9bab708107b1ffb015d963ee06c8c2ddbe87a772e"
                 },
-                "section": "Tabella retributiva"
+                "page": "28",
+                "section": "Art. 172, Tabella A – PAGA BASE CONTRATTUALE LORDA",
+                "quote": "Quadri       € 2.698,46           € 2.764,28           € 2.830,09           € 2.895,91           € 263,26"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2027-03-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-ced-assoced-tables"
               }
             }
           },
@@ -1143,21 +1360,28 @@
             "valid_until": null,
             "value": "2895.91",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
-                  "title": "stesura-ccnl-ced-09-marzo-2022-pdf",
+                  "document_id": "ced-assoced-tables-e197c24e",
+                  "title": "ced-assoced: tabelle retributive (2025-searchable.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf"
+                  "url": "https://www.ccnlced.it/ccnl-ced-ict-professioni-digitali-stp/ccnlced-ict-professioni-digitali-stp/accordo-ccnlced-versione-con-indice-e-testo-ricercabile-del-28-luglio-2025.pdf",
+                  "sha256": "e197c24e9028d8f0924893d9bab708107b1ffb015d963ee06c8c2ddbe87a772e"
                 },
-                "section": "Tabella retributiva"
+                "page": "28",
+                "section": "Art. 172, Tabella A – PAGA BASE CONTRATTUALE LORDA",
+                "quote": "Quadri       € 2.698,46           € 2.764,28           € 2.830,09           € 2.895,91           € 263,26"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-ced-assoced-tables"
               }
             }
           }
@@ -1172,17 +1396,92 @@
               {
                 "valid_from": "2025-09-01",
                 "valid_until": "2026-09-01",
-                "value": "250.00"
+                "value": "250.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "ced-assoced-tables-e197c24e",
+                      "title": "ced-assoced: tabelle retributive (2025-searchable.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.ccnlced.it/ccnl-ced-ict-professioni-digitali-stp/ccnlced-ict-professioni-digitali-stp/accordo-ccnlced-versione-con-indice-e-testo-ricercabile-del-28-luglio-2025.pdf",
+                      "sha256": "e197c24e9028d8f0924893d9bab708107b1ffb015d963ee06c8c2ddbe87a772e"
+                    },
+                    "page": "29",
+                    "section": "Art. 172, Indennità di funzione per i quadri (also Art. 11, p. 17)",
+                    "quote": "•   Quadri Euro 250,00 (duecentocinquanta/00 euro) lordi per 14 mensilità."
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2025-09-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-ced-assoced-tables"
+                  }
+                }
               },
               {
                 "valid_from": "2026-09-01",
                 "valid_until": "2027-09-01",
-                "value": "258.00"
+                "value": "258.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "ced-assoced-tables-e197c24e",
+                      "title": "ced-assoced: tabelle retributive (2025-searchable.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.ccnlced.it/ccnl-ced-ict-professioni-digitali-stp/ccnlced-ict-professioni-digitali-stp/accordo-ccnlced-versione-con-indice-e-testo-ricercabile-del-28-luglio-2025.pdf",
+                      "sha256": "e197c24e9028d8f0924893d9bab708107b1ffb015d963ee06c8c2ddbe87a772e"
+                    },
+                    "page": "29",
+                    "section": "Art. 172, Indennità di funzione per i quadri (also Art. 11, p. 17)",
+                    "quote": "•   Quadri Euro 258,00 (duecentocinquantotto/00 euro) lordi per 14 mensilità."
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2026-09-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-ced-assoced-tables"
+                  }
+                }
               },
               {
                 "valid_from": "2027-09-01",
                 "valid_until": null,
-                "value": "266.00"
+                "value": "266.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "ced-assoced-tables-e197c24e",
+                      "title": "ced-assoced: tabelle retributive (2025-searchable.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.ccnlced.it/ccnl-ced-ict-professioni-digitali-stp/ccnlced-ict-professioni-digitali-stp/accordo-ccnlced-versione-con-indice-e-testo-ricercabile-del-28-luglio-2025.pdf",
+                      "sha256": "e197c24e9028d8f0924893d9bab708107b1ffb015d963ee06c8c2ddbe87a772e"
+                    },
+                    "page": "29",
+                    "section": "Art. 172, Indennità di funzione per i quadri (also Art. 11, p. 17)",
+                    "quote": "•   Quadri Euro 266,00 (duecentosessantasei/00 euro) lordi per 14 mensilità."
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2027-09-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-ced-assoced-tables"
+                  }
+                }
               }
             ]
           },
@@ -1237,21 +1536,28 @@
             "valid_until": "2026-06-01",
             "value": "2969.23",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
-                  "title": "stesura-ccnl-ced-09-marzo-2022-pdf",
+                  "document_id": "ced-assoced-tables-e197c24e",
+                  "title": "ced-assoced: tabelle retributive (2025-searchable.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf"
+                  "url": "https://www.ccnlced.it/ccnl-ced-ict-professioni-digitali-stp/ccnlced-ict-professioni-digitali-stp/accordo-ccnlced-versione-con-indice-e-testo-ricercabile-del-28-luglio-2025.pdf",
+                  "sha256": "e197c24e9028d8f0924893d9bab708107b1ffb015d963ee06c8c2ddbe87a772e"
                 },
-                "section": "Tabella retributiva"
+                "page": "28",
+                "section": "Art. 172, Tabella A – PAGA BASE CONTRATTUALE LORDA",
+                "quote": "Quadri di € 2.969,23              € 3.041,65           € 3.114,07           € 3.186,49           € 289,68"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2025-09-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-ced-assoced-tables"
               }
             }
           },
@@ -1260,21 +1566,28 @@
             "valid_until": "2027-03-01",
             "value": "3041.65",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
-                  "title": "stesura-ccnl-ced-09-marzo-2022-pdf",
+                  "document_id": "ced-assoced-tables-e197c24e",
+                  "title": "ced-assoced: tabelle retributive (2025-searchable.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf"
+                  "url": "https://www.ccnlced.it/ccnl-ced-ict-professioni-digitali-stp/ccnlced-ict-professioni-digitali-stp/accordo-ccnlced-versione-con-indice-e-testo-ricercabile-del-28-luglio-2025.pdf",
+                  "sha256": "e197c24e9028d8f0924893d9bab708107b1ffb015d963ee06c8c2ddbe87a772e"
                 },
-                "section": "Tabella retributiva"
+                "page": "28",
+                "section": "Art. 172, Tabella A – PAGA BASE CONTRATTUALE LORDA",
+                "quote": "Quadri di € 2.969,23              € 3.041,65           € 3.114,07           € 3.186,49           € 289,68"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2026-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-ced-assoced-tables"
               }
             }
           },
@@ -1283,21 +1596,28 @@
             "valid_until": "2028-01-01",
             "value": "3114.07",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
-                  "title": "stesura-ccnl-ced-09-marzo-2022-pdf",
+                  "document_id": "ced-assoced-tables-e197c24e",
+                  "title": "ced-assoced: tabelle retributive (2025-searchable.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf"
+                  "url": "https://www.ccnlced.it/ccnl-ced-ict-professioni-digitali-stp/ccnlced-ict-professioni-digitali-stp/accordo-ccnlced-versione-con-indice-e-testo-ricercabile-del-28-luglio-2025.pdf",
+                  "sha256": "e197c24e9028d8f0924893d9bab708107b1ffb015d963ee06c8c2ddbe87a772e"
                 },
-                "section": "Tabella retributiva"
+                "page": "28",
+                "section": "Art. 172, Tabella A – PAGA BASE CONTRATTUALE LORDA",
+                "quote": "Quadri di € 2.969,23              € 3.041,65           € 3.114,07           € 3.186,49           € 289,68"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2027-03-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-ced-assoced-tables"
               }
             }
           },
@@ -1306,21 +1626,28 @@
             "valid_until": null,
             "value": "3186.49",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
-                  "title": "stesura-ccnl-ced-09-marzo-2022-pdf",
+                  "document_id": "ced-assoced-tables-e197c24e",
+                  "title": "ced-assoced: tabelle retributive (2025-searchable.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf"
+                  "url": "https://www.ccnlced.it/ccnl-ced-ict-professioni-digitali-stp/ccnlced-ict-professioni-digitali-stp/accordo-ccnlced-versione-con-indice-e-testo-ricercabile-del-28-luglio-2025.pdf",
+                  "sha256": "e197c24e9028d8f0924893d9bab708107b1ffb015d963ee06c8c2ddbe87a772e"
                 },
-                "section": "Tabella retributiva"
+                "page": "28",
+                "section": "Art. 172, Tabella A – PAGA BASE CONTRATTUALE LORDA",
+                "quote": "Quadri di € 2.969,23              € 3.041,65           € 3.114,07           € 3.186,49           € 289,68"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-ced-assoced-tables"
               }
             }
           }
@@ -1335,17 +1662,92 @@
               {
                 "valid_from": "2025-09-01",
                 "valid_until": "2026-09-01",
-                "value": "287.00"
+                "value": "287.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "ced-assoced-tables-e197c24e",
+                      "title": "ced-assoced: tabelle retributive (2025-searchable.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.ccnlced.it/ccnl-ced-ict-professioni-digitali-stp/ccnlced-ict-professioni-digitali-stp/accordo-ccnlced-versione-con-indice-e-testo-ricercabile-del-28-luglio-2025.pdf",
+                      "sha256": "e197c24e9028d8f0924893d9bab708107b1ffb015d963ee06c8c2ddbe87a772e"
+                    },
+                    "page": "29",
+                    "section": "Art. 172, Indennità di funzione per i quadri (also Art. 11, p. 17)",
+                    "quote": "•   Quadri di Direzione, Euro 287,00 (duecentottantasette/00 euro) lordi per 14 mensilità;"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2025-09-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-ced-assoced-tables"
+                  }
+                }
               },
               {
                 "valid_from": "2026-09-01",
                 "valid_until": "2027-09-01",
-                "value": "296.00"
+                "value": "296.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "ced-assoced-tables-e197c24e",
+                      "title": "ced-assoced: tabelle retributive (2025-searchable.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.ccnlced.it/ccnl-ced-ict-professioni-digitali-stp/ccnlced-ict-professioni-digitali-stp/accordo-ccnlced-versione-con-indice-e-testo-ricercabile-del-28-luglio-2025.pdf",
+                      "sha256": "e197c24e9028d8f0924893d9bab708107b1ffb015d963ee06c8c2ddbe87a772e"
+                    },
+                    "page": "29",
+                    "section": "Art. 172, Indennità di funzione per i quadri (also Art. 11, p. 17)",
+                    "quote": "•   Quadri di Direzione, Euro 296,00 (duecentonovantasei/00 euro) lordi per 14 mensilità;"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2026-09-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-ced-assoced-tables"
+                  }
+                }
               },
               {
                 "valid_from": "2027-09-01",
                 "valid_until": null,
-                "value": "306.00"
+                "value": "306.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "ced-assoced-tables-e197c24e",
+                      "title": "ced-assoced: tabelle retributive (2025-searchable.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.ccnlced.it/ccnl-ced-ict-professioni-digitali-stp/ccnlced-ict-professioni-digitali-stp/accordo-ccnlced-versione-con-indice-e-testo-ricercabile-del-28-luglio-2025.pdf",
+                      "sha256": "e197c24e9028d8f0924893d9bab708107b1ffb015d963ee06c8c2ddbe87a772e"
+                    },
+                    "page": "29",
+                    "section": "Art. 172, Indennità di funzione per i quadri (also Art. 11, p. 17)",
+                    "quote": "•   Quadri di Direzione, Euro 306,00 (trecentosei/00 euro) lordi per 14 mensilità;"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2027-09-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-ced-assoced-tables"
+                  }
+                }
               }
             ]
           },
@@ -1396,7 +1798,7 @@
     "effective_until": null,
     "source": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
     "verification_status": "unverified",
-    "source_hash": "a81d9dce282e5cb73b5ec422b11b090031edd1c9984a07cd1b41878e8f92cc5a",
+    "source_hash": "169c4317700124ddf5a6292366529d68996a99d42998f40ad7c76b8e3b7565ae",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1588,5 +1990,31 @@
       },
       "comporto_calendar_year": true
     }
+  },
+  "verification": {
+    "reviews": [
+      {
+        "id": "2026-11-08-ai-ced-assoced-tables",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The monthly values of the levels against the primary tables (text layer).",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.ccnlced.it/ccnl-ced-ict-professioni-digitali-stp/ccnlced-ict-professioni-digitali-stp/accordo-ccnlced-versione-con-indice-e-testo-ricercabile-del-28-luglio-2025.pdf",
+            "sha256": "e197c24e9028d8f0924893d9bab708107b1ffb015d963ee06c8c2ddbe87a772e"
+          }
+        ],
+        "findings": [
+          "42 values found verbatim on the cited pages and marked verified; 0 left as they were (derived or not on a text page)."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels.base_salary",
+          "levels.fixed_allowances"
+        ]
+      }
+    ]
   }
 }

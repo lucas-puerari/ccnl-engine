@@ -61,7 +61,7 @@ formulas or caller-declared amounts.
 
 | Capability | Description | Scope | Layer | Implementation | Applies when | Handler | Facts | Variants | Label | Rules (v / d / a / m) |
 |---|---|---|---|---|---|---|---|---|---|---|
-| `base_salary` | Paga base contrattuale | core | gross | native | always | pipeline | — | — | simplified | 3606 / 2988 / 205 / 28 |
+| `base_salary` | Paga base contrattuale | core | gross | native | always | pipeline | — | — | simplified | 3758 / 2836 / 205 / 28 |
 | `seniority` | Scatti di anzianità | core | gross | native | decided | decision | `employment.seniority` | — | simplified | 30 / 93 / 13 / 0 |
 | `worker_category` | Categoria lavoratore (dichiarata o fissata dal livello) | core | gross | native | decided | decision | `employment.category` | — | implemented | none bundled |
 | `inps_employee` | Contributi INPS a carico dipendente | core | net | native | always | pipeline | — | — | simplified | 25 / 24 / 45 / 0 |
@@ -158,7 +158,7 @@ never grow.
 | 17 | [CCNL Autoferrotranvieri e Internavigatori (Mobilita/TPL)](autoferrotranvieri-internavigatori.md) | ⚠️ | inps_employer, pension_fund_contribution | 0 / 139 / 1 / 0 |
 | 18 | [CCNL Autorimesse, Noleggio Automezzi e Parcheggi (ANIASA)](autorimesse-ic35.md) | ✅ | welfare | 0 / 95 / 1 / 1 |
 | 19 | [CCNL Autostrade e Trafori Concessionari](autostrade-trafori.md) | ✅ | — | 55 / 96 / 1 / 1 |
-| 20 | [CCNL CED, ICT, Professioni Digitali e STP (Assoced-UGL)](ced-assoced.md) | ⚠️ | base_salary, inps_employer, seniority | 0 / 44 / 1 / 1 |
+| 20 | [CCNL CED, ICT, Professioni Digitali e STP (Assoced-UGL)](ced-assoced.md) | ⚠️ | base_salary, inps_employer, seniority | 36 / 8 / 1 / 1 |
 | 21 | [CCNL Carta e Cartone — Aziende Industriali (Assocarta)](carta-cartone-assocarta.md) | ⚠️ | base_salary | 14 / 61 / 1 / 0 |
 | 22 | [CCNL Case di Cura Private - Personale Non Medico (AIOP/ARIS)](sanita-privata-aiop-aris.md) | ⚠️ | base_salary, overtime, seniority | 36 / 2 / 0 / 0 |
 | 23 | [CCNL Cemento, Calce e Gesso — Industria (Federbeton)](cemento-calce-gesso-industria.md) | ⚠️ | seniority | 45 / 36 / 1 / 0 |
@@ -194,7 +194,7 @@ never grow.
 | 53 | [CCNL Esercizi Cinematografici e Cinema-Teatrali (ANEC)](esercizi-cinematografici-anec.md) | ⚠️ | inps_employer, sickness | 61 / 9 / 1 / 0 |
 | 54 | [CCNL Fiori Freschi Recisi, Verde e Piante Ornamentali (ANCEF)](fiori-recisi-ancef.md) | ⚠️ | seniority | 1 / 38 / 1 / 0 |
 | 55 | [CCNL Formazione Professionale (CNOS-FAP/CIOFS-FP/FORMA/CNF)](formazione-professionale.md) | ✅ | — | 0 / 34 / 1 / 1 |
-| 56 | [CCNL Gas e Acqua — Utilitalia/Proxigas/Anfida/Assogas](gas-acqua-utilitalia.md) | ⚠️ | inps_employer | 10 / 53 / 1 / 0 |
+| 56 | [CCNL Gas e Acqua — Utilitalia/Proxigas/Anfida/Assogas](gas-acqua-utilitalia.md) | ⚠️ | inps_employer | 45 / 18 / 1 / 0 |
 | 57 | [CCNL Gomma e Plastica Industria (Federazione Gomma Plastica)](gomma-plastica-federazione-gomma-plastica.md) | ⚠️ | base_salary | 70 / 7 / 1 / 1 |
 | 58 | [CCNL Grafica e Editoria Industria (AIEG-Acigraf)](grafica-editoria-aieg.md) | ⚠️ | base_salary, seniority | 2 / 70 / 1 / 0 |
 | 59 | [CCNL Gruppo ANAS](anas.md) | ✅ | — | 1 / 42 / 1 / 0 |
@@ -206,8 +206,8 @@ never grow.
 | 65 | [CCNL Industrie Cineaudiovisive (ANICA)](cinema-audiovisivi-industria.md) | ⚠️ | bilateral_funds, inps_employer | 38 / 25 / 1 / 0 |
 | 66 | [CCNL Istituti e Imprese di Vigilanza Privata e Servizi Fiduciari — ASSIV/ANIVP/UNIV (GPG)](vigilanza-privata-assiv.md) | ⚠️ | inps_employer, seniority | 42 / 7 / 1 / 0 |
 | 67 | [CCNL Istituti e Imprese di Vigilanza Privata e Servizi Fiduciari — ASSIV/ANIVP/UNIV (Servizi fiduciari)](vigilanza-privata-assiv-sf.md) | ⚠️ | base_salary, seniority | 1 / 45 / 2 / 1 |
-| 68 | [CCNL Istituzioni Formative Private (Scuole Private Religiose) — AGIDAE](scuole-private-agidae.md) | ⚠️ | seniority | 1 / 43 / 1 / 0 |
-| 69 | [CCNL Istituzioni Socio-Assistenziali — UNEBA](uneba-uneba.md) | ⚠️ | base_salary, territorial_supplement | 1 / 41 / 1 / 0 |
+| 68 | [CCNL Istituzioni Formative Private (Scuole Private Religiose) — AGIDAE](scuole-private-agidae.md) | ⚠️ | seniority | 13 / 31 / 1 / 0 |
+| 69 | [CCNL Istituzioni Socio-Assistenziali — UNEBA](uneba-uneba.md) | ⚠️ | base_salary, territorial_supplement | 34 / 8 / 1 / 0 |
 | 70 | [CCNL Istituzioni e Servizi Socio-Assistenziali (ANASTE)](istituzioni-servizi-socio-assistenziali-anaste.md) | ⚠️ | base_salary, una_tantum | 37 / 31 / 1 / 0 |
 | 71 | [CCNL Lapidei — Industria (Confindustria Marmomacchine/ANEPLA)](lapidei-industria.md) | ⚠️ | absence, base_salary, inps_employer | 3 / 76 / 1 / 1 |
 | 72 | [CCNL Laterizi e Manufatti Cementizi - Industria](laterizi-industria-f021.md) | ⚠️ | base_salary, seniority | 1 / 98 / 1 / 0 |
@@ -237,7 +237,7 @@ never grow.
 | 96 | [CCNL Radiotelevisivo — Settore Televisivo Multimediale](radiotelevisive-televisivo.md) | ⚠️ | inps_employer, seniority | 28 / 0 / 11 / 0 |
 | 97 | [CCNL Recapito Corrispondenza (FISE-ARE)](recapito-corrispondenza-fise.md) | ✅ | — | 32 / 15 / 1 / 1 |
 | 98 | [CCNL Scuole Materne — FISM](scuole-materne-fism.md) | ⚠️ | base_salary, seniority, sickness | 41 / 7 / 1 / 0 |
-| 99 | [CCNL Scuole Private Laiche (ANINSEI-Assoscuola)](scuole-private-laiche-aninsei.md) | ⚠️ | seniority | 0 / 107 / 1 / 0 |
+| 99 | [CCNL Scuole Private Laiche (ANINSEI-Assoscuola)](scuole-private-laiche-aninsei.md) | ⚠️ | seniority | 36 / 71 / 1 / 0 |
 | 100 | [CCNL Servizi Postali in Appalto (FISE-ARE)](servizi-postali-appalto-fise.md) | ⚠️ | base_salary, seniority | 23 / 27 / 1 / 0 |
 | 101 | [CCNL Servizi di Pulizia e Servizi Integrati/Multiservizi (ANIP-Confindustria)](multiservizi-anip.md) | ⚠️ | base_salary | 90 / 63 / 0 / 0 |
 | 102 | [CCNL Sistemazioni Idraulico-Forestali e Idraulico-Agraria (Impiegati)](sistemazioni-idraulico-forestali-impiegati.md) | ⚠️ | base_salary, inps_employer | 22 / 6 / 2 / 0 |
