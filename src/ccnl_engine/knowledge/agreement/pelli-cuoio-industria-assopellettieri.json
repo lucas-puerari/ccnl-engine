@@ -217,21 +217,28 @@
             "valid_until": "2023-12-01",
             "value": "1277.56",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "20098-pdf",
-                  "title": "20098-pdf",
-                  "kind": "cnel",
-                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf"
+                  "document_id": "pelli-cuoio-industria-assopellettieri-tables-4e303eba",
+                  "title": "pelli-cuoio-industria-assopellettieri: tabelle retributive (20098.pdf)",
+                  "kind": "associazione",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf",
+                  "sha256": "4e303eba48192399bcecd05e5e0cdc675b61c3daff40ef71b0c1e377f98203f8"
                 },
-                "section": "Tabella retributiva"
+                "page": "25",
+                "section": "Articolo 32 - Minimi contrattuali - Retribuzione tabellare; PELLETTERIA, Minimi",
+                "quote": "1           1.277,56 €          1.311,66 €           1.345,76 €                1.379,86 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2023-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-pelli-cuoio-industria-assopellettieri-tables"
               }
             }
           },
@@ -240,21 +247,28 @@
             "valid_until": "2024-12-01",
             "value": "1311.66",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "20098-pdf",
-                  "title": "20098-pdf",
-                  "kind": "cnel",
-                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf"
+                  "document_id": "pelli-cuoio-industria-assopellettieri-tables-4e303eba",
+                  "title": "pelli-cuoio-industria-assopellettieri: tabelle retributive (20098.pdf)",
+                  "kind": "associazione",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf",
+                  "sha256": "4e303eba48192399bcecd05e5e0cdc675b61c3daff40ef71b0c1e377f98203f8"
                 },
-                "section": "Tabella retributiva"
+                "page": "25",
+                "section": "Articolo 32 - Minimi contrattuali - Retribuzione tabellare; PELLETTERIA, Minimi",
+                "quote": "1           1.277,56 €          1.311,66 €           1.345,76 €                1.379,86 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2023-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-pelli-cuoio-industria-assopellettieri-tables"
               }
             }
           },
@@ -263,21 +277,28 @@
             "valid_until": "2025-12-01",
             "value": "1345.76",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "20098-pdf",
-                  "title": "20098-pdf",
-                  "kind": "cnel",
-                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf"
+                  "document_id": "pelli-cuoio-industria-assopellettieri-tables-4e303eba",
+                  "title": "pelli-cuoio-industria-assopellettieri: tabelle retributive (20098.pdf)",
+                  "kind": "associazione",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf",
+                  "sha256": "4e303eba48192399bcecd05e5e0cdc675b61c3daff40ef71b0c1e377f98203f8"
                 },
-                "section": "Tabella retributiva"
+                "page": "25",
+                "section": "Articolo 32 - Minimi contrattuali - Retribuzione tabellare; PELLETTERIA, Minimi",
+                "quote": "1           1.277,56 €          1.311,66 €           1.345,76 €                1.379,86 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2024-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-pelli-cuoio-industria-assopellettieri-tables"
               }
             }
           },
@@ -286,21 +307,28 @@
             "valid_until": null,
             "value": "1379.86",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "20098-pdf",
-                  "title": "20098-pdf",
-                  "kind": "cnel",
-                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf"
+                  "document_id": "pelli-cuoio-industria-assopellettieri-tables-4e303eba",
+                  "title": "pelli-cuoio-industria-assopellettieri: tabelle retributive (20098.pdf)",
+                  "kind": "associazione",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf",
+                  "sha256": "4e303eba48192399bcecd05e5e0cdc675b61c3daff40ef71b0c1e377f98203f8"
                 },
-                "section": "Tabella retributiva"
+                "page": "25",
+                "section": "Articolo 32 - Minimi contrattuali - Retribuzione tabellare; PELLETTERIA, Minimi",
+                "quote": "1           1.277,56 €          1.311,66 €           1.345,76 €                1.379,86 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2025-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-pelli-cuoio-industria-assopellettieri-tables"
               }
             }
           }
@@ -337,21 +365,28 @@
             "valid_until": "2023-12-01",
             "value": "1643.87",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "20098-pdf",
-                  "title": "20098-pdf",
-                  "kind": "cnel",
-                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf"
+                  "document_id": "pelli-cuoio-industria-assopellettieri-tables-4e303eba",
+                  "title": "pelli-cuoio-industria-assopellettieri: tabelle retributive (20098.pdf)",
+                  "kind": "associazione",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf",
+                  "sha256": "4e303eba48192399bcecd05e5e0cdc675b61c3daff40ef71b0c1e377f98203f8"
                 },
-                "section": "Tabella retributiva"
+                "page": "25",
+                "section": "Articolo 32 - Minimi contrattuali - Retribuzione tabellare; PELLETTERIA, Minimi",
+                "quote": "2           1.643,87 €          1.700,58 €           1.757,29 €                1.814,00 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2023-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-pelli-cuoio-industria-assopellettieri-tables"
               }
             }
           },
@@ -360,21 +395,28 @@
             "valid_until": "2024-12-01",
             "value": "1700.58",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "20098-pdf",
-                  "title": "20098-pdf",
-                  "kind": "cnel",
-                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf"
+                  "document_id": "pelli-cuoio-industria-assopellettieri-tables-4e303eba",
+                  "title": "pelli-cuoio-industria-assopellettieri: tabelle retributive (20098.pdf)",
+                  "kind": "associazione",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf",
+                  "sha256": "4e303eba48192399bcecd05e5e0cdc675b61c3daff40ef71b0c1e377f98203f8"
                 },
-                "section": "Tabella retributiva"
+                "page": "25",
+                "section": "Articolo 32 - Minimi contrattuali - Retribuzione tabellare; PELLETTERIA, Minimi",
+                "quote": "2           1.643,87 €          1.700,58 €           1.757,29 €                1.814,00 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2023-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-pelli-cuoio-industria-assopellettieri-tables"
               }
             }
           },
@@ -383,21 +425,28 @@
             "valid_until": "2025-12-01",
             "value": "1757.29",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "20098-pdf",
-                  "title": "20098-pdf",
-                  "kind": "cnel",
-                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf"
+                  "document_id": "pelli-cuoio-industria-assopellettieri-tables-4e303eba",
+                  "title": "pelli-cuoio-industria-assopellettieri: tabelle retributive (20098.pdf)",
+                  "kind": "associazione",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf",
+                  "sha256": "4e303eba48192399bcecd05e5e0cdc675b61c3daff40ef71b0c1e377f98203f8"
                 },
-                "section": "Tabella retributiva"
+                "page": "25",
+                "section": "Articolo 32 - Minimi contrattuali - Retribuzione tabellare; PELLETTERIA, Minimi",
+                "quote": "2           1.643,87 €          1.700,58 €           1.757,29 €                1.814,00 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2024-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-pelli-cuoio-industria-assopellettieri-tables"
               }
             }
           },
@@ -406,21 +455,28 @@
             "valid_until": null,
             "value": "1814.00",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "20098-pdf",
-                  "title": "20098-pdf",
-                  "kind": "cnel",
-                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf"
+                  "document_id": "pelli-cuoio-industria-assopellettieri-tables-4e303eba",
+                  "title": "pelli-cuoio-industria-assopellettieri: tabelle retributive (20098.pdf)",
+                  "kind": "associazione",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf",
+                  "sha256": "4e303eba48192399bcecd05e5e0cdc675b61c3daff40ef71b0c1e377f98203f8"
                 },
-                "section": "Tabella retributiva"
+                "page": "25",
+                "section": "Articolo 32 - Minimi contrattuali - Retribuzione tabellare; PELLETTERIA, Minimi",
+                "quote": "2           1.643,87 €          1.700,58 €           1.757,29 €                1.814,00 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2025-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-pelli-cuoio-industria-assopellettieri-tables"
               }
             }
           }
@@ -457,21 +513,28 @@
             "valid_until": "2023-12-01",
             "value": "1731.70",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "20098-pdf",
-                  "title": "20098-pdf",
-                  "kind": "cnel",
-                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf"
+                  "document_id": "pelli-cuoio-industria-assopellettieri-tables-4e303eba",
+                  "title": "pelli-cuoio-industria-assopellettieri: tabelle retributive (20098.pdf)",
+                  "kind": "associazione",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf",
+                  "sha256": "4e303eba48192399bcecd05e5e0cdc675b61c3daff40ef71b0c1e377f98203f8"
                 },
-                "section": "Tabella retributiva"
+                "page": "25",
+                "section": "Articolo 32 - Minimi contrattuali - Retribuzione tabellare; PELLETTERIA, Minimi",
+                "quote": "3           1.731,70 €          1.791,70 €           1.851,70 €                1.911,70 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2023-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-pelli-cuoio-industria-assopellettieri-tables"
               }
             }
           },
@@ -480,21 +543,28 @@
             "valid_until": "2024-12-01",
             "value": "1791.70",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "20098-pdf",
-                  "title": "20098-pdf",
-                  "kind": "cnel",
-                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf"
+                  "document_id": "pelli-cuoio-industria-assopellettieri-tables-4e303eba",
+                  "title": "pelli-cuoio-industria-assopellettieri: tabelle retributive (20098.pdf)",
+                  "kind": "associazione",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf",
+                  "sha256": "4e303eba48192399bcecd05e5e0cdc675b61c3daff40ef71b0c1e377f98203f8"
                 },
-                "section": "Tabella retributiva"
+                "page": "25",
+                "section": "Articolo 32 - Minimi contrattuali - Retribuzione tabellare; PELLETTERIA, Minimi",
+                "quote": "3           1.731,70 €          1.791,70 €           1.851,70 €                1.911,70 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2023-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-pelli-cuoio-industria-assopellettieri-tables"
               }
             }
           },
@@ -503,21 +573,28 @@
             "valid_until": "2025-12-01",
             "value": "1851.70",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "20098-pdf",
-                  "title": "20098-pdf",
-                  "kind": "cnel",
-                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf"
+                  "document_id": "pelli-cuoio-industria-assopellettieri-tables-4e303eba",
+                  "title": "pelli-cuoio-industria-assopellettieri: tabelle retributive (20098.pdf)",
+                  "kind": "associazione",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf",
+                  "sha256": "4e303eba48192399bcecd05e5e0cdc675b61c3daff40ef71b0c1e377f98203f8"
                 },
-                "section": "Tabella retributiva"
+                "page": "25",
+                "section": "Articolo 32 - Minimi contrattuali - Retribuzione tabellare; PELLETTERIA, Minimi",
+                "quote": "3           1.731,70 €          1.791,70 €           1.851,70 €                1.911,70 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2024-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-pelli-cuoio-industria-assopellettieri-tables"
               }
             }
           },
@@ -526,21 +603,28 @@
             "valid_until": null,
             "value": "1911.70",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "20098-pdf",
-                  "title": "20098-pdf",
-                  "kind": "cnel",
-                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf"
+                  "document_id": "pelli-cuoio-industria-assopellettieri-tables-4e303eba",
+                  "title": "pelli-cuoio-industria-assopellettieri: tabelle retributive (20098.pdf)",
+                  "kind": "associazione",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf",
+                  "sha256": "4e303eba48192399bcecd05e5e0cdc675b61c3daff40ef71b0c1e377f98203f8"
                 },
-                "section": "Tabella retributiva"
+                "page": "25",
+                "section": "Articolo 32 - Minimi contrattuali - Retribuzione tabellare; PELLETTERIA, Minimi",
+                "quote": "3           1.731,70 €          1.791,70 €           1.851,70 €                1.911,70 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2025-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-pelli-cuoio-industria-assopellettieri-tables"
               }
             }
           }
@@ -577,21 +661,28 @@
             "valid_until": "2023-12-01",
             "value": "1810.42",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "20098-pdf",
-                  "title": "20098-pdf",
-                  "kind": "cnel",
-                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf"
+                  "document_id": "pelli-cuoio-industria-assopellettieri-tables-4e303eba",
+                  "title": "pelli-cuoio-industria-assopellettieri: tabelle retributive (20098.pdf)",
+                  "kind": "associazione",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf",
+                  "sha256": "4e303eba48192399bcecd05e5e0cdc675b61c3daff40ef71b0c1e377f98203f8"
                 },
-                "section": "Tabella retributiva"
+                "page": "25",
+                "section": "Articolo 32 - Minimi contrattuali - Retribuzione tabellare; PELLETTERIA, Minimi",
+                "quote": "4           1.810,42 €          1.873,70 €           1.936,98 €                2.000,26 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2023-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-pelli-cuoio-industria-assopellettieri-tables"
               }
             }
           },
@@ -600,21 +691,28 @@
             "valid_until": "2024-12-01",
             "value": "1873.70",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "20098-pdf",
-                  "title": "20098-pdf",
-                  "kind": "cnel",
-                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf"
+                  "document_id": "pelli-cuoio-industria-assopellettieri-tables-4e303eba",
+                  "title": "pelli-cuoio-industria-assopellettieri: tabelle retributive (20098.pdf)",
+                  "kind": "associazione",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf",
+                  "sha256": "4e303eba48192399bcecd05e5e0cdc675b61c3daff40ef71b0c1e377f98203f8"
                 },
-                "section": "Tabella retributiva"
+                "page": "25",
+                "section": "Articolo 32 - Minimi contrattuali - Retribuzione tabellare; PELLETTERIA, Minimi",
+                "quote": "4           1.810,42 €          1.873,70 €           1.936,98 €                2.000,26 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2023-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-pelli-cuoio-industria-assopellettieri-tables"
               }
             }
           },
@@ -623,21 +721,28 @@
             "valid_until": "2025-12-01",
             "value": "1936.98",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "20098-pdf",
-                  "title": "20098-pdf",
-                  "kind": "cnel",
-                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf"
+                  "document_id": "pelli-cuoio-industria-assopellettieri-tables-4e303eba",
+                  "title": "pelli-cuoio-industria-assopellettieri: tabelle retributive (20098.pdf)",
+                  "kind": "associazione",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf",
+                  "sha256": "4e303eba48192399bcecd05e5e0cdc675b61c3daff40ef71b0c1e377f98203f8"
                 },
-                "section": "Tabella retributiva"
+                "page": "25",
+                "section": "Articolo 32 - Minimi contrattuali - Retribuzione tabellare; PELLETTERIA, Minimi",
+                "quote": "4           1.810,42 €          1.873,70 €           1.936,98 €                2.000,26 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2024-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-pelli-cuoio-industria-assopellettieri-tables"
               }
             }
           },
@@ -646,21 +751,28 @@
             "valid_until": null,
             "value": "2000.26",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "20098-pdf",
-                  "title": "20098-pdf",
-                  "kind": "cnel",
-                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf"
+                  "document_id": "pelli-cuoio-industria-assopellettieri-tables-4e303eba",
+                  "title": "pelli-cuoio-industria-assopellettieri: tabelle retributive (20098.pdf)",
+                  "kind": "associazione",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf",
+                  "sha256": "4e303eba48192399bcecd05e5e0cdc675b61c3daff40ef71b0c1e377f98203f8"
                 },
-                "section": "Tabella retributiva"
+                "page": "25",
+                "section": "Articolo 32 - Minimi contrattuali - Retribuzione tabellare; PELLETTERIA, Minimi",
+                "quote": "4           1.810,42 €          1.873,70 €           1.936,98 €                2.000,26 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2025-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-pelli-cuoio-industria-assopellettieri-tables"
               }
             }
           }
@@ -697,21 +809,28 @@
             "valid_until": "2023-12-01",
             "value": "1852.54",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "20098-pdf",
-                  "title": "20098-pdf",
-                  "kind": "cnel",
-                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf"
+                  "document_id": "pelli-cuoio-industria-assopellettieri-tables-4e303eba",
+                  "title": "pelli-cuoio-industria-assopellettieri: tabelle retributive (20098.pdf)",
+                  "kind": "associazione",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf",
+                  "sha256": "4e303eba48192399bcecd05e5e0cdc675b61c3daff40ef71b0c1e377f98203f8"
                 },
-                "section": "Tabella retributiva"
+                "page": "25",
+                "section": "Articolo 32 - Minimi contrattuali - Retribuzione tabellare; PELLETTERIA, Minimi",
+                "quote": "4s          1.852,54 €          1.917,47 €           1.982,40 €                2.047,33 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2023-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-pelli-cuoio-industria-assopellettieri-tables"
               }
             }
           },
@@ -720,21 +839,28 @@
             "valid_until": "2024-12-01",
             "value": "1917.47",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "20098-pdf",
-                  "title": "20098-pdf",
-                  "kind": "cnel",
-                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf"
+                  "document_id": "pelli-cuoio-industria-assopellettieri-tables-4e303eba",
+                  "title": "pelli-cuoio-industria-assopellettieri: tabelle retributive (20098.pdf)",
+                  "kind": "associazione",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf",
+                  "sha256": "4e303eba48192399bcecd05e5e0cdc675b61c3daff40ef71b0c1e377f98203f8"
                 },
-                "section": "Tabella retributiva"
+                "page": "25",
+                "section": "Articolo 32 - Minimi contrattuali - Retribuzione tabellare; PELLETTERIA, Minimi",
+                "quote": "4s          1.852,54 €          1.917,47 €           1.982,40 €                2.047,33 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2023-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-pelli-cuoio-industria-assopellettieri-tables"
               }
             }
           },
@@ -743,21 +869,28 @@
             "valid_until": "2025-12-01",
             "value": "1982.40",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "20098-pdf",
-                  "title": "20098-pdf",
-                  "kind": "cnel",
-                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf"
+                  "document_id": "pelli-cuoio-industria-assopellettieri-tables-4e303eba",
+                  "title": "pelli-cuoio-industria-assopellettieri: tabelle retributive (20098.pdf)",
+                  "kind": "associazione",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf",
+                  "sha256": "4e303eba48192399bcecd05e5e0cdc675b61c3daff40ef71b0c1e377f98203f8"
                 },
-                "section": "Tabella retributiva"
+                "page": "25",
+                "section": "Articolo 32 - Minimi contrattuali - Retribuzione tabellare; PELLETTERIA, Minimi",
+                "quote": "4s          1.852,54 €          1.917,47 €           1.982,40 €                2.047,33 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2024-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-pelli-cuoio-industria-assopellettieri-tables"
               }
             }
           },
@@ -766,21 +899,28 @@
             "valid_until": null,
             "value": "2047.33",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "20098-pdf",
-                  "title": "20098-pdf",
-                  "kind": "cnel",
-                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf"
+                  "document_id": "pelli-cuoio-industria-assopellettieri-tables-4e303eba",
+                  "title": "pelli-cuoio-industria-assopellettieri: tabelle retributive (20098.pdf)",
+                  "kind": "associazione",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf",
+                  "sha256": "4e303eba48192399bcecd05e5e0cdc675b61c3daff40ef71b0c1e377f98203f8"
                 },
-                "section": "Tabella retributiva"
+                "page": "25",
+                "section": "Articolo 32 - Minimi contrattuali - Retribuzione tabellare; PELLETTERIA, Minimi",
+                "quote": "4s          1.852,54 €          1.917,47 €           1.982,40 €                2.047,33 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2025-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-pelli-cuoio-industria-assopellettieri-tables"
               }
             }
           }
@@ -817,21 +957,28 @@
             "valid_until": "2023-12-01",
             "value": "1977.01",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "20098-pdf",
-                  "title": "20098-pdf",
-                  "kind": "cnel",
-                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf"
+                  "document_id": "pelli-cuoio-industria-assopellettieri-tables-4e303eba",
+                  "title": "pelli-cuoio-industria-assopellettieri: tabelle retributive (20098.pdf)",
+                  "kind": "associazione",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf",
+                  "sha256": "4e303eba48192399bcecd05e5e0cdc675b61c3daff40ef71b0c1e377f98203f8"
                 },
-                "section": "Tabella retributiva"
+                "page": "25",
+                "section": "Articolo 32 - Minimi contrattuali - Retribuzione tabellare; PELLETTERIA, Minimi",
+                "quote": "5           1.977,01 €          2.046,42 €           2.115,83 €                2.185,24 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2023-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-pelli-cuoio-industria-assopellettieri-tables"
               }
             }
           },
@@ -840,21 +987,28 @@
             "valid_until": "2024-12-01",
             "value": "2046.42",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "20098-pdf",
-                  "title": "20098-pdf",
-                  "kind": "cnel",
-                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf"
+                  "document_id": "pelli-cuoio-industria-assopellettieri-tables-4e303eba",
+                  "title": "pelli-cuoio-industria-assopellettieri: tabelle retributive (20098.pdf)",
+                  "kind": "associazione",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf",
+                  "sha256": "4e303eba48192399bcecd05e5e0cdc675b61c3daff40ef71b0c1e377f98203f8"
                 },
-                "section": "Tabella retributiva"
+                "page": "25",
+                "section": "Articolo 32 - Minimi contrattuali - Retribuzione tabellare; PELLETTERIA, Minimi",
+                "quote": "5           1.977,01 €          2.046,42 €           2.115,83 €                2.185,24 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2023-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-pelli-cuoio-industria-assopellettieri-tables"
               }
             }
           },
@@ -863,21 +1017,28 @@
             "valid_until": "2025-12-01",
             "value": "2115.83",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "20098-pdf",
-                  "title": "20098-pdf",
-                  "kind": "cnel",
-                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf"
+                  "document_id": "pelli-cuoio-industria-assopellettieri-tables-4e303eba",
+                  "title": "pelli-cuoio-industria-assopellettieri: tabelle retributive (20098.pdf)",
+                  "kind": "associazione",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf",
+                  "sha256": "4e303eba48192399bcecd05e5e0cdc675b61c3daff40ef71b0c1e377f98203f8"
                 },
-                "section": "Tabella retributiva"
+                "page": "25",
+                "section": "Articolo 32 - Minimi contrattuali - Retribuzione tabellare; PELLETTERIA, Minimi",
+                "quote": "5           1.977,01 €          2.046,42 €           2.115,83 €                2.185,24 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2024-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-pelli-cuoio-industria-assopellettieri-tables"
               }
             }
           },
@@ -886,21 +1047,28 @@
             "valid_until": null,
             "value": "2185.24",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "20098-pdf",
-                  "title": "20098-pdf",
-                  "kind": "cnel",
-                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf"
+                  "document_id": "pelli-cuoio-industria-assopellettieri-tables-4e303eba",
+                  "title": "pelli-cuoio-industria-assopellettieri: tabelle retributive (20098.pdf)",
+                  "kind": "associazione",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf",
+                  "sha256": "4e303eba48192399bcecd05e5e0cdc675b61c3daff40ef71b0c1e377f98203f8"
                 },
-                "section": "Tabella retributiva"
+                "page": "25",
+                "section": "Articolo 32 - Minimi contrattuali - Retribuzione tabellare; PELLETTERIA, Minimi",
+                "quote": "5           1.977,01 €          2.046,42 €           2.115,83 €                2.185,24 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2025-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-pelli-cuoio-industria-assopellettieri-tables"
               }
             }
           }
@@ -937,21 +1105,28 @@
             "valid_until": "2023-12-01",
             "value": "2184.12",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "20098-pdf",
-                  "title": "20098-pdf",
-                  "kind": "cnel",
-                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf"
+                  "document_id": "pelli-cuoio-industria-assopellettieri-tables-4e303eba",
+                  "title": "pelli-cuoio-industria-assopellettieri: tabelle retributive (20098.pdf)",
+                  "kind": "associazione",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf",
+                  "sha256": "4e303eba48192399bcecd05e5e0cdc675b61c3daff40ef71b0c1e377f98203f8"
                 },
-                "section": "Tabella retributiva"
+                "page": "25",
+                "section": "Articolo 32 - Minimi contrattuali - Retribuzione tabellare; PELLETTERIA, Minimi",
+                "quote": "6           2.184,12 €          2.260,15 €           2.336,18 €                2.412,21 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2023-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-pelli-cuoio-industria-assopellettieri-tables"
               }
             }
           },
@@ -960,21 +1135,28 @@
             "valid_until": "2024-12-01",
             "value": "2260.15",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "20098-pdf",
-                  "title": "20098-pdf",
-                  "kind": "cnel",
-                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf"
+                  "document_id": "pelli-cuoio-industria-assopellettieri-tables-4e303eba",
+                  "title": "pelli-cuoio-industria-assopellettieri: tabelle retributive (20098.pdf)",
+                  "kind": "associazione",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf",
+                  "sha256": "4e303eba48192399bcecd05e5e0cdc675b61c3daff40ef71b0c1e377f98203f8"
                 },
-                "section": "Tabella retributiva"
+                "page": "25",
+                "section": "Articolo 32 - Minimi contrattuali - Retribuzione tabellare; PELLETTERIA, Minimi",
+                "quote": "6           2.184,12 €          2.260,15 €           2.336,18 €                2.412,21 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2023-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-pelli-cuoio-industria-assopellettieri-tables"
               }
             }
           },
@@ -983,21 +1165,28 @@
             "valid_until": "2025-12-01",
             "value": "2336.18",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "20098-pdf",
-                  "title": "20098-pdf",
-                  "kind": "cnel",
-                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf"
+                  "document_id": "pelli-cuoio-industria-assopellettieri-tables-4e303eba",
+                  "title": "pelli-cuoio-industria-assopellettieri: tabelle retributive (20098.pdf)",
+                  "kind": "associazione",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf",
+                  "sha256": "4e303eba48192399bcecd05e5e0cdc675b61c3daff40ef71b0c1e377f98203f8"
                 },
-                "section": "Tabella retributiva"
+                "page": "25",
+                "section": "Articolo 32 - Minimi contrattuali - Retribuzione tabellare; PELLETTERIA, Minimi",
+                "quote": "6           2.184,12 €          2.260,15 €           2.336,18 €                2.412,21 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2024-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-pelli-cuoio-industria-assopellettieri-tables"
               }
             }
           },
@@ -1006,21 +1195,28 @@
             "valid_until": null,
             "value": "2412.21",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "20098-pdf",
-                  "title": "20098-pdf",
-                  "kind": "cnel",
-                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf"
+                  "document_id": "pelli-cuoio-industria-assopellettieri-tables-4e303eba",
+                  "title": "pelli-cuoio-industria-assopellettieri: tabelle retributive (20098.pdf)",
+                  "kind": "associazione",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf",
+                  "sha256": "4e303eba48192399bcecd05e5e0cdc675b61c3daff40ef71b0c1e377f98203f8"
                 },
-                "section": "Tabella retributiva"
+                "page": "25",
+                "section": "Articolo 32 - Minimi contrattuali - Retribuzione tabellare; PELLETTERIA, Minimi",
+                "quote": "6           2.184,12 €          2.260,15 €           2.336,18 €                2.412,21 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2025-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-pelli-cuoio-industria-assopellettieri-tables"
               }
             }
           }
@@ -1195,7 +1391,7 @@
     "effective_until": null,
     "source": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf",
     "verification_status": "unverified",
-    "source_hash": "ccf325748dba204b3110773b6e8946856778cbb388faba40d60f333d4d0a83be",
+    "source_hash": "9a96f76ad9b0ab51cdc0ca7e9f7402a17d59b3d0503a7b3d7ea56f0eeec4f405",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },
@@ -1446,5 +1642,31 @@
         "note": "The pay of Art. 57 B and the 2023 renewal (signed 26.05.2023, which extends the comporto of serious illnesses) were not obtained; the 15 months of the serious illnesses on life-saving therapy are not modelled. The source cited before (CNEL 20098.pdf) is the UNILAVORO PMI / UNIPEL / FILP-CONFSAL CCNL, not this one."
       }
     }
+  },
+  "verification": {
+    "reviews": [
+      {
+        "id": "2026-11-08-ai-pelli-cuoio-industria-assopellettieri-tables",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The monthly values of the levels against the primary tables (text layer).",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf",
+            "sha256": "4e303eba48192399bcecd05e5e0cdc675b61c3daff40ef71b0c1e377f98203f8"
+          }
+        ],
+        "findings": [
+          "28 values found verbatim on the cited pages and marked verified; 0 left as they were (derived or not on a text page)."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels.base_salary",
+          "levels.fixed_allowances"
+        ]
+      }
+    ]
   }
 }

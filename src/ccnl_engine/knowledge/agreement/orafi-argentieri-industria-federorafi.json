@@ -157,6 +157,32 @@
           "Added the minimums of 01/10/2026, 01/06/2027 and 01/06/2028 for levels 2 to 7 (7Q as 7); each equals the minimum of June 2025 plus the increment of the table 'Incrementi mensili' on the same page (2ª: 1574,39 + 42,85 = 1617,24).",
           "Limitation renewal_2026_tables resolved."
         ]
+      },
+      {
+        "id": "2026-11-08-ai-orafi-argentieri-industria-federorafi-tables",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The monthly values of the levels against the primary tables (text layer).",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.fim-cisl.it/wp-content/uploads/2026/08/2022-CCNL-FEDERORAFI-Tabella-nuovi-minimi-tabellai.pdf",
+            "sha256": "1c3ffbfb65d0dacf91f0618571e63481c56e27275d6d538002769a7ed194d4c8"
+          },
+          {
+            "url": "https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-orafi-argentieri-18-5-2017.pdf",
+            "sha256": "093a8610fb069f16df77cee5fec9e858568f2f3776bcf14013eb4673869dc45b"
+          }
+        ],
+        "findings": [
+          "9 values found verbatim on the cited pages and marked verified; 21 left as they were (derived or not on a text page)."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels.base_salary",
+          "levels.fixed_allowances"
+        ]
       }
     ]
   },
@@ -357,21 +383,28 @@
             "valid_until": "2023-06-01",
             "value": "1363.86",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "20211223-ccnl-orafi-ipotesi-di-rinnovo-apprendistato-firmato-pdf",
-                  "title": "20211223-ccnl-orafi-ipotesi-di-rinnovo-apprendistato-firmato-pdf",
+                  "document_id": "orafi-argentieri-industria-federorafi-tables-1c3ffbfb",
+                  "title": "orafi-argentieri-industria-federorafi: tabelle retributive (2022-CCNL-FEDERORAFI-Tabella-nuovi-minimi-tabellai.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2022/01/20211223-CCNL-Orafi-ipotesi-di-rinnovo-apprendistato-firmato.pdf"
+                  "url": "https://www.fim-cisl.it/wp-content/uploads/2026/08/2022-CCNL-FEDERORAFI-Tabella-nuovi-minimi-tabellai.pdf",
+                  "sha256": "1c3ffbfb65d0dacf91f0618571e63481c56e27275d6d538002769a7ed194d4c8"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "CCNL FEDERORAFI, MINIMI RETRIBUTIVI MENSILI",
+                "quote": "2                       1.343,45 €                          20,41 €                                  1.363,86 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2022-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-orafi-argentieri-industria-federorafi-tables"
               }
             }
           },
@@ -573,21 +606,28 @@
             "valid_until": "2023-06-01",
             "value": "1502.64",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "20211223-ccnl-orafi-ipotesi-di-rinnovo-apprendistato-firmato-pdf",
-                  "title": "20211223-ccnl-orafi-ipotesi-di-rinnovo-apprendistato-firmato-pdf",
+                  "document_id": "orafi-argentieri-industria-federorafi-tables-1c3ffbfb",
+                  "title": "orafi-argentieri-industria-federorafi: tabelle retributive (2022-CCNL-FEDERORAFI-Tabella-nuovi-minimi-tabellai.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2022/01/20211223-CCNL-Orafi-ipotesi-di-rinnovo-apprendistato-firmato.pdf"
+                  "url": "https://www.fim-cisl.it/wp-content/uploads/2026/08/2022-CCNL-FEDERORAFI-Tabella-nuovi-minimi-tabellai.pdf",
+                  "sha256": "1c3ffbfb65d0dacf91f0618571e63481c56e27275d6d538002769a7ed194d4c8"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "CCNL FEDERORAFI, MINIMI RETRIBUTIVI MENSILI",
+                "quote": "3                       1.480,15 €                          22,49 €                                  1.502,64 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2022-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-orafi-argentieri-industria-federorafi-tables"
               }
             }
           },
@@ -789,21 +829,28 @@
             "valid_until": "2023-06-01",
             "value": "1563.52",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "20211223-ccnl-orafi-ipotesi-di-rinnovo-apprendistato-firmato-pdf",
-                  "title": "20211223-ccnl-orafi-ipotesi-di-rinnovo-apprendistato-firmato-pdf",
+                  "document_id": "orafi-argentieri-industria-federorafi-tables-1c3ffbfb",
+                  "title": "orafi-argentieri-industria-federorafi: tabelle retributive (2022-CCNL-FEDERORAFI-Tabella-nuovi-minimi-tabellai.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2022/01/20211223-CCNL-Orafi-ipotesi-di-rinnovo-apprendistato-firmato.pdf"
+                  "url": "https://www.fim-cisl.it/wp-content/uploads/2026/08/2022-CCNL-FEDERORAFI-Tabella-nuovi-minimi-tabellai.pdf",
+                  "sha256": "1c3ffbfb65d0dacf91f0618571e63481c56e27275d6d538002769a7ed194d4c8"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "CCNL FEDERORAFI, MINIMI RETRIBUTIVI MENSILI",
+                "quote": "4                       1.540,12 €                          23,40 €                                  1.563,52 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2022-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-orafi-argentieri-industria-federorafi-tables"
               }
             }
           },
@@ -1005,21 +1052,28 @@
             "valid_until": "2023-06-01",
             "value": "1670.37",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "20211223-ccnl-orafi-ipotesi-di-rinnovo-apprendistato-firmato-pdf",
-                  "title": "20211223-ccnl-orafi-ipotesi-di-rinnovo-apprendistato-firmato-pdf",
+                  "document_id": "orafi-argentieri-industria-federorafi-tables-1c3ffbfb",
+                  "title": "orafi-argentieri-industria-federorafi: tabelle retributive (2022-CCNL-FEDERORAFI-Tabella-nuovi-minimi-tabellai.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2022/01/20211223-CCNL-Orafi-ipotesi-di-rinnovo-apprendistato-firmato.pdf"
+                  "url": "https://www.fim-cisl.it/wp-content/uploads/2026/08/2022-CCNL-FEDERORAFI-Tabella-nuovi-minimi-tabellai.pdf",
+                  "sha256": "1c3ffbfb65d0dacf91f0618571e63481c56e27275d6d538002769a7ed194d4c8"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "CCNL FEDERORAFI, MINIMI RETRIBUTIVI MENSILI",
+                "quote": "5                       1.645,37 €                          25,00 €                                  1.670,37 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2022-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-orafi-argentieri-industria-federorafi-tables"
               }
             }
           },
@@ -1221,21 +1275,28 @@
             "valid_until": "2023-06-01",
             "value": "1782.85",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "20211223-ccnl-orafi-ipotesi-di-rinnovo-apprendistato-firmato-pdf",
-                  "title": "20211223-ccnl-orafi-ipotesi-di-rinnovo-apprendistato-firmato-pdf",
+                  "document_id": "orafi-argentieri-industria-federorafi-tables-1c3ffbfb",
+                  "title": "orafi-argentieri-industria-federorafi: tabelle retributive (2022-CCNL-FEDERORAFI-Tabella-nuovi-minimi-tabellai.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2022/01/20211223-CCNL-Orafi-ipotesi-di-rinnovo-apprendistato-firmato.pdf"
+                  "url": "https://www.fim-cisl.it/wp-content/uploads/2026/08/2022-CCNL-FEDERORAFI-Tabella-nuovi-minimi-tabellai.pdf",
+                  "sha256": "1c3ffbfb65d0dacf91f0618571e63481c56e27275d6d538002769a7ed194d4c8"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "CCNL FEDERORAFI, MINIMI RETRIBUTIVI MENSILI",
+                "quote": "5S                       1.756,17 €                          26,68 €                                  1.782,85 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2022-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-orafi-argentieri-industria-federorafi-tables"
               }
             }
           },
@@ -1437,21 +1498,28 @@
             "valid_until": "2023-06-01",
             "value": "1916.55",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "20211223-ccnl-orafi-ipotesi-di-rinnovo-apprendistato-firmato-pdf",
-                  "title": "20211223-ccnl-orafi-ipotesi-di-rinnovo-apprendistato-firmato-pdf",
+                  "document_id": "orafi-argentieri-industria-federorafi-tables-1c3ffbfb",
+                  "title": "orafi-argentieri-industria-federorafi: tabelle retributive (2022-CCNL-FEDERORAFI-Tabella-nuovi-minimi-tabellai.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2022/01/20211223-CCNL-Orafi-ipotesi-di-rinnovo-apprendistato-firmato.pdf"
+                  "url": "https://www.fim-cisl.it/wp-content/uploads/2026/08/2022-CCNL-FEDERORAFI-Tabella-nuovi-minimi-tabellai.pdf",
+                  "sha256": "1c3ffbfb65d0dacf91f0618571e63481c56e27275d6d538002769a7ed194d4c8"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "CCNL FEDERORAFI, MINIMI RETRIBUTIVI MENSILI",
+                "quote": "6                       1.887,87 €                          28,68 €                                  1.916,55 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2022-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-orafi-argentieri-industria-federorafi-tables"
               }
             }
           },
@@ -1653,21 +1721,28 @@
             "valid_until": "2023-06-01",
             "value": "2083.89",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "20211223-ccnl-orafi-ipotesi-di-rinnovo-apprendistato-firmato-pdf",
-                  "title": "20211223-ccnl-orafi-ipotesi-di-rinnovo-apprendistato-firmato-pdf",
+                  "document_id": "orafi-argentieri-industria-federorafi-tables-1c3ffbfb",
+                  "title": "orafi-argentieri-industria-federorafi: tabelle retributive (2022-CCNL-FEDERORAFI-Tabella-nuovi-minimi-tabellai.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2022/01/20211223-CCNL-Orafi-ipotesi-di-rinnovo-apprendistato-firmato.pdf"
+                  "url": "https://www.fim-cisl.it/wp-content/uploads/2026/08/2022-CCNL-FEDERORAFI-Tabella-nuovi-minimi-tabellai.pdf",
+                  "sha256": "1c3ffbfb65d0dacf91f0618571e63481c56e27275d6d538002769a7ed194d4c8"
                 },
-                "section": "Tabella retributiva"
+                "page": "1",
+                "section": "CCNL FEDERORAFI, MINIMI RETRIBUTIVI MENSILI",
+                "quote": "7                       2.052,70 €                          31,19 €                                  2.083,89 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2022-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-orafi-argentieri-industria-federorafi-tables"
               }
             }
           },
@@ -1847,7 +1922,32 @@
               {
                 "valid_from": "2022-06-01",
                 "valid_until": null,
-                "value": "59.39"
+                "value": "59.39",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "orafi-argentieri-industria-federorafi-tables-093a8610",
+                      "title": "orafi-argentieri-industria-federorafi: tabelle retributive (ccnl-2017.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-orafi-argentieri-18-5-2017.pdf",
+                      "sha256": "093a8610fb069f16df77cee5fec9e858568f2f3776bcf14013eb4673869dc45b"
+                    },
+                    "page": "36",
+                    "section": "Disciplina comune, B) QUADRI, punto 6 (7ª: elemento retributivo; quadri: indennità di funzione)",
+                    "quote": "categoria (pari a 59,39 euro)"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2022-06-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-orafi-argentieri-industria-federorafi-tables"
+                  }
+                }
               }
             ]
           },
@@ -2099,7 +2199,32 @@
               {
                 "valid_from": "2022-06-01",
                 "valid_until": null,
-                "value": "114.00"
+                "value": "114.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "orafi-argentieri-industria-federorafi-tables-093a8610",
+                      "title": "orafi-argentieri-industria-federorafi: tabelle retributive (ccnl-2017.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-orafi-argentieri-18-5-2017.pdf",
+                      "sha256": "093a8610fb069f16df77cee5fec9e858568f2f3776bcf14013eb4673869dc45b"
+                    },
+                    "page": "36",
+                    "section": "Disciplina comune, B) QUADRI, punto 6 (7ª: elemento retributivo; quadri: indennità di funzione)",
+                    "quote": "lavoratori interessati un’indennità di funzione che è pari a decorrere dal 1 febbraio 2006 a 114,00"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2022-06-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-orafi-argentieri-industria-federorafi-tables"
+                  }
+                }
               }
             ]
           },
@@ -2184,7 +2309,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2022/01/20211223-CCNL-Orafi-ipotesi-di-rinnovo-apprendistato-firmato.pdf",
     "verification_status": "unverified",
-    "source_hash": "a8caa358a2525e7dda92b40709c2f48cd6ffc8ec15e66aed37879eec9a5946b2",
+    "source_hash": "daaf6c8e53b6d7ea1f8351738302f0ddd5f023fcdf2d937b2fd2242e5f777c8b",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

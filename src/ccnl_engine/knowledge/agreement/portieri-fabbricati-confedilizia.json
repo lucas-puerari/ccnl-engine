@@ -361,21 +361,28 @@
             "valid_until": "2027-01-01",
             "value": "1264.51",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "portieri-fabbricati-confedilizia",
-                  "title": "portieri-fabbricati-confedilizia",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+                  "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                  "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                  "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
                 },
-                "section": "Tabella retributiva"
+                "page": "10",
+                "section": "no text layer",
+                "quote": "Salario conglobato (art. 122) 1519,10 1444,24 1441,76 1342,34 1264,51"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-portieri-fabbricati-confedilizia-double-read"
               }
             }
           },
@@ -384,21 +391,28 @@
             "valid_until": "2028-01-01",
             "value": "1289.80",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "portieri-fabbricati-confedilizia",
-                  "title": "portieri-fabbricati-confedilizia",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+                  "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                  "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                  "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
                 },
-                "section": "Tabella retributiva"
+                "page": "10",
+                "section": "no text layer",
+                "quote": "Salario conglobato (art. 122) 1549,48 1473,12 1470,59 1369,19 1289,80"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-portieri-fabbricati-confedilizia-double-read"
               }
             }
           },
@@ -407,21 +421,28 @@
             "valid_until": null,
             "value": "1315.60",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "portieri-fabbricati-confedilizia",
-                  "title": "portieri-fabbricati-confedilizia",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+                  "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                  "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                  "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
                 },
-                "section": "Tabella retributiva"
+                "page": "10",
+                "section": "no text layer",
+                "quote": "Salario conglobato (art. 122) 1580,47 1502,58 1500,00 1396,57 1315,60"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-portieri-fabbricati-confedilizia-double-read"
               }
             }
           }
@@ -458,21 +479,28 @@
             "valid_until": "2027-01-01",
             "value": "1342.34",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "portieri-fabbricati-confedilizia",
-                  "title": "portieri-fabbricati-confedilizia",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+                  "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                  "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                  "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
                 },
-                "section": "Tabella retributiva"
+                "page": "10",
+                "section": "no text layer",
+                "quote": "Salario conglobato (art. 122) 1519,10 1444,24 1441,76 1342,34 1264,51"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-portieri-fabbricati-confedilizia-double-read"
               }
             }
           },
@@ -481,21 +509,28 @@
             "valid_until": "2028-01-01",
             "value": "1369.19",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "portieri-fabbricati-confedilizia",
-                  "title": "portieri-fabbricati-confedilizia",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+                  "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                  "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                  "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
                 },
-                "section": "Tabella retributiva"
+                "page": "10",
+                "section": "no text layer",
+                "quote": "Salario conglobato (art. 122) 1549,48 1473,12 1470,59 1369,19 1289,80"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-portieri-fabbricati-confedilizia-double-read"
               }
             }
           },
@@ -504,21 +539,28 @@
             "valid_until": null,
             "value": "1396.57",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "portieri-fabbricati-confedilizia",
-                  "title": "portieri-fabbricati-confedilizia",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+                  "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                  "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                  "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
                 },
-                "section": "Tabella retributiva"
+                "page": "10",
+                "section": "no text layer",
+                "quote": "Salario conglobato (art. 122) 1580,47 1502,58 1500,00 1396,57 1315,60"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-portieri-fabbricati-confedilizia-double-read"
               }
             }
           }
@@ -555,21 +597,28 @@
             "valid_until": "2027-01-01",
             "value": "1438.58",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "portieri-fabbricati-confedilizia",
-                  "title": "portieri-fabbricati-confedilizia",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+                  "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                  "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                  "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
                 },
-                "section": "Tabella retributiva"
+                "page": "12",
+                "section": "no text layer",
+                "quote": "Salario conglobato (art. 124) 1439,90 1438,58 1438,58 1438,58"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-portieri-fabbricati-confedilizia-double-read"
               }
             }
           },
@@ -578,21 +627,28 @@
             "valid_until": "2028-01-01",
             "value": "1467.35",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "portieri-fabbricati-confedilizia",
-                  "title": "portieri-fabbricati-confedilizia",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+                  "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                  "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                  "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
                 },
-                "section": "Tabella retributiva"
+                "page": "12",
+                "section": "no text layer",
+                "quote": "Salario conglobato (art. 124) 1468,70 1467,35 1467,35 1467,35"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-portieri-fabbricati-confedilizia-double-read"
               }
             }
           },
@@ -601,21 +657,28 @@
             "valid_until": null,
             "value": "1496.70",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "portieri-fabbricati-confedilizia",
-                  "title": "portieri-fabbricati-confedilizia",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+                  "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                  "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                  "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
                 },
-                "section": "Tabella retributiva"
+                "page": "12",
+                "section": "no text layer",
+                "quote": "Salario conglobato (art. 124) 1498,07 1496,70 1496,70 1496,70"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-portieri-fabbricati-confedilizia-double-read"
               }
             }
           }
@@ -652,21 +715,28 @@
             "valid_until": "2027-01-01",
             "value": "1438.58",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "portieri-fabbricati-confedilizia",
-                  "title": "portieri-fabbricati-confedilizia",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+                  "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                  "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                  "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
                 },
-                "section": "Tabella retributiva"
+                "page": "12",
+                "section": "no text layer",
+                "quote": "Salario conglobato (art. 124) 1439,90 1438,58 1438,58 1438,58"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-portieri-fabbricati-confedilizia-double-read"
               }
             }
           },
@@ -675,21 +745,28 @@
             "valid_until": "2028-01-01",
             "value": "1467.35",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "portieri-fabbricati-confedilizia",
-                  "title": "portieri-fabbricati-confedilizia",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+                  "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                  "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                  "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
                 },
-                "section": "Tabella retributiva"
+                "page": "12",
+                "section": "no text layer",
+                "quote": "Salario conglobato (art. 124) 1468,70 1467,35 1467,35 1467,35"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-portieri-fabbricati-confedilizia-double-read"
               }
             }
           },
@@ -698,21 +775,28 @@
             "valid_until": null,
             "value": "1496.70",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "portieri-fabbricati-confedilizia",
-                  "title": "portieri-fabbricati-confedilizia",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+                  "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                  "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                  "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
                 },
-                "section": "Tabella retributiva"
+                "page": "12",
+                "section": "no text layer",
+                "quote": "Salario conglobato (art. 124) 1498,07 1496,70 1496,70 1496,70"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-portieri-fabbricati-confedilizia-double-read"
               }
             }
           }
@@ -749,21 +833,28 @@
             "valid_until": "2027-01-01",
             "value": "1438.58",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "portieri-fabbricati-confedilizia",
-                  "title": "portieri-fabbricati-confedilizia",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+                  "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                  "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                  "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
                 },
-                "section": "Tabella retributiva"
+                "page": "12",
+                "section": "no text layer",
+                "quote": "Salario conglobato (art. 124) 1439,90 1438,58 1438,58 1438,58"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-portieri-fabbricati-confedilizia-double-read"
               }
             }
           },
@@ -772,21 +863,28 @@
             "valid_until": "2028-01-01",
             "value": "1467.35",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "portieri-fabbricati-confedilizia",
-                  "title": "portieri-fabbricati-confedilizia",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+                  "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                  "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                  "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
                 },
-                "section": "Tabella retributiva"
+                "page": "12",
+                "section": "no text layer",
+                "quote": "Salario conglobato (art. 124) 1468,70 1467,35 1467,35 1467,35"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-portieri-fabbricati-confedilizia-double-read"
               }
             }
           },
@@ -795,21 +893,28 @@
             "valid_until": null,
             "value": "1496.70",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "portieri-fabbricati-confedilizia",
-                  "title": "portieri-fabbricati-confedilizia",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+                  "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                  "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                  "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
                 },
-                "section": "Tabella retributiva"
+                "page": "12",
+                "section": "no text layer",
+                "quote": "Salario conglobato (art. 124) 1498,07 1496,70 1496,70 1496,70"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-portieri-fabbricati-confedilizia-double-read"
               }
             }
           }
@@ -846,21 +951,28 @@
             "valid_until": "2027-01-01",
             "value": "1439.90",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "portieri-fabbricati-confedilizia",
-                  "title": "portieri-fabbricati-confedilizia",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+                  "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                  "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                  "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
                 },
-                "section": "Tabella retributiva"
+                "page": "12",
+                "section": "no text layer",
+                "quote": "Salario conglobato (art. 124) 1439,90 1438,58 1438,58 1438,58"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-portieri-fabbricati-confedilizia-double-read"
               }
             }
           },
@@ -869,21 +981,28 @@
             "valid_until": "2028-01-01",
             "value": "1468.70",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "portieri-fabbricati-confedilizia",
-                  "title": "portieri-fabbricati-confedilizia",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+                  "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                  "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                  "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
                 },
-                "section": "Tabella retributiva"
+                "page": "12",
+                "section": "no text layer",
+                "quote": "Salario conglobato (art. 124) 1468,70 1467,35 1467,35 1467,35"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-portieri-fabbricati-confedilizia-double-read"
               }
             }
           },
@@ -892,21 +1011,28 @@
             "valid_until": null,
             "value": "1498.07",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "portieri-fabbricati-confedilizia",
-                  "title": "portieri-fabbricati-confedilizia",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+                  "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                  "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                  "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
                 },
-                "section": "Tabella retributiva"
+                "page": "12",
+                "section": "no text layer",
+                "quote": "Salario conglobato (art. 124) 1498,07 1496,70 1496,70 1496,70"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-portieri-fabbricati-confedilizia-double-read"
               }
             }
           }
@@ -943,21 +1069,28 @@
             "valid_until": "2027-01-01",
             "value": "1441.76",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "portieri-fabbricati-confedilizia",
-                  "title": "portieri-fabbricati-confedilizia",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+                  "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                  "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                  "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
                 },
-                "section": "Tabella retributiva"
+                "page": "10",
+                "section": "no text layer",
+                "quote": "Salario conglobato (art. 122) 1519,10 1444,24 1441,76 1342,34 1264,51"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-portieri-fabbricati-confedilizia-double-read"
               }
             }
           },
@@ -966,21 +1099,28 @@
             "valid_until": "2028-01-01",
             "value": "1470.59",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "portieri-fabbricati-confedilizia",
-                  "title": "portieri-fabbricati-confedilizia",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+                  "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                  "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                  "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
                 },
-                "section": "Tabella retributiva"
+                "page": "10",
+                "section": "no text layer",
+                "quote": "Salario conglobato (art. 122) 1549,48 1473,12 1470,59 1369,19 1289,80"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-portieri-fabbricati-confedilizia-double-read"
               }
             }
           },
@@ -989,21 +1129,28 @@
             "valid_until": null,
             "value": "1500.00",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "portieri-fabbricati-confedilizia",
-                  "title": "portieri-fabbricati-confedilizia",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+                  "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                  "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                  "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
                 },
-                "section": "Tabella retributiva"
+                "page": "10",
+                "section": "no text layer",
+                "quote": "Salario conglobato (art. 122) 1580,47 1502,58 1500,00 1396,57 1315,60"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-portieri-fabbricati-confedilizia-double-read"
               }
             }
           }
@@ -1040,21 +1187,28 @@
             "valid_until": "2027-01-01",
             "value": "1444.24",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "portieri-fabbricati-confedilizia",
-                  "title": "portieri-fabbricati-confedilizia",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+                  "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                  "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                  "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
                 },
-                "section": "Tabella retributiva"
+                "page": "10",
+                "section": "no text layer",
+                "quote": "Salario conglobato (art. 122) 1519,10 1444,24 1441,76 1342,34 1264,51"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-portieri-fabbricati-confedilizia-double-read"
               }
             }
           },
@@ -1063,21 +1217,28 @@
             "valid_until": "2028-01-01",
             "value": "1473.12",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "portieri-fabbricati-confedilizia",
-                  "title": "portieri-fabbricati-confedilizia",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+                  "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                  "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                  "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
                 },
-                "section": "Tabella retributiva"
+                "page": "10",
+                "section": "no text layer",
+                "quote": "Salario conglobato (art. 122) 1549,48 1473,12 1470,59 1369,19 1289,80"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-portieri-fabbricati-confedilizia-double-read"
               }
             }
           },
@@ -1086,21 +1247,28 @@
             "valid_until": null,
             "value": "1502.58",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "portieri-fabbricati-confedilizia",
-                  "title": "portieri-fabbricati-confedilizia",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+                  "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                  "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                  "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
                 },
-                "section": "Tabella retributiva"
+                "page": "10",
+                "section": "no text layer",
+                "quote": "Salario conglobato (art. 122) 1580,47 1502,58 1500,00 1396,57 1315,60"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-portieri-fabbricati-confedilizia-double-read"
               }
             }
           }
@@ -1137,21 +1305,28 @@
             "valid_until": "2027-01-01",
             "value": "1512.61",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "portieri-fabbricati-confedilizia",
-                  "title": "portieri-fabbricati-confedilizia",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+                  "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                  "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                  "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
                 },
-                "section": "Tabella retributiva"
+                "page": "11",
+                "section": "no text layer",
+                "quote": "Salario conglobato (art. 123) 2236,10 2050,57 1795,94 1512,61 1290,52"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-portieri-fabbricati-confedilizia-double-read"
               }
             }
           },
@@ -1160,21 +1335,28 @@
             "valid_until": "2028-01-01",
             "value": "1542.86",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "portieri-fabbricati-confedilizia",
-                  "title": "portieri-fabbricati-confedilizia",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+                  "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                  "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                  "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
                 },
-                "section": "Tabella retributiva"
+                "page": "11",
+                "section": "no text layer",
+                "quote": "Salario conglobato (art. 123) 2280,82 2091,58 1831,86 1542,86 1316,33"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-portieri-fabbricati-confedilizia-double-read"
               }
             }
           },
@@ -1183,21 +1365,28 @@
             "valid_until": null,
             "value": "1573.72",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "portieri-fabbricati-confedilizia",
-                  "title": "portieri-fabbricati-confedilizia",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+                  "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                  "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                  "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
                 },
-                "section": "Tabella retributiva"
+                "page": "11",
+                "section": "no text layer",
+                "quote": "Salario conglobato (art. 123) 2326,44 2133,41 1868,50 1573,72 1342,66"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-portieri-fabbricati-confedilizia-double-read"
               }
             }
           }
@@ -1234,21 +1423,28 @@
             "valid_until": "2027-01-01",
             "value": "1519.10",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "portieri-fabbricati-confedilizia",
-                  "title": "portieri-fabbricati-confedilizia",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+                  "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                  "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                  "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
                 },
-                "section": "Tabella retributiva"
+                "page": "10",
+                "section": "no text layer",
+                "quote": "Salario conglobato (art. 122) 1519,10 1444,24 1441,76 1342,34 1264,51"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-portieri-fabbricati-confedilizia-double-read"
               }
             }
           },
@@ -1257,21 +1453,28 @@
             "valid_until": "2028-01-01",
             "value": "1549.48",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "portieri-fabbricati-confedilizia",
-                  "title": "portieri-fabbricati-confedilizia",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+                  "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                  "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                  "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
                 },
-                "section": "Tabella retributiva"
+                "page": "10",
+                "section": "no text layer",
+                "quote": "Salario conglobato (art. 122) 1549,48 1473,12 1470,59 1369,19 1289,80"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-portieri-fabbricati-confedilizia-double-read"
               }
             }
           },
@@ -1280,21 +1483,28 @@
             "valid_until": null,
             "value": "1580.47",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "portieri-fabbricati-confedilizia",
-                  "title": "portieri-fabbricati-confedilizia",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+                  "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                  "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                  "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
                 },
-                "section": "Tabella retributiva"
+                "page": "10",
+                "section": "no text layer",
+                "quote": "Salario conglobato (art. 122) 1580,47 1502,58 1500,00 1396,57 1315,60"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-portieri-fabbricati-confedilizia-double-read"
               }
             }
           }
@@ -1331,21 +1541,28 @@
             "valid_until": "2027-01-01",
             "value": "1795.94",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "portieri-fabbricati-confedilizia",
-                  "title": "portieri-fabbricati-confedilizia",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+                  "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                  "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                  "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
                 },
-                "section": "Tabella retributiva"
+                "page": "11",
+                "section": "no text layer",
+                "quote": "Salario conglobato (art. 123) 2236,10 2050,57 1795,94 1512,61 1290,52"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-portieri-fabbricati-confedilizia-double-read"
               }
             }
           },
@@ -1354,21 +1571,28 @@
             "valid_until": "2028-01-01",
             "value": "1831.86",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "portieri-fabbricati-confedilizia",
-                  "title": "portieri-fabbricati-confedilizia",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+                  "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                  "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                  "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
                 },
-                "section": "Tabella retributiva"
+                "page": "11",
+                "section": "no text layer",
+                "quote": "Salario conglobato (art. 123) 2280,82 2091,58 1831,86 1542,86 1316,33"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-portieri-fabbricati-confedilizia-double-read"
               }
             }
           },
@@ -1377,21 +1601,28 @@
             "valid_until": null,
             "value": "1868.50",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "portieri-fabbricati-confedilizia",
-                  "title": "portieri-fabbricati-confedilizia",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+                  "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                  "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                  "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
                 },
-                "section": "Tabella retributiva"
+                "page": "11",
+                "section": "no text layer",
+                "quote": "Salario conglobato (art. 123) 2326,44 2133,41 1868,50 1573,72 1342,66"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-portieri-fabbricati-confedilizia-double-read"
               }
             }
           }
@@ -1544,7 +1775,7 @@
     "effective_until": null,
     "source": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/",
     "verification_status": "verified",
-    "source_hash": "54c862559479b1e5d88e40b1ae1f99be9cbb2fdffad20ba3f32f497790378732",
+    "source_hash": "4839f11c21f3b472ddcd6b7a26baad2238583f7a09237bde3946644d89b7f70b",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1742,6 +1973,28 @@
         "independence": "same_process",
         "checked": [
           "apprenticeship"
+        ]
+      },
+      {
+        "id": "2026-11-08-gpt-portieri-fabbricati-confedilizia-double-read",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Monthly values on scanned pages, each read twice from the page image by two independent sessions of another model, the second without being told the expected value.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+            "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+          }
+        ],
+        "findings": [
+          "33 values read identically by both readings and equal to the file."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "levels.base_salary",
+          "levels.fixed_allowances"
         ]
       }
     ]

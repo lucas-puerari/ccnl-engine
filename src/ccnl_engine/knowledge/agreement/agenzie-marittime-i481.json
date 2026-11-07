@@ -166,6 +166,28 @@
         "checked": [
           "parameters.seniority_increments"
         ]
+      },
+      {
+        "id": "2026-11-08-ai-agenzie-marittime-i481-tables",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The monthly values of the levels against the primary tables (text layer).",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/ccnl-agenziemarittime21-23.pdf",
+            "sha256": "6cef4caef940ce4fc26ce76bde9669d95d7e7a3cf74cf8bc36ed555c2a878d91"
+          }
+        ],
+        "findings": [
+          "1 values found verbatim on the cited pages and marked verified; 0 left as they were (derived or not on a text page)."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels.base_salary",
+          "levels.fixed_allowances"
+        ]
       }
     ]
   },
@@ -1203,7 +1225,32 @@
               {
                 "valid_from": "2024-09-01",
                 "valid_until": null,
-                "value": "51.65"
+                "value": "51.65",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "agenzie-marittime-i481-tables-6cef4cae",
+                      "title": "agenzie-marittime-i481: tabelle retributive (ccnl-2021.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/ccnl-agenziemarittime21-23.pdf",
+                      "sha256": "6cef4caef940ce4fc26ce76bde9669d95d7e7a3cf74cf8bc36ed555c2a878d91"
+                    },
+                    "page": "12",
+                    "section": "Art. 5 - Quadri",
+                    "quote": "A far data dal 1° gennaio 1992, tale indennità viene elevata a Euro 51,65 lorde mensili."
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2024-09-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-agenzie-marittime-i481-tables"
+                  }
+                }
               }
             ]
           },
@@ -1254,7 +1301,7 @@
     "effective_until": null,
     "source": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/ccnl-agenziemarittime21-23.pdf",
     "verification_status": "unverified",
-    "source_hash": "ee83a64f7d20aa9be55a3d9b09d9445fdf6de311839c71aa3ec41821fa641032",
+    "source_hash": "d524823a5297f60269677cc49e82417810f51315874c8aac0112f80d05a7c6ef",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

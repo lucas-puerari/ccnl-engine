@@ -43,7 +43,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 1 verified / 48 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 35 verified / 14 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -52,7 +52,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-02-26 |
-| **Last review** | 2026-11-06 |
+| **Last review** | 2026-11-08 |
 | **Latest salary tranche** | 2026-09-01 |
 
 ## Review history
@@ -61,6 +61,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|---|---|
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | corrected | Titolo XIX - Art. 52 - Tredicesima e quattordicesima mensilità (p. 66): "Il diritto alle mensilità aggiuntive matura per dodicesimi, intendendosi per mese intero la frazione di mese superiore a 15 giorni.". Added: more_than 15 (the file applied the engine default, at least 15 days). |
 | 2026-11-06 | claude-opus-5-5 (ai) | Apprentice seniority: artt. 28 and 51 of the testo unico of 26 February 2025 (pp. 43, 46, 65). | corrected | Art. 28 lett. a counts 'Il periodo di apprendistato [...] ai fini dell'anzianità aziendale e di servizio'; the apprentice percentage applies to 'paga base, ex indennità di contingenza, E.D.R.' and second-level elements only; art. 51 owes the industrial operai and impiegati an increment each biennio of service: the level increments in full. |
+| 2026-11-08 | claude-opus-5-5 (ai) | The monthly values of the levels against the primary tables (text layer). | confirmed | 41 values found verbatim on the cited pages and marked verified; 1 left as they were (derived or not on a text page). |
 
 ## Salary table
 

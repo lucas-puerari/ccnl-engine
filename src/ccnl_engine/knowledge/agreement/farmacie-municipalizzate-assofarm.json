@@ -180,6 +180,28 @@
         "checked": [
           "levels.base_salary"
         ]
+      },
+      {
+        "id": "2026-11-08-gpt-farmacie-municipalizzate-assofarm-double-read",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Monthly values on scanned pages, each read twice from the page image by two independent sessions of another model, the second without being told the expected value.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf",
+            "sha256": "31dbf30a09f942830176634dff56320a55b830e07cee11f5629595192d852365"
+          }
+        ],
+        "findings": [
+          "37 values read identically by both readings and equal to the file."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "levels.base_salary",
+          "levels.fixed_allowances"
+        ]
       }
     ]
   },
@@ -411,21 +433,28 @@
             "valid_until": "2023-07-01",
             "value": "2418.48",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl2022-2024-signedcorrect-pdf",
-                  "title": "ccnl2022-2024-signedcorrect-pdf",
+                  "document_id": "farmacie-municipalizzate-assofarm-src-31dbf30a",
+                  "title": "farmacie-municipalizzate-assofarm: signed-2022.pdf",
                   "kind": "associazione",
-                  "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf"
+                  "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf",
+                  "sha256": "31dbf30a09f942830176634dff56320a55b830e07cee11f5629595192d852365"
                 },
-                "section": "Tabella retributiva"
+                "page": "44",
+                "section": "no text layer",
+                "quote": "1° livello Q | 2.325,33 | 93,15 | 2.418,48 | 20,96 | 2.439.44 | 17,47 | 2.456,91 | 131,58"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2022-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-farmacie-municipalizzate-assofarm-double-read"
               }
             }
           },
@@ -434,21 +463,28 @@
             "valid_until": "2024-07-01",
             "value": "2439.44",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl2022-2024-signedcorrect-pdf",
-                  "title": "ccnl2022-2024-signedcorrect-pdf",
+                  "document_id": "farmacie-municipalizzate-assofarm-src-31dbf30a",
+                  "title": "farmacie-municipalizzate-assofarm: signed-2022.pdf",
                   "kind": "associazione",
-                  "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf"
+                  "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf",
+                  "sha256": "31dbf30a09f942830176634dff56320a55b830e07cee11f5629595192d852365"
                 },
-                "section": "Tabella retributiva"
+                "page": "44",
+                "section": "no text layer",
+                "quote": "1° livello Q | 2.325,33 | 93,15 | 2.418,48 | 20,96 | 2.439.44 | 17,47 | 2.456,91 | 131,58"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2023-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-farmacie-municipalizzate-assofarm-double-read"
               }
             }
           },
@@ -457,21 +493,28 @@
             "valid_until": "2026-10-01",
             "value": "2456.91",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl2022-2024-signedcorrect-pdf",
-                  "title": "ccnl2022-2024-signedcorrect-pdf",
+                  "document_id": "farmacie-municipalizzate-assofarm-src-31dbf30a",
+                  "title": "farmacie-municipalizzate-assofarm: signed-2022.pdf",
                   "kind": "associazione",
-                  "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf"
+                  "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf",
+                  "sha256": "31dbf30a09f942830176634dff56320a55b830e07cee11f5629595192d852365"
                 },
-                "section": "Tabella retributiva"
+                "page": "44",
+                "section": "no text layer",
+                "quote": "1° livello Q | 2.325,33 | 93,15 | 2.418,48 | 20,96 | 2.439.44 | 17,47 | 2.456,91 | 131,58"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2024-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-farmacie-municipalizzate-assofarm-double-read"
               }
             }
           },
@@ -610,7 +653,32 @@
               {
                 "valid_from": "2022-07-01",
                 "valid_until": null,
-                "value": "160.00"
+                "value": "160.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "farmacie-municipalizzate-assofarm-src-31dbf30a",
+                      "title": "farmacie-municipalizzate-assofarm: signed-2022.pdf",
+                      "kind": "associazione",
+                      "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf",
+                      "sha256": "31dbf30a09f942830176634dff56320a55b830e07cee11f5629595192d852365"
+                    },
+                    "page": "45",
+                    "section": "no text layer",
+                    "quote": "1° livello Q | 140,00 | 20,00 | 160,00"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "effective_from": "2022-07-01",
+                    "verified_by": "gpt-6-sol",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-gpt-farmacie-municipalizzate-assofarm-double-read"
+                  }
+                }
               }
             ]
           },
@@ -664,21 +732,28 @@
             "valid_until": "2023-07-01",
             "value": "2335.35",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl2022-2024-signedcorrect-pdf",
-                  "title": "ccnl2022-2024-signedcorrect-pdf",
+                  "document_id": "farmacie-municipalizzate-assofarm-src-31dbf30a",
+                  "title": "farmacie-municipalizzate-assofarm: signed-2022.pdf",
                   "kind": "associazione",
-                  "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf"
+                  "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf",
+                  "sha256": "31dbf30a09f942830176634dff56320a55b830e07cee11f5629595192d852365"
                 },
-                "section": "Tabella retributiva"
+                "page": "44",
+                "section": "no text layer",
+                "quote": "1° livello super | 2.245,40 | 89,95 | 2.335,35 | 20,24 | 2.355,59 | 16,87 | 2.372,46 | 127,06"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2022-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-farmacie-municipalizzate-assofarm-double-read"
               }
             }
           },
@@ -687,21 +762,28 @@
             "valid_until": "2024-07-01",
             "value": "2355.59",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl2022-2024-signedcorrect-pdf",
-                  "title": "ccnl2022-2024-signedcorrect-pdf",
+                  "document_id": "farmacie-municipalizzate-assofarm-src-31dbf30a",
+                  "title": "farmacie-municipalizzate-assofarm: signed-2022.pdf",
                   "kind": "associazione",
-                  "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf"
+                  "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf",
+                  "sha256": "31dbf30a09f942830176634dff56320a55b830e07cee11f5629595192d852365"
                 },
-                "section": "Tabella retributiva"
+                "page": "44",
+                "section": "no text layer",
+                "quote": "1° livello super | 2.245,40 | 89,95 | 2.335,35 | 20,24 | 2.355,59 | 16,87 | 2.372,46 | 127,06"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2023-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-farmacie-municipalizzate-assofarm-double-read"
               }
             }
           },
@@ -710,21 +792,28 @@
             "valid_until": "2026-10-01",
             "value": "2372.46",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl2022-2024-signedcorrect-pdf",
-                  "title": "ccnl2022-2024-signedcorrect-pdf",
+                  "document_id": "farmacie-municipalizzate-assofarm-src-31dbf30a",
+                  "title": "farmacie-municipalizzate-assofarm: signed-2022.pdf",
                   "kind": "associazione",
-                  "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf"
+                  "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf",
+                  "sha256": "31dbf30a09f942830176634dff56320a55b830e07cee11f5629595192d852365"
                 },
-                "section": "Tabella retributiva"
+                "page": "44",
+                "section": "no text layer",
+                "quote": "1° livello super | 2.245,40 | 89,95 | 2.335,35 | 20,24 | 2.355,59 | 16,87 | 2.372,46 | 127,06"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2024-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-farmacie-municipalizzate-assofarm-double-read"
               }
             }
           },
@@ -863,7 +952,32 @@
               {
                 "valid_from": "2022-07-01",
                 "valid_until": null,
-                "value": "150.00"
+                "value": "150.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "farmacie-municipalizzate-assofarm-src-31dbf30a",
+                      "title": "farmacie-municipalizzate-assofarm: signed-2022.pdf",
+                      "kind": "associazione",
+                      "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf",
+                      "sha256": "31dbf30a09f942830176634dff56320a55b830e07cee11f5629595192d852365"
+                    },
+                    "page": "45",
+                    "section": "no text layer",
+                    "quote": "1° livello super | 130,00 | 20,00 | 150,00"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "effective_from": "2022-07-01",
+                    "verified_by": "gpt-6-sol",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-gpt-farmacie-municipalizzate-assofarm-double-read"
+                  }
+                }
               }
             ]
           },
@@ -917,21 +1031,28 @@
             "valid_until": "2023-07-01",
             "value": "2230.93",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl2022-2024-signedcorrect-pdf",
-                  "title": "ccnl2022-2024-signedcorrect-pdf",
+                  "document_id": "farmacie-municipalizzate-assofarm-src-31dbf30a",
+                  "title": "farmacie-municipalizzate-assofarm: signed-2022.pdf",
                   "kind": "associazione",
-                  "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf"
+                  "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf",
+                  "sha256": "31dbf30a09f942830176634dff56320a55b830e07cee11f5629595192d852365"
                 },
-                "section": "Tabella retributiva"
+                "page": "44",
+                "section": "no text layer",
+                "quote": "1° livello C | 2.145,00 | 85,93 | 2.230,93 | 19,33 | 2.250.26 | 16,11 | 2.266,38 | 121,38"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2022-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-farmacie-municipalizzate-assofarm-double-read"
               }
             }
           },
@@ -940,21 +1061,28 @@
             "valid_until": "2024-07-01",
             "value": "2250.26",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl2022-2024-signedcorrect-pdf",
-                  "title": "ccnl2022-2024-signedcorrect-pdf",
+                  "document_id": "farmacie-municipalizzate-assofarm-src-31dbf30a",
+                  "title": "farmacie-municipalizzate-assofarm: signed-2022.pdf",
                   "kind": "associazione",
-                  "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf"
+                  "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf",
+                  "sha256": "31dbf30a09f942830176634dff56320a55b830e07cee11f5629595192d852365"
                 },
-                "section": "Tabella retributiva"
+                "page": "44",
+                "section": "no text layer",
+                "quote": "1° livello C | 2.145,00 | 85,93 | 2.230,93 | 19,33 | 2.250.26 | 16,11 | 2.266,38 | 121,38"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2023-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-farmacie-municipalizzate-assofarm-double-read"
               }
             }
           },
@@ -1116,7 +1244,32 @@
               {
                 "valid_from": "2022-07-01",
                 "valid_until": null,
-                "value": "145.00"
+                "value": "145.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "farmacie-municipalizzate-assofarm-src-31dbf30a",
+                      "title": "farmacie-municipalizzate-assofarm: signed-2022.pdf",
+                      "kind": "associazione",
+                      "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf",
+                      "sha256": "31dbf30a09f942830176634dff56320a55b830e07cee11f5629595192d852365"
+                    },
+                    "page": "45",
+                    "section": "no text layer",
+                    "quote": "1° livello C | 130,00 | 15,00 | 145,00"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "effective_from": "2022-07-01",
+                    "verified_by": "gpt-6-sol",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-gpt-farmacie-municipalizzate-assofarm-double-read"
+                  }
+                }
               }
             ]
           },
@@ -1170,21 +1323,28 @@
             "valid_until": "2023-07-01",
             "value": "2076.97",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl2022-2024-signedcorrect-pdf",
-                  "title": "ccnl2022-2024-signedcorrect-pdf",
+                  "document_id": "farmacie-municipalizzate-assofarm-src-31dbf30a",
+                  "title": "farmacie-municipalizzate-assofarm: signed-2022.pdf",
                   "kind": "associazione",
-                  "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf"
+                  "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf",
+                  "sha256": "31dbf30a09f942830176634dff56320a55b830e07cee11f5629595192d852365"
                 },
-                "section": "Tabella retributiva"
+                "page": "44",
+                "section": "no text layer",
+                "quote": "1° livello + 12 anni | 1.996,97 | 80,00 | 2.076,97 | 18,00 | 2.094.97 | 15,00 | 2.109,97 | 113,00"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2022-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-farmacie-municipalizzate-assofarm-double-read"
               }
             }
           },
@@ -1193,21 +1353,28 @@
             "valid_until": "2024-07-01",
             "value": "2094.97",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl2022-2024-signedcorrect-pdf",
-                  "title": "ccnl2022-2024-signedcorrect-pdf",
+                  "document_id": "farmacie-municipalizzate-assofarm-src-31dbf30a",
+                  "title": "farmacie-municipalizzate-assofarm: signed-2022.pdf",
                   "kind": "associazione",
-                  "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf"
+                  "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf",
+                  "sha256": "31dbf30a09f942830176634dff56320a55b830e07cee11f5629595192d852365"
                 },
-                "section": "Tabella retributiva"
+                "page": "44",
+                "section": "no text layer",
+                "quote": "1° livello + 12 anni | 1.996,97 | 80,00 | 2.076,97 | 18,00 | 2.094.97 | 15,00 | 2.109,97 | 113,00"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2023-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-farmacie-municipalizzate-assofarm-double-read"
               }
             }
           },
@@ -1216,21 +1383,28 @@
             "valid_until": "2026-10-01",
             "value": "2109.97",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl2022-2024-signedcorrect-pdf",
-                  "title": "ccnl2022-2024-signedcorrect-pdf",
+                  "document_id": "farmacie-municipalizzate-assofarm-src-31dbf30a",
+                  "title": "farmacie-municipalizzate-assofarm: signed-2022.pdf",
                   "kind": "associazione",
-                  "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf"
+                  "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf",
+                  "sha256": "31dbf30a09f942830176634dff56320a55b830e07cee11f5629595192d852365"
                 },
-                "section": "Tabella retributiva"
+                "page": "44",
+                "section": "no text layer",
+                "quote": "1° livello + 12 anni | 1.996,97 | 80,00 | 2.076,97 | 18,00 | 2.094.97 | 15,00 | 2.109,97 | 113,00"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2024-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-farmacie-municipalizzate-assofarm-double-read"
               }
             }
           },
@@ -1369,7 +1543,32 @@
               {
                 "valid_from": "2022-07-01",
                 "valid_until": null,
-                "value": "130.00"
+                "value": "130.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "farmacie-municipalizzate-assofarm-src-31dbf30a",
+                      "title": "farmacie-municipalizzate-assofarm: signed-2022.pdf",
+                      "kind": "associazione",
+                      "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf",
+                      "sha256": "31dbf30a09f942830176634dff56320a55b830e07cee11f5629595192d852365"
+                    },
+                    "page": "43",
+                    "section": "no text layer",
+                    "quote": "1° livello + 12 anni | 1.996,97 |  | 130,00 | 2.126,97"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "effective_from": "2022-07-01",
+                    "verified_by": "gpt-6-sol",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-gpt-farmacie-municipalizzate-assofarm-double-read"
+                  }
+                }
               }
             ]
           },
@@ -1423,21 +1622,28 @@
             "valid_until": "2023-07-01",
             "value": "2076.97",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl2022-2024-signedcorrect-pdf",
-                  "title": "ccnl2022-2024-signedcorrect-pdf",
+                  "document_id": "farmacie-municipalizzate-assofarm-src-31dbf30a",
+                  "title": "farmacie-municipalizzate-assofarm: signed-2022.pdf",
                   "kind": "associazione",
-                  "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf"
+                  "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf",
+                  "sha256": "31dbf30a09f942830176634dff56320a55b830e07cee11f5629595192d852365"
                 },
-                "section": "Tabella retributiva"
+                "page": "44",
+                "section": "no text layer",
+                "quote": "1° livello + 2 anni | 1.996,97 | 80,00 | 2.076,97 | 18,00 | 2.094.97 | 15,00 | 2.109,97 | 113,00"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2022-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-farmacie-municipalizzate-assofarm-double-read"
               }
             }
           },
@@ -1446,21 +1652,28 @@
             "valid_until": "2024-07-01",
             "value": "2094.97",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl2022-2024-signedcorrect-pdf",
-                  "title": "ccnl2022-2024-signedcorrect-pdf",
+                  "document_id": "farmacie-municipalizzate-assofarm-src-31dbf30a",
+                  "title": "farmacie-municipalizzate-assofarm: signed-2022.pdf",
                   "kind": "associazione",
-                  "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf"
+                  "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf",
+                  "sha256": "31dbf30a09f942830176634dff56320a55b830e07cee11f5629595192d852365"
                 },
-                "section": "Tabella retributiva"
+                "page": "44",
+                "section": "no text layer",
+                "quote": "1° livello + 2 anni | 1.996,97 | 80,00 | 2.076,97 | 18,00 | 2.094.97 | 15,00 | 2.109,97 | 113,00"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2023-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-farmacie-municipalizzate-assofarm-double-read"
               }
             }
           },
@@ -1469,21 +1682,28 @@
             "valid_until": "2026-10-01",
             "value": "2109.97",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl2022-2024-signedcorrect-pdf",
-                  "title": "ccnl2022-2024-signedcorrect-pdf",
+                  "document_id": "farmacie-municipalizzate-assofarm-src-31dbf30a",
+                  "title": "farmacie-municipalizzate-assofarm: signed-2022.pdf",
                   "kind": "associazione",
-                  "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf"
+                  "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf",
+                  "sha256": "31dbf30a09f942830176634dff56320a55b830e07cee11f5629595192d852365"
                 },
-                "section": "Tabella retributiva"
+                "page": "44",
+                "section": "no text layer",
+                "quote": "1° livello + 2 anni | 1.996,97 | 80,00 | 2.076,97 | 18,00 | 2.094.97 | 15,00 | 2.109,97 | 113,00"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2024-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-farmacie-municipalizzate-assofarm-double-read"
               }
             }
           },
@@ -1622,7 +1842,32 @@
               {
                 "valid_from": "2022-07-01",
                 "valid_until": null,
-                "value": "100.00"
+                "value": "100.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "farmacie-municipalizzate-assofarm-src-31dbf30a",
+                      "title": "farmacie-municipalizzate-assofarm: signed-2022.pdf",
+                      "kind": "associazione",
+                      "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf",
+                      "sha256": "31dbf30a09f942830176634dff56320a55b830e07cee11f5629595192d852365"
+                    },
+                    "page": "43",
+                    "section": "no text layer",
+                    "quote": "1° livello + 2 anni | 1.996,97 |  | 100,00 | 2.096,97"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "effective_from": "2022-07-01",
+                    "verified_by": "gpt-6-sol",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-gpt-farmacie-municipalizzate-assofarm-double-read"
+                  }
+                }
               }
             ]
           },
@@ -1676,21 +1921,28 @@
             "valid_until": "2023-07-01",
             "value": "2076.97",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl2022-2024-signedcorrect-pdf",
-                  "title": "ccnl2022-2024-signedcorrect-pdf",
+                  "document_id": "farmacie-municipalizzate-assofarm-src-31dbf30a",
+                  "title": "farmacie-municipalizzate-assofarm: signed-2022.pdf",
                   "kind": "associazione",
-                  "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf"
+                  "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf",
+                  "sha256": "31dbf30a09f942830176634dff56320a55b830e07cee11f5629595192d852365"
                 },
-                "section": "Tabella retributiva"
+                "page": "44",
+                "section": "no text layer",
+                "quote": "1° livello | 1.996,97 | 80,00 | 2.076,97 | 18,00 | 2.094.97 | 15,00 | 2.109,97 | 113,00"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2022-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-farmacie-municipalizzate-assofarm-double-read"
               }
             }
           },
@@ -1699,21 +1951,28 @@
             "valid_until": "2024-07-01",
             "value": "2094.97",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl2022-2024-signedcorrect-pdf",
-                  "title": "ccnl2022-2024-signedcorrect-pdf",
+                  "document_id": "farmacie-municipalizzate-assofarm-src-31dbf30a",
+                  "title": "farmacie-municipalizzate-assofarm: signed-2022.pdf",
                   "kind": "associazione",
-                  "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf"
+                  "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf",
+                  "sha256": "31dbf30a09f942830176634dff56320a55b830e07cee11f5629595192d852365"
                 },
-                "section": "Tabella retributiva"
+                "page": "44",
+                "section": "no text layer",
+                "quote": "1° livello | 1.996,97 | 80,00 | 2.076,97 | 18,00 | 2.094.97 | 15,00 | 2.109,97 | 113,00"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2023-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-farmacie-municipalizzate-assofarm-double-read"
               }
             }
           },
@@ -1722,21 +1981,28 @@
             "valid_until": "2026-10-01",
             "value": "2109.97",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl2022-2024-signedcorrect-pdf",
-                  "title": "ccnl2022-2024-signedcorrect-pdf",
+                  "document_id": "farmacie-municipalizzate-assofarm-src-31dbf30a",
+                  "title": "farmacie-municipalizzate-assofarm: signed-2022.pdf",
                   "kind": "associazione",
-                  "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf"
+                  "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf",
+                  "sha256": "31dbf30a09f942830176634dff56320a55b830e07cee11f5629595192d852365"
                 },
-                "section": "Tabella retributiva"
+                "page": "44",
+                "section": "no text layer",
+                "quote": "1° livello | 1.996,97 | 80,00 | 2.076,97 | 18,00 | 2.094.97 | 15,00 | 2.109,97 | 113,00"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2024-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-farmacie-municipalizzate-assofarm-double-read"
               }
             }
           },
@@ -1897,21 +2163,28 @@
             "valid_until": "2023-07-01",
             "value": "1842.88",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl2022-2024-signedcorrect-pdf",
-                  "title": "ccnl2022-2024-signedcorrect-pdf",
+                  "document_id": "farmacie-municipalizzate-assofarm-src-31dbf30a",
+                  "title": "farmacie-municipalizzate-assofarm: signed-2022.pdf",
                   "kind": "associazione",
-                  "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf"
+                  "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf",
+                  "sha256": "31dbf30a09f942830176634dff56320a55b830e07cee11f5629595192d852365"
                 },
-                "section": "Tabella retributiva"
+                "page": "44",
+                "section": "no text layer",
+                "quote": "2° livello | 1.771,90 | 70,98 | 1.842,88 | 15,97 | 1.858,85 | 13,31 | 1.872,16 | 100,26"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2022-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-farmacie-municipalizzate-assofarm-double-read"
               }
             }
           },
@@ -1920,21 +2193,28 @@
             "valid_until": "2024-07-01",
             "value": "1858.85",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl2022-2024-signedcorrect-pdf",
-                  "title": "ccnl2022-2024-signedcorrect-pdf",
+                  "document_id": "farmacie-municipalizzate-assofarm-src-31dbf30a",
+                  "title": "farmacie-municipalizzate-assofarm: signed-2022.pdf",
                   "kind": "associazione",
-                  "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf"
+                  "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf",
+                  "sha256": "31dbf30a09f942830176634dff56320a55b830e07cee11f5629595192d852365"
                 },
-                "section": "Tabella retributiva"
+                "page": "44",
+                "section": "no text layer",
+                "quote": "2° livello | 1.771,90 | 70,98 | 1.842,88 | 15,97 | 1.858,85 | 13,31 | 1.872,16 | 100,26"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2023-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-farmacie-municipalizzate-assofarm-double-read"
               }
             }
           },
@@ -1943,21 +2223,28 @@
             "valid_until": "2026-10-01",
             "value": "1872.16",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl2022-2024-signedcorrect-pdf",
-                  "title": "ccnl2022-2024-signedcorrect-pdf",
+                  "document_id": "farmacie-municipalizzate-assofarm-src-31dbf30a",
+                  "title": "farmacie-municipalizzate-assofarm: signed-2022.pdf",
                   "kind": "associazione",
-                  "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf"
+                  "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf",
+                  "sha256": "31dbf30a09f942830176634dff56320a55b830e07cee11f5629595192d852365"
                 },
-                "section": "Tabella retributiva"
+                "page": "44",
+                "section": "no text layer",
+                "quote": "2° livello | 1.771,90 | 70,98 | 1.842,88 | 15,97 | 1.858,85 | 13,31 | 1.872,16 | 100,26"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2024-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-farmacie-municipalizzate-assofarm-double-read"
               }
             }
           },
@@ -2118,21 +2405,28 @@
             "valid_until": "2023-07-01",
             "value": "1749.50",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl2022-2024-signedcorrect-pdf",
-                  "title": "ccnl2022-2024-signedcorrect-pdf",
+                  "document_id": "farmacie-municipalizzate-assofarm-src-31dbf30a",
+                  "title": "farmacie-municipalizzate-assofarm: signed-2022.pdf",
                   "kind": "associazione",
-                  "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf"
+                  "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf",
+                  "sha256": "31dbf30a09f942830176634dff56320a55b830e07cee11f5629595192d852365"
                 },
-                "section": "Tabella retributiva"
+                "page": "44",
+                "section": "no text layer",
+                "quote": "3° livello | 1.682,11 | 67,39 | 1.749,50 | 15,16 | 1.764,66 | 12,63 | 1.777,29 | 95,18"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2022-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-farmacie-municipalizzate-assofarm-double-read"
               }
             }
           },
@@ -2141,21 +2435,28 @@
             "valid_until": "2024-07-01",
             "value": "1764.66",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl2022-2024-signedcorrect-pdf",
-                  "title": "ccnl2022-2024-signedcorrect-pdf",
+                  "document_id": "farmacie-municipalizzate-assofarm-src-31dbf30a",
+                  "title": "farmacie-municipalizzate-assofarm: signed-2022.pdf",
                   "kind": "associazione",
-                  "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf"
+                  "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf",
+                  "sha256": "31dbf30a09f942830176634dff56320a55b830e07cee11f5629595192d852365"
                 },
-                "section": "Tabella retributiva"
+                "page": "44",
+                "section": "no text layer",
+                "quote": "3° livello | 1.682,11 | 67,39 | 1.749,50 | 15,16 | 1.764,66 | 12,63 | 1.777,29 | 95,18"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2023-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-farmacie-municipalizzate-assofarm-double-read"
               }
             }
           },
@@ -2164,21 +2465,28 @@
             "valid_until": "2026-10-01",
             "value": "1777.29",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl2022-2024-signedcorrect-pdf",
-                  "title": "ccnl2022-2024-signedcorrect-pdf",
+                  "document_id": "farmacie-municipalizzate-assofarm-src-31dbf30a",
+                  "title": "farmacie-municipalizzate-assofarm: signed-2022.pdf",
                   "kind": "associazione",
-                  "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf"
+                  "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf",
+                  "sha256": "31dbf30a09f942830176634dff56320a55b830e07cee11f5629595192d852365"
                 },
-                "section": "Tabella retributiva"
+                "page": "44",
+                "section": "no text layer",
+                "quote": "3° livello | 1.682,11 | 67,39 | 1.749,50 | 15,16 | 1.764,66 | 12,63 | 1.777,29 | 95,18"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2024-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-farmacie-municipalizzate-assofarm-double-read"
               }
             }
           },
@@ -2339,21 +2647,28 @@
             "valid_until": "2023-07-01",
             "value": "1626.76",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl2022-2024-signedcorrect-pdf",
-                  "title": "ccnl2022-2024-signedcorrect-pdf",
+                  "document_id": "farmacie-municipalizzate-assofarm-src-31dbf30a",
+                  "title": "farmacie-municipalizzate-assofarm: signed-2022.pdf",
                   "kind": "associazione",
-                  "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf"
+                  "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf",
+                  "sha256": "31dbf30a09f942830176634dff56320a55b830e07cee11f5629595192d852365"
                 },
-                "section": "Tabella retributiva"
+                "page": "44",
+                "section": "no text layer",
+                "quote": "4° livello | 1.564,10 | 62,66 | 1.626,76 | 14,10 | 1.640,86 | 11,75 | 1.652,61 | 88,51"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2022-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-farmacie-municipalizzate-assofarm-double-read"
               }
             }
           },
@@ -2362,21 +2677,28 @@
             "valid_until": "2024-07-01",
             "value": "1640.86",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl2022-2024-signedcorrect-pdf",
-                  "title": "ccnl2022-2024-signedcorrect-pdf",
+                  "document_id": "farmacie-municipalizzate-assofarm-src-31dbf30a",
+                  "title": "farmacie-municipalizzate-assofarm: signed-2022.pdf",
                   "kind": "associazione",
-                  "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf"
+                  "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf",
+                  "sha256": "31dbf30a09f942830176634dff56320a55b830e07cee11f5629595192d852365"
                 },
-                "section": "Tabella retributiva"
+                "page": "44",
+                "section": "no text layer",
+                "quote": "4° livello | 1.564,10 | 62,66 | 1.626,76 | 14,10 | 1.640,86 | 11,75 | 1.652,61 | 88,51"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2023-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-farmacie-municipalizzate-assofarm-double-read"
               }
             }
           },
@@ -2385,21 +2707,28 @@
             "valid_until": "2026-10-01",
             "value": "1652.61",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl2022-2024-signedcorrect-pdf",
-                  "title": "ccnl2022-2024-signedcorrect-pdf",
+                  "document_id": "farmacie-municipalizzate-assofarm-src-31dbf30a",
+                  "title": "farmacie-municipalizzate-assofarm: signed-2022.pdf",
                   "kind": "associazione",
-                  "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf"
+                  "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf",
+                  "sha256": "31dbf30a09f942830176634dff56320a55b830e07cee11f5629595192d852365"
                 },
-                "section": "Tabella retributiva"
+                "page": "44",
+                "section": "no text layer",
+                "quote": "4° livello | 1.564,10 | 62,66 | 1.626,76 | 14,10 | 1.640,86 | 11,75 | 1.652,61 | 88,51"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2024-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-farmacie-municipalizzate-assofarm-double-read"
               }
             }
           },
@@ -2560,21 +2889,28 @@
             "valid_until": "2023-07-01",
             "value": "1498.36",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl2022-2024-signedcorrect-pdf",
-                  "title": "ccnl2022-2024-signedcorrect-pdf",
+                  "document_id": "farmacie-municipalizzate-assofarm-src-31dbf30a",
+                  "title": "farmacie-municipalizzate-assofarm: signed-2022.pdf",
                   "kind": "associazione",
-                  "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf"
+                  "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf",
+                  "sha256": "31dbf30a09f942830176634dff56320a55b830e07cee11f5629595192d852365"
                 },
-                "section": "Tabella retributiva"
+                "page": "44",
+                "section": "no text layer",
+                "quote": "5° livello | 1.440,65 | 57,71 | 1.498,36 | 12,99 | 1.511,35 | 10,82 | 1.522,17 | 81,52"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2022-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-farmacie-municipalizzate-assofarm-double-read"
               }
             }
           },
@@ -2583,21 +2919,28 @@
             "valid_until": "2024-07-01",
             "value": "1511.35",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl2022-2024-signedcorrect-pdf",
-                  "title": "ccnl2022-2024-signedcorrect-pdf",
+                  "document_id": "farmacie-municipalizzate-assofarm-src-31dbf30a",
+                  "title": "farmacie-municipalizzate-assofarm: signed-2022.pdf",
                   "kind": "associazione",
-                  "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf"
+                  "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf",
+                  "sha256": "31dbf30a09f942830176634dff56320a55b830e07cee11f5629595192d852365"
                 },
-                "section": "Tabella retributiva"
+                "page": "44",
+                "section": "no text layer",
+                "quote": "5° livello | 1.440,65 | 57,71 | 1.498,36 | 12,99 | 1.511,35 | 10,82 | 1.522,17 | 81,52"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2023-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-farmacie-municipalizzate-assofarm-double-read"
               }
             }
           },
@@ -2606,21 +2949,28 @@
             "valid_until": "2026-10-01",
             "value": "1522.17",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl2022-2024-signedcorrect-pdf",
-                  "title": "ccnl2022-2024-signedcorrect-pdf",
+                  "document_id": "farmacie-municipalizzate-assofarm-src-31dbf30a",
+                  "title": "farmacie-municipalizzate-assofarm: signed-2022.pdf",
                   "kind": "associazione",
-                  "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf"
+                  "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf",
+                  "sha256": "31dbf30a09f942830176634dff56320a55b830e07cee11f5629595192d852365"
                 },
-                "section": "Tabella retributiva"
+                "page": "44",
+                "section": "no text layer",
+                "quote": "5° livello | 1.440,65 | 57,71 | 1.498,36 | 12,99 | 1.511,35 | 10,82 | 1.522,17 | 81,52"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2024-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-farmacie-municipalizzate-assofarm-double-read"
               }
             }
           },
@@ -2781,21 +3131,28 @@
             "valid_until": "2023-07-01",
             "value": "1399.25",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl2022-2024-signedcorrect-pdf",
-                  "title": "ccnl2022-2024-signedcorrect-pdf",
+                  "document_id": "farmacie-municipalizzate-assofarm-src-31dbf30a",
+                  "title": "farmacie-municipalizzate-assofarm: signed-2022.pdf",
                   "kind": "associazione",
-                  "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf"
+                  "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf",
+                  "sha256": "31dbf30a09f942830176634dff56320a55b830e07cee11f5629595192d852365"
                 },
-                "section": "Tabella retributiva"
+                "page": "44",
+                "section": "no text layer",
+                "quote": "6° livello | 1.345,35 | 53,90 | 1.399,25 | 12,13 | 1.411,37 | 10,11 | 1.421,48 | 76,13"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2022-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-farmacie-municipalizzate-assofarm-double-read"
               }
             }
           },
@@ -2804,21 +3161,28 @@
             "valid_until": "2024-07-01",
             "value": "1411.37",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl2022-2024-signedcorrect-pdf",
-                  "title": "ccnl2022-2024-signedcorrect-pdf",
+                  "document_id": "farmacie-municipalizzate-assofarm-src-31dbf30a",
+                  "title": "farmacie-municipalizzate-assofarm: signed-2022.pdf",
                   "kind": "associazione",
-                  "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf"
+                  "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf",
+                  "sha256": "31dbf30a09f942830176634dff56320a55b830e07cee11f5629595192d852365"
                 },
-                "section": "Tabella retributiva"
+                "page": "44",
+                "section": "no text layer",
+                "quote": "6° livello | 1.345,35 | 53,90 | 1.399,25 | 12,13 | 1.411,37 | 10,11 | 1.421,48 | 76,13"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2023-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-farmacie-municipalizzate-assofarm-double-read"
               }
             }
           },
@@ -2827,21 +3191,28 @@
             "valid_until": "2026-10-01",
             "value": "1421.48",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl2022-2024-signedcorrect-pdf",
-                  "title": "ccnl2022-2024-signedcorrect-pdf",
+                  "document_id": "farmacie-municipalizzate-assofarm-src-31dbf30a",
+                  "title": "farmacie-municipalizzate-assofarm: signed-2022.pdf",
                   "kind": "associazione",
-                  "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf"
+                  "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf",
+                  "sha256": "31dbf30a09f942830176634dff56320a55b830e07cee11f5629595192d852365"
                 },
-                "section": "Tabella retributiva"
+                "page": "44",
+                "section": "no text layer",
+                "quote": "6° livello | 1.345,35 | 53,90 | 1.399,25 | 12,13 | 1.411,37 | 10,11 | 1.421,48 | 76,13"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2024-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-farmacie-municipalizzate-assofarm-double-read"
               }
             }
           },
@@ -3003,7 +3374,7 @@
     "effective_until": null,
     "source": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf",
     "verification_status": "unverified",
-    "source_hash": "880ebb1a49b39f1f7c989a78a008fbb899e0f6f40356197ec374c741dadd1069",
+    "source_hash": "21e02b5fe70d82f36ab7870520937bbe7e2feb56620d299698582c3e33108e26",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

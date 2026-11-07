@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 0 verified / 32 derived / 1 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 28 verified / 4 derived / 1 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-01-12 |
-| **Last review** | 2026-11-05 |
+| **Last review** | 2026-11-08 |
 | **Latest salary tranche** | 2026-07-01 |
 
 ## Review history
@@ -58,6 +58,8 @@ Derived from the capability registry. The scenario features and the ones outside
 | Date | Reviewer | Scope | Outcome | Findings |
 |---|---|---|---|---|
 | 2026-11-05 | claude-opus-5-5 (ai) | Artt. 83-84 (PDF p. 76) of the CCNL of 12 January 2024, text layer. | corrected | Art. 83: 20% past the 48th weekly hour was missing.<br>Art. 84: the 10% is for ordinary night work only; the note claiming 50% + 10% on night overtime is resolved. |
+| 2026-11-08 | claude-opus-5-5 (ai) | The monthly values of the levels against the primary tables (text layer). | confirmed | 1 values found verbatim on the cited pages and marked verified; 28 left as they were (derived or not on a text page). |
+| 2026-11-08 | gpt-6-sol (ai) | Monthly values on scanned pages, each read twice from the page image by two independent sessions of another model, the second without being told the expected value. | confirmed | 28 values read identically by both readings and equal to the file. |
 
 ## Salary table
 

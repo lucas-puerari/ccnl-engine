@@ -181,6 +181,50 @@
           "levels.base_salary",
           "levels.fixed_allowances"
         ]
+      },
+      {
+        "id": "2026-11-08-ai-edilizia-cooperative-ancpl-tables",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The monthly values of the levels against the primary tables (text layer).",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2009/04/VERBALE-DI-ACCORDO-CCNL-COOPERATIVE.pdf",
+            "sha256": "0655507846614c2454c61dc922679ae02a35c1e10b66a5933409b3b92ec09748"
+          }
+        ],
+        "findings": [
+          "2 values found verbatim on the cited pages and marked verified; 30 left as they were (derived or not on a text page)."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels.base_salary",
+          "levels.fixed_allowances"
+        ]
+      },
+      {
+        "id": "2026-11-08-gpt-edilizia-cooperative-ancpl-double-read",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Monthly values on scanned pages, each read twice from the page image by two independent sessions of another model, the second without being told the expected value.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2025/02/20250221_Verbale-accordo-rinnovo-c-1-1.pdf",
+            "sha256": "f8c32f93abfee56487fc0a7836227c511ff00cd72a5a2ea7f2edc18fa013aa9f"
+          }
+        ],
+        "findings": [
+          "24 values read identically by both readings and equal to the file."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "levels.base_salary",
+          "levels.fixed_allowances"
+        ]
       }
     ]
   },
@@ -421,21 +465,28 @@
             "valid_until": "2026-03-01",
             "value": "1085.21",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-edilizia-cooperative-rinnovo-21022025",
-                  "title": "CCNL Edilizia Cooperative — Rinnovo 21/02/2025 (Legacoop/Confcooperative/AGCI + FILLEA/FILCA/FENEAL)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.studiocani.com/ccnl-edilizia-industria-e-cooperative-aumento-dei-minimi-dal-1-marzo/"
+                  "document_id": "edilizia-cooperative-ancpl-src-f8c32f93",
+                  "title": "edilizia-cooperative-ancpl: accordo2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2025/02/20250221_Verbale-accordo-rinnovo-c-1-1.pdf",
+                  "sha256": "f8c32f93abfee56487fc0a7836227c511ff00cd72a5a2ea7f2edc18fa013aa9f"
                 },
-                "section": "Tabella retributiva cooperativa — tranche 2025-02-01"
+                "page": "33",
+                "section": "no text layer — Allegato 10, Cooperative, NUOVI MINIMI – Importi mensili",
+                "quote": "I | 100 | 180,00 | 80,00 | 50,00 | 50,00 | 1.085,21 | 1.135,21 | 1.185,21"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-02-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2025-02-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-edilizia-cooperative-ancpl-double-read"
               }
             }
           },
@@ -444,21 +495,28 @@
             "valid_until": "2027-03-01",
             "value": "1135.21",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-edilizia-cooperative-rinnovo-21022025",
-                  "title": "CCNL Edilizia Cooperative — Rinnovo 21/02/2025 (Legacoop/Confcooperative/AGCI + FILLEA/FILCA/FENEAL)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.studiocani.com/ccnl-edilizia-industria-e-cooperative-aumento-dei-minimi-dal-1-marzo/"
+                  "document_id": "edilizia-cooperative-ancpl-src-f8c32f93",
+                  "title": "edilizia-cooperative-ancpl: accordo2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2025/02/20250221_Verbale-accordo-rinnovo-c-1-1.pdf",
+                  "sha256": "f8c32f93abfee56487fc0a7836227c511ff00cd72a5a2ea7f2edc18fa013aa9f"
                 },
-                "section": "Tabella retributiva cooperativa — tranche 2026-03-01"
+                "page": "33",
+                "section": "no text layer — Allegato 10, Cooperative, NUOVI MINIMI – Importi mensili",
+                "quote": "I | 100 | 180,00 | 80,00 | 50,00 | 50,00 | 1.085,21 | 1.135,21 | 1.185,21"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-02-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-03-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-edilizia-cooperative-ancpl-double-read"
               }
             }
           },
@@ -467,21 +525,28 @@
             "valid_until": null,
             "value": "1185.21",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-edilizia-cooperative-rinnovo-21022025",
-                  "title": "CCNL Edilizia Cooperative — Rinnovo 21/02/2025 (Legacoop/Confcooperative/AGCI + FILLEA/FILCA/FENEAL)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.studiocani.com/ccnl-edilizia-industria-e-cooperative-aumento-dei-minimi-dal-1-marzo/"
+                  "document_id": "edilizia-cooperative-ancpl-src-f8c32f93",
+                  "title": "edilizia-cooperative-ancpl: accordo2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2025/02/20250221_Verbale-accordo-rinnovo-c-1-1.pdf",
+                  "sha256": "f8c32f93abfee56487fc0a7836227c511ff00cd72a5a2ea7f2edc18fa013aa9f"
                 },
-                "section": "Tabella retributiva cooperativa — tranche 2027-03-01"
+                "page": "33",
+                "section": "no text layer — Allegato 10, Cooperative, NUOVI MINIMI – Importi mensili",
+                "quote": "I | 100 | 180,00 | 80,00 | 50,00 | 50,00 | 1.085,21 | 1.135,21 | 1.185,21"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-02-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2027-03-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-edilizia-cooperative-ancpl-double-read"
               }
             }
           }
@@ -581,21 +646,28 @@
             "valid_until": "2026-03-01",
             "value": "1240.72",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-edilizia-cooperative-rinnovo-21022025",
-                  "title": "CCNL Edilizia Cooperative — Rinnovo 21/02/2025 (Legacoop/Confcooperative/AGCI + FILLEA/FILCA/FENEAL)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.studiocani.com/ccnl-edilizia-industria-e-cooperative-aumento-dei-minimi-dal-1-marzo/"
+                  "document_id": "edilizia-cooperative-ancpl-src-f8c32f93",
+                  "title": "edilizia-cooperative-ancpl: accordo2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2025/02/20250221_Verbale-accordo-rinnovo-c-1-1.pdf",
+                  "sha256": "f8c32f93abfee56487fc0a7836227c511ff00cd72a5a2ea7f2edc18fa013aa9f"
                 },
-                "section": "Tabella retributiva cooperativa — tranche 2025-02-01"
+                "page": "33",
+                "section": "no text layer — Allegato 10, Cooperative, NUOVI MINIMI – Importi mensili",
+                "quote": "II | 114 | 205,20 | 91,20 | 57,00 | 57,00 | 1.240,72 | 1.297,72 | 1.354,72"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-02-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2025-02-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-edilizia-cooperative-ancpl-double-read"
               }
             }
           },
@@ -604,21 +676,28 @@
             "valid_until": "2027-03-01",
             "value": "1297.72",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-edilizia-cooperative-rinnovo-21022025",
-                  "title": "CCNL Edilizia Cooperative — Rinnovo 21/02/2025 (Legacoop/Confcooperative/AGCI + FILLEA/FILCA/FENEAL)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.studiocani.com/ccnl-edilizia-industria-e-cooperative-aumento-dei-minimi-dal-1-marzo/"
+                  "document_id": "edilizia-cooperative-ancpl-src-f8c32f93",
+                  "title": "edilizia-cooperative-ancpl: accordo2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2025/02/20250221_Verbale-accordo-rinnovo-c-1-1.pdf",
+                  "sha256": "f8c32f93abfee56487fc0a7836227c511ff00cd72a5a2ea7f2edc18fa013aa9f"
                 },
-                "section": "Tabella retributiva cooperativa — tranche 2026-03-01"
+                "page": "33",
+                "section": "no text layer — Allegato 10, Cooperative, NUOVI MINIMI – Importi mensili",
+                "quote": "II | 114 | 205,20 | 91,20 | 57,00 | 57,00 | 1.240,72 | 1.297,72 | 1.354,72"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-02-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-03-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-edilizia-cooperative-ancpl-double-read"
               }
             }
           },
@@ -627,21 +706,28 @@
             "valid_until": null,
             "value": "1354.72",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-edilizia-cooperative-rinnovo-21022025",
-                  "title": "CCNL Edilizia Cooperative — Rinnovo 21/02/2025 (Legacoop/Confcooperative/AGCI + FILLEA/FILCA/FENEAL)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.studiocani.com/ccnl-edilizia-industria-e-cooperative-aumento-dei-minimi-dal-1-marzo/"
+                  "document_id": "edilizia-cooperative-ancpl-src-f8c32f93",
+                  "title": "edilizia-cooperative-ancpl: accordo2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2025/02/20250221_Verbale-accordo-rinnovo-c-1-1.pdf",
+                  "sha256": "f8c32f93abfee56487fc0a7836227c511ff00cd72a5a2ea7f2edc18fa013aa9f"
                 },
-                "section": "Tabella retributiva cooperativa — tranche 2027-03-01"
+                "page": "33",
+                "section": "no text layer — Allegato 10, Cooperative, NUOVI MINIMI – Importi mensili",
+                "quote": "II | 114 | 205,20 | 91,20 | 57,00 | 57,00 | 1.240,72 | 1.297,72 | 1.354,72"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-02-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2027-03-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-edilizia-cooperative-ancpl-double-read"
               }
             }
           }
@@ -741,21 +827,28 @@
             "valid_until": "2026-03-01",
             "value": "1381.81",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-edilizia-cooperative-rinnovo-21022025",
-                  "title": "CCNL Edilizia Cooperative — Rinnovo 21/02/2025 (Legacoop/Confcooperative/AGCI + FILLEA/FILCA/FENEAL)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.studiocani.com/ccnl-edilizia-industria-e-cooperative-aumento-dei-minimi-dal-1-marzo/"
+                  "document_id": "edilizia-cooperative-ancpl-src-f8c32f93",
+                  "title": "edilizia-cooperative-ancpl: accordo2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2025/02/20250221_Verbale-accordo-rinnovo-c-1-1.pdf",
+                  "sha256": "f8c32f93abfee56487fc0a7836227c511ff00cd72a5a2ea7f2edc18fa013aa9f"
                 },
-                "section": "Tabella retributiva cooperativa — tranche 2025-02-01"
+                "page": "33",
+                "section": "no text layer — Allegato 10, Cooperative, NUOVI MINIMI – Importi mensili",
+                "quote": "III | 127 | 228,60 | 101,60 | 63,50 | 63,50 | 1.381,81 | 1.445,31 | 1.508,81"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-02-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2025-02-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-edilizia-cooperative-ancpl-double-read"
               }
             }
           },
@@ -764,21 +857,28 @@
             "valid_until": "2027-03-01",
             "value": "1445.31",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-edilizia-cooperative-rinnovo-21022025",
-                  "title": "CCNL Edilizia Cooperative — Rinnovo 21/02/2025 (Legacoop/Confcooperative/AGCI + FILLEA/FILCA/FENEAL)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.studiocani.com/ccnl-edilizia-industria-e-cooperative-aumento-dei-minimi-dal-1-marzo/"
+                  "document_id": "edilizia-cooperative-ancpl-src-f8c32f93",
+                  "title": "edilizia-cooperative-ancpl: accordo2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2025/02/20250221_Verbale-accordo-rinnovo-c-1-1.pdf",
+                  "sha256": "f8c32f93abfee56487fc0a7836227c511ff00cd72a5a2ea7f2edc18fa013aa9f"
                 },
-                "section": "Tabella retributiva cooperativa — tranche 2026-03-01"
+                "page": "33",
+                "section": "no text layer — Allegato 10, Cooperative, NUOVI MINIMI – Importi mensili",
+                "quote": "III | 127 | 228,60 | 101,60 | 63,50 | 63,50 | 1.381,81 | 1.445,31 | 1.508,81"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-02-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-03-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-edilizia-cooperative-ancpl-double-read"
               }
             }
           },
@@ -787,21 +887,28 @@
             "valid_until": null,
             "value": "1508.81",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-edilizia-cooperative-rinnovo-21022025",
-                  "title": "CCNL Edilizia Cooperative — Rinnovo 21/02/2025 (Legacoop/Confcooperative/AGCI + FILLEA/FILCA/FENEAL)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.studiocani.com/ccnl-edilizia-industria-e-cooperative-aumento-dei-minimi-dal-1-marzo/"
+                  "document_id": "edilizia-cooperative-ancpl-src-f8c32f93",
+                  "title": "edilizia-cooperative-ancpl: accordo2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2025/02/20250221_Verbale-accordo-rinnovo-c-1-1.pdf",
+                  "sha256": "f8c32f93abfee56487fc0a7836227c511ff00cd72a5a2ea7f2edc18fa013aa9f"
                 },
-                "section": "Tabella retributiva cooperativa — tranche 2027-03-01"
+                "page": "33",
+                "section": "no text layer — Allegato 10, Cooperative, NUOVI MINIMI – Importi mensili",
+                "quote": "III | 127 | 228,60 | 101,60 | 63,50 | 63,50 | 1.381,81 | 1.445,31 | 1.508,81"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-02-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2027-03-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-edilizia-cooperative-ancpl-double-read"
               }
             }
           }
@@ -901,21 +1008,28 @@
             "valid_until": "2026-03-01",
             "value": "1485.49",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-edilizia-cooperative-rinnovo-21022025",
-                  "title": "CCNL Edilizia Cooperative — Rinnovo 21/02/2025 (Legacoop/Confcooperative/AGCI + FILLEA/FILCA/FENEAL)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.studiocani.com/ccnl-edilizia-industria-e-cooperative-aumento-dei-minimi-dal-1-marzo/"
+                  "document_id": "edilizia-cooperative-ancpl-src-f8c32f93",
+                  "title": "edilizia-cooperative-ancpl: accordo2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2025/02/20250221_Verbale-accordo-rinnovo-c-1-1.pdf",
+                  "sha256": "f8c32f93abfee56487fc0a7836227c511ff00cd72a5a2ea7f2edc18fa013aa9f"
                 },
-                "section": "Tabella retributiva cooperativa — tranche 2025-02-01"
+                "page": "33",
+                "section": "no text layer — Allegato 10, Cooperative, NUOVI MINIMI – Importi mensili",
+                "quote": "IV | 136,5 | 245,70 | 109,20 | 68,25 | 68,25 | 1.485,49 | 1.553,74 | 1.621,99"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-02-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2025-02-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-edilizia-cooperative-ancpl-double-read"
               }
             }
           },
@@ -924,21 +1038,28 @@
             "valid_until": "2027-03-01",
             "value": "1553.74",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-edilizia-cooperative-rinnovo-21022025",
-                  "title": "CCNL Edilizia Cooperative — Rinnovo 21/02/2025 (Legacoop/Confcooperative/AGCI + FILLEA/FILCA/FENEAL)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.studiocani.com/ccnl-edilizia-industria-e-cooperative-aumento-dei-minimi-dal-1-marzo/"
+                  "document_id": "edilizia-cooperative-ancpl-src-f8c32f93",
+                  "title": "edilizia-cooperative-ancpl: accordo2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2025/02/20250221_Verbale-accordo-rinnovo-c-1-1.pdf",
+                  "sha256": "f8c32f93abfee56487fc0a7836227c511ff00cd72a5a2ea7f2edc18fa013aa9f"
                 },
-                "section": "Tabella retributiva cooperativa — tranche 2026-03-01"
+                "page": "33",
+                "section": "no text layer — Allegato 10, Cooperative, NUOVI MINIMI – Importi mensili",
+                "quote": "IV | 136,5 | 245,70 | 109,20 | 68,25 | 68,25 | 1.485,49 | 1.553,74 | 1.621,99"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-02-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-03-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-edilizia-cooperative-ancpl-double-read"
               }
             }
           },
@@ -947,21 +1068,28 @@
             "valid_until": null,
             "value": "1621.99",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-edilizia-cooperative-rinnovo-21022025",
-                  "title": "CCNL Edilizia Cooperative — Rinnovo 21/02/2025 (Legacoop/Confcooperative/AGCI + FILLEA/FILCA/FENEAL)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.studiocani.com/ccnl-edilizia-industria-e-cooperative-aumento-dei-minimi-dal-1-marzo/"
+                  "document_id": "edilizia-cooperative-ancpl-src-f8c32f93",
+                  "title": "edilizia-cooperative-ancpl: accordo2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2025/02/20250221_Verbale-accordo-rinnovo-c-1-1.pdf",
+                  "sha256": "f8c32f93abfee56487fc0a7836227c511ff00cd72a5a2ea7f2edc18fa013aa9f"
                 },
-                "section": "Tabella retributiva cooperativa — tranche 2027-03-01"
+                "page": "33",
+                "section": "no text layer — Allegato 10, Cooperative, NUOVI MINIMI – Importi mensili",
+                "quote": "IV | 136,5 | 245,70 | 109,20 | 68,25 | 68,25 | 1.485,49 | 1.553,74 | 1.621,99"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-02-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2027-03-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-edilizia-cooperative-ancpl-double-read"
               }
             }
           }
@@ -1061,21 +1189,28 @@
             "valid_until": "2026-03-01",
             "value": "1659.16",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-edilizia-cooperative-rinnovo-21022025",
-                  "title": "CCNL Edilizia Cooperative — Rinnovo 21/02/2025 (Legacoop/Confcooperative/AGCI + FILLEA/FILCA/FENEAL)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.studiocani.com/ccnl-edilizia-industria-e-cooperative-aumento-dei-minimi-dal-1-marzo/"
+                  "document_id": "edilizia-cooperative-ancpl-src-f8c32f93",
+                  "title": "edilizia-cooperative-ancpl: accordo2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2025/02/20250221_Verbale-accordo-rinnovo-c-1-1.pdf",
+                  "sha256": "f8c32f93abfee56487fc0a7836227c511ff00cd72a5a2ea7f2edc18fa013aa9f"
                 },
-                "section": "Tabella retributiva cooperativa — tranche 2025-02-01"
+                "page": "33",
+                "section": "no text layer — Allegato 10, Cooperative, NUOVI MINIMI – Importi mensili",
+                "quote": "V | 153 | 275,40 | 122,40 | 76,50 | 76,50 | 1.659,16 | 1.735,66 | 1.812,16"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-02-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2025-02-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-edilizia-cooperative-ancpl-double-read"
               }
             }
           },
@@ -1084,21 +1219,28 @@
             "valid_until": "2027-03-01",
             "value": "1735.66",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-edilizia-cooperative-rinnovo-21022025",
-                  "title": "CCNL Edilizia Cooperative — Rinnovo 21/02/2025 (Legacoop/Confcooperative/AGCI + FILLEA/FILCA/FENEAL)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.studiocani.com/ccnl-edilizia-industria-e-cooperative-aumento-dei-minimi-dal-1-marzo/"
+                  "document_id": "edilizia-cooperative-ancpl-src-f8c32f93",
+                  "title": "edilizia-cooperative-ancpl: accordo2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2025/02/20250221_Verbale-accordo-rinnovo-c-1-1.pdf",
+                  "sha256": "f8c32f93abfee56487fc0a7836227c511ff00cd72a5a2ea7f2edc18fa013aa9f"
                 },
-                "section": "Tabella retributiva cooperativa — tranche 2026-03-01"
+                "page": "33",
+                "section": "no text layer — Allegato 10, Cooperative, NUOVI MINIMI – Importi mensili",
+                "quote": "V | 153 | 275,40 | 122,40 | 76,50 | 76,50 | 1.659,16 | 1.735,66 | 1.812,16"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-02-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-03-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-edilizia-cooperative-ancpl-double-read"
               }
             }
           },
@@ -1107,21 +1249,28 @@
             "valid_until": null,
             "value": "1812.16",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-edilizia-cooperative-rinnovo-21022025",
-                  "title": "CCNL Edilizia Cooperative — Rinnovo 21/02/2025 (Legacoop/Confcooperative/AGCI + FILLEA/FILCA/FENEAL)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.studiocani.com/ccnl-edilizia-industria-e-cooperative-aumento-dei-minimi-dal-1-marzo/"
+                  "document_id": "edilizia-cooperative-ancpl-src-f8c32f93",
+                  "title": "edilizia-cooperative-ancpl: accordo2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2025/02/20250221_Verbale-accordo-rinnovo-c-1-1.pdf",
+                  "sha256": "f8c32f93abfee56487fc0a7836227c511ff00cd72a5a2ea7f2edc18fa013aa9f"
                 },
-                "section": "Tabella retributiva cooperativa — tranche 2027-03-01"
+                "page": "33",
+                "section": "no text layer — Allegato 10, Cooperative, NUOVI MINIMI – Importi mensili",
+                "quote": "V | 153 | 275,40 | 122,40 | 76,50 | 76,50 | 1.659,16 | 1.735,66 | 1.812,16"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-02-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2027-03-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-edilizia-cooperative-ancpl-double-read"
               }
             }
           }
@@ -1221,21 +1370,28 @@
             "valid_until": "2026-03-01",
             "value": "1953.34",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-edilizia-cooperative-rinnovo-21022025",
-                  "title": "CCNL Edilizia Cooperative — Rinnovo 21/02/2025 (Legacoop/Confcooperative/AGCI + FILLEA/FILCA/FENEAL)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.studiocani.com/ccnl-edilizia-industria-e-cooperative-aumento-dei-minimi-dal-1-marzo/"
+                  "document_id": "edilizia-cooperative-ancpl-src-f8c32f93",
+                  "title": "edilizia-cooperative-ancpl: accordo2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2025/02/20250221_Verbale-accordo-rinnovo-c-1-1.pdf",
+                  "sha256": "f8c32f93abfee56487fc0a7836227c511ff00cd72a5a2ea7f2edc18fa013aa9f"
                 },
-                "section": "Tabella retributiva cooperativa — tranche 2025-02-01"
+                "page": "33",
+                "section": "no text layer — Allegato 10, Cooperative, NUOVI MINIMI – Importi mensili",
+                "quote": "VI | 180 | 324,00 | 144,00 | 90,00 | 90,00 | 1.953,34 | 2.043,34 | 2.133,34"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-02-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2025-02-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-edilizia-cooperative-ancpl-double-read"
               }
             }
           },
@@ -1244,21 +1400,28 @@
             "valid_until": "2027-03-01",
             "value": "2043.34",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-edilizia-cooperative-rinnovo-21022025",
-                  "title": "CCNL Edilizia Cooperative — Rinnovo 21/02/2025 (Legacoop/Confcooperative/AGCI + FILLEA/FILCA/FENEAL)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.studiocani.com/ccnl-edilizia-industria-e-cooperative-aumento-dei-minimi-dal-1-marzo/"
+                  "document_id": "edilizia-cooperative-ancpl-src-f8c32f93",
+                  "title": "edilizia-cooperative-ancpl: accordo2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2025/02/20250221_Verbale-accordo-rinnovo-c-1-1.pdf",
+                  "sha256": "f8c32f93abfee56487fc0a7836227c511ff00cd72a5a2ea7f2edc18fa013aa9f"
                 },
-                "section": "Tabella retributiva cooperativa — tranche 2026-03-01"
+                "page": "33",
+                "section": "no text layer — Allegato 10, Cooperative, NUOVI MINIMI – Importi mensili",
+                "quote": "VI | 180 | 324,00 | 144,00 | 90,00 | 90,00 | 1.953,34 | 2.043,34 | 2.133,34"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-02-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-03-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-edilizia-cooperative-ancpl-double-read"
               }
             }
           },
@@ -1267,21 +1430,28 @@
             "valid_until": null,
             "value": "2133.34",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-edilizia-cooperative-rinnovo-21022025",
-                  "title": "CCNL Edilizia Cooperative — Rinnovo 21/02/2025 (Legacoop/Confcooperative/AGCI + FILLEA/FILCA/FENEAL)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.studiocani.com/ccnl-edilizia-industria-e-cooperative-aumento-dei-minimi-dal-1-marzo/"
+                  "document_id": "edilizia-cooperative-ancpl-src-f8c32f93",
+                  "title": "edilizia-cooperative-ancpl: accordo2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2025/02/20250221_Verbale-accordo-rinnovo-c-1-1.pdf",
+                  "sha256": "f8c32f93abfee56487fc0a7836227c511ff00cd72a5a2ea7f2edc18fa013aa9f"
                 },
-                "section": "Tabella retributiva cooperativa — tranche 2027-03-01"
+                "page": "33",
+                "section": "no text layer — Allegato 10, Cooperative, NUOVI MINIMI – Importi mensili",
+                "quote": "VI | 180 | 324,00 | 144,00 | 90,00 | 90,00 | 1.953,34 | 2.043,34 | 2.133,34"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-02-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2027-03-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-edilizia-cooperative-ancpl-double-read"
               }
             }
           }
@@ -1381,21 +1551,28 @@
             "valid_until": "2026-03-01",
             "value": "2274.90",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-edilizia-cooperative-rinnovo-21022025",
-                  "title": "CCNL Edilizia Cooperative — Rinnovo 21/02/2025 (Legacoop/Confcooperative/AGCI + FILLEA/FILCA/FENEAL)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.studiocani.com/ccnl-edilizia-industria-e-cooperative-aumento-dei-minimi-dal-1-marzo/"
+                  "document_id": "edilizia-cooperative-ancpl-src-f8c32f93",
+                  "title": "edilizia-cooperative-ancpl: accordo2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2025/02/20250221_Verbale-accordo-rinnovo-c-1-1.pdf",
+                  "sha256": "f8c32f93abfee56487fc0a7836227c511ff00cd72a5a2ea7f2edc18fa013aa9f"
                 },
-                "section": "Tabella retributiva cooperativa — tranche 2025-02-01"
+                "page": "33",
+                "section": "no text layer — Allegato 10, Cooperative, NUOVI MINIMI – Importi mensili",
+                "quote": "VII | 210 | 378,00 | 168,00 | 105,00 | 105,00 | 2.274,90 | 2.379,90 | 2.484,90"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-02-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2025-02-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-edilizia-cooperative-ancpl-double-read"
               }
             }
           },
@@ -1404,21 +1581,28 @@
             "valid_until": "2027-03-01",
             "value": "2379.90",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-edilizia-cooperative-rinnovo-21022025",
-                  "title": "CCNL Edilizia Cooperative — Rinnovo 21/02/2025 (Legacoop/Confcooperative/AGCI + FILLEA/FILCA/FENEAL)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.studiocani.com/ccnl-edilizia-industria-e-cooperative-aumento-dei-minimi-dal-1-marzo/"
+                  "document_id": "edilizia-cooperative-ancpl-src-f8c32f93",
+                  "title": "edilizia-cooperative-ancpl: accordo2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2025/02/20250221_Verbale-accordo-rinnovo-c-1-1.pdf",
+                  "sha256": "f8c32f93abfee56487fc0a7836227c511ff00cd72a5a2ea7f2edc18fa013aa9f"
                 },
-                "section": "Tabella retributiva cooperativa — tranche 2026-03-01"
+                "page": "33",
+                "section": "no text layer — Allegato 10, Cooperative, NUOVI MINIMI – Importi mensili",
+                "quote": "VII | 210 | 378,00 | 168,00 | 105,00 | 105,00 | 2.274,90 | 2.379,90 | 2.484,90"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-02-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-03-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-edilizia-cooperative-ancpl-double-read"
               }
             }
           },
@@ -1427,21 +1611,28 @@
             "valid_until": null,
             "value": "2484.90",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-edilizia-cooperative-rinnovo-21022025",
-                  "title": "CCNL Edilizia Cooperative — Rinnovo 21/02/2025 (Legacoop/Confcooperative/AGCI + FILLEA/FILCA/FENEAL)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.studiocani.com/ccnl-edilizia-industria-e-cooperative-aumento-dei-minimi-dal-1-marzo/"
+                  "document_id": "edilizia-cooperative-ancpl-src-f8c32f93",
+                  "title": "edilizia-cooperative-ancpl: accordo2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2025/02/20250221_Verbale-accordo-rinnovo-c-1-1.pdf",
+                  "sha256": "f8c32f93abfee56487fc0a7836227c511ff00cd72a5a2ea7f2edc18fa013aa9f"
                 },
-                "section": "Tabella retributiva cooperativa — tranche 2027-03-01"
+                "page": "33",
+                "section": "no text layer — Allegato 10, Cooperative, NUOVI MINIMI – Importi mensili",
+                "quote": "VII | 210 | 378,00 | 168,00 | 105,00 | 105,00 | 2.274,90 | 2.379,90 | 2.484,90"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-02-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2027-03-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-edilizia-cooperative-ancpl-double-read"
               }
             }
           }
@@ -1684,24 +1875,24 @@
                   "location": {
                     "source_document": {
                       "document_id": "edilizia-cooperative-ancpl-tables-06555078",
-                      "title": "edilizia-cooperative-ancpl: tabelle retributive (accordo2010.pdf)",
+                      "title": "edilizia-cooperative-ancpl: tabelle retributive (renewal.pdf)",
                       "kind": "associazione",
                       "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2009/04/VERBALE-DI-ACCORDO-CCNL-COOPERATIVE.pdf",
                       "sha256": "0655507846614c2454c61dc922679ae02a35c1e10b66a5933409b3b92ec09748"
                     },
                     "page": "19",
-                    "section": "Allegato 10 — Art. 15, punto 3, Quadri",
+                    "section": "Allegato 10, Art. 15 - Quadri, punto 3",
                     "quote": "A decorrere dal 1° Luglio 2010 la misura minima mensile dell'indennità è elevata ad Euro 170,00. Con medesima"
                   },
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
                     "effective_from": "2025-02-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verified_at": "2026-11-08T05:00:00Z",
                     "verification_status": "verified",
-                    "review_id": "2026-11-07-ai-edilizia-cooperative-ancpl-tables"
+                    "review_id": "2026-11-08-ai-edilizia-cooperative-ancpl-tables"
                   }
                 }
               }
@@ -1757,21 +1948,28 @@
             "valid_until": "2026-03-01",
             "value": "2712.99",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-edilizia-cooperative-rinnovo-21022025",
-                  "title": "CCNL Edilizia Cooperative — Rinnovo 21/02/2025 (Legacoop/Confcooperative/AGCI + FILLEA/FILCA/FENEAL)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.studiocani.com/ccnl-edilizia-industria-e-cooperative-aumento-dei-minimi-dal-1-marzo/"
+                  "document_id": "edilizia-cooperative-ancpl-src-f8c32f93",
+                  "title": "edilizia-cooperative-ancpl: accordo2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2025/02/20250221_Verbale-accordo-rinnovo-c-1-1.pdf",
+                  "sha256": "f8c32f93abfee56487fc0a7836227c511ff00cd72a5a2ea7f2edc18fa013aa9f"
                 },
-                "section": "Tabella retributiva cooperativa — tranche 2025-02-01"
+                "page": "33",
+                "section": "no text layer — Allegato 10, Cooperative, NUOVI MINIMI – Importi mensili",
+                "quote": "VIII* | 250 | 450,00 | 200,00 | 125,00 | 125,00 | 2.712,99 | 2.837,99 | 2.962,99"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-02-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2025-02-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-edilizia-cooperative-ancpl-double-read"
               }
             }
           },
@@ -1780,21 +1978,28 @@
             "valid_until": "2027-03-01",
             "value": "2837.99",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-edilizia-cooperative-rinnovo-21022025",
-                  "title": "CCNL Edilizia Cooperative — Rinnovo 21/02/2025 (Legacoop/Confcooperative/AGCI + FILLEA/FILCA/FENEAL)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.studiocani.com/ccnl-edilizia-industria-e-cooperative-aumento-dei-minimi-dal-1-marzo/"
+                  "document_id": "edilizia-cooperative-ancpl-src-f8c32f93",
+                  "title": "edilizia-cooperative-ancpl: accordo2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2025/02/20250221_Verbale-accordo-rinnovo-c-1-1.pdf",
+                  "sha256": "f8c32f93abfee56487fc0a7836227c511ff00cd72a5a2ea7f2edc18fa013aa9f"
                 },
-                "section": "Tabella retributiva cooperativa — tranche 2026-03-01"
+                "page": "33",
+                "section": "no text layer — Allegato 10, Cooperative, NUOVI MINIMI – Importi mensili",
+                "quote": "VIII* | 250 | 450,00 | 200,00 | 125,00 | 125,00 | 2.712,99 | 2.837,99 | 2.962,99"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-02-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-03-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-edilizia-cooperative-ancpl-double-read"
               }
             }
           },
@@ -1803,21 +2008,28 @@
             "valid_until": null,
             "value": "2962.99",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-edilizia-cooperative-rinnovo-21022025",
-                  "title": "CCNL Edilizia Cooperative — Rinnovo 21/02/2025 (Legacoop/Confcooperative/AGCI + FILLEA/FILCA/FENEAL)",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.studiocani.com/ccnl-edilizia-industria-e-cooperative-aumento-dei-minimi-dal-1-marzo/"
+                  "document_id": "edilizia-cooperative-ancpl-src-f8c32f93",
+                  "title": "edilizia-cooperative-ancpl: accordo2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2025/02/20250221_Verbale-accordo-rinnovo-c-1-1.pdf",
+                  "sha256": "f8c32f93abfee56487fc0a7836227c511ff00cd72a5a2ea7f2edc18fa013aa9f"
                 },
-                "section": "Tabella retributiva cooperativa — tranche 2027-03-01"
+                "page": "33",
+                "section": "no text layer — Allegato 10, Cooperative, NUOVI MINIMI – Importi mensili",
+                "quote": "VIII* | 250 | 450,00 | 200,00 | 125,00 | 125,00 | 2.712,99 | 2.837,99 | 2.962,99"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-02-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2027-03-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-edilizia-cooperative-ancpl-double-read"
               }
             }
           }
@@ -2060,24 +2272,24 @@
                   "location": {
                     "source_document": {
                       "document_id": "edilizia-cooperative-ancpl-tables-06555078",
-                      "title": "edilizia-cooperative-ancpl: tabelle retributive (accordo2010.pdf)",
+                      "title": "edilizia-cooperative-ancpl: tabelle retributive (renewal.pdf)",
                       "kind": "associazione",
                       "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2009/04/VERBALE-DI-ACCORDO-CCNL-COOPERATIVE.pdf",
                       "sha256": "0655507846614c2454c61dc922679ae02a35c1e10b66a5933409b3b92ec09748"
                     },
                     "page": "19",
-                    "section": "Allegato 10 — Art. 15, punto 3, Quadri",
+                    "section": "Allegato 10, Art. 15 - Quadri, punto 3",
                     "quote": "A decorrere dal 1° Luglio 2010 la misura minima mensile dell'indennità è elevata ad Euro 170,00. Con medesima"
                   },
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
                     "effective_from": "2025-02-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verified_at": "2026-11-08T05:00:00Z",
                     "verification_status": "verified",
-                    "review_id": "2026-11-07-ai-edilizia-cooperative-ancpl-tables"
+                    "review_id": "2026-11-08-ai-edilizia-cooperative-ancpl-tables"
                   }
                 }
               }
@@ -2130,7 +2342,7 @@
     "effective_until": null,
     "source": "https://www.studiocani.com/ccnl-edilizia-industria-e-cooperative-aumento-dei-minimi-dal-1-marzo/",
     "verification_status": "unverified",
-    "source_hash": "733e91eaf4c41f2f32e64b2cc695f3a8c2dcd0e1e9ff33e17ba26b41c559e513",
+    "source_hash": "80708b8798c29eea9149a5bff8645b097ef0beeaa0e5610382bdcb920e4d2aa1",
     "published_at": "2026-09-18",
     "source_type": "contracting_party"
   },

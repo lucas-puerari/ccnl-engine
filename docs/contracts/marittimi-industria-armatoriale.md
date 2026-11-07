@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🟢 Verified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 2 verified / 39 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 26 verified / 15 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-07-11 |
-| **Last review** | 2026-11-06 |
+| **Last review** | 2026-11-08 |
 | **Latest salary tranche** | 2026-07-01 |
 
 ## Review history
@@ -60,6 +60,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | confirmed | Art. 17 - Tredicesima e Quattordicesima mensilità (p. 15): "il lavoratore non in prova, avrà diritto a tanti dodicesimi dell'ammontare delle mensilità accessorie e per quanti sono stati i mesi interi di servizio prestato, calcolando come mese intero la frazione di mese uguale o superiore a 15 giorni e trascurando invece quella inferiore a 15 giorni.". Match: at_least 15. |
 | 2026-10-31 | claude-opus-5-5 (ai) | The comporto and the sick pay of the CCNL counted over several illnesses (work_rules.sickness_rules), read on the signed text. | corrected | Art. 26 (pp. 20-21) of the shore-staff section: the comporto is 10 months of one illness and 330 days of several within the last three years, with the whole pay; the carenza of the 4th-6th event of the year is paid 50%, from the 7th 30%. The file kept a comporto of 180 days of one illness with no event reduction: corrected (max_duration_days 304, a window of 36 months and 330 days, carenza_by_event). The 18 months of a serious illness are not modelled. |
 | 2026-11-06 | claude-opus-5-5 (ai) | Apprentice seniority: Allegato 4 lett. a) (pp. 39, 41) and the aumenti periodici of the sezione personale di terra of 11 July 2024 (OCR). | corrected | 'Il periodo di apprendistato si computa ai fini dell'anzianità aziendale e di servizio' (p. 39); 'la percentuale si applica esclusivamente sul minimo contrattuale' (p. 41); the workers get an increment of a fixed amount per level each biennio: the level increments in full. |
+| 2026-11-08 | claude-opus-5-5 (ai) | The monthly values of the levels against the primary tables (text layer). | confirmed | 49 values found verbatim on the cited pages and marked verified; 0 left as they were (derived or not on a text page). |
 
 ## Salary table
 

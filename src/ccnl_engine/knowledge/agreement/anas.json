@@ -129,6 +129,28 @@
         "checked": [
           "parameters.seniority_increments"
         ]
+      },
+      {
+        "id": "2026-11-08-gpt-anas-double-read",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Monthly values on scanned pages, each read twice from the page image by two independent sessions of another model, the second without being told the expected value.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf",
+            "sha256": "c81e33f8253fff7a7df65b5959f24e3cfaeabecda8a77d48b0739c1285ad9027"
+          }
+        ],
+        "findings": [
+          "35 values read identically by both readings and equal to the file."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "levels.base_salary",
+          "levels.fixed_allowances"
+        ]
       }
     ]
   },
@@ -144,21 +166,28 @@
             "valid_until": "2026-09-01",
             "value": "1338.68",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-2025-2027-pdf",
-                  "title": "ccnl-2025-2027-pdf",
+                  "document_id": "anas-src-c81e33f8",
+                  "title": "anas: CCNL-2025-2027.pdf",
                   "kind": "associazione",
-                  "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf"
+                  "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf",
+                  "sha256": "c81e33f8253fff7a7df65b5959f24e3cfaeabecda8a77d48b0739c1285ad9027"
                 },
-                "section": "Tabella retributiva"
+                "page": "146",
+                "section": "no text layer",
+                "quote": "C1 | 1.338,68 | 1.370,94 | 1.409,65 | 1.448,36 | 1.448,36"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-03-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-anas-double-read"
               }
             }
           },
@@ -167,21 +196,28 @@
             "valid_until": "2027-03-01",
             "value": "1370.94",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-2025-2027-pdf",
-                  "title": "ccnl-2025-2027-pdf",
+                  "document_id": "anas-src-c81e33f8",
+                  "title": "anas: CCNL-2025-2027.pdf",
                   "kind": "associazione",
-                  "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf"
+                  "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf",
+                  "sha256": "c81e33f8253fff7a7df65b5959f24e3cfaeabecda8a77d48b0739c1285ad9027"
                 },
-                "section": "Tabella retributiva"
+                "page": "146",
+                "section": "no text layer",
+                "quote": "C1 | 1.338,68 | 1.370,94 | 1.409,65 | 1.448,36 | 1.448,36"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-09-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-anas-double-read"
               }
             }
           },
@@ -190,21 +226,28 @@
             "valid_until": "2027-07-01",
             "value": "1409.65",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-2025-2027-pdf",
-                  "title": "ccnl-2025-2027-pdf",
+                  "document_id": "anas-src-c81e33f8",
+                  "title": "anas: CCNL-2025-2027.pdf",
                   "kind": "associazione",
-                  "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf"
+                  "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf",
+                  "sha256": "c81e33f8253fff7a7df65b5959f24e3cfaeabecda8a77d48b0739c1285ad9027"
                 },
-                "section": "Tabella retributiva"
+                "page": "146",
+                "section": "no text layer",
+                "quote": "C1 | 1.338,68 | 1.370,94 | 1.409,65 | 1.448,36 | 1.448,36"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2027-03-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-anas-double-read"
               }
             }
           },
@@ -213,21 +256,28 @@
             "valid_until": null,
             "value": "1448.36",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-2025-2027-pdf",
-                  "title": "ccnl-2025-2027-pdf",
+                  "document_id": "anas-src-c81e33f8",
+                  "title": "anas: CCNL-2025-2027.pdf",
                   "kind": "associazione",
-                  "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf"
+                  "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf",
+                  "sha256": "c81e33f8253fff7a7df65b5959f24e3cfaeabecda8a77d48b0739c1285ad9027"
                 },
-                "section": "Tabella retributiva"
+                "page": "146",
+                "section": "no text layer",
+                "quote": "C1 | 1.338,68 | 1.370,94 | 1.409,65 | 1.448,36 | 1.448,36"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2027-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-anas-double-read"
               }
             }
           }
@@ -243,7 +293,32 @@
               {
                 "valid_from": "2026-03-01",
                 "valid_until": null,
-                "value": "517.06"
+                "value": "517.06",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "anas-src-c81e33f8",
+                      "title": "anas: CCNL-2025-2027.pdf",
+                      "kind": "associazione",
+                      "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf",
+                      "sha256": "c81e33f8253fff7a7df65b5959f24e3cfaeabecda8a77d48b0739c1285ad9027"
+                    },
+                    "page": "145",
+                    "section": "no text layer",
+                    "quote": "C1 | 517,06"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "effective_from": "2026-03-01",
+                    "verified_by": "gpt-6-sol",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-gpt-anas-double-read"
+                  }
+                }
               }
             ]
           },
@@ -297,21 +372,28 @@
             "valid_until": "2026-09-01",
             "value": "1539.39",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-2025-2027-pdf",
-                  "title": "ccnl-2025-2027-pdf",
+                  "document_id": "anas-src-c81e33f8",
+                  "title": "anas: CCNL-2025-2027.pdf",
                   "kind": "associazione",
-                  "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf"
+                  "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf",
+                  "sha256": "c81e33f8253fff7a7df65b5959f24e3cfaeabecda8a77d48b0739c1285ad9027"
                 },
-                "section": "Tabella retributiva"
+                "page": "146",
+                "section": "no text layer",
+                "quote": "C | 1.539,39 | 1.576,49 | 1.621,01 | 1.665,53 | 1.665,53"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-03-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-anas-double-read"
               }
             }
           },
@@ -320,21 +402,28 @@
             "valid_until": "2027-03-01",
             "value": "1576.49",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-2025-2027-pdf",
-                  "title": "ccnl-2025-2027-pdf",
+                  "document_id": "anas-src-c81e33f8",
+                  "title": "anas: CCNL-2025-2027.pdf",
                   "kind": "associazione",
-                  "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf"
+                  "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf",
+                  "sha256": "c81e33f8253fff7a7df65b5959f24e3cfaeabecda8a77d48b0739c1285ad9027"
                 },
-                "section": "Tabella retributiva"
+                "page": "146",
+                "section": "no text layer",
+                "quote": "C | 1.539,39 | 1.576,49 | 1.621,01 | 1.665,53 | 1.665,53"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-09-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-anas-double-read"
               }
             }
           },
@@ -343,21 +432,28 @@
             "valid_until": "2027-07-01",
             "value": "1621.01",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-2025-2027-pdf",
-                  "title": "ccnl-2025-2027-pdf",
+                  "document_id": "anas-src-c81e33f8",
+                  "title": "anas: CCNL-2025-2027.pdf",
                   "kind": "associazione",
-                  "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf"
+                  "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf",
+                  "sha256": "c81e33f8253fff7a7df65b5959f24e3cfaeabecda8a77d48b0739c1285ad9027"
                 },
-                "section": "Tabella retributiva"
+                "page": "146",
+                "section": "no text layer",
+                "quote": "C | 1.539,39 | 1.576,49 | 1.621,01 | 1.665,53 | 1.665,53"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2027-03-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-anas-double-read"
               }
             }
           },
@@ -366,21 +462,28 @@
             "valid_until": null,
             "value": "1665.53",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-2025-2027-pdf",
-                  "title": "ccnl-2025-2027-pdf",
+                  "document_id": "anas-src-c81e33f8",
+                  "title": "anas: CCNL-2025-2027.pdf",
                   "kind": "associazione",
-                  "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf"
+                  "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf",
+                  "sha256": "c81e33f8253fff7a7df65b5959f24e3cfaeabecda8a77d48b0739c1285ad9027"
                 },
-                "section": "Tabella retributiva"
+                "page": "146",
+                "section": "no text layer",
+                "quote": "C | 1.539,39 | 1.576,49 | 1.621,01 | 1.665,53 | 1.665,53"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2027-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-anas-double-read"
               }
             }
           }
@@ -396,7 +499,32 @@
               {
                 "valid_from": "2026-03-01",
                 "valid_until": null,
-                "value": "520.24"
+                "value": "520.24",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "anas-src-c81e33f8",
+                      "title": "anas: CCNL-2025-2027.pdf",
+                      "kind": "associazione",
+                      "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf",
+                      "sha256": "c81e33f8253fff7a7df65b5959f24e3cfaeabecda8a77d48b0739c1285ad9027"
+                    },
+                    "page": "145",
+                    "section": "no text layer",
+                    "quote": "C | 520,24"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "effective_from": "2026-03-01",
+                    "verified_by": "gpt-6-sol",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-gpt-anas-double-read"
+                  }
+                }
               }
             ]
           },
@@ -450,21 +578,28 @@
             "valid_until": "2026-09-01",
             "value": "1874.01",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-2025-2027-pdf",
-                  "title": "ccnl-2025-2027-pdf",
+                  "document_id": "anas-src-c81e33f8",
+                  "title": "anas: CCNL-2025-2027.pdf",
                   "kind": "associazione",
-                  "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf"
+                  "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf",
+                  "sha256": "c81e33f8253fff7a7df65b5959f24e3cfaeabecda8a77d48b0739c1285ad9027"
                 },
-                "section": "Tabella retributiva"
+                "page": "146",
+                "section": "no text layer",
+                "quote": "B2 | 1.874,01 | 1.919,17 | 1.973,36 | 2.027,55 | 2.027,55"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-03-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-anas-double-read"
               }
             }
           },
@@ -473,21 +608,28 @@
             "valid_until": "2027-03-01",
             "value": "1919.17",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-2025-2027-pdf",
-                  "title": "ccnl-2025-2027-pdf",
+                  "document_id": "anas-src-c81e33f8",
+                  "title": "anas: CCNL-2025-2027.pdf",
                   "kind": "associazione",
-                  "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf"
+                  "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf",
+                  "sha256": "c81e33f8253fff7a7df65b5959f24e3cfaeabecda8a77d48b0739c1285ad9027"
                 },
-                "section": "Tabella retributiva"
+                "page": "146",
+                "section": "no text layer",
+                "quote": "B2 | 1.874,01 | 1.919,17 | 1.973,36 | 2.027,55 | 2.027,55"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-09-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-anas-double-read"
               }
             }
           },
@@ -496,21 +638,28 @@
             "valid_until": "2027-07-01",
             "value": "1973.36",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-2025-2027-pdf",
-                  "title": "ccnl-2025-2027-pdf",
+                  "document_id": "anas-src-c81e33f8",
+                  "title": "anas: CCNL-2025-2027.pdf",
                   "kind": "associazione",
-                  "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf"
+                  "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf",
+                  "sha256": "c81e33f8253fff7a7df65b5959f24e3cfaeabecda8a77d48b0739c1285ad9027"
                 },
-                "section": "Tabella retributiva"
+                "page": "146",
+                "section": "no text layer",
+                "quote": "B2 | 1.874,01 | 1.919,17 | 1.973,36 | 2.027,55 | 2.027,55"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2027-03-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-anas-double-read"
               }
             }
           },
@@ -519,21 +668,28 @@
             "valid_until": null,
             "value": "2027.55",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-2025-2027-pdf",
-                  "title": "ccnl-2025-2027-pdf",
+                  "document_id": "anas-src-c81e33f8",
+                  "title": "anas: CCNL-2025-2027.pdf",
                   "kind": "associazione",
-                  "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf"
+                  "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf",
+                  "sha256": "c81e33f8253fff7a7df65b5959f24e3cfaeabecda8a77d48b0739c1285ad9027"
                 },
-                "section": "Tabella retributiva"
+                "page": "146",
+                "section": "no text layer",
+                "quote": "B2 | 1.874,01 | 1.919,17 | 1.973,36 | 2.027,55 | 2.027,55"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2027-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-anas-double-read"
               }
             }
           }
@@ -549,7 +705,32 @@
               {
                 "valid_from": "2026-03-01",
                 "valid_until": null,
-                "value": "524.03"
+                "value": "524.03",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "anas-src-c81e33f8",
+                      "title": "anas: CCNL-2025-2027.pdf",
+                      "kind": "associazione",
+                      "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf",
+                      "sha256": "c81e33f8253fff7a7df65b5959f24e3cfaeabecda8a77d48b0739c1285ad9027"
+                    },
+                    "page": "145",
+                    "section": "no text layer",
+                    "quote": "B2 | 524,03"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "effective_from": "2026-03-01",
+                    "verified_by": "gpt-6-sol",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-gpt-anas-double-read"
+                  }
+                }
               }
             ]
           },
@@ -603,21 +784,28 @@
             "valid_until": "2026-09-01",
             "value": "2074.84",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-2025-2027-pdf",
-                  "title": "ccnl-2025-2027-pdf",
+                  "document_id": "anas-src-c81e33f8",
+                  "title": "anas: CCNL-2025-2027.pdf",
                   "kind": "associazione",
-                  "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf"
+                  "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf",
+                  "sha256": "c81e33f8253fff7a7df65b5959f24e3cfaeabecda8a77d48b0739c1285ad9027"
                 },
-                "section": "Tabella retributiva"
+                "page": "146",
+                "section": "no text layer",
+                "quote": "B1 | 2.074,84 | 2.124,84 | 2.184,84 | 2.244,84 | 2.244,84"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-03-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-anas-double-read"
               }
             }
           },
@@ -626,21 +814,28 @@
             "valid_until": "2027-03-01",
             "value": "2124.84",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-2025-2027-pdf",
-                  "title": "ccnl-2025-2027-pdf",
+                  "document_id": "anas-src-c81e33f8",
+                  "title": "anas: CCNL-2025-2027.pdf",
                   "kind": "associazione",
-                  "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf"
+                  "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf",
+                  "sha256": "c81e33f8253fff7a7df65b5959f24e3cfaeabecda8a77d48b0739c1285ad9027"
                 },
-                "section": "Tabella retributiva"
+                "page": "146",
+                "section": "no text layer",
+                "quote": "B1 | 2.074,84 | 2.124,84 | 2.184,84 | 2.244,84 | 2.244,84"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-09-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-anas-double-read"
               }
             }
           },
@@ -649,21 +844,28 @@
             "valid_until": "2027-07-01",
             "value": "2184.84",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-2025-2027-pdf",
-                  "title": "ccnl-2025-2027-pdf",
+                  "document_id": "anas-src-c81e33f8",
+                  "title": "anas: CCNL-2025-2027.pdf",
                   "kind": "associazione",
-                  "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf"
+                  "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf",
+                  "sha256": "c81e33f8253fff7a7df65b5959f24e3cfaeabecda8a77d48b0739c1285ad9027"
                 },
-                "section": "Tabella retributiva"
+                "page": "146",
+                "section": "no text layer",
+                "quote": "B1 | 2.074,84 | 2.124,84 | 2.184,84 | 2.244,84 | 2.244,84"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2027-03-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-anas-double-read"
               }
             }
           },
@@ -672,21 +874,28 @@
             "valid_until": null,
             "value": "2244.84",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-2025-2027-pdf",
-                  "title": "ccnl-2025-2027-pdf",
+                  "document_id": "anas-src-c81e33f8",
+                  "title": "anas: CCNL-2025-2027.pdf",
                   "kind": "associazione",
-                  "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf"
+                  "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf",
+                  "sha256": "c81e33f8253fff7a7df65b5959f24e3cfaeabecda8a77d48b0739c1285ad9027"
                 },
-                "section": "Tabella retributiva"
+                "page": "146",
+                "section": "no text layer",
+                "quote": "B1 | 2.074,84 | 2.124,84 | 2.184,84 | 2.244,84 | 2.244,84"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2027-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-anas-double-read"
               }
             }
           }
@@ -702,7 +911,32 @@
               {
                 "valid_from": "2026-03-01",
                 "valid_until": null,
-                "value": "527.76"
+                "value": "527.76",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "anas-src-c81e33f8",
+                      "title": "anas: CCNL-2025-2027.pdf",
+                      "kind": "associazione",
+                      "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf",
+                      "sha256": "c81e33f8253fff7a7df65b5959f24e3cfaeabecda8a77d48b0739c1285ad9027"
+                    },
+                    "page": "145",
+                    "section": "no text layer",
+                    "quote": "B1 | 527,76"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "effective_from": "2026-03-01",
+                    "verified_by": "gpt-6-sol",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-gpt-anas-double-read"
+                  }
+                }
               }
             ]
           },
@@ -756,21 +990,28 @@
             "valid_until": "2026-09-01",
             "value": "2275.69",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-2025-2027-pdf",
-                  "title": "ccnl-2025-2027-pdf",
+                  "document_id": "anas-src-c81e33f8",
+                  "title": "anas: CCNL-2025-2027.pdf",
                   "kind": "associazione",
-                  "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf"
+                  "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf",
+                  "sha256": "c81e33f8253fff7a7df65b5959f24e3cfaeabecda8a77d48b0739c1285ad9027"
                 },
-                "section": "Tabella retributiva"
+                "page": "146",
+                "section": "no text layer",
+                "quote": "B | 2.275,69 | 2.330,53 | 2.396,34 | 2.462,15 | 2.462,15"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-03-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-anas-double-read"
               }
             }
           },
@@ -779,21 +1020,28 @@
             "valid_until": "2027-03-01",
             "value": "2330.53",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-2025-2027-pdf",
-                  "title": "ccnl-2025-2027-pdf",
+                  "document_id": "anas-src-c81e33f8",
+                  "title": "anas: CCNL-2025-2027.pdf",
                   "kind": "associazione",
-                  "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf"
+                  "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf",
+                  "sha256": "c81e33f8253fff7a7df65b5959f24e3cfaeabecda8a77d48b0739c1285ad9027"
                 },
-                "section": "Tabella retributiva"
+                "page": "146",
+                "section": "no text layer",
+                "quote": "B | 2.275,69 | 2.330,53 | 2.396,34 | 2.462,15 | 2.462,15"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-09-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-anas-double-read"
               }
             }
           },
@@ -802,21 +1050,28 @@
             "valid_until": "2027-07-01",
             "value": "2396.34",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-2025-2027-pdf",
-                  "title": "ccnl-2025-2027-pdf",
+                  "document_id": "anas-src-c81e33f8",
+                  "title": "anas: CCNL-2025-2027.pdf",
                   "kind": "associazione",
-                  "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf"
+                  "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf",
+                  "sha256": "c81e33f8253fff7a7df65b5959f24e3cfaeabecda8a77d48b0739c1285ad9027"
                 },
-                "section": "Tabella retributiva"
+                "page": "146",
+                "section": "no text layer",
+                "quote": "B | 2.275,69 | 2.330,53 | 2.396,34 | 2.462,15 | 2.462,15"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2027-03-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-anas-double-read"
               }
             }
           },
@@ -825,21 +1080,28 @@
             "valid_until": null,
             "value": "2462.15",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-2025-2027-pdf",
-                  "title": "ccnl-2025-2027-pdf",
+                  "document_id": "anas-src-c81e33f8",
+                  "title": "anas: CCNL-2025-2027.pdf",
                   "kind": "associazione",
-                  "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf"
+                  "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf",
+                  "sha256": "c81e33f8253fff7a7df65b5959f24e3cfaeabecda8a77d48b0739c1285ad9027"
                 },
-                "section": "Tabella retributiva"
+                "page": "146",
+                "section": "no text layer",
+                "quote": "B | 2.275,69 | 2.330,53 | 2.396,34 | 2.462,15 | 2.462,15"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2027-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-anas-double-read"
               }
             }
           }
@@ -855,7 +1117,32 @@
               {
                 "valid_from": "2026-03-01",
                 "valid_until": null,
-                "value": "531.78"
+                "value": "531.78",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "anas-src-c81e33f8",
+                      "title": "anas: CCNL-2025-2027.pdf",
+                      "kind": "associazione",
+                      "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf",
+                      "sha256": "c81e33f8253fff7a7df65b5959f24e3cfaeabecda8a77d48b0739c1285ad9027"
+                    },
+                    "page": "145",
+                    "section": "no text layer",
+                    "quote": "B | 531,78"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "effective_from": "2026-03-01",
+                    "verified_by": "gpt-6-sol",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-gpt-anas-double-read"
+                  }
+                }
               }
             ]
           },
@@ -909,21 +1196,28 @@
             "valid_until": "2026-09-01",
             "value": "2677.25",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-2025-2027-pdf",
-                  "title": "ccnl-2025-2027-pdf",
+                  "document_id": "anas-src-c81e33f8",
+                  "title": "anas: CCNL-2025-2027.pdf",
                   "kind": "associazione",
-                  "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf"
+                  "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf",
+                  "sha256": "c81e33f8253fff7a7df65b5959f24e3cfaeabecda8a77d48b0739c1285ad9027"
                 },
-                "section": "Tabella retributiva"
+                "page": "146",
+                "section": "no text layer",
+                "quote": "A1 | 2.677,25 | 2.741,77 | 2.819,19 | 2.896,61 | 2.896,61"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-03-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-anas-double-read"
               }
             }
           },
@@ -932,21 +1226,28 @@
             "valid_until": "2027-03-01",
             "value": "2741.77",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-2025-2027-pdf",
-                  "title": "ccnl-2025-2027-pdf",
+                  "document_id": "anas-src-c81e33f8",
+                  "title": "anas: CCNL-2025-2027.pdf",
                   "kind": "associazione",
-                  "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf"
+                  "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf",
+                  "sha256": "c81e33f8253fff7a7df65b5959f24e3cfaeabecda8a77d48b0739c1285ad9027"
                 },
-                "section": "Tabella retributiva"
+                "page": "146",
+                "section": "no text layer",
+                "quote": "A1 | 2.677,25 | 2.741,77 | 2.819,19 | 2.896,61 | 2.896,61"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-09-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-anas-double-read"
               }
             }
           },
@@ -955,21 +1256,28 @@
             "valid_until": "2027-07-01",
             "value": "2819.19",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-2025-2027-pdf",
-                  "title": "ccnl-2025-2027-pdf",
+                  "document_id": "anas-src-c81e33f8",
+                  "title": "anas: CCNL-2025-2027.pdf",
                   "kind": "associazione",
-                  "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf"
+                  "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf",
+                  "sha256": "c81e33f8253fff7a7df65b5959f24e3cfaeabecda8a77d48b0739c1285ad9027"
                 },
-                "section": "Tabella retributiva"
+                "page": "146",
+                "section": "no text layer",
+                "quote": "A1 | 2.677,25 | 2.741,77 | 2.819,19 | 2.896,61 | 2.896,61"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2027-03-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-anas-double-read"
               }
             }
           },
@@ -978,21 +1286,28 @@
             "valid_until": null,
             "value": "2896.61",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-2025-2027-pdf",
-                  "title": "ccnl-2025-2027-pdf",
+                  "document_id": "anas-src-c81e33f8",
+                  "title": "anas: CCNL-2025-2027.pdf",
                   "kind": "associazione",
-                  "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf"
+                  "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf",
+                  "sha256": "c81e33f8253fff7a7df65b5959f24e3cfaeabecda8a77d48b0739c1285ad9027"
                 },
-                "section": "Tabella retributiva"
+                "page": "146",
+                "section": "no text layer",
+                "quote": "A1 | 2.677,25 | 2.741,77 | 2.819,19 | 2.896,61 | 2.896,61"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2027-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-anas-double-read"
               }
             }
           }
@@ -1008,7 +1323,32 @@
               {
                 "valid_from": "2026-03-01",
                 "valid_until": null,
-                "value": "545.44"
+                "value": "545.44",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "anas-src-c81e33f8",
+                      "title": "anas: CCNL-2025-2027.pdf",
+                      "kind": "associazione",
+                      "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf",
+                      "sha256": "c81e33f8253fff7a7df65b5959f24e3cfaeabecda8a77d48b0739c1285ad9027"
+                    },
+                    "page": "145",
+                    "section": "no text layer",
+                    "quote": "A1 | 545,44"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "effective_from": "2026-03-01",
+                    "verified_by": "gpt-6-sol",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-gpt-anas-double-read"
+                  }
+                }
               }
             ]
           },
@@ -1062,21 +1402,28 @@
             "valid_until": "2026-09-01",
             "value": "3212.69",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-2025-2027-pdf",
-                  "title": "ccnl-2025-2027-pdf",
+                  "document_id": "anas-src-c81e33f8",
+                  "title": "anas: CCNL-2025-2027.pdf",
                   "kind": "associazione",
-                  "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf"
+                  "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf",
+                  "sha256": "c81e33f8253fff7a7df65b5959f24e3cfaeabecda8a77d48b0739c1285ad9027"
                 },
-                "section": "Tabella retributiva"
+                "page": "146",
+                "section": "no text layer",
+                "quote": "A | 3.212,69 | 3.290,11 | 3.383,01 | 3.475,91 | 3.475,91"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-03-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-anas-double-read"
               }
             }
           },
@@ -1085,21 +1432,28 @@
             "valid_until": "2027-03-01",
             "value": "3290.11",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-2025-2027-pdf",
-                  "title": "ccnl-2025-2027-pdf",
+                  "document_id": "anas-src-c81e33f8",
+                  "title": "anas: CCNL-2025-2027.pdf",
                   "kind": "associazione",
-                  "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf"
+                  "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf",
+                  "sha256": "c81e33f8253fff7a7df65b5959f24e3cfaeabecda8a77d48b0739c1285ad9027"
                 },
-                "section": "Tabella retributiva"
+                "page": "146",
+                "section": "no text layer",
+                "quote": "A | 3.212,69 | 3.290,11 | 3.383,01 | 3.475,91 | 3.475,91"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-09-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-anas-double-read"
               }
             }
           },
@@ -1108,21 +1462,28 @@
             "valid_until": "2027-07-01",
             "value": "3383.01",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-2025-2027-pdf",
-                  "title": "ccnl-2025-2027-pdf",
+                  "document_id": "anas-src-c81e33f8",
+                  "title": "anas: CCNL-2025-2027.pdf",
                   "kind": "associazione",
-                  "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf"
+                  "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf",
+                  "sha256": "c81e33f8253fff7a7df65b5959f24e3cfaeabecda8a77d48b0739c1285ad9027"
                 },
-                "section": "Tabella retributiva"
+                "page": "146",
+                "section": "no text layer",
+                "quote": "A | 3.212,69 | 3.290,11 | 3.383,01 | 3.475,91 | 3.475,91"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2027-03-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-anas-double-read"
               }
             }
           },
@@ -1131,21 +1492,28 @@
             "valid_until": null,
             "value": "3475.91",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-2025-2027-pdf",
-                  "title": "ccnl-2025-2027-pdf",
+                  "document_id": "anas-src-c81e33f8",
+                  "title": "anas: CCNL-2025-2027.pdf",
                   "kind": "associazione",
-                  "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf"
+                  "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf",
+                  "sha256": "c81e33f8253fff7a7df65b5959f24e3cfaeabecda8a77d48b0739c1285ad9027"
                 },
-                "section": "Tabella retributiva"
+                "page": "146",
+                "section": "no text layer",
+                "quote": "A | 3.212,69 | 3.290,11 | 3.383,01 | 3.475,91 | 3.475,91"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2027-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-anas-double-read"
               }
             }
           }
@@ -1161,7 +1529,32 @@
               {
                 "valid_from": "2026-03-01",
                 "valid_until": null,
-                "value": "553.45"
+                "value": "553.45",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "anas-src-c81e33f8",
+                      "title": "anas: CCNL-2025-2027.pdf",
+                      "kind": "associazione",
+                      "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf",
+                      "sha256": "c81e33f8253fff7a7df65b5959f24e3cfaeabecda8a77d48b0739c1285ad9027"
+                    },
+                    "page": "145",
+                    "section": "no text layer",
+                    "quote": "A | 553,45"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "effective_from": "2026-03-01",
+                    "verified_by": "gpt-6-sol",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-gpt-anas-double-read"
+                  }
+                }
               }
             ]
           },
@@ -1391,7 +1784,7 @@
     "effective_until": null,
     "source": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "cdee24a036e28f8b80389255db852632cedf963511181d528b6d2306fe002b31",
+    "source_hash": "fe0fe0b5553ede32bc09f857a5d040a811e7f21ea36fd913de3f1e31e8a896e9",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

@@ -177,6 +177,28 @@
         "checked": [
           "parameters.seniority_increments"
         ]
+      },
+      {
+        "id": "2026-11-08-ai-marittimi-industria-armatoriale-tables",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The monthly values of the levels against the primary tables (text layer).",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
+            "sha256": "747f2eb3af9ec92581cd21f2dfe746554ef4336495cc1738d23579c284088cc3"
+          }
+        ],
+        "findings": [
+          "49 values found verbatim on the cited pages and marked verified; 0 left as they were (derived or not on a text page)."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels.base_salary",
+          "levels.fixed_allowances"
+        ]
       }
     ]
   },
@@ -345,21 +367,28 @@
             "valid_until": "2025-07-01",
             "value": "1438.03",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "15-sezione-personale-di-terra-pdf",
-                  "title": "15-sezione-personale-di-terra-pdf",
+                  "document_id": "marittimi-industria-armatoriale-tables-747f2eb3",
+                  "title": "marittimi-industria-armatoriale: tabelle retributive (15_-_SEZIONE_PERSONALE_DI_TERRA.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf"
+                  "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
+                  "sha256": "747f2eb3af9ec92581cd21f2dfe746554ef4336495cc1738d23579c284088cc3"
                 },
-                "section": "Tabella retributiva"
+                "page": "32",
+                "section": "Allegato 1, MINIMO CONTRATTUALE",
+                "quote": "I               € 1.438,03                        € 1.473,72                        € 1.509,42"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2024-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-marittimi-industria-armatoriale-tables"
               }
             }
           },
@@ -368,21 +397,28 @@
             "valid_until": "2026-07-01",
             "value": "1473.72",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "15-sezione-personale-di-terra-pdf",
-                  "title": "15-sezione-personale-di-terra-pdf",
+                  "document_id": "marittimi-industria-armatoriale-tables-747f2eb3",
+                  "title": "marittimi-industria-armatoriale: tabelle retributive (15_-_SEZIONE_PERSONALE_DI_TERRA.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf"
+                  "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
+                  "sha256": "747f2eb3af9ec92581cd21f2dfe746554ef4336495cc1738d23579c284088cc3"
                 },
-                "section": "Tabella retributiva"
+                "page": "32",
+                "section": "Allegato 1, MINIMO CONTRATTUALE",
+                "quote": "I               € 1.438,03                        € 1.473,72                        € 1.509,42"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-marittimi-industria-armatoriale-tables"
               }
             }
           },
@@ -391,21 +427,28 @@
             "valid_until": null,
             "value": "1509.42",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "15-sezione-personale-di-terra-pdf",
-                  "title": "15-sezione-personale-di-terra-pdf",
+                  "document_id": "marittimi-industria-armatoriale-tables-747f2eb3",
+                  "title": "marittimi-industria-armatoriale: tabelle retributive (15_-_SEZIONE_PERSONALE_DI_TERRA.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf"
+                  "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
+                  "sha256": "747f2eb3af9ec92581cd21f2dfe746554ef4336495cc1738d23579c284088cc3"
                 },
-                "section": "Tabella retributiva"
+                "page": "32",
+                "section": "Allegato 1, MINIMO CONTRATTUALE",
+                "quote": "I               € 1.438,03                        € 1.473,72                        € 1.509,42"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2026-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-marittimi-industria-armatoriale-tables"
               }
             }
           }
@@ -421,17 +464,92 @@
               {
                 "valid_from": "2024-07-01",
                 "valid_until": "2025-07-01",
-                "value": "18.40"
+                "value": "18.40",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "marittimi-industria-armatoriale-tables-747f2eb3",
+                      "title": "marittimi-industria-armatoriale: tabelle retributive (15_-_SEZIONE_PERSONALE_DI_TERRA.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
+                      "sha256": "747f2eb3af9ec92581cd21f2dfe746554ef4336495cc1738d23579c284088cc3"
+                    },
+                    "page": "33",
+                    "section": "Allegato 1 bis, ELEMENTO AGGIUNTIVO DELLA RETRIBUZIONE (EAR)",
+                    "quote": "I           € 18,40                   € 32,20                 € 46,01"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2024-07-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-marittimi-industria-armatoriale-tables"
+                  }
+                }
               },
               {
                 "valid_from": "2025-07-01",
                 "valid_until": "2026-07-01",
-                "value": "32.20"
+                "value": "32.20",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "marittimi-industria-armatoriale-tables-747f2eb3",
+                      "title": "marittimi-industria-armatoriale: tabelle retributive (15_-_SEZIONE_PERSONALE_DI_TERRA.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
+                      "sha256": "747f2eb3af9ec92581cd21f2dfe746554ef4336495cc1738d23579c284088cc3"
+                    },
+                    "page": "33",
+                    "section": "Allegato 1 bis, ELEMENTO AGGIUNTIVO DELLA RETRIBUZIONE (EAR)",
+                    "quote": "I           € 18,40                   € 32,20                 € 46,01"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2025-07-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-marittimi-industria-armatoriale-tables"
+                  }
+                }
               },
               {
                 "valid_from": "2026-07-01",
                 "valid_until": null,
-                "value": "46.01"
+                "value": "46.01",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "marittimi-industria-armatoriale-tables-747f2eb3",
+                      "title": "marittimi-industria-armatoriale: tabelle retributive (15_-_SEZIONE_PERSONALE_DI_TERRA.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
+                      "sha256": "747f2eb3af9ec92581cd21f2dfe746554ef4336495cc1738d23579c284088cc3"
+                    },
+                    "page": "33",
+                    "section": "Allegato 1 bis, ELEMENTO AGGIUNTIVO DELLA RETRIBUZIONE (EAR)",
+                    "quote": "I           € 18,40                   € 32,20                 € 46,01"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2026-07-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-marittimi-industria-armatoriale-tables"
+                  }
+                }
               }
             ]
           },
@@ -485,21 +603,28 @@
             "valid_until": "2025-07-01",
             "value": "1513.82",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "15-sezione-personale-di-terra-pdf",
-                  "title": "15-sezione-personale-di-terra-pdf",
+                  "document_id": "marittimi-industria-armatoriale-tables-747f2eb3",
+                  "title": "marittimi-industria-armatoriale: tabelle retributive (15_-_SEZIONE_PERSONALE_DI_TERRA.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf"
+                  "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
+                  "sha256": "747f2eb3af9ec92581cd21f2dfe746554ef4336495cc1738d23579c284088cc3"
                 },
-                "section": "Tabella retributiva"
+                "page": "32",
+                "section": "Allegato 1, MINIMO CONTRATTUALE",
+                "quote": "lI              € 1.513,82                        € 1.552,53                        € 1.591,25"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2024-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-marittimi-industria-armatoriale-tables"
               }
             }
           },
@@ -508,21 +633,28 @@
             "valid_until": "2026-07-01",
             "value": "1552.53",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "15-sezione-personale-di-terra-pdf",
-                  "title": "15-sezione-personale-di-terra-pdf",
+                  "document_id": "marittimi-industria-armatoriale-tables-747f2eb3",
+                  "title": "marittimi-industria-armatoriale: tabelle retributive (15_-_SEZIONE_PERSONALE_DI_TERRA.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf"
+                  "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
+                  "sha256": "747f2eb3af9ec92581cd21f2dfe746554ef4336495cc1738d23579c284088cc3"
                 },
-                "section": "Tabella retributiva"
+                "page": "32",
+                "section": "Allegato 1, MINIMO CONTRATTUALE",
+                "quote": "lI              € 1.513,82                        € 1.552,53                        € 1.591,25"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-marittimi-industria-armatoriale-tables"
               }
             }
           },
@@ -531,21 +663,28 @@
             "valid_until": null,
             "value": "1591.25",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "15-sezione-personale-di-terra-pdf",
-                  "title": "15-sezione-personale-di-terra-pdf",
+                  "document_id": "marittimi-industria-armatoriale-tables-747f2eb3",
+                  "title": "marittimi-industria-armatoriale: tabelle retributive (15_-_SEZIONE_PERSONALE_DI_TERRA.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf"
+                  "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
+                  "sha256": "747f2eb3af9ec92581cd21f2dfe746554ef4336495cc1738d23579c284088cc3"
                 },
-                "section": "Tabella retributiva"
+                "page": "32",
+                "section": "Allegato 1, MINIMO CONTRATTUALE",
+                "quote": "lI              € 1.513,82                        € 1.552,53                        € 1.591,25"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2026-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-marittimi-industria-armatoriale-tables"
               }
             }
           }
@@ -561,17 +700,92 @@
               {
                 "valid_from": "2024-07-01",
                 "valid_until": "2025-07-01",
-                "value": "19.35"
+                "value": "19.35",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "marittimi-industria-armatoriale-tables-747f2eb3",
+                      "title": "marittimi-industria-armatoriale: tabelle retributive (15_-_SEZIONE_PERSONALE_DI_TERRA.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
+                      "sha256": "747f2eb3af9ec92581cd21f2dfe746554ef4336495cc1738d23579c284088cc3"
+                    },
+                    "page": "33",
+                    "section": "Allegato 1 bis, ELEMENTO AGGIUNTIVO DELLA RETRIBUZIONE (EAR)",
+                    "quote": "lI          € 19,35                   € 33,87                 € 48,38"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2024-07-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-marittimi-industria-armatoriale-tables"
+                  }
+                }
               },
               {
                 "valid_from": "2025-07-01",
                 "valid_until": "2026-07-01",
-                "value": "33.87"
+                "value": "33.87",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "marittimi-industria-armatoriale-tables-747f2eb3",
+                      "title": "marittimi-industria-armatoriale: tabelle retributive (15_-_SEZIONE_PERSONALE_DI_TERRA.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
+                      "sha256": "747f2eb3af9ec92581cd21f2dfe746554ef4336495cc1738d23579c284088cc3"
+                    },
+                    "page": "33",
+                    "section": "Allegato 1 bis, ELEMENTO AGGIUNTIVO DELLA RETRIBUZIONE (EAR)",
+                    "quote": "lI          € 19,35                   € 33,87                 € 48,38"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2025-07-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-marittimi-industria-armatoriale-tables"
+                  }
+                }
               },
               {
                 "valid_from": "2026-07-01",
                 "valid_until": null,
-                "value": "48.38"
+                "value": "48.38",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "marittimi-industria-armatoriale-tables-747f2eb3",
+                      "title": "marittimi-industria-armatoriale: tabelle retributive (15_-_SEZIONE_PERSONALE_DI_TERRA.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
+                      "sha256": "747f2eb3af9ec92581cd21f2dfe746554ef4336495cc1738d23579c284088cc3"
+                    },
+                    "page": "33",
+                    "section": "Allegato 1 bis, ELEMENTO AGGIUNTIVO DELLA RETRIBUZIONE (EAR)",
+                    "quote": "lI          € 19,35                   € 33,87                 € 48,38"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2026-07-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-marittimi-industria-armatoriale-tables"
+                  }
+                }
               }
             ]
           },
@@ -625,21 +839,28 @@
             "valid_until": "2025-07-01",
             "value": "1668.68",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "15-sezione-personale-di-terra-pdf",
-                  "title": "15-sezione-personale-di-terra-pdf",
+                  "document_id": "marittimi-industria-armatoriale-tables-747f2eb3",
+                  "title": "marittimi-industria-armatoriale: tabelle retributive (15_-_SEZIONE_PERSONALE_DI_TERRA.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf"
+                  "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
+                  "sha256": "747f2eb3af9ec92581cd21f2dfe746554ef4336495cc1738d23579c284088cc3"
                 },
-                "section": "Tabella retributiva"
+                "page": "32",
+                "section": "Allegato 1, MINIMO CONTRATTUALE",
+                "quote": "III             € 1.668,68                        € 1.711,84                        € 1.755,00"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2024-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-marittimi-industria-armatoriale-tables"
               }
             }
           },
@@ -648,21 +869,28 @@
             "valid_until": "2026-07-01",
             "value": "1711.84",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "15-sezione-personale-di-terra-pdf",
-                  "title": "15-sezione-personale-di-terra-pdf",
+                  "document_id": "marittimi-industria-armatoriale-tables-747f2eb3",
+                  "title": "marittimi-industria-armatoriale: tabelle retributive (15_-_SEZIONE_PERSONALE_DI_TERRA.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf"
+                  "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
+                  "sha256": "747f2eb3af9ec92581cd21f2dfe746554ef4336495cc1738d23579c284088cc3"
                 },
-                "section": "Tabella retributiva"
+                "page": "32",
+                "section": "Allegato 1, MINIMO CONTRATTUALE",
+                "quote": "III             € 1.668,68                        € 1.711,84                        € 1.755,00"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-marittimi-industria-armatoriale-tables"
               }
             }
           },
@@ -671,21 +899,28 @@
             "valid_until": null,
             "value": "1755.00",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "15-sezione-personale-di-terra-pdf",
-                  "title": "15-sezione-personale-di-terra-pdf",
+                  "document_id": "marittimi-industria-armatoriale-tables-747f2eb3",
+                  "title": "marittimi-industria-armatoriale: tabelle retributive (15_-_SEZIONE_PERSONALE_DI_TERRA.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf"
+                  "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
+                  "sha256": "747f2eb3af9ec92581cd21f2dfe746554ef4336495cc1738d23579c284088cc3"
                 },
-                "section": "Tabella retributiva"
+                "page": "32",
+                "section": "Allegato 1, MINIMO CONTRATTUALE",
+                "quote": "III             € 1.668,68                        € 1.711,84                        € 1.755,00"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2026-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-marittimi-industria-armatoriale-tables"
               }
             }
           }
@@ -701,17 +936,92 @@
               {
                 "valid_from": "2024-07-01",
                 "valid_until": "2025-07-01",
-                "value": "21.32"
+                "value": "21.32",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "marittimi-industria-armatoriale-tables-747f2eb3",
+                      "title": "marittimi-industria-armatoriale: tabelle retributive (15_-_SEZIONE_PERSONALE_DI_TERRA.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
+                      "sha256": "747f2eb3af9ec92581cd21f2dfe746554ef4336495cc1738d23579c284088cc3"
+                    },
+                    "page": "33",
+                    "section": "Allegato 1 bis, ELEMENTO AGGIUNTIVO DELLA RETRIBUZIONE (EAR)",
+                    "quote": "III         € 21,32                   € 37,31                 € 53,31"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2024-07-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-marittimi-industria-armatoriale-tables"
+                  }
+                }
               },
               {
                 "valid_from": "2025-07-01",
                 "valid_until": "2026-07-01",
-                "value": "37.31"
+                "value": "37.31",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "marittimi-industria-armatoriale-tables-747f2eb3",
+                      "title": "marittimi-industria-armatoriale: tabelle retributive (15_-_SEZIONE_PERSONALE_DI_TERRA.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
+                      "sha256": "747f2eb3af9ec92581cd21f2dfe746554ef4336495cc1738d23579c284088cc3"
+                    },
+                    "page": "33",
+                    "section": "Allegato 1 bis, ELEMENTO AGGIUNTIVO DELLA RETRIBUZIONE (EAR)",
+                    "quote": "III         € 21,32                   € 37,31                 € 53,31"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2025-07-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-marittimi-industria-armatoriale-tables"
+                  }
+                }
               },
               {
                 "valid_from": "2026-07-01",
                 "valid_until": null,
-                "value": "53.31"
+                "value": "53.31",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "marittimi-industria-armatoriale-tables-747f2eb3",
+                      "title": "marittimi-industria-armatoriale: tabelle retributive (15_-_SEZIONE_PERSONALE_DI_TERRA.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
+                      "sha256": "747f2eb3af9ec92581cd21f2dfe746554ef4336495cc1738d23579c284088cc3"
+                    },
+                    "page": "33",
+                    "section": "Allegato 1 bis, ELEMENTO AGGIUNTIVO DELLA RETRIBUZIONE (EAR)",
+                    "quote": "III         € 21,32                   € 37,31                 € 53,31"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2026-07-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-marittimi-industria-armatoriale-tables"
+                  }
+                }
               }
             ]
           },
@@ -765,21 +1075,28 @@
             "valid_until": "2025-07-01",
             "value": "1891.66",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "15-sezione-personale-di-terra-pdf",
-                  "title": "15-sezione-personale-di-terra-pdf",
+                  "document_id": "marittimi-industria-armatoriale-tables-747f2eb3",
+                  "title": "marittimi-industria-armatoriale: tabelle retributive (15_-_SEZIONE_PERSONALE_DI_TERRA.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf"
+                  "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
+                  "sha256": "747f2eb3af9ec92581cd21f2dfe746554ef4336495cc1738d23579c284088cc3"
                 },
-                "section": "Tabella retributiva"
+                "page": "32",
+                "section": "Allegato 1, MINIMO CONTRATTUALE",
+                "quote": "IV              € 1.891,66                        € 1.940,49                        € 1.989,32"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2024-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-marittimi-industria-armatoriale-tables"
               }
             }
           },
@@ -788,21 +1105,28 @@
             "valid_until": "2026-07-01",
             "value": "1940.49",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "15-sezione-personale-di-terra-pdf",
-                  "title": "15-sezione-personale-di-terra-pdf",
+                  "document_id": "marittimi-industria-armatoriale-tables-747f2eb3",
+                  "title": "marittimi-industria-armatoriale: tabelle retributive (15_-_SEZIONE_PERSONALE_DI_TERRA.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf"
+                  "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
+                  "sha256": "747f2eb3af9ec92581cd21f2dfe746554ef4336495cc1738d23579c284088cc3"
                 },
-                "section": "Tabella retributiva"
+                "page": "32",
+                "section": "Allegato 1, MINIMO CONTRATTUALE",
+                "quote": "IV              € 1.891,66                        € 1.940,49                        € 1.989,32"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-marittimi-industria-armatoriale-tables"
               }
             }
           },
@@ -811,21 +1135,28 @@
             "valid_until": null,
             "value": "1989.32",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "15-sezione-personale-di-terra-pdf",
-                  "title": "15-sezione-personale-di-terra-pdf",
+                  "document_id": "marittimi-industria-armatoriale-tables-747f2eb3",
+                  "title": "marittimi-industria-armatoriale: tabelle retributive (15_-_SEZIONE_PERSONALE_DI_TERRA.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf"
+                  "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
+                  "sha256": "747f2eb3af9ec92581cd21f2dfe746554ef4336495cc1738d23579c284088cc3"
                 },
-                "section": "Tabella retributiva"
+                "page": "32",
+                "section": "Allegato 1, MINIMO CONTRATTUALE",
+                "quote": "IV              € 1.891,66                        € 1.940,49                        € 1.989,32"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2026-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-marittimi-industria-armatoriale-tables"
               }
             }
           }
@@ -841,17 +1172,92 @@
               {
                 "valid_from": "2024-07-01",
                 "valid_until": "2025-07-01",
-                "value": "24.17"
+                "value": "24.17",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "marittimi-industria-armatoriale-tables-747f2eb3",
+                      "title": "marittimi-industria-armatoriale: tabelle retributive (15_-_SEZIONE_PERSONALE_DI_TERRA.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
+                      "sha256": "747f2eb3af9ec92581cd21f2dfe746554ef4336495cc1738d23579c284088cc3"
+                    },
+                    "page": "33",
+                    "section": "Allegato 1 bis, ELEMENTO AGGIUNTIVO DELLA RETRIBUZIONE (EAR)",
+                    "quote": "IV          € 24,17                   € 42,30                 € 60,43"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2024-07-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-marittimi-industria-armatoriale-tables"
+                  }
+                }
               },
               {
                 "valid_from": "2025-07-01",
                 "valid_until": "2026-07-01",
-                "value": "42.30"
+                "value": "42.30",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "marittimi-industria-armatoriale-tables-747f2eb3",
+                      "title": "marittimi-industria-armatoriale: tabelle retributive (15_-_SEZIONE_PERSONALE_DI_TERRA.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
+                      "sha256": "747f2eb3af9ec92581cd21f2dfe746554ef4336495cc1738d23579c284088cc3"
+                    },
+                    "page": "33",
+                    "section": "Allegato 1 bis, ELEMENTO AGGIUNTIVO DELLA RETRIBUZIONE (EAR)",
+                    "quote": "IV          € 24,17                   € 42,30                 € 60,43"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2025-07-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-marittimi-industria-armatoriale-tables"
+                  }
+                }
               },
               {
                 "valid_from": "2026-07-01",
                 "valid_until": null,
-                "value": "60.43"
+                "value": "60.43",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "marittimi-industria-armatoriale-tables-747f2eb3",
+                      "title": "marittimi-industria-armatoriale: tabelle retributive (15_-_SEZIONE_PERSONALE_DI_TERRA.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
+                      "sha256": "747f2eb3af9ec92581cd21f2dfe746554ef4336495cc1738d23579c284088cc3"
+                    },
+                    "page": "33",
+                    "section": "Allegato 1 bis, ELEMENTO AGGIUNTIVO DELLA RETRIBUZIONE (EAR)",
+                    "quote": "IV          € 24,17                   € 42,30                 € 60,43"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2026-07-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-marittimi-industria-armatoriale-tables"
+                  }
+                }
               }
             ]
           },
@@ -905,21 +1311,28 @@
             "valid_until": "2025-07-01",
             "value": "2004.16",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "15-sezione-personale-di-terra-pdf",
-                  "title": "15-sezione-personale-di-terra-pdf",
+                  "document_id": "marittimi-industria-armatoriale-tables-747f2eb3",
+                  "title": "marittimi-industria-armatoriale: tabelle retributive (15_-_SEZIONE_PERSONALE_DI_TERRA.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf"
+                  "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
+                  "sha256": "747f2eb3af9ec92581cd21f2dfe746554ef4336495cc1738d23579c284088cc3"
                 },
-                "section": "Tabella retributiva"
+                "page": "32",
+                "section": "Allegato 1, MINIMO CONTRATTUALE",
+                "quote": "V               € 2.004,16                        € 2.056,55                        € 2.108,93"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2024-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-marittimi-industria-armatoriale-tables"
               }
             }
           },
@@ -928,21 +1341,28 @@
             "valid_until": "2026-07-01",
             "value": "2056.55",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "15-sezione-personale-di-terra-pdf",
-                  "title": "15-sezione-personale-di-terra-pdf",
+                  "document_id": "marittimi-industria-armatoriale-tables-747f2eb3",
+                  "title": "marittimi-industria-armatoriale: tabelle retributive (15_-_SEZIONE_PERSONALE_DI_TERRA.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf"
+                  "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
+                  "sha256": "747f2eb3af9ec92581cd21f2dfe746554ef4336495cc1738d23579c284088cc3"
                 },
-                "section": "Tabella retributiva"
+                "page": "32",
+                "section": "Allegato 1, MINIMO CONTRATTUALE",
+                "quote": "V               € 2.004,16                        € 2.056,55                        € 2.108,93"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-marittimi-industria-armatoriale-tables"
               }
             }
           },
@@ -951,21 +1371,28 @@
             "valid_until": null,
             "value": "2108.93",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "15-sezione-personale-di-terra-pdf",
-                  "title": "15-sezione-personale-di-terra-pdf",
+                  "document_id": "marittimi-industria-armatoriale-tables-747f2eb3",
+                  "title": "marittimi-industria-armatoriale: tabelle retributive (15_-_SEZIONE_PERSONALE_DI_TERRA.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf"
+                  "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
+                  "sha256": "747f2eb3af9ec92581cd21f2dfe746554ef4336495cc1738d23579c284088cc3"
                 },
-                "section": "Tabella retributiva"
+                "page": "32",
+                "section": "Allegato 1, MINIMO CONTRATTUALE",
+                "quote": "V               € 2.004,16                        € 2.056,55                        € 2.108,93"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2026-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-marittimi-industria-armatoriale-tables"
               }
             }
           }
@@ -981,17 +1408,92 @@
               {
                 "valid_from": "2024-07-01",
                 "valid_until": "2025-07-01",
-                "value": "25.60"
+                "value": "25.60",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "marittimi-industria-armatoriale-tables-747f2eb3",
+                      "title": "marittimi-industria-armatoriale: tabelle retributive (15_-_SEZIONE_PERSONALE_DI_TERRA.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
+                      "sha256": "747f2eb3af9ec92581cd21f2dfe746554ef4336495cc1738d23579c284088cc3"
+                    },
+                    "page": "33",
+                    "section": "Allegato 1 bis, ELEMENTO AGGIUNTIVO DELLA RETRIBUZIONE (EAR)",
+                    "quote": "V           € 25,60                   € 44,80                 € 64,00"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2024-07-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-marittimi-industria-armatoriale-tables"
+                  }
+                }
               },
               {
                 "valid_from": "2025-07-01",
                 "valid_until": "2026-07-01",
-                "value": "44.80"
+                "value": "44.80",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "marittimi-industria-armatoriale-tables-747f2eb3",
+                      "title": "marittimi-industria-armatoriale: tabelle retributive (15_-_SEZIONE_PERSONALE_DI_TERRA.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
+                      "sha256": "747f2eb3af9ec92581cd21f2dfe746554ef4336495cc1738d23579c284088cc3"
+                    },
+                    "page": "33",
+                    "section": "Allegato 1 bis, ELEMENTO AGGIUNTIVO DELLA RETRIBUZIONE (EAR)",
+                    "quote": "V           € 25,60                   € 44,80                 € 64,00"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2025-07-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-marittimi-industria-armatoriale-tables"
+                  }
+                }
               },
               {
                 "valid_from": "2026-07-01",
                 "valid_until": null,
-                "value": "64.00"
+                "value": "64.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "marittimi-industria-armatoriale-tables-747f2eb3",
+                      "title": "marittimi-industria-armatoriale: tabelle retributive (15_-_SEZIONE_PERSONALE_DI_TERRA.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
+                      "sha256": "747f2eb3af9ec92581cd21f2dfe746554ef4336495cc1738d23579c284088cc3"
+                    },
+                    "page": "33",
+                    "section": "Allegato 1 bis, ELEMENTO AGGIUNTIVO DELLA RETRIBUZIONE (EAR)",
+                    "quote": "V           € 25,60                   € 44,80                 € 64,00"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2026-07-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-marittimi-industria-armatoriale-tables"
+                  }
+                }
               }
             ]
           },
@@ -1045,21 +1547,28 @@
             "valid_until": "2025-07-01",
             "value": "2307.82",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "15-sezione-personale-di-terra-pdf",
-                  "title": "15-sezione-personale-di-terra-pdf",
+                  "document_id": "marittimi-industria-armatoriale-tables-747f2eb3",
+                  "title": "marittimi-industria-armatoriale: tabelle retributive (15_-_SEZIONE_PERSONALE_DI_TERRA.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf"
+                  "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
+                  "sha256": "747f2eb3af9ec92581cd21f2dfe746554ef4336495cc1738d23579c284088cc3"
                 },
-                "section": "Tabella retributiva"
+                "page": "32",
+                "section": "Allegato 1, MINIMO CONTRATTUALE",
+                "quote": "VI              € 2.307,82                        € 2.368,79                        € 2.429,76"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2024-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-marittimi-industria-armatoriale-tables"
               }
             }
           },
@@ -1068,21 +1577,28 @@
             "valid_until": "2026-07-01",
             "value": "2368.79",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "15-sezione-personale-di-terra-pdf",
-                  "title": "15-sezione-personale-di-terra-pdf",
+                  "document_id": "marittimi-industria-armatoriale-tables-747f2eb3",
+                  "title": "marittimi-industria-armatoriale: tabelle retributive (15_-_SEZIONE_PERSONALE_DI_TERRA.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf"
+                  "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
+                  "sha256": "747f2eb3af9ec92581cd21f2dfe746554ef4336495cc1738d23579c284088cc3"
                 },
-                "section": "Tabella retributiva"
+                "page": "32",
+                "section": "Allegato 1, MINIMO CONTRATTUALE",
+                "quote": "VI              € 2.307,82                        € 2.368,79                        € 2.429,76"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-marittimi-industria-armatoriale-tables"
               }
             }
           },
@@ -1091,21 +1607,28 @@
             "valid_until": null,
             "value": "2429.76",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "15-sezione-personale-di-terra-pdf",
-                  "title": "15-sezione-personale-di-terra-pdf",
+                  "document_id": "marittimi-industria-armatoriale-tables-747f2eb3",
+                  "title": "marittimi-industria-armatoriale: tabelle retributive (15_-_SEZIONE_PERSONALE_DI_TERRA.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf"
+                  "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
+                  "sha256": "747f2eb3af9ec92581cd21f2dfe746554ef4336495cc1738d23579c284088cc3"
                 },
-                "section": "Tabella retributiva"
+                "page": "32",
+                "section": "Allegato 1, MINIMO CONTRATTUALE",
+                "quote": "VI              € 2.307,82                        € 2.368,79                        € 2.429,76"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2026-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-marittimi-industria-armatoriale-tables"
               }
             }
           }
@@ -1121,17 +1644,92 @@
               {
                 "valid_from": "2024-07-01",
                 "valid_until": "2025-07-01",
-                "value": "29.47"
+                "value": "29.47",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "marittimi-industria-armatoriale-tables-747f2eb3",
+                      "title": "marittimi-industria-armatoriale: tabelle retributive (15_-_SEZIONE_PERSONALE_DI_TERRA.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
+                      "sha256": "747f2eb3af9ec92581cd21f2dfe746554ef4336495cc1738d23579c284088cc3"
+                    },
+                    "page": "33",
+                    "section": "Allegato 1 bis, ELEMENTO AGGIUNTIVO DELLA RETRIBUZIONE (EAR)",
+                    "quote": "VI          € 29,47                   € 51,57                 € 73,67"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2024-07-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-marittimi-industria-armatoriale-tables"
+                  }
+                }
               },
               {
                 "valid_from": "2025-07-01",
                 "valid_until": "2026-07-01",
-                "value": "51.57"
+                "value": "51.57",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "marittimi-industria-armatoriale-tables-747f2eb3",
+                      "title": "marittimi-industria-armatoriale: tabelle retributive (15_-_SEZIONE_PERSONALE_DI_TERRA.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
+                      "sha256": "747f2eb3af9ec92581cd21f2dfe746554ef4336495cc1738d23579c284088cc3"
+                    },
+                    "page": "33",
+                    "section": "Allegato 1 bis, ELEMENTO AGGIUNTIVO DELLA RETRIBUZIONE (EAR)",
+                    "quote": "VI          € 29,47                   € 51,57                 € 73,67"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2025-07-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-marittimi-industria-armatoriale-tables"
+                  }
+                }
               },
               {
                 "valid_from": "2026-07-01",
                 "valid_until": null,
-                "value": "73.67"
+                "value": "73.67",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "marittimi-industria-armatoriale-tables-747f2eb3",
+                      "title": "marittimi-industria-armatoriale: tabelle retributive (15_-_SEZIONE_PERSONALE_DI_TERRA.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
+                      "sha256": "747f2eb3af9ec92581cd21f2dfe746554ef4336495cc1738d23579c284088cc3"
+                    },
+                    "page": "33",
+                    "section": "Allegato 1 bis, ELEMENTO AGGIUNTIVO DELLA RETRIBUZIONE (EAR)",
+                    "quote": "VI          € 29,47                   € 51,57                 € 73,67"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2026-07-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-marittimi-industria-armatoriale-tables"
+                  }
+                }
               }
             ]
           },
@@ -1185,21 +1783,28 @@
             "valid_until": "2025-07-01",
             "value": "2646.86",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "15-sezione-personale-di-terra-pdf",
-                  "title": "15-sezione-personale-di-terra-pdf",
+                  "document_id": "marittimi-industria-armatoriale-tables-747f2eb3",
+                  "title": "marittimi-industria-armatoriale: tabelle retributive (15_-_SEZIONE_PERSONALE_DI_TERRA.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf"
+                  "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
+                  "sha256": "747f2eb3af9ec92581cd21f2dfe746554ef4336495cc1738d23579c284088cc3"
                 },
-                "section": "Tabella retributiva"
+                "page": "32",
+                "section": "Allegato 1, MINIMO CONTRATTUALE",
+                "quote": "VII             € 2.646,86                        € 2.723,46                        € 2.800,07"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2024-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-marittimi-industria-armatoriale-tables"
               }
             }
           },
@@ -1208,21 +1813,28 @@
             "valid_until": "2026-07-01",
             "value": "2723.46",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "15-sezione-personale-di-terra-pdf",
-                  "title": "15-sezione-personale-di-terra-pdf",
+                  "document_id": "marittimi-industria-armatoriale-tables-747f2eb3",
+                  "title": "marittimi-industria-armatoriale: tabelle retributive (15_-_SEZIONE_PERSONALE_DI_TERRA.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf"
+                  "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
+                  "sha256": "747f2eb3af9ec92581cd21f2dfe746554ef4336495cc1738d23579c284088cc3"
                 },
-                "section": "Tabella retributiva"
+                "page": "32",
+                "section": "Allegato 1, MINIMO CONTRATTUALE",
+                "quote": "VII             € 2.646,86                        € 2.723,46                        € 2.800,07"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-marittimi-industria-armatoriale-tables"
               }
             }
           },
@@ -1231,21 +1843,28 @@
             "valid_until": null,
             "value": "2800.07",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "15-sezione-personale-di-terra-pdf",
-                  "title": "15-sezione-personale-di-terra-pdf",
+                  "document_id": "marittimi-industria-armatoriale-tables-747f2eb3",
+                  "title": "marittimi-industria-armatoriale: tabelle retributive (15_-_SEZIONE_PERSONALE_DI_TERRA.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf"
+                  "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
+                  "sha256": "747f2eb3af9ec92581cd21f2dfe746554ef4336495cc1738d23579c284088cc3"
                 },
-                "section": "Tabella retributiva"
+                "page": "32",
+                "section": "Allegato 1, MINIMO CONTRATTUALE",
+                "quote": "VII             € 2.646,86                        € 2.723,46                        € 2.800,07"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2026-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-marittimi-industria-armatoriale-tables"
               }
             }
           }
@@ -1261,17 +1880,92 @@
               {
                 "valid_from": "2024-07-01",
                 "valid_until": "2025-07-01",
-                "value": "33.68"
+                "value": "33.68",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "marittimi-industria-armatoriale-tables-747f2eb3",
+                      "title": "marittimi-industria-armatoriale: tabelle retributive (15_-_SEZIONE_PERSONALE_DI_TERRA.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
+                      "sha256": "747f2eb3af9ec92581cd21f2dfe746554ef4336495cc1738d23579c284088cc3"
+                    },
+                    "page": "33",
+                    "section": "Allegato 1 bis, ELEMENTO AGGIUNTIVO DELLA RETRIBUZIONE (EAR)",
+                    "quote": "VII         € 33,68                   € 58,94                 € 84,20"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2024-07-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-marittimi-industria-armatoriale-tables"
+                  }
+                }
               },
               {
                 "valid_from": "2025-07-01",
                 "valid_until": "2026-07-01",
-                "value": "58.94"
+                "value": "58.94",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "marittimi-industria-armatoriale-tables-747f2eb3",
+                      "title": "marittimi-industria-armatoriale: tabelle retributive (15_-_SEZIONE_PERSONALE_DI_TERRA.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
+                      "sha256": "747f2eb3af9ec92581cd21f2dfe746554ef4336495cc1738d23579c284088cc3"
+                    },
+                    "page": "33",
+                    "section": "Allegato 1 bis, ELEMENTO AGGIUNTIVO DELLA RETRIBUZIONE (EAR)",
+                    "quote": "VII         € 33,68                   € 58,94                 € 84,20"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2025-07-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-marittimi-industria-armatoriale-tables"
+                  }
+                }
               },
               {
                 "valid_from": "2026-07-01",
                 "valid_until": null,
-                "value": "84.20"
+                "value": "84.20",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "marittimi-industria-armatoriale-tables-747f2eb3",
+                      "title": "marittimi-industria-armatoriale: tabelle retributive (15_-_SEZIONE_PERSONALE_DI_TERRA.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
+                      "sha256": "747f2eb3af9ec92581cd21f2dfe746554ef4336495cc1738d23579c284088cc3"
+                    },
+                    "page": "33",
+                    "section": "Allegato 1 bis, ELEMENTO AGGIUNTIVO DELLA RETRIBUZIONE (EAR)",
+                    "quote": "VII         € 33,68                   € 58,94                 € 84,20"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2026-07-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-marittimi-industria-armatoriale-tables"
+                  }
+                }
               }
             ]
           },
@@ -1325,21 +2019,28 @@
             "valid_until": "2025-07-01",
             "value": "2646.86",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "15-sezione-personale-di-terra-pdf",
-                  "title": "15-sezione-personale-di-terra-pdf",
+                  "document_id": "marittimi-industria-armatoriale-tables-747f2eb3",
+                  "title": "marittimi-industria-armatoriale: tabelle retributive (15_-_SEZIONE_PERSONALE_DI_TERRA.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf"
+                  "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
+                  "sha256": "747f2eb3af9ec92581cd21f2dfe746554ef4336495cc1738d23579c284088cc3"
                 },
-                "section": "Tabella retributiva"
+                "page": "32",
+                "section": "Allegato 1, MINIMO CONTRATTUALE",
+                "quote": "VII             € 2.646,86                        € 2.723,46                        € 2.800,07"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2024-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-marittimi-industria-armatoriale-tables"
               }
             }
           },
@@ -1348,21 +2049,28 @@
             "valid_until": "2026-07-01",
             "value": "2723.46",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "15-sezione-personale-di-terra-pdf",
-                  "title": "15-sezione-personale-di-terra-pdf",
+                  "document_id": "marittimi-industria-armatoriale-tables-747f2eb3",
+                  "title": "marittimi-industria-armatoriale: tabelle retributive (15_-_SEZIONE_PERSONALE_DI_TERRA.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf"
+                  "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
+                  "sha256": "747f2eb3af9ec92581cd21f2dfe746554ef4336495cc1738d23579c284088cc3"
                 },
-                "section": "Tabella retributiva"
+                "page": "32",
+                "section": "Allegato 1, MINIMO CONTRATTUALE",
+                "quote": "VII             € 2.646,86                        € 2.723,46                        € 2.800,07"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-marittimi-industria-armatoriale-tables"
               }
             }
           },
@@ -1371,21 +2079,28 @@
             "valid_until": null,
             "value": "2800.07",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "15-sezione-personale-di-terra-pdf",
-                  "title": "15-sezione-personale-di-terra-pdf",
+                  "document_id": "marittimi-industria-armatoriale-tables-747f2eb3",
+                  "title": "marittimi-industria-armatoriale: tabelle retributive (15_-_SEZIONE_PERSONALE_DI_TERRA.pdf)",
                   "kind": "associazione",
-                  "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf"
+                  "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
+                  "sha256": "747f2eb3af9ec92581cd21f2dfe746554ef4336495cc1738d23579c284088cc3"
                 },
-                "section": "Tabella retributiva"
+                "page": "32",
+                "section": "Allegato 1, MINIMO CONTRATTUALE",
+                "quote": "VII             € 2.646,86                        € 2.723,46                        € 2.800,07"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2026-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-marittimi-industria-armatoriale-tables"
               }
             }
           }
@@ -1401,17 +2116,92 @@
               {
                 "valid_from": "2024-07-01",
                 "valid_until": "2025-07-01",
-                "value": "33.68"
+                "value": "33.68",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "marittimi-industria-armatoriale-tables-747f2eb3",
+                      "title": "marittimi-industria-armatoriale: tabelle retributive (15_-_SEZIONE_PERSONALE_DI_TERRA.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
+                      "sha256": "747f2eb3af9ec92581cd21f2dfe746554ef4336495cc1738d23579c284088cc3"
+                    },
+                    "page": "33",
+                    "section": "Allegato 1 bis, ELEMENTO AGGIUNTIVO DELLA RETRIBUZIONE (EAR)",
+                    "quote": "VII         € 33,68                   € 58,94                 € 84,20"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2024-07-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-marittimi-industria-armatoriale-tables"
+                  }
+                }
               },
               {
                 "valid_from": "2025-07-01",
                 "valid_until": "2026-07-01",
-                "value": "58.94"
+                "value": "58.94",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "marittimi-industria-armatoriale-tables-747f2eb3",
+                      "title": "marittimi-industria-armatoriale: tabelle retributive (15_-_SEZIONE_PERSONALE_DI_TERRA.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
+                      "sha256": "747f2eb3af9ec92581cd21f2dfe746554ef4336495cc1738d23579c284088cc3"
+                    },
+                    "page": "33",
+                    "section": "Allegato 1 bis, ELEMENTO AGGIUNTIVO DELLA RETRIBUZIONE (EAR)",
+                    "quote": "VII         € 33,68                   € 58,94                 € 84,20"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2025-07-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-marittimi-industria-armatoriale-tables"
+                  }
+                }
               },
               {
                 "valid_from": "2026-07-01",
                 "valid_until": null,
-                "value": "84.20"
+                "value": "84.20",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "marittimi-industria-armatoriale-tables-747f2eb3",
+                      "title": "marittimi-industria-armatoriale: tabelle retributive (15_-_SEZIONE_PERSONALE_DI_TERRA.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
+                      "sha256": "747f2eb3af9ec92581cd21f2dfe746554ef4336495cc1738d23579c284088cc3"
+                    },
+                    "page": "33",
+                    "section": "Allegato 1 bis, ELEMENTO AGGIUNTIVO DELLA RETRIBUZIONE (EAR)",
+                    "quote": "VII         € 33,68                   € 58,94                 € 84,20"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2026-07-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-marittimi-industria-armatoriale-tables"
+                  }
+                }
               }
             ]
           },
@@ -1443,7 +2233,32 @@
               {
                 "valid_from": "2024-07-01",
                 "valid_until": null,
-                "value": "225.00"
+                "value": "225.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "marittimi-industria-armatoriale-tables-747f2eb3",
+                      "title": "marittimi-industria-armatoriale: tabelle retributive (15_-_SEZIONE_PERSONALE_DI_TERRA.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
+                      "sha256": "747f2eb3af9ec92581cd21f2dfe746554ef4336495cc1738d23579c284088cc3"
+                    },
+                    "page": "32",
+                    "section": "Allegato 1, indennità di funzione (7° livello, quadri)",
+                    "quote": "indennità di funzione mensile pari a € 225,00."
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2024-07-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-marittimi-industria-armatoriale-tables"
+                  }
+                }
               }
             ]
           },
@@ -1523,7 +2338,7 @@
     "effective_until": null,
     "source": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
     "verification_status": "verified",
-    "source_hash": "df1a86c2b4a695f7d93c694544840f293fdca7cb3010df71a8e4e4cda4c83bb3",
+    "source_hash": "39d9cb519224cc52f2441639aba4a0b9481c17b4df46731f2787e4719d0f1e79",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

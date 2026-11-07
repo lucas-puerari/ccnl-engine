@@ -212,21 +212,28 @@
             "valid_until": "2024-07-01",
             "value": "1247.94",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "sindacato-it-h077",
-                  "title": "sindacato.it — CCNL Impianti Sportivi H077 tabella retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.sindacato.it/il-ccnl-impianti-sportivi-o-lavoratori-dello-sport/"
+                  "document_id": "impianti-sportivi-sport-src-aa156c97",
+                  "title": "impianti-sportivi-sport: cusi-2024-2026.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
+                  "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
                 },
-                "section": "Tabella retributiva — tranche 01/01/2024"
+                "page": "105",
+                "section": "no text layer",
+                "quote": "VI | 88,8796735 | € 1.247,94 | € 35,55 | € 1.283,49 | € 26,66 | € 1.310,16 | € 26,76 | € 1.336,82 | € 34,14 | € 1.370,96 | € 1.405,11 | € 1.439,25"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2024-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2024-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-impianti-sportivi-sport-double-read"
               }
             }
           },
@@ -235,21 +242,28 @@
             "valid_until": "2025-07-01",
             "value": "1283.49",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "sindacato-it-h077",
-                  "title": "sindacato.it — CCNL Impianti Sportivi H077 tabella retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.sindacato.it/il-ccnl-impianti-sportivi-o-lavoratori-dello-sport/"
+                  "document_id": "impianti-sportivi-sport-src-aa156c97",
+                  "title": "impianti-sportivi-sport: cusi-2024-2026.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
+                  "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
                 },
-                "section": "Tabella retributiva — tranche 01/07/2024"
+                "page": "105",
+                "section": "no text layer",
+                "quote": "VI | 88,8796735 | € 1.247,94 | € 35,55 | € 1.283,49 | € 26,66 | € 1.310,16 | € 26,76 | € 1.336,82 | € 34,14 | € 1.370,96 | € 1.405,11 | € 1.439,25"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2024-07-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2024-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-impianti-sportivi-sport-double-read"
               }
             }
           },
@@ -258,21 +272,28 @@
             "valid_until": "2026-07-01",
             "value": "1310.16",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "sindacato-it-h077",
-                  "title": "sindacato.it — CCNL Impianti Sportivi H077 tabella retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.sindacato.it/il-ccnl-impianti-sportivi-o-lavoratori-dello-sport/"
+                  "document_id": "impianti-sportivi-sport-src-aa156c97",
+                  "title": "impianti-sportivi-sport: cusi-2024-2026.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
+                  "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
                 },
-                "section": "Tabella retributiva — tranche 01/07/2025"
+                "page": "105",
+                "section": "no text layer",
+                "quote": "VI | 88,8796735 | € 1.247,94 | € 35,55 | € 1.283,49 | € 26,66 | € 1.310,16 | € 26,76 | € 1.336,82 | € 34,14 | € 1.370,96 | € 1.405,11 | € 1.439,25"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-07-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-impianti-sportivi-sport-double-read"
               }
             }
           },
@@ -281,21 +302,28 @@
             "valid_until": null,
             "value": "1336.82",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "kitech-h077",
-                  "title": "kitech.it — CCNL H077 tabella retributiva 01/07/2026",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=13"
+                  "document_id": "impianti-sportivi-sport-src-aa156c97",
+                  "title": "impianti-sportivi-sport: cusi-2024-2026.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
+                  "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
                 },
-                "section": "Tabella retributiva — tranche 01/07/2026 (kitech conferma sindacato.it)"
+                "page": "105",
+                "section": "no text layer",
+                "quote": "VI | 88,8796735 | € 1.247,94 | € 35,55 | € 1.283,49 | € 26,66 | € 1.310,16 | € 26,76 | € 1.336,82 | € 34,14 | € 1.370,96 | € 1.405,11 | € 1.439,25"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2026-07-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-impianti-sportivi-sport-double-read"
               }
             }
           }
@@ -332,21 +360,28 @@
             "valid_until": "2024-07-01",
             "value": "1319.18",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "sindacato-it-h077",
-                  "title": "sindacato.it — CCNL Impianti Sportivi H077 tabella retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.sindacato.it/il-ccnl-impianti-sportivi-o-lavoratori-dello-sport/"
+                  "document_id": "impianti-sportivi-sport-src-aa156c97",
+                  "title": "impianti-sportivi-sport: cusi-2024-2026.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
+                  "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
                 },
-                "section": "Tabella retributiva — tranche 01/01/2024"
+                "page": "105",
+                "section": "no text layer",
+                "quote": "V | 94,2365549 | € 1.319,18 | € 37,69 | € 1.356,87 | € 38,27 | € 1.385,15 | € 38,27 | € 1.413,42 | € 36,20 | € 1.449,62 | € 1.485,82 | € 1.522,03"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2024-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2024-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-impianti-sportivi-sport-double-read"
               }
             }
           },
@@ -355,21 +390,28 @@
             "valid_until": "2025-07-01",
             "value": "1356.87",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "sindacato-it-h077",
-                  "title": "sindacato.it — CCNL Impianti Sportivi H077 tabella retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.sindacato.it/il-ccnl-impianti-sportivi-o-lavoratori-dello-sport/"
+                  "document_id": "impianti-sportivi-sport-src-aa156c97",
+                  "title": "impianti-sportivi-sport: cusi-2024-2026.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
+                  "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
                 },
-                "section": "Tabella retributiva — tranche 01/07/2024"
+                "page": "105",
+                "section": "no text layer",
+                "quote": "V | 94,2365549 | € 1.319,18 | € 37,69 | € 1.356,87 | € 38,27 | € 1.385,15 | € 38,27 | € 1.413,42 | € 36,20 | € 1.449,62 | € 1.485,82 | € 1.522,03"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2024-07-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2024-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-impianti-sportivi-sport-double-read"
               }
             }
           },
@@ -378,21 +420,28 @@
             "valid_until": "2026-07-01",
             "value": "1385.15",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "sindacato-it-h077",
-                  "title": "sindacato.it — CCNL Impianti Sportivi H077 tabella retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.sindacato.it/il-ccnl-impianti-sportivi-o-lavoratori-dello-sport/"
+                  "document_id": "impianti-sportivi-sport-src-aa156c97",
+                  "title": "impianti-sportivi-sport: cusi-2024-2026.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
+                  "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
                 },
-                "section": "Tabella retributiva — tranche 01/07/2025"
+                "page": "105",
+                "section": "no text layer",
+                "quote": "V | 94,2365549 | € 1.319,18 | € 37,69 | € 1.356,87 | € 38,27 | € 1.385,15 | € 38,27 | € 1.413,42 | € 36,20 | € 1.449,62 | € 1.485,82 | € 1.522,03"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-07-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-impianti-sportivi-sport-double-read"
               }
             }
           },
@@ -401,21 +450,28 @@
             "valid_until": null,
             "value": "1413.42",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "kitech-h077",
-                  "title": "kitech.it — CCNL H077 tabella retributiva 01/07/2026",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=13"
+                  "document_id": "impianti-sportivi-sport-src-aa156c97",
+                  "title": "impianti-sportivi-sport: cusi-2024-2026.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
+                  "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
                 },
-                "section": "Tabella retributiva — tranche 01/07/2026 (kitech conferma sindacato.it)"
+                "page": "105",
+                "section": "no text layer",
+                "quote": "V | 94,2365549 | € 1.319,18 | € 37,69 | € 1.356,87 | € 38,27 | € 1.385,15 | € 38,27 | € 1.413,42 | € 36,20 | € 1.449,62 | € 1.485,82 | € 1.522,03"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2026-07-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-impianti-sportivi-sport-double-read"
               }
             }
           }
@@ -452,21 +508,28 @@
             "valid_until": "2024-07-01",
             "value": "1406.82",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "sindacato-it-h077",
-                  "title": "sindacato.it — CCNL Impianti Sportivi H077 tabella retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.sindacato.it/il-ccnl-impianti-sportivi-o-lavoratori-dello-sport/"
+                  "document_id": "impianti-sportivi-sport-src-aa156c97",
+                  "title": "impianti-sportivi-sport: cusi-2024-2026.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
+                  "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
                 },
-                "section": "Tabella retributiva — tranche 01/01/2024"
+                "page": "105",
+                "section": "no text layer",
+                "quote": "IV | 100 | € 1.406,82 | € 40,00 | € 1.446,82 | € 30,00 | € 1.476,82 | € 30,00 | € 1.506,82 | € 38,42 | € 1.545,24 | € 1.583,65 | € 1.622,07"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2024-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2024-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-impianti-sportivi-sport-double-read"
               }
             }
           },
@@ -475,21 +538,28 @@
             "valid_until": "2025-07-01",
             "value": "1446.82",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "sindacato-it-h077",
-                  "title": "sindacato.it — CCNL Impianti Sportivi H077 tabella retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.sindacato.it/il-ccnl-impianti-sportivi-o-lavoratori-dello-sport/"
+                  "document_id": "impianti-sportivi-sport-src-aa156c97",
+                  "title": "impianti-sportivi-sport: cusi-2024-2026.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
+                  "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
                 },
-                "section": "Tabella retributiva — tranche 01/07/2024"
+                "page": "105",
+                "section": "no text layer",
+                "quote": "IV | 100 | € 1.406,82 | € 40,00 | € 1.446,82 | € 30,00 | € 1.476,82 | € 30,00 | € 1.506,82 | € 38,42 | € 1.545,24 | € 1.583,65 | € 1.622,07"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2024-07-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2024-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-impianti-sportivi-sport-double-read"
               }
             }
           },
@@ -498,21 +568,28 @@
             "valid_until": "2026-07-01",
             "value": "1476.82",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "sindacato-it-h077",
-                  "title": "sindacato.it — CCNL Impianti Sportivi H077 tabella retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.sindacato.it/il-ccnl-impianti-sportivi-o-lavoratori-dello-sport/"
+                  "document_id": "impianti-sportivi-sport-src-aa156c97",
+                  "title": "impianti-sportivi-sport: cusi-2024-2026.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
+                  "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
                 },
-                "section": "Tabella retributiva — tranche 01/07/2025"
+                "page": "105",
+                "section": "no text layer",
+                "quote": "IV | 100 | € 1.406,82 | € 40,00 | € 1.446,82 | € 30,00 | € 1.476,82 | € 30,00 | € 1.506,82 | € 38,42 | € 1.545,24 | € 1.583,65 | € 1.622,07"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-07-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-impianti-sportivi-sport-double-read"
               }
             }
           },
@@ -521,21 +598,28 @@
             "valid_until": null,
             "value": "1506.82",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "kitech-h077",
-                  "title": "kitech.it — CCNL H077 tabella retributiva 01/07/2026",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=13"
+                  "document_id": "impianti-sportivi-sport-src-aa156c97",
+                  "title": "impianti-sportivi-sport: cusi-2024-2026.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
+                  "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
                 },
-                "section": "Tabella retributiva — tranche 01/07/2026 (kitech conferma sindacato.it)"
+                "page": "105",
+                "section": "no text layer",
+                "quote": "IV | 100 | € 1.406,82 | € 40,00 | € 1.446,82 | € 30,00 | € 1.476,82 | € 30,00 | € 1.506,82 | € 38,42 | € 1.545,24 | € 1.583,65 | € 1.622,07"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2026-07-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-impianti-sportivi-sport-double-read"
               }
             }
           }
@@ -572,21 +656,28 @@
             "valid_until": "2024-07-01",
             "value": "1527.36",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "sindacato-it-h077",
-                  "title": "sindacato.it — CCNL Impianti Sportivi H077 tabella retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.sindacato.it/il-ccnl-impianti-sportivi-o-lavoratori-dello-sport/"
+                  "document_id": "impianti-sportivi-sport-src-aa156c97",
+                  "title": "impianti-sportivi-sport: cusi-2024-2026.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
+                  "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
                 },
-                "section": "Tabella retributiva — tranche 01/01/2024"
+                "page": "105",
+                "section": "no text layer",
+                "quote": "III | 109,064741 | € 1.527,36 | € 43,63 | € 1.570,99 | € 32,72 | € 1.603,71 | € 32,72 | € 1.636,42 | € 41,90 | € 1.678,32 | € 1.720,22 | € 1.762,12"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2024-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2024-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-impianti-sportivi-sport-double-read"
               }
             }
           },
@@ -595,21 +686,28 @@
             "valid_until": "2025-07-01",
             "value": "1570.99",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "sindacato-it-h077",
-                  "title": "sindacato.it — CCNL Impianti Sportivi H077 tabella retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.sindacato.it/il-ccnl-impianti-sportivi-o-lavoratori-dello-sport/"
+                  "document_id": "impianti-sportivi-sport-src-aa156c97",
+                  "title": "impianti-sportivi-sport: cusi-2024-2026.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
+                  "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
                 },
-                "section": "Tabella retributiva — tranche 01/07/2024"
+                "page": "105",
+                "section": "no text layer",
+                "quote": "III | 109,064741 | € 1.527,36 | € 43,63 | € 1.570,99 | € 32,72 | € 1.603,71 | € 32,72 | € 1.636,42 | € 41,90 | € 1.678,32 | € 1.720,22 | € 1.762,12"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2024-07-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2024-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-impianti-sportivi-sport-double-read"
               }
             }
           },
@@ -618,21 +716,28 @@
             "valid_until": "2026-07-01",
             "value": "1603.71",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "sindacato-it-h077",
-                  "title": "sindacato.it — CCNL Impianti Sportivi H077 tabella retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.sindacato.it/il-ccnl-impianti-sportivi-o-lavoratori-dello-sport/"
+                  "document_id": "impianti-sportivi-sport-src-aa156c97",
+                  "title": "impianti-sportivi-sport: cusi-2024-2026.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
+                  "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
                 },
-                "section": "Tabella retributiva — tranche 01/07/2025"
+                "page": "105",
+                "section": "no text layer",
+                "quote": "III | 109,064741 | € 1.527,36 | € 43,63 | € 1.570,99 | € 32,72 | € 1.603,71 | € 32,72 | € 1.636,42 | € 41,90 | € 1.678,32 | € 1.720,22 | € 1.762,12"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-07-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-impianti-sportivi-sport-double-read"
               }
             }
           },
@@ -641,21 +746,28 @@
             "valid_until": null,
             "value": "1636.42",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "kitech-h077",
-                  "title": "kitech.it — CCNL H077 tabella retributiva 01/07/2026",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=13"
+                  "document_id": "impianti-sportivi-sport-src-aa156c97",
+                  "title": "impianti-sportivi-sport: cusi-2024-2026.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
+                  "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
                 },
-                "section": "Tabella retributiva — tranche 01/07/2026 (kitech conferma sindacato.it)"
+                "page": "105",
+                "section": "no text layer",
+                "quote": "III | 109,064741 | € 1.527,36 | € 43,63 | € 1.570,99 | € 32,72 | € 1.603,71 | € 32,72 | € 1.636,42 | € 41,90 | € 1.678,32 | € 1.720,22 | € 1.762,12"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2026-07-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-impianti-sportivi-sport-double-read"
               }
             }
           }
@@ -692,21 +804,28 @@
             "valid_until": "2024-07-01",
             "value": "1686.04",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "sindacato-it-h077",
-                  "title": "sindacato.it — CCNL Impianti Sportivi H077 tabella retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.sindacato.it/il-ccnl-impianti-sportivi-o-lavoratori-dello-sport/"
+                  "document_id": "impianti-sportivi-sport-src-aa156c97",
+                  "title": "impianti-sportivi-sport: cusi-2024-2026.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
+                  "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
                 },
-                "section": "Tabella retributiva — tranche 01/01/2024"
+                "page": "105",
+                "section": "no text layer",
+                "quote": "II | 120,996569 | € 1.686,04 | € 48,40 | € 1.734,44 | € 36,30 | € 1.770,74 | € 36,30 | € 1.807,04 | € 46,48 | € 1.853,52 | € 1.900,00 | € 1.946,49"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2024-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2024-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-impianti-sportivi-sport-double-read"
               }
             }
           },
@@ -715,21 +834,28 @@
             "valid_until": "2025-07-01",
             "value": "1734.44",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "sindacato-it-h077",
-                  "title": "sindacato.it — CCNL Impianti Sportivi H077 tabella retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.sindacato.it/il-ccnl-impianti-sportivi-o-lavoratori-dello-sport/"
+                  "document_id": "impianti-sportivi-sport-src-aa156c97",
+                  "title": "impianti-sportivi-sport: cusi-2024-2026.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
+                  "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
                 },
-                "section": "Tabella retributiva — tranche 01/07/2024"
+                "page": "105",
+                "section": "no text layer",
+                "quote": "II | 120,996569 | € 1.686,04 | € 48,40 | € 1.734,44 | € 36,30 | € 1.770,74 | € 36,30 | € 1.807,04 | € 46,48 | € 1.853,52 | € 1.900,00 | € 1.946,49"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2024-07-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2024-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-impianti-sportivi-sport-double-read"
               }
             }
           },
@@ -738,21 +864,28 @@
             "valid_until": "2026-07-01",
             "value": "1770.74",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "sindacato-it-h077",
-                  "title": "sindacato.it — CCNL Impianti Sportivi H077 tabella retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.sindacato.it/il-ccnl-impianti-sportivi-o-lavoratori-dello-sport/"
+                  "document_id": "impianti-sportivi-sport-src-aa156c97",
+                  "title": "impianti-sportivi-sport: cusi-2024-2026.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
+                  "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
                 },
-                "section": "Tabella retributiva — tranche 01/07/2025"
+                "page": "105",
+                "section": "no text layer",
+                "quote": "II | 120,996569 | € 1.686,04 | € 48,40 | € 1.734,44 | € 36,30 | € 1.770,74 | € 36,30 | € 1.807,04 | € 46,48 | € 1.853,52 | € 1.900,00 | € 1.946,49"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-07-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-impianti-sportivi-sport-double-read"
               }
             }
           },
@@ -761,21 +894,28 @@
             "valid_until": null,
             "value": "1807.04",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "kitech-h077",
-                  "title": "kitech.it — CCNL H077 tabella retributiva 01/07/2026",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=13"
+                  "document_id": "impianti-sportivi-sport-src-aa156c97",
+                  "title": "impianti-sportivi-sport: cusi-2024-2026.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
+                  "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
                 },
-                "section": "Tabella retributiva — tranche 01/07/2026 (kitech conferma sindacato.it)"
+                "page": "105",
+                "section": "no text layer",
+                "quote": "II | 120,996569 | € 1.686,04 | € 48,40 | € 1.734,44 | € 36,30 | € 1.770,74 | € 36,30 | € 1.807,04 | € 46,48 | € 1.853,52 | € 1.900,00 | € 1.946,49"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2026-07-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-impianti-sportivi-sport-double-read"
               }
             }
           }
@@ -812,21 +952,28 @@
             "valid_until": "2024-07-01",
             "value": "1856.08",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "sindacato-it-h077",
-                  "title": "sindacato.it — CCNL Impianti Sportivi H077 tabella retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.sindacato.it/il-ccnl-impianti-sportivi-o-lavoratori-dello-sport/"
+                  "document_id": "impianti-sportivi-sport-src-aa156c97",
+                  "title": "impianti-sportivi-sport: cusi-2024-2026.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
+                  "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
                 },
-                "section": "Tabella retributiva — tranche 01/01/2024"
+                "page": "105",
+                "section": "no text layer",
+                "quote": "I | 132,956042 | € 1.856,08 | € 53,18 | € 1.909,26 | € 39,89 | € 1.949,15 | € 39,89 | € 1.989,04 | € 51,08 | € 2.040,11 | € 2.091,19 | € 2.142,27"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2024-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2024-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-impianti-sportivi-sport-double-read"
               }
             }
           },
@@ -835,21 +982,28 @@
             "valid_until": "2025-07-01",
             "value": "1909.26",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "sindacato-it-h077",
-                  "title": "sindacato.it — CCNL Impianti Sportivi H077 tabella retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.sindacato.it/il-ccnl-impianti-sportivi-o-lavoratori-dello-sport/"
+                  "document_id": "impianti-sportivi-sport-src-aa156c97",
+                  "title": "impianti-sportivi-sport: cusi-2024-2026.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
+                  "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
                 },
-                "section": "Tabella retributiva — tranche 01/07/2024"
+                "page": "105",
+                "section": "no text layer",
+                "quote": "I | 132,956042 | € 1.856,08 | € 53,18 | € 1.909,26 | € 39,89 | € 1.949,15 | € 39,89 | € 1.989,04 | € 51,08 | € 2.040,11 | € 2.091,19 | € 2.142,27"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2024-07-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2024-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-impianti-sportivi-sport-double-read"
               }
             }
           },
@@ -858,21 +1012,28 @@
             "valid_until": "2026-07-01",
             "value": "1949.15",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "sindacato-it-h077",
-                  "title": "sindacato.it — CCNL Impianti Sportivi H077 tabella retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.sindacato.it/il-ccnl-impianti-sportivi-o-lavoratori-dello-sport/"
+                  "document_id": "impianti-sportivi-sport-src-aa156c97",
+                  "title": "impianti-sportivi-sport: cusi-2024-2026.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
+                  "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
                 },
-                "section": "Tabella retributiva — tranche 01/07/2025"
+                "page": "105",
+                "section": "no text layer",
+                "quote": "I | 132,956042 | € 1.856,08 | € 53,18 | € 1.909,26 | € 39,89 | € 1.949,15 | € 39,89 | € 1.989,04 | € 51,08 | € 2.040,11 | € 2.091,19 | € 2.142,27"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-07-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-impianti-sportivi-sport-double-read"
               }
             }
           },
@@ -881,21 +1042,28 @@
             "valid_until": null,
             "value": "1989.04",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "kitech-h077",
-                  "title": "kitech.it — CCNL H077 tabella retributiva 01/07/2026",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=13"
+                  "document_id": "impianti-sportivi-sport-src-aa156c97",
+                  "title": "impianti-sportivi-sport: cusi-2024-2026.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
+                  "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
                 },
-                "section": "Tabella retributiva — tranche 01/07/2026 (kitech conferma sindacato.it)"
+                "page": "105",
+                "section": "no text layer",
+                "quote": "I | 132,956042 | € 1.856,08 | € 53,18 | € 1.909,26 | € 39,89 | € 1.949,15 | € 39,89 | € 1.989,04 | € 51,08 | € 2.040,11 | € 2.091,19 | € 2.142,27"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2026-07-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-impianti-sportivi-sport-double-read"
               }
             }
           }
@@ -932,21 +1100,28 @@
             "valid_until": "2024-07-01",
             "value": "1943.93",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "sindacato-it-h077",
-                  "title": "sindacato.it — CCNL Impianti Sportivi H077 tabella retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.sindacato.it/il-ccnl-impianti-sportivi-o-lavoratori-dello-sport/"
+                  "document_id": "impianti-sportivi-sport-src-aa156c97",
+                  "title": "impianti-sportivi-sport: cusi-2024-2026.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
+                  "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
                 },
-                "section": "Tabella retributiva — tranche 01/01/2024"
+                "page": "105",
+                "section": "no text layer",
+                "quote": "QUADRI | 139,5627 | € 1.943,93 | € 55,83 | € 1.999,76 | € 41,87 | € 2.041,62 | € 41,87 | € 2.083,49 | € 53,62 | € 2.173,11 | € 2.190,72 | € 2.244,34"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2024-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2024-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-impianti-sportivi-sport-double-read"
               }
             }
           },
@@ -955,21 +1130,28 @@
             "valid_until": "2025-07-01",
             "value": "1999.76",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "sindacato-it-h077",
-                  "title": "sindacato.it — CCNL Impianti Sportivi H077 tabella retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.sindacato.it/il-ccnl-impianti-sportivi-o-lavoratori-dello-sport/"
+                  "document_id": "impianti-sportivi-sport-src-aa156c97",
+                  "title": "impianti-sportivi-sport: cusi-2024-2026.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
+                  "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
                 },
-                "section": "Tabella retributiva — tranche 01/07/2024"
+                "page": "105",
+                "section": "no text layer",
+                "quote": "QUADRI | 139,5627 | € 1.943,93 | € 55,83 | € 1.999,76 | € 41,87 | € 2.041,62 | € 41,87 | € 2.083,49 | € 53,62 | € 2.173,11 | € 2.190,72 | € 2.244,34"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2024-07-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2024-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-impianti-sportivi-sport-double-read"
               }
             }
           },
@@ -978,21 +1160,28 @@
             "valid_until": "2026-07-01",
             "value": "2041.62",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "sindacato-it-h077",
-                  "title": "sindacato.it — CCNL Impianti Sportivi H077 tabella retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.sindacato.it/il-ccnl-impianti-sportivi-o-lavoratori-dello-sport/"
+                  "document_id": "impianti-sportivi-sport-src-aa156c97",
+                  "title": "impianti-sportivi-sport: cusi-2024-2026.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
+                  "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
                 },
-                "section": "Tabella retributiva — tranche 01/07/2025"
+                "page": "105",
+                "section": "no text layer",
+                "quote": "QUADRI | 139,5627 | € 1.943,93 | € 55,83 | € 1.999,76 | € 41,87 | € 2.041,62 | € 41,87 | € 2.083,49 | € 53,62 | € 2.173,11 | € 2.190,72 | € 2.244,34"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-07-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-impianti-sportivi-sport-double-read"
               }
             }
           },
@@ -1001,21 +1190,28 @@
             "valid_until": null,
             "value": "2083.49",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "kitech-h077",
-                  "title": "kitech.it — CCNL H077 tabella retributiva 01/07/2026",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=13"
+                  "document_id": "impianti-sportivi-sport-src-aa156c97",
+                  "title": "impianti-sportivi-sport: cusi-2024-2026.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
+                  "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
                 },
-                "section": "Tabella retributiva — tranche 01/07/2026 (kitech conferma sindacato.it)"
+                "page": "105",
+                "section": "no text layer",
+                "quote": "QUADRI | 139,5627 | € 1.943,93 | € 55,83 | € 1.999,76 | € 41,87 | € 2.041,62 | € 41,87 | € 2.083,49 | € 53,62 | € 2.173,11 | € 2.190,72 | € 2.244,34"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-11T00:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2026-07-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-impianti-sportivi-sport-double-read"
               }
             }
           }
@@ -1033,21 +1229,28 @@
                 "valid_until": null,
                 "value": "60.00",
                 "provenance": {
-                  "status": "derived",
+                  "status": "verified",
                   "location": {
                     "source_document": {
-                      "document_id": "kitech-h077",
-                      "title": "kitech.it — CCNL H077 tabella retributiva 01/07/2026",
-                      "kind": "tabella_retributiva",
-                      "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=13"
+                      "document_id": "impianti-sportivi-sport-tables-aa156c97",
+                      "title": "impianti-sportivi-sport: tabelle retributive (cusi-2024-2026.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
+                      "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
                     },
-                    "section": "Livello Q — IND_FUNZIONE EUR 60.00/mese, 13 mensilità"
+                    "page": "62",
+                    "section": "Art. 60 – Indennità di funzione",
+                    "quote": "corrisposta ai lavoratori interessati un'indennità di funzione pari a euro 60,00 lordi per 13 mensilità,"
                   },
                   "extraction": {
-                    "method": "manual",
-                    "extraction_timestamp": "2026-09-11T00:00:00",
-                    "verification_status": "unverified",
-                    "effective_from": "2024-01-01"
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2024-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-impianti-sportivi-sport-tables"
                   }
                 }
               }
@@ -1236,7 +1439,7 @@
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=13",
     "verification_status": "unverified",
     "published_at": "2026-09-11",
-    "source_hash": "66cd9880392a8fc0a9a63e9743a23c1b02cc9c15cae9095d7771682b0e5ec2de",
+    "source_hash": "e33ec2696c47c096aa0addb09be8462faf832e5267b366ad2b0f9e6de7c943ef",
     "source_type": "commercial_secondary"
   },
   "work_rules": {
@@ -1771,6 +1974,50 @@
         "independence": "separate_session",
         "checked": [
           "work_rules.time_supplements.overtime_bands"
+        ]
+      },
+      {
+        "id": "2026-11-08-ai-impianti-sportivi-sport-tables",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The monthly values of the levels against the primary tables (text layer).",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
+            "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
+          }
+        ],
+        "findings": [
+          "1 values found verbatim on the cited pages and marked verified; 28 left as they were (derived or not on a text page)."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels.base_salary",
+          "levels.fixed_allowances"
+        ]
+      },
+      {
+        "id": "2026-11-08-gpt-impianti-sportivi-sport-double-read",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Monthly values on scanned pages, each read twice from the page image by two independent sessions of another model, the second without being told the expected value.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
+            "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
+          }
+        ],
+        "findings": [
+          "28 values read identically by both readings and equal to the file."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "levels.base_salary",
+          "levels.fixed_allowances"
         ]
       }
     ]
