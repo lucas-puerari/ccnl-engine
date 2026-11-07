@@ -7,7 +7,7 @@
     "effective_until": null,
     "published_at": "2026-09-11",
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
-    "source_hash": "67a762034feb6dfe63a281435be3ca4bdc087df499d59ac4244086027c17b315",
+    "source_hash": "68ae2c8d9f67bf35a6c7cf662ea878725bc706987546245b4c7f5174eb2c542e",
     "verification_status": "verified",
     "source_type": "contracting_party"
   },
@@ -3461,7 +3461,42 @@
           "verified_at": "2026-10-11T18:49:35Z",
           "review_id": "2026-10-11-ai"
         }
-      }
+      },
+      "permits": [
+        {
+          "bucket": "rol",
+          "annual_hours": [
+            {
+              "hours": "72"
+            }
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "concia-unic-rol_not_accrued",
+                "title": "concia-unic: rol_not_accrued",
+                "kind": "associazione",
+                "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
+                "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
+              },
+              "page": "1",
+              "section": "ROL",
+              "quote": "[image] OCR transcription (pdftotext output is empty):\nIPOTESI DI ACCORDO\n\nIn data 7 marzo 2024, a Milano\n\ntra\n\nVUNIC - Concerie Italiane\ne\nle ORGANIZZAZIONI SINDACALI\n\nFILCTEM-CGIL, FEMCA-CISL, UILTEC-UIL,\n\nviene stipulata la presente Ipotesi di accordo\n\nper il rinnovo del contratto collettivo nazi"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-08T11:00:00Z",
+              "effective_from": null,
+              "verified_by": "gpt-6-sol",
+              "verified_at": "2026-11-08T11:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-08-gpt-concia-unic-data-fixes"
+            }
+          }
+        }
+      ]
     },
     "sickness_rules": {
       "carenza_integration_rate": "1.0",
@@ -3770,19 +3805,6 @@
         "monetary_impact": "no"
       },
       {
-        "kind": "simplification",
-        "text": "LEAVE: Art. 42 of the CCNL testo definitivo 21/01/2021 (CNEL B101, physical p. 62): 4 weeks (20 days) up to the 10th year of service completed; 4 weeks + 2 days beyond the 10th year (120 months); 4 weeks + 3 days beyond the 15th (180 months); 5 weeks (25 days) beyond the 18th (216 months). ROL 68 ore/anno not modelled.",
-        "capability": "leave",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "rol_not_accrued",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Add a rol bucket of 68 hours a year to leave_rules with its accrual and payout (Art. 42 / ROL article)."
-        }
-      },
-      {
         "kind": "info",
         "text": "SICKNESS: seniority bands of art. 60 modelled as a cumulation (8, 10, 12 months of comporto within 36 months; 3, 4, 5 months in full and the rest at half, on the net pay); restarts after 4 months without sickness, from the 16th day of a hospital stay (within the episode) and 12 months after the end of the full pay; comporto 2, 3, 4 months longer for an invalidating disease; hospital stays over 5 days (60 at most) and periodic checks of an oncological illness left out of the comporto."
       },
@@ -3926,6 +3948,33 @@
         "independence": "separate_session",
         "checked": [
           "work_rules.notice"
+        ]
+      },
+      {
+        "id": "2026-11-08-gpt-concia-unic-data-fixes",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Data fixes proposed by one session from the signed text and confirmed by a second independent session.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
+            "sha256": "4988c9f804760f367b02e333503187e4a89d5e74e8db95ee4a7ffc1ad774a117"
+          },
+          {
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/148617",
+            "sha256": "e5f478479583edd9fd8614480cc5ee5d6dc130ad29271067522ed444c8bd9cde"
+          }
+        ],
+        "findings": [
+          "Closed rol_not_accrued."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "levels",
+          "parameters",
+          "work_rules"
         ]
       }
     ],

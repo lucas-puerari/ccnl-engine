@@ -108,7 +108,7 @@ formulas or caller-declared amounts.
 | `shift_work` | Lavoro a turni | scenario | work_rules | caller_supplied | event | event | — | — | caller-supplied | 43 / 0 / 0 / 0 |
 | `standby` | Reperibilità (importi del CCNL per livello) | scenario | work_rules | native | event | event | — | — | implemented | none bundled |
 | `absence` | Assenze ingiustificate | scenario | work_rules | caller_supplied | event | event | — | — | caller-supplied | 15 / 0 / 0 / 0 |
-| `leave` | Ferie, ROL ed ex festività godute: retribuite nella paga del mese, scalano il saldo maturato | scenario | work_rules | native | event | event | — | — | implemented | 33 / 19 / 0 / 0 |
+| `leave` | Ferie, ROL ed ex festività godute: retribuite nella paga del mese, scalano il saldo maturato | scenario | work_rules | native | event | event | — | — | implemented | 34 / 19 / 0 / 0 |
 | `sickness` | Malattia: episodi su più periodi, carenza, fasce INPS e integrazione CCNL | scenario | work_rules | native | event | event | — | multi_period_episode, inps_bands_and_carenza, ccnl_tiers | simplified | 58 / 201 / 7 / 0 |
 | `fringe_benefit` | Fringe benefit (informativo) | scenario | work_rules | native | event | event | — | — | simplified | 0 / 1 / 1 / 0 |
 | `travel_allowance` | Indennità di trasferta (importo giornaliero dal chiamante, quota esente art. 51 c. 5 TUIR) | scenario | work_rules | caller_supplied | event | event | — | — | caller-supplied | none bundled |
@@ -118,7 +118,7 @@ formulas or caller-declared amounts.
 | `notte_festivi_turni_substitute_tax` | Imposta sostitutiva notturno, festivo e turni L. 199/2025 art. 1 cc. 10-11 | core | net | native | decided | decision | `prior_year` | — | simplified | 0 / 1 / 1 / 0 |
 | `bilateral_funds` | Fondi bilaterali (importi dal chiamante) | scenario | work_rules | caller_supplied | event | event | — | — | caller-supplied | none bundled |
 | `contractual_funds` | Fondi sanitari e bilaterali del CCNL, o l'elemento distinto dovuto al lavoratore in loro vece | core | net | native | decided | decision | `employer.contractual_funds` | — | implemented | none bundled |
-| `pension_fund_contribution` | Previdenza complementare CCNL su adesione e contributo contrattuale | scenario | net | partial | decided | decision | `employment.pension_fund` | ccnl_fund_on_enrolment, ccnl_contractual_contribution | simplified | 41 / 115 / 27 / 0 |
+| `pension_fund_contribution` | Previdenza complementare CCNL su adesione e contributo contrattuale | scenario | net | partial | decided | decision | `employment.pension_fund` | ccnl_fund_on_enrolment, ccnl_contractual_contribution | simplified | 41 / 116 / 27 / 0 |
 | `assistance_contribution` | Contributi di assistenza contrattuale per ora retribuita (Cas.Sa.Colf, lavoro domestico) | core | net | native | decided | decision | `facts.contributable_hours` | — | verified | 3 / 0 / 0 / 0 |
 
 ## CCNL coverage
@@ -186,7 +186,7 @@ never grow.
 | 45 | [CCNL Dipendenti delle Farmacie Private - Farmacie rurali sussidiate](farmacie-rurali-sussidiate-h121.md) | ⚠️ | seniority | 4 / 41 / 1 / 0 |
 | 46 | [CCNL Distribuzione Cooperativa (ANCC-Coop / Confcooperative Consumo)](distribuzione-cooperativa-ancc.md) | ⚠️ | base_salary, seniority | 10 / 53 / 1 / 0 |
 | 47 | [CCNL Edilizia PMI CONFAPI ANIEM](edilizia-pmi-confapi-aniem.md) | ⚠️ | base_salary, bilateral_funds, pension_fund_contribution, seniority, territorial_supplement | 15 / 30 / 1 / 0 |
-| 48 | [CCNL Edilizia e Affini Artigianato](edilizia-artigianato-cna.md) | ⚠️ | bilateral_funds, inps_employer, pension_fund_contribution, seniority | 28 / 44 / 1 / 0 |
+| 48 | [CCNL Edilizia e Affini Artigianato](edilizia-artigianato-cna.md) | ⚠️ | bilateral_funds, inps_employer, seniority | 28 / 45 / 1 / 0 |
 | 49 | [CCNL Edilizia — Cooperative (ANCPL/Legacoop/Confcooperative/AGCI)](edilizia-cooperative-ancpl.md) | ⚠️ | bilateral_funds, seniority | 25 / 33 / 1 / 0 |
 | 50 | [CCNL Edilizia — Industria (ANCE), impiegati e quadri](edilizia-ance-impiegati.md) | ⚠️ | base_salary, overtime, seniority, sickness, territorial_supplement | 37 / 23 / 0 / 0 |
 | 51 | [CCNL Edilizia — Industria (ANCE), operai](edilizia-ance.md) | ⚠️ | base_salary, bilateral_funds, overtime, sickness, territorial_supplement | 42 / 7 / 0 / 0 |
@@ -196,7 +196,7 @@ never grow.
 | 55 | [CCNL Formazione Professionale (CNOS-FAP/CIOFS-FP/FORMA/CNF)](formazione-professionale.md) | ✅ | — | 0 / 34 / 1 / 1 |
 | 56 | [CCNL Gas e Acqua — Utilitalia/Proxigas/Anfida/Assogas](gas-acqua-utilitalia.md) | ⚠️ | inps_employer | 45 / 18 / 1 / 0 |
 | 57 | [CCNL Gomma e Plastica Industria (Federazione Gomma Plastica)](gomma-plastica-federazione-gomma-plastica.md) | ⚠️ | base_salary | 70 / 7 / 1 / 1 |
-| 58 | [CCNL Grafica e Editoria Industria (AIEG-Acigraf)](grafica-editoria-aieg.md) | ⚠️ | base_salary, seniority | 2 / 70 / 1 / 0 |
+| 58 | [CCNL Grafica e Editoria Industria (AIEG-Acigraf)](grafica-editoria-aieg.md) | ⚠️ | seniority | 2 / 70 / 1 / 0 |
 | 59 | [CCNL Gruppo ANAS](anas.md) | ✅ | — | 29 / 14 / 1 / 0 |
 | 60 | [CCNL Igiene Ambientale — Servizi Ambientali e di Igiene Urbana](igiene-ambientale-utilitalia.md) | ⚠️ | inps_employer, pension_fund_contribution, seniority | 68 / 76 / 1 / 0 |
 | 61 | [CCNL Impianti e Attività Sportive Profit e No-profit](impianti-sportivi-sport.md) | ⚠️ | base_salary, sickness | 28 / 4 / 1 / 1 |
@@ -265,7 +265,7 @@ never grow.
 | 124 | [CCNL per i lavoratori addetti all'industria orafa, argentiera e della gioielleria (Federorafi)](orafi-argentieri-industria-federorafi.md) | ✅ | — | 32 / 33 / 1 / 0 |
 | 125 | [CCNL per i lavoratori addetti alle industrie delle pelli e dei succedanei della pelle (Assopellettieri)](pelli-cuoio-industria-assopellettieri.md) | ⚠️ | base_salary | 28 / 7 / 1 / 1 |
 | 126 | [CCNL per i lavoratori dell'industria alimentare (Federalimentare)](alimentari-federalimentare.md) | ⚠️ | base_salary, overtime, sickness | 272 / 0 / 0 / 0 |
-| 127 | [CCNL per i lavoratori dell'industria conciaria (UNIC)](concia-unic.md) | ✅ | leave, overtime | 57 / 1 / 0 / 0 |
+| 127 | [CCNL per i lavoratori dell'industria conciaria (UNIC)](concia-unic.md) | ✅ | overtime | 58 / 1 / 0 / 0 |
 | 128 | [CCNL per i lavoratori dell'industria del legno, del sughero, del mobile, dell'arredamento e delle industrie affini (Federlegno-Arredo)](legno-arredamento-federlegno.md) | ⚠️ | base_salary | 17 / 88 / 1 / 0 |
 | 129 | [CCNL per i lavoratori dell'industria tessile, abbigliamento, moda (SMI)](tessile-smi.md) | ✅ | — | 40 / 7 / 1 / 1 |
 | 130 | [CCNL per i lavoratori delle Banche di Credito Cooperativo, Casse Rurali ed Artigiane](bcc-credito-cooperativo.md) | ⚠️ | base_salary, inps_employer, seniority | 36 / 7 / 0 / 0 |

@@ -92,20 +92,6 @@
       },
       {
         "kind": "simplification",
-        "text": "CASHIER (Art. 35, p. 34): 55.00 EUR a month to the cassiere of the head office and the branches, modelled as IND_CASSA with role cassiere.",
-        "capability": "base_salary",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "cashier_allowance_missing",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Resolved: IND_CASSA 55.00 EUR, role cassiere (art. 35), read on 2026-11-06.",
-          "status": "resolved"
-        }
-      },
-      {
-        "kind": "simplification",
         "text": "HEALTH FUND (Art. 37, p. 37): FILCOOP SANITARIO, 186 EUR a year for each permanent worker, two thirds the employer and one third the worker, modelled as health_funds filcoop_sanitario; a worker who opted out in writing owes none.",
         "capability": "contractual_funds",
         "monetary_impact": "yes",
@@ -219,6 +205,27 @@
         "independence": "separate_model",
         "checked": [
           "coverage.notes"
+        ]
+      },
+      {
+        "id": "2026-11-08-gpt-consorzi-agrari-assocap-data-fixes",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Data fixes proposed by one session from the signed text and confirmed by a second independent session.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.faicisl.it/attachments/article/2385/CCNL%20CONSORZI%20AGRARI%202024%20-%202027.pdf",
+            "sha256": "592a52c168c4c1724cc49e7d01c1b010723c5673c5ee88ae06cf60a9074b04ea"
+          }
+        ],
+        "findings": [
+          "Closed cashier_allowance_missing."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "levels"
         ]
       }
     ]
@@ -2294,7 +2301,7 @@
     "effective_until": null,
     "source": "https://www.wolterskluwer.it/",
     "verification_status": "unverified",
-    "source_hash": "873c401a875d850a3eb63784f94c14f947ac988367222919153959cb34347d7e",
+    "source_hash": "f3210364857ed47938ed9c81a52efb26ffe257855fcfce0636e8711ae97ee2e9",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

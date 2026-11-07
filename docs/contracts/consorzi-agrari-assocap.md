@@ -33,7 +33,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | inps_employer |
 
-4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -61,6 +61,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-01 | claude-opus-5-5 (ai) | The notice clause (Art. 47 - Preavviso, comma 2, p. 42). | corrected | Notice bands by level and service checked against the PDF by a separate session (delegated search and independent verification): work_rules.notice. |
 | 2026-11-06 | claude-opus-5-5 (ai) | CCNL Consorzi agrari 2024-2027: Allegato A stipendi base (p. 47), art. 35 indennità di cassa (p. 34). Art. 37 FILCOOP SANITARIO (p. 37). | corrected | The 6th level of 2025 is 1,040.26, not 1,040.28; the 2027 column added; the cashier allowance of 55.00 EUR added.<br>FILCOOP SANITARIO added: 186 EUR a year, two thirds employer, one third worker, permanent workers. |
 | 2026-11-08 | gpt-6-sol (ai) | Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim. | confirmed | tranche_2027_01_missing: Allegato A gives the 2027-01-01 base salary for levels 1–6 (including 3S/4S); every value and effective date is already in levels[].base_salary.periods. Q also has the 1st-level value, but the table has no distinct Q row; this verdict does not independently validate Q equivalence |
+| 2026-11-08 | gpt-6-sol (ai) | Data fixes proposed by one session from the signed text and confirmed by a second independent session. | corrected | Closed cashier_allowance_missing. |
 
 ## Salary table
 
@@ -98,13 +99,6 @@ Latest effective values per level (monthly gross, EUR).
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
-
-!!! note "consorzi-agrari-assocap/cashier_allowance_missing · base_salary · impact yes · resolved"
-    CASHIER (Art. 35, p. 34): 55.00 EUR a month to the cassiere of the head office and the branches, modelled as IND_CASSA with role cassiere.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Resolved: IND_CASSA 55.00 EUR, role cassiere (art. 35), read on 2026-11-06.
 
 !!! note "consorzi-agrari-assocap/filcoop_health_fund_missing · contractual_funds · impact yes · resolved"
     HEALTH FUND (Art. 37, p. 37): FILCOOP SANITARIO, 186 EUR a year for each permanent worker, two thirds the employer and one third the worker, modelled as health_funds filcoop_sanitario; a worker who opted out in writing owes none.

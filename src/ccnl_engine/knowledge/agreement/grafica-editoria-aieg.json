@@ -93,19 +93,6 @@
         "text": "APPRENTICESHIP (Art. 26e, Type 2, CCNL 19/01/2021, p.42; confirmed in force in the 20.12.2024 renewal): 'triennale' track (groups C,B,A,Q → levels C2,C1,B3,B2,B1,B1S,A,AS,Q): 36 months / 6 semesters, 70/75/80/85/90/95% then 100%. 'biennale' track (group D → levels D2,D1): 24 months / 6 four-month periods (4 months each), 70/75/80/85/90/95% then 100%. Level E not listed as an apprenticeship destination. EDITORI sector not modelled in this JSON. Source: fistelcisl.it PDF CCNL grafici-editoriali.pdf (p. 41-42)."
       },
       {
-        "kind": "simplification",
-        "text": "LEVELS E, D2, A, AS: the file values exceed the sum of the printed items (minimo of 01/10/2022 + contingenza + EDR + cumulative TEM increments, FISTel compendium pp. 172, 176, 173, 19) by a constant amount at every tranche: E +14.74, D2 +16.77, A +30.81, AS +36.47, about one 2022 tranche. No signatory prints the post-2024 totals, so the values are kept from the aggregator and not verified.",
-        "capability": "base_salary",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "grafica_levels_unreconciled",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Read a printed post-2024 table of the signatories (testo a stampa) and reconcile levels E, D2, A and AS."
-        }
-      },
-      {
         "kind": "info",
         "text": "APPRENTICE SENIORITY (X e) Apprendistato, p. 14 of the CCNL 2021-2022): the seniority for the aumenti periodici runs from the conversion of the apprenticeship; no increment during it (seniority_increments.apprentice_amount 0.00)."
       }
@@ -182,6 +169,33 @@
         ],
         "findings": [
           "Arts. 10 A) and 11 of the CCNL 19.1.2021 (pp. 108-109 of the 2024 edition; the 2024 renewal pages do not touch sickness): comporto 12 months, 180 days of 100% of the net pay and 6 months of 50%, counted over the 36 months before each day of absence, from day 1. The file kept a carenza of 60% and 75% for 180 days of one illness, from a pay-table page: corrected to a cumulation over three years at 100% then 50%."
+        ]
+      },
+      {
+        "id": "2026-11-08-gpt-grafica-editoria-aieg-data-fixes",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Data fixes proposed by one session from the signed text and confirmed by a second independent session.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
+            "sha256": "b259619cbe85745389e45b0b02945b5bb7efd6f815e0a332b15b32ade36ea343"
+          },
+          {
+            "url": "https://www.uilcom.it/wp-content/uploads/2023/10/CCNL-GRAFICI.pdf",
+            "sha256": "7e88da7983914d7be1b07f7d8f8c43a104f32f787e745255f5e624f544f7788c"
+          }
+        ],
+        "findings": [
+          "Closed grafica_levels_unreconciled."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "levels",
+          "parameters",
+          "work_rules"
         ]
       }
     ]
@@ -864,115 +878,155 @@
           {
             "valid_from": "2024-03-01",
             "valid_until": "2024-10-01",
-            "value": "1365.55",
+            "value": "1350.81",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "grafica-editoria-aieg",
-                  "title": "grafica-editoria-aieg",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/"
+                  "document_id": "grafici-2023-renewal-fistelveneto",
+                  "title": "Ipotesi di accordo 19 dicembre 2023 and CCNL 19 gennaio 2021 (authorized printed edition)",
+                  "kind": "associazione",
+                  "url": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
+                  "sha256": "b259619cbe85745389e45b0b02945b5bb7efd6f815e0a332b15b32ade36ea343"
                 },
-                "section": "Tabella retributiva"
+                "page": "17, 19, 172, 173, 176",
+                "section": "Incremento TEM; minimi, EDR, contingenza",
+                "quote": "Le altre componenti del TEM (ex indennità di contingenza e EDR) restano invariate"
               },
+              "transformation": "2022-10 minimo 774.67 + contingenza 512.87 + EDR 10,33 + cumulative per-level increments through 2024-03-01.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "gpt-6-sol",
+                "extraction_timestamp": "2026-11-08T11:00:00Z",
+                "effective_from": null,
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T11:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-grafica-editoria-aieg-data-fixes"
               }
             }
           },
           {
             "valid_from": "2024-10-01",
             "valid_until": "2025-05-01",
-            "value": "1383.20",
+            "value": "1368.45",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "grafica-editoria-aieg",
-                  "title": "grafica-editoria-aieg",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/"
+                  "document_id": "grafici-2023-renewal-fistelveneto",
+                  "title": "Ipotesi di accordo 19 dicembre 2023 and CCNL 19 gennaio 2021 (authorized printed edition)",
+                  "kind": "associazione",
+                  "url": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
+                  "sha256": "b259619cbe85745389e45b0b02945b5bb7efd6f815e0a332b15b32ade36ea343"
                 },
-                "section": "Tabella retributiva"
+                "page": "17, 19, 172, 173, 176",
+                "section": "Incremento TEM; minimi, EDR, contingenza",
+                "quote": "Le altre componenti del TEM (ex indennità di contingenza e EDR) restano invariate"
               },
+              "transformation": "2022-10 minimo 774.67 + contingenza 512.87 + EDR 10,33 + cumulative per-level increments through 2024-10-01.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "gpt-6-sol",
+                "extraction_timestamp": "2026-11-08T11:00:00Z",
+                "effective_from": null,
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T11:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-grafica-editoria-aieg-data-fixes"
               }
             }
           },
           {
             "valid_from": "2025-05-01",
             "valid_until": "2025-10-01",
-            "value": "1400.85",
+            "value": "1386.09",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "grafica-editoria-aieg",
-                  "title": "grafica-editoria-aieg",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/"
+                  "document_id": "grafici-2023-renewal-fistelveneto",
+                  "title": "Ipotesi di accordo 19 dicembre 2023 and CCNL 19 gennaio 2021 (authorized printed edition)",
+                  "kind": "associazione",
+                  "url": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
+                  "sha256": "b259619cbe85745389e45b0b02945b5bb7efd6f815e0a332b15b32ade36ea343"
                 },
-                "section": "Tabella retributiva"
+                "page": "17, 19, 172, 173, 176",
+                "section": "Incremento TEM; minimi, EDR, contingenza",
+                "quote": "Le altre componenti del TEM (ex indennità di contingenza e EDR) restano invariate"
               },
+              "transformation": "2022-10 minimo 774.67 + contingenza 512.87 + EDR 10,33 + cumulative per-level increments through 2025-05-01.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "gpt-6-sol",
+                "extraction_timestamp": "2026-11-08T11:00:00Z",
+                "effective_from": null,
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T11:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-grafica-editoria-aieg-data-fixes"
               }
             }
           },
           {
             "valid_from": "2025-10-01",
             "valid_until": "2026-07-01",
-            "value": "1430.26",
+            "value": "1415.50",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "grafica-editoria-aieg",
-                  "title": "grafica-editoria-aieg",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/"
+                  "document_id": "grafici-2023-renewal-fistelveneto",
+                  "title": "Ipotesi di accordo 19 dicembre 2023 and CCNL 19 gennaio 2021 (authorized printed edition)",
+                  "kind": "associazione",
+                  "url": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
+                  "sha256": "b259619cbe85745389e45b0b02945b5bb7efd6f815e0a332b15b32ade36ea343"
                 },
-                "section": "Tabella retributiva"
+                "page": "17, 19, 172, 173, 176",
+                "section": "Incremento TEM; minimi, EDR, contingenza",
+                "quote": "Le altre componenti del TEM (ex indennità di contingenza e EDR) restano invariate"
               },
+              "transformation": "2022-10 minimo 774.67 + contingenza 512.87 + EDR 10,33 + cumulative per-level increments through 2025-10-01.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "gpt-6-sol",
+                "extraction_timestamp": "2026-11-08T11:00:00Z",
+                "effective_from": null,
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T11:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-grafica-editoria-aieg-data-fixes"
               }
             }
           },
           {
             "valid_from": "2026-07-01",
             "valid_until": null,
-            "value": "1460.85",
+            "value": "1446.08",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "grafica-editoria-aieg",
-                  "title": "grafica-editoria-aieg",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/"
+                  "document_id": "grafici-2023-renewal-fistelveneto",
+                  "title": "Ipotesi di accordo 19 dicembre 2023 and CCNL 19 gennaio 2021 (authorized printed edition)",
+                  "kind": "associazione",
+                  "url": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
+                  "sha256": "b259619cbe85745389e45b0b02945b5bb7efd6f815e0a332b15b32ade36ea343"
                 },
-                "section": "Tabella retributiva"
+                "page": "17, 19, 172, 173, 176",
+                "section": "Incremento TEM; minimi, EDR, contingenza",
+                "quote": "Le altre componenti del TEM (ex indennità di contingenza e EDR) restano invariate"
               },
+              "transformation": "2022-10 minimo 774.67 + contingenza 512.87 + EDR 10,33 + cumulative per-level increments through 2026-07-01.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "gpt-6-sol",
+                "extraction_timestamp": "2026-11-08T11:00:00Z",
+                "effective_from": null,
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T11:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-grafica-editoria-aieg-data-fixes"
               }
             }
           }
@@ -1007,115 +1061,155 @@
           {
             "valid_from": "2024-03-01",
             "valid_until": "2024-10-01",
-            "value": "1485.52",
+            "value": "1468.75",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "grafica-editoria-aieg",
-                  "title": "grafica-editoria-aieg",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/"
+                  "document_id": "grafici-2023-renewal-fistelveneto",
+                  "title": "Ipotesi di accordo 19 dicembre 2023 and CCNL 19 gennaio 2021 (authorized printed edition)",
+                  "kind": "associazione",
+                  "url": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
+                  "sha256": "b259619cbe85745389e45b0b02945b5bb7efd6f815e0a332b15b32ade36ea343"
                 },
-                "section": "Tabella retributiva"
+                "page": "17, 19, 172, 173, 176",
+                "section": "Incremento TEM; minimi, EDR, contingenza",
+                "quote": "Le altre componenti del TEM (ex indennità di contingenza e EDR) restano invariate"
               },
+              "transformation": "2022-10 minimo 882.14 + contingenza 515.40 + EDR 10,33 + cumulative per-level increments through 2024-03-01.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "gpt-6-sol",
+                "extraction_timestamp": "2026-11-08T11:00:00Z",
+                "effective_from": null,
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T11:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-grafica-editoria-aieg-data-fixes"
               }
             }
           },
           {
             "valid_from": "2024-10-01",
             "valid_until": "2025-05-01",
-            "value": "1505.82",
+            "value": "1489.04",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "grafica-editoria-aieg",
-                  "title": "grafica-editoria-aieg",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/"
+                  "document_id": "grafici-2023-renewal-fistelveneto",
+                  "title": "Ipotesi di accordo 19 dicembre 2023 and CCNL 19 gennaio 2021 (authorized printed edition)",
+                  "kind": "associazione",
+                  "url": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
+                  "sha256": "b259619cbe85745389e45b0b02945b5bb7efd6f815e0a332b15b32ade36ea343"
                 },
-                "section": "Tabella retributiva"
+                "page": "17, 19, 172, 173, 176",
+                "section": "Incremento TEM; minimi, EDR, contingenza",
+                "quote": "Le altre componenti del TEM (ex indennità di contingenza e EDR) restano invariate"
               },
+              "transformation": "2022-10 minimo 882.14 + contingenza 515.40 + EDR 10,33 + cumulative per-level increments through 2024-10-01.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "gpt-6-sol",
+                "extraction_timestamp": "2026-11-08T11:00:00Z",
+                "effective_from": null,
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T11:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-grafica-editoria-aieg-data-fixes"
               }
             }
           },
           {
             "valid_from": "2025-05-01",
             "valid_until": "2025-10-01",
-            "value": "1526.11",
+            "value": "1509.33",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "grafica-editoria-aieg",
-                  "title": "grafica-editoria-aieg",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/"
+                  "document_id": "grafici-2023-renewal-fistelveneto",
+                  "title": "Ipotesi di accordo 19 dicembre 2023 and CCNL 19 gennaio 2021 (authorized printed edition)",
+                  "kind": "associazione",
+                  "url": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
+                  "sha256": "b259619cbe85745389e45b0b02945b5bb7efd6f815e0a332b15b32ade36ea343"
                 },
-                "section": "Tabella retributiva"
+                "page": "17, 19, 172, 173, 176",
+                "section": "Incremento TEM; minimi, EDR, contingenza",
+                "quote": "Le altre componenti del TEM (ex indennità di contingenza e EDR) restano invariate"
               },
+              "transformation": "2022-10 minimo 882.14 + contingenza 515.40 + EDR 10,33 + cumulative per-level increments through 2025-05-01.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "gpt-6-sol",
+                "extraction_timestamp": "2026-11-08T11:00:00Z",
+                "effective_from": null,
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T11:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-grafica-editoria-aieg-data-fixes"
               }
             }
           },
           {
             "valid_from": "2025-10-01",
             "valid_until": "2026-07-01",
-            "value": "1559.93",
+            "value": "1543.15",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "grafica-editoria-aieg",
-                  "title": "grafica-editoria-aieg",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/"
+                  "document_id": "grafici-2023-renewal-fistelveneto",
+                  "title": "Ipotesi di accordo 19 dicembre 2023 and CCNL 19 gennaio 2021 (authorized printed edition)",
+                  "kind": "associazione",
+                  "url": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
+                  "sha256": "b259619cbe85745389e45b0b02945b5bb7efd6f815e0a332b15b32ade36ea343"
                 },
-                "section": "Tabella retributiva"
+                "page": "17, 19, 172, 173, 176",
+                "section": "Incremento TEM; minimi, EDR, contingenza",
+                "quote": "Le altre componenti del TEM (ex indennità di contingenza e EDR) restano invariate"
               },
+              "transformation": "2022-10 minimo 882.14 + contingenza 515.40 + EDR 10,33 + cumulative per-level increments through 2025-10-01.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "gpt-6-sol",
+                "extraction_timestamp": "2026-11-08T11:00:00Z",
+                "effective_from": null,
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T11:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-grafica-editoria-aieg-data-fixes"
               }
             }
           },
           {
             "valid_from": "2026-07-01",
             "valid_until": null,
-            "value": "1595.11",
+            "value": "1578.32",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "grafica-editoria-aieg",
-                  "title": "grafica-editoria-aieg",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/"
+                  "document_id": "grafici-2023-renewal-fistelveneto",
+                  "title": "Ipotesi di accordo 19 dicembre 2023 and CCNL 19 gennaio 2021 (authorized printed edition)",
+                  "kind": "associazione",
+                  "url": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
+                  "sha256": "b259619cbe85745389e45b0b02945b5bb7efd6f815e0a332b15b32ade36ea343"
                 },
-                "section": "Tabella retributiva"
+                "page": "17, 19, 172, 173, 176",
+                "section": "Incremento TEM; minimi, EDR, contingenza",
+                "quote": "Le altre componenti del TEM (ex indennità di contingenza e EDR) restano invariate"
               },
+              "transformation": "2022-10 minimo 882.14 + contingenza 515.40 + EDR 10,33 + cumulative per-level increments through 2026-07-01.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "gpt-6-sol",
+                "extraction_timestamp": "2026-11-08T11:00:00Z",
+                "effective_from": null,
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T11:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-grafica-editoria-aieg-data-fixes"
               }
             }
           }
@@ -2361,115 +2455,155 @@
           {
             "valid_from": "2024-03-01",
             "valid_until": "2024-10-01",
-            "value": "2304.32",
+            "value": "2273.51",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "grafica-editoria-aieg",
-                  "title": "grafica-editoria-aieg",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/"
+                  "document_id": "grafici-2023-renewal-fistelveneto",
+                  "title": "Ipotesi di accordo 19 dicembre 2023 and CCNL 19 gennaio 2021 (authorized printed edition)",
+                  "kind": "associazione",
+                  "url": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
+                  "sha256": "b259619cbe85745389e45b0b02945b5bb7efd6f815e0a332b15b32ade36ea343"
                 },
-                "section": "Tabella retributiva"
+                "page": "17, 19, 172, 173, 176",
+                "section": "Incremento TEM; minimi, EDR, contingenza",
+                "quote": "Le altre componenti del TEM (ex indennità di contingenza e EDR) restano invariate"
               },
+              "transformation": "2022-10 minimo 1618.82 + contingenza 533.19 + EDR 10,33 + cumulative per-level increments through 2024-03-01.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "gpt-6-sol",
+                "extraction_timestamp": "2026-11-08T11:00:00Z",
+                "effective_from": null,
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T11:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-grafica-editoria-aieg-data-fixes"
               }
             }
           },
           {
             "valid_from": "2024-10-01",
             "valid_until": "2025-05-01",
-            "value": "2341.38",
+            "value": "2310.56",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "grafica-editoria-aieg",
-                  "title": "grafica-editoria-aieg",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/"
+                  "document_id": "grafici-2023-renewal-fistelveneto",
+                  "title": "Ipotesi di accordo 19 dicembre 2023 and CCNL 19 gennaio 2021 (authorized printed edition)",
+                  "kind": "associazione",
+                  "url": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
+                  "sha256": "b259619cbe85745389e45b0b02945b5bb7efd6f815e0a332b15b32ade36ea343"
                 },
-                "section": "Tabella retributiva"
+                "page": "17, 19, 172, 173, 176",
+                "section": "Incremento TEM; minimi, EDR, contingenza",
+                "quote": "Le altre componenti del TEM (ex indennità di contingenza e EDR) restano invariate"
               },
+              "transformation": "2022-10 minimo 1618.82 + contingenza 533.19 + EDR 10,33 + cumulative per-level increments through 2024-10-01.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "gpt-6-sol",
+                "extraction_timestamp": "2026-11-08T11:00:00Z",
+                "effective_from": null,
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T11:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-grafica-editoria-aieg-data-fixes"
               }
             }
           },
           {
             "valid_from": "2025-05-01",
             "valid_until": "2025-10-01",
-            "value": "2378.43",
+            "value": "2347.61",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "grafica-editoria-aieg",
-                  "title": "grafica-editoria-aieg",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/"
+                  "document_id": "grafici-2023-renewal-fistelveneto",
+                  "title": "Ipotesi di accordo 19 dicembre 2023 and CCNL 19 gennaio 2021 (authorized printed edition)",
+                  "kind": "associazione",
+                  "url": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
+                  "sha256": "b259619cbe85745389e45b0b02945b5bb7efd6f815e0a332b15b32ade36ea343"
                 },
-                "section": "Tabella retributiva"
+                "page": "17, 19, 172, 173, 176",
+                "section": "Incremento TEM; minimi, EDR, contingenza",
+                "quote": "Le altre componenti del TEM (ex indennità di contingenza e EDR) restano invariate"
               },
+              "transformation": "2022-10 minimo 1618.82 + contingenza 533.19 + EDR 10,33 + cumulative per-level increments through 2025-05-01.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "gpt-6-sol",
+                "extraction_timestamp": "2026-11-08T11:00:00Z",
+                "effective_from": null,
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T11:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-grafica-editoria-aieg-data-fixes"
               }
             }
           },
           {
             "valid_from": "2025-10-01",
             "valid_until": "2026-07-01",
-            "value": "2440.20",
+            "value": "2409.37",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "grafica-editoria-aieg",
-                  "title": "grafica-editoria-aieg",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/"
+                  "document_id": "grafici-2023-renewal-fistelveneto",
+                  "title": "Ipotesi di accordo 19 dicembre 2023 and CCNL 19 gennaio 2021 (authorized printed edition)",
+                  "kind": "associazione",
+                  "url": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
+                  "sha256": "b259619cbe85745389e45b0b02945b5bb7efd6f815e0a332b15b32ade36ea343"
                 },
-                "section": "Tabella retributiva"
+                "page": "17, 19, 172, 173, 176",
+                "section": "Incremento TEM; minimi, EDR, contingenza",
+                "quote": "Le altre componenti del TEM (ex indennità di contingenza e EDR) restano invariate"
               },
+              "transformation": "2022-10 minimo 1618.82 + contingenza 533.19 + EDR 10,33 + cumulative per-level increments through 2025-10-01.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "gpt-6-sol",
+                "extraction_timestamp": "2026-11-08T11:00:00Z",
+                "effective_from": null,
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T11:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-grafica-editoria-aieg-data-fixes"
               }
             }
           },
           {
             "valid_from": "2026-07-01",
             "valid_until": null,
-            "value": "2504.43",
+            "value": "2473.60",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "grafica-editoria-aieg",
-                  "title": "grafica-editoria-aieg",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/"
+                  "document_id": "grafici-2023-renewal-fistelveneto",
+                  "title": "Ipotesi di accordo 19 dicembre 2023 and CCNL 19 gennaio 2021 (authorized printed edition)",
+                  "kind": "associazione",
+                  "url": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
+                  "sha256": "b259619cbe85745389e45b0b02945b5bb7efd6f815e0a332b15b32ade36ea343"
                 },
-                "section": "Tabella retributiva"
+                "page": "17, 19, 172, 173, 176",
+                "section": "Incremento TEM; minimi, EDR, contingenza",
+                "quote": "Le altre componenti del TEM (ex indennità di contingenza e EDR) restano invariate"
               },
+              "transformation": "2022-10 minimo 1618.82 + contingenza 533.19 + EDR 10,33 + cumulative per-level increments through 2026-07-01.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "gpt-6-sol",
+                "extraction_timestamp": "2026-11-08T11:00:00Z",
+                "effective_from": null,
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T11:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-grafica-editoria-aieg-data-fixes"
               }
             }
           }
@@ -2504,115 +2638,155 @@
           {
             "valid_from": "2024-03-01",
             "valid_until": "2024-10-01",
-            "value": "2634.91",
+            "value": "2598.44",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "grafica-editoria-aieg",
-                  "title": "grafica-editoria-aieg",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/"
+                  "document_id": "grafici-2023-renewal-fistelveneto",
+                  "title": "Ipotesi di accordo 19 dicembre 2023 and CCNL 19 gennaio 2021 (authorized printed edition)",
+                  "kind": "associazione",
+                  "url": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
+                  "sha256": "b259619cbe85745389e45b0b02945b5bb7efd6f815e0a332b15b32ade36ea343"
                 },
-                "section": "Tabella retributiva"
+                "page": "17, 19, 172, 173, 176",
+                "section": "Incremento TEM; minimi, EDR, contingenza",
+                "quote": "Le altre componenti del TEM (ex indennità di contingenza e EDR) restano invariate"
               },
+              "transformation": "2022-10 minimo 1916.83 + contingenza 539.99 + EDR 10,33 + cumulative per-level increments through 2024-03-01.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "gpt-6-sol",
+                "extraction_timestamp": "2026-11-08T11:00:00Z",
+                "effective_from": null,
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T11:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-grafica-editoria-aieg-data-fixes"
               }
             }
           },
           {
             "valid_from": "2024-10-01",
             "valid_until": "2025-05-01",
-            "value": "2678.68",
+            "value": "2642.20",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "grafica-editoria-aieg",
-                  "title": "grafica-editoria-aieg",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/"
+                  "document_id": "grafici-2023-renewal-fistelveneto",
+                  "title": "Ipotesi di accordo 19 dicembre 2023 and CCNL 19 gennaio 2021 (authorized printed edition)",
+                  "kind": "associazione",
+                  "url": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
+                  "sha256": "b259619cbe85745389e45b0b02945b5bb7efd6f815e0a332b15b32ade36ea343"
                 },
-                "section": "Tabella retributiva"
+                "page": "17, 19, 172, 173, 176",
+                "section": "Incremento TEM; minimi, EDR, contingenza",
+                "quote": "Le altre componenti del TEM (ex indennità di contingenza e EDR) restano invariate"
               },
+              "transformation": "2022-10 minimo 1916.83 + contingenza 539.99 + EDR 10,33 + cumulative per-level increments through 2024-10-01.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "gpt-6-sol",
+                "extraction_timestamp": "2026-11-08T11:00:00Z",
+                "effective_from": null,
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T11:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-grafica-editoria-aieg-data-fixes"
               }
             }
           },
           {
             "valid_from": "2025-05-01",
             "valid_until": "2025-10-01",
-            "value": "2722.44",
+            "value": "2685.96",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "grafica-editoria-aieg",
-                  "title": "grafica-editoria-aieg",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/"
+                  "document_id": "grafici-2023-renewal-fistelveneto",
+                  "title": "Ipotesi di accordo 19 dicembre 2023 and CCNL 19 gennaio 2021 (authorized printed edition)",
+                  "kind": "associazione",
+                  "url": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
+                  "sha256": "b259619cbe85745389e45b0b02945b5bb7efd6f815e0a332b15b32ade36ea343"
                 },
-                "section": "Tabella retributiva"
+                "page": "17, 19, 172, 173, 176",
+                "section": "Incremento TEM; minimi, EDR, contingenza",
+                "quote": "Le altre componenti del TEM (ex indennità di contingenza e EDR) restano invariate"
               },
+              "transformation": "2022-10 minimo 1916.83 + contingenza 539.99 + EDR 10,33 + cumulative per-level increments through 2025-05-01.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "gpt-6-sol",
+                "extraction_timestamp": "2026-11-08T11:00:00Z",
+                "effective_from": null,
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T11:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-grafica-editoria-aieg-data-fixes"
               }
             }
           },
           {
             "valid_from": "2025-10-01",
             "valid_until": "2026-07-01",
-            "value": "2795.38",
+            "value": "2758.90",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "grafica-editoria-aieg",
-                  "title": "grafica-editoria-aieg",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/"
+                  "document_id": "grafici-2023-renewal-fistelveneto",
+                  "title": "Ipotesi di accordo 19 dicembre 2023 and CCNL 19 gennaio 2021 (authorized printed edition)",
+                  "kind": "associazione",
+                  "url": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
+                  "sha256": "b259619cbe85745389e45b0b02945b5bb7efd6f815e0a332b15b32ade36ea343"
                 },
-                "section": "Tabella retributiva"
+                "page": "17, 19, 172, 173, 176",
+                "section": "Incremento TEM; minimi, EDR, contingenza",
+                "quote": "Le altre componenti del TEM (ex indennità di contingenza e EDR) restano invariate"
               },
+              "transformation": "2022-10 minimo 1916.83 + contingenza 539.99 + EDR 10,33 + cumulative per-level increments through 2025-10-01.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "gpt-6-sol",
+                "extraction_timestamp": "2026-11-08T11:00:00Z",
+                "effective_from": null,
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T11:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-grafica-editoria-aieg-data-fixes"
               }
             }
           },
           {
             "valid_from": "2026-07-01",
             "valid_until": null,
-            "value": "2871.24",
+            "value": "2834.75",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "grafica-editoria-aieg",
-                  "title": "grafica-editoria-aieg",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/"
+                  "document_id": "grafici-2023-renewal-fistelveneto",
+                  "title": "Ipotesi di accordo 19 dicembre 2023 and CCNL 19 gennaio 2021 (authorized printed edition)",
+                  "kind": "associazione",
+                  "url": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
+                  "sha256": "b259619cbe85745389e45b0b02945b5bb7efd6f815e0a332b15b32ade36ea343"
                 },
-                "section": "Tabella retributiva"
+                "page": "17, 19, 172, 173, 176",
+                "section": "Incremento TEM; minimi, EDR, contingenza",
+                "quote": "Le altre componenti del TEM (ex indennità di contingenza e EDR) restano invariate"
               },
+              "transformation": "2022-10 minimo 1916.83 + contingenza 539.99 + EDR 10,33 + cumulative per-level increments through 2026-07-01.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "gpt-6-sol",
+                "extraction_timestamp": "2026-11-08T11:00:00Z",
+                "effective_from": null,
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T11:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-grafica-editoria-aieg-data-fixes"
               }
             }
           }
@@ -2918,7 +3092,7 @@
     "effective_until": null,
     "source": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
     "verification_status": "unverified",
-    "source_hash": "df6bb81487d04256d804dcccc1c247fc09ef3917b74b50f5ab62bd55c28fc915",
+    "source_hash": "8b322875a6aa584896dcd9f09374a5a3f7cf5844c8158c09b31e38caef2d20d5",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

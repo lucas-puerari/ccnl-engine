@@ -21,7 +21,8 @@ from typing import TYPE_CHECKING, Any
 
 import pytest
 
-from ccnl_engine import CompetenceYearPlan, Employment
+from ccnl_engine import CompetenceYearPlan, Employment, PayrollEngine
+from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.events import AbsenceEvent, SicknessEpisode
 from ccnl_engine.inputs import (
     Apprentice,
@@ -34,6 +35,8 @@ from ccnl_engine.inputs import (
     WeeklyHours,
     WorkerCategory,
 )
+from ccnl_engine.period.repositories import BundledKnowledgeRepository
+from tests.knowledge.ccnl_engine import support
 from tests.knowledge.ccnl_engine.irpef.other_income.builders import (
     employment_only,
 )
@@ -42,6 +45,7 @@ from tests.knowledge.ccnl_engine.support import EMPLOYER, ENGINE, regular_period
 
 if TYPE_CHECKING:
     from ccnl_engine import PeriodResult
+    from ccnl_engine.agreement.facade import CCNL
     from ccnl_engine.events import WorkEvent
 
 pytestmark = pytest.mark.legal_scenario
@@ -161,14 +165,41 @@ def test_operaio_hours_unknown_is_a_missing_fact() -> None:
     assert not result.is_payable
 
 
-def test_level_without_a_row_is_not_computed() -> None:
-    """Artigianato 7Q, a quadro level the Prevedi table has no row for."""
-    employment = replace(
+class _No7QRow(BundledKnowledgeRepository):
+    """The bundle with the Artigianato 7Q row taken out of the Prevedi table."""
+
+    def load_ccnl(self, ccnl_id: str) -> CCNL:
+        ccnl = load_ccnl(ccnl_id)
+        fund = ccnl.parameters.contractual_fund_contribution
+        if fund is None or "7Q" not in fund.monthly_by_level:
+            return ccnl
+        rows = {k: v for k, v in fund.monthly_by_level.items() if k != "7Q"}
+        fund = fund.model_copy(update={"monthly_by_level": rows})
+        params = ccnl.parameters.model_copy(
+            update={"contractual_fund_contribution": fund}
+        )
+        return ccnl.model_copy(update={"parameters": params})
+
+
+def _artigianato_7q() -> Employment:
+    return replace(
         _employment("7Q", WorkerCategory.QUADRO),
         ccnl_id="edilizia-artigianato-cna",
     )
-    result = _january(employment)
+
+
+def test_level_without_a_row_is_not_computed(monkeypatch: pytest.MonkeyPatch) -> None:
+    """A quadro level the Prevedi table has no row for."""
+    monkeypatch.setattr(support, "ENGINE", PayrollEngine(repository=_No7QRow()))
+    result = _january(_artigianato_7q())
     assert "contractual_fund_not_computed" in _codes(result)
+
+
+def test_artigianato_quadro_owes_its_row() -> None:
+    """Art. 92 (testo armonizzato 2025, p. 138): 7Q, parametro 205, 20.50."""
+    result = _january(_artigianato_7q())
+    assert "contractual_fund_not_computed" not in _codes(result)
+    assert _contractual(result) >= Decimal("20.50")
 
 
 def test_unknown_category_is_a_missing_fact() -> None:

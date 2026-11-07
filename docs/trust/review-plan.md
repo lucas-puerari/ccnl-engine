@@ -10,9 +10,9 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 |---|---:|---:|---:|---:|---:|---:|---|
 | pubblica-amministrazione | 14 | 7 548 000 | 14 | 229 | 182 | 0 | `funzioni-centrali-aran` |
 | terziario | 46 | 5 257 055 | 53 | 964 | 1733 | 4 | `commercio-confcommercio`, `sanita-privata-aiop-aris` |
-| industria | 49 | 4 969 900 | 155 | 1166 | 2278 | 15 | `logistica-trasporto-confetra`, `metalmeccanico-federmeccanica` |
+| industria | 49 | 4 969 900 | 155 | 1166 | 2279 | 15 | `logistica-trasporto-confetra`, `metalmeccanico-federmeccanica` |
 | lavoro-domestico | 3 | 1 800 000 | 0 | 3 | 60 | 0 | `lavoro-domestico-non-convivente` |
-| artigianato | 8 | 1 244 505 | 34 | 150 | 300 | 2 | `metalmeccanico-artigianato` |
+| artigianato | 8 | 1 244 505 | 34 | 151 | 300 | 2 | `metalmeccanico-artigianato` |
 | agricoltura | 9 | 752 860 | 12 | 95 | 239 | 5 | `operai-agricoli-florovivaisti` |
 | edilizia | 4 | 710 000 | 2 | 93 | 119 | 0 | `edilizia-ance` |
 | credito | 3 | 348 000 | 2 | 19 | 99 | 0 | `bancari-abi` |
@@ -120,7 +120,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | [`cemento-calce-gesso-industria`](../contracts/cemento-calce-gesso-industria.md) | 25 000 | exploratory | 1 | 36 | 45 | party or official | none | none |
 | [`ceramica-industria-confindustria`](../contracts/ceramica-industria-confindustria.md) | 23 000 | exploratory | 2 | 12 | 48 | party or official | none | none |
 | [`ceramica-sanitaria-stoviglieria-confindustria`](../contracts/ceramica-sanitaria-stoviglieria-confindustria.md) | 23 000 | exploratory | 2 | 18 | 52 | party or official | none | none |
-| [`concia-unic`](../contracts/concia-unic.md) | 22 600 | reviewed | 0 | 1 | 57 | party or official | maintainer | 2027-01-31 |
+| [`concia-unic`](../contracts/concia-unic.md) | 22 600 | reviewed | 0 | 1 | 58 | party or official | maintainer | 2027-01-31 |
 | [`occhiali-occhialeria-industria`](../contracts/occhiali-occhialeria-industria.md) | 20 000 | exploratory | 2 | 11 | 77 | party or official | none | none |
 | [`informatica-pmi-unimatica`](../contracts/informatica-pmi-unimatica.md) | 20 000 | exploratory | 1 | 39 | 2 | party or official | none | none |
 | [`panificazione-assipan`](../contracts/panificazione-assipan.md) | 20 000 | exploratory | 1 | 14 | 35 | party or official | none | none |
@@ -153,7 +153,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 
 | CCNL | Workers | Readiness | Weak | Derived | Verified | Source | Owner | Next review |
 |---|---:|---|---:|---:|---:|---|---|---|
-| [`edilizia-artigianato-cna`](../contracts/edilizia-artigianato-cna.md) | 350 000 | exploratory | 1 | 44 | 28 | party or official | none | none |
+| [`edilizia-artigianato-cna`](../contracts/edilizia-artigianato-cna.md) | 350 000 | exploratory | 1 | 45 | 28 | party or official | none | none |
 | [`metalmeccanico-artigianato`](../contracts/metalmeccanico-artigianato.md) (anchor) | 350 000 | exploratory | 0 | 12 | 69 | party or official | maintainer | 2027-01-31 |
 | [`tessile-moda-artigianato-confartigianato`](../contracts/tessile-moda-artigianato-confartigianato.md) | 120 000 | exploratory | 1 | 11 | 61 | aggregator | none | none |
 | [`acconciatura-estetica-confartigianato`](../contracts/acconciatura-estetica-confartigianato.md) | 95 000 | exploratory | 1 | 9 | 20 | party or official | none | none |
