@@ -343,10 +343,10 @@
       "institute": "seniority",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "SCATTI FREEZE 2013-2014: no seniority for the scatti and the importo ex ristrutturazione accrues from 1 January 2013 to 31 July 2014 (Art. 103 c. 3, testo coordinato p. 142); staff in service on 19 December 1994 keep 12 scatti (Art. 94 c. 2, Art. 103 c. 2). The engine counts the seniority of the request without the freeze.",
+      "rule": "SCATTI: the freeze of 1 January 2013 - 31 July 2014 (Art. 103 c. 3, testo coordinato p. 142) is modelled (seniority_increments.freezes: the months the engine ages across it do not count; the months the caller states are kept as recognised). Staff in service on 19 December 1994 keep a maximum of 12 scatti (Art. 94 c. 2, Art. 103 c. 2): the engine caps every worker at 8.",
       "calculation": "ccnl/bancari-abi:coverage.notes",
       "state": "absent",
-      "remediation": "State the seniority of a worker in service in 2013-2014 net of the 19 months of the freeze.",
+      "remediation": "Cap the scatti at 12 for the staff in service on 19 December 1994.",
       "origin": "seeded",
       "links": {
         "limitations": [
