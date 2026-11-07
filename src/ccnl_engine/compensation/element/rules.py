@@ -50,6 +50,31 @@ def _allowance_active(
     )
 
 
+def allowance_in_month(allowance: Allowance, as_of: date) -> Allowance:
+    """Return the allowance as it stands in the month of *as_of*.
+
+    ``tfr_relevant_from`` dates the TFR relevance: before it the month's
+    allowance is out of the TFR base (art. 2120 c. 2 c.c., Alimentari
+    Federalimentare art. 73: the EDR counts from 1 March 2024).
+
+    Returns:
+        The allowance, or a copy flagged ``tfr_relevant`` false before
+        ``tfr_relevant_from``.
+
+    Raises:
+        ValueError: The allowance has a date but never counts for the TFR.
+    """
+    start = allowance.tfr_relevant_from
+    if start is None:
+        return allowance
+    if not allowance.tfr_relevant:
+        msg = f"allowance {allowance.code}: tfr_relevant_from needs tfr_relevant true"
+        raise ValueError(msg)
+    if as_of >= start:
+        return allowance
+    return allowance.model_copy(update={"tfr_relevant": False})
+
+
 def service_gated_allowances(
     level: Level, roles: frozenset[str]
 ) -> tuple[Allowance, ...]:
@@ -138,7 +163,7 @@ def _level_chain(
     )
     with rule_scope(feature="base_salary"):
         allowances = tuple(
-            (a, a.monthly.value_at(as_of))
+            (allowance_in_month(a, as_of), a.monthly.value_at(as_of))
             for a in level.fixed_allowances
             if _allowance_active(a, roles, seniority_months, as_of, career_months)
         )
