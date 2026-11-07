@@ -51,22 +51,6 @@
       }
     },
     {
-      "id": "artisan_saturday_overtime",
-      "institute": "overtime",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "SATURDAY OVERTIME AND ORDINARY NIGHT AND HOLIDAY WORK: in a five-day week Saturday overtime is paid 25% for the first 3 hours and 50% after; ordinary night work is paid 15% and holiday work 45% (Art. 22, p. 84). The request has no Saturday kind and the bands hold only the overtime rates.",
-      "calculation": "ccnl/metalmeccanico-artigianato:coverage.notes",
-      "state": "absent",
-      "remediation": "Add a Saturday kind with the 3-hour threshold, and bands for ordinary night and holiday work.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "metalmeccanico-artigianato/artisan_saturday_overtime"
-        ]
-      }
-    },
-    {
       "id": "centralinisti_apprenticeship",
       "institute": "base_salary",
       "variant": "all",

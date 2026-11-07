@@ -162,19 +162,6 @@
       },
       {
         "kind": "simplification",
-        "text": "SATURDAY OVERTIME AND ORDINARY NIGHT AND HOLIDAY WORK: in a five-day week Saturday overtime is paid 25% for the first 3 hours and 50% after; ordinary night work is paid 15% and holiday work 45% (Art. 22, p. 84). The request has no Saturday kind and the bands hold only the overtime rates.",
-        "capability": "overtime",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "artisan_saturday_overtime",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Add a Saturday kind with the 3-hour threshold, and bands for ordinary night and holiday work."
-        }
-      },
-      {
-        "kind": "simplification",
         "text": "SICKNESS OF THE IMPIEGATI: Art. 73 (p. 147) pays the impiegati the whole pay for 2 months and half for the next 4 up to 5 years of service, the whole for 3 months and half for the next 5 above; the file applies the operai rule of Art. 61.",
         "capability": "sickness",
         "monetary_impact": "yes",
@@ -2988,7 +2975,7 @@
     "effective_until": null,
     "source": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf",
     "verification_status": "unverified",
-    "source_hash": "2e066e7d6b1f67e8fa78ca7bdf7e60f4effec354751f4a656633ca5ba2566a38",
+    "source_hash": "4585be95c76306b2b8bcb67e7c92f237b487a82fb2b7738223744f7910a09144",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3167,6 +3154,91 @@
               "review_id": "2026-10-15-ai-texts-overtime"
             }
           }
+        },
+        {
+          "code": "OT_SABATO",
+          "description": "Straordinario del sabato, prime 3 ore (settimana lunedì-venerdì)",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "valid_until": null,
+                "value": "0.25"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "saturday"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-area-meccanica-2021-ebat",
+                "title": "CCNL Area Meccanica artigiani, testo coordinato 17 dicembre 2021 (EBAT)",
+                "kind": "associazione",
+                "url": "https://www.ebat.tn.it/wp-content/uploads/2024/02/EBNA-Contratto-CCNL-Area-Meccanica_web_LR_compressed-1.pdf",
+                "sha256": "f8cd3c42582324aa4484bb2bb9465a5a0a442467aae64e3ea3a1c57e089f3151"
+              },
+              "page": "84",
+              "section": "Lavoro straordinario, notturno e festivo",
+              "quote": "Nell'ipotesi di distribuzione dell'orario settimanale in 5 giorni (lunedì-venerdì) è ammesso il lavoro straordinario, nella giornata di sabato: il lavoro straordinario effettuato nella giornata del sabato potrà avere durata superiore alle 2 ore e sarà retribuito con una maggiorazione del 25% per le prime 3 ore e nel caso che la prestazione superi le prime 3 ore tutte le ore successive saranno retribuite con una maggiorazione del 50%."
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T16:00:00Z",
+              "effective_from": "2022-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-08T16:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-08-ai-metalmeccanico-artigianato-saturday-overtime"
+            }
+          }
+        },
+        {
+          "code": "OT_SABATO_OLTRE_3_ORE",
+          "description": "Straordinario del sabato oltre le prime 3 ore",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "valid_until": null,
+                "value": "0.50"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "saturday"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-area-meccanica-2021-ebat",
+                "title": "CCNL Area Meccanica artigiani, testo coordinato 17 dicembre 2021 (EBAT)",
+                "kind": "associazione",
+                "url": "https://www.ebat.tn.it/wp-content/uploads/2024/02/EBNA-Contratto-CCNL-Area-Meccanica_web_LR_compressed-1.pdf",
+                "sha256": "f8cd3c42582324aa4484bb2bb9465a5a0a442467aae64e3ea3a1c57e089f3151"
+              },
+              "page": "84",
+              "section": "Lavoro straordinario, notturno e festivo",
+              "quote": "Nell'ipotesi di distribuzione dell'orario settimanale in 5 giorni (lunedì-venerdì) è ammesso il lavoro straordinario, nella giornata di sabato: il lavoro straordinario effettuato nella giornata del sabato potrà avere durata superiore alle 2 ore e sarà retribuito con una maggiorazione del 25% per le prime 3 ore e nel caso che la prestazione superi le prime 3 ore tutte le ore successive saranno retribuite con una maggiorazione del 50%."
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T16:00:00Z",
+              "effective_from": "2022-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-08T16:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-08-ai-metalmeccanico-artigianato-saturday-overtime"
+            }
+          },
+          "hour_threshold_per_day": 3
         }
       ]
     },
@@ -3558,6 +3630,27 @@
         "independence": "same_process",
         "checked": [
           "parameters.solidarity_fund"
+        ]
+      },
+      {
+        "id": "2026-11-08-ai-metalmeccanico-artigianato-saturday-overtime",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Saturday overtime of the consolidated 2021 text (unchanged by the 2024 renewal), read on the text layer.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.ebat.tn.it/wp-content/uploads/2024/02/EBNA-Contratto-CCNL-Area-Meccanica_web_LR_compressed-1.pdf",
+            "sha256": "f8cd3c42582324aa4484bb2bb9465a5a0a442467aae64e3ea3a1c57e089f3151"
+          }
+        ],
+        "findings": [
+          "Added OT_SABATO (25%, first 3 hours) and OT_SABATO_OLTRE_3_ORE (50% beyond 3 hours a day) on the new OvertimeKind.SATURDAY; closed artisan_saturday_overtime."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.time_supplements.overtime_bands"
         ]
       }
     ],

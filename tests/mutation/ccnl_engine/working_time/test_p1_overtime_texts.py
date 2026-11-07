@@ -25,6 +25,7 @@ def _bands(slug: str) -> dict[str, Decimal]:
         kind.value: Decimal(str(b.rate.periods[-1].value))
         for b in rules.time_supplements.overtime_bands
         for kind in b.applies_to_kinds
+        if b.hour_threshold_per_day is None and b.hour_threshold_per_week is None
     }
 
 
@@ -57,6 +58,7 @@ def _bands(slug: str) -> dict[str, Decimal]:
                 "night": "0.55",
                 "holiday": "0.45",
                 "night_holiday": "0.55",
+                "saturday": "0.25",
             },
         ),
     ],
@@ -64,3 +66,17 @@ def _bands(slug: str) -> dict[str, Decimal]:
 def test_bands_of_the_text(slug: str, expected: dict[str, str]) -> None:
     """Each band of the file is the rate the article prints."""
     assert _bands(slug) == {k: Decimal(v) for k, v in expected.items()}
+
+
+def test_artisan_saturday_overtime_doubles_after_three_hours() -> None:
+    """Area Meccanica (2021 text, PDF p. 84): 25% for the first 3 hours, 50% after."""
+    rules = load_ccnl("metalmeccanico-artigianato").work_rules
+    assert rules is not None
+    assert rules.time_supplements is not None
+    saturday = {
+        b.hour_threshold_per_day: b.rate.periods[-1].value
+        for b in rules.time_supplements.overtime_bands
+        if "saturday" in b.applies_to_kinds
+    }
+
+    assert saturday == {None: Decimal("0.25"), 3: Decimal("0.50")}
