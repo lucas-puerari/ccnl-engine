@@ -473,7 +473,7 @@
       "valid_to": "2027-12-31",
       "ruleset_id": "ccnl/cinema-audiovisivi-industria",
       "ruleset_version": "2025.1",
-      "source_hash": "9a81791524e27188a3d86139c6cfa6bca4bc306b1cd38bdb3e084d6912b9f851",
+      "source_hash": "69efde20ac5cb10e595cf3fdbf3857c4288a428e7503310de9e21e2a63774a32",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/cinema-audiovisivi-industria.json.gz"

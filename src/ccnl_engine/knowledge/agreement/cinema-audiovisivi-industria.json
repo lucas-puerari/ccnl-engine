@@ -139,6 +139,28 @@
         "findings": [
           "Art. 35 of the CCNL 9.7.2019 (pp. 24-26, OCR of the signed scan): comporto 12 months, whole pay for 3, 5 or 8 months and half for 3, 4 or 4 by seniority, the absences of the 24 months before each new episode summed. The file kept 270 days of one illness at 100% with an unpaid carenza: corrected to a cumulation over two years with three seniority bands."
         ]
+      },
+      {
+        "id": "2026-11-07-ai-cinema-audiovisivi-industria-corrections",
+        "date": "2026-11-07",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Values a primary-text verification found different from the printed tables (text layer).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.uilfpc.it/wp-content/uploads/2025/07/CCNL-Cineaudiovisivo-23-lugllio-2025-con-firme.pdf",
+            "sha256": "04cc8516569fb71baf9aa5165fc4d0c83ff1018fe00ee98feaf546de93c7d02e"
+          }
+        ],
+        "findings": [
+          "36 values corrected to the amounts printed on the cited pages."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels.base_salary",
+          "levels.fixed_allowances"
+        ]
       }
     ]
   },
@@ -333,46 +355,60 @@
           {
             "valid_from": "2025-01-01",
             "valid_until": "2026-01-01",
-            "value": "1211.34",
+            "value": "1225.69",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
-                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                  "document_id": "cinema-audiovisivi-industria-src-04cc8516",
+                  "title": "cinema-audiovisivi-industria: uilccnl2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.uilfpc.it/wp-content/uploads/2025/07/CCNL-Cineaudiovisivo-23-lugllio-2025-con-firme.pdf",
+                  "sha256": "04cc8516569fb71baf9aa5165fc4d0c83ff1018fe00ee98feaf546de93c7d02e"
                 },
-                "section": "Tabella retributiva — 01/01/2025"
+                "page": "55",
+                "section": "Tabella retributiva",
+                "quote": "1° Livello — Minimo Tabellare dal 01/01/2025: 1225,69 [read on the page image]"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T12:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-07-23"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T22:00:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T22:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-cinema-audiovisivi-industria-corrections"
               }
             }
           },
           {
             "valid_from": "2026-01-01",
             "valid_until": "2026-07-01",
-            "value": "1244.07",
+            "value": "1253.64",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
-                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                  "document_id": "cinema-audiovisivi-industria-src-04cc8516",
+                  "title": "cinema-audiovisivi-industria: uilccnl2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.uilfpc.it/wp-content/uploads/2025/07/CCNL-Cineaudiovisivo-23-lugllio-2025-con-firme.pdf",
+                  "sha256": "04cc8516569fb71baf9aa5165fc4d0c83ff1018fe00ee98feaf546de93c7d02e"
                 },
-                "section": "Tabella retributiva — 01/01/2026"
+                "page": "55",
+                "section": "Tabella retributiva",
+                "quote": "1° Livello — Minimo Tabellare dal 01/01/2026: 1253,64 [read on the page image]"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T12:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-07-23"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T22:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T22:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-cinema-audiovisivi-industria-corrections"
               }
             }
           },
@@ -402,46 +438,60 @@
           {
             "valid_from": "2027-07-01",
             "valid_until": "2028-01-01",
-            "value": "1375.01",
+            "value": "1365.44",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
-                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                  "document_id": "cinema-audiovisivi-industria-src-04cc8516",
+                  "title": "cinema-audiovisivi-industria: uilccnl2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.uilfpc.it/wp-content/uploads/2025/07/CCNL-Cineaudiovisivo-23-lugllio-2025-con-firme.pdf",
+                  "sha256": "04cc8516569fb71baf9aa5165fc4d0c83ff1018fe00ee98feaf546de93c7d02e"
                 },
-                "section": "Tabella retributiva — 01/07/2027 (parametrico)"
+                "page": "55",
+                "section": "Tabella retributiva",
+                "quote": "1° Livello — Minimo Tabellare dal 01/07/2027: 1365,44 [read on the page image]"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T12:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-07-23"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T22:00:00Z",
+                "effective_from": "2027-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T22:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-cinema-audiovisivi-industria-corrections"
               }
             }
           },
           {
             "valid_from": "2028-01-01",
             "valid_until": null,
-            "value": "1440.48",
+            "value": "1421.34",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
-                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                  "document_id": "cinema-audiovisivi-industria-src-04cc8516",
+                  "title": "cinema-audiovisivi-industria: uilccnl2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.uilfpc.it/wp-content/uploads/2025/07/CCNL-Cineaudiovisivo-23-lugllio-2025-con-firme.pdf",
+                  "sha256": "04cc8516569fb71baf9aa5165fc4d0c83ff1018fe00ee98feaf546de93c7d02e"
                 },
-                "section": "Tabella retributiva — 01/01/2028 (parametrico)"
+                "page": "55",
+                "section": "Tabella retributiva",
+                "quote": "1° Livello — Minimo Tabellare dal 01/01/2028: 1421,34 [read on the page image]"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T12:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-07-23"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T22:00:00Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T22:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-cinema-audiovisivi-industria-corrections"
               }
             }
           }
@@ -476,46 +526,60 @@
           {
             "valid_from": "2025-01-01",
             "valid_until": "2026-01-01",
-            "value": "1352.49",
+            "value": "1362.35",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
-                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                  "document_id": "cinema-audiovisivi-industria-src-04cc8516",
+                  "title": "cinema-audiovisivi-industria: uilccnl2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.uilfpc.it/wp-content/uploads/2025/07/CCNL-Cineaudiovisivo-23-lugllio-2025-con-firme.pdf",
+                  "sha256": "04cc8516569fb71baf9aa5165fc4d0c83ff1018fe00ee98feaf546de93c7d02e"
                 },
-                "section": "Tabella retributiva — 01/01/2025"
+                "page": "55",
+                "section": "Tabella retributiva",
+                "quote": "2° Livello — Minimo Tabellare dal 01/01/2025: 1362,35 [read on the page image]"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T12:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-07-23"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T22:00:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T22:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-cinema-audiovisivi-industria-corrections"
               }
             }
           },
           {
             "valid_from": "2026-01-01",
             "valid_until": "2026-07-01",
-            "value": "1389.04",
+            "value": "1395.61",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
-                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                  "document_id": "cinema-audiovisivi-industria-src-04cc8516",
+                  "title": "cinema-audiovisivi-industria: uilccnl2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.uilfpc.it/wp-content/uploads/2025/07/CCNL-Cineaudiovisivo-23-lugllio-2025-con-firme.pdf",
+                  "sha256": "04cc8516569fb71baf9aa5165fc4d0c83ff1018fe00ee98feaf546de93c7d02e"
                 },
-                "section": "Tabella retributiva — 01/01/2026"
+                "page": "55",
+                "section": "Tabella retributiva",
+                "quote": "2° Livello — Minimo Tabellare dal 01/01/2026: 1395,61 [read on the page image]"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T12:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-07-23"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T22:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T22:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-cinema-audiovisivi-industria-corrections"
               }
             }
           },
@@ -545,46 +609,60 @@
           {
             "valid_from": "2027-07-01",
             "valid_until": "2028-01-01",
-            "value": "1535.22",
+            "value": "1528.66",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
-                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                  "document_id": "cinema-audiovisivi-industria-src-04cc8516",
+                  "title": "cinema-audiovisivi-industria: uilccnl2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.uilfpc.it/wp-content/uploads/2025/07/CCNL-Cineaudiovisivo-23-lugllio-2025-con-firme.pdf",
+                  "sha256": "04cc8516569fb71baf9aa5165fc4d0c83ff1018fe00ee98feaf546de93c7d02e"
                 },
-                "section": "Tabella retributiva — 01/07/2027 (parametrico)"
+                "page": "55",
+                "section": "Tabella retributiva",
+                "quote": "2° Livello — Minimo Tabellare dal 01/07/2027: 1528,66 [read on the page image]"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T12:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-07-23"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T22:00:00Z",
+                "effective_from": "2027-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T22:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-cinema-audiovisivi-industria-corrections"
               }
             }
           },
           {
             "valid_from": "2028-01-01",
             "valid_until": null,
-            "value": "1608.31",
+            "value": "1595.18",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
-                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                  "document_id": "cinema-audiovisivi-industria-src-04cc8516",
+                  "title": "cinema-audiovisivi-industria: uilccnl2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.uilfpc.it/wp-content/uploads/2025/07/CCNL-Cineaudiovisivo-23-lugllio-2025-con-firme.pdf",
+                  "sha256": "04cc8516569fb71baf9aa5165fc4d0c83ff1018fe00ee98feaf546de93c7d02e"
                 },
-                "section": "Tabella retributiva — 01/01/2028 (parametrico)"
+                "page": "55",
+                "section": "Tabella retributiva",
+                "quote": "2° Livello — Minimo Tabellare dal 01/01/2028: 1595,18 [read on the page image]"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T12:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-07-23"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T22:00:00Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T22:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-cinema-audiovisivi-industria-corrections"
               }
             }
           }
@@ -619,46 +697,60 @@
           {
             "valid_from": "2025-01-01",
             "valid_until": "2026-01-01",
-            "value": "1510.36",
+            "value": "1515.40",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
-                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                  "document_id": "cinema-audiovisivi-industria-src-04cc8516",
+                  "title": "cinema-audiovisivi-industria: uilccnl2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.uilfpc.it/wp-content/uploads/2025/07/CCNL-Cineaudiovisivo-23-lugllio-2025-con-firme.pdf",
+                  "sha256": "04cc8516569fb71baf9aa5165fc4d0c83ff1018fe00ee98feaf546de93c7d02e"
                 },
-                "section": "Tabella retributiva — 01/01/2025"
+                "page": "55",
+                "section": "Tabella retributiva",
+                "quote": "3° Livello — Minimo Tabellare dal 01/01/2025: 1515,40 [read on the page image]"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T12:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-07-23"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T22:00:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T22:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-cinema-audiovisivi-industria-corrections"
               }
             }
           },
           {
             "valid_from": "2026-01-01",
             "valid_until": "2026-07-01",
-            "value": "1551.17",
+            "value": "1554.53",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
-                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                  "document_id": "cinema-audiovisivi-industria-src-04cc8516",
+                  "title": "cinema-audiovisivi-industria: uilccnl2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.uilfpc.it/wp-content/uploads/2025/07/CCNL-Cineaudiovisivo-23-lugllio-2025-con-firme.pdf",
+                  "sha256": "04cc8516569fb71baf9aa5165fc4d0c83ff1018fe00ee98feaf546de93c7d02e"
                 },
-                "section": "Tabella retributiva — 01/01/2026"
+                "page": "55",
+                "section": "Tabella retributiva",
+                "quote": "3° Livello — Minimo Tabellare dal 01/01/2026: 1554,53 [read on the page image]"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T12:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-07-23"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T22:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T22:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-cinema-audiovisivi-industria-corrections"
               }
             }
           },
@@ -688,46 +780,60 @@
           {
             "valid_from": "2027-07-01",
             "valid_until": "2028-01-01",
-            "value": "1714.41",
+            "value": "1711.05",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
-                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                  "document_id": "cinema-audiovisivi-industria-src-04cc8516",
+                  "title": "cinema-audiovisivi-industria: uilccnl2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.uilfpc.it/wp-content/uploads/2025/07/CCNL-Cineaudiovisivo-23-lugllio-2025-con-firme.pdf",
+                  "sha256": "04cc8516569fb71baf9aa5165fc4d0c83ff1018fe00ee98feaf546de93c7d02e"
                 },
-                "section": "Tabella retributiva — 01/07/2027 (parametrico)"
+                "page": "55",
+                "section": "Tabella retributiva",
+                "quote": "3° Livello — Minimo Tabellare dal 01/07/2027: 1711,05 [read on the page image]"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T12:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-07-23"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T22:00:00Z",
+                "effective_from": "2027-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T22:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-cinema-audiovisivi-industria-corrections"
               }
             }
           },
           {
             "valid_from": "2028-01-01",
             "valid_until": null,
-            "value": "1796.03",
+            "value": "1789.31",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
-                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                  "document_id": "cinema-audiovisivi-industria-src-04cc8516",
+                  "title": "cinema-audiovisivi-industria: uilccnl2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.uilfpc.it/wp-content/uploads/2025/07/CCNL-Cineaudiovisivo-23-lugllio-2025-con-firme.pdf",
+                  "sha256": "04cc8516569fb71baf9aa5165fc4d0c83ff1018fe00ee98feaf546de93c7d02e"
                 },
-                "section": "Tabella retributiva — 01/01/2028 (parametrico)"
+                "page": "55",
+                "section": "Tabella retributiva",
+                "quote": "3° Livello — Minimo Tabellare dal 01/01/2028: 1789,31 [read on the page image]"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T12:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-07-23"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T22:00:00Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T22:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-cinema-audiovisivi-industria-corrections"
               }
             }
           }
@@ -1048,46 +1154,60 @@
           {
             "valid_from": "2025-01-01",
             "valid_until": "2026-01-01",
-            "value": "1820.52",
+            "value": "1815.49",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
-                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                  "document_id": "cinema-audiovisivi-industria-src-04cc8516",
+                  "title": "cinema-audiovisivi-industria: uilccnl2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.uilfpc.it/wp-content/uploads/2025/07/CCNL-Cineaudiovisivo-23-lugllio-2025-con-firme.pdf",
+                  "sha256": "04cc8516569fb71baf9aa5165fc4d0c83ff1018fe00ee98feaf546de93c7d02e"
                 },
-                "section": "Tabella retributiva — 01/01/2025"
+                "page": "55",
+                "section": "Tabella retributiva",
+                "quote": "5° Livello — Minimo Tabellare dal 01/01/2025: 1815,49 [read on the page image]"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T12:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-07-23"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T22:00:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T22:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-cinema-audiovisivi-industria-corrections"
               }
             }
           },
           {
             "valid_from": "2026-01-01",
             "valid_until": "2026-07-01",
-            "value": "1869.71",
+            "value": "1866.36",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
-                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                  "document_id": "cinema-audiovisivi-industria-src-04cc8516",
+                  "title": "cinema-audiovisivi-industria: uilccnl2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.uilfpc.it/wp-content/uploads/2025/07/CCNL-Cineaudiovisivo-23-lugllio-2025-con-firme.pdf",
+                  "sha256": "04cc8516569fb71baf9aa5165fc4d0c83ff1018fe00ee98feaf546de93c7d02e"
                 },
-                "section": "Tabella retributiva — 01/01/2026"
+                "page": "55",
+                "section": "Tabella retributiva",
+                "quote": "5° Livello — Minimo Tabellare dal 01/01/2026: 1866,36 [read on the page image]"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T12:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-07-23"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T22:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T22:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-cinema-audiovisivi-industria-corrections"
               }
             }
           },
@@ -1117,46 +1237,60 @@
           {
             "valid_from": "2027-07-01",
             "valid_until": "2028-01-01",
-            "value": "2066.49",
+            "value": "2069.84",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
-                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                  "document_id": "cinema-audiovisivi-industria-src-04cc8516",
+                  "title": "cinema-audiovisivi-industria: uilccnl2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.uilfpc.it/wp-content/uploads/2025/07/CCNL-Cineaudiovisivo-23-lugllio-2025-con-firme.pdf",
+                  "sha256": "04cc8516569fb71baf9aa5165fc4d0c83ff1018fe00ee98feaf546de93c7d02e"
                 },
-                "section": "Tabella retributiva — 01/07/2027 (parametrico)"
+                "page": "55",
+                "section": "Tabella retributiva",
+                "quote": "5° Livello — Minimo Tabellare dal 01/07/2027: 2069,84 [read on the page image]"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T12:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-07-23"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T22:00:00Z",
+                "effective_from": "2027-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T22:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-cinema-audiovisivi-industria-corrections"
               }
             }
           },
           {
             "valid_from": "2028-01-01",
             "valid_until": null,
-            "value": "2164.88",
+            "value": "2171.58",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
-                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                  "document_id": "cinema-audiovisivi-industria-src-04cc8516",
+                  "title": "cinema-audiovisivi-industria: uilccnl2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.uilfpc.it/wp-content/uploads/2025/07/CCNL-Cineaudiovisivo-23-lugllio-2025-con-firme.pdf",
+                  "sha256": "04cc8516569fb71baf9aa5165fc4d0c83ff1018fe00ee98feaf546de93c7d02e"
                 },
-                "section": "Tabella retributiva — 01/01/2028 (parametrico)"
+                "page": "55",
+                "section": "Tabella retributiva",
+                "quote": "5° Livello — Minimo Tabellare dal 01/01/2028: 2171,58 [read on the page image]"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T12:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-07-23"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T22:00:00Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T22:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-cinema-audiovisivi-industria-corrections"
               }
             }
           }
@@ -1191,46 +1325,60 @@
           {
             "valid_from": "2025-01-01",
             "valid_until": "2026-01-01",
-            "value": "1864.88",
+            "value": "1858.41",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
-                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                  "document_id": "cinema-audiovisivi-industria-src-04cc8516",
+                  "title": "cinema-audiovisivi-industria: uilccnl2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.uilfpc.it/wp-content/uploads/2025/07/CCNL-Cineaudiovisivo-23-lugllio-2025-con-firme.pdf",
+                  "sha256": "04cc8516569fb71baf9aa5165fc4d0c83ff1018fe00ee98feaf546de93c7d02e"
                 },
-                "section": "Tabella retributiva — 01/01/2025"
+                "page": "55",
+                "section": "Tabella retributiva",
+                "quote": "5° Liv.Super — Minimo Tabellare dal 01/01/2025: 1858,41 [read on the page image]"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T12:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-07-23"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T22:00:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T22:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-cinema-audiovisivi-industria-corrections"
               }
             }
           },
           {
             "valid_from": "2026-01-01",
             "valid_until": "2026-07-01",
-            "value": "1915.27",
+            "value": "1910.95",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
-                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                  "document_id": "cinema-audiovisivi-industria-src-04cc8516",
+                  "title": "cinema-audiovisivi-industria: uilccnl2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.uilfpc.it/wp-content/uploads/2025/07/CCNL-Cineaudiovisivo-23-lugllio-2025-con-firme.pdf",
+                  "sha256": "04cc8516569fb71baf9aa5165fc4d0c83ff1018fe00ee98feaf546de93c7d02e"
                 },
-                "section": "Tabella retributiva — 01/01/2026"
+                "page": "55",
+                "section": "Tabella retributiva",
+                "quote": "5° Liv.Super — Minimo Tabellare dal 01/01/2026: 1910,95 [read on the page image]"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T12:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-07-23"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T22:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T22:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-cinema-audiovisivi-industria-corrections"
               }
             }
           },
@@ -1260,46 +1408,60 @@
           {
             "valid_from": "2027-07-01",
             "valid_until": "2028-01-01",
-            "value": "2116.83",
+            "value": "2121.14",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
-                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                  "document_id": "cinema-audiovisivi-industria-src-04cc8516",
+                  "title": "cinema-audiovisivi-industria: uilccnl2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.uilfpc.it/wp-content/uploads/2025/07/CCNL-Cineaudiovisivo-23-lugllio-2025-con-firme.pdf",
+                  "sha256": "04cc8516569fb71baf9aa5165fc4d0c83ff1018fe00ee98feaf546de93c7d02e"
                 },
-                "section": "Tabella retributiva — 01/07/2027 (parametrico)"
+                "page": "55",
+                "section": "Tabella retributiva",
+                "quote": "5° Liv.Super — Minimo Tabellare dal 01/07/2027: 2121,14 [read on the page image]"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T12:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-07-23"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T22:00:00Z",
+                "effective_from": "2027-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T22:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-cinema-audiovisivi-industria-corrections"
               }
             }
           },
           {
             "valid_from": "2028-01-01",
             "valid_until": null,
-            "value": "2217.61",
+            "value": "2226.23",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
-                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                  "document_id": "cinema-audiovisivi-industria-src-04cc8516",
+                  "title": "cinema-audiovisivi-industria: uilccnl2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.uilfpc.it/wp-content/uploads/2025/07/CCNL-Cineaudiovisivo-23-lugllio-2025-con-firme.pdf",
+                  "sha256": "04cc8516569fb71baf9aa5165fc4d0c83ff1018fe00ee98feaf546de93c7d02e"
                 },
-                "section": "Tabella retributiva — 01/01/2028 (parametrico)"
+                "page": "55",
+                "section": "Tabella retributiva",
+                "quote": "5° Liv.Super — Minimo Tabellare dal 01/01/2028: 2226,23 [read on the page image]"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T12:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-07-23"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T22:00:00Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T22:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-cinema-audiovisivi-industria-corrections"
               }
             }
           }
@@ -1334,46 +1496,60 @@
           {
             "valid_from": "2025-01-01",
             "valid_until": "2026-01-01",
-            "value": "2043.85",
+            "value": "2031.77",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
-                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                  "document_id": "cinema-audiovisivi-industria-src-04cc8516",
+                  "title": "cinema-audiovisivi-industria: uilccnl2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.uilfpc.it/wp-content/uploads/2025/07/CCNL-Cineaudiovisivo-23-lugllio-2025-con-firme.pdf",
+                  "sha256": "04cc8516569fb71baf9aa5165fc4d0c83ff1018fe00ee98feaf546de93c7d02e"
                 },
-                "section": "Tabella retributiva — 01/01/2025"
+                "page": "55",
+                "section": "Tabella retributiva",
+                "quote": "6° Livello — Minimo Tabellare dal 01/01/2025: 2031,77 [read on the page image]"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T12:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-07-23"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T22:00:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T22:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-cinema-audiovisivi-industria-corrections"
               }
             }
           },
           {
             "valid_from": "2026-01-01",
             "valid_until": "2026-07-01",
-            "value": "2099.08",
+            "value": "2091.03",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
-                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                  "document_id": "cinema-audiovisivi-industria-src-04cc8516",
+                  "title": "cinema-audiovisivi-industria: uilccnl2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.uilfpc.it/wp-content/uploads/2025/07/CCNL-Cineaudiovisivo-23-lugllio-2025-con-firme.pdf",
+                  "sha256": "04cc8516569fb71baf9aa5165fc4d0c83ff1018fe00ee98feaf546de93c7d02e"
                 },
-                "section": "Tabella retributiva — 01/01/2026"
+                "page": "55",
+                "section": "Tabella retributiva",
+                "quote": "6° Livello — Minimo Tabellare dal 01/01/2026: 2091,03 [read on the page image]"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T12:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-07-23"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T22:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T22:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-cinema-audiovisivi-industria-corrections"
               }
             }
           },
@@ -1403,46 +1579,60 @@
           {
             "valid_from": "2027-07-01",
             "valid_until": "2028-01-01",
-            "value": "2320.00",
+            "value": "2328.05",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
-                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                  "document_id": "cinema-audiovisivi-industria-src-04cc8516",
+                  "title": "cinema-audiovisivi-industria: uilccnl2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.uilfpc.it/wp-content/uploads/2025/07/CCNL-Cineaudiovisivo-23-lugllio-2025-con-firme.pdf",
+                  "sha256": "04cc8516569fb71baf9aa5165fc4d0c83ff1018fe00ee98feaf546de93c7d02e"
                 },
-                "section": "Tabella retributiva — 01/07/2027 (parametrico)"
+                "page": "55",
+                "section": "Tabella retributiva",
+                "quote": "6° Livello — Minimo Tabellare dal 01/07/2027: 2328,05 [read on the page image]"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T12:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-07-23"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T22:00:00Z",
+                "effective_from": "2027-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T22:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-cinema-audiovisivi-industria-corrections"
               }
             }
           },
           {
             "valid_from": "2028-01-01",
             "valid_until": null,
-            "value": "2430.46",
+            "value": "2446.56",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
-                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                  "document_id": "cinema-audiovisivi-industria-src-04cc8516",
+                  "title": "cinema-audiovisivi-industria: uilccnl2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.uilfpc.it/wp-content/uploads/2025/07/CCNL-Cineaudiovisivo-23-lugllio-2025-con-firme.pdf",
+                  "sha256": "04cc8516569fb71baf9aa5165fc4d0c83ff1018fe00ee98feaf546de93c7d02e"
                 },
-                "section": "Tabella retributiva — 01/01/2028 (parametrico)"
+                "page": "55",
+                "section": "Tabella retributiva",
+                "quote": "6° Livello — Minimo Tabellare dal 01/01/2028: 2446,56 [read on the page image]"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T12:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-07-23"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T22:00:00Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T22:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-cinema-audiovisivi-industria-corrections"
               }
             }
           }
@@ -1477,46 +1667,60 @@
           {
             "valid_from": "2025-01-01",
             "valid_until": "2026-01-01",
-            "value": "2111.34",
+            "value": "2098.86",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
-                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                  "document_id": "cinema-audiovisivi-industria-src-04cc8516",
+                  "title": "cinema-audiovisivi-industria: uilccnl2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.uilfpc.it/wp-content/uploads/2025/07/CCNL-Cineaudiovisivo-23-lugllio-2025-con-firme.pdf",
+                  "sha256": "04cc8516569fb71baf9aa5165fc4d0c83ff1018fe00ee98feaf546de93c7d02e"
                 },
-                "section": "Tabella retributiva — 01/01/2025"
+                "page": "55",
+                "section": "Tabella retributiva",
+                "quote": "6° Liv.Super — Minimo Tabellare dal 01/01/2025: 2098,86 [read on the page image]"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T12:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-07-23"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T22:00:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T22:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-cinema-audiovisivi-industria-corrections"
               }
             }
           },
           {
             "valid_from": "2026-01-01",
             "valid_until": "2026-07-01",
-            "value": "2168.39",
+            "value": "2160.07",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
-                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                  "document_id": "cinema-audiovisivi-industria-src-04cc8516",
+                  "title": "cinema-audiovisivi-industria: uilccnl2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.uilfpc.it/wp-content/uploads/2025/07/CCNL-Cineaudiovisivo-23-lugllio-2025-con-firme.pdf",
+                  "sha256": "04cc8516569fb71baf9aa5165fc4d0c83ff1018fe00ee98feaf546de93c7d02e"
                 },
-                "section": "Tabella retributiva — 01/01/2026"
+                "page": "55",
+                "section": "Tabella retributiva",
+                "quote": "6° Liv.Super — Minimo Tabellare dal 01/01/2026: 2160,07 [read on the page image]"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T12:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-07-23"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T22:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T22:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-cinema-audiovisivi-industria-corrections"
               }
             }
           },
@@ -1546,46 +1750,60 @@
           {
             "valid_from": "2027-07-01",
             "valid_until": "2028-01-01",
-            "value": "2396.59",
+            "value": "2404.92",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
-                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                  "document_id": "cinema-audiovisivi-industria-src-04cc8516",
+                  "title": "cinema-audiovisivi-industria: uilccnl2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.uilfpc.it/wp-content/uploads/2025/07/CCNL-Cineaudiovisivo-23-lugllio-2025-con-firme.pdf",
+                  "sha256": "04cc8516569fb71baf9aa5165fc4d0c83ff1018fe00ee98feaf546de93c7d02e"
                 },
-                "section": "Tabella retributiva — 01/07/2027 (parametrico)"
+                "page": "55",
+                "section": "Tabella retributiva",
+                "quote": "6° Liv.Super — Minimo Tabellare dal 01/07/2027: 2404,92 [read on the page image]"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T12:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-07-23"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T22:00:00Z",
+                "effective_from": "2027-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T22:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-cinema-audiovisivi-industria-corrections"
               }
             }
           },
           {
             "valid_from": "2028-01-01",
             "valid_until": null,
-            "value": "2510.69",
+            "value": "2527.34",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
-                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                  "document_id": "cinema-audiovisivi-industria-src-04cc8516",
+                  "title": "cinema-audiovisivi-industria: uilccnl2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.uilfpc.it/wp-content/uploads/2025/07/CCNL-Cineaudiovisivo-23-lugllio-2025-con-firme.pdf",
+                  "sha256": "04cc8516569fb71baf9aa5165fc4d0c83ff1018fe00ee98feaf546de93c7d02e"
                 },
-                "section": "Tabella retributiva — 01/01/2028 (parametrico)"
+                "page": "55",
+                "section": "Tabella retributiva",
+                "quote": "6° Liv.Super — Minimo Tabellare dal 01/01/2028: 2527,34 [read on the page image]"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T12:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-07-23"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T22:00:00Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T22:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-cinema-audiovisivi-industria-corrections"
               }
             }
           }
@@ -1620,46 +1838,60 @@
           {
             "valid_from": "2025-01-01",
             "valid_until": "2026-01-01",
-            "value": "2319.86",
+            "value": "2299.13",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
-                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                  "document_id": "cinema-audiovisivi-industria-src-04cc8516",
+                  "title": "cinema-audiovisivi-industria: uilccnl2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.uilfpc.it/wp-content/uploads/2025/07/CCNL-Cineaudiovisivo-23-lugllio-2025-con-firme.pdf",
+                  "sha256": "04cc8516569fb71baf9aa5165fc4d0c83ff1018fe00ee98feaf546de93c7d02e"
                 },
-                "section": "Tabella retributiva — 01/01/2025"
+                "page": "55",
+                "section": "Tabella retributiva",
+                "quote": "7° Livello — Minimo Tabellare dal 01/01/2025: 2299,13 [read on the page image]"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T12:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-07-23"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T22:00:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T22:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-cinema-audiovisivi-industria-corrections"
               }
             }
           },
           {
             "valid_from": "2026-01-01",
             "valid_until": "2026-07-01",
-            "value": "2382.55",
+            "value": "2368.72",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
-                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                  "document_id": "cinema-audiovisivi-industria-src-04cc8516",
+                  "title": "cinema-audiovisivi-industria: uilccnl2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.uilfpc.it/wp-content/uploads/2025/07/CCNL-Cineaudiovisivo-23-lugllio-2025-con-firme.pdf",
+                  "sha256": "04cc8516569fb71baf9aa5165fc4d0c83ff1018fe00ee98feaf546de93c7d02e"
                 },
-                "section": "Tabella retributiva — 01/01/2026"
+                "page": "55",
+                "section": "Tabella retributiva",
+                "quote": "7° Livello — Minimo Tabellare dal 01/01/2026: 2368,72 [read on the page image]"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T12:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-07-23"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T22:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T22:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-cinema-audiovisivi-industria-corrections"
               }
             }
           },
@@ -1689,46 +1921,60 @@
           {
             "valid_from": "2027-07-01",
             "valid_until": "2028-01-01",
-            "value": "2633.29",
+            "value": "2647.11",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
-                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                  "document_id": "cinema-audiovisivi-industria-src-04cc8516",
+                  "title": "cinema-audiovisivi-industria: uilccnl2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.uilfpc.it/wp-content/uploads/2025/07/CCNL-Cineaudiovisivo-23-lugllio-2025-con-firme.pdf",
+                  "sha256": "04cc8516569fb71baf9aa5165fc4d0c83ff1018fe00ee98feaf546de93c7d02e"
                 },
-                "section": "Tabella retributiva — 01/07/2027 (parametrico)"
+                "page": "55",
+                "section": "Tabella retributiva",
+                "quote": "7° Livello — Minimo Tabellare dal 01/07/2027: 2647,11 [read on the page image]"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T12:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-07-23"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T22:00:00Z",
+                "effective_from": "2027-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T22:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-cinema-audiovisivi-industria-corrections"
               }
             }
           },
           {
             "valid_from": "2028-01-01",
             "valid_until": null,
-            "value": "2758.66",
+            "value": "2786.30",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
-                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                  "document_id": "cinema-audiovisivi-industria-src-04cc8516",
+                  "title": "cinema-audiovisivi-industria: uilccnl2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.uilfpc.it/wp-content/uploads/2025/07/CCNL-Cineaudiovisivo-23-lugllio-2025-con-firme.pdf",
+                  "sha256": "04cc8516569fb71baf9aa5165fc4d0c83ff1018fe00ee98feaf546de93c7d02e"
                 },
-                "section": "Tabella retributiva — 01/01/2028 (parametrico)"
+                "page": "55",
+                "section": "Tabella retributiva",
+                "quote": "7° Livello — Minimo Tabellare dal 01/01/2028: 2786,30 [read on the page image]"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T12:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-07-23"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T22:00:00Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T22:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-cinema-audiovisivi-industria-corrections"
               }
             }
           }
@@ -1763,46 +2009,60 @@
           {
             "valid_from": "2025-01-01",
             "valid_until": "2026-01-01",
-            "value": "2422.36",
+            "value": "2400.72",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
-                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                  "document_id": "cinema-audiovisivi-industria-src-04cc8516",
+                  "title": "cinema-audiovisivi-industria: uilccnl2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.uilfpc.it/wp-content/uploads/2025/07/CCNL-Cineaudiovisivo-23-lugllio-2025-con-firme.pdf",
+                  "sha256": "04cc8516569fb71baf9aa5165fc4d0c83ff1018fe00ee98feaf546de93c7d02e"
                 },
-                "section": "Tabella retributiva — 01/01/2025"
+                "page": "55",
+                "section": "Tabella retributiva",
+                "quote": "7° Liv.Super — Minimo Tabellare dal 01/01/2025: 2400,72 [read on the page image]"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T12:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-07-23"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T22:00:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T22:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-cinema-audiovisivi-industria-corrections"
               }
             }
           },
           {
             "valid_from": "2026-01-01",
             "valid_until": "2026-07-01",
-            "value": "2487.82",
+            "value": "2473.39",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
-                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                  "document_id": "cinema-audiovisivi-industria-src-04cc8516",
+                  "title": "cinema-audiovisivi-industria: uilccnl2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.uilfpc.it/wp-content/uploads/2025/07/CCNL-Cineaudiovisivo-23-lugllio-2025-con-firme.pdf",
+                  "sha256": "04cc8516569fb71baf9aa5165fc4d0c83ff1018fe00ee98feaf546de93c7d02e"
                 },
-                "section": "Tabella retributiva — 01/01/2026"
+                "page": "55",
+                "section": "Tabella retributiva",
+                "quote": "7° Liv.Super — Minimo Tabellare dal 01/01/2026: 2473,39 [read on the page image]"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T12:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-07-23"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T22:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T22:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-cinema-audiovisivi-industria-corrections"
               }
             }
           },
@@ -1832,46 +2092,60 @@
           {
             "valid_from": "2027-07-01",
             "valid_until": "2028-01-01",
-            "value": "2749.64",
+            "value": "2764.07",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
-                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                  "document_id": "cinema-audiovisivi-industria-src-04cc8516",
+                  "title": "cinema-audiovisivi-industria: uilccnl2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.uilfpc.it/wp-content/uploads/2025/07/CCNL-Cineaudiovisivo-23-lugllio-2025-con-firme.pdf",
+                  "sha256": "04cc8516569fb71baf9aa5165fc4d0c83ff1018fe00ee98feaf546de93c7d02e"
                 },
-                "section": "Tabella retributiva — 01/07/2027 (parametrico)"
+                "page": "55",
+                "section": "Tabella retributiva",
+                "quote": "7° Liv.Super — Minimo Tabellare dal 01/07/2027: 2764,07 [read on the page image]"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T12:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-07-23"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T22:00:00Z",
+                "effective_from": "2027-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T22:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-cinema-audiovisivi-industria-corrections"
               }
             }
           },
           {
             "valid_from": "2028-01-01",
             "valid_until": null,
-            "value": "2880.55",
+            "value": "2909.42",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
-                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                  "document_id": "cinema-audiovisivi-industria-src-04cc8516",
+                  "title": "cinema-audiovisivi-industria: uilccnl2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.uilfpc.it/wp-content/uploads/2025/07/CCNL-Cineaudiovisivo-23-lugllio-2025-con-firme.pdf",
+                  "sha256": "04cc8516569fb71baf9aa5165fc4d0c83ff1018fe00ee98feaf546de93c7d02e"
                 },
-                "section": "Tabella retributiva — 01/01/2028 (parametrico)"
+                "page": "55",
+                "section": "Tabella retributiva",
+                "quote": "7° Liv.Super — Minimo Tabellare dal 01/01/2028: 2909,42 [read on the page image]"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-18T12:00:00",
-                "verification_status": "unverified",
-                "effective_from": "2025-07-23"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T22:00:00Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T22:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-cinema-audiovisivi-industria-corrections"
               }
             }
           }
@@ -1905,7 +2179,7 @@
     "effective_until": "2027-12-31",
     "source": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153",
     "verification_status": "unverified",
-    "source_hash": "9a81791524e27188a3d86139c6cfa6bca4bc306b1cd38bdb3e084d6912b9f851",
+    "source_hash": "69efde20ac5cb10e595cf3fdbf3857c4288a428e7503310de9e21e2a63774a32",
     "published_at": "2026-09-18",
     "source_type": "commercial_secondary"
   },

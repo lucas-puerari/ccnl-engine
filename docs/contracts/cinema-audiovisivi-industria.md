@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 2 verified / 61 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 38 verified / 25 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-07-23 |
-| **Last review** | 2026-10-31 |
+| **Last review** | 2026-11-07 |
 | **Latest salary tranche** | 2028-01-01 |
 
 ## Review history
@@ -59,6 +59,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|---|---|
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | corrected | Art. 26 Gratifica natalizia o 13° mensilità (p. 19): "Nel caso di inizio o cessazione del rapporto di lavoro durante il corso dell'anno, il lavoratore ha diritto a tanti dodicesimi della gratifica natalizia per quanti sono i mesi di servizio prestato presso l'azienda. Le frazioni di mese superiori a 15 giorni sono considerate come mese intero di servizio.". Added: more_than 15 (the file applied the engine default, at least 15 days). |
 | 2026-10-31 | claude-opus-5-5 (ai) | The comporto and the sick pay of the CCNL counted over several illnesses (work_rules.sickness_rules), read on the signed text. | corrected | Art. 35 of the CCNL 9.7.2019 (pp. 24-26, OCR of the signed scan): comporto 12 months, whole pay for 3, 5 or 8 months and half for 3, 4 or 4 by seniority, the absences of the 24 months before each new episode summed. The file kept 270 days of one illness at 100% with an unpaid carenza: corrected to a cumulation over two years with three seniority bands. |
+| 2026-11-07 | claude-opus-5-5 (ai) | Values a primary-text verification found different from the printed tables (text layer). | corrected | 36 values corrected to the amounts printed on the cited pages. |
 
 ## Salary table
 
@@ -66,17 +67,17 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `7S` | Livello 7 Super (QA — Quadro) | € 2,880.55 | 2028-01-01 |
-| `7` | Livello 7 (QB — Quadro) | € 2,758.66 | 2028-01-01 |
-| `6S` | Livello 6 Super | € 2,510.69 | 2028-01-01 |
-| `6` | Livello 6 | € 2,430.46 | 2028-01-01 |
-| `5S` | Livello 5 Super | € 2,217.61 | 2028-01-01 |
-| `5` | Livello 5 | € 2,164.88 | 2028-01-01 |
+| `7S` | Livello 7 Super (QA — Quadro) | € 2,909.42 | 2028-01-01 |
+| `7` | Livello 7 (QB — Quadro) | € 2,786.30 | 2028-01-01 |
+| `6S` | Livello 6 Super | € 2,527.34 | 2028-01-01 |
+| `6` | Livello 6 | € 2,446.56 | 2028-01-01 |
+| `5S` | Livello 5 Super | € 2,226.23 | 2028-01-01 |
+| `5` | Livello 5 | € 2,171.58 | 2028-01-01 |
 | `4S` | Livello 4 Super | € 2,103.30 | 2028-01-01 |
 | `4` | Livello 4 | € 1,980.32 | 2028-01-01 |
-| `3` | Livello 3 | € 1,796.03 | 2028-01-01 |
-| `2` | Livello 2 | € 1,608.31 | 2028-01-01 |
-| `1` | Livello 1 | € 1,440.48 | 2028-01-01 |
+| `3` | Livello 3 | € 1,789.31 | 2028-01-01 |
+| `2` | Livello 2 | € 1,595.18 | 2028-01-01 |
+| `1` | Livello 1 | € 1,421.34 | 2028-01-01 |
 
 ## Seniority increments
 
