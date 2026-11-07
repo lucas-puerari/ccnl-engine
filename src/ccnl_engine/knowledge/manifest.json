@@ -235,7 +235,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/autorimesse-ic35",
       "ruleset_version": "2026.2",
-      "source_hash": "cd1051af98c6ad1ad77eaf0eba0c2e291b5bcc24310ebd09f7ed666335058e27",
+      "source_hash": "5d4327efbdf047a26f5851b785b3d9cc7889a565c96b2de95ea743d6e94b6e10",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/autorimesse-ic35.json.gz"
