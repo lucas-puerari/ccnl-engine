@@ -67,10 +67,9 @@ class Allowance(BaseModel):
     ``second_level_premium`` (Unionalimentari, elemento di garanzia
     retributiva), decided by ``EmployerProfile.second_level_premium``.
 
-    ``in_kind=True`` marks the conventional value of a benefit the employer
-    provides in kind (the board and lodging of a live-in domestic worker,
-    CCNL lavoro domestico art. 36): a regular run pays no cash for it but
-    counts it in the TFR base, and an extra-month run pays it in cash.
+    ``in_kind=True``: a benefit in kind (board and lodging, domestico art. 36),
+    unpaid on a regular run but in the TFR base, paid in cash in extra months.
+    ``tfr_relevant_from`` dates the TFR relevance (Federalimentare art. 73).
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -81,6 +80,7 @@ class Allowance(BaseModel):
     role: str | None = None
     months_per_year: int | None = Field(default=None, ge=1)
     tfr_relevant: bool = True
+    tfr_relevant_from: date | None = None
     contribution_relevant: bool = True
     apprenticeship_pct_relevant: bool = True
     part_time_proportionable: bool = True

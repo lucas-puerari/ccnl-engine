@@ -33,7 +33,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, overtime, sickness |
 
-5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -132,13 +132,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Model the Saturday premiums of the Art. 31 tables and the zootecnici day-shift 5%.
-
-!!! warning "alimentari-federalimentare/edr_tfr_from_march_2024 · base_salary · impact yes · open"
-    Art. 73: the EDR enters the TFR base only from 1 March 2024; the file counts it for every period.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Date the TFR relevance of the EDR from 1 March 2024.
 
 !!! warning "alimentari-federalimentare/first_level_apprentice_pay · base_salary · impact yes · open"
     Art. 21 B-C: the pay of the first-level and alta formazione apprentices.
