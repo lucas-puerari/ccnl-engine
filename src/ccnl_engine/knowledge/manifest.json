@@ -881,7 +881,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/esercizi-cinematografici-anec",
       "ruleset_version": "2026.2",
-      "source_hash": "482cc3a687844e3b47ea27ce5928563523d1e0de0aa64708bd2e56c6b5c7d977",
+      "source_hash": "b26d1b654a928f14c88614ce691cbd8423e27a33c7ba7fe4691011a2d3285bbd",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/esercizi-cinematografici-anec.json.gz"
