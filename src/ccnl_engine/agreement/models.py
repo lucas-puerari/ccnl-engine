@@ -30,6 +30,7 @@ from ccnl_engine.apprenticeship.models import (
     ApprenticeshipUnderClassification,
 )
 from ccnl_engine.compensation.entry.models import EntryPay
+from ccnl_engine.compensation.ladder.rules import level_below, levels_for, pay_ladders
 from ccnl_engine.compensation.models import CCNLParameters, Level
 from ccnl_engine.limitation.models import ModelLimitation
 from ccnl_engine.provenance.ruleset.models import RulesetIdentity
@@ -115,21 +116,6 @@ class CCNL(BaseModel):
         msg = f"level_code {level_code!r} not found in CCNL {self.meta.ccnl_id!r}"
         raise ValueError(msg)
 
-    def level_by_order(self, order: int) -> Level:
-        """Return the level with the given order, or raise ``ValueError``.
-
-        Returns:
-            The Level matching the given order.
-
-        Raises:
-            ValueError: If no level with the given order exists.
-        """
-        for lv in self.levels:
-            if lv.order == order:
-                return lv
-        msg = f"no level with order {order} in CCNL {self.meta.ccnl_id!r}"
-        raise ValueError(msg)
-
     def apprenticeship_tracks_for(self, level_code: str) -> list[ApprenticeshipTrack]:
         """Return every apprenticeship track whose destinations include a level.
 
@@ -167,12 +153,9 @@ class CCNL(BaseModel):
         _check_tier_level_codes(existing, si)
 
     def _assert_salary_order_non_decreasing(self) -> None:
-        if len(self.levels) < 2:
-            return
-        sorted_levels = sorted(self.levels, key=lambda lv: lv.order)
-        all_dates = _collect_transition_dates(sorted_levels)
-        for check_date in sorted(all_dates):
-            _check_salary_ordering_at_date(sorted_levels, check_date)
+        for ladder in pay_ladders(self.levels).values():
+            for check_date in sorted(_collect_transition_dates(ladder)):
+                _check_salary_ordering_at_date(ladder, check_date)
 
     def _assert_apprenticeship_tracks(self) -> None:
         names = [track.name for track in self.apprenticeship]
@@ -211,17 +194,15 @@ class CCNL(BaseModel):
     def _assert_offsets_resolve(
         self, track: ApprenticeshipUnderClassification, dest: Level
     ) -> None:
-        for period in track.periods:
-            target_order = dest.order - period.levels_below
-            try:
-                self.level_by_order(target_order)
-            except ValueError:
-                msg = (
-                    f"apprenticeship track {track.name!r}: no level with "
-                    f"order {target_order} ({period.levels_below} below "
-                    f"destination {dest.code!r}, order {dest.order})"
-                )
-                raise ValueError(msg) from None
+        # Each sub-sector of the destination has its own ladder.
+        for subsector in dest.subsectors or (None,):
+            ladder = levels_for(self.levels, subsector)
+            for period in track.periods:
+                try:
+                    level_below(ladder, dest, period.levels_below)
+                except ValueError as exc:
+                    msg = f"apprenticeship track {track.name!r}: {exc}"
+                    raise ValueError(msg) from None
 
     def _assert_limitation_levels(self) -> None:
         existing = {lv.code for lv in self.levels}

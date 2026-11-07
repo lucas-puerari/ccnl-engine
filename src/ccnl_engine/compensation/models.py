@@ -49,14 +49,12 @@ class Allowance(BaseModel):
     that day (Logistica Confetra art. 60 c. 8: the EDR of the workers "in
     servizio alla data del 26 gennaio 2011"): it is paid only when the
     employment started on or before it, and not when the start is unknown.
-    ``service_months_threshold`` makes the allowance conditional: it is
-    included only when the recognised seniority (``Employment.seniority``)
-    is known and is at least this many months on the run. When the
-    seniority is unknown, threshold-gated allowances are excluded and the
-    run names the missing fact: the engine cannot gate on service time
-    without knowing service time.  ``service_months_until`` closes the band
-    of seniority: the allowance is included only below it (the RPD of the
-    AFAM docenti, by band of anzianità di servizio).
+    ``service_months_threshold`` includes the allowance only when the
+    recognised seniority (``Employment.seniority``) is known and at least
+    this many months on the run; unknown, the run names the missing fact.
+    ``service_months_until`` closes the band (the RPD of the AFAM docenti).
+    ``career_service`` gates on ``SeniorityFact.career_months`` when stated
+    (Farmacie Tabella C: the years in level 1 and Area Q).
 
     ``part_time_proportionable=False`` marks allowances paid at their full
     contractual value whatever the part-time fraction (fixed welfare
@@ -89,6 +87,7 @@ class Allowance(BaseModel):
     replaced_by: Literal["provincial_element", "second_level_premium"] | None = None
     service_months_threshold: int | None = Field(default=None, ge=0)
     service_months_until: int | None = Field(default=None, ge=1)
+    career_service: bool = False
     in_service_on: date | None = None
     individual: bool = False
     provenance: RuleProvenance | None = None
@@ -343,17 +342,16 @@ class Level(BaseModel):
     """A single classification level (*livello di inquadramento*).
 
     Attributes:
-        code: Short alphanumeric code identifying the level within the CCNL
-            (e.g. ``"D3"``, ``"A1"``). Used in ``Scenario.level_code``.
-        order: Numeric ranking from lowest to highest seniority/pay (1 = lowest).
-            Used by ``CCNL.level_by_order``.
+        code: Code of the level within the CCNL (e.g. ``"D3"``).
+        order: Ranking from lowest to highest pay (1 = lowest).
         description: Human-readable name of the classification level.
         base_salary: Time-series of monthly base salaries for this level.
-        fixed_allowances: List of fixed monthly allowances attached to the
-            level (e.g. EDR, contingenza). May be empty.
-        category: Worker category fixed by this level. ``None`` when the
-            level hosts more than one category; the category then comes from
-            the employment facts (``Employment.category``).
+        base_salary_by_subsector: The base salary of an employer of a
+            sub-sector (``EmployerProfile.subsector``) that pays another table.
+        subsectors: The only sub-sectors the level exists in, empty for all.
+        fixed_allowances: Fixed monthly allowances of the level (EDR...).
+        category: Worker category fixed by this level, ``None`` when it
+            hosts more than one (``Employment.category`` then states it).
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -362,13 +360,14 @@ class Level(BaseModel):
     order: int
     description: str
     base_salary: TimeSeries
+    base_salary_by_subsector: dict[str, TimeSeries] = Field(default_factory=dict)
+    subsectors: tuple[str, ...] = ()
     fixed_allowances: tuple[Allowance, ...] = Field(default=())
     category: WorkerCategory | None = None
     provenance: RuleProvenance | None = None
 
     @model_validator(mode="after")
     def _check_salary_non_decreasing(self) -> Self:
-        # Compare only adjacent non-gap periods; gap periods carry no value.
         values: list[Decimal] = [
             p.value for p in self.base_salary.periods if p.value is not None
         ]

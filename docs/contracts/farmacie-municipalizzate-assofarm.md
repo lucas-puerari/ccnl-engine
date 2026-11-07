@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | inps_employer |
+| **Limits of this contract** | base_salary, inps_employer |
 
-1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 1 verified / 45 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 41 verified / 49 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -50,8 +50,8 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2022-07-07 |
-| **Last review** | 2026-11-06 |
-| **Latest salary tranche** | 2024-07-01 |
+| **Last review** | 2026-11-07 |
+| **Latest salary tranche** | 2029-07-01 |
 
 ## Review history
 
@@ -59,6 +59,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|---|---|
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | confirmed | Articolo 20 - Tredicesima e quattordicesima mensilita' (p. 20): "Le frazioni di mese pari o superiori a 15 giorni vengono computate come mese intero e si trascurano quelle inferiori.". Match: at_least 15. |
 | 2026-11-06 | claude-opus-5-5 (ai) | Apprentice seniority: art. 23 (p. 21, OCR) and Allegato F of the CCNL of 7 July 2022, with art. 41 c. 1 D.Lgs. 81/2015. | corrected | Art. 23 c. 1: 'Il lavoratore a tempo indeterminato ha diritto a 15 scatti biennali di anzianità'; apprenticeship 'è un contratto di lavoro a tempo indeterminato' (D.Lgs. 81/2015 art. 41 c. 1) and the CCNL excludes no apprentice: the increments of the level the apprentice is paid at. |
+| 2026-11-07 | claude-opus-5-5 (ai) | Ipotesi Farmacie comunali 2027-2029 of 15 September 2026: art. 10 and Allegati B-E (pp. 10, 20-22, page images). | corrected | Four tranches of the retribuzione base mensile from October 2026 to July 2029; level 6 abolished into level 5; quadri allowances and seniority amounts unchanged; the base of level 1C at 31 December 2024 is printed 2,266.38 (the file has 2,266.37). |
 
 ## Salary table
 
@@ -66,17 +67,17 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `1Q` | 1o livello Q - Direttore responsabile e area manager | € 2,456.91 | 2024-07-01 |
-| `1S` | 1o livello super - Direttore responsabile con funzioni direttive | € 2,372.46 | 2024-07-01 |
-| `1C` | 1o livello C - Farmacista collaboratore con funzioni speciali | € 2,266.37 | 2024-07-01 |
-| `1_12` | 1o livello + 12 anni - Farmacista collaboratore con 12+ anni di servizio | € 2,109.97 | 2024-07-01 |
-| `1_2` | 1o livello + 2 anni - Farmacista collaboratore con 24+ mesi di servizio | € 2,109.97 | 2024-07-01 |
-| `1` | 1o livello - Farmacista collaboratore | € 2,109.97 | 2024-07-01 |
-| `2` | 2o livello - Lavoratori con funzioni di coordinamento o tecnico-specialistiche | € 1,872.16 | 2024-07-01 |
-| `3` | 3o livello - Lavoratori con conoscenze tecnico-pratiche qualificate | € 1,777.29 | 2024-07-01 |
-| `4` | 4o livello - Lavoratori con compiti esecutivi e conoscenze tecnico-pratiche | € 1,652.61 | 2024-07-01 |
-| `5` | 5o livello - Lavoratori qualificati con normali conoscenze operative | € 1,522.17 | 2024-07-01 |
-| `6` | 6o livello - Lavoratori con mansioni di pulizia e operazioni semplici | € 1,421.48 | 2024-07-01 |
+| `1Q` | 1o livello Q - Direttore responsabile e area manager | € 2,712.11 | 2029-07-01 |
+| `1S` | 1o livello super - Direttore responsabile con funzioni direttive | € 2,618.86 | 2029-07-01 |
+| `1C` | 1o livello C - Farmacista collaboratore con funzioni speciali | € 2,501.78 | 2029-07-01 |
+| `1_12` | 1o livello + 12 anni - Farmacista collaboratore con 12+ anni di servizio | € 2,329.97 | 2029-07-01 |
+| `1_2` | 1o livello + 2 anni - Farmacista collaboratore con 24+ mesi di servizio | € 2,329.97 | 2029-07-01 |
+| `1` | 1o livello - Farmacista collaboratore | € 2,329.97 | 2029-07-01 |
+| `2` | 2o livello - Lavoratori con funzioni di coordinamento o tecnico-specialistiche | € 2,070.16 | 2029-07-01 |
+| `3` | 3o livello - Lavoratori con conoscenze tecnico-pratiche qualificate | € 1,966.49 | 2029-07-01 |
+| `4` | 4o livello - Lavoratori con compiti esecutivi e conoscenze tecnico-pratiche | € 1,850.81 | 2029-07-01 |
+| `5` | 5o livello - Lavoratori qualificati con normali conoscenze operative | € 1,719.37 | 2029-07-01 |
+| `6` | 6o livello - Lavoratori con mansioni di pulizia e operazioni semplici | € 1,719.37 | 2029-07-01 |
 
 ## Seniority increments
 
@@ -117,6 +118,13 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Verify the INPS classification against a sector circular, including ex-INPDAP legacy workers.
 
+!!! warning "farmacie-municipalizzate-assofarm/renewal_2027_2029 · base_salary · impact yes · open"
+    RENEWAL 2027-2029 (ipotesi of 15 September 2026, Allegati B-E pp. 20-22; the parties report the definitive signature of 23 October 2026, whose text is not public): the retribuzione base mensile from 1 October 2026, 1 July 2027, 1 July 2028 and 1 July 2029 is modelled; level 6 is abolished and paid as level 5 from 1 October 2026 (art. 10). Not modelled: the una tantum of Allegato D (two instalments with the January and July 2027 pay, 290.00 to 190.00 EUR per instalment by level), and the seniority of a former level 6 worker, kept at the level 6 amounts already matured.
+
+    **Applies when:** `base_salary` applies; from 2026-10-01.
+
+    **Remediation:** Check the definitive text of 23 October 2026, model the una tantum of Allegato D as una tantum items, then remove this note.
+
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
 
@@ -129,7 +137,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Applies when:** `sickness` applies; the run takes the engine code path.
 
-    **Remediation:** Resolved: the INPS share is computed on the base of every regime of the bundle; an episode that states no base the engine can read has the missing_fact issue sickness_inps_base_unknown (fact inps_base), which blocks the run. Tests: tests/integration/ccnl_engine/sickness/base/test_rules.py, tests/unit/ccnl_engine/sickness/base/test_rules.py.
+    **Remediation:** Resolved: the INPS share is computed on the base of every regime of the bundle; an episode that states no base the engine can read has the missing_fact issue sickness_inps_base_unknown (fact inps_base), which blocks the run. Tests: tests/mutation/ccnl_engine/sickness/base/test_rules_wiring.py, tests/mutation/ccnl_engine/sickness/base/test_rules.py.
 
 !!! warning "sickness_cumulation_window · sickness · impact unknown · open"
     The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded. A CCNL whose comporto the engine counts over the calendar year (Commercio Art. 186 and the others with comporto_calendar_year) is not affected.
@@ -297,6 +305,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 | Document | Kind | Date | URL |
 |---|---|---|---|
 | https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf | altro | 2022-07-07 | [↗](https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf) |
+| Ipotesi di accordo di rinnovo CCNL Farmacie comunali 2027-2029, 15 settembre 2026 | associazione | 2026-09-15 | [↗](https://www.assofarm.it/wp-content/uploads/2026/09/CCNL-Assofarm-2027-2029-firmato.pdf) |
 
 ??? note "Coverage notes"
     Salary model: conglobated. Allegato B shows unified retribuzione di base with no separate contingenza or EDR columns. Back-calculation: L1=2109.97/173=12.20 EUR/h, L3=1777.29/173=10.27 EUR/h, L6=1421.48/173=8.22 EUR/h (all consistent with divisor 173).

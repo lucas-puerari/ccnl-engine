@@ -343,10 +343,10 @@
       "institute": "base_salary",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "SMALLER COMPANIES: Art. 162 (PDF p. 118) reduces the paga base of the aziende minori dei pubblici esercizi and of the stabilimenti balneari of the third and fourth category (from EUR 2.58 for level 7 to EUR 5.68 for Qa, also in the accordo integrativo of 26 June 2024, pp. 4-6); art. 163 c. 2 prints a contingenza up to EUR 0.51 lower for them. Not modelled. Maximum impact: about EUR 6.19 a month for Qa.",
+      "rule": "SMALLER COMPANIES (Art. 162; accordo integrativo of 26 June 2024, pp. 4-6): the aziende minori dei pubblici esercizi and the stabilimenti balneari of the third and fourth category pay a reduced paga base, from 2.58 EUR less at level 7 to 5.68 EUR less at Qa, modelled as the base_salary_by_subsector aziende_minori (EmployerProfile.subsector). Not modelled: the lower contingenza of art. 163 c. 2 (up to 0.51 EUR), which the 2024 tables do not print.",
       "calculation": "ccnl/pubblici-esercizi-fipe-angem:coverage.notes",
       "state": "absent",
-      "remediation": "Model the Art. 162 base-pay reduction for micro-enterprises with an employer-size input.",
+      "remediation": "Model the contingenza of art. 163 c. 2 if a current table prints it, then remove this note.",
       "origin": "seeded",
       "links": {
         "limitations": [

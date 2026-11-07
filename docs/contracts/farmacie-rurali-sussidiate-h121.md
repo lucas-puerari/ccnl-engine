@@ -31,7 +31,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, seniority |
+| **Limits of this contract** | seniority |
 
 2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
@@ -109,12 +109,12 @@ under-level: `1`
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning "farmacie-rurali-sussidiate-h121/isq_twelve_year_tier · base_salary · impact yes · open"
-    ISQ (Art. 3 and Tabella C, p. 59 of the CCNL of 7 September 2021): Q2 and Q3 are paid 100 EUR and, after 12 years of 'anzianità complessiva maturata nel Livello 1° e nell'Area Q', 130 EUR, modelled on the months of service (isq up to 144, isq_12 from 144). Not modelled: a worker who served at a non-pharmacist level before level 1 reaches the 12 years later than the service months say.
+!!! note "farmacie-rurali-sussidiate-h121/isq_twelve_year_tier · base_salary · impact yes · resolved"
+    ISQ (Art. 3 and Tabella C, p. 59 of the CCNL of 7 September 2021): Q2 and Q3 are paid 100 EUR and, after 12 years of 'anzianità complessiva maturata nel Livello 1° e nell'Area Q', 130 EUR (isq up to 144 months, isq_12 from 144), on the career months SeniorityFact.career_months states, or on the months of service when it is not stated.
 
     **Applies when:** `base_salary` applies; level in Q2, Q3.
 
-    **Remediation:** Count only the months in level 1 and Area Q when the employment history states them, then remove this note.
+    **Remediation:** Resolved: SeniorityFact.career_months carries the years in level 1 and Area Q.
 
 !!! warning "farmacie-rurali-sussidiate-h121/apprentice_seniority · seniority · impact unknown · open"
     APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.
@@ -135,7 +135,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Applies when:** `sickness` applies; the run takes the engine code path.
 
-    **Remediation:** Resolved: the INPS share is computed on the base of every regime of the bundle; an episode that states no base the engine can read has the missing_fact issue sickness_inps_base_unknown (fact inps_base), which blocks the run. Tests: tests/integration/ccnl_engine/sickness/base/test_rules.py, tests/unit/ccnl_engine/sickness/base/test_rules.py.
+    **Remediation:** Resolved: the INPS share is computed on the base of every regime of the bundle; an episode that states no base the engine can read has the missing_fact issue sickness_inps_base_unknown (fact inps_base), which blocks the run. Tests: tests/mutation/ccnl_engine/sickness/base/test_rules_wiring.py, tests/mutation/ccnl_engine/sickness/base/test_rules.py.
 
 !!! warning "provisional_ruleset · irpef · impact unknown · open"
     The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.

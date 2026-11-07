@@ -30,8 +30,8 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary |
+| **Core payroll path** | ✅ |
+| **Limits of this contract** | — |
 
 2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 1 verified / 53 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 37 verified / 35 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -50,14 +50,16 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-05-28 |
-| **Last review** | 2026-10-18 |
-| **Latest salary tranche** | 2026-01-01 |
+| **Last review** | 2026-11-07 |
+| **Latest salary tranche** | 2028-01-01 |
 
 ## Review history
 
 | Date | Reviewer | Scope | Outcome | Findings |
 |---|---|---|---|---|
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | corrected | Art. 48 - Tredicesima mensilità (p. 127): "Nel caso di inizio o di cessazione del rapporto di lavoro durante il corso dell’anno, il lavoratore ha diritto a tanti dodicesimi della gratifica natalizia quanti sono i mesi di anzianità di servizio presso l’azienda. La frazione di mese superiore ai 15 giorni viene considerata a questi effetti mese intero.". Added: more_than 15 (the file applied the engine default, at least 15 days). |
+| 2026-11-07 | claude-opus-5-5 (ai) | Art. 47 of the verbale of 28 May 2025 (p. 26, page image): the minimi from 1 April 2027 and 1 January 2028. | corrected | Two tranches of 70 EUR at parametro 137, reparametrised per level; the 2025 and 2026 columns equal the file. |
+| 2026-11-07 | claude-opus-5-5 (ai) | The monthly values of the levels against the primary tables (text layer). | confirmed | 54 values found verbatim on the cited pages and marked verified; 18 left as they were (derived or not on a text page). |
 
 ## Salary table
 
@@ -65,15 +67,15 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `Q` | Quadri (executive staff) | € 2,870.86 | 2026-01-01 |
-| `1` | 1st level — senior specialists and team leaders | € 2,770.86 | 2026-01-01 |
-| `2` | 2nd level — skilled specialists | € 2,409.42 | 2026-01-01 |
-| `3` | 3rd level — intermediate skilled workers | € 1,987.80 | 2026-01-01 |
-| `4` | 4th level — qualified workers | € 1,746.87 | 2026-01-01 |
-| `5` | 5th level — semi-skilled workers | € 1,566.15 | 2026-01-01 |
-| `6` | 6th level — standard production workers | € 1,445.65 | 2026-01-01 |
-| `7` | 7th level — basic production workers | € 1,325.20 | 2026-01-01 |
-| `8` | 8th level — entry-level workers, simple repetitive tasks | € 1,204.73 | 2026-01-01 |
+| `Q` | Quadri (executive staff) | € 3,105.89 | 2028-01-01 |
+| `1` | 1st level — senior specialists and team leaders | € 3,005.89 | 2028-01-01 |
+| `2` | 2nd level — skilled specialists | € 2,613.80 | 2028-01-01 |
+| `3` | 3rd level — intermediate skilled workers | € 2,156.42 | 2028-01-01 |
+| `4` | 4th level — qualified workers | € 1,895.04 | 2028-01-01 |
+| `5` | 5th level — semi-skilled workers | € 1,698.99 | 2028-01-01 |
+| `6` | 6th level — standard production workers | € 1,568.28 | 2028-01-01 |
+| `7` | 7th level — basic production workers | € 1,437.61 | 2028-01-01 |
+| `8` | 8th level — entry-level workers, simple repetitive tasks | € 1,306.92 | 2028-01-01 |
 
 ## Seniority increments
 
@@ -96,19 +98,19 @@ Latest effective values per level (monthly gross, EUR).
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning "alimentari-pmi-unionalimentari/tranches_2027_2028 · base_salary · impact yes · open"
-    SIMPLIFICATION: Tranche 3 (01/04/2027) and tranche 4 (01/01/2028) not modeled. The circular text states tranche 3 as EUR 32 at parametro 137 (level 8 equivalent), but the per-level table shows the same 74.09 EUR increment as all other tranches for every level including level 4. Text and table are irreconcilable without a clarification from Unionalimentari. Engine returns Jan 2026 amounts for dates on or after 2026-01-01.
+!!! note "alimentari-pmi-unionalimentari/tranches_2027_2028 · base_salary · impact yes · resolved"
+    TRANCHES 2027-2028 (art. 47 of the verbale signed 28 May 2025, p. 26): 70.00 EUR at parametro 137 from 1 April 2027 and again from 1 January 2028, modelled per level as printed (e.g. level 8 1,255.82 and 1,306.92). The association circular's prose giving 32 EUR for the third tranche is wrong; its table matches the verbale.
 
     **Applies when:** `base_salary` applies; from 2027-04-01.
 
-    **Remediation:** Add tranche 3 (01/04/2027) and tranche 4 (01/01/2028) once Unionalimentari clarifies the per-level amounts.
+    **Remediation:** Resolved: the signed table of art. 47, read on 2026-11-07.
 
 !!! note "sickness_inps_daily_base · sickness · impact unknown · resolved"
     The INPS share of a sick day is computed on the INPS daily base of the episode, on the days INPS pays (the weekdays of an operaio, every day but the national holidays on a Sunday of an impiegato, point 7.3 of INPS circ. 134368/1981): the retribuzione media globale giornaliera of the month before the illness (INPS circ. 134368/1981 point 11; circ. 55/2024 Allegato 1), whole or partial month, impiegato or operaio, or for the lavoratori dello spettacolo the average pay of the last 40 daily contributions, capped for a fixed-term worker (INPS circ. 132/2021 par. 2.4). The base is a fact of the payroll history the episode states (SicknessEpisode.inps_base).
 
     **Applies when:** `sickness` applies; the run takes the engine code path.
 
-    **Remediation:** Resolved: the INPS share is computed on the base of every regime of the bundle; an episode that states no base the engine can read has the missing_fact issue sickness_inps_base_unknown (fact inps_base), which blocks the run. Tests: tests/integration/ccnl_engine/sickness/base/test_rules.py, tests/unit/ccnl_engine/sickness/base/test_rules.py.
+    **Remediation:** Resolved: the INPS share is computed on the base of every regime of the bundle; an episode that states no base the engine can read has the missing_fact issue sickness_inps_base_unknown (fact inps_base), which blocks the run. Tests: tests/mutation/ccnl_engine/sickness/base/test_rules_wiring.py, tests/mutation/ccnl_engine/sickness/base/test_rules.py.
 
 !!! warning "provisional_ruleset · irpef · impact unknown · open"
     The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.
@@ -275,6 +277,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 |---|---|---|---|
 | https://www.unionalimentari.com/ | tabella_retributiva | 2025-05-28 | [↗](https://www.unionalimentari.com/) |
 | https://www.lavorofacile.it/ | altro | 2021-04-01 | [↗](https://www.lavorofacile.it/) |
+| CCNL Alimentari PMI Unionalimentari Confapi, verbale di accordo di rinnovo 28 maggio 2025 (con rettifica 6 giugno 2025) | associazione | 2025-05-28 | [↗](https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-Unionalimentari-Confapi-Verbale-di-rettifica-28-06-25.pdf) |
 
 ??? note "Coverage notes"
     Salary model: split. base_salary = paga base (changes each tranche); fixed_allowances = contingenza (per-level, frozen since 1993 Protocol) + EDR 10.33 (all levels, per Protocol 31/07/1992 Art. 1.1).

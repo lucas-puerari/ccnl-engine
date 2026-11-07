@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, pension_fund_contribution |
+| **Limits of this contract** | base_salary, pension_fund_contribution, seniority |
 
-5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+6 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🧑 Manual | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 38 verified / 0 derived / 5 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 42 verified / 0 derived / 5 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🟡 Needs review | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-02-18 |
-| **Last review** | 2026-10-17 |
+| **Last review** | 2026-11-07 |
 | **Latest salary tranche** | 2027-01-01 |
 
 ## Review history
@@ -59,6 +59,8 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|---|---|
 | 2026-09-17 | maintainer (human) | Whole file. The values checked were not recorded. | flagged | The review recorded no list of the documents it read.<br>Confidence set to needs_review: values to re-check. |
 | 2026-10-17 | claude-opus-5-5 (ai) | The minimi of the ten levels of the settore tessili e abbigliamento against the signed renewal of 18 February 2025. | confirmed | Settore tessili e abbigliamento (PDF p. 21 of the signed scan, checked on the page image): the 38 minimi of the file, from the minimi of 1/02/2022 to 1/01/2027, match and move from assumed to verified. Level 1 is a flat 1.558,00 from 2025 with no increment printed. The errata of 21/2/2025 (pp. 24-25) does not touch this table.<br>The ruleset names this source, published by FILCTEM-CGIL, a signatory: source_type contracting_party instead of estimated. |
+| 2026-11-07 | claude-opus-5-5 (ai) | Art. 46 calzature table of the renewal 2024-2027 (p. 21, page image). | corrected | The calzature employers pay their own minimi (level 8 2,431.61 from 2025, not the tessile 2,421.56). |
+| 2026-11-07 | claude-opus-5-5 (ai) | The giocattoli table of art. 46 (p. 22) and the occhiali and pelli e cuoio replacement tables of the verbale of 21 February 2025 (pp. 24-25), page images. | confirmed | Giocattoli (p. 22), occhiali (p. 24) and pelli e cuoio (p. 25): the 88 minimi, from the minimi of 1/02/2022 to 1/01/2027, read on the page images and added as the base_salary_by_subsector of levels 1-7 and the new sub-sector level 4s.<br>The verbale moves the last occhiali tranche to 1/01/2027 (p. 22 printed 1/02/2027) and corrects the pelli e cuoio level 6; pelli e cuoio level 1 is printed 1.557,00 in 2025 and 1.558,00 from 2026, kept as printed. |
 
 ## Salary table
 
@@ -70,6 +72,7 @@ Latest effective values per level (monthly gross, EUR).
 | `7` | Livello 7 | € 2,403.51 | 2027-01-01 |
 | `6` | Livello 6 | € 2,257.77 | 2027-01-01 |
 | `5` | Livello 5 | € 2,116.84 | 2027-01-01 |
+| `4s` | Livello 4s (pelli e cuoio, occhiali, giocattoli only) | € 2,074.87 | 2027-01-01 |
 | `4` | Livello 4 | € 2,002.56 | 2027-01-01 |
 | `3bis` | Livello 3 bis | € 1,955.72 | 2027-01-01 |
 | `3` | Livello 3 | € 1,908.92 | 2027-01-01 |
@@ -100,11 +103,11 @@ Latest effective values per level (monthly gross, EUR).
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
 !!! warning "tessile-pmi-uniontessile/other_subsectors_tables · base_salary · impact yes · open"
-    SCOPE: tessile/abbigliamento/moda sub-sector only. Calzature, pelli, occhiali, giocattoli have separate salary tables not modelled.
+    SUB-SECTORS (Art. 46 of the renewal 2024-2027 signed 18 February 2025, pp. 21-22; verbale of 21 February 2025, pp. 24-25): the calzature, giocattoli, occhiali and pelli e cuoio tables are modelled as the base_salary_by_subsector calzature, giocattoli, occhiali and pelli_cuoio (EmployerProfile.subsector), the occhiali and pelli e cuoio ones from the replacement tables of the verbale; level 4s exists only in the last three. Not modelled: the penne, spazzole e pennarelli table (pp. 22 and 24, with a 4S level). The levels the tables of giocattoli, occhiali and pelli e cuoio do not print (2bis, 3bis and 8; 7 also for occhiali and pelli e cuoio) are paid the tessile table when requested with those sub-sectors, and every level of the four sub-sectors takes the tessile seniority amounts.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Model the calzature, pelli, occhiali and giocattoli salary tables with a sub-sector input.
+    **Remediation:** Model the penne, spazzole e pennarelli table, source the seniority of the sub-sectors and reject the levels their tables lack, then remove this note.
 
 !!! warning "tessile-pmi-uniontessile/level_8_function_allowance · base_salary · impact yes · open"
     LEVEL 8 IDF: indennità di funzione 51.65 EUR modelled as fixed_allowance (unverified for period before Jan 2026). Function-conditional, not automatic for all L8 workers.
@@ -119,6 +122,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `pension_fund_contribution` applies.
 
     **Remediation:** Model the EDR in the pay of the CCNL and add them to the Fondapi base, then remove this note.
+
+!!! warning "tessile-pmi-uniontessile/level_4s_seniority · seniority · impact yes · open"
+    LEVEL 4s (pelli e cuoio, occhiali, giocattoli): the seniority table of the file has no 4s row and the art. 46 tables read do not set one, so a 4s worker accrues no seniority increments. No fixed allowance is modelled for it (the tables read set none), and its category is left to Employment.category.
+
+    **Applies when:** `seniority` applies; level in 4s.
+
+    **Remediation:** Source the seniority increment of level 4s, add it to amount_by_level, then remove this note.
 
 !!! warning "provisional_ruleset · irpef · impact unknown · open"
     The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.

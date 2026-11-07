@@ -39,9 +39,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, inps_employer |
+| **Limits of this contract** | base_salary, inps_employer, seniority |
 
-4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -49,7 +49,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 25 verified / 11 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 61 verified / 11 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -58,7 +58,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-07-16 |
-| **Last review** | 2026-10-31 |
+| **Last review** | 2026-11-07 |
 | **Latest salary tranche** | 2026-10-01 |
 
 ## Review history
@@ -67,6 +67,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|---|---|
 | 2026-10-18 | claude-opus-5-5 (ai) | base_salary of levels 1-6 and 6S, all four tranches (2024-07-01, 2025-01-01, 2025-10-01, 2026-10-01), against the Settore tessile abbigliamento table of the Verbale integrativo of 22 July 2024 published by Filctem CGIL (signatory). | corrected | Levels 1-6: all 24 periods match the 'Nuovi minimi contrattuali' table of the Settore tessile abbigliamento (Verbale integrativo 22 July 2024, p. 2, scanned PDF read by OCR and visual check) except level 5 from 2026-10-01: the table prints 1.813,56 (1.751,06 + the printed increment 62,50), the file had 1813.50.<br>Level 6S: the file stores the printed 6s minimo plus the quadri indennità di funzione of EUR 20,66 (art. 119 CCNL 14 Dec 2017; 6° super = quadri per art. 29). All four periods equal printed minimo + 20.66 and are recorded as derived on the CCNL text; the indennità is not repeated in the 2024 renewal and is assumed unchanged.<br>The minimi are conglobated tabellare amounts (single 'Retribuzione tabellare' column, no separate contingenza or EDR), consistent with the file's conglobated model.<br>The file models only the Settore tessile abbigliamento table. The same verbale prints distinct tables for calzaturiero (from 2026-10-01 and for level 6/6s already from 2024), lavorazioni a mano e su misura, pulitintolavanderie, occhialeria, chimica-concia-gomma-plastica-vetro and ceramica; those are not modelled.<br>Corrected to the printed table: 5 2026-10-01: 1813.50 -> 1813.56. |
 | 2026-10-31 | claude-opus-5-5 (ai) | The sick pay and the comporto of the CCNL (work_rules.sickness_rules), read on the signed text. | corrected | Art. 109 (pp. 126-127), operai Tessile, Abbigliamento, Calzaturiero: 80% for days 1-7, the first 3 not paid for an illness under 8 days, 100% of the net pay for days 8-180; Art. 97 (p. 116): 12 months. The file had a flat 80% and no carenza: corrected. Art. 97 holds both a 21-month and a 24-month paragraph on several illnesses, so no window is stored (note). |
+| 2026-11-07 | claude-opus-5-5 (ai) | The Nuovi minimi contrattuali of the chimica, concia, gomma, plastica, vetro (p. 5) and ceramica, terracotta, gres, decorazione di piastrelle (p. 6) tables of the verbale integrativo of 22 July 2024, page images. | confirmed | Chimica (p. 5): the 32 minimi of levels 1-7 and 5s for 1 July 2024, 1 January 2025, 1 October 2025 and 1 October 2026 read on the page image and added as the base_salary_by_subsector chimica of levels 1-6 and the chimica levels 5s and 7.<br>Ceramica (p. 6): the 28 minimi of levels A-G for the same four tranches read on the page image and added as the ceramica levels A-G. |
 
 ## Salary table
 
@@ -74,8 +75,17 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
+| `A` | Livello A (ceramica, terracotta, gres, decorazione di piastrelle only) | € 2,024.66 | 2026-10-01 |
+| `B` | Livello B (ceramica, terracotta, gres, decorazione di piastrelle only) | € 1,847.98 | 2026-10-01 |
+| `C` | Livello C (ceramica, terracotta, gres, decorazione di piastrelle only) | € 1,749.90 | 2026-10-01 |
+| `D` | Livello D (ceramica, terracotta, gres, decorazione di piastrelle only) | € 1,680.80 | 2026-10-01 |
+| `E` | Livello E (ceramica, terracotta, gres, decorazione di piastrelle only) | € 1,620.75 | 2026-10-01 |
+| `F` | Livello F (ceramica, terracotta, gres, decorazione di piastrelle only) | € 1,567.76 | 2026-10-01 |
+| `G` | Livello G (ceramica, terracotta, gres, decorazione di piastrelle only) | € 1,478.11 | 2026-10-01 |
+| `7` | Livello 7 (chimica, concia, gomma, plastica, vetro only) | € 2,282.09 | 2026-10-01 |
 | `6S` | Level 6S — senior manager / technical director (incl. function allowance EUR 20.66) | € 2,133.07 | 2026-10-01 |
 | `6` | Level 6 — skilled technician / senior clerical employee | € 1,978.15 | 2026-10-01 |
+| `5s` | Livello 5s (chimica, concia, gomma, plastica, vetro only) | € 2,012.99 | 2026-10-01 |
 | `5` | Level 5 — specialist operator / clerical employee | € 1,813.56 | 2026-10-01 |
 | `4` | Level 4 — highly qualified operator | € 1,675.42 | 2026-10-01 |
 | `3` | Level 3 — specialist operator | € 1,606.03 | 2026-10-01 |
@@ -116,11 +126,11 @@ percentage: 1.00
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
 !!! warning "tessile-moda-artigianato-confartigianato/chimica_ceramica_subsectors · base_salary · impact yes · open"
-    Only tessile-abbigliamento sub-sector modelled. Chimica-ceramica sub-sectors (different salary tables) are not modelled. CNEL code V751 covers all three sub-sectors.
+    SUB-SECTORS (verbale integrativo of 22 July 2024, pp. 5-6): the chimica, concia, gomma, plastica and vetro table is modelled as the sub-sector chimica (the base_salary_by_subsector chimica of levels 1-6 and the chimica levels 5s and 7), the ceramica, terracotta, gres and decorazione di piastrelle table as the sub-sector ceramica (levels A-G), both by EmployerProfile.subsector. Not modelled: the calzaturiero, lavorazioni a mano e su misura, pulitintolavanderie and occhialeria tables of the same verbale. Level 6S requested with chimica, and levels 1-6S with ceramica, are paid the tessile table, which those sectors do not print; levels 1-6 of chimica take the tessile seniority amounts and apprenticeship tracks.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Model the chimica-ceramica salary tables with a sub-sector input.
+    **Remediation:** Model the other sector tables, source the seniority and apprenticeship of chimica and ceramica and reject the levels their tables lack, then remove this note.
 
 !!! warning "tessile-moda-artigianato-confartigianato/level_category_unconfirmed · inps_employer · impact unknown · open"
     LEVEL CATEGORY: all levels left null (no primary-source text confirming operaio/impiegato split). The 2026-artigianato.json tier applies the impiegato rate (0.2471) for category='impiegato'/'quadro' vs. default 0.2693. Employer cost for higher levels (5, 6, 6S) may be slightly overestimated until categories are confirmed from primary CCNL text.
@@ -143,6 +153,13 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Source the apprentice rates of artigianato (an INPS circular or an association table of 2026), mark the apprentice block of contribution/2026/artigianato.json derived, then remove this note.
 
+!!! warning "tessile-moda-artigianato-confartigianato/chimica_ceramica_level_rules · seniority · impact yes · open"
+    SUB-SECTOR LEVELS (chimica 5s and 7, ceramica A-G): the seniority table of the file (art. 67, tessile sector) has no row for them and the pages read (verbale of 22 July 2024, pp. 5-6) do not set one, so they accrue no seniority increments; they are in no apprenticeship track (the three tracks are the abbigliamento groups) no fixed allowance is modelled for them (the pages read do not settle one, such as the indennità di funzione of 6S) and their category is left to Employment.category.
+
+    **Applies when:** `seniority` applies; level in 5s, 7, A, B, C, D, E, F, G.
+
+    **Remediation:** Source the seniority increments and apprenticeship of the chimica and ceramica levels, then remove this note.
+
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
 
@@ -155,7 +172,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Applies when:** `sickness` applies; the run takes the engine code path.
 
-    **Remediation:** Resolved: the INPS share is computed on the base of every regime of the bundle; an episode that states no base the engine can read has the missing_fact issue sickness_inps_base_unknown (fact inps_base), which blocks the run. Tests: tests/integration/ccnl_engine/sickness/base/test_rules.py, tests/unit/ccnl_engine/sickness/base/test_rules.py.
+    **Remediation:** Resolved: the INPS share is computed on the base of every regime of the bundle; an episode that states no base the engine can read has the missing_fact issue sickness_inps_base_unknown (fact inps_base), which blocks the run. Tests: tests/mutation/ccnl_engine/sickness/base/test_rules_wiring.py, tests/mutation/ccnl_engine/sickness/base/test_rules.py.
 
 !!! warning "sickness_cumulation_window · sickness · impact unknown · open"
     The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded. A CCNL whose comporto the engine counts over the calendar year (Commercio Art. 186 and the others with comporto_calendar_year) is not affected.

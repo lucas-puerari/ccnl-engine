@@ -306,22 +306,6 @@
       }
     },
     {
-      "id": "tranches_2027_2028",
-      "institute": "base_salary",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "SIMPLIFICATION: Tranche 3 (01/04/2027) and tranche 4 (01/01/2028) not modeled. The circular text states tranche 3 as EUR 32 at parametro 137 (level 8 equivalent), but the per-level table shows the same 74.09 EUR increment as all other tranches for every level including level 4. Text and table are irreconcilable without a clarification from Unionalimentari. Engine returns Jan 2026 amounts for dates on or after 2026-01-01.",
-      "calculation": "ccnl/alimentari-pmi-unionalimentari:coverage.notes",
-      "state": "absent",
-      "remediation": "Add tranche 3 (01/04/2027) and tranche 4 (01/01/2028) once Unionalimentari clarifies the per-level amounts.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "alimentari-pmi-unionalimentari/tranches_2027_2028"
-        ]
-      }
-    },
-    {
       "id": "una_tantum_readings",
       "institute": "base_salary",
       "variant": "all",

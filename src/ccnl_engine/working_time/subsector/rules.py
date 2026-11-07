@@ -9,12 +9,17 @@ only to a worker of one of them.  When the employer does not state the
 sub-sector, the run is priced with the first sub-sector the bands name (the
 first table of the CCNL) and names the missing fact.  The supplement bands
 of ordinary night, holiday and shift hours follow the same rule.
+
+The levels follow the sub-sector too: a level with ``Level.subsectors``
+exists only for an employer of one of them, and a run keeps only the levels
+of the stated sub-sector and of every sub-sector (``levels_for``).
 """
 
 from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
+from ccnl_engine.compensation.ladder.rules import levels_for
 from ccnl_engine.errors import InvalidInputError
 
 if TYPE_CHECKING:
@@ -30,9 +35,9 @@ def subsectors_of(ccnl: CCNL) -> frozenset[str]:
     """Return the sub-sectors the time bands and permits of ``ccnl`` name.
 
     Returns:
-        Every sub-sector code of the overtime and supplement bands and of the
-        week absorptions and yearly hours of the permits, empty when none
-        names one.
+        Every sub-sector code of the overtime and supplement bands, of the
+        week absorptions and yearly hours of the permits and of the pay
+        tables and sub-sector levels, empty when none names one.
     """
     rules = ccnl.work_rules
     supplements = None if rules is None else rules.time_supplements
@@ -48,18 +53,29 @@ def subsectors_of(ccnl: CCNL) -> frozenset[str]:
     }
     tiers = {code for p in permits for h in p.annual_hours for code in h.subsectors}
     named = {code for band in bands for code in band.subsectors}
-    return frozenset(named | absorbed | tiers)
+    tables = {
+        code
+        for level in ccnl.levels
+        for code in (*level.base_salary_by_subsector, *level.subsectors)
+    }
+    return frozenset(named | absorbed | tiers | tables)
 
 
 def with_subsector(
-    ccnl: CCNL, subsector: str | None, category: WorkerCategory | None
+    ccnl: CCNL,
+    subsector: str | None,
+    category: WorkerCategory | None,
+    *,
+    level_code: str | None = None,
 ) -> tuple[CCNL, bool]:
-    """Return the CCNL with the overtime bands of the run only.
+    """Return the CCNL with the overtime bands and levels of the run only.
 
     Args:
         ccnl: The CCNL of the run.
         subsector: ``EmployerProfile.subsector``.
         category: Category of the worker, ``None`` when not known.
+        level_code: ``Employment.level_code``, checked against the
+            sub-sectors its level exists in; ``None`` skips the check.
 
     Returns:
         The CCNL, unchanged when no band names a sub-sector or a category,
@@ -67,8 +83,9 @@ def with_subsector(
         the first one the bands name.
 
     Raises:
-        InvalidInputError: When ``subsector`` is not one the CCNL names, or
-            its bands differ by category and ``category`` is not known.
+        InvalidInputError: When ``subsector`` is not one the CCNL names, the
+            level exists only for other sub-sectors, or the bands differ by
+            category and ``category`` is not known.
     """
     known = subsectors_of(ccnl)
     if subsector is not None and subsector not in known:
@@ -79,6 +96,8 @@ def with_subsector(
         raise InvalidInputError(
             msg, field="EmployerProfile.subsector", feature="employer_facts"
         )
+    _check_level(ccnl, subsector, level_code)
+    ccnl = _with_levels(ccnl, subsector)
     rules = ccnl.work_rules
     supplements = None if rules is None else rules.time_supplements
     bands: tuple[OvertimeBand | SupplementBand, ...] = (
@@ -127,3 +146,51 @@ def _applies(
     return (not band.subsectors or subsector in band.subsectors) and (
         not band.categories or category in band.categories
     )
+
+
+def _check_level(ccnl: CCNL, subsector: str | None, level_code: str | None) -> None:
+    """Raise when the level of the run exists only for other sub-sectors.
+
+    Raises:
+        InvalidInputError: On ``EmployerProfile.subsector`` when no
+            sub-sector is stated, on ``Employment.level_code`` when another is.
+    """
+    level = next((lv for lv in ccnl.levels if lv.code == level_code), None)
+    if level is None or not level.subsectors or subsector in level.subsectors:
+        return
+    only = f"level {level.code!r} of {ccnl.meta.ccnl_id} exists only for the "
+    only += f"sub-sectors {list(level.subsectors)}"
+    if subsector is None:
+        msg = f"{only}: state EmployerProfile.subsector"
+        field = "EmployerProfile.subsector"
+    else:
+        msg = f"{only}, not for {subsector!r}"
+        field = "Employment.level_code"
+    raise InvalidInputError(msg, field=field, feature="employer_facts")
+
+
+def _with_levels(ccnl: CCNL, subsector: str | None) -> CCNL:
+    """Return the CCNL with the levels and base salary of the sub-sector.
+
+    A level of other sub-sectors is dropped; a level whose
+    ``base_salary_by_subsector`` names the stated sub-sector is paid that
+    table (Pubblici esercizi art. 162: the paga base of the aziende minori);
+    without a stated sub-sector the levels keep their own table.
+
+    Returns:
+        The CCNL, unchanged when no level depends on the sub-sector.
+    """
+    if not any(
+        level.subsectors or subsector in level.base_salary_by_subsector
+        for level in ccnl.levels
+    ):
+        return ccnl
+    levels = tuple(
+        level.model_copy(
+            update={"base_salary": level.base_salary_by_subsector[subsector]}
+        )
+        if subsector is not None and subsector in level.base_salary_by_subsector
+        else level
+        for level in levels_for(ccnl.levels, subsector)
+    )
+    return ccnl.model_copy(update={"levels": levels})

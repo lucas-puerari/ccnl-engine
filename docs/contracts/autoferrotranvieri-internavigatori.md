@@ -54,12 +54,14 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-12-11 |
-| **Last review** | — |
+| **Last review** | 2026-11-07 |
 | **Latest salary tranche** | 2026-08-01 |
 
 ## Review history
 
-No review is recorded.
+| Date | Reviewer | Scope | Outcome | Findings |
+|---|---|---|---|---|
+| 2026-11-07 | claude-opus-5-5 (ai) | The EDR 2024 of the renewal of 2024 and the AGENS circular Inf. 002/25 (text layer). | corrected | 'viene istituito un nuovo Elemento Distinto della Retribuzione (EDR 2024) nella misura di 40 euro lordi mensili al parametro 175 che verrà erogato per 14 mensilità': a permanent element paid 14 times a year, not 14 payments; the file set it to zero from May 2026. |
 
 ## Salary table
 
@@ -153,7 +155,7 @@ percentage: 1.00
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
 !!! warning "autoferrotranvieri-internavigatori/priamo_pension_fund · pension_fund_contribution · impact yes · open"
-    EDR 2024: fixed_allowances per level, code 'edr_2024', 40 EUR at par.175 proportional to the parametro, active 2025-03-01 to 2026-04-30 (14 months). Per AGENS circular 20/03/2025 it is 'non computabile ai fini del TFR e della contribuzione al Fondo Priamo': modelled with tfr_relevant=false (Fondo Priamo is a bilateral pension fund, not modelled).
+    EDR 2024: fixed_allowances per level, code 'edr_2024', 40 EUR at par.175 proportional to the parametro, paid from March 2025 on 14 monthly payments a year ('verrà erogato per 14 mensilità', renewal of 2024), with no end date. Per AGENS circular 20/03/2025 it is 'non computabile ai fini del TFR e della contribuzione al Fondo Priamo': modelled with tfr_relevant=false (Fondo Priamo is a bilateral pension fund, not modelled).
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
@@ -185,7 +187,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Applies when:** `sickness` applies; the run takes the engine code path.
 
-    **Remediation:** Resolved: the INPS share is computed on the base of every regime of the bundle; an episode that states no base the engine can read has the missing_fact issue sickness_inps_base_unknown (fact inps_base), which blocks the run. Tests: tests/integration/ccnl_engine/sickness/base/test_rules.py, tests/unit/ccnl_engine/sickness/base/test_rules.py.
+    **Remediation:** Resolved: the INPS share is computed on the base of every regime of the bundle; an episode that states no base the engine can read has the missing_fact issue sickness_inps_base_unknown (fact inps_base), which blocks the run. Tests: tests/mutation/ccnl_engine/sickness/base/test_rules_wiring.py, tests/mutation/ccnl_engine/sickness/base/test_rules.py.
 
 !!! warning "provisional_ruleset · irpef · impact unknown · open"
     The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.

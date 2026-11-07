@@ -33,7 +33,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary |
 
-4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 1 verified / 88 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 17 verified / 88 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -50,8 +50,8 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2023-06-20 |
-| **Last review** | 2026-10-18 |
-| **Latest salary tranche** | 2025-01-01 |
+| **Last review** | 2026-11-07 |
+| **Latest salary tranche** | 2026-09-01 |
 
 ## Review history
 
@@ -59,6 +59,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|---|---|
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | confirmed | Art. 36 (ex 18) - Tredicesima mensilità (p. 86): "il lavoratore non in prova ha diritto a tanti dodicesimi dell'ammontare della tredicesima mensilità quanti sono i mesi di servizio prestato presso l'azienda. La frazione di mese superiore ai 15 giorni va considerata a questi effetti come mese intero.". Match: more_than 15. |
 | 2026-10-18 | claude-opus-5-5 (ai) | The paga base (split model: base_salary excludes contingenza and EDR) of the 16 level codes for 1 July 2023, 1 January 2024 and 1 January 2025, derived from the minimi (paga base + contingenza + EDR) and per-level contingenza printed in the signed agreements of 20 June 2023 and 27 January 2025 between FederlegnoArredo and Feneal, Filca, Fillea (FILLEA-CGIL copies). | confirmed | No signatory document prints the paga base alone for these dates: the 20 June 2023 ipotesi (PDF p. 3) prints paga base al 31.12.2022, contingenza, EDR 10,33, minimi al 31.12.2022, aumento dal 1.07.2023 and nuovi minimi; the 27 January 2025 verbale (PDF p. 2) prints minimi anno 2024 and minimi dal 01-01-2025, stated to include paga base, contingenza and EDR non conglobati. The file's base_salary is the paga base (contingenza and EDR modelled separately), so every period is derived: 45 derived values, all equal to the file.<br>Level mapping: the tables group levels sharing a salary band (AE4/AS1, AC1/AS2, AC3/AC2/AS4); each code of a group takes the group's value, as in the file.<br>AS3, AE4 and AS1 at 2023-07-01: the 2023 table is off by one cent (paga base + aumento = 1.639,62 and 1.489,49, nuovi minimi - contingenza - EDR = 1.639,61 and 1.489,48); the 2024 IPCA increments (129,91 and 120,65 on the 2025 allegato) follow the printed minimi. Left unbacked; the maintainer should choose (the minimi-based 1639.61 / 1489.48 match the parties' later arithmetic).<br>Rule applied: a derived value with two conflicting derivation paths in the signed text is left unbacked (AS3, AE4, AS1 at 2023-07-01), even for one cent.<br>Level naming: the signed 2023 table labels the top row '12° AD3 (Quadri)', while the file's level descriptions and apprenticeship note call AC5 'quadri' (and model a function allowance for AD3). Values are unaffected; the descriptions should be checked.<br>The file is out of date: the ipotesi of the 2026-2028 renewal signed 3 September 2026 (FILLEA-CGIL copy, PDF pp. 52-53) grants from September 2026 an increase of 95,00 at AS1 (parametro 134) riparametrated on all levels and prints a new paga base dal 01-09-2026 per level (contingenza and EDR unchanged); from January 2027 a further 39,00 at AS1. The file's 2025-01-01 period is open-ended and lacks a 2026-09-01 period.<br>The ruleset names a document signed by FederlegnoArredo and the three unions (FILLEA-CGIL copy): source_type contracting_party. |
+| 2026-11-07 | claude-opus-5-5 (ai) | Ipotesi of 3 September 2026: the minimi from 1 September 2026 (p. 53, page image). | corrected | The paga base rises from 1 September 2026 (AE1 +70.90 to 1,301.59, AD3 +148.88 to 2,685.16); contingenza and EDR unchanged. |
 
 ## Salary table
 
@@ -66,22 +67,22 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `AD3` | Management Area — Level 3 (top management) | € 2,536.28 | 2025-01-01 |
-| `AD2` | Management Area — Level 2 | € 2,478.22 | 2025-01-01 |
-| `AD1` | Management Area — Level 1 | € 2,358.74 | 2025-01-01 |
-| `AC5` | Competency Area — Level 5 (quadri) | € 2,239.93 | 2025-01-01 |
-| `AC4` | Competency Area — Level 4 | € 2,061.83 | 2025-01-01 |
-| `AS4` | Specialist Area — Level 4 | € 1,883.66 | 2025-01-01 |
-| `AC3` | Competency Area — Level 3 | € 1,883.66 | 2025-01-01 |
-| `AC2` | Competency Area — Level 2 | € 1,883.66 | 2025-01-01 |
-| `AS3` | Specialist Area — Level 3 | € 1,795.17 | 2025-01-01 |
-| `AS2` | Specialist Area — Level 2 | € 1,705.36 | 2025-01-01 |
-| `AC1` | Competency Area — Level 1 | € 1,705.36 | 2025-01-01 |
-| `AS1` | Specialist Area — Level 1 | € 1,633.95 | 2025-01-01 |
-| `AE4` | Executive Area — Level 4 (highly skilled workers) | € 1,633.95 | 2025-01-01 |
-| `AE3` | Executive Area — Level 3 (skilled workers) | € 1,544.94 | 2025-01-01 |
-| `AE2` | Executive Area — Level 2 (qualified workers) | € 1,455.87 | 2025-01-01 |
-| `AE1` | Executive Area — Level 1 (general workers) | € 1,230.69 | 2025-01-01 |
+| `AD3` | Management Area — Level 3 (top management) | € 2,685.16 | 2026-09-01 |
+| `AD2` | Management Area — Level 2 | € 2,623.56 | 2026-09-01 |
+| `AD1` | Management Area — Level 1 | € 2,496.99 | 2026-09-01 |
+| `AC5` | Competency Area — Level 5 (quadri) | € 2,371.09 | 2026-09-01 |
+| `AC4` | Competency Area — Level 4 | € 2,182.35 | 2026-09-01 |
+| `AS4` | Specialist Area — Level 4 | € 1,993.55 | 2026-09-01 |
+| `AC3` | Competency Area — Level 3 | € 1,993.55 | 2026-09-01 |
+| `AC2` | Competency Area — Level 2 | € 1,993.55 | 2026-09-01 |
+| `AS3` | Specialist Area — Level 3 | € 1,899.74 | 2026-09-01 |
+| `AS2` | Specialist Area — Level 2 | € 1,804.61 | 2026-09-01 |
+| `AC1` | Competency Area — Level 1 | € 1,804.61 | 2026-09-01 |
+| `AS1` | Specialist Area — Level 1 | € 1,728.95 | 2026-09-01 |
+| `AE4` | Executive Area — Level 4 (highly skilled workers) | € 1,728.95 | 2026-09-01 |
+| `AE3` | Executive Area — Level 3 (skilled workers) | € 1,634.62 | 2026-09-01 |
+| `AE2` | Executive Area — Level 2 (qualified workers) | € 1,540.24 | 2026-09-01 |
+| `AE1` | Executive Area — Level 1 (general workers) | € 1,301.59 | 2026-09-01 |
 
 ## Seniority increments
 
@@ -138,6 +139,13 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Read the CCNL Legno apprenticeship clause on the 3rd period and confirm which pay components the intermediate pay averages, then remove this note.
 
+!!! warning "legno-arredamento-federlegno/renewal_2026_ipotesi · base_salary · impact yes · open"
+    RENEWAL 2026-2028 (ipotesi di accordo of 3 September 2026, pp. 52-53): the paga base from 1 September 2026 is modelled; the ipotesi is not yet a definitive text. Not modelled: the una tantum of December 2026 and the IPCA increases of 1 January 2027 and 2028, which the parties will set in later meetings.
+
+    **Applies when:** `base_salary` applies; from 2026-09-01.
+
+    **Remediation:** Check the definitive text, add the una tantum of December 2026 and the 2027 and 2028 tranches once set, then remove this note.
+
 !!! note "apprenticeship_midpoint_allowances · base_salary · impact yes · resolved"
     A midpoint_to_destination period pays the mean of the whole monthly pay of the pay level and the destination level: base salary and every active fixed allowance (an allowance of one level counts as zero on the other); the base takes the rest of the rounded mean of the totals. A CCNL whose text leaves the averaged components open carries its own limitation <ccnl_id>/apprenticeship_midpoint_components, recorded on the midpoint path.
 
@@ -157,7 +165,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Applies when:** `sickness` applies; the run takes the engine code path.
 
-    **Remediation:** Resolved: the INPS share is computed on the base of every regime of the bundle; an episode that states no base the engine can read has the missing_fact issue sickness_inps_base_unknown (fact inps_base), which blocks the run. Tests: tests/integration/ccnl_engine/sickness/base/test_rules.py, tests/unit/ccnl_engine/sickness/base/test_rules.py.
+    **Remediation:** Resolved: the INPS share is computed on the base of every regime of the bundle; an episode that states no base the engine can read has the missing_fact issue sickness_inps_base_unknown (fact inps_base), which blocks the run. Tests: tests/mutation/ccnl_engine/sickness/base/test_rules_wiring.py, tests/mutation/ccnl_engine/sickness/base/test_rules.py.
 
 !!! warning "sickness_cumulation_window · sickness · impact unknown · open"
     The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded. A CCNL whose comporto the engine counts over the calendar year (Commercio Art. 186 and the others with comporto_calendar_year) is not affected.
@@ -338,6 +346,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 | https://www.direzionelavoro.it/wp-content/uploads/2023/07/Legno-industria-CNEL-F051.pdf | altro | 2023-06-20 | [↗](https://www.direzionelavoro.it/wp-content/uploads/2023/07/Legno-industria-CNEL-F051.pdf) |
 | https://www.lexplain.it/ccnl-legno-arredamento-industria/ | tabella_retributiva | — | [↗](https://www.lexplain.it/ccnl-legno-arredamento-industria/) |
 | https://www.previdenza-professionisti.it/ccnl-legno-industria-scatti-anzianita/ | tabella_retributiva | — | [↗](https://www.previdenza-professionisti.it/ccnl-legno-industria-scatti-anzianita/) |
+| CCNL Legno arredamento industria, ipotesi di accordo di rinnovo 3 settembre 2026 | associazione | 2026-09-03 | [↗](https://www.filcacisl.it/sindacato/wp-content/uploads/2026/09/contratto-legno-industria.pdf) |
 
 ??? note "Coverage notes"
     SALARY MODEL: split (paga base + contingenza + EDR). Base pay varies by tranche (Jul 2023, Jan 2024, Jan 2025). Contingenza frozen from 31/07/1992 (values from CNEL F051 PDF). EDR fixed at EUR 10.33 for all levels (Agreement 31/07/1992). Table sources: CNEL F051 PDF (renewal 20/06/2023); Jan 2024 tranche confirmed by lexplain.it; Jan 2025 tranche derived from the difference between the total from dottrinalavoro.it and contingenza+EDR.

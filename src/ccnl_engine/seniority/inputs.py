@@ -147,13 +147,17 @@ class SeniorityFact:
         birth_date: Date of birth of the worker, read only by a CCNL that
             counts the increments from an age (Turismo Art. 158 c. 2: from
             the eighteenth birthday); ``None`` counts them from the start.
+        career_months: Completed months on ``as_of`` of the career a CCNL
+            counts apart from the service, aged like ``months``, read by
+            the allowances gated on it (Farmacie Tabella C: the years in
+            level 1 and Area Q); ``None`` reads the service months instead.
 
     Raises:
         InvalidInputError: When ``months`` is not a non-negative int,
             ``as_of`` is not a date, ``source`` names no source,
             ``earned`` is not :class:`EarnedIncrements`, ``promotion``
-            is not :class:`SeniorityPromotion` or ``birth_date`` is not a
-            date.
+            is not :class:`SeniorityPromotion`, ``birth_date`` is not a
+            date or ``career_months`` is not a non-negative int.
     """
 
     months: int
@@ -162,6 +166,7 @@ class SeniorityFact:
     earned: EarnedIncrements | None = None
     promotion: SeniorityPromotion | None = None
     birth_date: date | None = None
+    career_months: int | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
         require_int(self.months, "SeniorityFact.months", feature=FEATURE, minimum=0)
@@ -179,6 +184,13 @@ class SeniorityFact:
         )
         require_date(
             self.birth_date, "SeniorityFact.birth_date", feature=FEATURE, optional=True
+        )
+        require_int(
+            self.career_months,
+            "SeniorityFact.career_months",
+            feature=FEATURE,
+            minimum=0,
+            optional=True,
         )
         require_instance(
             self.promotion,
@@ -255,6 +267,18 @@ class SeniorityFact:
                 remediation=_REMEDIATION,
             )
         return max(0, self._aged(date(year, month, 1)))
+
+    def career_months_in_month(self, year: int, month: int) -> int | None:
+        """Return the career months a run of a month counts, if stated.
+
+        Returns:
+            ``career_months`` aged to the first day of the month, at least
+            0; ``None`` when the career is not stated.
+        """
+        if self.career_months is None:
+            return None
+        aged = self._aged(date(year, month, 1)) - self.months
+        return max(0, self.career_months + aged)
 
     def _aged(self, day: date) -> int:
         elapsed = (day.year - self.as_of.year) * 12 + day.month - self.as_of.month

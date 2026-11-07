@@ -78,10 +78,12 @@ tests/
 │   └── ccnl_engine/   normative oracles, legal scenarios, reference and observed payslips
 ├── unit/
 │   └── ccnl_engine/   one unit, no I/O, no real bundle
-└── integration/
-    ├── ccnl_engine/   public API, loaders, repositories, wiring, persistence
-    ├── demo/
-    └── scripts/
+├── integration/
+│   ├── ccnl_engine/   public API, loaders, repositories, wiring, persistence
+│   ├── demo/
+│   └── scripts/
+└── mutation/
+    └── ccnl_engine/   the tests mutmut runs: those of the [tool.mutmut] source_paths
 ```
 
 - A category holds at most the mirror roots `ccnl_engine`, `demo` and

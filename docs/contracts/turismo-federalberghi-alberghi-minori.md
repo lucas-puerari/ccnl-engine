@@ -51,7 +51,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-07-05 |
-| **Last review** | 2026-11-06 |
+| **Last review** | 2026-11-07 |
 | **Latest salary tranche** | 2027-11-01 |
 
 ## Review history
@@ -69,6 +69,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-31 | claude-opus-5-5 (ai) | The basis of the indemnity for the leave not taken at the end of the employment, searched in the signed text of 2010 (Artt. 111, 129, 130, 150, 151), the 2014 version and the OCR of the 2024 ipotesi. (copied from turismo-federalberghi: covers the rules the two tables share, not the paga base of Art. 152 c. 2) | corrected | Art. 150 - Determinazione della retribuzione giornaliera (p. 134): the daily pay is the monthly pay divided by 26 for every contractual purpose: the residual ferie are paid at it, and the ROL at the hourly pay of Art. 151: work_rules.leave_rules.termination. |
 | 2026-11-01 | claude-opus-5-5 (ai) | The hourly divisors of the 44 and 45 hour weeks, Art. 151 c.1 (p. 135), checked by a separate session on the rendered page. (copied from turismo-federalberghi: covers the rules the two tables share, not the paga base of Art. 152 c. 2) | confirmed | Art. 151 c.1 (PDF p. 135, sha256 47f71f5f... matched; the page rendered and read, the OCR 't 92' and 'L 90' are 192 and 190): 192 for a normal week of 45 hours, 190 for 44, 172 for 40: work_rules.time_supplements.week_divisors 44/190, 45/192.<br>No later source of the file states another divisor; the notes of the file hold Art. 151 unchanged by the renewals of 2014 and 2024, whose PDFs were not opened. |
 | 2026-11-06 | claude-opus-5-5 (ai) | Apprentice seniority: artt. 58, 148 and 158 of the 2010 text (pp. 90, 134, 140, OCR). | corrected | APPRENTICE SENIORITY (CCNL Turismo of 20 February 2010: art. 58 c. 1, p. 90; art. 148 c. 1 d), p. 134; art. 158, p. 140): the apprentice is paid a percentage of 'la normale retribuzione dei lavoratori qualificati di pari livello', whose voci include 'eventuali scatti di anzianità', and the six triennial increments count 'l'anzianità di servizio prestata senza interruzione': the level increments, scaled by the percentage. |
+| 2026-11-07 | claude-opus-5-5 (ai) | The monthly values of the levels against the primary tables (text layer). | confirmed | 2 values found verbatim on the cited pages and marked verified; 50 left as they were (derived or not on a text page). |
 
 ## Salary table
 
@@ -190,7 +191,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Applies when:** `sickness` applies; the run takes the engine code path.
 
-    **Remediation:** Resolved: the INPS share is computed on the base of every regime of the bundle; an episode that states no base the engine can read has the missing_fact issue sickness_inps_base_unknown (fact inps_base), which blocks the run. Tests: tests/integration/ccnl_engine/sickness/base/test_rules.py, tests/unit/ccnl_engine/sickness/base/test_rules.py.
+    **Remediation:** Resolved: the INPS share is computed on the base of every regime of the bundle; an episode that states no base the engine can read has the missing_fact issue sickness_inps_base_unknown (fact inps_base), which blocks the run. Tests: tests/mutation/ccnl_engine/sickness/base/test_rules_wiring.py, tests/mutation/ccnl_engine/sickness/base/test_rules.py.
 
 !!! warning "provisional_ruleset · irpef · impact unknown · open"
     The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.

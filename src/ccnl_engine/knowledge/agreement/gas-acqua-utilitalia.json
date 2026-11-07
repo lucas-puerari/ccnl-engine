@@ -1068,46 +1068,60 @@
           {
             "valid_from": "2025-07-01",
             "valid_until": "2026-07-01",
-            "value": "2435.74",
+            "value": "2435.69",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-pdf",
-                  "title": "ccnl-pdf",
+                  "document_id": "gas-acqua-utilitalia-src-430bd692",
+                  "title": "gas-acqua-utilitalia: filctem-2025.pdf",
                   "kind": "associazione",
-                  "url": "https://sosvavsrl.it/media/attachments/2024/05/24/ccnl.pdf"
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gas_acqua/250508_GASACQUA_RINNOVO%20CCNL%20%202025-2027.pdf",
+                  "sha256": "430bd6922e1ea3aa0d80b3c6fd2c74fd4cbe3b48404222ff48649f68ad8b4b36"
                 },
-                "section": "Tabella retributiva"
+                "page": "36",
+                "section": "Tabella retributiva",
+                "quote": "5 | 139,96 | € 2.435,69 | € 2.494,19 | € 2.552,69 | € 2.601,44 [read on the page image]"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T22:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T22:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-gas-acqua-utilitalia-corrections"
               }
             }
           },
           {
             "valid_from": "2026-07-01",
             "valid_until": null,
-            "value": "2494.28",
+            "value": "2494.19",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-pdf",
-                  "title": "ccnl-pdf",
+                  "document_id": "gas-acqua-utilitalia-src-430bd692",
+                  "title": "gas-acqua-utilitalia: filctem-2025.pdf",
                   "kind": "associazione",
-                  "url": "https://sosvavsrl.it/media/attachments/2024/05/24/ccnl.pdf"
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gas_acqua/250508_GASACQUA_RINNOVO%20CCNL%20%202025-2027.pdf",
+                  "sha256": "430bd6922e1ea3aa0d80b3c6fd2c74fd4cbe3b48404222ff48649f68ad8b4b36"
                 },
-                "section": "Tabella retributiva"
+                "page": "36",
+                "section": "Tabella retributiva",
+                "quote": "5 | 139,96 | € 2.435,69 | € 2.494,19 | € 2.552,69 | € 2.601,44 [read on the page image]"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T22:00:00Z",
+                "effective_from": "2026-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T22:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-gas-acqua-utilitalia-corrections"
               }
             }
           }
@@ -1243,46 +1257,60 @@
           {
             "valid_from": "2025-07-01",
             "valid_until": "2026-07-01",
-            "value": "2674.74",
+            "value": "2674.75",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-pdf",
-                  "title": "ccnl-pdf",
+                  "document_id": "gas-acqua-utilitalia-src-430bd692",
+                  "title": "gas-acqua-utilitalia: filctem-2025.pdf",
                   "kind": "associazione",
-                  "url": "https://sosvavsrl.it/media/attachments/2024/05/24/ccnl.pdf"
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gas_acqua/250508_GASACQUA_RINNOVO%20CCNL%20%202025-2027.pdf",
+                  "sha256": "430bd6922e1ea3aa0d80b3c6fd2c74fd4cbe3b48404222ff48649f68ad8b4b36"
                 },
-                "section": "Tabella retributiva"
+                "page": "36",
+                "section": "Tabella retributiva",
+                "quote": "6 | 153,69 | € 2.674,75 | € 2.738,99 | € 2.803,23 | € 2.856,76 [read on the page image]"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T22:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T22:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-gas-acqua-utilitalia-corrections"
               }
             }
           },
           {
             "valid_from": "2026-07-01",
             "valid_until": null,
-            "value": "2738.97",
+            "value": "2738.99",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-pdf",
-                  "title": "ccnl-pdf",
+                  "document_id": "gas-acqua-utilitalia-src-430bd692",
+                  "title": "gas-acqua-utilitalia: filctem-2025.pdf",
                   "kind": "associazione",
-                  "url": "https://sosvavsrl.it/media/attachments/2024/05/24/ccnl.pdf"
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gas_acqua/250508_GASACQUA_RINNOVO%20CCNL%20%202025-2027.pdf",
+                  "sha256": "430bd6922e1ea3aa0d80b3c6fd2c74fd4cbe3b48404222ff48649f68ad8b4b36"
                 },
-                "section": "Tabella retributiva"
+                "page": "36",
+                "section": "Tabella retributiva",
+                "quote": "6 | 153,69 | € 2.674,75 | € 2.738,99 | € 2.803,23 | € 2.856,76 [read on the page image]"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T22:00:00Z",
+                "effective_from": "2026-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T22:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-gas-acqua-utilitalia-corrections"
               }
             }
           }
@@ -1418,46 +1446,60 @@
           {
             "valid_from": "2025-07-01",
             "valid_until": "2026-07-01",
-            "value": "2915.04",
+            "value": "2915.01",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-pdf",
-                  "title": "ccnl-pdf",
+                  "document_id": "gas-acqua-utilitalia-src-430bd692",
+                  "title": "gas-acqua-utilitalia: filctem-2025.pdf",
                   "kind": "associazione",
-                  "url": "https://sosvavsrl.it/media/attachments/2024/05/24/ccnl.pdf"
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gas_acqua/250508_GASACQUA_RINNOVO%20CCNL%20%202025-2027.pdf",
+                  "sha256": "430bd6922e1ea3aa0d80b3c6fd2c74fd4cbe3b48404222ff48649f68ad8b4b36"
                 },
-                "section": "Tabella retributiva"
+                "page": "36",
+                "section": "Tabella retributiva",
+                "quote": "7 | 167,50 | € 2.915,01 | € 2.985,02 | € 3.055,03 | € 3.113,37 [read on the page image]"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T22:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T22:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-gas-acqua-utilitalia-corrections"
               }
             }
           },
           {
             "valid_from": "2026-07-01",
             "valid_until": null,
-            "value": "2985.08",
+            "value": "2985.02",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-pdf",
-                  "title": "ccnl-pdf",
+                  "document_id": "gas-acqua-utilitalia-src-430bd692",
+                  "title": "gas-acqua-utilitalia: filctem-2025.pdf",
                   "kind": "associazione",
-                  "url": "https://sosvavsrl.it/media/attachments/2024/05/24/ccnl.pdf"
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gas_acqua/250508_GASACQUA_RINNOVO%20CCNL%20%202025-2027.pdf",
+                  "sha256": "430bd6922e1ea3aa0d80b3c6fd2c74fd4cbe3b48404222ff48649f68ad8b4b36"
                 },
-                "section": "Tabella retributiva"
+                "page": "36",
+                "section": "Tabella retributiva",
+                "quote": "7 | 167,50 | € 2.915,01 | € 2.985,02 | € 3.055,03 | € 3.113,37 [read on the page image]"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T22:00:00Z",
+                "effective_from": "2026-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T22:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-gas-acqua-utilitalia-corrections"
               }
             }
           }
@@ -1593,46 +1635,60 @@
           {
             "valid_from": "2025-07-01",
             "valid_until": "2026-07-01",
-            "value": "3155.03",
+            "value": "3154.98",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-pdf",
-                  "title": "ccnl-pdf",
+                  "document_id": "gas-acqua-utilitalia-src-430bd692",
+                  "title": "gas-acqua-utilitalia: filctem-2025.pdf",
                   "kind": "associazione",
-                  "url": "https://sosvavsrl.it/media/attachments/2024/05/24/ccnl.pdf"
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gas_acqua/250508_GASACQUA_RINNOVO%20CCNL%20%202025-2027.pdf",
+                  "sha256": "430bd6922e1ea3aa0d80b3c6fd2c74fd4cbe3b48404222ff48649f68ad8b4b36"
                 },
-                "section": "Tabella retributiva"
+                "page": "36",
+                "section": "Tabella retributiva",
+                "quote": "8 | 181,29 | € 3.154,98 | € 3.230,75 | € 3.306,52 | € 3.369,66 [read on the page image]"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T22:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T22:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-gas-acqua-utilitalia-corrections"
               }
             }
           },
           {
             "valid_from": "2026-07-01",
             "valid_until": null,
-            "value": "3230.84",
+            "value": "3230.75",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-pdf",
-                  "title": "ccnl-pdf",
+                  "document_id": "gas-acqua-utilitalia-src-430bd692",
+                  "title": "gas-acqua-utilitalia: filctem-2025.pdf",
                   "kind": "associazione",
-                  "url": "https://sosvavsrl.it/media/attachments/2024/05/24/ccnl.pdf"
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gas_acqua/250508_GASACQUA_RINNOVO%20CCNL%20%202025-2027.pdf",
+                  "sha256": "430bd6922e1ea3aa0d80b3c6fd2c74fd4cbe3b48404222ff48649f68ad8b4b36"
                 },
-                "section": "Tabella retributiva"
+                "page": "36",
+                "section": "Tabella retributiva",
+                "quote": "8 | 181,29 | € 3.154,98 | € 3.230,75 | € 3.306,52 | € 3.369,66 [read on the page image]"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T22:00:00Z",
+                "effective_from": "2026-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T22:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-gas-acqua-utilitalia-corrections"
               }
             }
           }
@@ -1768,46 +1824,60 @@
           {
             "valid_from": "2025-07-01",
             "valid_until": "2026-07-01",
-            "value": "3493.57",
+            "value": "3493.60",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-pdf",
-                  "title": "ccnl-pdf",
+                  "document_id": "gas-acqua-utilitalia-src-430bd692",
+                  "title": "gas-acqua-utilitalia: filctem-2025.pdf",
                   "kind": "associazione",
-                  "url": "https://sosvavsrl.it/media/attachments/2024/05/24/ccnl.pdf"
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gas_acqua/250508_GASACQUA_RINNOVO%20CCNL%20%202025-2027.pdf",
+                  "sha256": "430bd6922e1ea3aa0d80b3c6fd2c74fd4cbe3b48404222ff48649f68ad8b4b36"
                 },
-                "section": "Tabella retributiva"
+                "page": "36",
+                "section": "Tabella retributiva",
+                "quote": "Q | 200,74 | € 3.493,60 | € 3.577,50 | € 3.661,40 | € 3.731,31 [read on the page image]"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T22:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T22:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-gas-acqua-utilitalia-corrections"
               }
             }
           },
           {
             "valid_from": "2026-07-01",
             "valid_until": null,
-            "value": "3577.47",
+            "value": "3577.50",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-pdf",
-                  "title": "ccnl-pdf",
+                  "document_id": "gas-acqua-utilitalia-src-430bd692",
+                  "title": "gas-acqua-utilitalia: filctem-2025.pdf",
                   "kind": "associazione",
-                  "url": "https://sosvavsrl.it/media/attachments/2024/05/24/ccnl.pdf"
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gas_acqua/250508_GASACQUA_RINNOVO%20CCNL%20%202025-2027.pdf",
+                  "sha256": "430bd6922e1ea3aa0d80b3c6fd2c74fd4cbe3b48404222ff48649f68ad8b4b36"
                 },
-                "section": "Tabella retributiva"
+                "page": "36",
+                "section": "Tabella retributiva",
+                "quote": "Q | 200,74 | € 3.493,60 | € 3.577,50 | € 3.661,40 | € 3.731,31 [read on the page image]"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T22:00:00Z",
+                "effective_from": "2026-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T22:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-gas-acqua-utilitalia-corrections"
               }
             }
           }
@@ -1998,7 +2068,7 @@
     "effective_until": null,
     "source": "https://sosvavsrl.it/media/attachments/2024/05/24/ccnl.pdf",
     "verification_status": "unverified",
-    "source_hash": "99bcac705563038b809ff4ec5129c07891ff7d6fd5c3590c13072fe9e373a5da",
+    "source_hash": "477927af7cc1e8382df331073b1db4083385c292bf989fcce3367052283ec865",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2224,5 +2294,31 @@
         }
       }
     }
+  },
+  "verification": {
+    "reviews": [
+      {
+        "id": "2026-11-07-ai-gas-acqua-utilitalia-corrections",
+        "date": "2026-11-07",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Values a primary-text verification found different from the printed tables (text layer).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gas_acqua/250508_GASACQUA_RINNOVO%20CCNL%20%202025-2027.pdf",
+            "sha256": "430bd6922e1ea3aa0d80b3c6fd2c74fd4cbe3b48404222ff48649f68ad8b4b36"
+          }
+        ],
+        "findings": [
+          "10 values corrected to the amounts printed on the cited pages."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels.base_salary",
+          "levels.fixed_allowances"
+        ]
+      }
+    ]
   }
 }

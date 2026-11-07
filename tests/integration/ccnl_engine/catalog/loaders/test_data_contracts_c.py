@@ -234,12 +234,11 @@ class TestLoadTessilePmiUniontessile:
         assert ccnl.meta.ccnl_id == "tessile-pmi-uniontessile"
         assert ccnl.meta.cnel_code == "D018"
 
-    def test_tessile_pmi_uniontessile_has_10_levels(self) -> None:
-        """Ten levels: 1, 2, 2bis, 3, 3bis, 4, 5, 6, 7, 8."""
+    def test_tessile_pmi_uniontessile_has_11_levels(self) -> None:
+        """Ten levels 1-8 with 2bis and 3bis, plus the sub-sector level 4s."""
         ccnl = load_ccnl("tessile-pmi-uniontessile")
-        assert len(ccnl.levels) == 10
         codes = {lv.code for lv in ccnl.levels}
-        assert codes == {"1", "2", "2bis", "3", "3bis", "4", "5", "6", "7", "8"}
+        assert codes == {"1", "2", "2bis", "3", "3bis", "4", "4s", "5", "6", "7", "8"}
 
     def test_tessile_pmi_uniontessile_level4_salary_2025(self) -> None:
         """Level 4 at Jan 2025 tranche: 1902.56 EUR (kitech.it)."""

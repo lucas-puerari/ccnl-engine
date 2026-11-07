@@ -42,7 +42,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🟢 Verified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 0 verified / 79 derived / 1 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 3 verified / 76 derived / 1 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -51,7 +51,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2022-11-24 |
-| **Last review** | 2026-11-05 |
+| **Last review** | 2026-11-07 |
 | **Latest salary tranche** | 2027-07-01 |
 
 ## Review history
@@ -60,6 +60,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|---|---|
 | 2026-11-05 | claude-opus-5-5 (ai) | The seniority increments of the apprentices, Apprendistato professionalizzante (accordo 15 marzo 2006), inquadramento e retribuzione (PDF p. 61), found by a separate research session and checked again on the page. | corrected | No increment during the apprenticeship: seniority_increments.apprentice_amount 0. |
 | 2026-11-05 | claude-opus-5-5 (ai) | Art. 18 (PDF p. 26) and art. 10 (PDF p. 21) of the 2008 complete text, text layer. | corrected | Art. 18: a holiday of b), c) or d) on a Sunday or the compensatory rest day pays 1/25 of the monthly pay on top: work_rules.sunday_holidays with divisor 25 and on_rest_day.<br>Art. 10: the hourly divisor is 174; no general daily divisor of the absences. |
+| 2026-11-07 | claude-opus-5-5 (ai) | Values a primary-text verification found different from the printed tables (text layer). | corrected | 4 values corrected to the amounts printed on the cited pages (text layer, or the page image for the scanned tables). |
 
 ## Salary table
 
@@ -67,7 +68,7 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `AS` | Livello AS — A Super: lavoratori con responsabilita direttive di alto livello | € 2,562.44 | 2027-07-01 |
+| `AS` | Livello AS — A Super: lavoratori con responsabilita direttive di alto livello | € 2,562.43 | 2027-07-01 |
 | `A` | Livello A — Lavoratori con elevata autonomia e responsabilita gestionale | € 2,357.34 | 2027-07-01 |
 | `B` | Livello B — Lavoratori altamente specializzati con coordinamento operativo | € 1,921.76 | 2027-07-01 |
 | `CS` | Livello CS — C Super: lavoratori specializzati con responsabilita di processo | € 1,845.14 | 2027-07-01 |
@@ -142,7 +143,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Applies when:** `sickness` applies; the run takes the engine code path.
 
-    **Remediation:** Resolved: the INPS share is computed on the base of every regime of the bundle; an episode that states no base the engine can read has the missing_fact issue sickness_inps_base_unknown (fact inps_base), which blocks the run. Tests: tests/integration/ccnl_engine/sickness/base/test_rules.py, tests/unit/ccnl_engine/sickness/base/test_rules.py.
+    **Remediation:** Resolved: the INPS share is computed on the base of every regime of the bundle; an episode that states no base the engine can read has the missing_fact issue sickness_inps_base_unknown (fact inps_base), which blocks the run. Tests: tests/mutation/ccnl_engine/sickness/base/test_rules_wiring.py, tests/mutation/ccnl_engine/sickness/base/test_rules.py.
 
 !!! warning "sickness_cumulation_window · sickness · impact unknown · open"
     The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded. A CCNL whose comporto the engine counts over the calendar year (Commercio Art. 186 and the others with comporto_calendar_year) is not affected.

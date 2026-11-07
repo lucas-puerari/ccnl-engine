@@ -133,7 +133,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Applies when:** `inps_employer` applies.
 
-    **Remediation:** Resolved (review of 2026-10-30): a level without category takes the category the employment declares (employment/category/rules.py resolve_worker_category), and contribution/rate/rules.py inps_employer_rate applies employer_rate_by_category to it; a run that declares none gets the provisional issue employer_rate_category_assumed. Tests: tests/integration/ccnl_engine/contribution/rate/test_rules.py::test_declared_category_needs_no_issue, ::test_level_without_category_gets_a_provisional_issue.
+    **Remediation:** Resolved (review of 2026-10-30): a level without category takes the category the employment declares (employment/category/rules.py resolve_worker_category), and contribution/rate/rules.py inps_employer_rate applies employer_rate_by_category to it; a run that declares none gets the provisional issue employer_rate_category_assumed. Tests: tests/mutation/ccnl_engine/contribution/rate/test_rules_wiring.py::test_declared_category_needs_no_issue, ::test_level_without_category_gets_a_provisional_issue.
 
 !!! warning "legno-lapidei-artigianato-confartigianato/inps_sector_rates_unsourced · inps_employer · impact unknown · open"
     INPS RATES: the employer and worker INPS rates of the sector (artigianato) are totals no 2026 INPS or association table confirms: the only component split found is the INPS guide of 2012 and the 2026 totals come from a software house page that does not prove its year. The contributions of every run rest on them.
@@ -168,7 +168,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Applies when:** `sickness` applies; the run takes the engine code path.
 
-    **Remediation:** Resolved: the INPS share is computed on the base of every regime of the bundle; an episode that states no base the engine can read has the missing_fact issue sickness_inps_base_unknown (fact inps_base), which blocks the run. Tests: tests/integration/ccnl_engine/sickness/base/test_rules.py, tests/unit/ccnl_engine/sickness/base/test_rules.py.
+    **Remediation:** Resolved: the INPS share is computed on the base of every regime of the bundle; an episode that states no base the engine can read has the missing_fact issue sickness_inps_base_unknown (fact inps_base), which blocks the run. Tests: tests/mutation/ccnl_engine/sickness/base/test_rules_wiring.py, tests/mutation/ccnl_engine/sickness/base/test_rules.py.
 
 !!! warning "sickness_cumulation_window · sickness · impact unknown · open"
     The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded. A CCNL whose comporto the engine counts over the calendar year (Commercio Art. 186 and the others with comporto_calendar_year) is not affected.

@@ -61,6 +61,12 @@ class ContractualFund(BaseModel):
         apprentices_permanent: Whether an apprentice counts as permanent for
             ``permanent_only``, when the CCNL calls apprenticeship a contract
             "a tempo indeterminato" (Cooperative sociali art. 28).
+        minimum_fixed_term_months: Months a fixed term must reach to be
+            covered, when its end is stated (FASDA: "almeno pari a 12 mesi").
+        minimum_weekly_hours: Weekly hours below which a part-timer is not
+            covered (FASDA: 50% of the 38-hour week).
+        excludes_probation: Whether a month that starts within the periodo
+            di prova (``EmploymentPeriod.probation_until``) is not covered.
         group: Funds that are alternative ways to meet the same obligation
             (e.g. the EBM contribution of a firm with or without an internal
             RLS) share a group: the employer names the one it pays; naming
@@ -111,6 +117,9 @@ class ContractualFund(BaseModel):
     levels: frozenset[str] | None = None
     permanent_only: bool = False
     apprentices_permanent: bool = False
+    minimum_fixed_term_months: int | None = Field(default=None, ge=1)
+    minimum_weekly_hours: Decimal | None = Field(default=None, gt=0)
+    excludes_probation: bool = False
     group: str | None = None
     rate_allowances: frozenset[str] = frozenset()
     employer: FundAmount

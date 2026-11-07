@@ -107,3 +107,10 @@ def test_the_collective_flags_are_booleans(field: str) -> None:
         CollectiveDismissal(**flags)  # type: ignore[arg-type]
 
     assert error.value.field == f"CollectiveDismissal.{field}"
+
+
+def test_probation_until_must_not_precede_the_start() -> None:
+    """The probation ends on or after the first day of employment."""
+    with pytest.raises(InvalidInputError, match="probation_until"):
+        EmploymentPeriod(date(2026, 3, 1), probation_until=date(2026, 2, 28))
+    assert EmploymentPeriod(date(2026, 3, 1), probation_until=date(2026, 3, 1))

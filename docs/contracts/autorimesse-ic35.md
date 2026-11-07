@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-12-09 |
-| **Last review** | 2026-11-05 |
+| **Last review** | 2026-11-07 |
 | **Latest salary tranche** | 2027-11-01 |
 
 ## Review history
@@ -58,6 +58,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | Date | Reviewer | Scope | Outcome | Findings |
 |---|---|---|---|---|
 | 2026-11-05 | claude-opus-5-5 (ai) | The hourly divisors of the 42- and 44-hour weeks, Art. 40 (PDF p. 86) and the weeks of Art. 19 (PDF p. 43) of the 2022 stesura, text layer. | corrected | Art. 40: 191 for the custodians and night watchmen (44 hours, art. 19 a), 182 for the drivers (42 hours, art. 19 b), 173 for the 40-hour week: work_rules.time_supplements.week_divisors 42/182 and 44/191, hourly_divisor_weekly_hours 40. |
+| 2026-11-07 | claude-opus-5-5 (ai) | Allegato 1 of the verbale of 9 December 2025 (p. 20, page image): the dates of the new minimi. | corrected | The third tranche runs 'dal mese di mar-27', not May 2027: the file missed March and April 2027 for every level; the amounts match. |
 
 ## Salary table
 
@@ -146,7 +147,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Applies when:** `sickness` applies; the run takes the engine code path.
 
-    **Remediation:** Resolved: the INPS share is computed on the base of every regime of the bundle; an episode that states no base the engine can read has the missing_fact issue sickness_inps_base_unknown (fact inps_base), which blocks the run. Tests: tests/integration/ccnl_engine/sickness/base/test_rules.py, tests/unit/ccnl_engine/sickness/base/test_rules.py.
+    **Remediation:** Resolved: the INPS share is computed on the base of every regime of the bundle; an episode that states no base the engine can read has the missing_fact issue sickness_inps_base_unknown (fact inps_base), which blocks the run. Tests: tests/mutation/ccnl_engine/sickness/base/test_rules_wiring.py, tests/mutation/ccnl_engine/sickness/base/test_rules.py.
 
 !!! warning "sickness_cumulation_window · sickness · impact unknown · open"
     The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded. A CCNL whose comporto the engine counts over the calendar year (Commercio Art. 186 and the others with comporto_calendar_year) is not affected.

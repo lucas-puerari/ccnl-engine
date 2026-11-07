@@ -67,22 +67,6 @@
       }
     },
     {
-      "id": "fasda_health_fund",
-      "institute": "contractual_funds",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = owed",
-      "rule": "FASDA (Art. 65 lett. B, pp. 165-166 of the 2025 consolidated text and the ipotesi of 9 December 2025): 84.50 EUR a quarter per worker on the employer from October 2023, 101.00 from October 2026, modelled as health_funds fasda (a twelfth of the year a month, with the 10% solidarity). Not modelled: the workers the fund leaves out (on probation, on one fixed-term contract under 12 months, part-time under 50%) are charged like the others.",
-      "calculation": "ccnl/igiene-ambientale-utilitalia:coverage.notes",
-      "state": "absent",
-      "remediation": "Exempt the workers on probation, on a fixed term under 12 months and part-time under 50%, then remove this note.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "igiene-ambientale-utilitalia/fasda_health_fund"
-        ]
-      }
-    },
-    {
       "id": "fund_paid_month",
       "institute": "pension_fund_contribution",
       "variant": "all",

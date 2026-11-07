@@ -40,7 +40,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 1 verified / 54 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 61 verified / 9 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -49,14 +49,16 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-10-16 |
-| **Last review** | 2026-10-18 |
-| **Latest salary tranche** | 2025-07-01 |
+| **Last review** | 2026-11-07 |
+| **Latest salary tranche** | 2026-01-01 |
 
 ## Review history
 
 | Date | Reviewer | Scope | Outcome | Findings |
 |---|---|---|---|---|
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | confirmed | Art. 20 - Tredicesima mensilita' o gratifica natalizia (p. 27): "La frazione di mese superiore a 15 giorni sarà considerata, a tali effetti, come mese intero.". Match: more_than 15. |
+| 2026-11-07 | claude-opus-5-5 (ai) | Verbale of 12 February 2026: the IPCA adjustment of the minimi from January 2026 (pp. 1-3). | corrected | The minimi rise 1.7% from January 2026 (26.58 EUR at level IV, reparametrised); the seniority amounts are unchanged. |
+| 2026-11-07 | claude-opus-5-5 (ai) | The monthly values of the levels against the primary tables (text layer). | confirmed | 60 values found verbatim on the cited pages and marked verified; 0 left as they were (derived or not on a text page). |
 
 ## Salary table
 
@@ -64,21 +66,21 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `QA` | Quadro A — Multiplex/Megaplex (parametro 240) | € 2,103.45 | 2025-07-01 |
-| `QB` | Quadro B — Multiplex/Megaplex (parametro 220) | € 1,970.12 | 2025-07-01 |
-| `Q` | Quadro — Monosala/Multisala (parametro 220) | € 1,970.12 | 2025-07-01 |
-| `F` | Livello F — Multiplex/Megaplex (parametro 185) | € 1,736.47 | 2025-07-01 |
-| `5S` | V livello superiore — Monosala/Multisala (parametro 185) | € 1,736.47 | 2025-07-01 |
-| `5` | V livello — Monosala/Multisala (parametro 176) | € 1,677.32 | 2025-07-01 |
-| `E` | Livello E — Multiplex/Megaplex (parametro 165) | € 1,603.17 | 2025-07-01 |
-| `4` | IV livello — Monosala/Multisala (parametro 159) | € 1,563.49 | 2025-07-01 |
-| `D` | Livello D — Multiplex/Megaplex (parametro 150) | € 1,503.61 | 2025-07-01 |
-| `C` | Livello C — Multiplex/Megaplex (parametro 140) | € 1,436.95 | 2025-07-01 |
-| `3` | III livello — Monosala/Multisala (parametro 132) | € 1,383.48 | 2025-07-01 |
-| `B` | Livello B — Multiplex/Megaplex (parametro 122) | € 1,316.62 | 2025-07-01 |
-| `2` | II livello — Monosala/Multisala (parametro 112) | € 1,249.95 | 2025-07-01 |
-| `A` | Livello A — Multiplex/Megaplex (parametro 100) | € 1,170.00 | 2025-07-01 |
-| `1` | I livello — Monosala/Multisala (parametro 100) | € 1,170.00 | 2025-07-01 |
+| `QA` | Quadro A — Multiplex/Megaplex (parametro 240) | € 2,143.57 | 2026-01-01 |
+| `QB` | Quadro B — Multiplex/Megaplex (parametro 220) | € 2,006.90 | 2026-01-01 |
+| `Q` | Quadro — Monosala/Multisala (parametro 220) | € 2,006.90 | 2026-01-01 |
+| `F` | Livello F — Multiplex/Megaplex (parametro 185) | € 1,767.40 | 2026-01-01 |
+| `5S` | V livello superiore — Monosala/Multisala (parametro 185) | € 1,767.40 | 2026-01-01 |
+| `5` | V livello — Monosala/Multisala (parametro 176) | € 1,706.74 | 2026-01-01 |
+| `E` | Livello E — Multiplex/Megaplex (parametro 165) | € 1,630.75 | 2026-01-01 |
+| `4` | IV livello — Monosala/Multisala (parametro 159) | € 1,590.07 | 2026-01-01 |
+| `D` | Livello D — Multiplex/Megaplex (parametro 150) | € 1,528.69 | 2026-01-01 |
+| `C` | Livello C — Multiplex/Megaplex (parametro 140) | € 1,460.35 | 2026-01-01 |
+| `3` | III livello — Monosala/Multisala (parametro 132) | € 1,405.55 | 2026-01-01 |
+| `B` | Livello B — Multiplex/Megaplex (parametro 122) | € 1,337.01 | 2026-01-01 |
+| `2` | II livello — Monosala/Multisala (parametro 112) | € 1,268.67 | 2026-01-01 |
+| `A` | Livello A — Multiplex/Megaplex (parametro 100) | € 1,186.72 | 2026-01-01 |
+| `1` | I livello — Monosala/Multisala (parametro 100) | € 1,186.72 | 2026-01-01 |
 
 ## Seniority increments
 
@@ -146,7 +148,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Applies when:** `sickness` applies; the run takes the engine code path.
 
-    **Remediation:** Resolved: the INPS share is computed on the base of every regime of the bundle; an episode that states no base the engine can read has the missing_fact issue sickness_inps_base_unknown (fact inps_base), which blocks the run. Tests: tests/integration/ccnl_engine/sickness/base/test_rules.py, tests/unit/ccnl_engine/sickness/base/test_rules.py.
+    **Remediation:** Resolved: the INPS share is computed on the base of every regime of the bundle; an episode that states no base the engine can read has the missing_fact issue sickness_inps_base_unknown (fact inps_base), which blocks the run. Tests: tests/mutation/ccnl_engine/sickness/base/test_rules_wiring.py, tests/mutation/ccnl_engine/sickness/base/test_rules.py.
 
 !!! warning "provisional_ruleset · irpef · impact unknown · open"
     The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.
@@ -307,6 +309,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 | Document | Kind | Date | URL |
 |---|---|---|---|
 | https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf | altro | 2025-10-16 | [↗](https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf) |
+| Verbale di accordo ANEC, FISTel-CISL, UILCOM-UIL del 12 febbraio 2026, rivalutazione dei minimi tabellari (IPCA) | associazione | 2026-02-12 | [↗](https://anec.it/wp-content/uploads/2026/02/VerbaleTabelle-aggiornate-12-.02.2026.pdf) |
 
 ??? note "Coverage notes"
     Two parallel level systems in the same contract (one CNEL code G211): Monosala/Multisala (7 levels: 1,2,3,4,5,5S,Q with parametri 100/112/132/159/176/185/220) and Multiplex/Megaplex (8 levels: A,B,C,D,E,F,QB,QA with parametri 100/122/140/150/165/185/220/240). The 15 levels are interleaved by salary for ordering (non-decreasing constraint). Levels 1 and A share identical salaries (parametro 100), as do 5S and F (parametro 185) and Q and QB (parametro 220). Level QA (parametro 240) is Multiplex/Megaplex only. The 'order' field is a global salary rank across both classification scales and is not a promotion ladder.

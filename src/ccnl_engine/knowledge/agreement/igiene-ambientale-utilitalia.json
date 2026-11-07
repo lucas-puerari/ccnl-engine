@@ -110,7 +110,7 @@
       },
       {
         "kind": "simplification",
-        "text": "FASDA (Art. 65 lett. B, pp. 165-166 of the 2025 consolidated text and the ipotesi of 9 December 2025): 84.50 EUR a quarter per worker on the employer from October 2023, 101.00 from October 2026, modelled as health_funds fasda (a twelfth of the year a month, with the 10% solidarity). Not modelled: the workers the fund leaves out (on probation, on one fixed-term contract under 12 months, part-time under 50%) are charged like the others.",
+        "text": "FASDA (Art. 65 lett. B, pp. 165-166 of the 2025 consolidated text and the ipotesi of 9 December 2025): 84.50 EUR a quarter per worker on the employer from October 2023, 101.00 from October 2026, modelled as health_funds fasda (a twelfth of the year a month, with the 10% solidarity); a fixed term ending before 12 months, a part-timer under 19 hours a week and a month starting within the probation (EmploymentPeriod.probation_until) are left out.",
         "capability": "contractual_funds",
         "monetary_impact": "yes",
         "limitation": {
@@ -118,7 +118,8 @@
           "applies_when": {
             "trigger": "owed"
           },
-          "remediation": "Exempt the workers on probation, on a fixed term under 12 months and part-time under 50%, then remove this note."
+          "remediation": "Resolved: FASDA with its coverage of art. 65 lett. B c. 2.",
+          "status": "resolved"
         }
       },
       {
@@ -1131,7 +1132,7 @@
             "section": "Art. 65 lett. B - FASDA; Rinnovi, ipotesi 9 dicembre 2025, punto b",
             "quote": "A decorrere dal versamento trimestrale del 16 ottobre 2023 [...] aumentato alla misura complessiva di € 84,50 per ogni lavoratore dipendente. [...] A decorrere dal 1° ottobre 2026 (versamento del 16 ottobre 2026), il contributo che le Aziende versano al Fondo Fasda è incrementato di un importo aggiuntivo in misura fissa pari a 5,50 euro per 12 mensilità (16,50 euro trimestrali)."
           },
-          "transformation": "The quarterly contribution on the employer (69.50 from October 2017, 84.50 from October 2023, 101.00 from October 2026) as four quarters a year, charged a twelfth a month; net of the solidarity contribution, which is added.",
+          "transformation": "The quarterly contribution on the employer (69.50 from October 2017, 84.50 from October 2023, 101.00 from October 2026) as four quarters a year, charged a twelfth a month; net of the solidarity contribution, which is added. Covered: permanent workers, apprentices and a fixed term of at least 12 months, full time or part time of at least 50% of the 38-hour week (art. 65 lett. B c. 2, p. 165; art. on the orario normale, p. 75): 19 hours. A month that starts within the periodo di prova is not charged ('in forza, non in prova').",
           "extraction": {
             "method": "ai",
             "model": "claude-opus-5-5",
@@ -1142,7 +1143,10 @@
             "verification_status": "verified",
             "review_id": "2026-11-06-ai-igiene-fasda"
           }
-        }
+        },
+        "minimum_fixed_term_months": 12,
+        "minimum_weekly_hours": "19",
+        "excludes_probation": true
       }
     ]
   },
@@ -1254,69 +1258,96 @@
           {
             "valid_from": "2027-01-01",
             "valid_until": "2027-08-01",
-            "value": "1475.36",
+            "value": "1464.27",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-551",
-                  "title": "ccnl-aspx-c-551",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551"
+                  "document_id": "igiene-ambientale-consolidato-2025-ipotesi-2025",
+                  "title": "CCNL Igiene ambientale Utilitalia, testo consolidato 24 luglio 2025 con l'ipotesi di accordo del 9 dicembre 2025",
+                  "kind": "altro",
+                  "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf",
+                  "published_on": "2025-12-09",
+                  "sha256": "57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756"
                 },
-                "section": "Tabella retributiva"
+                "page": "97",
+                "section": "Tabella economica nuovi parametri e confluenze, II-IV tranche",
+                "quote": "D2 (row 16 of the table of p. 96) [...] 01-01-2027 1464,27 €"
               },
+              "transformation": "The printed retribuzione base parametrale of the tranche; the rows of p. 97 follow the labelled rows of p. 96.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T19:00:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T19:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-igiene-2027-tranches"
               }
             }
           },
           {
             "valid_from": "2027-08-01",
             "valid_until": "2027-12-01",
-            "value": "1515.36",
+            "value": "1491.95",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-551",
-                  "title": "ccnl-aspx-c-551",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551"
+                  "document_id": "igiene-ambientale-consolidato-2025-ipotesi-2025",
+                  "title": "CCNL Igiene ambientale Utilitalia, testo consolidato 24 luglio 2025 con l'ipotesi di accordo del 9 dicembre 2025",
+                  "kind": "altro",
+                  "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf",
+                  "published_on": "2025-12-09",
+                  "sha256": "57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756"
                 },
-                "section": "Tabella retributiva"
+                "page": "97",
+                "section": "Tabella economica nuovi parametri e confluenze, II-IV tranche",
+                "quote": "D2 (row 16 of the table of p. 96) [...] 01-08-2027 1491,95 €"
               },
+              "transformation": "The printed retribuzione base parametrale of the tranche; the rows of p. 97 follow the labelled rows of p. 96.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T19:00:00Z",
+                "effective_from": "2027-08-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T19:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-igiene-2027-tranches"
               }
             }
           },
           {
             "valid_from": "2027-12-01",
             "valid_until": null,
-            "value": "1555.36",
+            "value": "1519.63",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-551",
-                  "title": "ccnl-aspx-c-551",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551"
+                  "document_id": "igiene-ambientale-consolidato-2025-ipotesi-2025",
+                  "title": "CCNL Igiene ambientale Utilitalia, testo consolidato 24 luglio 2025 con l'ipotesi di accordo del 9 dicembre 2025",
+                  "kind": "altro",
+                  "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf",
+                  "published_on": "2025-12-09",
+                  "sha256": "57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756"
                 },
-                "section": "Tabella retributiva"
+                "page": "97",
+                "section": "Tabella economica nuovi parametri e confluenze, II-IV tranche",
+                "quote": "D2 (row 16 of the table of p. 96) [...] 01-12-2027 1519,63 €"
               },
+              "transformation": "The printed retribuzione base parametrale of the tranche; the rows of p. 97 follow the labelled rows of p. 96.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T19:00:00Z",
+                "effective_from": "2027-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T19:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-igiene-2027-tranches"
               }
             }
           }
@@ -1464,69 +1495,96 @@
           {
             "valid_from": "2027-01-01",
             "valid_until": "2027-08-01",
-            "value": "1699.25",
+            "value": "1692.03",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-551",
-                  "title": "ccnl-aspx-c-551",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551"
+                  "document_id": "igiene-ambientale-consolidato-2025-ipotesi-2025",
+                  "title": "CCNL Igiene ambientale Utilitalia, testo consolidato 24 luglio 2025 con l'ipotesi di accordo del 9 dicembre 2025",
+                  "kind": "altro",
+                  "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf",
+                  "published_on": "2025-12-09",
+                  "sha256": "57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756"
                 },
-                "section": "Tabella retributiva"
+                "page": "97",
+                "section": "Tabella economica nuovi parametri e confluenze, II-IV tranche",
+                "quote": "D2s (row 15 of the table of p. 96) [...] 01-01-2027 1692,03 €"
               },
+              "transformation": "The printed retribuzione base parametrale of the tranche; the rows of p. 97 follow the labelled rows of p. 96.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T19:00:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T19:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-igiene-2027-tranches"
               }
             }
           },
           {
             "valid_from": "2027-08-01",
             "valid_until": "2027-12-01",
-            "value": "1739.25",
+            "value": "1724.01",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-551",
-                  "title": "ccnl-aspx-c-551",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551"
+                  "document_id": "igiene-ambientale-consolidato-2025-ipotesi-2025",
+                  "title": "CCNL Igiene ambientale Utilitalia, testo consolidato 24 luglio 2025 con l'ipotesi di accordo del 9 dicembre 2025",
+                  "kind": "altro",
+                  "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf",
+                  "published_on": "2025-12-09",
+                  "sha256": "57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756"
                 },
-                "section": "Tabella retributiva"
+                "page": "97",
+                "section": "Tabella economica nuovi parametri e confluenze, II-IV tranche",
+                "quote": "D2s (row 15 of the table of p. 96) [...] 01-08-2027 1724,01 €"
               },
+              "transformation": "The printed retribuzione base parametrale of the tranche; the rows of p. 97 follow the labelled rows of p. 96.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T19:00:00Z",
+                "effective_from": "2027-08-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T19:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-igiene-2027-tranches"
               }
             }
           },
           {
             "valid_from": "2027-12-01",
             "valid_until": null,
-            "value": "1779.25",
+            "value": "1755.99",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-551",
-                  "title": "ccnl-aspx-c-551",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551"
+                  "document_id": "igiene-ambientale-consolidato-2025-ipotesi-2025",
+                  "title": "CCNL Igiene ambientale Utilitalia, testo consolidato 24 luglio 2025 con l'ipotesi di accordo del 9 dicembre 2025",
+                  "kind": "altro",
+                  "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf",
+                  "published_on": "2025-12-09",
+                  "sha256": "57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756"
                 },
-                "section": "Tabella retributiva"
+                "page": "97",
+                "section": "Tabella economica nuovi parametri e confluenze, II-IV tranche",
+                "quote": "D2s (row 15 of the table of p. 96) [...] 01-12-2027 1755,99 €"
               },
+              "transformation": "The printed retribuzione base parametrale of the tranche; the rows of p. 97 follow the labelled rows of p. 96.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T19:00:00Z",
+                "effective_from": "2027-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T19:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-igiene-2027-tranches"
               }
             }
           }
@@ -1674,69 +1732,96 @@
           {
             "valid_from": "2027-01-01",
             "valid_until": "2027-08-01",
-            "value": "1875.19",
+            "value": "1871.02",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-551",
-                  "title": "ccnl-aspx-c-551",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551"
+                  "document_id": "igiene-ambientale-consolidato-2025-ipotesi-2025",
+                  "title": "CCNL Igiene ambientale Utilitalia, testo consolidato 24 luglio 2025 con l'ipotesi di accordo del 9 dicembre 2025",
+                  "kind": "altro",
+                  "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf",
+                  "published_on": "2025-12-09",
+                  "sha256": "57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756"
                 },
-                "section": "Tabella retributiva"
+                "page": "97",
+                "section": "Tabella economica nuovi parametri e confluenze, II-IV tranche",
+                "quote": "D1 (row 14 of the table of p. 96) [...] 01-01-2027 1871,02 €"
               },
+              "transformation": "The printed retribuzione base parametrale of the tranche; the rows of p. 97 follow the labelled rows of p. 96.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T19:00:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T19:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-igiene-2027-tranches"
               }
             }
           },
           {
             "valid_from": "2027-08-01",
             "valid_until": "2027-12-01",
-            "value": "1915.19",
+            "value": "1906.39",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-551",
-                  "title": "ccnl-aspx-c-551",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551"
+                  "document_id": "igiene-ambientale-consolidato-2025-ipotesi-2025",
+                  "title": "CCNL Igiene ambientale Utilitalia, testo consolidato 24 luglio 2025 con l'ipotesi di accordo del 9 dicembre 2025",
+                  "kind": "altro",
+                  "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf",
+                  "published_on": "2025-12-09",
+                  "sha256": "57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756"
                 },
-                "section": "Tabella retributiva"
+                "page": "97",
+                "section": "Tabella economica nuovi parametri e confluenze, II-IV tranche",
+                "quote": "D1 (row 14 of the table of p. 96) [...] 01-08-2027 1906,39 €"
               },
+              "transformation": "The printed retribuzione base parametrale of the tranche; the rows of p. 97 follow the labelled rows of p. 96.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T19:00:00Z",
+                "effective_from": "2027-08-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T19:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-igiene-2027-tranches"
               }
             }
           },
           {
             "valid_from": "2027-12-01",
             "valid_until": null,
-            "value": "1955.19",
+            "value": "1941.76",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-551",
-                  "title": "ccnl-aspx-c-551",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551"
+                  "document_id": "igiene-ambientale-consolidato-2025-ipotesi-2025",
+                  "title": "CCNL Igiene ambientale Utilitalia, testo consolidato 24 luglio 2025 con l'ipotesi di accordo del 9 dicembre 2025",
+                  "kind": "altro",
+                  "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf",
+                  "published_on": "2025-12-09",
+                  "sha256": "57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756"
                 },
-                "section": "Tabella retributiva"
+                "page": "97",
+                "section": "Tabella economica nuovi parametri e confluenze, II-IV tranche",
+                "quote": "D1 (row 14 of the table of p. 96) [...] 01-12-2027 1941,76 €"
               },
+              "transformation": "The printed retribuzione base parametrale of the tranche; the rows of p. 97 follow the labelled rows of p. 96.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T19:00:00Z",
+                "effective_from": "2027-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T19:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-igiene-2027-tranches"
               }
             }
           }
@@ -1884,69 +1969,96 @@
           {
             "valid_from": "2027-01-01",
             "valid_until": "2027-08-01",
-            "value": "2063.89",
+            "value": "2062.98",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-551",
-                  "title": "ccnl-aspx-c-551",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551"
+                  "document_id": "igiene-ambientale-consolidato-2025-ipotesi-2025",
+                  "title": "CCNL Igiene ambientale Utilitalia, testo consolidato 24 luglio 2025 con l'ipotesi di accordo del 9 dicembre 2025",
+                  "kind": "altro",
+                  "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf",
+                  "published_on": "2025-12-09",
+                  "sha256": "57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756"
                 },
-                "section": "Tabella retributiva"
+                "page": "97",
+                "section": "Tabella economica nuovi parametri e confluenze, II-IV tranche",
+                "quote": "D1s (row 13 of the table of p. 96) [...] 01-01-2027 2062,98 €"
               },
+              "transformation": "The printed retribuzione base parametrale of the tranche; the rows of p. 97 follow the labelled rows of p. 96.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T19:00:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T19:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-igiene-2027-tranches"
               }
             }
           },
           {
             "valid_from": "2027-08-01",
             "valid_until": "2027-12-01",
-            "value": "2103.89",
+            "value": "2101.97",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-551",
-                  "title": "ccnl-aspx-c-551",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551"
+                  "document_id": "igiene-ambientale-consolidato-2025-ipotesi-2025",
+                  "title": "CCNL Igiene ambientale Utilitalia, testo consolidato 24 luglio 2025 con l'ipotesi di accordo del 9 dicembre 2025",
+                  "kind": "altro",
+                  "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf",
+                  "published_on": "2025-12-09",
+                  "sha256": "57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756"
                 },
-                "section": "Tabella retributiva"
+                "page": "97",
+                "section": "Tabella economica nuovi parametri e confluenze, II-IV tranche",
+                "quote": "D1s (row 13 of the table of p. 96) [...] 01-08-2027 2101,97 €"
               },
+              "transformation": "The printed retribuzione base parametrale of the tranche; the rows of p. 97 follow the labelled rows of p. 96.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T19:00:00Z",
+                "effective_from": "2027-08-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T19:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-igiene-2027-tranches"
               }
             }
           },
           {
             "valid_from": "2027-12-01",
             "valid_until": null,
-            "value": "2143.89",
+            "value": "2140.96",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-551",
-                  "title": "ccnl-aspx-c-551",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551"
+                  "document_id": "igiene-ambientale-consolidato-2025-ipotesi-2025",
+                  "title": "CCNL Igiene ambientale Utilitalia, testo consolidato 24 luglio 2025 con l'ipotesi di accordo del 9 dicembre 2025",
+                  "kind": "altro",
+                  "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf",
+                  "published_on": "2025-12-09",
+                  "sha256": "57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756"
                 },
-                "section": "Tabella retributiva"
+                "page": "97",
+                "section": "Tabella economica nuovi parametri e confluenze, II-IV tranche",
+                "quote": "D1s (row 13 of the table of p. 96) [...] 01-12-2027 2140,96 €"
               },
+              "transformation": "The printed retribuzione base parametrale of the tranche; the rows of p. 97 follow the labelled rows of p. 96.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T19:00:00Z",
+                "effective_from": "2027-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T19:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-igiene-2027-tranches"
               }
             }
           }
@@ -2094,69 +2206,96 @@
           {
             "valid_from": "2027-01-01",
             "valid_until": "2027-08-01",
-            "value": "2067.09",
+            "value": "2066.24",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-551",
-                  "title": "ccnl-aspx-c-551",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551"
+                  "document_id": "igiene-ambientale-consolidato-2025-ipotesi-2025",
+                  "title": "CCNL Igiene ambientale Utilitalia, testo consolidato 24 luglio 2025 con l'ipotesi di accordo del 9 dicembre 2025",
+                  "kind": "altro",
+                  "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf",
+                  "published_on": "2025-12-09",
+                  "sha256": "57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756"
                 },
-                "section": "Tabella retributiva"
+                "page": "97",
+                "section": "Tabella economica nuovi parametri e confluenze, II-IV tranche",
+                "quote": "C2 (row 12 of the table of p. 96) [...] 01-01-2027 2066,24 €"
               },
+              "transformation": "The printed retribuzione base parametrale of the tranche; the rows of p. 97 follow the labelled rows of p. 96.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T19:00:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T19:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-igiene-2027-tranches"
               }
             }
           },
           {
             "valid_from": "2027-08-01",
             "valid_until": "2027-12-01",
-            "value": "2107.09",
+            "value": "2105.30",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-551",
-                  "title": "ccnl-aspx-c-551",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551"
+                  "document_id": "igiene-ambientale-consolidato-2025-ipotesi-2025",
+                  "title": "CCNL Igiene ambientale Utilitalia, testo consolidato 24 luglio 2025 con l'ipotesi di accordo del 9 dicembre 2025",
+                  "kind": "altro",
+                  "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf",
+                  "published_on": "2025-12-09",
+                  "sha256": "57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756"
                 },
-                "section": "Tabella retributiva"
+                "page": "97",
+                "section": "Tabella economica nuovi parametri e confluenze, II-IV tranche",
+                "quote": "C2 (row 12 of the table of p. 96) [...] 01-08-2027 2105,30 €"
               },
+              "transformation": "The printed retribuzione base parametrale of the tranche; the rows of p. 97 follow the labelled rows of p. 96.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T19:00:00Z",
+                "effective_from": "2027-08-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T19:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-igiene-2027-tranches"
               }
             }
           },
           {
             "valid_from": "2027-12-01",
             "valid_until": null,
-            "value": "2147.09",
+            "value": "2144.36",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-551",
-                  "title": "ccnl-aspx-c-551",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551"
+                  "document_id": "igiene-ambientale-consolidato-2025-ipotesi-2025",
+                  "title": "CCNL Igiene ambientale Utilitalia, testo consolidato 24 luglio 2025 con l'ipotesi di accordo del 9 dicembre 2025",
+                  "kind": "altro",
+                  "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf",
+                  "published_on": "2025-12-09",
+                  "sha256": "57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756"
                 },
-                "section": "Tabella retributiva"
+                "page": "97",
+                "section": "Tabella economica nuovi parametri e confluenze, II-IV tranche",
+                "quote": "C2 (row 12 of the table of p. 96) [...] 01-12-2027 2144,36 €"
               },
+              "transformation": "The printed retribuzione base parametrale of the tranche; the rows of p. 97 follow the labelled rows of p. 96.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T19:00:00Z",
+                "effective_from": "2027-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T19:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-igiene-2027-tranches"
               }
             }
           }
@@ -2283,21 +2422,30 @@
             "valid_until": "2027-08-01",
             "value": "2116.19",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-551",
-                  "title": "ccnl-aspx-c-551",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551"
+                  "document_id": "igiene-ambientale-consolidato-2025-ipotesi-2025",
+                  "title": "CCNL Igiene ambientale Utilitalia, testo consolidato 24 luglio 2025 con l'ipotesi di accordo del 9 dicembre 2025",
+                  "kind": "altro",
+                  "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf",
+                  "published_on": "2025-12-09",
+                  "sha256": "57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756"
                 },
-                "section": "Tabella retributiva"
+                "page": "97",
+                "section": "Tabella economica nuovi parametri e confluenze, II-IV tranche",
+                "quote": "C2s (row 11 of the table of p. 96) [...] 01-01-2027 2116,19 €"
               },
+              "transformation": "The printed retribuzione base parametrale of the tranche; the rows of p. 97 follow the labelled rows of p. 96.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T19:00:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T19:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-igiene-2027-tranches"
               }
             }
           },
@@ -2306,21 +2454,30 @@
             "valid_until": "2027-12-01",
             "value": "2156.19",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-551",
-                  "title": "ccnl-aspx-c-551",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551"
+                  "document_id": "igiene-ambientale-consolidato-2025-ipotesi-2025",
+                  "title": "CCNL Igiene ambientale Utilitalia, testo consolidato 24 luglio 2025 con l'ipotesi di accordo del 9 dicembre 2025",
+                  "kind": "altro",
+                  "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf",
+                  "published_on": "2025-12-09",
+                  "sha256": "57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756"
                 },
-                "section": "Tabella retributiva"
+                "page": "97",
+                "section": "Tabella economica nuovi parametri e confluenze, II-IV tranche",
+                "quote": "C2s (row 11 of the table of p. 96) [...] 01-08-2027 2156,19 €"
               },
+              "transformation": "The printed retribuzione base parametrale of the tranche; the rows of p. 97 follow the labelled rows of p. 96.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T19:00:00Z",
+                "effective_from": "2027-08-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T19:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-igiene-2027-tranches"
               }
             }
           },
@@ -2329,21 +2486,30 @@
             "valid_until": null,
             "value": "2196.19",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-551",
-                  "title": "ccnl-aspx-c-551",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551"
+                  "document_id": "igiene-ambientale-consolidato-2025-ipotesi-2025",
+                  "title": "CCNL Igiene ambientale Utilitalia, testo consolidato 24 luglio 2025 con l'ipotesi di accordo del 9 dicembre 2025",
+                  "kind": "altro",
+                  "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf",
+                  "published_on": "2025-12-09",
+                  "sha256": "57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756"
                 },
-                "section": "Tabella retributiva"
+                "page": "97",
+                "section": "Tabella economica nuovi parametri e confluenze, II-IV tranche",
+                "quote": "C2s (row 11 of the table of p. 96) [...] 01-12-2027 2196,19 €"
               },
+              "transformation": "The printed retribuzione base parametrale of the tranche; the rows of p. 97 follow the labelled rows of p. 96.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T19:00:00Z",
+                "effective_from": "2027-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T19:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-igiene-2027-tranches"
               }
             }
           }
@@ -2468,69 +2634,96 @@
           {
             "valid_from": "2027-01-01",
             "valid_until": "2027-08-01",
-            "value": "2184.77",
+            "value": "2185.96",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-551",
-                  "title": "ccnl-aspx-c-551",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551"
+                  "document_id": "igiene-ambientale-consolidato-2025-ipotesi-2025",
+                  "title": "CCNL Igiene ambientale Utilitalia, testo consolidato 24 luglio 2025 con l'ipotesi di accordo del 9 dicembre 2025",
+                  "kind": "altro",
+                  "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf",
+                  "published_on": "2025-12-09",
+                  "sha256": "57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756"
                 },
-                "section": "Tabella retributiva"
+                "page": "97",
+                "section": "Tabella economica nuovi parametri e confluenze, II-IV tranche",
+                "quote": "C1 (row 10 of the table of p. 96) [...] 01-01-2027 2185,96 €"
               },
+              "transformation": "The printed retribuzione base parametrale of the tranche; the rows of p. 97 follow the labelled rows of p. 96.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T19:00:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T19:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-igiene-2027-tranches"
               }
             }
           },
           {
             "valid_from": "2027-08-01",
             "valid_until": "2027-12-01",
-            "value": "2224.77",
+            "value": "2227.28",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-551",
-                  "title": "ccnl-aspx-c-551",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551"
+                  "document_id": "igiene-ambientale-consolidato-2025-ipotesi-2025",
+                  "title": "CCNL Igiene ambientale Utilitalia, testo consolidato 24 luglio 2025 con l'ipotesi di accordo del 9 dicembre 2025",
+                  "kind": "altro",
+                  "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf",
+                  "published_on": "2025-12-09",
+                  "sha256": "57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756"
                 },
-                "section": "Tabella retributiva"
+                "page": "97",
+                "section": "Tabella economica nuovi parametri e confluenze, II-IV tranche",
+                "quote": "C1 (row 10 of the table of p. 96) [...] 01-08-2027 2227,28 €"
               },
+              "transformation": "The printed retribuzione base parametrale of the tranche; the rows of p. 97 follow the labelled rows of p. 96.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T19:00:00Z",
+                "effective_from": "2027-08-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T19:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-igiene-2027-tranches"
               }
             }
           },
           {
             "valid_from": "2027-12-01",
             "valid_until": null,
-            "value": "2264.77",
+            "value": "2268.60",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-551",
-                  "title": "ccnl-aspx-c-551",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551"
+                  "document_id": "igiene-ambientale-consolidato-2025-ipotesi-2025",
+                  "title": "CCNL Igiene ambientale Utilitalia, testo consolidato 24 luglio 2025 con l'ipotesi di accordo del 9 dicembre 2025",
+                  "kind": "altro",
+                  "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf",
+                  "published_on": "2025-12-09",
+                  "sha256": "57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756"
                 },
-                "section": "Tabella retributiva"
+                "page": "97",
+                "section": "Tabella economica nuovi parametri e confluenze, II-IV tranche",
+                "quote": "C1 (row 10 of the table of p. 96) [...] 01-12-2027 2268,60 €"
               },
+              "transformation": "The printed retribuzione base parametrale of the tranche; the rows of p. 97 follow the labelled rows of p. 96.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T19:00:00Z",
+                "effective_from": "2027-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T19:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-igiene-2027-tranches"
               }
             }
           }
@@ -2655,69 +2848,96 @@
           {
             "valid_from": "2027-01-01",
             "valid_until": "2027-08-01",
-            "value": "2252.13",
+            "value": "2254.48",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-551",
-                  "title": "ccnl-aspx-c-551",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551"
+                  "document_id": "igiene-ambientale-consolidato-2025-ipotesi-2025",
+                  "title": "CCNL Igiene ambientale Utilitalia, testo consolidato 24 luglio 2025 con l'ipotesi di accordo del 9 dicembre 2025",
+                  "kind": "altro",
+                  "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf",
+                  "published_on": "2025-12-09",
+                  "sha256": "57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756"
                 },
-                "section": "Tabella retributiva"
+                "page": "97",
+                "section": "Tabella economica nuovi parametri e confluenze, II-IV tranche",
+                "quote": "C1s (row 9 of the table of p. 96) [...] 01-01-2027 2254,48 €"
               },
+              "transformation": "The printed retribuzione base parametrale of the tranche; the rows of p. 97 follow the labelled rows of p. 96.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T19:00:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T19:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-igiene-2027-tranches"
               }
             }
           },
           {
             "valid_from": "2027-08-01",
             "valid_until": "2027-12-01",
-            "value": "2292.13",
+            "value": "2297.09",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-551",
-                  "title": "ccnl-aspx-c-551",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551"
+                  "document_id": "igiene-ambientale-consolidato-2025-ipotesi-2025",
+                  "title": "CCNL Igiene ambientale Utilitalia, testo consolidato 24 luglio 2025 con l'ipotesi di accordo del 9 dicembre 2025",
+                  "kind": "altro",
+                  "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf",
+                  "published_on": "2025-12-09",
+                  "sha256": "57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756"
                 },
-                "section": "Tabella retributiva"
+                "page": "97",
+                "section": "Tabella economica nuovi parametri e confluenze, II-IV tranche",
+                "quote": "C1s (row 9 of the table of p. 96) [...] 01-08-2027 2297,09 €"
               },
+              "transformation": "The printed retribuzione base parametrale of the tranche; the rows of p. 97 follow the labelled rows of p. 96.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T19:00:00Z",
+                "effective_from": "2027-08-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T19:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-igiene-2027-tranches"
               }
             }
           },
           {
             "valid_from": "2027-12-01",
             "valid_until": null,
-            "value": "2332.13",
+            "value": "2339.70",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-551",
-                  "title": "ccnl-aspx-c-551",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551"
+                  "document_id": "igiene-ambientale-consolidato-2025-ipotesi-2025",
+                  "title": "CCNL Igiene ambientale Utilitalia, testo consolidato 24 luglio 2025 con l'ipotesi di accordo del 9 dicembre 2025",
+                  "kind": "altro",
+                  "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf",
+                  "published_on": "2025-12-09",
+                  "sha256": "57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756"
                 },
-                "section": "Tabella retributiva"
+                "page": "97",
+                "section": "Tabella economica nuovi parametri e confluenze, II-IV tranche",
+                "quote": "C1s (row 9 of the table of p. 96) [...] 01-12-2027 2339,70 €"
               },
+              "transformation": "The printed retribuzione base parametrale of the tranche; the rows of p. 97 follow the labelled rows of p. 96.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T19:00:00Z",
+                "effective_from": "2027-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T19:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-igiene-2027-tranches"
               }
             }
           }
@@ -2842,69 +3062,96 @@
           {
             "valid_from": "2027-01-01",
             "valid_until": "2027-08-01",
-            "value": "2352.73",
+            "value": "2356.82",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-551",
-                  "title": "ccnl-aspx-c-551",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551"
+                  "document_id": "igiene-ambientale-consolidato-2025-ipotesi-2025",
+                  "title": "CCNL Igiene ambientale Utilitalia, testo consolidato 24 luglio 2025 con l'ipotesi di accordo del 9 dicembre 2025",
+                  "kind": "altro",
+                  "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf",
+                  "published_on": "2025-12-09",
+                  "sha256": "57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756"
                 },
-                "section": "Tabella retributiva"
+                "page": "97",
+                "section": "Tabella economica nuovi parametri e confluenze, II-IV tranche",
+                "quote": "B2 (row 8 of the table of p. 96) [...] 01-01-2027 2356,82 €"
               },
+              "transformation": "The printed retribuzione base parametrale of the tranche; the rows of p. 97 follow the labelled rows of p. 96.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T19:00:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T19:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-igiene-2027-tranches"
               }
             }
           },
           {
             "valid_from": "2027-08-01",
             "valid_until": "2027-12-01",
-            "value": "2392.73",
+            "value": "2401.37",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-551",
-                  "title": "ccnl-aspx-c-551",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551"
+                  "document_id": "igiene-ambientale-consolidato-2025-ipotesi-2025",
+                  "title": "CCNL Igiene ambientale Utilitalia, testo consolidato 24 luglio 2025 con l'ipotesi di accordo del 9 dicembre 2025",
+                  "kind": "altro",
+                  "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf",
+                  "published_on": "2025-12-09",
+                  "sha256": "57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756"
                 },
-                "section": "Tabella retributiva"
+                "page": "97",
+                "section": "Tabella economica nuovi parametri e confluenze, II-IV tranche",
+                "quote": "B2 (row 8 of the table of p. 96) [...] 01-08-2027 2401,37 €"
               },
+              "transformation": "The printed retribuzione base parametrale of the tranche; the rows of p. 97 follow the labelled rows of p. 96.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T19:00:00Z",
+                "effective_from": "2027-08-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T19:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-igiene-2027-tranches"
               }
             }
           },
           {
             "valid_from": "2027-12-01",
             "valid_until": null,
-            "value": "2432.73",
+            "value": "2445.92",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-551",
-                  "title": "ccnl-aspx-c-551",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551"
+                  "document_id": "igiene-ambientale-consolidato-2025-ipotesi-2025",
+                  "title": "CCNL Igiene ambientale Utilitalia, testo consolidato 24 luglio 2025 con l'ipotesi di accordo del 9 dicembre 2025",
+                  "kind": "altro",
+                  "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf",
+                  "published_on": "2025-12-09",
+                  "sha256": "57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756"
                 },
-                "section": "Tabella retributiva"
+                "page": "97",
+                "section": "Tabella economica nuovi parametri e confluenze, II-IV tranche",
+                "quote": "B2 (row 8 of the table of p. 96) [...] 01-12-2027 2445,92 €"
               },
+              "transformation": "The printed retribuzione base parametrale of the tranche; the rows of p. 97 follow the labelled rows of p. 96.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T19:00:00Z",
+                "effective_from": "2027-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T19:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-igiene-2027-tranches"
               }
             }
           }
@@ -3029,69 +3276,96 @@
           {
             "valid_from": "2027-01-01",
             "valid_until": "2027-08-01",
-            "value": "2455.56",
+            "value": "2461.43",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-551",
-                  "title": "ccnl-aspx-c-551",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551"
+                  "document_id": "igiene-ambientale-consolidato-2025-ipotesi-2025",
+                  "title": "CCNL Igiene ambientale Utilitalia, testo consolidato 24 luglio 2025 con l'ipotesi di accordo del 9 dicembre 2025",
+                  "kind": "altro",
+                  "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf",
+                  "published_on": "2025-12-09",
+                  "sha256": "57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756"
                 },
-                "section": "Tabella retributiva"
+                "page": "97",
+                "section": "Tabella economica nuovi parametri e confluenze, II-IV tranche",
+                "quote": "B2s (row 7 of the table of p. 96) [...] 01-01-2027 2461,43 €"
               },
+              "transformation": "The printed retribuzione base parametrale of the tranche; the rows of p. 97 follow the labelled rows of p. 96.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T19:00:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T19:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-igiene-2027-tranches"
               }
             }
           },
           {
             "valid_from": "2027-08-01",
             "valid_until": "2027-12-01",
-            "value": "2495.56",
+            "value": "2507.96",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-551",
-                  "title": "ccnl-aspx-c-551",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551"
+                  "document_id": "igiene-ambientale-consolidato-2025-ipotesi-2025",
+                  "title": "CCNL Igiene ambientale Utilitalia, testo consolidato 24 luglio 2025 con l'ipotesi di accordo del 9 dicembre 2025",
+                  "kind": "altro",
+                  "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf",
+                  "published_on": "2025-12-09",
+                  "sha256": "57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756"
                 },
-                "section": "Tabella retributiva"
+                "page": "97",
+                "section": "Tabella economica nuovi parametri e confluenze, II-IV tranche",
+                "quote": "B2s (row 7 of the table of p. 96) [...] 01-08-2027 2507,96 €"
               },
+              "transformation": "The printed retribuzione base parametrale of the tranche; the rows of p. 97 follow the labelled rows of p. 96.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T19:00:00Z",
+                "effective_from": "2027-08-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T19:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-igiene-2027-tranches"
               }
             }
           },
           {
             "valid_from": "2027-12-01",
             "valid_until": null,
-            "value": "2535.56",
+            "value": "2554.49",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-551",
-                  "title": "ccnl-aspx-c-551",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551"
+                  "document_id": "igiene-ambientale-consolidato-2025-ipotesi-2025",
+                  "title": "CCNL Igiene ambientale Utilitalia, testo consolidato 24 luglio 2025 con l'ipotesi di accordo del 9 dicembre 2025",
+                  "kind": "altro",
+                  "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf",
+                  "published_on": "2025-12-09",
+                  "sha256": "57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756"
                 },
-                "section": "Tabella retributiva"
+                "page": "97",
+                "section": "Tabella economica nuovi parametri e confluenze, II-IV tranche",
+                "quote": "B2s (row 7 of the table of p. 96) [...] 01-12-2027 2554,49 €"
               },
+              "transformation": "The printed retribuzione base parametrale of the tranche; the rows of p. 97 follow the labelled rows of p. 96.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T19:00:00Z",
+                "effective_from": "2027-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T19:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-igiene-2027-tranches"
               }
             }
           }
@@ -3216,69 +3490,96 @@
           {
             "valid_from": "2027-01-01",
             "valid_until": "2027-08-01",
-            "value": "2581.29",
+            "value": "2589.34",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-551",
-                  "title": "ccnl-aspx-c-551",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551"
+                  "document_id": "igiene-ambientale-consolidato-2025-ipotesi-2025",
+                  "title": "CCNL Igiene ambientale Utilitalia, testo consolidato 24 luglio 2025 con l'ipotesi di accordo del 9 dicembre 2025",
+                  "kind": "altro",
+                  "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf",
+                  "published_on": "2025-12-09",
+                  "sha256": "57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756"
                 },
-                "section": "Tabella retributiva"
+                "page": "97",
+                "section": "Tabella economica nuovi parametri e confluenze, II-IV tranche",
+                "quote": "B1 (row 6 of the table of p. 96) [...] 01-01-2027 2589,34 €"
               },
+              "transformation": "The printed retribuzione base parametrale of the tranche; the rows of p. 97 follow the labelled rows of p. 96.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T19:00:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T19:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-igiene-2027-tranches"
               }
             }
           },
           {
             "valid_from": "2027-08-01",
             "valid_until": "2027-12-01",
-            "value": "2621.29",
+            "value": "2638.28",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-551",
-                  "title": "ccnl-aspx-c-551",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551"
+                  "document_id": "igiene-ambientale-consolidato-2025-ipotesi-2025",
+                  "title": "CCNL Igiene ambientale Utilitalia, testo consolidato 24 luglio 2025 con l'ipotesi di accordo del 9 dicembre 2025",
+                  "kind": "altro",
+                  "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf",
+                  "published_on": "2025-12-09",
+                  "sha256": "57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756"
                 },
-                "section": "Tabella retributiva"
+                "page": "97",
+                "section": "Tabella economica nuovi parametri e confluenze, II-IV tranche",
+                "quote": "B1 (row 6 of the table of p. 96) [...] 01-08-2027 2638,28 €"
               },
+              "transformation": "The printed retribuzione base parametrale of the tranche; the rows of p. 97 follow the labelled rows of p. 96.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T19:00:00Z",
+                "effective_from": "2027-08-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T19:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-igiene-2027-tranches"
               }
             }
           },
           {
             "valid_from": "2027-12-01",
             "valid_until": null,
-            "value": "2661.29",
+            "value": "2687.22",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-551",
-                  "title": "ccnl-aspx-c-551",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551"
+                  "document_id": "igiene-ambientale-consolidato-2025-ipotesi-2025",
+                  "title": "CCNL Igiene ambientale Utilitalia, testo consolidato 24 luglio 2025 con l'ipotesi di accordo del 9 dicembre 2025",
+                  "kind": "altro",
+                  "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf",
+                  "published_on": "2025-12-09",
+                  "sha256": "57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756"
                 },
-                "section": "Tabella retributiva"
+                "page": "97",
+                "section": "Tabella economica nuovi parametri e confluenze, II-IV tranche",
+                "quote": "B1 (row 6 of the table of p. 96) [...] 01-12-2027 2687,22 €"
               },
+              "transformation": "The printed retribuzione base parametrale of the tranche; the rows of p. 97 follow the labelled rows of p. 96.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T19:00:00Z",
+                "effective_from": "2027-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T19:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-igiene-2027-tranches"
               }
             }
           }
@@ -3403,69 +3704,96 @@
           {
             "valid_from": "2027-01-01",
             "valid_until": "2027-08-01",
-            "value": "2704.22",
+            "value": "2714.40",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-551",
-                  "title": "ccnl-aspx-c-551",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551"
+                  "document_id": "igiene-ambientale-consolidato-2025-ipotesi-2025",
+                  "title": "CCNL Igiene ambientale Utilitalia, testo consolidato 24 luglio 2025 con l'ipotesi di accordo del 9 dicembre 2025",
+                  "kind": "altro",
+                  "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf",
+                  "published_on": "2025-12-09",
+                  "sha256": "57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756"
                 },
-                "section": "Tabella retributiva"
+                "page": "97",
+                "section": "Tabella economica nuovi parametri e confluenze, II-IV tranche",
+                "quote": "B1s (row 5 of the table of p. 96) [...] 01-01-2027 2714,40 €"
               },
+              "transformation": "The printed retribuzione base parametrale of the tranche; the rows of p. 97 follow the labelled rows of p. 96.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T19:00:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T19:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-igiene-2027-tranches"
               }
             }
           },
           {
             "valid_from": "2027-08-01",
             "valid_until": "2027-12-01",
-            "value": "2744.22",
+            "value": "2765.71",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-551",
-                  "title": "ccnl-aspx-c-551",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551"
+                  "document_id": "igiene-ambientale-consolidato-2025-ipotesi-2025",
+                  "title": "CCNL Igiene ambientale Utilitalia, testo consolidato 24 luglio 2025 con l'ipotesi di accordo del 9 dicembre 2025",
+                  "kind": "altro",
+                  "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf",
+                  "published_on": "2025-12-09",
+                  "sha256": "57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756"
                 },
-                "section": "Tabella retributiva"
+                "page": "97",
+                "section": "Tabella economica nuovi parametri e confluenze, II-IV tranche",
+                "quote": "B1s (row 5 of the table of p. 96) [...] 01-08-2027 2765,71 €"
               },
+              "transformation": "The printed retribuzione base parametrale of the tranche; the rows of p. 97 follow the labelled rows of p. 96.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T19:00:00Z",
+                "effective_from": "2027-08-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T19:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-igiene-2027-tranches"
               }
             }
           },
           {
             "valid_from": "2027-12-01",
             "valid_until": null,
-            "value": "2784.22",
+            "value": "2817.02",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-551",
-                  "title": "ccnl-aspx-c-551",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551"
+                  "document_id": "igiene-ambientale-consolidato-2025-ipotesi-2025",
+                  "title": "CCNL Igiene ambientale Utilitalia, testo consolidato 24 luglio 2025 con l'ipotesi di accordo del 9 dicembre 2025",
+                  "kind": "altro",
+                  "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf",
+                  "published_on": "2025-12-09",
+                  "sha256": "57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756"
                 },
-                "section": "Tabella retributiva"
+                "page": "97",
+                "section": "Tabella economica nuovi parametri e confluenze, II-IV tranche",
+                "quote": "B1s (row 5 of the table of p. 96) [...] 01-12-2027 2817,02 €"
               },
+              "transformation": "The printed retribuzione base parametrale of the tranche; the rows of p. 97 follow the labelled rows of p. 96.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T19:00:00Z",
+                "effective_from": "2027-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T19:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-igiene-2027-tranches"
               }
             }
           }
@@ -3590,69 +3918,96 @@
           {
             "valid_from": "2027-01-01",
             "valid_until": "2027-08-01",
-            "value": "2840.50",
+            "value": "2853.04",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-551",
-                  "title": "ccnl-aspx-c-551",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551"
+                  "document_id": "igiene-ambientale-consolidato-2025-ipotesi-2025",
+                  "title": "CCNL Igiene ambientale Utilitalia, testo consolidato 24 luglio 2025 con l'ipotesi di accordo del 9 dicembre 2025",
+                  "kind": "altro",
+                  "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf",
+                  "published_on": "2025-12-09",
+                  "sha256": "57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756"
                 },
-                "section": "Tabella retributiva"
+                "page": "97",
+                "section": "Tabella economica nuovi parametri e confluenze, II-IV tranche",
+                "quote": "A2 (row 4 of the table of p. 96) [...] 01-01-2027 2853,04 €"
               },
+              "transformation": "The printed retribuzione base parametrale of the tranche; the rows of p. 97 follow the labelled rows of p. 96.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T19:00:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T19:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-igiene-2027-tranches"
               }
             }
           },
           {
             "valid_from": "2027-08-01",
             "valid_until": "2027-12-01",
-            "value": "2880.50",
+            "value": "2906.97",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-551",
-                  "title": "ccnl-aspx-c-551",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551"
+                  "document_id": "igiene-ambientale-consolidato-2025-ipotesi-2025",
+                  "title": "CCNL Igiene ambientale Utilitalia, testo consolidato 24 luglio 2025 con l'ipotesi di accordo del 9 dicembre 2025",
+                  "kind": "altro",
+                  "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf",
+                  "published_on": "2025-12-09",
+                  "sha256": "57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756"
                 },
-                "section": "Tabella retributiva"
+                "page": "97",
+                "section": "Tabella economica nuovi parametri e confluenze, II-IV tranche",
+                "quote": "A2 (row 4 of the table of p. 96) [...] 01-08-2027 2906,97 €"
               },
+              "transformation": "The printed retribuzione base parametrale of the tranche; the rows of p. 97 follow the labelled rows of p. 96.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T19:00:00Z",
+                "effective_from": "2027-08-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T19:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-igiene-2027-tranches"
               }
             }
           },
           {
             "valid_from": "2027-12-01",
             "valid_until": null,
-            "value": "2920.50",
+            "value": "2960.90",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-551",
-                  "title": "ccnl-aspx-c-551",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551"
+                  "document_id": "igiene-ambientale-consolidato-2025-ipotesi-2025",
+                  "title": "CCNL Igiene ambientale Utilitalia, testo consolidato 24 luglio 2025 con l'ipotesi di accordo del 9 dicembre 2025",
+                  "kind": "altro",
+                  "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf",
+                  "published_on": "2025-12-09",
+                  "sha256": "57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756"
                 },
-                "section": "Tabella retributiva"
+                "page": "97",
+                "section": "Tabella economica nuovi parametri e confluenze, II-IV tranche",
+                "quote": "A2 (row 4 of the table of p. 96) [...] 01-12-2027 2960,90 €"
               },
+              "transformation": "The printed retribuzione base parametrale of the tranche; the rows of p. 97 follow the labelled rows of p. 96.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T19:00:00Z",
+                "effective_from": "2027-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T19:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-igiene-2027-tranches"
               }
             }
           }
@@ -3777,69 +4132,96 @@
           {
             "valid_from": "2027-01-01",
             "valid_until": "2027-08-01",
-            "value": "2985.21",
+            "value": "3000.25",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-551",
-                  "title": "ccnl-aspx-c-551",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551"
+                  "document_id": "igiene-ambientale-consolidato-2025-ipotesi-2025",
+                  "title": "CCNL Igiene ambientale Utilitalia, testo consolidato 24 luglio 2025 con l'ipotesi di accordo del 9 dicembre 2025",
+                  "kind": "altro",
+                  "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf",
+                  "published_on": "2025-12-09",
+                  "sha256": "57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756"
                 },
-                "section": "Tabella retributiva"
+                "page": "97",
+                "section": "Tabella economica nuovi parametri e confluenze, II-IV tranche",
+                "quote": "A2s (row 3 of the table of p. 96) [...] 01-01-2027 3000,25 €"
               },
+              "transformation": "The printed retribuzione base parametrale of the tranche; the rows of p. 97 follow the labelled rows of p. 96.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T19:00:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T19:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-igiene-2027-tranches"
               }
             }
           },
           {
             "valid_from": "2027-08-01",
             "valid_until": "2027-12-01",
-            "value": "3025.21",
+            "value": "3056.96",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-551",
-                  "title": "ccnl-aspx-c-551",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551"
+                  "document_id": "igiene-ambientale-consolidato-2025-ipotesi-2025",
+                  "title": "CCNL Igiene ambientale Utilitalia, testo consolidato 24 luglio 2025 con l'ipotesi di accordo del 9 dicembre 2025",
+                  "kind": "altro",
+                  "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf",
+                  "published_on": "2025-12-09",
+                  "sha256": "57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756"
                 },
-                "section": "Tabella retributiva"
+                "page": "97",
+                "section": "Tabella economica nuovi parametri e confluenze, II-IV tranche",
+                "quote": "A2s (row 3 of the table of p. 96) [...] 01-08-2027 3056,96 €"
               },
+              "transformation": "The printed retribuzione base parametrale of the tranche; the rows of p. 97 follow the labelled rows of p. 96.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T19:00:00Z",
+                "effective_from": "2027-08-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T19:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-igiene-2027-tranches"
               }
             }
           },
           {
             "valid_from": "2027-12-01",
             "valid_until": null,
-            "value": "3065.21",
+            "value": "3113.67",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-551",
-                  "title": "ccnl-aspx-c-551",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551"
+                  "document_id": "igiene-ambientale-consolidato-2025-ipotesi-2025",
+                  "title": "CCNL Igiene ambientale Utilitalia, testo consolidato 24 luglio 2025 con l'ipotesi di accordo del 9 dicembre 2025",
+                  "kind": "altro",
+                  "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf",
+                  "published_on": "2025-12-09",
+                  "sha256": "57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756"
                 },
-                "section": "Tabella retributiva"
+                "page": "97",
+                "section": "Tabella economica nuovi parametri e confluenze, II-IV tranche",
+                "quote": "A2s (row 3 of the table of p. 96) [...] 01-12-2027 3113,67 €"
               },
+              "transformation": "The printed retribuzione base parametrale of the tranche; the rows of p. 97 follow the labelled rows of p. 96.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T19:00:00Z",
+                "effective_from": "2027-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T19:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-igiene-2027-tranches"
               }
             }
           }
@@ -3964,69 +4346,96 @@
           {
             "valid_from": "2027-01-01",
             "valid_until": "2027-08-01",
-            "value": "3234.56",
+            "value": "3253.91",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-551",
-                  "title": "ccnl-aspx-c-551",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551"
+                  "document_id": "igiene-ambientale-consolidato-2025-ipotesi-2025",
+                  "title": "CCNL Igiene ambientale Utilitalia, testo consolidato 24 luglio 2025 con l'ipotesi di accordo del 9 dicembre 2025",
+                  "kind": "altro",
+                  "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf",
+                  "published_on": "2025-12-09",
+                  "sha256": "57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756"
                 },
-                "section": "Tabella retributiva"
+                "page": "97",
+                "section": "Tabella economica nuovi parametri e confluenze, II-IV tranche",
+                "quote": "A1 (row 2 of the table of p. 96) [...] 01-01-2027 3253,91 €"
               },
+              "transformation": "The printed retribuzione base parametrale of the tranche; the rows of p. 97 follow the labelled rows of p. 96.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T19:00:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T19:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-igiene-2027-tranches"
               }
             }
           },
           {
             "valid_from": "2027-08-01",
             "valid_until": "2027-12-01",
-            "value": "3274.56",
+            "value": "3315.42",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-551",
-                  "title": "ccnl-aspx-c-551",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551"
+                  "document_id": "igiene-ambientale-consolidato-2025-ipotesi-2025",
+                  "title": "CCNL Igiene ambientale Utilitalia, testo consolidato 24 luglio 2025 con l'ipotesi di accordo del 9 dicembre 2025",
+                  "kind": "altro",
+                  "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf",
+                  "published_on": "2025-12-09",
+                  "sha256": "57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756"
                 },
-                "section": "Tabella retributiva"
+                "page": "97",
+                "section": "Tabella economica nuovi parametri e confluenze, II-IV tranche",
+                "quote": "A1 (row 2 of the table of p. 96) [...] 01-08-2027 3315,42 €"
               },
+              "transformation": "The printed retribuzione base parametrale of the tranche; the rows of p. 97 follow the labelled rows of p. 96.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T19:00:00Z",
+                "effective_from": "2027-08-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T19:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-igiene-2027-tranches"
               }
             }
           },
           {
             "valid_from": "2027-12-01",
             "valid_until": null,
-            "value": "3314.56",
+            "value": "3376.93",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-551",
-                  "title": "ccnl-aspx-c-551",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551"
+                  "document_id": "igiene-ambientale-consolidato-2025-ipotesi-2025",
+                  "title": "CCNL Igiene ambientale Utilitalia, testo consolidato 24 luglio 2025 con l'ipotesi di accordo del 9 dicembre 2025",
+                  "kind": "altro",
+                  "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf",
+                  "published_on": "2025-12-09",
+                  "sha256": "57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756"
                 },
-                "section": "Tabella retributiva"
+                "page": "97",
+                "section": "Tabella economica nuovi parametri e confluenze, II-IV tranche",
+                "quote": "A1 (row 2 of the table of p. 96) [...] 01-12-2027 3376,93 €"
               },
+              "transformation": "The printed retribuzione base parametrale of the tranche; the rows of p. 97 follow the labelled rows of p. 96.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T19:00:00Z",
+                "effective_from": "2027-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T19:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-igiene-2027-tranches"
               }
             }
           }
@@ -4151,69 +4560,96 @@
           {
             "valid_from": "2027-01-01",
             "valid_until": "2027-08-01",
-            "value": "3554.41",
+            "value": "3579.30",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-551",
-                  "title": "ccnl-aspx-c-551",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551"
+                  "document_id": "igiene-ambientale-consolidato-2025-ipotesi-2025",
+                  "title": "CCNL Igiene ambientale Utilitalia, testo consolidato 24 luglio 2025 con l'ipotesi di accordo del 9 dicembre 2025",
+                  "kind": "altro",
+                  "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf",
+                  "published_on": "2025-12-09",
+                  "sha256": "57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756"
                 },
-                "section": "Tabella retributiva"
+                "page": "97",
+                "section": "Tabella economica nuovi parametri e confluenze, II-IV tranche",
+                "quote": "Q (row 1 of the table of p. 96) [...] 01-01-2027 3579,30 €"
               },
+              "transformation": "The printed retribuzione base parametrale of the tranche; the rows of p. 97 follow the labelled rows of p. 96.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T19:00:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T19:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-igiene-2027-tranches"
               }
             }
           },
           {
             "valid_from": "2027-08-01",
             "valid_until": "2027-12-01",
-            "value": "3594.41",
+            "value": "3646.96",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-551",
-                  "title": "ccnl-aspx-c-551",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551"
+                  "document_id": "igiene-ambientale-consolidato-2025-ipotesi-2025",
+                  "title": "CCNL Igiene ambientale Utilitalia, testo consolidato 24 luglio 2025 con l'ipotesi di accordo del 9 dicembre 2025",
+                  "kind": "altro",
+                  "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf",
+                  "published_on": "2025-12-09",
+                  "sha256": "57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756"
                 },
-                "section": "Tabella retributiva"
+                "page": "97",
+                "section": "Tabella economica nuovi parametri e confluenze, II-IV tranche",
+                "quote": "Q (row 1 of the table of p. 96) [...] 01-08-2027 3646,96 €"
               },
+              "transformation": "The printed retribuzione base parametrale of the tranche; the rows of p. 97 follow the labelled rows of p. 96.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T19:00:00Z",
+                "effective_from": "2027-08-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T19:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-igiene-2027-tranches"
               }
             }
           },
           {
             "valid_from": "2027-12-01",
             "valid_until": null,
-            "value": "3634.41",
+            "value": "3714.62",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aspx-c-551",
-                  "title": "ccnl-aspx-c-551",
-                  "kind": "rivista",
-                  "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551"
+                  "document_id": "igiene-ambientale-consolidato-2025-ipotesi-2025",
+                  "title": "CCNL Igiene ambientale Utilitalia, testo consolidato 24 luglio 2025 con l'ipotesi di accordo del 9 dicembre 2025",
+                  "kind": "altro",
+                  "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf",
+                  "published_on": "2025-12-09",
+                  "sha256": "57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756"
                 },
-                "section": "Tabella retributiva"
+                "page": "97",
+                "section": "Tabella economica nuovi parametri e confluenze, II-IV tranche",
+                "quote": "Q (row 1 of the table of p. 96) [...] 01-12-2027 3714,62 €"
               },
+              "transformation": "The printed retribuzione base parametrale of the tranche; the rows of p. 97 follow the labelled rows of p. 96.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T19:00:00Z",
+                "effective_from": "2027-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T19:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-igiene-2027-tranches"
               }
             }
           }
@@ -4314,7 +4750,7 @@
     "effective_until": "2027-12-31",
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551",
     "verification_status": "unverified",
-    "source_hash": "c6450626eeddaf7fd45ed867aefa884e66bebad49557086a8d22ca159b4ae7bb",
+    "source_hash": "f6287e38435bbae7a531e6883492f55282f5687ce93450cbec11c2b82f96e53b",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -4600,6 +5036,27 @@
         "independence": "same_process",
         "checked": [
           "parameters.health_funds"
+        ]
+      },
+      {
+        "id": "2026-11-07-ai-igiene-2027-tranches",
+        "date": "2026-11-07",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The 2027 tranches of the table 'nuovi parametri e confluenze' of the ipotesi of 9 December 2025 (pp. 96-97, text layer).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf",
+            "sha256": "57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756"
+          }
+        ],
+        "findings": [
+          "The II-IV tranches are parametric by level (Q +60.89/+67.66/+67.66, D2 +24.91/+27.68/+27.68); the file applied the C2s increments (36/40/40) to every level: 45 values corrected."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels.base_salary"
         ]
       }
     ]

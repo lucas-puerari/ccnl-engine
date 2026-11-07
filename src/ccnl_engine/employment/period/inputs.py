@@ -110,10 +110,15 @@ class EmploymentPeriod:
         naspi_case: The case of the end that changes the NASpI contribution,
             a collective dismissal or ``NaspiCase.ORDINARY``; ``None`` when
             not stated (the contribution carries a limitation).
+        probation_until: Last day of the periodo di prova, read by a fund
+            that leaves out the workers on probation (FASDA, Igiene
+            ambientale art. 65 lett. B); ``None`` when there is none or it
+            is not stated.
 
     Raises:
-        InvalidInputError: When a date is not a ``date``, ``ended_on`` is
-            before ``started_on``, ``ended_by`` comes without ``ended_on``,
+        InvalidInputError: When a date is not a ``date``, ``ended_on`` or
+            ``probation_until`` is before ``started_on``, ``ended_by``
+            comes without ``ended_on``,
             ``just_cause`` with a cause other than a dismissal or a
             resignation, or ``naspi_case`` without its own cause.
     """
@@ -123,9 +128,26 @@ class EmploymentPeriod:
     ended_by: TerminationCause | None = None
     just_cause: bool | None = None
     naspi_case: NaspiCase | CollectiveDismissal | None = None
+    probation_until: date | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
         require_date(self.started_on, "EmploymentPeriod.started_on", feature=FEATURE)
+        require_date(
+            self.probation_until,
+            "EmploymentPeriod.probation_until",
+            feature=FEATURE,
+            optional=True,
+        )
+        if self.probation_until is not None and self.probation_until < self.started_on:
+            msg = (
+                f"probation_until ({self.probation_until}) must not precede "
+                f"started_on ({self.started_on})"
+            )
+            raise InvalidInputError(
+                msg,
+                field="EmploymentPeriod.probation_until",
+                feature=FEATURE,
+            )
         require_date(
             self.ended_on, "EmploymentPeriod.ended_on", feature=FEATURE, optional=True
         )
