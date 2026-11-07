@@ -14,7 +14,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 0/136 CCNLs.** Bundle: 272 weak rules, 413 open limitations (413 with a monetary impact).
+**Complete: 0/136 CCNLs.** Bundle: 272 weak rules, 412 open limitations (412 with a monetary impact).
 
 ## Declared window
 
