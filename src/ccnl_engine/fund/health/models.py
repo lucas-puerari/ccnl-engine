@@ -63,6 +63,10 @@ class ContractualFund(BaseModel):
             "a tempo indeterminato" (Cooperative sociali art. 28).
         minimum_fixed_term_months: Months a fixed term must reach to be
             covered, when its end is stated (FASDA: "almeno pari a 12 mesi").
+        fixed_term_months_in_year: Whether ``minimum_fixed_term_months``
+            counts only the months of the fixed term within the calendar
+            year of the run (Alimentari art. 74 quater: FASA for the fixed
+            terms of at least nine months "nell'anno solare").
         minimum_weekly_hours: Weekly hours below which a part-timer is not
             covered (FASDA: 50% of the 38-hour week).
         excludes_probation: Whether a month that starts within the periodo
@@ -122,6 +126,7 @@ class ContractualFund(BaseModel):
     permanent_only: bool = False
     apprentices_permanent: bool = False
     minimum_fixed_term_months: int | None = Field(default=None, ge=1)
+    fixed_term_months_in_year: bool = False
     minimum_weekly_hours: Decimal | None = Field(default=None, gt=0)
     excludes_probation: bool = False
     group: str | None = None
