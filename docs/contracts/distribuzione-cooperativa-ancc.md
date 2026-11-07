@@ -52,7 +52,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-03-29 |
-| **Last review** | 2026-11-07 |
+| **Last review** | 2026-11-08 |
 | **Latest salary tranche** | 2027-03-01 |
 
 ## Review history
@@ -64,6 +64,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-05 | claude-opus-5-5 (ai) | The hourly divisors of art. 187 (PDF p. 201) and the normal week of art. 113 (PDF pp. 151-152) of the 2011 official text, read by a separate research session and checked again on the text layer. | corrected | Art. 187 c. 2: 165 for 38 hours, 167 for 38.5, 168 for 40 and 39, 182 for 42, 184 from 42.5 to 44: work_rules.time_supplements.week_divisors, hourly_divisor_weekly_hours 38.<br>The coverage note cited art. 198 and a 195 divisor for 45 hours: art. 198 is the resignation for marriage and art. 187 sets no 45-hour divisor. |
 | 2026-11-07 | claude-opus-5-5 (ai) | The monthly values of the levels against the primary tables (text layer). | confirmed | 10 values found verbatim on the cited pages and marked verified; 36 left as they were (derived or not on a text page). |
 | 2026-11-07 | gpt-6-sol (ai) | Terzo elemento against art. 186 of the signed text and the later renewals. | corrected | The file paid 3.07 from a secondary table; art. 186 c. 4 prints 3,10 and no later renewal amends it (research .private/research/work/r-distr-coop). Corrected on all levels. |
+| 2026-11-08 | claude-opus-5-5 (ai) | The monthly values of the levels against the primary tables (text layer). | confirmed | 19 values found verbatim on the cited pages and marked verified; 36 left as they were (derived or not on a text page). |
 
 ## Salary table
 

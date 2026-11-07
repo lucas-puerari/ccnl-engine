@@ -264,21 +264,28 @@
             "valid_until": "2025-01-01",
             "value": "1239.31",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                  "title": "ccnl-aninsei-2024-2027cd-pdf",
+                  "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                  "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
                   "kind": "associazione",
-                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                  "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
                 },
-                "section": "Tabella retributiva"
+                "page": "51",
+                "section": "Art. 22 – Retribuzione tabellare (four effective-date columns)",
+                "quote": "I          1.239,31 €      1.280,91 €       1.322,51 €    1.347,46 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2024-06-15",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
               }
             }
           },
@@ -287,21 +294,28 @@
             "valid_until": "2026-01-01",
             "value": "1280.91",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                  "title": "ccnl-aninsei-2024-2027cd-pdf",
+                  "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                  "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
                   "kind": "associazione",
-                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                  "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
                 },
-                "section": "Tabella retributiva"
+                "page": "51",
+                "section": "Art. 22 – Retribuzione tabellare (four effective-date columns)",
+                "quote": "I          1.239,31 €      1.280,91 €       1.322,51 €    1.347,46 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
               }
             }
           },
@@ -310,21 +324,28 @@
             "valid_until": "2027-01-01",
             "value": "1322.51",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                  "title": "ccnl-aninsei-2024-2027cd-pdf",
+                  "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                  "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
                   "kind": "associazione",
-                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                  "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
                 },
-                "section": "Tabella retributiva"
+                "page": "51",
+                "section": "Art. 22 – Retribuzione tabellare (four effective-date columns)",
+                "quote": "I          1.239,31 €      1.280,91 €       1.322,51 €    1.347,46 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
               }
             }
           },
@@ -333,21 +354,28 @@
             "valid_until": null,
             "value": "1347.46",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                  "title": "ccnl-aninsei-2024-2027cd-pdf",
+                  "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                  "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
                   "kind": "associazione",
-                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                  "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
                 },
-                "section": "Tabella retributiva"
+                "page": "51",
+                "section": "Art. 22 – Retribuzione tabellare (four effective-date columns)",
+                "quote": "I          1.239,31 €      1.280,91 €       1.322,51 €    1.347,46 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
               }
             }
           }
@@ -367,7 +395,32 @@
               {
                 "valid_from": "2025-01-01",
                 "valid_until": null,
-                "value": "20.00"
+                "value": "20.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                      "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
+                      "kind": "associazione",
+                      "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                      "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+                    },
+                    "page": "53",
+                    "section": "Art. 24 - Salario d’anzianità (cumulative hire-date bands; component by successive-row subtraction)",
+                    "quote": "di 20,00 euro."
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2025-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
+                  }
+                }
               }
             ]
           },
@@ -405,7 +458,32 @@
               {
                 "valid_from": "2024-06-15",
                 "valid_until": null,
-                "value": "15.00"
+                "value": "15.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                      "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
+                      "kind": "associazione",
+                      "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                      "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+                    },
+                    "page": "53",
+                    "section": "Art. 24 - Salario d’anzianità (cumulative hire-date bands; component by successive-row subtraction)",
+                    "quote": "5      € 15,00       € 25,00      € 35,00      € 45,00      € 55,00     € 70,00  € 90,00"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2024-06-15",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
+                  }
+                }
               }
             ]
           },
@@ -443,7 +521,32 @@
               {
                 "valid_from": "2024-06-15",
                 "valid_until": null,
-                "value": "10.00"
+                "value": "10.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                      "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
+                      "kind": "associazione",
+                      "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                      "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+                    },
+                    "page": "53",
+                    "section": "Art. 24 - Salario d’anzianità (cumulative hire-date bands; component by successive-row subtraction)",
+                    "quote": "€ 10,00     € 20,00     € 30,00      € 40,00        € 55,00   €755,00"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2024-06-15",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
+                  }
+                }
               }
             ]
           },
@@ -519,7 +622,32 @@
               {
                 "valid_from": "2024-06-15",
                 "valid_until": null,
-                "value": "10.00"
+                "value": "10.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                      "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
+                      "kind": "associazione",
+                      "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                      "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+                    },
+                    "page": "53",
+                    "section": "Art. 24 - Salario d’anzianità (cumulative hire-date bands; component by successive-row subtraction)",
+                    "quote": "€ 10,00     € 20,00     € 30,00      € 40,00        € 55,00   €755,00"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2024-06-15",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
+                  }
+                }
               }
             ]
           },
@@ -557,7 +685,32 @@
               {
                 "valid_from": "2024-06-15",
                 "valid_until": null,
-                "value": "10.00"
+                "value": "10.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                      "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
+                      "kind": "associazione",
+                      "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                      "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+                    },
+                    "page": "53",
+                    "section": "Art. 24 - Salario d’anzianità (cumulative hire-date bands; component by successive-row subtraction)",
+                    "quote": "€ 10,00     € 20,00     € 30,00      € 40,00        € 55,00   €755,00"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2024-06-15",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
+                  }
+                }
               }
             ]
           },
@@ -595,7 +748,32 @@
               {
                 "valid_from": "2024-06-15",
                 "valid_until": null,
-                "value": "15.00"
+                "value": "15.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                      "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
+                      "kind": "associazione",
+                      "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                      "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+                    },
+                    "page": "53",
+                    "section": "Art. 24 - Salario d’anzianità (cumulative hire-date bands; component by successive-row subtraction)",
+                    "quote": "5      € 15,00       € 25,00      € 35,00      € 45,00      € 55,00     € 70,00  € 90,00"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2024-06-15",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
+                  }
+                }
               }
             ]
           },
@@ -656,21 +834,28 @@
             "valid_until": "2025-01-01",
             "value": "1268.88",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                  "title": "ccnl-aninsei-2024-2027cd-pdf",
+                  "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                  "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
                   "kind": "associazione",
-                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                  "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
                 },
-                "section": "Tabella retributiva"
+                "page": "51",
+                "section": "Art. 22 – Retribuzione tabellare (four effective-date columns)",
+                "quote": "II         1.268,88 €      1.311,47 €       1.354,06 €    1.379,61 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2024-06-15",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
               }
             }
           },
@@ -679,21 +864,28 @@
             "valid_until": "2026-01-01",
             "value": "1311.47",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                  "title": "ccnl-aninsei-2024-2027cd-pdf",
+                  "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                  "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
                   "kind": "associazione",
-                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                  "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
                 },
-                "section": "Tabella retributiva"
+                "page": "51",
+                "section": "Art. 22 – Retribuzione tabellare (four effective-date columns)",
+                "quote": "II         1.268,88 €      1.311,47 €       1.354,06 €    1.379,61 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
               }
             }
           },
@@ -702,21 +894,28 @@
             "valid_until": "2027-01-01",
             "value": "1354.06",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                  "title": "ccnl-aninsei-2024-2027cd-pdf",
+                  "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                  "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
                   "kind": "associazione",
-                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                  "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
                 },
-                "section": "Tabella retributiva"
+                "page": "51",
+                "section": "Art. 22 – Retribuzione tabellare (four effective-date columns)",
+                "quote": "II         1.268,88 €      1.311,47 €       1.354,06 €    1.379,61 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
               }
             }
           },
@@ -725,21 +924,28 @@
             "valid_until": null,
             "value": "1379.61",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                  "title": "ccnl-aninsei-2024-2027cd-pdf",
+                  "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                  "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
                   "kind": "associazione",
-                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                  "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
                 },
-                "section": "Tabella retributiva"
+                "page": "51",
+                "section": "Art. 22 – Retribuzione tabellare (four effective-date columns)",
+                "quote": "II         1.268,88 €      1.311,47 €       1.354,06 €    1.379,61 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
               }
             }
           }
@@ -759,7 +965,32 @@
               {
                 "valid_from": "2025-01-01",
                 "valid_until": null,
-                "value": "20.00"
+                "value": "20.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                      "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
+                      "kind": "associazione",
+                      "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                      "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+                    },
+                    "page": "53",
+                    "section": "Art. 24 - Salario d’anzianità (cumulative hire-date bands; component by successive-row subtraction)",
+                    "quote": "di 20,00 euro."
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2025-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
+                  }
+                }
               }
             ]
           },
@@ -797,7 +1028,32 @@
               {
                 "valid_from": "2024-06-15",
                 "valid_until": null,
-                "value": "15.00"
+                "value": "15.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                      "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
+                      "kind": "associazione",
+                      "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                      "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+                    },
+                    "page": "53",
+                    "section": "Art. 24 - Salario d’anzianità (cumulative hire-date bands; component by successive-row subtraction)",
+                    "quote": "5      € 15,00       € 25,00      € 35,00      € 45,00      € 55,00     € 70,00  € 90,00"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2024-06-15",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
+                  }
+                }
               }
             ]
           },
@@ -835,7 +1091,32 @@
               {
                 "valid_from": "2024-06-15",
                 "valid_until": null,
-                "value": "10.00"
+                "value": "10.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                      "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
+                      "kind": "associazione",
+                      "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                      "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+                    },
+                    "page": "53",
+                    "section": "Art. 24 - Salario d’anzianità (cumulative hire-date bands; component by successive-row subtraction)",
+                    "quote": "€ 10,00     € 20,00     € 30,00      € 40,00        € 55,00   €755,00"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2024-06-15",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
+                  }
+                }
               }
             ]
           },
@@ -911,7 +1192,32 @@
               {
                 "valid_from": "2024-06-15",
                 "valid_until": null,
-                "value": "10.00"
+                "value": "10.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                      "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
+                      "kind": "associazione",
+                      "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                      "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+                    },
+                    "page": "53",
+                    "section": "Art. 24 - Salario d’anzianità (cumulative hire-date bands; component by successive-row subtraction)",
+                    "quote": "€ 10,00     € 20,00     € 30,00      € 40,00        € 55,00   €755,00"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2024-06-15",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
+                  }
+                }
               }
             ]
           },
@@ -949,7 +1255,32 @@
               {
                 "valid_from": "2024-06-15",
                 "valid_until": null,
-                "value": "10.00"
+                "value": "10.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                      "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
+                      "kind": "associazione",
+                      "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                      "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+                    },
+                    "page": "53",
+                    "section": "Art. 24 - Salario d’anzianità (cumulative hire-date bands; component by successive-row subtraction)",
+                    "quote": "€ 10,00     € 20,00     € 30,00      € 40,00        € 55,00   €755,00"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2024-06-15",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
+                  }
+                }
               }
             ]
           },
@@ -987,7 +1318,32 @@
               {
                 "valid_from": "2024-06-15",
                 "valid_until": null,
-                "value": "15.00"
+                "value": "15.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                      "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
+                      "kind": "associazione",
+                      "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                      "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+                    },
+                    "page": "53",
+                    "section": "Art. 24 - Salario d’anzianità (cumulative hire-date bands; component by successive-row subtraction)",
+                    "quote": "5      € 15,00       € 25,00      € 35,00      € 45,00      € 55,00     € 70,00  € 90,00"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2024-06-15",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
+                  }
+                }
               }
             ]
           },
@@ -1048,21 +1404,28 @@
             "valid_until": "2025-01-01",
             "value": "1330.16",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                  "title": "ccnl-aninsei-2024-2027cd-pdf",
+                  "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                  "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
                   "kind": "associazione",
-                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                  "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
                 },
-                "section": "Tabella retributiva"
+                "page": "51",
+                "section": "Art. 22 – Retribuzione tabellare (four effective-date columns)",
+                "quote": "III         1.330,16 €      1.374,81 €       1.419,45 €    1.446,24 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2024-06-15",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
               }
             }
           },
@@ -1071,21 +1434,28 @@
             "valid_until": "2026-01-01",
             "value": "1374.81",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                  "title": "ccnl-aninsei-2024-2027cd-pdf",
+                  "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                  "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
                   "kind": "associazione",
-                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                  "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
                 },
-                "section": "Tabella retributiva"
+                "page": "51",
+                "section": "Art. 22 – Retribuzione tabellare (four effective-date columns)",
+                "quote": "III         1.330,16 €      1.374,81 €       1.419,45 €    1.446,24 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
               }
             }
           },
@@ -1094,21 +1464,28 @@
             "valid_until": "2027-01-01",
             "value": "1419.45",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                  "title": "ccnl-aninsei-2024-2027cd-pdf",
+                  "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                  "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
                   "kind": "associazione",
-                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                  "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
                 },
-                "section": "Tabella retributiva"
+                "page": "51",
+                "section": "Art. 22 – Retribuzione tabellare (four effective-date columns)",
+                "quote": "III         1.330,16 €      1.374,81 €       1.419,45 €    1.446,24 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
               }
             }
           },
@@ -1117,21 +1494,28 @@
             "valid_until": null,
             "value": "1446.24",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                  "title": "ccnl-aninsei-2024-2027cd-pdf",
+                  "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                  "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
                   "kind": "associazione",
-                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                  "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
                 },
-                "section": "Tabella retributiva"
+                "page": "51",
+                "section": "Art. 22 – Retribuzione tabellare (four effective-date columns)",
+                "quote": "III         1.330,16 €      1.374,81 €       1.419,45 €    1.446,24 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
               }
             }
           }
@@ -1151,7 +1535,32 @@
               {
                 "valid_from": "2025-01-01",
                 "valid_until": null,
-                "value": "20.00"
+                "value": "20.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                      "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
+                      "kind": "associazione",
+                      "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                      "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+                    },
+                    "page": "53",
+                    "section": "Art. 24 - Salario d’anzianità (cumulative hire-date bands; component by successive-row subtraction)",
+                    "quote": "di 20,00 euro."
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2025-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
+                  }
+                }
               }
             ]
           },
@@ -1189,7 +1598,32 @@
               {
                 "valid_from": "2024-06-15",
                 "valid_until": null,
-                "value": "15.00"
+                "value": "15.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                      "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
+                      "kind": "associazione",
+                      "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                      "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+                    },
+                    "page": "53",
+                    "section": "Art. 24 - Salario d’anzianità (cumulative hire-date bands; component by successive-row subtraction)",
+                    "quote": "5      € 15,00       € 25,00      € 35,00      € 45,00      € 55,00     € 70,00  € 90,00"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2024-06-15",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
+                  }
+                }
               }
             ]
           },
@@ -1227,7 +1661,32 @@
               {
                 "valid_from": "2024-06-15",
                 "valid_until": null,
-                "value": "10.00"
+                "value": "10.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                      "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
+                      "kind": "associazione",
+                      "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                      "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+                    },
+                    "page": "53",
+                    "section": "Art. 24 - Salario d’anzianità (cumulative hire-date bands; component by successive-row subtraction)",
+                    "quote": "€ 10,00     € 20,00     € 30,00      € 40,00        € 55,00   €755,00"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2024-06-15",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
+                  }
+                }
               }
             ]
           },
@@ -1303,7 +1762,32 @@
               {
                 "valid_from": "2024-06-15",
                 "valid_until": null,
-                "value": "10.00"
+                "value": "10.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                      "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
+                      "kind": "associazione",
+                      "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                      "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+                    },
+                    "page": "53",
+                    "section": "Art. 24 - Salario d’anzianità (cumulative hire-date bands; component by successive-row subtraction)",
+                    "quote": "€ 10,00     € 20,00     € 30,00      € 40,00        € 55,00   €755,00"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2024-06-15",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
+                  }
+                }
               }
             ]
           },
@@ -1341,7 +1825,32 @@
               {
                 "valid_from": "2024-06-15",
                 "valid_until": null,
-                "value": "10.00"
+                "value": "10.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                      "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
+                      "kind": "associazione",
+                      "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                      "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+                    },
+                    "page": "53",
+                    "section": "Art. 24 - Salario d’anzianità (cumulative hire-date bands; component by successive-row subtraction)",
+                    "quote": "€ 10,00     € 20,00     € 30,00      € 40,00        € 55,00   €755,00"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2024-06-15",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
+                  }
+                }
               }
             ]
           },
@@ -1379,7 +1888,32 @@
               {
                 "valid_from": "2024-06-15",
                 "valid_until": null,
-                "value": "15.00"
+                "value": "15.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                      "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
+                      "kind": "associazione",
+                      "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                      "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+                    },
+                    "page": "53",
+                    "section": "Art. 24 - Salario d’anzianità (cumulative hire-date bands; component by successive-row subtraction)",
+                    "quote": "5      € 15,00       € 25,00      € 35,00      € 45,00      € 55,00     € 70,00  € 90,00"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2024-06-15",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
+                  }
+                }
               }
             ]
           },
@@ -1440,21 +1974,28 @@
             "valid_until": "2025-01-01",
             "value": "1397.56",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                  "title": "ccnl-aninsei-2024-2027cd-pdf",
+                  "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                  "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
                   "kind": "associazione",
-                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                  "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
                 },
-                "section": "Tabella retributiva"
+                "page": "51",
+                "section": "Art. 22 – Retribuzione tabellare (four effective-date columns)",
+                "quote": "IV          1.397,56 €      1.444,47 €       1.491,38 €    1.519,52 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2024-06-15",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
               }
             }
           },
@@ -1463,21 +2004,28 @@
             "valid_until": "2026-01-01",
             "value": "1444.47",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                  "title": "ccnl-aninsei-2024-2027cd-pdf",
+                  "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                  "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
                   "kind": "associazione",
-                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                  "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
                 },
-                "section": "Tabella retributiva"
+                "page": "51",
+                "section": "Art. 22 – Retribuzione tabellare (four effective-date columns)",
+                "quote": "IV          1.397,56 €      1.444,47 €       1.491,38 €    1.519,52 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
               }
             }
           },
@@ -1486,21 +2034,28 @@
             "valid_until": "2027-01-01",
             "value": "1491.38",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                  "title": "ccnl-aninsei-2024-2027cd-pdf",
+                  "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                  "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
                   "kind": "associazione",
-                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                  "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
                 },
-                "section": "Tabella retributiva"
+                "page": "51",
+                "section": "Art. 22 – Retribuzione tabellare (four effective-date columns)",
+                "quote": "IV          1.397,56 €      1.444,47 €       1.491,38 €    1.519,52 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
               }
             }
           },
@@ -1509,21 +2064,28 @@
             "valid_until": null,
             "value": "1519.52",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                  "title": "ccnl-aninsei-2024-2027cd-pdf",
+                  "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                  "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
                   "kind": "associazione",
-                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                  "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
                 },
-                "section": "Tabella retributiva"
+                "page": "51",
+                "section": "Art. 22 – Retribuzione tabellare (four effective-date columns)",
+                "quote": "IV          1.397,56 €      1.444,47 €       1.491,38 €    1.519,52 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
               }
             }
           }
@@ -1543,7 +2105,32 @@
               {
                 "valid_from": "2025-01-01",
                 "valid_until": null,
-                "value": "20.00"
+                "value": "20.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                      "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
+                      "kind": "associazione",
+                      "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                      "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+                    },
+                    "page": "53",
+                    "section": "Art. 24 - Salario d’anzianità (cumulative hire-date bands; component by successive-row subtraction)",
+                    "quote": "di 20,00 euro."
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2025-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
+                  }
+                }
               }
             ]
           },
@@ -1581,7 +2168,32 @@
               {
                 "valid_from": "2024-06-15",
                 "valid_until": null,
-                "value": "15.00"
+                "value": "15.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                      "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
+                      "kind": "associazione",
+                      "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                      "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+                    },
+                    "page": "53",
+                    "section": "Art. 24 - Salario d’anzianità (cumulative hire-date bands; component by successive-row subtraction)",
+                    "quote": "5      € 15,00       € 25,00      € 35,00      € 45,00      € 55,00     € 70,00  € 90,00"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2024-06-15",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
+                  }
+                }
               }
             ]
           },
@@ -1619,7 +2231,32 @@
               {
                 "valid_from": "2024-06-15",
                 "valid_until": null,
-                "value": "10.00"
+                "value": "10.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                      "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
+                      "kind": "associazione",
+                      "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                      "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+                    },
+                    "page": "53",
+                    "section": "Art. 24 - Salario d’anzianità (cumulative hire-date bands; component by successive-row subtraction)",
+                    "quote": "€ 10,00     € 20,00     € 30,00      € 40,00        € 55,00   €755,00"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2024-06-15",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
+                  }
+                }
               }
             ]
           },
@@ -1695,7 +2332,32 @@
               {
                 "valid_from": "2024-06-15",
                 "valid_until": null,
-                "value": "10.00"
+                "value": "10.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                      "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
+                      "kind": "associazione",
+                      "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                      "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+                    },
+                    "page": "53",
+                    "section": "Art. 24 - Salario d’anzianità (cumulative hire-date bands; component by successive-row subtraction)",
+                    "quote": "€ 10,00     € 20,00     € 30,00      € 40,00        € 55,00   €755,00"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2024-06-15",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
+                  }
+                }
               }
             ]
           },
@@ -1733,7 +2395,32 @@
               {
                 "valid_from": "2024-06-15",
                 "valid_until": null,
-                "value": "10.00"
+                "value": "10.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                      "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
+                      "kind": "associazione",
+                      "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                      "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+                    },
+                    "page": "53",
+                    "section": "Art. 24 - Salario d’anzianità (cumulative hire-date bands; component by successive-row subtraction)",
+                    "quote": "€ 10,00     € 20,00     € 30,00      € 40,00        € 55,00   €755,00"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2024-06-15",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
+                  }
+                }
               }
             ]
           },
@@ -1771,7 +2458,32 @@
               {
                 "valid_from": "2024-06-15",
                 "valid_until": null,
-                "value": "15.00"
+                "value": "15.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                      "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
+                      "kind": "associazione",
+                      "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                      "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+                    },
+                    "page": "53",
+                    "section": "Art. 24 - Salario d’anzianità (cumulative hire-date bands; component by successive-row subtraction)",
+                    "quote": "5      € 15,00       € 25,00      € 35,00      € 45,00      € 55,00     € 70,00  € 90,00"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2024-06-15",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
+                  }
+                }
               }
             ]
           },
@@ -1832,21 +2544,28 @@
             "valid_until": "2025-01-01",
             "value": "1489.64",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                  "title": "ccnl-aninsei-2024-2027cd-pdf",
+                  "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                  "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
                   "kind": "associazione",
-                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                  "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
                 },
-                "section": "Tabella retributiva"
+                "page": "51",
+                "section": "Art. 22 – Retribuzione tabellare (four effective-date columns)",
+                "quote": "V          1.489,64 €      1.539,64 €       1.589,64 €    1.619,64 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2024-06-15",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
               }
             }
           },
@@ -1855,21 +2574,28 @@
             "valid_until": "2026-01-01",
             "value": "1539.64",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                  "title": "ccnl-aninsei-2024-2027cd-pdf",
+                  "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                  "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
                   "kind": "associazione",
-                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                  "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
                 },
-                "section": "Tabella retributiva"
+                "page": "51",
+                "section": "Art. 22 – Retribuzione tabellare (four effective-date columns)",
+                "quote": "V          1.489,64 €      1.539,64 €       1.589,64 €    1.619,64 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
               }
             }
           },
@@ -1878,21 +2604,28 @@
             "valid_until": "2027-01-01",
             "value": "1589.64",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                  "title": "ccnl-aninsei-2024-2027cd-pdf",
+                  "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                  "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
                   "kind": "associazione",
-                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                  "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
                 },
-                "section": "Tabella retributiva"
+                "page": "51",
+                "section": "Art. 22 – Retribuzione tabellare (four effective-date columns)",
+                "quote": "V          1.489,64 €      1.539,64 €       1.589,64 €    1.619,64 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
               }
             }
           },
@@ -1901,21 +2634,28 @@
             "valid_until": null,
             "value": "1619.64",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                  "title": "ccnl-aninsei-2024-2027cd-pdf",
+                  "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                  "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
                   "kind": "associazione",
-                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                  "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
                 },
-                "section": "Tabella retributiva"
+                "page": "51",
+                "section": "Art. 22 – Retribuzione tabellare (four effective-date columns)",
+                "quote": "V          1.489,64 €      1.539,64 €       1.589,64 €    1.619,64 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
               }
             }
           }
@@ -1935,7 +2675,32 @@
               {
                 "valid_from": "2025-01-01",
                 "valid_until": null,
-                "value": "20.00"
+                "value": "20.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                      "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
+                      "kind": "associazione",
+                      "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                      "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+                    },
+                    "page": "53",
+                    "section": "Art. 24 - Salario d’anzianità (cumulative hire-date bands; component by successive-row subtraction)",
+                    "quote": "di 20,00 euro."
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2025-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
+                  }
+                }
               }
             ]
           },
@@ -1973,7 +2738,32 @@
               {
                 "valid_from": "2024-06-15",
                 "valid_until": null,
-                "value": "15.00"
+                "value": "15.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                      "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
+                      "kind": "associazione",
+                      "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                      "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+                    },
+                    "page": "53",
+                    "section": "Art. 24 - Salario d’anzianità (cumulative hire-date bands; component by successive-row subtraction)",
+                    "quote": "5      € 15,00       € 25,00      € 35,00      € 45,00      € 55,00     € 70,00  € 90,00"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2024-06-15",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
+                  }
+                }
               }
             ]
           },
@@ -2011,7 +2801,32 @@
               {
                 "valid_from": "2024-06-15",
                 "valid_until": null,
-                "value": "10.00"
+                "value": "10.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                      "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
+                      "kind": "associazione",
+                      "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                      "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+                    },
+                    "page": "53",
+                    "section": "Art. 24 - Salario d’anzianità (cumulative hire-date bands; component by successive-row subtraction)",
+                    "quote": "€ 10,00     € 20,00     € 30,00      € 40,00        € 55,00   €755,00"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2024-06-15",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
+                  }
+                }
               }
             ]
           },
@@ -2087,7 +2902,32 @@
               {
                 "valid_from": "2024-06-15",
                 "valid_until": null,
-                "value": "10.00"
+                "value": "10.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                      "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
+                      "kind": "associazione",
+                      "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                      "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+                    },
+                    "page": "53",
+                    "section": "Art. 24 - Salario d’anzianità (cumulative hire-date bands; component by successive-row subtraction)",
+                    "quote": "€ 10,00     € 20,00     € 30,00      € 40,00        € 55,00   €755,00"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2024-06-15",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
+                  }
+                }
               }
             ]
           },
@@ -2125,7 +2965,32 @@
               {
                 "valid_from": "2024-06-15",
                 "valid_until": null,
-                "value": "10.00"
+                "value": "10.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                      "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
+                      "kind": "associazione",
+                      "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                      "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+                    },
+                    "page": "53",
+                    "section": "Art. 24 - Salario d’anzianità (cumulative hire-date bands; component by successive-row subtraction)",
+                    "quote": "€ 10,00     € 20,00     € 30,00      € 40,00        € 55,00   €755,00"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2024-06-15",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
+                  }
+                }
               }
             ]
           },
@@ -2163,7 +3028,32 @@
               {
                 "valid_from": "2024-06-15",
                 "valid_until": null,
-                "value": "15.00"
+                "value": "15.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                      "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
+                      "kind": "associazione",
+                      "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                      "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+                    },
+                    "page": "53",
+                    "section": "Art. 24 - Salario d’anzianità (cumulative hire-date bands; component by successive-row subtraction)",
+                    "quote": "5      € 15,00       € 25,00      € 35,00      € 45,00      € 55,00     € 70,00  € 90,00"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2024-06-15",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
+                  }
+                }
               }
             ]
           },
@@ -2224,21 +3114,28 @@
             "valid_until": "2025-01-01",
             "value": "1489.64",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                  "title": "ccnl-aninsei-2024-2027cd-pdf",
+                  "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                  "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
                   "kind": "associazione",
-                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                  "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
                 },
-                "section": "Tabella retributiva"
+                "page": "51",
+                "section": "Art. 22 – Retribuzione tabellare (four effective-date columns)",
+                "quote": "V          1.489,64 €      1.539,64 €       1.589,64 €    1.619,64 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2024-06-15",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
               }
             }
           },
@@ -2247,21 +3144,28 @@
             "valid_until": "2026-01-01",
             "value": "1539.64",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                  "title": "ccnl-aninsei-2024-2027cd-pdf",
+                  "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                  "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
                   "kind": "associazione",
-                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                  "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
                 },
-                "section": "Tabella retributiva"
+                "page": "51",
+                "section": "Art. 22 – Retribuzione tabellare (four effective-date columns)",
+                "quote": "V          1.489,64 €      1.539,64 €       1.589,64 €    1.619,64 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
               }
             }
           },
@@ -2270,21 +3174,28 @@
             "valid_until": "2027-01-01",
             "value": "1589.64",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                  "title": "ccnl-aninsei-2024-2027cd-pdf",
+                  "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                  "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
                   "kind": "associazione",
-                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                  "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
                 },
-                "section": "Tabella retributiva"
+                "page": "51",
+                "section": "Art. 22 – Retribuzione tabellare (four effective-date columns)",
+                "quote": "V          1.489,64 €      1.539,64 €       1.589,64 €    1.619,64 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
               }
             }
           },
@@ -2293,21 +3204,28 @@
             "valid_until": null,
             "value": "1619.64",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                  "title": "ccnl-aninsei-2024-2027cd-pdf",
+                  "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                  "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
                   "kind": "associazione",
-                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                  "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
                 },
-                "section": "Tabella retributiva"
+                "page": "51",
+                "section": "Art. 22 – Retribuzione tabellare (four effective-date columns)",
+                "quote": "V          1.489,64 €      1.539,64 €       1.589,64 €    1.619,64 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
               }
             }
           }
@@ -2327,7 +3245,32 @@
               {
                 "valid_from": "2025-01-01",
                 "valid_until": null,
-                "value": "20.00"
+                "value": "20.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                      "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
+                      "kind": "associazione",
+                      "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                      "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+                    },
+                    "page": "53",
+                    "section": "Art. 24 - Salario d’anzianità (cumulative hire-date bands; component by successive-row subtraction)",
+                    "quote": "di 20,00 euro."
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2025-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
+                  }
+                }
               }
             ]
           },
@@ -2365,7 +3308,32 @@
               {
                 "valid_from": "2024-06-15",
                 "valid_until": null,
-                "value": "15.00"
+                "value": "15.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                      "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
+                      "kind": "associazione",
+                      "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                      "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+                    },
+                    "page": "53",
+                    "section": "Art. 24 - Salario d’anzianità (cumulative hire-date bands; component by successive-row subtraction)",
+                    "quote": "5      € 15,00       € 25,00      € 35,00      € 45,00      € 55,00     € 70,00  € 90,00"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2024-06-15",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
+                  }
+                }
               }
             ]
           },
@@ -2403,7 +3371,32 @@
               {
                 "valid_from": "2024-06-15",
                 "valid_until": null,
-                "value": "10.00"
+                "value": "10.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                      "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
+                      "kind": "associazione",
+                      "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                      "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+                    },
+                    "page": "53",
+                    "section": "Art. 24 - Salario d’anzianità (cumulative hire-date bands; component by successive-row subtraction)",
+                    "quote": "€ 10,00     € 20,00     € 30,00      € 40,00        € 55,00   €755,00"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2024-06-15",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
+                  }
+                }
               }
             ]
           },
@@ -2479,7 +3472,32 @@
               {
                 "valid_from": "2024-06-15",
                 "valid_until": null,
-                "value": "10.00"
+                "value": "10.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                      "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
+                      "kind": "associazione",
+                      "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                      "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+                    },
+                    "page": "53",
+                    "section": "Art. 24 - Salario d’anzianità (cumulative hire-date bands; component by successive-row subtraction)",
+                    "quote": "€ 10,00     € 20,00     € 30,00      € 40,00        € 55,00   €755,00"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2024-06-15",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
+                  }
+                }
               }
             ]
           },
@@ -2517,7 +3535,32 @@
               {
                 "valid_from": "2024-06-15",
                 "valid_until": null,
-                "value": "10.00"
+                "value": "10.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                      "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
+                      "kind": "associazione",
+                      "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                      "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+                    },
+                    "page": "53",
+                    "section": "Art. 24 - Salario d’anzianità (cumulative hire-date bands; component by successive-row subtraction)",
+                    "quote": "€ 10,00     € 20,00     € 30,00      € 40,00        € 55,00   €755,00"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2024-06-15",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
+                  }
+                }
               }
             ]
           },
@@ -2555,7 +3598,32 @@
               {
                 "valid_from": "2024-06-15",
                 "valid_until": null,
-                "value": "15.00"
+                "value": "15.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                      "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
+                      "kind": "associazione",
+                      "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                      "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+                    },
+                    "page": "53",
+                    "section": "Art. 24 - Salario d’anzianità (cumulative hire-date bands; component by successive-row subtraction)",
+                    "quote": "5      € 15,00       € 25,00      € 35,00      € 45,00      € 55,00     € 70,00  € 90,00"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2024-06-15",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
+                  }
+                }
               }
             ]
           },
@@ -2616,21 +3684,28 @@
             "valid_until": "2025-01-01",
             "value": "1512.44",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                  "title": "ccnl-aninsei-2024-2027cd-pdf",
+                  "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                  "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
                   "kind": "associazione",
-                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                  "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
                 },
-                "section": "Tabella retributiva"
+                "page": "51",
+                "section": "Art. 22 – Retribuzione tabellare (four effective-date columns)",
+                "quote": "VII         1.512,44 €      1.563,21 €       1.615,67 €    1.646,17 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2024-06-15",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
               }
             }
           },
@@ -2639,21 +3714,28 @@
             "valid_until": "2026-01-01",
             "value": "1563.21",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                  "title": "ccnl-aninsei-2024-2027cd-pdf",
+                  "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                  "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
                   "kind": "associazione",
-                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                  "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
                 },
-                "section": "Tabella retributiva"
+                "page": "51",
+                "section": "Art. 22 – Retribuzione tabellare (four effective-date columns)",
+                "quote": "VII         1.512,44 €      1.563,21 €       1.615,67 €    1.646,17 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
               }
             }
           },
@@ -2662,21 +3744,28 @@
             "valid_until": "2027-01-01",
             "value": "1615.67",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                  "title": "ccnl-aninsei-2024-2027cd-pdf",
+                  "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                  "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
                   "kind": "associazione",
-                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                  "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
                 },
-                "section": "Tabella retributiva"
+                "page": "51",
+                "section": "Art. 22 – Retribuzione tabellare (four effective-date columns)",
+                "quote": "VII         1.512,44 €      1.563,21 €       1.615,67 €    1.646,17 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
               }
             }
           },
@@ -2685,21 +3774,28 @@
             "valid_until": null,
             "value": "1646.17",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                  "title": "ccnl-aninsei-2024-2027cd-pdf",
+                  "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                  "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
                   "kind": "associazione",
-                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                  "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
                 },
-                "section": "Tabella retributiva"
+                "page": "51",
+                "section": "Art. 22 – Retribuzione tabellare (four effective-date columns)",
+                "quote": "VII         1.512,44 €      1.563,21 €       1.615,67 €    1.646,17 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
               }
             }
           }
@@ -2719,7 +3815,32 @@
               {
                 "valid_from": "2025-01-01",
                 "valid_until": null,
-                "value": "20.00"
+                "value": "20.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                      "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
+                      "kind": "associazione",
+                      "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                      "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+                    },
+                    "page": "53",
+                    "section": "Art. 24 - Salario d’anzianità (cumulative hire-date bands; component by successive-row subtraction)",
+                    "quote": "di 20,00 euro."
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2025-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
+                  }
+                }
               }
             ]
           },
@@ -2757,7 +3878,32 @@
               {
                 "valid_from": "2024-06-15",
                 "valid_until": null,
-                "value": "15.00"
+                "value": "15.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                      "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
+                      "kind": "associazione",
+                      "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                      "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+                    },
+                    "page": "53",
+                    "section": "Art. 24 - Salario d’anzianità (cumulative hire-date bands; component by successive-row subtraction)",
+                    "quote": "5      € 15,00       € 25,00      € 35,00      € 45,00      € 55,00     € 70,00  € 90,00"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2024-06-15",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
+                  }
+                }
               }
             ]
           },
@@ -2795,7 +3941,32 @@
               {
                 "valid_from": "2024-06-15",
                 "valid_until": null,
-                "value": "10.00"
+                "value": "10.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                      "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
+                      "kind": "associazione",
+                      "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                      "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+                    },
+                    "page": "53",
+                    "section": "Art. 24 - Salario d’anzianità (cumulative hire-date bands; component by successive-row subtraction)",
+                    "quote": "€ 10,00     € 20,00     € 30,00      € 40,00        € 55,00   €755,00"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2024-06-15",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
+                  }
+                }
               }
             ]
           },
@@ -2871,7 +4042,32 @@
               {
                 "valid_from": "2024-06-15",
                 "valid_until": null,
-                "value": "10.00"
+                "value": "10.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                      "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
+                      "kind": "associazione",
+                      "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                      "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+                    },
+                    "page": "53",
+                    "section": "Art. 24 - Salario d’anzianità (cumulative hire-date bands; component by successive-row subtraction)",
+                    "quote": "€ 10,00     € 20,00     € 30,00      € 40,00        € 55,00   €755,00"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2024-06-15",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
+                  }
+                }
               }
             ]
           },
@@ -2909,7 +4105,32 @@
               {
                 "valid_from": "2024-06-15",
                 "valid_until": null,
-                "value": "10.00"
+                "value": "10.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                      "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
+                      "kind": "associazione",
+                      "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                      "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+                    },
+                    "page": "53",
+                    "section": "Art. 24 - Salario d’anzianità (cumulative hire-date bands; component by successive-row subtraction)",
+                    "quote": "€ 10,00     € 20,00     € 30,00      € 40,00        € 55,00   €755,00"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2024-06-15",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
+                  }
+                }
               }
             ]
           },
@@ -2947,7 +4168,32 @@
               {
                 "valid_from": "2024-06-15",
                 "valid_until": null,
-                "value": "15.00"
+                "value": "15.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                      "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
+                      "kind": "associazione",
+                      "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                      "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+                    },
+                    "page": "53",
+                    "section": "Art. 24 - Salario d’anzianità (cumulative hire-date bands; component by successive-row subtraction)",
+                    "quote": "5      € 15,00       € 25,00      € 35,00      € 45,00      € 55,00     € 70,00  € 90,00"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2024-06-15",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
+                  }
+                }
               }
             ]
           },
@@ -3008,21 +4254,28 @@
             "valid_until": "2025-01-01",
             "value": "1585.38",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                  "title": "ccnl-aninsei-2024-2027cd-pdf",
+                  "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                  "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
                   "kind": "associazione",
-                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                  "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
                 },
-                "section": "Tabella retributiva"
+                "page": "51",
+                "section": "Art. 22 – Retribuzione tabellare (four effective-date columns)",
+                "quote": "VIII A       1.585,38 €      1.638,59 €       1.693,59 €    1.725,56 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2024-06-15",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
               }
             }
           },
@@ -3031,21 +4284,28 @@
             "valid_until": "2026-01-01",
             "value": "1638.59",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                  "title": "ccnl-aninsei-2024-2027cd-pdf",
+                  "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                  "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
                   "kind": "associazione",
-                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                  "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
                 },
-                "section": "Tabella retributiva"
+                "page": "51",
+                "section": "Art. 22 – Retribuzione tabellare (four effective-date columns)",
+                "quote": "VIII A       1.585,38 €      1.638,59 €       1.693,59 €    1.725,56 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
               }
             }
           },
@@ -3054,21 +4314,28 @@
             "valid_until": "2027-01-01",
             "value": "1693.59",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                  "title": "ccnl-aninsei-2024-2027cd-pdf",
+                  "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                  "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
                   "kind": "associazione",
-                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                  "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
                 },
-                "section": "Tabella retributiva"
+                "page": "51",
+                "section": "Art. 22 – Retribuzione tabellare (four effective-date columns)",
+                "quote": "VIII A       1.585,38 €      1.638,59 €       1.693,59 €    1.725,56 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
               }
             }
           },
@@ -3077,21 +4344,28 @@
             "valid_until": null,
             "value": "1725.56",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                  "title": "ccnl-aninsei-2024-2027cd-pdf",
+                  "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                  "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
                   "kind": "associazione",
-                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                  "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
                 },
-                "section": "Tabella retributiva"
+                "page": "51",
+                "section": "Art. 22 – Retribuzione tabellare (four effective-date columns)",
+                "quote": "VIII A       1.585,38 €      1.638,59 €       1.693,59 €    1.725,56 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
               }
             }
           }
@@ -3111,7 +4385,32 @@
               {
                 "valid_from": "2025-01-01",
                 "valid_until": null,
-                "value": "20.00"
+                "value": "20.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                      "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
+                      "kind": "associazione",
+                      "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                      "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+                    },
+                    "page": "53",
+                    "section": "Art. 24 - Salario d’anzianità (cumulative hire-date bands; component by successive-row subtraction)",
+                    "quote": "di 20,00 euro."
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2025-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
+                  }
+                }
               }
             ]
           },
@@ -3149,7 +4448,32 @@
               {
                 "valid_from": "2024-06-15",
                 "valid_until": null,
-                "value": "15.00"
+                "value": "15.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                      "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
+                      "kind": "associazione",
+                      "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                      "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+                    },
+                    "page": "53",
+                    "section": "Art. 24 - Salario d’anzianità (cumulative hire-date bands; component by successive-row subtraction)",
+                    "quote": "5      € 15,00       € 25,00      € 35,00      € 45,00      € 55,00     € 70,00  € 90,00"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2024-06-15",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
+                  }
+                }
               }
             ]
           },
@@ -3187,7 +4511,32 @@
               {
                 "valid_from": "2024-06-15",
                 "valid_until": null,
-                "value": "10.00"
+                "value": "10.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                      "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
+                      "kind": "associazione",
+                      "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                      "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+                    },
+                    "page": "53",
+                    "section": "Art. 24 - Salario d’anzianità (cumulative hire-date bands; component by successive-row subtraction)",
+                    "quote": "€ 10,00     € 20,00     € 30,00      € 40,00        € 55,00   €755,00"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2024-06-15",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
+                  }
+                }
               }
             ]
           },
@@ -3263,7 +4612,32 @@
               {
                 "valid_from": "2024-06-15",
                 "valid_until": null,
-                "value": "10.00"
+                "value": "10.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                      "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
+                      "kind": "associazione",
+                      "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                      "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+                    },
+                    "page": "53",
+                    "section": "Art. 24 - Salario d’anzianità (cumulative hire-date bands; component by successive-row subtraction)",
+                    "quote": "€ 10,00     € 20,00     € 30,00      € 40,00        € 55,00   €755,00"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2024-06-15",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
+                  }
+                }
               }
             ]
           },
@@ -3301,7 +4675,32 @@
               {
                 "valid_from": "2024-06-15",
                 "valid_until": null,
-                "value": "10.00"
+                "value": "10.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                      "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
+                      "kind": "associazione",
+                      "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                      "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+                    },
+                    "page": "53",
+                    "section": "Art. 24 - Salario d’anzianità (cumulative hire-date bands; component by successive-row subtraction)",
+                    "quote": "€ 10,00     € 20,00     € 30,00      € 40,00        € 55,00   €755,00"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2024-06-15",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
+                  }
+                }
               }
             ]
           },
@@ -3339,7 +4738,32 @@
               {
                 "valid_from": "2024-06-15",
                 "valid_until": null,
-                "value": "15.00"
+                "value": "15.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                      "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
+                      "kind": "associazione",
+                      "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                      "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+                    },
+                    "page": "53",
+                    "section": "Art. 24 - Salario d’anzianità (cumulative hire-date bands; component by successive-row subtraction)",
+                    "quote": "5      € 15,00       € 25,00      € 35,00      € 45,00      € 55,00     € 70,00  € 90,00"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2024-06-15",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
+                  }
+                }
               }
             ]
           },
@@ -3400,21 +4824,28 @@
             "valid_until": "2025-01-01",
             "value": "1671.80",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                  "title": "ccnl-aninsei-2024-2027cd-pdf",
+                  "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                  "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
                   "kind": "associazione",
-                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                  "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
                 },
-                "section": "Tabella retributiva"
+                "page": "51",
+                "section": "Art. 22 – Retribuzione tabellare (four effective-date columns)",
+                "quote": "VIII B       1.671,80 €      1.727,91 €       1.785,91 €    1.819,62 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2024-06-15",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
               }
             }
           },
@@ -3423,21 +4854,28 @@
             "valid_until": "2026-01-01",
             "value": "1727.91",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                  "title": "ccnl-aninsei-2024-2027cd-pdf",
+                  "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                  "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
                   "kind": "associazione",
-                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                  "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
                 },
-                "section": "Tabella retributiva"
+                "page": "51",
+                "section": "Art. 22 – Retribuzione tabellare (four effective-date columns)",
+                "quote": "VIII B       1.671,80 €      1.727,91 €       1.785,91 €    1.819,62 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
               }
             }
           },
@@ -3446,21 +4884,28 @@
             "valid_until": "2027-01-01",
             "value": "1785.91",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                  "title": "ccnl-aninsei-2024-2027cd-pdf",
+                  "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                  "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
                   "kind": "associazione",
-                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                  "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
                 },
-                "section": "Tabella retributiva"
+                "page": "51",
+                "section": "Art. 22 – Retribuzione tabellare (four effective-date columns)",
+                "quote": "VIII B       1.671,80 €      1.727,91 €       1.785,91 €    1.819,62 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
               }
             }
           },
@@ -3469,21 +4914,28 @@
             "valid_until": null,
             "value": "1819.62",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                  "title": "ccnl-aninsei-2024-2027cd-pdf",
+                  "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                  "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
                   "kind": "associazione",
-                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                  "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
                 },
-                "section": "Tabella retributiva"
+                "page": "51",
+                "section": "Art. 22 – Retribuzione tabellare (four effective-date columns)",
+                "quote": "VIII B       1.671,80 €      1.727,91 €       1.785,91 €    1.819,62 €"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
               }
             }
           }
@@ -3503,7 +4955,32 @@
               {
                 "valid_from": "2025-01-01",
                 "valid_until": null,
-                "value": "20.00"
+                "value": "20.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                      "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
+                      "kind": "associazione",
+                      "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                      "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+                    },
+                    "page": "53",
+                    "section": "Art. 24 - Salario d’anzianità (cumulative hire-date bands; component by successive-row subtraction)",
+                    "quote": "di 20,00 euro."
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2025-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
+                  }
+                }
               }
             ]
           },
@@ -3541,7 +5018,32 @@
               {
                 "valid_from": "2024-06-15",
                 "valid_until": null,
-                "value": "15.00"
+                "value": "15.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                      "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
+                      "kind": "associazione",
+                      "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                      "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+                    },
+                    "page": "53",
+                    "section": "Art. 24 - Salario d’anzianità (cumulative hire-date bands; component by successive-row subtraction)",
+                    "quote": "5      € 15,00       € 25,00      € 35,00      € 45,00      € 55,00     € 70,00  € 90,00"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2024-06-15",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
+                  }
+                }
               }
             ]
           },
@@ -3579,7 +5081,32 @@
               {
                 "valid_from": "2024-06-15",
                 "valid_until": null,
-                "value": "10.00"
+                "value": "10.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                      "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
+                      "kind": "associazione",
+                      "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                      "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+                    },
+                    "page": "53",
+                    "section": "Art. 24 - Salario d’anzianità (cumulative hire-date bands; component by successive-row subtraction)",
+                    "quote": "€ 10,00     € 20,00     € 30,00      € 40,00        € 55,00   €755,00"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2024-06-15",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
+                  }
+                }
               }
             ]
           },
@@ -3655,7 +5182,32 @@
               {
                 "valid_from": "2024-06-15",
                 "valid_until": null,
-                "value": "10.00"
+                "value": "10.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                      "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
+                      "kind": "associazione",
+                      "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                      "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+                    },
+                    "page": "53",
+                    "section": "Art. 24 - Salario d’anzianità (cumulative hire-date bands; component by successive-row subtraction)",
+                    "quote": "€ 10,00     € 20,00     € 30,00      € 40,00        € 55,00   €755,00"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2024-06-15",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
+                  }
+                }
               }
             ]
           },
@@ -3693,7 +5245,32 @@
               {
                 "valid_from": "2024-06-15",
                 "valid_until": null,
-                "value": "10.00"
+                "value": "10.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                      "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
+                      "kind": "associazione",
+                      "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                      "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+                    },
+                    "page": "53",
+                    "section": "Art. 24 - Salario d’anzianità (cumulative hire-date bands; component by successive-row subtraction)",
+                    "quote": "€ 10,00     € 20,00     € 30,00      € 40,00        € 55,00   €755,00"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2024-06-15",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
+                  }
+                }
               }
             ]
           },
@@ -3731,7 +5308,32 @@
               {
                 "valid_from": "2024-06-15",
                 "valid_until": null,
-                "value": "15.00"
+                "value": "15.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "scuole-private-laiche-aninsei-tables-7ded0d5d",
+                      "title": "scuole-private-laiche-aninsei: tabelle retributive (CCNL-ANINSEI_2024-2027cd.pdf)",
+                      "kind": "associazione",
+                      "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+                      "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+                    },
+                    "page": "53",
+                    "section": "Art. 24 - Salario d’anzianità (cumulative hire-date bands; component by successive-row subtraction)",
+                    "quote": "5      € 15,00       € 25,00      € 35,00      € 45,00      € 55,00     € 70,00  € 90,00"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2024-06-15",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables"
+                  }
+                }
               }
             ]
           },
@@ -3828,7 +5430,7 @@
     "effective_until": null,
     "source": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
     "verification_status": "unverified",
-    "source_hash": "8ef7a96c621c16b4ffc6006f4bcd1993e9ce6573b5f1ceea0e2cc2b2f35251cd",
+    "source_hash": "5533fa37df5a36dad9b162c4d809ad2229bfb1efcb4a13a09ac3f69b8fdd949a",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -4140,5 +5742,31 @@
         }
       }
     }
+  },
+  "verification": {
+    "reviews": [
+      {
+        "id": "2026-11-08-ai-scuole-private-laiche-aninsei-tables",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The monthly values of the levels against the primary tables (text layer).",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+            "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+          }
+        ],
+        "findings": [
+          "90 values found verbatim on the cited pages and marked verified; 0 left as they were (derived or not on a text page)."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels.base_salary",
+          "levels.fixed_allowances"
+        ]
+      }
+    ]
   }
 }
