@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 0 verified / 95 derived / 1 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 55 verified / 40 derived / 1 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-12-09 |
-| **Last review** | 2026-11-07 |
+| **Last review** | 2026-11-08 |
 | **Latest salary tranche** | 2027-11-01 |
 
 ## Review history
@@ -59,6 +59,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|---|---|
 | 2026-11-05 | claude-opus-5-5 (ai) | The hourly divisors of the 42- and 44-hour weeks, Art. 40 (PDF p. 86) and the weeks of Art. 19 (PDF p. 43) of the 2022 stesura, text layer. | corrected | Art. 40: 191 for the custodians and night watchmen (44 hours, art. 19 a), 182 for the drivers (42 hours, art. 19 b), 173 for the 40-hour week: work_rules.time_supplements.week_divisors 42/182 and 44/191, hourly_divisor_weekly_hours 40. |
 | 2026-11-07 | claude-opus-5-5 (ai) | Allegato 1 of the verbale of 9 December 2025 (p. 20, page image): the dates of the new minimi. | corrected | The third tranche runs 'dal mese di mar-27', not May 2027: the file missed March and April 2027 for every level; the amounts match. |
+| 2026-11-08 | gpt-6-sol (ai) | Monthly values on scanned pages, each read twice from the page image by two independent sessions of another model, the second without being told the expected value. | confirmed | 88 values read identically by both readings and equal to the file. |
 
 ## Salary table
 

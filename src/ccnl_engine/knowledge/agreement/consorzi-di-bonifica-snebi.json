@@ -207,6 +207,28 @@
         "checked": [
           "levels[AQ162,AQ164,AQ185,AQ187].fixed_allowances"
         ]
+      },
+      {
+        "id": "2026-11-08-ai-consorzi-di-bonifica-snebi-tables",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The monthly values of the levels against the primary tables (text layer).",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+            "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
+          }
+        ],
+        "findings": [
+          "45 values found verbatim on the cited pages and marked verified; 4 left as they were (derived or not on a text page)."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels.base_salary",
+          "levels.fixed_allowances"
+        ]
       }
     ]
   },
@@ -967,21 +989,28 @@
             "valid_until": "2026-01-01",
             "value": "1501.35",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "consorzi-di-bonifica-snebi",
-                  "title": "consorzi-di-bonifica-snebi",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.redigo.info/2026/03/06/ccnl-consorzi-di-bonifica-le-tabelle-retributive-aggiornate/"
+                  "document_id": "consorzi-di-bonifica-snebi-tables-558ceea9",
+                  "title": "consorzi-di-bonifica-snebi: tabelle retributive (flai-ccnl-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                  "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
                 },
-                "section": "Tabella retributiva"
+                "page": "159",
+                "section": "Allegato A, Retribuzione 2025-2026 dipendenti in servizio dal 15 luglio 2000, colonna Ret. 01/07/25",
+                "quote": "100         € 1.457,91              43,44         € 1.501,35              32,81         € 1.534,16"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-tables"
               }
             }
           },
@@ -990,21 +1019,28 @@
             "valid_until": null,
             "value": "1534.16",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "consorzi-di-bonifica-snebi",
-                  "title": "consorzi-di-bonifica-snebi",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.redigo.info/2026/03/06/ccnl-consorzi-di-bonifica-le-tabelle-retributive-aggiornate/"
+                  "document_id": "consorzi-di-bonifica-snebi-tables-558ceea9",
+                  "title": "consorzi-di-bonifica-snebi: tabelle retributive (flai-ccnl-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                  "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
                 },
-                "section": "Tabella retributiva"
+                "page": "159",
+                "section": "Allegato A, Retribuzione 2025-2026 dipendenti in servizio dal 15 luglio 2000, colonna Ret. 01/01/26",
+                "quote": "100         € 1.457,91              43,44         € 1.501,35              32,81         € 1.534,16"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-tables"
               }
             }
           }
@@ -1042,21 +1078,28 @@
             "valid_until": "2026-01-01",
             "value": "1561.40",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "consorzi-di-bonifica-snebi",
-                  "title": "consorzi-di-bonifica-snebi",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.redigo.info/2026/03/06/ccnl-consorzi-di-bonifica-le-tabelle-retributive-aggiornate/"
+                  "document_id": "consorzi-di-bonifica-snebi-tables-558ceea9",
+                  "title": "consorzi-di-bonifica-snebi: tabelle retributive (flai-ccnl-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                  "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
                 },
-                "section": "Tabella retributiva"
+                "page": "159",
+                "section": "Allegato A, Retribuzione 2025-2026 dipendenti in servizio dal 15 luglio 2000, colonna Ret. 01/07/25",
+                "quote": "104         € 1.516,22              45,18         € 1.561,40              34,13         € 1.595,53"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-tables"
               }
             }
           },
@@ -1065,21 +1108,28 @@
             "valid_until": null,
             "value": "1595.53",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "consorzi-di-bonifica-snebi",
-                  "title": "consorzi-di-bonifica-snebi",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.redigo.info/2026/03/06/ccnl-consorzi-di-bonifica-le-tabelle-retributive-aggiornate/"
+                  "document_id": "consorzi-di-bonifica-snebi-tables-558ceea9",
+                  "title": "consorzi-di-bonifica-snebi: tabelle retributive (flai-ccnl-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                  "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
                 },
-                "section": "Tabella retributiva"
+                "page": "159",
+                "section": "Allegato A, Retribuzione 2025-2026 dipendenti in servizio dal 15 luglio 2000, colonna Ret. 01/01/26",
+                "quote": "104         € 1.516,22              45,18         € 1.561,40              34,13         € 1.595,53"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-tables"
               }
             }
           }
@@ -1117,21 +1167,28 @@
             "valid_until": "2026-01-01",
             "value": "1606.45",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "consorzi-di-bonifica-snebi",
-                  "title": "consorzi-di-bonifica-snebi",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.redigo.info/2026/03/06/ccnl-consorzi-di-bonifica-le-tabelle-retributive-aggiornate/"
+                  "document_id": "consorzi-di-bonifica-snebi-tables-558ceea9",
+                  "title": "consorzi-di-bonifica-snebi: tabelle retributive (flai-ccnl-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                  "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
                 },
-                "section": "Tabella retributiva"
+                "page": "159",
+                "section": "Allegato A, Retribuzione 2025-2026 dipendenti in servizio dal 15 luglio 2000, colonna Ret. 01/07/25",
+                "quote": "107         € 1.559,97               46,48        € 1.606,45               35,11        € 1.641,56"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-tables"
               }
             }
           },
@@ -1140,21 +1197,28 @@
             "valid_until": null,
             "value": "1641.56",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "consorzi-di-bonifica-snebi",
-                  "title": "consorzi-di-bonifica-snebi",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.redigo.info/2026/03/06/ccnl-consorzi-di-bonifica-le-tabelle-retributive-aggiornate/"
+                  "document_id": "consorzi-di-bonifica-snebi-tables-558ceea9",
+                  "title": "consorzi-di-bonifica-snebi: tabelle retributive (flai-ccnl-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                  "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
                 },
-                "section": "Tabella retributiva"
+                "page": "159",
+                "section": "Allegato A, Retribuzione 2025-2026 dipendenti in servizio dal 15 luglio 2000, colonna Ret. 01/01/26",
+                "quote": "107         € 1.559,97               46,48        € 1.606,45               35,11        € 1.641,56"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-tables"
               }
             }
           }
@@ -1192,21 +1256,28 @@
             "valid_until": "2026-01-01",
             "value": "1681.53",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "consorzi-di-bonifica-snebi",
-                  "title": "consorzi-di-bonifica-snebi",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.redigo.info/2026/03/06/ccnl-consorzi-di-bonifica-le-tabelle-retributive-aggiornate/"
+                  "document_id": "consorzi-di-bonifica-snebi-tables-558ceea9",
+                  "title": "consorzi-di-bonifica-snebi: tabelle retributive (flai-ccnl-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                  "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
                 },
-                "section": "Tabella retributiva"
+                "page": "159",
+                "section": "Allegato A, Retribuzione 2025-2026 dipendenti in servizio dal 15 luglio 2000, colonna Ret. 01/07/25",
+                "quote": "112         € 1.632,87               48,66        € 1.681,53               36,75        € 1.718,28"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-tables"
               }
             }
           },
@@ -1215,21 +1286,28 @@
             "valid_until": null,
             "value": "1718.28",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "consorzi-di-bonifica-snebi",
-                  "title": "consorzi-di-bonifica-snebi",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.redigo.info/2026/03/06/ccnl-consorzi-di-bonifica-le-tabelle-retributive-aggiornate/"
+                  "document_id": "consorzi-di-bonifica-snebi-tables-558ceea9",
+                  "title": "consorzi-di-bonifica-snebi: tabelle retributive (flai-ccnl-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                  "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
                 },
-                "section": "Tabella retributiva"
+                "page": "159",
+                "section": "Allegato A, Retribuzione 2025-2026 dipendenti in servizio dal 15 luglio 2000, colonna Ret. 01/01/26",
+                "quote": "112         € 1.632,87               48,66        € 1.681,53               36,75        € 1.718,28"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-tables"
               }
             }
           }
@@ -1267,21 +1345,28 @@
             "valid_until": "2026-01-01",
             "value": "1726.55",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "consorzi-di-bonifica-snebi",
-                  "title": "consorzi-di-bonifica-snebi",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.redigo.info/2026/03/06/ccnl-consorzi-di-bonifica-le-tabelle-retributive-aggiornate/"
+                  "document_id": "consorzi-di-bonifica-snebi-tables-558ceea9",
+                  "title": "consorzi-di-bonifica-snebi: tabelle retributive (flai-ccnl-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                  "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
                 },
-                "section": "Tabella retributiva"
+                "page": "159",
+                "section": "Allegato A, Retribuzione 2025-2026 dipendenti in servizio dal 15 luglio 2000, colonna Ret. 01/07/25",
+                "quote": "Area                           115         € 1.676,59               49,96        € 1.726,55               37,74        € 1.764,28"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-tables"
               }
             }
           },
@@ -1342,21 +1427,28 @@
             "valid_until": "2026-01-01",
             "value": "1741.56",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "consorzi-di-bonifica-snebi",
-                  "title": "consorzi-di-bonifica-snebi",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.redigo.info/2026/03/06/ccnl-consorzi-di-bonifica-le-tabelle-retributive-aggiornate/"
+                  "document_id": "consorzi-di-bonifica-snebi-tables-558ceea9",
+                  "title": "consorzi-di-bonifica-snebi: tabelle retributive (flai-ccnl-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                  "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
                 },
-                "section": "Tabella retributiva"
+                "page": "159",
+                "section": "Allegato A, Retribuzione 2025-2026 dipendenti in servizio dal 15 luglio 2000, colonna Ret. 01/07/25",
+                "quote": "{ 116           € 1.691,17               50,39        € 1.741,56               38,06        € 1.779,63"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-tables"
               }
             }
           },
@@ -1417,21 +1509,28 @@
             "valid_until": "2026-01-01",
             "value": "1756.58",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "consorzi-di-bonifica-snebi",
-                  "title": "consorzi-di-bonifica-snebi",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.redigo.info/2026/03/06/ccnl-consorzi-di-bonifica-le-tabelle-retributive-aggiornate/"
+                  "document_id": "consorzi-di-bonifica-snebi-tables-558ceea9",
+                  "title": "consorzi-di-bonifica-snebi: tabelle retributive (flai-ccnl-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                  "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
                 },
-                "section": "Tabella retributiva"
+                "page": "159",
+                "section": "Allegato A, Retribuzione 2025-2026 dipendenti in servizio dal 15 luglio 2000, colonna Ret. 01/07/25",
+                "quote": "117                                               € 1.756,58                            € 1.794,97"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-tables"
               }
             }
           },
@@ -1440,21 +1539,28 @@
             "valid_until": null,
             "value": "1794.97",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "consorzi-di-bonifica-snebi",
-                  "title": "consorzi-di-bonifica-snebi",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.redigo.info/2026/03/06/ccnl-consorzi-di-bonifica-le-tabelle-retributive-aggiornate/"
+                  "document_id": "consorzi-di-bonifica-snebi-tables-558ceea9",
+                  "title": "consorzi-di-bonifica-snebi: tabelle retributive (flai-ccnl-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                  "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
                 },
-                "section": "Tabella retributiva"
+                "page": "159",
+                "section": "Allegato A, Retribuzione 2025-2026 dipendenti in servizio dal 15 luglio 2000, colonna Ret. 01/01/26",
+                "quote": "117                                               € 1.756,58                            € 1.794,97"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-tables"
               }
             }
           }
@@ -1492,21 +1598,28 @@
             "valid_until": "2026-01-01",
             "value": "1771.60",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "consorzi-di-bonifica-snebi",
-                  "title": "consorzi-di-bonifica-snebi",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.redigo.info/2026/03/06/ccnl-consorzi-di-bonifica-le-tabelle-retributive-aggiornate/"
+                  "document_id": "consorzi-di-bonifica-snebi-tables-558ceea9",
+                  "title": "consorzi-di-bonifica-snebi: tabelle retributive (flai-ccnl-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                  "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
                 },
-                "section": "Tabella retributiva"
+                "page": "159",
+                "section": "Allegato A, Retribuzione 2025-2026 dipendenti in servizio dal 15 luglio 2000, colonna Ret. 01/07/25",
+                "quote": "118         € 1.720,34               51,26        € 1.771,60               38,72        € 1.810,32"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-tables"
               }
             }
           },
@@ -1515,21 +1628,28 @@
             "valid_until": null,
             "value": "1810.32",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "consorzi-di-bonifica-snebi",
-                  "title": "consorzi-di-bonifica-snebi",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.redigo.info/2026/03/06/ccnl-consorzi-di-bonifica-le-tabelle-retributive-aggiornate/"
+                  "document_id": "consorzi-di-bonifica-snebi-tables-558ceea9",
+                  "title": "consorzi-di-bonifica-snebi: tabelle retributive (flai-ccnl-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                  "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
                 },
-                "section": "Tabella retributiva"
+                "page": "159",
+                "section": "Allegato A, Retribuzione 2025-2026 dipendenti in servizio dal 15 luglio 2000, colonna Ret. 01/01/26",
+                "quote": "118         € 1.720,34               51,26        € 1.771,60               38,72        € 1.810,32"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-tables"
               }
             }
           }
@@ -1567,21 +1687,28 @@
             "valid_until": "2026-01-01",
             "value": "1831.65",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "consorzi-di-bonifica-snebi",
-                  "title": "consorzi-di-bonifica-snebi",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.redigo.info/2026/03/06/ccnl-consorzi-di-bonifica-le-tabelle-retributive-aggiornate/"
+                  "document_id": "consorzi-di-bonifica-snebi-tables-558ceea9",
+                  "title": "consorzi-di-bonifica-snebi: tabelle retributive (flai-ccnl-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                  "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
                 },
-                "section": "Tabella retributiva"
+                "page": "159",
+                "section": "Allegato A, Retribuzione 2025-2026 dipendenti in servizio dal 15 luglio 2000, colonna Ret. 01/07/25",
+                "quote": "122                                               € 1.831,65                            € 1.871,68"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-tables"
               }
             }
           },
@@ -1590,21 +1717,28 @@
             "valid_until": null,
             "value": "1871.68",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "consorzi-di-bonifica-snebi",
-                  "title": "consorzi-di-bonifica-snebi",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.redigo.info/2026/03/06/ccnl-consorzi-di-bonifica-le-tabelle-retributive-aggiornate/"
+                  "document_id": "consorzi-di-bonifica-snebi-tables-558ceea9",
+                  "title": "consorzi-di-bonifica-snebi: tabelle retributive (flai-ccnl-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                  "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
                 },
-                "section": "Tabella retributiva"
+                "page": "159",
+                "section": "Allegato A, Retribuzione 2025-2026 dipendenti in servizio dal 15 luglio 2000, colonna Ret. 01/01/26",
+                "quote": "122                                               € 1.831,65                            € 1.871,68"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-tables"
               }
             }
           }
@@ -1642,21 +1776,28 @@
             "valid_until": "2026-01-01",
             "value": "1906.71",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "consorzi-di-bonifica-snebi",
-                  "title": "consorzi-di-bonifica-snebi",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.redigo.info/2026/03/06/ccnl-consorzi-di-bonifica-le-tabelle-retributive-aggiornate/"
+                  "document_id": "consorzi-di-bonifica-snebi-tables-558ceea9",
+                  "title": "consorzi-di-bonifica-snebi: tabelle retributive (flai-ccnl-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                  "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
                 },
-                "section": "Tabella retributiva"
+                "page": "159",
+                "section": "Allegato A, Retribuzione 2025-2026 dipendenti in servizio dal 15 luglio 2000, colonna Ret. 01/07/25",
+                "quote": "127         € 1.851,54               55,17        € 1.906,71               41,67        € 1.948,39"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-tables"
               }
             }
           },
@@ -1717,21 +1858,28 @@
             "valid_until": "2026-01-01",
             "value": "1921.73",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "consorzi-di-bonifica-snebi",
-                  "title": "consorzi-di-bonifica-snebi",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.redigo.info/2026/03/06/ccnl-consorzi-di-bonifica-le-tabelle-retributive-aggiornate/"
+                  "document_id": "consorzi-di-bonifica-snebi-tables-558ceea9",
+                  "title": "consorzi-di-bonifica-snebi: tabelle retributive (flai-ccnl-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                  "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
                 },
-                "section": "Tabella retributiva"
+                "page": "159",
+                "section": "Allegato A, Retribuzione 2025-2026 dipendenti in servizio dal 15 luglio 2000, colonna Ret. 01/07/25",
+                "quote": "128         € 1.866,12               55,61        € 1.921,73               42,00        € 1.963,73"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-tables"
               }
             }
           },
@@ -1740,21 +1888,28 @@
             "valid_until": null,
             "value": "1963.73",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "consorzi-di-bonifica-snebi",
-                  "title": "consorzi-di-bonifica-snebi",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.redigo.info/2026/03/06/ccnl-consorzi-di-bonifica-le-tabelle-retributive-aggiornate/"
+                  "document_id": "consorzi-di-bonifica-snebi-tables-558ceea9",
+                  "title": "consorzi-di-bonifica-snebi: tabelle retributive (flai-ccnl-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                  "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
                 },
-                "section": "Tabella retributiva"
+                "page": "159",
+                "section": "Allegato A, Retribuzione 2025-2026 dipendenti in servizio dal 15 luglio 2000, colonna Ret. 01/01/26",
+                "quote": "128         € 1.866,12               55,61        € 1.921,73               42,00        € 1.963,73"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-tables"
               }
             }
           }
@@ -1792,21 +1947,28 @@
             "valid_until": "2026-01-01",
             "value": "1921.73",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "consorzi-di-bonifica-snebi",
-                  "title": "consorzi-di-bonifica-snebi",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.redigo.info/2026/03/06/ccnl-consorzi-di-bonifica-le-tabelle-retributive-aggiornate/"
+                  "document_id": "consorzi-di-bonifica-snebi-tables-558ceea9",
+                  "title": "consorzi-di-bonifica-snebi: tabelle retributive (flai-ccnl-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                  "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
                 },
-                "section": "Tabella retributiva"
+                "page": "159",
+                "section": "Allegato A, Retribuzione 2025-2026 dipendenti in servizio dal 15 luglio 2000, colonna Ret. 01/07/25",
+                "quote": "128         € 1.866,12               55,61        € 1.921,73               42,00        € 1.963,73"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-tables"
               }
             }
           },
@@ -1815,21 +1977,28 @@
             "valid_until": null,
             "value": "1963.73",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "consorzi-di-bonifica-snebi",
-                  "title": "consorzi-di-bonifica-snebi",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.redigo.info/2026/03/06/ccnl-consorzi-di-bonifica-le-tabelle-retributive-aggiornate/"
+                  "document_id": "consorzi-di-bonifica-snebi-tables-558ceea9",
+                  "title": "consorzi-di-bonifica-snebi: tabelle retributive (flai-ccnl-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                  "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
                 },
-                "section": "Tabella retributiva"
+                "page": "159",
+                "section": "Allegato A, Retribuzione 2025-2026 dipendenti in servizio dal 15 luglio 2000, colonna Ret. 01/01/26",
+                "quote": "128         € 1.866,12               55,61        € 1.921,73               42,00        € 1.963,73"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-tables"
               }
             }
           }
@@ -1867,21 +2036,28 @@
             "valid_until": "2026-01-01",
             "value": "1981.79",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "consorzi-di-bonifica-snebi",
-                  "title": "consorzi-di-bonifica-snebi",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.redigo.info/2026/03/06/ccnl-consorzi-di-bonifica-le-tabelle-retributive-aggiornate/"
+                  "document_id": "consorzi-di-bonifica-snebi-tables-558ceea9",
+                  "title": "consorzi-di-bonifica-snebi: tabelle retributive (flai-ccnl-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                  "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
                 },
-                "section": "Tabella retributiva"
+                "page": "159",
+                "section": "Allegato A, Retribuzione 2025-2026 dipendenti in servizio dal 15 luglio 2000, colonna Ret. 01/07/25",
+                "quote": "132         € 1.924,44               57,35        € 1.981,79               43,31        € 2.025,10"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-tables"
               }
             }
           },
@@ -1890,21 +2066,28 @@
             "valid_until": null,
             "value": "2025.10",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "consorzi-di-bonifica-snebi",
-                  "title": "consorzi-di-bonifica-snebi",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.redigo.info/2026/03/06/ccnl-consorzi-di-bonifica-le-tabelle-retributive-aggiornate/"
+                  "document_id": "consorzi-di-bonifica-snebi-tables-558ceea9",
+                  "title": "consorzi-di-bonifica-snebi: tabelle retributive (flai-ccnl-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                  "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
                 },
-                "section": "Tabella retributiva"
+                "page": "159",
+                "section": "Allegato A, Retribuzione 2025-2026 dipendenti in servizio dal 15 luglio 2000, colonna Ret. 01/01/26",
+                "quote": "132         € 1.924,44               57,35        € 1.981,79               43,31        € 2.025,10"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-tables"
               }
             }
           }
@@ -1942,21 +2125,28 @@
             "valid_until": "2026-01-01",
             "value": "1981.79",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "consorzi-di-bonifica-snebi",
-                  "title": "consorzi-di-bonifica-snebi",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.redigo.info/2026/03/06/ccnl-consorzi-di-bonifica-le-tabelle-retributive-aggiornate/"
+                  "document_id": "consorzi-di-bonifica-snebi-tables-558ceea9",
+                  "title": "consorzi-di-bonifica-snebi: tabelle retributive (flai-ccnl-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                  "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
                 },
-                "section": "Tabella retributiva"
+                "page": "159",
+                "section": "Allegato A, Retribuzione 2025-2026 dipendenti in servizio dal 15 luglio 2000, colonna Ret. 01/07/25",
+                "quote": "132         € 1.924,44               57,35        € 1.981,79               43,31        € 2.025,10"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-tables"
               }
             }
           },
@@ -1965,21 +2155,28 @@
             "valid_until": null,
             "value": "2025.10",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "consorzi-di-bonifica-snebi",
-                  "title": "consorzi-di-bonifica-snebi",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.redigo.info/2026/03/06/ccnl-consorzi-di-bonifica-le-tabelle-retributive-aggiornate/"
+                  "document_id": "consorzi-di-bonifica-snebi-tables-558ceea9",
+                  "title": "consorzi-di-bonifica-snebi: tabelle retributive (flai-ccnl-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                  "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
                 },
-                "section": "Tabella retributiva"
+                "page": "159",
+                "section": "Allegato A, Retribuzione 2025-2026 dipendenti in servizio dal 15 luglio 2000, colonna Ret. 01/01/26",
+                "quote": "132         € 1.924,44               57,35        € 1.981,79               43,31        € 2.025,10"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-tables"
               }
             }
           }
@@ -2017,21 +2214,28 @@
             "valid_until": "2026-01-01",
             "value": "2011.82",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "consorzi-di-bonifica-snebi",
-                  "title": "consorzi-di-bonifica-snebi",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.redigo.info/2026/03/06/ccnl-consorzi-di-bonifica-le-tabelle-retributive-aggiornate/"
+                  "document_id": "consorzi-di-bonifica-snebi-tables-558ceea9",
+                  "title": "consorzi-di-bonifica-snebi: tabelle retributive (flai-ccnl-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                  "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
                 },
-                "section": "Tabella retributiva"
+                "page": "159",
+                "section": "Allegato A, Retribuzione 2025-2026 dipendenti in servizio dal 15 luglio 2000, colonna Ret. 01/07/25",
+                "quote": "134         € 1.953,61               58,21        € 2.011,82               43,97        € 2.055,79"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-tables"
               }
             }
           },
@@ -2040,21 +2244,28 @@
             "valid_until": null,
             "value": "2055.79",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "consorzi-di-bonifica-snebi",
-                  "title": "consorzi-di-bonifica-snebi",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.redigo.info/2026/03/06/ccnl-consorzi-di-bonifica-le-tabelle-retributive-aggiornate/"
+                  "document_id": "consorzi-di-bonifica-snebi-tables-558ceea9",
+                  "title": "consorzi-di-bonifica-snebi: tabelle retributive (flai-ccnl-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                  "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
                 },
-                "section": "Tabella retributiva"
+                "page": "159",
+                "section": "Allegato A, Retribuzione 2025-2026 dipendenti in servizio dal 15 luglio 2000, colonna Ret. 01/01/26",
+                "quote": "134         € 1.953,61               58,21        € 2.011,82               43,97        € 2.055,79"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-tables"
               }
             }
           }
@@ -2092,21 +2303,28 @@
             "valid_until": "2026-01-01",
             "value": "2026.83",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "consorzi-di-bonifica-snebi",
-                  "title": "consorzi-di-bonifica-snebi",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.redigo.info/2026/03/06/ccnl-consorzi-di-bonifica-le-tabelle-retributive-aggiornate/"
+                  "document_id": "consorzi-di-bonifica-snebi-tables-558ceea9",
+                  "title": "consorzi-di-bonifica-snebi: tabelle retributive (flai-ccnl-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                  "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
                 },
-                "section": "Tabella retributiva"
+                "page": "159",
+                "section": "Allegato A, Retribuzione 2025-2026 dipendenti in servizio dal 15 luglio 2000, colonna Ret. 01/07/25",
+                "quote": "135         € 1.968,18               58,65        € 2.026,83               44,30        € 2.071,13"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-tables"
               }
             }
           },
@@ -2115,21 +2333,28 @@
             "valid_until": null,
             "value": "2071.13",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "consorzi-di-bonifica-snebi",
-                  "title": "consorzi-di-bonifica-snebi",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.redigo.info/2026/03/06/ccnl-consorzi-di-bonifica-le-tabelle-retributive-aggiornate/"
+                  "document_id": "consorzi-di-bonifica-snebi-tables-558ceea9",
+                  "title": "consorzi-di-bonifica-snebi: tabelle retributive (flai-ccnl-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                  "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
                 },
-                "section": "Tabella retributiva"
+                "page": "159",
+                "section": "Allegato A, Retribuzione 2025-2026 dipendenti in servizio dal 15 luglio 2000, colonna Ret. 01/01/26",
+                "quote": "135         € 1.968,18               58,65        € 2.026,83               44,30        € 2.071,13"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-tables"
               }
             }
           }
@@ -2167,21 +2392,28 @@
             "valid_until": "2026-01-01",
             "value": "2357.13",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "consorzi-di-bonifica-snebi",
-                  "title": "consorzi-di-bonifica-snebi",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.redigo.info/2026/03/06/ccnl-consorzi-di-bonifica-le-tabelle-retributive-aggiornate/"
+                  "document_id": "consorzi-di-bonifica-snebi-tables-558ceea9",
+                  "title": "consorzi-di-bonifica-snebi: tabelle retributive (flai-ccnl-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                  "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
                 },
-                "section": "Tabella retributiva"
+                "page": "159",
+                "section": "Allegato A, Retribuzione 2025-2026 dipendenti in servizio dal 15 luglio 2000, colonna Ret. 01/07/25",
+                "quote": "157         € 2.288,92               68,21        € 2.357,13               51,52        € 2.408,64"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-tables"
               }
             }
           },
@@ -2242,21 +2474,28 @@
             "valid_until": "2026-01-01",
             "value": "2387.15",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "consorzi-di-bonifica-snebi",
-                  "title": "consorzi-di-bonifica-snebi",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.redigo.info/2026/03/06/ccnl-consorzi-di-bonifica-le-tabelle-retributive-aggiornate/"
+                  "document_id": "consorzi-di-bonifica-snebi-tables-558ceea9",
+                  "title": "consorzi-di-bonifica-snebi: tabelle retributive (flai-ccnl-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                  "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
                 },
-                "section": "Tabella retributiva"
+                "page": "159",
+                "section": "Allegato A, Retribuzione 2025-2026 dipendenti in servizio dal 15 luglio 2000, colonna Ret. 01/07/25",
+                "quote": "159         € 2.318,08               69,07        € 2.387,15               52,17        € 2.439,32"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-tables"
               }
             }
           },
@@ -2265,21 +2504,28 @@
             "valid_until": null,
             "value": "2439.32",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "consorzi-di-bonifica-snebi",
-                  "title": "consorzi-di-bonifica-snebi",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.redigo.info/2026/03/06/ccnl-consorzi-di-bonifica-le-tabelle-retributive-aggiornate/"
+                  "document_id": "consorzi-di-bonifica-snebi-tables-558ceea9",
+                  "title": "consorzi-di-bonifica-snebi: tabelle retributive (flai-ccnl-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                  "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
                 },
-                "section": "Tabella retributiva"
+                "page": "159",
+                "section": "Allegato A, Retribuzione 2025-2026 dipendenti in servizio dal 15 luglio 2000, colonna Ret. 01/01/26",
+                "quote": "159         € 2.318,08               69,07        € 2.387,15               52,17        € 2.439,32"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-tables"
               }
             }
           }
@@ -2317,21 +2563,28 @@
             "valid_until": "2026-01-01",
             "value": "2402.17",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "consorzi-di-bonifica-snebi",
-                  "title": "consorzi-di-bonifica-snebi",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.redigo.info/2026/03/06/ccnl-consorzi-di-bonifica-le-tabelle-retributive-aggiornate/"
+                  "document_id": "consorzi-di-bonifica-snebi-tables-558ceea9",
+                  "title": "consorzi-di-bonifica-snebi: tabelle retributive (flai-ccnl-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                  "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
                 },
-                "section": "Tabella retributiva"
+                "page": "159",
+                "section": "Allegato A, Retribuzione 2025-2026 dipendenti in servizio dal 15 luglio 2000, colonna Ret. 01/07/25",
+                "quote": "160         € 2.332,66               69,51        € 2.402,17               52,50        € 2.454,67"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-tables"
               }
             }
           },
@@ -2340,21 +2593,28 @@
             "valid_until": null,
             "value": "2454.67",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "consorzi-di-bonifica-snebi",
-                  "title": "consorzi-di-bonifica-snebi",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.redigo.info/2026/03/06/ccnl-consorzi-di-bonifica-le-tabelle-retributive-aggiornate/"
+                  "document_id": "consorzi-di-bonifica-snebi-tables-558ceea9",
+                  "title": "consorzi-di-bonifica-snebi: tabelle retributive (flai-ccnl-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                  "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
                 },
-                "section": "Tabella retributiva"
+                "page": "159",
+                "section": "Allegato A, Retribuzione 2025-2026 dipendenti in servizio dal 15 luglio 2000, colonna Ret. 01/01/26",
+                "quote": "160         € 2.332,66               69,51        € 2.402,17               52,50        € 2.454,67"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-tables"
               }
             }
           }
@@ -2392,21 +2652,28 @@
             "valid_until": "2026-01-01",
             "value": "2432.19",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "consorzi-di-bonifica-snebi",
-                  "title": "consorzi-di-bonifica-snebi",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.redigo.info/2026/03/06/ccnl-consorzi-di-bonifica-le-tabelle-retributive-aggiornate/"
+                  "document_id": "consorzi-di-bonifica-snebi-tables-558ceea9",
+                  "title": "consorzi-di-bonifica-snebi: tabelle retributive (flai-ccnl-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                  "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
                 },
-                "section": "Tabella retributiva"
+                "page": "159",
+                "section": "Allegato A, Retribuzione 2025-2026 dipendenti in servizio dal 15 luglio 2000, colonna Ret. 01/07/25",
+                "quote": "Area                           162         € 2.361,81               70,38        € 2.432,19               53,16        € 2.485,35"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-tables"
               }
             }
           },
@@ -2415,21 +2682,28 @@
             "valid_until": null,
             "value": "2485.35",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "consorzi-di-bonifica-snebi",
-                  "title": "consorzi-di-bonifica-snebi",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.redigo.info/2026/03/06/ccnl-consorzi-di-bonifica-le-tabelle-retributive-aggiornate/"
+                  "document_id": "consorzi-di-bonifica-snebi-tables-558ceea9",
+                  "title": "consorzi-di-bonifica-snebi: tabelle retributive (flai-ccnl-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                  "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
                 },
-                "section": "Tabella retributiva"
+                "page": "159",
+                "section": "Allegato A, Retribuzione 2025-2026 dipendenti in servizio dal 15 luglio 2000, colonna Ret. 01/01/26",
+                "quote": "Area                           162         € 2.361,81               70,38        € 2.432,19               53,16        € 2.485,35"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-tables"
               }
             }
           }
@@ -2507,21 +2781,28 @@
             "valid_until": "2026-01-01",
             "value": "2462.22",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "consorzi-di-bonifica-snebi",
-                  "title": "consorzi-di-bonifica-snebi",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.redigo.info/2026/03/06/ccnl-consorzi-di-bonifica-le-tabelle-retributive-aggiornate/"
+                  "document_id": "consorzi-di-bonifica-snebi-tables-558ceea9",
+                  "title": "consorzi-di-bonifica-snebi: tabelle retributive (flai-ccnl-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                  "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
                 },
-                "section": "Tabella retributiva"
+                "page": "159",
+                "section": "Allegato A, Retribuzione 2025-2026 dipendenti in servizio dal 15 luglio 2000, colonna Ret. 01/07/25",
+                "quote": "164         € 2.390,97               71,25        € 2.462,22               53,82        € 2.516,03"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-tables"
               }
             }
           },
@@ -2622,21 +2903,28 @@
             "valid_until": "2026-01-01",
             "value": "2552.30",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "consorzi-di-bonifica-snebi",
-                  "title": "consorzi-di-bonifica-snebi",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.redigo.info/2026/03/06/ccnl-consorzi-di-bonifica-le-tabelle-retributive-aggiornate/"
+                  "document_id": "consorzi-di-bonifica-snebi-tables-558ceea9",
+                  "title": "consorzi-di-bonifica-snebi: tabelle retributive (flai-ccnl-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                  "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
                 },
-                "section": "Tabella retributiva"
+                "page": "159",
+                "section": "Allegato A, Retribuzione 2025-2026 dipendenti in servizio dal 15 luglio 2000, colonna Ret. 01/07/25",
+                "quote": "{ 170           € 2.478,45               73,85        € 2.552,30               55,78        € 2.608,08"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-tables"
               }
             }
           },
@@ -2645,21 +2933,28 @@
             "valid_until": null,
             "value": "2608.08",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "consorzi-di-bonifica-snebi",
-                  "title": "consorzi-di-bonifica-snebi",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.redigo.info/2026/03/06/ccnl-consorzi-di-bonifica-le-tabelle-retributive-aggiornate/"
+                  "document_id": "consorzi-di-bonifica-snebi-tables-558ceea9",
+                  "title": "consorzi-di-bonifica-snebi: tabelle retributive (flai-ccnl-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                  "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
                 },
-                "section": "Tabella retributiva"
+                "page": "159",
+                "section": "Allegato A, Retribuzione 2025-2026 dipendenti in servizio dal 15 luglio 2000, colonna Ret. 01/01/26",
+                "quote": "{ 170           € 2.478,45               73,85        € 2.552,30               55,78        € 2.608,08"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-tables"
               }
             }
           }
@@ -2697,21 +2992,28 @@
             "valid_until": "2026-01-01",
             "value": "2762.49",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "consorzi-di-bonifica-snebi",
-                  "title": "consorzi-di-bonifica-snebi",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.redigo.info/2026/03/06/ccnl-consorzi-di-bonifica-le-tabelle-retributive-aggiornate/"
+                  "document_id": "consorzi-di-bonifica-snebi-tables-558ceea9",
+                  "title": "consorzi-di-bonifica-snebi: tabelle retributive (flai-ccnl-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                  "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
                 },
-                "section": "Tabella retributiva"
+                "page": "159",
+                "section": "Allegato A, Retribuzione 2025-2026 dipendenti in servizio dal 15 luglio 2000, colonna Ret. 01/07/25",
+                "quote": "184         € 2.682,55               79,94        € 2.762,49               60,38        € 2.822,87"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-tables"
               }
             }
           },
@@ -2720,21 +3022,28 @@
             "valid_until": null,
             "value": "2822.87",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "consorzi-di-bonifica-snebi",
-                  "title": "consorzi-di-bonifica-snebi",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.redigo.info/2026/03/06/ccnl-consorzi-di-bonifica-le-tabelle-retributive-aggiornate/"
+                  "document_id": "consorzi-di-bonifica-snebi-tables-558ceea9",
+                  "title": "consorzi-di-bonifica-snebi: tabelle retributive (flai-ccnl-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                  "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
                 },
-                "section": "Tabella retributiva"
+                "page": "159",
+                "section": "Allegato A, Retribuzione 2025-2026 dipendenti in servizio dal 15 luglio 2000, colonna Ret. 01/01/26",
+                "quote": "184         € 2.682,55               79,94        € 2.762,49               60,38        € 2.822,87"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-tables"
               }
             }
           }
@@ -2772,21 +3081,28 @@
             "valid_until": "2026-01-01",
             "value": "2777.50",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "consorzi-di-bonifica-snebi",
-                  "title": "consorzi-di-bonifica-snebi",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.redigo.info/2026/03/06/ccnl-consorzi-di-bonifica-le-tabelle-retributive-aggiornate/"
+                  "document_id": "consorzi-di-bonifica-snebi-tables-558ceea9",
+                  "title": "consorzi-di-bonifica-snebi: tabelle retributive (flai-ccnl-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                  "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
                 },
-                "section": "Tabella retributiva"
+                "page": "159",
+                "section": "Allegato A, Retribuzione 2025-2026 dipendenti in servizio dal 15 luglio 2000, colonna Ret. 01/07/25",
+                "quote": "185         € 2.697,13               80,37        € 2.777,50               60,71        € 2.838,21"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-tables"
               }
             }
           },
@@ -2795,21 +3111,28 @@
             "valid_until": null,
             "value": "2838.21",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "consorzi-di-bonifica-snebi",
-                  "title": "consorzi-di-bonifica-snebi",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.redigo.info/2026/03/06/ccnl-consorzi-di-bonifica-le-tabelle-retributive-aggiornate/"
+                  "document_id": "consorzi-di-bonifica-snebi-tables-558ceea9",
+                  "title": "consorzi-di-bonifica-snebi: tabelle retributive (flai-ccnl-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                  "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
                 },
-                "section": "Tabella retributiva"
+                "page": "159",
+                "section": "Allegato A, Retribuzione 2025-2026 dipendenti in servizio dal 15 luglio 2000, colonna Ret. 01/01/26",
+                "quote": "185         € 2.697,13               80,37        € 2.777,50               60,71        € 2.838,21"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-tables"
               }
             }
           }
@@ -2887,21 +3210,28 @@
             "valid_until": "2026-01-01",
             "value": "2807.53",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "consorzi-di-bonifica-snebi",
-                  "title": "consorzi-di-bonifica-snebi",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.redigo.info/2026/03/06/ccnl-consorzi-di-bonifica-le-tabelle-retributive-aggiornate/"
+                  "document_id": "consorzi-di-bonifica-snebi-tables-558ceea9",
+                  "title": "consorzi-di-bonifica-snebi: tabelle retributive (flai-ccnl-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                  "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
                 },
-                "section": "Tabella retributiva"
+                "page": "159",
+                "section": "Allegato A, Retribuzione 2025-2026 dipendenti in servizio dal 15 luglio 2000, colonna Ret. 01/07/25",
+                "quote": "Aq                             187         € 2.726,29               81,24        € 2.807,53               61,36        € 2.868,89"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-tables"
               }
             }
           },
@@ -2910,21 +3240,28 @@
             "valid_until": null,
             "value": "2868.89",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "consorzi-di-bonifica-snebi",
-                  "title": "consorzi-di-bonifica-snebi",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.redigo.info/2026/03/06/ccnl-consorzi-di-bonifica-le-tabelle-retributive-aggiornate/"
+                  "document_id": "consorzi-di-bonifica-snebi-tables-558ceea9",
+                  "title": "consorzi-di-bonifica-snebi: tabelle retributive (flai-ccnl-2026.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                  "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
                 },
-                "section": "Tabella retributiva"
+                "page": "159",
+                "section": "Allegato A, Retribuzione 2025-2026 dipendenti in servizio dal 15 luglio 2000, colonna Ret. 01/01/26",
+                "quote": "Aq                             187         € 2.726,29               81,24        € 2.807,53               61,36        € 2.868,89"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-tables"
               }
             }
           }
@@ -2998,7 +3335,7 @@
     "effective_until": null,
     "source": "https://www.redigo.info/2026/03/06/ccnl-consorzi-di-bonifica-le-tabelle-retributive-aggiornate/",
     "verification_status": "unverified",
-    "source_hash": "0fc46c49bf6fdbcdce2c8e06b4e10792eb094d27bdc637973b9937126f758327",
+    "source_hash": "af7c5761dc1cf93b8adf6b9b2ef6ffdfaa95097ad52ee6f8d52959b336278a5c",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
