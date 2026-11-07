@@ -881,7 +881,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/esercizi-cinematografici-anec",
       "ruleset_version": "2026.2",
-      "source_hash": "482cc3a687844e3b47ea27ce5928563523d1e0de0aa64708bd2e56c6b5c7d977",
+      "source_hash": "b26d1b654a928f14c88614ce691cbd8423e27a33c7ba7fe4691011a2d3285bbd",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/esercizi-cinematografici-anec.json.gz"
@@ -1224,7 +1224,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/istituzioni-servizi-socio-assistenziali-anaste",
       "ruleset_version": "2026.2",
-      "source_hash": "8a659396edc7ba68bd5b40d73b0b808aa93a9d606865b54b775bc3521c6e9362",
+      "source_hash": "74a4f0c25138253cafc4a629dda416c15ac561f95dcc5d8a86b6299557e22d0f",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/istituzioni-servizi-socio-assistenziali-anaste.json.gz"
@@ -1360,7 +1360,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/legno-arredamento-federlegno",
       "ruleset_version": "2026.2",
-      "source_hash": "f0d580311d828df62e0345ae76a4dc2ae837dd7191fd6e000b519c12726f2aad",
+      "source_hash": "c67520cb84a967f03723ed4cc618ba45a0a81598b2e86a7be7542f63adf473f0",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/legno-arredamento-federlegno.json.gz"
@@ -3981,7 +3981,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "24e3b8b7162ad3a412faae0805da0e1462c2397895627a0ad1f925b876b9d8d8",
+      "source_hash": "5e4c6e015218a9a16c731b133e426d1edb3dc5b9a84929bb2e812e8f6ab7d499",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/legno-arredamento-federlegno.json.gz",
