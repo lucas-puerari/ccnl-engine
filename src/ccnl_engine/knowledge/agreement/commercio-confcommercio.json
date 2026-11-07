@@ -121,6 +121,22 @@
       {
         "kind": "info",
         "text": "LEAVE, WEEKLY SCHEDULE: a 39-hour full-time week absorbs 36 hours of ROL and a 38-hour week 16 hours of ex festività and 56 of ROL, read from Employment.full_time_weekly_hours. The grandi magazzini, magazzini a prezzo unico, supermercati alimentari, cash&carry and ipermercati (Art. 134, EmployerProfile.subsector 'grande_distribuzione') on a 38-hour average absorb instead the 56 hours of Art. 158 c. 3 and the 16 of c. 4 and keep the ex festività."
+      },
+      {
+        "kind": "simplification",
+        "text": "FIRST- AND THIRD-LEVEL APPRENTICES (Art. 69): modelled in dual_apprenticeship (first level 50/50/65/70% of the qualified worker's pay by year of the contract, third level two then one level below the destination by half of the programme; training at the employer 10%, school hours unpaid). Not modelled: the INPS contributions of the first-level apprentice (the engine applies the apprentice rates of the professionalising contract).",
+        "capability": "inps_employer",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "first_level_apprentice_contributions",
+          "applies_when": {
+            "trigger": "outside_input",
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Source the INPS contribution regime of the first-level apprentice."
+        }
       }
     ]
   },
@@ -3691,7 +3707,7 @@
     "effective_until": null,
     "source": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
     "verification_status": "unverified",
-    "source_hash": "581f0a7d1d1e53f95b1d162a7569610b115f01eb14f8ecfdd2312be9bfc4c58e",
+    "source_hash": "d2de2961bc6568861156bc402bb9bc51fbd9f0b038cccd5c43107723346be11b",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -5511,9 +5527,150 @@
         "checked": [
           "work_rules.insured_absence.injury"
         ]
+      },
+      {
+        "id": "2026-11-08-gpt-commercio-confcommercio-dual-apprenticeship",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Art. 69 of the testo unico 30 luglio 2019 and the agreement of 2016 it incorporates. Every row of the extraction re-checked by a separate model session on the saved PDFs (verdict CONFIRMED).",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
+            "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016"
+          }
+        ],
+        "findings": [
+          "Added dual_apprenticeship for the first- and third-level apprentices."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "dual_apprenticeship"
+        ]
       }
     ],
     "owner": "maintainer",
     "review_due": "2027-03-31"
-  }
+  },
+  "dual_apprenticeship": [
+    {
+      "name": "primo_livello",
+      "programme": "first_level",
+      "destination_levels": [
+        "7",
+        "6",
+        "5",
+        "4",
+        "3",
+        "2",
+        "1",
+        "Q"
+      ],
+      "periods": [
+        {
+          "work_rate": "0.50",
+          "months_until": 12
+        },
+        {
+          "work_rate": "0.50",
+          "months_from": 12,
+          "months_until": 24
+        },
+        {
+          "work_rate": "0.65",
+          "months_from": 24,
+          "months_until": 36
+        },
+        {
+          "work_rate": "0.70",
+          "months_from": 36
+        }
+      ],
+      "company_training_rate": "0.10",
+      "company_training_on": "reference",
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "uiltucs-tu2019",
+            "title": "CCNL per i dipendenti da aziende del Terziario della Distribuzione e dei Servizi, Testo Unico 30 luglio 2019",
+            "kind": "associazione",
+            "url": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
+            "pages": [],
+            "published_on": "2019-07-30",
+            "jurisdiction": "it",
+            "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016"
+          },
+          "page": "84",
+          "section": "Art. 69",
+          "quote": "fermo restando quanto previsto dall'artt. 43, comma 7, D. Lgs. n. 81/2015 per le ore di formazione svolte nella istituzione formativa e per le ore di formazione svolte presso il datore di lavoro contenute nel piano curriculare, la retribuzione per le ore svolte presso il datore di lavoro, eccedenti a quelle contenute nel predetto piano di formazione, è stabilita in misura percentuale rispetto a quella corrisposta ai lavoratori qualificati secondo le seguenti misure: primo e secondo anno: 50%; terzo anno: 65%; eventuale quarto anno: 70%"
+        },
+        "transformation": "Work hours: by year of the apprenticeship contract, 50% (months 0-23), 65% (24-35), 70% (36 on) of the whole pay of the destination level (the qualified worker); training at the employer 10% of the same pay (agreement of 2016, p. 399: 'Avendo a riferimento la retribuzione del lavoratore qualificato per la medesima figura professionale'), school hours unpaid. 'anno' is read as the year of the contract.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-08T00:10:00Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-08T00:10:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-08-gpt-commercio-confcommercio-dual-apprenticeship"
+        }
+      }
+    },
+    {
+      "name": "alta_formazione_ricerca",
+      "programme": "third_level",
+      "destination_levels": [
+        "5",
+        "4",
+        "3",
+        "2",
+        "1",
+        "Q"
+      ],
+      "periods": [
+        {
+          "half": 1,
+          "work_rate": "1",
+          "levels_below": 2
+        },
+        {
+          "half": 2,
+          "work_rate": "1",
+          "levels_below": 1
+        }
+      ],
+      "company_training_rate": "0.10",
+      "company_training_on": "reference",
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "uiltucs-tu2019",
+            "title": "CCNL per i dipendenti da aziende del Terziario della Distribuzione e dei Servizi, Testo Unico 30 luglio 2019",
+            "kind": "associazione",
+            "url": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
+            "pages": [],
+            "published_on": "2019-07-30",
+            "jurisdiction": "it",
+            "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016"
+          },
+          "page": "85",
+          "section": "Art. 69",
+          "quote": "verranno inquadrati, anche ai fini della retribuzione delle ore eccedenti quelle contenute nel piano di formazione curriculare: 2 livelli inferiori a quello in cui è inquadrata la mansione professionale per cui è svolto l'apprendistato per la prima metà del periodo di apprendistato; 1 livello inferiore a quello in cui è inquadrata la mansione professionale per cui è svolto l'apprendistato per la seconda metà del periodo di apprendistato."
+        },
+        "transformation": "Work hours: the whole pay of the level two below the destination in the first half of the programme, one below in the second; training at the employer 10% of the pay of that level; school hours unpaid. Destination levels with two levels below them.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-08T00:10:00Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-08T00:10:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-08-gpt-commercio-confcommercio-dual-apprenticeship"
+        }
+      }
+    }
+  ]
 }

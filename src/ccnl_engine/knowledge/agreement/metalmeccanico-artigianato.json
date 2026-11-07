@@ -175,6 +175,22 @@
           },
           "remediation": "Model the Art. 73 bands for the impiegati by category."
         }
+      },
+      {
+        "kind": "simplification",
+        "text": "FIRST- AND THIRD-LEVEL APPRENTICES (Art. 26, accordo interconfederale 1 febbraio 2018): modelled in dual_apprenticeship (first level 45/55/60/70% by year at the conventional level, third level 70% then 80% of the tabellare by half, or 80%; training at the employer 10% of the work pay, school hours unpaid). Not modelled: the INPS contributions of the first-level apprentice.",
+        "capability": "inps_employer",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "first_level_apprentice_contributions",
+          "applies_when": {
+            "trigger": "outside_input",
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Source the INPS contribution regime of the first-level apprentice."
+        }
       }
     ]
   },
@@ -2975,7 +2991,7 @@
     "effective_until": null,
     "source": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf",
     "verification_status": "unverified",
-    "source_hash": "4585be95c76306b2b8bcb67e7c92f237b487a82fb2b7738223744f7910a09144",
+    "source_hash": "0cff7698b9dcbf0cda30d91f6ac6dd349a4834b14e9b56b16396794f7228a131",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3652,9 +3668,155 @@
         "checked": [
           "work_rules.time_supplements.overtime_bands"
         ]
+      },
+      {
+        "id": "2026-11-08-gpt-metalmeccanico-artigianato-dual-apprenticeship",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Art. 26 of the CCNL 17 December 2021 and the interconfederal agreement of 1 February 2018 it reproduces (pp. 89-93), not changed by the 2024 renewal. Every row of the extraction re-checked by a separate model session on the saved PDFs (verdict CONFIRMED).",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.ebat.tn.it/wp-content/uploads/2024/02/EBNA-Contratto-CCNL-Area-Meccanica_web_LR_compressed-1.pdf",
+            "sha256": "f8cd3c42582324aa4484bb2bb9465a5a0a442467aae64e3ea3a1c57e089f3151"
+          }
+        ],
+        "findings": [
+          "Added dual_apprenticeship for the first- and third-level apprentices."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "dual_apprenticeship"
+        ]
       }
     ],
     "owner": "maintainer",
     "review_due": "2027-01-31"
-  }
+  },
+  "dual_apprenticeship": [
+    {
+      "name": "primo_livello",
+      "programme": "first_level",
+      "destination_levels": [
+        "6",
+        "5",
+        "4",
+        "3",
+        "2bis",
+        "2",
+        "1",
+        "1Q"
+      ],
+      "periods": [
+        {
+          "work_rate": "0.45",
+          "months_until": 12
+        },
+        {
+          "work_rate": "0.55",
+          "months_from": 12,
+          "months_until": 24
+        },
+        {
+          "work_rate": "0.60",
+          "months_from": 24,
+          "months_until": 36
+        },
+        {
+          "work_rate": "0.70",
+          "months_from": 36
+        }
+      ],
+      "company_training_rate": "0.10",
+      "company_training_on": "work",
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-area-meccanica-artigianato-ebna",
+            "title": "CCNL Area Meccanica artigianato, testo EBNA del CCNL 17 dicembre 2021 (EBAT Trentino)",
+            "kind": "associazione",
+            "url": "https://www.ebat.tn.it/wp-content/uploads/2024/02/EBNA-Contratto-CCNL-Area-Meccanica_web_LR_compressed-1.pdf",
+            "published_on": "2024-02-01",
+            "sha256": "f8cd3c42582324aa4484bb2bb9465a5a0a442467aae64e3ea3a1c57e089f3151"
+          },
+          "page": "91-92",
+          "section": "Art. 26, accordo interconfederale 1 febbraio 2018, punti 2-4",
+          "quote": "all'apprendista assunto con il contratto di cui all'art. 43 del d.lgs. n. 81/2015, al solo fine di determinare la retribuzione di riferimento così come previsto dal successivo punto 3), nonché l'applicazione degli istituti contrattuali, va attribuito convenzionalmente un livello di inquadramento contrattuale [...] relativamente alle ore di formazione svolte nella istituzione formativa le parti convengono che l'esonero del datore di lavoro da ogni obbligo retributivo previsto dall'art. 43, comma 7, del d.lgs. n. 81/2015 si riferisce, per entrambe le tipologie di apprendistato, a tutti gli istituti contrattuali e di legge diretti, indiretti e differiti; [p. 92] Primo anno pari al 45% della retribuzione di riferimento spettante per il livello di inquadramento; Secondo anno pari al 55% della retribuzione di riferimento spettante per il livello di inquadramento; Terzo anno pari al 60% della retribuzione di riferimento spettante per il livello di inquadramento; Quarto anno pari al 70% della retribuzione di riferimento spettante per il livello di inquadramento"
+        },
+        "transformation": "The level of the request is the conventional level. Work hours by year of the contract: 45, 55, 60, 70%; training at the employer 10% of the work pay (premesse, p. 90: 'Per le ore di formazione svolte nella istituzione formativa il datore di lavoro è esonerato da ogni obbligo retributivo. Per le ore di formazione a carico del datore di lavoro è riconosciuta al lavoratore una retribuzione pari al 10 per cento di quella che gli sarebbe dovuta', read as the pay due to the apprentice); school hours unpaid.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-08T00:10:00Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-08T00:10:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-08-gpt-metalmeccanico-artigianato-dual-apprenticeship"
+        }
+      }
+    },
+    {
+      "name": "alta_formazione_ricerca",
+      "programme": "third_level",
+      "destination_levels": [
+        "6",
+        "5",
+        "4",
+        "3",
+        "2bis",
+        "2",
+        "1",
+        "1Q"
+      ],
+      "periods": [
+        {
+          "programme_months_up_to": 12,
+          "work_rate": "0.80"
+        },
+        {
+          "half": 1,
+          "programme_months_over": 12,
+          "work_rate": "0.70"
+        },
+        {
+          "half": 2,
+          "programme_months_over": 12,
+          "work_rate": "0.80"
+        }
+      ],
+      "company_training_rate": "0.10",
+      "company_training_on": "work",
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-area-meccanica-artigianato-ebna",
+            "title": "CCNL Area Meccanica artigianato, testo EBNA del CCNL 17 dicembre 2021 (EBAT Trentino)",
+            "kind": "associazione",
+            "url": "https://www.ebat.tn.it/wp-content/uploads/2024/02/EBNA-Contratto-CCNL-Area-Meccanica_web_LR_compressed-1.pdf",
+            "published_on": "2024-02-01",
+            "sha256": "f8cd3c42582324aa4484bb2bb9465a5a0a442467aae64e3ea3a1c57e089f3151"
+          },
+          "page": "92",
+          "section": "Art. 26, accordo interconfederale 1 febbraio 2018, punto 6",
+          "quote": "l'apprendista assunto con il contratto di cui all'art. 45 del d.lgs. n. 81/2015 ha diritto ad una retribuzione determinata mediante l'applicazione delle percentuali sotto indicate sulla retribuzione tabellare prevista dal CCNL di riferimento, relativa al livello salariale nel quale il lavoratore sarà inquadrato in coerenza con il percorso formativo al termine del periodo di apprendistato al lordo delle ritenute previdenziali: A) per i percorsi di durata superiore all'anno - per la prima metà del periodo: 70% - per la seconda metà del periodo: 80% B) per i percorsi di durata non superiore all'anno - 80% per l'intero periodo"
+        },
+        "transformation": "Work hours: 70% then 80% of the tabellare of the destination level by half of a programme longer than 12 months, 80% throughout a shorter one; training at the employer 10% of the work pay; school hours unpaid.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-08T00:10:00Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-08T00:10:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-08-gpt-metalmeccanico-artigianato-dual-apprenticeship"
+        }
+      },
+      "work_elements": [
+        "base"
+      ]
+    }
+  ]
 }

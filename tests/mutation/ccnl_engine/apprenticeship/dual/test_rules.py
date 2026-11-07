@@ -166,8 +166,8 @@ def test_the_third_level_needs_the_programme_length() -> None:
 
 
 def test_a_ccnl_without_dual_tracks_refuses_the_programme() -> None:
-    """Commercio sets no dual track in the data: out of scope."""
-    ccnl = load_ccnl("commercio-confcommercio")
+    """Tabacco sets no dual track in the data: out of scope."""
+    ccnl = load_ccnl("tabacco-apti")
     level = ccnl.levels[0]
     with pytest.raises(OutOfScopeError, match="0 first_level"):
         dual_chain(

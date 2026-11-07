@@ -76,6 +76,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-02 | claude-opus-5-5 (ai) | Art. 19 n. 10 (PDF p. 40). | corrected | Art. 19 n. 10: festivo notturno 50% (HolidayWorkKind.NIGHT_HOLIDAY). |
 | 2026-11-08 | gpt-6-sol (ai) | CCNL top-ups of maternity and work injury, read from the signed text by a separate model session; every quote found on the PDF text layer. | confirmed | Added work_rules.insured_absence.maternity. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Saturday premium of the signed text, found verbatim in the source (analysis by a separate model session, quote rechecked). | corrected | Added supplement band ANCE_SABATO_SEI_GIORNI. |
+| 2026-11-08 | gpt-6-sol (ai) | Art. 92 in the ANCE text of 4 April 2019 (pp. 4-8), applied to contracts from 1 April 2019. Every row of the extraction re-checked by a separate model session on the saved PDFs (verdict CONFIRMED). | confirmed | Added dual_apprenticeship for the first- and third-level apprentices. |
 
 ## Salary table
 
@@ -108,11 +109,11 @@ percentage: 1.00
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
 !!! warning "edilizia-ance/other_apprenticeship_types · base_salary · impact yes · open"
-    APPRENTICESHIP: Art. 92 (ANCE text of 4 April 2019): 72/72/78/78/85/90% by semester for 36 months towards levels 2-4 of the operai, and the lavorazioni artistiche (48 months, semesters 7-8 at 90%) as the track lavorazioni_artistiche. The apprendistato duale and the alta formazione are not modelled: their training hours in the institution are unpaid and those at the company paid 10%, hours the request does not state.
+    FIRST- AND THIRD-LEVEL APPRENTICES (Art. 92, ANCE text of 4 April 2019): modelled in dual_apprenticeship (first level at the conventional level 2 or 1, 65-90% by semester; third level 70-90% by semester for six semesters; on minimo, ex contingenza and EDR; training at the employer 10% of the work pay, school hours unpaid). Not modelled: the provincial elements of the base (indennità territoriale, premio di produzione, elemento variabile) and the INPS contributions of the first-level apprentice.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Add the duale and alta formazione pay with the training hours of the month, then resolve this limitation.
+    **Remediation:** Source the INPS contribution regime of the first-level apprentice.
 
 !!! warning "edilizia-ance/edilizia_operai_sickness · sickness · impact yes · open"
     SICKNESS (Art. 26): the employer pays a coefficient of the hourly minimo, ex contingenza and indennità territoriale times a sixth of the weekly hours, six days a week: 0.5495 for days 1-3 when the sickness lasts more than 6 days, 1.0495 when it lasts more than 12, 0.3795 for days 4-20 and 0.1565 for days 21-180 on top of the INPS indemnity, 0.5495 for days 181-365. The engine stores the coefficient plus the INPS rate of the day as the target (0.8795 and 0.8231), so its employer share is the coefficient on the engine's daily quota, which counts the EDR and not the indennità territoriale. Not modelled: the 1.0495 of a sickness over 12 days (paid 0.5495), the 4.95% paid for the carenza days of a sickness of up to 6 days and for the day of an injury (60% on days 1-3); the percentages accrued with the Cassa Edile during sickness and injury (Allegato D: 18.5% gross and 14.2% net for the carenza days and from day 4 of sickness, 7.4% and 5.7% for days 4-90 of injury or occupational disease, 4.6% and 3.6% from day 91); and the exception of Allegato D point 4: in a pay period without direct pay the conventional net does not apply and the actual withholdings are taken from the accruals. The sick hours of an operaio are not in the hours paid by the hour, so the sick days deduct nothing from the pay.

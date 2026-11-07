@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, sickness |
+| **Limits of this contract** | base_salary, inps_employer, sickness |
 
-2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -76,6 +76,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | gpt-6-sol (ai) | CCNL top-ups of maternity and work injury, read from the signed text by a separate model session; every quote found on the PDF text layer. | confirmed | Added work_rules.insured_absence.injury.<br>Added work_rules.insured_absence.maternity. |
 | 2026-11-08 | gpt-6-sol (ai) | Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim. | confirmed | permit_deadline_payout: Art. 158 provides year-end payment at then-current retribuzione di fatto OR later use no later than 30 June of the next year. commercio-confcommercio.json already has permit_deadline carry_until_month=6 for ex_festivita and rol and marks this limitation resolved. leave/services.p |
 | 2026-11-08 | gpt-6-sol (ai) | Employer top-up of the INAIL indemnity, read from the signed text by a separate model session (audit of the injury rules); quote checked on the text layer or the page image. | corrected | The injury rule had no top-up of the INAIL indemnity; added: {"integration_bands": [{"day_from": 4, "rate": "0.90"}, {"day_from": 20, "rate": "1"}], "net_basis": true} |
+| 2026-11-08 | gpt-6-sol (ai) | Art. 69 of the testo unico 30 luglio 2019 and the agreement of 2016 it incorporates. Every row of the extraction re-checked by a separate model session on the saved PDFs (verdict CONFIRMED). | confirmed | Added dual_apprenticeship for the first- and third-level apprentices. |
 
 ## Salary table
 
@@ -139,6 +140,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `sickness` applies.
 
     **Remediation:** Find a source (an interpretation of the parties, an INPS or Ministry text) that defines the net daily pay of Art. 187, align the computation, then resolve this limitation.
+
+!!! warning "commercio-confcommercio/first_level_apprentice_contributions · inps_employer · impact yes · open"
+    FIRST- AND THIRD-LEVEL APPRENTICES (Art. 69): modelled in dual_apprenticeship (first level 50/50/65/70% of the qualified worker's pay by year of the contract, third level two then one level below the destination by half of the programme; training at the employer 10%, school hours unpaid). Not modelled: the INPS contributions of the first-level apprentice (the engine applies the apprentice rates of the professionalising contract).
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Source the INPS contribution regime of the first-level apprentice.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

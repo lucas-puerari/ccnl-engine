@@ -83,6 +83,22 @@
       }
     },
     {
+      "id": "first_level_apprentice_contributions",
+      "institute": "inps_employer",
+      "variant": "apprentice",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "FIRST- AND THIRD-LEVEL APPRENTICES (Art. 26, accordo interconfederale 1 febbraio 2018): modelled in dual_apprenticeship (first level 45/55/60/70% by year at the conventional level, third level 70% then 80% of the tabellare by half, or 80%; training at the employer 10% of the work pay, school hours unpaid). Not modelled: the INPS contributions of the first-level apprentice.",
+      "calculation": "ccnl/metalmeccanico-artigianato:coverage.notes",
+      "state": "absent",
+      "remediation": "Source the INPS contribution regime of the first-level apprentice.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "metalmeccanico-artigianato/first_level_apprentice_contributions"
+        ]
+      }
+    },
+    {
       "id": "inps_sector_rates_unsourced",
       "institute": "inps_employer",
       "variant": "all",

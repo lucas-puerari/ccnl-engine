@@ -86,6 +86,10 @@
       {
         "kind": "info",
         "text": "DAILY DIVISOR (Art. 29 c. 5, p. 23): 'La quota giornaliera si determina convenzionalmente, dividendo la retribuzione mensile per 26'; the hourly quota is the monthly pay over 156 (c. 6, Art. 37: 36 hours a week, 156 a month)."
+      },
+      {
+        "kind": "info",
+        "text": "FIRST- AND THIRD-LEVEL APPRENTICES (Allegato 13): modelled in dual_apprenticeship (first level 50/55/60/70%, third level 70/80/90/100% of the tabellare by year; training at the employer 10% of the work pay, school hours unpaid)."
       }
     ]
   },
@@ -1102,7 +1106,7 @@
     "effective_until": null,
     "source": "https://www.cislscuola.it/download/ccnl-formazione-professionale-2024-2027/",
     "verification_status": "verified",
-    "source_hash": "d6099d162790e00eff55d26d89d146b08ba78d9d370cd7bc36e1b6aa2a63d31f",
+    "source_hash": "cdb03b693c97eca06adc0e29c4cf619cf12c1846e1b964a1f3129da7d28716ca",
     "published_at": "2026-09-11",
     "source_type": "contracting_party"
   },
@@ -1433,5 +1437,164 @@
         }
       }
     }
+  },
+  "dual_apprenticeship": [
+    {
+      "name": "primo_livello",
+      "programme": "first_level",
+      "destination_levels": [
+        "I",
+        "II",
+        "III",
+        "IV",
+        "V",
+        "VI",
+        "VII",
+        "VIII",
+        "IX"
+      ],
+      "periods": [
+        {
+          "work_rate": "0.50",
+          "months_until": 12
+        },
+        {
+          "work_rate": "0.55",
+          "months_from": 12,
+          "months_until": 24
+        },
+        {
+          "work_rate": "0.60",
+          "months_from": 24,
+          "months_until": 36
+        },
+        {
+          "work_rate": "0.70",
+          "months_from": 36
+        }
+      ],
+      "company_training_rate": "0.10",
+      "company_training_on": "work",
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "cnel-236584-formazione-professionale-2024",
+            "title": "CCNL Formazione professionale 2024-2027, testo ufficiale sottoscritto il 1 marzo 2024 (CNEL n. 236584)",
+            "kind": "cnel",
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/236584",
+            "published_on": "2024-03-01",
+            "sha256": "9b42f827613b72c414f475c30a8aaf0ff107baafc954b5c178feffb12a3990cf"
+          },
+          "page": "178",
+          "section": "Allegato 13, punto a.4",
+          "quote": "Fatto salvo quanto previsto dall'art. 43, comma 7 del D.Lgs. 81/2015 [...] Primo anno 50%; Eventuale secondo anno (o porzione di anno) 55%; Eventuale terzo anno (o porzione di anno) 60%; Eventuale quarto anno (o porzione di anno) 70% [...] La percentuale è calcolata sulla retribuzione tabellare del corrispondente livello di inquadramento (profilo professionale per il quale viene svolto l'apprendistato)"
+        },
+        "transformation": "First level: 50, 55, 60, 70%. By year of the apprenticeship, on the tabellare of the level of the profile; training at the employer 10% of the work pay (the statute, read as the pay due to the apprentice); school hours unpaid.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-08T00:10:00Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-08T00:10:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-08-gpt-formazione-professionale-dual-apprenticeship"
+        }
+      },
+      "work_elements": [
+        "base"
+      ]
+    },
+    {
+      "name": "alta_formazione_ricerca",
+      "programme": "third_level",
+      "destination_levels": [
+        "I",
+        "II",
+        "III",
+        "IV",
+        "V",
+        "VI",
+        "VII",
+        "VIII",
+        "IX"
+      ],
+      "periods": [
+        {
+          "work_rate": "0.70",
+          "months_until": 12
+        },
+        {
+          "work_rate": "0.80",
+          "months_from": 12,
+          "months_until": 24
+        },
+        {
+          "work_rate": "0.90",
+          "months_from": 24,
+          "months_until": 36
+        },
+        {
+          "work_rate": "1",
+          "months_from": 36
+        }
+      ],
+      "company_training_rate": "0.10",
+      "company_training_on": "work",
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "cnel-236584-formazione-professionale-2024",
+            "title": "CCNL Formazione professionale 2024-2027, testo ufficiale sottoscritto il 1 marzo 2024 (CNEL n. 236584)",
+            "kind": "cnel",
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/236584",
+            "published_on": "2024-03-01",
+            "sha256": "9b42f827613b72c414f475c30a8aaf0ff107baafc954b5c178feffb12a3990cf"
+          },
+          "page": "180-181",
+          "section": "Allegato 13, punto b.3",
+          "quote": "Fatto salvo quanto previsto dall'art 45, comma 3 del D.Lgs. 81/2015 [...] Primo anno 70%; Eventuale secondo anno (o porzione di anno) 80%; Eventuale terzo anno (o porzione di anno) 90%; Eventuale quarto anno (o porzione di anno) 100% [...] La percentuale è calcolata sulla retribuzione tabellare del corrispondente livello di inquadramento (profilo professionale per il quale viene svolto l'apprendistato)"
+        },
+        "transformation": "Third level: 70, 80, 90, 100%. By year of the apprenticeship, on the tabellare of the level of the profile; training at the employer 10% of the work pay (the statute, read as the pay due to the apprentice); school hours unpaid.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-08T00:10:00Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-08T00:10:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-08-gpt-formazione-professionale-dual-apprenticeship"
+        }
+      },
+      "work_elements": [
+        "base"
+      ]
+    }
+  ],
+  "verification": {
+    "reviews": [
+      {
+        "id": "2026-11-08-gpt-formazione-professionale-dual-apprenticeship",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Allegato 13 of the CCNL 2024-2027 signed 1 March 2024 (CNEL 236584), pp. 177-181. Every row of the extraction re-checked by a separate model session on the saved PDFs (verdict CONFIRMED).",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/236584",
+            "sha256": "9b42f827613b72c414f475c30a8aaf0ff107baafc954b5c178feffb12a3990cf"
+          }
+        ],
+        "findings": [
+          "Added dual_apprenticeship for the first- and third-level apprentices."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "dual_apprenticeship"
+        ]
+      }
+    ]
   }
 }

@@ -36,7 +36,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, inps_employer, sickness |
 
-4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -76,6 +76,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-07 | gpt-6-sol (ai) | Monthly values on scanned pages, each read twice from the page image by two independent sessions of another model, the second without being told the expected value. | confirmed | 31 values read identically by both readings and equal to the file. |
 | 2026-11-08 | claude-opus-5-5 (ai) | FSBA ordinary contribution, art. 3 of the 2024 regulation, read on the text layer (analysis by a separate model session). | corrected | Added parameters.solidarity_fund FSBA: 0.45%+0.15% up to 15 employees, 0.75%+0.25% above, on the INPS base, fixed terms included.<br>Closed health_and_bilateral_funds (FSBA was its only remediation). |
 | 2026-11-08 | claude-opus-5-5 (ai) | Saturday overtime of the consolidated 2021 text (unchanged by the 2024 renewal), read on the text layer. | corrected | Added OT_SABATO (25%, first 3 hours) and OT_SABATO_OLTRE_3_ORE (50% beyond 3 hours a day) on the new OvertimeKind.SATURDAY; closed artisan_saturday_overtime. |
+| 2026-11-08 | gpt-6-sol (ai) | Art. 26 of the CCNL 17 December 2021 and the interconfederal agreement of 1 February 2018 it reproduces (pp. 89-93), not changed by the 2024 renewal. Every row of the extraction re-checked by a separate model session on the saved PDFs (verdict CONFIRMED). | confirmed | Added dual_apprenticeship for the first- and third-level apprentices. |
 
 ## Salary table
 
@@ -149,6 +150,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `sickness` applies; category in impiegato, quadro.
 
     **Remediation:** Model the Art. 73 bands for the impiegati by category.
+
+!!! warning "metalmeccanico-artigianato/first_level_apprentice_contributions · inps_employer · impact yes · open"
+    FIRST- AND THIRD-LEVEL APPRENTICES (Art. 26, accordo interconfederale 1 febbraio 2018): modelled in dual_apprenticeship (first level 45/55/60/70% by year at the conventional level, third level 70% then 80% of the tabellare by half, or 80%; training at the employer 10% of the work pay, school hours unpaid). Not modelled: the INPS contributions of the first-level apprentice.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Source the INPS contribution regime of the first-level apprentice.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
