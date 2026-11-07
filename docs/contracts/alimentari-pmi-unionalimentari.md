@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 37 verified / 35 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 38 verified / 34 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-05-28 |
-| **Last review** | 2026-11-07 |
+| **Last review** | 2026-11-08 |
 | **Latest salary tranche** | 2028-01-01 |
 
 ## Review history
@@ -60,6 +60,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | corrected | Art. 48 - Tredicesima mensilità (p. 127): "Nel caso di inizio o di cessazione del rapporto di lavoro durante il corso dell’anno, il lavoratore ha diritto a tanti dodicesimi della gratifica natalizia quanti sono i mesi di anzianità di servizio presso l’azienda. La frazione di mese superiore ai 15 giorni viene considerata a questi effetti mese intero.". Added: more_than 15 (the file applied the engine default, at least 15 days). |
 | 2026-11-07 | claude-opus-5-5 (ai) | Art. 47 of the verbale of 28 May 2025 (p. 26, page image): the minimi from 1 April 2027 and 1 January 2028. | corrected | Two tranches of 70 EUR at parametro 137, reparametrised per level; the 2025 and 2026 columns equal the file. |
 | 2026-11-07 | claude-opus-5-5 (ai) | The monthly values of the levels against the primary tables (text layer). | confirmed | 54 values found verbatim on the cited pages and marked verified; 18 left as they were (derived or not on a text page). |
+| 2026-11-08 | gpt-6-sol (ai) | Art. 36 sickness rules of the CCNL 2024-2028 (alimentare): proposal by one session, field-by-field check of the text by a second independent session. | corrected | Comporto as a sum over the 17 months (up to 5 years of seniority, 180 days) or 24 months (over 5 years, 365 days) before the day, 'anche in caso di diverse malattie': modelled as cumulation; 180 days at full net pay, then 50%.<br>The second session confirmed 15 fields; the window_years fallback and the band boundaries are schema conventions, not contractual windows. |
 
 ## Salary table
 

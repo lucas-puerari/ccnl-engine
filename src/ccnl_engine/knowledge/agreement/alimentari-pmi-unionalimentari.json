@@ -173,6 +173,28 @@
           "levels.base_salary",
           "levels.fixed_allowances"
         ]
+      },
+      {
+        "id": "2026-11-08-gpt-alimentari-pmi-unionalimentari-sickness",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Art. 36 sickness rules of the CCNL 2024-2028 (alimentare): proposal by one session, field-by-field check of the text by a second independent session.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-CONFAPI-definitivo-2020-2024.pdf",
+            "sha256": "854af7c917ba2bf1491d79a816f78220b378f9cb10756f954b0bd8fe3bd51278"
+          }
+        ],
+        "findings": [
+          "Comporto as a sum over the 17 months (up to 5 years of seniority, 180 days) or 24 months (over 5 years, 365 days) before the day, 'anche in caso di diverse malattie': modelled as cumulation; 180 days at full net pay, then 50%.",
+          "The second session confirmed 15 fields; the window_years fallback and the band boundaries are schema conventions, not contractual windows."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.sickness_rules"
+        ]
       }
     ]
   },
@@ -3645,7 +3667,7 @@
     "effective_until": null,
     "source": "https://www.unionalimentari.com/",
     "verification_status": "unverified",
-    "source_hash": "44af84e3cb2875fa69711d2591c5013c54363ef9e2dfef0503cd2f3bfcdeed13",
+    "source_hash": "b3ada3f2f047d4957ed6793d98f20622f66693ba4bb1661b7452e01b5cde2008",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3815,38 +3837,52 @@
     "sickness_rules": {
       "carenza_integration_rate": "1",
       "full_pay_integration_rate": "1",
-      "max_duration_days": 180,
+      "net_basis": true,
+      "cumulation": {
+        "window_years": 2,
+        "reduced_integration_rate": "0.5",
+        "bands": [
+          {
+            "seniority_months_from": 0,
+            "full_pay_days": 180,
+            "comporto_days": 180,
+            "window_months": 17
+          },
+          {
+            "seniority_months_from": 61,
+            "full_pay_days": 180,
+            "comporto_days": 365,
+            "window_months": 24
+          }
+        ]
+      },
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "alimentari-pmi-unionalimentari",
-            "title": "CCNL Dipendenti Piccola e Media Industria Alimentare (Unionalimentari-Confapi)",
-            "kind": "tabella_retributiva",
-            "url": "https://ilccnl.it/contratto/ccnl/alimentari---piccola-industria"
+            "document_id": "ccnl-alimentari-pmi-unionalimentari-2020-2024",
+            "title": "CCNL Piccola e Media Industria Alimentare Unionalimentari–Confapi 2020–2024",
+            "kind": "associazione",
+            "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-CONFAPI-definitivo-2020-2024.pdf",
+            "sha256": "854af7c917ba2bf1491d79a816f78220b378f9cb10756f954b0bd8fe3bd51278"
           },
-          "section": "Malattia — conservazione posto 180 giorni; integrazione al 100%"
+          "page": "112",
+          "section": "Art. 36, 2) Trattamento economico",
+          "quote": "2) Trattamento economico\n   Il trattamento economico del lavoratore non in prova viene stabilito come segue:\n\n                                 Corresponsione         Corresponsione di\n             Anzianità di\n                                    dell’intera               metà\n              servizio\n                                   retribuzione           retribuzione\n             Fino a 5 anni       per 180 giorni di\n                                                           ----------------\n               compiuti             calendario\n                                 per 180 giorni di       per 185 giorni di\n            Oltre i 5 anni\n                                    calendario              calendario\n\n    Agli effetti del trattamento economico l’azienda, su documentazione redatta sui\nmoduli dell’Istituto assicuratore, integrerà l’indennità corrisposta dallo stesso in\nmodo da raggiungere il 100% o il 50% della retribuzione normale netta."
         },
+        "transformation": "The 2020–2024 selectable-text quotation (PDF p. 112) is corroborated by the signed consolidated 2024–2028 CCNL (https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf; sha256 1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae; art. 36, PDF pp. 126–128, scanned/OCR). Conservation clause on p. 126: 180 calendar days through five years and 365 above five years; sums of different illnesses in the preceding 17 and 24 months respectively. Pay table on pp. 127–128: first 180 days at 100% and days 181–365 for the longer-seniority band at 50%, topping up insurer indemnity to normal net pay. window_years=2 is a required fallback, overridden by window_months=17/24 for both bands; there is no additional 180-day per-episode cap. 60 completed months is the model’s nearest threshold for “oltre 5 anni”; the day immediately after the fifth anniversary cannot be distinguished from the anniversary using completed months.",
+        "note": "The cited exact pdftotext -layout quote is from the prior signed, text-selectable edition, not the scanned consolidated edition. The consolidated edition repeats the economic table and adds the disability extension. Carenza rate 1 is retained from the current rule as an inference from full pay for the initial 180 days, not an expressly separate waiting-day rate.",
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-08T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2025-06-01"
-        },
-        "transformation": "Comporto of several illnesses (2026-11-01): the comporto sums the sick days of the months before the day: from 0 months of seniority, 180 days in 17 months; from 61 months of seniority, 365 days in 24 months, on top of the 180 days of one illness. Source: https://azstcnesa0002prodwe001.blob.core.windows.net/archivio-contratti/archivio%2F2016%2F%2F19480.pdf, p. 109 (sha256 d40dbecb3519c68abafdff076cdd07ea990d270187f47b2cdd2785fb5b604061): 'anzianità fino a 5 anni compiuti: 180 giorni di calendario; ... anzianità oltre 5 anni: 365 giorni di calendario. ... durante i 17 mesi antecedenti ... durante i 24 mesi antecedenti ... anche in caso di diverse malattie'"
-      },
-      "comporto_windows": [
-        {
-          "seniority_months_from": 0,
-          "window_months": 17,
-          "comporto_days": 180
-        },
-        {
-          "seniority_months_from": 61,
-          "window_months": 24,
-          "comporto_days": 365
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-08T08:00:00Z",
+          "effective_from": null,
+          "verified_by": "gpt-6-sol",
+          "verified_at": "2026-11-08T08:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-08-gpt-alimentari-pmi-unionalimentari-sickness"
         }
-      ]
+      }
     },
     "sunday_holidays": {
       "holidays": [
