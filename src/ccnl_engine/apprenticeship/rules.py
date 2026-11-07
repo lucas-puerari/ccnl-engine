@@ -11,6 +11,7 @@ from ccnl_engine.apprenticeship.models import (
     ApprenticeshipPercentage,
 )
 from ccnl_engine.compensation.element.rules import _allowance_active, _level_chain
+from ccnl_engine.compensation.ladder.rules import level_below
 from ccnl_engine.errors import OutOfScopeError
 from ccnl_engine.pay_item.rounding.policies import money
 
@@ -180,7 +181,7 @@ def _underclass_track_chain(
         A tuple of (chain, None, pay_level_code).
     """
     period = track.periods[period_index]
-    pay_level = ccnl.level_by_order(level.order - period.levels_below)
+    pay_level = level_below(ccnl.levels, level, period.levels_below)
     chain = _level_chain(
         ccnl,
         pay_level,

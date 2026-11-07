@@ -41,6 +41,15 @@
         "url": "https://www.previdenza-professionisti.it/ccnl-legno-industria-scatti-anzianita/",
         "pages": [],
         "published_on": null
+      },
+      {
+        "document_id": "legno-ipotesi-2026-09-03",
+        "title": "CCNL Legno arredamento industria, ipotesi di accordo di rinnovo 3 settembre 2026",
+        "kind": "associazione",
+        "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2026/09/contratto-legno-industria.pdf",
+        "pages": [],
+        "published_on": "2026-09-03",
+        "sha256": "3ffe3e57f2e5f83f83018b96f9fe2a66f8213160d361cb247b72b2ea76f85c68"
       }
     ],
     "extraction": {
@@ -117,6 +126,19 @@
       {
         "kind": "info",
         "text": "APPRENTICE SENIORITY (Parte VII, Regolamentazione dell'apprendistato professionalizzante, p. 149 of the CCNL Legno industria, https://www.filcacisl.it/sindacato/wp-content/uploads/2022/04/Ccnl-Legno-Industria-definitivo1.pdf, sha256 591296abac43a018b9ffe08f60a521584129d9717e87a46583b8125a58d067bf): 'L’intero periodo di apprendistato professionalizzante è utile ai fini della maturazione dell’anzianità aziendale, anche ai fini degli aumenti periodici di anzianità; tali aumenti saranno corrisposti nelle misure previste dal livello di appartenenza': seniority_increments.apprentice_level_amount."
+      },
+      {
+        "kind": "simplification",
+        "text": "RENEWAL 2026-2028 (ipotesi di accordo of 3 September 2026, pp. 52-53): the paga base from 1 September 2026 is modelled; the ipotesi is not yet a definitive text. Not modelled: the una tantum of December 2026 and the IPCA increases of 1 January 2027 and 2028, which the parties will set in later meetings.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "renewal_2026_ipotesi",
+          "applies_when": {
+            "effective_from": "2026-09-01"
+          },
+          "remediation": "Check the definitive text, add the una tantum of December 2026 and the 2027 and 2028 tranches once set, then remove this note."
+        }
       }
     ]
   },
@@ -171,6 +193,27 @@
           "Level naming: the signed 2023 table labels the top row '12° AD3 (Quadri)', while the file's level descriptions and apprenticeship note call AC5 'quadri' (and model a function allowance for AD3). Values are unaffected; the descriptions should be checked.",
           "The file is out of date: the ipotesi of the 2026-2028 renewal signed 3 September 2026 (FILLEA-CGIL copy, PDF pp. 52-53) grants from September 2026 an increase of 95,00 at AS1 (parametro 134) riparametrated on all levels and prints a new paga base dal 01-09-2026 per level (contingenza and EDR unchanged); from January 2027 a further 39,00 at AS1. The file's 2025-01-01 period is open-ended and lacks a 2026-09-01 period.",
           "The ruleset names a document signed by FederlegnoArredo and the three unions (FILLEA-CGIL copy): source_type contracting_party."
+        ]
+      },
+      {
+        "id": "2026-11-07-ai-legno-ipotesi-2026",
+        "date": "2026-11-07",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Ipotesi of 3 September 2026: the minimi from 1 September 2026 (p. 53, page image).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2026/09/contratto-legno-industria.pdf",
+            "sha256": "3ffe3e57f2e5f83f83018b96f9fe2a66f8213160d361cb247b72b2ea76f85c68"
+          }
+        ],
+        "findings": [
+          "The paga base rises from 1 September 2026 (AE1 +70.90 to 1,301.59, AD3 +148.88 to 2,685.16); contingenza and EDR unchanged."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels.base_salary"
         ]
       }
     ]
@@ -467,7 +510,7 @@
           },
           {
             "valid_from": "2025-01-01",
-            "valid_until": null,
+            "valid_until": "2026-09-01",
             "value": "1230.69",
             "provenance": {
               "status": "derived",
@@ -491,6 +534,38 @@
                 "extraction_timestamp": "2026-10-18T11:54:14Z",
                 "effective_from": "2025-01-01",
                 "verification_status": "unverified"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-09-01",
+            "valid_until": null,
+            "value": "1301.59",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "legno-ipotesi-2026-09-03",
+                  "title": "CCNL Legno arredamento industria, ipotesi di accordo di rinnovo 3 settembre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2026/09/contratto-legno-industria.pdf",
+                  "published_on": "2026-09-03",
+                  "sha256": "3ffe3e57f2e5f83f83018b96f9fe2a66f8213160d361cb247b72b2ea76f85c68"
+                },
+                "page": "53",
+                "section": "Trattamento economico - Minimi dal 01-09-2026",
+                "quote": "AE1 [...] AUMENTO DAL 01-09-2026 70,90 Paga base 1301,59"
+              },
+              "transformation": "The paga base column; contingenza and EDR stay as their own allowances.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T15:00:00Z",
+                "effective_from": "2026-09-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-legno-ipotesi-2026"
               }
             }
           }
@@ -646,7 +721,7 @@
           },
           {
             "valid_from": "2025-01-01",
-            "valid_until": null,
+            "valid_until": "2026-09-01",
             "value": "1455.87",
             "provenance": {
               "status": "derived",
@@ -670,6 +745,38 @@
                 "extraction_timestamp": "2026-10-18T11:54:14Z",
                 "effective_from": "2025-01-01",
                 "verification_status": "unverified"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-09-01",
+            "valid_until": null,
+            "value": "1540.24",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "legno-ipotesi-2026-09-03",
+                  "title": "CCNL Legno arredamento industria, ipotesi di accordo di rinnovo 3 settembre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2026/09/contratto-legno-industria.pdf",
+                  "published_on": "2026-09-03",
+                  "sha256": "3ffe3e57f2e5f83f83018b96f9fe2a66f8213160d361cb247b72b2ea76f85c68"
+                },
+                "page": "53",
+                "section": "Trattamento economico - Minimi dal 01-09-2026",
+                "quote": "AE2 [...] AUMENTO DAL 01-09-2026 84,37 Paga base 1540,24"
+              },
+              "transformation": "The paga base column; contingenza and EDR stay as their own allowances.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T15:00:00Z",
+                "effective_from": "2026-09-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-legno-ipotesi-2026"
               }
             }
           }
@@ -825,7 +932,7 @@
           },
           {
             "valid_from": "2025-01-01",
-            "valid_until": null,
+            "valid_until": "2026-09-01",
             "value": "1544.94",
             "provenance": {
               "status": "derived",
@@ -849,6 +956,38 @@
                 "extraction_timestamp": "2026-10-18T11:54:14Z",
                 "effective_from": "2025-01-01",
                 "verification_status": "unverified"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-09-01",
+            "valid_until": null,
+            "value": "1634.62",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "legno-ipotesi-2026-09-03",
+                  "title": "CCNL Legno arredamento industria, ipotesi di accordo di rinnovo 3 settembre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2026/09/contratto-legno-industria.pdf",
+                  "published_on": "2026-09-03",
+                  "sha256": "3ffe3e57f2e5f83f83018b96f9fe2a66f8213160d361cb247b72b2ea76f85c68"
+                },
+                "page": "53",
+                "section": "Trattamento economico - Minimi dal 01-09-2026",
+                "quote": "AE3 [...] AUMENTO DAL 01-09-2026 89,68 Paga base 1634,62"
+              },
+              "transformation": "The paga base column; contingenza and EDR stay as their own allowances.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T15:00:00Z",
+                "effective_from": "2026-09-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-legno-ipotesi-2026"
               }
             }
           }
@@ -998,7 +1137,7 @@
           },
           {
             "valid_from": "2025-01-01",
-            "valid_until": null,
+            "valid_until": "2026-09-01",
             "value": "1633.95",
             "provenance": {
               "status": "derived",
@@ -1022,6 +1161,38 @@
                 "extraction_timestamp": "2026-10-18T11:54:14Z",
                 "effective_from": "2025-01-01",
                 "verification_status": "unverified"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-09-01",
+            "valid_until": null,
+            "value": "1728.95",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "legno-ipotesi-2026-09-03",
+                  "title": "CCNL Legno arredamento industria, ipotesi di accordo di rinnovo 3 settembre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2026/09/contratto-legno-industria.pdf",
+                  "published_on": "2026-09-03",
+                  "sha256": "3ffe3e57f2e5f83f83018b96f9fe2a66f8213160d361cb247b72b2ea76f85c68"
+                },
+                "page": "53",
+                "section": "Trattamento economico - Minimi dal 01-09-2026",
+                "quote": "AE4 [...] AUMENTO DAL 01-09-2026 95,00 Paga base 1728,95"
+              },
+              "transformation": "The paga base column; contingenza and EDR stay as their own allowances.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T15:00:00Z",
+                "effective_from": "2026-09-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-legno-ipotesi-2026"
               }
             }
           }
@@ -1171,7 +1342,7 @@
           },
           {
             "valid_from": "2025-01-01",
-            "valid_until": null,
+            "valid_until": "2026-09-01",
             "value": "1633.95",
             "provenance": {
               "status": "derived",
@@ -1195,6 +1366,38 @@
                 "extraction_timestamp": "2026-10-18T11:54:14Z",
                 "effective_from": "2025-01-01",
                 "verification_status": "unverified"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-09-01",
+            "valid_until": null,
+            "value": "1728.95",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "legno-ipotesi-2026-09-03",
+                  "title": "CCNL Legno arredamento industria, ipotesi di accordo di rinnovo 3 settembre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2026/09/contratto-legno-industria.pdf",
+                  "published_on": "2026-09-03",
+                  "sha256": "3ffe3e57f2e5f83f83018b96f9fe2a66f8213160d361cb247b72b2ea76f85c68"
+                },
+                "page": "53",
+                "section": "Trattamento economico - Minimi dal 01-09-2026",
+                "quote": "AS1 [...] AUMENTO DAL 01-09-2026 95,00 Paga base 1728,95"
+              },
+              "transformation": "The paga base column; contingenza and EDR stay as their own allowances.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T15:00:00Z",
+                "effective_from": "2026-09-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-legno-ipotesi-2026"
               }
             }
           }
@@ -1349,7 +1552,7 @@
           },
           {
             "valid_from": "2025-01-01",
-            "valid_until": null,
+            "valid_until": "2026-09-01",
             "value": "1705.36",
             "provenance": {
               "status": "derived",
@@ -1373,6 +1576,38 @@
                 "extraction_timestamp": "2026-10-18T11:54:14Z",
                 "effective_from": "2025-01-01",
                 "verification_status": "unverified"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-09-01",
+            "valid_until": null,
+            "value": "1804.61",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "legno-ipotesi-2026-09-03",
+                  "title": "CCNL Legno arredamento industria, ipotesi di accordo di rinnovo 3 settembre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2026/09/contratto-legno-industria.pdf",
+                  "published_on": "2026-09-03",
+                  "sha256": "3ffe3e57f2e5f83f83018b96f9fe2a66f8213160d361cb247b72b2ea76f85c68"
+                },
+                "page": "53",
+                "section": "Trattamento economico - Minimi dal 01-09-2026",
+                "quote": "AC1 [...] AUMENTO DAL 01-09-2026 99,25 Paga base 1804,61"
+              },
+              "transformation": "The paga base column; contingenza and EDR stay as their own allowances.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T15:00:00Z",
+                "effective_from": "2026-09-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-legno-ipotesi-2026"
               }
             }
           }
@@ -1527,7 +1762,7 @@
           },
           {
             "valid_from": "2025-01-01",
-            "valid_until": null,
+            "valid_until": "2026-09-01",
             "value": "1705.36",
             "provenance": {
               "status": "derived",
@@ -1551,6 +1786,38 @@
                 "extraction_timestamp": "2026-10-18T11:54:14Z",
                 "effective_from": "2025-01-01",
                 "verification_status": "unverified"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-09-01",
+            "valid_until": null,
+            "value": "1804.61",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "legno-ipotesi-2026-09-03",
+                  "title": "CCNL Legno arredamento industria, ipotesi di accordo di rinnovo 3 settembre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2026/09/contratto-legno-industria.pdf",
+                  "published_on": "2026-09-03",
+                  "sha256": "3ffe3e57f2e5f83f83018b96f9fe2a66f8213160d361cb247b72b2ea76f85c68"
+                },
+                "page": "53",
+                "section": "Trattamento economico - Minimi dal 01-09-2026",
+                "quote": "AS2 [...] AUMENTO DAL 01-09-2026 99,25 Paga base 1804,61"
+              },
+              "transformation": "The paga base column; contingenza and EDR stay as their own allowances.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T15:00:00Z",
+                "effective_from": "2026-09-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-legno-ipotesi-2026"
               }
             }
           }
@@ -1699,7 +1966,7 @@
           },
           {
             "valid_from": "2025-01-01",
-            "valid_until": null,
+            "valid_until": "2026-09-01",
             "value": "1795.17",
             "provenance": {
               "status": "derived",
@@ -1723,6 +1990,38 @@
                 "extraction_timestamp": "2026-10-18T11:54:14Z",
                 "effective_from": "2025-01-01",
                 "verification_status": "unverified"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-09-01",
+            "valid_until": null,
+            "value": "1899.74",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "legno-ipotesi-2026-09-03",
+                  "title": "CCNL Legno arredamento industria, ipotesi di accordo di rinnovo 3 settembre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2026/09/contratto-legno-industria.pdf",
+                  "published_on": "2026-09-03",
+                  "sha256": "3ffe3e57f2e5f83f83018b96f9fe2a66f8213160d361cb247b72b2ea76f85c68"
+                },
+                "page": "53",
+                "section": "Trattamento economico - Minimi dal 01-09-2026",
+                "quote": "AS3 [...] AUMENTO DAL 01-09-2026 104,57 Paga base 1899,74"
+              },
+              "transformation": "The paga base column; contingenza and EDR stay as their own allowances.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T15:00:00Z",
+                "effective_from": "2026-09-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-legno-ipotesi-2026"
               }
             }
           }
@@ -1877,7 +2176,7 @@
           },
           {
             "valid_from": "2025-01-01",
-            "valid_until": null,
+            "valid_until": "2026-09-01",
             "value": "1883.66",
             "provenance": {
               "status": "derived",
@@ -1901,6 +2200,38 @@
                 "extraction_timestamp": "2026-10-18T11:54:14Z",
                 "effective_from": "2025-01-01",
                 "verification_status": "unverified"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-09-01",
+            "valid_until": null,
+            "value": "1993.55",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "legno-ipotesi-2026-09-03",
+                  "title": "CCNL Legno arredamento industria, ipotesi di accordo di rinnovo 3 settembre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2026/09/contratto-legno-industria.pdf",
+                  "published_on": "2026-09-03",
+                  "sha256": "3ffe3e57f2e5f83f83018b96f9fe2a66f8213160d361cb247b72b2ea76f85c68"
+                },
+                "page": "53",
+                "section": "Trattamento economico - Minimi dal 01-09-2026",
+                "quote": "AC2 [...] AUMENTO DAL 01-09-2026 109,89 Paga base 1993,55"
+              },
+              "transformation": "The paga base column; contingenza and EDR stay as their own allowances.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T15:00:00Z",
+                "effective_from": "2026-09-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-legno-ipotesi-2026"
               }
             }
           }
@@ -2055,7 +2386,7 @@
           },
           {
             "valid_from": "2025-01-01",
-            "valid_until": null,
+            "valid_until": "2026-09-01",
             "value": "1883.66",
             "provenance": {
               "status": "derived",
@@ -2079,6 +2410,38 @@
                 "extraction_timestamp": "2026-10-18T11:54:14Z",
                 "effective_from": "2025-01-01",
                 "verification_status": "unverified"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-09-01",
+            "valid_until": null,
+            "value": "1993.55",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "legno-ipotesi-2026-09-03",
+                  "title": "CCNL Legno arredamento industria, ipotesi di accordo di rinnovo 3 settembre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2026/09/contratto-legno-industria.pdf",
+                  "published_on": "2026-09-03",
+                  "sha256": "3ffe3e57f2e5f83f83018b96f9fe2a66f8213160d361cb247b72b2ea76f85c68"
+                },
+                "page": "53",
+                "section": "Trattamento economico - Minimi dal 01-09-2026",
+                "quote": "AC3 [...] AUMENTO DAL 01-09-2026 109,89 Paga base 1993,55"
+              },
+              "transformation": "The paga base column; contingenza and EDR stay as their own allowances.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T15:00:00Z",
+                "effective_from": "2026-09-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-legno-ipotesi-2026"
               }
             }
           }
@@ -2233,7 +2596,7 @@
           },
           {
             "valid_from": "2025-01-01",
-            "valid_until": null,
+            "valid_until": "2026-09-01",
             "value": "1883.66",
             "provenance": {
               "status": "derived",
@@ -2257,6 +2620,38 @@
                 "extraction_timestamp": "2026-10-18T11:54:14Z",
                 "effective_from": "2025-01-01",
                 "verification_status": "unverified"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-09-01",
+            "valid_until": null,
+            "value": "1993.55",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "legno-ipotesi-2026-09-03",
+                  "title": "CCNL Legno arredamento industria, ipotesi di accordo di rinnovo 3 settembre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2026/09/contratto-legno-industria.pdf",
+                  "published_on": "2026-09-03",
+                  "sha256": "3ffe3e57f2e5f83f83018b96f9fe2a66f8213160d361cb247b72b2ea76f85c68"
+                },
+                "page": "53",
+                "section": "Trattamento economico - Minimi dal 01-09-2026",
+                "quote": "AS4 [...] AUMENTO DAL 01-09-2026 109,89 Paga base 1993,55"
+              },
+              "transformation": "The paga base column; contingenza and EDR stay as their own allowances.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T15:00:00Z",
+                "effective_from": "2026-09-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-legno-ipotesi-2026"
               }
             }
           }
@@ -2411,7 +2806,7 @@
           },
           {
             "valid_from": "2025-01-01",
-            "valid_until": null,
+            "valid_until": "2026-09-01",
             "value": "2061.83",
             "provenance": {
               "status": "derived",
@@ -2435,6 +2830,38 @@
                 "extraction_timestamp": "2026-10-18T11:54:14Z",
                 "effective_from": "2025-01-01",
                 "verification_status": "unverified"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-09-01",
+            "valid_until": null,
+            "value": "2182.35",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "legno-ipotesi-2026-09-03",
+                  "title": "CCNL Legno arredamento industria, ipotesi di accordo di rinnovo 3 settembre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2026/09/contratto-legno-industria.pdf",
+                  "published_on": "2026-09-03",
+                  "sha256": "3ffe3e57f2e5f83f83018b96f9fe2a66f8213160d361cb247b72b2ea76f85c68"
+                },
+                "page": "53",
+                "section": "Trattamento economico - Minimi dal 01-09-2026",
+                "quote": "AC4 [...] AUMENTO DAL 01-09-2026 120,52 Paga base 2182,35"
+              },
+              "transformation": "The paga base column; contingenza and EDR stay as their own allowances.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T15:00:00Z",
+                "effective_from": "2026-09-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-legno-ipotesi-2026"
               }
             }
           }
@@ -2589,7 +3016,7 @@
           },
           {
             "valid_from": "2025-01-01",
-            "valid_until": null,
+            "valid_until": "2026-09-01",
             "value": "2239.93",
             "provenance": {
               "status": "derived",
@@ -2613,6 +3040,38 @@
                 "extraction_timestamp": "2026-10-18T11:54:14Z",
                 "effective_from": "2025-01-01",
                 "verification_status": "unverified"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-09-01",
+            "valid_until": null,
+            "value": "2371.09",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "legno-ipotesi-2026-09-03",
+                  "title": "CCNL Legno arredamento industria, ipotesi di accordo di rinnovo 3 settembre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2026/09/contratto-legno-industria.pdf",
+                  "published_on": "2026-09-03",
+                  "sha256": "3ffe3e57f2e5f83f83018b96f9fe2a66f8213160d361cb247b72b2ea76f85c68"
+                },
+                "page": "53",
+                "section": "Trattamento economico - Minimi dal 01-09-2026",
+                "quote": "AC5 [...] AUMENTO DAL 01-09-2026 131,16 Paga base 2371,09"
+              },
+              "transformation": "The paga base column; contingenza and EDR stay as their own allowances.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T15:00:00Z",
+                "effective_from": "2026-09-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-legno-ipotesi-2026"
               }
             }
           }
@@ -2768,7 +3227,7 @@
           },
           {
             "valid_from": "2025-01-01",
-            "valid_until": null,
+            "valid_until": "2026-09-01",
             "value": "2358.74",
             "provenance": {
               "status": "derived",
@@ -2792,6 +3251,38 @@
                 "extraction_timestamp": "2026-10-18T11:54:14Z",
                 "effective_from": "2025-01-01",
                 "verification_status": "unverified"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-09-01",
+            "valid_until": null,
+            "value": "2496.99",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "legno-ipotesi-2026-09-03",
+                  "title": "CCNL Legno arredamento industria, ipotesi di accordo di rinnovo 3 settembre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2026/09/contratto-legno-industria.pdf",
+                  "published_on": "2026-09-03",
+                  "sha256": "3ffe3e57f2e5f83f83018b96f9fe2a66f8213160d361cb247b72b2ea76f85c68"
+                },
+                "page": "53",
+                "section": "Trattamento economico - Minimi dal 01-09-2026",
+                "quote": "AD1 [...] AUMENTO DAL 01-09-2026 138,25 Paga base 2496,99"
+              },
+              "transformation": "The paga base column; contingenza and EDR stay as their own allowances.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T15:00:00Z",
+                "effective_from": "2026-09-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-legno-ipotesi-2026"
               }
             }
           }
@@ -2947,7 +3438,7 @@
           },
           {
             "valid_from": "2025-01-01",
-            "valid_until": null,
+            "valid_until": "2026-09-01",
             "value": "2478.22",
             "provenance": {
               "status": "derived",
@@ -2971,6 +3462,38 @@
                 "extraction_timestamp": "2026-10-18T11:54:14Z",
                 "effective_from": "2025-01-01",
                 "verification_status": "unverified"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-09-01",
+            "valid_until": null,
+            "value": "2623.56",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "legno-ipotesi-2026-09-03",
+                  "title": "CCNL Legno arredamento industria, ipotesi di accordo di rinnovo 3 settembre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2026/09/contratto-legno-industria.pdf",
+                  "published_on": "2026-09-03",
+                  "sha256": "3ffe3e57f2e5f83f83018b96f9fe2a66f8213160d361cb247b72b2ea76f85c68"
+                },
+                "page": "53",
+                "section": "Trattamento economico - Minimi dal 01-09-2026",
+                "quote": "AD2 [...] AUMENTO DAL 01-09-2026 145,34 Paga base 2623,56"
+              },
+              "transformation": "The paga base column; contingenza and EDR stay as their own allowances.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T15:00:00Z",
+                "effective_from": "2026-09-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-legno-ipotesi-2026"
               }
             }
           }
@@ -3126,7 +3649,7 @@
           },
           {
             "valid_from": "2025-01-01",
-            "valid_until": null,
+            "valid_until": "2026-09-01",
             "value": "2536.28",
             "provenance": {
               "status": "derived",
@@ -3150,6 +3673,38 @@
                 "extraction_timestamp": "2026-10-18T11:54:14Z",
                 "effective_from": "2025-01-01",
                 "verification_status": "unverified"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-09-01",
+            "valid_until": null,
+            "value": "2685.16",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "legno-ipotesi-2026-09-03",
+                  "title": "CCNL Legno arredamento industria, ipotesi di accordo di rinnovo 3 settembre 2026",
+                  "kind": "associazione",
+                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2026/09/contratto-legno-industria.pdf",
+                  "published_on": "2026-09-03",
+                  "sha256": "3ffe3e57f2e5f83f83018b96f9fe2a66f8213160d361cb247b72b2ea76f85c68"
+                },
+                "page": "53",
+                "section": "Trattamento economico - Minimi dal 01-09-2026",
+                "quote": "AD3 [...] AUMENTO DAL 01-09-2026 148,88 Paga base 2685,16"
+              },
+              "transformation": "The paga base column; contingenza and EDR stay as their own allowances.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T15:00:00Z",
+                "effective_from": "2026-09-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-legno-ipotesi-2026"
               }
             }
           }
@@ -3488,7 +4043,7 @@
     "effective_until": null,
     "source": "https://www.filleacgil.net/images/DAL-2024/MATERIALI_dipartimento/LEGNO-ARREDO/Verbale_di_accordo_Adeguamento_minimi_anno_2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "f0d580311d828df62e0345ae76a4dc2ae837dd7191fd6e000b519c12726f2aad",
+    "source_hash": "c67520cb84a967f03723ed4cc618ba45a0a81598b2e86a7be7542f63adf473f0",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

@@ -259,6 +259,22 @@
       }
     },
     {
+      "id": "renewal_2027_2029",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "RENEWAL 2027-2029 (ipotesi of 15 September 2026, Allegati B-E pp. 20-22; the parties report the definitive signature of 23 October 2026, whose text is not public): the retribuzione base mensile from 1 October 2026, 1 July 2027, 1 July 2028 and 1 July 2029 is modelled; level 6 is abolished and paid as level 5 from 1 October 2026 (art. 10). Not modelled: the una tantum of Allegato D (two instalments with the January and July 2027 pay, 290.00 to 190.00 EUR per instalment by level), and the seniority of a former level 6 worker, kept at the level 6 amounts already matured.",
+      "calculation": "ccnl/farmacie-municipalizzate-assofarm:coverage.notes",
+      "state": "absent",
+      "remediation": "Check the definitive text of 23 October 2026, model the una tantum of Allegato D as una tantum items, then remove this note.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "farmacie-municipalizzate-assofarm/renewal_2027_2029"
+        ]
+      }
+    },
+    {
       "id": "rule_additional_months_2022_07_01",
       "institute": "base_salary",
       "variant": "all",

@@ -167,20 +167,20 @@ def test_the_quota_is_paid_on_the_whole_monthly_pay() -> None:
     """Minimo, scatti and allowances, taxed as pay of the month.
 
     Alimentari PMI level Q with ten years of seniority: the monthly pay of
-    March 2027, with no holiday on a Sunday, is the monthly pay the quota of
-    25 April divides, and the quota enters the INPS and TFR bases.
+    July 2027, with no holiday on a Sunday, is the monthly pay the quota of
+    15 August divides, and the quota enters the INPS and TFR bases.
     """
     seniority = SeniorityFact(120, date(2027, 1, 1), SenioritySource.PAYSLIP)
     ccnl = ("alimentari-pmi-unionalimentari", "Q")
-    march = _run(ccnl, 2027, 3, seniority=seniority)
-    april = _run(ccnl, 2027, 4, seniority=seniority)
-    quota = (march.period_gross / 26).quantize(Decimal("0.01"))
+    july = _run(ccnl, 2027, 7, seniority=seniority)
+    august = _run(ccnl, 2027, 8, seniority=seniority)
+    quota = (july.period_gross / 26).quantize(Decimal("0.01"))
 
-    (decision,) = (d for d in april.decisions if d.capability == CAPABILITY)
-    assert decision.inputs["monthly"] == march.period_gross == Decimal("3700.72")
-    assert april.period_gross == march.period_gross + quota
+    (decision,) = (d for d in august.decisions if d.capability == CAPABILITY)
+    assert decision.inputs["monthly"] == july.period_gross == Decimal("3818.23")
+    assert august.period_gross == july.period_gross + quota
     for account in ("employee_contributions", "tfr_accrual"):
-        assert _posted(april, account) > _posted(march, account)
+        assert _posted(august, account) > _posted(july, account)
 
 
 def test_the_ccnl_clause_pays_its_own_holidays() -> None:

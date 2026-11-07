@@ -123,6 +123,13 @@
         "printed": "voce 2 retribuzione tabellare"
       }
     },
-    "known_differences": []
+    "known_differences": [
+      {
+        "key": "base_salary",
+        "reason": "The payslip of May 2026 predates the CCNL 2025-2027 signed 28 October 2026, which raises the tabellare from 1 January 2026; the engine pays the amount the renewal owes for the month, settled as arrears, the payslip the one in force when printed.",
+        "owner": "maintainer",
+        "accepted_until": "2027-12-31"
+      }
+    ]
   }
 }

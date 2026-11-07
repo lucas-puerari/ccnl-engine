@@ -111,7 +111,7 @@
       },
       {
         "kind": "simplification",
-        "text": "Only tessile-abbigliamento sub-sector modelled. Chimica-ceramica sub-sectors (different salary tables) are not modelled. CNEL code V751 covers all three sub-sectors.",
+        "text": "SUB-SECTORS (verbale integrativo of 22 July 2024, pp. 5-6): the chimica, concia, gomma, plastica and vetro table is modelled as the sub-sector chimica (the base_salary_by_subsector chimica of levels 1-6 and the chimica levels 5s and 7), the ceramica, terracotta, gres and decorazione di piastrelle table as the sub-sector ceramica (levels A-G), both by EmployerProfile.subsector. Not modelled: the calzaturiero, lavorazioni a mano e su misura, pulitintolavanderie and occhialeria tables of the same verbale. Level 6S requested with chimica, and levels 1-6S with ceramica, are paid the tessile table, which those sectors do not print; levels 1-6 of chimica take the tessile seniority amounts and apprenticeship tracks.",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
@@ -119,7 +119,7 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Model the chimica-ceramica salary tables with a sub-sector input."
+          "remediation": "Model the other sector tables, source the seniority and apprenticeship of chimica and ceramica and reject the levels their tables lack, then remove this note."
         }
       },
       {
@@ -174,6 +174,30 @@
             ]
           },
           "remediation": "Source the apprentice rates of artigianato (an INPS circular or an association table of 2026), mark the apprentice block of contribution/2026/artigianato.json derived, then remove this note."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "SUB-SECTOR LEVELS (chimica 5s and 7, ceramica A-G): the seniority table of the file (art. 67, tessile sector) has no row for them and the pages read (verbale of 22 July 2024, pp. 5-6) do not set one, so they accrue no seniority increments; they are in no apprenticeship track (the three tracks are the abbigliamento groups) no fixed allowance is modelled for them (the pages read do not settle one, such as the indennità di funzione of 6S) and their category is left to Employment.category.",
+        "capability": "seniority",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "chimica_ceramica_level_rules",
+          "applies_when": {
+            "trigger": "run",
+            "levels": [
+              "5s",
+              "7",
+              "A",
+              "B",
+              "C",
+              "D",
+              "E",
+              "F",
+              "G"
+            ]
+          },
+          "remediation": "Source the seniority increments and apprenticeship of the chimica and ceramica levels, then remove this note."
         }
       }
     ]
@@ -231,6 +255,29 @@
         ],
         "findings": [
           "Art. 109 (pp. 126-127), operai Tessile, Abbigliamento, Calzaturiero: 80% for days 1-7, the first 3 not paid for an illness under 8 days, 100% of the net pay for days 8-180; Art. 97 (p. 116): 12 months. The file had a flat 80% and no carenza: corrected. Art. 97 holds both a 21-month and a 24-month paragraph on several illnesses, so no window is stored (note)."
+        ]
+      },
+      {
+        "id": "2026-11-07-ai-chimica-ceramica-tables",
+        "date": "2026-11-07",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The Nuovi minimi contrattuali of the chimica, concia, gomma, plastica, vetro (p. 5) and ceramica, terracotta, gres, decorazione di piastrelle (p. 6) tables of the verbale integrativo of 22 July 2024, page images.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+            "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
+          }
+        ],
+        "findings": [
+          "Chimica (p. 5): the 32 minimi of levels 1-7 and 5s for 1 July 2024, 1 January 2025, 1 October 2025 and 1 October 2026 read on the page image and added as the base_salary_by_subsector chimica of levels 1-6 and the chimica levels 5s and 7.",
+          "Ceramica (p. 6): the 28 minimi of levels A-G for the same four tranches read on the page image and added as the ceramica levels A-G."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels.base_salary_by_subsector",
+          "levels.base_salary"
         ]
       }
     ]
@@ -629,6 +676,136 @@
           "verification_status": "unverified",
           "effective_from": "2020-01-01"
         }
+      },
+      "base_salary_by_subsector": {
+        "chimica": {
+          "periods": [
+            {
+              "valid_from": "2024-07-01",
+              "valid_until": "2025-01-01",
+              "value": "1393.55",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                    "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                    "kind": "associazione",
+                    "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                    "published_on": "2024-07-22",
+                    "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
+                  },
+                  "page": "5",
+                  "section": "Tabelle retributive, Settori Chimica, Concia, Gomma, Plastica, Vetro, Nuovi minimi contrattuali",
+                  "quote": "1 | 1.393,55 | 1.429,26 | 1.473,01 | 1.532,83"
+                },
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T15:00:00Z",
+                  "effective_from": "2024-07-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-07T15:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-07-ai-chimica-ceramica-tables"
+                }
+              }
+            },
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": "2025-10-01",
+              "value": "1429.26",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                    "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                    "kind": "associazione",
+                    "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                    "published_on": "2024-07-22",
+                    "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
+                  },
+                  "page": "5",
+                  "section": "Tabelle retributive, Settori Chimica, Concia, Gomma, Plastica, Vetro, Nuovi minimi contrattuali",
+                  "quote": "1 | 1.393,55 | 1.429,26 | 1.473,01 | 1.532,83"
+                },
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T15:00:00Z",
+                  "effective_from": "2025-01-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-07T15:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-07-ai-chimica-ceramica-tables"
+                }
+              }
+            },
+            {
+              "valid_from": "2025-10-01",
+              "valid_until": "2026-10-01",
+              "value": "1473.01",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                    "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                    "kind": "associazione",
+                    "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                    "published_on": "2024-07-22",
+                    "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
+                  },
+                  "page": "5",
+                  "section": "Tabelle retributive, Settori Chimica, Concia, Gomma, Plastica, Vetro, Nuovi minimi contrattuali",
+                  "quote": "1 | 1.393,55 | 1.429,26 | 1.473,01 | 1.532,83"
+                },
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T15:00:00Z",
+                  "effective_from": "2025-10-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-07T15:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-07-ai-chimica-ceramica-tables"
+                }
+              }
+            },
+            {
+              "valid_from": "2026-10-01",
+              "valid_until": null,
+              "value": "1532.83",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                    "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                    "kind": "associazione",
+                    "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                    "published_on": "2024-07-22",
+                    "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
+                  },
+                  "page": "5",
+                  "section": "Tabelle retributive, Settori Chimica, Concia, Gomma, Plastica, Vetro, Nuovi minimi contrattuali",
+                  "quote": "1 | 1.393,55 | 1.429,26 | 1.473,01 | 1.532,83"
+                },
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T15:00:00Z",
+                  "effective_from": "2026-10-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-07T15:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-07-ai-chimica-ceramica-tables"
+                }
+              }
+            }
+          ]
+        }
       }
     },
     {
@@ -785,6 +962,136 @@
           "extraction_timestamp": "2026-09-07T15:03:36",
           "verification_status": "unverified",
           "effective_from": "2020-01-01"
+        }
+      },
+      "base_salary_by_subsector": {
+        "chimica": {
+          "periods": [
+            {
+              "valid_from": "2024-07-01",
+              "valid_until": "2025-01-01",
+              "value": "1491.65",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                    "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                    "kind": "associazione",
+                    "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                    "published_on": "2024-07-22",
+                    "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
+                  },
+                  "page": "5",
+                  "section": "Tabelle retributive, Settori Chimica, Concia, Gomma, Plastica, Vetro, Nuovi minimi contrattuali",
+                  "quote": "2 | 1.491,65 | 1.529,86 | 1.576,67 | 1.640,68"
+                },
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T15:00:00Z",
+                  "effective_from": "2024-07-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-07T15:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-07-ai-chimica-ceramica-tables"
+                }
+              }
+            },
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": "2025-10-01",
+              "value": "1529.86",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                    "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                    "kind": "associazione",
+                    "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                    "published_on": "2024-07-22",
+                    "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
+                  },
+                  "page": "5",
+                  "section": "Tabelle retributive, Settori Chimica, Concia, Gomma, Plastica, Vetro, Nuovi minimi contrattuali",
+                  "quote": "2 | 1.491,65 | 1.529,86 | 1.576,67 | 1.640,68"
+                },
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T15:00:00Z",
+                  "effective_from": "2025-01-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-07T15:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-07-ai-chimica-ceramica-tables"
+                }
+              }
+            },
+            {
+              "valid_from": "2025-10-01",
+              "valid_until": "2026-10-01",
+              "value": "1576.67",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                    "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                    "kind": "associazione",
+                    "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                    "published_on": "2024-07-22",
+                    "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
+                  },
+                  "page": "5",
+                  "section": "Tabelle retributive, Settori Chimica, Concia, Gomma, Plastica, Vetro, Nuovi minimi contrattuali",
+                  "quote": "2 | 1.491,65 | 1.529,86 | 1.576,67 | 1.640,68"
+                },
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T15:00:00Z",
+                  "effective_from": "2025-10-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-07T15:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-07-ai-chimica-ceramica-tables"
+                }
+              }
+            },
+            {
+              "valid_from": "2026-10-01",
+              "valid_until": null,
+              "value": "1640.68",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                    "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                    "kind": "associazione",
+                    "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                    "published_on": "2024-07-22",
+                    "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
+                  },
+                  "page": "5",
+                  "section": "Tabelle retributive, Settori Chimica, Concia, Gomma, Plastica, Vetro, Nuovi minimi contrattuali",
+                  "quote": "2 | 1.491,65 | 1.529,86 | 1.576,67 | 1.640,68"
+                },
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T15:00:00Z",
+                  "effective_from": "2026-10-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-07T15:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-07-ai-chimica-ceramica-tables"
+                }
+              }
+            }
+          ]
         }
       }
     },
@@ -943,6 +1250,136 @@
           "verification_status": "unverified",
           "effective_from": "2020-01-01"
         }
+      },
+      "base_salary_by_subsector": {
+        "chimica": {
+          "periods": [
+            {
+              "valid_from": "2024-07-01",
+              "valid_until": "2025-01-01",
+              "value": "1560.46",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                    "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                    "kind": "associazione",
+                    "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                    "published_on": "2024-07-22",
+                    "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
+                  },
+                  "page": "5",
+                  "section": "Tabelle retributive, Settori Chimica, Concia, Gomma, Plastica, Vetro, Nuovi minimi contrattuali",
+                  "quote": "3 | 1.560,46 | 1.600,46 | 1.649,46 | 1.716,46"
+                },
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T15:00:00Z",
+                  "effective_from": "2024-07-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-07T15:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-07-ai-chimica-ceramica-tables"
+                }
+              }
+            },
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": "2025-10-01",
+              "value": "1600.46",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                    "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                    "kind": "associazione",
+                    "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                    "published_on": "2024-07-22",
+                    "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
+                  },
+                  "page": "5",
+                  "section": "Tabelle retributive, Settori Chimica, Concia, Gomma, Plastica, Vetro, Nuovi minimi contrattuali",
+                  "quote": "3 | 1.560,46 | 1.600,46 | 1.649,46 | 1.716,46"
+                },
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T15:00:00Z",
+                  "effective_from": "2025-01-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-07T15:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-07-ai-chimica-ceramica-tables"
+                }
+              }
+            },
+            {
+              "valid_from": "2025-10-01",
+              "valid_until": "2026-10-01",
+              "value": "1649.46",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                    "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                    "kind": "associazione",
+                    "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                    "published_on": "2024-07-22",
+                    "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
+                  },
+                  "page": "5",
+                  "section": "Tabelle retributive, Settori Chimica, Concia, Gomma, Plastica, Vetro, Nuovi minimi contrattuali",
+                  "quote": "3 | 1.560,46 | 1.600,46 | 1.649,46 | 1.716,46"
+                },
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T15:00:00Z",
+                  "effective_from": "2025-10-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-07T15:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-07-ai-chimica-ceramica-tables"
+                }
+              }
+            },
+            {
+              "valid_from": "2026-10-01",
+              "valid_until": null,
+              "value": "1716.46",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                    "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                    "kind": "associazione",
+                    "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                    "published_on": "2024-07-22",
+                    "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
+                  },
+                  "page": "5",
+                  "section": "Tabelle retributive, Settori Chimica, Concia, Gomma, Plastica, Vetro, Nuovi minimi contrattuali",
+                  "quote": "3 | 1.560,46 | 1.600,46 | 1.649,46 | 1.716,46"
+                },
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T15:00:00Z",
+                  "effective_from": "2026-10-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-07T15:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-07-ai-chimica-ceramica-tables"
+                }
+              }
+            }
+          ]
+        }
       }
     },
     {
@@ -1099,6 +1536,136 @@
           "extraction_timestamp": "2026-09-07T15:03:36",
           "verification_status": "unverified",
           "effective_from": "2020-01-01"
+        }
+      },
+      "base_salary_by_subsector": {
+        "chimica": {
+          "periods": [
+            {
+              "valid_from": "2024-07-01",
+              "valid_until": "2025-01-01",
+              "value": "1652.99",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                    "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                    "kind": "associazione",
+                    "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                    "published_on": "2024-07-22",
+                    "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
+                  },
+                  "page": "5",
+                  "section": "Tabelle retributive, Settori Chimica, Concia, Gomma, Plastica, Vetro, Nuovi minimi contrattuali",
+                  "quote": "4 | 1.652,99 | 1.695,49 | 1.747,55 | 1.818,74"
+                },
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T15:00:00Z",
+                  "effective_from": "2024-07-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-07T15:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-07-ai-chimica-ceramica-tables"
+                }
+              }
+            },
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": "2025-10-01",
+              "value": "1695.49",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                    "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                    "kind": "associazione",
+                    "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                    "published_on": "2024-07-22",
+                    "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
+                  },
+                  "page": "5",
+                  "section": "Tabelle retributive, Settori Chimica, Concia, Gomma, Plastica, Vetro, Nuovi minimi contrattuali",
+                  "quote": "4 | 1.652,99 | 1.695,49 | 1.747,55 | 1.818,74"
+                },
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T15:00:00Z",
+                  "effective_from": "2025-01-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-07T15:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-07-ai-chimica-ceramica-tables"
+                }
+              }
+            },
+            {
+              "valid_from": "2025-10-01",
+              "valid_until": "2026-10-01",
+              "value": "1747.55",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                    "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                    "kind": "associazione",
+                    "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                    "published_on": "2024-07-22",
+                    "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
+                  },
+                  "page": "5",
+                  "section": "Tabelle retributive, Settori Chimica, Concia, Gomma, Plastica, Vetro, Nuovi minimi contrattuali",
+                  "quote": "4 | 1.652,99 | 1.695,49 | 1.747,55 | 1.818,74"
+                },
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T15:00:00Z",
+                  "effective_from": "2025-10-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-07T15:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-07-ai-chimica-ceramica-tables"
+                }
+              }
+            },
+            {
+              "valid_from": "2026-10-01",
+              "valid_until": null,
+              "value": "1818.74",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                    "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                    "kind": "associazione",
+                    "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                    "published_on": "2024-07-22",
+                    "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
+                  },
+                  "page": "5",
+                  "section": "Tabelle retributive, Settori Chimica, Concia, Gomma, Plastica, Vetro, Nuovi minimi contrattuali",
+                  "quote": "4 | 1.652,99 | 1.695,49 | 1.747,55 | 1.818,74"
+                },
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T15:00:00Z",
+                  "effective_from": "2026-10-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-07T15:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-07-ai-chimica-ceramica-tables"
+                }
+              }
+            }
+          ]
         }
       }
     },
@@ -1257,11 +1824,305 @@
           "verification_status": "unverified",
           "effective_from": "2020-01-01"
         }
+      },
+      "base_salary_by_subsector": {
+        "chimica": {
+          "periods": [
+            {
+              "valid_from": "2024-07-01",
+              "valid_until": "2025-01-01",
+              "value": "1743.69",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                    "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                    "kind": "associazione",
+                    "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                    "published_on": "2024-07-22",
+                    "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
+                  },
+                  "page": "5",
+                  "section": "Tabelle retributive, Settori Chimica, Concia, Gomma, Plastica, Vetro, Nuovi minimi contrattuali",
+                  "quote": "5 | 1.743,69 | 1.788,33 | 1.843,02 | 1.917,80"
+                },
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T15:00:00Z",
+                  "effective_from": "2024-07-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-07T15:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-07-ai-chimica-ceramica-tables"
+                }
+              }
+            },
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": "2025-10-01",
+              "value": "1788.33",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                    "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                    "kind": "associazione",
+                    "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                    "published_on": "2024-07-22",
+                    "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
+                  },
+                  "page": "5",
+                  "section": "Tabelle retributive, Settori Chimica, Concia, Gomma, Plastica, Vetro, Nuovi minimi contrattuali",
+                  "quote": "5 | 1.743,69 | 1.788,33 | 1.843,02 | 1.917,80"
+                },
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T15:00:00Z",
+                  "effective_from": "2025-01-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-07T15:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-07-ai-chimica-ceramica-tables"
+                }
+              }
+            },
+            {
+              "valid_from": "2025-10-01",
+              "valid_until": "2026-10-01",
+              "value": "1843.02",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                    "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                    "kind": "associazione",
+                    "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                    "published_on": "2024-07-22",
+                    "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
+                  },
+                  "page": "5",
+                  "section": "Tabelle retributive, Settori Chimica, Concia, Gomma, Plastica, Vetro, Nuovi minimi contrattuali",
+                  "quote": "5 | 1.743,69 | 1.788,33 | 1.843,02 | 1.917,80"
+                },
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T15:00:00Z",
+                  "effective_from": "2025-10-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-07T15:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-07-ai-chimica-ceramica-tables"
+                }
+              }
+            },
+            {
+              "valid_from": "2026-10-01",
+              "valid_until": null,
+              "value": "1917.80",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                    "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                    "kind": "associazione",
+                    "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                    "published_on": "2024-07-22",
+                    "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
+                  },
+                  "page": "5",
+                  "section": "Tabelle retributive, Settori Chimica, Concia, Gomma, Plastica, Vetro, Nuovi minimi contrattuali",
+                  "quote": "5 | 1.743,69 | 1.788,33 | 1.843,02 | 1.917,80"
+                },
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T15:00:00Z",
+                  "effective_from": "2026-10-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-07T15:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-07-ai-chimica-ceramica-tables"
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "code": "5s",
+      "order": 6,
+      "description": "Livello 5s (chimica, concia, gomma, plastica, vetro only)",
+      "subsectors": [
+        "chimica"
+      ],
+      "fixed_allowances": [],
+      "category": null,
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+            "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+            "kind": "associazione",
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+            "published_on": "2024-07-22",
+            "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
+          },
+          "page": "5",
+          "section": "Tabelle retributive, Settori Chimica, Concia, Gomma, Plastica, Vetro, Nuovi minimi contrattuali",
+          "quote": "5s | 1.830,52 | 1.877,31 | 1.934,62 | 2.012,99"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-07T15:00:00Z",
+          "effective_from": "2024-07-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-07T15:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-07-ai-chimica-ceramica-tables"
+        }
+      },
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": "2025-01-01",
+            "value": "1830.52",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                  "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                  "published_on": "2024-07-22",
+                  "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
+                },
+                "page": "5",
+                "section": "Tabelle retributive, Settori Chimica, Concia, Gomma, Plastica, Vetro, Nuovi minimi contrattuali",
+                "quote": "5s | 1.830,52 | 1.877,31 | 1.934,62 | 2.012,99"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T15:00:00Z",
+                "effective_from": "2024-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-chimica-ceramica-tables"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2025-10-01",
+            "value": "1877.31",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                  "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                  "published_on": "2024-07-22",
+                  "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
+                },
+                "page": "5",
+                "section": "Tabelle retributive, Settori Chimica, Concia, Gomma, Plastica, Vetro, Nuovi minimi contrattuali",
+                "quote": "5s | 1.830,52 | 1.877,31 | 1.934,62 | 2.012,99"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T15:00:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-chimica-ceramica-tables"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-10-01",
+            "valid_until": "2026-10-01",
+            "value": "1934.62",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                  "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                  "published_on": "2024-07-22",
+                  "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
+                },
+                "page": "5",
+                "section": "Tabelle retributive, Settori Chimica, Concia, Gomma, Plastica, Vetro, Nuovi minimi contrattuali",
+                "quote": "5s | 1.830,52 | 1.877,31 | 1.934,62 | 2.012,99"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T15:00:00Z",
+                "effective_from": "2025-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-chimica-ceramica-tables"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": null,
+            "value": "2012.99",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                  "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                  "published_on": "2024-07-22",
+                  "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
+                },
+                "page": "5",
+                "section": "Tabelle retributive, Settori Chimica, Concia, Gomma, Plastica, Vetro, Nuovi minimi contrattuali",
+                "quote": "5s | 1.830,52 | 1.877,31 | 1.934,62 | 2.012,99"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T15:00:00Z",
+                "effective_from": "2026-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-chimica-ceramica-tables"
+              }
+            }
+          }
+        ]
       }
     },
     {
       "code": "6",
-      "order": 6,
+      "order": 7,
       "description": "Level 6 — skilled technician / senior clerical employee",
       "base_salary": {
         "periods": [
@@ -1414,11 +2275,141 @@
           "verification_status": "unverified",
           "effective_from": "2020-01-01"
         }
+      },
+      "base_salary_by_subsector": {
+        "chimica": {
+          "periods": [
+            {
+              "valid_from": "2024-07-01",
+              "valid_until": "2025-01-01",
+              "value": "1937.97",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                    "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                    "kind": "associazione",
+                    "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                    "published_on": "2024-07-22",
+                    "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
+                  },
+                  "page": "5",
+                  "section": "Tabelle retributive, Settori Chimica, Concia, Gomma, Plastica, Vetro, Nuovi minimi contrattuali",
+                  "quote": "6 | 1.937,97 | 1.987,61 | 2.048,42 | 2.131,57"
+                },
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T15:00:00Z",
+                  "effective_from": "2024-07-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-07T15:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-07-ai-chimica-ceramica-tables"
+                }
+              }
+            },
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": "2025-10-01",
+              "value": "1987.61",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                    "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                    "kind": "associazione",
+                    "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                    "published_on": "2024-07-22",
+                    "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
+                  },
+                  "page": "5",
+                  "section": "Tabelle retributive, Settori Chimica, Concia, Gomma, Plastica, Vetro, Nuovi minimi contrattuali",
+                  "quote": "6 | 1.937,97 | 1.987,61 | 2.048,42 | 2.131,57"
+                },
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T15:00:00Z",
+                  "effective_from": "2025-01-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-07T15:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-07-ai-chimica-ceramica-tables"
+                }
+              }
+            },
+            {
+              "valid_from": "2025-10-01",
+              "valid_until": "2026-10-01",
+              "value": "2048.42",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                    "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                    "kind": "associazione",
+                    "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                    "published_on": "2024-07-22",
+                    "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
+                  },
+                  "page": "5",
+                  "section": "Tabelle retributive, Settori Chimica, Concia, Gomma, Plastica, Vetro, Nuovi minimi contrattuali",
+                  "quote": "6 | 1.937,97 | 1.987,61 | 2.048,42 | 2.131,57"
+                },
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T15:00:00Z",
+                  "effective_from": "2025-10-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-07T15:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-07-ai-chimica-ceramica-tables"
+                }
+              }
+            },
+            {
+              "valid_from": "2026-10-01",
+              "valid_until": null,
+              "value": "2131.57",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                    "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                    "kind": "associazione",
+                    "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                    "published_on": "2024-07-22",
+                    "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
+                  },
+                  "page": "5",
+                  "section": "Tabelle retributive, Settori Chimica, Concia, Gomma, Plastica, Vetro, Nuovi minimi contrattuali",
+                  "quote": "6 | 1.937,97 | 1.987,61 | 2.048,42 | 2.131,57"
+                },
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T15:00:00Z",
+                  "effective_from": "2026-10-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-07T15:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-07-ai-chimica-ceramica-tables"
+                }
+              }
+            }
+          ]
+        }
       }
     },
     {
       "code": "6S",
-      "order": 7,
+      "order": 8,
       "description": "Level 6S — senior manager / technical director (incl. function allowance EUR 20.66)",
       "base_salary": {
         "periods": [
@@ -1560,6 +2551,1318 @@
           "effective_from": "2020-01-01"
         }
       }
+    },
+    {
+      "code": "7",
+      "order": 9,
+      "description": "Livello 7 (chimica, concia, gomma, plastica, vetro only)",
+      "subsectors": [
+        "chimica"
+      ],
+      "fixed_allowances": [],
+      "category": null,
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+            "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+            "kind": "associazione",
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+            "published_on": "2024-07-22",
+            "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
+          },
+          "page": "5",
+          "section": "Tabelle retributive, Settori Chimica, Concia, Gomma, Plastica, Vetro, Nuovi minimi contrattuali",
+          "quote": "7 | 2.074,56 | 2.127,77 | 2.192,96 | 2.282,09"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-07T15:00:00Z",
+          "effective_from": "2024-07-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-07T15:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-07-ai-chimica-ceramica-tables"
+        }
+      },
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": "2025-01-01",
+            "value": "2074.56",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                  "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                  "published_on": "2024-07-22",
+                  "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
+                },
+                "page": "5",
+                "section": "Tabelle retributive, Settori Chimica, Concia, Gomma, Plastica, Vetro, Nuovi minimi contrattuali",
+                "quote": "7 | 2.074,56 | 2.127,77 | 2.192,96 | 2.282,09"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T15:00:00Z",
+                "effective_from": "2024-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-chimica-ceramica-tables"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2025-10-01",
+            "value": "2127.77",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                  "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                  "published_on": "2024-07-22",
+                  "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
+                },
+                "page": "5",
+                "section": "Tabelle retributive, Settori Chimica, Concia, Gomma, Plastica, Vetro, Nuovi minimi contrattuali",
+                "quote": "7 | 2.074,56 | 2.127,77 | 2.192,96 | 2.282,09"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T15:00:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-chimica-ceramica-tables"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-10-01",
+            "valid_until": "2026-10-01",
+            "value": "2192.96",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                  "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                  "published_on": "2024-07-22",
+                  "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
+                },
+                "page": "5",
+                "section": "Tabelle retributive, Settori Chimica, Concia, Gomma, Plastica, Vetro, Nuovi minimi contrattuali",
+                "quote": "7 | 2.074,56 | 2.127,77 | 2.192,96 | 2.282,09"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T15:00:00Z",
+                "effective_from": "2025-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-chimica-ceramica-tables"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": null,
+            "value": "2282.09",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                  "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                  "published_on": "2024-07-22",
+                  "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
+                },
+                "page": "5",
+                "section": "Tabelle retributive, Settori Chimica, Concia, Gomma, Plastica, Vetro, Nuovi minimi contrattuali",
+                "quote": "7 | 2.074,56 | 2.127,77 | 2.192,96 | 2.282,09"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T15:00:00Z",
+                "effective_from": "2026-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-chimica-ceramica-tables"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "code": "G",
+      "order": 10,
+      "description": "Livello G (ceramica, terracotta, gres, decorazione di piastrelle only)",
+      "subsectors": [
+        "ceramica"
+      ],
+      "fixed_allowances": [],
+      "category": null,
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+            "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+            "kind": "associazione",
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+            "published_on": "2024-07-22",
+            "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
+          },
+          "page": "6",
+          "section": "Tabelle retributive, Settori Ceramica, Terracotta, Gres, Decorazione di piastrelle, Nuovi minimi contrattuali",
+          "quote": "G | 1.345,38 | 1.381,74 | 1.426,29 | 1.478,11"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-07T15:00:00Z",
+          "effective_from": "2024-07-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-07T15:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-07-ai-chimica-ceramica-tables"
+        }
+      },
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": "2025-01-01",
+            "value": "1345.38",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                  "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                  "published_on": "2024-07-22",
+                  "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
+                },
+                "page": "6",
+                "section": "Tabelle retributive, Settori Ceramica, Terracotta, Gres, Decorazione di piastrelle, Nuovi minimi contrattuali",
+                "quote": "G | 1.345,38 | 1.381,74 | 1.426,29 | 1.478,11"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T15:00:00Z",
+                "effective_from": "2024-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-chimica-ceramica-tables"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2025-10-01",
+            "value": "1381.74",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                  "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                  "published_on": "2024-07-22",
+                  "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
+                },
+                "page": "6",
+                "section": "Tabelle retributive, Settori Ceramica, Terracotta, Gres, Decorazione di piastrelle, Nuovi minimi contrattuali",
+                "quote": "G | 1.345,38 | 1.381,74 | 1.426,29 | 1.478,11"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T15:00:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-chimica-ceramica-tables"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-10-01",
+            "valid_until": "2026-10-01",
+            "value": "1426.29",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                  "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                  "published_on": "2024-07-22",
+                  "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
+                },
+                "page": "6",
+                "section": "Tabelle retributive, Settori Ceramica, Terracotta, Gres, Decorazione di piastrelle, Nuovi minimi contrattuali",
+                "quote": "G | 1.345,38 | 1.381,74 | 1.426,29 | 1.478,11"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T15:00:00Z",
+                "effective_from": "2025-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-chimica-ceramica-tables"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": null,
+            "value": "1478.11",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                  "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                  "published_on": "2024-07-22",
+                  "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
+                },
+                "page": "6",
+                "section": "Tabelle retributive, Settori Ceramica, Terracotta, Gres, Decorazione di piastrelle, Nuovi minimi contrattuali",
+                "quote": "G | 1.345,38 | 1.381,74 | 1.426,29 | 1.478,11"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T15:00:00Z",
+                "effective_from": "2026-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-chimica-ceramica-tables"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "code": "F",
+      "order": 11,
+      "description": "Livello F (ceramica, terracotta, gres, decorazione di piastrelle only)",
+      "subsectors": [
+        "ceramica"
+      ],
+      "fixed_allowances": [],
+      "category": null,
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+            "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+            "kind": "associazione",
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+            "published_on": "2024-07-22",
+            "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
+          },
+          "page": "6",
+          "section": "Tabelle retributive, Settori Ceramica, Terracotta, Gres, Decorazione di piastrelle, Nuovi minimi contrattuali",
+          "quote": "F | 1.427,06 | 1.465,61 | 1.512,83 | 1.567,76"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-07T15:00:00Z",
+          "effective_from": "2024-07-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-07T15:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-07-ai-chimica-ceramica-tables"
+        }
+      },
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": "2025-01-01",
+            "value": "1427.06",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                  "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                  "published_on": "2024-07-22",
+                  "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
+                },
+                "page": "6",
+                "section": "Tabelle retributive, Settori Ceramica, Terracotta, Gres, Decorazione di piastrelle, Nuovi minimi contrattuali",
+                "quote": "F | 1.427,06 | 1.465,61 | 1.512,83 | 1.567,76"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T15:00:00Z",
+                "effective_from": "2024-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-chimica-ceramica-tables"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2025-10-01",
+            "value": "1465.61",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                  "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                  "published_on": "2024-07-22",
+                  "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
+                },
+                "page": "6",
+                "section": "Tabelle retributive, Settori Ceramica, Terracotta, Gres, Decorazione di piastrelle, Nuovi minimi contrattuali",
+                "quote": "F | 1.427,06 | 1.465,61 | 1.512,83 | 1.567,76"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T15:00:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-chimica-ceramica-tables"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-10-01",
+            "valid_until": "2026-10-01",
+            "value": "1512.83",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                  "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                  "published_on": "2024-07-22",
+                  "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
+                },
+                "page": "6",
+                "section": "Tabelle retributive, Settori Ceramica, Terracotta, Gres, Decorazione di piastrelle, Nuovi minimi contrattuali",
+                "quote": "F | 1.427,06 | 1.465,61 | 1.512,83 | 1.567,76"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T15:00:00Z",
+                "effective_from": "2025-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-chimica-ceramica-tables"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": null,
+            "value": "1567.76",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                  "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                  "published_on": "2024-07-22",
+                  "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
+                },
+                "page": "6",
+                "section": "Tabelle retributive, Settori Ceramica, Terracotta, Gres, Decorazione di piastrelle, Nuovi minimi contrattuali",
+                "quote": "F | 1.427,06 | 1.465,61 | 1.512,83 | 1.567,76"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T15:00:00Z",
+                "effective_from": "2026-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-chimica-ceramica-tables"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "code": "E",
+      "order": 12,
+      "description": "Livello E (ceramica, terracotta, gres, decorazione di piastrelle only)",
+      "subsectors": [
+        "ceramica"
+      ],
+      "fixed_allowances": [],
+      "category": null,
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+            "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+            "kind": "associazione",
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+            "published_on": "2024-07-22",
+            "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
+          },
+          "page": "6",
+          "section": "Tabelle retributive, Settori Ceramica, Terracotta, Gres, Decorazione di piastrelle, Nuovi minimi contrattuali",
+          "quote": "E | 1.474,75 | 1.514,75 | 1.563,75 | 1.620,75"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-07T15:00:00Z",
+          "effective_from": "2024-07-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-07T15:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-07-ai-chimica-ceramica-tables"
+        }
+      },
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": "2025-01-01",
+            "value": "1474.75",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                  "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                  "published_on": "2024-07-22",
+                  "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
+                },
+                "page": "6",
+                "section": "Tabelle retributive, Settori Ceramica, Terracotta, Gres, Decorazione di piastrelle, Nuovi minimi contrattuali",
+                "quote": "E | 1.474,75 | 1.514,75 | 1.563,75 | 1.620,75"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T15:00:00Z",
+                "effective_from": "2024-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-chimica-ceramica-tables"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2025-10-01",
+            "value": "1514.75",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                  "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                  "published_on": "2024-07-22",
+                  "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
+                },
+                "page": "6",
+                "section": "Tabelle retributive, Settori Ceramica, Terracotta, Gres, Decorazione di piastrelle, Nuovi minimi contrattuali",
+                "quote": "E | 1.474,75 | 1.514,75 | 1.563,75 | 1.620,75"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T15:00:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-chimica-ceramica-tables"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-10-01",
+            "valid_until": "2026-10-01",
+            "value": "1563.75",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                  "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                  "published_on": "2024-07-22",
+                  "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
+                },
+                "page": "6",
+                "section": "Tabelle retributive, Settori Ceramica, Terracotta, Gres, Decorazione di piastrelle, Nuovi minimi contrattuali",
+                "quote": "E | 1.474,75 | 1.514,75 | 1.563,75 | 1.620,75"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T15:00:00Z",
+                "effective_from": "2025-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-chimica-ceramica-tables"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": null,
+            "value": "1620.75",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                  "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                  "published_on": "2024-07-22",
+                  "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
+                },
+                "page": "6",
+                "section": "Tabelle retributive, Settori Ceramica, Terracotta, Gres, Decorazione di piastrelle, Nuovi minimi contrattuali",
+                "quote": "E | 1.474,75 | 1.514,75 | 1.563,75 | 1.620,75"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T15:00:00Z",
+                "effective_from": "2026-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-chimica-ceramica-tables"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "code": "D",
+      "order": 13,
+      "description": "Livello D (ceramica, terracotta, gres, decorazione di piastrelle only)",
+      "subsectors": [
+        "ceramica"
+      ],
+      "fixed_allowances": [],
+      "category": null,
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+            "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+            "kind": "associazione",
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+            "published_on": "2024-07-22",
+            "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
+          },
+          "page": "6",
+          "section": "Tabelle retributive, Settori Ceramica, Terracotta, Gres, Decorazione di piastrelle, Nuovi minimi contrattuali",
+          "quote": "D | 1.529,50 | 1.570,95 | 1.621,73 | 1.680,80"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-07T15:00:00Z",
+          "effective_from": "2024-07-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-07T15:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-07-ai-chimica-ceramica-tables"
+        }
+      },
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": "2025-01-01",
+            "value": "1529.50",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                  "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                  "published_on": "2024-07-22",
+                  "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
+                },
+                "page": "6",
+                "section": "Tabelle retributive, Settori Ceramica, Terracotta, Gres, Decorazione di piastrelle, Nuovi minimi contrattuali",
+                "quote": "D | 1.529,50 | 1.570,95 | 1.621,73 | 1.680,80"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T15:00:00Z",
+                "effective_from": "2024-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-chimica-ceramica-tables"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2025-10-01",
+            "value": "1570.95",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                  "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                  "published_on": "2024-07-22",
+                  "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
+                },
+                "page": "6",
+                "section": "Tabelle retributive, Settori Ceramica, Terracotta, Gres, Decorazione di piastrelle, Nuovi minimi contrattuali",
+                "quote": "D | 1.529,50 | 1.570,95 | 1.621,73 | 1.680,80"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T15:00:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-chimica-ceramica-tables"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-10-01",
+            "valid_until": "2026-10-01",
+            "value": "1621.73",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                  "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                  "published_on": "2024-07-22",
+                  "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
+                },
+                "page": "6",
+                "section": "Tabelle retributive, Settori Ceramica, Terracotta, Gres, Decorazione di piastrelle, Nuovi minimi contrattuali",
+                "quote": "D | 1.529,50 | 1.570,95 | 1.621,73 | 1.680,80"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T15:00:00Z",
+                "effective_from": "2025-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-chimica-ceramica-tables"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": null,
+            "value": "1680.80",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                  "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                  "published_on": "2024-07-22",
+                  "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
+                },
+                "page": "6",
+                "section": "Tabelle retributive, Settori Ceramica, Terracotta, Gres, Decorazione di piastrelle, Nuovi minimi contrattuali",
+                "quote": "D | 1.529,50 | 1.570,95 | 1.621,73 | 1.680,80"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T15:00:00Z",
+                "effective_from": "2026-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-chimica-ceramica-tables"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "code": "C",
+      "order": 14,
+      "description": "Livello C (ceramica, terracotta, gres, decorazione di piastrelle only)",
+      "subsectors": [
+        "ceramica"
+      ],
+      "fixed_allowances": [],
+      "category": null,
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+            "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+            "kind": "associazione",
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+            "published_on": "2024-07-22",
+            "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
+          },
+          "page": "6",
+          "section": "Tabelle retributive, Settori Ceramica, Terracotta, Gres, Decorazione di piastrelle, Nuovi minimi contrattuali",
+          "quote": "C | 1.593,28 | 1.636,19 | 1.688,75 | 1.749,90"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-07T15:00:00Z",
+          "effective_from": "2024-07-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-07T15:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-07-ai-chimica-ceramica-tables"
+        }
+      },
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": "2025-01-01",
+            "value": "1593.28",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                  "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                  "published_on": "2024-07-22",
+                  "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
+                },
+                "page": "6",
+                "section": "Tabelle retributive, Settori Ceramica, Terracotta, Gres, Decorazione di piastrelle, Nuovi minimi contrattuali",
+                "quote": "C | 1.593,28 | 1.636,19 | 1.688,75 | 1.749,90"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T15:00:00Z",
+                "effective_from": "2024-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-chimica-ceramica-tables"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2025-10-01",
+            "value": "1636.19",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                  "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                  "published_on": "2024-07-22",
+                  "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
+                },
+                "page": "6",
+                "section": "Tabelle retributive, Settori Ceramica, Terracotta, Gres, Decorazione di piastrelle, Nuovi minimi contrattuali",
+                "quote": "C | 1.593,28 | 1.636,19 | 1.688,75 | 1.749,90"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T15:00:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-chimica-ceramica-tables"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-10-01",
+            "valid_until": "2026-10-01",
+            "value": "1688.75",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                  "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                  "published_on": "2024-07-22",
+                  "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
+                },
+                "page": "6",
+                "section": "Tabelle retributive, Settori Ceramica, Terracotta, Gres, Decorazione di piastrelle, Nuovi minimi contrattuali",
+                "quote": "C | 1.593,28 | 1.636,19 | 1.688,75 | 1.749,90"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T15:00:00Z",
+                "effective_from": "2025-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-chimica-ceramica-tables"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": null,
+            "value": "1749.90",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                  "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                  "published_on": "2024-07-22",
+                  "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
+                },
+                "page": "6",
+                "section": "Tabelle retributive, Settori Ceramica, Terracotta, Gres, Decorazione di piastrelle, Nuovi minimi contrattuali",
+                "quote": "C | 1.593,28 | 1.636,19 | 1.688,75 | 1.749,90"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T15:00:00Z",
+                "effective_from": "2026-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-chimica-ceramica-tables"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "code": "B",
+      "order": 15,
+      "description": "Livello B (ceramica, terracotta, gres, decorazione di piastrelle only)",
+      "subsectors": [
+        "ceramica"
+      ],
+      "fixed_allowances": [],
+      "category": null,
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+            "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+            "kind": "associazione",
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+            "published_on": "2024-07-22",
+            "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
+          },
+          "page": "6",
+          "section": "Tabelle retributive, Settori Ceramica, Terracotta, Gres, Decorazione di piastrelle, Nuovi minimi contrattuali",
+          "quote": "B | 1.682,08 | 1.727,53 | 1.783,21 | 1.847,98"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-07T15:00:00Z",
+          "effective_from": "2024-07-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-07T15:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-07-ai-chimica-ceramica-tables"
+        }
+      },
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": "2025-01-01",
+            "value": "1682.08",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                  "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                  "published_on": "2024-07-22",
+                  "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
+                },
+                "page": "6",
+                "section": "Tabelle retributive, Settori Ceramica, Terracotta, Gres, Decorazione di piastrelle, Nuovi minimi contrattuali",
+                "quote": "B | 1.682,08 | 1.727,53 | 1.783,21 | 1.847,98"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T15:00:00Z",
+                "effective_from": "2024-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-chimica-ceramica-tables"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2025-10-01",
+            "value": "1727.53",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                  "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                  "published_on": "2024-07-22",
+                  "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
+                },
+                "page": "6",
+                "section": "Tabelle retributive, Settori Ceramica, Terracotta, Gres, Decorazione di piastrelle, Nuovi minimi contrattuali",
+                "quote": "B | 1.682,08 | 1.727,53 | 1.783,21 | 1.847,98"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T15:00:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-chimica-ceramica-tables"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-10-01",
+            "valid_until": "2026-10-01",
+            "value": "1783.21",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                  "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                  "published_on": "2024-07-22",
+                  "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
+                },
+                "page": "6",
+                "section": "Tabelle retributive, Settori Ceramica, Terracotta, Gres, Decorazione di piastrelle, Nuovi minimi contrattuali",
+                "quote": "B | 1.682,08 | 1.727,53 | 1.783,21 | 1.847,98"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T15:00:00Z",
+                "effective_from": "2025-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-chimica-ceramica-tables"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": null,
+            "value": "1847.98",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                  "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                  "published_on": "2024-07-22",
+                  "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
+                },
+                "page": "6",
+                "section": "Tabelle retributive, Settori Ceramica, Terracotta, Gres, Decorazione di piastrelle, Nuovi minimi contrattuali",
+                "quote": "B | 1.682,08 | 1.727,53 | 1.783,21 | 1.847,98"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T15:00:00Z",
+                "effective_from": "2026-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-chimica-ceramica-tables"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "code": "A",
+      "order": 16,
+      "description": "Livello A (ceramica, terracotta, gres, decorazione di piastrelle only)",
+      "subsectors": [
+        "ceramica"
+      ],
+      "fixed_allowances": [],
+      "category": null,
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+            "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+            "kind": "associazione",
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+            "published_on": "2024-07-22",
+            "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
+          },
+          "page": "6",
+          "section": "Tabelle retributive, Settori Ceramica, Terracotta, Gres, Decorazione di piastrelle, Nuovi minimi contrattuali",
+          "quote": "A | 1.842,82 | 1.892,64 | 1.953,67 | 2.024,66"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-07T15:00:00Z",
+          "effective_from": "2024-07-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-07T15:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-07-ai-chimica-ceramica-tables"
+        }
+      },
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": "2025-01-01",
+            "value": "1842.82",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                  "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                  "published_on": "2024-07-22",
+                  "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
+                },
+                "page": "6",
+                "section": "Tabelle retributive, Settori Ceramica, Terracotta, Gres, Decorazione di piastrelle, Nuovi minimi contrattuali",
+                "quote": "A | 1.842,82 | 1.892,64 | 1.953,67 | 2.024,66"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T15:00:00Z",
+                "effective_from": "2024-07-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-chimica-ceramica-tables"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2025-10-01",
+            "value": "1892.64",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                  "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                  "published_on": "2024-07-22",
+                  "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
+                },
+                "page": "6",
+                "section": "Tabelle retributive, Settori Ceramica, Terracotta, Gres, Decorazione di piastrelle, Nuovi minimi contrattuali",
+                "quote": "A | 1.842,82 | 1.892,64 | 1.953,67 | 2.024,66"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T15:00:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-chimica-ceramica-tables"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-10-01",
+            "valid_until": "2026-10-01",
+            "value": "1953.67",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                  "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                  "published_on": "2024-07-22",
+                  "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
+                },
+                "page": "6",
+                "section": "Tabelle retributive, Settori Ceramica, Terracotta, Gres, Decorazione di piastrelle, Nuovi minimi contrattuali",
+                "quote": "A | 1.842,82 | 1.892,64 | 1.953,67 | 2.024,66"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T15:00:00Z",
+                "effective_from": "2025-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-chimica-ceramica-tables"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": null,
+            "value": "2024.66",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-artigianato-tessile-moda-chimica-ceramica-verbale-integrativo-2024-07-22",
+                  "title": "Verbale integrativo dell'Ipotesi di accordo per il rinnovo del CCNL Area Tessile-Moda e Chimica-Ceramica del 16 luglio 2024 (Roma, 22 luglio 2024), con tabelle retributive",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
+                  "published_on": "2024-07-22",
+                  "sha256": "bb247d37e3ded755807b69ca70531d4e7b47a5bb41018148f5d35b1b50ce8acc"
+                },
+                "page": "6",
+                "section": "Tabelle retributive, Settori Ceramica, Terracotta, Gres, Decorazione di piastrelle, Nuovi minimi contrattuali",
+                "quote": "A | 1.842,82 | 1.892,64 | 1.953,67 | 2.024,66"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T15:00:00Z",
+                "effective_from": "2026-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-chimica-ceramica-tables"
+              }
+            }
+          }
+        ]
+      }
     }
   ],
   "apprenticeship": [
@@ -1676,7 +3979,7 @@
     "effective_until": null,
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
     "verification_status": "unverified",
-    "source_hash": "11b6c7ba77ea847931a5fdb161f89dd042a51d1e21025a6df98de54182c210d7",
+    "source_hash": "539892b17a0686b28286262a338d0a6ec854c15113ab95e42cc55ed143e50275",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

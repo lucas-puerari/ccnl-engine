@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
+from ccnl_engine.compensation.ladder.rules import level_below
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.seniority.inputs import SeniorityFact, SenioritySource
 
@@ -60,5 +61,4 @@ def entry_level(
     )
     if period is None:
         return level
-    lowest = min(lv.order for lv in ccnl.levels)
-    return ccnl.level_by_order(max(lowest, level.order - period.levels_below))
+    return level_below(ccnl.levels, level, period.levels_below, clamp=True)

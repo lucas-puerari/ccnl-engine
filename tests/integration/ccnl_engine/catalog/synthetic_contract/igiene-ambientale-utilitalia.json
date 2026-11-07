@@ -5,27 +5,27 @@
     {
       "level_code": "D2",
       "as_of": "2027-12-01",
-      "expected_monthly": "1555.36"
+      "expected_monthly": "1519.63"
     },
     {
       "level_code": "D2s",
       "as_of": "2027-12-01",
-      "expected_monthly": "1779.25"
+      "expected_monthly": "1755.99"
     },
     {
       "level_code": "D1",
       "as_of": "2027-12-01",
-      "expected_monthly": "1955.19"
+      "expected_monthly": "1941.76"
     },
     {
       "level_code": "D1s",
       "as_of": "2027-12-01",
-      "expected_monthly": "2143.89"
+      "expected_monthly": "2140.96"
     },
     {
       "level_code": "C2",
       "as_of": "2027-12-01",
-      "expected_monthly": "2147.09"
+      "expected_monthly": "2144.36"
     },
     {
       "level_code": "C2s",
@@ -35,52 +35,52 @@
     {
       "level_code": "C1",
       "as_of": "2027-12-01",
-      "expected_monthly": "2264.77"
+      "expected_monthly": "2268.60"
     },
     {
       "level_code": "C1s",
       "as_of": "2027-12-01",
-      "expected_monthly": "2332.13"
+      "expected_monthly": "2339.70"
     },
     {
       "level_code": "B2",
       "as_of": "2027-12-01",
-      "expected_monthly": "2432.73"
+      "expected_monthly": "2445.92"
     },
     {
       "level_code": "B2s",
       "as_of": "2027-12-01",
-      "expected_monthly": "2535.56"
+      "expected_monthly": "2554.49"
     },
     {
       "level_code": "B1",
       "as_of": "2027-12-01",
-      "expected_monthly": "2661.29"
+      "expected_monthly": "2687.22"
     },
     {
       "level_code": "B1s",
       "as_of": "2027-12-01",
-      "expected_monthly": "2784.22"
+      "expected_monthly": "2817.02"
     },
     {
       "level_code": "A2",
       "as_of": "2027-12-01",
-      "expected_monthly": "2920.50"
+      "expected_monthly": "2960.90"
     },
     {
       "level_code": "A2s",
       "as_of": "2027-12-01",
-      "expected_monthly": "3065.21"
+      "expected_monthly": "3113.67"
     },
     {
       "level_code": "A1",
       "as_of": "2027-12-01",
-      "expected_monthly": "3314.56"
+      "expected_monthly": "3376.93"
     },
     {
       "level_code": "Q",
       "as_of": "2027-12-01",
-      "expected_monthly": "3634.41"
+      "expected_monthly": "3714.62"
     }
   ],
   "seniority_checks": [

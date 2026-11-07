@@ -46,7 +46,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 0 verified / 144 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 48 verified / 96 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -55,7 +55,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-12-09 |
-| **Last review** | 2026-11-06 |
+| **Last review** | 2026-11-07 |
 | **Latest salary tranche** | 2027-12-01 |
 
 ## Review history
@@ -63,6 +63,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | Date | Reviewer | Scope | Outcome | Findings |
 |---|---|---|---|---|
 | 2026-11-06 | claude-opus-5-5 (ai) | Art. 65 lett. B FASDA (pp. 165-166) and the ipotesi of 9 December 2025 (p. 166). | corrected | FASDA was not modelled: 84.50 EUR a quarter on the employer from October 2023, 101.00 from October 2026. |
+| 2026-11-07 | claude-opus-5-5 (ai) | The 2027 tranches of the table 'nuovi parametri e confluenze' of the ipotesi of 9 December 2025 (pp. 96-97, text layer). | corrected | The II-IV tranches are parametric by level (Q +60.89/+67.66/+67.66, D2 +24.91/+27.68/+27.68); the file applied the C2s increments (36/40/40) to every level: 45 values corrected. |
 
 ## Salary table
 
@@ -70,22 +71,22 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `Q` | Livello Q — Quadri (dirigenti di secondo livello) | € 3,634.41 | 2027-12-01 |
-| `A1` | Livello A1 — tecnici e impiegati con responsabilita autonome di primo livello | € 3,314.56 | 2027-12-01 |
-| `A2s` | Livello A2S — tecnici e impiegati con responsabilita autonome di secondo livello, posizione superiore | € 3,065.21 | 2027-12-01 |
-| `A2` | Livello A2 — tecnici e impiegati con responsabilita autonome di secondo livello | € 2,920.50 | 2027-12-01 |
-| `B1s` | Livello B1S — operai e impiegati altamente specializzati di primo livello, posizione superiore | € 2,784.22 | 2027-12-01 |
-| `B1` | Livello B1 — operai e impiegati altamente specializzati con mansioni di primo livello | € 2,661.29 | 2027-12-01 |
-| `B2s` | Livello B2S — operai e impiegati altamente specializzati di secondo livello, posizione superiore | € 2,535.56 | 2027-12-01 |
-| `B2` | Livello B2 — operai e impiegati altamente specializzati con mansioni di secondo livello | € 2,432.73 | 2027-12-01 |
-| `C1s` | Livello C1S — operai e impiegati specializzati di primo livello, posizione superiore | € 2,332.13 | 2027-12-01 |
-| `C1` | Livello C1 — operai e impiegati specializzati con mansioni di primo livello | € 2,264.77 | 2027-12-01 |
+| `Q` | Livello Q — Quadri (dirigenti di secondo livello) | € 3,714.62 | 2027-12-01 |
+| `A1` | Livello A1 — tecnici e impiegati con responsabilita autonome di primo livello | € 3,376.93 | 2027-12-01 |
+| `A2s` | Livello A2S — tecnici e impiegati con responsabilita autonome di secondo livello, posizione superiore | € 3,113.67 | 2027-12-01 |
+| `A2` | Livello A2 — tecnici e impiegati con responsabilita autonome di secondo livello | € 2,960.90 | 2027-12-01 |
+| `B1s` | Livello B1S — operai e impiegati altamente specializzati di primo livello, posizione superiore | € 2,817.02 | 2027-12-01 |
+| `B1` | Livello B1 — operai e impiegati altamente specializzati con mansioni di primo livello | € 2,687.22 | 2027-12-01 |
+| `B2s` | Livello B2S — operai e impiegati altamente specializzati di secondo livello, posizione superiore | € 2,554.49 | 2027-12-01 |
+| `B2` | Livello B2 — operai e impiegati altamente specializzati con mansioni di secondo livello | € 2,445.92 | 2027-12-01 |
+| `C1s` | Livello C1S — operai e impiegati specializzati di primo livello, posizione superiore | € 2,339.70 | 2027-12-01 |
+| `C1` | Livello C1 — operai e impiegati specializzati con mansioni di primo livello | € 2,268.60 | 2027-12-01 |
 | `C2s` | Livello C2S — operai e impiegati specializzati di secondo livello, posizione superiore | € 2,196.19 | 2027-12-01 |
-| `C2` | Livello C2 — operai e impiegati specializzati con mansioni di secondo livello | € 2,147.09 | 2027-12-01 |
-| `D1s` | Livello D1S — operai e impiegati qualificati con mansioni esecutive, posizione superiore | € 2,143.89 | 2027-12-01 |
-| `D1` | Livello D1 — operai e impiegati qualificati con mansioni esecutive di primo livello | € 1,955.19 | 2027-12-01 |
-| `D2s` | Livello D2S — operai e impiegati con mansioni di base non qualificate, posizione superiore | € 1,779.25 | 2027-12-01 |
-| `D2` | Livello D2 — operai e impiegati con mansioni di base non qualificate | € 1,555.36 | 2027-12-01 |
+| `C2` | Livello C2 — operai e impiegati specializzati con mansioni di secondo livello | € 2,144.36 | 2027-12-01 |
+| `D1s` | Livello D1S — operai e impiegati qualificati con mansioni esecutive, posizione superiore | € 2,140.96 | 2027-12-01 |
+| `D1` | Livello D1 — operai e impiegati qualificati con mansioni esecutive di primo livello | € 1,941.76 | 2027-12-01 |
+| `D2s` | Livello D2S — operai e impiegati con mansioni di base non qualificate, posizione superiore | € 1,755.99 | 2027-12-01 |
+| `D2` | Livello D2 — operai e impiegati con mansioni di base non qualificate | € 1,519.63 | 2027-12-01 |
 
 ## Seniority increments
 

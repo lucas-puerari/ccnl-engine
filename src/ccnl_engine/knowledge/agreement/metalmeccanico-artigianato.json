@@ -513,21 +513,28 @@
             "valid_until": "2022-05-01",
             "value": "1300.89",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
-                  "title": "ccnl-artigianato-metalmeccanico-2021-pdf",
+                  "document_id": "metalmeccanico-artigianato-src-d186f032",
+                  "title": "metalmeccanico-artigianato: ccnl-2021.pdf",
                   "kind": "associazione",
-                  "url": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf"
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2021/12/20230126-CCNL-Artigiani-Area-Meccanica-2019-2022-Roma-17-dicembre-2021.pdf",
+                  "sha256": "d186f0321098fc171e06272da7f2acc7ef36eb5c0b12fb9715665ec44b13b472"
                 },
-                "section": "Tabella retributiva"
+                "page": "84",
+                "section": "Tabella dei minimi retributivi — Settore Metalmeccanica e Installazione di impianti, retribuzione tabellare",
+                "quote": "6 1.277,93 22,96 1300,89"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2022-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-metalmeccanico-artigianato-double-read"
               }
             }
           },
@@ -536,21 +543,28 @@
             "valid_until": "2022-12-01",
             "value": "1323.85",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
-                  "title": "ccnl-artigianato-metalmeccanico-2021-pdf",
+                  "document_id": "metalmeccanico-artigianato-src-d186f032",
+                  "title": "metalmeccanico-artigianato: ccnl-2021.pdf",
                   "kind": "associazione",
-                  "url": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf"
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2021/12/20230126-CCNL-Artigiani-Area-Meccanica-2019-2022-Roma-17-dicembre-2021.pdf",
+                  "sha256": "d186f0321098fc171e06272da7f2acc7ef36eb5c0b12fb9715665ec44b13b472"
                 },
-                "section": "Tabella retributiva"
+                "page": "84",
+                "section": "Tabella dei minimi retributivi — Settore Metalmeccanica e Installazione di impianti, retribuzione tabellare",
+                "quote": "6 1.300,89 22,96 1323,85"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2022-05-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-metalmeccanico-artigianato-double-read"
               }
             }
           },
@@ -559,21 +573,28 @@
             "valid_until": "2023-12-01",
             "value": "1341.83",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
-                  "title": "ccnl-artigianato-metalmeccanico-2021-pdf",
+                  "document_id": "metalmeccanico-artigianato-src-d186f032",
+                  "title": "metalmeccanico-artigianato: ccnl-2021.pdf",
                   "kind": "associazione",
-                  "url": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf"
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2021/12/20230126-CCNL-Artigiani-Area-Meccanica-2019-2022-Roma-17-dicembre-2021.pdf",
+                  "sha256": "d186f0321098fc171e06272da7f2acc7ef36eb5c0b12fb9715665ec44b13b472"
                 },
-                "section": "Tabella retributiva"
+                "page": "84",
+                "section": "Tabella dei minimi retributivi — Settore Metalmeccanica e Installazione di impianti, retribuzione tabellare",
+                "quote": "6 1.323,85 17,98 1341,83"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2022-12-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-metalmeccanico-artigianato-double-read"
               }
             }
           },
@@ -605,21 +626,28 @@
             "valid_until": "2024-12-01",
             "value": "1430.00",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
-                  "title": "ccnl-artigianato-metalmeccanico-2021-pdf",
+                  "document_id": "metalmeccanico-artigianato-src-6f8424cb",
+                  "title": "metalmeccanico-artigianato: rinnovo-2024.pdf",
                   "kind": "associazione",
-                  "url": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf"
+                  "url": "https://confartigianatomarcatrevigiana.it/wp-content/uploads/2024/11/CCNL-MEC-ART.19.11.2425.11.24-BW.pdf",
+                  "sha256": "6f8424cb05c74d81e1a9e58f2b6c972f6f3d61a9639ded36b4c316e13a4e00e1"
                 },
-                "section": "Tabella retributiva"
+                "page": "27",
+                "section": "Settore Metalmeccanica ed Installazione di Impianti — Retribuzione tabellare",
+                "quote": "6 1430,00 1475,92 1498,88 1521,84 1540,21"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2024-04-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-metalmeccanico-artigianato-double-read"
               }
             }
           },
@@ -780,21 +808,28 @@
             "valid_until": "2022-05-01",
             "value": "1364.20",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
-                  "title": "ccnl-artigianato-metalmeccanico-2021-pdf",
+                  "document_id": "metalmeccanico-artigianato-src-d186f032",
+                  "title": "metalmeccanico-artigianato: ccnl-2021.pdf",
                   "kind": "associazione",
-                  "url": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf"
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2021/12/20230126-CCNL-Artigiani-Area-Meccanica-2019-2022-Roma-17-dicembre-2021.pdf",
+                  "sha256": "d186f0321098fc171e06272da7f2acc7ef36eb5c0b12fb9715665ec44b13b472"
                 },
-                "section": "Tabella retributiva"
+                "page": "84",
+                "section": "Tabella dei minimi retributivi — Settore Metalmeccanica e Installazione di impianti, retribuzione tabellare",
+                "quote": "5 1.340,12 24,08 1364,20"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2022-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-metalmeccanico-artigianato-double-read"
               }
             }
           },
@@ -803,21 +838,28 @@
             "valid_until": "2022-12-01",
             "value": "1388.28",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
-                  "title": "ccnl-artigianato-metalmeccanico-2021-pdf",
+                  "document_id": "metalmeccanico-artigianato-src-d186f032",
+                  "title": "metalmeccanico-artigianato: ccnl-2021.pdf",
                   "kind": "associazione",
-                  "url": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf"
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2021/12/20230126-CCNL-Artigiani-Area-Meccanica-2019-2022-Roma-17-dicembre-2021.pdf",
+                  "sha256": "d186f0321098fc171e06272da7f2acc7ef36eb5c0b12fb9715665ec44b13b472"
                 },
-                "section": "Tabella retributiva"
+                "page": "84",
+                "section": "Tabella dei minimi retributivi — Settore Metalmeccanica e Installazione di impianti, retribuzione tabellare",
+                "quote": "5 1.364,20 24,08 1388,28"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2022-05-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-metalmeccanico-artigianato-double-read"
               }
             }
           },
@@ -826,21 +868,28 @@
             "valid_until": "2023-12-01",
             "value": "1407.13",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
-                  "title": "ccnl-artigianato-metalmeccanico-2021-pdf",
+                  "document_id": "metalmeccanico-artigianato-src-d186f032",
+                  "title": "metalmeccanico-artigianato: ccnl-2021.pdf",
                   "kind": "associazione",
-                  "url": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf"
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2021/12/20230126-CCNL-Artigiani-Area-Meccanica-2019-2022-Roma-17-dicembre-2021.pdf",
+                  "sha256": "d186f0321098fc171e06272da7f2acc7ef36eb5c0b12fb9715665ec44b13b472"
                 },
-                "section": "Tabella retributiva"
+                "page": "84",
+                "section": "Tabella dei minimi retributivi — Settore Metalmeccanica e Installazione di impianti, retribuzione tabellare",
+                "quote": "5 1.388,28 18,85 1407,13"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2022-12-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-metalmeccanico-artigianato-double-read"
               }
             }
           },
@@ -872,21 +921,28 @@
             "valid_until": "2024-12-01",
             "value": "1499.59",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
-                  "title": "ccnl-artigianato-metalmeccanico-2021-pdf",
+                  "document_id": "metalmeccanico-artigianato-src-6f8424cb",
+                  "title": "metalmeccanico-artigianato: rinnovo-2024.pdf",
                   "kind": "associazione",
-                  "url": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf"
+                  "url": "https://confartigianatomarcatrevigiana.it/wp-content/uploads/2024/11/CCNL-MEC-ART.19.11.2425.11.24-BW.pdf",
+                  "sha256": "6f8424cb05c74d81e1a9e58f2b6c972f6f3d61a9639ded36b4c316e13a4e00e1"
                 },
-                "section": "Tabella retributiva"
+                "page": "27",
+                "section": "Settore Metalmeccanica ed Installazione di Impianti — Retribuzione tabellare",
+                "quote": "5 1499,59 1547,75 1571,83 1595,91 1615,17"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2024-04-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-metalmeccanico-artigianato-double-read"
               }
             }
           },
@@ -1047,21 +1103,28 @@
             "valid_until": "2022-05-01",
             "value": "1416.41",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
-                  "title": "ccnl-artigianato-metalmeccanico-2021-pdf",
+                  "document_id": "metalmeccanico-artigianato-src-d186f032",
+                  "title": "metalmeccanico-artigianato: ccnl-2021.pdf",
                   "kind": "associazione",
-                  "url": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf"
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2021/12/20230126-CCNL-Artigiani-Area-Meccanica-2019-2022-Roma-17-dicembre-2021.pdf",
+                  "sha256": "d186f0321098fc171e06272da7f2acc7ef36eb5c0b12fb9715665ec44b13b472"
                 },
-                "section": "Tabella retributiva"
+                "page": "84",
+                "section": "Tabella dei minimi retributivi — Settore Metalmeccanica e Installazione di impianti, retribuzione tabellare",
+                "quote": "4 1.391,41 25,00 1416,41"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2022-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-metalmeccanico-artigianato-double-read"
               }
             }
           },
@@ -1070,21 +1133,28 @@
             "valid_until": "2022-12-01",
             "value": "1441.41",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
-                  "title": "ccnl-artigianato-metalmeccanico-2021-pdf",
+                  "document_id": "metalmeccanico-artigianato-src-d186f032",
+                  "title": "metalmeccanico-artigianato: ccnl-2021.pdf",
                   "kind": "associazione",
-                  "url": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf"
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2021/12/20230126-CCNL-Artigiani-Area-Meccanica-2019-2022-Roma-17-dicembre-2021.pdf",
+                  "sha256": "d186f0321098fc171e06272da7f2acc7ef36eb5c0b12fb9715665ec44b13b472"
                 },
-                "section": "Tabella retributiva"
+                "page": "84",
+                "section": "Tabella dei minimi retributivi — Settore Metalmeccanica e Installazione di impianti, retribuzione tabellare",
+                "quote": "4 1.416,41 25,00 1441,41"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2022-05-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-metalmeccanico-artigianato-double-read"
               }
             }
           },
@@ -1093,21 +1163,28 @@
             "valid_until": "2023-12-01",
             "value": "1460.98",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
-                  "title": "ccnl-artigianato-metalmeccanico-2021-pdf",
+                  "document_id": "metalmeccanico-artigianato-src-d186f032",
+                  "title": "metalmeccanico-artigianato: ccnl-2021.pdf",
                   "kind": "associazione",
-                  "url": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf"
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2021/12/20230126-CCNL-Artigiani-Area-Meccanica-2019-2022-Roma-17-dicembre-2021.pdf",
+                  "sha256": "d186f0321098fc171e06272da7f2acc7ef36eb5c0b12fb9715665ec44b13b472"
                 },
-                "section": "Tabella retributiva"
+                "page": "84",
+                "section": "Tabella dei minimi retributivi — Settore Metalmeccanica e Installazione di impianti, retribuzione tabellare",
+                "quote": "4 1.441,41 19,57 1460,98"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2022-12-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-metalmeccanico-artigianato-double-read"
               }
             }
           },
@@ -1139,21 +1216,28 @@
             "valid_until": "2024-12-01",
             "value": "1556.98",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
-                  "title": "ccnl-artigianato-metalmeccanico-2021-pdf",
+                  "document_id": "metalmeccanico-artigianato-src-6f8424cb",
+                  "title": "metalmeccanico-artigianato: rinnovo-2024.pdf",
                   "kind": "associazione",
-                  "url": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf"
+                  "url": "https://confartigianatomarcatrevigiana.it/wp-content/uploads/2024/11/CCNL-MEC-ART.19.11.2425.11.24-BW.pdf",
+                  "sha256": "6f8424cb05c74d81e1a9e58f2b6c972f6f3d61a9639ded36b4c316e13a4e00e1"
                 },
-                "section": "Tabella retributiva"
+                "page": "27",
+                "section": "Settore Metalmeccanica ed Installazione di Impianti — Retribuzione tabellare",
+                "quote": "4 1556,98 1606,98 1631,98 1656,98 1676,98"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2024-04-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-metalmeccanico-artigianato-double-read"
               }
             }
           },
@@ -1314,21 +1398,28 @@
             "valid_until": "2022-05-01",
             "value": "1502.77",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
-                  "title": "ccnl-artigianato-metalmeccanico-2021-pdf",
+                  "document_id": "metalmeccanico-artigianato-src-d186f032",
+                  "title": "metalmeccanico-artigianato: ccnl-2021.pdf",
                   "kind": "associazione",
-                  "url": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf"
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2021/12/20230126-CCNL-Artigiani-Area-Meccanica-2019-2022-Roma-17-dicembre-2021.pdf",
+                  "sha256": "d186f0321098fc171e06272da7f2acc7ef36eb5c0b12fb9715665ec44b13b472"
                 },
-                "section": "Tabella retributiva"
+                "page": "84",
+                "section": "Tabella dei minimi retributivi — Settore Metalmeccanica e Installazione di impianti, retribuzione tabellare",
+                "quote": "3 1.476,25 26,52 1502,77"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2022-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-metalmeccanico-artigianato-double-read"
               }
             }
           },
@@ -1337,21 +1428,28 @@
             "valid_until": "2022-12-01",
             "value": "1529.29",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
-                  "title": "ccnl-artigianato-metalmeccanico-2021-pdf",
+                  "document_id": "metalmeccanico-artigianato-src-d186f032",
+                  "title": "metalmeccanico-artigianato: ccnl-2021.pdf",
                   "kind": "associazione",
-                  "url": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf"
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2021/12/20230126-CCNL-Artigiani-Area-Meccanica-2019-2022-Roma-17-dicembre-2021.pdf",
+                  "sha256": "d186f0321098fc171e06272da7f2acc7ef36eb5c0b12fb9715665ec44b13b472"
                 },
-                "section": "Tabella retributiva"
+                "page": "84",
+                "section": "Tabella dei minimi retributivi — Settore Metalmeccanica e Installazione di impianti, retribuzione tabellare",
+                "quote": "3 1.502,77 26,52 1529,29"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2022-05-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-metalmeccanico-artigianato-double-read"
               }
             }
           },
@@ -1360,21 +1458,28 @@
             "valid_until": "2023-12-01",
             "value": "1550.06",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
-                  "title": "ccnl-artigianato-metalmeccanico-2021-pdf",
+                  "document_id": "metalmeccanico-artigianato-src-d186f032",
+                  "title": "metalmeccanico-artigianato: ccnl-2021.pdf",
                   "kind": "associazione",
-                  "url": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf"
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2021/12/20230126-CCNL-Artigiani-Area-Meccanica-2019-2022-Roma-17-dicembre-2021.pdf",
+                  "sha256": "d186f0321098fc171e06272da7f2acc7ef36eb5c0b12fb9715665ec44b13b472"
                 },
-                "section": "Tabella retributiva"
+                "page": "84",
+                "section": "Tabella dei minimi retributivi — Settore Metalmeccanica e Installazione di impianti, retribuzione tabellare",
+                "quote": "3 1.529,29 20,77 1550,06"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2022-12-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-metalmeccanico-artigianato-double-read"
               }
             }
           },
@@ -1406,21 +1511,28 @@
             "valid_until": "2024-12-01",
             "value": "1651.91",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
-                  "title": "ccnl-artigianato-metalmeccanico-2021-pdf",
+                  "document_id": "metalmeccanico-artigianato-src-6f8424cb",
+                  "title": "metalmeccanico-artigianato: rinnovo-2024.pdf",
                   "kind": "associazione",
-                  "url": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf"
+                  "url": "https://confartigianatomarcatrevigiana.it/wp-content/uploads/2024/11/CCNL-MEC-ART.19.11.2425.11.24-BW.pdf",
+                  "sha256": "6f8424cb05c74d81e1a9e58f2b6c972f6f3d61a9639ded36b4c316e13a4e00e1"
                 },
-                "section": "Tabella retributiva"
+                "page": "27",
+                "section": "Settore Metalmeccanica ed Installazione di Impianti — Retribuzione tabellare",
+                "quote": "3 1651,91 1704,96 1731,48 1758,00 1779,22"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2024-04-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-metalmeccanico-artigianato-double-read"
               }
             }
           },
@@ -1581,21 +1693,28 @@
             "valid_until": "2022-05-01",
             "value": "1562.81",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
-                  "title": "ccnl-artigianato-metalmeccanico-2021-pdf",
+                  "document_id": "metalmeccanico-artigianato-src-d186f032",
+                  "title": "metalmeccanico-artigianato: ccnl-2021.pdf",
                   "kind": "associazione",
-                  "url": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf"
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2021/12/20230126-CCNL-Artigiani-Area-Meccanica-2019-2022-Roma-17-dicembre-2021.pdf",
+                  "sha256": "d186f0321098fc171e06272da7f2acc7ef36eb5c0b12fb9715665ec44b13b472"
                 },
-                "section": "Tabella retributiva"
+                "page": "84",
+                "section": "Tabella dei minimi retributivi — Settore Metalmeccanica e Installazione di impianti, retribuzione tabellare",
+                "quote": "2 bis 1.535,23 27,58 1562,81"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2022-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-metalmeccanico-artigianato-double-read"
               }
             }
           },
@@ -1604,21 +1723,28 @@
             "valid_until": "2022-12-01",
             "value": "1590.39",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
-                  "title": "ccnl-artigianato-metalmeccanico-2021-pdf",
+                  "document_id": "metalmeccanico-artigianato-src-d186f032",
+                  "title": "metalmeccanico-artigianato: ccnl-2021.pdf",
                   "kind": "associazione",
-                  "url": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf"
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2021/12/20230126-CCNL-Artigiani-Area-Meccanica-2019-2022-Roma-17-dicembre-2021.pdf",
+                  "sha256": "d186f0321098fc171e06272da7f2acc7ef36eb5c0b12fb9715665ec44b13b472"
                 },
-                "section": "Tabella retributiva"
+                "page": "84",
+                "section": "Tabella dei minimi retributivi — Settore Metalmeccanica e Installazione di impianti, retribuzione tabellare",
+                "quote": "2 bis 1.562,81 27,58 1590,39"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2022-05-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-metalmeccanico-artigianato-double-read"
               }
             }
           },
@@ -1627,21 +1753,28 @@
             "valid_until": "2023-12-01",
             "value": "1611.99",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
-                  "title": "ccnl-artigianato-metalmeccanico-2021-pdf",
+                  "document_id": "metalmeccanico-artigianato-src-d186f032",
+                  "title": "metalmeccanico-artigianato: ccnl-2021.pdf",
                   "kind": "associazione",
-                  "url": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf"
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2021/12/20230126-CCNL-Artigiani-Area-Meccanica-2019-2022-Roma-17-dicembre-2021.pdf",
+                  "sha256": "d186f0321098fc171e06272da7f2acc7ef36eb5c0b12fb9715665ec44b13b472"
                 },
-                "section": "Tabella retributiva"
+                "page": "84",
+                "section": "Tabella dei minimi retributivi — Settore Metalmeccanica e Installazione di impianti, retribuzione tabellare",
+                "quote": "2 bis 1.590,39 21,60 1611,99"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2022-12-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-metalmeccanico-artigianato-double-read"
               }
             }
           },
@@ -1848,21 +1981,28 @@
             "valid_until": "2022-05-01",
             "value": "1655.09",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
-                  "title": "ccnl-artigianato-metalmeccanico-2021-pdf",
+                  "document_id": "metalmeccanico-artigianato-src-d186f032",
+                  "title": "metalmeccanico-artigianato: ccnl-2021.pdf",
                   "kind": "associazione",
-                  "url": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf"
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2021/12/20230126-CCNL-Artigiani-Area-Meccanica-2019-2022-Roma-17-dicembre-2021.pdf",
+                  "sha256": "d186f0321098fc171e06272da7f2acc7ef36eb5c0b12fb9715665ec44b13b472"
                 },
-                "section": "Tabella retributiva"
+                "page": "83",
+                "section": "Tabella dei minimi retributivi — Settore Metalmeccanica e Installazione di impianti, retribuzione tabellare",
+                "quote": "2 1.625,88 29,21 1655,09"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2022-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-metalmeccanico-artigianato-double-read"
               }
             }
           },
@@ -1871,21 +2011,28 @@
             "valid_until": "2022-12-01",
             "value": "1684.30",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
-                  "title": "ccnl-artigianato-metalmeccanico-2021-pdf",
+                  "document_id": "metalmeccanico-artigianato-src-d186f032",
+                  "title": "metalmeccanico-artigianato: ccnl-2021.pdf",
                   "kind": "associazione",
-                  "url": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf"
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2021/12/20230126-CCNL-Artigiani-Area-Meccanica-2019-2022-Roma-17-dicembre-2021.pdf",
+                  "sha256": "d186f0321098fc171e06272da7f2acc7ef36eb5c0b12fb9715665ec44b13b472"
                 },
-                "section": "Tabella retributiva"
+                "page": "84",
+                "section": "Tabella dei minimi retributivi — Settore Metalmeccanica e Installazione di impianti, retribuzione tabellare",
+                "quote": "2 1.655,09 29,21 1684,30"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2022-05-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-metalmeccanico-artigianato-double-read"
               }
             }
           },
@@ -1894,21 +2041,28 @@
             "valid_until": "2023-12-01",
             "value": "1707.17",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
-                  "title": "ccnl-artigianato-metalmeccanico-2021-pdf",
+                  "document_id": "metalmeccanico-artigianato-src-d186f032",
+                  "title": "metalmeccanico-artigianato: ccnl-2021.pdf",
                   "kind": "associazione",
-                  "url": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf"
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2021/12/20230126-CCNL-Artigiani-Area-Meccanica-2019-2022-Roma-17-dicembre-2021.pdf",
+                  "sha256": "d186f0321098fc171e06272da7f2acc7ef36eb5c0b12fb9715665ec44b13b472"
                 },
-                "section": "Tabella retributiva"
+                "page": "84",
+                "section": "Tabella dei minimi retributivi — Settore Metalmeccanica e Installazione di impianti, retribuzione tabellare",
+                "quote": "2 1.684,30 22,87 1707,17"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2022-12-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-metalmeccanico-artigianato-double-read"
               }
             }
           },
@@ -1940,21 +2094,28 @@
             "valid_until": "2024-12-01",
             "value": "1819.35",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
-                  "title": "ccnl-artigianato-metalmeccanico-2021-pdf",
+                  "document_id": "metalmeccanico-artigianato-src-6f8424cb",
+                  "title": "metalmeccanico-artigianato: rinnovo-2024.pdf",
                   "kind": "associazione",
-                  "url": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf"
+                  "url": "https://confartigianatomarcatrevigiana.it/wp-content/uploads/2024/11/CCNL-MEC-ART.19.11.2425.11.24-BW.pdf",
+                  "sha256": "6f8424cb05c74d81e1a9e58f2b6c972f6f3d61a9639ded36b4c316e13a4e00e1"
                 },
-                "section": "Tabella retributiva"
+                "page": "27",
+                "section": "Settore Metalmeccanica ed Installazione di Impianti — Retribuzione tabellare",
+                "quote": "2 1819,35 1877,78 1906,99 1936,20 1959,57"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2024-04-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-metalmeccanico-artigianato-double-read"
               }
             }
           },
@@ -2115,21 +2276,28 @@
             "valid_until": "2022-05-01",
             "value": "1778.79",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
-                  "title": "ccnl-artigianato-metalmeccanico-2021-pdf",
+                  "document_id": "metalmeccanico-artigianato-src-d186f032",
+                  "title": "metalmeccanico-artigianato: ccnl-2021.pdf",
                   "kind": "associazione",
-                  "url": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf"
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2021/12/20230126-CCNL-Artigiani-Area-Meccanica-2019-2022-Roma-17-dicembre-2021.pdf",
+                  "sha256": "d186f0321098fc171e06272da7f2acc7ef36eb5c0b12fb9715665ec44b13b472"
                 },
-                "section": "Tabella retributiva"
+                "page": "83",
+                "section": "Tabella dei minimi retributivi — Settore Metalmeccanica e Installazione di impianti, retribuzione tabellare",
+                "quote": "1 1.747,39 31,40 1778,79"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2022-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-metalmeccanico-artigianato-double-read"
               }
             }
           },
@@ -2138,21 +2306,28 @@
             "valid_until": "2022-12-01",
             "value": "1810.19",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
-                  "title": "ccnl-artigianato-metalmeccanico-2021-pdf",
+                  "document_id": "metalmeccanico-artigianato-src-d186f032",
+                  "title": "metalmeccanico-artigianato: ccnl-2021.pdf",
                   "kind": "associazione",
-                  "url": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf"
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2021/12/20230126-CCNL-Artigiani-Area-Meccanica-2019-2022-Roma-17-dicembre-2021.pdf",
+                  "sha256": "d186f0321098fc171e06272da7f2acc7ef36eb5c0b12fb9715665ec44b13b472"
                 },
-                "section": "Tabella retributiva"
+                "page": "84",
+                "section": "Tabella dei minimi retributivi — Settore Metalmeccanica e Installazione di impianti, retribuzione tabellare",
+                "quote": "1 1.778,79 31,40 1810,19"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2022-05-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-metalmeccanico-artigianato-double-read"
               }
             }
           },
@@ -2161,21 +2336,28 @@
             "valid_until": "2023-12-01",
             "value": "1834.76",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
-                  "title": "ccnl-artigianato-metalmeccanico-2021-pdf",
+                  "document_id": "metalmeccanico-artigianato-src-d186f032",
+                  "title": "metalmeccanico-artigianato: ccnl-2021.pdf",
                   "kind": "associazione",
-                  "url": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf"
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2021/12/20230126-CCNL-Artigiani-Area-Meccanica-2019-2022-Roma-17-dicembre-2021.pdf",
+                  "sha256": "d186f0321098fc171e06272da7f2acc7ef36eb5c0b12fb9715665ec44b13b472"
                 },
-                "section": "Tabella retributiva"
+                "page": "84",
+                "section": "Tabella dei minimi retributivi — Settore Metalmeccanica e Installazione di impianti, retribuzione tabellare",
+                "quote": "1 1.810,19 24,57 1834,76"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2022-12-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-metalmeccanico-artigianato-double-read"
               }
             }
           },
@@ -2207,21 +2389,28 @@
             "valid_until": "2024-12-01",
             "value": "1955.32",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
-                  "title": "ccnl-artigianato-metalmeccanico-2021-pdf",
+                  "document_id": "metalmeccanico-artigianato-src-6f8424cb",
+                  "title": "metalmeccanico-artigianato: rinnovo-2024.pdf",
                   "kind": "associazione",
-                  "url": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf"
+                  "url": "https://confartigianatomarcatrevigiana.it/wp-content/uploads/2024/11/CCNL-MEC-ART.19.11.2425.11.24-BW.pdf",
+                  "sha256": "6f8424cb05c74d81e1a9e58f2b6c972f6f3d61a9639ded36b4c316e13a4e00e1"
                 },
-                "section": "Tabella retributiva"
+                "page": "27",
+                "section": "Settore Metalmeccanica ed Installazione di Impianti — Retribuzione tabellare",
+                "quote": "1 1955,32 2018,11 2049,51 2080,91 2106,03"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2024-04-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-metalmeccanico-artigianato-double-read"
               }
             }
           },
@@ -2383,21 +2572,28 @@
             "valid_until": "2022-05-01",
             "value": "1778.79",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
-                  "title": "ccnl-artigianato-metalmeccanico-2021-pdf",
+                  "document_id": "metalmeccanico-artigianato-src-d186f032",
+                  "title": "metalmeccanico-artigianato: ccnl-2021.pdf",
                   "kind": "associazione",
-                  "url": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf"
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2021/12/20230126-CCNL-Artigiani-Area-Meccanica-2019-2022-Roma-17-dicembre-2021.pdf",
+                  "sha256": "d186f0321098fc171e06272da7f2acc7ef36eb5c0b12fb9715665ec44b13b472"
                 },
-                "section": "Tabella retributiva"
+                "page": "83",
+                "section": "Tabella dei minimi retributivi — Settore Metalmeccanica e Installazione di impianti, retribuzione tabellare",
+                "quote": "1Q 1.747,39 31,40 1778,79"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2022-01-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-metalmeccanico-artigianato-double-read"
               }
             }
           },
@@ -2406,21 +2602,28 @@
             "valid_until": "2022-12-01",
             "value": "1810.19",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
-                  "title": "ccnl-artigianato-metalmeccanico-2021-pdf",
+                  "document_id": "metalmeccanico-artigianato-src-d186f032",
+                  "title": "metalmeccanico-artigianato: ccnl-2021.pdf",
                   "kind": "associazione",
-                  "url": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf"
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2021/12/20230126-CCNL-Artigiani-Area-Meccanica-2019-2022-Roma-17-dicembre-2021.pdf",
+                  "sha256": "d186f0321098fc171e06272da7f2acc7ef36eb5c0b12fb9715665ec44b13b472"
                 },
-                "section": "Tabella retributiva"
+                "page": "84",
+                "section": "Tabella dei minimi retributivi — Settore Metalmeccanica e Installazione di impianti, retribuzione tabellare",
+                "quote": "1Q 1.778,79 31,40 1810,19"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2022-05-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-metalmeccanico-artigianato-double-read"
               }
             }
           },
@@ -2429,21 +2632,28 @@
             "valid_until": "2023-12-01",
             "value": "1834.76",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
-                  "title": "ccnl-artigianato-metalmeccanico-2021-pdf",
+                  "document_id": "metalmeccanico-artigianato-src-d186f032",
+                  "title": "metalmeccanico-artigianato: ccnl-2021.pdf",
                   "kind": "associazione",
-                  "url": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf"
+                  "url": "https://www.uilmnazionale.it/wp-content/uploads/2021/12/20230126-CCNL-Artigiani-Area-Meccanica-2019-2022-Roma-17-dicembre-2021.pdf",
+                  "sha256": "d186f0321098fc171e06272da7f2acc7ef36eb5c0b12fb9715665ec44b13b472"
                 },
-                "section": "Tabella retributiva"
+                "page": "84",
+                "section": "Tabella dei minimi retributivi — Settore Metalmeccanica e Installazione di impianti, retribuzione tabellare",
+                "quote": "1Q 1.810,19 24,57 1834,76"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2022-12-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-metalmeccanico-artigianato-double-read"
               }
             }
           },
@@ -2475,21 +2685,28 @@
             "valid_until": "2024-12-01",
             "value": "1955.32",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
-                  "title": "ccnl-artigianato-metalmeccanico-2021-pdf",
+                  "document_id": "metalmeccanico-artigianato-src-6f8424cb",
+                  "title": "metalmeccanico-artigianato: rinnovo-2024.pdf",
                   "kind": "associazione",
-                  "url": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf"
+                  "url": "https://confartigianatomarcatrevigiana.it/wp-content/uploads/2024/11/CCNL-MEC-ART.19.11.2425.11.24-BW.pdf",
+                  "sha256": "6f8424cb05c74d81e1a9e58f2b6c972f6f3d61a9639ded36b4c316e13a4e00e1"
                 },
-                "section": "Tabella retributiva"
+                "page": "27",
+                "section": "Settore Metalmeccanica ed Installazione di Impianti — Retribuzione tabellare",
+                "quote": "1Q 1955,32 2018,11 2049,51 2080,91 2106,03"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2024-04-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-metalmeccanico-artigianato-double-read"
               }
             }
           },
@@ -2742,7 +2959,7 @@
     "effective_until": null,
     "source": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf",
     "verification_status": "unverified",
-    "source_hash": "07726b38c87b20360c04912a9138427c3de2da98885f0b05d2b4cfb9aa11cccf",
+    "source_hash": "54f075a20c0b58d99e2911e4235bd936b641aad28a30dd2afce9414644e83188",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3264,6 +3481,32 @@
         "independence": "separate_session",
         "checked": [
           "parameters.health_funds"
+        ]
+      },
+      {
+        "id": "2026-11-07-gpt-metalmeccanico-artigianato-double-read",
+        "date": "2026-11-07",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Monthly values on scanned pages, each read twice from the page image by two independent sessions of another model, the second without being told the expected value.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.uilmnazionale.it/wp-content/uploads/2021/12/20230126-CCNL-Artigiani-Area-Meccanica-2019-2022-Roma-17-dicembre-2021.pdf",
+            "sha256": "d186f0321098fc171e06272da7f2acc7ef36eb5c0b12fb9715665ec44b13b472"
+          },
+          {
+            "url": "https://confartigianatomarcatrevigiana.it/wp-content/uploads/2024/11/CCNL-MEC-ART.19.11.2425.11.24-BW.pdf",
+            "sha256": "6f8424cb05c74d81e1a9e58f2b6c972f6f3d61a9639ded36b4c316e13a4e00e1"
+          }
+        ],
+        "findings": [
+          "31 values read identically by both readings and equal to the file."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "levels.base_salary",
+          "levels.fixed_allowances"
         ]
       }
     ],
