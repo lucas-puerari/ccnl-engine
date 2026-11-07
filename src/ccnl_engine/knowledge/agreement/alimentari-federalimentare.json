@@ -4146,7 +4146,7 @@
     "effective_until": null,
     "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "3dd5d5cfdcf370855b943f35e3e8b0ebb1c48d9d6d80be90fa6b1ab875b3110a",
+    "source_hash": "5d0c8b0eb5672249695e799901dfef296e3f5c5b9e57a4b97209463a1288501e",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -13591,6 +13591,71 @@
           "verification_status": "unverified"
         }
       }
+    },
+    "insured_absence": {
+      "maternity": {
+        "integration_rate": "1",
+        "integration_days": 150,
+        "net_basis": true,
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-industria-alimentare-2024-03-01",
+              "title": "CCNL per i lavoratori dell’industria alimentare 2023–2027, Roma 1 marzo 2024 (testo integrale FLAI-CGIL)",
+              "kind": "associazione",
+              "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+              "published_on": "2024-03-01",
+              "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+            },
+            "page": "106",
+            "section": "Art. 46 - Tutela delle lavoratrici madri",
+            "quote": "A far data dal 1° gennaio 1992, la lavoratrice riceverà inoltre un trattamento di assistenza, ad integrazione di quello di legge, fino a raggiungere il 100% della retribuzione mensile di fatto netta per i primi cinque mesi di assenza obbligatoria."
+          },
+          "transformation": "Employer supplementation of statutory maternity benefit to 100% of actual net monthly pay for first five months of compulsory maternity leave; 150 days is a model conversion of five months, not a day count stated in the contract.",
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-08T03:00:00Z",
+            "effective_from": null,
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-08T03:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-08-gpt-alimentari-federalimentare-insured-absence"
+          }
+        }
+      },
+      "injury": {
+        "carenza_rate": "1",
+        "advanced": true,
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-industria-alimentare-2024-03-01",
+              "title": "CCNL per i lavoratori dell’industria alimentare 2023–2027, Roma 1 marzo 2024 (testo integrale FLAI-CGIL)",
+              "kind": "associazione",
+              "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+              "published_on": "2024-03-01",
+              "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+            },
+            "page": "113",
+            "section": "Art. 48 - Infortunio sul lavoro",
+            "quote": "In caso di infortunio sul lavoro per il quale intervenga l’INAIL, l’azienda corrisponderà all’operaio non in prova, dal primo giorno di assenza dal lavoro e fino alla cessazione della indennità di invalidità temporanea erogata dal predetto istituto assicuratore, una integrazione di tale indennità in modo da raggiungere il 100 per cento della retribuzione normale netta. Le indennità a carico dell’Istituto saranno anticipate a condizione che le stesse non siano soggette a contribuzione e che sia garantito il rimborso attraverso conguaglio da parte dell’Inail o altro sistema analogo."
+          },
+          "transformation": "For non-probationary operai covered by INAIL, the first days of absence (including the three statutory waiting days) reach 100% of normal net pay; employer supplements through the end of INAIL temporary-disability indemnity. INAIL benefits are advanced only if not subject to contributions and reimbursement by offset or equivalent is guaranteed. Other worker categories and subsectors differ; see notes.",
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-08T03:00:00Z",
+            "effective_from": null,
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-08T03:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-08-gpt-alimentari-federalimentare-insured-absence"
+          }
+        }
+      }
     }
   },
   "verification": {
@@ -13827,6 +13892,29 @@
         "independence": "separate_session",
         "checked": [
           "parameters.health_funds"
+        ]
+      },
+      {
+        "id": "2026-11-08-gpt-alimentari-federalimentare-insured-absence",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "CCNL top-ups of maternity and work injury, read from the signed text by a separate model session; every quote found on the PDF text layer.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+            "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+          }
+        ],
+        "findings": [
+          "Added work_rules.insured_absence.maternity.",
+          "Added work_rules.insured_absence.injury."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.insured_absence.maternity",
+          "work_rules.insured_absence.injury"
         ]
       }
     ],

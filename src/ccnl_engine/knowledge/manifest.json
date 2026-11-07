@@ -116,7 +116,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/alimentari-federalimentare",
       "ruleset_version": "2026.2",
-      "source_hash": "3dd5d5cfdcf370855b943f35e3e8b0ebb1c48d9d6d80be90fa6b1ab875b3110a",
+      "source_hash": "5d0c8b0eb5672249695e799901dfef296e3f5c5b9e57a4b97209463a1288501e",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/alimentari-federalimentare.json.gz"
@@ -490,7 +490,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/commercio-confcommercio",
       "ruleset_version": "2026.2",
-      "source_hash": "f56718bfc95c35a789c06ce26a60364d127ea423fd7d49eb9bac005d3494c5b5",
+      "source_hash": "760b7b3b3ddc516f8cfc18804d56ac4d33bc25f8909793dcb2845b86ba3b8c45",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/commercio-confcommercio.json.gz"
@@ -609,7 +609,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/cooperative-sociali",
       "ruleset_version": "2026.2",
-      "source_hash": "0910f9edfc42a85a5c853585802930a87a10f6ef66dc62ecf168200ad1f21656",
+      "source_hash": "e0402b1f00a56f92f4967398b48ce3415c9e428351aa3279c33c9333dd796839",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/cooperative-sociali.json.gz"
@@ -762,7 +762,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/edilizia-ance",
       "ruleset_version": "2026.2",
-      "source_hash": "194cfe7947a2c4dd7e93f3af023789dc3571fedb8a35023436a6b8c5f2530416",
+      "source_hash": "1929ed40ce39c115cf2df16101ae3870504fe9de75215e7577d02738b13ceed1",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/edilizia-ance.json.gz"
@@ -1411,7 +1411,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/logistica-trasporto-confetra",
       "ruleset_version": "2026.2",
-      "source_hash": "38913a3b865bdbbcd798198b79fbe56ac7d04dd74c65c94a1fd1ba9c966775a4",
+      "source_hash": "e771eb4ddbfd486b2f6abfcf3b1435dd400a17e4ac2129b6552d1df2535c1aeb",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/logistica-trasporto-confetra.json.gz"
@@ -1530,7 +1530,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/metalmeccanico-federmeccanica",
       "ruleset_version": "2026.3",
-      "source_hash": "11b088d132504800c80ac3d9368e83614a1258003e80abf05ce703cfeefce2e2",
+      "source_hash": "cac900a3591832f838914776b4144da720d239130f567d053231c2538ac25440",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/metalmeccanico-federmeccanica.json.gz"
@@ -4041,7 +4041,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "24a465ff5ab4ae9f31f62f54f380c54bc4b013af358b31d1628e6d8fe5433381",
+      "source_hash": "ecdb1a0e65ff990ddbfcf6699875b7a10cfc311da4a99eed830d64349e8ed7e5",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/logistica-trasporto-confetra.json.gz",

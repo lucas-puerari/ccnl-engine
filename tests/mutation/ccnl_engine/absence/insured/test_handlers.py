@@ -68,6 +68,16 @@ class _NoAbsenceRules(BundledKnowledgeRepository):
         return ccnl.model_copy(update={"work_rules": rules})
 
 
+class _NoInsuredRules(BundledKnowledgeRepository):
+    """The bundle with no CCNL top-up of the insured absences."""
+
+    def load_ccnl(self, ccnl_id: str) -> CCNL:
+        ccnl = load_ccnl(ccnl_id)
+        assert ccnl.work_rules is not None
+        rules = ccnl.work_rules.model_copy(update={"insured_absence": None})
+        return ccnl.model_copy(update={"work_rules": rules})
+
+
 class _NoRuleset(BundledKnowledgeRepository):
     """The bundle with a CCNL file that carries no ruleset identity."""
 
@@ -109,7 +119,7 @@ def _decision_of(result: PeriodResult, capability: str) -> tuple[str, object]:
 
 def test_a_leave_without_ccnl_rules_pays_inps_alone() -> None:
     """March: (2158.26 / 30 + 2158.26 * 2 / 360) * 0.80 * 31 = 1932.84."""
-    result = _run(_LEAVE)
+    result = _run(_LEAVE, engine=PayrollEngine(repository=_NoInsuredRules()))
 
     assert _decision_of(result, "maternity_leave") == (
         "provisional",
@@ -133,7 +143,7 @@ def test_a_ccnl_without_a_ruleset_is_named_by_its_id_and_year() -> None:
 
 def test_an_injury_without_ccnl_rules_is_paid_by_inail_itself() -> None:
     """April: the month is deducted in full and INAIL is not advanced."""
-    result = _run(_INJURY, 4)
+    result = _run(_INJURY, 4, engine=PayrollEngine(repository=_NoInsuredRules()))
 
     assert _decision_of(result, "workplace_injury") == ("provisional", Decimal(0))
 
