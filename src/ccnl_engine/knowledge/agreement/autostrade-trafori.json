@@ -84,70 +84,121 @@
         "periods": [
           {
             "valid_from": "2023-01-01",
-            "valid_until": "2023-06-01",
-            "value": "1189.65",
+            "valid_until": "2023-08-01",
+            "value": "1149.11",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "contratto-collettivo-autostrade-trafori",
-                  "title": "contratto-collettivo-autostrade-trafori",
+                  "document_id": "autostrade-trafori-src-a15133d6",
+                  "title": "CCNL Autostrade e trafori, stesura 5 luglio 2024",
                   "kind": "associazione",
-                  "url": "https://www.aiscat.it/contratto-collettivo-autostrade-trafori"
+                  "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+                  "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
                 },
-                "section": "Tabella retributiva"
+                "page": "168",
+                "section": "Minimi tabellari",
+                "quote": "D | 1149.11 | 1189.65 | 1223.43 | 1243.70 | 1291.00 (column Minimi al 31/07/2023)"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:45:00Z",
+                "effective_from": "2023-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T23:45:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-autostrade-trafori-minimi-dates"
               }
             }
           },
           {
-            "valid_from": "2023-06-01",
+            "valid_from": "2023-08-01",
             "valid_until": "2024-01-01",
-            "value": "1223.43",
+            "value": "1189.65",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "contratto-collettivo-autostrade-trafori",
-                  "title": "contratto-collettivo-autostrade-trafori",
+                  "document_id": "autostrade-trafori-src-a15133d6",
+                  "title": "CCNL Autostrade e trafori, stesura 5 luglio 2024",
                   "kind": "associazione",
-                  "url": "https://www.aiscat.it/contratto-collettivo-autostrade-trafori"
+                  "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+                  "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
                 },
-                "section": "Tabella retributiva"
+                "page": "168",
+                "section": "Minimi tabellari",
+                "quote": "D | 1149.11 | 1189.65 | 1223.43 | 1243.70 | 1291.00 (column 1/8/2023)"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:45:00Z",
+                "effective_from": "2023-08-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T23:45:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-autostrade-trafori-minimi-dates"
               }
             }
           },
           {
             "valid_from": "2024-01-01",
+            "valid_until": "2024-08-01",
+            "value": "1223.43",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "autostrade-trafori-src-a15133d6",
+                  "title": "CCNL Autostrade e trafori, stesura 5 luglio 2024",
+                  "kind": "associazione",
+                  "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+                  "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
+                },
+                "page": "168",
+                "section": "Minimi tabellari",
+                "quote": "D | 1149.11 | 1189.65 | 1223.43 | 1243.70 | 1291.00 (column 1/1/2024)"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:45:00Z",
+                "effective_from": "2024-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T23:45:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-autostrade-trafori-minimi-dates"
+              }
+            }
+          },
+          {
+            "valid_from": "2024-08-01",
             "valid_until": "2025-01-01",
             "value": "1243.70",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "contratto-collettivo-autostrade-trafori",
-                  "title": "contratto-collettivo-autostrade-trafori",
+                  "document_id": "autostrade-trafori-src-a15133d6",
+                  "title": "CCNL Autostrade e trafori, stesura 5 luglio 2024",
                   "kind": "associazione",
-                  "url": "https://www.aiscat.it/contratto-collettivo-autostrade-trafori"
+                  "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+                  "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
                 },
-                "section": "Tabella retributiva"
+                "page": "168",
+                "section": "Minimi tabellari",
+                "quote": "D | 1149.11 | 1189.65 | 1223.43 | 1243.70 | 1291.00 (column 1/8/2024)"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:45:00Z",
+                "effective_from": "2024-08-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T23:45:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-autostrade-trafori-minimi-dates"
               }
             }
           },
@@ -156,21 +207,28 @@
             "valid_until": "2026-08-01",
             "value": "1291.00",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "contratto-collettivo-autostrade-trafori",
-                  "title": "contratto-collettivo-autostrade-trafori",
+                  "document_id": "autostrade-trafori-src-a15133d6",
+                  "title": "CCNL Autostrade e trafori, stesura 5 luglio 2024",
                   "kind": "associazione",
-                  "url": "https://www.aiscat.it/contratto-collettivo-autostrade-trafori"
+                  "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+                  "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
                 },
-                "section": "Tabella retributiva"
+                "page": "168",
+                "section": "Minimi tabellari",
+                "quote": "D | 1149.11 | 1189.65 | 1223.43 | 1243.70 | 1291.00 (column 1/1/2025)"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:45:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T23:45:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-autostrade-trafori-minimi-dates"
               }
             }
           },
@@ -374,12 +432,62 @@
               {
                 "valid_from": "2023-01-01",
                 "valid_until": "2023-08-01",
-                "value": "0.00"
+                "value": "10.14",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "autostrade-trafori-src-a15133d6",
+                      "title": "CCNL Autostrade e trafori, stesura 5 luglio 2024",
+                      "kind": "associazione",
+                      "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+                      "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
+                    },
+                    "page": "169",
+                    "section": "Importo differenziato della retribuzione (I.D.R. 2021)",
+                    "quote": "Con la retribuzione del mese di dicembre 2021 viene istituito un importo differenziato della retribuzione ... D | € 10,14"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T23:45:00Z",
+                    "effective_from": "2023-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T23:45:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-autostrade-trafori-minimi-dates"
+                  }
+                }
               },
               {
                 "valid_from": "2023-08-01",
                 "valid_until": "2024-01-01",
-                "value": "10.13"
+                "value": "10.14",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "autostrade-trafori-src-a15133d6",
+                      "title": "CCNL Autostrade e trafori, stesura 5 luglio 2024",
+                      "kind": "associazione",
+                      "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+                      "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
+                    },
+                    "page": "169",
+                    "section": "Importo differenziato della retribuzione (I.D.R. 2021)",
+                    "quote": "Con la retribuzione del mese di dicembre 2021 viene istituito un importo differenziato della retribuzione ... D | € 10,14"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T23:45:00Z",
+                    "effective_from": "2023-08-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T23:45:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-autostrade-trafori-minimi-dates"
+                  }
+                }
               },
               {
                 "valid_from": "2024-01-01",
@@ -435,70 +543,121 @@
         "periods": [
           {
             "valid_from": "2023-01-01",
-            "valid_until": "2023-06-01",
-            "value": "1606.06",
+            "valid_until": "2023-08-01",
+            "value": "1551.33",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "contratto-collettivo-autostrade-trafori",
-                  "title": "contratto-collettivo-autostrade-trafori",
+                  "document_id": "autostrade-trafori-src-a15133d6",
+                  "title": "CCNL Autostrade e trafori, stesura 5 luglio 2024",
                   "kind": "associazione",
-                  "url": "https://www.aiscat.it/contratto-collettivo-autostrade-trafori"
+                  "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+                  "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
                 },
-                "section": "Tabella retributiva"
+                "page": "168",
+                "section": "Minimi tabellari",
+                "quote": "C1 | 1551.33 | 1606.06 | 1651.67 | 1679.03 | 1742.88 (column Minimi al 31/07/2023)"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:45:00Z",
+                "effective_from": "2023-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T23:45:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-autostrade-trafori-minimi-dates"
               }
             }
           },
           {
-            "valid_from": "2023-06-01",
+            "valid_from": "2023-08-01",
             "valid_until": "2024-01-01",
-            "value": "1651.67",
+            "value": "1606.06",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "contratto-collettivo-autostrade-trafori",
-                  "title": "contratto-collettivo-autostrade-trafori",
+                  "document_id": "autostrade-trafori-src-a15133d6",
+                  "title": "CCNL Autostrade e trafori, stesura 5 luglio 2024",
                   "kind": "associazione",
-                  "url": "https://www.aiscat.it/contratto-collettivo-autostrade-trafori"
+                  "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+                  "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
                 },
-                "section": "Tabella retributiva"
+                "page": "168",
+                "section": "Minimi tabellari",
+                "quote": "C1 | 1551.33 | 1606.06 | 1651.67 | 1679.03 | 1742.88 (column 1/8/2023)"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:45:00Z",
+                "effective_from": "2023-08-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T23:45:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-autostrade-trafori-minimi-dates"
               }
             }
           },
           {
             "valid_from": "2024-01-01",
+            "valid_until": "2024-08-01",
+            "value": "1651.67",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "autostrade-trafori-src-a15133d6",
+                  "title": "CCNL Autostrade e trafori, stesura 5 luglio 2024",
+                  "kind": "associazione",
+                  "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+                  "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
+                },
+                "page": "168",
+                "section": "Minimi tabellari",
+                "quote": "C1 | 1551.33 | 1606.06 | 1651.67 | 1679.03 | 1742.88 (column 1/1/2024)"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:45:00Z",
+                "effective_from": "2024-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T23:45:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-autostrade-trafori-minimi-dates"
+              }
+            }
+          },
+          {
+            "valid_from": "2024-08-01",
             "valid_until": "2025-01-01",
             "value": "1679.03",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "contratto-collettivo-autostrade-trafori",
-                  "title": "contratto-collettivo-autostrade-trafori",
+                  "document_id": "autostrade-trafori-src-a15133d6",
+                  "title": "CCNL Autostrade e trafori, stesura 5 luglio 2024",
                   "kind": "associazione",
-                  "url": "https://www.aiscat.it/contratto-collettivo-autostrade-trafori"
+                  "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+                  "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
                 },
-                "section": "Tabella retributiva"
+                "page": "168",
+                "section": "Minimi tabellari",
+                "quote": "C1 | 1551.33 | 1606.06 | 1651.67 | 1679.03 | 1742.88 (column 1/8/2024)"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:45:00Z",
+                "effective_from": "2024-08-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T23:45:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-autostrade-trafori-minimi-dates"
               }
             }
           },
@@ -507,21 +666,28 @@
             "valid_until": "2026-08-01",
             "value": "1742.88",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "contratto-collettivo-autostrade-trafori",
-                  "title": "contratto-collettivo-autostrade-trafori",
+                  "document_id": "autostrade-trafori-src-a15133d6",
+                  "title": "CCNL Autostrade e trafori, stesura 5 luglio 2024",
                   "kind": "associazione",
-                  "url": "https://www.aiscat.it/contratto-collettivo-autostrade-trafori"
+                  "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+                  "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
                 },
-                "section": "Tabella retributiva"
+                "page": "168",
+                "section": "Minimi tabellari",
+                "quote": "C1 | 1551.33 | 1606.06 | 1651.67 | 1679.03 | 1742.88 (column 1/1/2025)"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:45:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T23:45:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-autostrade-trafori-minimi-dates"
               }
             }
           },
@@ -725,12 +891,62 @@
               {
                 "valid_from": "2023-01-01",
                 "valid_until": "2023-08-01",
-                "value": "0.00"
+                "value": "13.68",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "autostrade-trafori-src-a15133d6",
+                      "title": "CCNL Autostrade e trafori, stesura 5 luglio 2024",
+                      "kind": "associazione",
+                      "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+                      "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
+                    },
+                    "page": "169",
+                    "section": "Importo differenziato della retribuzione (I.D.R. 2021)",
+                    "quote": "Con la retribuzione del mese di dicembre 2021 viene istituito un importo differenziato della retribuzione ... C1 | € 13,68"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T23:45:00Z",
+                    "effective_from": "2023-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T23:45:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-autostrade-trafori-minimi-dates"
+                  }
+                }
               },
               {
                 "valid_from": "2023-08-01",
                 "valid_until": "2024-01-01",
-                "value": "13.68"
+                "value": "13.68",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "autostrade-trafori-src-a15133d6",
+                      "title": "CCNL Autostrade e trafori, stesura 5 luglio 2024",
+                      "kind": "associazione",
+                      "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+                      "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
+                    },
+                    "page": "169",
+                    "section": "Importo differenziato della retribuzione (I.D.R. 2021)",
+                    "quote": "Con la retribuzione del mese di dicembre 2021 viene istituito un importo differenziato della retribuzione ... C1 | € 13,68"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T23:45:00Z",
+                    "effective_from": "2023-08-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T23:45:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-autostrade-trafori-minimi-dates"
+                  }
+                }
               },
               {
                 "valid_from": "2024-01-01",
@@ -786,70 +1002,121 @@
         "periods": [
           {
             "valid_from": "2023-01-01",
-            "valid_until": "2023-06-01",
-            "value": "1760.70",
+            "valid_until": "2023-08-01",
+            "value": "1700.70",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "contratto-collettivo-autostrade-trafori",
-                  "title": "contratto-collettivo-autostrade-trafori",
+                  "document_id": "autostrade-trafori-src-a15133d6",
+                  "title": "CCNL Autostrade e trafori, stesura 5 luglio 2024",
                   "kind": "associazione",
-                  "url": "https://www.aiscat.it/contratto-collettivo-autostrade-trafori"
+                  "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+                  "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
                 },
-                "section": "Tabella retributiva"
+                "page": "168",
+                "section": "Minimi tabellari",
+                "quote": "C | 1700.70 | 1760.70 | 1810.70 | 1840.70 | 1910.70 (column Minimi al 31/07/2023)"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:45:00Z",
+                "effective_from": "2023-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T23:45:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-autostrade-trafori-minimi-dates"
               }
             }
           },
           {
-            "valid_from": "2023-06-01",
+            "valid_from": "2023-08-01",
             "valid_until": "2024-01-01",
-            "value": "1810.70",
+            "value": "1760.70",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "contratto-collettivo-autostrade-trafori",
-                  "title": "contratto-collettivo-autostrade-trafori",
+                  "document_id": "autostrade-trafori-src-a15133d6",
+                  "title": "CCNL Autostrade e trafori, stesura 5 luglio 2024",
                   "kind": "associazione",
-                  "url": "https://www.aiscat.it/contratto-collettivo-autostrade-trafori"
+                  "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+                  "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
                 },
-                "section": "Tabella retributiva"
+                "page": "168",
+                "section": "Minimi tabellari",
+                "quote": "C | 1700.70 | 1760.70 | 1810.70 | 1840.70 | 1910.70 (column 1/8/2023)"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:45:00Z",
+                "effective_from": "2023-08-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T23:45:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-autostrade-trafori-minimi-dates"
               }
             }
           },
           {
             "valid_from": "2024-01-01",
+            "valid_until": "2024-08-01",
+            "value": "1810.70",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "autostrade-trafori-src-a15133d6",
+                  "title": "CCNL Autostrade e trafori, stesura 5 luglio 2024",
+                  "kind": "associazione",
+                  "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+                  "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
+                },
+                "page": "168",
+                "section": "Minimi tabellari",
+                "quote": "C | 1700.70 | 1760.70 | 1810.70 | 1840.70 | 1910.70 (column 1/1/2024)"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:45:00Z",
+                "effective_from": "2024-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T23:45:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-autostrade-trafori-minimi-dates"
+              }
+            }
+          },
+          {
+            "valid_from": "2024-08-01",
             "valid_until": "2025-01-01",
             "value": "1840.70",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "contratto-collettivo-autostrade-trafori",
-                  "title": "contratto-collettivo-autostrade-trafori",
+                  "document_id": "autostrade-trafori-src-a15133d6",
+                  "title": "CCNL Autostrade e trafori, stesura 5 luglio 2024",
                   "kind": "associazione",
-                  "url": "https://www.aiscat.it/contratto-collettivo-autostrade-trafori"
+                  "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+                  "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
                 },
-                "section": "Tabella retributiva"
+                "page": "168",
+                "section": "Minimi tabellari",
+                "quote": "C | 1700.70 | 1760.70 | 1810.70 | 1840.70 | 1910.70 (column 1/8/2024)"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:45:00Z",
+                "effective_from": "2024-08-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T23:45:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-autostrade-trafori-minimi-dates"
               }
             }
           },
@@ -858,21 +1125,28 @@
             "valid_until": "2026-08-01",
             "value": "1910.70",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "contratto-collettivo-autostrade-trafori",
-                  "title": "contratto-collettivo-autostrade-trafori",
+                  "document_id": "autostrade-trafori-src-a15133d6",
+                  "title": "CCNL Autostrade e trafori, stesura 5 luglio 2024",
                   "kind": "associazione",
-                  "url": "https://www.aiscat.it/contratto-collettivo-autostrade-trafori"
+                  "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+                  "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
                 },
-                "section": "Tabella retributiva"
+                "page": "168",
+                "section": "Minimi tabellari",
+                "quote": "C | 1700.70 | 1760.70 | 1810.70 | 1840.70 | 1910.70 (column 1/1/2025)"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:45:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T23:45:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-autostrade-trafori-minimi-dates"
               }
             }
           },
@@ -1076,12 +1350,62 @@
               {
                 "valid_from": "2023-01-01",
                 "valid_until": "2023-08-01",
-                "value": "0.00"
+                "value": "15.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "autostrade-trafori-src-a15133d6",
+                      "title": "CCNL Autostrade e trafori, stesura 5 luglio 2024",
+                      "kind": "associazione",
+                      "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+                      "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
+                    },
+                    "page": "169",
+                    "section": "Importo differenziato della retribuzione (I.D.R. 2021)",
+                    "quote": "Con la retribuzione del mese di dicembre 2021 viene istituito un importo differenziato della retribuzione ... C | € 15,00"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T23:45:00Z",
+                    "effective_from": "2023-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T23:45:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-autostrade-trafori-minimi-dates"
+                  }
+                }
               },
               {
                 "valid_from": "2023-08-01",
                 "valid_until": "2024-01-01",
-                "value": "15.00"
+                "value": "15.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "autostrade-trafori-src-a15133d6",
+                      "title": "CCNL Autostrade e trafori, stesura 5 luglio 2024",
+                      "kind": "associazione",
+                      "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+                      "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
+                    },
+                    "page": "169",
+                    "section": "Importo differenziato della retribuzione (I.D.R. 2021)",
+                    "quote": "Con la retribuzione del mese di dicembre 2021 viene istituito un importo differenziato della retribuzione ... C | € 15,00"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T23:45:00Z",
+                    "effective_from": "2023-08-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T23:45:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-autostrade-trafori-minimi-dates"
+                  }
+                }
               },
               {
                 "valid_from": "2024-01-01",
@@ -1137,93 +1461,151 @@
         "periods": [
           {
             "valid_from": "2023-01-01",
-            "valid_until": "2023-06-01",
-            "value": "1843.96",
+            "valid_until": "2023-08-01",
+            "value": "1781.14",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "contratto-collettivo-autostrade-trafori",
-                  "title": "contratto-collettivo-autostrade-trafori",
+                  "document_id": "autostrade-trafori-src-a15133d6",
+                  "title": "CCNL Autostrade e trafori, stesura 5 luglio 2024",
                   "kind": "associazione",
-                  "url": "https://www.aiscat.it/contratto-collettivo-autostrade-trafori"
+                  "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+                  "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
                 },
-                "section": "Tabella retributiva"
+                "page": "168",
+                "section": "Minimi tabellari",
+                "quote": "C plus | 1781.14 | 1843.98 | 1896.34 | 1927.76 | 2001.07 (column Minimi al 31/07/2023)"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:45:00Z",
+                "effective_from": "2023-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T23:45:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-autostrade-trafori-minimi-dates"
               }
             }
           },
           {
-            "valid_from": "2023-06-01",
+            "valid_from": "2023-08-01",
             "valid_until": "2024-01-01",
-            "value": "1896.32",
+            "value": "1843.98",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "contratto-collettivo-autostrade-trafori",
-                  "title": "contratto-collettivo-autostrade-trafori",
+                  "document_id": "autostrade-trafori-src-a15133d6",
+                  "title": "CCNL Autostrade e trafori, stesura 5 luglio 2024",
                   "kind": "associazione",
-                  "url": "https://www.aiscat.it/contratto-collettivo-autostrade-trafori"
+                  "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+                  "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
                 },
-                "section": "Tabella retributiva"
+                "page": "168",
+                "section": "Minimi tabellari",
+                "quote": "C plus | 1781.14 | 1843.98 | 1896.34 | 1927.76 | 2001.07 (column 1/8/2023)"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:45:00Z",
+                "effective_from": "2023-08-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T23:45:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-autostrade-trafori-minimi-dates"
               }
             }
           },
           {
             "valid_from": "2024-01-01",
-            "valid_until": "2025-01-01",
-            "value": "1927.74",
+            "valid_until": "2024-08-01",
+            "value": "1896.34",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "contratto-collettivo-autostrade-trafori",
-                  "title": "contratto-collettivo-autostrade-trafori",
+                  "document_id": "autostrade-trafori-src-a15133d6",
+                  "title": "CCNL Autostrade e trafori, stesura 5 luglio 2024",
                   "kind": "associazione",
-                  "url": "https://www.aiscat.it/contratto-collettivo-autostrade-trafori"
+                  "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+                  "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
                 },
-                "section": "Tabella retributiva"
+                "page": "168",
+                "section": "Minimi tabellari",
+                "quote": "C plus | 1781.14 | 1843.98 | 1896.34 | 1927.76 | 2001.07 (column 1/1/2024)"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:45:00Z",
+                "effective_from": "2024-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T23:45:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-autostrade-trafori-minimi-dates"
+              }
+            }
+          },
+          {
+            "valid_from": "2024-08-01",
+            "valid_until": "2025-01-01",
+            "value": "1927.76",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "autostrade-trafori-src-a15133d6",
+                  "title": "CCNL Autostrade e trafori, stesura 5 luglio 2024",
+                  "kind": "associazione",
+                  "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+                  "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
+                },
+                "page": "168",
+                "section": "Minimi tabellari",
+                "quote": "C plus | 1781.14 | 1843.98 | 1896.34 | 1927.76 | 2001.07 (column 1/8/2024)"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:45:00Z",
+                "effective_from": "2024-08-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T23:45:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-autostrade-trafori-minimi-dates"
               }
             }
           },
           {
             "valid_from": "2025-01-01",
             "valid_until": "2026-08-01",
-            "value": "2001.05",
+            "value": "2001.07",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "contratto-collettivo-autostrade-trafori",
-                  "title": "contratto-collettivo-autostrade-trafori",
+                  "document_id": "autostrade-trafori-src-a15133d6",
+                  "title": "CCNL Autostrade e trafori, stesura 5 luglio 2024",
                   "kind": "associazione",
-                  "url": "https://www.aiscat.it/contratto-collettivo-autostrade-trafori"
+                  "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+                  "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
                 },
-                "section": "Tabella retributiva"
+                "page": "168",
+                "section": "Minimi tabellari",
+                "quote": "C plus | 1781.14 | 1843.98 | 1896.34 | 1927.76 | 2001.07 (column 1/1/2025)"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:45:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T23:45:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-autostrade-trafori-minimi-dates"
               }
             }
           },
@@ -1427,12 +1809,62 @@
               {
                 "valid_from": "2023-01-01",
                 "valid_until": "2023-08-01",
-                "value": "0.00"
+                "value": "15.71",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "autostrade-trafori-src-a15133d6",
+                      "title": "CCNL Autostrade e trafori, stesura 5 luglio 2024",
+                      "kind": "associazione",
+                      "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+                      "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
+                    },
+                    "page": "169",
+                    "section": "Importo differenziato della retribuzione (I.D.R. 2021)",
+                    "quote": "Con la retribuzione del mese di dicembre 2021 viene istituito un importo differenziato della retribuzione ... C plus | € 15,71"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T23:45:00Z",
+                    "effective_from": "2023-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T23:45:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-autostrade-trafori-minimi-dates"
+                  }
+                }
               },
               {
                 "valid_from": "2023-08-01",
                 "valid_until": "2024-01-01",
-                "value": "15.70"
+                "value": "15.71",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "autostrade-trafori-src-a15133d6",
+                      "title": "CCNL Autostrade e trafori, stesura 5 luglio 2024",
+                      "kind": "associazione",
+                      "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+                      "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
+                    },
+                    "page": "169",
+                    "section": "Importo differenziato della retribuzione (I.D.R. 2021)",
+                    "quote": "Con la retribuzione del mese di dicembre 2021 viene istituito un importo differenziato della retribuzione ... C plus | € 15,71"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T23:45:00Z",
+                    "effective_from": "2023-08-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T23:45:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-autostrade-trafori-minimi-dates"
+                  }
+                }
               },
               {
                 "valid_from": "2024-01-01",
@@ -1488,70 +1920,121 @@
         "periods": [
           {
             "valid_from": "2023-01-01",
-            "valid_until": "2023-06-01",
-            "value": "2010.56",
+            "valid_until": "2023-08-01",
+            "value": "1942.05",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "contratto-collettivo-autostrade-trafori",
-                  "title": "contratto-collettivo-autostrade-trafori",
+                  "document_id": "autostrade-trafori-src-a15133d6",
+                  "title": "CCNL Autostrade e trafori, stesura 5 luglio 2024",
                   "kind": "associazione",
-                  "url": "https://www.aiscat.it/contratto-collettivo-autostrade-trafori"
+                  "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+                  "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
                 },
-                "section": "Tabella retributiva"
+                "page": "168",
+                "section": "Minimi tabellari",
+                "quote": "B1 | 1942.05 | 2010.56 | 2067.65 | 2101.91 | 2181.84 (column Minimi al 31/07/2023)"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:45:00Z",
+                "effective_from": "2023-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T23:45:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-autostrade-trafori-minimi-dates"
               }
             }
           },
           {
-            "valid_from": "2023-06-01",
+            "valid_from": "2023-08-01",
             "valid_until": "2024-01-01",
-            "value": "2067.65",
+            "value": "2010.56",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "contratto-collettivo-autostrade-trafori",
-                  "title": "contratto-collettivo-autostrade-trafori",
+                  "document_id": "autostrade-trafori-src-a15133d6",
+                  "title": "CCNL Autostrade e trafori, stesura 5 luglio 2024",
                   "kind": "associazione",
-                  "url": "https://www.aiscat.it/contratto-collettivo-autostrade-trafori"
+                  "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+                  "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
                 },
-                "section": "Tabella retributiva"
+                "page": "168",
+                "section": "Minimi tabellari",
+                "quote": "B1 | 1942.05 | 2010.56 | 2067.65 | 2101.91 | 2181.84 (column 1/8/2023)"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:45:00Z",
+                "effective_from": "2023-08-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T23:45:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-autostrade-trafori-minimi-dates"
               }
             }
           },
           {
             "valid_from": "2024-01-01",
+            "valid_until": "2024-08-01",
+            "value": "2067.65",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "autostrade-trafori-src-a15133d6",
+                  "title": "CCNL Autostrade e trafori, stesura 5 luglio 2024",
+                  "kind": "associazione",
+                  "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+                  "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
+                },
+                "page": "168",
+                "section": "Minimi tabellari",
+                "quote": "B1 | 1942.05 | 2010.56 | 2067.65 | 2101.91 | 2181.84 (column 1/1/2024)"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:45:00Z",
+                "effective_from": "2024-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T23:45:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-autostrade-trafori-minimi-dates"
+              }
+            }
+          },
+          {
+            "valid_from": "2024-08-01",
             "valid_until": "2025-01-01",
             "value": "2101.91",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "contratto-collettivo-autostrade-trafori",
-                  "title": "contratto-collettivo-autostrade-trafori",
+                  "document_id": "autostrade-trafori-src-a15133d6",
+                  "title": "CCNL Autostrade e trafori, stesura 5 luglio 2024",
                   "kind": "associazione",
-                  "url": "https://www.aiscat.it/contratto-collettivo-autostrade-trafori"
+                  "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+                  "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
                 },
-                "section": "Tabella retributiva"
+                "page": "168",
+                "section": "Minimi tabellari",
+                "quote": "B1 | 1942.05 | 2010.56 | 2067.65 | 2101.91 | 2181.84 (column 1/8/2024)"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:45:00Z",
+                "effective_from": "2024-08-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T23:45:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-autostrade-trafori-minimi-dates"
               }
             }
           },
@@ -1560,21 +2043,28 @@
             "valid_until": "2026-08-01",
             "value": "2181.84",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "contratto-collettivo-autostrade-trafori",
-                  "title": "contratto-collettivo-autostrade-trafori",
+                  "document_id": "autostrade-trafori-src-a15133d6",
+                  "title": "CCNL Autostrade e trafori, stesura 5 luglio 2024",
                   "kind": "associazione",
-                  "url": "https://www.aiscat.it/contratto-collettivo-autostrade-trafori"
+                  "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+                  "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
                 },
-                "section": "Tabella retributiva"
+                "page": "168",
+                "section": "Minimi tabellari",
+                "quote": "B1 | 1942.05 | 2010.56 | 2067.65 | 2101.91 | 2181.84 (column 1/1/2025)"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:45:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T23:45:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-autostrade-trafori-minimi-dates"
               }
             }
           },
@@ -1778,12 +2268,62 @@
               {
                 "valid_from": "2023-01-01",
                 "valid_until": "2023-08-01",
-                "value": "0.00"
+                "value": "17.13",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "autostrade-trafori-src-a15133d6",
+                      "title": "CCNL Autostrade e trafori, stesura 5 luglio 2024",
+                      "kind": "associazione",
+                      "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+                      "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
+                    },
+                    "page": "169",
+                    "section": "Importo differenziato della retribuzione (I.D.R. 2021)",
+                    "quote": "Con la retribuzione del mese di dicembre 2021 viene istituito un importo differenziato della retribuzione ... B1 | € 17,13"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T23:45:00Z",
+                    "effective_from": "2023-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T23:45:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-autostrade-trafori-minimi-dates"
+                  }
+                }
               },
               {
                 "valid_from": "2023-08-01",
                 "valid_until": "2024-01-01",
-                "value": "17.12"
+                "value": "17.13",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "autostrade-trafori-src-a15133d6",
+                      "title": "CCNL Autostrade e trafori, stesura 5 luglio 2024",
+                      "kind": "associazione",
+                      "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+                      "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
+                    },
+                    "page": "169",
+                    "section": "Importo differenziato della retribuzione (I.D.R. 2021)",
+                    "quote": "Con la retribuzione del mese di dicembre 2021 viene istituito un importo differenziato della retribuzione ... B1 | € 17,13"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T23:45:00Z",
+                    "effective_from": "2023-08-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T23:45:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-autostrade-trafori-minimi-dates"
+                  }
+                }
               },
               {
                 "valid_from": "2024-01-01",
@@ -1839,93 +2379,151 @@
         "periods": [
           {
             "valid_from": "2023-01-01",
-            "valid_until": "2023-06-01",
-            "value": "2093.78",
+            "valid_until": "2023-08-01",
+            "value": "2022.49",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "contratto-collettivo-autostrade-trafori",
-                  "title": "contratto-collettivo-autostrade-trafori",
+                  "document_id": "autostrade-trafori-src-a15133d6",
+                  "title": "CCNL Autostrade e trafori, stesura 5 luglio 2024",
                   "kind": "associazione",
-                  "url": "https://www.aiscat.it/contratto-collettivo-autostrade-trafori"
+                  "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+                  "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
                 },
-                "section": "Tabella retributiva"
+                "page": "168",
+                "section": "Minimi tabellari",
+                "quote": "B1 plus | 2022.49 | 2093.84 | 2153.33 | 2188.98 | 2272.22 (column Minimi al 31/07/2023)"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:45:00Z",
+                "effective_from": "2023-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T23:45:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-autostrade-trafori-minimi-dates"
               }
             }
           },
           {
-            "valid_from": "2023-06-01",
+            "valid_from": "2023-08-01",
             "valid_until": "2024-01-01",
-            "value": "2153.24",
+            "value": "2093.84",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "contratto-collettivo-autostrade-trafori",
-                  "title": "contratto-collettivo-autostrade-trafori",
+                  "document_id": "autostrade-trafori-src-a15133d6",
+                  "title": "CCNL Autostrade e trafori, stesura 5 luglio 2024",
                   "kind": "associazione",
-                  "url": "https://www.aiscat.it/contratto-collettivo-autostrade-trafori"
+                  "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+                  "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
                 },
-                "section": "Tabella retributiva"
+                "page": "168",
+                "section": "Minimi tabellari",
+                "quote": "B1 plus | 2022.49 | 2093.84 | 2153.33 | 2188.98 | 2272.22 (column 1/8/2023)"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:45:00Z",
+                "effective_from": "2023-08-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T23:45:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-autostrade-trafori-minimi-dates"
               }
             }
           },
           {
             "valid_from": "2024-01-01",
-            "valid_until": "2025-01-01",
-            "value": "2188.91",
+            "valid_until": "2024-08-01",
+            "value": "2153.33",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "contratto-collettivo-autostrade-trafori",
-                  "title": "contratto-collettivo-autostrade-trafori",
+                  "document_id": "autostrade-trafori-src-a15133d6",
+                  "title": "CCNL Autostrade e trafori, stesura 5 luglio 2024",
                   "kind": "associazione",
-                  "url": "https://www.aiscat.it/contratto-collettivo-autostrade-trafori"
+                  "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+                  "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
                 },
-                "section": "Tabella retributiva"
+                "page": "168",
+                "section": "Minimi tabellari",
+                "quote": "B1 plus | 2022.49 | 2093.84 | 2153.33 | 2188.98 | 2272.22 (column 1/1/2024)"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:45:00Z",
+                "effective_from": "2024-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T23:45:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-autostrade-trafori-minimi-dates"
+              }
+            }
+          },
+          {
+            "valid_from": "2024-08-01",
+            "valid_until": "2025-01-01",
+            "value": "2188.98",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "autostrade-trafori-src-a15133d6",
+                  "title": "CCNL Autostrade e trafori, stesura 5 luglio 2024",
+                  "kind": "associazione",
+                  "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+                  "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
+                },
+                "page": "168",
+                "section": "Minimi tabellari",
+                "quote": "B1 plus | 2022.49 | 2093.84 | 2153.33 | 2188.98 | 2272.22 (column 1/8/2024)"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:45:00Z",
+                "effective_from": "2024-08-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T23:45:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-autostrade-trafori-minimi-dates"
               }
             }
           },
           {
             "valid_from": "2025-01-01",
             "valid_until": "2026-08-01",
-            "value": "2272.16",
+            "value": "2272.22",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "contratto-collettivo-autostrade-trafori",
-                  "title": "contratto-collettivo-autostrade-trafori",
+                  "document_id": "autostrade-trafori-src-a15133d6",
+                  "title": "CCNL Autostrade e trafori, stesura 5 luglio 2024",
                   "kind": "associazione",
-                  "url": "https://www.aiscat.it/contratto-collettivo-autostrade-trafori"
+                  "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+                  "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
                 },
-                "section": "Tabella retributiva"
+                "page": "168",
+                "section": "Minimi tabellari",
+                "quote": "B1 plus | 2022.49 | 2093.84 | 2153.33 | 2188.98 | 2272.22 (column 1/1/2025)"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:45:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T23:45:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-autostrade-trafori-minimi-dates"
               }
             }
           },
@@ -2129,12 +2727,62 @@
               {
                 "valid_from": "2023-01-01",
                 "valid_until": "2023-08-01",
-                "value": "0.00"
+                "value": "17.84",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "autostrade-trafori-src-a15133d6",
+                      "title": "CCNL Autostrade e trafori, stesura 5 luglio 2024",
+                      "kind": "associazione",
+                      "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+                      "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
+                    },
+                    "page": "169",
+                    "section": "Importo differenziato della retribuzione (I.D.R. 2021)",
+                    "quote": "Con la retribuzione del mese di dicembre 2021 viene istituito un importo differenziato della retribuzione ... B1 plus | € 17,84"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T23:45:00Z",
+                    "effective_from": "2023-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T23:45:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-autostrade-trafori-minimi-dates"
+                  }
+                }
               },
               {
                 "valid_from": "2023-08-01",
                 "valid_until": "2024-01-01",
-                "value": "17.83"
+                "value": "17.84",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "autostrade-trafori-src-a15133d6",
+                      "title": "CCNL Autostrade e trafori, stesura 5 luglio 2024",
+                      "kind": "associazione",
+                      "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+                      "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
+                    },
+                    "page": "169",
+                    "section": "Importo differenziato della retribuzione (I.D.R. 2021)",
+                    "quote": "Con la retribuzione del mese di dicembre 2021 viene istituito un importo differenziato della retribuzione ... B1 plus | € 17,84"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T23:45:00Z",
+                    "effective_from": "2023-08-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T23:45:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-autostrade-trafori-minimi-dates"
+                  }
+                }
               },
               {
                 "valid_from": "2024-01-01",
@@ -2190,70 +2838,121 @@
         "periods": [
           {
             "valid_from": "2023-01-01",
-            "valid_until": "2023-06-01",
-            "value": "2200.85",
+            "valid_until": "2023-08-01",
+            "value": "2125.85",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "contratto-collettivo-autostrade-trafori",
-                  "title": "contratto-collettivo-autostrade-trafori",
+                  "document_id": "autostrade-trafori-src-a15133d6",
+                  "title": "CCNL Autostrade e trafori, stesura 5 luglio 2024",
                   "kind": "associazione",
-                  "url": "https://www.aiscat.it/contratto-collettivo-autostrade-trafori"
+                  "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+                  "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
                 },
-                "section": "Tabella retributiva"
+                "page": "168",
+                "section": "Minimi tabellari",
+                "quote": "B | 2125.85 | 2200.85 | 2263.35 | 2300.85 | 2388.35 (column Minimi al 31/07/2023)"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:45:00Z",
+                "effective_from": "2023-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T23:45:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-autostrade-trafori-minimi-dates"
               }
             }
           },
           {
-            "valid_from": "2023-06-01",
+            "valid_from": "2023-08-01",
             "valid_until": "2024-01-01",
-            "value": "2263.35",
+            "value": "2200.85",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "contratto-collettivo-autostrade-trafori",
-                  "title": "contratto-collettivo-autostrade-trafori",
+                  "document_id": "autostrade-trafori-src-a15133d6",
+                  "title": "CCNL Autostrade e trafori, stesura 5 luglio 2024",
                   "kind": "associazione",
-                  "url": "https://www.aiscat.it/contratto-collettivo-autostrade-trafori"
+                  "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+                  "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
                 },
-                "section": "Tabella retributiva"
+                "page": "168",
+                "section": "Minimi tabellari",
+                "quote": "B | 2125.85 | 2200.85 | 2263.35 | 2300.85 | 2388.35 (column 1/8/2023)"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:45:00Z",
+                "effective_from": "2023-08-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T23:45:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-autostrade-trafori-minimi-dates"
               }
             }
           },
           {
             "valid_from": "2024-01-01",
+            "valid_until": "2024-08-01",
+            "value": "2263.35",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "autostrade-trafori-src-a15133d6",
+                  "title": "CCNL Autostrade e trafori, stesura 5 luglio 2024",
+                  "kind": "associazione",
+                  "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+                  "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
+                },
+                "page": "168",
+                "section": "Minimi tabellari",
+                "quote": "B | 2125.85 | 2200.85 | 2263.35 | 2300.85 | 2388.35 (column 1/1/2024)"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:45:00Z",
+                "effective_from": "2024-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T23:45:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-autostrade-trafori-minimi-dates"
+              }
+            }
+          },
+          {
+            "valid_from": "2024-08-01",
             "valid_until": "2025-01-01",
             "value": "2300.85",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "contratto-collettivo-autostrade-trafori",
-                  "title": "contratto-collettivo-autostrade-trafori",
+                  "document_id": "autostrade-trafori-src-a15133d6",
+                  "title": "CCNL Autostrade e trafori, stesura 5 luglio 2024",
                   "kind": "associazione",
-                  "url": "https://www.aiscat.it/contratto-collettivo-autostrade-trafori"
+                  "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+                  "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
                 },
-                "section": "Tabella retributiva"
+                "page": "168",
+                "section": "Minimi tabellari",
+                "quote": "B | 2125.85 | 2200.85 | 2263.35 | 2300.85 | 2388.35 (column 1/8/2024)"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:45:00Z",
+                "effective_from": "2024-08-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T23:45:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-autostrade-trafori-minimi-dates"
               }
             }
           },
@@ -2262,21 +2961,28 @@
             "valid_until": "2026-08-01",
             "value": "2388.35",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "contratto-collettivo-autostrade-trafori",
-                  "title": "contratto-collettivo-autostrade-trafori",
+                  "document_id": "autostrade-trafori-src-a15133d6",
+                  "title": "CCNL Autostrade e trafori, stesura 5 luglio 2024",
                   "kind": "associazione",
-                  "url": "https://www.aiscat.it/contratto-collettivo-autostrade-trafori"
+                  "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+                  "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
                 },
-                "section": "Tabella retributiva"
+                "page": "168",
+                "section": "Minimi tabellari",
+                "quote": "B | 2125.85 | 2200.85 | 2263.35 | 2300.85 | 2388.35 (column 1/1/2025)"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:45:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T23:45:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-autostrade-trafori-minimi-dates"
               }
             }
           },
@@ -2480,12 +3186,62 @@
               {
                 "valid_from": "2023-01-01",
                 "valid_until": "2023-08-01",
-                "value": "0.00"
+                "value": "18.75",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "autostrade-trafori-src-a15133d6",
+                      "title": "CCNL Autostrade e trafori, stesura 5 luglio 2024",
+                      "kind": "associazione",
+                      "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+                      "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
+                    },
+                    "page": "169",
+                    "section": "Importo differenziato della retribuzione (I.D.R. 2021)",
+                    "quote": "Con la retribuzione del mese di dicembre 2021 viene istituito un importo differenziato della retribuzione ... B | € 18,75"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T23:45:00Z",
+                    "effective_from": "2023-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T23:45:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-autostrade-trafori-minimi-dates"
+                  }
+                }
               },
               {
                 "valid_from": "2023-08-01",
                 "valid_until": "2024-01-01",
-                "value": "18.74"
+                "value": "18.75",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "autostrade-trafori-src-a15133d6",
+                      "title": "CCNL Autostrade e trafori, stesura 5 luglio 2024",
+                      "kind": "associazione",
+                      "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+                      "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
+                    },
+                    "page": "169",
+                    "section": "Importo differenziato della retribuzione (I.D.R. 2021)",
+                    "quote": "Con la retribuzione del mese di dicembre 2021 viene istituito un importo differenziato della retribuzione ... B | € 18,75"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T23:45:00Z",
+                    "effective_from": "2023-08-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T23:45:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-autostrade-trafori-minimi-dates"
+                  }
+                }
               },
               {
                 "valid_from": "2024-01-01",
@@ -2541,70 +3297,121 @@
         "periods": [
           {
             "valid_from": "2023-01-01",
-            "valid_until": "2023-06-01",
-            "value": "2284.13",
+            "valid_until": "2023-08-01",
+            "value": "2206.29",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "contratto-collettivo-autostrade-trafori",
-                  "title": "contratto-collettivo-autostrade-trafori",
+                  "document_id": "autostrade-trafori-src-a15133d6",
+                  "title": "CCNL Autostrade e trafori, stesura 5 luglio 2024",
                   "kind": "associazione",
-                  "url": "https://www.aiscat.it/contratto-collettivo-autostrade-trafori"
+                  "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+                  "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
                 },
-                "section": "Tabella retributiva"
+                "page": "168",
+                "section": "Minimi tabellari",
+                "quote": "B plus | 2206.29 | 2284.13 | 2348.99 | 2387.91 | 2478.72 (column Minimi al 31/07/2023)"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:45:00Z",
+                "effective_from": "2023-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T23:45:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-autostrade-trafori-minimi-dates"
               }
             }
           },
           {
-            "valid_from": "2023-06-01",
+            "valid_from": "2023-08-01",
             "valid_until": "2024-01-01",
-            "value": "2348.99",
+            "value": "2284.13",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "contratto-collettivo-autostrade-trafori",
-                  "title": "contratto-collettivo-autostrade-trafori",
+                  "document_id": "autostrade-trafori-src-a15133d6",
+                  "title": "CCNL Autostrade e trafori, stesura 5 luglio 2024",
                   "kind": "associazione",
-                  "url": "https://www.aiscat.it/contratto-collettivo-autostrade-trafori"
+                  "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+                  "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
                 },
-                "section": "Tabella retributiva"
+                "page": "168",
+                "section": "Minimi tabellari",
+                "quote": "B plus | 2206.29 | 2284.13 | 2348.99 | 2387.91 | 2478.72 (column 1/8/2023)"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:45:00Z",
+                "effective_from": "2023-08-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T23:45:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-autostrade-trafori-minimi-dates"
               }
             }
           },
           {
             "valid_from": "2024-01-01",
-            "valid_until": "2025-01-01",
-            "value": "2387.90",
+            "valid_until": "2024-08-01",
+            "value": "2348.99",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "contratto-collettivo-autostrade-trafori",
-                  "title": "contratto-collettivo-autostrade-trafori",
+                  "document_id": "autostrade-trafori-src-a15133d6",
+                  "title": "CCNL Autostrade e trafori, stesura 5 luglio 2024",
                   "kind": "associazione",
-                  "url": "https://www.aiscat.it/contratto-collettivo-autostrade-trafori"
+                  "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+                  "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
                 },
-                "section": "Tabella retributiva"
+                "page": "168",
+                "section": "Minimi tabellari",
+                "quote": "B plus | 2206.29 | 2284.13 | 2348.99 | 2387.91 | 2478.72 (column 1/1/2024)"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:45:00Z",
+                "effective_from": "2024-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T23:45:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-autostrade-trafori-minimi-dates"
+              }
+            }
+          },
+          {
+            "valid_from": "2024-08-01",
+            "valid_until": "2025-01-01",
+            "value": "2387.91",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "autostrade-trafori-src-a15133d6",
+                  "title": "CCNL Autostrade e trafori, stesura 5 luglio 2024",
+                  "kind": "associazione",
+                  "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+                  "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
+                },
+                "page": "168",
+                "section": "Minimi tabellari",
+                "quote": "B plus | 2206.29 | 2284.13 | 2348.99 | 2387.91 | 2478.72 (column 1/8/2024)"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:45:00Z",
+                "effective_from": "2024-08-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T23:45:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-autostrade-trafori-minimi-dates"
               }
             }
           },
@@ -2613,21 +3420,28 @@
             "valid_until": "2026-08-01",
             "value": "2478.72",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "contratto-collettivo-autostrade-trafori",
-                  "title": "contratto-collettivo-autostrade-trafori",
+                  "document_id": "autostrade-trafori-src-a15133d6",
+                  "title": "CCNL Autostrade e trafori, stesura 5 luglio 2024",
                   "kind": "associazione",
-                  "url": "https://www.aiscat.it/contratto-collettivo-autostrade-trafori"
+                  "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+                  "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
                 },
-                "section": "Tabella retributiva"
+                "page": "168",
+                "section": "Minimi tabellari",
+                "quote": "B plus | 2206.29 | 2284.13 | 2348.99 | 2387.91 | 2478.72 (column 1/1/2025)"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:45:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T23:45:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-autostrade-trafori-minimi-dates"
               }
             }
           },
@@ -2831,12 +3645,62 @@
               {
                 "valid_from": "2023-01-01",
                 "valid_until": "2023-08-01",
-                "value": "0.00"
+                "value": "19.46",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "autostrade-trafori-src-a15133d6",
+                      "title": "CCNL Autostrade e trafori, stesura 5 luglio 2024",
+                      "kind": "associazione",
+                      "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+                      "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
+                    },
+                    "page": "169",
+                    "section": "Importo differenziato della retribuzione (I.D.R. 2021)",
+                    "quote": "Con la retribuzione del mese di dicembre 2021 viene istituito un importo differenziato della retribuzione ... B plus | € 19,46"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T23:45:00Z",
+                    "effective_from": "2023-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T23:45:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-autostrade-trafori-minimi-dates"
+                  }
+                }
               },
               {
                 "valid_from": "2023-08-01",
                 "valid_until": "2024-01-01",
-                "value": "19.45"
+                "value": "19.46",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "autostrade-trafori-src-a15133d6",
+                      "title": "CCNL Autostrade e trafori, stesura 5 luglio 2024",
+                      "kind": "associazione",
+                      "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+                      "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
+                    },
+                    "page": "169",
+                    "section": "Importo differenziato della retribuzione (I.D.R. 2021)",
+                    "quote": "Con la retribuzione del mese di dicembre 2021 viene istituito un importo differenziato della retribuzione ... B plus | € 19,46"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T23:45:00Z",
+                    "effective_from": "2023-08-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T23:45:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-autostrade-trafori-minimi-dates"
+                  }
+                }
               },
               {
                 "valid_from": "2024-01-01",
@@ -2892,70 +3756,121 @@
         "periods": [
           {
             "valid_from": "2023-01-01",
-            "valid_until": "2023-06-01",
-            "value": "2498.30",
+            "valid_until": "2023-08-01",
+            "value": "2413.16",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "contratto-collettivo-autostrade-trafori",
-                  "title": "contratto-collettivo-autostrade-trafori",
+                  "document_id": "autostrade-trafori-src-a15133d6",
+                  "title": "CCNL Autostrade e trafori, stesura 5 luglio 2024",
                   "kind": "associazione",
-                  "url": "https://www.aiscat.it/contratto-collettivo-autostrade-trafori"
+                  "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+                  "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
                 },
-                "section": "Tabella retributiva"
+                "page": "168",
+                "section": "Minimi tabellari",
+                "quote": "A1 | 2413.16 | 2498.30 | 2569.25 | 2611.82 | 2711.14 (column Minimi al 31/07/2023)"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:45:00Z",
+                "effective_from": "2023-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T23:45:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-autostrade-trafori-minimi-dates"
               }
             }
           },
           {
-            "valid_from": "2023-06-01",
+            "valid_from": "2023-08-01",
             "valid_until": "2024-01-01",
-            "value": "2569.25",
+            "value": "2498.30",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "contratto-collettivo-autostrade-trafori",
-                  "title": "contratto-collettivo-autostrade-trafori",
+                  "document_id": "autostrade-trafori-src-a15133d6",
+                  "title": "CCNL Autostrade e trafori, stesura 5 luglio 2024",
                   "kind": "associazione",
-                  "url": "https://www.aiscat.it/contratto-collettivo-autostrade-trafori"
+                  "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+                  "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
                 },
-                "section": "Tabella retributiva"
+                "page": "168",
+                "section": "Minimi tabellari",
+                "quote": "A1 | 2413.16 | 2498.30 | 2569.25 | 2611.82 | 2711.14 (column 1/8/2023)"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:45:00Z",
+                "effective_from": "2023-08-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T23:45:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-autostrade-trafori-minimi-dates"
               }
             }
           },
           {
             "valid_from": "2024-01-01",
+            "valid_until": "2024-08-01",
+            "value": "2569.25",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "autostrade-trafori-src-a15133d6",
+                  "title": "CCNL Autostrade e trafori, stesura 5 luglio 2024",
+                  "kind": "associazione",
+                  "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+                  "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
+                },
+                "page": "168",
+                "section": "Minimi tabellari",
+                "quote": "A1 | 2413.16 | 2498.30 | 2569.25 | 2611.82 | 2711.14 (column 1/1/2024)"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:45:00Z",
+                "effective_from": "2024-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T23:45:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-autostrade-trafori-minimi-dates"
+              }
+            }
+          },
+          {
+            "valid_from": "2024-08-01",
             "valid_until": "2025-01-01",
             "value": "2611.82",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "contratto-collettivo-autostrade-trafori",
-                  "title": "contratto-collettivo-autostrade-trafori",
+                  "document_id": "autostrade-trafori-src-a15133d6",
+                  "title": "CCNL Autostrade e trafori, stesura 5 luglio 2024",
                   "kind": "associazione",
-                  "url": "https://www.aiscat.it/contratto-collettivo-autostrade-trafori"
+                  "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+                  "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
                 },
-                "section": "Tabella retributiva"
+                "page": "168",
+                "section": "Minimi tabellari",
+                "quote": "A1 | 2413.16 | 2498.30 | 2569.25 | 2611.82 | 2711.14 (column 1/8/2024)"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:45:00Z",
+                "effective_from": "2024-08-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T23:45:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-autostrade-trafori-minimi-dates"
               }
             }
           },
@@ -2964,21 +3879,28 @@
             "valid_until": "2026-08-01",
             "value": "2711.14",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "contratto-collettivo-autostrade-trafori",
-                  "title": "contratto-collettivo-autostrade-trafori",
+                  "document_id": "autostrade-trafori-src-a15133d6",
+                  "title": "CCNL Autostrade e trafori, stesura 5 luglio 2024",
                   "kind": "associazione",
-                  "url": "https://www.aiscat.it/contratto-collettivo-autostrade-trafori"
+                  "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+                  "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
                 },
-                "section": "Tabella retributiva"
+                "page": "168",
+                "section": "Minimi tabellari",
+                "quote": "A1 | 2413.16 | 2498.30 | 2569.25 | 2611.82 | 2711.14 (column 1/1/2025)"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:45:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T23:45:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-autostrade-trafori-minimi-dates"
               }
             }
           },
@@ -3182,12 +4104,62 @@
               {
                 "valid_from": "2023-01-01",
                 "valid_until": "2023-08-01",
-                "value": "0.00"
+                "value": "21.28",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "autostrade-trafori-src-a15133d6",
+                      "title": "CCNL Autostrade e trafori, stesura 5 luglio 2024",
+                      "kind": "associazione",
+                      "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+                      "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
+                    },
+                    "page": "169",
+                    "section": "Importo differenziato della retribuzione (I.D.R. 2021)",
+                    "quote": "Con la retribuzione del mese di dicembre 2021 viene istituito un importo differenziato della retribuzione ... A1 | € 21,28"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T23:45:00Z",
+                    "effective_from": "2023-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T23:45:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-autostrade-trafori-minimi-dates"
+                  }
+                }
               },
               {
                 "valid_from": "2023-08-01",
                 "valid_until": "2024-01-01",
-                "value": "21.27"
+                "value": "21.28",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "autostrade-trafori-src-a15133d6",
+                      "title": "CCNL Autostrade e trafori, stesura 5 luglio 2024",
+                      "kind": "associazione",
+                      "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+                      "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
+                    },
+                    "page": "169",
+                    "section": "Importo differenziato della retribuzione (I.D.R. 2021)",
+                    "quote": "Con la retribuzione del mese di dicembre 2021 viene istituito un importo differenziato della retribuzione ... A1 | € 21,28"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T23:45:00Z",
+                    "effective_from": "2023-08-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T23:45:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-autostrade-trafori-minimi-dates"
+                  }
+                }
               },
               {
                 "valid_from": "2024-01-01",
@@ -3243,70 +4215,121 @@
         "periods": [
           {
             "valid_from": "2023-01-01",
-            "valid_until": "2023-06-01",
-            "value": "2795.70",
+            "valid_until": "2023-08-01",
+            "value": "2700.43",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "contratto-collettivo-autostrade-trafori",
-                  "title": "contratto-collettivo-autostrade-trafori",
+                  "document_id": "autostrade-trafori-src-a15133d6",
+                  "title": "CCNL Autostrade e trafori, stesura 5 luglio 2024",
                   "kind": "associazione",
-                  "url": "https://www.aiscat.it/contratto-collettivo-autostrade-trafori"
+                  "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+                  "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
                 },
-                "section": "Tabella retributiva"
+                "page": "168",
+                "section": "Minimi tabellari",
+                "quote": "A | 2700.43 | 2795.70 | 2875.09 | 2922.73 | 3033.88 (column Minimi al 31/07/2023)"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:45:00Z",
+                "effective_from": "2023-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T23:45:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-autostrade-trafori-minimi-dates"
               }
             }
           },
           {
-            "valid_from": "2023-06-01",
+            "valid_from": "2023-08-01",
             "valid_until": "2024-01-01",
-            "value": "2875.09",
+            "value": "2795.70",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "contratto-collettivo-autostrade-trafori",
-                  "title": "contratto-collettivo-autostrade-trafori",
+                  "document_id": "autostrade-trafori-src-a15133d6",
+                  "title": "CCNL Autostrade e trafori, stesura 5 luglio 2024",
                   "kind": "associazione",
-                  "url": "https://www.aiscat.it/contratto-collettivo-autostrade-trafori"
+                  "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+                  "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
                 },
-                "section": "Tabella retributiva"
+                "page": "168",
+                "section": "Minimi tabellari",
+                "quote": "A | 2700.43 | 2795.70 | 2875.09 | 2922.73 | 3033.88 (column 1/8/2023)"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:45:00Z",
+                "effective_from": "2023-08-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T23:45:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-autostrade-trafori-minimi-dates"
               }
             }
           },
           {
             "valid_from": "2024-01-01",
+            "valid_until": "2024-08-01",
+            "value": "2875.09",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "autostrade-trafori-src-a15133d6",
+                  "title": "CCNL Autostrade e trafori, stesura 5 luglio 2024",
+                  "kind": "associazione",
+                  "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+                  "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
+                },
+                "page": "168",
+                "section": "Minimi tabellari",
+                "quote": "A | 2700.43 | 2795.70 | 2875.09 | 2922.73 | 3033.88 (column 1/1/2024)"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:45:00Z",
+                "effective_from": "2024-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T23:45:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-autostrade-trafori-minimi-dates"
+              }
+            }
+          },
+          {
+            "valid_from": "2024-08-01",
             "valid_until": "2025-01-01",
             "value": "2922.73",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "contratto-collettivo-autostrade-trafori",
-                  "title": "contratto-collettivo-autostrade-trafori",
+                  "document_id": "autostrade-trafori-src-a15133d6",
+                  "title": "CCNL Autostrade e trafori, stesura 5 luglio 2024",
                   "kind": "associazione",
-                  "url": "https://www.aiscat.it/contratto-collettivo-autostrade-trafori"
+                  "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+                  "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
                 },
-                "section": "Tabella retributiva"
+                "page": "168",
+                "section": "Minimi tabellari",
+                "quote": "A | 2700.43 | 2795.70 | 2875.09 | 2922.73 | 3033.88 (column 1/8/2024)"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:45:00Z",
+                "effective_from": "2024-08-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T23:45:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-autostrade-trafori-minimi-dates"
               }
             }
           },
@@ -3315,21 +4338,28 @@
             "valid_until": "2026-08-01",
             "value": "3033.88",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "contratto-collettivo-autostrade-trafori",
-                  "title": "contratto-collettivo-autostrade-trafori",
+                  "document_id": "autostrade-trafori-src-a15133d6",
+                  "title": "CCNL Autostrade e trafori, stesura 5 luglio 2024",
                   "kind": "associazione",
-                  "url": "https://www.aiscat.it/contratto-collettivo-autostrade-trafori"
+                  "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+                  "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
                 },
-                "section": "Tabella retributiva"
+                "page": "168",
+                "section": "Minimi tabellari",
+                "quote": "A | 2700.43 | 2795.70 | 2875.09 | 2922.73 | 3033.88 (column 1/1/2025)"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:45:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T23:45:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-autostrade-trafori-minimi-dates"
               }
             }
           },
@@ -3533,12 +4563,62 @@
               {
                 "valid_from": "2023-01-01",
                 "valid_until": "2023-08-01",
-                "value": "0.00"
+                "value": "23.82",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "autostrade-trafori-src-a15133d6",
+                      "title": "CCNL Autostrade e trafori, stesura 5 luglio 2024",
+                      "kind": "associazione",
+                      "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+                      "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
+                    },
+                    "page": "169",
+                    "section": "Importo differenziato della retribuzione (I.D.R. 2021)",
+                    "quote": "Con la retribuzione del mese di dicembre 2021 viene istituito un importo differenziato della retribuzione ... A | € 23,82"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T23:45:00Z",
+                    "effective_from": "2023-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T23:45:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-autostrade-trafori-minimi-dates"
+                  }
+                }
               },
               {
                 "valid_from": "2023-08-01",
                 "valid_until": "2024-01-01",
-                "value": "23.81"
+                "value": "23.82",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "autostrade-trafori-src-a15133d6",
+                      "title": "CCNL Autostrade e trafori, stesura 5 luglio 2024",
+                      "kind": "associazione",
+                      "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+                      "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
+                    },
+                    "page": "169",
+                    "section": "Importo differenziato della retribuzione (I.D.R. 2021)",
+                    "quote": "Con la retribuzione del mese di dicembre 2021 viene istituito un importo differenziato della retribuzione ... A | € 23,82"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T23:45:00Z",
+                    "effective_from": "2023-08-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T23:45:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-autostrade-trafori-minimi-dates"
+                  }
+                }
               },
               {
                 "valid_from": "2024-01-01",
@@ -3594,70 +4674,121 @@
         "periods": [
           {
             "valid_from": "2023-01-01",
-            "valid_until": "2023-06-01",
-            "value": "2795.70",
+            "valid_until": "2023-08-01",
+            "value": "2700.43",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "contratto-collettivo-autostrade-trafori",
-                  "title": "contratto-collettivo-autostrade-trafori",
+                  "document_id": "autostrade-trafori-src-a15133d6",
+                  "title": "CCNL Autostrade e trafori, stesura 5 luglio 2024",
                   "kind": "associazione",
-                  "url": "https://www.aiscat.it/contratto-collettivo-autostrade-trafori"
+                  "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+                  "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
                 },
-                "section": "Tabella retributiva"
+                "page": "168",
+                "section": "Minimi tabellari",
+                "quote": "A | 2700.43 | 2795.70 | 2875.09 | 2922.73 | 3033.88 (column Minimi al 31/07/2023)"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:45:00Z",
+                "effective_from": "2023-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T23:45:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-autostrade-trafori-minimi-dates"
               }
             }
           },
           {
-            "valid_from": "2023-06-01",
+            "valid_from": "2023-08-01",
             "valid_until": "2024-01-01",
-            "value": "2875.09",
+            "value": "2795.70",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "contratto-collettivo-autostrade-trafori",
-                  "title": "contratto-collettivo-autostrade-trafori",
+                  "document_id": "autostrade-trafori-src-a15133d6",
+                  "title": "CCNL Autostrade e trafori, stesura 5 luglio 2024",
                   "kind": "associazione",
-                  "url": "https://www.aiscat.it/contratto-collettivo-autostrade-trafori"
+                  "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+                  "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
                 },
-                "section": "Tabella retributiva"
+                "page": "168",
+                "section": "Minimi tabellari",
+                "quote": "A | 2700.43 | 2795.70 | 2875.09 | 2922.73 | 3033.88 (column 1/8/2023)"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:45:00Z",
+                "effective_from": "2023-08-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T23:45:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-autostrade-trafori-minimi-dates"
               }
             }
           },
           {
             "valid_from": "2024-01-01",
+            "valid_until": "2024-08-01",
+            "value": "2875.09",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "autostrade-trafori-src-a15133d6",
+                  "title": "CCNL Autostrade e trafori, stesura 5 luglio 2024",
+                  "kind": "associazione",
+                  "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+                  "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
+                },
+                "page": "168",
+                "section": "Minimi tabellari",
+                "quote": "A | 2700.43 | 2795.70 | 2875.09 | 2922.73 | 3033.88 (column 1/1/2024)"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:45:00Z",
+                "effective_from": "2024-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T23:45:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-autostrade-trafori-minimi-dates"
+              }
+            }
+          },
+          {
+            "valid_from": "2024-08-01",
             "valid_until": "2025-01-01",
             "value": "2922.73",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "contratto-collettivo-autostrade-trafori",
-                  "title": "contratto-collettivo-autostrade-trafori",
+                  "document_id": "autostrade-trafori-src-a15133d6",
+                  "title": "CCNL Autostrade e trafori, stesura 5 luglio 2024",
                   "kind": "associazione",
-                  "url": "https://www.aiscat.it/contratto-collettivo-autostrade-trafori"
+                  "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+                  "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
                 },
-                "section": "Tabella retributiva"
+                "page": "168",
+                "section": "Minimi tabellari",
+                "quote": "A | 2700.43 | 2795.70 | 2875.09 | 2922.73 | 3033.88 (column 1/8/2024)"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:45:00Z",
+                "effective_from": "2024-08-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T23:45:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-autostrade-trafori-minimi-dates"
               }
             }
           },
@@ -3666,21 +4797,28 @@
             "valid_until": "2026-08-01",
             "value": "3033.88",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "contratto-collettivo-autostrade-trafori",
-                  "title": "contratto-collettivo-autostrade-trafori",
+                  "document_id": "autostrade-trafori-src-a15133d6",
+                  "title": "CCNL Autostrade e trafori, stesura 5 luglio 2024",
                   "kind": "associazione",
-                  "url": "https://www.aiscat.it/contratto-collettivo-autostrade-trafori"
+                  "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+                  "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
                 },
-                "section": "Tabella retributiva"
+                "page": "168",
+                "section": "Minimi tabellari",
+                "quote": "A | 2700.43 | 2795.70 | 2875.09 | 2922.73 | 3033.88 (column 1/1/2025)"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:45:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T23:45:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-autostrade-trafori-minimi-dates"
               }
             }
           },
@@ -3884,12 +5022,62 @@
               {
                 "valid_from": "2023-01-01",
                 "valid_until": "2023-08-01",
-                "value": "0.00"
+                "value": "23.82",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "autostrade-trafori-src-a15133d6",
+                      "title": "CCNL Autostrade e trafori, stesura 5 luglio 2024",
+                      "kind": "associazione",
+                      "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+                      "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
+                    },
+                    "page": "169",
+                    "section": "Importo differenziato della retribuzione (I.D.R. 2021)",
+                    "quote": "Con la retribuzione del mese di dicembre 2021 viene istituito un importo differenziato della retribuzione ... A | € 23,82"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T23:45:00Z",
+                    "effective_from": "2023-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T23:45:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-autostrade-trafori-minimi-dates"
+                  }
+                }
               },
               {
                 "valid_from": "2023-08-01",
                 "valid_until": "2024-01-01",
-                "value": "23.81"
+                "value": "23.82",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "autostrade-trafori-src-a15133d6",
+                      "title": "CCNL Autostrade e trafori, stesura 5 luglio 2024",
+                      "kind": "associazione",
+                      "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+                      "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
+                    },
+                    "page": "169",
+                    "section": "Importo differenziato della retribuzione (I.D.R. 2021)",
+                    "quote": "Con la retribuzione del mese di dicembre 2021 viene istituito un importo differenziato della retribuzione ... A | € 23,82"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T23:45:00Z",
+                    "effective_from": "2023-08-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T23:45:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-autostrade-trafori-minimi-dates"
+                  }
+                }
               },
               {
                 "valid_from": "2024-01-01",
@@ -4195,7 +5383,7 @@
     "effective_until": null,
     "source": "https://www.aiscat.it/contratto-collettivo-autostrade-trafori",
     "verification_status": "unverified",
-    "source_hash": "49644e081d20fcd007810c59cc0d901aef25d3a89b5912e6e21f2992e6d61a35",
+    "source_hash": "59f3757058b9471c2bedb8396658ba80ecc746f34de621febb384aa3838b5068",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -4445,6 +5633,30 @@
         "checked": [
           "apprenticeship",
           "parameters.seniority_increments"
+        ]
+      },
+      {
+        "id": "2026-11-07-ai-autostrade-trafori-minimi-dates",
+        "date": "2026-11-07",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Minimi tabellari 2023-2025 (p. 168) and I.D.R. 2021 (p. 169) of the 5 July 2024 text, read on the page image.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+            "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
+          }
+        ],
+        "findings": [
+          "The 2023-2024 minimums were shifted by one tranche (the 1/8/2023 amounts dated 1 January 2023, and so on) and the August tranches were missing: periods rebuilt on the printed dates 31/07/2023, 1/8/2023, 1/1/2024, 1/8/2024, 1/1/2025.",
+          "Cent errors on C plus, B1 plus and B plus corrected to the printed amounts.",
+          "I.D.R. 2021 is due from December 2021: before January 2024 it is the printed amount of the level, not zero (D 10,14, not 10,13)."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels.base_salary",
+          "levels.fixed_allowances.IDR_2021"
         ]
       }
     ]

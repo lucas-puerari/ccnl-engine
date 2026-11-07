@@ -99,7 +99,7 @@
       "valid_to": "2027-12-31",
       "ruleset_id": "ccnl/agenzie-viaggio-fiavet",
       "ruleset_version": "2026.2",
-      "source_hash": "77dda4de7ab40f2396e59ebcdd941939f54ea0efefc77eb52f72736e401ff989",
+      "source_hash": "2cc259900eb4466b0548958aa7ef70095ef5148ea65ff6d3e97aedf23192925a",
       "source_type": "institutional_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/agenzie-viaggio-fiavet.json.gz"
@@ -269,7 +269,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/autostrade-trafori",
       "ruleset_version": "2026.2",
-      "source_hash": "49644e081d20fcd007810c59cc0d901aef25d3a89b5912e6e21f2992e6d61a35",
+      "source_hash": "59f3757058b9471c2bedb8396658ba80ecc746f34de621febb384aa3838b5068",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/autostrade-trafori.json.gz"

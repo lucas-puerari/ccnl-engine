@@ -293,10 +293,11 @@ class TestLoadAutostradeTrafori:
         }
 
     def test_i192_level_b_salary_2023(self) -> None:
-        """Level B base salary at 2023-01-01 is 2200.85 EUR."""
+        """Level B: 2125.85 EUR to July 2023, 2200.85 EUR from August 2023."""
         ccnl = load_ccnl("autostrade-trafori")
         lv = next(lv for lv in ccnl.levels if lv.code == "B")
-        assert lv.base_salary.value_at(date(2023, 1, 1)) == Decimal("2200.85")
+        assert lv.base_salary.value_at(date(2023, 7, 31)) == Decimal("2125.85")
+        assert lv.base_salary.value_at(date(2023, 8, 1)) == Decimal("2200.85")
 
     def test_i192_level_b_salary_2026(self) -> None:
         """Level B base salary at 2026-08-01 is 2469.60 EUR."""
