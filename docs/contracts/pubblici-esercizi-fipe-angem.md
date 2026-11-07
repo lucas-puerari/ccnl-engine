@@ -53,7 +53,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-06-26 |
-| **Last review** | 2026-11-05 |
+| **Last review** | 2026-11-08 |
 | **Latest salary tranche** | 2027-12-01 |
 
 ## Review history
@@ -72,6 +72,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-20 | claude-opus-5-5 (ai) | Whether the individual elements of the worker (superminimi, aumenti di merito, assegni ad personam) enter the hourly base of overtime and supplements (Art. 157 c. 1 - Elementi della retribuzione). | corrected | Art. 157 c. 1 - Elementi della retribuzione: individual elements excluded in the hourly base: work_rules.time_supplements.individual_elements. |
 | 2026-10-31 | claude-opus-5-5 (ai) | The basis of the indemnity for the leave not taken at the end of the employment, searched in the OCR of the signed text of 2018 (Artt. 114, 134, 135, 159, 160) and of the 2024 renewal. | corrected | Art. 159 - Determinazione della retribuzione giornaliera (p. 116): the daily pay is the monthly pay divided by 26 for every contractual purpose: the residual ferie are paid at it, and the permits at the hourly pay of Art. 160: work_rules.leave_rules.termination. |
 | 2026-11-05 | claude-opus-5-5 (ai) | The hourly divisor of the 44-hour week, Articolo 160 (PDF p. 116, printed p. 114), checked by a separate session on the page rendered at 200 and 400 dpi. | confirmed | Art. 160 c.1 (sha256 32a2831b... matched): 190 for a normal week of 44 hours, 172 for 40: work_rules.time_supplements.week_divisors 44/190.<br>The renewal of 5 June 2024 amends arts. 114, 135, 161, 183-184 and 199-202, not art. 160. |
+| 2026-11-08 | gpt-6-sol (ai) | Maternity top-up (art. 200, 2024 renewal) and work injury (arts. 191, 193, 2018 text), read by a separate model session and checked on the page images (no text layer). | confirmed | Added work_rules.insured_absence.maternity and .injury.<br>Injury: the research omitted the top-up of art. 191 c. 4 (to 100% from the day of the injury); added from the page image. |
 
 ## Salary table
 

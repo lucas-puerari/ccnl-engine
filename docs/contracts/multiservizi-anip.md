@@ -54,7 +54,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2021-06-08 |
-| **Last review** | 2026-11-07 |
+| **Last review** | 2026-11-08 |
 | **Latest salary tranche** | 2029-03-01 |
 
 ## Review history
@@ -68,6 +68,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-05 | claude-opus-5-5 (ai) | Ferie accrual, permits and their settlement: arts. 19 (PDF p. 40), 41 and 42 (pp. 60-61) of the 2011 definitive text, read by a separate research session and checked again on the text layer; the 2021 renewal read for amendments. | corrected | Art. 42: twelfths with the month over 15 days, 40 hours of reduced time a year: work_rules.leave_rules.ferie_accrual and permits.<br>Art. 41: the ex festività are compensatory permits for the days worked, not a yearly bank.<br>The 2025 renewal (72 hours according to the union summary) was not read in a primary text. |
 | 2026-11-05 | claude-opus-5-5 (ai) | Art. 66 (PDF p. 29) of the ipotesi of 8 June 2021, OCR of the scan. | corrected | ONBSI was not modelled: the contractual funds held no reduced worker share; the model now has reduced_employee. |
 | 2026-11-07 | claude-opus-5-5 (ai) | Values a primary-text verification found different from the printed tables (text layer). | corrected | 31 values corrected to the amounts printed on the cited pages. |
+| 2026-11-08 | gpt-6-sol (ai) | CCNL top-ups of maternity and work injury, read from the signed text by a separate model session; every quote found on the PDF text layer. | confirmed | Added work_rules.insured_absence.maternity.<br>Added work_rules.insured_absence.injury. |
 
 ## Salary table
 
