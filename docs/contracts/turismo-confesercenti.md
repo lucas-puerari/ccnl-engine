@@ -46,7 +46,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 0 verified / 57 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 50 verified / 7 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -55,7 +55,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-07-22 |
-| **Last review** | 2026-11-06 |
+| **Last review** | 2026-11-08 |
 | **Latest salary tranche** | 2027-11-01 |
 
 ## Review history
@@ -63,6 +63,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | Date | Reviewer | Scope | Outcome | Findings |
 |---|---|---|---|---|
 | 2026-11-06 | claude-opus-5-5 (ai) | Apprentice seniority: art. 58 c. 1 of the accordo of 18 July 2018 (CNEL 90033, p. 116, OCR); the definition of the retribuzione read in the unified CCNL Turismo of 22 July 2003 (art. 140 c. 1 d) and its Federalberghi successor of 20 February 2010 (art. 148 c. 1 d). | corrected | The apprentice is paid a percentage of 'la normale retribuzione dei lavoratori qualificati di pari livello' (art. 58); the retribuzione 'è distinta nelle seguenti voci [...] eventuali scatti di anzianità' in the 2003 parent text, a clause the Federalberghi successor keeps; 'A tutto il personale verranno riconosciuti sei scatti' for uninterrupted service: the level increments, scaled by the percentage. The Confesercenti 2010 text itself was not read. |
+| 2026-11-08 | gpt-6-sol (ai) | Monthly values on scanned pages, each read twice from the page image by two independent sessions of another model, the second without being told the expected value. | confirmed | 50 values read identically by both readings and equal to the file. |
 
 ## Salary table
 
