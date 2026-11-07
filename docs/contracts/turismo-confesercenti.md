@@ -110,11 +110,11 @@ percentage: 1.00
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
 !!! warning "turismo-confesercenti/other_subsectors_tables · base_salary · impact yes · open"
-    Models the alberghi/campeggi sub-sector only (CCNL H058, conglobated model). Pubblici esercizi and stabilimenti balneari use a split (paga base + contingenza) model with different values — out_of_scope deliberate: these sub-sectors have meaningfully different pay structures requiring separate files.
+    SUB-SECTORS: the file's own table is that of the alberghi and campeggi; the pubblici esercizi, stabilimenti balneari and alberghi diurni (EmployerProfile.subsector pubblici_esercizi) and their aziende minori (aziende_minori, arts. 291 and 345) are paid the tables of the ipotesi of 22 July 2024 (printed pp. 39-41), the same as the FIPE ones. Not modelled: the ristorazione collettiva table of the same text.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Model the pubblici esercizi and stabilimenti balneari tables (split paga base + contingenza) with a sub-sector input, or record the limitation.
+    **Remediation:** Model the ristorazione collettiva table of the 2024 ipotesi, then remove this note.
 
 !!! warning "turismo-confesercenti/apprenticeship_under_classification · base_salary · impact yes · open"
     Apprenticeship model confirmed: CCNL Turismo Confesercenti provides sotto-inquadramento 2 levels below destination (consistent with Testo Unico apprendistato Art. 11, secondary sources). Modeled as 100% passthrough pending contract text; the engine supports under_classification tracks with levels_below. (review of 2026-10-30)
