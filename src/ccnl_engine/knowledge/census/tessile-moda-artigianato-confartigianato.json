@@ -35,14 +35,30 @@
       }
     },
     {
+      "id": "chimica_ceramica_level_rules",
+      "institute": "seniority",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "SUB-SECTOR LEVELS (chimica 5s and 7, ceramica A-G): the seniority table of the file (art. 67, tessile sector) has no row for them and the pages read (verbale of 22 July 2024, pp. 5-6) do not set one, so they accrue no seniority increments; they are in no apprenticeship track (the three tracks are the abbigliamento groups) no fixed allowance is modelled for them (the pages read do not settle one, such as the indennità di funzione of 6S) and their category is left to Employment.category.",
+      "calculation": "ccnl/tessile-moda-artigianato-confartigianato:coverage.notes",
+      "state": "absent",
+      "remediation": "Source the seniority increments and apprenticeship of the chimica and ceramica levels, then remove this note.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "tessile-moda-artigianato-confartigianato/chimica_ceramica_level_rules"
+        ]
+      }
+    },
+    {
       "id": "chimica_ceramica_subsectors",
       "institute": "base_salary",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Only tessile-abbigliamento sub-sector modelled. Chimica-ceramica sub-sectors (different salary tables) are not modelled. CNEL code V751 covers all three sub-sectors.",
+      "rule": "SUB-SECTORS (verbale integrativo of 22 July 2024, pp. 5-6): the chimica, concia, gomma, plastica and vetro table is modelled as the sub-sector chimica (the base_salary_by_subsector chimica of levels 1-6 and the chimica levels 5s and 7), the ceramica, terracotta, gres and decorazione di piastrelle table as the sub-sector ceramica (levels A-G), both by EmployerProfile.subsector. Not modelled: the calzaturiero, lavorazioni a mano e su misura, pulitintolavanderie and occhialeria tables of the same verbale. Level 6S requested with chimica, and levels 1-6S with ceramica, are paid the tessile table, which those sectors do not print; levels 1-6 of chimica take the tessile seniority amounts and apprenticeship tracks.",
       "calculation": "ccnl/tessile-moda-artigianato-confartigianato:coverage.notes",
       "state": "absent",
-      "remediation": "Model the chimica-ceramica salary tables with a sub-sector input.",
+      "remediation": "Model the other sector tables, source the seniority and apprenticeship of chimica and ceramica and reject the levels their tables lack, then remove this note.",
       "origin": "seeded",
       "links": {
         "limitations": [
