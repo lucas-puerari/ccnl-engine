@@ -118,7 +118,7 @@ formulas or caller-declared amounts.
 | `notte_festivi_turni_substitute_tax` | Imposta sostitutiva notturno, festivo e turni L. 199/2025 art. 1 cc. 10-11 | core | net | native | decided | decision | `prior_year` | — | simplified | 0 / 1 / 1 / 0 |
 | `bilateral_funds` | Fondi bilaterali (importi dal chiamante) | scenario | work_rules | caller_supplied | event | event | — | — | caller-supplied | none bundled |
 | `contractual_funds` | Fondi sanitari e bilaterali del CCNL, o l'elemento distinto dovuto al lavoratore in loro vece | core | net | native | decided | decision | `employer.contractual_funds` | — | implemented | none bundled |
-| `pension_fund_contribution` | Previdenza complementare CCNL su adesione e contributo contrattuale | scenario | net | partial | decided | decision | `employment.pension_fund` | ccnl_fund_on_enrolment, ccnl_contractual_contribution | simplified | 41 / 115 / 25 / 0 |
+| `pension_fund_contribution` | Previdenza complementare CCNL su adesione e contributo contrattuale | scenario | net | partial | decided | decision | `employment.pension_fund` | ccnl_fund_on_enrolment, ccnl_contractual_contribution | simplified | 41 / 115 / 27 / 0 |
 | `assistance_contribution` | Contributi di assistenza contrattuale per ora retribuita (Cas.Sa.Colf, lavoro domestico) | core | net | native | decided | decision | `facts.contributable_hours` | — | verified | 3 / 0 / 0 / 0 |
 
 ## CCNL coverage
@@ -258,7 +258,7 @@ never grow.
 | 117 | [CCNL per i dipendenti da autoscuole, scuole nautiche e studi di consulenza automobilistica](autoscuole-unasca.md) | ✅ | — | 1 / 32 / 1 / 0 |
 | 118 | [CCNL per i dipendenti da aziende dei settori Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo](pubblici-esercizi-fipe-angem.md) | ⚠️ | base_salary, leave, overtime, sickness | 68 / 4 / 0 / 0 |
 | 119 | [CCNL per i dipendenti da aziende dei settori Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo - Ristorazione collettiva (aziende dell'art. 1 c. 1 par. II)](pubblici-esercizi-fipe-angem-ristorazione-collettiva.md) | ⚠️ | base_salary, overtime | 62 / 6 / 0 / 0 |
-| 120 | [CCNL per i dipendenti dalle aziende di lavorazione della foglia di tabacco secco allo stato sciolto](tabacco-apti.md) | ✅ | pension_fund_contribution, sickness | 38 / 0 / 22 / 0 |
+| 120 | [CCNL per i dipendenti dalle aziende di lavorazione della foglia di tabacco secco allo stato sciolto](tabacco-apti.md) | ✅ | sickness | 38 / 0 / 24 / 0 |
 | 121 | [CCNL per i dipendenti degli studi e delle attività professionali (Confprofessioni)](studi-professionali-confprofessioni.md) | ⚠️ | base_salary, sickness | 53 / 2 / 0 / 0 |
 | 122 | [CCNL per i dipendenti delle imprese artigiane esercenti servizi di pulizia, disinfezione, disinfestazione, derattizzazione e sanificazione](pulizia-artigianato-confartigianato.md) | ⚠️ | base_salary, bilateral_funds, holiday_work, inps_employer, night_work, overtime, seniority | 61 / 8 / 29 / 0 |
 | 123 | [CCNL per i lavoratori addetti all'industria delle calzature](calzaturiero-assocalzaturifici.md) | ✅ | — | 32 / 6 / 1 / 1 |

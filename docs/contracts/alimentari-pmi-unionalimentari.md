@@ -33,7 +33,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ✅ |
 | **Limits of this contract** | — |
 
-2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -98,13 +98,6 @@ Latest effective values per level (monthly gross, EUR).
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
-
-!!! note "alimentari-pmi-unionalimentari/tranches_2027_2028 · base_salary · impact yes · resolved"
-    TRANCHES 2027-2028 (art. 47 of the verbale signed 28 May 2025, p. 26): 70.00 EUR at parametro 137 from 1 April 2027 and again from 1 January 2028, modelled per level as printed (e.g. level 8 1,255.82 and 1,306.92). The association circular's prose giving 32 EUR for the third tranche is wrong; its table matches the verbale.
-
-    **Applies when:** `base_salary` applies; from 2027-04-01.
-
-    **Remediation:** Resolved: the signed table of art. 47, read on 2026-11-07.
 
 !!! note "sickness_inps_daily_base · sickness · impact unknown · resolved"
     The INPS share of a sick day is computed on the INPS daily base of the episode, on the days INPS pays (the weekdays of an operaio, every day but the national holidays on a Sunday of an impiegato, point 7.3 of INPS circ. 134368/1981): the retribuzione media globale giornaliera of the month before the illness (INPS circ. 134368/1981 point 11; circ. 55/2024 Allegato 1), whole or partial month, impiegato or operaio, or for the lavoratori dello spettacolo the average pay of the last 40 daily contributions, capped for a fixed-term worker (INPS circ. 132/2021 par. 2.4). The base is a fact of the payroll history the episode states (SicknessEpisode.inps_base).
@@ -294,6 +287,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     Apprenticeship: Art. 8.1 CCNL — under-classification model, levels 1 through 7, multi-period per destination level. Complex schedule not publicly parsed in full. layer_2 = out_of_scope.
     
     Headcount: ~34,646 workers (CNEL archive, E018).
+    
+    TRANCHES 2027-2028 (art. 47 of the verbale signed 28 May 2025, p. 26): 70.00 EUR at parametro 137 from 1 April 2027 and again from 1 January 2028, modelled per level as printed (e.g. level 8 1,255.82 and 1,306.92). The association circular's prose giving 32 EUR for the third tranche is wrong; its table matches the verbale.
     
 
 ## Raw data

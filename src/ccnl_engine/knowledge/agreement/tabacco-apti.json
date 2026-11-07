@@ -68,19 +68,6 @@
         "monetary_impact": "no"
       },
       {
-        "kind": "simplification",
-        "text": "ALIFOND employer contribution (1.50%) modeled from 01/07/2025 (renewal Art. 47). Pre-July-2025 ALIFOND contribution not modeled.",
-        "capability": "pension_fund_contribution",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "alifond_before_july_2025",
-          "applies_when": {
-            "effective_until": "2025-07-01"
-          },
-          "remediation": "Model the ALIFOND employer rate in force before 1 July 2025."
-        }
-      },
-      {
         "kind": "info",
         "text": "APPRENTICE SENIORITY (Art. 6, p. 23 of the CCNL 2021-2024): a third of the apprenticeship counts for the aumenti periodici of the confirmed apprentice; no increment during it (seniority_increments.apprentice_amount 0.00)."
       },
@@ -345,6 +332,11 @@
         "rate": {
           "periods": [
             {
+              "valid_from": "2025-01-01",
+              "valid_until": "2025-07-01",
+              "value": "0.0120"
+            },
+            {
               "valid_from": "2025-07-01",
               "valid_until": null,
               "value": "0.0150"
@@ -363,10 +355,15 @@
             "section": "Art. 47 - Previdenza complementare volontaria",
             "quote": "l'1,50% a decorrere dal 1° luglio 2025 a carico dell'azienda; una quota non inferiore all'1% a carico del lavoratore"
           },
-          "note": "Art. 47 does not state the contribution base: it refers to the rules of the fund. The base is the retribuzione utile ai fini del calcolo del TFR, note (1) of the Alifond Scheda 'I destinatari e i contributi' in force from 31/07/2026 (https://www.alifond.it/public/documenti/nota_informativa/20260730_3_Parte-I_Inf.-chiave-aderente_Scheda-I-dest.-e-i-contr.pdf, sha256 ee5d864c08f8ff13a874583f16d6f3898bd3ecaca5f6f343aba43969dba6675a). Assumed, not derived: its ruleset declares source_type 'estimated'."
+          "note": "Art. 47 does not state the contribution base: it refers to the rules of the fund. The base is the retribuzione utile ai fini del calcolo del TFR, note (1) of the Alifond Scheda 'I destinatari e i contributi' in force from 31/07/2026 (https://www.alifond.it/public/documenti/nota_informativa/20260730_3_Parte-I_Inf.-chiave-aderente_Scheda-I-dest.-e-i-contr.pdf, sha256 ee5d864c08f8ff13a874583f16d6f3898bd3ecaca5f6f343aba43969dba6675a). Assumed, not derived: its ruleset declares source_type 'estimated'. Before 1 July 2025 the fund's own schedule applies (art. 47 refers to the fund rules): ALIFOND nota informativa in force from 31/05/2021, scheda 'I destinatari e i contributi' (PDF pp. 9-10, sha256 ee2e8e99ecfb): tobacco leaf processing is a settore affine; employer 1,20%, worker at least 1%, of the pay used for the TFR."
         },
         "employee_min_rate": {
           "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": "2025-07-01",
+              "value": "0.0100"
+            },
             {
               "valid_from": "2025-07-01",
               "valid_until": null,
@@ -2481,7 +2478,7 @@
     "source": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf",
     "source_type": "contracting_party",
     "verification_status": "unverified",
-    "source_hash": "1f7ddd60d235d03ec40178ff722d281b2631676567a9e376131b126ed10f9c81"
+    "source_hash": "c687bf8fe24cec4e84eab107c2776598adea9b98b93b2aa2c2f29c1ccc2ec005"
   },
   "work_rules": {
     "sunday_holidays": {
