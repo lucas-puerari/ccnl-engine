@@ -231,6 +231,19 @@ class MaternityRules(BaseModel):
     provenance: RuleProvenance
 
 
+class InjuryIntegrationBand(BaseModel):
+    """Share of the pay the CCNL tops the INAIL indemnity up to, from a day.
+
+    ``day_from`` counts from the injury day (day 0); ``rate`` holds until the
+    next band, ``0`` ending the top-up.
+    """
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    day_from: int = Field(ge=1)
+    rate: Decimal = Field(ge=Decimal(0), le=Decimal(1))
+
+
 class InjuryRules(BaseModel):
     """What a CCNL adds to the statutory pay of a work injury.
 
@@ -239,6 +252,8 @@ class InjuryRules(BaseModel):
             the waiting period, ``None`` for the statutory 60%.
         integration_rate: Share of the pay the employer tops the INAIL
             indemnity up to, ``None`` for no top-up.
+        integration_bands: The top-up by day, in place of one
+            ``integration_rate`` (DMO art. 172: 90% to the 20th day, then 100%).
         net_basis: Whether the measures are of the net pay.
         advanced: Whether the employer advances the INAIL indemnity on the
             payslip (and claims it back from INAIL).
@@ -251,10 +266,22 @@ class InjuryRules(BaseModel):
 
     carenza_rate: Decimal | None = Field(default=None, gt=Decimal(0), le=Decimal(1))
     integration_rate: Decimal | None = Field(default=None, gt=Decimal(0), le=Decimal(1))
+    integration_bands: tuple[InjuryIntegrationBand, ...] = ()
     net_basis: bool = False
     advanced: bool = False
     advanced_permanent_only: bool = False
     provenance: RuleProvenance
+
+    @model_validator(mode="after")
+    def _check_integration(self) -> Self:
+        days = [b.day_from for b in self.integration_bands]
+        if self.integration_bands and self.integration_rate is not None:
+            msg = "an injury top-up has an integration_rate or bands, not both"
+            raise ValueError(msg)
+        if days != sorted(set(days)):
+            msg = f"injury integration bands must be in day order; got {days}"
+            raise ValueError(msg)
+        return self
 
 
 class InsuredAbsenceRules(BaseModel):

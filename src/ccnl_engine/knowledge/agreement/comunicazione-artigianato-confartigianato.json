@@ -147,7 +147,7 @@
       },
       {
         "kind": "simplification",
-        "text": "Centraliniste (switchboard operators) have a 2-year apprenticeship track per the 2024 rinnovo. Modelled as the general 3-year amministrativi track (overstates duration by 1 year for that role).",
+        "text": "APPRENTICESHIP (art. 36 Parte I, art. 3 Parte II, renewal 18 November 2024): each row of the table is a track (artigiane groups 1-3 with their 'figure a 2/3 anni', impiegati amministrativi, PMI); the caller picks the track with Apprentice.track where a level has several. The end of the apprenticeship at its maximum duration (2-5 years) is not modelled: the last percentage holds open-ended. Level 6 is not apprenticeable.",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
@@ -158,7 +158,7 @@
               "apprentice"
             ]
           },
-          "remediation": "Add the 2-year apprenticeship track for centraliniste."
+          "remediation": "Model the end of the apprenticeship at the maximum duration of its track."
         }
       },
       {
@@ -1647,27 +1647,23 @@
   "apprenticeship": [
     {
       "type": "percentage",
-      "name": "operai_tecnici",
+      "name": "artigiane_gruppo_1",
       "destination_levels": [
         "1A",
         "1B",
         "2",
-        "3",
-        "4",
-        "5bis",
-        "5",
-        "6"
+        "3"
       ],
       "periods": [
         {
           "months_from": 0,
           "months_until": 12,
-          "percentage": "0.70"
+          "percentage": "0.60"
         },
         {
           "months_from": 12,
           "months_until": 24,
-          "percentage": "0.78"
+          "percentage": "0.70"
         },
         {
           "months_from": 24,
@@ -1677,18 +1673,265 @@
         {
           "months_from": 36,
           "months_until": 48,
-          "percentage": "0.92"
+          "percentage": "0.90"
         },
         {
           "months_from": 48,
           "months_until": null,
           "percentage": "1.00"
         }
-      ]
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "comunicazione-rinnovo-2024-fistel",
+            "title": "Accordo di rinnovo CCNL Area Comunicazione 18 novembre 2024 (firmato)",
+            "kind": "associazione",
+            "url": "https://www.fistelcisl.it/wp-content/uploads/2024/11/20241118-Accordo-di-rinnovo-CCNL-Area-Comunicazione-FIRMATO.pdf",
+            "sha256": "f048b41ae48a31980ac336c5c0a910983ce1f41499308c286b500f618cd20146"
+          },
+          "page": "8",
+          "section": "Art. 36 Parte I, art. 3 Parte II",
+          "quote": "1° 60% 60% 70% 70% 85% 85% 90% 90% 100% 100%"
+        },
+        "transformation": "Semesters I-X of the table as months 0-6 ... 54-60; two equal semesters joined. The last printed percentage holds open-ended: the end of the apprenticeship at its maximum duration is not modelled. Percentages in force from the signature, 18 November 2024.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-08T15:00:00Z",
+          "effective_from": "2024-11-18",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-08T15:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-08-ai-comunicazione-artigianato-apprenticeship"
+        }
+      }
     },
     {
       "type": "percentage",
-      "name": "amministrativi",
+      "name": "artigiane_gruppo_2",
+      "destination_levels": [
+        "4",
+        "5bis"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "percentage": "0.60"
+        },
+        {
+          "months_from": 12,
+          "months_until": 24,
+          "percentage": "0.70"
+        },
+        {
+          "months_from": 24,
+          "months_until": 36,
+          "percentage": "0.85"
+        },
+        {
+          "months_from": 36,
+          "months_until": 48,
+          "percentage": "0.90"
+        },
+        {
+          "months_from": 48,
+          "months_until": null,
+          "percentage": "1.00"
+        }
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "comunicazione-rinnovo-2024-fistel",
+            "title": "Accordo di rinnovo CCNL Area Comunicazione 18 novembre 2024 (firmato)",
+            "kind": "associazione",
+            "url": "https://www.fistelcisl.it/wp-content/uploads/2024/11/20241118-Accordo-di-rinnovo-CCNL-Area-Comunicazione-FIRMATO.pdf",
+            "sha256": "f048b41ae48a31980ac336c5c0a910983ce1f41499308c286b500f618cd20146"
+          },
+          "page": "9",
+          "section": "Art. 36 Parte I, art. 3 Parte II",
+          "quote": "2° 60% 60% 70% 70% 85% 85% 90% 90% 100% 100%"
+        },
+        "transformation": "Semesters I-X of the table as months 0-6 ... 54-60; two equal semesters joined. The last printed percentage holds open-ended: the end of the apprenticeship at its maximum duration is not modelled. Percentages in force from the signature, 18 November 2024.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-08T15:00:00Z",
+          "effective_from": "2024-11-18",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-08T15:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-08-ai-comunicazione-artigianato-apprenticeship"
+        }
+      }
+    },
+    {
+      "type": "percentage",
+      "name": "artigiane_gruppo_2_figure_3_anni",
+      "destination_levels": [
+        "5bis"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "percentage": "0.60"
+        },
+        {
+          "months_from": 12,
+          "months_until": 24,
+          "percentage": "0.75"
+        },
+        {
+          "months_from": 24,
+          "months_until": null,
+          "percentage": "0.90"
+        }
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "comunicazione-rinnovo-2024-fistel",
+            "title": "Accordo di rinnovo CCNL Area Comunicazione 18 novembre 2024 (firmato)",
+            "kind": "associazione",
+            "url": "https://www.fistelcisl.it/wp-content/uploads/2024/11/20241118-Accordo-di-rinnovo-CCNL-Area-Comunicazione-FIRMATO.pdf",
+            "sha256": "f048b41ae48a31980ac336c5c0a910983ce1f41499308c286b500f618cd20146"
+          },
+          "page": "9",
+          "section": "Art. 36 Parte I, art. 3 Parte II",
+          "quote": "2° (Figure a 3 anni) 60% 60% 75% 75% 90% 90%"
+        },
+        "transformation": "Semesters I-X of the table as months 0-6 ... 54-60; two equal semesters joined. The last printed percentage holds open-ended: the end of the apprenticeship at its maximum duration is not modelled. Percentages in force from the signature, 18 November 2024.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-08T15:00:00Z",
+          "effective_from": "2024-11-18",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-08T15:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-08-ai-comunicazione-artigianato-apprenticeship"
+        }
+      }
+    },
+    {
+      "type": "percentage",
+      "name": "artigiane_gruppo_3",
+      "destination_levels": [
+        "5"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "percentage": "0.60"
+        },
+        {
+          "months_from": 12,
+          "months_until": 24,
+          "percentage": "0.70"
+        },
+        {
+          "months_from": 24,
+          "months_until": 36,
+          "percentage": "0.90"
+        },
+        {
+          "months_from": 36,
+          "months_until": null,
+          "percentage": "1.00"
+        }
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "comunicazione-rinnovo-2024-fistel",
+            "title": "Accordo di rinnovo CCNL Area Comunicazione 18 novembre 2024 (firmato)",
+            "kind": "associazione",
+            "url": "https://www.fistelcisl.it/wp-content/uploads/2024/11/20241118-Accordo-di-rinnovo-CCNL-Area-Comunicazione-FIRMATO.pdf",
+            "sha256": "f048b41ae48a31980ac336c5c0a910983ce1f41499308c286b500f618cd20146"
+          },
+          "page": "9",
+          "section": "Art. 36 Parte I, art. 3 Parte II",
+          "quote": "3° 60% 60% 70% 70% 90% 90% 100% 100%"
+        },
+        "transformation": "Semesters I-X of the table as months 0-6 ... 54-60; two equal semesters joined. The last printed percentage holds open-ended: the end of the apprenticeship at its maximum duration is not modelled. Percentages in force from the signature, 18 November 2024.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-08T15:00:00Z",
+          "effective_from": "2024-11-18",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-08T15:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-08-ai-comunicazione-artigianato-apprenticeship"
+        }
+      }
+    },
+    {
+      "type": "percentage",
+      "name": "artigiane_gruppo_3_figure_2_anni",
+      "destination_levels": [
+        "5"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 6,
+          "percentage": "0.60"
+        },
+        {
+          "months_from": 6,
+          "months_until": 12,
+          "percentage": "0.80"
+        },
+        {
+          "months_from": 12,
+          "months_until": 18,
+          "percentage": "0.85"
+        },
+        {
+          "months_from": 18,
+          "months_until": null,
+          "percentage": "0.95"
+        }
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "comunicazione-rinnovo-2024-fistel",
+            "title": "Accordo di rinnovo CCNL Area Comunicazione 18 novembre 2024 (firmato)",
+            "kind": "associazione",
+            "url": "https://www.fistelcisl.it/wp-content/uploads/2024/11/20241118-Accordo-di-rinnovo-CCNL-Area-Comunicazione-FIRMATO.pdf",
+            "sha256": "f048b41ae48a31980ac336c5c0a910983ce1f41499308c286b500f618cd20146"
+          },
+          "page": "9",
+          "section": "Art. 36 Parte I, art. 3 Parte II",
+          "quote": "3° (Figure a 2 anni) 60% 80% 85% 95%"
+        },
+        "transformation": "Semesters I-X of the table as months 0-6 ... 54-60; two equal semesters joined. The last printed percentage holds open-ended: the end of the apprenticeship at its maximum duration is not modelled. Percentages in force from the signature, 18 November 2024.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-08T15:00:00Z",
+          "effective_from": "2024-11-18",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-08T15:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-08-ai-comunicazione-artigianato-apprenticeship"
+        }
+      }
+    },
+    {
+      "type": "percentage",
+      "name": "impiegati_amministrativi",
       "destination_levels": [
         "1A",
         "1B",
@@ -1696,14 +1939,69 @@
         "3",
         "4",
         "5bis",
-        "5",
-        "6"
+        "5"
       ],
       "periods": [
         {
           "months_from": 0,
           "months_until": 12,
+          "percentage": "0.60"
+        },
+        {
+          "months_from": 12,
+          "months_until": 24,
           "percentage": "0.70"
+        },
+        {
+          "months_from": 24,
+          "months_until": null,
+          "percentage": "0.90"
+        }
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "comunicazione-rinnovo-2024-fistel",
+            "title": "Accordo di rinnovo CCNL Area Comunicazione 18 novembre 2024 (firmato)",
+            "kind": "associazione",
+            "url": "https://www.fistelcisl.it/wp-content/uploads/2024/11/20241118-Accordo-di-rinnovo-CCNL-Area-Comunicazione-FIRMATO.pdf",
+            "sha256": "f048b41ae48a31980ac336c5c0a910983ce1f41499308c286b500f618cd20146"
+          },
+          "page": "9",
+          "section": "Art. 36 Parte I, art. 3 Parte II",
+          "quote": "Impiegati amministrativi 60% 60% 70% 70% 90% 90%"
+        },
+        "transformation": "Semesters I-X of the table as months 0-6 ... 54-60; two equal semesters joined. The last printed percentage holds open-ended: the end of the apprenticeship at its maximum duration is not modelled. Percentages in force from the signature, 18 November 2024.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-08T15:00:00Z",
+          "effective_from": "2024-11-18",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-08T15:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-08-ai-comunicazione-artigianato-apprenticeship"
+        }
+      }
+    },
+    {
+      "type": "percentage",
+      "name": "pmi",
+      "destination_levels": [
+        "1A",
+        "1B",
+        "2",
+        "3",
+        "4",
+        "5bis",
+        "5"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "percentage": "0.60"
         },
         {
           "months_from": 12,
@@ -1715,7 +2013,88 @@
           "months_until": null,
           "percentage": "0.90"
         }
-      ]
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "comunicazione-rinnovo-2024-fistel",
+            "title": "Accordo di rinnovo CCNL Area Comunicazione 18 novembre 2024 (firmato)",
+            "kind": "associazione",
+            "url": "https://www.fistelcisl.it/wp-content/uploads/2024/11/20241118-Accordo-di-rinnovo-CCNL-Area-Comunicazione-FIRMATO.pdf",
+            "sha256": "f048b41ae48a31980ac336c5c0a910983ce1f41499308c286b500f618cd20146"
+          },
+          "page": "20",
+          "section": "Art. 36 Parte I, art. 3 Parte II",
+          "quote": "1°a, 1°b, 2°, 3°, 4°, 5°bis, 5 60% 60% 80% 80% 90% 90%"
+        },
+        "transformation": "Semesters I-X of the table as months 0-6 ... 54-60; two equal semesters joined. The last printed percentage holds open-ended: the end of the apprenticeship at its maximum duration is not modelled. Percentages in force from the signature, 18 November 2024.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-08T15:00:00Z",
+          "effective_from": "2024-11-18",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-08T15:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-08-ai-comunicazione-artigianato-apprenticeship"
+        }
+      }
+    },
+    {
+      "type": "percentage",
+      "name": "pmi_figure_2_anni",
+      "destination_levels": [
+        "5"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 6,
+          "percentage": "0.60"
+        },
+        {
+          "months_from": 6,
+          "months_until": 12,
+          "percentage": "0.80"
+        },
+        {
+          "months_from": 12,
+          "months_until": 18,
+          "percentage": "0.85"
+        },
+        {
+          "months_from": 18,
+          "months_until": null,
+          "percentage": "0.95"
+        }
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "comunicazione-rinnovo-2024-fistel",
+            "title": "Accordo di rinnovo CCNL Area Comunicazione 18 novembre 2024 (firmato)",
+            "kind": "associazione",
+            "url": "https://www.fistelcisl.it/wp-content/uploads/2024/11/20241118-Accordo-di-rinnovo-CCNL-Area-Comunicazione-FIRMATO.pdf",
+            "sha256": "f048b41ae48a31980ac336c5c0a910983ce1f41499308c286b500f618cd20146"
+          },
+          "page": "20",
+          "section": "Art. 36 Parte I, art. 3 Parte II",
+          "quote": "Livello 5 - figure a 2 anni 60% 80% 85% 95%"
+        },
+        "transformation": "Semesters I-X of the table as months 0-6 ... 54-60; two equal semesters joined. The last printed percentage holds open-ended: the end of the apprenticeship at its maximum duration is not modelled. Percentages in force from the signature, 18 November 2024.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-08T15:00:00Z",
+          "effective_from": "2024-11-18",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-08T15:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-08-ai-comunicazione-artigianato-apprenticeship"
+        }
+      }
     }
   ],
   "ruleset": {
@@ -1725,7 +2104,7 @@
     "effective_until": null,
     "source": "https://www.redigo.info/ccnl/comunicazione-artigianato",
     "verification_status": "unverified",
-    "source_hash": "0c0fc276bdd9125246a558d63a846449d61a025fd62aa5fe6cca7389ee443799",
+    "source_hash": "385af2e6880e4709da9a535243bb71259acd5221eba1a18e148ff1881af15aa8",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -1967,6 +2346,28 @@
         "independence": "same_process",
         "checked": [
           "parameters.solidarity_fund"
+        ]
+      },
+      {
+        "id": "2026-11-08-ai-comunicazione-artigianato-apprenticeship",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Apprenticeship tracks against art. 36 and art. 3 Parte II of the signed 2024 renewal, read on the page images (pp. 7-9, 20).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.fistelcisl.it/wp-content/uploads/2024/11/20241118-Accordo-di-rinnovo-CCNL-Area-Comunicazione-FIRMATO.pdf",
+            "sha256": "f048b41ae48a31980ac336c5c0a910983ce1f41499308c286b500f618cd20146"
+          }
+        ],
+        "findings": [
+          "The file had two generic tracks (operai_tecnici 70-100% over four years, amministrativi 70/80/90%) and level 6 as a destination; the text prints one row per group, figures and PMI: impiegati amministrativi are 60/70/90%, so the file overpaid the first two years by 10 points.",
+          "Tracks replaced: operai_tecnici, amministrativi -> artigiane_gruppo_1, artigiane_gruppo_2, artigiane_gruppo_2_figure_3_anni, artigiane_gruppo_3, artigiane_gruppo_3_figure_2_anni, impiegati_amministrativi, pmi, pmi_figure_2_anni."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "apprenticeship"
         ]
       }
     ]

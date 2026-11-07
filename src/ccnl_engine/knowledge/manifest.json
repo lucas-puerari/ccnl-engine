@@ -116,7 +116,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/alimentari-federalimentare",
       "ruleset_version": "2026.2",
-      "source_hash": "6e7d096e87a3da6744504332c28d292cae79e3447130364b4411b6c5c263748e",
+      "source_hash": "dd01f5e21e140e29ef99c051f8c6d9489ebaff68792dba833c44d26fa085a85a",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/alimentari-federalimentare.json.gz"
@@ -490,7 +490,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/commercio-confcommercio",
       "ruleset_version": "2026.2",
-      "source_hash": "f0c26539b1e7f1f8766731cbeb2f0fd44d21fb4b4db92b93d10f9e19e4d61cdb",
+      "source_hash": "581f0a7d1d1e53f95b1d162a7569610b115f01eb14f8ecfdd2312be9bfc4c58e",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/commercio-confcommercio.json.gz"
@@ -507,7 +507,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/comunicazione-artigianato-confartigianato",
       "ruleset_version": "2026.2",
-      "source_hash": "0c0fc276bdd9125246a558d63a846449d61a025fd62aa5fe6cca7389ee443799",
+      "source_hash": "385af2e6880e4709da9a535243bb71259acd5221eba1a18e148ff1881af15aa8",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/comunicazione-artigianato-confartigianato.json.gz"
@@ -609,7 +609,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/cooperative-sociali",
       "ruleset_version": "2026.2",
-      "source_hash": "c6c4dc0954b6df280b7e985d8139311c356b2e841e96025ca5055bfc76e10860",
+      "source_hash": "05aaf711dc15e28f92939717c911c19d086f2c021dbc2f2239e78c35b2bf8c13",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/cooperative-sociali.json.gz"
@@ -728,7 +728,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/dmo-federdistribuzione",
       "ruleset_version": "2026.2",
-      "source_hash": "2dbe4d3cb86b20215b3694e749c8417436bc492b3a9389b080d443a983bd09c4",
+      "source_hash": "26f63babce5d1e6b150d0d19fdfa88fb3ab1f8d4c2222b6fdf53ff41b702d3d4",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/dmo-federdistribuzione.json.gz"
@@ -830,7 +830,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/elettrico-elettricita-futura",
       "ruleset_version": "2026.2",
-      "source_hash": "cd9cc60182931d914c03f17e840f5faca3cc7e963adf94404d0a0bad7518b2ff",
+      "source_hash": "ed5a1f3d6c76bda0a215fdcf2c08371af2399d9aced2ddeede6ff12b8c3e2f18",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/elettrico-elettricita-futura.json.gz"
@@ -1139,7 +1139,7 @@
       "valid_to": "2027-12-31",
       "ruleset_id": "ccnl/igiene-ambientale-utilitalia",
       "ruleset_version": "2026.2",
-      "source_hash": "c1f26444f4fd4583aed33486c109f394225f8c06eb722b57148f69eea666b332",
+      "source_hash": "0fb4db96949be95081bc527674b4f461776dbbb9b012f2effde23a3907123342",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/igiene-ambientale-utilitalia.json.gz"
@@ -1360,7 +1360,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/legno-arredamento-federlegno",
       "ruleset_version": "2026.2",
-      "source_hash": "79cec6e633819379ac4393ee91141c556b1da94f16299cc51cb0be3494e3f8c6",
+      "source_hash": "4b865679af6ad5b26802daaeeeb3655f15a940234074b181daacc8b251b44993",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/legno-arredamento-federlegno.json.gz"
@@ -2125,7 +2125,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/tessile-smi",
       "ruleset_version": "2026.2",
-      "source_hash": "a2617b982625533395742ef11a92f4ffd6bc1f491da7d1527a566b778de40a5a",
+      "source_hash": "52ac7f41d1d9f1ef2db053764acebced51b0877e0c767ee0a38528b851199e42",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/tessile-smi.json.gz"
@@ -2312,7 +2312,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/vigilanza-privata-assiv",
       "ruleset_version": "2026.2",
-      "source_hash": "a71522699cddfc60d8925717e22d4b8269e6006c2708ee803e18528563d8df5a",
+      "source_hash": "256d13b7422467e1e12ed2c4324fd7234964ad64050b9fdbcf45649eb8c7d2dd",
       "source_type": "institutional_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/vigilanza-privata-assiv.json.gz"
@@ -3001,7 +3001,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "d346d7d397870d78e401acc555c13939bb3e103ff11e25a468609741e23c715e",
+      "source_hash": "676f7b168da6f3a6de6687d1e0d429a3056f439a5433bb6ecbc07e054750fd8c",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/comunicazione-artigianato-confartigianato.json.gz",
@@ -3261,7 +3261,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "b31e1897b2c317e01b4af38ada7afb5234aa6e7a2a51bc32860af6ae1e34ccff",
+      "source_hash": "0652be071eeeb29edee3611a32a15167eff10a0666c4c07e3cbc57d6e4d6f252",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/dmo-federdistribuzione.json.gz",

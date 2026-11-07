@@ -4141,7 +4141,7 @@
     "effective_until": null,
     "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "6e7d096e87a3da6744504332c28d292cae79e3447130364b4411b6c5c263748e",
+    "source_hash": "dd01f5e21e140e29ef99c051f8c6d9489ebaff68792dba833c44d26fa085a85a",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -13728,18 +13728,20 @@
             "section": "Art. 48 - Infortunio sul lavoro",
             "quote": "In caso di infortunio sul lavoro per il quale intervenga l’INAIL, l’azienda corrisponderà all’operaio non in prova, dal primo giorno di assenza dal lavoro e fino alla cessazione della indennità di invalidità temporanea erogata dal predetto istituto assicuratore, una integrazione di tale indennità in modo da raggiungere il 100 per cento della retribuzione normale netta. Le indennità a carico dell’Istituto saranno anticipate a condizione che le stesse non siano soggette a contribuzione e che sia garantito il rimborso attraverso conguaglio da parte dell’Inail o altro sistema analogo."
           },
-          "transformation": "For non-probationary operai covered by INAIL, the first days of absence (including the three statutory waiting days) reach 100% of normal net pay; employer supplements through the end of INAIL temporary-disability indemnity. INAIL benefits are advanced only if not subject to contributions and reimbursement by offset or equivalent is guaranteed. Other worker categories and subsectors differ; see notes.",
+          "transformation": "For non-probationary operai covered by INAIL, the first days of absence (including the three statutory waiting days) reach 100% of normal net pay; employer supplements through the end of INAIL temporary-disability indemnity. INAIL benefits are advanced only if not subject to contributions and reimbursement by offset or equivalent is guaranteed. Other worker categories and subsectors differ; see notes. Art. 113 (operai not on probation): from the first day of absence until the INAIL indemnity ends, top-up to 100% of the net pay.",
           "extraction": {
             "method": "ai",
             "model": "gpt-6-sol",
             "extraction_timestamp": "2026-11-08T03:00:00Z",
             "effective_from": null,
-            "verified_by": "claude-opus-5-5",
-            "verified_at": "2026-11-08T03:00:00Z",
+            "verified_by": "gpt-6-sol",
+            "verified_at": "2026-11-08T14:00:00Z",
             "verification_status": "verified",
-            "review_id": "2026-11-08-gpt-alimentari-federalimentare-insured-absence"
+            "review_id": "2026-11-08-gpt-alimentari-federalimentare-injury-top-up"
           }
-        }
+        },
+        "integration_rate": "1",
+        "net_basis": true
       }
     }
   },
@@ -13999,6 +14001,27 @@
         "independence": "separate_model",
         "checked": [
           "work_rules.insured_absence.maternity",
+          "work_rules.insured_absence.injury"
+        ]
+      },
+      {
+        "id": "2026-11-08-gpt-alimentari-federalimentare-injury-top-up",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Employer top-up of the INAIL indemnity, read from the signed text by a separate model session (audit of the injury rules); quote checked on the text layer or the page image.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+            "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+          }
+        ],
+        "findings": [
+          "The injury rule had no top-up of the INAIL indemnity; added: {\"integration_rate\": \"1\", \"net_basis\": true}"
+        ],
+        "independence": "separate_model",
+        "checked": [
           "work_rules.insured_absence.injury"
         ]
       }

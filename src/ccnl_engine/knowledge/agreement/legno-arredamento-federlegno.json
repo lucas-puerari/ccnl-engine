@@ -260,6 +260,27 @@
           "levels.base_salary",
           "levels.fixed_allowances"
         ]
+      },
+      {
+        "id": "2026-11-08-gpt-legno-arredamento-federlegno-injury-top-up",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Employer top-up of the INAIL indemnity, read from the signed text by a separate model session (audit of the injury rules); quote checked on the text layer or the page image.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/04/Ccnl-Legno-Industria-definitivo1.pdf",
+            "sha256": "591296abac43a018b9ffe08f60a521584129d9717e87a46583b8125a58d067bf"
+          }
+        ],
+        "findings": [
+          "The injury rule had no top-up of the INAIL indemnity; added: {\"integration_rate\": \"1\", \"carenza_rate\": \"1\"}"
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.insured_absence.injury"
+        ]
       }
     ]
   },
@@ -4888,7 +4909,7 @@
     "effective_until": null,
     "source": "https://www.filleacgil.net/images/DAL-2024/MATERIALI_dipartimento/LEGNO-ARREDO/Verbale_di_accordo_Adeguamento_minimi_anno_2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "79cec6e633819379ac4393ee91141c556b1da94f16299cc51cb0be3494e3f8c6",
+    "source_hash": "4b865679af6ad5b26802daaeeeb3655f15a940234074b181daacc8b251b44993",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -5163,18 +5184,19 @@
             "section": "Art. 75 (ex 12), B) Trattamento economico",
             "quote": "a partire dal giorno seguente l’infortunio e per un massimo di 12 mesi, una integrazione dell’indennità, percepita in forza di disposizioni legislative e/o di altre norme, fino a raggiungere il 100% della normale retribuzione."
           },
-          "transformation": "100% normal remuneration from the day following injury for up to 12 months, including the initial waiting days; INAIL indemnity paid by employer each payroll period subject to conditions on contributions and prompt reimbursement (Art. 75 p. 113).",
+          "transformation": "100% normal remuneration from the day following injury for up to 12 months, including the initial waiting days; INAIL indemnity paid by employer each payroll period subject to conditions on contributions and prompt reimbursement (Art. 75 p. 113). Art. 75 B: from the day after the injury, for at most 12 months, the full pay; the 12-month end is not modelled.",
           "extraction": {
             "method": "ai",
             "model": "gpt-6-sol",
             "extraction_timestamp": "2026-11-08T03:00:00Z",
             "effective_from": null,
-            "verified_by": "claude-opus-5-5",
-            "verified_at": "2026-11-08T03:00:00Z",
+            "verified_by": "gpt-6-sol",
+            "verified_at": "2026-11-08T14:00:00Z",
             "verification_status": "verified",
-            "review_id": "2026-11-08-gpt-legno-arredamento-federlegno-insured-absence"
+            "review_id": "2026-11-08-gpt-legno-arredamento-federlegno-injury-top-up"
           }
-        }
+        },
+        "integration_rate": "1"
       }
     }
   }

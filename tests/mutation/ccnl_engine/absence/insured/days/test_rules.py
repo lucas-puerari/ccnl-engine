@@ -5,9 +5,13 @@ from __future__ import annotations
 from datetime import date
 from decimal import Decimal
 
+import pytest
+from pydantic import ValidationError
+
 from ccnl_engine.absence.insured.base.rules import run_daily_base
 from ccnl_engine.absence.insured.days.rules import deducted_days
 from ccnl_engine.absence.insured.loaders import load_insured_absence_rates
+from ccnl_engine.absence.insured.models import InjuryIntegrationBand, InjuryRules
 from ccnl_engine.absence.insured.rules import MonthPay, injury_pay
 from ccnl_engine.absence.models import DailyDivisorMethod
 from ccnl_engine.agreement.validity.rules import TimeSeries
@@ -124,3 +128,78 @@ def test_an_injury_with_a_ccnl_carenza_and_top_up() -> None:
         Decimal("554.91"),
         Decimal("245.09"),
     )
+
+
+def _banded(*bands: tuple[int, str]) -> InjuryRules:
+    work = load_ccnl("chimica-farmaceutica-federchimica").work_rules
+    assert work is not None
+    assert work.insured_absence is not None
+    clause = work.insured_absence.injury
+    assert clause is not None
+    return clause.model_copy(
+        update={
+            "carenza_rate": Decimal(1),
+            "integration_rate": None,
+            "integration_bands": tuple(
+                InjuryIntegrationBand(day_from=d, rate=Decimal(r)) for d, r in bands
+            ),
+            "net_basis": False,
+        }
+    )
+
+
+def _injured(last: date, rules: InjuryRules) -> tuple[Decimal, Decimal]:
+    paid = injury_pay(
+        date(2026, 3, 2),
+        last,
+        date(2026, 3, 2),
+        _THREE_THOUSAND,
+        Decimal(173),
+        Decimal(40),
+        load_insured_absence_rates().injury,
+        rules,
+    )
+    return paid.indemnity, paid.integration
+
+
+def test_the_top_up_follows_the_bands_of_the_days() -> None:
+    """DMO art. 172: 90% from day 4 to day 19, 100% from day 20.
+
+    Injured 2 March, unable to 31 March, pay in 30ths: days 4-19 (6-21
+    March, 16 days) reach 90% of 1,600.00 and days 20-29 (22-31 March,
+    nine payable days: the 31st is not a 30th) 900.00; the top-up is the
+    2,340.00 less the INAIL share of the same days.
+    """
+    indemnity, integration = _injured(
+        date(2026, 3, 31), _banded((4, "0.90"), (20, "1"))
+    )
+
+    assert integration == Decimal("2340.00") - indemnity
+
+
+def test_a_band_at_zero_ends_the_top_up() -> None:
+    """100% from day 4 to day 9 only: 600.00 less the INAIL share of 8 days."""
+    indemnity, integration = _injured(date(2026, 3, 13), _banded((4, "1"), (10, "0")))
+
+    assert (indemnity, integration) == (Decimal("554.91"), Decimal("45.09"))
+
+
+def test_a_rate_and_bands_are_rejected_together() -> None:
+    """One top-up shape a clause."""
+    rules = _banded((4, "1"))
+    with pytest.raises(ValidationError, match="not both"):
+        InjuryRules.model_validate(
+            rules.model_dump() | {"integration_rate": Decimal(1)}
+        )
+
+
+def test_bands_out_of_day_order_are_rejected() -> None:
+    """The bands follow the days of the inability."""
+    rules = _banded((4, "1"))
+    dumped = rules.model_dump()
+    dumped["integration_bands"] = [
+        {"day_from": 20, "rate": Decimal(1)},
+        {"day_from": 4, "rate": Decimal("0.9")},
+    ]
+    with pytest.raises(ValidationError, match="day order"):
+        InjuryRules.model_validate(dumped)
