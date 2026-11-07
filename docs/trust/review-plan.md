@@ -10,7 +10,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 |---|---:|---:|---:|---:|---:|---:|---|
 | pubblica-amministrazione | 14 | 7 548 000 | 14 | 217 | 186 | 0 | `funzioni-centrali-aran` |
 | terziario | 46 | 5 257 055 | 53 | 1608 | 977 | 4 | `commercio-confcommercio`, `sanita-privata-aiop-aris` |
-| industria | 49 | 4 969 900 | 153 | 2154 | 1240 | 15 | `logistica-trasporto-confetra`, `metalmeccanico-federmeccanica` |
+| industria | 49 | 4 969 900 | 153 | 2106 | 1288 | 15 | `logistica-trasporto-confetra`, `metalmeccanico-federmeccanica` |
 | lavoro-domestico | 3 | 1 800 000 | 0 | 3 | 60 | 0 | `lavoro-domestico-non-convivente` |
 | artigianato | 8 | 1 244 505 | 34 | 256 | 158 | 2 | `metalmeccanico-artigianato` |
 | agricoltura | 9 | 752 860 | 12 | 164 | 170 | 5 | `operai-agricoli-florovivaisti` |
@@ -107,7 +107,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | [`trasporto-ferroviario-agens`](../contracts/trasporto-ferroviario-agens.md) | 75 000 | exploratory | 1 | 6 | 50 | aggregator | none | none |
 | [`grafica-editoria-aieg`](../contracts/grafica-editoria-aieg.md) | 70 000 | exploratory | 1 | 70 | 2 | aggregator | none | none |
 | [`gas-acqua-utilitalia`](../contracts/gas-acqua-utilitalia.md) | 65 000 | exploratory | 1 | 63 | 0 | party or official | none | none |
-| [`igiene-ambientale-utilitalia`](../contracts/igiene-ambientale-utilitalia.md) | 65 000 | exploratory | 1 | 144 | 0 | aggregator | none | none |
+| [`igiene-ambientale-utilitalia`](../contracts/igiene-ambientale-utilitalia.md) | 65 000 | exploratory | 1 | 96 | 48 | aggregator | none | none |
 | [`elettrico-elettricita-futura`](../contracts/elettrico-elettricita-futura.md) | 60 000 | exploratory | 1 | 21 | 57 | aggregator | none | none |
 | [`chimica-affini-pmi-unionchimica`](../contracts/chimica-affini-pmi-unionchimica.md) | 56 000 | exploratory | 2 | 53 | 0 | aggregator | none | none |
 | [`tessile-pmi-uniontessile`](../contracts/tessile-pmi-uniontessile.md) | 48 000 | exploratory | 6 | 0 | 38 | aggregator | none | none |

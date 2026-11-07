@@ -130,10 +130,10 @@ class TestLoadIgieneAmbientaleUtilitalia:
         assert lv.base_salary.value_at(date(2026, 2, 1)) == Decimal("2216.13")
 
     def test_igiene_ambientale_utilitalia_level_c1s_salary_2027(self) -> None:
-        """Level C1s base salary at 01/01/2027 (+36) is 2252.13."""
+        """Level C1s base salary at 01/01/2027 (+38.35, parametric) is 2254.48."""
         ccnl = load_ccnl("igiene-ambientale-utilitalia")
         lv = next(lv for lv in ccnl.levels if lv.code == "C1s")
-        assert lv.base_salary.value_at(date(2027, 1, 1)) == Decimal("2252.13")
+        assert lv.base_salary.value_at(date(2027, 1, 1)) == Decimal("2254.48")
 
     def test_igiene_ambientale_utilitalia_level_ordering(self) -> None:
         """Level D2 is lowest-order (1); level Q is highest-order (16)."""
