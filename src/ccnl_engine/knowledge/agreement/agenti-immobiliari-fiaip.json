@@ -76,19 +76,6 @@
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: QSC and Quota Forfettaria (Art. 11) not modelled. QSC: 1.90% of monthly retribuzione × 14 mensilità (0.30% employee + 1.60% employer), paid to EBNAIP. Quota Forfettaria: 12 EUR/month × 12 mensilità, employer only. Both go to the bilateral entity; the QSC constitutes retribuzione ordinaria for TFR purposes (Art. 11). Modelling would require percentage-based bilateral fund logic not yet implemented. employer_cost_annual understated by (QSC employer portion + 144 EUR/year).",
-        "capability": "bilateral_funds",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "ebnaip_qsc_and_flat_quota",
-          "applies_when": {
-            "trigger": "owed"
-          },
-          "remediation": "Pass the QSC and the quota forfettaria as a bilateral fund event, or model percentage-based bilateral contributions."
-        }
-      },
-      {
-        "kind": "simplification",
         "text": "SIMPLIFICATION: CatA and CatB (Art. 164) not modelled as levels. These are special mixed-salary categories for agencies with ≤15 employees where workers receive commission income, modelled at 90% of level II and III respectively with mandatory commission minimum and 2% guarantee. Conditional on employer size and pay structure; not standard classification levels.",
         "monetary_impact": "no"
       },
@@ -276,6 +263,27 @@
         "independence": "separate_model",
         "checked": [
           "coverage.notes"
+        ]
+      },
+      {
+        "id": "2026-11-08-ai-agenti-immobiliari-fiaip-ebnaip",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "EBNAIP contributions of art. 11 of the 2025 text, read on the text layer (analysis by a separate model session).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.ebnaip.it/download.aspx?file=/public/ccnl/1_CCNL_CONTRATTO_COLLETTIVO_NAZIONALE_LAVORO_2025.pdf",
+            "sha256": "560d16410d3e41dc0bfb00bfe2a40ef65f2cd900234aeaee92018ed9fa21ead5"
+          }
+        ],
+        "findings": [
+          "Added the QSC (1.60% employer, 0.30% worker of the monthly pay on 14 months; 2.40% E.A.R. to the worker when the employer does not pay, on 14 months, in the TFR) and the employer's flat quota of 12 EUR on twelve months."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "parameters.health_funds"
         ]
       }
     ]
@@ -486,6 +494,114 @@
             "verified_at": "2026-11-01T10:38:57Z",
             "verification_status": "verified",
             "review_id": "2026-11-01-ai-una-tantum"
+          }
+        }
+      }
+    ],
+    "health_funds": [
+      {
+        "code": "ebnaip_qsc",
+        "description": "EBNAIP, Quota di servizio contrattuale (QSC), art. 11",
+        "employer": {
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-05-01",
+                "valid_until": null,
+                "value": "0.016"
+              }
+            ]
+          }
+        },
+        "employee": {
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-05-01",
+                "valid_until": null,
+                "value": "0.003"
+              }
+            ]
+          }
+        },
+        "extra_months": true,
+        "rate_base": "monthly_pay",
+        "alternative": {
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-05-01",
+                "valid_until": null,
+                "value": "0.024"
+              }
+            ]
+          }
+        },
+        "alternative_extra_months": true,
+        "alternative_tfr": true,
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-agenti-immobiliari-2025-ebnaip",
+              "title": "CCNL agenti immobiliari professionali 2025 (EBNAIP)",
+              "kind": "associazione",
+              "url": "https://www.ebnaip.it/download.aspx?file=/public/ccnl/1_CCNL_CONTRATTO_COLLETTIVO_NAZIONALE_LAVORO_2025.pdf",
+              "sha256": "560d16410d3e41dc0bfb00bfe2a40ef65f2cd900234aeaee92018ed9fa21ead5"
+            },
+            "page": "23",
+            "section": "Art. 11 Ente bilaterale EBNAIP",
+            "quote": "QSC [...] fissato nella misura dell'1,90% della retribuzione mensile da calcolarsi per 14 mensilità, così ripartito: 0,30% a carico dei lavoratori; 1,60% a carico dei datori di lavoro [...] Le aziende che non versano la QSC sono quindi tenute ad erogare a ciascun lavoratore un importo forfetario pari al 2,40% della retribuzione mensile di fatto, da calcolarsi per 14 mensilità"
+          },
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-08T17:00:00Z",
+            "effective_from": "2025-05-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-08T17:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-08-ai-agenti-immobiliari-fiaip-ebnaip"
+          }
+        }
+      },
+      {
+        "code": "ebnaip_quota_forfetaria",
+        "description": "EBNAIP, Quota forfetaria a carico del datore di lavoro, art. 11",
+        "employer": {
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-05-01",
+                "valid_until": null,
+                "value": "12.00"
+              }
+            ]
+          }
+        },
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-agenti-immobiliari-2025-ebnaip",
+              "title": "CCNL agenti immobiliari professionali 2025 (EBNAIP)",
+              "kind": "associazione",
+              "url": "https://www.ebnaip.it/download.aspx?file=/public/ccnl/1_CCNL_CONTRATTO_COLLETTIVO_NAZIONALE_LAVORO_2025.pdf",
+              "sha256": "560d16410d3e41dc0bfb00bfe2a40ef65f2cd900234aeaee92018ed9fa21ead5"
+            },
+            "page": "23",
+            "section": "Art. 11 Ente bilaterale EBNAIP",
+            "quote": "una Quota Forfetaria obbligatoria di € 12,00 mensili, per dodici mensilità, a carico del datore di lavoro"
+          },
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-08T17:00:00Z",
+            "effective_from": "2025-05-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-08T17:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-08-ai-agenti-immobiliari-fiaip-ebnaip"
           }
         }
       }
@@ -1716,7 +1832,7 @@
     "source": "https://www.fiaip.it/wp-content/uploads/2025/06/250519-Ipotesi-di-accordo-Fiaip-OOSS-firmata-1.pdf",
     "source_type": "contracting_party",
     "verification_status": "unverified",
-    "source_hash": "5581c753b8274f211ca2845a70645278655252729dd2ffdb8cf93282ef1f5fd9"
+    "source_hash": "5d61163554fa0c69717375a1fd4d1983e7be0f8e9aa709a3a0b294517491d697"
   },
   "work_rules": {
     "notice": {

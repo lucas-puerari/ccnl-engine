@@ -86,6 +86,7 @@ def _run(
         "level_code": "C3",
         "category": WorkerCategory.IMPIEGATO,
         "current_year": employment_only(),
+        "employer": EmployerProfile(headcount=Headcount(50)),
     } | kwargs
     request = PeriodCalculationRequest(
         period_id=PeriodId(year=2026, month=3),
@@ -93,7 +94,6 @@ def _run(
         seniority=new_hire(),
         tfr_treasury_fund=False,
         pension_fund=NoPensionFund(),
-        employer=EmployerProfile(headcount=Headcount(50)),
         opening_state=PeriodState.zero(),
         employment_period=EmploymentPeriod(date(2026, 3, 1)),
         **fields,  # type: ignore[arg-type]
@@ -127,11 +127,16 @@ class TestBundledRun:
         """An assumed rule is a blocker, not an issue: the calculation is final.
 
         The worker resides in Alghero, whose surtax rows are not assumed,
-        and waived the renewal regime on the minimo in writing.
+        and waived the renewal regime on the minimo in writing; the employer
+        states it pays the EBNAIP funds.
         """
         result = _run(
             ccnl_id=_AGENTI,
             level_code="IV",
+            employer=EmployerProfile(
+                headcount=Headcount(50),
+                contractual_funds=frozenset({"ebnaip_qsc", "ebnaip_quota_forfetaria"}),
+            ),
             category=None,
             regione=REGIONE,
             comune_belfiore=COMUNE_BELFIORE,

@@ -213,16 +213,17 @@ def _monthly(
     Returns:
         The fixed amount, scaled like the minimo when ``scaled``, plus the
         rate of the minimo and of the allowances the fund names in
-        ``rate_allowances``, as the run pays them, to the cent; zero for no
-        amount.
+        ``rate_allowances`` (or of the whole pay: ``rate_base``), to the cent;
+        zero for no amount.
     """
     if amount is None:
         return _ZERO
     day = ctx.contract.tctx.competence
-    paid = ctx.chain.base
-    rate_base = paid + sum(
-        (v for a, v in ctx.chain.allowances if a.code in fund.rate_allowances),
-        _ZERO,
+    paid, chain = ctx.chain.base, ctx.chain
+    named = (v for a, v in chain.allowances if a.code in fund.rate_allowances)
+    whole = fund.rate_base == "monthly_pay"
+    rate_base = paid + (
+        chain.seniority + chain.allowances_total if whole else sum(named, _ZERO)
     )
     full = ctx.contract.level.base_salary.value_at(day)
     fixed = _ZERO if amount.monthly is None else amount.monthly.value_at(day)
