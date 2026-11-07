@@ -39,10 +39,10 @@
       "institute": "base_salary",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "ELEMENTO PEREQUATIVO: the worker of a company without second-level bargaining is owed the elemento perequativo of 485 euro a year, paid with the June pay (Ministry of Labour cost table of June 2026, DD 82/2026, row A). The engine does not pay it: whether the company has second-level bargaining is not in the request.",
+      "rule": "ELEMENTO PEREQUATIVO (Sez. Quarta Tit. IV Art. 13, pp. 177-178): 485 euro a year with the June pay to the worker in service on 1 January of a company without second-level bargaining (EmployerProfile.second_level_premium false), for the months of the year before over twelve; the engine pays it (parameters.equalisation_element). Left open: the pay above the CCNL the worker received in the year before (superminimi, premi annui, other pay subject to contributions) has no field in the request; the engine reads it from the individual elements of the run, each monthly amount at the part-time fraction for each month served, so an element agreed or absorbed since, or a yearly premium of the year before, is not seen.",
       "calculation": "ccnl/metalmeccanico-federmeccanica:coverage.notes",
       "state": "absent",
-      "remediation": "Pass the elemento perequativo as a variable pay item, or add a fact for the second-level bargaining.",
+      "remediation": "State the pay above the CCNL of the year before as a fact of the run, or pass the element as a bonus and leave the employer flag true.",
       "origin": "seeded",
       "links": {
         "limitations": [

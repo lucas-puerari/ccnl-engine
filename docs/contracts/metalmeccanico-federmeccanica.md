@@ -149,11 +149,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Count the supplementary hours of the year and pay the higher rate past the yearly limit.
 
 !!! warning "metalmeccanico-federmeccanica/elemento_perequativo · base_salary · impact yes · open"
-    ELEMENTO PEREQUATIVO: the worker of a company without second-level bargaining is owed the elemento perequativo of 485 euro a year, paid with the June pay (Ministry of Labour cost table of June 2026, DD 82/2026, row A). The engine does not pay it: whether the company has second-level bargaining is not in the request.
+    ELEMENTO PEREQUATIVO (Sez. Quarta Tit. IV Art. 13, pp. 177-178): 485 euro a year with the June pay to the worker in service on 1 January of a company without second-level bargaining (EmployerProfile.second_level_premium false), for the months of the year before over twelve; the engine pays it (parameters.equalisation_element). Left open: the pay above the CCNL the worker received in the year before (superminimi, premi annui, other pay subject to contributions) has no field in the request; the engine reads it from the individual elements of the run, each monthly amount at the part-time fraction for each month served, so an element agreed or absorbed since, or a yearly premium of the year before, is not seen.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Pass the elemento perequativo as a variable pay item, or add a fact for the second-level bargaining.
+    **Remediation:** State the pay above the CCNL of the year before as a fact of the run, or pass the element as a bonus and leave the employer flag true.
 
 !!! warning "metalmeccanico-federmeccanica/par_sector_and_shift_hours · leave · impact yes · open"
     LEAVE, PAR (Sez. Quarta, Titolo III, Art. 5): 124 hours in the settore siderurgico, 8 more hours for the turnisti on 15 or more shifts a week with night or weekend work and for the workers of the sottosettori of the accordo 1 September 1983 in force at 31 December 2012. The engine accrues the 104 hours of the generalità.

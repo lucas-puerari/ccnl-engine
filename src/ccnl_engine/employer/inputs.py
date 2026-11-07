@@ -91,12 +91,13 @@ class EmployerProfile:
             absence (Commercio Art. 215).  ``None`` means not known: a level
             with such a national element leaves it out and has a
             ``missing_fact`` blocker.
-        second_level_premium: Whether the employer pays a premium agreed by
-            company or territorial bargaining (premio per obiettivi, di
-            risultato) that replaces the element of guarantee the CCNL owes
+        second_level_premium: Whether the employer has company or
+            territorial bargaining with economic content (a premio per
+            obiettivi, di risultato) that replaces the element the CCNL owes
             in its absence (Unionalimentari: elemento di garanzia
-            retributiva).  ``None`` means not known: a level with such an
-            element leaves it out and has a ``missing_fact`` blocker.
+            retributiva; metalmeccanici: elemento perequativo).  ``None``
+            means not known: a level with such an element leaves it out and
+            has a ``missing_fact`` blocker.
         subsector: Sub-sector of the CCNL the employer belongs to, by the
             code its time-supplement bands name (Alimentari art. 31:
             ``"vini_liquori"``, ``"conserve_vegetali"``...).  ``None`` means

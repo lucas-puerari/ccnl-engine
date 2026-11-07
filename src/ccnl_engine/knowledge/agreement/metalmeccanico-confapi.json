@@ -137,7 +137,7 @@
       },
       {
         "kind": "simplification",
-        "text": "Art. 48: the elemento perequativo of 485 EUR a year with the June pay in firms without second-level bargaining.",
+        "text": "Art. 48 (p. 122): the elemento perequativo of 485 EUR a year with the June pay to the worker in service on 1 January of a firm without second-level bargaining with economic content (EmployerProfile.second_level_premium false), for the months of the year before over twelve; the engine pays it (parameters.equalisation_element). Left open: the pay above the CCNL the worker received in the year before (superminimi, premi annui, other pay subject to contributions) has no field in the request; the engine reads it from the individual elements of the run, each monthly amount at the part-time fraction for each month served, so an element agreed or absorbed since, or a yearly premium of the year before, is not seen.",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
@@ -145,7 +145,7 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Add an employer fact for the second-level bargaining and pay the element."
+          "remediation": "State the pay above the CCNL of the year before as a fact of the run, or pass the element as a bonus and leave the employer flag true."
         }
       },
       {
@@ -822,7 +822,41 @@
           "note": "Employer only, health fund (10% INPS solidarity). Covers permanent workers, apprentices and fixed terms of at least 5 months out of probation; the shorter fixed terms and the written renunciation are not modelled."
         }
       }
-    ]
+    ],
+    "equalisation_element": {
+      "code": "elemento_perequativo",
+      "yearly": "485",
+      "paid_in_month": 6,
+      "month_min_days": 16,
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-unionmeccanica-confapi-2017",
+            "title": "CCNL 3 luglio 2017 piccola e media industria metalmeccanica, orafa e installazione impianti (Unionmeccanica-Confapi, Fim-Cisl, Fiom-Cgil, Uilm-Uil), testo a stampa",
+            "kind": "associazione",
+            "url": "https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-Unionmeccanica.pdf",
+            "published_on": "2017-07-03",
+            "sha256": "c3e694dc561879c0b5ef510d0e931a16e3562f073a88e8a06a210fbf00451fad"
+          },
+          "page": "122",
+          "section": "Capitolo V, Art. 48 - Elemento perequativo",
+          "quote": "A decorrere dall'anno 2008, ai lavoratori in forza al 1° gennaio di ogni anno, nelle aziende prive di contrattazione di secondo livello con contenuti economici e che nel corso dell'anno precedente (1° gennaio - 31 dicembre) abbiano percepito un trattamento retributivo composto esclusivamente da importi retributivi fissati dal CCNL (lavoratori privi di superminimi collettivi o individuali, premi annui o altri compensi comunque soggetti a contribuzione), è corrisposta, a titolo perequativo, con la retribuzione del mese di giugno, una cifra annua pari a 485 Euro onnicomprensiva e non incidente sul trattamento di fine rapporto, ovvero una cifra inferiore, fino a concorrenza, in caso di presenza di retribuzioni aggiuntive a quelle fissate dal CCNL, in funzione della durata, anche non consecutiva, del rapporto di lavoro nel corso dell'anno precedente. La frazione di mese superiore a 15 giorni sarà considerata, a questi effetti, come mese intero. Nel caso di risoluzione del rapporto di lavoro antecedente il momento di corresponsione dell'elemento perequativo, fermo restando i criteri di maturazione dello stesso, il suddetto importo verrà corrisposto all'atto della liquidazione delle competenze. L'elemento perequativo come sopra definito sarà ad ogni effetto di competenza dell'anno di erogazione"
+        },
+        "transformation": "485 EUR a year with the June pay (paid_in_month 6) to the worker in service on 1 January, for the months of the year before with more than 15 days of service (month_min_days 16) over twelve, in a firm without second-level bargaining (EmployerProfile.second_level_premium false); a termination run before June pays it with the settlement. Paid as an ordinary bonus: INPS base, taxed with the run as income of its year, out of the TFR base and of the extra months ('onnicomprensiva e non incidente sul Tfr').",
+        "note": "The ipotesi of 26 May 2021 and the renewal of 4 June 2026 (sha256 ae59a64f4080...) do not amend Art. 48: no clause on the element was found in their OCR text. The texts are silent on part time and apprentices: the engine pays the whole amount to both, prorated only by the months of service, as the clause prorates it 'in funzione della durata' of the employment; the pay above the CCNL of the year before is read from the individual elements of the run.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-07T10:00:00Z",
+          "effective_from": "2017-07-03",
+          "verification_status": "verified",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-07T10:00:00Z",
+          "review_id": "2026-11-07-ai-elemento-perequativo"
+        }
+      }
+    }
   },
   "levels": [
     {
@@ -3044,7 +3078,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260604-CCNL-Unionmeccanica-Confapi-2025-2028.pdf",
     "verification_status": "unverified",
-    "source_hash": "76cc3a3c983bd7acfb082c5327217aed29b7234a0e89566e4e0ecb167e57fa4d",
+    "source_hash": "119b3ea53ac082d6582e1c2a60c4c01c526c927a6cdde78962c3ca632327ec9f",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -4277,6 +4311,32 @@
         "independence": "same_process",
         "checked": [
           "work_rules.time_supplements.supplement_bands"
+        ]
+      },
+      {
+        "id": "2026-11-07-ai-elemento-perequativo",
+        "date": "2026-11-07",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 48 (PDF p. 122) and the renewals of 26 May 2021 and 4 June 2026 for amendments to it.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-Unionmeccanica.pdf",
+            "sha256": "c3e694dc561879c0b5ef510d0e931a16e3562f073a88e8a06a210fbf00451fad"
+          },
+          {
+            "url": "https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260604-CCNL-Unionmeccanica-Confapi-2025-2028.pdf",
+            "sha256": "ae59a64f408072c1438892143e2146eea350d7e2c3e5883fb8538f86ffc47f53"
+          }
+        ],
+        "findings": [
+          "Art. 48: 485 EUR a year with the June pay, to the workers in service on 1 January in firms without second-level bargaining with economic content, prorated by the months of the year before (a fraction above 15 days a month), reduced up to its amount by the pay above the CCNL, out of the TFR base, paid at the settlement on an earlier termination, of the competence of the year of payment.",
+          "The renewal of 4 June 2026 does not mention the element (OCR of its 41 pages)."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "parameters.equalisation_element"
         ]
       }
     ],
