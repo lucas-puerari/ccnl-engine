@@ -119,7 +119,7 @@ on unverified sources, or be well sourced and not cleared for production.
 |---|---|---|---|---:|:---:|:---:|---|---|:---:|:---:|
 | 1 | H515 | [CCNL Acconciatura ed Estetica — Confartigianato/CNA](acconciatura-estetica-confartigianato.md) | acconciatura ed estetica | ~95k | — | ⚠️ | base_salary, inps_employer | 0 / 29 / 1 / 0 | 🧪 | 🤖 |
 | 2 | I481 | [CCNL Agenzie Marittime Raccomandatarie, Agenzie Aeree e Mediatori Marittimi](agenzie-marittime-i481.md) | Agenzie marittime e aeree | ~5k | 2024 | ⚠️ | base_salary | 1 / 36 / 1 / 0 | 🧪 | 🤖 |
-| 3 | H052 | [CCNL Agenzie di Viaggio e Turismo — Fiavet/Confcommercio](agenzie-viaggio-fiavet.md) | Turismo (agenzie di viaggio) | ~25k | 2024 | ✅ | — | 0 / 69 / 1 / 0 | 🧪 | 🤖 |
+| 3 | H052 | [CCNL Agenzie di Viaggio e Turismo — Fiavet/Confcommercio](agenzie-viaggio-fiavet.md) | Turismo (agenzie di viaggio) | ~25k | 2024 | ✅ | — | 10 / 59 / 1 / 0 | 🧪 | 🤖 |
 | 4 | E016 | [CCNL Alimentaristi Cooperative (Fedagripesca/Legacoop Agroalimentare/AGCI-Agrital)](alimentaristi-cooperative-e016.md) | industria alimentare — cooperative di produzione e lavoro | ~15k | 2024 | ✅ | — | 2 / 69 / 1 / 0 | 🧪 | 🤖 |
 | 5 | E015 | [CCNL Area Alimentazione e Panificazione — Artigianato (Confartigianato/CNA)](panificazione-artigianato-confartigianato.md) | panificazione e alimentazione artigianato | ~90k | — | ⚠️ | base_salary, inps_employer, sickness, territorial_supplement | 1 / 47 / 0 / 0 | 🧪 | 🤖 |
 | 6 | G016 | [CCNL Area Comunicazione — Artigianato](comunicazione-artigianato-confartigianato.md) | comunicazione grafica editoria stampa artigianato | ~60k | 2024 | ⚠️ | base_salary, inps_employer, worker_category | 0 / 40 / 1 / 0 | 🧪 | 🤖 |
@@ -139,9 +139,9 @@ on unverified sources, or be well sourced and not cleared for production.
 | 20 | H601 | [CCNL CED, ICT, Professioni Digitali e STP (Assoced-UGL)](ced-assoced.md) | Terziario | ~22k | 2025 | ⚠️ | base_salary, inps_employer, seniority | 0 / 44 / 1 / 1 | 🧪 | 🤖 |
 | 21 | G022 | [CCNL Carta e Cartone — Aziende Industriali (Assocarta)](carta-cartone-assocarta.md) | carta-cartone | ~35k | 2026 | ⚠️ | base_salary | 14 / 61 / 1 / 0 | 🧪 | 🤖 |
 | 22 | T011 | [CCNL Case di Cura Private - Personale Non Medico (AIOP/ARIS)](sanita-privata-aiop-aris.md) | Sanità privata | ~150k | 2020 | ⚠️ | base_salary, overtime, seniority | 36 / 2 / 0 / 0 | 🧪 | 🤖 |
-| 23 | F032 | [CCNL Cemento, Calce e Gesso — Industria (Federbeton)](cemento-calce-gesso-industria.md) | industria del cemento calce e gesso | ~25k | — | ⚠️ | seniority | 1 / 80 / 1 / 0 | 🧪 | 🤖 |
-| 24 | B122 | [CCNL Ceramica Industria (Confindustria) - Ceramica sanitaria e stoviglieria](ceramica-sanitaria-stoviglieria-confindustria.md) | ceramica | ~23k | — | ⚠️ | seniority | 0 / 70 / 1 / 1 | 🧪 | 🤖 |
-| 25 | B122 | [CCNL Ceramica Industria (Confindustria-Assopiastrelle)](ceramica-industria-confindustria.md) | ceramica | ~23k | — | ⚠️ | seniority | 0 / 60 / 1 / 1 | 🧪 | 🤖 |
+| 23 | F032 | [CCNL Cemento, Calce e Gesso — Industria (Federbeton)](cemento-calce-gesso-industria.md) | industria del cemento calce e gesso | ~25k | — | ⚠️ | seniority | 45 / 36 / 1 / 0 | 🧪 | 🤖 |
+| 24 | B122 | [CCNL Ceramica Industria (Confindustria) - Ceramica sanitaria e stoviglieria](ceramica-sanitaria-stoviglieria-confindustria.md) | ceramica | ~23k | — | ⚠️ | seniority | 52 / 18 / 1 / 1 | 🧪 | 🤖 |
+| 25 | B122 | [CCNL Ceramica Industria (Confindustria-Assopiastrelle)](ceramica-industria-confindustria.md) | ceramica | ~23k | — | ⚠️ | seniority | 48 / 12 / 1 / 1 | 🧪 | 🤖 |
 | 26 | B018 | [CCNL Chimica e Affini PMI — Unionchimica Confapi](chimica-affini-pmi-unionchimica.md) | chimica | ~56k | 2026 | ✅ | — | 0 / 53 / 1 / 1 | 🧪 | 🤖 |
 | 27 | S005 | [CCNL Comparto Funzioni Centrali — Triennio 2022-2024](funzioni-centrali-aran.md) | Pubblica Amministrazione — Comparto Funzioni Centrali | ~250k | 2026 | ⚠️ | base_salary | 26 / 5 / 0 / 0 | 👁 | 🤖✓ |
 | 28 | S105 | [CCNL Comparto Funzioni Locali 2022-2024 — ARAN](funzioni-locali-aran.md) | Pubblica Amministrazione | ~400k | 2026 | ⚠️ | base_salary | 18 / 9 / 0 / 0 | 👁 | 🤖✓ |
@@ -159,7 +159,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 40 | T611 | [CCNL Dipendenti Aziende Enti Pubblici Economici Federcasa](federcasa.md) | Case popolari | ~6k | 2024 | ⚠️ | base_salary, inps_employer, seniority | 1 / 23 / 1 / 0 | 🧪 | 🤖 |
 | 41 | E018 | [CCNL Dipendenti Piccola e Media Industria Alimentare (Unionalimentari-Confapi)](alimentari-pmi-unionalimentari.md) | Alimentare | ~35k | 2025 | ⚠️ | base_salary | 1 / 53 / 1 / 0 | 🧪 | 🤖 |
 | 42 | H401 | [CCNL Dipendenti da Proprietari di Fabbricati (Confedilizia)](portieri-fabbricati-confedilizia.md) | portieri e custodi di condominio | ~40k | 2025 | ⚠️ | base_salary | 0 / 38 / 1 / 0 | 🧪 | 🤖 |
-| 43 | H124 | [CCNL Dipendenti delle Farmacie Municipalizzate (ASSOFARM)](farmacie-municipalizzate-assofarm.md) | Farmacie municipalizzate e partecipate da enti locali | ~6k | 2022 | ⚠️ | inps_employer | 1 / 45 / 1 / 0 | 🧪 | 🤖 |
+| 43 | H124 | [CCNL Dipendenti delle Farmacie Municipalizzate (ASSOFARM)](farmacie-municipalizzate-assofarm.md) | Farmacie municipalizzate e partecipate da enti locali | ~6k | 2022 | ⚠️ | base_salary, inps_employer | 41 / 49 / 1 / 0 | 🧪 | 🤖 |
 | 44 | H121 | [CCNL Dipendenti delle Farmacie Private](farmacie-private-h121.md) | Farmacie private | ~60k | 2021 | ⚠️ | seniority | 4 / 41 / 1 / 0 | 🧪 | 🤖 |
 | 45 | H121 | [CCNL Dipendenti delle Farmacie Private - Farmacie rurali sussidiate](farmacie-rurali-sussidiate-h121.md) | Farmacie private | ~60k | 2021 | ⚠️ | seniority | 4 / 41 / 1 / 0 | 🧪 | 🤖 |
 | 46 | H016 | [CCNL Distribuzione Cooperativa (ANCC-Coop / Confcooperative Consumo)](distribuzione-cooperativa-ancc.md) | distribuzione-cooperativa | ~63k | — | ⚠️ | base_salary, seniority | 1 / 62 / 1 / 0 | 🧪 | 🤖 |
@@ -176,7 +176,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 57 | B371 | [CCNL Gomma e Plastica Industria (Federazione Gomma Plastica)](gomma-plastica-federazione-gomma-plastica.md) | gomma-plastica | ~90k | — | ⚠️ | base_salary | 70 / 7 / 1 / 1 | 🧪 | 🤖 |
 | 58 | G011 | [CCNL Grafica e Editoria Industria (AIEG-Acigraf)](grafica-editoria-aieg.md) | grafica-editoria | ~70k | — | ⚠️ | base_salary, seniority | 2 / 70 / 1 / 0 | 🧪 | 🤖 |
 | 59 | T511 | [CCNL Gruppo ANAS](anas.md) | anas spa - personale non dirigente | ~7k | 2025 | ✅ | — | 1 / 42 / 1 / 0 | 🧪 | 🤖 |
-| 60 | K540 | [CCNL Igiene Ambientale — Servizi Ambientali e di Igiene Urbana](igiene-ambientale-utilitalia.md) | servizi ambientali | ~65k | 2025 | ⚠️ | inps_employer, pension_fund_contribution, seniority | 0 / 144 / 1 / 0 | 🧪 | 🤖 |
+| 60 | K540 | [CCNL Igiene Ambientale — Servizi Ambientali e di Igiene Urbana](igiene-ambientale-utilitalia.md) | servizi ambientali | ~65k | 2025 | ⚠️ | inps_employer, pension_fund_contribution, seniority | 48 / 96 / 1 / 0 | 🧪 | 🤖 |
 | 61 | H077 | [CCNL Impianti e Attività Sportive Profit e No-profit](impianti-sportivi-sport.md) | impianti sportivi, palestre e attività sportive | 35533 | 2024 | ⚠️ | base_salary, sickness | 0 / 32 / 1 / 1 | 🧪 | 🤖 |
 | 62 | A021 | [CCNL Impiegati e Tecnici Agricoli — Confagricoltura/CIA/Coldiretti](impiegati-tecnici-agricoli.md) | agricoltura | ~80k | 2024 | ✅ | bilateral_funds | 7 / 8 / 1 / 1 | 🧪 | 🤖 |
 | 63 | B011 | [CCNL Industria Chimica e Farmaceutica (Federchimica-Farmindustria-Assistal)](chimica-farmaceutica-federchimica.md) | chimica | ~210k | — | ⚠️ | base_salary, leave, overtime, sickness, workplace_injury | 120 / 6 / 0 / 0 | 👁 | 🤖✓ |
