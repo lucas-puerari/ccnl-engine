@@ -103,20 +103,20 @@ def test_energia_petrolio_pays_edr_and_funzione_in_full() -> None:
     Steps (level 4-2, March 2026, bundled salary table):
 
     1. Percentage, first 12 months: 90%.
-    2. Minimo from 1 January 2026: 2596.61 x 0.90 = 2336.949, rounded
-       2336.95.
-    3. EDR IPCA from 1 January 2026: 51.00, not reduced.
+    2. Minimo from 1 January 2026: 2606.61 x 0.90 = 2345.949, rounded
+       2345.95.
+    3. EDR IPCA from 1 January 2026: 41.00, not reduced.
     4. Indennità di funzione, second step: 106.79, not reduced.
-    5. Gross: 2336.95 + 51.00 + 106.79 = 2494.74.
+    5. Gross: 2345.95 + 41.00 + 106.79 = 2493.74.
     """
     result = _apprentice_run("energia-petrolio-confindustria", "4-2")
 
-    assert _base_salary(result) == _D("2336.95")
+    assert _base_salary(result) == _D("2345.95")
     assert _allowances(result) == {
-        "EDR_IPCA": _D("51.00"),
+        "EDR_IPCA": _D("41.00"),
         "INDENNITA_FUNZIONE": _D("106.79"),
     }
-    assert result.period_gross == _D("2494.74")
+    assert result.period_gross == _D("2493.74")
     decision = _scaling(result)
     assert decision.inputs["scaled"] == "base_salary"
     assert decision.inputs["unscaled"] == "EDR_IPCA,INDENNITA_FUNZIONE"

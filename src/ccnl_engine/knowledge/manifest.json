@@ -847,7 +847,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/energia-petrolio-confindustria",
       "ruleset_version": "2026.2",
-      "source_hash": "f699cc0a677db3b6d45754a8d963ebb25d24b743fb862c04be425ffc500dd9df",
+      "source_hash": "3f47144235909a7215957896c76f8cc17fda34876bf35e733f9b93da990a7d2a",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/energia-petrolio-confindustria.json.gz"

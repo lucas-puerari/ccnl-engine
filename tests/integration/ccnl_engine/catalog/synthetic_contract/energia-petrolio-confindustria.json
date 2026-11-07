@@ -5,117 +5,117 @@
     {
       "level_code": "6-0",
       "as_of": "2027-07-01",
-      "expected_monthly": "2072.49"
+      "expected_monthly": "2080.12"
     },
     {
       "level_code": "5-0",
       "as_of": "2027-07-01",
-      "expected_monthly": "2382.32"
+      "expected_monthly": "2391.09"
     },
     {
       "level_code": "5-1",
       "as_of": "2027-07-01",
-      "expected_monthly": "2382.32"
+      "expected_monthly": "2391.09"
     },
     {
       "level_code": "5-2",
       "as_of": "2027-07-01",
-      "expected_monthly": "2382.32"
+      "expected_monthly": "2391.09"
     },
     {
       "level_code": "5-3",
       "as_of": "2027-07-01",
-      "expected_monthly": "2382.32"
+      "expected_monthly": "2391.09"
     },
     {
       "level_code": "5-4",
       "as_of": "2027-07-01",
-      "expected_monthly": "2382.32"
+      "expected_monthly": "2391.09"
     },
     {
       "level_code": "4-1",
       "as_of": "2027-07-01",
-      "expected_monthly": "2716.61"
+      "expected_monthly": "2726.61"
     },
     {
       "level_code": "4-2",
       "as_of": "2027-07-01",
-      "expected_monthly": "2716.61"
+      "expected_monthly": "2726.61"
     },
     {
       "level_code": "4-3",
       "as_of": "2027-07-01",
-      "expected_monthly": "2716.61"
+      "expected_monthly": "2726.61"
     },
     {
       "level_code": "4-4",
       "as_of": "2027-07-01",
-      "expected_monthly": "2716.61"
+      "expected_monthly": "2726.61"
     },
     {
       "level_code": "3-1",
       "as_of": "2027-07-01",
-      "expected_monthly": "3074.11"
+      "expected_monthly": "3085.42"
     },
     {
       "level_code": "3-2",
       "as_of": "2027-07-01",
-      "expected_monthly": "3074.11"
+      "expected_monthly": "3085.42"
     },
     {
       "level_code": "3-3",
       "as_of": "2027-07-01",
-      "expected_monthly": "3074.11"
+      "expected_monthly": "3085.42"
     },
     {
       "level_code": "3-4",
       "as_of": "2027-07-01",
-      "expected_monthly": "3074.11"
+      "expected_monthly": "3085.42"
     },
     {
       "level_code": "2-1",
       "as_of": "2027-07-01",
-      "expected_monthly": "3394.47"
+      "expected_monthly": "3406.97"
     },
     {
       "level_code": "2-2",
       "as_of": "2027-07-01",
-      "expected_monthly": "3394.47"
+      "expected_monthly": "3406.97"
     },
     {
       "level_code": "2-3",
       "as_of": "2027-07-01",
-      "expected_monthly": "3394.47"
+      "expected_monthly": "3406.97"
     },
     {
       "level_code": "2-4",
       "as_of": "2027-07-01",
-      "expected_monthly": "3394.47"
+      "expected_monthly": "3406.97"
     },
     {
       "level_code": "1-1",
       "as_of": "2027-07-01",
-      "expected_monthly": "3748.10"
+      "expected_monthly": "3761.90"
     },
     {
       "level_code": "1-2",
       "as_of": "2027-07-01",
-      "expected_monthly": "3748.10"
+      "expected_monthly": "3761.90"
     },
     {
       "level_code": "1-3",
       "as_of": "2027-07-01",
-      "expected_monthly": "3748.10"
+      "expected_monthly": "3761.90"
     },
     {
       "level_code": "1-4",
       "as_of": "2027-07-01",
-      "expected_monthly": "3748.10"
+      "expected_monthly": "3761.90"
     },
     {
       "level_code": "1-5",
       "as_of": "2027-07-01",
-      "expected_monthly": "3748.10"
+      "expected_monthly": "3761.90"
     }
   ],
   "apprenticeship_pct_checks": [
