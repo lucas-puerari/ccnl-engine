@@ -70,6 +70,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-05 | claude-opus-5-5 (ai) | Artt. 74 bis-quinquies (PDF pp. 155-158) and Allegato 38 (p. 424) of the CCNL of 1 March 2024, text layer. | corrected | The four contributions and the EDR of art. 74 bis were not modelled: employer cost, and the net pay with the EDR, were short. |
 | 2026-11-08 | gpt-6-sol (ai) | CCNL top-ups of maternity and work injury, read from the signed text by a separate model session; every quote found on the PDF text layer. | confirmed | Added work_rules.insured_absence.maternity.<br>Added work_rules.insured_absence.injury. |
 | 2026-11-08 | gpt-6-sol (ai) | Employer top-up of the INAIL indemnity, read from the signed text by a separate model session (audit of the injury rules); quote checked on the text layer or the page image. | corrected | The injury rule had no top-up of the INAIL indemnity; added: {"integration_rate": "1", "net_basis": true} |
+| 2026-11-08 | claude-opus-5-5 (ai) | FASA coverage of art. 74 quater (PDF p. 157), text layer. | corrected | FASA was permanent-only; the text covers fixed terms of at least nine months in the calendar year: permanent_only false, minimum_fixed_term_months 9, fixed_term_months_in_year. |
 
 ## Salary table
 
@@ -142,11 +143,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Model the first-level and alta formazione apprenticeship tracks.
 
 !!! note "alimentari-federalimentare/health_and_bilateral_funds · bilateral_funds · impact yes · resolved"
-    HEALTH AND BILATERAL FUNDS (artt. 74 bis-quinquies, pp. 155-158): FASA EUR 12 (16 from 2025), Cassa maternità EUR 3.50 (4.50), Cassa rischio vita EUR 30 a year and bilateralità EUR 2 (2.50) a month for the permanent workers, and the EDR of EUR 20 on 12 months of an employer outside the bilateralità, when it states so in EmployerProfile.contractual_funds.
+    HEALTH AND BILATERAL FUNDS (artt. 74 bis-quinquies, pp. 155-158): FASA EUR 12 (16 from 2025) for the permanent workers and the fixed terms of at least nine months in the calendar year, Cassa maternità EUR 3.50 (4.50), Cassa rischio vita EUR 30 a year and bilateralità EUR 2 (2.50) a month are modelled, with the EDR of EUR 20 of an employer outside the bilateralità. Not modelled: the reduced bilateralità of EUR 1.50 for companies with better union-leave terms, the optional worker contribution of EUR 2 to FASA from June 2029, the cover of family members.
 
     **Applies when:** `bilateral_funds` applies.
 
-    **Remediation:** Resolved: parameters.health_funds fasa, cassa_maternita, rischio_vita and bilateralita, read on 2026-11-05.
+    **Remediation:** Model the reduced bilateralità of EUR 1.50 of art. 74 quinquies (company union-leave terms) and the optional FASA worker contribution from June 2029.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
