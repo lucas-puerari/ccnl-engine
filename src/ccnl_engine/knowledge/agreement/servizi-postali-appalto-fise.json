@@ -179,6 +179,28 @@
         "checked": [
           "parameters.seniority_increments"
         ]
+      },
+      {
+        "id": "2026-11-07-ai-servizi-postali-appalto-fise-tables",
+        "date": "2026-11-07",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The monthly values of the levels against the primary tables (text layer).",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf",
+            "sha256": "85cf6d7066abe5ba2740d39b989b159065a20bd7013f07afae8b77ccbf48cde4"
+          }
+        ],
+        "findings": [
+          "28 values found verbatim on the cited pages and marked verified; 7 left as they were (derived or not on a text page)."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels.base_salary",
+          "levels.fixed_allowances"
+        ]
       }
     ]
   },
@@ -518,21 +540,28 @@
             "valid_until": "2025-01-01",
             "value": "1792.95",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-servizi-postali-versione-stampa-250624-pdf",
-                  "title": "ccnl-servizi-postali-versione-stampa-250624-pdf",
+                  "document_id": "servizi-postali-appalto-fise-tables-85cf6d70",
+                  "title": "servizi-postali-appalto-fise: tabelle retributive (ccnl-servizi-postali-versione-stampa-250624.pdf)",
                   "kind": "associazione",
-                  "url": "https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf"
+                  "url": "https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf",
+                  "sha256": "85cf6d7066abe5ba2740d39b989b159065a20bd7013f07afae8b77ccbf48cde4"
                 },
-                "section": "Tabella retributiva"
+                "page": "84",
+                "section": "Allegato 1, Minimi tabellari, Retribuzione base (tabellare + contingenza)",
+                "quote": "1°        166            € 40,82                € 1.266,35               € 526,60       € 1.792,95"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2024-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-servizi-postali-appalto-fise-tables"
               }
             }
           },
@@ -541,21 +570,28 @@
             "valid_until": "2025-12-01",
             "value": "1833.77",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-servizi-postali-versione-stampa-250624-pdf",
-                  "title": "ccnl-servizi-postali-versione-stampa-250624-pdf",
+                  "document_id": "servizi-postali-appalto-fise-tables-85cf6d70",
+                  "title": "servizi-postali-appalto-fise: tabelle retributive (ccnl-servizi-postali-versione-stampa-250624.pdf)",
                   "kind": "associazione",
-                  "url": "https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf"
+                  "url": "https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf",
+                  "sha256": "85cf6d7066abe5ba2740d39b989b159065a20bd7013f07afae8b77ccbf48cde4"
                 },
-                "section": "Tabella retributiva"
+                "page": "84",
+                "section": "Allegato 1, Minimi tabellari, Retribuzione base (tabellare + contingenza)",
+                "quote": "1°        166            € 40,82               € 1.307,17                € 526,60       € 1.833,77"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-servizi-postali-appalto-fise-tables"
               }
             }
           },
@@ -564,21 +600,28 @@
             "valid_until": null,
             "value": "1875.95",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-servizi-postali-versione-stampa-250624-pdf",
-                  "title": "ccnl-servizi-postali-versione-stampa-250624-pdf",
+                  "document_id": "servizi-postali-appalto-fise-tables-85cf6d70",
+                  "title": "servizi-postali-appalto-fise: tabelle retributive (ccnl-servizi-postali-versione-stampa-250624.pdf)",
                   "kind": "associazione",
-                  "url": "https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf"
+                  "url": "https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf",
+                  "sha256": "85cf6d7066abe5ba2740d39b989b159065a20bd7013f07afae8b77ccbf48cde4"
                 },
-                "section": "Tabella retributiva"
+                "page": "84",
+                "section": "Allegato 1, Minimi tabellari, Retribuzione base (tabellare + contingenza)",
+                "quote": "1°        166            € 42,18               € 1.349,35                € 526,60       € 1.875,95"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-servizi-postali-appalto-fise-tables"
               }
             }
           }
@@ -593,7 +636,32 @@
               {
                 "valid_from": "2023-12-21",
                 "valid_until": null,
-                "value": "75.62"
+                "value": "75.62",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "servizi-postali-appalto-fise-tables-85cf6d70",
+                      "title": "servizi-postali-appalto-fise: tabelle retributive (ccnl-servizi-postali-versione-stampa-250624.pdf)",
+                      "kind": "associazione",
+                      "url": "https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf",
+                      "sha256": "85cf6d7066abe5ba2740d39b989b159065a20bd7013f07afae8b77ccbf48cde4"
+                    },
+                    "page": "85",
+                    "section": "Tabella indennità integrativa – Articolo 34 (DICEMBRE 2013)",
+                    "quote": "1                  € 75,62"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2023-12-21",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-servizi-postali-appalto-fise-tables"
+                  }
+                }
               }
             ]
           },
@@ -701,21 +769,28 @@
             "valid_until": "2025-01-01",
             "value": "1581.24",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-servizi-postali-versione-stampa-250624-pdf",
-                  "title": "ccnl-servizi-postali-versione-stampa-250624-pdf",
+                  "document_id": "servizi-postali-appalto-fise-tables-85cf6d70",
+                  "title": "servizi-postali-appalto-fise: tabelle retributive (ccnl-servizi-postali-versione-stampa-250624.pdf)",
                   "kind": "associazione",
-                  "url": "https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf"
+                  "url": "https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf",
+                  "sha256": "85cf6d7066abe5ba2740d39b989b159065a20bd7013f07afae8b77ccbf48cde4"
                 },
-                "section": "Tabella retributiva"
+                "page": "84",
+                "section": "Allegato 1, Minimi tabellari, Retribuzione base (tabellare + contingenza)",
+                "quote": "2°        139            € 34,18                € 1.060,27               € 520,97       € 1.581,24"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2024-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-servizi-postali-appalto-fise-tables"
               }
             }
           },
@@ -724,21 +799,28 @@
             "valid_until": "2025-12-01",
             "value": "1615.42",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-servizi-postali-versione-stampa-250624-pdf",
-                  "title": "ccnl-servizi-postali-versione-stampa-250624-pdf",
+                  "document_id": "servizi-postali-appalto-fise-tables-85cf6d70",
+                  "title": "servizi-postali-appalto-fise: tabelle retributive (ccnl-servizi-postali-versione-stampa-250624.pdf)",
                   "kind": "associazione",
-                  "url": "https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf"
+                  "url": "https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf",
+                  "sha256": "85cf6d7066abe5ba2740d39b989b159065a20bd7013f07afae8b77ccbf48cde4"
                 },
-                "section": "Tabella retributiva"
+                "page": "84",
+                "section": "Allegato 1, Minimi tabellari, Retribuzione base (tabellare + contingenza)",
+                "quote": "2°        139            € 34,18               € 1.094,45                € 520,97       € 1.615,42"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-servizi-postali-appalto-fise-tables"
               }
             }
           },
@@ -747,21 +829,28 @@
             "valid_until": null,
             "value": "1650.74",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-servizi-postali-versione-stampa-250624-pdf",
-                  "title": "ccnl-servizi-postali-versione-stampa-250624-pdf",
+                  "document_id": "servizi-postali-appalto-fise-tables-85cf6d70",
+                  "title": "servizi-postali-appalto-fise: tabelle retributive (ccnl-servizi-postali-versione-stampa-250624.pdf)",
                   "kind": "associazione",
-                  "url": "https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf"
+                  "url": "https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf",
+                  "sha256": "85cf6d7066abe5ba2740d39b989b159065a20bd7013f07afae8b77ccbf48cde4"
                 },
-                "section": "Tabella retributiva"
+                "page": "84",
+                "section": "Allegato 1, Minimi tabellari, Retribuzione base (tabellare + contingenza)",
+                "quote": "2°        139            € 35,32               € 1.129,77                € 520,97       € 1.650,74"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-servizi-postali-appalto-fise-tables"
               }
             }
           }
@@ -776,7 +865,32 @@
               {
                 "valid_from": "2023-12-21",
                 "valid_until": null,
-                "value": "63.33"
+                "value": "63.33",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "servizi-postali-appalto-fise-tables-85cf6d70",
+                      "title": "servizi-postali-appalto-fise: tabelle retributive (ccnl-servizi-postali-versione-stampa-250624.pdf)",
+                      "kind": "associazione",
+                      "url": "https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf",
+                      "sha256": "85cf6d7066abe5ba2740d39b989b159065a20bd7013f07afae8b77ccbf48cde4"
+                    },
+                    "page": "85",
+                    "section": "Tabella indennità integrativa – Articolo 34 (DICEMBRE 2013)",
+                    "quote": "2                  € 63,33"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2023-12-21",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-servizi-postali-appalto-fise-tables"
+                  }
+                }
               }
             ]
           },
@@ -884,21 +998,28 @@
             "valid_until": "2025-01-01",
             "value": "1486.22",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-servizi-postali-versione-stampa-250624-pdf",
-                  "title": "ccnl-servizi-postali-versione-stampa-250624-pdf",
+                  "document_id": "servizi-postali-appalto-fise-tables-85cf6d70",
+                  "title": "servizi-postali-appalto-fise: tabelle retributive (ccnl-servizi-postali-versione-stampa-250624.pdf)",
                   "kind": "associazione",
-                  "url": "https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf"
+                  "url": "https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf",
+                  "sha256": "85cf6d7066abe5ba2740d39b989b159065a20bd7013f07afae8b77ccbf48cde4"
                 },
-                "section": "Tabella retributiva"
+                "page": "84",
+                "section": "Allegato 1, Minimi tabellari, Retribuzione base (tabellare + contingenza)",
+                "quote": "3° s       127            € 31,23                 € 968,76                € 517,46       € 1.486,22"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2024-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-servizi-postali-appalto-fise-tables"
               }
             }
           },
@@ -907,21 +1028,28 @@
             "valid_until": "2025-12-01",
             "value": "1517.45",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-servizi-postali-versione-stampa-250624-pdf",
-                  "title": "ccnl-servizi-postali-versione-stampa-250624-pdf",
+                  "document_id": "servizi-postali-appalto-fise-tables-85cf6d70",
+                  "title": "servizi-postali-appalto-fise: tabelle retributive (ccnl-servizi-postali-versione-stampa-250624.pdf)",
                   "kind": "associazione",
-                  "url": "https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf"
+                  "url": "https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf",
+                  "sha256": "85cf6d7066abe5ba2740d39b989b159065a20bd7013f07afae8b77ccbf48cde4"
                 },
-                "section": "Tabella retributiva"
+                "page": "84",
+                "section": "Allegato 1, Minimi tabellari, Retribuzione base (tabellare + contingenza)",
+                "quote": "3° s       127            € 31,23                 € 999,99                € 517,46       € 1.517,45"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-servizi-postali-appalto-fise-tables"
               }
             }
           },
@@ -930,21 +1058,28 @@
             "valid_until": null,
             "value": "1549.72",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-servizi-postali-versione-stampa-250624-pdf",
-                  "title": "ccnl-servizi-postali-versione-stampa-250624-pdf",
+                  "document_id": "servizi-postali-appalto-fise-tables-85cf6d70",
+                  "title": "servizi-postali-appalto-fise: tabelle retributive (ccnl-servizi-postali-versione-stampa-250624.pdf)",
                   "kind": "associazione",
-                  "url": "https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf"
+                  "url": "https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf",
+                  "sha256": "85cf6d7066abe5ba2740d39b989b159065a20bd7013f07afae8b77ccbf48cde4"
                 },
-                "section": "Tabella retributiva"
+                "page": "84",
+                "section": "Allegato 1, Minimi tabellari, Retribuzione base (tabellare + contingenza)",
+                "quote": "3° s       127            € 32,27               € 1.032,26                € 517,46       € 1.549,72"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-servizi-postali-appalto-fise-tables"
               }
             }
           }
@@ -959,7 +1094,32 @@
               {
                 "valid_from": "2023-12-21",
                 "valid_until": null,
-                "value": "57.82"
+                "value": "57.82",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "servizi-postali-appalto-fise-tables-85cf6d70",
+                      "title": "servizi-postali-appalto-fise: tabelle retributive (ccnl-servizi-postali-versione-stampa-250624.pdf)",
+                      "kind": "associazione",
+                      "url": "https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf",
+                      "sha256": "85cf6d7066abe5ba2740d39b989b159065a20bd7013f07afae8b77ccbf48cde4"
+                    },
+                    "page": "85",
+                    "section": "Tabella indennità integrativa – Articolo 34 (DICEMBRE 2013)",
+                    "quote": "3s                  € 57,82"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2023-12-21",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-servizi-postali-appalto-fise-tables"
+                  }
+                }
               }
             ]
           },
@@ -1067,21 +1227,28 @@
             "valid_until": "2025-01-01",
             "value": "1448.09",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-servizi-postali-versione-stampa-250624-pdf",
-                  "title": "ccnl-servizi-postali-versione-stampa-250624-pdf",
+                  "document_id": "servizi-postali-appalto-fise-tables-85cf6d70",
+                  "title": "servizi-postali-appalto-fise: tabelle retributive (ccnl-servizi-postali-versione-stampa-250624.pdf)",
                   "kind": "associazione",
-                  "url": "https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf"
+                  "url": "https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf",
+                  "sha256": "85cf6d7066abe5ba2740d39b989b159065a20bd7013f07afae8b77ccbf48cde4"
                 },
-                "section": "Tabella retributiva"
+                "page": "84",
+                "section": "Allegato 1, Minimi tabellari, Retribuzione base (tabellare + contingenza)",
+                "quote": "3°        122            € 30,00                 € 930,63                € 517,46       € 1.448,09"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2024-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-servizi-postali-appalto-fise-tables"
               }
             }
           },
@@ -1090,21 +1257,28 @@
             "valid_until": "2025-12-01",
             "value": "1478.09",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-servizi-postali-versione-stampa-250624-pdf",
-                  "title": "ccnl-servizi-postali-versione-stampa-250624-pdf",
+                  "document_id": "servizi-postali-appalto-fise-tables-85cf6d70",
+                  "title": "servizi-postali-appalto-fise: tabelle retributive (ccnl-servizi-postali-versione-stampa-250624.pdf)",
                   "kind": "associazione",
-                  "url": "https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf"
+                  "url": "https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf",
+                  "sha256": "85cf6d7066abe5ba2740d39b989b159065a20bd7013f07afae8b77ccbf48cde4"
                 },
-                "section": "Tabella retributiva"
+                "page": "84",
+                "section": "Allegato 1, Minimi tabellari, Retribuzione base (tabellare + contingenza)",
+                "quote": "3°        122            € 30,00                 € 960,63                € 517,46       € 1.478,09"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-servizi-postali-appalto-fise-tables"
               }
             }
           },
@@ -1113,21 +1287,28 @@
             "valid_until": null,
             "value": "1509.09",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-servizi-postali-versione-stampa-250624-pdf",
-                  "title": "ccnl-servizi-postali-versione-stampa-250624-pdf",
+                  "document_id": "servizi-postali-appalto-fise-tables-85cf6d70",
+                  "title": "servizi-postali-appalto-fise: tabelle retributive (ccnl-servizi-postali-versione-stampa-250624.pdf)",
                   "kind": "associazione",
-                  "url": "https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf"
+                  "url": "https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf",
+                  "sha256": "85cf6d7066abe5ba2740d39b989b159065a20bd7013f07afae8b77ccbf48cde4"
                 },
-                "section": "Tabella retributiva"
+                "page": "84",
+                "section": "Allegato 1, Minimi tabellari, Retribuzione base (tabellare + contingenza)",
+                "quote": "3°        122            € 31,00                 € 991,63                € 517,46       € 1.509,09"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-servizi-postali-appalto-fise-tables"
               }
             }
           }
@@ -1142,7 +1323,32 @@
               {
                 "valid_from": "2023-12-21",
                 "valid_until": null,
-                "value": "55.56"
+                "value": "55.56",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "servizi-postali-appalto-fise-tables-85cf6d70",
+                      "title": "servizi-postali-appalto-fise: tabelle retributive (ccnl-servizi-postali-versione-stampa-250624.pdf)",
+                      "kind": "associazione",
+                      "url": "https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf",
+                      "sha256": "85cf6d7066abe5ba2740d39b989b159065a20bd7013f07afae8b77ccbf48cde4"
+                    },
+                    "page": "85",
+                    "section": "Tabella indennità integrativa – Articolo 34 (DICEMBRE 2013)",
+                    "quote": "3                  € 55,56"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2023-12-21",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-servizi-postali-appalto-fise-tables"
+                  }
+                }
               }
             ]
           },
@@ -1250,21 +1456,28 @@
             "valid_until": "2025-01-01",
             "value": "1399.90",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-servizi-postali-versione-stampa-250624-pdf",
-                  "title": "ccnl-servizi-postali-versione-stampa-250624-pdf",
+                  "document_id": "servizi-postali-appalto-fise-tables-85cf6d70",
+                  "title": "servizi-postali-appalto-fise: tabelle retributive (ccnl-servizi-postali-versione-stampa-250624.pdf)",
                   "kind": "associazione",
-                  "url": "https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf"
+                  "url": "https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf",
+                  "sha256": "85cf6d7066abe5ba2740d39b989b159065a20bd7013f07afae8b77ccbf48cde4"
                 },
-                "section": "Tabella retributiva"
+                "page": "84",
+                "section": "Allegato 1, Minimi tabellari, Retribuzione base (tabellare + contingenza)",
+                "quote": "4° s       116            € 28,52                 € 884,85                € 515,05       € 1.399,90"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2024-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-servizi-postali-appalto-fise-tables"
               }
             }
           },
@@ -1273,21 +1486,28 @@
             "valid_until": "2025-12-01",
             "value": "1428.42",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-servizi-postali-versione-stampa-250624-pdf",
-                  "title": "ccnl-servizi-postali-versione-stampa-250624-pdf",
+                  "document_id": "servizi-postali-appalto-fise-tables-85cf6d70",
+                  "title": "servizi-postali-appalto-fise: tabelle retributive (ccnl-servizi-postali-versione-stampa-250624.pdf)",
                   "kind": "associazione",
-                  "url": "https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf"
+                  "url": "https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf",
+                  "sha256": "85cf6d7066abe5ba2740d39b989b159065a20bd7013f07afae8b77ccbf48cde4"
                 },
-                "section": "Tabella retributiva"
+                "page": "84",
+                "section": "Allegato 1, Minimi tabellari, Retribuzione base (tabellare + contingenza)",
+                "quote": "4° s       116            € 28,52                 € 913,37                € 515,05       € 1.428,42"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-servizi-postali-appalto-fise-tables"
               }
             }
           },
@@ -1296,21 +1516,28 @@
             "valid_until": null,
             "value": "1457.90",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-servizi-postali-versione-stampa-250624-pdf",
-                  "title": "ccnl-servizi-postali-versione-stampa-250624-pdf",
+                  "document_id": "servizi-postali-appalto-fise-tables-85cf6d70",
+                  "title": "servizi-postali-appalto-fise: tabelle retributive (ccnl-servizi-postali-versione-stampa-250624.pdf)",
                   "kind": "associazione",
-                  "url": "https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf"
+                  "url": "https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf",
+                  "sha256": "85cf6d7066abe5ba2740d39b989b159065a20bd7013f07afae8b77ccbf48cde4"
                 },
-                "section": "Tabella retributiva"
+                "page": "84",
+                "section": "Allegato 1, Minimi tabellari, Retribuzione base (tabellare + contingenza)",
+                "quote": "4° s       116            € 29,48                 € 942,85                € 515,05       € 1.457,90"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-servizi-postali-appalto-fise-tables"
               }
             }
           }
@@ -1325,7 +1552,32 @@
               {
                 "valid_from": "2023-12-21",
                 "valid_until": null,
-                "value": "52.89"
+                "value": "52.89",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "servizi-postali-appalto-fise-tables-85cf6d70",
+                      "title": "servizi-postali-appalto-fise: tabelle retributive (ccnl-servizi-postali-versione-stampa-250624.pdf)",
+                      "kind": "associazione",
+                      "url": "https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf",
+                      "sha256": "85cf6d7066abe5ba2740d39b989b159065a20bd7013f07afae8b77ccbf48cde4"
+                    },
+                    "page": "85",
+                    "section": "Tabella indennità integrativa – Articolo 34 (DICEMBRE 2013)",
+                    "quote": "4s                  € 52,89"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2023-12-21",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-servizi-postali-appalto-fise-tables"
+                  }
+                }
               }
             ]
           },
@@ -1433,21 +1685,28 @@
             "valid_until": "2025-01-01",
             "value": "1354.19",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-servizi-postali-versione-stampa-250624-pdf",
-                  "title": "ccnl-servizi-postali-versione-stampa-250624-pdf",
+                  "document_id": "servizi-postali-appalto-fise-tables-85cf6d70",
+                  "title": "servizi-postali-appalto-fise: tabelle retributive (ccnl-servizi-postali-versione-stampa-250624.pdf)",
                   "kind": "associazione",
-                  "url": "https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf"
+                  "url": "https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf",
+                  "sha256": "85cf6d7066abe5ba2740d39b989b159065a20bd7013f07afae8b77ccbf48cde4"
                 },
-                "section": "Tabella retributiva"
+                "page": "84",
+                "section": "Allegato 1, Minimi tabellari, Retribuzione base (tabellare + contingenza)",
+                "quote": "4°        110            € 27,05                 € 839,14                € 515,05       € 1.354,19"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2024-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-servizi-postali-appalto-fise-tables"
               }
             }
           },
@@ -1456,21 +1715,28 @@
             "valid_until": "2025-12-01",
             "value": "1381.24",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-servizi-postali-versione-stampa-250624-pdf",
-                  "title": "ccnl-servizi-postali-versione-stampa-250624-pdf",
+                  "document_id": "servizi-postali-appalto-fise-tables-85cf6d70",
+                  "title": "servizi-postali-appalto-fise: tabelle retributive (ccnl-servizi-postali-versione-stampa-250624.pdf)",
                   "kind": "associazione",
-                  "url": "https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf"
+                  "url": "https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf",
+                  "sha256": "85cf6d7066abe5ba2740d39b989b159065a20bd7013f07afae8b77ccbf48cde4"
                 },
-                "section": "Tabella retributiva"
+                "page": "84",
+                "section": "Allegato 1, Minimi tabellari, Retribuzione base (tabellare + contingenza)",
+                "quote": "4°        110            € 27,05                 € 866,19                € 515,05       € 1.381,24"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-servizi-postali-appalto-fise-tables"
               }
             }
           },
@@ -1479,21 +1745,28 @@
             "valid_until": null,
             "value": "1409.19",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-servizi-postali-versione-stampa-250624-pdf",
-                  "title": "ccnl-servizi-postali-versione-stampa-250624-pdf",
+                  "document_id": "servizi-postali-appalto-fise-tables-85cf6d70",
+                  "title": "servizi-postali-appalto-fise: tabelle retributive (ccnl-servizi-postali-versione-stampa-250624.pdf)",
                   "kind": "associazione",
-                  "url": "https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf"
+                  "url": "https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf",
+                  "sha256": "85cf6d7066abe5ba2740d39b989b159065a20bd7013f07afae8b77ccbf48cde4"
                 },
-                "section": "Tabella retributiva"
+                "page": "84",
+                "section": "Allegato 1, Minimi tabellari, Retribuzione base (tabellare + contingenza)",
+                "quote": "4°        110            € 27,95                 € 894,14                € 515,05       € 1.409,19"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-servizi-postali-appalto-fise-tables"
               }
             }
           }
@@ -1508,7 +1781,32 @@
               {
                 "valid_from": "2023-12-21",
                 "valid_until": null,
-                "value": "50.22"
+                "value": "50.22",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "servizi-postali-appalto-fise-tables-85cf6d70",
+                      "title": "servizi-postali-appalto-fise: tabelle retributive (ccnl-servizi-postali-versione-stampa-250624.pdf)",
+                      "kind": "associazione",
+                      "url": "https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf",
+                      "sha256": "85cf6d7066abe5ba2740d39b989b159065a20bd7013f07afae8b77ccbf48cde4"
+                    },
+                    "page": "85",
+                    "section": "Tabella indennità integrativa – Articolo 34 (DICEMBRE 2013)",
+                    "quote": "4                  € 50,22"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2023-12-21",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-servizi-postali-appalto-fise-tables"
+                  }
+                }
               }
             ]
           },
@@ -1616,21 +1914,28 @@
             "valid_until": "2025-01-01",
             "value": "1275.69",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-servizi-postali-versione-stampa-250624-pdf",
-                  "title": "ccnl-servizi-postali-versione-stampa-250624-pdf",
+                  "document_id": "servizi-postali-appalto-fise-tables-85cf6d70",
+                  "title": "servizi-postali-appalto-fise: tabelle retributive (ccnl-servizi-postali-versione-stampa-250624.pdf)",
                   "kind": "associazione",
-                  "url": "https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf"
+                  "url": "https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf",
+                  "sha256": "85cf6d7066abe5ba2740d39b989b159065a20bd7013f07afae8b77ccbf48cde4"
                 },
-                "section": "Tabella retributiva"
+                "page": "84",
+                "section": "Allegato 1, Minimi tabellari, Retribuzione base (tabellare + contingenza)",
+                "quote": "5°        100            € 24,59                 € 762,84                € 512,85       € 1.275,69"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2024-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-servizi-postali-appalto-fise-tables"
               }
             }
           },
@@ -1639,21 +1944,28 @@
             "valid_until": "2025-12-01",
             "value": "1300.28",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-servizi-postali-versione-stampa-250624-pdf",
-                  "title": "ccnl-servizi-postali-versione-stampa-250624-pdf",
+                  "document_id": "servizi-postali-appalto-fise-tables-85cf6d70",
+                  "title": "servizi-postali-appalto-fise: tabelle retributive (ccnl-servizi-postali-versione-stampa-250624.pdf)",
                   "kind": "associazione",
-                  "url": "https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf"
+                  "url": "https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf",
+                  "sha256": "85cf6d7066abe5ba2740d39b989b159065a20bd7013f07afae8b77ccbf48cde4"
                 },
-                "section": "Tabella retributiva"
+                "page": "84",
+                "section": "Allegato 1, Minimi tabellari, Retribuzione base (tabellare + contingenza)",
+                "quote": "5°        100            € 24,59                 € 787,43                € 512,85       € 1.300,28"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-servizi-postali-appalto-fise-tables"
               }
             }
           },
@@ -1662,21 +1974,28 @@
             "valid_until": null,
             "value": "1325.69",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-servizi-postali-versione-stampa-250624-pdf",
-                  "title": "ccnl-servizi-postali-versione-stampa-250624-pdf",
+                  "document_id": "servizi-postali-appalto-fise-tables-85cf6d70",
+                  "title": "servizi-postali-appalto-fise: tabelle retributive (ccnl-servizi-postali-versione-stampa-250624.pdf)",
                   "kind": "associazione",
-                  "url": "https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf"
+                  "url": "https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf",
+                  "sha256": "85cf6d7066abe5ba2740d39b989b159065a20bd7013f07afae8b77ccbf48cde4"
                 },
-                "section": "Tabella retributiva"
+                "page": "84",
+                "section": "Allegato 1, Minimi tabellari, Retribuzione base (tabellare + contingenza)",
+                "quote": "5°        100            € 25,41                 € 812,84                € 512,85       € 1.325,69"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-12-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-servizi-postali-appalto-fise-tables"
               }
             }
           }
@@ -1691,7 +2010,32 @@
               {
                 "valid_from": "2023-12-21",
                 "valid_until": null,
-                "value": "45.53"
+                "value": "45.53",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "servizi-postali-appalto-fise-tables-85cf6d70",
+                      "title": "servizi-postali-appalto-fise: tabelle retributive (ccnl-servizi-postali-versione-stampa-250624.pdf)",
+                      "kind": "associazione",
+                      "url": "https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf",
+                      "sha256": "85cf6d7066abe5ba2740d39b989b159065a20bd7013f07afae8b77ccbf48cde4"
+                    },
+                    "page": "85",
+                    "section": "Tabella indennità integrativa – Articolo 34 (DICEMBRE 2013)",
+                    "quote": "5                  € 45,53"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2023-12-21",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-servizi-postali-appalto-fise-tables"
+                  }
+                }
               }
             ]
           },
@@ -1773,7 +2117,7 @@
     "effective_until": null,
     "source": "https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf",
     "verification_status": "unverified",
-    "source_hash": "1eca89e371f8ac171d0db4b763514c35fc977db9ad28020836f4dbeb85aaa4fe",
+    "source_hash": "bb5a0aed0d66796854bd9dc9dca9f535c7f5b52e64349a7684c63b93e99fde2a",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

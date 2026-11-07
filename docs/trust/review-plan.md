@@ -9,11 +9,11 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | Group | CCNLs | Workers | Weak | Derived | Verified | Aggregator | Anchor |
 |---|---:|---:|---:|---:|---:|---:|---|
 | pubblica-amministrazione | 14 | 7 548 000 | 14 | 229 | 182 | 0 | `funzioni-centrali-aran` |
-| terziario | 46 | 5 257 055 | 53 | 1557 | 1072 | 4 | `commercio-confcommercio`, `sanita-privata-aiop-aris` |
-| industria | 49 | 4 969 900 | 153 | 1843 | 1600 | 15 | `logistica-trasporto-confetra`, `metalmeccanico-federmeccanica` |
+| terziario | 46 | 5 257 055 | 53 | 1372 | 1257 | 4 | `commercio-confcommercio`, `sanita-privata-aiop-aris` |
+| industria | 49 | 4 969 900 | 153 | 1646 | 1797 | 15 | `logistica-trasporto-confetra`, `metalmeccanico-federmeccanica` |
 | lavoro-domestico | 3 | 1 800 000 | 0 | 3 | 60 | 0 | `lavoro-domestico-non-convivente` |
-| artigianato | 8 | 1 244 505 | 34 | 228 | 222 | 2 | `metalmeccanico-artigianato` |
-| agricoltura | 9 | 752 860 | 12 | 164 | 170 | 5 | `operai-agricoli-florovivaisti` |
+| artigianato | 8 | 1 244 505 | 34 | 197 | 253 | 2 | `metalmeccanico-artigianato` |
+| agricoltura | 9 | 752 860 | 12 | 140 | 194 | 5 | `operai-agricoli-florovivaisti` |
 | edilizia | 4 | 710 000 | 2 | 117 | 95 | 0 | `edilizia-ance` |
 | credito | 3 | 348 000 | 2 | 39 | 79 | 0 | `bancari-abi` |
 
@@ -49,12 +49,12 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | [`studi-professionali-confprofessioni`](../contracts/studi-professionali-confprofessioni.md) | 350 000 | reviewed | 0 | 2 | 53 | party or official | maintainer | 2027-04-30 |
 | [`terziario-confesercenti`](../contracts/terziario-confesercenti.md) | 230 000 | reviewed | 0 | 2 | 92 | party or official | maintainer | 2027-03-31 |
 | [`turismo-federalberghi`](../contracts/turismo-federalberghi.md) | 220 000 | production | 0 | 1 | 78 | party or official | maintainer | 2027-04-30 |
-| [`turismo-federalberghi-alberghi-minori`](../contracts/turismo-federalberghi-alberghi-minori.md) | 220 000 | exploratory | 0 | 51 | 18 | party or official | none | none |
+| [`turismo-federalberghi-alberghi-minori`](../contracts/turismo-federalberghi-alberghi-minori.md) | 220 000 | exploratory | 0 | 1 | 68 | party or official | none | none |
 | [`sanita-privata-aiop-aris`](../contracts/sanita-privata-aiop-aris.md) (anchor) | 150 000 | exploratory | 0 | 2 | 36 | party or official | maintainer | 2027-06-30 |
 | [`uneba-uneba`](../contracts/uneba-uneba.md) | 130 000 | exploratory | 1 | 41 | 1 | party or official | none | none |
 | [`autoferrotranvieri-internavigatori`](../contracts/autoferrotranvieri-internavigatori.md) | 120 000 | exploratory | 1 | 139 | 0 | party or official | none | none |
 | [`istituzioni-servizi-socio-assistenziali-anaste`](../contracts/istituzioni-servizi-socio-assistenziali-anaste.md) | 120 000 | exploratory | 1 | 31 | 37 | party or official | none | none |
-| [`vigilanza-privata-assiv`](../contracts/vigilanza-privata-assiv.md) | 85 000 | exploratory | 1 | 49 | 0 | party or official | none | none |
+| [`vigilanza-privata-assiv`](../contracts/vigilanza-privata-assiv.md) | 85 000 | exploratory | 1 | 7 | 42 | party or official | none | none |
 | [`distribuzione-cooperativa-ancc`](../contracts/distribuzione-cooperativa-ancc.md) | 63 000 | exploratory | 1 | 62 | 1 | aggregator | none | none |
 | [`ortofrutticoli-agrumari`](../contracts/ortofrutticoli-agrumari.md) | 60 000 | exploratory | 7 | 0 | 47 | aggregator | none | none |
 | [`farmacie-private-h121`](../contracts/farmacie-private-h121.md) | 60 000 | exploratory | 1 | 41 | 4 | party or official | none | none |
@@ -66,7 +66,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | [`industria-turistica-federturismo`](../contracts/industria-turistica-federturismo.md) | 40 000 | exploratory | 1 | 10 | 36 | aggregator | none | none |
 | [`portieri-fabbricati-confedilizia`](../contracts/portieri-fabbricati-confedilizia.md) | 40 000 | exploratory | 1 | 38 | 0 | party or official | none | none |
 | [`impianti-sportivi-sport`](../contracts/impianti-sportivi-sport.md) | 35 533 | exploratory | 2 | 32 | 0 | party or official | none | none |
-| [`scuole-materne-fism`](../contracts/scuole-materne-fism.md) | 30 000 | exploratory | 1 | 47 | 1 | party or official | none | none |
+| [`scuole-materne-fism`](../contracts/scuole-materne-fism.md) | 30 000 | exploratory | 1 | 7 | 41 | party or official | none | none |
 | [`agenzie-viaggio-fiavet`](../contracts/agenzie-viaggio-fiavet.md) | 25 000 | exploratory | 1 | 59 | 10 | party or official | none | none |
 | [`scuole-private-laiche-aninsei`](../contracts/scuole-private-laiche-aninsei.md) | 25 000 | exploratory | 1 | 44 | 0 | party or official | none | none |
 | [`ced-assoced`](../contracts/ced-assoced.md) | 22 000 | exploratory | 2 | 44 | 0 | party or official | none | none |
@@ -79,8 +79,8 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | [`noleggio-autobus-conducente-anav`](../contracts/noleggio-autobus-conducente-anav.md) | 5 422 | exploratory | 4 | 33 | 34 | party or official | none | none |
 | [`agenzie-marittime-i481`](../contracts/agenzie-marittime-i481.md) | 5 000 | exploratory | 1 | 36 | 1 | party or official | none | none |
 | [`fiori-recisi-ancef`](../contracts/fiori-recisi-ancef.md) | 1 300 | exploratory | 1 | 38 | 1 | party or official | none | none |
-| [`recapito-corrispondenza-fise`](../contracts/recapito-corrispondenza-fise.md) | 1 000 | exploratory | 2 | 47 | 0 | party or official | none | none |
-| [`servizi-postali-appalto-fise`](../contracts/servizi-postali-appalto-fise.md) | 1 000 | exploratory | 1 | 48 | 2 | party or official | none | none |
+| [`recapito-corrispondenza-fise`](../contracts/recapito-corrispondenza-fise.md) | 1 000 | exploratory | 2 | 15 | 32 | party or official | none | none |
+| [`servizi-postali-appalto-fise`](../contracts/servizi-postali-appalto-fise.md) | 1 000 | exploratory | 1 | 27 | 23 | party or official | none | none |
 | [`agenti-immobiliari-fiaip`](../contracts/agenti-immobiliari-fiaip.md) | none | exploratory | 2 | 1 | 29 | party or official | none | none |
 | [`autoscuole-unasca`](../contracts/autoscuole-unasca.md) | none | exploratory | 1 | 32 | 1 | party or official | none | none |
 | [`aziende-termali-federterme`](../contracts/aziende-termali-federterme.md) | none | exploratory | 1 | 65 | 0 | party or official | none | none |
@@ -96,10 +96,10 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | [`logistica-trasporto-confetra-viaggiante`](../contracts/logistica-trasporto-confetra-viaggiante.md) | 430 000 | reviewed | 0 | 30 | 56 | party or official | maintainer | 2027-06-01 |
 | [`metalmeccanico-confapi`](../contracts/metalmeccanico-confapi.md) | 350 000 | reviewed | 0 | 7 | 69 | party or official | maintainer | 2027-05-01 |
 | [`chimica-farmaceutica-federchimica`](../contracts/chimica-farmaceutica-federchimica.md) | 210 000 | reviewed | 0 | 6 | 120 | party or official | maintainer | 2027-04-30 |
-| [`tessile-smi`](../contracts/tessile-smi.md) | 160 000 | exploratory | 2 | 47 | 0 | party or official | none | none |
+| [`tessile-smi`](../contracts/tessile-smi.md) | 160 000 | exploratory | 2 | 7 | 40 | party or official | none | none |
 | [`alimentari-federalimentare`](../contracts/alimentari-federalimentare.md) | 145 000 | reviewed | 0 | 0 | 272 | party or official | maintainer | 2027-04-30 |
 | [`poste-italiane-k700`](../contracts/poste-italiane-k700.md) | 117 000 | exploratory | 1 | 53 | 1 | party or official | none | none |
-| [`telecomunicazioni-asstel`](../contracts/telecomunicazioni-asstel.md) | 110 000 | exploratory | 1 | 44 | 2 | party or official | none | none |
+| [`telecomunicazioni-asstel`](../contracts/telecomunicazioni-asstel.md) | 110 000 | exploratory | 1 | 35 | 11 | party or official | none | none |
 | [`metalmeccanico-confimi-pmi`](../contracts/metalmeccanico-confimi-pmi.md) | 100 000 | exploratory | 0 | 46 | 1 | aggregator | none | none |
 | [`gomma-plastica-federazione-gomma-plastica`](../contracts/gomma-plastica-federazione-gomma-plastica.md) | 90 000 | exploratory | 2 | 7 | 70 | aggregator | none | none |
 | [`legno-arredamento-federlegno`](../contracts/legno-arredamento-federlegno.md) | 90 000 | exploratory | 1 | 88 | 17 | aggregator | none | none |
@@ -109,14 +109,14 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | [`gas-acqua-utilitalia`](../contracts/gas-acqua-utilitalia.md) | 65 000 | exploratory | 1 | 53 | 10 | party or official | none | none |
 | [`igiene-ambientale-utilitalia`](../contracts/igiene-ambientale-utilitalia.md) | 65 000 | exploratory | 1 | 96 | 48 | aggregator | none | none |
 | [`elettrico-elettricita-futura`](../contracts/elettrico-elettricita-futura.md) | 60 000 | exploratory | 1 | 21 | 57 | aggregator | none | none |
-| [`chimica-affini-pmi-unionchimica`](../contracts/chimica-affini-pmi-unionchimica.md) | 56 000 | exploratory | 2 | 53 | 0 | aggregator | none | none |
+| [`chimica-affini-pmi-unionchimica`](../contracts/chimica-affini-pmi-unionchimica.md) | 56 000 | exploratory | 2 | 13 | 40 | aggregator | none | none |
 | [`tessile-pmi-uniontessile`](../contracts/tessile-pmi-uniontessile.md) | 48 000 | exploratory | 6 | 0 | 42 | aggregator | none | none |
 | [`trasporto-aereo-assaeroporti`](../contracts/trasporto-aereo-assaeroporti.md) | 40 000 | exploratory | 1 | 50 | 45 | party or official | none | none |
 | [`energia-petrolio-confindustria`](../contracts/energia-petrolio-confindustria.md) | 38 000 | exploratory | 1 | 171 | 0 | party or official | none | none |
 | [`alimentari-pmi-unionalimentari`](../contracts/alimentari-pmi-unionalimentari.md) | 35 000 | exploratory | 1 | 35 | 37 | party or official | none | none |
 | [`carta-cartone-assocarta`](../contracts/carta-cartone-assocarta.md) | 35 000 | exploratory | 1 | 61 | 14 | aggregator | none | none |
 | [`vetro-meccanizzato-assovetro`](../contracts/vetro-meccanizzato-assovetro.md) | 28 000 | exploratory | 36 | 0 | 0 | aggregator | none | none |
-| [`metalmeccanica-cooperative`](../contracts/metalmeccanica-cooperative.md) | 28 000 | exploratory | 1 | 45 | 1 | party or official | none | none |
+| [`metalmeccanica-cooperative`](../contracts/metalmeccanica-cooperative.md) | 28 000 | exploratory | 1 | 9 | 37 | party or official | none | none |
 | [`cemento-calce-gesso-industria`](../contracts/cemento-calce-gesso-industria.md) | 25 000 | exploratory | 1 | 36 | 45 | party or official | none | none |
 | [`ceramica-industria-confindustria`](../contracts/ceramica-industria-confindustria.md) | 23 000 | exploratory | 2 | 12 | 48 | party or official | none | none |
 | [`ceramica-sanitaria-stoviglieria-confindustria`](../contracts/ceramica-sanitaria-stoviglieria-confindustria.md) | 23 000 | exploratory | 2 | 18 | 52 | party or official | none | none |
@@ -130,8 +130,8 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | [`pelli-cuoio-industria-assopellettieri`](../contracts/pelli-cuoio-industria-assopellettieri.md) | 17 000 | exploratory | 2 | 35 | 0 | party or official | none | none |
 | [`laterizi-industria-f021`](../contracts/laterizi-industria-f021.md) | 17 000 | exploratory | 1 | 98 | 1 | party or official | none | none |
 | [`autostrade-trafori`](../contracts/autostrade-trafori.md) | 15 000 | exploratory | 2 | 96 | 55 | party or official | none | none |
-| [`funivie-anef`](../contracts/funivie-anef.md) | 15 000 | exploratory | 2 | 47 | 2 | party or official | none | none |
-| [`alimentaristi-cooperative-e016`](../contracts/alimentaristi-cooperative-e016.md) | 15 000 | exploratory | 1 | 69 | 2 | aggregator | none | none |
+| [`funivie-anef`](../contracts/funivie-anef.md) | 15 000 | exploratory | 2 | 15 | 34 | party or official | none | none |
+| [`alimentaristi-cooperative-e016`](../contracts/alimentaristi-cooperative-e016.md) | 15 000 | exploratory | 1 | 29 | 42 | aggregator | none | none |
 | [`marittimi-industria-armatoriale`](../contracts/marittimi-industria-armatoriale.md) | 15 000 | exploratory | 1 | 39 | 2 | party or official | none | none |
 | [`anas`](../contracts/anas.md) | 7 000 | exploratory | 1 | 42 | 1 | party or official | none | none |
 | [`materiali-costruzione-lapidei-confapi`](../contracts/materiali-costruzione-lapidei-confapi.md) | 5 000 | exploratory | 21 | 8 | 41 | party or official | none | none |
@@ -154,7 +154,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | CCNL | Workers | Readiness | Weak | Derived | Verified | Source | Owner | Next review |
 |---|---:|---|---:|---:|---:|---|---|---|
 | [`edilizia-artigianato-cna`](../contracts/edilizia-artigianato-cna.md) | 350 000 | exploratory | 1 | 44 | 28 | party or official | none | none |
-| [`metalmeccanico-artigianato`](../contracts/metalmeccanico-artigianato.md) (anchor) | 350 000 | exploratory | 0 | 43 | 38 | party or official | maintainer | 2027-01-31 |
+| [`metalmeccanico-artigianato`](../contracts/metalmeccanico-artigianato.md) (anchor) | 350 000 | exploratory | 0 | 12 | 69 | party or official | maintainer | 2027-01-31 |
 | [`tessile-moda-artigianato-confartigianato`](../contracts/tessile-moda-artigianato-confartigianato.md) | 120 000 | exploratory | 1 | 11 | 61 | aggregator | none | none |
 | [`acconciatura-estetica-confartigianato`](../contracts/acconciatura-estetica-confartigianato.md) | 95 000 | exploratory | 1 | 29 | 0 | party or official | none | none |
 | [`legno-lapidei-artigianato-confartigianato`](../contracts/legno-lapidei-artigianato-confartigianato.md) | 95 000 | exploratory | 1 | 6 | 33 | aggregator | none | none |
@@ -170,7 +170,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | [`impiegati-tecnici-agricoli`](../contracts/impiegati-tecnici-agricoli.md) | 80 000 | exploratory | 2 | 8 | 7 | aggregator | none | none |
 | [`cooperative-consorzi-agricoli`](../contracts/cooperative-consorzi-agricoli.md) | 60 000 | exploratory | 0 | 8 | 34 | party or official | maintainer | 2027-02-01 |
 | [`consorzi-di-bonifica-snebi`](../contracts/consorzi-di-bonifica-snebi.md) | 4 000 | exploratory | 2 | 55 | 5 | party or official | none | none |
-| [`contoterzismo-caiagromec`](../contracts/contoterzismo-caiagromec.md) | 4 000 | exploratory | 1 | 48 | 1 | party or official | none | none |
+| [`contoterzismo-caiagromec`](../contracts/contoterzismo-caiagromec.md) | 4 000 | exploratory | 1 | 24 | 25 | party or official | none | none |
 | [`consorzi-agrari-assocap`](../contracts/consorzi-agrari-assocap.md) | 2 000 | exploratory | 1 | 21 | 34 | aggregator | none | none |
 | [`organizzazioni-allevatori-aia`](../contracts/organizzazioni-allevatori-aia.md) | 2 000 | exploratory | 1 | 7 | 40 | aggregator | none | none |
 | [`sistemazioni-idraulico-forestali-impiegati`](../contracts/sistemazioni-idraulico-forestali-impiegati.md) | 430 | exploratory | 2 | 6 | 22 | aggregator | none | none |
