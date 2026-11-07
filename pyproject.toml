@@ -330,6 +330,7 @@ source_paths = [
     "src/ccnl_engine/fund/assistance/rules.py",
     "src/ccnl_engine/fund/contractual/policies.py",
     "src/ccnl_engine/fund/contractual/rules.py",
+    "src/ccnl_engine/fund/health/rules.py",
     "src/ccnl_engine/fund/health/services.py",
     "src/ccnl_engine/fund/solidarity/services.py",
     "src/ccnl_engine/pension_fund/conversion/services.py",
