@@ -303,7 +303,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/bancari-abi",
       "ruleset_version": "2026.2",
-      "source_hash": "6220e8ac5b0572051532e1c5f5bc186e716d35495f8b63ce01dff3d160d775a8",
+      "source_hash": "47259d8906eded09def3f6a30416705ca8e10ee39d8ca2e84824d1d1a2d267e7",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/bancari-abi.json.gz"
@@ -2741,7 +2741,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "b24d9b121da53964a8861e87ddde28cc9e9c3e115395e0fe9b227a3351681709",
+      "source_hash": "e230f291c7e2cb2f867a6566383ca6d8217033c1b67f888ebe3213eff35c00dd",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/bancari-abi.json.gz",

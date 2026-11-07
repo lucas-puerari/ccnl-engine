@@ -104,7 +104,7 @@
       },
       {
         "kind": "simplification",
-        "text": "SCATTI FREEZE 2013-2014: no seniority for the scatti and the importo ex ristrutturazione accrues from 1 January 2013 to 31 July 2014 (Art. 103 c. 3, testo coordinato p. 142); staff in service on 19 December 1994 keep 12 scatti (Art. 94 c. 2, Art. 103 c. 2). The engine counts the seniority of the request without the freeze.",
+        "text": "SCATTI: the freeze of 1 January 2013 - 31 July 2014 (Art. 103 c. 3, testo coordinato p. 142) is modelled (seniority_increments.freezes: the months the engine ages across it do not count; the months the caller states are kept as recognised). Staff in service on 19 December 1994 keep a maximum of 12 scatti (Art. 94 c. 2, Art. 103 c. 2): the engine caps every worker at 8.",
         "capability": "seniority",
         "monetary_impact": "yes",
         "limitation": {
@@ -112,7 +112,7 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "State the seniority of a worker in service in 2013-2014 net of the 19 months of the freeze."
+          "remediation": "Cap the scatti at 12 for the staff in service on 19 December 1994."
         }
       },
       {
@@ -400,7 +400,13 @@
             }
           }
         ]
-      }
+      },
+      "freezes": [
+        {
+          "valid_from": "2013-01-01",
+          "valid_until": "2014-08-01"
+        }
+      ]
     },
     "solidarity_fund": {
       "code": "FONDO_SOLIDARIETA_CREDITO",
@@ -1874,7 +1880,7 @@
     "effective_until": null,
     "source": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/",
     "verification_status": "unverified",
-    "source_hash": "6220e8ac5b0572051532e1c5f5bc186e716d35495f8b63ce01dff3d160d775a8",
+    "source_hash": "47259d8906eded09def3f6a30416705ca8e10ee39d8ca2e84824d1d1a2d267e7",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2429,6 +2435,27 @@
         ],
         "findings": [
           "Art. 66 (p. 99): c. 1 keeps the job and the whole pay for 6, 8, 12, 15, 18, 22 months by seniority; c. 2 lets the bank count instead over the 48 months before the last day, with 8 to 24 months. The file stored the option of c. 2 as the rule: corrected to the bands of c. 1 for one illness, the option of c. 2 in the note."
+        ]
+      },
+      {
+        "id": "2026-11-08-ai-bancari-abi-scatti-freeze",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 103 c. 3 of the coordinated text (p. 142), text layer.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.fabi.it/wp-content/uploads/2025/07/ccnl-23-nov-2023_fabi.pdf",
+            "sha256": "4d92bc5226736682ddb1eedfaf7940df989fdc3cbbd99d0fa6347fd91979a933"
+          }
+        ],
+        "findings": [
+          "Added seniority_increments.freezes 2013-01-01 to 2014-08-01: 'Nel periodo 1° gennaio 2013 – 31 luglio 2014 non matura l'anzianità ... ai fini degli scatti di anzianità'."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "parameters.seniority_increments"
         ]
       }
     ]

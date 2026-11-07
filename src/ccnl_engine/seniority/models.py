@@ -11,6 +11,7 @@ from ccnl_engine.employment.category.models import WorkerCategory
 from ccnl_engine.extra_month.schedule.models import ExtraMonthKind
 from ccnl_engine.provenance.source.rule.models import RuleProvenance
 from ccnl_engine.seniority.age.models import SeniorityAge
+from ccnl_engine.seniority.freeze.models import SeniorityFreeze
 from ccnl_engine.types import FrozenDict
 
 
@@ -110,7 +111,8 @@ class SeniorityIncrements(BaseModel):
     "esclusi [...] gli scatti di anzianità maturati").
     ``on_promotion`` states when the increments matured before a promotion
     take the amounts of the new level; ``None`` reprices them at once.
-    ``counted_from_age`` counts the service only after an age.
+    ``counted_from_age`` counts the service only after an age; ``freezes``
+    leave periods out of it (Bancari ABI art. 103 c. 3).
     ``apprentice_level_amount`` pays an apprentice the amounts of the level
     he is classified at (Autoscuole: "nelle misure previste dal livello di
     appartenenza") instead of ``apprentice_amount``;
@@ -142,6 +144,7 @@ class SeniorityIncrements(BaseModel):
     )
     on_promotion: PromotionRepricing | None = None
     counted_from_age: SeniorityAge | None = None
+    freezes: tuple[SeniorityFreeze, ...] = ()
     apprentice_level_amount: bool = False
     apprentice_pct_scaled: bool = False
     provenance: RuleProvenance | None = None
