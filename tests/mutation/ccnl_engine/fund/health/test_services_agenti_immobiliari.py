@@ -93,3 +93,45 @@ def test_unpaid_qsc_owes_the_worker_two_point_four_percent() -> None:
         result = _run(frozenset({"ebnaip_quota_forfetaria"}), thirteenth=thirteenth)
         elements = [i.amount for i in result.pay_items if "_element_" in i.item_id]
         assert elements == [_pct("0.024")]
+
+
+def test_the_qsc_reads_seniority_and_allowances_too() -> None:
+    """Level Q head of unit with two scatti: the whole monthly pay, not the minimo.
+
+    The QSC is 1.60% of the minimo, the two scatti and the indennità di
+    funzione, not of the minimo alone.
+    """
+    level = _CCNL.level_by_code("Q")
+    increments = _CCNL.parameters.seniority_increments
+    scatto = increments.amount_by_level["Q"].value_at(_DAY)
+    funzione = next(
+        a.monthly.value_at(_DAY)
+        for a in level.fixed_allowances
+        if a.code == "IND_FUNZIONE"
+    )
+    pay = level.base_salary.value_at(_DAY) + 2 * scatto + funzione
+    hired = date(2020, 1, 1)
+    result = PayrollEngine.bundled().calculate_period(
+        PeriodInput(
+            run=PayrollRun.regular(2026, 6),
+            payment_date=date(2026, 6, 27),
+            employment=Employment(
+                ccnl_id=_CCNL.meta.ccnl_id,
+                level_code="Q",
+                roles=frozenset({"responsabile_unita"}),
+                contract_type=Permanent(),
+                employment_period=EmploymentPeriod(hired, None),
+                seniority=SeniorityFact(72, _DAY, SenioritySource.EMPLOYER_RECORDS),
+                pension_fund=NoPensionFund(),
+            ),
+            employer=EmployerProfile(
+                headcount=Headcount(10),
+                contractual_funds=frozenset({"ebnaip_qsc", "ebnaip_quota_forfetaria"}),
+            ),
+        )
+    )
+    qsc = (Decimal("0.003") * pay).quantize(Decimal("0.01"), rounding=ROUND_HALF_UP)
+
+    assert _posted(result, AccountKind.BILATERAL_FUND_EMPLOYEE) == qsc
+    assert funzione > 0
+    assert scatto > 0
