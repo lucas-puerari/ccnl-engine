@@ -138,11 +138,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Use pubblici-esercizi-fipe-angem-ristorazione-collettiva for a collective catering company.
 
 !!! warning "pubblici-esercizi-fipe-angem/small_company_pay_reduction · base_salary · impact yes · open"
-    SMALLER COMPANIES: Art. 162 (PDF p. 118) reduces the paga base of the aziende minori dei pubblici esercizi and of the stabilimenti balneari of the third and fourth category (from EUR 2.58 for level 7 to EUR 5.68 for Qa, also in the accordo integrativo of 26 June 2024, pp. 4-6); art. 163 c. 2 prints a contingenza up to EUR 0.51 lower for them. Not modelled. Maximum impact: about EUR 6.19 a month for Qa.
+    SMALLER COMPANIES (Art. 162; accordo integrativo of 26 June 2024, pp. 4-6): the aziende minori dei pubblici esercizi and the stabilimenti balneari of the third and fourth category pay a reduced paga base, from 2.58 EUR less at level 7 to 5.68 EUR less at Qa, modelled as the base_salary_by_subsector aziende_minori (EmployerProfile.subsector). Not modelled: the lower contingenza of art. 163 c. 2 (up to 0.51 EUR), which the 2024 tables do not print.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Model the Art. 162 base-pay reduction for micro-enterprises with an employer-size input.
+    **Remediation:** Model the contingenza of art. 163 c. 2 if a current table prints it, then remove this note.
 
 !!! warning "pubblici-esercizi-fipe-angem/holiday_overtime_cumulation · overtime · impact unknown · open"
     HOLIDAY OVERTIME: Art. 126 (PDF p. 99) gives 30% by day and 60% by night for every overtime hour; Art. 132 (p. 103) gives 20% for the hours worked on a festività. No clause links them: art. 126 c. 3 excludes cumulation only with ordinary night work, art. 130 c. 2 only Sunday work with the festività, and the special parts (arts. 246-247, 263-264) and the 2024 renewal repeat or leave them. The engine pays holiday overtime at 30%/60% without the 20%.

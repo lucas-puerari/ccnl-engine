@@ -1785,7 +1785,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/pubblici-esercizi-fipe-angem",
       "ruleset_version": "2026.2",
-      "source_hash": "8c4ea068124429b2eee077dbe2fd3a4b5a65282edc7d2941c5b48201ce59f940",
+      "source_hash": "7b37778f2d14eb99666c99237e3ee4b0b5e24aaacf9e67f6b30455f23da977c7",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/pubblici-esercizi-fipe-angem.json.gz"
@@ -4481,7 +4481,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "e21bb300d5bddff7aa86072cfe0054b153858c2e05151fc11369cddd58b574eb",
+      "source_hash": "ae7bff0c281a1d66a440fa23c63cfb8f5d90fd29910e614cd45e50c7243901e8",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/pubblici-esercizi-fipe-angem.json.gz",

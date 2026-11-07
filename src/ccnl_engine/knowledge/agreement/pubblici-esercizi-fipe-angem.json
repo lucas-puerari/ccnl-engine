@@ -82,7 +82,7 @@
       },
       {
         "kind": "simplification",
-        "text": "SMALLER COMPANIES: Art. 162 (PDF p. 118) reduces the paga base of the aziende minori dei pubblici esercizi and of the stabilimenti balneari of the third and fourth category (from EUR 2.58 for level 7 to EUR 5.68 for Qa, also in the accordo integrativo of 26 June 2024, pp. 4-6); art. 163 c. 2 prints a contingenza up to EUR 0.51 lower for them. Not modelled. Maximum impact: about EUR 6.19 a month for Qa.",
+        "text": "SMALLER COMPANIES (Art. 162; accordo integrativo of 26 June 2024, pp. 4-6): the aziende minori dei pubblici esercizi and the stabilimenti balneari of the third and fourth category pay a reduced paga base, from 2.58 EUR less at level 7 to 5.68 EUR less at Qa, modelled as the base_salary_by_subsector aziende_minori (EmployerProfile.subsector). Not modelled: the lower contingenza of art. 163 c. 2 (up to 0.51 EUR), which the 2024 tables do not print.",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
@@ -90,7 +90,7 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Model the Art. 162 base-pay reduction for micro-enterprises with an employer-size input."
+          "remediation": "Model the contingenza of art. 163 c. 2 if a current table prints it, then remove this note."
         }
       },
       {
@@ -907,6 +907,157 @@
           "verified_at": "2026-10-11T19:46:50Z",
           "review_id": "2026-10-11-ai"
         }
+      },
+      "base_salary_by_subsector": {
+        "aziende_minori": {
+          "periods": [
+            {
+              "valid_from": "2024-06-01",
+              "valid_until": "2025-06-01",
+              "value": "1327.90",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "fipe-accordo-integrativo-2024-tabelle",
+                    "title": "Accordo integrativo 26 giugno 2024, tabelle retributive CCNL Pubblici esercizi, ristorazione collettiva e commerciale, turismo",
+                    "kind": "associazione",
+                    "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                    "published_on": "2024-06-26",
+                    "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                  },
+                  "page": "4-6",
+                  "section": "Art. 162 - paga base nazionale delle aziende minori",
+                  "quote": "La paga base nazionale delle aziende minori di cui all'art. 162 è stabilita come segue: [...] 7 [...] Riduzione 2,58 €"
+                },
+                "transformation": "The conglobated base of the level less the reduction of 2.58 EUR of the aziende minori, the same in each tranche.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T10:00:00Z",
+                  "effective_from": "2024-06-01",
+                  "verification_status": "unverified"
+                }
+              }
+            },
+            {
+              "valid_from": "2025-06-01",
+              "valid_until": "2026-06-01",
+              "value": "1357.76",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "fipe-accordo-integrativo-2024-tabelle",
+                    "title": "Accordo integrativo 26 giugno 2024, tabelle retributive CCNL Pubblici esercizi, ristorazione collettiva e commerciale, turismo",
+                    "kind": "associazione",
+                    "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                    "published_on": "2024-06-26",
+                    "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                  },
+                  "page": "4-6",
+                  "section": "Art. 162 - paga base nazionale delle aziende minori",
+                  "quote": "La paga base nazionale delle aziende minori di cui all'art. 162 è stabilita come segue: [...] 7 [...] Riduzione 2,58 €"
+                },
+                "transformation": "The conglobated base of the level less the reduction of 2.58 EUR of the aziende minori, the same in each tranche.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T10:00:00Z",
+                  "effective_from": "2025-06-01",
+                  "verification_status": "unverified"
+                }
+              }
+            },
+            {
+              "valid_from": "2026-06-01",
+              "valid_until": "2027-06-01",
+              "value": "1387.62",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "fipe-accordo-integrativo-2024-tabelle",
+                    "title": "Accordo integrativo 26 giugno 2024, tabelle retributive CCNL Pubblici esercizi, ristorazione collettiva e commerciale, turismo",
+                    "kind": "associazione",
+                    "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                    "published_on": "2024-06-26",
+                    "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                  },
+                  "page": "4-6",
+                  "section": "Art. 162 - paga base nazionale delle aziende minori",
+                  "quote": "La paga base nazionale delle aziende minori di cui all'art. 162 è stabilita come segue: [...] 7 [...] Riduzione 2,58 €"
+                },
+                "transformation": "The conglobated base of the level less the reduction of 2.58 EUR of the aziende minori, the same in each tranche.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T10:00:00Z",
+                  "effective_from": "2026-06-01",
+                  "verification_status": "unverified"
+                }
+              }
+            },
+            {
+              "valid_from": "2027-06-01",
+              "valid_until": "2027-12-01",
+              "value": "1410.01",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "fipe-accordo-integrativo-2024-tabelle",
+                    "title": "Accordo integrativo 26 giugno 2024, tabelle retributive CCNL Pubblici esercizi, ristorazione collettiva e commerciale, turismo",
+                    "kind": "associazione",
+                    "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                    "published_on": "2024-06-26",
+                    "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                  },
+                  "page": "4-6",
+                  "section": "Art. 162 - paga base nazionale delle aziende minori",
+                  "quote": "La paga base nazionale delle aziende minori di cui all'art. 162 è stabilita come segue: [...] 7 [...] Riduzione 2,58 €"
+                },
+                "transformation": "The conglobated base of the level less the reduction of 2.58 EUR of the aziende minori, the same in each tranche.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T10:00:00Z",
+                  "effective_from": "2027-06-01",
+                  "verification_status": "unverified"
+                }
+              }
+            },
+            {
+              "valid_from": "2027-12-01",
+              "valid_until": null,
+              "value": "1439.87",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "fipe-accordo-integrativo-2024-tabelle",
+                    "title": "Accordo integrativo 26 giugno 2024, tabelle retributive CCNL Pubblici esercizi, ristorazione collettiva e commerciale, turismo",
+                    "kind": "associazione",
+                    "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                    "published_on": "2024-06-26",
+                    "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                  },
+                  "page": "4-6",
+                  "section": "Art. 162 - paga base nazionale delle aziende minori",
+                  "quote": "La paga base nazionale delle aziende minori di cui all'art. 162 è stabilita come segue: [...] 7 [...] Riduzione 2,58 €"
+                },
+                "transformation": "The conglobated base of the level less the reduction of 2.58 EUR of the aziende minori, the same in each tranche.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T10:00:00Z",
+                  "effective_from": "2027-12-01",
+                  "verification_status": "unverified"
+                }
+              }
+            }
+          ]
+        }
       }
     },
     {
@@ -1091,6 +1242,157 @@
           "verified_by": "claude-opus-5-5",
           "verified_at": "2026-10-11T19:46:50Z",
           "review_id": "2026-10-11-ai"
+        }
+      },
+      "base_salary_by_subsector": {
+        "aziende_minori": {
+          "periods": [
+            {
+              "valid_from": "2024-06-01",
+              "valid_until": "2025-06-01",
+              "value": "1422.21",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "fipe-accordo-integrativo-2024-tabelle",
+                    "title": "Accordo integrativo 26 giugno 2024, tabelle retributive CCNL Pubblici esercizi, ristorazione collettiva e commerciale, turismo",
+                    "kind": "associazione",
+                    "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                    "published_on": "2024-06-26",
+                    "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                  },
+                  "page": "4-6",
+                  "section": "Art. 162 - paga base nazionale delle aziende minori",
+                  "quote": "La paga base nazionale delle aziende minori di cui all'art. 162 è stabilita come segue: [...] 6 [...] Riduzione 2,84 €"
+                },
+                "transformation": "The conglobated base of the level less the reduction of 2.84 EUR of the aziende minori, the same in each tranche.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T10:00:00Z",
+                  "effective_from": "2024-06-01",
+                  "verification_status": "unverified"
+                }
+              }
+            },
+            {
+              "valid_from": "2025-06-01",
+              "valid_until": "2026-06-01",
+              "value": "1455.47",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "fipe-accordo-integrativo-2024-tabelle",
+                    "title": "Accordo integrativo 26 giugno 2024, tabelle retributive CCNL Pubblici esercizi, ristorazione collettiva e commerciale, turismo",
+                    "kind": "associazione",
+                    "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                    "published_on": "2024-06-26",
+                    "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                  },
+                  "page": "4-6",
+                  "section": "Art. 162 - paga base nazionale delle aziende minori",
+                  "quote": "La paga base nazionale delle aziende minori di cui all'art. 162 è stabilita come segue: [...] 6 [...] Riduzione 2,84 €"
+                },
+                "transformation": "The conglobated base of the level less the reduction of 2.84 EUR of the aziende minori, the same in each tranche.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T10:00:00Z",
+                  "effective_from": "2025-06-01",
+                  "verification_status": "unverified"
+                }
+              }
+            },
+            {
+              "valid_from": "2026-06-01",
+              "valid_until": "2027-06-01",
+              "value": "1488.73",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "fipe-accordo-integrativo-2024-tabelle",
+                    "title": "Accordo integrativo 26 giugno 2024, tabelle retributive CCNL Pubblici esercizi, ristorazione collettiva e commerciale, turismo",
+                    "kind": "associazione",
+                    "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                    "published_on": "2024-06-26",
+                    "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                  },
+                  "page": "4-6",
+                  "section": "Art. 162 - paga base nazionale delle aziende minori",
+                  "quote": "La paga base nazionale delle aziende minori di cui all'art. 162 è stabilita come segue: [...] 6 [...] Riduzione 2,84 €"
+                },
+                "transformation": "The conglobated base of the level less the reduction of 2.84 EUR of the aziende minori, the same in each tranche.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T10:00:00Z",
+                  "effective_from": "2026-06-01",
+                  "verification_status": "unverified"
+                }
+              }
+            },
+            {
+              "valid_from": "2027-06-01",
+              "valid_until": "2027-12-01",
+              "value": "1513.68",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "fipe-accordo-integrativo-2024-tabelle",
+                    "title": "Accordo integrativo 26 giugno 2024, tabelle retributive CCNL Pubblici esercizi, ristorazione collettiva e commerciale, turismo",
+                    "kind": "associazione",
+                    "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                    "published_on": "2024-06-26",
+                    "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                  },
+                  "page": "4-6",
+                  "section": "Art. 162 - paga base nazionale delle aziende minori",
+                  "quote": "La paga base nazionale delle aziende minori di cui all'art. 162 è stabilita come segue: [...] 6 [...] Riduzione 2,84 €"
+                },
+                "transformation": "The conglobated base of the level less the reduction of 2.84 EUR of the aziende minori, the same in each tranche.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T10:00:00Z",
+                  "effective_from": "2027-06-01",
+                  "verification_status": "unverified"
+                }
+              }
+            },
+            {
+              "valid_from": "2027-12-01",
+              "valid_until": null,
+              "value": "1546.94",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "fipe-accordo-integrativo-2024-tabelle",
+                    "title": "Accordo integrativo 26 giugno 2024, tabelle retributive CCNL Pubblici esercizi, ristorazione collettiva e commerciale, turismo",
+                    "kind": "associazione",
+                    "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                    "published_on": "2024-06-26",
+                    "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                  },
+                  "page": "4-6",
+                  "section": "Art. 162 - paga base nazionale delle aziende minori",
+                  "quote": "La paga base nazionale delle aziende minori di cui all'art. 162 è stabilita come segue: [...] 6 [...] Riduzione 2,84 €"
+                },
+                "transformation": "The conglobated base of the level less the reduction of 2.84 EUR of the aziende minori, the same in each tranche.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T10:00:00Z",
+                  "effective_from": "2027-12-01",
+                  "verification_status": "unverified"
+                }
+              }
+            }
+          ]
         }
       }
     },
@@ -1277,6 +1579,157 @@
           "verified_at": "2026-10-11T19:46:50Z",
           "review_id": "2026-10-11-ai"
         }
+      },
+      "base_salary_by_subsector": {
+        "aziende_minori": {
+          "periods": [
+            {
+              "valid_from": "2024-06-01",
+              "valid_until": "2025-06-01",
+              "value": "1443.88",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "fipe-accordo-integrativo-2024-tabelle",
+                    "title": "Accordo integrativo 26 giugno 2024, tabelle retributive CCNL Pubblici esercizi, ristorazione collettiva e commerciale, turismo",
+                    "kind": "associazione",
+                    "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                    "published_on": "2024-06-26",
+                    "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                  },
+                  "page": "4-6",
+                  "section": "Art. 162 - paga base nazionale delle aziende minori",
+                  "quote": "La paga base nazionale delle aziende minori di cui all'art. 162 è stabilita come segue: [...] 6s [...] Riduzione 2,84 €"
+                },
+                "transformation": "The conglobated base of the level less the reduction of 2.84 EUR of the aziende minori, the same in each tranche.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T10:00:00Z",
+                  "effective_from": "2024-06-01",
+                  "verification_status": "unverified"
+                }
+              }
+            },
+            {
+              "valid_from": "2025-06-01",
+              "valid_until": "2026-06-01",
+              "value": "1477.93",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "fipe-accordo-integrativo-2024-tabelle",
+                    "title": "Accordo integrativo 26 giugno 2024, tabelle retributive CCNL Pubblici esercizi, ristorazione collettiva e commerciale, turismo",
+                    "kind": "associazione",
+                    "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                    "published_on": "2024-06-26",
+                    "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                  },
+                  "page": "4-6",
+                  "section": "Art. 162 - paga base nazionale delle aziende minori",
+                  "quote": "La paga base nazionale delle aziende minori di cui all'art. 162 è stabilita come segue: [...] 6s [...] Riduzione 2,84 €"
+                },
+                "transformation": "The conglobated base of the level less the reduction of 2.84 EUR of the aziende minori, the same in each tranche.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T10:00:00Z",
+                  "effective_from": "2025-06-01",
+                  "verification_status": "unverified"
+                }
+              }
+            },
+            {
+              "valid_from": "2026-06-01",
+              "valid_until": "2027-06-01",
+              "value": "1511.99",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "fipe-accordo-integrativo-2024-tabelle",
+                    "title": "Accordo integrativo 26 giugno 2024, tabelle retributive CCNL Pubblici esercizi, ristorazione collettiva e commerciale, turismo",
+                    "kind": "associazione",
+                    "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                    "published_on": "2024-06-26",
+                    "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                  },
+                  "page": "4-6",
+                  "section": "Art. 162 - paga base nazionale delle aziende minori",
+                  "quote": "La paga base nazionale delle aziende minori di cui all'art. 162 è stabilita come segue: [...] 6s [...] Riduzione 2,84 €"
+                },
+                "transformation": "The conglobated base of the level less the reduction of 2.84 EUR of the aziende minori, the same in each tranche.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T10:00:00Z",
+                  "effective_from": "2026-06-01",
+                  "verification_status": "unverified"
+                }
+              }
+            },
+            {
+              "valid_from": "2027-06-01",
+              "valid_until": "2027-12-01",
+              "value": "1537.53",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "fipe-accordo-integrativo-2024-tabelle",
+                    "title": "Accordo integrativo 26 giugno 2024, tabelle retributive CCNL Pubblici esercizi, ristorazione collettiva e commerciale, turismo",
+                    "kind": "associazione",
+                    "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                    "published_on": "2024-06-26",
+                    "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                  },
+                  "page": "4-6",
+                  "section": "Art. 162 - paga base nazionale delle aziende minori",
+                  "quote": "La paga base nazionale delle aziende minori di cui all'art. 162 è stabilita come segue: [...] 6s [...] Riduzione 2,84 €"
+                },
+                "transformation": "The conglobated base of the level less the reduction of 2.84 EUR of the aziende minori, the same in each tranche.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T10:00:00Z",
+                  "effective_from": "2027-06-01",
+                  "verification_status": "unverified"
+                }
+              }
+            },
+            {
+              "valid_from": "2027-12-01",
+              "valid_until": null,
+              "value": "1571.58",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "fipe-accordo-integrativo-2024-tabelle",
+                    "title": "Accordo integrativo 26 giugno 2024, tabelle retributive CCNL Pubblici esercizi, ristorazione collettiva e commerciale, turismo",
+                    "kind": "associazione",
+                    "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                    "published_on": "2024-06-26",
+                    "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                  },
+                  "page": "4-6",
+                  "section": "Art. 162 - paga base nazionale delle aziende minori",
+                  "quote": "La paga base nazionale delle aziende minori di cui all'art. 162 è stabilita come segue: [...] 6s [...] Riduzione 2,84 €"
+                },
+                "transformation": "The conglobated base of the level less the reduction of 2.84 EUR of the aziende minori, the same in each tranche.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T10:00:00Z",
+                  "effective_from": "2027-12-01",
+                  "verification_status": "unverified"
+                }
+              }
+            }
+          ]
+        }
       }
     },
     {
@@ -1461,6 +1914,157 @@
           "verified_by": "claude-opus-5-5",
           "verified_at": "2026-10-11T19:46:50Z",
           "review_id": "2026-10-11-ai"
+        }
+      },
+      "base_salary_by_subsector": {
+        "aziende_minori": {
+          "periods": [
+            {
+              "valid_from": "2024-06-01",
+              "valid_until": "2025-06-01",
+              "value": "1504.53",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "fipe-accordo-integrativo-2024-tabelle",
+                    "title": "Accordo integrativo 26 giugno 2024, tabelle retributive CCNL Pubblici esercizi, ristorazione collettiva e commerciale, turismo",
+                    "kind": "associazione",
+                    "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                    "published_on": "2024-06-26",
+                    "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                  },
+                  "page": "4-6",
+                  "section": "Art. 162 - paga base nazionale delle aziende minori",
+                  "quote": "La paga base nazionale delle aziende minori di cui all'art. 162 è stabilita come segue: [...] 5 [...] Riduzione 3,10 €"
+                },
+                "transformation": "The conglobated base of the level less the reduction of 3.10 EUR of the aziende minori, the same in each tranche.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T10:00:00Z",
+                  "effective_from": "2024-06-01",
+                  "verification_status": "unverified"
+                }
+              }
+            },
+            {
+              "valid_from": "2025-06-01",
+              "valid_until": "2026-06-01",
+              "value": "1540.76",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "fipe-accordo-integrativo-2024-tabelle",
+                    "title": "Accordo integrativo 26 giugno 2024, tabelle retributive CCNL Pubblici esercizi, ristorazione collettiva e commerciale, turismo",
+                    "kind": "associazione",
+                    "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                    "published_on": "2024-06-26",
+                    "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                  },
+                  "page": "4-6",
+                  "section": "Art. 162 - paga base nazionale delle aziende minori",
+                  "quote": "La paga base nazionale delle aziende minori di cui all'art. 162 è stabilita come segue: [...] 5 [...] Riduzione 3,10 €"
+                },
+                "transformation": "The conglobated base of the level less the reduction of 3.10 EUR of the aziende minori, the same in each tranche.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T10:00:00Z",
+                  "effective_from": "2025-06-01",
+                  "verification_status": "unverified"
+                }
+              }
+            },
+            {
+              "valid_from": "2026-06-01",
+              "valid_until": "2027-06-01",
+              "value": "1576.99",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "fipe-accordo-integrativo-2024-tabelle",
+                    "title": "Accordo integrativo 26 giugno 2024, tabelle retributive CCNL Pubblici esercizi, ristorazione collettiva e commerciale, turismo",
+                    "kind": "associazione",
+                    "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                    "published_on": "2024-06-26",
+                    "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                  },
+                  "page": "4-6",
+                  "section": "Art. 162 - paga base nazionale delle aziende minori",
+                  "quote": "La paga base nazionale delle aziende minori di cui all'art. 162 è stabilita come segue: [...] 5 [...] Riduzione 3,10 €"
+                },
+                "transformation": "The conglobated base of the level less the reduction of 3.10 EUR of the aziende minori, the same in each tranche.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T10:00:00Z",
+                  "effective_from": "2026-06-01",
+                  "verification_status": "unverified"
+                }
+              }
+            },
+            {
+              "valid_from": "2027-06-01",
+              "valid_until": "2027-12-01",
+              "value": "1604.16",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "fipe-accordo-integrativo-2024-tabelle",
+                    "title": "Accordo integrativo 26 giugno 2024, tabelle retributive CCNL Pubblici esercizi, ristorazione collettiva e commerciale, turismo",
+                    "kind": "associazione",
+                    "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                    "published_on": "2024-06-26",
+                    "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                  },
+                  "page": "4-6",
+                  "section": "Art. 162 - paga base nazionale delle aziende minori",
+                  "quote": "La paga base nazionale delle aziende minori di cui all'art. 162 è stabilita come segue: [...] 5 [...] Riduzione 3,10 €"
+                },
+                "transformation": "The conglobated base of the level less the reduction of 3.10 EUR of the aziende minori, the same in each tranche.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T10:00:00Z",
+                  "effective_from": "2027-06-01",
+                  "verification_status": "unverified"
+                }
+              }
+            },
+            {
+              "valid_from": "2027-12-01",
+              "valid_until": null,
+              "value": "1640.40",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "fipe-accordo-integrativo-2024-tabelle",
+                    "title": "Accordo integrativo 26 giugno 2024, tabelle retributive CCNL Pubblici esercizi, ristorazione collettiva e commerciale, turismo",
+                    "kind": "associazione",
+                    "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                    "published_on": "2024-06-26",
+                    "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                  },
+                  "page": "4-6",
+                  "section": "Art. 162 - paga base nazionale delle aziende minori",
+                  "quote": "La paga base nazionale delle aziende minori di cui all'art. 162 è stabilita come segue: [...] 5 [...] Riduzione 3,10 €"
+                },
+                "transformation": "The conglobated base of the level less the reduction of 3.10 EUR of the aziende minori, the same in each tranche.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T10:00:00Z",
+                  "effective_from": "2027-12-01",
+                  "verification_status": "unverified"
+                }
+              }
+            }
+          ]
         }
       }
     },
@@ -1647,6 +2251,157 @@
           "verified_at": "2026-10-11T19:46:50Z",
           "review_id": "2026-10-11-ai"
         }
+      },
+      "base_salary_by_subsector": {
+        "aziende_minori": {
+          "periods": [
+            {
+              "valid_from": "2024-06-01",
+              "valid_until": "2025-06-01",
+              "value": "1609.33",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "fipe-accordo-integrativo-2024-tabelle",
+                    "title": "Accordo integrativo 26 giugno 2024, tabelle retributive CCNL Pubblici esercizi, ristorazione collettiva e commerciale, turismo",
+                    "kind": "associazione",
+                    "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                    "published_on": "2024-06-26",
+                    "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                  },
+                  "page": "4-6",
+                  "section": "Art. 162 - paga base nazionale delle aziende minori",
+                  "quote": "La paga base nazionale delle aziende minori di cui all'art. 162 è stabilita come segue: [...] 4 [...] Riduzione 3,36 €"
+                },
+                "transformation": "The conglobated base of the level less the reduction of 3.36 EUR of the aziende minori, the same in each tranche.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T10:00:00Z",
+                  "effective_from": "2024-06-01",
+                  "verification_status": "unverified"
+                }
+              }
+            },
+            {
+              "valid_from": "2025-06-01",
+              "valid_until": "2026-06-01",
+              "value": "1649.33",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "fipe-accordo-integrativo-2024-tabelle",
+                    "title": "Accordo integrativo 26 giugno 2024, tabelle retributive CCNL Pubblici esercizi, ristorazione collettiva e commerciale, turismo",
+                    "kind": "associazione",
+                    "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                    "published_on": "2024-06-26",
+                    "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                  },
+                  "page": "4-6",
+                  "section": "Art. 162 - paga base nazionale delle aziende minori",
+                  "quote": "La paga base nazionale delle aziende minori di cui all'art. 162 è stabilita come segue: [...] 4 [...] Riduzione 3,36 €"
+                },
+                "transformation": "The conglobated base of the level less the reduction of 3.36 EUR of the aziende minori, the same in each tranche.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T10:00:00Z",
+                  "effective_from": "2025-06-01",
+                  "verification_status": "unverified"
+                }
+              }
+            },
+            {
+              "valid_from": "2026-06-01",
+              "valid_until": "2027-06-01",
+              "value": "1689.33",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "fipe-accordo-integrativo-2024-tabelle",
+                    "title": "Accordo integrativo 26 giugno 2024, tabelle retributive CCNL Pubblici esercizi, ristorazione collettiva e commerciale, turismo",
+                    "kind": "associazione",
+                    "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                    "published_on": "2024-06-26",
+                    "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                  },
+                  "page": "4-6",
+                  "section": "Art. 162 - paga base nazionale delle aziende minori",
+                  "quote": "La paga base nazionale delle aziende minori di cui all'art. 162 è stabilita come segue: [...] 4 [...] Riduzione 3,36 €"
+                },
+                "transformation": "The conglobated base of the level less the reduction of 3.36 EUR of the aziende minori, the same in each tranche.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T10:00:00Z",
+                  "effective_from": "2026-06-01",
+                  "verification_status": "unverified"
+                }
+              }
+            },
+            {
+              "valid_from": "2027-06-01",
+              "valid_until": "2027-12-01",
+              "value": "1719.33",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "fipe-accordo-integrativo-2024-tabelle",
+                    "title": "Accordo integrativo 26 giugno 2024, tabelle retributive CCNL Pubblici esercizi, ristorazione collettiva e commerciale, turismo",
+                    "kind": "associazione",
+                    "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                    "published_on": "2024-06-26",
+                    "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                  },
+                  "page": "4-6",
+                  "section": "Art. 162 - paga base nazionale delle aziende minori",
+                  "quote": "La paga base nazionale delle aziende minori di cui all'art. 162 è stabilita come segue: [...] 4 [...] Riduzione 3,36 €"
+                },
+                "transformation": "The conglobated base of the level less the reduction of 3.36 EUR of the aziende minori, the same in each tranche.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T10:00:00Z",
+                  "effective_from": "2027-06-01",
+                  "verification_status": "unverified"
+                }
+              }
+            },
+            {
+              "valid_from": "2027-12-01",
+              "valid_until": null,
+              "value": "1759.33",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "fipe-accordo-integrativo-2024-tabelle",
+                    "title": "Accordo integrativo 26 giugno 2024, tabelle retributive CCNL Pubblici esercizi, ristorazione collettiva e commerciale, turismo",
+                    "kind": "associazione",
+                    "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                    "published_on": "2024-06-26",
+                    "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                  },
+                  "page": "4-6",
+                  "section": "Art. 162 - paga base nazionale delle aziende minori",
+                  "quote": "La paga base nazionale delle aziende minori di cui all'art. 162 è stabilita come segue: [...] 4 [...] Riduzione 3,36 €"
+                },
+                "transformation": "The conglobated base of the level less the reduction of 3.36 EUR of the aziende minori, the same in each tranche.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T10:00:00Z",
+                  "effective_from": "2027-12-01",
+                  "verification_status": "unverified"
+                }
+              }
+            }
+          ]
+        }
       }
     },
     {
@@ -1831,6 +2586,157 @@
           "verified_by": "claude-opus-5-5",
           "verified_at": "2026-10-11T19:46:50Z",
           "review_id": "2026-10-11-ai"
+        }
+      },
+      "base_salary_by_subsector": {
+        "aziende_minori": {
+          "periods": [
+            {
+              "valid_from": "2024-06-01",
+              "valid_until": "2025-06-01",
+              "value": "1709.68",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "fipe-accordo-integrativo-2024-tabelle",
+                    "title": "Accordo integrativo 26 giugno 2024, tabelle retributive CCNL Pubblici esercizi, ristorazione collettiva e commerciale, turismo",
+                    "kind": "associazione",
+                    "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                    "published_on": "2024-06-26",
+                    "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                  },
+                  "page": "4-6",
+                  "section": "Art. 162 - paga base nazionale delle aziende minori",
+                  "quote": "La paga base nazionale delle aziende minori di cui all'art. 162 è stabilita come segue: [...] 3 [...] Riduzione 3,87 €"
+                },
+                "transformation": "The conglobated base of the level less the reduction of 3.87 EUR of the aziende minori, the same in each tranche.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T10:00:00Z",
+                  "effective_from": "2024-06-01",
+                  "verification_status": "unverified"
+                }
+              }
+            },
+            {
+              "valid_from": "2025-06-01",
+              "valid_until": "2026-06-01",
+              "value": "1753.27",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "fipe-accordo-integrativo-2024-tabelle",
+                    "title": "Accordo integrativo 26 giugno 2024, tabelle retributive CCNL Pubblici esercizi, ristorazione collettiva e commerciale, turismo",
+                    "kind": "associazione",
+                    "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                    "published_on": "2024-06-26",
+                    "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                  },
+                  "page": "4-6",
+                  "section": "Art. 162 - paga base nazionale delle aziende minori",
+                  "quote": "La paga base nazionale delle aziende minori di cui all'art. 162 è stabilita come segue: [...] 3 [...] Riduzione 3,87 €"
+                },
+                "transformation": "The conglobated base of the level less the reduction of 3.87 EUR of the aziende minori, the same in each tranche.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T10:00:00Z",
+                  "effective_from": "2025-06-01",
+                  "verification_status": "unverified"
+                }
+              }
+            },
+            {
+              "valid_from": "2026-06-01",
+              "valid_until": "2027-06-01",
+              "value": "1796.86",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "fipe-accordo-integrativo-2024-tabelle",
+                    "title": "Accordo integrativo 26 giugno 2024, tabelle retributive CCNL Pubblici esercizi, ristorazione collettiva e commerciale, turismo",
+                    "kind": "associazione",
+                    "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                    "published_on": "2024-06-26",
+                    "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                  },
+                  "page": "4-6",
+                  "section": "Art. 162 - paga base nazionale delle aziende minori",
+                  "quote": "La paga base nazionale delle aziende minori di cui all'art. 162 è stabilita come segue: [...] 3 [...] Riduzione 3,87 €"
+                },
+                "transformation": "The conglobated base of the level less the reduction of 3.87 EUR of the aziende minori, the same in each tranche.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T10:00:00Z",
+                  "effective_from": "2026-06-01",
+                  "verification_status": "unverified"
+                }
+              }
+            },
+            {
+              "valid_from": "2027-06-01",
+              "valid_until": "2027-12-01",
+              "value": "1829.55",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "fipe-accordo-integrativo-2024-tabelle",
+                    "title": "Accordo integrativo 26 giugno 2024, tabelle retributive CCNL Pubblici esercizi, ristorazione collettiva e commerciale, turismo",
+                    "kind": "associazione",
+                    "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                    "published_on": "2024-06-26",
+                    "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                  },
+                  "page": "4-6",
+                  "section": "Art. 162 - paga base nazionale delle aziende minori",
+                  "quote": "La paga base nazionale delle aziende minori di cui all'art. 162 è stabilita come segue: [...] 3 [...] Riduzione 3,87 €"
+                },
+                "transformation": "The conglobated base of the level less the reduction of 3.87 EUR of the aziende minori, the same in each tranche.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T10:00:00Z",
+                  "effective_from": "2027-06-01",
+                  "verification_status": "unverified"
+                }
+              }
+            },
+            {
+              "valid_from": "2027-12-01",
+              "valid_until": null,
+              "value": "1873.13",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "fipe-accordo-integrativo-2024-tabelle",
+                    "title": "Accordo integrativo 26 giugno 2024, tabelle retributive CCNL Pubblici esercizi, ristorazione collettiva e commerciale, turismo",
+                    "kind": "associazione",
+                    "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                    "published_on": "2024-06-26",
+                    "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                  },
+                  "page": "4-6",
+                  "section": "Art. 162 - paga base nazionale delle aziende minori",
+                  "quote": "La paga base nazionale delle aziende minori di cui all'art. 162 è stabilita come segue: [...] 3 [...] Riduzione 3,87 €"
+                },
+                "transformation": "The conglobated base of the level less the reduction of 3.87 EUR of the aziende minori, the same in each tranche.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T10:00:00Z",
+                  "effective_from": "2027-12-01",
+                  "verification_status": "unverified"
+                }
+              }
+            }
+          ]
         }
       }
     },
@@ -2017,6 +2923,157 @@
           "verified_at": "2026-10-11T19:46:50Z",
           "review_id": "2026-10-11-ai"
         }
+      },
+      "base_salary_by_subsector": {
+        "aziende_minori": {
+          "periods": [
+            {
+              "valid_from": "2024-06-01",
+              "valid_until": "2025-06-01",
+              "value": "1817.09",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "fipe-accordo-integrativo-2024-tabelle",
+                    "title": "Accordo integrativo 26 giugno 2024, tabelle retributive CCNL Pubblici esercizi, ristorazione collettiva e commerciale, turismo",
+                    "kind": "associazione",
+                    "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                    "published_on": "2024-06-26",
+                    "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                  },
+                  "page": "4-6",
+                  "section": "Art. 162 - paga base nazionale delle aziende minori",
+                  "quote": "La paga base nazionale delle aziende minori di cui all'art. 162 è stabilita come segue: [...] 2 [...] Riduzione 4,39 €"
+                },
+                "transformation": "The conglobated base of the level less the reduction of 4.39 EUR of the aziende minori, the same in each tranche.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T10:00:00Z",
+                  "effective_from": "2024-06-01",
+                  "verification_status": "unverified"
+                }
+              }
+            },
+            {
+              "valid_from": "2025-06-01",
+              "valid_until": "2026-06-01",
+              "value": "1864.53",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "fipe-accordo-integrativo-2024-tabelle",
+                    "title": "Accordo integrativo 26 giugno 2024, tabelle retributive CCNL Pubblici esercizi, ristorazione collettiva e commerciale, turismo",
+                    "kind": "associazione",
+                    "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                    "published_on": "2024-06-26",
+                    "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                  },
+                  "page": "4-6",
+                  "section": "Art. 162 - paga base nazionale delle aziende minori",
+                  "quote": "La paga base nazionale delle aziende minori di cui all'art. 162 è stabilita come segue: [...] 2 [...] Riduzione 4,39 €"
+                },
+                "transformation": "The conglobated base of the level less the reduction of 4.39 EUR of the aziende minori, the same in each tranche.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T10:00:00Z",
+                  "effective_from": "2025-06-01",
+                  "verification_status": "unverified"
+                }
+              }
+            },
+            {
+              "valid_from": "2026-06-01",
+              "valid_until": "2027-06-01",
+              "value": "1911.96",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "fipe-accordo-integrativo-2024-tabelle",
+                    "title": "Accordo integrativo 26 giugno 2024, tabelle retributive CCNL Pubblici esercizi, ristorazione collettiva e commerciale, turismo",
+                    "kind": "associazione",
+                    "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                    "published_on": "2024-06-26",
+                    "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                  },
+                  "page": "4-6",
+                  "section": "Art. 162 - paga base nazionale delle aziende minori",
+                  "quote": "La paga base nazionale delle aziende minori di cui all'art. 162 è stabilita come segue: [...] 2 [...] Riduzione 4,39 €"
+                },
+                "transformation": "The conglobated base of the level less the reduction of 4.39 EUR of the aziende minori, the same in each tranche.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T10:00:00Z",
+                  "effective_from": "2026-06-01",
+                  "verification_status": "unverified"
+                }
+              }
+            },
+            {
+              "valid_from": "2027-06-01",
+              "valid_until": "2027-12-01",
+              "value": "1947.53",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "fipe-accordo-integrativo-2024-tabelle",
+                    "title": "Accordo integrativo 26 giugno 2024, tabelle retributive CCNL Pubblici esercizi, ristorazione collettiva e commerciale, turismo",
+                    "kind": "associazione",
+                    "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                    "published_on": "2024-06-26",
+                    "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                  },
+                  "page": "4-6",
+                  "section": "Art. 162 - paga base nazionale delle aziende minori",
+                  "quote": "La paga base nazionale delle aziende minori di cui all'art. 162 è stabilita come segue: [...] 2 [...] Riduzione 4,39 €"
+                },
+                "transformation": "The conglobated base of the level less the reduction of 4.39 EUR of the aziende minori, the same in each tranche.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T10:00:00Z",
+                  "effective_from": "2027-06-01",
+                  "verification_status": "unverified"
+                }
+              }
+            },
+            {
+              "valid_from": "2027-12-01",
+              "valid_until": null,
+              "value": "1994.97",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "fipe-accordo-integrativo-2024-tabelle",
+                    "title": "Accordo integrativo 26 giugno 2024, tabelle retributive CCNL Pubblici esercizi, ristorazione collettiva e commerciale, turismo",
+                    "kind": "associazione",
+                    "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                    "published_on": "2024-06-26",
+                    "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                  },
+                  "page": "4-6",
+                  "section": "Art. 162 - paga base nazionale delle aziende minori",
+                  "quote": "La paga base nazionale delle aziende minori di cui all'art. 162 è stabilita come segue: [...] 2 [...] Riduzione 4,39 €"
+                },
+                "transformation": "The conglobated base of the level less the reduction of 4.39 EUR of the aziende minori, the same in each tranche.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T10:00:00Z",
+                  "effective_from": "2027-12-01",
+                  "verification_status": "unverified"
+                }
+              }
+            }
+          ]
+        }
       }
     },
     {
@@ -2201,6 +3258,157 @@
           "verified_by": "claude-opus-5-5",
           "verified_at": "2026-10-11T19:46:50Z",
           "review_id": "2026-10-11-ai"
+        }
+      },
+      "base_salary_by_subsector": {
+        "aziende_minori": {
+          "periods": [
+            {
+              "valid_from": "2024-06-01",
+              "valid_until": "2025-06-01",
+              "value": "1994.89",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "fipe-accordo-integrativo-2024-tabelle",
+                    "title": "Accordo integrativo 26 giugno 2024, tabelle retributive CCNL Pubblici esercizi, ristorazione collettiva e commerciale, turismo",
+                    "kind": "associazione",
+                    "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                    "published_on": "2024-06-26",
+                    "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                  },
+                  "page": "4-6",
+                  "section": "Art. 162 - paga base nazionale delle aziende minori",
+                  "quote": "La paga base nazionale delle aziende minori di cui all'art. 162 è stabilita come segue: [...] 1 [...] Riduzione 5,16 €"
+                },
+                "transformation": "The conglobated base of the level less the reduction of 5.16 EUR of the aziende minori, the same in each tranche.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T10:00:00Z",
+                  "effective_from": "2024-06-01",
+                  "verification_status": "unverified"
+                }
+              }
+            },
+            {
+              "valid_from": "2025-06-01",
+              "valid_until": "2026-06-01",
+              "value": "2048.71",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "fipe-accordo-integrativo-2024-tabelle",
+                    "title": "Accordo integrativo 26 giugno 2024, tabelle retributive CCNL Pubblici esercizi, ristorazione collettiva e commerciale, turismo",
+                    "kind": "associazione",
+                    "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                    "published_on": "2024-06-26",
+                    "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                  },
+                  "page": "4-6",
+                  "section": "Art. 162 - paga base nazionale delle aziende minori",
+                  "quote": "La paga base nazionale delle aziende minori di cui all'art. 162 è stabilita come segue: [...] 1 [...] Riduzione 5,16 €"
+                },
+                "transformation": "The conglobated base of the level less the reduction of 5.16 EUR of the aziende minori, the same in each tranche.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T10:00:00Z",
+                  "effective_from": "2025-06-01",
+                  "verification_status": "unverified"
+                }
+              }
+            },
+            {
+              "valid_from": "2026-06-01",
+              "valid_until": "2027-06-01",
+              "value": "2102.52",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "fipe-accordo-integrativo-2024-tabelle",
+                    "title": "Accordo integrativo 26 giugno 2024, tabelle retributive CCNL Pubblici esercizi, ristorazione collettiva e commerciale, turismo",
+                    "kind": "associazione",
+                    "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                    "published_on": "2024-06-26",
+                    "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                  },
+                  "page": "4-6",
+                  "section": "Art. 162 - paga base nazionale delle aziende minori",
+                  "quote": "La paga base nazionale delle aziende minori di cui all'art. 162 è stabilita come segue: [...] 1 [...] Riduzione 5,16 €"
+                },
+                "transformation": "The conglobated base of the level less the reduction of 5.16 EUR of the aziende minori, the same in each tranche.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T10:00:00Z",
+                  "effective_from": "2026-06-01",
+                  "verification_status": "unverified"
+                }
+              }
+            },
+            {
+              "valid_from": "2027-06-01",
+              "valid_until": "2027-12-01",
+              "value": "2142.88",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "fipe-accordo-integrativo-2024-tabelle",
+                    "title": "Accordo integrativo 26 giugno 2024, tabelle retributive CCNL Pubblici esercizi, ristorazione collettiva e commerciale, turismo",
+                    "kind": "associazione",
+                    "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                    "published_on": "2024-06-26",
+                    "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                  },
+                  "page": "4-6",
+                  "section": "Art. 162 - paga base nazionale delle aziende minori",
+                  "quote": "La paga base nazionale delle aziende minori di cui all'art. 162 è stabilita come segue: [...] 1 [...] Riduzione 5,16 €"
+                },
+                "transformation": "The conglobated base of the level less the reduction of 5.16 EUR of the aziende minori, the same in each tranche.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T10:00:00Z",
+                  "effective_from": "2027-06-01",
+                  "verification_status": "unverified"
+                }
+              }
+            },
+            {
+              "valid_from": "2027-12-01",
+              "valid_until": null,
+              "value": "2196.69",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "fipe-accordo-integrativo-2024-tabelle",
+                    "title": "Accordo integrativo 26 giugno 2024, tabelle retributive CCNL Pubblici esercizi, ristorazione collettiva e commerciale, turismo",
+                    "kind": "associazione",
+                    "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                    "published_on": "2024-06-26",
+                    "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                  },
+                  "page": "4-6",
+                  "section": "Art. 162 - paga base nazionale delle aziende minori",
+                  "quote": "La paga base nazionale delle aziende minori di cui all'art. 162 è stabilita come segue: [...] 1 [...] Riduzione 5,16 €"
+                },
+                "transformation": "The conglobated base of the level less the reduction of 5.16 EUR of the aziende minori, the same in each tranche.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T10:00:00Z",
+                  "effective_from": "2027-12-01",
+                  "verification_status": "unverified"
+                }
+              }
+            }
+          ]
         }
       }
     },
@@ -2426,6 +3634,157 @@
           "verified_at": "2026-10-11T19:46:50Z",
           "review_id": "2026-10-11-ai"
         }
+      },
+      "base_salary_by_subsector": {
+        "aziende_minori": {
+          "periods": [
+            {
+              "valid_from": "2024-06-01",
+              "valid_until": "2025-06-01",
+              "value": "2147.66",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "fipe-accordo-integrativo-2024-tabelle",
+                    "title": "Accordo integrativo 26 giugno 2024, tabelle retributive CCNL Pubblici esercizi, ristorazione collettiva e commerciale, turismo",
+                    "kind": "associazione",
+                    "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                    "published_on": "2024-06-26",
+                    "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                  },
+                  "page": "4-6",
+                  "section": "Art. 162 - paga base nazionale delle aziende minori",
+                  "quote": "La paga base nazionale delle aziende minori di cui all'art. 162 è stabilita come segue: [...] Qb [...] Riduzione 5,16 €"
+                },
+                "transformation": "The conglobated base of the level less the reduction of 5.16 EUR of the aziende minori, the same in each tranche.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T10:00:00Z",
+                  "effective_from": "2024-06-01",
+                  "verification_status": "unverified"
+                }
+              }
+            },
+            {
+              "valid_from": "2025-06-01",
+              "valid_until": "2026-06-01",
+              "value": "2207.06",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "fipe-accordo-integrativo-2024-tabelle",
+                    "title": "Accordo integrativo 26 giugno 2024, tabelle retributive CCNL Pubblici esercizi, ristorazione collettiva e commerciale, turismo",
+                    "kind": "associazione",
+                    "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                    "published_on": "2024-06-26",
+                    "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                  },
+                  "page": "4-6",
+                  "section": "Art. 162 - paga base nazionale delle aziende minori",
+                  "quote": "La paga base nazionale delle aziende minori di cui all'art. 162 è stabilita come segue: [...] Qb [...] Riduzione 5,16 €"
+                },
+                "transformation": "The conglobated base of the level less the reduction of 5.16 EUR of the aziende minori, the same in each tranche.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T10:00:00Z",
+                  "effective_from": "2025-06-01",
+                  "verification_status": "unverified"
+                }
+              }
+            },
+            {
+              "valid_from": "2026-06-01",
+              "valid_until": "2027-06-01",
+              "value": "2266.45",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "fipe-accordo-integrativo-2024-tabelle",
+                    "title": "Accordo integrativo 26 giugno 2024, tabelle retributive CCNL Pubblici esercizi, ristorazione collettiva e commerciale, turismo",
+                    "kind": "associazione",
+                    "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                    "published_on": "2024-06-26",
+                    "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                  },
+                  "page": "4-6",
+                  "section": "Art. 162 - paga base nazionale delle aziende minori",
+                  "quote": "La paga base nazionale delle aziende minori di cui all'art. 162 è stabilita come segue: [...] Qb [...] Riduzione 5,16 €"
+                },
+                "transformation": "The conglobated base of the level less the reduction of 5.16 EUR of the aziende minori, the same in each tranche.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T10:00:00Z",
+                  "effective_from": "2026-06-01",
+                  "verification_status": "unverified"
+                }
+              }
+            },
+            {
+              "valid_from": "2027-06-01",
+              "valid_until": "2027-12-01",
+              "value": "2311.00",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "fipe-accordo-integrativo-2024-tabelle",
+                    "title": "Accordo integrativo 26 giugno 2024, tabelle retributive CCNL Pubblici esercizi, ristorazione collettiva e commerciale, turismo",
+                    "kind": "associazione",
+                    "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                    "published_on": "2024-06-26",
+                    "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                  },
+                  "page": "4-6",
+                  "section": "Art. 162 - paga base nazionale delle aziende minori",
+                  "quote": "La paga base nazionale delle aziende minori di cui all'art. 162 è stabilita come segue: [...] Qb [...] Riduzione 5,16 €"
+                },
+                "transformation": "The conglobated base of the level less the reduction of 5.16 EUR of the aziende minori, the same in each tranche.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T10:00:00Z",
+                  "effective_from": "2027-06-01",
+                  "verification_status": "unverified"
+                }
+              }
+            },
+            {
+              "valid_from": "2027-12-01",
+              "valid_until": null,
+              "value": "2370.40",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "fipe-accordo-integrativo-2024-tabelle",
+                    "title": "Accordo integrativo 26 giugno 2024, tabelle retributive CCNL Pubblici esercizi, ristorazione collettiva e commerciale, turismo",
+                    "kind": "associazione",
+                    "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                    "published_on": "2024-06-26",
+                    "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                  },
+                  "page": "4-6",
+                  "section": "Art. 162 - paga base nazionale delle aziende minori",
+                  "quote": "La paga base nazionale delle aziende minori di cui all'art. 162 è stabilita come segue: [...] Qb [...] Riduzione 5,16 €"
+                },
+                "transformation": "The conglobated base of the level less the reduction of 5.16 EUR of the aziende minori, the same in each tranche.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T10:00:00Z",
+                  "effective_from": "2027-12-01",
+                  "verification_status": "unverified"
+                }
+              }
+            }
+          ]
+        }
       }
     },
     {
@@ -2650,6 +4009,157 @@
           "verified_at": "2026-10-11T19:46:50Z",
           "review_id": "2026-10-11-ai"
         }
+      },
+      "base_salary_by_subsector": {
+        "aziende_minori": {
+          "periods": [
+            {
+              "valid_from": "2024-06-01",
+              "valid_until": "2025-06-01",
+              "value": "2325.73",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "fipe-accordo-integrativo-2024-tabelle",
+                    "title": "Accordo integrativo 26 giugno 2024, tabelle retributive CCNL Pubblici esercizi, ristorazione collettiva e commerciale, turismo",
+                    "kind": "associazione",
+                    "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                    "published_on": "2024-06-26",
+                    "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                  },
+                  "page": "4-6",
+                  "section": "Art. 162 - paga base nazionale delle aziende minori",
+                  "quote": "La paga base nazionale delle aziende minori di cui all'art. 162 è stabilita come segue: [...] Qa [...] Riduzione 5,68 €"
+                },
+                "transformation": "The conglobated base of the level less the reduction of 5.68 EUR of the aziende minori, the same in each tranche.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T10:00:00Z",
+                  "effective_from": "2024-06-01",
+                  "verification_status": "unverified"
+                }
+              }
+            },
+            {
+              "valid_from": "2025-06-01",
+              "valid_until": "2026-06-01",
+              "value": "2391.51",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "fipe-accordo-integrativo-2024-tabelle",
+                    "title": "Accordo integrativo 26 giugno 2024, tabelle retributive CCNL Pubblici esercizi, ristorazione collettiva e commerciale, turismo",
+                    "kind": "associazione",
+                    "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                    "published_on": "2024-06-26",
+                    "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                  },
+                  "page": "4-6",
+                  "section": "Art. 162 - paga base nazionale delle aziende minori",
+                  "quote": "La paga base nazionale delle aziende minori di cui all'art. 162 è stabilita come segue: [...] Qa [...] Riduzione 5,68 €"
+                },
+                "transformation": "The conglobated base of the level less the reduction of 5.68 EUR of the aziende minori, the same in each tranche.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T10:00:00Z",
+                  "effective_from": "2025-06-01",
+                  "verification_status": "unverified"
+                }
+              }
+            },
+            {
+              "valid_from": "2026-06-01",
+              "valid_until": "2027-06-01",
+              "value": "2457.28",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "fipe-accordo-integrativo-2024-tabelle",
+                    "title": "Accordo integrativo 26 giugno 2024, tabelle retributive CCNL Pubblici esercizi, ristorazione collettiva e commerciale, turismo",
+                    "kind": "associazione",
+                    "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                    "published_on": "2024-06-26",
+                    "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                  },
+                  "page": "4-6",
+                  "section": "Art. 162 - paga base nazionale delle aziende minori",
+                  "quote": "La paga base nazionale delle aziende minori di cui all'art. 162 è stabilita come segue: [...] Qa [...] Riduzione 5,68 €"
+                },
+                "transformation": "The conglobated base of the level less the reduction of 5.68 EUR of the aziende minori, the same in each tranche.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T10:00:00Z",
+                  "effective_from": "2026-06-01",
+                  "verification_status": "unverified"
+                }
+              }
+            },
+            {
+              "valid_from": "2027-06-01",
+              "valid_until": "2027-12-01",
+              "value": "2506.62",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "fipe-accordo-integrativo-2024-tabelle",
+                    "title": "Accordo integrativo 26 giugno 2024, tabelle retributive CCNL Pubblici esercizi, ristorazione collettiva e commerciale, turismo",
+                    "kind": "associazione",
+                    "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                    "published_on": "2024-06-26",
+                    "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                  },
+                  "page": "4-6",
+                  "section": "Art. 162 - paga base nazionale delle aziende minori",
+                  "quote": "La paga base nazionale delle aziende minori di cui all'art. 162 è stabilita come segue: [...] Qa [...] Riduzione 5,68 €"
+                },
+                "transformation": "The conglobated base of the level less the reduction of 5.68 EUR of the aziende minori, the same in each tranche.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T10:00:00Z",
+                  "effective_from": "2027-06-01",
+                  "verification_status": "unverified"
+                }
+              }
+            },
+            {
+              "valid_from": "2027-12-01",
+              "valid_until": null,
+              "value": "2572.39",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "fipe-accordo-integrativo-2024-tabelle",
+                    "title": "Accordo integrativo 26 giugno 2024, tabelle retributive CCNL Pubblici esercizi, ristorazione collettiva e commerciale, turismo",
+                    "kind": "associazione",
+                    "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+                    "published_on": "2024-06-26",
+                    "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922"
+                  },
+                  "page": "4-6",
+                  "section": "Art. 162 - paga base nazionale delle aziende minori",
+                  "quote": "La paga base nazionale delle aziende minori di cui all'art. 162 è stabilita come segue: [...] Qa [...] Riduzione 5,68 €"
+                },
+                "transformation": "The conglobated base of the level less the reduction of 5.68 EUR of the aziende minori, the same in each tranche.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T10:00:00Z",
+                  "effective_from": "2027-12-01",
+                  "verification_status": "unverified"
+                }
+              }
+            }
+          ]
+        }
       }
     }
   ],
@@ -2836,7 +4346,7 @@
     "effective_until": null,
     "source": "https://www.fipe.it/wp-content/uploads/2025/02/Tabelle-retributive-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "8c4ea068124429b2eee077dbe2fd3a4b5a65282edc7d2941c5b48201ce59f940",
+    "source_hash": "7b37778f2d14eb99666c99237e3ee4b0b5e24aaacf9e67f6b30455f23da977c7",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
