@@ -1175,7 +1175,8 @@
       "studi-professionali-confprofessioni/unused_leave_hours"
     ],
     "agreement/tabacco-apti.json": [
-      "tabacco-apti/alifond_before_july_2025"
+      "tabacco-apti/alifond_before_july_2025",
+      "tabacco-apti/sickness_rules"
     ],
     "agreement/telecomunicazioni-asstel.json": [
       "telecomunicazioni-asstel/industria_tax_sector_unverified",

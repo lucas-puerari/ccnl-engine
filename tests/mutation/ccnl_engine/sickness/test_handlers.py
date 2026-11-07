@@ -224,9 +224,11 @@ class TestMissingRulesAndFacts:
     """A missing rule posts nothing; a missing fact is provisional."""
 
     def test_ccnl_without_sickness_rule_is_incomplete(self) -> None:
-        """Tabacco APTI defines no sickness rule."""
+        """Radiotelevisive (radiofonico) defines no sickness rule."""
         result = calculate_period(
-            _req(3, _MARCH, slug="tabacco-apti", level="2", category=None),
+            _req(
+                3, _MARCH, slug="radiotelevisive-radiofonico", level="2", category=None
+            ),
             repo=bundled_repository(),
             resolver=bundled_policies(),
         )
