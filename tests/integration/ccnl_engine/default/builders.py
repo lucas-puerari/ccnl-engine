@@ -389,6 +389,25 @@ def _pharmacist(career: int | None) -> PeriodInput:
     return replace(request, employment=employment)
 
 
+def _on_probation(until: date | None) -> PeriodInput:
+    """Return a March Igiene ambientale run whose FASDA skips the probation.
+
+    Returns:
+        The request with the end of the probation stated or not.
+    """
+    employment = replace(
+        CONCIA_D2, ccnl_id="igiene-ambientale-utilitalia", level_code="C1"
+    )
+    period = employment.employment_period
+    assert period is not None
+    employment = replace(
+        employment, employment_period=replace(period, probation_until=until)
+    )
+    return regular_run(
+        3, employment=employment, facts=FACTS, opening_state=PeriodState.zero()
+    )
+
+
 #: The cases of each ``requires_fact`` field, keyed ``Type.field``.
 DEFAULT_CASES: Mapping[str, tuple[DefaultCase, ...]] = {
     "PeriodInput.current_year": (
@@ -686,6 +705,10 @@ DEFAULT_CASES: Mapping[str, tuple[DefaultCase, ...]] = {
     "SeniorityFact.birth_date": tuple(
         DefaultCase(_turismo_young(birth), _turismo_young(None))
         for birth in (date(1990, 4, 2), date(2009, 4, 2))
+    ),
+    "EmploymentPeriod.probation_until": tuple(
+        DefaultCase(_on_probation(until), _on_probation(None))
+        for until in (date(2026, 2, 28), date(2026, 3, 31))
     ),
     "SeniorityFact.career_months": tuple(
         DefaultCase(_pharmacist(career), _pharmacist(None)) for career in (0, 200)

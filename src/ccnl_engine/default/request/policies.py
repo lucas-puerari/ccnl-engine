@@ -139,6 +139,12 @@ REQUEST_DEFAULTS: Mapping[str, FieldDefault] = {
         "an adult hire: on a CCNL that counts the increments from an age the "
         "service counts from the start, without a blocker",
     ),
+    "EmploymentPeriod.probation_until": requires_fact(
+        "contractual_funds",
+        "employment_period.probation_until",
+        _PENDING,
+        "no probation: a fund that leaves it out is charged from the hire",
+    ),
     "SeniorityFact.career_months": requires_fact(
         "base_salary",
         "seniority.career_months",

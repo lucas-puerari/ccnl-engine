@@ -34,16 +34,23 @@ def _fund(**fields: object) -> ContractualFund:
 
 
 def _ctx(
-    contract: object, ends: date | None = None, hours: int | None = None
+    contract: object,
+    ends: date | None = None,
+    hours: int | None = None,
+    probation: date | None = None,
+    competence: date = date(2026, 3, 1),
 ) -> RunContext:
     return cast(
         "RunContext",
         SimpleNamespace(
             request=SimpleNamespace(
                 contract_type=contract,
-                employment_period=EmploymentPeriod(date(2026, 1, 15), ends),
+                employment_period=EmploymentPeriod(
+                    date(2026, 1, 15), ends, probation_until=probation
+                ),
                 weekly_hours=None if hours is None else WeeklyHours(Decimal(hours)),
-            )
+            ),
+            contract=SimpleNamespace(tctx=SimpleNamespace(competence=competence)),
         ),
     )
 
@@ -80,3 +87,20 @@ def test_ends_within_clamps_to_a_short_month() -> None:
     """One month from 31 January is 28 February."""
     assert ends_within(date(2026, 1, 31), date(2026, 2, 27), 1) is True
     assert ends_within(date(2026, 1, 31), date(2026, 2, 28), 1) is False
+
+
+@pytest.mark.parametrize(
+    ("excludes", "probation", "out"),
+    [
+        (True, date(2026, 3, 1), True),
+        (True, date(2026, 2, 28), False),
+        (True, None, False),
+        (False, date(2026, 3, 31), False),
+    ],
+)
+def test_a_month_starting_in_probation_is_left_out(
+    excludes: bool, probation: date | None, out: bool
+) -> None:
+    """March is left out when the probation reaches its first day."""
+    fund = _fund(excludes_probation=excludes)
+    assert excluded(fund, _ctx(Permanent(), probation=probation)) is out

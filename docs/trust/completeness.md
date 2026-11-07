@@ -14,7 +14,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 0/136 CCNLs.** Bundle: 270 weak rules, 424 open limitations (424 with a monetary impact).
+**Complete: 0/136 CCNLs.** Bundle: 270 weak rules, 423 open limitations (423 with a monetary impact).
 
 ## Declared window
 
@@ -113,7 +113,7 @@ Future data, registered apart from the gaps: a contract whose validity ends insi
 | [gas-acqua-utilitalia](../contracts/gas-acqua-utilitalia.md) | `energia-utilities` | exploratory | — | 23 rows | 23 open requirements; 1 weak rule; 20 monetary limitations; 19 non-native capabilities |
 | [gomma-plastica-federazione-gomma-plastica](../contracts/gomma-plastica-federazione-gomma-plastica.md) | `chimica` | exploratory | — | 23 rows | 23 open requirements; 2 weak rules; 19 monetary limitations; 19 non-native capabilities |
 | [grafica-editoria-aieg](../contracts/grafica-editoria-aieg.md) | `carta-grafica` | exploratory | — | 22 rows | 22 open requirements; 1 weak rule; 18 monetary limitations; 1 outside_input limitation; 20 non-native capabilities |
-| [igiene-ambientale-utilitalia](../contracts/igiene-ambientale-utilitalia.md) | `energia-utilities` | exploratory | — | 26 rows | tables from 2026-02-01; 26 open requirements; 1 weak rule; 23 monetary limitations; 21 non-native capabilities |
+| [igiene-ambientale-utilitalia](../contracts/igiene-ambientale-utilitalia.md) | `energia-utilities` | exploratory | — | 25 rows | tables from 2026-02-01; 25 open requirements; 1 weak rule; 22 monetary limitations; 20 non-native capabilities |
 | [impianti-sportivi-sport](../contracts/impianti-sportivi-sport.md) | `sport` | exploratory | — | 26 rows | 26 open requirements; 2 weak rules; 20 monetary limitations; 2 outside_input limitations; 20 non-native capabilities |
 | [impiegati-tecnici-agricoli](../contracts/impiegati-tecnici-agricoli.md) | `agricoltura` | exploratory | — | 23 rows | 23 open requirements; 2 weak rules; 19 monetary limitations; 18 non-native capabilities |
 | [industria-turistica-federturismo](../contracts/industria-turistica-federturismo.md) | `turismo` | exploratory | — | 22 rows | 22 open requirements; 1 weak rule; 19 monetary limitations; 19 non-native capabilities |
