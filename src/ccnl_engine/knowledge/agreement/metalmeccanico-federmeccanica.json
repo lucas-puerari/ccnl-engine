@@ -147,7 +147,7 @@
       },
       {
         "kind": "simplification",
-        "text": "ELEMENTO PEREQUATIVO (Sez. Quarta Tit. IV Art. 13, pp. 177-178): 485 euro a year with the June pay to the worker in service on 1 January of a company without second-level bargaining (EmployerProfile.second_level_premium false), for the months of the year before over twelve; the engine pays it (parameters.equalisation_element). Left open: the pay above the CCNL the worker received in the year before (superminimi, premi annui, other pay subject to contributions) has no field in the request; the engine reads it from the individual elements of the run, each monthly amount at the part-time fraction for each month served, so an element agreed or absorbed since, or a yearly premium of the year before, is not seen.",
+        "text": "ELEMENTO PEREQUATIVO (Sez. Quarta Tit. IV Art. 13, pp. 177-178): 485 euro a year with the June pay to the worker in service on 1 January of a company without second-level bargaining (EmployerProfile.second_level_premium false), for the months of the year before over twelve; the engine pays it (parameters.equalisation_element). Left open: the pay above the CCNL the worker received in the year before (superminimi, premi annui, other pay subject to contributions) has no field in the request; the engine reads it from the individual elements of the run, each amount on 31 December of the year before at the part-time fraction, for each month served, on twelve monthly payments, so an element agreed since, the share of the extra months or a yearly premium of the year before is not seen. A run without the employment period pays none; a second-level element the employer states counts when in force in the year before.",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
@@ -3363,7 +3363,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
     "verification_status": "unverified",
-    "source_hash": "d6fb00c48ce31f115117599c14f00def24e42898bb00a2b45f7ee5bea52f8b94",
+    "source_hash": "11b088d132504800c80ac3d9368e83614a1258003e80abf05ce703cfeefce2e2",
     "published_at": "2026-09-08",
     "source_type": "contracting_party"
   },

@@ -47,6 +47,7 @@ def _request(
         "PeriodCalculationRequest",
         SimpleNamespace(
             period_id=PeriodId(year=2026, month=month),
+            level_code="5",
             employment_period=period,
             individual_elements=individual,
             weekly_hours=weekly,
@@ -147,13 +148,57 @@ def test_the_pay_above_the_ccnl_reduces_it(
     assert [a for _, a, _ in _paid(request)] == expected
 
 
-def test_a_firm_with_second_level_bargaining_owes_nothing() -> None:
-    """The flag true, or a company element stated, closes it."""
-    company = SecondLevelElement(
-        "premio", Decimal(10), SecondLevelAgreement.COMPANY, valid_from=date(2020, 1, 1)
+def _company(valid_from: date, valid_until: date | None = None) -> SecondLevelElement:
+    return SecondLevelElement(
+        "premio",
+        Decimal(10),
+        SecondLevelAgreement.COMPANY,
+        valid_from=valid_from,
+        valid_until=valid_until,
     )
-    assert _paid(_request(premium=True)) == []
-    assert _paid(_request(company=(company,))) == []
+
+
+@pytest.mark.parametrize(
+    ("company", "owed"),
+    [
+        (None, False),
+        (_company(date(2020, 1, 1)), False),
+        (_company(date(2025, 12, 31)), False),
+        (_company(date(2020, 1, 1), date(2025, 1, 1)), False),
+        (_company(date(2026, 1, 1)), True),
+        (_company(date(2020, 1, 1), date(2024, 12, 31)), True),
+    ],
+    ids=["flag", "open", "from-31-dec", "until-1-jan", "next-year", "ended-before"],
+)
+def test_second_level_bargaining_of_the_year_before_closes_it(
+    company: SecondLevelElement | None, *, owed: bool
+) -> None:
+    """The flag true, or a company element in force in the year before."""
+    if company is None:
+        request = _request(premium=True)
+    else:
+        request = _request(company=(company,))
+    assert bool(_paid(request)) is owed
+
+
+@pytest.mark.parametrize(("monthly", "amount"), [("40", "485.00"), ("70", "245.00")])
+def test_a_superminimo_counts_at_its_amount_on_31_december(
+    monthly: str, amount: str
+) -> None:
+    """Level 5: the minimo rose by 50 from June 2024 to 31 December 2025."""
+    element = IndividualElement(
+        "superminimo", Decimal(monthly), absorbable=True, as_of=date(2024, 6, 1)
+    )
+    request = _request(individual=(element,))
+    assert [a for _, a, _ in _paid(request)] == [Decimal(amount)]
+
+
+def test_an_unstated_firm_owes_nothing_to_an_absorbed_worker() -> None:
+    """A superminimo above the element: no amount, so no missing fact."""
+    element = IndividualElement("superminimo", Decimal(50))
+    request = _request(premium=None, individual=(element,))
+    outcome = equalisation_outcome(request, _CONFAPI, RunKind.REGULAR)
+    assert (outcome.events, outcome.unknown) == ((), None)
 
 
 def test_an_unstated_firm_leaves_it_out_and_names_it() -> None:

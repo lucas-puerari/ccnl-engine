@@ -137,7 +137,7 @@
       },
       {
         "kind": "simplification",
-        "text": "Art. 48 (p. 122): the elemento perequativo of 485 EUR a year with the June pay to the worker in service on 1 January of a firm without second-level bargaining with economic content (EmployerProfile.second_level_premium false), for the months of the year before over twelve; the engine pays it (parameters.equalisation_element). Left open: the pay above the CCNL the worker received in the year before (superminimi, premi annui, other pay subject to contributions) has no field in the request; the engine reads it from the individual elements of the run, each monthly amount at the part-time fraction for each month served, so an element agreed or absorbed since, or a yearly premium of the year before, is not seen.",
+        "text": "Art. 48 (p. 122): the elemento perequativo of 485 EUR a year with the June pay to the worker in service on 1 January of a firm without second-level bargaining with economic content (EmployerProfile.second_level_premium false), for the months of the year before over twelve; the engine pays it (parameters.equalisation_element). Left open: the pay above the CCNL the worker received in the year before (superminimi, premi annui, other pay subject to contributions) has no field in the request; the engine reads it from the individual elements of the run, each amount on 31 December of the year before at the part-time fraction, for each month served, on twelve monthly payments, so an element agreed since, the share of the extra months or a yearly premium of the year before is not seen. A run without the employment period pays none; a second-level element the employer states counts when in force in the year before.",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
@@ -3078,7 +3078,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260604-CCNL-Unionmeccanica-Confapi-2025-2028.pdf",
     "verification_status": "unverified",
-    "source_hash": "119b3ea53ac082d6582e1c2a60c4c01c526c927a6cdde78962c3ca632327ec9f",
+    "source_hash": "4d0999c4283fa441f2e2ee48215e13b24e1dd188541d9bcc7a1c7fb8ff807d9a",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -4326,13 +4326,17 @@
             "sha256": "c3e694dc561879c0b5ef510d0e931a16e3562f073a88e8a06a210fbf00451fad"
           },
           {
+            "url": "https://www.fim-cisl.it/wp-content/uploads/2021/03/Ipotesi-CCNL-TESTO-firme-accordo-26-maggio-2021.pdf",
+            "sha256": "01ce99791070d03e4c00e9c4dfd498c8036ad6f3555b8a32aaeab71574805a8a"
+          },
+          {
             "url": "https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260604-CCNL-Unionmeccanica-Confapi-2025-2028.pdf",
             "sha256": "ae59a64f408072c1438892143e2146eea350d7e2c3e5883fb8538f86ffc47f53"
           }
         ],
         "findings": [
           "Art. 48: 485 EUR a year with the June pay, to the workers in service on 1 January in firms without second-level bargaining with economic content, prorated by the months of the year before (a fraction above 15 days a month), reduced up to its amount by the pay above the CCNL, out of the TFR base, paid at the settlement on an earlier termination, of the competence of the year of payment.",
-          "The renewal of 4 June 2026 does not mention the element (OCR of its 41 pages)."
+          "The ipotesi of 26 May 2021 and the renewal of 4 June 2026 do not mention the element (OCR of their 23 and 41 pages)."
         ],
         "independence": "same_process",
         "checked": [
