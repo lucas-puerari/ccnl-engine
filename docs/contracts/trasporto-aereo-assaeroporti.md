@@ -42,7 +42,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 1 verified / 94 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 45 verified / 50 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -51,7 +51,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-06-04 |
-| **Last review** | 2026-11-05 |
+| **Last review** | 2026-11-07 |
 | **Latest salary tranche** | 2027-07-01 |
 
 ## Review history
@@ -60,6 +60,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|---|---|
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | confirmed | Art. G29 - Tredicesima mensilità (p. 43): "Le frazioni di mese pari o superiori a 15 giorni saranno considerate come mese intero.". Match: at_least 15. |
 | 2026-11-05 | claude-opus-5-5 (ai) | Artt. G6 and G23 of the 2025-2027 text (PDF pp. 40-41, 71, 82) and G6 of the 2025 text (p. 20), text layer. | confirmed | Level 9 has no amount in G23 and no worker stays there two years: 6 months under the 2025 G6, no classification at level 9 from 1 March 2026. The 0.00 of the file is the text. |
+| 2026-11-07 | claude-opus-5-5 (ai) | The monthly values of the levels against the Parte specifica Gestori aeroportuali of 4 June 2025 (text layer). | confirmed | 66 printed monthly values found verbatim in the text and marked verified; 55 allowance values computed from a clause (maneggio denaro, contributo DPI) are not printed and keep their provenance. |
 
 ## Salary table
 

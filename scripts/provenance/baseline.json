@@ -656,9 +656,6 @@
       "alimentari-federalimentare/ordinary_hours_premiums",
       "alimentari-federalimentare/sickness_disabled_fixed_term"
     ],
-    "agreement/alimentari-pmi-unionalimentari.json": [
-      "alimentari-pmi-unionalimentari/tranches_2027_2028"
-    ],
     "agreement/assicurazioni-ania.json": [
       "assicurazioni-ania/funzionari_economic_allowance",
       "assicurazioni-ania/inps_sector_rates_unsourced",
@@ -887,9 +884,6 @@
     ],
     "agreement/funzioni-centrali-aran.json": [
       "funzioni-centrali-aran/agency_salary_tables"
-    ],
-    "agreement/funzioni-locali-aran.json": [
-      "funzioni-locali-aran/renewal_2025_2027_missing"
     ],
     "agreement/gas-acqua-utilitalia.json": [
       "gas-acqua-utilitalia/industria_rates_proxy"
@@ -1198,12 +1192,14 @@
     ],
     "agreement/tessile-moda-artigianato-confartigianato.json": [
       "tessile-moda-artigianato-confartigianato/apprentice_inps_rates_unsourced",
+      "tessile-moda-artigianato-confartigianato/chimica_ceramica_level_rules",
       "tessile-moda-artigianato-confartigianato/chimica_ceramica_subsectors",
       "tessile-moda-artigianato-confartigianato/inps_sector_rates_unsourced",
       "tessile-moda-artigianato-confartigianato/level_category_unconfirmed"
     ],
     "agreement/tessile-pmi-uniontessile.json": [
       "tessile-pmi-uniontessile/fondapi_base_elements",
+      "tessile-pmi-uniontessile/level_4s_seniority",
       "tessile-pmi-uniontessile/level_8_function_allowance",
       "tessile-pmi-uniontessile/other_subsectors_tables"
     ],

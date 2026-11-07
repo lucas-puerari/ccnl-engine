@@ -112,6 +112,16 @@ def _runs(ccnl: CCNL) -> Iterator[tuple[str, int]]:
         yield code, index % 12 + 1
 
 
+def _subsector(ccnl: CCNL, level_code: str) -> str | None:
+    """Return the sub-sector a run of the level states.
+
+    Returns:
+        The first sub-sector the level exists only for, ``None`` for all.
+    """
+    subsectors = ccnl.level_by_code(level_code).subsectors
+    return subsectors[0] if subsectors else None
+
+
 def _outcome(ccnl: CCNL, level_code: str, month: int) -> MissingRuleError | None:
     """Return the missing rule of the run, ``None`` when it computed.
 
@@ -122,7 +132,9 @@ def _outcome(ccnl: CCNL, level_code: str, month: int) -> MissingRuleError | None
         run=PayrollRun.regular(year=_YEAR, month=month),
         payment_date=date(_YEAR, month, 27),
         employment=_employment(ccnl, level_code),
-        employer=EmployerProfile(headcount=Headcount(50)),
+        employer=EmployerProfile(
+            headcount=Headcount(50), subsector=_subsector(ccnl, level_code)
+        ),
         facts=_facts(ccnl),
     )
     try:

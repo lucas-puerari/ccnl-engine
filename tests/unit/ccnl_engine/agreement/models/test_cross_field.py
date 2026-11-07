@@ -76,7 +76,7 @@ class TestCCNLApprenticeshipTracks:
         """levels_below pointing below the lowest level must raise at load time."""
         data = make_ccnl_dict(app_type="under_classification")
         data["apprenticeship"][0]["periods"][0]["levels_below"] = 3
-        with pytest.raises(ValidationError, match="no level with order 1"):
+        with pytest.raises(ValidationError, match="no level 3 below '4'"):
             _validate(data)
 
     def test_invalid_reference_level_raises(self) -> None:

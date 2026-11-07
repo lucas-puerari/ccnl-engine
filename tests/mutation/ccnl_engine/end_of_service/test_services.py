@@ -160,7 +160,7 @@ def test_unknown_regime_is_a_missing_fact() -> None:
 @pytest.mark.parametrize(
     ("slug", "level", "employee"),
     [
-        ("funzioni-locali-aran", "ISTRUTTORI", "38.56"),
+        ("funzioni-locali-aran", "ISTRUTTORI", "40.39"),
         ("funzioni-centrali-aran", "FUNZIONARI", None),
     ],
     ids=["inadel", "enpas"],
@@ -187,7 +187,7 @@ def test_tredicesima_in_the_base_of_inadel_alone(
         assert "tfs_employee" not in components
         return
     assert components["tfs_employee"] == Decimal(employee)
-    assert components["tfs_employer"] == Decimal("55.53")
+    assert components["tfs_employer"] == Decimal("58.17")
 
 
 @pytest.mark.parametrize(
