@@ -1955,7 +1955,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/scuole-private-laiche-aninsei",
       "ruleset_version": "2026.2",
-      "source_hash": "6088885b318628750bb058be307b399919d8d0688a67c2895856b11f1e780a65",
+      "source_hash": "8ef7a96c621c16b4ffc6006f4bcd1993e9ce6573b5f1ceea0e2cc2b2f35251cd",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/scuole-private-laiche-aninsei.json.gz"
@@ -4681,7 +4681,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "fed090b3199b93d82649a5855f8183e685b71c0f67899b177839a11f3be08cee",
+      "source_hash": "04ca8bd8372eb51c07d0255cbb9e2419349ee912df8a7ca9c035939723ebd943",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/scuole-private-laiche-aninsei.json.gz",
