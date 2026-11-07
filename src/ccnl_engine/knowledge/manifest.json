@@ -918,7 +918,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/farmacie-municipalizzate-assofarm",
       "ruleset_version": "2026.2",
-      "source_hash": "52f3f1bfa75125bd45882f1b90e2671ac3b20d459d4b8620291435df1c444950",
+      "source_hash": "880ebb1a49b39f1f7c989a78a008fbb899e0f6f40356197ec374c741dadd1069",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/farmacie-municipalizzate-assofarm.json.gz"
@@ -3461,7 +3461,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "5ae585c15bd488b64c94c7630661149de05ee363bce8aa946d505b486daefdd2",
+      "source_hash": "33864afa92f46166be39af24b1c1f0194c55350feb642a9cb20225c6b8303249",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/farmacie-municipalizzate-assofarm.json.gz",
