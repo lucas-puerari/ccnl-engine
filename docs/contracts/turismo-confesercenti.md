@@ -64,6 +64,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|---|---|
 | 2026-11-06 | claude-opus-5-5 (ai) | Apprentice seniority: art. 58 c. 1 of the accordo of 18 July 2018 (CNEL 90033, p. 116, OCR); the definition of the retribuzione read in the unified CCNL Turismo of 22 July 2003 (art. 140 c. 1 d) and its Federalberghi successor of 20 February 2010 (art. 148 c. 1 d). | corrected | The apprentice is paid a percentage of 'la normale retribuzione dei lavoratori qualificati di pari livello' (art. 58); the retribuzione 'è distinta nelle seguenti voci [...] eventuali scatti di anzianità' in the 2003 parent text, a clause the Federalberghi successor keeps; 'A tutto il personale verranno riconosciuti sei scatti' for uninterrupted service: the level increments, scaled by the percentage. The Confesercenti 2010 text itself was not read. |
 | 2026-11-08 | gpt-6-sol (ai) | Monthly values on scanned pages, each read twice from the page image by two independent sessions of another model, the second without being told the expected value. | confirmed | 50 values read identically by both readings and equal to the file. |
+| 2026-11-08 | gpt-6-sol (ai) | CCNL top-ups of maternity and work injury, read from the signed text by a separate model session; every quote found on the PDF text layer. | confirmed | Added work_rules.insured_absence.injury.<br>Added work_rules.insured_absence.maternity (checked on the page image, no text layer). |
 
 ## Salary table
 
