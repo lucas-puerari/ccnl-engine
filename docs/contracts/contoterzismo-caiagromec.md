@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 1 verified / 48 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 20 verified / 29 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-06-18 |
-| **Last review** | 2026-10-18 |
+| **Last review** | 2026-11-07 |
 | **Latest salary tranche** | 2027-06-01 |
 
 ## Review history
@@ -58,6 +58,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | Date | Reviewer | Scope | Outcome | Findings |
 |---|---|---|---|---|
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | corrected | Art. 20 - Mensilità aggiuntive (13ª e 14ª) (p. 22): "dette mensilità aggiuntive sono frazionabili in dodicesimi nell'ipotesi di inizio o di cessazione del rapporto nel corso dell'anno. [...] La frazione di mese superiore a 15 giorni è considerata come un mese intero.". Added: more_than 15 (the file applied the engine default, at least 15 days). |
+| 2026-11-07 | gpt-6-sol (ai) | Monthly values on scanned pages, each read twice from the page image by two independent sessions of another model, the second without being told the expected value. | confirmed | 37 values read identically by both readings and equal to the file. |
 
 ## Salary table
 

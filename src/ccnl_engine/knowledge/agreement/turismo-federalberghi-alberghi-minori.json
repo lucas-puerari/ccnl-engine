@@ -801,25 +801,25 @@
                   "status": "verified",
                   "location": {
                     "source_document": {
-                      "document_id": "turismo-federalberghi-alberghi-minori-src-47f71f5f",
-                      "title": "turismo-federalberghi-alberghi-minori: 2010-uiltucs.pdf",
+                      "document_id": "turismo-federalberghi-alberghi-minori-tables-47f71f5f",
+                      "title": "turismo-federalberghi-alberghi-minori: tabelle retributive (2010-uiltucs.pdf)",
                       "kind": "associazione",
                       "url": "http://www.uiltucs.it/pdf/turismo/CCNL_Turismo_Confcommercio_2010.pdf",
                       "sha256": "47f71f5f3f9eb7975837a888f08f8694ca5b1d9e403c85226446c080b7e0f9e4"
                     },
                     "page": "133",
                     "section": "Art. 145(1), indennità di funzione mensile quadri, colonna da gennaio 2009",
-                    "quote": "A 46,48 60,00 75,00"
+                    "quote": "60,00              75,00"
                   },
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-07T23:00:00Z",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
                     "effective_from": "2009-01-01",
-                    "verified_by": "gpt-6-sol",
-                    "verified_at": "2026-11-07T23:00:00Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
                     "verification_status": "verified",
-                    "review_id": "2026-11-07-gpt-turismo-federalberghi-alberghi-minori-double-read"
+                    "review_id": "2026-11-07-ai-turismo-federalberghi-alberghi-minori-tables"
                   }
                 }
               }
@@ -1061,25 +1061,25 @@
                   "status": "verified",
                   "location": {
                     "source_document": {
-                      "document_id": "turismo-federalberghi-alberghi-minori-src-47f71f5f",
-                      "title": "turismo-federalberghi-alberghi-minori: 2010-uiltucs.pdf",
+                      "document_id": "turismo-federalberghi-alberghi-minori-tables-47f71f5f",
+                      "title": "turismo-federalberghi-alberghi-minori: tabelle retributive (2010-uiltucs.pdf)",
                       "kind": "associazione",
                       "url": "http://www.uiltucs.it/pdf/turismo/CCNL_Turismo_Confcommercio_2010.pdf",
                       "sha256": "47f71f5f3f9eb7975837a888f08f8694ca5b1d9e403c85226446c080b7e0f9e4"
                     },
                     "page": "133",
                     "section": "Art. 145(1), indennità di funzione mensile quadri, colonna da gennaio 2009",
-                    "quote": "B 41,32 55,00 70,00"
+                    "quote": "B                    ~1,32                55,00              70,00"
                   },
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-07T23:00:00Z",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
                     "effective_from": "2009-01-01",
-                    "verified_by": "gpt-6-sol",
-                    "verified_at": "2026-11-07T23:00:00Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
                     "verification_status": "verified",
-                    "review_id": "2026-11-07-gpt-turismo-federalberghi-alberghi-minori-double-read"
+                    "review_id": "2026-11-07-ai-turismo-federalberghi-alberghi-minori-tables"
                   }
                 }
               }
@@ -2912,7 +2912,7 @@
     "effective_until": null,
     "source": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
     "verification_status": "unverified",
-    "source_hash": "0cfb36abff08498e9891699cc676391f342a635ee94bc3d479b1d3fc43426b5c",
+    "source_hash": "23d944c2439f09c77e487b98015e2610f7bf06f62074b30e5bba246ec73f82a3",
     "published_at": "2026-11-01",
     "source_type": "contracting_party"
   },
@@ -4126,6 +4126,28 @@
         ]
       },
       {
+        "id": "2026-11-07-ai-turismo-federalberghi-alberghi-minori-tables",
+        "date": "2026-11-07",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The monthly values of the levels against the primary tables (text layer).",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "http://www.uiltucs.it/pdf/turismo/CCNL_Turismo_Confcommercio_2010.pdf",
+            "sha256": "47f71f5f3f9eb7975837a888f08f8694ca5b1d9e403c85226446c080b7e0f9e4"
+          }
+        ],
+        "findings": [
+          "2 values found verbatim on the cited pages and marked verified; 50 left as they were (derived or not on a text page)."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels.base_salary",
+          "levels.fixed_allowances"
+        ]
+      },
+      {
         "id": "2026-11-07-gpt-turismo-federalberghi-alberghi-minori-double-read",
         "date": "2026-11-07",
         "reviewer": "gpt-6-sol",
@@ -4136,14 +4158,10 @@
           {
             "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
             "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
-          },
-          {
-            "url": "http://www.uiltucs.it/pdf/turismo/CCNL_Turismo_Confcommercio_2010.pdf",
-            "sha256": "47f71f5f3f9eb7975837a888f08f8694ca5b1d9e403c85226446c080b7e0f9e4"
           }
         ],
         "findings": [
-          "52 values read identically by both readings and equal to the file."
+          "50 values read identically by both readings and equal to the file."
         ],
         "independence": "separate_model",
         "checked": [

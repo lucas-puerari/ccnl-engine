@@ -1708,7 +1708,32 @@
               {
                 "valid_from": "2024-11-11",
                 "valid_until": null,
-                "value": "51.65"
+                "value": "51.65",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "tessile-smi-tables-77c269b3",
+                      "title": "tessile-smi: tabelle retributive (ccnl-2022.pdf)",
+                      "kind": "associazione",
+                      "url": "https://azstcnesa0002prodwe001.blob.core.windows.net/archivio-contratti/archivio%2F2022%2Ff3495dfe-2d54-44fa-8603-be436ddfe900%2F20308.pdf",
+                      "sha256": "77c269b3fa0d3d87efeb86e44ecd7b344f55cb3d125205d283e6ac58b97fb2b1"
+                    },
+                    "page": "111",
+                    "section": "Art. 118 – Indennità di funzione",
+                    "quote": "Ai lavoratori con qualifica di quadro è riconosciuta una indennità di funzione nella misura di 51,65"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2024-11-11",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-tessile-smi-tables"
+                  }
+                }
               }
             ]
           },
@@ -1921,7 +1946,7 @@
     "effective_until": null,
     "source": "https://www.sistemamodaitalia.com/",
     "verification_status": "unverified",
-    "source_hash": "b4cc6f75d665edaedce8410e105233505346584a8d61fac64ba499b6384919e2",
+    "source_hash": "19a809729a5a2393b944f2dced51ef714cf4d2b2ff227c9420c58bf717280840",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2114,6 +2139,28 @@
   },
   "verification": {
     "reviews": [
+      {
+        "id": "2026-11-07-ai-tessile-smi-tables",
+        "date": "2026-11-07",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The monthly values of the levels against the primary tables (text layer).",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://azstcnesa0002prodwe001.blob.core.windows.net/archivio-contratti/archivio%2F2022%2Ff3495dfe-2d54-44fa-8603-be436ddfe900%2F20308.pdf",
+            "sha256": "77c269b3fa0d3d87efeb86e44ecd7b344f55cb3d125205d283e6ac58b97fb2b1"
+          }
+        ],
+        "findings": [
+          "1 values found verbatim on the cited pages and marked verified; 40 left as they were (derived or not on a text page)."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels.base_salary",
+          "levels.fixed_allowances"
+        ]
+      },
       {
         "id": "2026-11-07-gpt-tessile-smi-double-read",
         "date": "2026-11-07",

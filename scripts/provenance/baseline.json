@@ -656,9 +656,6 @@
       "alimentari-federalimentare/ordinary_hours_premiums",
       "alimentari-federalimentare/sickness_disabled_fixed_term"
     ],
-    "agreement/alimentari-pmi-unionalimentari.json": [
-      "alimentari-pmi-unionalimentari/tranches_2027_2028"
-    ],
     "agreement/assicurazioni-ania.json": [
       "assicurazioni-ania/funzionari_economic_allowance",
       "assicurazioni-ania/inps_sector_rates_unsourced",
@@ -887,9 +884,6 @@
     ],
     "agreement/funzioni-centrali-aran.json": [
       "funzioni-centrali-aran/agency_salary_tables"
-    ],
-    "agreement/funzioni-locali-aran.json": [
-      "funzioni-locali-aran/renewal_2025_2027_missing"
     ],
     "agreement/gas-acqua-utilitalia.json": [
       "gas-acqua-utilitalia/industria_rates_proxy"

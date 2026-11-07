@@ -563,21 +563,28 @@
             "valid_until": "2026-01-01",
             "value": "1062.30",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "edilizia-artigianato-cna",
-                  "title": "edilizia-artigianato-cna",
-                  "kind": "rivista",
-                  "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+                  "document_id": "edilizia-artigianato-cna-tables-0c6e4b8d",
+                  "title": "edilizia-artigianato-cna: tabelle retributive (feneal-2025.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/20251222_CCNL_EDILIZIA-ARTIGIANI-E-PMI.pdf",
+                  "sha256": "0c6e4b8d8ade933714625ae443c2fce283ad503acf121c22bd5177dfe7bc5d94"
                 },
-                "section": "Tabella retributiva"
+                "page": "156",
+                "section": "Allegato A — NUOVI MINIMI, importi mensili",
+                "quote": "1°       100    178,00        75,00         35,00         35,00       33,00        1.062,30       1.097,30       1.132,30       1.165,30"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-05-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-edilizia-artigianato-cna-tables"
               }
             }
           },
@@ -586,21 +593,28 @@
             "valid_until": "2027-01-01",
             "value": "1097.30",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "edilizia-artigianato-cna",
-                  "title": "edilizia-artigianato-cna",
-                  "kind": "rivista",
-                  "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+                  "document_id": "edilizia-artigianato-cna-tables-0c6e4b8d",
+                  "title": "edilizia-artigianato-cna: tabelle retributive (feneal-2025.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/20251222_CCNL_EDILIZIA-ARTIGIANI-E-PMI.pdf",
+                  "sha256": "0c6e4b8d8ade933714625ae443c2fce283ad503acf121c22bd5177dfe7bc5d94"
                 },
-                "section": "Tabella retributiva"
+                "page": "156",
+                "section": "Allegato A — NUOVI MINIMI, importi mensili",
+                "quote": "1°       100    178,00        75,00         35,00         35,00       33,00        1.062,30       1.097,30       1.132,30       1.165,30"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-edilizia-artigianato-cna-tables"
               }
             }
           },
@@ -609,21 +623,28 @@
             "valid_until": "2028-01-01",
             "value": "1132.30",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "edilizia-artigianato-cna",
-                  "title": "edilizia-artigianato-cna",
-                  "kind": "rivista",
-                  "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+                  "document_id": "edilizia-artigianato-cna-tables-0c6e4b8d",
+                  "title": "edilizia-artigianato-cna: tabelle retributive (feneal-2025.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/20251222_CCNL_EDILIZIA-ARTIGIANI-E-PMI.pdf",
+                  "sha256": "0c6e4b8d8ade933714625ae443c2fce283ad503acf121c22bd5177dfe7bc5d94"
                 },
-                "section": "Tabella retributiva"
+                "page": "156",
+                "section": "Allegato A — NUOVI MINIMI, importi mensili",
+                "quote": "1°       100    178,00        75,00         35,00         35,00       33,00        1.062,30       1.097,30       1.132,30       1.165,30"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-edilizia-artigianato-cna-tables"
               }
             }
           },
@@ -632,21 +653,28 @@
             "valid_until": null,
             "value": "1165.30",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "edilizia-artigianato-cna",
-                  "title": "edilizia-artigianato-cna",
-                  "kind": "rivista",
-                  "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+                  "document_id": "edilizia-artigianato-cna-tables-0c6e4b8d",
+                  "title": "edilizia-artigianato-cna: tabelle retributive (feneal-2025.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/20251222_CCNL_EDILIZIA-ARTIGIANI-E-PMI.pdf",
+                  "sha256": "0c6e4b8d8ade933714625ae443c2fce283ad503acf121c22bd5177dfe7bc5d94"
                 },
-                "section": "Tabella retributiva"
+                "page": "156",
+                "section": "Allegato A — NUOVI MINIMI, importi mensili",
+                "quote": "1°       100    178,00        75,00         35,00         35,00       33,00        1.062,30       1.097,30       1.132,30       1.165,30"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-edilizia-artigianato-cna-tables"
               }
             }
           }
@@ -747,21 +775,28 @@
             "valid_until": "2026-01-01",
             "value": "1239.90",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "edilizia-artigianato-cna",
-                  "title": "edilizia-artigianato-cna",
-                  "kind": "rivista",
-                  "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+                  "document_id": "edilizia-artigianato-cna-tables-0c6e4b8d",
+                  "title": "edilizia-artigianato-cna: tabelle retributive (feneal-2025.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/20251222_CCNL_EDILIZIA-ARTIGIANI-E-PMI.pdf",
+                  "sha256": "0c6e4b8d8ade933714625ae443c2fce283ad503acf121c22bd5177dfe7bc5d94"
                 },
-                "section": "Tabella retributiva"
+                "page": "156",
+                "section": "Allegato A — NUOVI MINIMI, importi mensili",
+                "quote": "2°       115    204,70        86,25         40,25         40,25        37,95       1.239,90       1.280,15       1.320,40       1.358,35"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-05-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-edilizia-artigianato-cna-tables"
               }
             }
           },
@@ -770,21 +805,28 @@
             "valid_until": "2027-01-01",
             "value": "1280.15",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "edilizia-artigianato-cna",
-                  "title": "edilizia-artigianato-cna",
-                  "kind": "rivista",
-                  "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+                  "document_id": "edilizia-artigianato-cna-tables-0c6e4b8d",
+                  "title": "edilizia-artigianato-cna: tabelle retributive (feneal-2025.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/20251222_CCNL_EDILIZIA-ARTIGIANI-E-PMI.pdf",
+                  "sha256": "0c6e4b8d8ade933714625ae443c2fce283ad503acf121c22bd5177dfe7bc5d94"
                 },
-                "section": "Tabella retributiva"
+                "page": "156",
+                "section": "Allegato A — NUOVI MINIMI, importi mensili",
+                "quote": "2°       115    204,70        86,25         40,25         40,25        37,95       1.239,90       1.280,15       1.320,40       1.358,35"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-edilizia-artigianato-cna-tables"
               }
             }
           },
@@ -793,21 +835,28 @@
             "valid_until": "2028-01-01",
             "value": "1320.40",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "edilizia-artigianato-cna",
-                  "title": "edilizia-artigianato-cna",
-                  "kind": "rivista",
-                  "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+                  "document_id": "edilizia-artigianato-cna-tables-0c6e4b8d",
+                  "title": "edilizia-artigianato-cna: tabelle retributive (feneal-2025.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/20251222_CCNL_EDILIZIA-ARTIGIANI-E-PMI.pdf",
+                  "sha256": "0c6e4b8d8ade933714625ae443c2fce283ad503acf121c22bd5177dfe7bc5d94"
                 },
-                "section": "Tabella retributiva"
+                "page": "156",
+                "section": "Allegato A — NUOVI MINIMI, importi mensili",
+                "quote": "2°       115    204,70        86,25         40,25         40,25        37,95       1.239,90       1.280,15       1.320,40       1.358,35"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-edilizia-artigianato-cna-tables"
               }
             }
           },
@@ -816,21 +865,28 @@
             "valid_until": null,
             "value": "1358.35",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "edilizia-artigianato-cna",
-                  "title": "edilizia-artigianato-cna",
-                  "kind": "rivista",
-                  "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+                  "document_id": "edilizia-artigianato-cna-tables-0c6e4b8d",
+                  "title": "edilizia-artigianato-cna: tabelle retributive (feneal-2025.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/20251222_CCNL_EDILIZIA-ARTIGIANI-E-PMI.pdf",
+                  "sha256": "0c6e4b8d8ade933714625ae443c2fce283ad503acf121c22bd5177dfe7bc5d94"
                 },
-                "section": "Tabella retributiva"
+                "page": "156",
+                "section": "Allegato A — NUOVI MINIMI, importi mensili",
+                "quote": "2°       115    204,70        86,25         40,25         40,25        37,95       1.239,90       1.280,15       1.320,40       1.358,35"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-edilizia-artigianato-cna-tables"
               }
             }
           }
@@ -931,21 +987,28 @@
             "valid_until": "2026-01-01",
             "value": "1381.22",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "edilizia-artigianato-cna",
-                  "title": "edilizia-artigianato-cna",
-                  "kind": "rivista",
-                  "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+                  "document_id": "edilizia-artigianato-cna-tables-0c6e4b8d",
+                  "title": "edilizia-artigianato-cna: tabelle retributive (feneal-2025.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/20251222_CCNL_EDILIZIA-ARTIGIANI-E-PMI.pdf",
+                  "sha256": "0c6e4b8d8ade933714625ae443c2fce283ad503acf121c22bd5177dfe7bc5d94"
                 },
-                "section": "Tabella retributiva"
+                "page": "156",
+                "section": "Allegato A — NUOVI MINIMI, importi mensili",
+                "quote": "3° 130          231,40        97,50         45,50         45,50       42,90        1.381,22       1.426,72       1.472,22       1.515,12"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-05-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-edilizia-artigianato-cna-tables"
               }
             }
           },
@@ -954,21 +1017,28 @@
             "valid_until": "2027-01-01",
             "value": "1426.72",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "edilizia-artigianato-cna",
-                  "title": "edilizia-artigianato-cna",
-                  "kind": "rivista",
-                  "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+                  "document_id": "edilizia-artigianato-cna-tables-0c6e4b8d",
+                  "title": "edilizia-artigianato-cna: tabelle retributive (feneal-2025.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/20251222_CCNL_EDILIZIA-ARTIGIANI-E-PMI.pdf",
+                  "sha256": "0c6e4b8d8ade933714625ae443c2fce283ad503acf121c22bd5177dfe7bc5d94"
                 },
-                "section": "Tabella retributiva"
+                "page": "156",
+                "section": "Allegato A — NUOVI MINIMI, importi mensili",
+                "quote": "3° 130          231,40        97,50         45,50         45,50       42,90        1.381,22       1.426,72       1.472,22       1.515,12"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-edilizia-artigianato-cna-tables"
               }
             }
           },
@@ -977,21 +1047,28 @@
             "valid_until": "2028-01-01",
             "value": "1472.22",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "edilizia-artigianato-cna",
-                  "title": "edilizia-artigianato-cna",
-                  "kind": "rivista",
-                  "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+                  "document_id": "edilizia-artigianato-cna-tables-0c6e4b8d",
+                  "title": "edilizia-artigianato-cna: tabelle retributive (feneal-2025.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/20251222_CCNL_EDILIZIA-ARTIGIANI-E-PMI.pdf",
+                  "sha256": "0c6e4b8d8ade933714625ae443c2fce283ad503acf121c22bd5177dfe7bc5d94"
                 },
-                "section": "Tabella retributiva"
+                "page": "156",
+                "section": "Allegato A — NUOVI MINIMI, importi mensili",
+                "quote": "3° 130          231,40        97,50         45,50         45,50       42,90        1.381,22       1.426,72       1.472,22       1.515,12"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-edilizia-artigianato-cna-tables"
               }
             }
           },
@@ -1000,21 +1077,28 @@
             "valid_until": null,
             "value": "1515.12",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "edilizia-artigianato-cna",
-                  "title": "edilizia-artigianato-cna",
-                  "kind": "rivista",
-                  "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+                  "document_id": "edilizia-artigianato-cna-tables-0c6e4b8d",
+                  "title": "edilizia-artigianato-cna: tabelle retributive (feneal-2025.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/20251222_CCNL_EDILIZIA-ARTIGIANI-E-PMI.pdf",
+                  "sha256": "0c6e4b8d8ade933714625ae443c2fce283ad503acf121c22bd5177dfe7bc5d94"
                 },
-                "section": "Tabella retributiva"
+                "page": "156",
+                "section": "Allegato A — NUOVI MINIMI, importi mensili",
+                "quote": "3° 130          231,40        97,50         45,50         45,50       42,90        1.381,22       1.426,72       1.472,22       1.515,12"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-edilizia-artigianato-cna-tables"
               }
             }
           }
@@ -1115,21 +1199,28 @@
             "valid_until": "2026-01-01",
             "value": "1485.23",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "edilizia-artigianato-cna",
-                  "title": "edilizia-artigianato-cna",
-                  "kind": "rivista",
-                  "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+                  "document_id": "edilizia-artigianato-cna-tables-0c6e4b8d",
+                  "title": "edilizia-artigianato-cna: tabelle retributive (feneal-2025.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/20251222_CCNL_EDILIZIA-ARTIGIANI-E-PMI.pdf",
+                  "sha256": "0c6e4b8d8ade933714625ae443c2fce283ad503acf121c22bd5177dfe7bc5d94"
                 },
-                "section": "Tabella retributiva"
+                "page": "156",
+                "section": "Allegato A — NUOVI MINIMI, importi mensili",
+                "quote": "4° 139          247,42        104,25        48,65         48,65       45,87        1.485,23       1.533,88       1.582,53       1.628,40"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-05-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-edilizia-artigianato-cna-tables"
               }
             }
           },
@@ -1138,21 +1229,28 @@
             "valid_until": "2027-01-01",
             "value": "1533.88",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "edilizia-artigianato-cna",
-                  "title": "edilizia-artigianato-cna",
-                  "kind": "rivista",
-                  "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+                  "document_id": "edilizia-artigianato-cna-tables-0c6e4b8d",
+                  "title": "edilizia-artigianato-cna: tabelle retributive (feneal-2025.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/20251222_CCNL_EDILIZIA-ARTIGIANI-E-PMI.pdf",
+                  "sha256": "0c6e4b8d8ade933714625ae443c2fce283ad503acf121c22bd5177dfe7bc5d94"
                 },
-                "section": "Tabella retributiva"
+                "page": "156",
+                "section": "Allegato A — NUOVI MINIMI, importi mensili",
+                "quote": "4° 139          247,42        104,25        48,65         48,65       45,87        1.485,23       1.533,88       1.582,53       1.628,40"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-edilizia-artigianato-cna-tables"
               }
             }
           },
@@ -1161,21 +1259,28 @@
             "valid_until": "2028-01-01",
             "value": "1582.53",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "edilizia-artigianato-cna",
-                  "title": "edilizia-artigianato-cna",
-                  "kind": "rivista",
-                  "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+                  "document_id": "edilizia-artigianato-cna-tables-0c6e4b8d",
+                  "title": "edilizia-artigianato-cna: tabelle retributive (feneal-2025.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/20251222_CCNL_EDILIZIA-ARTIGIANI-E-PMI.pdf",
+                  "sha256": "0c6e4b8d8ade933714625ae443c2fce283ad503acf121c22bd5177dfe7bc5d94"
                 },
-                "section": "Tabella retributiva"
+                "page": "156",
+                "section": "Allegato A — NUOVI MINIMI, importi mensili",
+                "quote": "4° 139          247,42        104,25        48,65         48,65       45,87        1.485,23       1.533,88       1.582,53       1.628,40"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-edilizia-artigianato-cna-tables"
               }
             }
           },
@@ -1184,21 +1289,28 @@
             "valid_until": null,
             "value": "1628.40",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "edilizia-artigianato-cna",
-                  "title": "edilizia-artigianato-cna",
-                  "kind": "rivista",
-                  "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+                  "document_id": "edilizia-artigianato-cna-tables-0c6e4b8d",
+                  "title": "edilizia-artigianato-cna: tabelle retributive (feneal-2025.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/20251222_CCNL_EDILIZIA-ARTIGIANI-E-PMI.pdf",
+                  "sha256": "0c6e4b8d8ade933714625ae443c2fce283ad503acf121c22bd5177dfe7bc5d94"
                 },
-                "section": "Tabella retributiva"
+                "page": "156",
+                "section": "Allegato A — NUOVI MINIMI, importi mensili",
+                "quote": "4° 139          247,42        104,25        48,65         48,65       45,87        1.485,23       1.533,88       1.582,53       1.628,40"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-edilizia-artigianato-cna-tables"
               }
             }
           }
@@ -1299,21 +1411,28 @@
             "valid_until": "2026-01-01",
             "value": "1593.54",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "edilizia-artigianato-cna",
-                  "title": "edilizia-artigianato-cna",
-                  "kind": "rivista",
-                  "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+                  "document_id": "edilizia-artigianato-cna-tables-0c6e4b8d",
+                  "title": "edilizia-artigianato-cna: tabelle retributive (feneal-2025.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/20251222_CCNL_EDILIZIA-ARTIGIANI-E-PMI.pdf",
+                  "sha256": "0c6e4b8d8ade933714625ae443c2fce283ad503acf121c22bd5177dfe7bc5d94"
                 },
-                "section": "Tabella retributiva"
+                "page": "156",
+                "section": "Allegato A — NUOVI MINIMI, importi mensili",
+                "quote": "5° 150          267,00        112,50        52,50         52,50       49,50        1.593,54       1.646,04       1.698,54       1.748,04"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-05-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-edilizia-artigianato-cna-tables"
               }
             }
           },
@@ -1322,21 +1441,28 @@
             "valid_until": "2027-01-01",
             "value": "1646.04",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "edilizia-artigianato-cna",
-                  "title": "edilizia-artigianato-cna",
-                  "kind": "rivista",
-                  "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+                  "document_id": "edilizia-artigianato-cna-tables-0c6e4b8d",
+                  "title": "edilizia-artigianato-cna: tabelle retributive (feneal-2025.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/20251222_CCNL_EDILIZIA-ARTIGIANI-E-PMI.pdf",
+                  "sha256": "0c6e4b8d8ade933714625ae443c2fce283ad503acf121c22bd5177dfe7bc5d94"
                 },
-                "section": "Tabella retributiva"
+                "page": "156",
+                "section": "Allegato A — NUOVI MINIMI, importi mensili",
+                "quote": "5° 150          267,00        112,50        52,50         52,50       49,50        1.593,54       1.646,04       1.698,54       1.748,04"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-edilizia-artigianato-cna-tables"
               }
             }
           },
@@ -1345,21 +1471,28 @@
             "valid_until": "2028-01-01",
             "value": "1698.54",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "edilizia-artigianato-cna",
-                  "title": "edilizia-artigianato-cna",
-                  "kind": "rivista",
-                  "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+                  "document_id": "edilizia-artigianato-cna-tables-0c6e4b8d",
+                  "title": "edilizia-artigianato-cna: tabelle retributive (feneal-2025.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/20251222_CCNL_EDILIZIA-ARTIGIANI-E-PMI.pdf",
+                  "sha256": "0c6e4b8d8ade933714625ae443c2fce283ad503acf121c22bd5177dfe7bc5d94"
                 },
-                "section": "Tabella retributiva"
+                "page": "156",
+                "section": "Allegato A — NUOVI MINIMI, importi mensili",
+                "quote": "5° 150          267,00        112,50        52,50         52,50       49,50        1.593,54       1.646,04       1.698,54       1.748,04"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-edilizia-artigianato-cna-tables"
               }
             }
           },
@@ -1368,21 +1501,28 @@
             "valid_until": null,
             "value": "1748.04",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "edilizia-artigianato-cna",
-                  "title": "edilizia-artigianato-cna",
-                  "kind": "rivista",
-                  "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+                  "document_id": "edilizia-artigianato-cna-tables-0c6e4b8d",
+                  "title": "edilizia-artigianato-cna: tabelle retributive (feneal-2025.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/20251222_CCNL_EDILIZIA-ARTIGIANI-E-PMI.pdf",
+                  "sha256": "0c6e4b8d8ade933714625ae443c2fce283ad503acf121c22bd5177dfe7bc5d94"
                 },
-                "section": "Tabella retributiva"
+                "page": "156",
+                "section": "Allegato A — NUOVI MINIMI, importi mensili",
+                "quote": "5° 150          267,00        112,50        52,50         52,50       49,50        1.593,54       1.646,04       1.698,54       1.748,04"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-edilizia-artigianato-cna-tables"
               }
             }
           }
@@ -1483,21 +1623,28 @@
             "valid_until": "2026-01-01",
             "value": "1912.08",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "edilizia-artigianato-cna",
-                  "title": "edilizia-artigianato-cna",
-                  "kind": "rivista",
-                  "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+                  "document_id": "edilizia-artigianato-cna-tables-0c6e4b8d",
+                  "title": "edilizia-artigianato-cna: tabelle retributive (feneal-2025.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/20251222_CCNL_EDILIZIA-ARTIGIANI-E-PMI.pdf",
+                  "sha256": "0c6e4b8d8ade933714625ae443c2fce283ad503acf121c22bd5177dfe7bc5d94"
                 },
-                "section": "Tabella retributiva"
+                "page": "156",
+                "section": "Allegato A — NUOVI MINIMI, importi mensili",
+                "quote": "6° 180          320,40        135,00        63,00         63,00       59,40        1.912,08       1.975,08       2.038,08       2.097,48"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-05-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-edilizia-artigianato-cna-tables"
               }
             }
           },
@@ -1506,21 +1653,28 @@
             "valid_until": "2027-01-01",
             "value": "1975.08",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "edilizia-artigianato-cna",
-                  "title": "edilizia-artigianato-cna",
-                  "kind": "rivista",
-                  "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+                  "document_id": "edilizia-artigianato-cna-tables-0c6e4b8d",
+                  "title": "edilizia-artigianato-cna: tabelle retributive (feneal-2025.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/20251222_CCNL_EDILIZIA-ARTIGIANI-E-PMI.pdf",
+                  "sha256": "0c6e4b8d8ade933714625ae443c2fce283ad503acf121c22bd5177dfe7bc5d94"
                 },
-                "section": "Tabella retributiva"
+                "page": "156",
+                "section": "Allegato A — NUOVI MINIMI, importi mensili",
+                "quote": "6° 180          320,40        135,00        63,00         63,00       59,40        1.912,08       1.975,08       2.038,08       2.097,48"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-edilizia-artigianato-cna-tables"
               }
             }
           },
@@ -1529,21 +1683,28 @@
             "valid_until": "2028-01-01",
             "value": "2038.08",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "edilizia-artigianato-cna",
-                  "title": "edilizia-artigianato-cna",
-                  "kind": "rivista",
-                  "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+                  "document_id": "edilizia-artigianato-cna-tables-0c6e4b8d",
+                  "title": "edilizia-artigianato-cna: tabelle retributive (feneal-2025.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/20251222_CCNL_EDILIZIA-ARTIGIANI-E-PMI.pdf",
+                  "sha256": "0c6e4b8d8ade933714625ae443c2fce283ad503acf121c22bd5177dfe7bc5d94"
                 },
-                "section": "Tabella retributiva"
+                "page": "156",
+                "section": "Allegato A — NUOVI MINIMI, importi mensili",
+                "quote": "6° 180          320,40        135,00        63,00         63,00       59,40        1.912,08       1.975,08       2.038,08       2.097,48"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-edilizia-artigianato-cna-tables"
               }
             }
           },
@@ -1552,21 +1713,28 @@
             "valid_until": null,
             "value": "2097.48",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "edilizia-artigianato-cna",
-                  "title": "edilizia-artigianato-cna",
-                  "kind": "rivista",
-                  "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+                  "document_id": "edilizia-artigianato-cna-tables-0c6e4b8d",
+                  "title": "edilizia-artigianato-cna: tabelle retributive (feneal-2025.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/20251222_CCNL_EDILIZIA-ARTIGIANI-E-PMI.pdf",
+                  "sha256": "0c6e4b8d8ade933714625ae443c2fce283ad503acf121c22bd5177dfe7bc5d94"
                 },
-                "section": "Tabella retributiva"
+                "page": "156",
+                "section": "Allegato A — NUOVI MINIMI, importi mensili",
+                "quote": "6° 180          320,40        135,00        63,00         63,00       59,40        1.912,08       1.975,08       2.038,08       2.097,48"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-edilizia-artigianato-cna-tables"
               }
             }
           }
@@ -1666,21 +1834,28 @@
             "valid_until": "2026-01-01",
             "value": "2147.21",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "edilizia-artigianato-cna",
-                  "title": "edilizia-artigianato-cna",
-                  "kind": "rivista",
-                  "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+                  "document_id": "edilizia-artigianato-cna-tables-0c6e4b8d",
+                  "title": "edilizia-artigianato-cna: tabelle retributive (feneal-2025.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/20251222_CCNL_EDILIZIA-ARTIGIANI-E-PMI.pdf",
+                  "sha256": "0c6e4b8d8ade933714625ae443c2fce283ad503acf121c22bd5177dfe7bc5d94"
                 },
-                "section": "Tabella retributiva"
+                "page": "156",
+                "section": "Allegato A — NUOVI MINIMI, importi mensili",
+                "quote": "7° 205          364,90        153,75         71,75        71,75        67,65       2.147,21       2.218,96       2.290,71       2.358,36"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-05-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-edilizia-artigianato-cna-tables"
               }
             }
           },
@@ -1689,21 +1864,28 @@
             "valid_until": "2027-01-01",
             "value": "2218.96",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "edilizia-artigianato-cna",
-                  "title": "edilizia-artigianato-cna",
-                  "kind": "rivista",
-                  "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+                  "document_id": "edilizia-artigianato-cna-tables-0c6e4b8d",
+                  "title": "edilizia-artigianato-cna: tabelle retributive (feneal-2025.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/20251222_CCNL_EDILIZIA-ARTIGIANI-E-PMI.pdf",
+                  "sha256": "0c6e4b8d8ade933714625ae443c2fce283ad503acf121c22bd5177dfe7bc5d94"
                 },
-                "section": "Tabella retributiva"
+                "page": "156",
+                "section": "Allegato A — NUOVI MINIMI, importi mensili",
+                "quote": "7° 205          364,90        153,75         71,75        71,75        67,65       2.147,21       2.218,96       2.290,71       2.358,36"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-edilizia-artigianato-cna-tables"
               }
             }
           },
@@ -1712,21 +1894,28 @@
             "valid_until": "2028-01-01",
             "value": "2290.71",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "edilizia-artigianato-cna",
-                  "title": "edilizia-artigianato-cna",
-                  "kind": "rivista",
-                  "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+                  "document_id": "edilizia-artigianato-cna-tables-0c6e4b8d",
+                  "title": "edilizia-artigianato-cna: tabelle retributive (feneal-2025.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/20251222_CCNL_EDILIZIA-ARTIGIANI-E-PMI.pdf",
+                  "sha256": "0c6e4b8d8ade933714625ae443c2fce283ad503acf121c22bd5177dfe7bc5d94"
                 },
-                "section": "Tabella retributiva"
+                "page": "156",
+                "section": "Allegato A — NUOVI MINIMI, importi mensili",
+                "quote": "7° 205          364,90        153,75         71,75        71,75        67,65       2.147,21       2.218,96       2.290,71       2.358,36"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-edilizia-artigianato-cna-tables"
               }
             }
           },
@@ -1735,21 +1924,28 @@
             "valid_until": null,
             "value": "2358.36",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "edilizia-artigianato-cna",
-                  "title": "edilizia-artigianato-cna",
-                  "kind": "rivista",
-                  "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+                  "document_id": "edilizia-artigianato-cna-tables-0c6e4b8d",
+                  "title": "edilizia-artigianato-cna: tabelle retributive (feneal-2025.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/20251222_CCNL_EDILIZIA-ARTIGIANI-E-PMI.pdf",
+                  "sha256": "0c6e4b8d8ade933714625ae443c2fce283ad503acf121c22bd5177dfe7bc5d94"
                 },
-                "section": "Tabella retributiva"
+                "page": "156",
+                "section": "Allegato A — NUOVI MINIMI, importi mensili",
+                "quote": "7° 205          364,90        153,75         71,75        71,75        67,65       2.147,21       2.218,96       2.290,71       2.358,36"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-edilizia-artigianato-cna-tables"
               }
             }
           }
@@ -2283,7 +2479,7 @@
     "effective_until": "2028-09-30",
     "source": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/",
     "verification_status": "unverified",
-    "source_hash": "d43e0a43481ce2f4e7d16ff79441174ddbe6624f99dfce1ac43942b289a39321",
+    "source_hash": "ebeb2c65e04ac7e93ec9ab8b239acf8edd9793cb5e951c30086780d1829fb867",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -2492,6 +2688,28 @@
         "outcome": "confirmed",
         "findings": [
           "The review recorded no list of the documents it read."
+        ]
+      },
+      {
+        "id": "2026-11-07-ai-edilizia-artigianato-cna-tables",
+        "date": "2026-11-07",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The monthly values of the levels against the primary tables (text layer).",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/20251222_CCNL_EDILIZIA-ARTIGIANI-E-PMI.pdf",
+            "sha256": "0c6e4b8d8ade933714625ae443c2fce283ad503acf121c22bd5177dfe7bc5d94"
+          }
+        ],
+        "findings": [
+          "28 values found verbatim on the cited pages and marked verified; 1 left as they were (derived or not on a text page)."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels.base_salary",
+          "levels.fixed_allowances"
         ]
       }
     ]

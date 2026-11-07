@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 2 verified / 44 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 11 verified / 35 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-11-11 |
-| **Last review** | 2026-11-06 |
+| **Last review** | 2026-11-07 |
 | **Latest salary tranche** | 2028-12-01 |
 
 ## Review history
@@ -60,6 +60,8 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | confirmed | Art. 42 - 13ª mensilità (p. 83): "Nel caso di inizio o di cessazione del rapporto di lavoro durante il corso dell'anno, il lavoratore non in prova ha diritto a tanti dodicesimi dell'ammontare della tredicesima mensilità quanti sono i mesi di anzianità di servizio presso l’azienda. La frazione di mese superiore a quindici giorni va considerata a questi effetti come mese intero.". Match: more_than 15. |
 | 2026-10-31 | claude-opus-5-5 (ai) | The comporto and the sick pay of the CCNL counted over several illnesses (work_rules.sickness_rules), read on the signed text. | corrected | Art. 36 (pp. 73-75) of the CCNL 12.11.2020: 180 days at the whole pay and 185 at 50%, summed over the three years before each new episode. The file kept 180 days of one illness: corrected to a cumulation over three years. A 2025 carenza reduction by event was seen only in a non-primary transcription and is not stored. |
 | 2026-11-06 | claude-opus-5-5 (ai) | Apprentice seniority: artt. 20 and 41 of the CCNL of 12 November 2020 (pp. 32, 82). | corrected | Art. 20: apprenticeship is 'un contratto a tempo indeterminato', the apprentice classified two then one level below; art. 41 c. 1: 'Il lavoratore ha diritto, per ogni biennio di servizio maturato [...] al riconoscimento di un importo in cifra fissa [...] per ciascun livello retributivo [...] a partire dalla data di assunzione': the increments of the level the apprentice is paid at. |
+| 2026-11-07 | claude-opus-5-5 (ai) | The monthly values of the levels against the primary tables (text layer). | confirmed | 11 values found verbatim on the cited pages and marked verified; 27 left as they were (derived or not on a text page). |
+| 2026-11-07 | gpt-6-sol (ai) | Monthly values of tabella b, Allegato 1, read from the page by an independent session of another model without being told the expected value. | confirmed | 27 values equal to the printed minimum plus the Elemento retributivo di settore of the same row (the reader returned the minimum column; the file stores the conglobated amount). |
 
 ## Salary table
 

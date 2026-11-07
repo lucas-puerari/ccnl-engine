@@ -8,13 +8,13 @@ differenziale previsto tra il 5° e il 6° livello".
 Regular run of March 2026 (tranche from 2025-12-01, Art. 82-83), track
 ``L5-terme-18m`` at month 12, no matured seniority:
 
-- level 6: minimo 825.28 + contingenza 510.89 + EDR 10.33 = 1346.50;
-- level 5: minimo 940.47 + contingenza 513.32 + EDR 10.33 = 1464.12;
-- pay: 1346.50 + 50% x 117.62 = 1346.50 + 58.81 = 1405.31.
+- level 6: minimo 825.28 + contingenza 510.89 + EDR 10.32 = 1346.49;
+- level 5: minimo 940.47 + contingenza 513.32 + EDR 10.32 = 1464.11;
+- pay: 1346.49 + 50% x 117.62 = 1346.49 + 58.81 = 1405.30.
 
 Split by component: contingenza (510.89 + 513.32) / 2 = 512.105, rounded
-half up to 512.11; EDR 10.33; the minimo takes the rest,
-1405.31 - 512.11 - 10.33 = 882.87.
+half up to 512.11; EDR 10.32 (art. 83 II); the minimo takes the rest,
+1405.30 - 512.11 - 10.32 = 882.87.
 """
 
 from __future__ import annotations
@@ -61,22 +61,22 @@ def _lines(result: PeriodResult) -> dict[str, Decimal]:
 
 
 def test_midpoint_averages_every_component() -> None:
-    """Minimo, contingenza and EDR add up to the CCNL midpoint, 1405.31."""
+    """Minimo, contingenza and EDR add up to the CCNL midpoint, 1405.30."""
     lines = _lines(_run(12))
     assert lines == {
         "base_salary": _D("882.87"),
         "CONTINGENZA": _D("512.11"),
-        "EDR": _D("10.33"),
+        "EDR": _D("10.32"),
     }
-    assert sum(lines.values()) == _D("1405.31")
+    assert sum(lines.values()) == _D("1405.30")
 
 
 def test_first_half_pays_the_lower_level() -> None:
-    """Before month 9 the apprentice is paid level 6 in full: 1346.50."""
+    """Before month 9 the apprentice is paid level 6 in full: 1346.49."""
     assert _lines(_run(0)) == {
         "base_salary": _D("825.28"),
         "CONTINGENZA": _D("510.89"),
-        "EDR": _D("10.33"),
+        "EDR": _D("10.32"),
     }
 
 

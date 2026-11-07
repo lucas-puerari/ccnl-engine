@@ -44,7 +44,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 0 verified / 63 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 10 verified / 53 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -53,12 +53,14 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-05-08 |
-| **Last review** | — |
+| **Last review** | 2026-11-07 |
 | **Latest salary tranche** | 2026-07-01 |
 
 ## Review history
 
-No review is recorded.
+| Date | Reviewer | Scope | Outcome | Findings |
+|---|---|---|---|---|
+| 2026-11-07 | claude-opus-5-5 (ai) | Values a primary-text verification found different from the printed tables (text layer). | corrected | 10 values corrected to the amounts printed on the cited pages. |
 
 ## Salary table
 
@@ -66,11 +68,11 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `Q` | Level Q (Quadri) — par. 200.74 — managerial, highest responsibility | € 3,577.47 | 2026-07-01 |
-| `8` | Level 8 — par. 181.29 — senior expert, broad managerial-technical responsibility | € 3,230.84 | 2026-07-01 |
-| `7` | Level 7 — par. 167.50 — expert, advanced coordination | € 2,985.08 | 2026-07-01 |
-| `6` | Level 6 — par. 153.69 — senior specialist, technical-organisational roles | € 2,738.97 | 2026-07-01 |
-| `5` | Level 5 — par. 139.96 — highly skilled, broad autonomy | € 2,494.28 | 2026-07-01 |
+| `Q` | Level Q (Quadri) — par. 200.74 — managerial, highest responsibility | € 3,577.50 | 2026-07-01 |
+| `8` | Level 8 — par. 181.29 — senior expert, broad managerial-technical responsibility | € 3,230.75 | 2026-07-01 |
+| `7` | Level 7 — par. 167.50 — expert, advanced coordination | € 2,985.02 | 2026-07-01 |
+| `6` | Level 6 — par. 153.69 — senior specialist, technical-organisational roles | € 2,738.99 | 2026-07-01 |
+| `5` | Level 5 — par. 139.96 — highly skilled, broad autonomy | € 2,494.19 | 2026-07-01 |
 | `4` | Level 4 — par. 131.42 — specialist, complex tasks requiring expertise | € 2,342.01 | 2026-07-01 |
 | `3` | Level 3 — par. 122.95 — skilled operative, autonomous in standard tasks | € 2,191.09 | 2026-07-01 |
 | `2` | Level 2 — par. 111.15 — semi-skilled, partial autonomy | € 1,980.76 | 2026-07-01 |
