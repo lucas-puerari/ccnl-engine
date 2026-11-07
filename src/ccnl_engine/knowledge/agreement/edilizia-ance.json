@@ -188,7 +188,7 @@
       },
       {
         "kind": "simplification",
-        "text": "Art. 19 n. 12 and Art. 5: the exclusion of the shift workers from the 8% of Sunday work with compensatory rest, and the 8% of a Saturday in a six-day week. The other premiums on ordinary hours are modelled (supplement_bands ANCE_*).",
+        "text": "Art. 19 n. 12: the exclusion of the shift workers from the 8% of Sunday work with compensatory rest. The 8% of a Saturday in a six-day week (art. 5) is modelled (ANCE_SABATO_SEI_GIORNI, HolidayWorkKind.SATURDAY_SIXTH_DAY); the other premiums on ordinary hours are modelled (supplement_bands ANCE_*).",
         "capability": "overtime",
         "monetary_impact": "yes",
         "limitation": {
@@ -1718,7 +1718,7 @@
     "effective_until": null,
     "source": "https://ance.it/wp-content/uploads/allegati/Tabella_nuovi_minimi_orari-_CCNL_2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "1929ed40ce39c115cf2df16101ae3870504fe9de75215e7577d02738b13ceed1",
+    "source_hash": "7df61c435d436182d5a6de702f13dd817abc6526a45de48c75bf88fec35040dc",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2345,6 +2345,46 @@
               "review_id": "2026-11-02-ai-night-holiday"
             }
           }
+        },
+        {
+          "code": "ANCE_SABATO_SEI_GIORNI",
+          "description": "Ore prestate il sabato quando l’orario normale è ripartito su sei giorni (art. 5)",
+          "work": "saturday_sixth_day",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-02-01",
+                "valid_until": null,
+                "value": "0.08"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "fillea-edilizia-industria-2010",
+                "title": "CCNL edilizia industria 19 aprile 2010, testo completo (FILLEA-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL_EDILIZIA_INDUSTRIA_2010_TESTO_COMPLETO.pdf",
+                "sha256": "ddd11bb850de2e7c642eb662b59e40e36c66e3a534162c505aa1c9a94ac5a00b"
+              },
+              "page": "26",
+              "section": "Art. 5",
+              "quote": "ripartisca su sei giorni l’orario normale contrattuale di lavoro, per le ore in tal modo prestate nella giornata di sabato è dovuta una maggiorazione dell’8%, calcolata sugli elementi della retribuzione di cui al punto 3) dell’art. 24."
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T12:00:00Z",
+              "effective_from": "2025-02-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-08T12:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-08-ai-edilizia-ance-saturday"
+            }
+          }
         }
       ]
     },
@@ -2889,6 +2929,27 @@
         "independence": "separate_model",
         "checked": [
           "work_rules.insured_absence.maternity"
+        ]
+      },
+      {
+        "id": "2026-11-08-ai-edilizia-ance-saturday",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Saturday premium of the signed text, found verbatim in the source (analysis by a separate model session, quote rechecked).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL_EDILIZIA_INDUSTRIA_2010_TESTO_COMPLETO.pdf",
+            "sha256": "ddd11bb850de2e7c642eb662b59e40e36c66e3a534162c505aa1c9a94ac5a00b"
+          }
+        ],
+        "findings": [
+          "Added supplement band ANCE_SABATO_SEI_GIORNI."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.time_supplements.supplement_bands"
         ]
       }
     ],
