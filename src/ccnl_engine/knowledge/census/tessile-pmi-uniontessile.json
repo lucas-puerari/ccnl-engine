@@ -151,10 +151,10 @@
       "institute": "base_salary",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "SCOPE: tessile/abbigliamento/moda sub-sector only. Calzature, pelli, occhiali, giocattoli have separate salary tables not modelled.",
+      "rule": "SUB-SECTORS (Art. 46 of the renewal 2024-2027 signed 18 February 2025, pp. 21-25): the calzature table is modelled as the base_salary_by_subsector calzature (EmployerProfile.subsector), page 21 read on its image. Not modelled: the pelli e cuoio, occhiali and giocattoli tables (pp. 21-25, the first two replaced by the verbale of 21 February 2025), whose levels (4s; no 2bis, 3bis, 8) differ from the file's.",
       "calculation": "ccnl/tessile-pmi-uniontessile:coverage.notes",
       "state": "absent",
-      "remediation": "Model the calzature, pelli, occhiali and giocattoli salary tables with a sub-sector input.",
+      "remediation": "Model the pelli e cuoio, occhiali and giocattoli tables with their own levels, then remove this note.",
       "origin": "seeded",
       "links": {
         "limitations": [

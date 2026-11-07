@@ -61,7 +61,7 @@
     "notes": [
       {
         "kind": "simplification",
-        "text": "SCOPE: tessile/abbigliamento/moda sub-sector only. Calzature, pelli, occhiali, giocattoli have separate salary tables not modelled.",
+        "text": "SUB-SECTORS (Art. 46 of the renewal 2024-2027 signed 18 February 2025, pp. 21-25): the calzature table is modelled as the base_salary_by_subsector calzature (EmployerProfile.subsector), page 21 read on its image. Not modelled: the pelli e cuoio, occhiali and giocattoli tables (pp. 21-25, the first two replaced by the verbale of 21 February 2025), whose levels (4s; no 2bis, 3bis, 8) differ from the file's.",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
@@ -69,7 +69,7 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Model the calzature, pelli, occhiali and giocattoli salary tables with a sub-sector input."
+          "remediation": "Model the pelli e cuoio, occhiali and giocattoli tables with their own levels, then remove this note."
         }
       },
       {
@@ -159,6 +159,27 @@
         "findings": [
           "Settore tessili e abbigliamento (PDF p. 21 of the signed scan, checked on the page image): the 38 minimi of the file, from the minimi of 1/02/2022 to 1/01/2027, match and move from assumed to verified. Level 1 is a flat 1.558,00 from 2025 with no increment printed. The errata of 21/2/2025 (pp. 24-25) does not touch this table.",
           "The ruleset names this source, published by FILCTEM-CGIL, a signatory: source_type contracting_party instead of estimated."
+        ]
+      },
+      {
+        "id": "2026-11-07-ai-uniontessile-calzature",
+        "date": "2026-11-07",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 46 calzature table of the renewal 2024-2027 (p. 21, page image).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+            "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e"
+          }
+        ],
+        "findings": [
+          "The calzature employers pay their own minimi (level 8 2,431.61 from 2025, not the tessile 2,421.56)."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels.base_salary_by_subsector"
         ]
       }
     ]
@@ -435,7 +456,75 @@
           }
         ]
       },
-      "fixed_allowances": []
+      "fixed_allowances": [],
+      "base_salary_by_subsector": {
+        "calzature": {
+          "periods": [
+            {
+              "valid_from": "2024-04-01",
+              "valid_until": "2025-01-01",
+              "value": "1279.53",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "uniontessile-rinnovo-2024-2027",
+                    "title": "CCNL Tessile abbigliamento moda PMI (Uniontessile Confapi), rinnovo 2024-2027 firmato",
+                    "kind": "associazione",
+                    "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+                    "published_on": "2025-02-18",
+                    "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e"
+                  },
+                  "page": "21",
+                  "section": "Art. 46 - Settore calzature",
+                  "quote": "SETTORE CALZATURE [...] 1 [...] Minimi dal 01/02/2022 1279,53 [...] 01/01/2025 1558,00 [...] 01/01/2026 1558,00 [...] 01/01/2027 1558,00"
+                },
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T12:00:00Z",
+                  "effective_from": "2024-04-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-07T12:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-07-ai-uniontessile-calzature"
+                }
+              }
+            },
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "1558.00",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "uniontessile-rinnovo-2024-2027",
+                    "title": "CCNL Tessile abbigliamento moda PMI (Uniontessile Confapi), rinnovo 2024-2027 firmato",
+                    "kind": "associazione",
+                    "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+                    "published_on": "2025-02-18",
+                    "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e"
+                  },
+                  "page": "21",
+                  "section": "Art. 46 - Settore calzature",
+                  "quote": "SETTORE CALZATURE [...] 1 [...] Minimi dal 01/02/2022 1279,53 [...] 01/01/2025 1558,00 [...] 01/01/2026 1558,00 [...] 01/01/2027 1558,00"
+                },
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T12:00:00Z",
+                  "effective_from": "2025-01-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-07T12:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-07-ai-uniontessile-calzature"
+                }
+              }
+            }
+          ]
+        }
+      }
     },
     {
       "code": "2",
@@ -589,7 +678,137 @@
           }
         ]
       },
-      "fixed_allowances": []
+      "fixed_allowances": [],
+      "base_salary_by_subsector": {
+        "calzature": {
+          "periods": [
+            {
+              "valid_from": "2024-04-01",
+              "valid_until": "2025-01-01",
+              "value": "1624.55",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "uniontessile-rinnovo-2024-2027",
+                    "title": "CCNL Tessile abbigliamento moda PMI (Uniontessile Confapi), rinnovo 2024-2027 firmato",
+                    "kind": "associazione",
+                    "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+                    "published_on": "2025-02-18",
+                    "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e"
+                  },
+                  "page": "21",
+                  "section": "Art. 46 - Settore calzature",
+                  "quote": "SETTORE CALZATURE [...] 2 [...] Minimi dal 01/02/2022 1624,55 [...] 01/01/2025 1710,66 [...] 01/01/2026 1762,32 [...] 01/01/2027 1796,77"
+                },
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T12:00:00Z",
+                  "effective_from": "2024-04-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-07T12:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-07-ai-uniontessile-calzature"
+                }
+              }
+            },
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": "2026-01-01",
+              "value": "1710.66",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "uniontessile-rinnovo-2024-2027",
+                    "title": "CCNL Tessile abbigliamento moda PMI (Uniontessile Confapi), rinnovo 2024-2027 firmato",
+                    "kind": "associazione",
+                    "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+                    "published_on": "2025-02-18",
+                    "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e"
+                  },
+                  "page": "21",
+                  "section": "Art. 46 - Settore calzature",
+                  "quote": "SETTORE CALZATURE [...] 2 [...] Minimi dal 01/02/2022 1624,55 [...] 01/01/2025 1710,66 [...] 01/01/2026 1762,32 [...] 01/01/2027 1796,77"
+                },
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T12:00:00Z",
+                  "effective_from": "2025-01-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-07T12:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-07-ai-uniontessile-calzature"
+                }
+              }
+            },
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": "2027-01-01",
+              "value": "1762.32",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "uniontessile-rinnovo-2024-2027",
+                    "title": "CCNL Tessile abbigliamento moda PMI (Uniontessile Confapi), rinnovo 2024-2027 firmato",
+                    "kind": "associazione",
+                    "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+                    "published_on": "2025-02-18",
+                    "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e"
+                  },
+                  "page": "21",
+                  "section": "Art. 46 - Settore calzature",
+                  "quote": "SETTORE CALZATURE [...] 2 [...] Minimi dal 01/02/2022 1624,55 [...] 01/01/2025 1710,66 [...] 01/01/2026 1762,32 [...] 01/01/2027 1796,77"
+                },
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T12:00:00Z",
+                  "effective_from": "2026-01-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-07T12:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-07-ai-uniontessile-calzature"
+                }
+              }
+            },
+            {
+              "valid_from": "2027-01-01",
+              "valid_until": null,
+              "value": "1796.77",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "uniontessile-rinnovo-2024-2027",
+                    "title": "CCNL Tessile abbigliamento moda PMI (Uniontessile Confapi), rinnovo 2024-2027 firmato",
+                    "kind": "associazione",
+                    "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+                    "published_on": "2025-02-18",
+                    "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e"
+                  },
+                  "page": "21",
+                  "section": "Art. 46 - Settore calzature",
+                  "quote": "SETTORE CALZATURE [...] 2 [...] Minimi dal 01/02/2022 1624,55 [...] 01/01/2025 1710,66 [...] 01/01/2026 1762,32 [...] 01/01/2027 1796,77"
+                },
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T12:00:00Z",
+                  "effective_from": "2027-01-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-07T12:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-07-ai-uniontessile-calzature"
+                }
+              }
+            }
+          ]
+        }
+      }
     },
     {
       "code": "2bis",
@@ -743,7 +962,137 @@
           }
         ]
       },
-      "fixed_allowances": []
+      "fixed_allowances": [],
+      "base_salary_by_subsector": {
+        "calzature": {
+          "periods": [
+            {
+              "valid_from": "2024-04-01",
+              "valid_until": "2025-01-01",
+              "value": "1669.10",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "uniontessile-rinnovo-2024-2027",
+                    "title": "CCNL Tessile abbigliamento moda PMI (Uniontessile Confapi), rinnovo 2024-2027 firmato",
+                    "kind": "associazione",
+                    "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+                    "published_on": "2025-02-18",
+                    "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e"
+                  },
+                  "page": "21",
+                  "section": "Art. 46 - Settore calzature",
+                  "quote": "SETTORE CALZATURE [...] 2bis [...] Minimi dal 01/02/2022 1669,10 [...] 01/01/2025 1759,66 [...] 01/01/2026 1813,99 [...] 01/01/2027 1850,21"
+                },
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T12:00:00Z",
+                  "effective_from": "2024-04-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-07T12:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-07-ai-uniontessile-calzature"
+                }
+              }
+            },
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": "2026-01-01",
+              "value": "1759.66",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "uniontessile-rinnovo-2024-2027",
+                    "title": "CCNL Tessile abbigliamento moda PMI (Uniontessile Confapi), rinnovo 2024-2027 firmato",
+                    "kind": "associazione",
+                    "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+                    "published_on": "2025-02-18",
+                    "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e"
+                  },
+                  "page": "21",
+                  "section": "Art. 46 - Settore calzature",
+                  "quote": "SETTORE CALZATURE [...] 2bis [...] Minimi dal 01/02/2022 1669,10 [...] 01/01/2025 1759,66 [...] 01/01/2026 1813,99 [...] 01/01/2027 1850,21"
+                },
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T12:00:00Z",
+                  "effective_from": "2025-01-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-07T12:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-07-ai-uniontessile-calzature"
+                }
+              }
+            },
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": "2027-01-01",
+              "value": "1813.99",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "uniontessile-rinnovo-2024-2027",
+                    "title": "CCNL Tessile abbigliamento moda PMI (Uniontessile Confapi), rinnovo 2024-2027 firmato",
+                    "kind": "associazione",
+                    "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+                    "published_on": "2025-02-18",
+                    "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e"
+                  },
+                  "page": "21",
+                  "section": "Art. 46 - Settore calzature",
+                  "quote": "SETTORE CALZATURE [...] 2bis [...] Minimi dal 01/02/2022 1669,10 [...] 01/01/2025 1759,66 [...] 01/01/2026 1813,99 [...] 01/01/2027 1850,21"
+                },
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T12:00:00Z",
+                  "effective_from": "2026-01-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-07T12:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-07-ai-uniontessile-calzature"
+                }
+              }
+            },
+            {
+              "valid_from": "2027-01-01",
+              "valid_until": null,
+              "value": "1850.21",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "uniontessile-rinnovo-2024-2027",
+                    "title": "CCNL Tessile abbigliamento moda PMI (Uniontessile Confapi), rinnovo 2024-2027 firmato",
+                    "kind": "associazione",
+                    "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+                    "published_on": "2025-02-18",
+                    "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e"
+                  },
+                  "page": "21",
+                  "section": "Art. 46 - Settore calzature",
+                  "quote": "SETTORE CALZATURE [...] 2bis [...] Minimi dal 01/02/2022 1669,10 [...] 01/01/2025 1759,66 [...] 01/01/2026 1813,99 [...] 01/01/2027 1850,21"
+                },
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T12:00:00Z",
+                  "effective_from": "2027-01-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-07T12:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-07-ai-uniontessile-calzature"
+                }
+              }
+            }
+          ]
+        }
+      }
     },
     {
       "code": "3",
@@ -897,7 +1246,137 @@
           }
         ]
       },
-      "fixed_allowances": []
+      "fixed_allowances": [],
+      "base_salary_by_subsector": {
+        "calzature": {
+          "periods": [
+            {
+              "valid_from": "2024-04-01",
+              "valid_until": "2025-01-01",
+              "value": "1720.25",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "uniontessile-rinnovo-2024-2027",
+                    "title": "CCNL Tessile abbigliamento moda PMI (Uniontessile Confapi), rinnovo 2024-2027 firmato",
+                    "kind": "associazione",
+                    "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+                    "published_on": "2025-02-18",
+                    "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e"
+                  },
+                  "page": "21",
+                  "section": "Art. 46 - Settore calzature",
+                  "quote": "SETTORE CALZATURE [...] 3 [...] Minimi dal 01/02/2022 1720,25 [...] 01/01/2025 1814,70 [...] 01/01/2026 1871,36 [...] 01/01/2027 1909,14"
+                },
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T12:00:00Z",
+                  "effective_from": "2024-04-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-07T12:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-07-ai-uniontessile-calzature"
+                }
+              }
+            },
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": "2026-01-01",
+              "value": "1814.70",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "uniontessile-rinnovo-2024-2027",
+                    "title": "CCNL Tessile abbigliamento moda PMI (Uniontessile Confapi), rinnovo 2024-2027 firmato",
+                    "kind": "associazione",
+                    "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+                    "published_on": "2025-02-18",
+                    "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e"
+                  },
+                  "page": "21",
+                  "section": "Art. 46 - Settore calzature",
+                  "quote": "SETTORE CALZATURE [...] 3 [...] Minimi dal 01/02/2022 1720,25 [...] 01/01/2025 1814,70 [...] 01/01/2026 1871,36 [...] 01/01/2027 1909,14"
+                },
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T12:00:00Z",
+                  "effective_from": "2025-01-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-07T12:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-07-ai-uniontessile-calzature"
+                }
+              }
+            },
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": "2027-01-01",
+              "value": "1871.36",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "uniontessile-rinnovo-2024-2027",
+                    "title": "CCNL Tessile abbigliamento moda PMI (Uniontessile Confapi), rinnovo 2024-2027 firmato",
+                    "kind": "associazione",
+                    "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+                    "published_on": "2025-02-18",
+                    "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e"
+                  },
+                  "page": "21",
+                  "section": "Art. 46 - Settore calzature",
+                  "quote": "SETTORE CALZATURE [...] 3 [...] Minimi dal 01/02/2022 1720,25 [...] 01/01/2025 1814,70 [...] 01/01/2026 1871,36 [...] 01/01/2027 1909,14"
+                },
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T12:00:00Z",
+                  "effective_from": "2026-01-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-07T12:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-07-ai-uniontessile-calzature"
+                }
+              }
+            },
+            {
+              "valid_from": "2027-01-01",
+              "valid_until": null,
+              "value": "1909.14",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "uniontessile-rinnovo-2024-2027",
+                    "title": "CCNL Tessile abbigliamento moda PMI (Uniontessile Confapi), rinnovo 2024-2027 firmato",
+                    "kind": "associazione",
+                    "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+                    "published_on": "2025-02-18",
+                    "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e"
+                  },
+                  "page": "21",
+                  "section": "Art. 46 - Settore calzature",
+                  "quote": "SETTORE CALZATURE [...] 3 [...] Minimi dal 01/02/2022 1720,25 [...] 01/01/2025 1814,70 [...] 01/01/2026 1871,36 [...] 01/01/2027 1909,14"
+                },
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T12:00:00Z",
+                  "effective_from": "2027-01-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-07T12:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-07-ai-uniontessile-calzature"
+                }
+              }
+            }
+          ]
+        }
+      }
     },
     {
       "code": "3bis",
@@ -1051,7 +1530,137 @@
           }
         ]
       },
-      "fixed_allowances": []
+      "fixed_allowances": [],
+      "base_salary_by_subsector": {
+        "calzature": {
+          "periods": [
+            {
+              "valid_from": "2024-04-01",
+              "valid_until": "2025-01-01",
+              "value": "1761.28",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "uniontessile-rinnovo-2024-2027",
+                    "title": "CCNL Tessile abbigliamento moda PMI (Uniontessile Confapi), rinnovo 2024-2027 firmato",
+                    "kind": "associazione",
+                    "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+                    "published_on": "2025-02-18",
+                    "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e"
+                  },
+                  "page": "21",
+                  "section": "Art. 46 - Settore calzature",
+                  "quote": "SETTORE CALZATURE [...] 3bis [...] Minimi dal 01/02/2022 1761,28 [...] 01/01/2025 1858,50 [...] 01/01/2026 1916,84 [...] 01/01/2027 1955,72"
+                },
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T12:00:00Z",
+                  "effective_from": "2024-04-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-07T12:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-07-ai-uniontessile-calzature"
+                }
+              }
+            },
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": "2026-01-01",
+              "value": "1858.50",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "uniontessile-rinnovo-2024-2027",
+                    "title": "CCNL Tessile abbigliamento moda PMI (Uniontessile Confapi), rinnovo 2024-2027 firmato",
+                    "kind": "associazione",
+                    "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+                    "published_on": "2025-02-18",
+                    "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e"
+                  },
+                  "page": "21",
+                  "section": "Art. 46 - Settore calzature",
+                  "quote": "SETTORE CALZATURE [...] 3bis [...] Minimi dal 01/02/2022 1761,28 [...] 01/01/2025 1858,50 [...] 01/01/2026 1916,84 [...] 01/01/2027 1955,72"
+                },
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T12:00:00Z",
+                  "effective_from": "2025-01-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-07T12:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-07-ai-uniontessile-calzature"
+                }
+              }
+            },
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": "2027-01-01",
+              "value": "1916.84",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "uniontessile-rinnovo-2024-2027",
+                    "title": "CCNL Tessile abbigliamento moda PMI (Uniontessile Confapi), rinnovo 2024-2027 firmato",
+                    "kind": "associazione",
+                    "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+                    "published_on": "2025-02-18",
+                    "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e"
+                  },
+                  "page": "21",
+                  "section": "Art. 46 - Settore calzature",
+                  "quote": "SETTORE CALZATURE [...] 3bis [...] Minimi dal 01/02/2022 1761,28 [...] 01/01/2025 1858,50 [...] 01/01/2026 1916,84 [...] 01/01/2027 1955,72"
+                },
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T12:00:00Z",
+                  "effective_from": "2026-01-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-07T12:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-07-ai-uniontessile-calzature"
+                }
+              }
+            },
+            {
+              "valid_from": "2027-01-01",
+              "valid_until": null,
+              "value": "1955.72",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "uniontessile-rinnovo-2024-2027",
+                    "title": "CCNL Tessile abbigliamento moda PMI (Uniontessile Confapi), rinnovo 2024-2027 firmato",
+                    "kind": "associazione",
+                    "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+                    "published_on": "2025-02-18",
+                    "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e"
+                  },
+                  "page": "21",
+                  "section": "Art. 46 - Settore calzature",
+                  "quote": "SETTORE CALZATURE [...] 3bis [...] Minimi dal 01/02/2022 1761,28 [...] 01/01/2025 1858,50 [...] 01/01/2026 1916,84 [...] 01/01/2027 1955,72"
+                },
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T12:00:00Z",
+                  "effective_from": "2027-01-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-07T12:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-07-ai-uniontessile-calzature"
+                }
+              }
+            }
+          ]
+        }
+      }
     },
     {
       "code": "4",
@@ -1205,7 +1814,137 @@
           }
         ]
       },
-      "fixed_allowances": []
+      "fixed_allowances": [],
+      "base_salary_by_subsector": {
+        "calzature": {
+          "periods": [
+            {
+              "valid_from": "2024-04-01",
+              "valid_until": "2025-01-01",
+              "value": "1802.82",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "uniontessile-rinnovo-2024-2027",
+                    "title": "CCNL Tessile abbigliamento moda PMI (Uniontessile Confapi), rinnovo 2024-2027 firmato",
+                    "kind": "associazione",
+                    "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+                    "published_on": "2025-02-18",
+                    "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e"
+                  },
+                  "page": "21",
+                  "section": "Art. 46 - Settore calzature",
+                  "quote": "SETTORE CALZATURE [...] 4 [...] Minimi dal 01/02/2022 1802,82 [...] 01/01/2025 1902,82 [...] 01/01/2026 1962,82 [...] 01/01/2027 2002,82"
+                },
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T12:00:00Z",
+                  "effective_from": "2024-04-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-07T12:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-07-ai-uniontessile-calzature"
+                }
+              }
+            },
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": "2026-01-01",
+              "value": "1902.82",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "uniontessile-rinnovo-2024-2027",
+                    "title": "CCNL Tessile abbigliamento moda PMI (Uniontessile Confapi), rinnovo 2024-2027 firmato",
+                    "kind": "associazione",
+                    "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+                    "published_on": "2025-02-18",
+                    "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e"
+                  },
+                  "page": "21",
+                  "section": "Art. 46 - Settore calzature",
+                  "quote": "SETTORE CALZATURE [...] 4 [...] Minimi dal 01/02/2022 1802,82 [...] 01/01/2025 1902,82 [...] 01/01/2026 1962,82 [...] 01/01/2027 2002,82"
+                },
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T12:00:00Z",
+                  "effective_from": "2025-01-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-07T12:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-07-ai-uniontessile-calzature"
+                }
+              }
+            },
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": "2027-01-01",
+              "value": "1962.82",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "uniontessile-rinnovo-2024-2027",
+                    "title": "CCNL Tessile abbigliamento moda PMI (Uniontessile Confapi), rinnovo 2024-2027 firmato",
+                    "kind": "associazione",
+                    "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+                    "published_on": "2025-02-18",
+                    "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e"
+                  },
+                  "page": "21",
+                  "section": "Art. 46 - Settore calzature",
+                  "quote": "SETTORE CALZATURE [...] 4 [...] Minimi dal 01/02/2022 1802,82 [...] 01/01/2025 1902,82 [...] 01/01/2026 1962,82 [...] 01/01/2027 2002,82"
+                },
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T12:00:00Z",
+                  "effective_from": "2026-01-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-07T12:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-07-ai-uniontessile-calzature"
+                }
+              }
+            },
+            {
+              "valid_from": "2027-01-01",
+              "valid_until": null,
+              "value": "2002.82",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "uniontessile-rinnovo-2024-2027",
+                    "title": "CCNL Tessile abbigliamento moda PMI (Uniontessile Confapi), rinnovo 2024-2027 firmato",
+                    "kind": "associazione",
+                    "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+                    "published_on": "2025-02-18",
+                    "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e"
+                  },
+                  "page": "21",
+                  "section": "Art. 46 - Settore calzature",
+                  "quote": "SETTORE CALZATURE [...] 4 [...] Minimi dal 01/02/2022 1802,82 [...] 01/01/2025 1902,82 [...] 01/01/2026 1962,82 [...] 01/01/2027 2002,82"
+                },
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T12:00:00Z",
+                  "effective_from": "2027-01-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-07T12:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-07-ai-uniontessile-calzature"
+                }
+              }
+            }
+          ]
+        }
+      }
     },
     {
       "code": "5",
@@ -1359,7 +2098,137 @@
           }
         ]
       },
-      "fixed_allowances": []
+      "fixed_allowances": [],
+      "base_salary_by_subsector": {
+        "calzature": {
+          "periods": [
+            {
+              "valid_from": "2024-04-01",
+              "valid_until": "2025-01-01",
+              "value": "1882.46",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "uniontessile-rinnovo-2024-2027",
+                    "title": "CCNL Tessile abbigliamento moda PMI (Uniontessile Confapi), rinnovo 2024-2027 firmato",
+                    "kind": "associazione",
+                    "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+                    "published_on": "2025-02-18",
+                    "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e"
+                  },
+                  "page": "21",
+                  "section": "Art. 46 - Settore calzature",
+                  "quote": "SETTORE CALZATURE [...] 5 [...] Minimi dal 01/02/2022 1882,46 [...] 01/01/2025 1988,57 [...] 01/01/2026 2052,24 [...] 01/01/2027 2094,68"
+                },
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T12:00:00Z",
+                  "effective_from": "2024-04-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-07T12:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-07-ai-uniontessile-calzature"
+                }
+              }
+            },
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": "2026-01-01",
+              "value": "1988.57",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "uniontessile-rinnovo-2024-2027",
+                    "title": "CCNL Tessile abbigliamento moda PMI (Uniontessile Confapi), rinnovo 2024-2027 firmato",
+                    "kind": "associazione",
+                    "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+                    "published_on": "2025-02-18",
+                    "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e"
+                  },
+                  "page": "21",
+                  "section": "Art. 46 - Settore calzature",
+                  "quote": "SETTORE CALZATURE [...] 5 [...] Minimi dal 01/02/2022 1882,46 [...] 01/01/2025 1988,57 [...] 01/01/2026 2052,24 [...] 01/01/2027 2094,68"
+                },
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T12:00:00Z",
+                  "effective_from": "2025-01-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-07T12:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-07-ai-uniontessile-calzature"
+                }
+              }
+            },
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": "2027-01-01",
+              "value": "2052.24",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "uniontessile-rinnovo-2024-2027",
+                    "title": "CCNL Tessile abbigliamento moda PMI (Uniontessile Confapi), rinnovo 2024-2027 firmato",
+                    "kind": "associazione",
+                    "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+                    "published_on": "2025-02-18",
+                    "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e"
+                  },
+                  "page": "21",
+                  "section": "Art. 46 - Settore calzature",
+                  "quote": "SETTORE CALZATURE [...] 5 [...] Minimi dal 01/02/2022 1882,46 [...] 01/01/2025 1988,57 [...] 01/01/2026 2052,24 [...] 01/01/2027 2094,68"
+                },
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T12:00:00Z",
+                  "effective_from": "2026-01-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-07T12:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-07-ai-uniontessile-calzature"
+                }
+              }
+            },
+            {
+              "valid_from": "2027-01-01",
+              "valid_until": null,
+              "value": "2094.68",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "uniontessile-rinnovo-2024-2027",
+                    "title": "CCNL Tessile abbigliamento moda PMI (Uniontessile Confapi), rinnovo 2024-2027 firmato",
+                    "kind": "associazione",
+                    "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+                    "published_on": "2025-02-18",
+                    "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e"
+                  },
+                  "page": "21",
+                  "section": "Art. 46 - Settore calzature",
+                  "quote": "SETTORE CALZATURE [...] 5 [...] Minimi dal 01/02/2022 1882,46 [...] 01/01/2025 1988,57 [...] 01/01/2026 2052,24 [...] 01/01/2027 2094,68"
+                },
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T12:00:00Z",
+                  "effective_from": "2027-01-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-07T12:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-07-ai-uniontessile-calzature"
+                }
+              }
+            }
+          ]
+        }
+      }
     },
     {
       "code": "6",
@@ -1513,7 +2382,137 @@
           }
         ]
       },
-      "fixed_allowances": []
+      "fixed_allowances": [],
+      "base_salary_by_subsector": {
+        "calzature": {
+          "periods": [
+            {
+              "valid_from": "2024-04-01",
+              "valid_until": "2025-01-01",
+              "value": "1982.64",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "uniontessile-rinnovo-2024-2027",
+                    "title": "CCNL Tessile abbigliamento moda PMI (Uniontessile Confapi), rinnovo 2024-2027 firmato",
+                    "kind": "associazione",
+                    "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+                    "published_on": "2025-02-18",
+                    "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e"
+                  },
+                  "page": "21",
+                  "section": "Art. 46 - Settore calzature",
+                  "quote": "SETTORE CALZATURE [...] 6 [...] Minimi dal 01/02/2022 1982,64 [...] 01/01/2025 2095,42 [...] 01/01/2026 2163,08 [...] 01/01/2027 2208,19"
+                },
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T12:00:00Z",
+                  "effective_from": "2024-04-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-07T12:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-07-ai-uniontessile-calzature"
+                }
+              }
+            },
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": "2026-01-01",
+              "value": "2095.42",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "uniontessile-rinnovo-2024-2027",
+                    "title": "CCNL Tessile abbigliamento moda PMI (Uniontessile Confapi), rinnovo 2024-2027 firmato",
+                    "kind": "associazione",
+                    "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+                    "published_on": "2025-02-18",
+                    "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e"
+                  },
+                  "page": "21",
+                  "section": "Art. 46 - Settore calzature",
+                  "quote": "SETTORE CALZATURE [...] 6 [...] Minimi dal 01/02/2022 1982,64 [...] 01/01/2025 2095,42 [...] 01/01/2026 2163,08 [...] 01/01/2027 2208,19"
+                },
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T12:00:00Z",
+                  "effective_from": "2025-01-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-07T12:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-07-ai-uniontessile-calzature"
+                }
+              }
+            },
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": "2027-01-01",
+              "value": "2163.08",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "uniontessile-rinnovo-2024-2027",
+                    "title": "CCNL Tessile abbigliamento moda PMI (Uniontessile Confapi), rinnovo 2024-2027 firmato",
+                    "kind": "associazione",
+                    "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+                    "published_on": "2025-02-18",
+                    "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e"
+                  },
+                  "page": "21",
+                  "section": "Art. 46 - Settore calzature",
+                  "quote": "SETTORE CALZATURE [...] 6 [...] Minimi dal 01/02/2022 1982,64 [...] 01/01/2025 2095,42 [...] 01/01/2026 2163,08 [...] 01/01/2027 2208,19"
+                },
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T12:00:00Z",
+                  "effective_from": "2026-01-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-07T12:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-07-ai-uniontessile-calzature"
+                }
+              }
+            },
+            {
+              "valid_from": "2027-01-01",
+              "valid_until": null,
+              "value": "2208.19",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "uniontessile-rinnovo-2024-2027",
+                    "title": "CCNL Tessile abbigliamento moda PMI (Uniontessile Confapi), rinnovo 2024-2027 firmato",
+                    "kind": "associazione",
+                    "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+                    "published_on": "2025-02-18",
+                    "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e"
+                  },
+                  "page": "21",
+                  "section": "Art. 46 - Settore calzature",
+                  "quote": "SETTORE CALZATURE [...] 6 [...] Minimi dal 01/02/2022 1982,64 [...] 01/01/2025 2095,42 [...] 01/01/2026 2163,08 [...] 01/01/2027 2208,19"
+                },
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T12:00:00Z",
+                  "effective_from": "2027-01-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-07T12:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-07-ai-uniontessile-calzature"
+                }
+              }
+            }
+          ]
+        }
+      }
     },
     {
       "code": "7",
@@ -1667,7 +2666,137 @@
           }
         ]
       },
-      "fixed_allowances": []
+      "fixed_allowances": [],
+      "base_salary_by_subsector": {
+        "calzature": {
+          "periods": [
+            {
+              "valid_from": "2024-04-01",
+              "valid_until": "2025-01-01",
+              "value": "2142.11",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "uniontessile-rinnovo-2024-2027",
+                    "title": "CCNL Tessile abbigliamento moda PMI (Uniontessile Confapi), rinnovo 2024-2027 firmato",
+                    "kind": "associazione",
+                    "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+                    "published_on": "2025-02-18",
+                    "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e"
+                  },
+                  "page": "21",
+                  "section": "Art. 46 - Settore calzature",
+                  "quote": "SETTORE CALZATURE [...] 7 [...] Minimi dal 01/02/2022 2142,11 [...] 01/01/2025 2261,00 [...] 01/01/2026 2332,33 [...] 01/01/2027 2379,89"
+                },
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T12:00:00Z",
+                  "effective_from": "2024-04-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-07T12:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-07-ai-uniontessile-calzature"
+                }
+              }
+            },
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": "2026-01-01",
+              "value": "2261.00",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "uniontessile-rinnovo-2024-2027",
+                    "title": "CCNL Tessile abbigliamento moda PMI (Uniontessile Confapi), rinnovo 2024-2027 firmato",
+                    "kind": "associazione",
+                    "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+                    "published_on": "2025-02-18",
+                    "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e"
+                  },
+                  "page": "21",
+                  "section": "Art. 46 - Settore calzature",
+                  "quote": "SETTORE CALZATURE [...] 7 [...] Minimi dal 01/02/2022 2142,11 [...] 01/01/2025 2261,00 [...] 01/01/2026 2332,33 [...] 01/01/2027 2379,89"
+                },
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T12:00:00Z",
+                  "effective_from": "2025-01-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-07T12:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-07-ai-uniontessile-calzature"
+                }
+              }
+            },
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": "2027-01-01",
+              "value": "2332.33",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "uniontessile-rinnovo-2024-2027",
+                    "title": "CCNL Tessile abbigliamento moda PMI (Uniontessile Confapi), rinnovo 2024-2027 firmato",
+                    "kind": "associazione",
+                    "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+                    "published_on": "2025-02-18",
+                    "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e"
+                  },
+                  "page": "21",
+                  "section": "Art. 46 - Settore calzature",
+                  "quote": "SETTORE CALZATURE [...] 7 [...] Minimi dal 01/02/2022 2142,11 [...] 01/01/2025 2261,00 [...] 01/01/2026 2332,33 [...] 01/01/2027 2379,89"
+                },
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T12:00:00Z",
+                  "effective_from": "2026-01-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-07T12:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-07-ai-uniontessile-calzature"
+                }
+              }
+            },
+            {
+              "valid_from": "2027-01-01",
+              "valid_until": null,
+              "value": "2379.89",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "uniontessile-rinnovo-2024-2027",
+                    "title": "CCNL Tessile abbigliamento moda PMI (Uniontessile Confapi), rinnovo 2024-2027 firmato",
+                    "kind": "associazione",
+                    "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+                    "published_on": "2025-02-18",
+                    "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e"
+                  },
+                  "page": "21",
+                  "section": "Art. 46 - Settore calzature",
+                  "quote": "SETTORE CALZATURE [...] 7 [...] Minimi dal 01/02/2022 2142,11 [...] 01/01/2025 2261,00 [...] 01/01/2026 2332,33 [...] 01/01/2027 2379,89"
+                },
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T12:00:00Z",
+                  "effective_from": "2027-01-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-07T12:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-07-ai-uniontessile-calzature"
+                }
+              }
+            }
+          ]
+        }
+      }
     },
     {
       "code": "8",
@@ -1854,7 +2983,137 @@
             "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
           }
         }
-      ]
+      ],
+      "base_salary_by_subsector": {
+        "calzature": {
+          "periods": [
+            {
+              "valid_from": "2024-04-01",
+              "valid_until": "2025-01-01",
+              "value": "2304.39",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "uniontessile-rinnovo-2024-2027",
+                    "title": "CCNL Tessile abbigliamento moda PMI (Uniontessile Confapi), rinnovo 2024-2027 firmato",
+                    "kind": "associazione",
+                    "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+                    "published_on": "2025-02-18",
+                    "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e"
+                  },
+                  "page": "21",
+                  "section": "Art. 46 - Settore calzature",
+                  "quote": "SETTORE CALZATURE [...] 8 [...] Minimi dal 01/02/2022 2304,39 [...] 01/01/2025 2431,61 [...] 01/01/2026 2507,94 [...] 01/01/2027 2558,83"
+                },
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T12:00:00Z",
+                  "effective_from": "2024-04-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-07T12:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-07-ai-uniontessile-calzature"
+                }
+              }
+            },
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": "2026-01-01",
+              "value": "2431.61",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "uniontessile-rinnovo-2024-2027",
+                    "title": "CCNL Tessile abbigliamento moda PMI (Uniontessile Confapi), rinnovo 2024-2027 firmato",
+                    "kind": "associazione",
+                    "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+                    "published_on": "2025-02-18",
+                    "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e"
+                  },
+                  "page": "21",
+                  "section": "Art. 46 - Settore calzature",
+                  "quote": "SETTORE CALZATURE [...] 8 [...] Minimi dal 01/02/2022 2304,39 [...] 01/01/2025 2431,61 [...] 01/01/2026 2507,94 [...] 01/01/2027 2558,83"
+                },
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T12:00:00Z",
+                  "effective_from": "2025-01-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-07T12:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-07-ai-uniontessile-calzature"
+                }
+              }
+            },
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": "2027-01-01",
+              "value": "2507.94",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "uniontessile-rinnovo-2024-2027",
+                    "title": "CCNL Tessile abbigliamento moda PMI (Uniontessile Confapi), rinnovo 2024-2027 firmato",
+                    "kind": "associazione",
+                    "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+                    "published_on": "2025-02-18",
+                    "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e"
+                  },
+                  "page": "21",
+                  "section": "Art. 46 - Settore calzature",
+                  "quote": "SETTORE CALZATURE [...] 8 [...] Minimi dal 01/02/2022 2304,39 [...] 01/01/2025 2431,61 [...] 01/01/2026 2507,94 [...] 01/01/2027 2558,83"
+                },
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T12:00:00Z",
+                  "effective_from": "2026-01-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-07T12:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-07-ai-uniontessile-calzature"
+                }
+              }
+            },
+            {
+              "valid_from": "2027-01-01",
+              "valid_until": null,
+              "value": "2558.83",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "uniontessile-rinnovo-2024-2027",
+                    "title": "CCNL Tessile abbigliamento moda PMI (Uniontessile Confapi), rinnovo 2024-2027 firmato",
+                    "kind": "associazione",
+                    "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+                    "published_on": "2025-02-18",
+                    "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e"
+                  },
+                  "page": "21",
+                  "section": "Art. 46 - Settore calzature",
+                  "quote": "SETTORE CALZATURE [...] 8 [...] Minimi dal 01/02/2022 2304,39 [...] 01/01/2025 2431,61 [...] 01/01/2026 2507,94 [...] 01/01/2027 2558,83"
+                },
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-07T12:00:00Z",
+                  "effective_from": "2027-01-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-07T12:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-07-ai-uniontessile-calzature"
+                }
+              }
+            }
+          ]
+        }
+      }
     }
   ],
   "ruleset": {
@@ -1866,6 +3125,6 @@
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
     "source_type": "contracting_party",
     "verification_status": "unverified",
-    "source_hash": "1e357d26df71e8a50973ed57fe7e482cb75c414c804c7537b7acf30eaca93636"
+    "source_hash": "cfb8f0f160304d4169b237fc631f5a5eb78277d9e75efa52633428e63b928da0"
   }
 }
