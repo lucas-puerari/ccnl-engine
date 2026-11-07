@@ -861,6 +861,7 @@
       "esercizi-cinematografici-anec/sickness_net_basis"
     ],
     "agreement/farmacie-municipalizzate-assofarm.json": [
+      "farmacie-municipalizzate-assofarm/renewal_2027_2029",
       "farmacie-municipalizzate-assofarm/terziario_rates_proxy"
     ],
     "agreement/farmacie-private-h121.json": [
@@ -970,7 +971,8 @@
       "lavoro-domestico-non-convivente/tranches_from_2027"
     ],
     "agreement/legno-arredamento-federlegno.json": [
-      "legno-arredamento-federlegno/apprenticeship_midpoint_components"
+      "legno-arredamento-federlegno/apprenticeship_midpoint_components",
+      "legno-arredamento-federlegno/renewal_2026_ipotesi"
     ],
     "agreement/legno-lapidei-artigianato-confartigianato.json": [
       "legno-lapidei-artigianato-confartigianato/apprentice_inps_rates_unsourced",

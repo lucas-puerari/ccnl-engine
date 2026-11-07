@@ -61,7 +61,7 @@ formulas or caller-declared amounts.
 
 | Capability | Description | Scope | Layer | Implementation | Applies when | Handler | Facts | Variants | Label | Rules (v / d / a / m) |
 |---|---|---|---|---|---|---|---|---|---|---|
-| `base_salary` | Paga base contrattuale | core | gross | native | always | pipeline | — | — | simplified | 2511 / 3883 / 205 / 28 |
+| `base_salary` | Paga base contrattuale | core | gross | native | always | pipeline | — | — | simplified | 2567 / 3887 / 205 / 28 |
 | `seniority` | Scatti di anzianità | core | gross | native | decided | decision | `employment.seniority` | — | simplified | 30 / 93 / 13 / 0 |
 | `worker_category` | Categoria lavoratore (dichiarata o fissata dal livello) | core | gross | native | decided | decision | `employment.category` | — | implemented | none bundled |
 | `inps_employee` | Contributi INPS a carico dipendente | core | net | native | always | pipeline | — | — | simplified | 25 / 24 / 45 / 0 |
@@ -181,7 +181,7 @@ never grow.
 | 40 | [CCNL Dipendenti Aziende Enti Pubblici Economici Federcasa](federcasa.md) | ⚠️ | base_salary, inps_employer, seniority | 1 / 23 / 1 / 0 |
 | 41 | [CCNL Dipendenti Piccola e Media Industria Alimentare (Unionalimentari-Confapi)](alimentari-pmi-unionalimentari.md) | ⚠️ | base_salary | 1 / 53 / 1 / 0 |
 | 42 | [CCNL Dipendenti da Proprietari di Fabbricati (Confedilizia)](portieri-fabbricati-confedilizia.md) | ⚠️ | base_salary | 0 / 38 / 1 / 0 |
-| 43 | [CCNL Dipendenti delle Farmacie Municipalizzate (ASSOFARM)](farmacie-municipalizzate-assofarm.md) | ⚠️ | inps_employer | 1 / 45 / 1 / 0 |
+| 43 | [CCNL Dipendenti delle Farmacie Municipalizzate (ASSOFARM)](farmacie-municipalizzate-assofarm.md) | ⚠️ | base_salary, inps_employer | 41 / 49 / 1 / 0 |
 | 44 | [CCNL Dipendenti delle Farmacie Private](farmacie-private-h121.md) | ⚠️ | seniority | 4 / 41 / 1 / 0 |
 | 45 | [CCNL Dipendenti delle Farmacie Private - Farmacie rurali sussidiate](farmacie-rurali-sussidiate-h121.md) | ⚠️ | seniority | 4 / 41 / 1 / 0 |
 | 46 | [CCNL Distribuzione Cooperativa (ANCC-Coop / Confcooperative Consumo)](distribuzione-cooperativa-ancc.md) | ⚠️ | base_salary, seniority | 1 / 62 / 1 / 0 |
@@ -266,7 +266,7 @@ never grow.
 | 125 | [CCNL per i lavoratori addetti alle industrie delle pelli e dei succedanei della pelle (Assopellettieri)](pelli-cuoio-industria-assopellettieri.md) | ⚠️ | base_salary | 0 / 35 / 1 / 1 |
 | 126 | [CCNL per i lavoratori dell'industria alimentare (Federalimentare)](alimentari-federalimentare.md) | ⚠️ | base_salary, overtime, sickness | 272 / 0 / 0 / 0 |
 | 127 | [CCNL per i lavoratori dell'industria conciaria (UNIC)](concia-unic.md) | ✅ | leave, overtime | 57 / 1 / 0 / 0 |
-| 128 | [CCNL per i lavoratori dell'industria del legno, del sughero, del mobile, dell'arredamento e delle industrie affini (Federlegno-Arredo)](legno-arredamento-federlegno.md) | ⚠️ | base_salary | 1 / 88 / 1 / 0 |
+| 128 | [CCNL per i lavoratori dell'industria del legno, del sughero, del mobile, dell'arredamento e delle industrie affini (Federlegno-Arredo)](legno-arredamento-federlegno.md) | ⚠️ | base_salary | 17 / 88 / 1 / 0 |
 | 129 | [CCNL per i lavoratori dell'industria tessile, abbigliamento, moda (SMI)](tessile-smi.md) | ✅ | — | 0 / 47 / 1 / 1 |
 | 130 | [CCNL per i lavoratori delle Banche di Credito Cooperativo, Casse Rurali ed Artigiane](bcc-credito-cooperativo.md) | ⚠️ | base_salary, inps_employer, seniority | 36 / 7 / 0 / 0 |
 | 131 | [CCNL per i lavoratori delle imprese produttrici, distributrici di energia elettrica (Elettricita Futura)](elettrico-elettricita-futura.md) | ✅ | — | 57 / 21 / 1 / 0 |

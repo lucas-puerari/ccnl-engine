@@ -14,7 +14,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 0/136 CCNLs.** Bundle: 270 weak rules, 423 open limitations (423 with a monetary impact).
+**Complete: 0/136 CCNLs.** Bundle: 270 weak rules, 425 open limitations (425 with a monetary impact).
 
 ## Declared window
 
@@ -100,7 +100,7 @@ Future data, registered apart from the gaps: a contract whose validity ends insi
 | [energia-petrolio-confindustria](../contracts/energia-petrolio-confindustria.md) | `energia-utilities` | exploratory | — | 21 rows | 21 open requirements; 1 weak rule; 18 monetary limitations; 18 non-native capabilities |
 | [enti-ricerca-aran](../contracts/enti-ricerca-aran.md) | `pubblico-impiego` | exploratory | — | 22 rows | 22 open requirements; 1 weak rule; 18 monetary limitations; 1 outside_input limitation; 20 non-native capabilities |
 | [esercizi-cinematografici-anec](../contracts/esercizi-cinematografici-anec.md) | `spettacolo-media` | exploratory | — | 23 rows | 23 open requirements; 1 weak rule; 20 monetary limitations; 20 non-native capabilities |
-| [farmacie-municipalizzate-assofarm](../contracts/farmacie-municipalizzate-assofarm.md) | `farmacie` | exploratory | — | 22 rows | 22 open requirements; 1 weak rule; 19 monetary limitations; 19 non-native capabilities |
+| [farmacie-municipalizzate-assofarm](../contracts/farmacie-municipalizzate-assofarm.md) | `farmacie` | exploratory | — | 23 rows | 23 open requirements; 1 weak rule; 20 monetary limitations; 20 non-native capabilities |
 | [farmacie-private-h121](../contracts/farmacie-private-h121.md) | `farmacie` | exploratory | — | 21 rows | 21 open requirements; 1 weak rule; 18 monetary limitations; 19 non-native capabilities |
 | [farmacie-rurali-sussidiate-h121](../contracts/farmacie-rurali-sussidiate-h121.md) | `farmacie` | exploratory | — | 21 rows | 21 open requirements; 1 weak rule; 18 monetary limitations; 19 non-native capabilities |
 | [federcasa](../contracts/federcasa.md) | `servizi-immobiliari` | exploratory | — | 23 rows | 23 open requirements; 1 weak rule; 19 monetary limitations; 1 outside_input limitation; 21 non-native capabilities |
@@ -126,7 +126,7 @@ Future data, registered apart from the gaps: a contract whose validity ends insi
 | [lavoro-domestico-convivente](../contracts/lavoro-domestico-convivente.md) | `lavoro-domestico` | reviewed | — | 24 rows | 24 open requirements; 22 monetary limitations; 22 non-native capabilities |
 | [lavoro-domestico-convivente-orario-ridotto](../contracts/lavoro-domestico-convivente-orario-ridotto.md) | `lavoro-domestico` | reviewed | — | 23 rows | 23 open requirements; 19 monetary limitations; 2 outside_input limitations; 21 non-native capabilities |
 | [lavoro-domestico-non-convivente](../contracts/lavoro-domestico-non-convivente.md) | `lavoro-domestico` | reviewed | — | 24 rows | 24 open requirements; 22 monetary limitations; 22 non-native capabilities |
-| [legno-arredamento-federlegno](../contracts/legno-arredamento-federlegno.md) | `legno-arredamento` | exploratory | — | 22 rows | 22 open requirements; 1 weak rule; 19 monetary limitations; 19 non-native capabilities |
+| [legno-arredamento-federlegno](../contracts/legno-arredamento-federlegno.md) | `legno-arredamento` | exploratory | — | 23 rows | 23 open requirements; 1 weak rule; 20 monetary limitations; 19 non-native capabilities |
 | [legno-lapidei-artigianato-confartigianato](../contracts/legno-lapidei-artigianato-confartigianato.md) | `legno-arredamento` | exploratory | — | 26 rows | 26 open requirements; 1 weak rule; 22 monetary limitations; 1 outside_input limitation; 20 non-native capabilities |
 | [logistica-trasporto-confetra](../contracts/logistica-trasporto-confetra.md) | `trasporti-logistica` | reviewed | — | 23 rows | 23 open requirements; 19 monetary limitations; 2 outside_input limitations; 19 non-native capabilities |
 | [logistica-trasporto-confetra-viaggiante](../contracts/logistica-trasporto-confetra-viaggiante.md) | `trasporti-logistica` | reviewed | — | 22 rows | 22 open requirements; 19 monetary limitations; 1 outside_input limitation; 19 non-native capabilities |

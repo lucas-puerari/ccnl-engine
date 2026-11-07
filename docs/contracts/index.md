@@ -159,7 +159,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 40 | T611 | [CCNL Dipendenti Aziende Enti Pubblici Economici Federcasa](federcasa.md) | Case popolari | ~6k | 2024 | ⚠️ | base_salary, inps_employer, seniority | 1 / 23 / 1 / 0 | 🧪 | 🤖 |
 | 41 | E018 | [CCNL Dipendenti Piccola e Media Industria Alimentare (Unionalimentari-Confapi)](alimentari-pmi-unionalimentari.md) | Alimentare | ~35k | 2025 | ⚠️ | base_salary | 1 / 53 / 1 / 0 | 🧪 | 🤖 |
 | 42 | H401 | [CCNL Dipendenti da Proprietari di Fabbricati (Confedilizia)](portieri-fabbricati-confedilizia.md) | portieri e custodi di condominio | ~40k | 2025 | ⚠️ | base_salary | 0 / 38 / 1 / 0 | 🧪 | 🤖 |
-| 43 | H124 | [CCNL Dipendenti delle Farmacie Municipalizzate (ASSOFARM)](farmacie-municipalizzate-assofarm.md) | Farmacie municipalizzate e partecipate da enti locali | ~6k | 2022 | ⚠️ | inps_employer | 1 / 45 / 1 / 0 | 🧪 | 🤖 |
+| 43 | H124 | [CCNL Dipendenti delle Farmacie Municipalizzate (ASSOFARM)](farmacie-municipalizzate-assofarm.md) | Farmacie municipalizzate e partecipate da enti locali | ~6k | 2022 | ⚠️ | base_salary, inps_employer | 41 / 49 / 1 / 0 | 🧪 | 🤖 |
 | 44 | H121 | [CCNL Dipendenti delle Farmacie Private](farmacie-private-h121.md) | Farmacie private | ~60k | 2021 | ⚠️ | seniority | 4 / 41 / 1 / 0 | 🧪 | 🤖 |
 | 45 | H121 | [CCNL Dipendenti delle Farmacie Private - Farmacie rurali sussidiate](farmacie-rurali-sussidiate-h121.md) | Farmacie private | ~60k | 2021 | ⚠️ | seniority | 4 / 41 / 1 / 0 | 🧪 | 🤖 |
 | 46 | H016 | [CCNL Distribuzione Cooperativa (ANCC-Coop / Confcooperative Consumo)](distribuzione-cooperativa-ancc.md) | distribuzione-cooperativa | ~63k | — | ⚠️ | base_salary, seniority | 1 / 62 / 1 / 0 | 🧪 | 🤖 |
@@ -244,7 +244,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 125 | D111 | [CCNL per i lavoratori addetti alle industrie delle pelli e dei succedanei della pelle (Assopellettieri)](pelli-cuoio-industria-assopellettieri.md) | industria | ~17k | — | ⚠️ | base_salary | 0 / 35 / 1 / 1 | 🧪 | 🤖 |
 | 126 | E012 | [CCNL per i lavoratori dell'industria alimentare (Federalimentare)](alimentari-federalimentare.md) | industria | ~145k | — | ⚠️ | base_salary, overtime, sickness | 272 / 0 / 0 / 0 | 👁 | 🤖✓ |
 | 127 | B101 | [CCNL per i lavoratori dell'industria conciaria (UNIC)](concia-unic.md) | industria | ~22.6k | — | ✅ | leave, overtime | 57 / 1 / 0 / 0 | 👁 | 🤖✓ |
-| 128 | F051 | [CCNL per i lavoratori dell'industria del legno, del sughero, del mobile, dell'arredamento e delle industrie affini (Federlegno-Arredo)](legno-arredamento-federlegno.md) | industria | ~90k | — | ⚠️ | base_salary | 1 / 88 / 1 / 0 | 🧪 | 🤖 |
+| 128 | F051 | [CCNL per i lavoratori dell'industria del legno, del sughero, del mobile, dell'arredamento e delle industrie affini (Federlegno-Arredo)](legno-arredamento-federlegno.md) | industria | ~90k | — | ⚠️ | base_salary | 17 / 88 / 1 / 0 | 🧪 | 🤖 |
 | 129 | D014 | [CCNL per i lavoratori dell'industria tessile, abbigliamento, moda (SMI)](tessile-smi.md) | industria | ~160k | — | ✅ | — | 0 / 47 / 1 / 1 | 🧪 | 🤖 |
 | 130 | J271 | [CCNL per i lavoratori delle Banche di Credito Cooperativo, Casse Rurali ed Artigiane](bcc-credito-cooperativo.md) | credito | ~33k | — | ⚠️ | base_salary, inps_employer, seniority | 36 / 7 / 0 / 0 | 🧪 | 🤖 |
 | 131 | K051 | [CCNL per i lavoratori delle imprese produttrici, distributrici di energia elettrica (Elettricita Futura)](elettrico-elettricita-futura.md) | industria | ~60k | — | ✅ | — | 57 / 21 / 1 / 0 | 🧪 | 🤖 |
