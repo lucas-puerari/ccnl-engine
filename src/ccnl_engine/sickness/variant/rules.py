@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 from ccnl_engine.employment.apprentice.inputs import Apprentice
+from ccnl_engine.employment.inputs import Permanent
 
 if TYPE_CHECKING:
     from ccnl_engine.agreement.facade import CCNL
@@ -19,8 +20,9 @@ def with_sickness_variant(
     """Return ``ccnl`` with the sickness rules of the worker's kind.
 
     An apprentice takes ``apprentice_sickness_rules``, else the rules of
-    the worker's category in ``sickness_rules_by_category``; a worker of no
-    such kind keeps ``sickness_rules``.
+    the worker's category in ``sickness_rules_by_category`` (a permanent
+    contract only, when the rules say so); a worker of no such kind keeps
+    ``sickness_rules``.
 
     Returns:
         ``ccnl`` unchanged, or a copy whose ``sickness_rules`` are the rules
@@ -34,6 +36,8 @@ def with_sickness_variant(
         rules = work.apprentice_sickness_rules
     if rules is None and category is not None:
         rules = work.sickness_rules_by_category.get(category)
+        if rules is not None and rules.permanent_only:
+            rules = rules if isinstance(contract_type, Permanent) else None
     if rules is None:
         return ccnl
     return ccnl.model_copy(

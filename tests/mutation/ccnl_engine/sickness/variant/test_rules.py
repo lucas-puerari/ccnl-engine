@@ -8,31 +8,43 @@ the apprentice the normal pay for at most six months a year.
 from __future__ import annotations
 
 from decimal import Decimal
+from typing import TYPE_CHECKING
 
 from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.employment.apprentice.inputs import Apprentice
 from ccnl_engine.employment.category.models import WorkerCategory
+from ccnl_engine.employment.inputs import FixedTerm, Permanent
 from ccnl_engine.sickness.variant.rules import with_sickness_variant
+
+if TYPE_CHECKING:
+    from ccnl_engine.agreement.facade import CCNL
+    from ccnl_engine.sickness.integration.models import SicknessRules
 
 _TABACCO = load_ccnl("tabacco-apti")
 _ALIMENTARI = load_ccnl("alimentari-federalimentare")
 
 
-def _rules(ccnl: object) -> object:
-    return ccnl.work_rules.sickness_rules  # type: ignore[attr-defined]
+def _rules(ccnl: CCNL) -> SicknessRules:
+    assert ccnl.work_rules is not None
+    rules = ccnl.work_rules.sickness_rules
+    assert rules is not None
+    return rules
 
 
 def test_tabacco_operai_keep_the_general_rule() -> None:
     """Operai: 100% for 180 days, no cumulation."""
     rules = _rules(with_sickness_variant(_TABACCO, WorkerCategory.OPERAIO, None))
-    assert rules.max_duration_days == 180  # type: ignore[attr-defined]
-    assert rules.cumulation is None  # type: ignore[attr-defined]
+    assert rules.max_duration_days == 180
+    assert rules.cumulation is None
 
 
 def test_tabacco_impiegati_and_quadri_take_the_twelve_months() -> None:
     """4+4, 5+5, 6+6 months over 365 days of comporto, counted over the chain."""
     for category in (WorkerCategory.IMPIEGATO, WorkerCategory.QUADRO):
-        cumulation = _rules(with_sickness_variant(_TABACCO, category, None)).cumulation  # type: ignore[attr-defined]
+        cumulation = _rules(
+            with_sickness_variant(_TABACCO, category, Permanent())
+        ).cumulation
+        assert cumulation is not None
         assert cumulation.comporto_over_chain
         assert cumulation.reset_after_days == 365
         assert [
@@ -63,10 +75,10 @@ def test_an_alimentari_apprentice_takes_six_months_a_year() -> None:
             _ALIMENTARI, WorkerCategory.OPERAIO, Apprentice(months_elapsed=6)
         )
     )
-    assert rules.carenza_integration_rate == rules.full_pay_integration_rate == 1  # type: ignore[attr-defined]
-    assert not rules.net_basis  # type: ignore[attr-defined]
-    assert rules.comporto_calendar_year  # type: ignore[attr-defined]
-    assert rules.max_duration_days == 180  # type: ignore[attr-defined]
+    assert rules.carenza_integration_rate == rules.full_pay_integration_rate == 1
+    assert not rules.net_basis
+    assert rules.comporto_calendar_year
+    assert rules.max_duration_days == 180
 
 
 def test_an_alimentari_employee_keeps_the_general_rule() -> None:
@@ -85,3 +97,34 @@ def test_a_ccnl_without_work_rules_is_unchanged() -> None:
         )
         is bare
     )
+
+
+def test_a_fixed_term_impiegato_keeps_the_general_rule() -> None:
+    """Art. 34: the 12 months are of the impiegato 'a tempo indeterminato'."""
+    fixed = FixedTerm()
+    rules = _rules(with_sickness_variant(_TABACCO, WorkerCategory.IMPIEGATO, fixed))
+    assert rules.cumulation is None
+    assert rules.max_duration_days == 180
+
+
+def test_a_permanent_impiegato_takes_the_twelve_months() -> None:
+    """The same worker on a permanent contract."""
+    rules = _rules(
+        with_sickness_variant(_TABACCO, WorkerCategory.IMPIEGATO, Permanent())
+    )
+    assert rules.cumulation is not None
+
+
+def test_a_tabacco_apprentice_takes_half_pay_six_months_a_year() -> None:
+    """Art. 6: 50% of the normal pay for at most 6 months a year."""
+    apprentice = Apprentice(months_elapsed=3)
+    rules = _rules(
+        with_sickness_variant(_TABACCO, WorkerCategory.IMPIEGATO, apprentice)
+    )
+    assert (
+        rules.carenza_integration_rate
+        == rules.full_pay_integration_rate
+        == Decimal("0.5")
+    )
+    assert rules.comporto_calendar_year
+    assert rules.max_duration_days == 180
