@@ -242,7 +242,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 123 | D121 | [CCNL per i lavoratori addetti all'industria delle calzature](calzaturiero-assocalzaturifici.md) | industria | ~75k | — | ✅ | — | 32 / 6 / 1 / 1 | 🧪 | 🤖 |
 | 124 | C021 | [CCNL per i lavoratori addetti all'industria orafa, argentiera e della gioielleria (Federorafi)](orafi-argentieri-industria-federorafi.md) | industria | ~18k | — | ✅ | — | 32 / 33 / 1 / 0 | 🧪 | 🤖 |
 | 125 | D111 | [CCNL per i lavoratori addetti alle industrie delle pelli e dei succedanei della pelle (Assopellettieri)](pelli-cuoio-industria-assopellettieri.md) | industria | ~17k | — | ⚠️ | base_salary | 28 / 7 / 1 / 1 | 🧪 | 🤖 |
-| 126 | E012 | [CCNL per i lavoratori dell'industria alimentare (Federalimentare)](alimentari-federalimentare.md) | industria | ~145k | — | ⚠️ | base_salary, overtime | 274 / 0 / 0 / 0 | 👁 | 🤖✓ |
+| 126 | E012 | [CCNL per i lavoratori dell'industria alimentare (Federalimentare)](alimentari-federalimentare.md) | industria | ~145k | — | ⚠️ | base_salary, bilateral_funds | 275 / 0 / 0 / 0 | 👁 | 🤖✓ |
 | 127 | B101 | [CCNL per i lavoratori dell'industria conciaria (UNIC)](concia-unic.md) | industria | ~22.6k | — | ✅ | overtime | 58 / 1 / 0 / 0 | 👁 | 🤖✓ |
 | 128 | F051 | [CCNL per i lavoratori dell'industria del legno, del sughero, del mobile, dell'arredamento e delle industrie affini (Federlegno-Arredo)](legno-arredamento-federlegno.md) | industria | ~90k | — | ⚠️ | base_salary | 17 / 88 / 1 / 0 | 🧪 | 🤖 |
 | 129 | D014 | [CCNL per i lavoratori dell'industria tessile, abbigliamento, moda (SMI)](tessile-smi.md) | industria | ~160k | — | ✅ | — | 40 / 7 / 1 / 1 | 🧪 | 🤖 |

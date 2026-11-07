@@ -652,8 +652,9 @@
       "agenzie-marittime-i481/function_allowance_on_fourteenth"
     ],
     "agreement/alimentari-federalimentare.json": [
+      "alimentari-federalimentare/fasa_family_members",
       "alimentari-federalimentare/first_level_apprentice_pay",
-      "alimentari-federalimentare/ordinary_hours_premiums"
+      "alimentari-federalimentare/health_and_bilateral_funds"
     ],
     "agreement/assicurazioni-ania.json": [
       "assicurazioni-ania/funzionari_economic_allowance",
