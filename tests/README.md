@@ -31,7 +31,10 @@ with it. Where a unit and a wiring or oracle test of one module would share a
 name, the second takes the suffix `_wiring` or `_oracle`.
 `make mutation MODULE='ccnl_engine.fund.health.rules.*'` runs mutmut on one
 module at low priority with `MUTATION_WORKERS` (2) children, then checks the
-scores; without `MODULE` it runs every module.
+scores of the modules the glob matches, without touching
+`scripts/quality/mutation/record.json`; without `MODULE` it runs every module
+and rewrites that record. `scripts/quality/test_tree/check.py` fails when a
+test named after a `source_paths` module sits outside `mutation/`.
 
 Under each category the path mirrors the code: a directory of
 `tests/<category>/ccnl_engine/` is a directory of `src/ccnl_engine/`, or
