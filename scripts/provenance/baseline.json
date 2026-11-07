@@ -355,7 +355,9 @@
     },
     "agreement/tabacco-apti.json": {
       "additional_months[2025-01-01]": "assumed",
+      "employer_funds[ALIFOND].employee_min_rate[2025-01-01]": "assumed",
       "employer_funds[ALIFOND].employee_min_rate[2025-07-01]": "assumed",
+      "employer_funds[ALIFOND].rate[2025-01-01]": "assumed",
       "employer_funds[ALIFOND].rate[2025-07-01]": "assumed",
       "levels[1S].fixed_allowances[CONTINGENZA]": "assumed",
       "levels[1S].fixed_allowances[EDR]": "assumed",
@@ -1178,7 +1180,6 @@
       "studi-professionali-confprofessioni/unused_leave_hours"
     ],
     "agreement/tabacco-apti.json": [
-      "tabacco-apti/alifond_before_july_2025",
       "tabacco-apti/sickness_rules"
     ],
     "agreement/telecomunicazioni-asstel.json": [

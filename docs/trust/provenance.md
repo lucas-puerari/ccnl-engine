@@ -181,7 +181,7 @@ when they drift.
 |---|---:|---:|---:|
 | `verified` | 5 010 | 97 | 5 107 |
 | `derived` | 2 719 | 50 | 2 769 |
-| `assumed` | 242 | 116 | 358 |
+| `assumed` | 244 | 116 | 360 |
 | `missing` | 28 | 0 | 28 |
 
 <!-- /trust:provenance-table -->

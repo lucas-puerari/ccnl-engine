@@ -53,10 +53,10 @@ class TestResolveTerms:
         assert terms.tfr_to_fund is True
 
     def test_no_rate_before_the_series(self) -> None:
-        """ALIFOND starts on 2025-07-01: no rate in January 2025."""
+        """ALIFOND starts on 2025-01-01 (1.20%): no rate in December 2024."""
         with pytest.raises(InvalidInputError, match="no employer rate"):
             resolve_terms(
-                _TABACCO, _ENROLMENT, None, date(2025, 1, 1), _RULES, apprentice=False
+                _TABACCO, _ENROLMENT, None, date(2024, 12, 1), _RULES, apprentice=False
             )
 
     def test_missing_statutory_rules(self) -> None:
