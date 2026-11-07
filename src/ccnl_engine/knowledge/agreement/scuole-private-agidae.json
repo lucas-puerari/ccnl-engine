@@ -120,6 +120,28 @@
         "findings": [
           "Art. 33 - Tredicesima mensilità (p. 21): \"Nel caso di inizio o cessazione del rapporto di lavoro nel corso dell'anno, vanno corrisposti tanti dodicesimi dell'ultima mensilità percepita pari ai mesi di servizio prestati. 3. Le frazioni di mese vengono prese in considerazione solo se superiori a 15 giorni ed in tal caso equiparate ad un mese intero.\". Added: more_than 15 (the file applied the engine default, at least 15 days)."
         ]
+      },
+      {
+        "id": "2026-11-08-gpt-scuole-private-agidae-double-read",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Monthly values on scanned pages, each read twice from the page image by two independent sessions of another model, the second without being told the expected value.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.flcgil.it/files/pdf/20240710/ccnl-agidae-scuola-2024-2027-del-3-luglio-2024.pdf",
+            "sha256": "6fbd1639a5cd984f98d59373682841eb0ef7712e9d2112ecbc0a4484a470c964"
+          }
+        ],
+        "findings": [
+          "12 values read identically by both readings and equal to the file."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "levels.base_salary",
+          "levels.fixed_allowances"
+        ]
       }
     ]
   },
@@ -270,21 +292,28 @@
             "valid_until": "2025-09-01",
             "value": "1642.99",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "14bis-2024-pdf",
-                  "title": "14bis-2024-pdf",
+                  "document_id": "scuole-private-agidae-src-6fbd1639",
+                  "title": "scuole-private-agidae: ccnl-2024-flcgil.pdf",
                   "kind": "associazione",
-                  "url": "https://www.terrazzini.it/wp-content/uploads/14bis-2024.pdf"
+                  "url": "https://www.flcgil.it/files/pdf/20240710/ccnl-agidae-scuola-2024-2027-del-3-luglio-2024.pdf",
+                  "sha256": "6fbd1639a5cd984f98d59373682841eb0ef7712e9d2112ecbc0a4484a470c964"
                 },
-                "section": "Tabella retributiva"
+                "page": "21",
+                "section": "no text layer",
+                "quote": "1 1.603,54 39,45 1.642,99 30,67 1.673,66"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2024-09-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-scuole-private-agidae-double-read"
               }
             }
           },
@@ -293,21 +322,28 @@
             "valid_until": "2026-09-01",
             "value": "1673.66",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "14bis-2024-pdf",
-                  "title": "14bis-2024-pdf",
+                  "document_id": "scuole-private-agidae-src-6fbd1639",
+                  "title": "scuole-private-agidae: ccnl-2024-flcgil.pdf",
                   "kind": "associazione",
-                  "url": "https://www.terrazzini.it/wp-content/uploads/14bis-2024.pdf"
+                  "url": "https://www.flcgil.it/files/pdf/20240710/ccnl-agidae-scuola-2024-2027-del-3-luglio-2024.pdf",
+                  "sha256": "6fbd1639a5cd984f98d59373682841eb0ef7712e9d2112ecbc0a4484a470c964"
                 },
-                "section": "Tabella retributiva"
+                "page": "21",
+                "section": "no text layer",
+                "quote": "1 1.603,54 39,45 1.642,99 30,67 1.673,66"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2025-09-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-scuole-private-agidae-double-read"
               }
             }
           },
@@ -436,21 +472,28 @@
             "valid_until": "2025-09-01",
             "value": "1688.35",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "14bis-2024-pdf",
-                  "title": "14bis-2024-pdf",
+                  "document_id": "scuole-private-agidae-src-6fbd1639",
+                  "title": "scuole-private-agidae: ccnl-2024-flcgil.pdf",
                   "kind": "associazione",
-                  "url": "https://www.terrazzini.it/wp-content/uploads/14bis-2024.pdf"
+                  "url": "https://www.flcgil.it/files/pdf/20240710/ccnl-agidae-scuola-2024-2027-del-3-luglio-2024.pdf",
+                  "sha256": "6fbd1639a5cd984f98d59373682841eb0ef7712e9d2112ecbc0a4484a470c964"
                 },
-                "section": "Tabella retributiva"
+                "page": "21",
+                "section": "no text layer",
+                "quote": "2 1.647,81 40,54 1.688,35 31,52 1.719,87"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2024-09-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-scuole-private-agidae-double-read"
               }
             }
           },
@@ -459,21 +502,28 @@
             "valid_until": "2026-09-01",
             "value": "1719.87",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "14bis-2024-pdf",
-                  "title": "14bis-2024-pdf",
+                  "document_id": "scuole-private-agidae-src-6fbd1639",
+                  "title": "scuole-private-agidae: ccnl-2024-flcgil.pdf",
                   "kind": "associazione",
-                  "url": "https://www.terrazzini.it/wp-content/uploads/14bis-2024.pdf"
+                  "url": "https://www.flcgil.it/files/pdf/20240710/ccnl-agidae-scuola-2024-2027-del-3-luglio-2024.pdf",
+                  "sha256": "6fbd1639a5cd984f98d59373682841eb0ef7712e9d2112ecbc0a4484a470c964"
                 },
-                "section": "Tabella retributiva"
+                "page": "21",
+                "section": "no text layer",
+                "quote": "2 1.647,81 40,54 1.688,35 31,52 1.719,87"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2025-09-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-scuole-private-agidae-double-read"
               }
             }
           },
@@ -602,21 +652,28 @@
             "valid_until": "2025-09-01",
             "value": "1735.58",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "14bis-2024-pdf",
-                  "title": "14bis-2024-pdf",
+                  "document_id": "scuole-private-agidae-src-6fbd1639",
+                  "title": "scuole-private-agidae: ccnl-2024-flcgil.pdf",
                   "kind": "associazione",
-                  "url": "https://www.terrazzini.it/wp-content/uploads/14bis-2024.pdf"
+                  "url": "https://www.flcgil.it/files/pdf/20240710/ccnl-agidae-scuola-2024-2027-del-3-luglio-2024.pdf",
+                  "sha256": "6fbd1639a5cd984f98d59373682841eb0ef7712e9d2112ecbc0a4484a470c964"
                 },
-                "section": "Tabella retributiva"
+                "page": "21",
+                "section": "no text layer",
+                "quote": "3 1.693,91 41,67 1.735,58 32,40 1.767,98"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2024-09-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-scuole-private-agidae-double-read"
               }
             }
           },
@@ -625,21 +682,28 @@
             "valid_until": "2026-09-01",
             "value": "1767.98",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "14bis-2024-pdf",
-                  "title": "14bis-2024-pdf",
+                  "document_id": "scuole-private-agidae-src-6fbd1639",
+                  "title": "scuole-private-agidae: ccnl-2024-flcgil.pdf",
                   "kind": "associazione",
-                  "url": "https://www.terrazzini.it/wp-content/uploads/14bis-2024.pdf"
+                  "url": "https://www.flcgil.it/files/pdf/20240710/ccnl-agidae-scuola-2024-2027-del-3-luglio-2024.pdf",
+                  "sha256": "6fbd1639a5cd984f98d59373682841eb0ef7712e9d2112ecbc0a4484a470c964"
                 },
-                "section": "Tabella retributiva"
+                "page": "21",
+                "section": "no text layer",
+                "quote": "3 1.693,91 41,67 1.735,58 32,40 1.767,98"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2025-09-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-scuole-private-agidae-double-read"
               }
             }
           },
@@ -768,21 +832,28 @@
             "valid_until": "2025-09-01",
             "value": "1787.92",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "14bis-2024-pdf",
-                  "title": "14bis-2024-pdf",
+                  "document_id": "scuole-private-agidae-src-6fbd1639",
+                  "title": "scuole-private-agidae: ccnl-2024-flcgil.pdf",
                   "kind": "associazione",
-                  "url": "https://www.terrazzini.it/wp-content/uploads/14bis-2024.pdf"
+                  "url": "https://www.flcgil.it/files/pdf/20240710/ccnl-agidae-scuola-2024-2027-del-3-luglio-2024.pdf",
+                  "sha256": "6fbd1639a5cd984f98d59373682841eb0ef7712e9d2112ecbc0a4484a470c964"
                 },
-                "section": "Tabella retributiva"
+                "page": "21",
+                "section": "no text layer",
+                "quote": "4 1.744,99 42,93 1.787,92 33,38 1.821,29"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2024-09-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-scuole-private-agidae-double-read"
               }
             }
           },
@@ -791,21 +862,28 @@
             "valid_until": "2026-09-01",
             "value": "1821.29",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "14bis-2024-pdf",
-                  "title": "14bis-2024-pdf",
+                  "document_id": "scuole-private-agidae-src-6fbd1639",
+                  "title": "scuole-private-agidae: ccnl-2024-flcgil.pdf",
                   "kind": "associazione",
-                  "url": "https://www.terrazzini.it/wp-content/uploads/14bis-2024.pdf"
+                  "url": "https://www.flcgil.it/files/pdf/20240710/ccnl-agidae-scuola-2024-2027-del-3-luglio-2024.pdf",
+                  "sha256": "6fbd1639a5cd984f98d59373682841eb0ef7712e9d2112ecbc0a4484a470c964"
                 },
-                "section": "Tabella retributiva"
+                "page": "21",
+                "section": "no text layer",
+                "quote": "4 1.744,99 42,93 1.787,92 33,38 1.821,29"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2025-09-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-scuole-private-agidae-double-read"
               }
             }
           },
@@ -934,21 +1012,28 @@
             "valid_until": "2025-09-01",
             "value": "1874.80",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "14bis-2024-pdf",
-                  "title": "14bis-2024-pdf",
+                  "document_id": "scuole-private-agidae-src-6fbd1639",
+                  "title": "scuole-private-agidae: ccnl-2024-flcgil.pdf",
                   "kind": "associazione",
-                  "url": "https://www.terrazzini.it/wp-content/uploads/14bis-2024.pdf"
+                  "url": "https://www.flcgil.it/files/pdf/20240710/ccnl-agidae-scuola-2024-2027-del-3-luglio-2024.pdf",
+                  "sha256": "6fbd1639a5cd984f98d59373682841eb0ef7712e9d2112ecbc0a4484a470c964"
                 },
-                "section": "Tabella retributiva"
+                "page": "21",
+                "section": "no text layer",
+                "quote": "5 1.829,80 45,00 1.874,80 35,00 1.909,80"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2024-09-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-scuole-private-agidae-double-read"
               }
             }
           },
@@ -957,21 +1042,28 @@
             "valid_until": "2026-09-01",
             "value": "1909.80",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "14bis-2024-pdf",
-                  "title": "14bis-2024-pdf",
+                  "document_id": "scuole-private-agidae-src-6fbd1639",
+                  "title": "scuole-private-agidae: ccnl-2024-flcgil.pdf",
                   "kind": "associazione",
-                  "url": "https://www.terrazzini.it/wp-content/uploads/14bis-2024.pdf"
+                  "url": "https://www.flcgil.it/files/pdf/20240710/ccnl-agidae-scuola-2024-2027-del-3-luglio-2024.pdf",
+                  "sha256": "6fbd1639a5cd984f98d59373682841eb0ef7712e9d2112ecbc0a4484a470c964"
                 },
-                "section": "Tabella retributiva"
+                "page": "21",
+                "section": "no text layer",
+                "quote": "5 1.829,80 45,00 1.874,80 35,00 1.909,80"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2025-09-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-scuole-private-agidae-double-read"
               }
             }
           },
@@ -1100,21 +1192,28 @@
             "valid_until": "2025-09-01",
             "value": "2079.91",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "14bis-2024-pdf",
-                  "title": "14bis-2024-pdf",
+                  "document_id": "scuole-private-agidae-src-6fbd1639",
+                  "title": "scuole-private-agidae: ccnl-2024-flcgil.pdf",
                   "kind": "associazione",
-                  "url": "https://www.terrazzini.it/wp-content/uploads/14bis-2024.pdf"
+                  "url": "https://www.flcgil.it/files/pdf/20240710/ccnl-agidae-scuola-2024-2027-del-3-luglio-2024.pdf",
+                  "sha256": "6fbd1639a5cd984f98d59373682841eb0ef7712e9d2112ecbc0a4484a470c964"
                 },
-                "section": "Tabella retributiva"
+                "page": "21",
+                "section": "no text layer",
+                "quote": "6 2.029,97 49,94 2.079,91 38,83 2118,74"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2024-09-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-scuole-private-agidae-double-read"
               }
             }
           },
@@ -1123,21 +1222,28 @@
             "valid_until": "2026-09-01",
             "value": "2118.74",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "14bis-2024-pdf",
-                  "title": "14bis-2024-pdf",
+                  "document_id": "scuole-private-agidae-src-6fbd1639",
+                  "title": "scuole-private-agidae: ccnl-2024-flcgil.pdf",
                   "kind": "associazione",
-                  "url": "https://www.terrazzini.it/wp-content/uploads/14bis-2024.pdf"
+                  "url": "https://www.flcgil.it/files/pdf/20240710/ccnl-agidae-scuola-2024-2027-del-3-luglio-2024.pdf",
+                  "sha256": "6fbd1639a5cd984f98d59373682841eb0ef7712e9d2112ecbc0a4484a470c964"
                 },
-                "section": "Tabella retributiva"
+                "page": "21",
+                "section": "no text layer",
+                "quote": "6 2.029,97 49,94 2.079,91 38,83 2118,74"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2025-09-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-scuole-private-agidae-double-read"
               }
             }
           },
@@ -1263,7 +1369,7 @@
     "effective_until": null,
     "source": "https://www.terrazzini.it/wp-content/uploads/14bis-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "564e9b0ce4aa2ac566fca7c8cdd0bb997790575d896b75eee64539b1aa2766d4",
+    "source_hash": "229e4da20fac65f6d1d8733b0608082dafd551c1e2e2ea7869b0b6f439cf343b",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

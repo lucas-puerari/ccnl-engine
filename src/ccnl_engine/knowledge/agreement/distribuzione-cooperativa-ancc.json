@@ -270,6 +270,28 @@
         "checked": [
           "levels.fixed_allowances.TERZO_ELEMENTO"
         ]
+      },
+      {
+        "id": "2026-11-08-ai-distribuzione-cooperativa-ancc-tables",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The monthly values of the levels against the primary tables (text layer).",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://uiltucs.it/wp-content/uploads/2018/12/CCNL_Cooperazione_2011.pdf",
+            "sha256": "8ecf93f628ae223f3fc7b3b0d39d89e58bf85fa8f067a698ccf93189a09329f0"
+          }
+        ],
+        "findings": [
+          "19 values found verbatim on the cited pages and marked verified; 36 left as they were (derived or not on a text page)."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels.base_salary",
+          "levels.fixed_allowances"
+        ]
       }
     ]
   },
@@ -613,24 +635,24 @@
                   "location": {
                     "source_document": {
                       "document_id": "distribuzione-cooperativa-ancc-tables-8ecf93f6",
-                      "title": "distribuzione-cooperativa-ancc: tabelle retributive (2011.pdf)",
+                      "title": "distribuzione-cooperativa-ancc: tabelle retributive (ccnl2011.pdf)",
                       "kind": "associazione",
                       "url": "https://uiltucs.it/wp-content/uploads/2018/12/CCNL_Cooperazione_2011.pdf",
                       "sha256": "8ecf93f628ae223f3fc7b3b0d39d89e58bf85fa8f067a698ccf93189a09329f0"
                     },
                     "page": "359",
-                    "section": "Appendice 1, Tabelle indennità di contingenza",
+                    "section": "Appendice 1 — Tabelle indennità di contingenza",
                     "quote": "6°                                                                     517,25"
                   },
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
                     "effective_from": "2025-05-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verified_at": "2026-11-08T05:00:00Z",
                     "verification_status": "verified",
-                    "review_id": "2026-11-07-ai-distribuzione-cooperativa-ancc-tables"
+                    "review_id": "2026-11-08-ai-distribuzione-cooperativa-ancc-tables"
                   }
                 }
               }
@@ -663,7 +685,32 @@
               {
                 "valid_from": "2025-05-01",
                 "valid_until": null,
-                "value": "3.10"
+                "value": "3.10",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "distribuzione-cooperativa-ancc-tables-8ecf93f6",
+                      "title": "distribuzione-cooperativa-ancc: tabelle retributive (ccnl2011.pdf)",
+                      "kind": "associazione",
+                      "url": "https://uiltucs.it/wp-content/uploads/2018/12/CCNL_Cooperazione_2011.pdf",
+                      "sha256": "8ecf93f628ae223f3fc7b3b0d39d89e58bf85fa8f067a698ccf93189a09329f0"
+                    },
+                    "page": "201",
+                    "section": "Art. 186(4), Eccedenze collettive",
+                    "quote": "eccedenze collettive (terzo elemento) di euro 3,10 mensili."
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2025-05-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-distribuzione-cooperativa-ancc-tables"
+                  }
+                }
               }
             ]
           },
@@ -852,24 +899,24 @@
                   "location": {
                     "source_document": {
                       "document_id": "distribuzione-cooperativa-ancc-tables-8ecf93f6",
-                      "title": "distribuzione-cooperativa-ancc: tabelle retributive (2011.pdf)",
+                      "title": "distribuzione-cooperativa-ancc: tabelle retributive (ccnl2011.pdf)",
                       "kind": "associazione",
                       "url": "https://uiltucs.it/wp-content/uploads/2018/12/CCNL_Cooperazione_2011.pdf",
                       "sha256": "8ecf93f628ae223f3fc7b3b0d39d89e58bf85fa8f067a698ccf93189a09329f0"
                     },
                     "page": "359",
-                    "section": "Appendice 1, Tabelle indennità di contingenza",
+                    "section": "Appendice 1 — Tabelle indennità di contingenza",
                     "quote": "5°                                                                     522,18"
                   },
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
                     "effective_from": "2025-05-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verified_at": "2026-11-08T05:00:00Z",
                     "verification_status": "verified",
-                    "review_id": "2026-11-07-ai-distribuzione-cooperativa-ancc-tables"
+                    "review_id": "2026-11-08-ai-distribuzione-cooperativa-ancc-tables"
                   }
                 }
               }
@@ -902,7 +949,32 @@
               {
                 "valid_from": "2025-05-01",
                 "valid_until": null,
-                "value": "3.10"
+                "value": "3.10",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "distribuzione-cooperativa-ancc-tables-8ecf93f6",
+                      "title": "distribuzione-cooperativa-ancc: tabelle retributive (ccnl2011.pdf)",
+                      "kind": "associazione",
+                      "url": "https://uiltucs.it/wp-content/uploads/2018/12/CCNL_Cooperazione_2011.pdf",
+                      "sha256": "8ecf93f628ae223f3fc7b3b0d39d89e58bf85fa8f067a698ccf93189a09329f0"
+                    },
+                    "page": "201",
+                    "section": "Art. 186(4), Eccedenze collettive",
+                    "quote": "eccedenze collettive (terzo elemento) di euro 3,10 mensili."
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2025-05-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-distribuzione-cooperativa-ancc-tables"
+                  }
+                }
               }
             ]
           },
@@ -1091,24 +1163,24 @@
                   "location": {
                     "source_document": {
                       "document_id": "distribuzione-cooperativa-ancc-tables-8ecf93f6",
-                      "title": "distribuzione-cooperativa-ancc: tabelle retributive (2011.pdf)",
+                      "title": "distribuzione-cooperativa-ancc: tabelle retributive (ccnl2011.pdf)",
                       "kind": "associazione",
                       "url": "https://uiltucs.it/wp-content/uploads/2018/12/CCNL_Cooperazione_2011.pdf",
                       "sha256": "8ecf93f628ae223f3fc7b3b0d39d89e58bf85fa8f067a698ccf93189a09329f0"
                     },
                     "page": "359",
-                    "section": "Appendice 1, Tabelle indennità di contingenza",
+                    "section": "Appendice 1 — Tabelle indennità di contingenza",
                     "quote": "4°                                                                     524,49"
                   },
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
                     "effective_from": "2025-05-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verified_at": "2026-11-08T05:00:00Z",
                     "verification_status": "verified",
-                    "review_id": "2026-11-07-ai-distribuzione-cooperativa-ancc-tables"
+                    "review_id": "2026-11-08-ai-distribuzione-cooperativa-ancc-tables"
                   }
                 }
               }
@@ -1141,7 +1213,32 @@
               {
                 "valid_from": "2025-05-01",
                 "valid_until": null,
-                "value": "3.10"
+                "value": "3.10",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "distribuzione-cooperativa-ancc-tables-8ecf93f6",
+                      "title": "distribuzione-cooperativa-ancc: tabelle retributive (ccnl2011.pdf)",
+                      "kind": "associazione",
+                      "url": "https://uiltucs.it/wp-content/uploads/2018/12/CCNL_Cooperazione_2011.pdf",
+                      "sha256": "8ecf93f628ae223f3fc7b3b0d39d89e58bf85fa8f067a698ccf93189a09329f0"
+                    },
+                    "page": "201",
+                    "section": "Art. 186(4), Eccedenze collettive",
+                    "quote": "eccedenze collettive (terzo elemento) di euro 3,10 mensili."
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2025-05-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-distribuzione-cooperativa-ancc-tables"
+                  }
+                }
               }
             ]
           },
@@ -1330,24 +1427,24 @@
                   "location": {
                     "source_document": {
                       "document_id": "distribuzione-cooperativa-ancc-tables-8ecf93f6",
-                      "title": "distribuzione-cooperativa-ancc: tabelle retributive (2011.pdf)",
+                      "title": "distribuzione-cooperativa-ancc: tabelle retributive (ccnl2011.pdf)",
                       "kind": "associazione",
                       "url": "https://uiltucs.it/wp-content/uploads/2018/12/CCNL_Cooperazione_2011.pdf",
                       "sha256": "8ecf93f628ae223f3fc7b3b0d39d89e58bf85fa8f067a698ccf93189a09329f0"
                     },
                     "page": "359",
-                    "section": "Appendice 1, Tabelle indennità di contingenza",
+                    "section": "Appendice 1 — Tabelle indennità di contingenza",
                     "quote": "4° (par. 155)                                                          525,92"
                   },
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
                     "effective_from": "2025-05-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verified_at": "2026-11-08T05:00:00Z",
                     "verification_status": "verified",
-                    "review_id": "2026-11-07-ai-distribuzione-cooperativa-ancc-tables"
+                    "review_id": "2026-11-08-ai-distribuzione-cooperativa-ancc-tables"
                   }
                 }
               }
@@ -1380,7 +1477,32 @@
               {
                 "valid_from": "2025-05-01",
                 "valid_until": null,
-                "value": "3.10"
+                "value": "3.10",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "distribuzione-cooperativa-ancc-tables-8ecf93f6",
+                      "title": "distribuzione-cooperativa-ancc: tabelle retributive (ccnl2011.pdf)",
+                      "kind": "associazione",
+                      "url": "https://uiltucs.it/wp-content/uploads/2018/12/CCNL_Cooperazione_2011.pdf",
+                      "sha256": "8ecf93f628ae223f3fc7b3b0d39d89e58bf85fa8f067a698ccf93189a09329f0"
+                    },
+                    "page": "201",
+                    "section": "Art. 186(4), Eccedenze collettive",
+                    "quote": "eccedenze collettive (terzo elemento) di euro 3,10 mensili."
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2025-05-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-distribuzione-cooperativa-ancc-tables"
+                  }
+                }
               }
             ]
           },
@@ -1569,24 +1691,24 @@
                   "location": {
                     "source_document": {
                       "document_id": "distribuzione-cooperativa-ancc-tables-8ecf93f6",
-                      "title": "distribuzione-cooperativa-ancc: tabelle retributive (2011.pdf)",
+                      "title": "distribuzione-cooperativa-ancc: tabelle retributive (ccnl2011.pdf)",
                       "kind": "associazione",
                       "url": "https://uiltucs.it/wp-content/uploads/2018/12/CCNL_Cooperazione_2011.pdf",
                       "sha256": "8ecf93f628ae223f3fc7b3b0d39d89e58bf85fa8f067a698ccf93189a09329f0"
                     },
                     "page": "359",
-                    "section": "Appendice 1, Tabelle indennità di contingenza",
+                    "section": "Appendice 1 — Tabelle indennità di contingenza",
                     "quote": "3°                                                                     528,28"
                   },
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
                     "effective_from": "2025-05-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verified_at": "2026-11-08T05:00:00Z",
                     "verification_status": "verified",
-                    "review_id": "2026-11-07-ai-distribuzione-cooperativa-ancc-tables"
+                    "review_id": "2026-11-08-ai-distribuzione-cooperativa-ancc-tables"
                   }
                 }
               }
@@ -1619,7 +1741,32 @@
               {
                 "valid_from": "2025-05-01",
                 "valid_until": null,
-                "value": "3.10"
+                "value": "3.10",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "distribuzione-cooperativa-ancc-tables-8ecf93f6",
+                      "title": "distribuzione-cooperativa-ancc: tabelle retributive (ccnl2011.pdf)",
+                      "kind": "associazione",
+                      "url": "https://uiltucs.it/wp-content/uploads/2018/12/CCNL_Cooperazione_2011.pdf",
+                      "sha256": "8ecf93f628ae223f3fc7b3b0d39d89e58bf85fa8f067a698ccf93189a09329f0"
+                    },
+                    "page": "201",
+                    "section": "Art. 186(4), Eccedenze collettive",
+                    "quote": "eccedenze collettive (terzo elemento) di euro 3,10 mensili."
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2025-05-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-distribuzione-cooperativa-ancc-tables"
+                  }
+                }
               }
             ]
           },
@@ -1808,24 +1955,24 @@
                   "location": {
                     "source_document": {
                       "document_id": "distribuzione-cooperativa-ancc-tables-8ecf93f6",
-                      "title": "distribuzione-cooperativa-ancc: tabelle retributive (2011.pdf)",
+                      "title": "distribuzione-cooperativa-ancc: tabelle retributive (ccnl2011.pdf)",
                       "kind": "associazione",
                       "url": "https://uiltucs.it/wp-content/uploads/2018/12/CCNL_Cooperazione_2011.pdf",
                       "sha256": "8ecf93f628ae223f3fc7b3b0d39d89e58bf85fa8f067a698ccf93189a09329f0"
                     },
                     "page": "359",
-                    "section": "Appendice 1, Tabelle indennità di contingenza",
+                    "section": "Appendice 1 — Tabelle indennità di contingenza",
                     "quote": "3° (par. 180)                                                          529,98"
                   },
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
                     "effective_from": "2025-05-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verified_at": "2026-11-08T05:00:00Z",
                     "verification_status": "verified",
-                    "review_id": "2026-11-07-ai-distribuzione-cooperativa-ancc-tables"
+                    "review_id": "2026-11-08-ai-distribuzione-cooperativa-ancc-tables"
                   }
                 }
               }
@@ -1858,7 +2005,32 @@
               {
                 "valid_from": "2025-05-01",
                 "valid_until": null,
-                "value": "3.10"
+                "value": "3.10",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "distribuzione-cooperativa-ancc-tables-8ecf93f6",
+                      "title": "distribuzione-cooperativa-ancc: tabelle retributive (ccnl2011.pdf)",
+                      "kind": "associazione",
+                      "url": "https://uiltucs.it/wp-content/uploads/2018/12/CCNL_Cooperazione_2011.pdf",
+                      "sha256": "8ecf93f628ae223f3fc7b3b0d39d89e58bf85fa8f067a698ccf93189a09329f0"
+                    },
+                    "page": "201",
+                    "section": "Art. 186(4), Eccedenze collettive",
+                    "quote": "eccedenze collettive (terzo elemento) di euro 3,10 mensili."
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2025-05-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-distribuzione-cooperativa-ancc-tables"
+                  }
+                }
               }
             ]
           },
@@ -2047,24 +2219,24 @@
                   "location": {
                     "source_document": {
                       "document_id": "distribuzione-cooperativa-ancc-tables-8ecf93f6",
-                      "title": "distribuzione-cooperativa-ancc: tabelle retributive (2011.pdf)",
+                      "title": "distribuzione-cooperativa-ancc: tabelle retributive (ccnl2011.pdf)",
                       "kind": "associazione",
                       "url": "https://uiltucs.it/wp-content/uploads/2018/12/CCNL_Cooperazione_2011.pdf",
                       "sha256": "8ecf93f628ae223f3fc7b3b0d39d89e58bf85fa8f067a698ccf93189a09329f0"
                     },
                     "page": "359",
-                    "section": "Appendice 1, Tabelle indennità di contingenza",
+                    "section": "Appendice 1 — Tabelle indennità di contingenza",
                     "quote": "2°                                                                     533,85"
                   },
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
                     "effective_from": "2025-05-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verified_at": "2026-11-08T05:00:00Z",
                     "verification_status": "verified",
-                    "review_id": "2026-11-07-ai-distribuzione-cooperativa-ancc-tables"
+                    "review_id": "2026-11-08-ai-distribuzione-cooperativa-ancc-tables"
                   }
                 }
               }
@@ -2097,7 +2269,32 @@
               {
                 "valid_from": "2025-05-01",
                 "valid_until": null,
-                "value": "3.10"
+                "value": "3.10",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "distribuzione-cooperativa-ancc-tables-8ecf93f6",
+                      "title": "distribuzione-cooperativa-ancc: tabelle retributive (ccnl2011.pdf)",
+                      "kind": "associazione",
+                      "url": "https://uiltucs.it/wp-content/uploads/2018/12/CCNL_Cooperazione_2011.pdf",
+                      "sha256": "8ecf93f628ae223f3fc7b3b0d39d89e58bf85fa8f067a698ccf93189a09329f0"
+                    },
+                    "page": "201",
+                    "section": "Art. 186(4), Eccedenze collettive",
+                    "quote": "eccedenze collettive (terzo elemento) di euro 3,10 mensili."
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2025-05-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-distribuzione-cooperativa-ancc-tables"
+                  }
+                }
               }
             ]
           },
@@ -2286,24 +2483,24 @@
                   "location": {
                     "source_document": {
                       "document_id": "distribuzione-cooperativa-ancc-tables-8ecf93f6",
-                      "title": "distribuzione-cooperativa-ancc: tabelle retributive (2011.pdf)",
+                      "title": "distribuzione-cooperativa-ancc: tabelle retributive (ccnl2011.pdf)",
                       "kind": "associazione",
                       "url": "https://uiltucs.it/wp-content/uploads/2018/12/CCNL_Cooperazione_2011.pdf",
                       "sha256": "8ecf93f628ae223f3fc7b3b0d39d89e58bf85fa8f067a698ccf93189a09329f0"
                     },
                     "page": "359",
-                    "section": "Appendice 1, Tabelle indennità di contingenza",
+                    "section": "Appendice 1 — Tabelle indennità di contingenza",
                     "quote": "1°                                                                     538,83"
                   },
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
                     "effective_from": "2025-05-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verified_at": "2026-11-08T05:00:00Z",
                     "verification_status": "verified",
-                    "review_id": "2026-11-07-ai-distribuzione-cooperativa-ancc-tables"
+                    "review_id": "2026-11-08-ai-distribuzione-cooperativa-ancc-tables"
                   }
                 }
               }
@@ -2336,7 +2533,32 @@
               {
                 "valid_from": "2025-05-01",
                 "valid_until": null,
-                "value": "3.10"
+                "value": "3.10",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "distribuzione-cooperativa-ancc-tables-8ecf93f6",
+                      "title": "distribuzione-cooperativa-ancc: tabelle retributive (ccnl2011.pdf)",
+                      "kind": "associazione",
+                      "url": "https://uiltucs.it/wp-content/uploads/2018/12/CCNL_Cooperazione_2011.pdf",
+                      "sha256": "8ecf93f628ae223f3fc7b3b0d39d89e58bf85fa8f067a698ccf93189a09329f0"
+                    },
+                    "page": "201",
+                    "section": "Art. 186(4), Eccedenze collettive",
+                    "quote": "eccedenze collettive (terzo elemento) di euro 3,10 mensili."
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2025-05-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-distribuzione-cooperativa-ancc-tables"
+                  }
+                }
               }
             ]
           },
@@ -2526,24 +2748,24 @@
                   "location": {
                     "source_document": {
                       "document_id": "distribuzione-cooperativa-ancc-tables-8ecf93f6",
-                      "title": "distribuzione-cooperativa-ancc: tabelle retributive (2011.pdf)",
+                      "title": "distribuzione-cooperativa-ancc: tabelle retributive (ccnl2011.pdf)",
                       "kind": "associazione",
                       "url": "https://uiltucs.it/wp-content/uploads/2018/12/CCNL_Cooperazione_2011.pdf",
                       "sha256": "8ecf93f628ae223f3fc7b3b0d39d89e58bf85fa8f067a698ccf93189a09329f0"
                     },
                     "page": "359",
-                    "section": "Appendice 1, Tabelle indennità di contingenza",
+                    "section": "Appendice 1 — Tabelle indennità di contingenza",
                     "quote": "Quadri                                                                 541,85"
                   },
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
                     "effective_from": "2025-05-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verified_at": "2026-11-08T05:00:00Z",
                     "verification_status": "verified",
-                    "review_id": "2026-11-07-ai-distribuzione-cooperativa-ancc-tables"
+                    "review_id": "2026-11-08-ai-distribuzione-cooperativa-ancc-tables"
                   }
                 }
               }
@@ -2576,7 +2798,32 @@
               {
                 "valid_from": "2025-05-01",
                 "valid_until": null,
-                "value": "3.10"
+                "value": "3.10",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "distribuzione-cooperativa-ancc-tables-8ecf93f6",
+                      "title": "distribuzione-cooperativa-ancc: tabelle retributive (ccnl2011.pdf)",
+                      "kind": "associazione",
+                      "url": "https://uiltucs.it/wp-content/uploads/2018/12/CCNL_Cooperazione_2011.pdf",
+                      "sha256": "8ecf93f628ae223f3fc7b3b0d39d89e58bf85fa8f067a698ccf93189a09329f0"
+                    },
+                    "page": "201",
+                    "section": "Art. 186(4), Eccedenze collettive",
+                    "quote": "eccedenze collettive (terzo elemento) di euro 3,10 mensili."
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2025-05-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-distribuzione-cooperativa-ancc-tables"
+                  }
+                }
               }
             ]
           },
@@ -2620,24 +2867,24 @@
                   "location": {
                     "source_document": {
                       "document_id": "distribuzione-cooperativa-ancc-tables-8ecf93f6",
-                      "title": "distribuzione-cooperativa-ancc: tabelle retributive (2011.pdf)",
+                      "title": "distribuzione-cooperativa-ancc: tabelle retributive (ccnl2011.pdf)",
                       "kind": "associazione",
                       "url": "https://uiltucs.it/wp-content/uploads/2018/12/CCNL_Cooperazione_2011.pdf",
                       "sha256": "8ecf93f628ae223f3fc7b3b0d39d89e58bf85fa8f067a698ccf93189a09329f0"
                     },
                     "page": "110",
-                    "section": "Art. 52(8), indennità di funzione dei Quadri",
+                    "section": "Art. 52(8), Indennità di funzione dei Quadri",
                     "quote": "euro 250,76 in caso diverso."
                   },
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
                     "effective_from": "2025-05-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verified_at": "2026-11-08T05:00:00Z",
                     "verification_status": "verified",
-                    "review_id": "2026-11-07-ai-distribuzione-cooperativa-ancc-tables"
+                    "review_id": "2026-11-08-ai-distribuzione-cooperativa-ancc-tables"
                   }
                 }
               }
@@ -2690,7 +2937,7 @@
     "effective_until": null,
     "source": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/183889",
     "verification_status": "unverified",
-    "source_hash": "8909936169cc6f230ebcff7f2a131c2b3a6a517be0feb07523e308ad6112bf7b",
+    "source_hash": "ee7e8ab64950a22a2bd81fc750014f30cb568437ad8dda4e04882ca5e7c00df3",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

@@ -46,7 +46,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 1 verified / 45 derived / 2 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 46 verified / 5 derived / 2 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -55,14 +55,15 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2023-05-30 |
-| **Last review** | 2026-11-06 |
-| **Latest salary tranche** | 2026-04-01 |
+| **Last review** | 2026-11-08 |
+| **Latest salary tranche** | 2026-12-01 |
 
 ## Review history
 
 | Date | Reviewer | Scope | Outcome | Findings |
 |---|---|---|---|---|
 | 2026-11-06 | claude-opus-5-5 (ai) | CNEL archive of HV17 and HV51; CCNL 8 April 2013 Parte servizi fiduciari Art. 25 (PDF p. 117, page image); ipotesi 30 May 2023 (OCR, 43 pages); UILTUCS tables of 16 February 2024 (no seniority figures). | corrected | The file holds the HV17 pay tables (A-E 2023-2026 match the accordo of 16 February 2024), not those of FEDERDAT (HV51): renamed vigilanza-privata-assiv-sf, signatories of HV17.<br>Seniority: six triennial increments A 21, B 19, C 17, D 15, E none; the file had 29/26/22/19/17.50 and a maximum of 10 with no HV17 source.<br>The apprenticeship note quoted the FEDERDAT text: recorded as an open limitation. |
+| 2026-11-08 | claude-opus-5-5 (ai) | Paga conglobata of levels A-E against the signed tables of 16 February 2024, page 2, read on the page image. | corrected | Every level was shifted one column: the amount of 1/01/24 was dated 1/06/23, and so on; the December 2026 tranche was missing. Nine periods rebuilt on the printed dates 01/06/23 ... 01/12/26 (an independent reading and a separate investigation agreed). |
 
 ## Salary table
 
@@ -70,11 +71,11 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `A` | Livello A | € 2,032.24 | 2026-04-01 |
-| `B` | Livello B | € 1,849.18 | 2026-04-01 |
-| `C` | Livello C | € 1,556.29 | 2026-04-01 |
-| `D` | Livello D | € 1,300.00 | 2026-04-01 |
-| `E` | Livello E (entry, primi 9 mesi) | € 1,207.14 | 2026-04-01 |
+| `A` | Livello A | € 2,032.24 | 2026-12-01 |
+| `B` | Livello B | € 1,849.18 | 2026-12-01 |
+| `C` | Livello C | € 1,556.29 | 2026-12-01 |
+| `D` | Livello D | € 1,300.00 | 2026-12-01 |
+| `E` | Livello E (entry, primi 9 mesi) | € 1,207.14 | 2026-12-01 |
 
 ## Seniority increments
 

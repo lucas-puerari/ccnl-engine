@@ -301,21 +301,28 @@
             "valid_until": "2023-10-01",
             "value": "1564.77",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-pdf",
-                  "title": "ccnl-pdf",
+                  "document_id": "gas-acqua-utilitalia-tables-39d5127a",
+                  "title": "gas-acqua-utilitalia: tabelle retributive (2022-ccnl.pdf)",
                   "kind": "associazione",
-                  "url": "https://sosvavsrl.it/media/attachments/2024/05/24/ccnl.pdf"
+                  "url": "https://www.smatorino.it/wp-content/uploads/2024/06/CCNL-GAS-ACQUA-2023-WEB.pdf",
+                  "sha256": "39d5127aa6c8f888cc245925eb91373619d18e7d9ec6d1b94992eb9a040d0d1c"
                 },
-                "section": "Tabella retributiva"
+                "page": "118",
+                "section": "Art. 36 — Minimi tabellari integrati",
+                "quote": "1         100,00          € 1.564,77              € 1.614,24        € 1.677,64"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2022-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-gas-acqua-utilitalia-tables"
               }
             }
           },
@@ -324,21 +331,28 @@
             "valid_until": "2024-09-01",
             "value": "1614.24",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-pdf",
-                  "title": "ccnl-pdf",
+                  "document_id": "gas-acqua-utilitalia-tables-39d5127a",
+                  "title": "gas-acqua-utilitalia: tabelle retributive (2022-ccnl.pdf)",
                   "kind": "associazione",
-                  "url": "https://sosvavsrl.it/media/attachments/2024/05/24/ccnl.pdf"
+                  "url": "https://www.smatorino.it/wp-content/uploads/2024/06/CCNL-GAS-ACQUA-2023-WEB.pdf",
+                  "sha256": "39d5127aa6c8f888cc245925eb91373619d18e7d9ec6d1b94992eb9a040d0d1c"
                 },
-                "section": "Tabella retributiva"
+                "page": "118",
+                "section": "Art. 36 — Minimi tabellari integrati",
+                "quote": "1         100,00          € 1.564,77              € 1.614,24        € 1.677,64"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2023-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-gas-acqua-utilitalia-tables"
               }
             }
           },
@@ -347,21 +361,28 @@
             "valid_until": "2025-07-01",
             "value": "1677.64",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-pdf",
-                  "title": "ccnl-pdf",
+                  "document_id": "gas-acqua-utilitalia-tables-39d5127a",
+                  "title": "gas-acqua-utilitalia: tabelle retributive (2022-ccnl.pdf)",
                   "kind": "associazione",
-                  "url": "https://sosvavsrl.it/media/attachments/2024/05/24/ccnl.pdf"
+                  "url": "https://www.smatorino.it/wp-content/uploads/2024/06/CCNL-GAS-ACQUA-2023-WEB.pdf",
+                  "sha256": "39d5127aa6c8f888cc245925eb91373619d18e7d9ec6d1b94992eb9a040d0d1c"
                 },
-                "section": "Tabella retributiva"
+                "page": "118",
+                "section": "Art. 36 — Minimi tabellari integrati",
+                "quote": "1         100,00          € 1.564,77              € 1.614,24        € 1.677,64"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2024-09-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-gas-acqua-utilitalia-tables"
               }
             }
           },
@@ -370,21 +391,28 @@
             "valid_until": "2026-07-01",
             "value": "1740.34",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-pdf",
-                  "title": "ccnl-pdf",
+                  "document_id": "gas-acqua-utilitalia-src-430bd692",
+                  "title": "gas-acqua-utilitalia: 2025-renewal.pdf",
                   "kind": "associazione",
-                  "url": "https://sosvavsrl.it/media/attachments/2024/05/24/ccnl.pdf"
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gas_acqua/250508_GASACQUA_RINNOVO%20CCNL%20%202025-2027.pdf",
+                  "sha256": "430bd6922e1ea3aa0d80b3c6fd2c74fd4cbe3b48404222ff48649f68ad8b4b36"
                 },
-                "section": "Tabella retributiva"
+                "page": "36",
+                "section": "no text layer",
+                "quote": "1 | 100,00 | € 1.740,34 | € 1.782,14 | € 1.823,94 | € 1.858,78"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-gas-acqua-utilitalia-double-read"
               }
             }
           },
@@ -393,21 +421,28 @@
             "valid_until": null,
             "value": "1782.14",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-pdf",
-                  "title": "ccnl-pdf",
+                  "document_id": "gas-acqua-utilitalia-src-430bd692",
+                  "title": "gas-acqua-utilitalia: 2025-renewal.pdf",
                   "kind": "associazione",
-                  "url": "https://sosvavsrl.it/media/attachments/2024/05/24/ccnl.pdf"
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gas_acqua/250508_GASACQUA_RINNOVO%20CCNL%20%202025-2027.pdf",
+                  "sha256": "430bd6922e1ea3aa0d80b3c6fd2c74fd4cbe3b48404222ff48649f68ad8b4b36"
                 },
-                "section": "Tabella retributiva"
+                "page": "36",
+                "section": "no text layer",
+                "quote": "1 | 100,00 | € 1.740,34 | € 1.782,14 | € 1.823,94 | € 1.858,78"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-gas-acqua-utilitalia-double-read"
               }
             }
           }
@@ -476,21 +511,28 @@
             "valid_until": "2023-10-01",
             "value": "1739.16",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-pdf",
-                  "title": "ccnl-pdf",
+                  "document_id": "gas-acqua-utilitalia-tables-39d5127a",
+                  "title": "gas-acqua-utilitalia: tabelle retributive (2022-ccnl.pdf)",
                   "kind": "associazione",
-                  "url": "https://sosvavsrl.it/media/attachments/2024/05/24/ccnl.pdf"
+                  "url": "https://www.smatorino.it/wp-content/uploads/2024/06/CCNL-GAS-ACQUA-2023-WEB.pdf",
+                  "sha256": "39d5127aa6c8f888cc245925eb91373619d18e7d9ec6d1b94992eb9a040d0d1c"
                 },
-                "section": "Tabella retributiva"
+                "page": "118",
+                "section": "Art. 36 — Minimi tabellari integrati",
+                "quote": "2         111,15          € 1.739,16              € 1.794,14        € 1.864,61"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2022-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-gas-acqua-utilitalia-tables"
               }
             }
           },
@@ -499,21 +541,28 @@
             "valid_until": "2024-09-01",
             "value": "1794.14",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-pdf",
-                  "title": "ccnl-pdf",
+                  "document_id": "gas-acqua-utilitalia-tables-39d5127a",
+                  "title": "gas-acqua-utilitalia: tabelle retributive (2022-ccnl.pdf)",
                   "kind": "associazione",
-                  "url": "https://sosvavsrl.it/media/attachments/2024/05/24/ccnl.pdf"
+                  "url": "https://www.smatorino.it/wp-content/uploads/2024/06/CCNL-GAS-ACQUA-2023-WEB.pdf",
+                  "sha256": "39d5127aa6c8f888cc245925eb91373619d18e7d9ec6d1b94992eb9a040d0d1c"
                 },
-                "section": "Tabella retributiva"
+                "page": "118",
+                "section": "Art. 36 — Minimi tabellari integrati",
+                "quote": "2         111,15          € 1.739,16              € 1.794,14        € 1.864,61"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2023-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-gas-acqua-utilitalia-tables"
               }
             }
           },
@@ -522,21 +571,28 @@
             "valid_until": "2025-07-01",
             "value": "1864.61",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-pdf",
-                  "title": "ccnl-pdf",
+                  "document_id": "gas-acqua-utilitalia-tables-39d5127a",
+                  "title": "gas-acqua-utilitalia: tabelle retributive (2022-ccnl.pdf)",
                   "kind": "associazione",
-                  "url": "https://sosvavsrl.it/media/attachments/2024/05/24/ccnl.pdf"
+                  "url": "https://www.smatorino.it/wp-content/uploads/2024/06/CCNL-GAS-ACQUA-2023-WEB.pdf",
+                  "sha256": "39d5127aa6c8f888cc245925eb91373619d18e7d9ec6d1b94992eb9a040d0d1c"
                 },
-                "section": "Tabella retributiva"
+                "page": "118",
+                "section": "Art. 36 — Minimi tabellari integrati",
+                "quote": "2         111,15          € 1.739,16              € 1.794,14        € 1.864,61"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2024-09-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-gas-acqua-utilitalia-tables"
               }
             }
           },
@@ -545,21 +601,28 @@
             "valid_until": "2026-07-01",
             "value": "1934.30",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-pdf",
-                  "title": "ccnl-pdf",
+                  "document_id": "gas-acqua-utilitalia-src-430bd692",
+                  "title": "gas-acqua-utilitalia: 2025-renewal.pdf",
                   "kind": "associazione",
-                  "url": "https://sosvavsrl.it/media/attachments/2024/05/24/ccnl.pdf"
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gas_acqua/250508_GASACQUA_RINNOVO%20CCNL%20%202025-2027.pdf",
+                  "sha256": "430bd6922e1ea3aa0d80b3c6fd2c74fd4cbe3b48404222ff48649f68ad8b4b36"
                 },
-                "section": "Tabella retributiva"
+                "page": "36",
+                "section": "no text layer",
+                "quote": "2 | 111,15 | € 1.934,30 | € 1.980,76 | € 2.027,22 | € 2.065,94"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-gas-acqua-utilitalia-double-read"
               }
             }
           },
@@ -568,21 +631,28 @@
             "valid_until": null,
             "value": "1980.76",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-pdf",
-                  "title": "ccnl-pdf",
+                  "document_id": "gas-acqua-utilitalia-src-430bd692",
+                  "title": "gas-acqua-utilitalia: 2025-renewal.pdf",
                   "kind": "associazione",
-                  "url": "https://sosvavsrl.it/media/attachments/2024/05/24/ccnl.pdf"
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gas_acqua/250508_GASACQUA_RINNOVO%20CCNL%20%202025-2027.pdf",
+                  "sha256": "430bd6922e1ea3aa0d80b3c6fd2c74fd4cbe3b48404222ff48649f68ad8b4b36"
                 },
-                "section": "Tabella retributiva"
+                "page": "36",
+                "section": "no text layer",
+                "quote": "2 | 111,15 | € 1.934,30 | € 1.980,76 | € 2.027,22 | € 2.065,94"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-gas-acqua-utilitalia-double-read"
               }
             }
           }
@@ -651,21 +721,28 @@
             "valid_until": "2023-10-01",
             "value": "1923.84",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-pdf",
-                  "title": "ccnl-pdf",
+                  "document_id": "gas-acqua-utilitalia-tables-39d5127a",
+                  "title": "gas-acqua-utilitalia: tabelle retributive (2022-ccnl.pdf)",
                   "kind": "associazione",
-                  "url": "https://sosvavsrl.it/media/attachments/2024/05/24/ccnl.pdf"
+                  "url": "https://www.smatorino.it/wp-content/uploads/2024/06/CCNL-GAS-ACQUA-2023-WEB.pdf",
+                  "sha256": "39d5127aa6c8f888cc245925eb91373619d18e7d9ec6d1b94992eb9a040d0d1c"
                 },
-                "section": "Tabella retributiva"
+                "page": "118",
+                "section": "Art. 36 — Minimi tabellari integrati",
+                "quote": "3         122,95          € 1.923,84              € 1.984,66        € 2.062,61"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2022-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-gas-acqua-utilitalia-tables"
               }
             }
           },
@@ -674,21 +751,28 @@
             "valid_until": "2024-09-01",
             "value": "1984.66",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-pdf",
-                  "title": "ccnl-pdf",
+                  "document_id": "gas-acqua-utilitalia-tables-39d5127a",
+                  "title": "gas-acqua-utilitalia: tabelle retributive (2022-ccnl.pdf)",
                   "kind": "associazione",
-                  "url": "https://sosvavsrl.it/media/attachments/2024/05/24/ccnl.pdf"
+                  "url": "https://www.smatorino.it/wp-content/uploads/2024/06/CCNL-GAS-ACQUA-2023-WEB.pdf",
+                  "sha256": "39d5127aa6c8f888cc245925eb91373619d18e7d9ec6d1b94992eb9a040d0d1c"
                 },
-                "section": "Tabella retributiva"
+                "page": "118",
+                "section": "Art. 36 — Minimi tabellari integrati",
+                "quote": "3         122,95          € 1.923,84              € 1.984,66        € 2.062,61"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2023-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-gas-acqua-utilitalia-tables"
               }
             }
           },
@@ -697,21 +781,28 @@
             "valid_until": "2025-07-01",
             "value": "2062.61",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-pdf",
-                  "title": "ccnl-pdf",
+                  "document_id": "gas-acqua-utilitalia-tables-39d5127a",
+                  "title": "gas-acqua-utilitalia: tabelle retributive (2022-ccnl.pdf)",
                   "kind": "associazione",
-                  "url": "https://sosvavsrl.it/media/attachments/2024/05/24/ccnl.pdf"
+                  "url": "https://www.smatorino.it/wp-content/uploads/2024/06/CCNL-GAS-ACQUA-2023-WEB.pdf",
+                  "sha256": "39d5127aa6c8f888cc245925eb91373619d18e7d9ec6d1b94992eb9a040d0d1c"
                 },
-                "section": "Tabella retributiva"
+                "page": "118",
+                "section": "Art. 36 — Minimi tabellari integrati",
+                "quote": "3         122,95          € 1.923,84              € 1.984,66        € 2.062,61"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2024-09-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-gas-acqua-utilitalia-tables"
               }
             }
           },
@@ -720,21 +811,28 @@
             "valid_until": "2026-07-01",
             "value": "2139.70",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-pdf",
-                  "title": "ccnl-pdf",
+                  "document_id": "gas-acqua-utilitalia-src-430bd692",
+                  "title": "gas-acqua-utilitalia: 2025-renewal.pdf",
                   "kind": "associazione",
-                  "url": "https://sosvavsrl.it/media/attachments/2024/05/24/ccnl.pdf"
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gas_acqua/250508_GASACQUA_RINNOVO%20CCNL%20%202025-2027.pdf",
+                  "sha256": "430bd6922e1ea3aa0d80b3c6fd2c74fd4cbe3b48404222ff48649f68ad8b4b36"
                 },
-                "section": "Tabella retributiva"
+                "page": "36",
+                "section": "no text layer",
+                "quote": "3 | 122,95 | € 2.139,70 | € 2.191,09 | € 2.242,48 | € 2.285,31"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-gas-acqua-utilitalia-double-read"
               }
             }
           },
@@ -743,21 +841,28 @@
             "valid_until": null,
             "value": "2191.09",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-pdf",
-                  "title": "ccnl-pdf",
+                  "document_id": "gas-acqua-utilitalia-src-430bd692",
+                  "title": "gas-acqua-utilitalia: 2025-renewal.pdf",
                   "kind": "associazione",
-                  "url": "https://sosvavsrl.it/media/attachments/2024/05/24/ccnl.pdf"
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gas_acqua/250508_GASACQUA_RINNOVO%20CCNL%20%202025-2027.pdf",
+                  "sha256": "430bd6922e1ea3aa0d80b3c6fd2c74fd4cbe3b48404222ff48649f68ad8b4b36"
                 },
-                "section": "Tabella retributiva"
+                "page": "36",
+                "section": "no text layer",
+                "quote": "3 | 122,95 | € 2.139,70 | € 2.191,09 | € 2.242,48 | € 2.285,31"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-gas-acqua-utilitalia-double-read"
               }
             }
           }
@@ -826,21 +931,28 @@
             "valid_until": "2023-10-01",
             "value": "2056.35",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-pdf",
-                  "title": "ccnl-pdf",
+                  "document_id": "gas-acqua-utilitalia-tables-39d5127a",
+                  "title": "gas-acqua-utilitalia: tabelle retributive (2022-ccnl.pdf)",
                   "kind": "associazione",
-                  "url": "https://sosvavsrl.it/media/attachments/2024/05/24/ccnl.pdf"
+                  "url": "https://www.smatorino.it/wp-content/uploads/2024/06/CCNL-GAS-ACQUA-2023-WEB.pdf",
+                  "sha256": "39d5127aa6c8f888cc245925eb91373619d18e7d9ec6d1b94992eb9a040d0d1c"
                 },
-                "section": "Tabella retributiva"
+                "page": "118",
+                "section": "Art. 36 — Minimi tabellari integrati",
+                "quote": "4         131,42          € 2.056,35              € 2.121,36        € 2.204,68"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2022-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-gas-acqua-utilitalia-tables"
               }
             }
           },
@@ -849,21 +961,28 @@
             "valid_until": "2024-09-01",
             "value": "2121.36",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-pdf",
-                  "title": "ccnl-pdf",
+                  "document_id": "gas-acqua-utilitalia-tables-39d5127a",
+                  "title": "gas-acqua-utilitalia: tabelle retributive (2022-ccnl.pdf)",
                   "kind": "associazione",
-                  "url": "https://sosvavsrl.it/media/attachments/2024/05/24/ccnl.pdf"
+                  "url": "https://www.smatorino.it/wp-content/uploads/2024/06/CCNL-GAS-ACQUA-2023-WEB.pdf",
+                  "sha256": "39d5127aa6c8f888cc245925eb91373619d18e7d9ec6d1b94992eb9a040d0d1c"
                 },
-                "section": "Tabella retributiva"
+                "page": "118",
+                "section": "Art. 36 — Minimi tabellari integrati",
+                "quote": "4         131,42          € 2.056,35              € 2.121,36        € 2.204,68"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2023-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-gas-acqua-utilitalia-tables"
               }
             }
           },
@@ -872,21 +991,28 @@
             "valid_until": "2025-07-01",
             "value": "2204.68",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-pdf",
-                  "title": "ccnl-pdf",
+                  "document_id": "gas-acqua-utilitalia-tables-39d5127a",
+                  "title": "gas-acqua-utilitalia: tabelle retributive (2022-ccnl.pdf)",
                   "kind": "associazione",
-                  "url": "https://sosvavsrl.it/media/attachments/2024/05/24/ccnl.pdf"
+                  "url": "https://www.smatorino.it/wp-content/uploads/2024/06/CCNL-GAS-ACQUA-2023-WEB.pdf",
+                  "sha256": "39d5127aa6c8f888cc245925eb91373619d18e7d9ec6d1b94992eb9a040d0d1c"
                 },
-                "section": "Tabella retributiva"
+                "page": "118",
+                "section": "Art. 36 — Minimi tabellari integrati",
+                "quote": "4         131,42          € 2.056,35              € 2.121,36        € 2.204,68"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2024-09-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-gas-acqua-utilitalia-tables"
               }
             }
           },
@@ -895,21 +1021,28 @@
             "valid_until": "2026-07-01",
             "value": "2287.08",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-pdf",
-                  "title": "ccnl-pdf",
+                  "document_id": "gas-acqua-utilitalia-src-430bd692",
+                  "title": "gas-acqua-utilitalia: 2025-renewal.pdf",
                   "kind": "associazione",
-                  "url": "https://sosvavsrl.it/media/attachments/2024/05/24/ccnl.pdf"
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gas_acqua/250508_GASACQUA_RINNOVO%20CCNL%20%202025-2027.pdf",
+                  "sha256": "430bd6922e1ea3aa0d80b3c6fd2c74fd4cbe3b48404222ff48649f68ad8b4b36"
                 },
-                "section": "Tabella retributiva"
+                "page": "36",
+                "section": "no text layer",
+                "quote": "4 | 131,42 | € 2.287,08 | € 2.342,01 | € 2.396,94 | € 2.442,72"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2025-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-gas-acqua-utilitalia-double-read"
               }
             }
           },
@@ -918,21 +1051,28 @@
             "valid_until": null,
             "value": "2342.01",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-pdf",
-                  "title": "ccnl-pdf",
+                  "document_id": "gas-acqua-utilitalia-src-430bd692",
+                  "title": "gas-acqua-utilitalia: 2025-renewal.pdf",
                   "kind": "associazione",
-                  "url": "https://sosvavsrl.it/media/attachments/2024/05/24/ccnl.pdf"
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gas_acqua/250508_GASACQUA_RINNOVO%20CCNL%20%202025-2027.pdf",
+                  "sha256": "430bd6922e1ea3aa0d80b3c6fd2c74fd4cbe3b48404222ff48649f68ad8b4b36"
                 },
-                "section": "Tabella retributiva"
+                "page": "36",
+                "section": "no text layer",
+                "quote": "4 | 131,42 | € 2.287,08 | € 2.342,01 | € 2.396,94 | € 2.442,72"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2026-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-gas-acqua-utilitalia-double-read"
               }
             }
           }
@@ -1001,21 +1141,28 @@
             "valid_until": "2023-10-01",
             "value": "2189.97",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-pdf",
-                  "title": "ccnl-pdf",
+                  "document_id": "gas-acqua-utilitalia-tables-39d5127a",
+                  "title": "gas-acqua-utilitalia: tabelle retributive (2022-ccnl.pdf)",
                   "kind": "associazione",
-                  "url": "https://sosvavsrl.it/media/attachments/2024/05/24/ccnl.pdf"
+                  "url": "https://www.smatorino.it/wp-content/uploads/2024/06/CCNL-GAS-ACQUA-2023-WEB.pdf",
+                  "sha256": "39d5127aa6c8f888cc245925eb91373619d18e7d9ec6d1b94992eb9a040d0d1c"
                 },
-                "section": "Tabella retributiva"
+                "page": "118",
+                "section": "Art. 36 — Minimi tabellari integrati",
+                "quote": "5         139,96          € 2.189,97              € 2.259,20        € 2.347,94"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2022-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-gas-acqua-utilitalia-tables"
               }
             }
           },
@@ -1024,21 +1171,28 @@
             "valid_until": "2024-09-01",
             "value": "2259.20",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-pdf",
-                  "title": "ccnl-pdf",
+                  "document_id": "gas-acqua-utilitalia-tables-39d5127a",
+                  "title": "gas-acqua-utilitalia: tabelle retributive (2022-ccnl.pdf)",
                   "kind": "associazione",
-                  "url": "https://sosvavsrl.it/media/attachments/2024/05/24/ccnl.pdf"
+                  "url": "https://www.smatorino.it/wp-content/uploads/2024/06/CCNL-GAS-ACQUA-2023-WEB.pdf",
+                  "sha256": "39d5127aa6c8f888cc245925eb91373619d18e7d9ec6d1b94992eb9a040d0d1c"
                 },
-                "section": "Tabella retributiva"
+                "page": "118",
+                "section": "Art. 36 — Minimi tabellari integrati",
+                "quote": "5         139,96          € 2.189,97              € 2.259,20        € 2.347,94"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2023-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-gas-acqua-utilitalia-tables"
               }
             }
           },
@@ -1047,21 +1201,28 @@
             "valid_until": "2025-07-01",
             "value": "2347.94",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-pdf",
-                  "title": "ccnl-pdf",
+                  "document_id": "gas-acqua-utilitalia-tables-39d5127a",
+                  "title": "gas-acqua-utilitalia: tabelle retributive (2022-ccnl.pdf)",
                   "kind": "associazione",
-                  "url": "https://sosvavsrl.it/media/attachments/2024/05/24/ccnl.pdf"
+                  "url": "https://www.smatorino.it/wp-content/uploads/2024/06/CCNL-GAS-ACQUA-2023-WEB.pdf",
+                  "sha256": "39d5127aa6c8f888cc245925eb91373619d18e7d9ec6d1b94992eb9a040d0d1c"
                 },
-                "section": "Tabella retributiva"
+                "page": "118",
+                "section": "Art. 36 — Minimi tabellari integrati",
+                "quote": "5         139,96          € 2.189,97              € 2.259,20        € 2.347,94"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2024-09-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-gas-acqua-utilitalia-tables"
               }
             }
           },
@@ -1190,21 +1351,28 @@
             "valid_until": "2023-10-01",
             "value": "2404.92",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-pdf",
-                  "title": "ccnl-pdf",
+                  "document_id": "gas-acqua-utilitalia-tables-39d5127a",
+                  "title": "gas-acqua-utilitalia: tabelle retributive (2022-ccnl.pdf)",
                   "kind": "associazione",
-                  "url": "https://sosvavsrl.it/media/attachments/2024/05/24/ccnl.pdf"
+                  "url": "https://www.smatorino.it/wp-content/uploads/2024/06/CCNL-GAS-ACQUA-2023-WEB.pdf",
+                  "sha256": "39d5127aa6c8f888cc245925eb91373619d18e7d9ec6d1b94992eb9a040d0d1c"
                 },
-                "section": "Tabella retributiva"
+                "page": "118",
+                "section": "Art. 36 — Minimi tabellari integrati",
+                "quote": "6         153,69          € 2.404,92              € 2.480,95        € 2.578,39"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2022-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-gas-acqua-utilitalia-tables"
               }
             }
           },
@@ -1213,21 +1381,28 @@
             "valid_until": "2024-09-01",
             "value": "2480.95",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-pdf",
-                  "title": "ccnl-pdf",
+                  "document_id": "gas-acqua-utilitalia-tables-39d5127a",
+                  "title": "gas-acqua-utilitalia: tabelle retributive (2022-ccnl.pdf)",
                   "kind": "associazione",
-                  "url": "https://sosvavsrl.it/media/attachments/2024/05/24/ccnl.pdf"
+                  "url": "https://www.smatorino.it/wp-content/uploads/2024/06/CCNL-GAS-ACQUA-2023-WEB.pdf",
+                  "sha256": "39d5127aa6c8f888cc245925eb91373619d18e7d9ec6d1b94992eb9a040d0d1c"
                 },
-                "section": "Tabella retributiva"
+                "page": "118",
+                "section": "Art. 36 — Minimi tabellari integrati",
+                "quote": "6         153,69          € 2.404,92              € 2.480,95        € 2.578,39"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2023-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-gas-acqua-utilitalia-tables"
               }
             }
           },
@@ -1236,21 +1411,28 @@
             "valid_until": "2025-07-01",
             "value": "2578.39",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-pdf",
-                  "title": "ccnl-pdf",
+                  "document_id": "gas-acqua-utilitalia-tables-39d5127a",
+                  "title": "gas-acqua-utilitalia: tabelle retributive (2022-ccnl.pdf)",
                   "kind": "associazione",
-                  "url": "https://sosvavsrl.it/media/attachments/2024/05/24/ccnl.pdf"
+                  "url": "https://www.smatorino.it/wp-content/uploads/2024/06/CCNL-GAS-ACQUA-2023-WEB.pdf",
+                  "sha256": "39d5127aa6c8f888cc245925eb91373619d18e7d9ec6d1b94992eb9a040d0d1c"
                 },
-                "section": "Tabella retributiva"
+                "page": "118",
+                "section": "Art. 36 — Minimi tabellari integrati",
+                "quote": "6         153,69          € 2.404,92              € 2.480,95        € 2.578,39"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2024-09-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-gas-acqua-utilitalia-tables"
               }
             }
           },
@@ -1379,21 +1561,28 @@
             "valid_until": "2023-10-01",
             "value": "2620.93",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-pdf",
-                  "title": "ccnl-pdf",
+                  "document_id": "gas-acqua-utilitalia-tables-39d5127a",
+                  "title": "gas-acqua-utilitalia: tabelle retributive (2022-ccnl.pdf)",
                   "kind": "associazione",
-                  "url": "https://sosvavsrl.it/media/attachments/2024/05/24/ccnl.pdf"
+                  "url": "https://www.smatorino.it/wp-content/uploads/2024/06/CCNL-GAS-ACQUA-2023-WEB.pdf",
+                  "sha256": "39d5127aa6c8f888cc245925eb91373619d18e7d9ec6d1b94992eb9a040d0d1c"
                 },
-                "section": "Tabella retributiva"
+                "page": "118",
+                "section": "Art. 36 — Minimi tabellari integrati",
+                "quote": "7         167,50          € 2.620,93              € 2.703,79        € 2.809,99"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2022-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-gas-acqua-utilitalia-tables"
               }
             }
           },
@@ -1402,21 +1591,28 @@
             "valid_until": "2024-09-01",
             "value": "2703.79",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-pdf",
-                  "title": "ccnl-pdf",
+                  "document_id": "gas-acqua-utilitalia-tables-39d5127a",
+                  "title": "gas-acqua-utilitalia: tabelle retributive (2022-ccnl.pdf)",
                   "kind": "associazione",
-                  "url": "https://sosvavsrl.it/media/attachments/2024/05/24/ccnl.pdf"
+                  "url": "https://www.smatorino.it/wp-content/uploads/2024/06/CCNL-GAS-ACQUA-2023-WEB.pdf",
+                  "sha256": "39d5127aa6c8f888cc245925eb91373619d18e7d9ec6d1b94992eb9a040d0d1c"
                 },
-                "section": "Tabella retributiva"
+                "page": "118",
+                "section": "Art. 36 — Minimi tabellari integrati",
+                "quote": "7         167,50          € 2.620,93              € 2.703,79        € 2.809,99"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2023-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-gas-acqua-utilitalia-tables"
               }
             }
           },
@@ -1425,21 +1621,28 @@
             "valid_until": "2025-07-01",
             "value": "2809.99",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-pdf",
-                  "title": "ccnl-pdf",
+                  "document_id": "gas-acqua-utilitalia-tables-39d5127a",
+                  "title": "gas-acqua-utilitalia: tabelle retributive (2022-ccnl.pdf)",
                   "kind": "associazione",
-                  "url": "https://sosvavsrl.it/media/attachments/2024/05/24/ccnl.pdf"
+                  "url": "https://www.smatorino.it/wp-content/uploads/2024/06/CCNL-GAS-ACQUA-2023-WEB.pdf",
+                  "sha256": "39d5127aa6c8f888cc245925eb91373619d18e7d9ec6d1b94992eb9a040d0d1c"
                 },
-                "section": "Tabella retributiva"
+                "page": "118",
+                "section": "Art. 36 — Minimi tabellari integrati",
+                "quote": "7         167,50          € 2.620,93              € 2.703,79        € 2.809,99"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2024-09-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-gas-acqua-utilitalia-tables"
               }
             }
           },
@@ -1568,21 +1771,28 @@
             "valid_until": "2023-10-01",
             "value": "2836.69",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-pdf",
-                  "title": "ccnl-pdf",
+                  "document_id": "gas-acqua-utilitalia-tables-39d5127a",
+                  "title": "gas-acqua-utilitalia: tabelle retributive (2022-ccnl.pdf)",
                   "kind": "associazione",
-                  "url": "https://sosvavsrl.it/media/attachments/2024/05/24/ccnl.pdf"
+                  "url": "https://www.smatorino.it/wp-content/uploads/2024/06/CCNL-GAS-ACQUA-2023-WEB.pdf",
+                  "sha256": "39d5127aa6c8f888cc245925eb91373619d18e7d9ec6d1b94992eb9a040d0d1c"
                 },
-                "section": "Tabella retributiva"
+                "page": "118",
+                "section": "Art. 36 — Minimi tabellari integrati",
+                "quote": "8         181,29          € 2.836,69              € 2.926,37        € 3.041,31"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2022-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-gas-acqua-utilitalia-tables"
               }
             }
           },
@@ -1591,21 +1801,28 @@
             "valid_until": "2024-09-01",
             "value": "2926.37",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-pdf",
-                  "title": "ccnl-pdf",
+                  "document_id": "gas-acqua-utilitalia-tables-39d5127a",
+                  "title": "gas-acqua-utilitalia: tabelle retributive (2022-ccnl.pdf)",
                   "kind": "associazione",
-                  "url": "https://sosvavsrl.it/media/attachments/2024/05/24/ccnl.pdf"
+                  "url": "https://www.smatorino.it/wp-content/uploads/2024/06/CCNL-GAS-ACQUA-2023-WEB.pdf",
+                  "sha256": "39d5127aa6c8f888cc245925eb91373619d18e7d9ec6d1b94992eb9a040d0d1c"
                 },
-                "section": "Tabella retributiva"
+                "page": "118",
+                "section": "Art. 36 — Minimi tabellari integrati",
+                "quote": "8         181,29          € 2.836,69              € 2.926,37        € 3.041,31"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2023-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-gas-acqua-utilitalia-tables"
               }
             }
           },
@@ -1614,21 +1831,28 @@
             "valid_until": "2025-07-01",
             "value": "3041.31",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-pdf",
-                  "title": "ccnl-pdf",
+                  "document_id": "gas-acqua-utilitalia-tables-39d5127a",
+                  "title": "gas-acqua-utilitalia: tabelle retributive (2022-ccnl.pdf)",
                   "kind": "associazione",
-                  "url": "https://sosvavsrl.it/media/attachments/2024/05/24/ccnl.pdf"
+                  "url": "https://www.smatorino.it/wp-content/uploads/2024/06/CCNL-GAS-ACQUA-2023-WEB.pdf",
+                  "sha256": "39d5127aa6c8f888cc245925eb91373619d18e7d9ec6d1b94992eb9a040d0d1c"
                 },
-                "section": "Tabella retributiva"
+                "page": "118",
+                "section": "Art. 36 — Minimi tabellari integrati",
+                "quote": "8         181,29          € 2.836,69              € 2.926,37        € 3.041,31"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2024-09-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-gas-acqua-utilitalia-tables"
               }
             }
           },
@@ -1757,21 +1981,28 @@
             "valid_until": "2023-10-01",
             "value": "3141.16",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-pdf",
-                  "title": "ccnl-pdf",
+                  "document_id": "gas-acqua-utilitalia-tables-39d5127a",
+                  "title": "gas-acqua-utilitalia: tabelle retributive (2022-ccnl.pdf)",
                   "kind": "associazione",
-                  "url": "https://sosvavsrl.it/media/attachments/2024/05/24/ccnl.pdf"
+                  "url": "https://www.smatorino.it/wp-content/uploads/2024/06/CCNL-GAS-ACQUA-2023-WEB.pdf",
+                  "sha256": "39d5127aa6c8f888cc245925eb91373619d18e7d9ec6d1b94992eb9a040d0d1c"
                 },
-                "section": "Tabella retributiva"
+                "page": "118",
+                "section": "Art. 36 — Minimi tabellari integrati",
+                "quote": "Q         200,74          € 3.141,16              € 3.240,46        € 3.367,73"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2022-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-gas-acqua-utilitalia-tables"
               }
             }
           },
@@ -1780,21 +2011,28 @@
             "valid_until": "2024-09-01",
             "value": "3240.46",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-pdf",
-                  "title": "ccnl-pdf",
+                  "document_id": "gas-acqua-utilitalia-tables-39d5127a",
+                  "title": "gas-acqua-utilitalia: tabelle retributive (2022-ccnl.pdf)",
                   "kind": "associazione",
-                  "url": "https://sosvavsrl.it/media/attachments/2024/05/24/ccnl.pdf"
+                  "url": "https://www.smatorino.it/wp-content/uploads/2024/06/CCNL-GAS-ACQUA-2023-WEB.pdf",
+                  "sha256": "39d5127aa6c8f888cc245925eb91373619d18e7d9ec6d1b94992eb9a040d0d1c"
                 },
-                "section": "Tabella retributiva"
+                "page": "118",
+                "section": "Art. 36 — Minimi tabellari integrati",
+                "quote": "Q         200,74          € 3.141,16              € 3.240,46        € 3.367,73"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2023-10-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-gas-acqua-utilitalia-tables"
               }
             }
           },
@@ -1803,21 +2041,28 @@
             "valid_until": "2025-07-01",
             "value": "3367.73",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-pdf",
-                  "title": "ccnl-pdf",
+                  "document_id": "gas-acqua-utilitalia-tables-39d5127a",
+                  "title": "gas-acqua-utilitalia: tabelle retributive (2022-ccnl.pdf)",
                   "kind": "associazione",
-                  "url": "https://sosvavsrl.it/media/attachments/2024/05/24/ccnl.pdf"
+                  "url": "https://www.smatorino.it/wp-content/uploads/2024/06/CCNL-GAS-ACQUA-2023-WEB.pdf",
+                  "sha256": "39d5127aa6c8f888cc245925eb91373619d18e7d9ec6d1b94992eb9a040d0d1c"
                 },
-                "section": "Tabella retributiva"
+                "page": "118",
+                "section": "Art. 36 — Minimi tabellari integrati",
+                "quote": "Q         200,74          € 3.141,16              € 3.240,46        € 3.367,73"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "effective_from": "2024-09-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T05:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-gas-acqua-utilitalia-tables"
               }
             }
           },
@@ -1923,7 +2168,32 @@
               {
                 "valid_from": "2022-10-01",
                 "valid_until": null,
-                "value": "51.65"
+                "value": "51.65",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "gas-acqua-utilitalia-tables-39d5127a",
+                      "title": "gas-acqua-utilitalia: tabelle retributive (2022-ccnl.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.smatorino.it/wp-content/uploads/2024/06/CCNL-GAS-ACQUA-2023-WEB.pdf",
+                      "sha256": "39d5127aa6c8f888cc245925eb91373619d18e7d9ec6d1b94992eb9a040d0d1c"
+                    },
+                    "page": "119",
+                    "section": "Art. 39(1) — Indennità di funzione quadri",
+                    "quote": "51,65 euro da corrispondersi per 12 mensilità."
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2022-10-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-gas-acqua-utilitalia-tables"
+                  }
+                }
               }
             ]
           },
@@ -2068,7 +2338,7 @@
     "effective_until": null,
     "source": "https://sosvavsrl.it/media/attachments/2024/05/24/ccnl.pdf",
     "verification_status": "unverified",
-    "source_hash": "477927af7cc1e8382df331073b1db4083385c292bf989fcce3367052283ec865",
+    "source_hash": "d905ab9953cd57d501f03937184e12baf503afd617361b73507a94e63a704878",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2314,6 +2584,50 @@
           "10 values corrected to the amounts printed on the cited pages."
         ],
         "independence": "same_process",
+        "checked": [
+          "levels.base_salary",
+          "levels.fixed_allowances"
+        ]
+      },
+      {
+        "id": "2026-11-08-ai-gas-acqua-utilitalia-tables",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The monthly values of the levels against the primary tables (text layer).",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.smatorino.it/wp-content/uploads/2024/06/CCNL-GAS-ACQUA-2023-WEB.pdf",
+            "sha256": "39d5127aa6c8f888cc245925eb91373619d18e7d9ec6d1b94992eb9a040d0d1c"
+          }
+        ],
+        "findings": [
+          "28 values found verbatim on the cited pages and marked verified; 18 left as they were (derived or not on a text page)."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels.base_salary",
+          "levels.fixed_allowances"
+        ]
+      },
+      {
+        "id": "2026-11-08-gpt-gas-acqua-utilitalia-double-read",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Monthly values on scanned pages, each read twice from the page image by two independent sessions of another model, the second without being told the expected value.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/gas_acqua/250508_GASACQUA_RINNOVO%20CCNL%20%202025-2027.pdf",
+            "sha256": "430bd6922e1ea3aa0d80b3c6fd2c74fd4cbe3b48404222ff48649f68ad8b4b36"
+          }
+        ],
+        "findings": [
+          "8 values read identically by both readings and equal to the file."
+        ],
+        "independence": "separate_model",
         "checked": [
           "levels.base_salary",
           "levels.fixed_allowances"

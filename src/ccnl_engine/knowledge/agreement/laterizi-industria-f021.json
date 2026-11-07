@@ -175,6 +175,50 @@
         "findings": [
           "Art. 26 - Tredicesima mensilità (p. 42): \"Nel caso di inizio o di cessazione del rapporto di lavoro nel corso dell'anno, saranno corrisposti tanti dodicesimi della 13ª mensilità per quanti sono i mesi di servizio prestato presso l'azienda. La frazione di mese superiore ai 15 giorni sarà considerata agli effetti della 13ª mensilità come un mese intero.\". Match: more_than 15."
         ]
+      },
+      {
+        "id": "2026-11-08-ai-laterizi-industria-f021-tables",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The monthly values of the levels against the primary tables (text layer).",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.filleacgil.net/images/MORELLO/CCNL12.2.2020laterizi-manufatti-industria.pdf",
+            "sha256": "d26fb2b0ebd79c0562f7e786d77cc25d97b894369b0a34841163a46acd6e1e0b"
+          }
+        ],
+        "findings": [
+          "19 values found verbatim on the cited pages and marked verified; 66 left as they were (derived or not on a text page)."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels.base_salary",
+          "levels.fixed_allowances"
+        ]
+      },
+      {
+        "id": "2026-11-08-gpt-laterizi-industria-f021-double-read",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Monthly values on scanned pages, each read twice from the page image by two independent sessions of another model, the second without being told the expected value.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf",
+            "sha256": "dccfdf857610cec1aeabeddda4eaf60d8b0214a3f632c8fe87dd1464143a0bf6"
+          }
+        ],
+        "findings": [
+          "32 values read identically by both readings and equal to the file."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "levels.base_salary",
+          "levels.fixed_allowances"
+        ]
       }
     ]
   },
@@ -638,7 +682,32 @@
               {
                 "valid_from": "2022-04-01",
                 "valid_until": null,
-                "value": "534.84"
+                "value": "534.84",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "laterizi-industria-f021-tables-d26fb2b0",
+                      "title": "laterizi-industria-f021: tabelle retributive (source3.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.filleacgil.net/images/MORELLO/CCNL12.2.2020laterizi-manufatti-industria.pdf",
+                      "sha256": "d26fb2b0ebd79c0562f7e786d77cc25d97b894369b0a34841163a46acd6e1e0b"
+                    },
+                    "page": "40",
+                    "section": "Art. 24 — Indennità di contingenza - EDR",
+                    "quote": "Categorie: AS                                          € 534,84"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2022-04-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-laterizi-industria-f021-tables"
+                  }
+                }
               }
             ]
           },
@@ -669,7 +738,32 @@
               {
                 "valid_from": "2022-04-01",
                 "valid_until": null,
-                "value": "10.33"
+                "value": "10.33",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "laterizi-industria-f021-tables-d26fb2b0",
+                      "title": "laterizi-industria-f021: tabelle retributive (source3.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.filleacgil.net/images/MORELLO/CCNL12.2.2020laterizi-manufatti-industria.pdf",
+                      "sha256": "d26fb2b0ebd79c0562f7e786d77cc25d97b894369b0a34841163a46acd6e1e0b"
+                    },
+                    "page": "40",
+                    "section": "Art. 24 — Indennità di contingenza - EDR",
+                    "quote": "somma forfetaria a titolo di Elemento Distinto dalla Retribuzione di lire 20.000 (€ 10,33) mensili per 13 mensilità"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2022-04-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-laterizi-industria-f021-tables"
+                  }
+                }
               }
             ]
           },
@@ -700,7 +794,32 @@
               {
                 "valid_from": "2022-04-01",
                 "valid_until": null,
-                "value": "51.65"
+                "value": "51.65",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "laterizi-industria-f021-tables-d26fb2b0",
+                      "title": "laterizi-industria-f021: tabelle retributive (source3.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.filleacgil.net/images/MORELLO/CCNL12.2.2020laterizi-manufatti-industria.pdf",
+                      "sha256": "d26fb2b0ebd79c0562f7e786d77cc25d97b894369b0a34841163a46acd6e1e0b"
+                    },
+                    "page": "17",
+                    "section": "Art. 7 — Quadri",
+                    "quote": "Ai suddetti lavoratori verrà corrisposta un’indennità di funzione pari ad un importo mensile di € 51,65."
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2022-04-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-laterizi-industria-f021-tables"
+                  }
+                }
               }
             ]
           },
@@ -754,21 +873,28 @@
             "valid_until": "2022-07-01",
             "value": "2095.27",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
-                  "title": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
+                  "document_id": "laterizi-industria-f021-src-dccfdf85",
+                  "title": "laterizi-industria-f021: source0.pdf",
                   "kind": "associazione",
-                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf"
+                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf",
+                  "sha256": "dccfdf857610cec1aeabeddda4eaf60d8b0214a3f632c8fe87dd1464143a0bf6"
                 },
-                "section": "Tabella retributiva"
+                "page": "7",
+                "section": "Art. 21 — I nuovi minimi saranno",
+                "quote": "AS 2.095,27 64,71 2.159,98 40,44 2.200,42 56,62 2.257,03"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2022-04-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-laterizi-industria-f021-double-read"
               }
             }
           },
@@ -777,21 +903,28 @@
             "valid_until": "2023-10-01",
             "value": "2159.98",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
-                  "title": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
+                  "document_id": "laterizi-industria-f021-src-dccfdf85",
+                  "title": "laterizi-industria-f021: source0.pdf",
                   "kind": "associazione",
-                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf"
+                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf",
+                  "sha256": "dccfdf857610cec1aeabeddda4eaf60d8b0214a3f632c8fe87dd1464143a0bf6"
                 },
-                "section": "Tabella retributiva"
+                "page": "7",
+                "section": "Art. 21 — I nuovi minimi saranno",
+                "quote": "AS 2.095,27 64,71 2.159,98 40,44 2.200,42 56,62 2.257,03"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2022-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-laterizi-industria-f021-double-read"
               }
             }
           },
@@ -800,21 +933,28 @@
             "valid_until": "2025-02-01",
             "value": "2200.42",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
-                  "title": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
+                  "document_id": "laterizi-industria-f021-src-dccfdf85",
+                  "title": "laterizi-industria-f021: source0.pdf",
                   "kind": "associazione",
-                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf"
+                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf",
+                  "sha256": "dccfdf857610cec1aeabeddda4eaf60d8b0214a3f632c8fe87dd1464143a0bf6"
                 },
-                "section": "Tabella retributiva"
+                "page": "7",
+                "section": "Art. 21 — I nuovi minimi saranno",
+                "quote": "AS 2.095,27 64,71 2.159,98 40,44 2.200,42 56,62 2.257,03"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2023-10-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-laterizi-industria-f021-double-read"
               }
             }
           },
@@ -823,21 +963,28 @@
             "valid_until": "2025-10-01",
             "value": "2257.03",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
-                  "title": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
+                  "document_id": "laterizi-industria-f021-src-dccfdf85",
+                  "title": "laterizi-industria-f021: source0.pdf",
                   "kind": "associazione",
-                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf"
+                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf",
+                  "sha256": "dccfdf857610cec1aeabeddda4eaf60d8b0214a3f632c8fe87dd1464143a0bf6"
                 },
-                "section": "Tabella retributiva"
+                "page": "7",
+                "section": "Art. 21 — I nuovi minimi saranno",
+                "quote": "AS 2.095,27 64,71 2.159,98 40,44 2.200,42 56,62 2.257,03"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2025-02-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-laterizi-industria-f021-double-read"
               }
             }
           },
@@ -944,7 +1091,32 @@
               {
                 "valid_from": "2022-04-01",
                 "valid_until": null,
-                "value": "534.84"
+                "value": "534.84",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "laterizi-industria-f021-tables-d26fb2b0",
+                      "title": "laterizi-industria-f021: tabelle retributive (source3.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.filleacgil.net/images/MORELLO/CCNL12.2.2020laterizi-manufatti-industria.pdf",
+                      "sha256": "d26fb2b0ebd79c0562f7e786d77cc25d97b894369b0a34841163a46acd6e1e0b"
+                    },
+                    "page": "40",
+                    "section": "Art. 24 — Indennità di contingenza - EDR",
+                    "quote": "Categorie: AS                                          € 534,84"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2022-04-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-laterizi-industria-f021-tables"
+                  }
+                }
               }
             ]
           },
@@ -975,7 +1147,32 @@
               {
                 "valid_from": "2022-04-01",
                 "valid_until": null,
-                "value": "10.33"
+                "value": "10.33",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "laterizi-industria-f021-tables-d26fb2b0",
+                      "title": "laterizi-industria-f021: tabelle retributive (source3.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.filleacgil.net/images/MORELLO/CCNL12.2.2020laterizi-manufatti-industria.pdf",
+                      "sha256": "d26fb2b0ebd79c0562f7e786d77cc25d97b894369b0a34841163a46acd6e1e0b"
+                    },
+                    "page": "40",
+                    "section": "Art. 24 — Indennità di contingenza - EDR",
+                    "quote": "somma forfetaria a titolo di Elemento Distinto dalla Retribuzione di lire 20.000 (€ 10,33) mensili per 13 mensilità"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2022-04-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-laterizi-industria-f021-tables"
+                  }
+                }
               }
             ]
           },
@@ -1029,21 +1226,28 @@
             "valid_until": "2022-07-01",
             "value": "1761.92",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
-                  "title": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
+                  "document_id": "laterizi-industria-f021-src-dccfdf85",
+                  "title": "laterizi-industria-f021: source0.pdf",
                   "kind": "associazione",
-                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf"
+                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf",
+                  "sha256": "dccfdf857610cec1aeabeddda4eaf60d8b0214a3f632c8fe87dd1464143a0bf6"
                 },
-                "section": "Tabella retributiva"
+                "page": "7",
+                "section": "Art. 21 — I nuovi minimi saranno",
+                "quote": "A 1.761,92 54,41 1.816,33 34,01 1.850,34 47,61 1.897,95"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2022-04-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-laterizi-industria-f021-double-read"
               }
             }
           },
@@ -1052,21 +1256,28 @@
             "valid_until": "2023-10-01",
             "value": "1816.33",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
-                  "title": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
+                  "document_id": "laterizi-industria-f021-src-dccfdf85",
+                  "title": "laterizi-industria-f021: source0.pdf",
                   "kind": "associazione",
-                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf"
+                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf",
+                  "sha256": "dccfdf857610cec1aeabeddda4eaf60d8b0214a3f632c8fe87dd1464143a0bf6"
                 },
-                "section": "Tabella retributiva"
+                "page": "7",
+                "section": "Art. 21 — I nuovi minimi saranno",
+                "quote": "A 1.761,92 54,41 1.816,33 34,01 1.850,34 47,61 1.897,95"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2022-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-laterizi-industria-f021-double-read"
               }
             }
           },
@@ -1075,21 +1286,28 @@
             "valid_until": "2025-02-01",
             "value": "1850.34",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
-                  "title": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
+                  "document_id": "laterizi-industria-f021-src-dccfdf85",
+                  "title": "laterizi-industria-f021: source0.pdf",
                   "kind": "associazione",
-                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf"
+                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf",
+                  "sha256": "dccfdf857610cec1aeabeddda4eaf60d8b0214a3f632c8fe87dd1464143a0bf6"
                 },
-                "section": "Tabella retributiva"
+                "page": "7",
+                "section": "Art. 21 — I nuovi minimi saranno",
+                "quote": "A 1.761,92 54,41 1.816,33 34,01 1.850,34 47,61 1.897,95"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2023-10-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-laterizi-industria-f021-double-read"
               }
             }
           },
@@ -1098,21 +1316,28 @@
             "valid_until": "2025-10-01",
             "value": "1897.95",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
-                  "title": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
+                  "document_id": "laterizi-industria-f021-src-dccfdf85",
+                  "title": "laterizi-industria-f021: source0.pdf",
                   "kind": "associazione",
-                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf"
+                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf",
+                  "sha256": "dccfdf857610cec1aeabeddda4eaf60d8b0214a3f632c8fe87dd1464143a0bf6"
                 },
-                "section": "Tabella retributiva"
+                "page": "7",
+                "section": "Art. 21 — I nuovi minimi saranno",
+                "quote": "A 1.761,92 54,41 1.816,33 34,01 1.850,34 47,61 1.897,95"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2025-02-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-laterizi-industria-f021-double-read"
               }
             }
           },
@@ -1219,7 +1444,32 @@
               {
                 "valid_from": "2022-04-01",
                 "valid_until": null,
-                "value": "528.01"
+                "value": "528.01",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "laterizi-industria-f021-tables-d26fb2b0",
+                      "title": "laterizi-industria-f021: tabelle retributive (source3.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.filleacgil.net/images/MORELLO/CCNL12.2.2020laterizi-manufatti-industria.pdf",
+                      "sha256": "d26fb2b0ebd79c0562f7e786d77cc25d97b894369b0a34841163a46acd6e1e0b"
+                    },
+                    "page": "40",
+                    "section": "Art. 24 — Indennità di contingenza - EDR",
+                    "quote": "A                                           € 528,01"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2022-04-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-laterizi-industria-f021-tables"
+                  }
+                }
               }
             ]
           },
@@ -1250,7 +1500,32 @@
               {
                 "valid_from": "2022-04-01",
                 "valid_until": null,
-                "value": "10.33"
+                "value": "10.33",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "laterizi-industria-f021-tables-d26fb2b0",
+                      "title": "laterizi-industria-f021: tabelle retributive (source3.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.filleacgil.net/images/MORELLO/CCNL12.2.2020laterizi-manufatti-industria.pdf",
+                      "sha256": "d26fb2b0ebd79c0562f7e786d77cc25d97b894369b0a34841163a46acd6e1e0b"
+                    },
+                    "page": "40",
+                    "section": "Art. 24 — Indennità di contingenza - EDR",
+                    "quote": "somma forfetaria a titolo di Elemento Distinto dalla Retribuzione di lire 20.000 (€ 10,33) mensili per 13 mensilità"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2022-04-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-laterizi-industria-f021-tables"
+                  }
+                }
               }
             ]
           },
@@ -1304,21 +1579,28 @@
             "valid_until": "2022-07-01",
             "value": "1438.12",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
-                  "title": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
+                  "document_id": "laterizi-industria-f021-src-dccfdf85",
+                  "title": "laterizi-industria-f021: source0.pdf",
                   "kind": "associazione",
-                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf"
+                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf",
+                  "sha256": "dccfdf857610cec1aeabeddda4eaf60d8b0214a3f632c8fe87dd1464143a0bf6"
                 },
-                "section": "Tabella retributiva"
+                "page": "7",
+                "section": "Art. 21 — I nuovi minimi saranno",
+                "quote": "B 1.438,12 44,41 1.482,53 27,76 1.510,29 38,86 1.549,15"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2022-04-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-laterizi-industria-f021-double-read"
               }
             }
           },
@@ -1327,21 +1609,28 @@
             "valid_until": "2023-10-01",
             "value": "1482.53",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
-                  "title": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
+                  "document_id": "laterizi-industria-f021-src-dccfdf85",
+                  "title": "laterizi-industria-f021: source0.pdf",
                   "kind": "associazione",
-                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf"
+                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf",
+                  "sha256": "dccfdf857610cec1aeabeddda4eaf60d8b0214a3f632c8fe87dd1464143a0bf6"
                 },
-                "section": "Tabella retributiva"
+                "page": "7",
+                "section": "Art. 21 — I nuovi minimi saranno",
+                "quote": "B 1.438,12 44,41 1.482,53 27,76 1.510,29 38,86 1.549,15"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2022-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-laterizi-industria-f021-double-read"
               }
             }
           },
@@ -1350,21 +1639,28 @@
             "valid_until": "2025-02-01",
             "value": "1510.29",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
-                  "title": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
+                  "document_id": "laterizi-industria-f021-src-dccfdf85",
+                  "title": "laterizi-industria-f021: source0.pdf",
                   "kind": "associazione",
-                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf"
+                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf",
+                  "sha256": "dccfdf857610cec1aeabeddda4eaf60d8b0214a3f632c8fe87dd1464143a0bf6"
                 },
-                "section": "Tabella retributiva"
+                "page": "7",
+                "section": "Art. 21 — I nuovi minimi saranno",
+                "quote": "B 1.438,12 44,41 1.482,53 27,76 1.510,29 38,86 1.549,15"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2023-10-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-laterizi-industria-f021-double-read"
               }
             }
           },
@@ -1373,21 +1669,28 @@
             "valid_until": "2025-10-01",
             "value": "1549.15",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
-                  "title": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
+                  "document_id": "laterizi-industria-f021-src-dccfdf85",
+                  "title": "laterizi-industria-f021: source0.pdf",
                   "kind": "associazione",
-                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf"
+                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf",
+                  "sha256": "dccfdf857610cec1aeabeddda4eaf60d8b0214a3f632c8fe87dd1464143a0bf6"
                 },
-                "section": "Tabella retributiva"
+                "page": "7",
+                "section": "Art. 21 — I nuovi minimi saranno",
+                "quote": "B 1.438,12 44,41 1.482,53 27,76 1.510,29 38,86 1.549,15"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2025-02-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-laterizi-industria-f021-double-read"
               }
             }
           },
@@ -1494,7 +1797,32 @@
               {
                 "valid_from": "2022-04-01",
                 "valid_until": null,
-                "value": "521.40"
+                "value": "521.40",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "laterizi-industria-f021-tables-d26fb2b0",
+                      "title": "laterizi-industria-f021: tabelle retributive (source3.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.filleacgil.net/images/MORELLO/CCNL12.2.2020laterizi-manufatti-industria.pdf",
+                      "sha256": "d26fb2b0ebd79c0562f7e786d77cc25d97b894369b0a34841163a46acd6e1e0b"
+                    },
+                    "page": "40",
+                    "section": "Art. 24 — Indennità di contingenza - EDR",
+                    "quote": "B                                           € 521,40"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2022-04-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-laterizi-industria-f021-tables"
+                  }
+                }
               }
             ]
           },
@@ -1525,7 +1853,32 @@
               {
                 "valid_from": "2022-04-01",
                 "valid_until": null,
-                "value": "10.33"
+                "value": "10.33",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "laterizi-industria-f021-tables-d26fb2b0",
+                      "title": "laterizi-industria-f021: tabelle retributive (source3.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.filleacgil.net/images/MORELLO/CCNL12.2.2020laterizi-manufatti-industria.pdf",
+                      "sha256": "d26fb2b0ebd79c0562f7e786d77cc25d97b894369b0a34841163a46acd6e1e0b"
+                    },
+                    "page": "40",
+                    "section": "Art. 24 — Indennità di contingenza - EDR",
+                    "quote": "somma forfetaria a titolo di Elemento Distinto dalla Retribuzione di lire 20.000 (€ 10,33) mensili per 13 mensilità"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2022-04-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-laterizi-industria-f021-tables"
+                  }
+                }
               }
             ]
           },
@@ -1579,21 +1932,28 @@
             "valid_until": "2022-07-01",
             "value": "1360.34",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
-                  "title": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
+                  "document_id": "laterizi-industria-f021-src-dccfdf85",
+                  "title": "laterizi-industria-f021: source0.pdf",
                   "kind": "associazione",
-                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf"
+                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf",
+                  "sha256": "dccfdf857610cec1aeabeddda4eaf60d8b0214a3f632c8fe87dd1464143a0bf6"
                 },
-                "section": "Tabella retributiva"
+                "page": "7",
+                "section": "Art. 21 — I nuovi minimi saranno",
+                "quote": "CS 1360,34 42,06 1.402,40 26,29 1.428,69 36,80 1.465,49"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2022-04-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-laterizi-industria-f021-double-read"
               }
             }
           },
@@ -1602,21 +1962,28 @@
             "valid_until": "2023-10-01",
             "value": "1402.40",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
-                  "title": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
+                  "document_id": "laterizi-industria-f021-src-dccfdf85",
+                  "title": "laterizi-industria-f021: source0.pdf",
                   "kind": "associazione",
-                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf"
+                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf",
+                  "sha256": "dccfdf857610cec1aeabeddda4eaf60d8b0214a3f632c8fe87dd1464143a0bf6"
                 },
-                "section": "Tabella retributiva"
+                "page": "7",
+                "section": "Art. 21 — I nuovi minimi saranno",
+                "quote": "CS 1360,34 42,06 1.402,40 26,29 1.428,69 36,80 1.465,49"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2022-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-laterizi-industria-f021-double-read"
               }
             }
           },
@@ -1625,21 +1992,28 @@
             "valid_until": "2025-02-01",
             "value": "1428.69",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
-                  "title": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
+                  "document_id": "laterizi-industria-f021-src-dccfdf85",
+                  "title": "laterizi-industria-f021: source0.pdf",
                   "kind": "associazione",
-                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf"
+                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf",
+                  "sha256": "dccfdf857610cec1aeabeddda4eaf60d8b0214a3f632c8fe87dd1464143a0bf6"
                 },
-                "section": "Tabella retributiva"
+                "page": "7",
+                "section": "Art. 21 — I nuovi minimi saranno",
+                "quote": "CS 1360,34 42,06 1.402,40 26,29 1.428,69 36,80 1.465,49"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2023-10-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-laterizi-industria-f021-double-read"
               }
             }
           },
@@ -1648,21 +2022,28 @@
             "valid_until": "2025-10-01",
             "value": "1465.49",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
-                  "title": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
+                  "document_id": "laterizi-industria-f021-src-dccfdf85",
+                  "title": "laterizi-industria-f021: source0.pdf",
                   "kind": "associazione",
-                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf"
+                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf",
+                  "sha256": "dccfdf857610cec1aeabeddda4eaf60d8b0214a3f632c8fe87dd1464143a0bf6"
                 },
-                "section": "Tabella retributiva"
+                "page": "7",
+                "section": "Art. 21 — I nuovi minimi saranno",
+                "quote": "CS 1360,34 42,06 1.402,40 26,29 1.428,69 36,80 1.465,49"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2025-02-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-laterizi-industria-f021-double-read"
               }
             }
           },
@@ -1769,7 +2150,32 @@
               {
                 "valid_from": "2022-04-01",
                 "valid_until": null,
-                "value": "517.58"
+                "value": "517.58",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "laterizi-industria-f021-tables-d26fb2b0",
+                      "title": "laterizi-industria-f021: tabelle retributive (source3.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.filleacgil.net/images/MORELLO/CCNL12.2.2020laterizi-manufatti-industria.pdf",
+                      "sha256": "d26fb2b0ebd79c0562f7e786d77cc25d97b894369b0a34841163a46acd6e1e0b"
+                    },
+                    "page": "40",
+                    "section": "Art. 24 — Indennità di contingenza - EDR",
+                    "quote": "CS                                          € 517,58"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2022-04-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-laterizi-industria-f021-tables"
+                  }
+                }
               }
             ]
           },
@@ -1800,7 +2206,32 @@
               {
                 "valid_from": "2022-04-01",
                 "valid_until": null,
-                "value": "10.33"
+                "value": "10.33",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "laterizi-industria-f021-tables-d26fb2b0",
+                      "title": "laterizi-industria-f021: tabelle retributive (source3.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.filleacgil.net/images/MORELLO/CCNL12.2.2020laterizi-manufatti-industria.pdf",
+                      "sha256": "d26fb2b0ebd79c0562f7e786d77cc25d97b894369b0a34841163a46acd6e1e0b"
+                    },
+                    "page": "40",
+                    "section": "Art. 24 — Indennità di contingenza - EDR",
+                    "quote": "somma forfetaria a titolo di Elemento Distinto dalla Retribuzione di lire 20.000 (€ 10,33) mensili per 13 mensilità"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2022-04-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-laterizi-industria-f021-tables"
+                  }
+                }
               }
             ]
           },
@@ -1854,21 +2285,28 @@
             "valid_until": "2022-07-01",
             "value": "1294.23",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
-                  "title": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
+                  "document_id": "laterizi-industria-f021-src-dccfdf85",
+                  "title": "laterizi-industria-f021: source0.pdf",
                   "kind": "associazione",
-                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf"
+                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf",
+                  "sha256": "dccfdf857610cec1aeabeddda4eaf60d8b0214a3f632c8fe87dd1464143a0bf6"
                 },
-                "section": "Tabella retributiva"
+                "page": "7",
+                "section": "Art. 21 — I nuovi minimi saranno",
+                "quote": "C 1294,23 40,00 1.334,23 25,00 1.359,23 35,00 1.394,23"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2022-04-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-laterizi-industria-f021-double-read"
               }
             }
           },
@@ -1877,21 +2315,28 @@
             "valid_until": "2023-10-01",
             "value": "1334.23",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
-                  "title": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
+                  "document_id": "laterizi-industria-f021-src-dccfdf85",
+                  "title": "laterizi-industria-f021: source0.pdf",
                   "kind": "associazione",
-                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf"
+                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf",
+                  "sha256": "dccfdf857610cec1aeabeddda4eaf60d8b0214a3f632c8fe87dd1464143a0bf6"
                 },
-                "section": "Tabella retributiva"
+                "page": "7",
+                "section": "Art. 21 — I nuovi minimi saranno",
+                "quote": "C 1294,23 40,00 1.334,23 25,00 1.359,23 35,00 1.394,23"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2022-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-laterizi-industria-f021-double-read"
               }
             }
           },
@@ -1900,21 +2345,28 @@
             "valid_until": "2025-02-01",
             "value": "1359.23",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
-                  "title": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
+                  "document_id": "laterizi-industria-f021-src-dccfdf85",
+                  "title": "laterizi-industria-f021: source0.pdf",
                   "kind": "associazione",
-                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf"
+                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf",
+                  "sha256": "dccfdf857610cec1aeabeddda4eaf60d8b0214a3f632c8fe87dd1464143a0bf6"
                 },
-                "section": "Tabella retributiva"
+                "page": "7",
+                "section": "Art. 21 — I nuovi minimi saranno",
+                "quote": "C 1294,23 40,00 1.334,23 25,00 1.359,23 35,00 1.394,23"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2023-10-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-laterizi-industria-f021-double-read"
               }
             }
           },
@@ -1923,21 +2375,28 @@
             "valid_until": "2025-10-01",
             "value": "1394.23",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
-                  "title": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
+                  "document_id": "laterizi-industria-f021-src-dccfdf85",
+                  "title": "laterizi-industria-f021: source0.pdf",
                   "kind": "associazione",
-                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf"
+                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf",
+                  "sha256": "dccfdf857610cec1aeabeddda4eaf60d8b0214a3f632c8fe87dd1464143a0bf6"
                 },
-                "section": "Tabella retributiva"
+                "page": "7",
+                "section": "Art. 21 — I nuovi minimi saranno",
+                "quote": "C 1294,23 40,00 1.334,23 25,00 1.359,23 35,00 1.394,23"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2025-02-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-laterizi-industria-f021-double-read"
               }
             }
           },
@@ -2044,7 +2503,32 @@
               {
                 "valid_from": "2022-04-01",
                 "valid_until": null,
-                "value": "517.52"
+                "value": "517.52",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "laterizi-industria-f021-tables-d26fb2b0",
+                      "title": "laterizi-industria-f021: tabelle retributive (source3.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.filleacgil.net/images/MORELLO/CCNL12.2.2020laterizi-manufatti-industria.pdf",
+                      "sha256": "d26fb2b0ebd79c0562f7e786d77cc25d97b894369b0a34841163a46acd6e1e0b"
+                    },
+                    "page": "40",
+                    "section": "Art. 24 — Indennità di contingenza - EDR",
+                    "quote": "C                                           € 517,52"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2022-04-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-laterizi-industria-f021-tables"
+                  }
+                }
               }
             ]
           },
@@ -2075,7 +2559,32 @@
               {
                 "valid_from": "2022-04-01",
                 "valid_until": null,
-                "value": "10.33"
+                "value": "10.33",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "laterizi-industria-f021-tables-d26fb2b0",
+                      "title": "laterizi-industria-f021: tabelle retributive (source3.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.filleacgil.net/images/MORELLO/CCNL12.2.2020laterizi-manufatti-industria.pdf",
+                      "sha256": "d26fb2b0ebd79c0562f7e786d77cc25d97b894369b0a34841163a46acd6e1e0b"
+                    },
+                    "page": "40",
+                    "section": "Art. 24 — Indennità di contingenza - EDR",
+                    "quote": "somma forfetaria a titolo di Elemento Distinto dalla Retribuzione di lire 20.000 (€ 10,33) mensili per 13 mensilità"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2022-04-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-laterizi-industria-f021-tables"
+                  }
+                }
               }
             ]
           },
@@ -2129,21 +2638,28 @@
             "valid_until": "2022-07-01",
             "value": "1203.09",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
-                  "title": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
+                  "document_id": "laterizi-industria-f021-src-dccfdf85",
+                  "title": "laterizi-industria-f021: source0.pdf",
                   "kind": "associazione",
-                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf"
+                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf",
+                  "sha256": "dccfdf857610cec1aeabeddda4eaf60d8b0214a3f632c8fe87dd1464143a0bf6"
                 },
-                "section": "Tabella retributiva"
+                "page": "7",
+                "section": "Art. 21 — I nuovi minimi saranno",
+                "quote": "D 1203,09 37,06 1.240,15 23,16 1.263,31 32,43 1.295,74"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2022-04-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-laterizi-industria-f021-double-read"
               }
             }
           },
@@ -2152,21 +2668,28 @@
             "valid_until": "2023-10-01",
             "value": "1240.15",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
-                  "title": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
+                  "document_id": "laterizi-industria-f021-src-dccfdf85",
+                  "title": "laterizi-industria-f021: source0.pdf",
                   "kind": "associazione",
-                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf"
+                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf",
+                  "sha256": "dccfdf857610cec1aeabeddda4eaf60d8b0214a3f632c8fe87dd1464143a0bf6"
                 },
-                "section": "Tabella retributiva"
+                "page": "7",
+                "section": "Art. 21 — I nuovi minimi saranno",
+                "quote": "D 1203,09 37,06 1.240,15 23,16 1.263,31 32,43 1.295,74"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2022-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-laterizi-industria-f021-double-read"
               }
             }
           },
@@ -2175,21 +2698,28 @@
             "valid_until": "2025-02-01",
             "value": "1263.31",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
-                  "title": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
+                  "document_id": "laterizi-industria-f021-src-dccfdf85",
+                  "title": "laterizi-industria-f021: source0.pdf",
                   "kind": "associazione",
-                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf"
+                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf",
+                  "sha256": "dccfdf857610cec1aeabeddda4eaf60d8b0214a3f632c8fe87dd1464143a0bf6"
                 },
-                "section": "Tabella retributiva"
+                "page": "7",
+                "section": "Art. 21 — I nuovi minimi saranno",
+                "quote": "D 1203,09 37,06 1.240,15 23,16 1.263,31 32,43 1.295,74"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2023-10-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-laterizi-industria-f021-double-read"
               }
             }
           },
@@ -2198,21 +2728,28 @@
             "valid_until": "2025-10-01",
             "value": "1295.74",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
-                  "title": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
+                  "document_id": "laterizi-industria-f021-src-dccfdf85",
+                  "title": "laterizi-industria-f021: source0.pdf",
                   "kind": "associazione",
-                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf"
+                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf",
+                  "sha256": "dccfdf857610cec1aeabeddda4eaf60d8b0214a3f632c8fe87dd1464143a0bf6"
                 },
-                "section": "Tabella retributiva"
+                "page": "7",
+                "section": "Art. 21 — I nuovi minimi saranno",
+                "quote": "D 1203,09 37,06 1.240,15 23,16 1.263,31 32,43 1.295,74"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2025-02-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-laterizi-industria-f021-double-read"
               }
             }
           },
@@ -2319,7 +2856,32 @@
               {
                 "valid_from": "2022-04-01",
                 "valid_until": null,
-                "value": "515.99"
+                "value": "515.99",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "laterizi-industria-f021-tables-d26fb2b0",
+                      "title": "laterizi-industria-f021: tabelle retributive (source3.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.filleacgil.net/images/MORELLO/CCNL12.2.2020laterizi-manufatti-industria.pdf",
+                      "sha256": "d26fb2b0ebd79c0562f7e786d77cc25d97b894369b0a34841163a46acd6e1e0b"
+                    },
+                    "page": "40",
+                    "section": "Art. 24 — Indennità di contingenza - EDR",
+                    "quote": "D                                           € 515,99"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2022-04-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-laterizi-industria-f021-tables"
+                  }
+                }
               }
             ]
           },
@@ -2350,7 +2912,32 @@
               {
                 "valid_from": "2022-04-01",
                 "valid_until": null,
-                "value": "10.33"
+                "value": "10.33",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "laterizi-industria-f021-tables-d26fb2b0",
+                      "title": "laterizi-industria-f021: tabelle retributive (source3.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.filleacgil.net/images/MORELLO/CCNL12.2.2020laterizi-manufatti-industria.pdf",
+                      "sha256": "d26fb2b0ebd79c0562f7e786d77cc25d97b894369b0a34841163a46acd6e1e0b"
+                    },
+                    "page": "40",
+                    "section": "Art. 24 — Indennità di contingenza - EDR",
+                    "quote": "somma forfetaria a titolo di Elemento Distinto dalla Retribuzione di lire 20.000 (€ 10,33) mensili per 13 mensilità"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2022-04-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-laterizi-industria-f021-tables"
+                  }
+                }
               }
             ]
           },
@@ -2404,21 +2991,28 @@
             "valid_until": "2022-07-01",
             "value": "1115.27",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
-                  "title": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
+                  "document_id": "laterizi-industria-f021-src-dccfdf85",
+                  "title": "laterizi-industria-f021: source0.pdf",
                   "kind": "associazione",
-                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf"
+                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf",
+                  "sha256": "dccfdf857610cec1aeabeddda4eaf60d8b0214a3f632c8fe87dd1464143a0bf6"
                 },
-                "section": "Tabella retributiva"
+                "page": "7",
+                "section": "Art. 21 — I nuovi minimi saranno",
+                "quote": "E 1115,27 34,41 1.149,68 21,51 1.171,19 30,11 1.201,30"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2022-04-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-laterizi-industria-f021-double-read"
               }
             }
           },
@@ -2427,21 +3021,28 @@
             "valid_until": "2023-10-01",
             "value": "1149.68",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
-                  "title": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
+                  "document_id": "laterizi-industria-f021-src-dccfdf85",
+                  "title": "laterizi-industria-f021: source0.pdf",
                   "kind": "associazione",
-                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf"
+                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf",
+                  "sha256": "dccfdf857610cec1aeabeddda4eaf60d8b0214a3f632c8fe87dd1464143a0bf6"
                 },
-                "section": "Tabella retributiva"
+                "page": "7",
+                "section": "Art. 21 — I nuovi minimi saranno",
+                "quote": "E 1115,27 34,41 1.149,68 21,51 1.171,19 30,11 1.201,30"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2022-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-laterizi-industria-f021-double-read"
               }
             }
           },
@@ -2450,21 +3051,28 @@
             "valid_until": "2025-02-01",
             "value": "1171.19",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
-                  "title": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
+                  "document_id": "laterizi-industria-f021-src-dccfdf85",
+                  "title": "laterizi-industria-f021: source0.pdf",
                   "kind": "associazione",
-                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf"
+                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf",
+                  "sha256": "dccfdf857610cec1aeabeddda4eaf60d8b0214a3f632c8fe87dd1464143a0bf6"
                 },
-                "section": "Tabella retributiva"
+                "page": "7",
+                "section": "Art. 21 — I nuovi minimi saranno",
+                "quote": "E 1115,27 34,41 1.149,68 21,51 1.171,19 30,11 1.201,30"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2023-10-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-laterizi-industria-f021-double-read"
               }
             }
           },
@@ -2473,21 +3081,28 @@
             "valid_until": "2025-10-01",
             "value": "1201.30",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
-                  "title": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
+                  "document_id": "laterizi-industria-f021-src-dccfdf85",
+                  "title": "laterizi-industria-f021: source0.pdf",
                   "kind": "associazione",
-                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf"
+                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf",
+                  "sha256": "dccfdf857610cec1aeabeddda4eaf60d8b0214a3f632c8fe87dd1464143a0bf6"
                 },
-                "section": "Tabella retributiva"
+                "page": "7",
+                "section": "Art. 21 — I nuovi minimi saranno",
+                "quote": "E 1115,27 34,41 1.149,68 21,51 1.171,19 30,11 1.201,30"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2025-02-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-laterizi-industria-f021-double-read"
               }
             }
           },
@@ -2594,7 +3209,32 @@
               {
                 "valid_from": "2022-04-01",
                 "valid_until": null,
-                "value": "514.04"
+                "value": "514.04",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "laterizi-industria-f021-tables-d26fb2b0",
+                      "title": "laterizi-industria-f021: tabelle retributive (source3.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.filleacgil.net/images/MORELLO/CCNL12.2.2020laterizi-manufatti-industria.pdf",
+                      "sha256": "d26fb2b0ebd79c0562f7e786d77cc25d97b894369b0a34841163a46acd6e1e0b"
+                    },
+                    "page": "40",
+                    "section": "Art. 24 — Indennità di contingenza - EDR",
+                    "quote": "E                                           € 514,04"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2022-04-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-laterizi-industria-f021-tables"
+                  }
+                }
               }
             ]
           },
@@ -2625,7 +3265,32 @@
               {
                 "valid_from": "2022-04-01",
                 "valid_until": null,
-                "value": "10.33"
+                "value": "10.33",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "laterizi-industria-f021-tables-d26fb2b0",
+                      "title": "laterizi-industria-f021: tabelle retributive (source3.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.filleacgil.net/images/MORELLO/CCNL12.2.2020laterizi-manufatti-industria.pdf",
+                      "sha256": "d26fb2b0ebd79c0562f7e786d77cc25d97b894369b0a34841163a46acd6e1e0b"
+                    },
+                    "page": "40",
+                    "section": "Art. 24 — Indennità di contingenza - EDR",
+                    "quote": "somma forfetaria a titolo di Elemento Distinto dalla Retribuzione di lire 20.000 (€ 10,33) mensili per 13 mensilità"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2022-04-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-laterizi-industria-f021-tables"
+                  }
+                }
               }
             ]
           },
@@ -2679,21 +3344,28 @@
             "valid_until": "2022-07-01",
             "value": "954.28",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
-                  "title": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
+                  "document_id": "laterizi-industria-f021-src-dccfdf85",
+                  "title": "laterizi-industria-f021: source0.pdf",
                   "kind": "associazione",
-                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf"
+                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf",
+                  "sha256": "dccfdf857610cec1aeabeddda4eaf60d8b0214a3f632c8fe87dd1464143a0bf6"
                 },
-                "section": "Tabella retributiva"
+                "page": "7",
+                "section": "Art. 21 — I nuovi minimi saranno",
+                "quote": "F 954,28 29,41 983,69 18,38 1.002,07 25,74 1.027,81"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2022-04-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-laterizi-industria-f021-double-read"
               }
             }
           },
@@ -2702,21 +3374,28 @@
             "valid_until": "2023-10-01",
             "value": "983.69",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
-                  "title": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
+                  "document_id": "laterizi-industria-f021-src-dccfdf85",
+                  "title": "laterizi-industria-f021: source0.pdf",
                   "kind": "associazione",
-                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf"
+                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf",
+                  "sha256": "dccfdf857610cec1aeabeddda4eaf60d8b0214a3f632c8fe87dd1464143a0bf6"
                 },
-                "section": "Tabella retributiva"
+                "page": "7",
+                "section": "Art. 21 — I nuovi minimi saranno",
+                "quote": "F 954,28 29,41 983,69 18,38 1.002,07 25,74 1.027,81"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2022-07-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-laterizi-industria-f021-double-read"
               }
             }
           },
@@ -2725,21 +3404,28 @@
             "valid_until": "2025-02-01",
             "value": "1002.07",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
-                  "title": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
+                  "document_id": "laterizi-industria-f021-src-dccfdf85",
+                  "title": "laterizi-industria-f021: source0.pdf",
                   "kind": "associazione",
-                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf"
+                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf",
+                  "sha256": "dccfdf857610cec1aeabeddda4eaf60d8b0214a3f632c8fe87dd1464143a0bf6"
                 },
-                "section": "Tabella retributiva"
+                "page": "7",
+                "section": "Art. 21 — I nuovi minimi saranno",
+                "quote": "F 954,28 29,41 983,69 18,38 1.002,07 25,74 1.027,81"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2023-10-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-laterizi-industria-f021-double-read"
               }
             }
           },
@@ -2748,21 +3434,28 @@
             "valid_until": "2025-10-01",
             "value": "1027.81",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
-                  "title": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
+                  "document_id": "laterizi-industria-f021-src-dccfdf85",
+                  "title": "laterizi-industria-f021: source0.pdf",
                   "kind": "associazione",
-                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf"
+                  "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf",
+                  "sha256": "dccfdf857610cec1aeabeddda4eaf60d8b0214a3f632c8fe87dd1464143a0bf6"
                 },
-                "section": "Tabella retributiva"
+                "page": "7",
+                "section": "Art. 21 — I nuovi minimi saranno",
+                "quote": "F 954,28 29,41 983,69 18,38 1.002,07 25,74 1.027,81"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T06:00:00Z",
+                "effective_from": "2025-02-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-08T06:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-gpt-laterizi-industria-f021-double-read"
               }
             }
           },
@@ -2869,7 +3562,32 @@
               {
                 "valid_from": "2022-04-01",
                 "valid_until": null,
-                "value": "511.74"
+                "value": "511.74",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "laterizi-industria-f021-tables-d26fb2b0",
+                      "title": "laterizi-industria-f021: tabelle retributive (source3.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.filleacgil.net/images/MORELLO/CCNL12.2.2020laterizi-manufatti-industria.pdf",
+                      "sha256": "d26fb2b0ebd79c0562f7e786d77cc25d97b894369b0a34841163a46acd6e1e0b"
+                    },
+                    "page": "40",
+                    "section": "Art. 24 — Indennità di contingenza - EDR",
+                    "quote": "F                                           € 511,74"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2022-04-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-laterizi-industria-f021-tables"
+                  }
+                }
               }
             ]
           },
@@ -2900,7 +3618,32 @@
               {
                 "valid_from": "2022-04-01",
                 "valid_until": null,
-                "value": "10.33"
+                "value": "10.33",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "laterizi-industria-f021-tables-d26fb2b0",
+                      "title": "laterizi-industria-f021: tabelle retributive (source3.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.filleacgil.net/images/MORELLO/CCNL12.2.2020laterizi-manufatti-industria.pdf",
+                      "sha256": "d26fb2b0ebd79c0562f7e786d77cc25d97b894369b0a34841163a46acd6e1e0b"
+                    },
+                    "page": "40",
+                    "section": "Art. 24 — Indennità di contingenza - EDR",
+                    "quote": "somma forfetaria a titolo di Elemento Distinto dalla Retribuzione di lire 20.000 (€ 10,33) mensili per 13 mensilità"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2022-04-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-laterizi-industria-f021-tables"
+                  }
+                }
               }
             ]
           },
@@ -2951,7 +3694,7 @@
     "effective_until": null,
     "source": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf",
     "verification_status": "unverified",
-    "source_hash": "250059371fb067d74ed8c045117e0ea8979ee6c34378c7be83aaa461de0f24ed",
+    "source_hash": "c119027b60639cf259b5a50b274817fea76317f86fe014a7eaf411b49ff7b16a",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
