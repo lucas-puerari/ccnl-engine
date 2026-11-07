@@ -88,12 +88,25 @@ def _required(value: int | None, name: str, ccnl: CCNL) -> int:
     return value
 
 
+def _within_months(period: DualPeriod, months: int) -> bool:
+    """Whether month ``months`` of the contract falls in ``period``.
+
+    Returns:
+        ``True`` from :attr:`DualPeriod.months_from` up to
+        :attr:`DualPeriod.months_until` (exclusive), each when set.
+    """
+    start, end = period.months_from, period.months_until
+    return (start is None or months >= start) and (end is None or months < end)
+
+
 def _holds(period: DualPeriod, apprentice: Apprentice, ccnl: CCNL) -> bool:
     """Whether ``period`` pays the apprentice now.
 
     Returns:
         ``True`` when every selector the period sets matches.
     """
+    if not _within_months(period, apprentice.months_elapsed):
+        return False
     if period.school_year is not None and period.school_year != _required(
         apprentice.school_year, "Apprentice.school_year", ccnl
     ):

@@ -29,9 +29,13 @@ class DualPeriod(BaseModel):
     """Pay of the work hours in one stretch of a dual track.
 
     A period holds when every selector it sets matches the apprentice:
-    the school year, the half of the programme, its length.
+    the months of the contract, the school year, the half of the
+    programme, its length.
 
     Attributes:
+        months_from: First month of the contract (``Apprentice.months_elapsed``)
+            the period pays (Edilizia art. 92: by semester).
+        months_until: First month past the period; ``None`` is open-ended.
         school_year: Year of the school course the period pays.
         half: Half of the programme (1 or 2) the period pays.
         programme_months_up_to: Longest programme the period pays.
@@ -43,6 +47,8 @@ class DualPeriod(BaseModel):
 
     model_config = ConfigDict(extra="forbid", frozen=True)
 
+    months_from: int | None = Field(default=None, ge=0)
+    months_until: int | None = Field(default=None, ge=1)
     school_year: int | None = Field(default=None, ge=1)
     half: Literal[1, 2] | None = None
     programme_months_up_to: int | None = Field(default=None, ge=1)
@@ -93,6 +99,8 @@ class DualTrack(BaseModel):
     def _distinct_periods(self) -> Self:
         keys = [
             (
+                p.months_from,
+                p.months_until,
                 p.school_year,
                 p.half,
                 p.programme_months_up_to,

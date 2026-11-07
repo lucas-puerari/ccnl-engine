@@ -271,3 +271,34 @@ def test_the_request_keeps_the_programme_and_the_hours() -> None:
     apprentice = _first(track="qualifica", school_year=2, hours=_HOURS)
     request = _period_input(apprentice)
     assert request_from_json(request_to_json(request), PeriodInput) == request
+
+
+@pytest.mark.parametrize(
+    ("elapsed", "rate"),
+    [(0, "0.65"), (5, "0.65"), (6, "0.70"), (11, "0.70"), (12, "0.90"), (40, "0.90")],
+)
+def test_the_months_of_the_contract_select_the_period(elapsed: int, rate: str) -> None:
+    """Edilizia art. 92 pays by semester: months 0-5, 6-11, then from 12."""
+    (track,) = (t for t in _CCNL.dual_apprenticeship if t.name == "certificato_ifts")
+    by_semester = track.model_copy(
+        update={
+            "periods": (
+                DualPeriod(months_until=6, work_rate=Decimal("0.65")),
+                DualPeriod(months_from=6, months_until=12, work_rate=Decimal("0.70")),
+                DualPeriod(months_from=12, work_rate=Decimal("0.90")),
+            )
+        }
+    )
+    ccnl = _CCNL.model_copy(update={"dual_apprenticeship": (by_semester,)})
+    hours = DualHours(Decimal(0), Decimal(0), Decimal(100))
+    chain = dual_chain(
+        ccnl,
+        ccnl.level_by_code("3"),
+        Apprentice(elapsed, programme=_FIRST, hours=hours),
+        0,
+        frozenset(),
+        _JUNE,
+        worker_category=None,
+        seniority_months=None,
+    )
+    assert chain.base == (Decimal("1746.84") * Decimal(rate)).quantize(Decimal("0.01"))
