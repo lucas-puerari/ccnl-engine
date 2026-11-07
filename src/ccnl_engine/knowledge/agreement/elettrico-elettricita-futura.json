@@ -176,6 +176,27 @@
           "work_rules.insured_absence.maternity",
           "work_rules.insured_absence.injury"
         ]
+      },
+      {
+        "id": "2026-11-08-gpt-elettrico-elettricita-futura-injury-top-up",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Employer top-up of the INAIL indemnity, read from the signed text by a separate model session (audit of the injury rules); quote checked on the text layer or the page image.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/216334",
+            "sha256": "5b0aaba700d5f7c2e579a5559b10ad6d3355a3c78772c4a91ff3b9d9bd0375ee"
+          }
+        ],
+        "findings": [
+          "The injury rule had no top-up of the INAIL indemnity; added: {\"integration_rate\": \"1\", \"carenza_rate\": \"1\"}"
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.insured_absence.injury"
+        ]
       }
     ]
   },
@@ -3059,7 +3080,7 @@
     "effective_until": null,
     "source": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/216334",
     "verification_status": "unverified",
-    "source_hash": "cd9cc60182931d914c03f17e840f5faca3cc7e963adf94404d0a0bad7518b2ff",
+    "source_hash": "ed5a1f3d6c76bda0a215fdcf2c08371af2399d9aced2ddeede6ff12b8c3e2f18",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3339,12 +3360,14 @@
             "model": "gpt-6-sol",
             "extraction_timestamp": "2026-11-08T03:00:00Z",
             "effective_from": null,
-            "verified_by": "claude-opus-5-5",
-            "verified_at": "2026-11-08T03:00:00Z",
+            "verified_by": "gpt-6-sol",
+            "verified_at": "2026-11-08T14:00:00Z",
             "verification_status": "verified",
-            "review_id": "2026-11-08-gpt-elettrico-elettricita-futura-insured-absence"
-          }
-        }
+            "review_id": "2026-11-08-gpt-elettrico-elettricita-futura-injury-top-up"
+          },
+          "transformation": "Top-up of the INAIL indemnity to 100% of the pay from the first day of absence."
+        },
+        "integration_rate": "1"
       }
     }
   }

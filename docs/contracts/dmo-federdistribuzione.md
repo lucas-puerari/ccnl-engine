@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, sickness, territorial_supplement, workplace_injury |
+| **Limits of this contract** | base_salary, sickness, territorial_supplement |
 
-7 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+6 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -71,6 +71,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-06 | claude-opus-5-5 (ai) | Apprentice seniority: artt. 186 and 188 of the testo unico of 29 September 2025 (p. 56). | corrected | The apprentice is classified two then one level below with 'il conseguente trattamento economico'; 'il personale ha diritto a dieci scatti triennali' of fixed amounts per level, counting seniority 'dal giorno in cui il lavoratore è entrato a far parte dell'azienda, quali che siano le mansioni': the increments of the level the apprentice is paid at. |
 | 2026-11-08 | gpt-6-sol (ai) | CCNL top-ups of maternity and work injury, read from the signed text by a separate model session; every quote found on the PDF text layer. | confirmed | Added work_rules.insured_absence.maternity.<br>Added work_rules.insured_absence.injury. |
 | 2026-11-08 | gpt-6-sol (ai) | Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim. | confirmed | cashier_allowance: All eight levels have IND_CASSA gated by role cassiere; all 48 dated amounts equal 5% of the corresponding stored base_salary rounded to cents. compensation/element/rules.py activates the allowance for that role. The employer must supply cassiere only when continuous cash assignm |
+| 2026-11-08 | gpt-6-sol (ai) | Employer top-up of the INAIL indemnity, read from the signed text by a separate model session (audit of the injury rules); quote checked on the text layer or the page image. | corrected | The injury rule had no top-up of the INAIL indemnity; added: {"integration_bands": [{"day_from": 4, "rate": "0.90"}, {"day_from": 20, "rate": "1"}], "net_basis": true} |
 
 ## Salary table
 
@@ -162,13 +163,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `bilateral_funds` applies.
 
     **Remediation:** Resolved: parameters.health_funds ebidim, fondo_est and quas, read on 2026-11-05.
-
-!!! warning "dmo-federdistribuzione/injury_integration_bands · workplace_injury · impact yes · open"
-    INJURY (Art. 172 c. 2): the top-up reaches 100% of the net daily pay from day 21; the model applies one rate, 90% (the rate of days 5-20), so from day 21 the injury pay is 10 points short.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Model day bands for the injury top-up (60/90/100% of Art. 172).
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

@@ -5228,7 +5228,7 @@
     "effective_until": "2027-12-31",
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551",
     "verification_status": "unverified",
-    "source_hash": "c1f26444f4fd4583aed33486c109f394225f8c06eb722b57148f69eea666b332",
+    "source_hash": "0fb4db96949be95081bc527674b4f461776dbbb9b012f2effde23a3907123342",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -5547,12 +5547,15 @@
             "model": "gpt-6-sol",
             "extraction_timestamp": "2026-11-08T03:00:00Z",
             "effective_from": null,
-            "verified_by": "claude-opus-5-5",
-            "verified_at": "2026-11-08T03:00:00Z",
+            "verified_by": "gpt-6-sol",
+            "verified_at": "2026-11-08T14:00:00Z",
             "verification_status": "verified",
-            "review_id": "2026-11-08-gpt-igiene-ambientale-utilitalia-insured-absence"
-          }
-        }
+            "review_id": "2026-11-08-gpt-igiene-ambientale-utilitalia-injury-top-up"
+          },
+          "transformation": "Top-up of the INAIL indemnity to 100% of the pay from the first day of absence."
+        },
+        "integration_rate": "1",
+        "net_basis": true
       }
     }
   },
@@ -5664,6 +5667,27 @@
         "independence": "separate_model",
         "checked": [
           "coverage.notes"
+        ]
+      },
+      {
+        "id": "2026-11-08-gpt-igiene-ambientale-utilitalia-injury-top-up",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Employer top-up of the INAIL indemnity, read from the signed text by a separate model session (audit of the injury rules); quote checked on the text layer or the page image.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/222972",
+            "sha256": "1e275a954c90e454432b58bffa792abe72d317141c7deb20900eb48646517b05"
+          }
+        ],
+        "findings": [
+          "The injury rule had no top-up of the INAIL indemnity; added: {\"integration_rate\": \"1\", \"net_basis\": true, \"carenza_rate\": \"1\"}"
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.insured_absence.injury"
         ]
       }
     ]

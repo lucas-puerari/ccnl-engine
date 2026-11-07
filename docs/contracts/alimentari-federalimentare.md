@@ -69,6 +69,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-02 | claude-opus-5-5 (ai) | The 'Lavoro notturno festivo' rows of the Art. 31 tables (PDF pp. 87-92). | corrected | Art. 31: the notturno festivo rows of carni group, vini-liquori, acque minerali, conserve vegetali and avicoli (HolidayWorkKind.NIGHT_HOLIDAY). |
 | 2026-11-05 | claude-opus-5-5 (ai) | Artt. 74 bis-quinquies (PDF pp. 155-158) and Allegato 38 (p. 424) of the CCNL of 1 March 2024, text layer. | corrected | The four contributions and the EDR of art. 74 bis were not modelled: employer cost, and the net pay with the EDR, were short. |
 | 2026-11-08 | gpt-6-sol (ai) | CCNL top-ups of maternity and work injury, read from the signed text by a separate model session; every quote found on the PDF text layer. | confirmed | Added work_rules.insured_absence.maternity.<br>Added work_rules.insured_absence.injury. |
+| 2026-11-08 | gpt-6-sol (ai) | Employer top-up of the INAIL indemnity, read from the signed text by a separate model session (audit of the injury rules); quote checked on the text layer or the page image. | corrected | The injury rule had no top-up of the INAIL indemnity; added: {"integration_rate": "1", "net_basis": true} |
 
 ## Salary table
 
