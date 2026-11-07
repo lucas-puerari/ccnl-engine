@@ -132,6 +132,32 @@
         "findings": [
           "Art. 49 Tredicesima mensilità (p. 37): \"Le frazioni di mese vengono prese in considerazione solo se superiori a 15 giorni ed in tal caso equiparate ad un mese intero.\". Match: more_than 15."
         ]
+      },
+      {
+        "id": "2026-11-07-gpt-scuole-materne-fism-double-read",
+        "date": "2026-11-07",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Monthly values on scanned pages, each read twice from the page image by two independent sessions of another model, the second without being told the expected value.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf",
+            "sha256": "07c84a5b92ff81e1d119ff08836972e8b1e382c7cce804e3eeb79234ec6b5a36"
+          },
+          {
+            "url": "https://fism.net/wp-content/uploads/2026/07/CCNL-FISM-ACCORDO-ECONOMICO-2026-2027.pdf",
+            "sha256": "860148c95c1a4133983bf0d706f645a4895301fc99b4a4bd8aa05afef7d2da26"
+          }
+        ],
+        "findings": [
+          "40 values read identically by both readings and equal to the file."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "levels.base_salary",
+          "levels.fixed_allowances"
+        ]
       }
     ]
   },
@@ -332,21 +358,28 @@
             "valid_until": "2025-06-01",
             "value": "1381.82",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
-                  "title": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
+                  "document_id": "scuole-materne-fism-src-07c84a5b",
+                  "title": "scuole-materne-fism: main.pdf",
                   "kind": "associazione",
-                  "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf"
+                  "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf",
+                  "sha256": "07c84a5b92ff81e1d119ff08836972e8b1e382c7cce804e3eeb79234ec6b5a36"
                 },
-                "section": "Tabella retributiva"
+                "page": "33",
+                "section": "Art. 42, lett. B — Retribuzione tabellare mensile",
+                "quote": "1  1.381,82  1.407,98  1.447,95"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2023-09-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-scuole-materne-fism-double-read"
               }
             }
           },
@@ -355,21 +388,28 @@
             "valid_until": "2025-09-01",
             "value": "1407.98",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
-                  "title": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
+                  "document_id": "scuole-materne-fism-src-07c84a5b",
+                  "title": "scuole-materne-fism: main.pdf",
                   "kind": "associazione",
-                  "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf"
+                  "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf",
+                  "sha256": "07c84a5b92ff81e1d119ff08836972e8b1e382c7cce804e3eeb79234ec6b5a36"
                 },
-                "section": "Tabella retributiva"
+                "page": "33",
+                "section": "Art. 42, lett. B — Retribuzione tabellare mensile",
+                "quote": "1  1.381,82  1.407,98  1.447,95"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2025-06-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-scuole-materne-fism-double-read"
               }
             }
           },
@@ -378,21 +418,28 @@
             "valid_until": "2026-09-01",
             "value": "1447.95",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
-                  "title": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
+                  "document_id": "scuole-materne-fism-src-07c84a5b",
+                  "title": "scuole-materne-fism: main.pdf",
                   "kind": "associazione",
-                  "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf"
+                  "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf",
+                  "sha256": "07c84a5b92ff81e1d119ff08836972e8b1e382c7cce804e3eeb79234ec6b5a36"
                 },
-                "section": "Tabella retributiva"
+                "page": "33",
+                "section": "Art. 42, lett. B — Retribuzione tabellare mensile",
+                "quote": "1  1.381,82  1.407,98  1.447,95"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2025-09-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-scuole-materne-fism-double-read"
               }
             }
           },
@@ -401,21 +448,28 @@
             "valid_until": "2027-09-01",
             "value": "1482.85",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
-                  "title": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
+                  "document_id": "scuole-materne-fism-src-860148c9",
+                  "title": "scuole-materne-fism: economic.pdf",
                   "kind": "associazione",
-                  "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf"
+                  "url": "https://fism.net/wp-content/uploads/2026/07/CCNL-FISM-ACCORDO-ECONOMICO-2026-2027.pdf",
+                  "sha256": "860148c95c1a4133983bf0d706f645a4895301fc99b4a4bd8aa05afef7d2da26"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "Art. 2, lett. a — minimi tabellari contrattuali mensili",
+                "quote": "I  1.447,95  1.482,85  1.517,75"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2026-09-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-scuole-materne-fism-double-read"
               }
             }
           },
@@ -424,21 +478,28 @@
             "valid_until": null,
             "value": "1517.75",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
-                  "title": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
+                  "document_id": "scuole-materne-fism-src-860148c9",
+                  "title": "scuole-materne-fism: economic.pdf",
                   "kind": "associazione",
-                  "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf"
+                  "url": "https://fism.net/wp-content/uploads/2026/07/CCNL-FISM-ACCORDO-ECONOMICO-2026-2027.pdf",
+                  "sha256": "860148c95c1a4133983bf0d706f645a4895301fc99b4a4bd8aa05afef7d2da26"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "Art. 2, lett. a — minimi tabellari contrattuali mensili",
+                "quote": "I  1.447,95  1.482,85  1.517,75"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2027-09-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-scuole-materne-fism-double-read"
               }
             }
           }
@@ -475,21 +536,28 @@
             "valid_until": "2025-06-01",
             "value": "1435.96",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
-                  "title": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
+                  "document_id": "scuole-materne-fism-src-07c84a5b",
+                  "title": "scuole-materne-fism: main.pdf",
                   "kind": "associazione",
-                  "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf"
+                  "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf",
+                  "sha256": "07c84a5b92ff81e1d119ff08836972e8b1e382c7cce804e3eeb79234ec6b5a36"
                 },
-                "section": "Tabella retributiva"
+                "page": "33",
+                "section": "Art. 42, lett. B — Retribuzione tabellare mensile",
+                "quote": "2  1.435,96  1.463,14  1.504,68"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2023-09-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-scuole-materne-fism-double-read"
               }
             }
           },
@@ -498,21 +566,28 @@
             "valid_until": "2025-09-01",
             "value": "1463.14",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
-                  "title": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
+                  "document_id": "scuole-materne-fism-src-07c84a5b",
+                  "title": "scuole-materne-fism: main.pdf",
                   "kind": "associazione",
-                  "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf"
+                  "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf",
+                  "sha256": "07c84a5b92ff81e1d119ff08836972e8b1e382c7cce804e3eeb79234ec6b5a36"
                 },
-                "section": "Tabella retributiva"
+                "page": "33",
+                "section": "Art. 42, lett. B — Retribuzione tabellare mensile",
+                "quote": "2  1.435,96  1.463,14  1.504,68"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2025-06-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-scuole-materne-fism-double-read"
               }
             }
           },
@@ -521,21 +596,28 @@
             "valid_until": "2026-09-01",
             "value": "1504.68",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
-                  "title": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
+                  "document_id": "scuole-materne-fism-src-07c84a5b",
+                  "title": "scuole-materne-fism: main.pdf",
                   "kind": "associazione",
-                  "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf"
+                  "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf",
+                  "sha256": "07c84a5b92ff81e1d119ff08836972e8b1e382c7cce804e3eeb79234ec6b5a36"
                 },
-                "section": "Tabella retributiva"
+                "page": "33",
+                "section": "Art. 42, lett. B — Retribuzione tabellare mensile",
+                "quote": "2  1.435,96  1.463,14  1.504,68"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2025-09-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-scuole-materne-fism-double-read"
               }
             }
           },
@@ -544,21 +626,28 @@
             "valid_until": "2027-09-01",
             "value": "1540.94",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
-                  "title": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
+                  "document_id": "scuole-materne-fism-src-860148c9",
+                  "title": "scuole-materne-fism: economic.pdf",
                   "kind": "associazione",
-                  "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf"
+                  "url": "https://fism.net/wp-content/uploads/2026/07/CCNL-FISM-ACCORDO-ECONOMICO-2026-2027.pdf",
+                  "sha256": "860148c95c1a4133983bf0d706f645a4895301fc99b4a4bd8aa05afef7d2da26"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "Art. 2, lett. a — minimi tabellari contrattuali mensili",
+                "quote": "II  1.504,68  1.540,94  1.577,20"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2026-09-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-scuole-materne-fism-double-read"
               }
             }
           },
@@ -567,21 +656,28 @@
             "valid_until": null,
             "value": "1577.20",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
-                  "title": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
+                  "document_id": "scuole-materne-fism-src-860148c9",
+                  "title": "scuole-materne-fism: economic.pdf",
                   "kind": "associazione",
-                  "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf"
+                  "url": "https://fism.net/wp-content/uploads/2026/07/CCNL-FISM-ACCORDO-ECONOMICO-2026-2027.pdf",
+                  "sha256": "860148c95c1a4133983bf0d706f645a4895301fc99b4a4bd8aa05afef7d2da26"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "Art. 2, lett. a — minimi tabellari contrattuali mensili",
+                "quote": "II  1.504,68  1.540,94  1.577,20"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2027-09-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-scuole-materne-fism-double-read"
               }
             }
           }
@@ -618,21 +714,28 @@
             "valid_until": "2025-06-01",
             "value": "1438.04",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
-                  "title": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
+                  "document_id": "scuole-materne-fism-src-07c84a5b",
+                  "title": "scuole-materne-fism: main.pdf",
                   "kind": "associazione",
-                  "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf"
+                  "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf",
+                  "sha256": "07c84a5b92ff81e1d119ff08836972e8b1e382c7cce804e3eeb79234ec6b5a36"
                 },
-                "section": "Tabella retributiva"
+                "page": "33",
+                "section": "Art. 42, lett. B — Retribuzione tabellare mensile",
+                "quote": "3  1.438,04  1.465,26  1.506,86"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2023-09-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-scuole-materne-fism-double-read"
               }
             }
           },
@@ -641,21 +744,28 @@
             "valid_until": "2025-09-01",
             "value": "1465.26",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
-                  "title": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
+                  "document_id": "scuole-materne-fism-src-07c84a5b",
+                  "title": "scuole-materne-fism: main.pdf",
                   "kind": "associazione",
-                  "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf"
+                  "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf",
+                  "sha256": "07c84a5b92ff81e1d119ff08836972e8b1e382c7cce804e3eeb79234ec6b5a36"
                 },
-                "section": "Tabella retributiva"
+                "page": "33",
+                "section": "Art. 42, lett. B — Retribuzione tabellare mensile",
+                "quote": "3  1.438,04  1.465,26  1.506,86"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2025-06-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-scuole-materne-fism-double-read"
               }
             }
           },
@@ -664,21 +774,28 @@
             "valid_until": "2026-09-01",
             "value": "1506.86",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
-                  "title": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
+                  "document_id": "scuole-materne-fism-src-07c84a5b",
+                  "title": "scuole-materne-fism: main.pdf",
                   "kind": "associazione",
-                  "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf"
+                  "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf",
+                  "sha256": "07c84a5b92ff81e1d119ff08836972e8b1e382c7cce804e3eeb79234ec6b5a36"
                 },
-                "section": "Tabella retributiva"
+                "page": "33",
+                "section": "Art. 42, lett. B — Retribuzione tabellare mensile",
+                "quote": "3  1.438,04  1.465,26  1.506,86"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2025-09-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-scuole-materne-fism-double-read"
               }
             }
           },
@@ -687,21 +804,28 @@
             "valid_until": "2027-09-01",
             "value": "1543.18",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
-                  "title": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
+                  "document_id": "scuole-materne-fism-src-860148c9",
+                  "title": "scuole-materne-fism: economic.pdf",
                   "kind": "associazione",
-                  "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf"
+                  "url": "https://fism.net/wp-content/uploads/2026/07/CCNL-FISM-ACCORDO-ECONOMICO-2026-2027.pdf",
+                  "sha256": "860148c95c1a4133983bf0d706f645a4895301fc99b4a4bd8aa05afef7d2da26"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "Art. 2, lett. a — minimi tabellari contrattuali mensili",
+                "quote": "III  1.506,86  1.543,18  1.579,50"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2026-09-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-scuole-materne-fism-double-read"
               }
             }
           },
@@ -710,21 +834,28 @@
             "valid_until": null,
             "value": "1579.50",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
-                  "title": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
+                  "document_id": "scuole-materne-fism-src-860148c9",
+                  "title": "scuole-materne-fism: economic.pdf",
                   "kind": "associazione",
-                  "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf"
+                  "url": "https://fism.net/wp-content/uploads/2026/07/CCNL-FISM-ACCORDO-ECONOMICO-2026-2027.pdf",
+                  "sha256": "860148c95c1a4133983bf0d706f645a4895301fc99b4a4bd8aa05afef7d2da26"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "Art. 2, lett. a — minimi tabellari contrattuali mensili",
+                "quote": "III  1.506,86  1.543,18  1.579,50"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2027-09-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-scuole-materne-fism-double-read"
               }
             }
           }
@@ -761,21 +892,28 @@
             "valid_until": "2025-06-01",
             "value": "1484.05",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
-                  "title": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
+                  "document_id": "scuole-materne-fism-src-07c84a5b",
+                  "title": "scuole-materne-fism: main.pdf",
                   "kind": "associazione",
-                  "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf"
+                  "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf",
+                  "sha256": "07c84a5b92ff81e1d119ff08836972e8b1e382c7cce804e3eeb79234ec6b5a36"
                 },
-                "section": "Tabella retributiva"
+                "page": "33",
+                "section": "Art. 42, lett. B — Retribuzione tabellare mensile",
+                "quote": "4  1.484,05  1.512,14  1.555,07"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2023-09-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-scuole-materne-fism-double-read"
               }
             }
           },
@@ -784,21 +922,28 @@
             "valid_until": "2025-09-01",
             "value": "1512.14",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
-                  "title": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
+                  "document_id": "scuole-materne-fism-src-07c84a5b",
+                  "title": "scuole-materne-fism: main.pdf",
                   "kind": "associazione",
-                  "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf"
+                  "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf",
+                  "sha256": "07c84a5b92ff81e1d119ff08836972e8b1e382c7cce804e3eeb79234ec6b5a36"
                 },
-                "section": "Tabella retributiva"
+                "page": "33",
+                "section": "Art. 42, lett. B — Retribuzione tabellare mensile",
+                "quote": "4  1.484,05  1.512,14  1.555,07"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2025-06-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-scuole-materne-fism-double-read"
               }
             }
           },
@@ -807,21 +952,28 @@
             "valid_until": "2026-09-01",
             "value": "1555.07",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
-                  "title": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
+                  "document_id": "scuole-materne-fism-src-07c84a5b",
+                  "title": "scuole-materne-fism: main.pdf",
                   "kind": "associazione",
-                  "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf"
+                  "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf",
+                  "sha256": "07c84a5b92ff81e1d119ff08836972e8b1e382c7cce804e3eeb79234ec6b5a36"
                 },
-                "section": "Tabella retributiva"
+                "page": "33",
+                "section": "Art. 42, lett. B — Retribuzione tabellare mensile",
+                "quote": "4  1.484,05  1.512,14  1.555,07"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2025-09-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-scuole-materne-fism-double-read"
               }
             }
           },
@@ -830,21 +982,28 @@
             "valid_until": "2027-09-01",
             "value": "1592.55",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
-                  "title": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
+                  "document_id": "scuole-materne-fism-src-860148c9",
+                  "title": "scuole-materne-fism: economic.pdf",
                   "kind": "associazione",
-                  "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf"
+                  "url": "https://fism.net/wp-content/uploads/2026/07/CCNL-FISM-ACCORDO-ECONOMICO-2026-2027.pdf",
+                  "sha256": "860148c95c1a4133983bf0d706f645a4895301fc99b4a4bd8aa05afef7d2da26"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "Art. 2, lett. a — minimi tabellari contrattuali mensili",
+                "quote": "IV  1.555,07  1.592,55  1.630,03"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2026-09-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-scuole-materne-fism-double-read"
               }
             }
           },
@@ -853,21 +1012,28 @@
             "valid_until": null,
             "value": "1630.03",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
-                  "title": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
+                  "document_id": "scuole-materne-fism-src-860148c9",
+                  "title": "scuole-materne-fism: economic.pdf",
                   "kind": "associazione",
-                  "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf"
+                  "url": "https://fism.net/wp-content/uploads/2026/07/CCNL-FISM-ACCORDO-ECONOMICO-2026-2027.pdf",
+                  "sha256": "860148c95c1a4133983bf0d706f645a4895301fc99b4a4bd8aa05afef7d2da26"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "Art. 2, lett. a — minimi tabellari contrattuali mensili",
+                "quote": "IV  1.555,07  1.592,55  1.630,03"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2027-09-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-scuole-materne-fism-double-read"
               }
             }
           }
@@ -904,21 +1070,28 @@
             "valid_until": "2025-06-01",
             "value": "1564.87",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
-                  "title": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
+                  "document_id": "scuole-materne-fism-src-07c84a5b",
+                  "title": "scuole-materne-fism: main.pdf",
                   "kind": "associazione",
-                  "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf"
+                  "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf",
+                  "sha256": "07c84a5b92ff81e1d119ff08836972e8b1e382c7cce804e3eeb79234ec6b5a36"
                 },
-                "section": "Tabella retributiva"
+                "page": "33",
+                "section": "Art. 42, lett. B — Retribuzione tabellare mensile",
+                "quote": "5  1.564,87  1.594,49  1.639,76"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2023-09-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-scuole-materne-fism-double-read"
               }
             }
           },
@@ -927,21 +1100,28 @@
             "valid_until": "2025-09-01",
             "value": "1594.49",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
-                  "title": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
+                  "document_id": "scuole-materne-fism-src-07c84a5b",
+                  "title": "scuole-materne-fism: main.pdf",
                   "kind": "associazione",
-                  "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf"
+                  "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf",
+                  "sha256": "07c84a5b92ff81e1d119ff08836972e8b1e382c7cce804e3eeb79234ec6b5a36"
                 },
-                "section": "Tabella retributiva"
+                "page": "33",
+                "section": "Art. 42, lett. B — Retribuzione tabellare mensile",
+                "quote": "5  1.564,87  1.594,49  1.639,76"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2025-06-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-scuole-materne-fism-double-read"
               }
             }
           },
@@ -950,21 +1130,28 @@
             "valid_until": "2026-09-01",
             "value": "1639.76",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
-                  "title": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
+                  "document_id": "scuole-materne-fism-src-07c84a5b",
+                  "title": "scuole-materne-fism: main.pdf",
                   "kind": "associazione",
-                  "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf"
+                  "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf",
+                  "sha256": "07c84a5b92ff81e1d119ff08836972e8b1e382c7cce804e3eeb79234ec6b5a36"
                 },
-                "section": "Tabella retributiva"
+                "page": "33",
+                "section": "Art. 42, lett. B — Retribuzione tabellare mensile",
+                "quote": "5  1.564,87  1.594,49  1.639,76"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2025-09-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-scuole-materne-fism-double-read"
               }
             }
           },
@@ -973,21 +1160,28 @@
             "valid_until": "2027-09-01",
             "value": "1679.76",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
-                  "title": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
+                  "document_id": "scuole-materne-fism-src-860148c9",
+                  "title": "scuole-materne-fism: economic.pdf",
                   "kind": "associazione",
-                  "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf"
+                  "url": "https://fism.net/wp-content/uploads/2026/07/CCNL-FISM-ACCORDO-ECONOMICO-2026-2027.pdf",
+                  "sha256": "860148c95c1a4133983bf0d706f645a4895301fc99b4a4bd8aa05afef7d2da26"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "Art. 2, lett. a — minimi tabellari contrattuali mensili",
+                "quote": "V  1.639,76  1.679,76  1.719,76"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2026-09-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-scuole-materne-fism-double-read"
               }
             }
           },
@@ -996,21 +1190,28 @@
             "valid_until": null,
             "value": "1719.76",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
-                  "title": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
+                  "document_id": "scuole-materne-fism-src-860148c9",
+                  "title": "scuole-materne-fism: economic.pdf",
                   "kind": "associazione",
-                  "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf"
+                  "url": "https://fism.net/wp-content/uploads/2026/07/CCNL-FISM-ACCORDO-ECONOMICO-2026-2027.pdf",
+                  "sha256": "860148c95c1a4133983bf0d706f645a4895301fc99b4a4bd8aa05afef7d2da26"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "Art. 2, lett. a — minimi tabellari contrattuali mensili",
+                "quote": "V  1.639,76  1.679,76  1.719,76"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2027-09-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-scuole-materne-fism-double-read"
               }
             }
           }
@@ -1047,21 +1248,28 @@
             "valid_until": "2025-06-01",
             "value": "1584.55",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
-                  "title": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
+                  "document_id": "scuole-materne-fism-src-07c84a5b",
+                  "title": "scuole-materne-fism: main.pdf",
                   "kind": "associazione",
-                  "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf"
+                  "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf",
+                  "sha256": "07c84a5b92ff81e1d119ff08836972e8b1e382c7cce804e3eeb79234ec6b5a36"
                 },
-                "section": "Tabella retributiva"
+                "page": "33",
+                "section": "Art. 42, lett. B — Retribuzione tabellare mensile",
+                "quote": "6  1.584,55  1.614,55  1.659,55"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2023-09-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-scuole-materne-fism-double-read"
               }
             }
           },
@@ -1070,21 +1278,28 @@
             "valid_until": "2025-09-01",
             "value": "1614.55",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
-                  "title": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
+                  "document_id": "scuole-materne-fism-src-07c84a5b",
+                  "title": "scuole-materne-fism: main.pdf",
                   "kind": "associazione",
-                  "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf"
+                  "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf",
+                  "sha256": "07c84a5b92ff81e1d119ff08836972e8b1e382c7cce804e3eeb79234ec6b5a36"
                 },
-                "section": "Tabella retributiva"
+                "page": "33",
+                "section": "Art. 42, lett. B — Retribuzione tabellare mensile",
+                "quote": "6  1.584,55  1.614,55  1.659,55"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2025-06-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-scuole-materne-fism-double-read"
               }
             }
           },
@@ -1093,21 +1308,28 @@
             "valid_until": "2026-09-01",
             "value": "1659.55",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
-                  "title": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
+                  "document_id": "scuole-materne-fism-src-07c84a5b",
+                  "title": "scuole-materne-fism: main.pdf",
                   "kind": "associazione",
-                  "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf"
+                  "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf",
+                  "sha256": "07c84a5b92ff81e1d119ff08836972e8b1e382c7cce804e3eeb79234ec6b5a36"
                 },
-                "section": "Tabella retributiva"
+                "page": "33",
+                "section": "Art. 42, lett. B — Retribuzione tabellare mensile",
+                "quote": "6  1.584,55  1.614,55  1.659,55"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2025-09-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-scuole-materne-fism-double-read"
               }
             }
           },
@@ -1116,21 +1338,28 @@
             "valid_until": "2027-09-01",
             "value": "1699.55",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
-                  "title": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
+                  "document_id": "scuole-materne-fism-src-860148c9",
+                  "title": "scuole-materne-fism: economic.pdf",
                   "kind": "associazione",
-                  "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf"
+                  "url": "https://fism.net/wp-content/uploads/2026/07/CCNL-FISM-ACCORDO-ECONOMICO-2026-2027.pdf",
+                  "sha256": "860148c95c1a4133983bf0d706f645a4895301fc99b4a4bd8aa05afef7d2da26"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "Art. 2, lett. a — minimi tabellari contrattuali mensili",
+                "quote": "VI  1.659,55  1.699,55  1.739,55"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2026-09-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-scuole-materne-fism-double-read"
               }
             }
           },
@@ -1139,21 +1368,28 @@
             "valid_until": null,
             "value": "1739.55",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
-                  "title": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
+                  "document_id": "scuole-materne-fism-src-860148c9",
+                  "title": "scuole-materne-fism: economic.pdf",
                   "kind": "associazione",
-                  "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf"
+                  "url": "https://fism.net/wp-content/uploads/2026/07/CCNL-FISM-ACCORDO-ECONOMICO-2026-2027.pdf",
+                  "sha256": "860148c95c1a4133983bf0d706f645a4895301fc99b4a4bd8aa05afef7d2da26"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "Art. 2, lett. a — minimi tabellari contrattuali mensili",
+                "quote": "VI  1.659,55  1.699,55  1.739,55"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2027-09-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-scuole-materne-fism-double-read"
               }
             }
           }
@@ -1190,21 +1426,28 @@
             "valid_until": "2025-06-01",
             "value": "1740.88",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
-                  "title": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
+                  "document_id": "scuole-materne-fism-src-07c84a5b",
+                  "title": "scuole-materne-fism: main.pdf",
                   "kind": "associazione",
-                  "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf"
+                  "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf",
+                  "sha256": "07c84a5b92ff81e1d119ff08836972e8b1e382c7cce804e3eeb79234ec6b5a36"
                 },
-                "section": "Tabella retributiva"
+                "page": "33",
+                "section": "Art. 42, lett. B — Retribuzione tabellare mensile",
+                "quote": "7  1.740,88  1.773,83  1.824,19"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2023-09-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-scuole-materne-fism-double-read"
               }
             }
           },
@@ -1213,21 +1456,28 @@
             "valid_until": "2025-09-01",
             "value": "1773.83",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
-                  "title": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
+                  "document_id": "scuole-materne-fism-src-07c84a5b",
+                  "title": "scuole-materne-fism: main.pdf",
                   "kind": "associazione",
-                  "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf"
+                  "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf",
+                  "sha256": "07c84a5b92ff81e1d119ff08836972e8b1e382c7cce804e3eeb79234ec6b5a36"
                 },
-                "section": "Tabella retributiva"
+                "page": "33",
+                "section": "Art. 42, lett. B — Retribuzione tabellare mensile",
+                "quote": "7  1.740,88  1.773,83  1.824,19"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2025-06-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-scuole-materne-fism-double-read"
               }
             }
           },
@@ -1236,21 +1486,28 @@
             "valid_until": "2026-09-01",
             "value": "1824.19",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
-                  "title": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
+                  "document_id": "scuole-materne-fism-src-07c84a5b",
+                  "title": "scuole-materne-fism: main.pdf",
                   "kind": "associazione",
-                  "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf"
+                  "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf",
+                  "sha256": "07c84a5b92ff81e1d119ff08836972e8b1e382c7cce804e3eeb79234ec6b5a36"
                 },
-                "section": "Tabella retributiva"
+                "page": "33",
+                "section": "Art. 42, lett. B — Retribuzione tabellare mensile",
+                "quote": "7  1.740,88  1.773,83  1.824,19"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2025-09-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-scuole-materne-fism-double-read"
               }
             }
           },
@@ -1259,21 +1516,28 @@
             "valid_until": "2027-09-01",
             "value": "1868.15",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
-                  "title": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
+                  "document_id": "scuole-materne-fism-src-860148c9",
+                  "title": "scuole-materne-fism: economic.pdf",
                   "kind": "associazione",
-                  "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf"
+                  "url": "https://fism.net/wp-content/uploads/2026/07/CCNL-FISM-ACCORDO-ECONOMICO-2026-2027.pdf",
+                  "sha256": "860148c95c1a4133983bf0d706f645a4895301fc99b4a4bd8aa05afef7d2da26"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "Art. 2, lett. a — minimi tabellari contrattuali mensili",
+                "quote": "VII  1.824,19  1.868,15  1.912,11"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2026-09-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-scuole-materne-fism-double-read"
               }
             }
           },
@@ -1282,21 +1546,28 @@
             "valid_until": null,
             "value": "1912.11",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
-                  "title": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
+                  "document_id": "scuole-materne-fism-src-860148c9",
+                  "title": "scuole-materne-fism: economic.pdf",
                   "kind": "associazione",
-                  "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf"
+                  "url": "https://fism.net/wp-content/uploads/2026/07/CCNL-FISM-ACCORDO-ECONOMICO-2026-2027.pdf",
+                  "sha256": "860148c95c1a4133983bf0d706f645a4895301fc99b4a4bd8aa05afef7d2da26"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "Art. 2, lett. a — minimi tabellari contrattuali mensili",
+                "quote": "VII  1.824,19  1.868,15  1.912,11"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2027-09-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-scuole-materne-fism-double-read"
               }
             }
           }
@@ -1333,21 +1604,28 @@
             "valid_until": "2025-06-01",
             "value": "1780.26",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
-                  "title": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
+                  "document_id": "scuole-materne-fism-src-07c84a5b",
+                  "title": "scuole-materne-fism: main.pdf",
                   "kind": "associazione",
-                  "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf"
+                  "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf",
+                  "sha256": "07c84a5b92ff81e1d119ff08836972e8b1e382c7cce804e3eeb79234ec6b5a36"
                 },
-                "section": "Tabella retributiva"
+                "page": "33",
+                "section": "Art. 42, lett. B — Retribuzione tabellare mensile",
+                "quote": "8  1.780,26  1.813,96  1.865,46"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2023-09-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-scuole-materne-fism-double-read"
               }
             }
           },
@@ -1356,21 +1634,28 @@
             "valid_until": "2025-09-01",
             "value": "1813.96",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
-                  "title": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
+                  "document_id": "scuole-materne-fism-src-07c84a5b",
+                  "title": "scuole-materne-fism: main.pdf",
                   "kind": "associazione",
-                  "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf"
+                  "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf",
+                  "sha256": "07c84a5b92ff81e1d119ff08836972e8b1e382c7cce804e3eeb79234ec6b5a36"
                 },
-                "section": "Tabella retributiva"
+                "page": "33",
+                "section": "Art. 42, lett. B — Retribuzione tabellare mensile",
+                "quote": "8  1.780,26  1.813,96  1.865,46"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2025-06-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-scuole-materne-fism-double-read"
               }
             }
           },
@@ -1379,21 +1664,28 @@
             "valid_until": "2026-09-01",
             "value": "1865.46",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
-                  "title": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
+                  "document_id": "scuole-materne-fism-src-07c84a5b",
+                  "title": "scuole-materne-fism: main.pdf",
                   "kind": "associazione",
-                  "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf"
+                  "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf",
+                  "sha256": "07c84a5b92ff81e1d119ff08836972e8b1e382c7cce804e3eeb79234ec6b5a36"
                 },
-                "section": "Tabella retributiva"
+                "page": "33",
+                "section": "Art. 42, lett. B — Retribuzione tabellare mensile",
+                "quote": "8  1.780,26  1.813,96  1.865,46"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2025-09-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-scuole-materne-fism-double-read"
               }
             }
           },
@@ -1402,21 +1694,28 @@
             "valid_until": "2027-09-01",
             "value": "1910.42",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
-                  "title": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
+                  "document_id": "scuole-materne-fism-src-860148c9",
+                  "title": "scuole-materne-fism: economic.pdf",
                   "kind": "associazione",
-                  "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf"
+                  "url": "https://fism.net/wp-content/uploads/2026/07/CCNL-FISM-ACCORDO-ECONOMICO-2026-2027.pdf",
+                  "sha256": "860148c95c1a4133983bf0d706f645a4895301fc99b4a4bd8aa05afef7d2da26"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "Art. 2, lett. a — minimi tabellari contrattuali mensili",
+                "quote": "VIII  1.865,46  1.910,42  1.955,38"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2026-09-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-scuole-materne-fism-double-read"
               }
             }
           },
@@ -1425,21 +1724,28 @@
             "valid_until": null,
             "value": "1955.38",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
-                  "title": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
+                  "document_id": "scuole-materne-fism-src-860148c9",
+                  "title": "scuole-materne-fism: economic.pdf",
                   "kind": "associazione",
-                  "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf"
+                  "url": "https://fism.net/wp-content/uploads/2026/07/CCNL-FISM-ACCORDO-ECONOMICO-2026-2027.pdf",
+                  "sha256": "860148c95c1a4133983bf0d706f645a4895301fc99b4a4bd8aa05afef7d2da26"
                 },
-                "section": "Tabella retributiva"
+                "page": "3",
+                "section": "Art. 2, lett. a — minimi tabellari contrattuali mensili",
+                "quote": "VIII  1.865,46  1.910,42  1.955,38"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
+                "effective_from": "2027-09-01",
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-scuole-materne-fism-double-read"
               }
             }
           }

@@ -166,6 +166,28 @@
           "The ruleset now names the ipotesi of 16/02/2024 published via the FILCAMS CGIL contract page: source_type contracting_party instead of the aggregator page.",
           "Maintainer decision: all 42 periods are derived from the Ministry of Labour D.D. n. 50 of 08/08/2024 (cost tables, annual paga base / 12); the unsigned ipotesi of 16/02/2024 is only a cross-check for levels 4 and 6."
         ]
+      },
+      {
+        "id": "2026-11-07-gpt-vigilanza-privata-assiv-double-read",
+        "date": "2026-11-07",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Monthly values on scanned pages, each read twice from the page image by two independent sessions of another model, the second without being told the expected value.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.univigilanza.it/download.aspx?file=/public/ccnl/Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+            "sha256": "d98f968443033cd953e1a50f6019004eb576292532aea6a89d1c8b105e454d5b"
+          }
+        ],
+        "findings": [
+          "42 values read identically by both readings and equal to the file."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "levels.base_salary",
+          "levels.fixed_allowances"
+        ]
       }
     ]
   },
@@ -321,27 +343,29 @@
             "valid_until": "2024-06-01",
             "value": "1108.06",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "mlps-dd-50-2024-08-08",
-                  "title": "Ministero del Lavoro e delle Politiche Sociali, D.D. n. 50 dell'8 agosto 2024, costo medio orario del lavoro per i dipendenti da istituti di vigilanza privata e servizi di sicurezza (tabelle allegate)",
-                  "kind": "altro",
-                  "url": "https://lavoro.gov.it/temi-e-priorita-rapporti-di-lavoro-e-relazioni-industriali/focus/decreto-direttoriale-n.-50-dell8",
-                  "published_on": "2024-08-08",
-                  "sha256": "823f6c9aae9f90006c234eeb2966493f4c6b70480a40443e3d62a27360de483a"
+                  "document_id": "vigilanza-privata-assiv-src-d98f9684",
+                  "title": "vigilanza-privata-assiv: Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.univigilanza.it/download.aspx?file=/public/ccnl/Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "sha256": "d98f968443033cd953e1a50f6019004eb576292532aea6a89d1c8b105e454d5b"
                 },
-                "page": "18",
-                "section": "Tabella costo medio orario, Servizio tecnico-operativo diurno, GIUGNO 2023, A - Elementi retributivi annui, column 6",
-                "quote": "Paga base tabellare conglobata 13.296,72 15.142,44 15.946,56 15.946,56 17.799,72 17.799,72 19.924,56 21.271,20 21.271,20 24.588,36"
+                "page": "1",
+                "section": "Vigilanza privata — Paga Conglobata, columns 2023-06-01, 2024-06-01, 2025-06-01, 2025-12-01, 2026-04-01, 2026-12-01",
+                "quote": "6 | 1072,34 | 1108,06 | 1185,44 | 1218,44 | 1246,73 | 1293,87 | 1350,44"
               },
               "transformation": "Annual paga base tabellare conglobata of level VI (13.296,72, twelve monthly amounts; 13th and 14th are listed separately under B - Oneri aggiuntivi) divided by 12 = 1108.06 per month.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-18T14:05:18Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2023-06-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-vigilanza-privata-assiv-double-read"
               }
             }
           },
@@ -350,27 +374,29 @@
             "valid_until": "2025-06-01",
             "value": "1185.44",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "mlps-dd-50-2024-08-08",
-                  "title": "Ministero del Lavoro e delle Politiche Sociali, D.D. n. 50 dell'8 agosto 2024, costo medio orario del lavoro per i dipendenti da istituti di vigilanza privata e servizi di sicurezza (tabelle allegate)",
-                  "kind": "altro",
-                  "url": "https://lavoro.gov.it/temi-e-priorita-rapporti-di-lavoro-e-relazioni-industriali/focus/decreto-direttoriale-n.-50-dell8",
-                  "published_on": "2024-08-08",
-                  "sha256": "823f6c9aae9f90006c234eeb2966493f4c6b70480a40443e3d62a27360de483a"
+                  "document_id": "vigilanza-privata-assiv-src-d98f9684",
+                  "title": "vigilanza-privata-assiv: Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.univigilanza.it/download.aspx?file=/public/ccnl/Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "sha256": "d98f968443033cd953e1a50f6019004eb576292532aea6a89d1c8b105e454d5b"
                 },
-                "page": "19",
-                "section": "Tabella costo medio orario, Servizio tecnico-operativo diurno, GIUGNO 2024, A - Elementi retributivi annui, column 6",
-                "quote": "Paga base tabellare conglobata 14.225,28 15.425,28 16.246,56 16.246,56 18.159,72 18.159,72 20.353,08 21.742,68 21.742,68 25.166,88"
+                "page": "1",
+                "section": "Vigilanza privata — Paga Conglobata, columns 2023-06-01, 2024-06-01, 2025-06-01, 2025-12-01, 2026-04-01, 2026-12-01",
+                "quote": "6 | 1072,34 | 1108,06 | 1185,44 | 1218,44 | 1246,73 | 1293,87 | 1350,44"
               },
               "transformation": "Annual paga base tabellare conglobata of level 6 (14.225,28, twelve monthly amounts) divided by 12 = 1185.44 per month.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-18T14:05:18Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2024-06-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-vigilanza-privata-assiv-double-read"
               }
             }
           },
@@ -379,27 +405,29 @@
             "valid_until": "2025-12-01",
             "value": "1218.44",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "mlps-dd-50-2024-08-08",
-                  "title": "Ministero del Lavoro e delle Politiche Sociali, D.D. n. 50 dell'8 agosto 2024, costo medio orario del lavoro per i dipendenti da istituti di vigilanza privata e servizi di sicurezza (tabelle allegate)",
-                  "kind": "altro",
-                  "url": "https://lavoro.gov.it/temi-e-priorita-rapporti-di-lavoro-e-relazioni-industriali/focus/decreto-direttoriale-n.-50-dell8",
-                  "published_on": "2024-08-08",
-                  "sha256": "823f6c9aae9f90006c234eeb2966493f4c6b70480a40443e3d62a27360de483a"
+                  "document_id": "vigilanza-privata-assiv-src-d98f9684",
+                  "title": "vigilanza-privata-assiv: Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.univigilanza.it/download.aspx?file=/public/ccnl/Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "sha256": "d98f968443033cd953e1a50f6019004eb576292532aea6a89d1c8b105e454d5b"
                 },
-                "page": "20",
-                "section": "Tabella costo medio orario, Servizio tecnico-operativo diurno, GIUGNO 2025, A - Elementi retributivi annui, column 6",
-                "quote": "Paga base tabellare conglobata 14.621,28 15.821,28 16.666,56 16.666,56 18.663,72 18.663,72 20.953,08 22.402,68 22.402,68 25.976,88"
+                "page": "1",
+                "section": "Vigilanza privata — Paga Conglobata, columns 2023-06-01, 2024-06-01, 2025-06-01, 2025-12-01, 2026-04-01, 2026-12-01",
+                "quote": "6 | 1072,34 | 1108,06 | 1185,44 | 1218,44 | 1246,73 | 1293,87 | 1350,44"
               },
               "transformation": "Annual paga base tabellare conglobata of level 6 (14.621,28, twelve monthly amounts) divided by 12 = 1218.44 per month.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-18T14:05:18Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2025-06-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-vigilanza-privata-assiv-double-read"
               }
             }
           },
@@ -408,27 +436,29 @@
             "valid_until": "2026-04-01",
             "value": "1246.73",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "mlps-dd-50-2024-08-08",
-                  "title": "Ministero del Lavoro e delle Politiche Sociali, D.D. n. 50 dell'8 agosto 2024, costo medio orario del lavoro per i dipendenti da istituti di vigilanza privata e servizi di sicurezza (tabelle allegate)",
-                  "kind": "altro",
-                  "url": "https://lavoro.gov.it/temi-e-priorita-rapporti-di-lavoro-e-relazioni-industriali/focus/decreto-direttoriale-n.-50-dell8",
-                  "published_on": "2024-08-08",
-                  "sha256": "823f6c9aae9f90006c234eeb2966493f4c6b70480a40443e3d62a27360de483a"
+                  "document_id": "vigilanza-privata-assiv-src-d98f9684",
+                  "title": "vigilanza-privata-assiv: Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.univigilanza.it/download.aspx?file=/public/ccnl/Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "sha256": "d98f968443033cd953e1a50f6019004eb576292532aea6a89d1c8b105e454d5b"
                 },
-                "page": "21",
-                "section": "Tabella costo medio orario, Servizio tecnico-operativo diurno, DICEMBRE 2025, A - Elementi retributivi annui, column 6",
-                "quote": "Paga base tabellare conglobata 14.960,76 16.160,76 17.026,56 17.026,56 19.095,72 19.095,72 21.467,40 22.968,36 22.968,36 26.671,20"
+                "page": "1",
+                "section": "Vigilanza privata — Paga Conglobata, columns 2023-06-01, 2024-06-01, 2025-06-01, 2025-12-01, 2026-04-01, 2026-12-01",
+                "quote": "6 | 1072,34 | 1108,06 | 1185,44 | 1218,44 | 1246,73 | 1293,87 | 1350,44"
               },
               "transformation": "Annual paga base tabellare conglobata of level 6 (14.960,76, twelve monthly amounts) divided by 12 = 1246.73 per month.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-18T14:05:18Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2025-12-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-vigilanza-privata-assiv-double-read"
               }
             }
           },
@@ -437,27 +467,29 @@
             "valid_until": "2026-12-01",
             "value": "1293.87",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "mlps-dd-50-2024-08-08",
-                  "title": "Ministero del Lavoro e delle Politiche Sociali, D.D. n. 50 dell'8 agosto 2024, costo medio orario del lavoro per i dipendenti da istituti di vigilanza privata e servizi di sicurezza (tabelle allegate)",
-                  "kind": "altro",
-                  "url": "https://lavoro.gov.it/temi-e-priorita-rapporti-di-lavoro-e-relazioni-industriali/focus/decreto-direttoriale-n.-50-dell8",
-                  "published_on": "2024-08-08",
-                  "sha256": "823f6c9aae9f90006c234eeb2966493f4c6b70480a40443e3d62a27360de483a"
+                  "document_id": "vigilanza-privata-assiv-src-d98f9684",
+                  "title": "vigilanza-privata-assiv: Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.univigilanza.it/download.aspx?file=/public/ccnl/Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "sha256": "d98f968443033cd953e1a50f6019004eb576292532aea6a89d1c8b105e454d5b"
                 },
-                "page": "22",
-                "section": "Tabella costo medio orario, Servizio tecnico-operativo diurno, APRILE 2026, A - Elementi retributivi annui, column 6",
-                "quote": "Paga base tabellare conglobata 15.526,44 16.726,44 17.626,56 17.626,56 19.815,72 19.815,72 22.324,56 23.911,20 23.911,20 27.828,36"
+                "page": "1",
+                "section": "Vigilanza privata — Paga Conglobata, columns 2023-06-01, 2024-06-01, 2025-06-01, 2025-12-01, 2026-04-01, 2026-12-01",
+                "quote": "6 | 1072,34 | 1108,06 | 1185,44 | 1218,44 | 1246,73 | 1293,87 | 1350,44"
               },
               "transformation": "Annual paga base tabellare conglobata of level 6 (15.526,44, twelve monthly amounts) divided by 12 = 1293.87 per month.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-18T14:05:18Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2026-04-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-vigilanza-privata-assiv-double-read"
               }
             }
           },
@@ -466,27 +498,29 @@
             "valid_until": null,
             "value": "1350.44",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "mlps-dd-50-2024-08-08",
-                  "title": "Ministero del Lavoro e delle Politiche Sociali, D.D. n. 50 dell'8 agosto 2024, costo medio orario del lavoro per i dipendenti da istituti di vigilanza privata e servizi di sicurezza (tabelle allegate)",
-                  "kind": "altro",
-                  "url": "https://lavoro.gov.it/temi-e-priorita-rapporti-di-lavoro-e-relazioni-industriali/focus/decreto-direttoriale-n.-50-dell8",
-                  "published_on": "2024-08-08",
-                  "sha256": "823f6c9aae9f90006c234eeb2966493f4c6b70480a40443e3d62a27360de483a"
+                  "document_id": "vigilanza-privata-assiv-src-d98f9684",
+                  "title": "vigilanza-privata-assiv: Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.univigilanza.it/download.aspx?file=/public/ccnl/Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "sha256": "d98f968443033cd953e1a50f6019004eb576292532aea6a89d1c8b105e454d5b"
                 },
-                "page": "23",
-                "section": "Tabella costo medio orario, Servizio tecnico-operativo diurno, DICEMBRE 2026, A - Elementi retributivi annui, column 6",
-                "quote": "Paga base tabellare conglobata 16.205,28 17.405,28 18.346,56 18.346,56 20.679,72 20.679,72 23.353,08 25.042,68 25.042,68 29.216,88"
+                "page": "1",
+                "section": "Vigilanza privata — Paga Conglobata, columns 2023-06-01, 2024-06-01, 2025-06-01, 2025-12-01, 2026-04-01, 2026-12-01",
+                "quote": "6 | 1072,34 | 1108,06 | 1185,44 | 1218,44 | 1246,73 | 1293,87 | 1350,44"
               },
               "transformation": "Annual paga base tabellare conglobata of level 6 (16.205,28, twelve monthly amounts) divided by 12 = 1350.44 per month.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-18T14:05:18Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2026-12-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-vigilanza-privata-assiv-double-read"
               }
             }
           }
@@ -523,27 +557,29 @@
             "valid_until": "2024-06-01",
             "value": "1261.87",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "mlps-dd-50-2024-08-08",
-                  "title": "Ministero del Lavoro e delle Politiche Sociali, D.D. n. 50 dell'8 agosto 2024, costo medio orario del lavoro per i dipendenti da istituti di vigilanza privata e servizi di sicurezza (tabelle allegate)",
-                  "kind": "altro",
-                  "url": "https://lavoro.gov.it/temi-e-priorita-rapporti-di-lavoro-e-relazioni-industriali/focus/decreto-direttoriale-n.-50-dell8",
-                  "published_on": "2024-08-08",
-                  "sha256": "823f6c9aae9f90006c234eeb2966493f4c6b70480a40443e3d62a27360de483a"
+                  "document_id": "vigilanza-privata-assiv-src-d98f9684",
+                  "title": "vigilanza-privata-assiv: Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.univigilanza.it/download.aspx?file=/public/ccnl/Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "sha256": "d98f968443033cd953e1a50f6019004eb576292532aea6a89d1c8b105e454d5b"
                 },
-                "page": "18",
-                "section": "Tabella costo medio orario, Servizio tecnico-operativo diurno, GIUGNO 2023, A - Elementi retributivi annui, column 5",
-                "quote": "Paga base tabellare conglobata 13.296,72 15.142,44 15.946,56 15.946,56 17.799,72 17.799,72 19.924,56 21.271,20 21.271,20 24.588,36"
+                "page": "1",
+                "section": "Vigilanza privata — Paga Conglobata, columns 2023-06-01, 2024-06-01, 2025-06-01, 2025-12-01, 2026-04-01, 2026-12-01",
+                "quote": "5 | 1214,72 | 1261,87 | 1285,44 | 1318,44 | 1346,73 | 1393,87 | 1450,44"
               },
               "transformation": "Annual paga base tabellare conglobata of level V (15.142,44, twelve monthly amounts; 13th and 14th are listed separately under B - Oneri aggiuntivi) divided by 12 = 1261.87 per month.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-18T14:05:18Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2023-06-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-vigilanza-privata-assiv-double-read"
               }
             }
           },
@@ -552,27 +588,29 @@
             "valid_until": "2025-06-01",
             "value": "1285.44",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "mlps-dd-50-2024-08-08",
-                  "title": "Ministero del Lavoro e delle Politiche Sociali, D.D. n. 50 dell'8 agosto 2024, costo medio orario del lavoro per i dipendenti da istituti di vigilanza privata e servizi di sicurezza (tabelle allegate)",
-                  "kind": "altro",
-                  "url": "https://lavoro.gov.it/temi-e-priorita-rapporti-di-lavoro-e-relazioni-industriali/focus/decreto-direttoriale-n.-50-dell8",
-                  "published_on": "2024-08-08",
-                  "sha256": "823f6c9aae9f90006c234eeb2966493f4c6b70480a40443e3d62a27360de483a"
+                  "document_id": "vigilanza-privata-assiv-src-d98f9684",
+                  "title": "vigilanza-privata-assiv: Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.univigilanza.it/download.aspx?file=/public/ccnl/Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "sha256": "d98f968443033cd953e1a50f6019004eb576292532aea6a89d1c8b105e454d5b"
                 },
-                "page": "19",
-                "section": "Tabella costo medio orario, Servizio tecnico-operativo diurno, GIUGNO 2024, A - Elementi retributivi annui, column 5",
-                "quote": "Paga base tabellare conglobata 14.225,28 15.425,28 16.246,56 16.246,56 18.159,72 18.159,72 20.353,08 21.742,68 21.742,68 25.166,88"
+                "page": "1",
+                "section": "Vigilanza privata — Paga Conglobata, columns 2023-06-01, 2024-06-01, 2025-06-01, 2025-12-01, 2026-04-01, 2026-12-01",
+                "quote": "5 | 1214,72 | 1261,87 | 1285,44 | 1318,44 | 1346,73 | 1393,87 | 1450,44"
               },
               "transformation": "Annual paga base tabellare conglobata of level V (15.425,28, twelve monthly amounts; 13th and 14th are listed separately under B - Oneri aggiuntivi) divided by 12 = 1285.44 per month.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-18T14:05:18Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2024-06-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-vigilanza-privata-assiv-double-read"
               }
             }
           },
@@ -581,27 +619,29 @@
             "valid_until": "2025-12-01",
             "value": "1318.44",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "mlps-dd-50-2024-08-08",
-                  "title": "Ministero del Lavoro e delle Politiche Sociali, D.D. n. 50 dell'8 agosto 2024, costo medio orario del lavoro per i dipendenti da istituti di vigilanza privata e servizi di sicurezza (tabelle allegate)",
-                  "kind": "altro",
-                  "url": "https://lavoro.gov.it/temi-e-priorita-rapporti-di-lavoro-e-relazioni-industriali/focus/decreto-direttoriale-n.-50-dell8",
-                  "published_on": "2024-08-08",
-                  "sha256": "823f6c9aae9f90006c234eeb2966493f4c6b70480a40443e3d62a27360de483a"
+                  "document_id": "vigilanza-privata-assiv-src-d98f9684",
+                  "title": "vigilanza-privata-assiv: Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.univigilanza.it/download.aspx?file=/public/ccnl/Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "sha256": "d98f968443033cd953e1a50f6019004eb576292532aea6a89d1c8b105e454d5b"
                 },
-                "page": "20",
-                "section": "Tabella costo medio orario, Servizio tecnico-operativo diurno, GIUGNO 2025, A - Elementi retributivi annui, column 5",
-                "quote": "Paga base tabellare conglobata 14.621,28 15.821,28 16.666,56 16.666,56 18.663,72 18.663,72 20.953,08 22.402,68 22.402,68 25.976,88"
+                "page": "1",
+                "section": "Vigilanza privata — Paga Conglobata, columns 2023-06-01, 2024-06-01, 2025-06-01, 2025-12-01, 2026-04-01, 2026-12-01",
+                "quote": "5 | 1214,72 | 1261,87 | 1285,44 | 1318,44 | 1346,73 | 1393,87 | 1450,44"
               },
               "transformation": "Annual paga base tabellare conglobata of level V (15.821,28, twelve monthly amounts; 13th and 14th are listed separately under B - Oneri aggiuntivi) divided by 12 = 1318.44 per month.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-18T14:05:18Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2025-06-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-vigilanza-privata-assiv-double-read"
               }
             }
           },
@@ -610,27 +650,29 @@
             "valid_until": "2026-04-01",
             "value": "1346.73",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "mlps-dd-50-2024-08-08",
-                  "title": "Ministero del Lavoro e delle Politiche Sociali, D.D. n. 50 dell'8 agosto 2024, costo medio orario del lavoro per i dipendenti da istituti di vigilanza privata e servizi di sicurezza (tabelle allegate)",
-                  "kind": "altro",
-                  "url": "https://lavoro.gov.it/temi-e-priorita-rapporti-di-lavoro-e-relazioni-industriali/focus/decreto-direttoriale-n.-50-dell8",
-                  "published_on": "2024-08-08",
-                  "sha256": "823f6c9aae9f90006c234eeb2966493f4c6b70480a40443e3d62a27360de483a"
+                  "document_id": "vigilanza-privata-assiv-src-d98f9684",
+                  "title": "vigilanza-privata-assiv: Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.univigilanza.it/download.aspx?file=/public/ccnl/Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "sha256": "d98f968443033cd953e1a50f6019004eb576292532aea6a89d1c8b105e454d5b"
                 },
-                "page": "21",
-                "section": "Tabella costo medio orario, Servizio tecnico-operativo diurno, DICEMBRE 2025, A - Elementi retributivi annui, column 5",
-                "quote": "Paga base tabellare conglobata 14.960,76 16.160,76 17.026,56 17.026,56 19.095,72 19.095,72 21.467,40 22.968,36 22.968,36 26.671,20"
+                "page": "1",
+                "section": "Vigilanza privata — Paga Conglobata, columns 2023-06-01, 2024-06-01, 2025-06-01, 2025-12-01, 2026-04-01, 2026-12-01",
+                "quote": "5 | 1214,72 | 1261,87 | 1285,44 | 1318,44 | 1346,73 | 1393,87 | 1450,44"
               },
               "transformation": "Annual paga base tabellare conglobata of level V (16.160,76, twelve monthly amounts; 13th and 14th are listed separately under B - Oneri aggiuntivi) divided by 12 = 1346.73 per month.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-18T14:05:18Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2025-12-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-vigilanza-privata-assiv-double-read"
               }
             }
           },
@@ -639,27 +681,29 @@
             "valid_until": "2026-12-01",
             "value": "1393.87",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "mlps-dd-50-2024-08-08",
-                  "title": "Ministero del Lavoro e delle Politiche Sociali, D.D. n. 50 dell'8 agosto 2024, costo medio orario del lavoro per i dipendenti da istituti di vigilanza privata e servizi di sicurezza (tabelle allegate)",
-                  "kind": "altro",
-                  "url": "https://lavoro.gov.it/temi-e-priorita-rapporti-di-lavoro-e-relazioni-industriali/focus/decreto-direttoriale-n.-50-dell8",
-                  "published_on": "2024-08-08",
-                  "sha256": "823f6c9aae9f90006c234eeb2966493f4c6b70480a40443e3d62a27360de483a"
+                  "document_id": "vigilanza-privata-assiv-src-d98f9684",
+                  "title": "vigilanza-privata-assiv: Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.univigilanza.it/download.aspx?file=/public/ccnl/Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "sha256": "d98f968443033cd953e1a50f6019004eb576292532aea6a89d1c8b105e454d5b"
                 },
-                "page": "22",
-                "section": "Tabella costo medio orario, Servizio tecnico-operativo diurno, APRILE 2026, A - Elementi retributivi annui, column 5",
-                "quote": "Paga base tabellare conglobata 15.526,44 16.726,44 17.626,56 17.626,56 19.815,72 19.815,72 22.324,56 23.911,20 23.911,20 27.828,36"
+                "page": "1",
+                "section": "Vigilanza privata — Paga Conglobata, columns 2023-06-01, 2024-06-01, 2025-06-01, 2025-12-01, 2026-04-01, 2026-12-01",
+                "quote": "5 | 1214,72 | 1261,87 | 1285,44 | 1318,44 | 1346,73 | 1393,87 | 1450,44"
               },
               "transformation": "Annual paga base tabellare conglobata of level V (16.726,44, twelve monthly amounts; 13th and 14th are listed separately under B - Oneri aggiuntivi) divided by 12 = 1393.87 per month.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-18T14:05:18Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2026-04-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-vigilanza-privata-assiv-double-read"
               }
             }
           },
@@ -668,27 +712,29 @@
             "valid_until": null,
             "value": "1450.44",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "mlps-dd-50-2024-08-08",
-                  "title": "Ministero del Lavoro e delle Politiche Sociali, D.D. n. 50 dell'8 agosto 2024, costo medio orario del lavoro per i dipendenti da istituti di vigilanza privata e servizi di sicurezza (tabelle allegate)",
-                  "kind": "altro",
-                  "url": "https://lavoro.gov.it/temi-e-priorita-rapporti-di-lavoro-e-relazioni-industriali/focus/decreto-direttoriale-n.-50-dell8",
-                  "published_on": "2024-08-08",
-                  "sha256": "823f6c9aae9f90006c234eeb2966493f4c6b70480a40443e3d62a27360de483a"
+                  "document_id": "vigilanza-privata-assiv-src-d98f9684",
+                  "title": "vigilanza-privata-assiv: Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.univigilanza.it/download.aspx?file=/public/ccnl/Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "sha256": "d98f968443033cd953e1a50f6019004eb576292532aea6a89d1c8b105e454d5b"
                 },
-                "page": "23",
-                "section": "Tabella costo medio orario, Servizio tecnico-operativo diurno, DICEMBRE 2026, A - Elementi retributivi annui, column 5",
-                "quote": "Paga base tabellare conglobata 16.205,28 17.405,28 18.346,56 18.346,56 20.679,72 20.679,72 23.353,08 25.042,68 25.042,68 29.216,88"
+                "page": "1",
+                "section": "Vigilanza privata — Paga Conglobata, columns 2023-06-01, 2024-06-01, 2025-06-01, 2025-12-01, 2026-04-01, 2026-12-01",
+                "quote": "5 | 1214,72 | 1261,87 | 1285,44 | 1318,44 | 1346,73 | 1393,87 | 1450,44"
               },
               "transformation": "Annual paga base tabellare conglobata of level V (17.405,28, twelve monthly amounts; 13th and 14th are listed separately under B - Oneri aggiuntivi) divided by 12 = 1450.44 per month.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-18T14:05:18Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2026-12-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-vigilanza-privata-assiv-double-read"
               }
             }
           }
@@ -725,27 +771,29 @@
             "valid_until": "2024-06-01",
             "value": "1328.88",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "mlps-dd-50-2024-08-08",
-                  "title": "Ministero del Lavoro e delle Politiche Sociali, D.D. n. 50 dell'8 agosto 2024, costo medio orario del lavoro per i dipendenti da istituti di vigilanza privata e servizi di sicurezza (tabelle allegate)",
-                  "kind": "altro",
-                  "url": "https://lavoro.gov.it/temi-e-priorita-rapporti-di-lavoro-e-relazioni-industriali/focus/decreto-direttoriale-n.-50-dell8",
-                  "published_on": "2024-08-08",
-                  "sha256": "823f6c9aae9f90006c234eeb2966493f4c6b70480a40443e3d62a27360de483a"
+                  "document_id": "vigilanza-privata-assiv-src-d98f9684",
+                  "title": "vigilanza-privata-assiv: Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.univigilanza.it/download.aspx?file=/public/ccnl/Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "sha256": "d98f968443033cd953e1a50f6019004eb576292532aea6a89d1c8b105e454d5b"
                 },
-                "page": "18",
-                "section": "Tabella costo medio orario, Servizio tecnico-operativo diurno, GIUGNO 2023, A - Elementi retributivi annui, column 4",
-                "quote": "Paga base tabellare conglobata 13.296,72 15.142,44 15.946,56 15.946,56 17.799,72 17.799,72 19.924,56 21.271,20 21.271,20 24.588,36"
+                "page": "1",
+                "section": "Vigilanza privata — Paga Conglobata, columns 2023-06-01, 2024-06-01, 2025-06-01, 2025-12-01, 2026-04-01, 2026-12-01",
+                "quote": "4 | 1278,88 | 1328,88 | 1353,88 | 1388,88 | 1418,88 | 1468,88 | 1528,88"
               },
               "transformation": "Annual paga base tabellare conglobata of level IV (15.946,56, twelve monthly amounts; 13th and 14th are listed separately under B - Oneri aggiuntivi) divided by 12 = 1328.88 per month.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-18T14:05:18Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2023-06-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-vigilanza-privata-assiv-double-read"
               }
             }
           },
@@ -754,27 +802,29 @@
             "valid_until": "2025-06-01",
             "value": "1353.88",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "mlps-dd-50-2024-08-08",
-                  "title": "Ministero del Lavoro e delle Politiche Sociali, D.D. n. 50 dell'8 agosto 2024, costo medio orario del lavoro per i dipendenti da istituti di vigilanza privata e servizi di sicurezza (tabelle allegate)",
-                  "kind": "altro",
-                  "url": "https://lavoro.gov.it/temi-e-priorita-rapporti-di-lavoro-e-relazioni-industriali/focus/decreto-direttoriale-n.-50-dell8",
-                  "published_on": "2024-08-08",
-                  "sha256": "823f6c9aae9f90006c234eeb2966493f4c6b70480a40443e3d62a27360de483a"
+                  "document_id": "vigilanza-privata-assiv-src-d98f9684",
+                  "title": "vigilanza-privata-assiv: Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.univigilanza.it/download.aspx?file=/public/ccnl/Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "sha256": "d98f968443033cd953e1a50f6019004eb576292532aea6a89d1c8b105e454d5b"
                 },
-                "page": "19",
-                "section": "Tabella costo medio orario, Servizio tecnico-operativo diurno, GIUGNO 2024, A - Elementi retributivi annui, column 4",
-                "quote": "Paga base tabellare conglobata 14.225,28 15.425,28 16.246,56 16.246,56 18.159,72 18.159,72 20.353,08 21.742,68 21.742,68 25.166,88"
+                "page": "1",
+                "section": "Vigilanza privata — Paga Conglobata, columns 2023-06-01, 2024-06-01, 2025-06-01, 2025-12-01, 2026-04-01, 2026-12-01",
+                "quote": "4 | 1278,88 | 1328,88 | 1353,88 | 1388,88 | 1418,88 | 1468,88 | 1528,88"
               },
               "transformation": "Annual paga base tabellare conglobata of level 4 (16.246,56, twelve monthly amounts) divided by 12 = 1353.88 per month.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-18T14:05:18Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2024-06-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-vigilanza-privata-assiv-double-read"
               }
             }
           },
@@ -783,27 +833,29 @@
             "valid_until": "2025-12-01",
             "value": "1388.88",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "mlps-dd-50-2024-08-08",
-                  "title": "Ministero del Lavoro e delle Politiche Sociali, D.D. n. 50 dell'8 agosto 2024, costo medio orario del lavoro per i dipendenti da istituti di vigilanza privata e servizi di sicurezza (tabelle allegate)",
-                  "kind": "altro",
-                  "url": "https://lavoro.gov.it/temi-e-priorita-rapporti-di-lavoro-e-relazioni-industriali/focus/decreto-direttoriale-n.-50-dell8",
-                  "published_on": "2024-08-08",
-                  "sha256": "823f6c9aae9f90006c234eeb2966493f4c6b70480a40443e3d62a27360de483a"
+                  "document_id": "vigilanza-privata-assiv-src-d98f9684",
+                  "title": "vigilanza-privata-assiv: Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.univigilanza.it/download.aspx?file=/public/ccnl/Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "sha256": "d98f968443033cd953e1a50f6019004eb576292532aea6a89d1c8b105e454d5b"
                 },
-                "page": "20",
-                "section": "Tabella costo medio orario, Servizio tecnico-operativo diurno, GIUGNO 2025, A - Elementi retributivi annui, column 4",
-                "quote": "Paga base tabellare conglobata 14.621,28 15.821,28 16.666,56 16.666,56 18.663,72 18.663,72 20.953,08 22.402,68 22.402,68 25.976,88"
+                "page": "1",
+                "section": "Vigilanza privata — Paga Conglobata, columns 2023-06-01, 2024-06-01, 2025-06-01, 2025-12-01, 2026-04-01, 2026-12-01",
+                "quote": "4 | 1278,88 | 1328,88 | 1353,88 | 1388,88 | 1418,88 | 1468,88 | 1528,88"
               },
               "transformation": "Annual paga base tabellare conglobata of level 4 (16.666,56, twelve monthly amounts) divided by 12 = 1388.88 per month.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-18T14:05:18Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2025-06-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-vigilanza-privata-assiv-double-read"
               }
             }
           },
@@ -812,27 +864,29 @@
             "valid_until": "2026-04-01",
             "value": "1418.88",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "mlps-dd-50-2024-08-08",
-                  "title": "Ministero del Lavoro e delle Politiche Sociali, D.D. n. 50 dell'8 agosto 2024, costo medio orario del lavoro per i dipendenti da istituti di vigilanza privata e servizi di sicurezza (tabelle allegate)",
-                  "kind": "altro",
-                  "url": "https://lavoro.gov.it/temi-e-priorita-rapporti-di-lavoro-e-relazioni-industriali/focus/decreto-direttoriale-n.-50-dell8",
-                  "published_on": "2024-08-08",
-                  "sha256": "823f6c9aae9f90006c234eeb2966493f4c6b70480a40443e3d62a27360de483a"
+                  "document_id": "vigilanza-privata-assiv-src-d98f9684",
+                  "title": "vigilanza-privata-assiv: Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.univigilanza.it/download.aspx?file=/public/ccnl/Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "sha256": "d98f968443033cd953e1a50f6019004eb576292532aea6a89d1c8b105e454d5b"
                 },
-                "page": "21",
-                "section": "Tabella costo medio orario, Servizio tecnico-operativo diurno, DICEMBRE 2025, A - Elementi retributivi annui, column 4",
-                "quote": "Paga base tabellare conglobata 14.960,76 16.160,76 17.026,56 17.026,56 19.095,72 19.095,72 21.467,40 22.968,36 22.968,36 26.671,20"
+                "page": "1",
+                "section": "Vigilanza privata — Paga Conglobata, columns 2023-06-01, 2024-06-01, 2025-06-01, 2025-12-01, 2026-04-01, 2026-12-01",
+                "quote": "4 | 1278,88 | 1328,88 | 1353,88 | 1388,88 | 1418,88 | 1468,88 | 1528,88"
               },
               "transformation": "Annual paga base tabellare conglobata of level 4 (17.026,56, twelve monthly amounts) divided by 12 = 1418.88 per month.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-18T14:05:18Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2025-12-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-vigilanza-privata-assiv-double-read"
               }
             }
           },
@@ -841,27 +895,29 @@
             "valid_until": "2026-12-01",
             "value": "1468.88",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "mlps-dd-50-2024-08-08",
-                  "title": "Ministero del Lavoro e delle Politiche Sociali, D.D. n. 50 dell'8 agosto 2024, costo medio orario del lavoro per i dipendenti da istituti di vigilanza privata e servizi di sicurezza (tabelle allegate)",
-                  "kind": "altro",
-                  "url": "https://lavoro.gov.it/temi-e-priorita-rapporti-di-lavoro-e-relazioni-industriali/focus/decreto-direttoriale-n.-50-dell8",
-                  "published_on": "2024-08-08",
-                  "sha256": "823f6c9aae9f90006c234eeb2966493f4c6b70480a40443e3d62a27360de483a"
+                  "document_id": "vigilanza-privata-assiv-src-d98f9684",
+                  "title": "vigilanza-privata-assiv: Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.univigilanza.it/download.aspx?file=/public/ccnl/Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "sha256": "d98f968443033cd953e1a50f6019004eb576292532aea6a89d1c8b105e454d5b"
                 },
-                "page": "22",
-                "section": "Tabella costo medio orario, Servizio tecnico-operativo diurno, APRILE 2026, A - Elementi retributivi annui, column 4",
-                "quote": "Paga base tabellare conglobata 15.526,44 16.726,44 17.626,56 17.626,56 19.815,72 19.815,72 22.324,56 23.911,20 23.911,20 27.828,36"
+                "page": "1",
+                "section": "Vigilanza privata — Paga Conglobata, columns 2023-06-01, 2024-06-01, 2025-06-01, 2025-12-01, 2026-04-01, 2026-12-01",
+                "quote": "4 | 1278,88 | 1328,88 | 1353,88 | 1388,88 | 1418,88 | 1468,88 | 1528,88"
               },
               "transformation": "Annual paga base tabellare conglobata of level 4 (17.626,56, twelve monthly amounts) divided by 12 = 1468.88 per month.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-18T14:05:18Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2026-04-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-vigilanza-privata-assiv-double-read"
               }
             }
           },
@@ -870,27 +926,29 @@
             "valid_until": null,
             "value": "1528.88",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "mlps-dd-50-2024-08-08",
-                  "title": "Ministero del Lavoro e delle Politiche Sociali, D.D. n. 50 dell'8 agosto 2024, costo medio orario del lavoro per i dipendenti da istituti di vigilanza privata e servizi di sicurezza (tabelle allegate)",
-                  "kind": "altro",
-                  "url": "https://lavoro.gov.it/temi-e-priorita-rapporti-di-lavoro-e-relazioni-industriali/focus/decreto-direttoriale-n.-50-dell8",
-                  "published_on": "2024-08-08",
-                  "sha256": "823f6c9aae9f90006c234eeb2966493f4c6b70480a40443e3d62a27360de483a"
+                  "document_id": "vigilanza-privata-assiv-src-d98f9684",
+                  "title": "vigilanza-privata-assiv: Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.univigilanza.it/download.aspx?file=/public/ccnl/Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "sha256": "d98f968443033cd953e1a50f6019004eb576292532aea6a89d1c8b105e454d5b"
                 },
-                "page": "23",
-                "section": "Tabella costo medio orario, Servizio tecnico-operativo diurno, DICEMBRE 2026, A - Elementi retributivi annui, column 4",
-                "quote": "Paga base tabellare conglobata 16.205,28 17.405,28 18.346,56 18.346,56 20.679,72 20.679,72 23.353,08 25.042,68 25.042,68 29.216,88"
+                "page": "1",
+                "section": "Vigilanza privata — Paga Conglobata, columns 2023-06-01, 2024-06-01, 2025-06-01, 2025-12-01, 2026-04-01, 2026-12-01",
+                "quote": "4 | 1278,88 | 1328,88 | 1353,88 | 1388,88 | 1418,88 | 1468,88 | 1528,88"
               },
               "transformation": "Annual paga base tabellare conglobata of level 4 (18.346,56, twelve monthly amounts) divided by 12 = 1528.88 per month.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-18T14:05:18Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2026-12-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-vigilanza-privata-assiv-double-read"
               }
             }
           }
@@ -927,27 +985,29 @@
             "valid_until": "2024-06-01",
             "value": "1483.31",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "mlps-dd-50-2024-08-08",
-                  "title": "Ministero del Lavoro e delle Politiche Sociali, D.D. n. 50 dell'8 agosto 2024, costo medio orario del lavoro per i dipendenti da istituti di vigilanza privata e servizi di sicurezza (tabelle allegate)",
-                  "kind": "altro",
-                  "url": "https://lavoro.gov.it/temi-e-priorita-rapporti-di-lavoro-e-relazioni-industriali/focus/decreto-direttoriale-n.-50-dell8",
-                  "published_on": "2024-08-08",
-                  "sha256": "823f6c9aae9f90006c234eeb2966493f4c6b70480a40443e3d62a27360de483a"
+                  "document_id": "vigilanza-privata-assiv-src-d98f9684",
+                  "title": "vigilanza-privata-assiv: Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.univigilanza.it/download.aspx?file=/public/ccnl/Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "sha256": "d98f968443033cd953e1a50f6019004eb576292532aea6a89d1c8b105e454d5b"
                 },
-                "page": "18",
-                "section": "Tabella costo medio orario, Servizio tecnico-operativo diurno, GIUGNO 2023, A - Elementi retributivi annui, column 3",
-                "quote": "Paga base tabellare conglobata 13.296,72 15.142,44 15.946,56 15.946,56 17.799,72 17.799,72 19.924,56 21.271,20 21.271,20 24.588,36"
+                "page": "1",
+                "section": "Vigilanza privata — Paga Conglobata, columns 2023-06-01, 2024-06-01, 2025-06-01, 2025-12-01, 2026-04-01, 2026-12-01",
+                "quote": "3 | 1423,31 | 1483,31 | 1513,31 | 1555,31 | 1591,31 | 1651,31 | 1723,31"
               },
               "transformation": "Annual paga base tabellare conglobata of level III (17.799,72, twelve monthly amounts; 13th and 14th are listed separately under B - Oneri aggiuntivi) divided by 12 = 1483.31 per month.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-18T14:05:18Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2023-06-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-vigilanza-privata-assiv-double-read"
               }
             }
           },
@@ -956,27 +1016,29 @@
             "valid_until": "2025-06-01",
             "value": "1513.31",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "mlps-dd-50-2024-08-08",
-                  "title": "Ministero del Lavoro e delle Politiche Sociali, D.D. n. 50 dell'8 agosto 2024, costo medio orario del lavoro per i dipendenti da istituti di vigilanza privata e servizi di sicurezza (tabelle allegate)",
-                  "kind": "altro",
-                  "url": "https://lavoro.gov.it/temi-e-priorita-rapporti-di-lavoro-e-relazioni-industriali/focus/decreto-direttoriale-n.-50-dell8",
-                  "published_on": "2024-08-08",
-                  "sha256": "823f6c9aae9f90006c234eeb2966493f4c6b70480a40443e3d62a27360de483a"
+                  "document_id": "vigilanza-privata-assiv-src-d98f9684",
+                  "title": "vigilanza-privata-assiv: Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.univigilanza.it/download.aspx?file=/public/ccnl/Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "sha256": "d98f968443033cd953e1a50f6019004eb576292532aea6a89d1c8b105e454d5b"
                 },
-                "page": "19",
-                "section": "Tabella costo medio orario, Servizio tecnico-operativo diurno, GIUGNO 2024, A - Elementi retributivi annui, column 3",
-                "quote": "Paga base tabellare conglobata 14.225,28 15.425,28 16.246,56 16.246,56 18.159,72 18.159,72 20.353,08 21.742,68 21.742,68 25.166,88"
+                "page": "1",
+                "section": "Vigilanza privata — Paga Conglobata, columns 2023-06-01, 2024-06-01, 2025-06-01, 2025-12-01, 2026-04-01, 2026-12-01",
+                "quote": "3 | 1423,31 | 1483,31 | 1513,31 | 1555,31 | 1591,31 | 1651,31 | 1723,31"
               },
               "transformation": "Annual paga base tabellare conglobata of level III (18.159,72, twelve monthly amounts; 13th and 14th are listed separately under B - Oneri aggiuntivi) divided by 12 = 1513.31 per month.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-18T14:05:18Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2024-06-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-vigilanza-privata-assiv-double-read"
               }
             }
           },
@@ -985,27 +1047,29 @@
             "valid_until": "2025-12-01",
             "value": "1555.31",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "mlps-dd-50-2024-08-08",
-                  "title": "Ministero del Lavoro e delle Politiche Sociali, D.D. n. 50 dell'8 agosto 2024, costo medio orario del lavoro per i dipendenti da istituti di vigilanza privata e servizi di sicurezza (tabelle allegate)",
-                  "kind": "altro",
-                  "url": "https://lavoro.gov.it/temi-e-priorita-rapporti-di-lavoro-e-relazioni-industriali/focus/decreto-direttoriale-n.-50-dell8",
-                  "published_on": "2024-08-08",
-                  "sha256": "823f6c9aae9f90006c234eeb2966493f4c6b70480a40443e3d62a27360de483a"
+                  "document_id": "vigilanza-privata-assiv-src-d98f9684",
+                  "title": "vigilanza-privata-assiv: Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.univigilanza.it/download.aspx?file=/public/ccnl/Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "sha256": "d98f968443033cd953e1a50f6019004eb576292532aea6a89d1c8b105e454d5b"
                 },
-                "page": "20",
-                "section": "Tabella costo medio orario, Servizio tecnico-operativo diurno, GIUGNO 2025, A - Elementi retributivi annui, column 3",
-                "quote": "Paga base tabellare conglobata 14.621,28 15.821,28 16.666,56 16.666,56 18.663,72 18.663,72 20.953,08 22.402,68 22.402,68 25.976,88"
+                "page": "1",
+                "section": "Vigilanza privata — Paga Conglobata, columns 2023-06-01, 2024-06-01, 2025-06-01, 2025-12-01, 2026-04-01, 2026-12-01",
+                "quote": "3 | 1423,31 | 1483,31 | 1513,31 | 1555,31 | 1591,31 | 1651,31 | 1723,31"
               },
               "transformation": "Annual paga base tabellare conglobata of level III (18.663,72, twelve monthly amounts; 13th and 14th are listed separately under B - Oneri aggiuntivi) divided by 12 = 1555.31 per month.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-18T14:05:18Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2025-06-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-vigilanza-privata-assiv-double-read"
               }
             }
           },
@@ -1014,27 +1078,29 @@
             "valid_until": "2026-04-01",
             "value": "1591.31",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "mlps-dd-50-2024-08-08",
-                  "title": "Ministero del Lavoro e delle Politiche Sociali, D.D. n. 50 dell'8 agosto 2024, costo medio orario del lavoro per i dipendenti da istituti di vigilanza privata e servizi di sicurezza (tabelle allegate)",
-                  "kind": "altro",
-                  "url": "https://lavoro.gov.it/temi-e-priorita-rapporti-di-lavoro-e-relazioni-industriali/focus/decreto-direttoriale-n.-50-dell8",
-                  "published_on": "2024-08-08",
-                  "sha256": "823f6c9aae9f90006c234eeb2966493f4c6b70480a40443e3d62a27360de483a"
+                  "document_id": "vigilanza-privata-assiv-src-d98f9684",
+                  "title": "vigilanza-privata-assiv: Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.univigilanza.it/download.aspx?file=/public/ccnl/Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "sha256": "d98f968443033cd953e1a50f6019004eb576292532aea6a89d1c8b105e454d5b"
                 },
-                "page": "21",
-                "section": "Tabella costo medio orario, Servizio tecnico-operativo diurno, DICEMBRE 2025, A - Elementi retributivi annui, column 3",
-                "quote": "Paga base tabellare conglobata 14.960,76 16.160,76 17.026,56 17.026,56 19.095,72 19.095,72 21.467,40 22.968,36 22.968,36 26.671,20"
+                "page": "1",
+                "section": "Vigilanza privata — Paga Conglobata, columns 2023-06-01, 2024-06-01, 2025-06-01, 2025-12-01, 2026-04-01, 2026-12-01",
+                "quote": "3 | 1423,31 | 1483,31 | 1513,31 | 1555,31 | 1591,31 | 1651,31 | 1723,31"
               },
               "transformation": "Annual paga base tabellare conglobata of level III (19.095,72, twelve monthly amounts; 13th and 14th are listed separately under B - Oneri aggiuntivi) divided by 12 = 1591.31 per month.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-18T14:05:18Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2025-12-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-vigilanza-privata-assiv-double-read"
               }
             }
           },
@@ -1043,27 +1109,29 @@
             "valid_until": "2026-12-01",
             "value": "1651.31",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "mlps-dd-50-2024-08-08",
-                  "title": "Ministero del Lavoro e delle Politiche Sociali, D.D. n. 50 dell'8 agosto 2024, costo medio orario del lavoro per i dipendenti da istituti di vigilanza privata e servizi di sicurezza (tabelle allegate)",
-                  "kind": "altro",
-                  "url": "https://lavoro.gov.it/temi-e-priorita-rapporti-di-lavoro-e-relazioni-industriali/focus/decreto-direttoriale-n.-50-dell8",
-                  "published_on": "2024-08-08",
-                  "sha256": "823f6c9aae9f90006c234eeb2966493f4c6b70480a40443e3d62a27360de483a"
+                  "document_id": "vigilanza-privata-assiv-src-d98f9684",
+                  "title": "vigilanza-privata-assiv: Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.univigilanza.it/download.aspx?file=/public/ccnl/Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "sha256": "d98f968443033cd953e1a50f6019004eb576292532aea6a89d1c8b105e454d5b"
                 },
-                "page": "22",
-                "section": "Tabella costo medio orario, Servizio tecnico-operativo diurno, APRILE 2026, A - Elementi retributivi annui, column 3",
-                "quote": "Paga base tabellare conglobata 15.526,44 16.726,44 17.626,56 17.626,56 19.815,72 19.815,72 22.324,56 23.911,20 23.911,20 27.828,36"
+                "page": "1",
+                "section": "Vigilanza privata — Paga Conglobata, columns 2023-06-01, 2024-06-01, 2025-06-01, 2025-12-01, 2026-04-01, 2026-12-01",
+                "quote": "3 | 1423,31 | 1483,31 | 1513,31 | 1555,31 | 1591,31 | 1651,31 | 1723,31"
               },
               "transformation": "Annual paga base tabellare conglobata of level III (19.815,72, twelve monthly amounts; 13th and 14th are listed separately under B - Oneri aggiuntivi) divided by 12 = 1651.31 per month.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-18T14:05:18Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2026-04-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-vigilanza-privata-assiv-double-read"
               }
             }
           },
@@ -1072,27 +1140,29 @@
             "valid_until": null,
             "value": "1723.31",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "mlps-dd-50-2024-08-08",
-                  "title": "Ministero del Lavoro e delle Politiche Sociali, D.D. n. 50 dell'8 agosto 2024, costo medio orario del lavoro per i dipendenti da istituti di vigilanza privata e servizi di sicurezza (tabelle allegate)",
-                  "kind": "altro",
-                  "url": "https://lavoro.gov.it/temi-e-priorita-rapporti-di-lavoro-e-relazioni-industriali/focus/decreto-direttoriale-n.-50-dell8",
-                  "published_on": "2024-08-08",
-                  "sha256": "823f6c9aae9f90006c234eeb2966493f4c6b70480a40443e3d62a27360de483a"
+                  "document_id": "vigilanza-privata-assiv-src-d98f9684",
+                  "title": "vigilanza-privata-assiv: Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.univigilanza.it/download.aspx?file=/public/ccnl/Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "sha256": "d98f968443033cd953e1a50f6019004eb576292532aea6a89d1c8b105e454d5b"
                 },
-                "page": "23",
-                "section": "Tabella costo medio orario, Servizio tecnico-operativo diurno, DICEMBRE 2026, A - Elementi retributivi annui, column 3",
-                "quote": "Paga base tabellare conglobata 16.205,28 17.405,28 18.346,56 18.346,56 20.679,72 20.679,72 23.353,08 25.042,68 25.042,68 29.216,88"
+                "page": "1",
+                "section": "Vigilanza privata — Paga Conglobata, columns 2023-06-01, 2024-06-01, 2025-06-01, 2025-12-01, 2026-04-01, 2026-12-01",
+                "quote": "3 | 1423,31 | 1483,31 | 1513,31 | 1555,31 | 1591,31 | 1651,31 | 1723,31"
               },
               "transformation": "Annual paga base tabellare conglobata of level III (20.679,72, twelve monthly amounts; 13th and 14th are listed separately under B - Oneri aggiuntivi) divided by 12 = 1723.31 per month.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-18T14:05:18Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2026-12-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-vigilanza-privata-assiv-double-read"
               }
             }
           }
@@ -1129,27 +1199,29 @@
             "valid_until": "2024-06-01",
             "value": "1660.38",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "mlps-dd-50-2024-08-08",
-                  "title": "Ministero del Lavoro e delle Politiche Sociali, D.D. n. 50 dell'8 agosto 2024, costo medio orario del lavoro per i dipendenti da istituti di vigilanza privata e servizi di sicurezza (tabelle allegate)",
-                  "kind": "altro",
-                  "url": "https://lavoro.gov.it/temi-e-priorita-rapporti-di-lavoro-e-relazioni-industriali/focus/decreto-direttoriale-n.-50-dell8",
-                  "published_on": "2024-08-08",
-                  "sha256": "823f6c9aae9f90006c234eeb2966493f4c6b70480a40443e3d62a27360de483a"
+                  "document_id": "vigilanza-privata-assiv-src-d98f9684",
+                  "title": "vigilanza-privata-assiv: Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.univigilanza.it/download.aspx?file=/public/ccnl/Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "sha256": "d98f968443033cd953e1a50f6019004eb576292532aea6a89d1c8b105e454d5b"
                 },
-                "page": "18",
-                "section": "Tabella costo medio orario, Servizio tecnico-operativo diurno, GIUGNO 2023, A - Elementi retributivi annui, column 2",
-                "quote": "Paga base tabellare conglobata 13.296,72 15.142,44 15.946,56 15.946,56 17.799,72 17.799,72 19.924,56 21.271,20 21.271,20 24.588,36"
+                "page": "1",
+                "section": "Vigilanza privata — Paga Conglobata, columns 2023-06-01, 2024-06-01, 2025-06-01, 2025-12-01, 2026-04-01, 2026-12-01",
+                "quote": "2 | 1588,96 | 1660,38 | 1696,09 | 1746,09 | 1788,95 | 1860,38 | 1946,09"
               },
               "transformation": "Annual paga base tabellare conglobata of level II (19.924,56, twelve monthly amounts; 13th and 14th are listed separately under B - Oneri aggiuntivi) divided by 12 = 1660.38 per month.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-18T14:05:18Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2023-06-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-vigilanza-privata-assiv-double-read"
               }
             }
           },
@@ -1158,27 +1230,29 @@
             "valid_until": "2025-06-01",
             "value": "1696.09",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "mlps-dd-50-2024-08-08",
-                  "title": "Ministero del Lavoro e delle Politiche Sociali, D.D. n. 50 dell'8 agosto 2024, costo medio orario del lavoro per i dipendenti da istituti di vigilanza privata e servizi di sicurezza (tabelle allegate)",
-                  "kind": "altro",
-                  "url": "https://lavoro.gov.it/temi-e-priorita-rapporti-di-lavoro-e-relazioni-industriali/focus/decreto-direttoriale-n.-50-dell8",
-                  "published_on": "2024-08-08",
-                  "sha256": "823f6c9aae9f90006c234eeb2966493f4c6b70480a40443e3d62a27360de483a"
+                  "document_id": "vigilanza-privata-assiv-src-d98f9684",
+                  "title": "vigilanza-privata-assiv: Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.univigilanza.it/download.aspx?file=/public/ccnl/Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "sha256": "d98f968443033cd953e1a50f6019004eb576292532aea6a89d1c8b105e454d5b"
                 },
-                "page": "19",
-                "section": "Tabella costo medio orario, Servizio tecnico-operativo diurno, GIUGNO 2024, A - Elementi retributivi annui, column 2",
-                "quote": "Paga base tabellare conglobata 14.225,28 15.425,28 16.246,56 16.246,56 18.159,72 18.159,72 20.353,08 21.742,68 21.742,68 25.166,88"
+                "page": "1",
+                "section": "Vigilanza privata — Paga Conglobata, columns 2023-06-01, 2024-06-01, 2025-06-01, 2025-12-01, 2026-04-01, 2026-12-01",
+                "quote": "2 | 1588,96 | 1660,38 | 1696,09 | 1746,09 | 1788,95 | 1860,38 | 1946,09"
               },
               "transformation": "Annual paga base tabellare conglobata of level II (20.353,08, twelve monthly amounts; 13th and 14th are listed separately under B - Oneri aggiuntivi) divided by 12 = 1696.09 per month.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-18T14:05:18Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2024-06-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-vigilanza-privata-assiv-double-read"
               }
             }
           },
@@ -1187,27 +1261,29 @@
             "valid_until": "2025-12-01",
             "value": "1746.09",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "mlps-dd-50-2024-08-08",
-                  "title": "Ministero del Lavoro e delle Politiche Sociali, D.D. n. 50 dell'8 agosto 2024, costo medio orario del lavoro per i dipendenti da istituti di vigilanza privata e servizi di sicurezza (tabelle allegate)",
-                  "kind": "altro",
-                  "url": "https://lavoro.gov.it/temi-e-priorita-rapporti-di-lavoro-e-relazioni-industriali/focus/decreto-direttoriale-n.-50-dell8",
-                  "published_on": "2024-08-08",
-                  "sha256": "823f6c9aae9f90006c234eeb2966493f4c6b70480a40443e3d62a27360de483a"
+                  "document_id": "vigilanza-privata-assiv-src-d98f9684",
+                  "title": "vigilanza-privata-assiv: Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.univigilanza.it/download.aspx?file=/public/ccnl/Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "sha256": "d98f968443033cd953e1a50f6019004eb576292532aea6a89d1c8b105e454d5b"
                 },
-                "page": "20",
-                "section": "Tabella costo medio orario, Servizio tecnico-operativo diurno, GIUGNO 2025, A - Elementi retributivi annui, column 2",
-                "quote": "Paga base tabellare conglobata 14.621,28 15.821,28 16.666,56 16.666,56 18.663,72 18.663,72 20.953,08 22.402,68 22.402,68 25.976,88"
+                "page": "1",
+                "section": "Vigilanza privata — Paga Conglobata, columns 2023-06-01, 2024-06-01, 2025-06-01, 2025-12-01, 2026-04-01, 2026-12-01",
+                "quote": "2 | 1588,96 | 1660,38 | 1696,09 | 1746,09 | 1788,95 | 1860,38 | 1946,09"
               },
               "transformation": "Annual paga base tabellare conglobata of level II (20.953,08, twelve monthly amounts; 13th and 14th are listed separately under B - Oneri aggiuntivi) divided by 12 = 1746.09 per month.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-18T14:05:18Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2025-06-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-vigilanza-privata-assiv-double-read"
               }
             }
           },
@@ -1216,27 +1292,29 @@
             "valid_until": "2026-04-01",
             "value": "1788.95",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "mlps-dd-50-2024-08-08",
-                  "title": "Ministero del Lavoro e delle Politiche Sociali, D.D. n. 50 dell'8 agosto 2024, costo medio orario del lavoro per i dipendenti da istituti di vigilanza privata e servizi di sicurezza (tabelle allegate)",
-                  "kind": "altro",
-                  "url": "https://lavoro.gov.it/temi-e-priorita-rapporti-di-lavoro-e-relazioni-industriali/focus/decreto-direttoriale-n.-50-dell8",
-                  "published_on": "2024-08-08",
-                  "sha256": "823f6c9aae9f90006c234eeb2966493f4c6b70480a40443e3d62a27360de483a"
+                  "document_id": "vigilanza-privata-assiv-src-d98f9684",
+                  "title": "vigilanza-privata-assiv: Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.univigilanza.it/download.aspx?file=/public/ccnl/Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "sha256": "d98f968443033cd953e1a50f6019004eb576292532aea6a89d1c8b105e454d5b"
                 },
-                "page": "21",
-                "section": "Tabella costo medio orario, Servizio tecnico-operativo diurno, DICEMBRE 2025, A - Elementi retributivi annui, column 2",
-                "quote": "Paga base tabellare conglobata 14.960,76 16.160,76 17.026,56 17.026,56 19.095,72 19.095,72 21.467,40 22.968,36 22.968,36 26.671,20"
+                "page": "1",
+                "section": "Vigilanza privata — Paga Conglobata, columns 2023-06-01, 2024-06-01, 2025-06-01, 2025-12-01, 2026-04-01, 2026-12-01",
+                "quote": "2 | 1588,96 | 1660,38 | 1696,09 | 1746,09 | 1788,95 | 1860,38 | 1946,09"
               },
               "transformation": "Annual paga base tabellare conglobata of level II (21.467,40, twelve monthly amounts; 13th and 14th are listed separately under B - Oneri aggiuntivi) divided by 12 = 1788.95 per month.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-18T14:05:18Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2025-12-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-vigilanza-privata-assiv-double-read"
               }
             }
           },
@@ -1245,27 +1323,29 @@
             "valid_until": "2026-12-01",
             "value": "1860.38",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "mlps-dd-50-2024-08-08",
-                  "title": "Ministero del Lavoro e delle Politiche Sociali, D.D. n. 50 dell'8 agosto 2024, costo medio orario del lavoro per i dipendenti da istituti di vigilanza privata e servizi di sicurezza (tabelle allegate)",
-                  "kind": "altro",
-                  "url": "https://lavoro.gov.it/temi-e-priorita-rapporti-di-lavoro-e-relazioni-industriali/focus/decreto-direttoriale-n.-50-dell8",
-                  "published_on": "2024-08-08",
-                  "sha256": "823f6c9aae9f90006c234eeb2966493f4c6b70480a40443e3d62a27360de483a"
+                  "document_id": "vigilanza-privata-assiv-src-d98f9684",
+                  "title": "vigilanza-privata-assiv: Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.univigilanza.it/download.aspx?file=/public/ccnl/Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "sha256": "d98f968443033cd953e1a50f6019004eb576292532aea6a89d1c8b105e454d5b"
                 },
-                "page": "22",
-                "section": "Tabella costo medio orario, Servizio tecnico-operativo diurno, APRILE 2026, A - Elementi retributivi annui, column 2",
-                "quote": "Paga base tabellare conglobata 15.526,44 16.726,44 17.626,56 17.626,56 19.815,72 19.815,72 22.324,56 23.911,20 23.911,20 27.828,36"
+                "page": "1",
+                "section": "Vigilanza privata — Paga Conglobata, columns 2023-06-01, 2024-06-01, 2025-06-01, 2025-12-01, 2026-04-01, 2026-12-01",
+                "quote": "2 | 1588,96 | 1660,38 | 1696,09 | 1746,09 | 1788,95 | 1860,38 | 1946,09"
               },
               "transformation": "Annual paga base tabellare conglobata of level II (22.324,56, twelve monthly amounts; 13th and 14th are listed separately under B - Oneri aggiuntivi) divided by 12 = 1860.38 per month.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-18T14:05:18Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2026-04-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-vigilanza-privata-assiv-double-read"
               }
             }
           },
@@ -1274,27 +1354,29 @@
             "valid_until": null,
             "value": "1946.09",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "mlps-dd-50-2024-08-08",
-                  "title": "Ministero del Lavoro e delle Politiche Sociali, D.D. n. 50 dell'8 agosto 2024, costo medio orario del lavoro per i dipendenti da istituti di vigilanza privata e servizi di sicurezza (tabelle allegate)",
-                  "kind": "altro",
-                  "url": "https://lavoro.gov.it/temi-e-priorita-rapporti-di-lavoro-e-relazioni-industriali/focus/decreto-direttoriale-n.-50-dell8",
-                  "published_on": "2024-08-08",
-                  "sha256": "823f6c9aae9f90006c234eeb2966493f4c6b70480a40443e3d62a27360de483a"
+                  "document_id": "vigilanza-privata-assiv-src-d98f9684",
+                  "title": "vigilanza-privata-assiv: Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.univigilanza.it/download.aspx?file=/public/ccnl/Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "sha256": "d98f968443033cd953e1a50f6019004eb576292532aea6a89d1c8b105e454d5b"
                 },
-                "page": "23",
-                "section": "Tabella costo medio orario, Servizio tecnico-operativo diurno, DICEMBRE 2026, A - Elementi retributivi annui, column 2",
-                "quote": "Paga base tabellare conglobata 16.205,28 17.405,28 18.346,56 18.346,56 20.679,72 20.679,72 23.353,08 25.042,68 25.042,68 29.216,88"
+                "page": "1",
+                "section": "Vigilanza privata — Paga Conglobata, columns 2023-06-01, 2024-06-01, 2025-06-01, 2025-12-01, 2026-04-01, 2026-12-01",
+                "quote": "2 | 1588,96 | 1660,38 | 1696,09 | 1746,09 | 1788,95 | 1860,38 | 1946,09"
               },
               "transformation": "Annual paga base tabellare conglobata of level II (23.353,08, twelve monthly amounts; 13th and 14th are listed separately under B - Oneri aggiuntivi) divided by 12 = 1946.09 per month.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-18T14:05:18Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2026-12-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-vigilanza-privata-assiv-double-read"
               }
             }
           }
@@ -1331,27 +1413,29 @@
             "valid_until": "2024-06-01",
             "value": "1772.60",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "mlps-dd-50-2024-08-08",
-                  "title": "Ministero del Lavoro e delle Politiche Sociali, D.D. n. 50 dell'8 agosto 2024, costo medio orario del lavoro per i dipendenti da istituti di vigilanza privata e servizi di sicurezza (tabelle allegate)",
-                  "kind": "altro",
-                  "url": "https://lavoro.gov.it/temi-e-priorita-rapporti-di-lavoro-e-relazioni-industriali/focus/decreto-direttoriale-n.-50-dell8",
-                  "published_on": "2024-08-08",
-                  "sha256": "823f6c9aae9f90006c234eeb2966493f4c6b70480a40443e3d62a27360de483a"
+                  "document_id": "vigilanza-privata-assiv-src-d98f9684",
+                  "title": "vigilanza-privata-assiv: Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.univigilanza.it/download.aspx?file=/public/ccnl/Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "sha256": "d98f968443033cd953e1a50f6019004eb576292532aea6a89d1c8b105e454d5b"
                 },
-                "page": "18",
-                "section": "Tabella costo medio orario, Servizio tecnico-operativo diurno, GIUGNO 2023, A - Elementi retributivi annui, column 1",
-                "quote": "Paga base tabellare conglobata 13.296,72 15.142,44 15.946,56 15.946,56 17.799,72 17.799,72 19.924,56 21.271,20 21.271,20 24.588,36"
+                "page": "1",
+                "section": "Vigilanza privata — Paga Conglobata, columns 2023-06-01, 2024-06-01, 2025-06-01, 2025-12-01, 2026-04-01, 2026-12-01",
+                "quote": "1 | 1694,03 | 1772,60 | 1811,89 | 1866,89 | 1914,03 | 1992,60 | 2086,89"
               },
               "transformation": "Annual paga base tabellare conglobata of level I (21.271,20, twelve monthly amounts; 13th and 14th are listed separately under B - Oneri aggiuntivi) divided by 12 = 1772.60 per month.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-18T14:05:18Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2023-06-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-vigilanza-privata-assiv-double-read"
               }
             }
           },
@@ -1360,27 +1444,29 @@
             "valid_until": "2025-06-01",
             "value": "1811.89",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "mlps-dd-50-2024-08-08",
-                  "title": "Ministero del Lavoro e delle Politiche Sociali, D.D. n. 50 dell'8 agosto 2024, costo medio orario del lavoro per i dipendenti da istituti di vigilanza privata e servizi di sicurezza (tabelle allegate)",
-                  "kind": "altro",
-                  "url": "https://lavoro.gov.it/temi-e-priorita-rapporti-di-lavoro-e-relazioni-industriali/focus/decreto-direttoriale-n.-50-dell8",
-                  "published_on": "2024-08-08",
-                  "sha256": "823f6c9aae9f90006c234eeb2966493f4c6b70480a40443e3d62a27360de483a"
+                  "document_id": "vigilanza-privata-assiv-src-d98f9684",
+                  "title": "vigilanza-privata-assiv: Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.univigilanza.it/download.aspx?file=/public/ccnl/Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "sha256": "d98f968443033cd953e1a50f6019004eb576292532aea6a89d1c8b105e454d5b"
                 },
-                "page": "19",
-                "section": "Tabella costo medio orario, Servizio tecnico-operativo diurno, GIUGNO 2024, A - Elementi retributivi annui, column 1",
-                "quote": "Paga base tabellare conglobata 14.225,28 15.425,28 16.246,56 16.246,56 18.159,72 18.159,72 20.353,08 21.742,68 21.742,68 25.166,88"
+                "page": "1",
+                "section": "Vigilanza privata — Paga Conglobata, columns 2023-06-01, 2024-06-01, 2025-06-01, 2025-12-01, 2026-04-01, 2026-12-01",
+                "quote": "1 | 1694,03 | 1772,60 | 1811,89 | 1866,89 | 1914,03 | 1992,60 | 2086,89"
               },
               "transformation": "Annual paga base tabellare conglobata of level I (21.742,68, twelve monthly amounts; 13th and 14th are listed separately under B - Oneri aggiuntivi) divided by 12 = 1811.89 per month.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-18T14:05:18Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2024-06-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-vigilanza-privata-assiv-double-read"
               }
             }
           },
@@ -1389,27 +1475,29 @@
             "valid_until": "2025-12-01",
             "value": "1866.89",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "mlps-dd-50-2024-08-08",
-                  "title": "Ministero del Lavoro e delle Politiche Sociali, D.D. n. 50 dell'8 agosto 2024, costo medio orario del lavoro per i dipendenti da istituti di vigilanza privata e servizi di sicurezza (tabelle allegate)",
-                  "kind": "altro",
-                  "url": "https://lavoro.gov.it/temi-e-priorita-rapporti-di-lavoro-e-relazioni-industriali/focus/decreto-direttoriale-n.-50-dell8",
-                  "published_on": "2024-08-08",
-                  "sha256": "823f6c9aae9f90006c234eeb2966493f4c6b70480a40443e3d62a27360de483a"
+                  "document_id": "vigilanza-privata-assiv-src-d98f9684",
+                  "title": "vigilanza-privata-assiv: Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.univigilanza.it/download.aspx?file=/public/ccnl/Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "sha256": "d98f968443033cd953e1a50f6019004eb576292532aea6a89d1c8b105e454d5b"
                 },
-                "page": "20",
-                "section": "Tabella costo medio orario, Servizio tecnico-operativo diurno, GIUGNO 2025, A - Elementi retributivi annui, column 1",
-                "quote": "Paga base tabellare conglobata 14.621,28 15.821,28 16.666,56 16.666,56 18.663,72 18.663,72 20.953,08 22.402,68 22.402,68 25.976,88"
+                "page": "1",
+                "section": "Vigilanza privata — Paga Conglobata, columns 2023-06-01, 2024-06-01, 2025-06-01, 2025-12-01, 2026-04-01, 2026-12-01",
+                "quote": "1 | 1694,03 | 1772,60 | 1811,89 | 1866,89 | 1914,03 | 1992,60 | 2086,89"
               },
               "transformation": "Annual paga base tabellare conglobata of level I (22.402,68, twelve monthly amounts; 13th and 14th are listed separately under B - Oneri aggiuntivi) divided by 12 = 1866.89 per month.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-18T14:05:18Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2025-06-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-vigilanza-privata-assiv-double-read"
               }
             }
           },
@@ -1418,27 +1506,29 @@
             "valid_until": "2026-04-01",
             "value": "1914.03",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "mlps-dd-50-2024-08-08",
-                  "title": "Ministero del Lavoro e delle Politiche Sociali, D.D. n. 50 dell'8 agosto 2024, costo medio orario del lavoro per i dipendenti da istituti di vigilanza privata e servizi di sicurezza (tabelle allegate)",
-                  "kind": "altro",
-                  "url": "https://lavoro.gov.it/temi-e-priorita-rapporti-di-lavoro-e-relazioni-industriali/focus/decreto-direttoriale-n.-50-dell8",
-                  "published_on": "2024-08-08",
-                  "sha256": "823f6c9aae9f90006c234eeb2966493f4c6b70480a40443e3d62a27360de483a"
+                  "document_id": "vigilanza-privata-assiv-src-d98f9684",
+                  "title": "vigilanza-privata-assiv: Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.univigilanza.it/download.aspx?file=/public/ccnl/Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "sha256": "d98f968443033cd953e1a50f6019004eb576292532aea6a89d1c8b105e454d5b"
                 },
-                "page": "21",
-                "section": "Tabella costo medio orario, Servizio tecnico-operativo diurno, DICEMBRE 2025, A - Elementi retributivi annui, column 1",
-                "quote": "Paga base tabellare conglobata 14.960,76 16.160,76 17.026,56 17.026,56 19.095,72 19.095,72 21.467,40 22.968,36 22.968,36 26.671,20"
+                "page": "1",
+                "section": "Vigilanza privata — Paga Conglobata, columns 2023-06-01, 2024-06-01, 2025-06-01, 2025-12-01, 2026-04-01, 2026-12-01",
+                "quote": "1 | 1694,03 | 1772,60 | 1811,89 | 1866,89 | 1914,03 | 1992,60 | 2086,89"
               },
               "transformation": "Annual paga base tabellare conglobata of level I (22.968,36, twelve monthly amounts; 13th and 14th are listed separately under B - Oneri aggiuntivi) divided by 12 = 1914.03 per month.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-18T14:05:18Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2025-12-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-vigilanza-privata-assiv-double-read"
               }
             }
           },
@@ -1447,27 +1537,29 @@
             "valid_until": "2026-12-01",
             "value": "1992.60",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "mlps-dd-50-2024-08-08",
-                  "title": "Ministero del Lavoro e delle Politiche Sociali, D.D. n. 50 dell'8 agosto 2024, costo medio orario del lavoro per i dipendenti da istituti di vigilanza privata e servizi di sicurezza (tabelle allegate)",
-                  "kind": "altro",
-                  "url": "https://lavoro.gov.it/temi-e-priorita-rapporti-di-lavoro-e-relazioni-industriali/focus/decreto-direttoriale-n.-50-dell8",
-                  "published_on": "2024-08-08",
-                  "sha256": "823f6c9aae9f90006c234eeb2966493f4c6b70480a40443e3d62a27360de483a"
+                  "document_id": "vigilanza-privata-assiv-src-d98f9684",
+                  "title": "vigilanza-privata-assiv: Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.univigilanza.it/download.aspx?file=/public/ccnl/Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "sha256": "d98f968443033cd953e1a50f6019004eb576292532aea6a89d1c8b105e454d5b"
                 },
-                "page": "22",
-                "section": "Tabella costo medio orario, Servizio tecnico-operativo diurno, APRILE 2026, A - Elementi retributivi annui, column 1",
-                "quote": "Paga base tabellare conglobata 15.526,44 16.726,44 17.626,56 17.626,56 19.815,72 19.815,72 22.324,56 23.911,20 23.911,20 27.828,36"
+                "page": "1",
+                "section": "Vigilanza privata — Paga Conglobata, columns 2023-06-01, 2024-06-01, 2025-06-01, 2025-12-01, 2026-04-01, 2026-12-01",
+                "quote": "1 | 1694,03 | 1772,60 | 1811,89 | 1866,89 | 1914,03 | 1992,60 | 2086,89"
               },
               "transformation": "Annual paga base tabellare conglobata of level I (23.911,20, twelve monthly amounts; 13th and 14th are listed separately under B - Oneri aggiuntivi) divided by 12 = 1992.60 per month.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-18T14:05:18Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2026-04-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-vigilanza-privata-assiv-double-read"
               }
             }
           },
@@ -1476,27 +1568,29 @@
             "valid_until": null,
             "value": "2086.89",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "mlps-dd-50-2024-08-08",
-                  "title": "Ministero del Lavoro e delle Politiche Sociali, D.D. n. 50 dell'8 agosto 2024, costo medio orario del lavoro per i dipendenti da istituti di vigilanza privata e servizi di sicurezza (tabelle allegate)",
-                  "kind": "altro",
-                  "url": "https://lavoro.gov.it/temi-e-priorita-rapporti-di-lavoro-e-relazioni-industriali/focus/decreto-direttoriale-n.-50-dell8",
-                  "published_on": "2024-08-08",
-                  "sha256": "823f6c9aae9f90006c234eeb2966493f4c6b70480a40443e3d62a27360de483a"
+                  "document_id": "vigilanza-privata-assiv-src-d98f9684",
+                  "title": "vigilanza-privata-assiv: Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.univigilanza.it/download.aspx?file=/public/ccnl/Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "sha256": "d98f968443033cd953e1a50f6019004eb576292532aea6a89d1c8b105e454d5b"
                 },
-                "page": "23",
-                "section": "Tabella costo medio orario, Servizio tecnico-operativo diurno, DICEMBRE 2026, A - Elementi retributivi annui, column 1",
-                "quote": "Paga base tabellare conglobata 16.205,28 17.405,28 18.346,56 18.346,56 20.679,72 20.679,72 23.353,08 25.042,68 25.042,68 29.216,88"
+                "page": "1",
+                "section": "Vigilanza privata — Paga Conglobata, columns 2023-06-01, 2024-06-01, 2025-06-01, 2025-12-01, 2026-04-01, 2026-12-01",
+                "quote": "1 | 1694,03 | 1772,60 | 1811,89 | 1866,89 | 1914,03 | 1992,60 | 2086,89"
               },
               "transformation": "Annual paga base tabellare conglobata of level I (25.042,68, twelve monthly amounts; 13th and 14th are listed separately under B - Oneri aggiuntivi) divided by 12 = 2086.89 per month.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-18T14:05:18Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2026-12-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-vigilanza-privata-assiv-double-read"
               }
             }
           }
@@ -1533,27 +1627,29 @@
             "valid_until": "2024-06-01",
             "value": "2049.03",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "mlps-dd-50-2024-08-08",
-                  "title": "Ministero del Lavoro e delle Politiche Sociali, D.D. n. 50 dell'8 agosto 2024, costo medio orario del lavoro per i dipendenti da istituti di vigilanza privata e servizi di sicurezza (tabelle allegate)",
-                  "kind": "altro",
-                  "url": "https://lavoro.gov.it/temi-e-priorita-rapporti-di-lavoro-e-relazioni-industriali/focus/decreto-direttoriale-n.-50-dell8",
-                  "published_on": "2024-08-08",
-                  "sha256": "823f6c9aae9f90006c234eeb2966493f4c6b70480a40443e3d62a27360de483a"
+                  "document_id": "vigilanza-privata-assiv-src-d98f9684",
+                  "title": "vigilanza-privata-assiv: Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.univigilanza.it/download.aspx?file=/public/ccnl/Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "sha256": "d98f968443033cd953e1a50f6019004eb576292532aea6a89d1c8b105e454d5b"
                 },
-                "page": "18",
-                "section": "Tabella costo medio orario, Servizio tecnico-operativo diurno, GIUGNO 2023, A - Elementi retributivi annui, column Q",
-                "quote": "Paga base tabellare conglobata 13.296,72 15.142,44 15.946,56 15.946,56 17.799,72 17.799,72 19.924,56 21.271,20 21.271,20 24.588,36"
+                "page": "1",
+                "section": "Vigilanza privata — Paga Conglobata, columns 2023-06-01, 2024-06-01, 2025-06-01, 2025-12-01, 2026-04-01, 2026-12-01",
+                "quote": "Q | 1952,61 | 2049,03 | 2097,24 | 2164,74 | 2222,60 | 2319,03 | 2434,74"
               },
               "transformation": "Annual paga base tabellare conglobata of level Q (24.588,36, twelve monthly amounts; 13th and 14th are listed separately under B - Oneri aggiuntivi) divided by 12 = 2049.03 per month.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-18T14:05:18Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2023-06-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-vigilanza-privata-assiv-double-read"
               }
             }
           },
@@ -1562,27 +1658,29 @@
             "valid_until": "2025-06-01",
             "value": "2097.24",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "mlps-dd-50-2024-08-08",
-                  "title": "Ministero del Lavoro e delle Politiche Sociali, D.D. n. 50 dell'8 agosto 2024, costo medio orario del lavoro per i dipendenti da istituti di vigilanza privata e servizi di sicurezza (tabelle allegate)",
-                  "kind": "altro",
-                  "url": "https://lavoro.gov.it/temi-e-priorita-rapporti-di-lavoro-e-relazioni-industriali/focus/decreto-direttoriale-n.-50-dell8",
-                  "published_on": "2024-08-08",
-                  "sha256": "823f6c9aae9f90006c234eeb2966493f4c6b70480a40443e3d62a27360de483a"
+                  "document_id": "vigilanza-privata-assiv-src-d98f9684",
+                  "title": "vigilanza-privata-assiv: Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.univigilanza.it/download.aspx?file=/public/ccnl/Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "sha256": "d98f968443033cd953e1a50f6019004eb576292532aea6a89d1c8b105e454d5b"
                 },
-                "page": "19",
-                "section": "Tabella costo medio orario, Servizio tecnico-operativo diurno, GIUGNO 2024, A - Elementi retributivi annui, column Q",
-                "quote": "Paga base tabellare conglobata 14.225,28 15.425,28 16.246,56 16.246,56 18.159,72 18.159,72 20.353,08 21.742,68 21.742,68 25.166,88"
+                "page": "1",
+                "section": "Vigilanza privata — Paga Conglobata, columns 2023-06-01, 2024-06-01, 2025-06-01, 2025-12-01, 2026-04-01, 2026-12-01",
+                "quote": "Q | 1952,61 | 2049,03 | 2097,24 | 2164,74 | 2222,60 | 2319,03 | 2434,74"
               },
               "transformation": "Annual paga base tabellare conglobata of level Q (25.166,88, twelve monthly amounts; 13th and 14th are listed separately under B - Oneri aggiuntivi) divided by 12 = 2097.24 per month.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-18T14:05:18Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2024-06-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-vigilanza-privata-assiv-double-read"
               }
             }
           },
@@ -1591,27 +1689,29 @@
             "valid_until": "2025-12-01",
             "value": "2164.74",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "mlps-dd-50-2024-08-08",
-                  "title": "Ministero del Lavoro e delle Politiche Sociali, D.D. n. 50 dell'8 agosto 2024, costo medio orario del lavoro per i dipendenti da istituti di vigilanza privata e servizi di sicurezza (tabelle allegate)",
-                  "kind": "altro",
-                  "url": "https://lavoro.gov.it/temi-e-priorita-rapporti-di-lavoro-e-relazioni-industriali/focus/decreto-direttoriale-n.-50-dell8",
-                  "published_on": "2024-08-08",
-                  "sha256": "823f6c9aae9f90006c234eeb2966493f4c6b70480a40443e3d62a27360de483a"
+                  "document_id": "vigilanza-privata-assiv-src-d98f9684",
+                  "title": "vigilanza-privata-assiv: Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.univigilanza.it/download.aspx?file=/public/ccnl/Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "sha256": "d98f968443033cd953e1a50f6019004eb576292532aea6a89d1c8b105e454d5b"
                 },
-                "page": "20",
-                "section": "Tabella costo medio orario, Servizio tecnico-operativo diurno, GIUGNO 2025, A - Elementi retributivi annui, column Q",
-                "quote": "Paga base tabellare conglobata 14.621,28 15.821,28 16.666,56 16.666,56 18.663,72 18.663,72 20.953,08 22.402,68 22.402,68 25.976,88"
+                "page": "1",
+                "section": "Vigilanza privata — Paga Conglobata, columns 2023-06-01, 2024-06-01, 2025-06-01, 2025-12-01, 2026-04-01, 2026-12-01",
+                "quote": "Q | 1952,61 | 2049,03 | 2097,24 | 2164,74 | 2222,60 | 2319,03 | 2434,74"
               },
               "transformation": "Annual paga base tabellare conglobata of level Q (25.976,88, twelve monthly amounts; 13th and 14th are listed separately under B - Oneri aggiuntivi) divided by 12 = 2164.74 per month.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-18T14:05:18Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2025-06-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-vigilanza-privata-assiv-double-read"
               }
             }
           },
@@ -1620,27 +1720,29 @@
             "valid_until": "2026-04-01",
             "value": "2222.60",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "mlps-dd-50-2024-08-08",
-                  "title": "Ministero del Lavoro e delle Politiche Sociali, D.D. n. 50 dell'8 agosto 2024, costo medio orario del lavoro per i dipendenti da istituti di vigilanza privata e servizi di sicurezza (tabelle allegate)",
-                  "kind": "altro",
-                  "url": "https://lavoro.gov.it/temi-e-priorita-rapporti-di-lavoro-e-relazioni-industriali/focus/decreto-direttoriale-n.-50-dell8",
-                  "published_on": "2024-08-08",
-                  "sha256": "823f6c9aae9f90006c234eeb2966493f4c6b70480a40443e3d62a27360de483a"
+                  "document_id": "vigilanza-privata-assiv-src-d98f9684",
+                  "title": "vigilanza-privata-assiv: Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.univigilanza.it/download.aspx?file=/public/ccnl/Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "sha256": "d98f968443033cd953e1a50f6019004eb576292532aea6a89d1c8b105e454d5b"
                 },
-                "page": "21",
-                "section": "Tabella costo medio orario, Servizio tecnico-operativo diurno, DICEMBRE 2025, A - Elementi retributivi annui, column Q",
-                "quote": "Paga base tabellare conglobata 14.960,76 16.160,76 17.026,56 17.026,56 19.095,72 19.095,72 21.467,40 22.968,36 22.968,36 26.671,20"
+                "page": "1",
+                "section": "Vigilanza privata — Paga Conglobata, columns 2023-06-01, 2024-06-01, 2025-06-01, 2025-12-01, 2026-04-01, 2026-12-01",
+                "quote": "Q | 1952,61 | 2049,03 | 2097,24 | 2164,74 | 2222,60 | 2319,03 | 2434,74"
               },
               "transformation": "Annual paga base tabellare conglobata of level Q (26.671,20, twelve monthly amounts; 13th and 14th are listed separately under B - Oneri aggiuntivi) divided by 12 = 2222.60 per month.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-18T14:05:18Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2025-12-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-vigilanza-privata-assiv-double-read"
               }
             }
           },
@@ -1649,27 +1751,29 @@
             "valid_until": "2026-12-01",
             "value": "2319.03",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "mlps-dd-50-2024-08-08",
-                  "title": "Ministero del Lavoro e delle Politiche Sociali, D.D. n. 50 dell'8 agosto 2024, costo medio orario del lavoro per i dipendenti da istituti di vigilanza privata e servizi di sicurezza (tabelle allegate)",
-                  "kind": "altro",
-                  "url": "https://lavoro.gov.it/temi-e-priorita-rapporti-di-lavoro-e-relazioni-industriali/focus/decreto-direttoriale-n.-50-dell8",
-                  "published_on": "2024-08-08",
-                  "sha256": "823f6c9aae9f90006c234eeb2966493f4c6b70480a40443e3d62a27360de483a"
+                  "document_id": "vigilanza-privata-assiv-src-d98f9684",
+                  "title": "vigilanza-privata-assiv: Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.univigilanza.it/download.aspx?file=/public/ccnl/Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "sha256": "d98f968443033cd953e1a50f6019004eb576292532aea6a89d1c8b105e454d5b"
                 },
-                "page": "22",
-                "section": "Tabella costo medio orario, Servizio tecnico-operativo diurno, APRILE 2026, A - Elementi retributivi annui, column Q",
-                "quote": "Paga base tabellare conglobata 15.526,44 16.726,44 17.626,56 17.626,56 19.815,72 19.815,72 22.324,56 23.911,20 23.911,20 27.828,36"
+                "page": "1",
+                "section": "Vigilanza privata — Paga Conglobata, columns 2023-06-01, 2024-06-01, 2025-06-01, 2025-12-01, 2026-04-01, 2026-12-01",
+                "quote": "Q | 1952,61 | 2049,03 | 2097,24 | 2164,74 | 2222,60 | 2319,03 | 2434,74"
               },
               "transformation": "Annual paga base tabellare conglobata of level Q (27.828,36, twelve monthly amounts; 13th and 14th are listed separately under B - Oneri aggiuntivi) divided by 12 = 2319.03 per month.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-18T14:05:18Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2026-04-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-vigilanza-privata-assiv-double-read"
               }
             }
           },
@@ -1678,27 +1782,29 @@
             "valid_until": null,
             "value": "2434.74",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "mlps-dd-50-2024-08-08",
-                  "title": "Ministero del Lavoro e delle Politiche Sociali, D.D. n. 50 dell'8 agosto 2024, costo medio orario del lavoro per i dipendenti da istituti di vigilanza privata e servizi di sicurezza (tabelle allegate)",
-                  "kind": "altro",
-                  "url": "https://lavoro.gov.it/temi-e-priorita-rapporti-di-lavoro-e-relazioni-industriali/focus/decreto-direttoriale-n.-50-dell8",
-                  "published_on": "2024-08-08",
-                  "sha256": "823f6c9aae9f90006c234eeb2966493f4c6b70480a40443e3d62a27360de483a"
+                  "document_id": "vigilanza-privata-assiv-src-d98f9684",
+                  "title": "vigilanza-privata-assiv: Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "kind": "associazione",
+                  "url": "https://www.univigilanza.it/download.aspx?file=/public/ccnl/Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+                  "sha256": "d98f968443033cd953e1a50f6019004eb576292532aea6a89d1c8b105e454d5b"
                 },
-                "page": "23",
-                "section": "Tabella costo medio orario, Servizio tecnico-operativo diurno, DICEMBRE 2026, A - Elementi retributivi annui, column Q",
-                "quote": "Paga base tabellare conglobata 16.205,28 17.405,28 18.346,56 18.346,56 20.679,72 20.679,72 23.353,08 25.042,68 25.042,68 29.216,88"
+                "page": "1",
+                "section": "Vigilanza privata — Paga Conglobata, columns 2023-06-01, 2024-06-01, 2025-06-01, 2025-12-01, 2026-04-01, 2026-12-01",
+                "quote": "Q | 1952,61 | 2049,03 | 2097,24 | 2164,74 | 2222,60 | 2319,03 | 2434,74"
               },
               "transformation": "Annual paga base tabellare conglobata of level Q (29.216,88, twelve monthly amounts; 13th and 14th are listed separately under B - Oneri aggiuntivi) divided by 12 = 2434.74 per month.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-18T14:05:18Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2026-12-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-vigilanza-privata-assiv-double-read"
               }
             }
           }

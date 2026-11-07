@@ -119,6 +119,32 @@
           "The file models only the 2026-01-01 tranche: the four later tranches (1/4/2027, 1/12/2027, 1/6/2028, 1/12/2028) are printed in the same table and could be added by the maintainer.",
           "The latest B018 text deposited at CNEL is the ipotesi of 5 December 2023 (deposito 194975); the 2026 renewal is not yet deposited. The ruleset now names the signed 2026 text: source_type contracting_party."
         ]
+      },
+      {
+        "id": "2026-11-07-gpt-chimica-affini-pmi-unionchimica-double-read",
+        "date": "2026-11-07",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Monthly values on scanned pages, each read twice from the page image by two independent sessions of another model, the second without being told the expected value.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
+            "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
+          },
+          {
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/1831",
+            "sha256": "91b7444b9d8c2e7b621f0d0a90d6e0e8d79103c83c1b23f7e6599a156da44028"
+          }
+        ],
+        "findings": [
+          "41 values read identically by both readings and equal to the file."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "levels.base_salary",
+          "levels.fixed_allowances"
+        ]
       }
     ]
   },
@@ -342,27 +368,29 @@
             "valid_until": "2027-04-01",
             "value": "1690.69",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
-                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "document_id": "chimica-affini-pmi-unionchimica-src-25943682",
+                  "title": "chimica-affini-pmi-unionchimica: accordo-2026-02-23.pdf",
                   "kind": "associazione",
                   "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
-                  "published_on": "2026-03-02",
                   "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
                 },
                 "page": "18",
-                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' and '01/01/2026', row A",
-                "quote": "A 100,00 1.648,62 € 42,07 € 41,81 € 17,56 € 50,17 € 13,38 € 165,00 €"
+                "section": "Tabelle retributive — Chimica - Concia e Settori accorpati, Minimi al 31/12/2025 + incrementi per data (somma cumulata, non totale stampato)",
+                "quote": "A | 100,00 | 1.648,62 € | 42,07 € | 41,81 € | 17,56 € | 50,17 € | 13,38 € | 165,00 €"
               },
               "transformation": "1.648,62 (minimo al 31/12/2025) + 42,07 (increase from 01/01/2026) = 1690.69",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-18T11:51:45Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2026-01-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-chimica-affini-pmi-unionchimica-double-read"
               }
             }
           },
@@ -371,27 +399,29 @@
             "valid_until": "2027-12-01",
             "value": "1732.50",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
-                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "document_id": "chimica-affini-pmi-unionchimica-src-25943682",
+                  "title": "chimica-affini-pmi-unionchimica: accordo-2026-02-23.pdf",
                   "kind": "associazione",
                   "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
-                  "published_on": "2026-03-02",
                   "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
                 },
                 "page": "18",
-                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' to '01/04/2027', row A",
-                "quote": "A 100,00 1.648,62 € 42,07 € 41,81 € 17,56 € 50,17 € 13,38 € 165,00 €"
+                "section": "Tabelle retributive — Chimica - Concia e Settori accorpati, Minimi al 31/12/2025 + incrementi per data (somma cumulata, non totale stampato)",
+                "quote": "A | 100,00 | 1.648,62 € | 42,07 € | 41,81 € | 17,56 € | 50,17 € | 13,38 € | 165,00 €"
               },
               "transformation": "1690.69 (minimo from 01/01/2026) + the increases to 01/04/2027 (41.81) = 1732.50. The tranches are added as printed: their sum differs by one cent from the 'Aumento a regime' column on rows A, B, F and H.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T13:00:32Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2027-04-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-chimica-affini-pmi-unionchimica-double-read"
               }
             }
           },
@@ -400,27 +430,29 @@
             "valid_until": "2028-06-01",
             "value": "1750.06",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
-                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "document_id": "chimica-affini-pmi-unionchimica-src-25943682",
+                  "title": "chimica-affini-pmi-unionchimica: accordo-2026-02-23.pdf",
                   "kind": "associazione",
                   "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
-                  "published_on": "2026-03-02",
                   "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
                 },
                 "page": "18",
-                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' to '01/12/2027', row A",
-                "quote": "A 100,00 1.648,62 € 42,07 € 41,81 € 17,56 € 50,17 € 13,38 € 165,00 €"
+                "section": "Tabelle retributive — Chimica - Concia e Settori accorpati, Minimi al 31/12/2025 + incrementi per data (somma cumulata, non totale stampato)",
+                "quote": "A | 100,00 | 1.648,62 € | 42,07 € | 41,81 € | 17,56 € | 50,17 € | 13,38 € | 165,00 €"
               },
               "transformation": "1690.69 (minimo from 01/01/2026) + the increases to 01/12/2027 (41.81 + 17.56) = 1750.06. The tranches are added as printed: their sum differs by one cent from the 'Aumento a regime' column on rows A, B, F and H.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T13:00:32Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2027-12-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-chimica-affini-pmi-unionchimica-double-read"
               }
             }
           },
@@ -429,27 +461,29 @@
             "valid_until": "2028-12-01",
             "value": "1800.23",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
-                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "document_id": "chimica-affini-pmi-unionchimica-src-25943682",
+                  "title": "chimica-affini-pmi-unionchimica: accordo-2026-02-23.pdf",
                   "kind": "associazione",
                   "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
-                  "published_on": "2026-03-02",
                   "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
                 },
                 "page": "18",
-                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' to '01/06/2028', row A",
-                "quote": "A 100,00 1.648,62 € 42,07 € 41,81 € 17,56 € 50,17 € 13,38 € 165,00 €"
+                "section": "Tabelle retributive — Chimica - Concia e Settori accorpati, Minimi al 31/12/2025 + incrementi per data (somma cumulata, non totale stampato)",
+                "quote": "A | 100,00 | 1.648,62 € | 42,07 € | 41,81 € | 17,56 € | 50,17 € | 13,38 € | 165,00 €"
               },
               "transformation": "1690.69 (minimo from 01/01/2026) + the increases to 01/06/2028 (41.81 + 17.56 + 50.17) = 1800.23. The tranches are added as printed: their sum differs by one cent from the 'Aumento a regime' column on rows A, B, F and H.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T13:00:32Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2028-06-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-chimica-affini-pmi-unionchimica-double-read"
               }
             }
           },
@@ -458,27 +492,29 @@
             "valid_until": null,
             "value": "1813.61",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
-                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "document_id": "chimica-affini-pmi-unionchimica-src-25943682",
+                  "title": "chimica-affini-pmi-unionchimica: accordo-2026-02-23.pdf",
                   "kind": "associazione",
                   "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
-                  "published_on": "2026-03-02",
                   "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
                 },
                 "page": "18",
-                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' to '01/12/2028', row A",
-                "quote": "A 100,00 1.648,62 € 42,07 € 41,81 € 17,56 € 50,17 € 13,38 € 165,00 €"
+                "section": "Tabelle retributive — Chimica - Concia e Settori accorpati, Minimi al 31/12/2025 + incrementi per data (somma cumulata, non totale stampato)",
+                "quote": "A | 100,00 | 1.648,62 € | 42,07 € | 41,81 € | 17,56 € | 50,17 € | 13,38 € | 165,00 €"
               },
               "transformation": "1690.69 (minimo from 01/01/2026) + the increases to 01/12/2028 (41.81 + 17.56 + 50.17 + 13.38) = 1813.61. The tranches are added as printed: their sum differs by one cent from the 'Aumento a regime' column on rows A, B, F and H.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T13:00:32Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2028-12-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-chimica-affini-pmi-unionchimica-double-read"
               }
             }
           }
@@ -516,27 +552,29 @@
             "valid_until": "2027-04-01",
             "value": "1830.43",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
-                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "document_id": "chimica-affini-pmi-unionchimica-src-25943682",
+                  "title": "chimica-affini-pmi-unionchimica: accordo-2026-02-23.pdf",
                   "kind": "associazione",
                   "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
-                  "published_on": "2026-03-02",
                   "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
                 },
                 "page": "18",
-                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' and '01/01/2026', row B",
-                "quote": "B 115,15 1.781,99 € 48,44 € 48,15 € 20,22 € 57,78 € 15,41 € 189,99 €"
+                "section": "Tabelle retributive — Chimica - Concia e Settori accorpati, Minimi al 31/12/2025 + incrementi per data (somma cumulata, non totale stampato)",
+                "quote": "B | 115,15 | 1.781,99 € | 48,44 € | 48,15 € | 20,22 € | 57,78 € | 15,41 € | 189,99 €"
               },
               "transformation": "1.781,99 (minimo al 31/12/2025) + 48,44 (increase from 01/01/2026) = 1830.43",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-18T11:51:45Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2026-01-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-chimica-affini-pmi-unionchimica-double-read"
               }
             }
           },
@@ -545,27 +583,29 @@
             "valid_until": "2027-12-01",
             "value": "1878.58",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
-                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "document_id": "chimica-affini-pmi-unionchimica-src-25943682",
+                  "title": "chimica-affini-pmi-unionchimica: accordo-2026-02-23.pdf",
                   "kind": "associazione",
                   "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
-                  "published_on": "2026-03-02",
                   "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
                 },
                 "page": "18",
-                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' to '01/04/2027', row B",
-                "quote": "B 115,15 1.781,99 € 48,44 € 48,15 € 20,22 € 57,78 € 15,41 € 189,99 €"
+                "section": "Tabelle retributive — Chimica - Concia e Settori accorpati, Minimi al 31/12/2025 + incrementi per data (somma cumulata, non totale stampato)",
+                "quote": "B | 115,15 | 1.781,99 € | 48,44 € | 48,15 € | 20,22 € | 57,78 € | 15,41 € | 189,99 €"
               },
               "transformation": "1830.43 (minimo from 01/01/2026) + the increases to 01/04/2027 (48.15) = 1878.58. The tranches are added as printed: their sum differs by one cent from the 'Aumento a regime' column on rows A, B, F and H.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T13:00:32Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2027-04-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-chimica-affini-pmi-unionchimica-double-read"
               }
             }
           },
@@ -574,27 +614,29 @@
             "valid_until": "2028-06-01",
             "value": "1898.80",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
-                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "document_id": "chimica-affini-pmi-unionchimica-src-25943682",
+                  "title": "chimica-affini-pmi-unionchimica: accordo-2026-02-23.pdf",
                   "kind": "associazione",
                   "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
-                  "published_on": "2026-03-02",
                   "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
                 },
                 "page": "18",
-                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' to '01/12/2027', row B",
-                "quote": "B 115,15 1.781,99 € 48,44 € 48,15 € 20,22 € 57,78 € 15,41 € 189,99 €"
+                "section": "Tabelle retributive — Chimica - Concia e Settori accorpati, Minimi al 31/12/2025 + incrementi per data (somma cumulata, non totale stampato)",
+                "quote": "B | 115,15 | 1.781,99 € | 48,44 € | 48,15 € | 20,22 € | 57,78 € | 15,41 € | 189,99 €"
               },
               "transformation": "1830.43 (minimo from 01/01/2026) + the increases to 01/12/2027 (48.15 + 20.22) = 1898.80. The tranches are added as printed: their sum differs by one cent from the 'Aumento a regime' column on rows A, B, F and H.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T13:00:32Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2027-12-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-chimica-affini-pmi-unionchimica-double-read"
               }
             }
           },
@@ -603,27 +645,29 @@
             "valid_until": "2028-12-01",
             "value": "1956.58",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
-                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "document_id": "chimica-affini-pmi-unionchimica-src-25943682",
+                  "title": "chimica-affini-pmi-unionchimica: accordo-2026-02-23.pdf",
                   "kind": "associazione",
                   "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
-                  "published_on": "2026-03-02",
                   "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
                 },
                 "page": "18",
-                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' to '01/06/2028', row B",
-                "quote": "B 115,15 1.781,99 € 48,44 € 48,15 € 20,22 € 57,78 € 15,41 € 189,99 €"
+                "section": "Tabelle retributive — Chimica - Concia e Settori accorpati, Minimi al 31/12/2025 + incrementi per data (somma cumulata, non totale stampato)",
+                "quote": "B | 115,15 | 1.781,99 € | 48,44 € | 48,15 € | 20,22 € | 57,78 € | 15,41 € | 189,99 €"
               },
               "transformation": "1830.43 (minimo from 01/01/2026) + the increases to 01/06/2028 (48.15 + 20.22 + 57.78) = 1956.58. The tranches are added as printed: their sum differs by one cent from the 'Aumento a regime' column on rows A, B, F and H.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T13:00:32Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2028-06-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-chimica-affini-pmi-unionchimica-double-read"
               }
             }
           },
@@ -632,27 +676,29 @@
             "valid_until": null,
             "value": "1971.99",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
-                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "document_id": "chimica-affini-pmi-unionchimica-src-25943682",
+                  "title": "chimica-affini-pmi-unionchimica: accordo-2026-02-23.pdf",
                   "kind": "associazione",
                   "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
-                  "published_on": "2026-03-02",
                   "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
                 },
                 "page": "18",
-                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' to '01/12/2028', row B",
-                "quote": "B 115,15 1.781,99 € 48,44 € 48,15 € 20,22 € 57,78 € 15,41 € 189,99 €"
+                "section": "Tabelle retributive — Chimica - Concia e Settori accorpati, Minimi al 31/12/2025 + incrementi per data (somma cumulata, non totale stampato)",
+                "quote": "B | 115,15 | 1.781,99 € | 48,44 € | 48,15 € | 20,22 € | 57,78 € | 15,41 € | 189,99 €"
               },
               "transformation": "1830.43 (minimo from 01/01/2026) + the increases to 01/12/2028 (48.15 + 20.22 + 57.78 + 15.41) = 1971.99. The tranches are added as printed: their sum differs by one cent from the 'Aumento a regime' column on rows A, B, F and H.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T13:00:32Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2028-12-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-chimica-affini-pmi-unionchimica-double-read"
               }
             }
           }
@@ -690,27 +736,29 @@
             "valid_until": "2027-04-01",
             "value": "2033.35",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
-                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "document_id": "chimica-affini-pmi-unionchimica-src-25943682",
+                  "title": "chimica-affini-pmi-unionchimica: accordo-2026-02-23.pdf",
                   "kind": "associazione",
                   "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
-                  "published_on": "2026-03-02",
                   "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
                 },
                 "page": "18",
-                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' and '01/01/2026', row C",
-                "quote": "C 132,12 1.977,77 € 55,58 € 55,24 € 23,20 € 66,29 € 17,68 € 217,99 €"
+                "section": "Tabelle retributive — Chimica - Concia e Settori accorpati, Minimi al 31/12/2025 + incrementi per data (somma cumulata, non totale stampato)",
+                "quote": "C | 132,12 | 1.977,77 € | 55,58 € | 55,24 € | 23,20 € | 66,29 € | 17,68 € | 217,99 €"
               },
               "transformation": "1.977,77 (minimo al 31/12/2025) + 55,58 (increase from 01/01/2026) = 2033.35",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-18T11:51:45Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2026-01-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-chimica-affini-pmi-unionchimica-double-read"
               }
             }
           },
@@ -719,27 +767,29 @@
             "valid_until": "2027-12-01",
             "value": "2088.59",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
-                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "document_id": "chimica-affini-pmi-unionchimica-src-25943682",
+                  "title": "chimica-affini-pmi-unionchimica: accordo-2026-02-23.pdf",
                   "kind": "associazione",
                   "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
-                  "published_on": "2026-03-02",
                   "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
                 },
                 "page": "18",
-                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' to '01/04/2027', row C",
-                "quote": "C 132,12 1.977,77 € 55,58 € 55,24 € 23,20 € 66,29 € 17,68 € 217,99 €"
+                "section": "Tabelle retributive — Chimica - Concia e Settori accorpati, Minimi al 31/12/2025 + incrementi per data (somma cumulata, non totale stampato)",
+                "quote": "C | 132,12 | 1.977,77 € | 55,58 € | 55,24 € | 23,20 € | 66,29 € | 17,68 € | 217,99 €"
               },
               "transformation": "2033.35 (minimo from 01/01/2026) + the increases to 01/04/2027 (55.24) = 2088.59. The tranches are added as printed: their sum differs by one cent from the 'Aumento a regime' column on rows A, B, F and H.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T13:00:32Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2027-04-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-chimica-affini-pmi-unionchimica-double-read"
               }
             }
           },
@@ -748,27 +798,29 @@
             "valid_until": "2028-06-01",
             "value": "2111.79",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
-                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "document_id": "chimica-affini-pmi-unionchimica-src-25943682",
+                  "title": "chimica-affini-pmi-unionchimica: accordo-2026-02-23.pdf",
                   "kind": "associazione",
                   "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
-                  "published_on": "2026-03-02",
                   "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
                 },
                 "page": "18",
-                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' to '01/12/2027', row C",
-                "quote": "C 132,12 1.977,77 € 55,58 € 55,24 € 23,20 € 66,29 € 17,68 € 217,99 €"
+                "section": "Tabelle retributive — Chimica - Concia e Settori accorpati, Minimi al 31/12/2025 + incrementi per data (somma cumulata, non totale stampato)",
+                "quote": "C | 132,12 | 1.977,77 € | 55,58 € | 55,24 € | 23,20 € | 66,29 € | 17,68 € | 217,99 €"
               },
               "transformation": "2033.35 (minimo from 01/01/2026) + the increases to 01/12/2027 (55.24 + 23.20) = 2111.79. The tranches are added as printed: their sum differs by one cent from the 'Aumento a regime' column on rows A, B, F and H.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T13:00:32Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2027-12-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-chimica-affini-pmi-unionchimica-double-read"
               }
             }
           },
@@ -777,27 +829,29 @@
             "valid_until": "2028-12-01",
             "value": "2178.08",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
-                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "document_id": "chimica-affini-pmi-unionchimica-src-25943682",
+                  "title": "chimica-affini-pmi-unionchimica: accordo-2026-02-23.pdf",
                   "kind": "associazione",
                   "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
-                  "published_on": "2026-03-02",
                   "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
                 },
                 "page": "18",
-                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' to '01/06/2028', row C",
-                "quote": "C 132,12 1.977,77 € 55,58 € 55,24 € 23,20 € 66,29 € 17,68 € 217,99 €"
+                "section": "Tabelle retributive — Chimica - Concia e Settori accorpati, Minimi al 31/12/2025 + incrementi per data (somma cumulata, non totale stampato)",
+                "quote": "C | 132,12 | 1.977,77 € | 55,58 € | 55,24 € | 23,20 € | 66,29 € | 17,68 € | 217,99 €"
               },
               "transformation": "2033.35 (minimo from 01/01/2026) + the increases to 01/06/2028 (55.24 + 23.20 + 66.29) = 2178.08. The tranches are added as printed: their sum differs by one cent from the 'Aumento a regime' column on rows A, B, F and H.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T13:00:32Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2028-06-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-chimica-affini-pmi-unionchimica-double-read"
               }
             }
           },
@@ -806,27 +860,29 @@
             "valid_until": null,
             "value": "2195.76",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
-                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "document_id": "chimica-affini-pmi-unionchimica-src-25943682",
+                  "title": "chimica-affini-pmi-unionchimica: accordo-2026-02-23.pdf",
                   "kind": "associazione",
                   "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
-                  "published_on": "2026-03-02",
                   "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
                 },
                 "page": "18",
-                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' to '01/12/2028', row C",
-                "quote": "C 132,12 1.977,77 € 55,58 € 55,24 € 23,20 € 66,29 € 17,68 € 217,99 €"
+                "section": "Tabelle retributive — Chimica - Concia e Settori accorpati, Minimi al 31/12/2025 + incrementi per data (somma cumulata, non totale stampato)",
+                "quote": "C | 132,12 | 1.977,77 € | 55,58 € | 55,24 € | 23,20 € | 66,29 € | 17,68 € | 217,99 €"
               },
               "transformation": "2033.35 (minimo from 01/01/2026) + the increases to 01/12/2028 (55.24 + 23.20 + 66.29 + 17.68) = 2195.76. The tranches are added as printed: their sum differs by one cent from the 'Aumento a regime' column on rows A, B, F and H.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T13:00:32Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2028-12-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-chimica-affini-pmi-unionchimica-double-read"
               }
             }
           }
@@ -864,27 +920,29 @@
             "valid_until": "2027-04-01",
             "value": "2267.00",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
-                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "document_id": "chimica-affini-pmi-unionchimica-src-25943682",
+                  "title": "chimica-affini-pmi-unionchimica: accordo-2026-02-23.pdf",
                   "kind": "associazione",
                   "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
-                  "published_on": "2026-03-02",
                   "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
                 },
                 "page": "18",
-                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' and '01/01/2026', row D",
-                "quote": "D 143,64 2.206,00 € 61,00 € 59,86 € 25,14 € 71,84 € 19,16 € 237,00 €"
+                "section": "Tabelle retributive — Chimica - Concia e Settori accorpati, Minimi al 31/12/2025 + incrementi per data (somma cumulata, non totale stampato)",
+                "quote": "D | 143,64 | 2.206,00 € | 61,00 € | 59,86 € | 25,14 € | 71,84 € | 19,16 € | 237,00 €"
               },
               "transformation": "2.206,00 (minimo al 31/12/2025) + 61,00 (increase from 01/01/2026) = 2267.00",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-18T11:51:45Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2026-01-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-chimica-affini-pmi-unionchimica-double-read"
               }
             }
           },
@@ -893,27 +951,29 @@
             "valid_until": "2027-12-01",
             "value": "2326.86",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
-                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "document_id": "chimica-affini-pmi-unionchimica-src-25943682",
+                  "title": "chimica-affini-pmi-unionchimica: accordo-2026-02-23.pdf",
                   "kind": "associazione",
                   "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
-                  "published_on": "2026-03-02",
                   "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
                 },
                 "page": "18",
-                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' to '01/04/2027', row D",
-                "quote": "D 143,64 2.206,00 € 61,00 € 59,86 € 25,14 € 71,84 € 19,16 € 237,00 €"
+                "section": "Tabelle retributive — Chimica - Concia e Settori accorpati, Minimi al 31/12/2025 + incrementi per data (somma cumulata, non totale stampato)",
+                "quote": "D | 143,64 | 2.206,00 € | 61,00 € | 59,86 € | 25,14 € | 71,84 € | 19,16 € | 237,00 €"
               },
               "transformation": "2267.00 (minimo from 01/01/2026) + the increases to 01/04/2027 (59.86) = 2326.86. The tranches are added as printed: their sum differs by one cent from the 'Aumento a regime' column on rows A, B, F and H.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T13:00:32Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2027-04-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-chimica-affini-pmi-unionchimica-double-read"
               }
             }
           },
@@ -922,27 +982,29 @@
             "valid_until": "2028-06-01",
             "value": "2352.00",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
-                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "document_id": "chimica-affini-pmi-unionchimica-src-25943682",
+                  "title": "chimica-affini-pmi-unionchimica: accordo-2026-02-23.pdf",
                   "kind": "associazione",
                   "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
-                  "published_on": "2026-03-02",
                   "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
                 },
                 "page": "18",
-                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' to '01/12/2027', row D",
-                "quote": "D 143,64 2.206,00 € 61,00 € 59,86 € 25,14 € 71,84 € 19,16 € 237,00 €"
+                "section": "Tabelle retributive — Chimica - Concia e Settori accorpati, Minimi al 31/12/2025 + incrementi per data (somma cumulata, non totale stampato)",
+                "quote": "D | 143,64 | 2.206,00 € | 61,00 € | 59,86 € | 25,14 € | 71,84 € | 19,16 € | 237,00 €"
               },
               "transformation": "2267.00 (minimo from 01/01/2026) + the increases to 01/12/2027 (59.86 + 25.14) = 2352.00. The tranches are added as printed: their sum differs by one cent from the 'Aumento a regime' column on rows A, B, F and H.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T13:00:32Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2027-12-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-chimica-affini-pmi-unionchimica-double-read"
               }
             }
           },
@@ -951,27 +1013,29 @@
             "valid_until": "2028-12-01",
             "value": "2423.84",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
-                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "document_id": "chimica-affini-pmi-unionchimica-src-25943682",
+                  "title": "chimica-affini-pmi-unionchimica: accordo-2026-02-23.pdf",
                   "kind": "associazione",
                   "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
-                  "published_on": "2026-03-02",
                   "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
                 },
                 "page": "18",
-                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' to '01/06/2028', row D",
-                "quote": "D 143,64 2.206,00 € 61,00 € 59,86 € 25,14 € 71,84 € 19,16 € 237,00 €"
+                "section": "Tabelle retributive — Chimica - Concia e Settori accorpati, Minimi al 31/12/2025 + incrementi per data (somma cumulata, non totale stampato)",
+                "quote": "D | 143,64 | 2.206,00 € | 61,00 € | 59,86 € | 25,14 € | 71,84 € | 19,16 € | 237,00 €"
               },
               "transformation": "2267.00 (minimo from 01/01/2026) + the increases to 01/06/2028 (59.86 + 25.14 + 71.84) = 2423.84. The tranches are added as printed: their sum differs by one cent from the 'Aumento a regime' column on rows A, B, F and H.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T13:00:32Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2028-06-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-chimica-affini-pmi-unionchimica-double-read"
               }
             }
           },
@@ -980,27 +1044,29 @@
             "valid_until": null,
             "value": "2443.00",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
-                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "document_id": "chimica-affini-pmi-unionchimica-src-25943682",
+                  "title": "chimica-affini-pmi-unionchimica: accordo-2026-02-23.pdf",
                   "kind": "associazione",
                   "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
-                  "published_on": "2026-03-02",
                   "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
                 },
                 "page": "18",
-                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' to '01/12/2028', row D",
-                "quote": "D 143,64 2.206,00 € 61,00 € 59,86 € 25,14 € 71,84 € 19,16 € 237,00 €"
+                "section": "Tabelle retributive — Chimica - Concia e Settori accorpati, Minimi al 31/12/2025 + incrementi per data (somma cumulata, non totale stampato)",
+                "quote": "D | 143,64 | 2.206,00 € | 61,00 € | 59,86 € | 25,14 € | 71,84 € | 19,16 € | 237,00 €"
               },
               "transformation": "2267.00 (minimo from 01/01/2026) + the increases to 01/12/2028 (59.86 + 25.14 + 71.84 + 19.16) = 2443.00. The tranches are added as printed: their sum differs by one cent from the 'Aumento a regime' column on rows A, B, F and H.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T13:00:32Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2028-12-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-chimica-affini-pmi-unionchimica-double-read"
               }
             }
           }
@@ -1038,27 +1104,29 @@
             "valid_until": "2027-04-01",
             "value": "2444.03",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
-                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "document_id": "chimica-affini-pmi-unionchimica-src-25943682",
+                  "title": "chimica-affini-pmi-unionchimica: accordo-2026-02-23.pdf",
                   "kind": "associazione",
                   "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
-                  "published_on": "2026-03-02",
                   "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
                 },
                 "page": "18",
-                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' and '01/01/2026', row E",
-                "quote": "E 150,91 2.380,54 € 63,49 € 63,10 € 26,50 € 75,72 € 20,19 € 249,00 €"
+                "section": "Tabelle retributive — Chimica - Concia e Settori accorpati, Minimi al 31/12/2025 + incrementi per data (somma cumulata, non totale stampato)",
+                "quote": "E | 150,91 | 2.380,54 € | 63,49 € | 63,10 € | 26,50 € | 75,72 € | 20,19 € | 249,00 €"
               },
               "transformation": "2.380,54 (minimo al 31/12/2025) + 63,49 (increase from 01/01/2026) = 2444.03",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-18T11:51:45Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2026-01-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-chimica-affini-pmi-unionchimica-double-read"
               }
             }
           },
@@ -1067,27 +1135,29 @@
             "valid_until": "2027-12-01",
             "value": "2507.13",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
-                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "document_id": "chimica-affini-pmi-unionchimica-src-25943682",
+                  "title": "chimica-affini-pmi-unionchimica: accordo-2026-02-23.pdf",
                   "kind": "associazione",
                   "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
-                  "published_on": "2026-03-02",
                   "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
                 },
                 "page": "18",
-                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' to '01/04/2027', row E",
-                "quote": "E 150,91 2.380,54 € 63,49 € 63,10 € 26,50 € 75,72 € 20,19 € 249,00 €"
+                "section": "Tabelle retributive — Chimica - Concia e Settori accorpati, Minimi al 31/12/2025 + incrementi per data (somma cumulata, non totale stampato)",
+                "quote": "E | 150,91 | 2.380,54 € | 63,49 € | 63,10 € | 26,50 € | 75,72 € | 20,19 € | 249,00 €"
               },
               "transformation": "2444.03 (minimo from 01/01/2026) + the increases to 01/04/2027 (63.10) = 2507.13. The tranches are added as printed: their sum differs by one cent from the 'Aumento a regime' column on rows A, B, F and H.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T13:00:32Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2027-04-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-chimica-affini-pmi-unionchimica-double-read"
               }
             }
           },
@@ -1096,27 +1166,29 @@
             "valid_until": "2028-06-01",
             "value": "2533.63",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
-                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "document_id": "chimica-affini-pmi-unionchimica-src-25943682",
+                  "title": "chimica-affini-pmi-unionchimica: accordo-2026-02-23.pdf",
                   "kind": "associazione",
                   "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
-                  "published_on": "2026-03-02",
                   "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
                 },
                 "page": "18",
-                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' to '01/12/2027', row E",
-                "quote": "E 150,91 2.380,54 € 63,49 € 63,10 € 26,50 € 75,72 € 20,19 € 249,00 €"
+                "section": "Tabelle retributive — Chimica - Concia e Settori accorpati, Minimi al 31/12/2025 + incrementi per data (somma cumulata, non totale stampato)",
+                "quote": "E | 150,91 | 2.380,54 € | 63,49 € | 63,10 € | 26,50 € | 75,72 € | 20,19 € | 249,00 €"
               },
               "transformation": "2444.03 (minimo from 01/01/2026) + the increases to 01/12/2027 (63.10 + 26.50) = 2533.63. The tranches are added as printed: their sum differs by one cent from the 'Aumento a regime' column on rows A, B, F and H.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T13:00:32Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2027-12-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-chimica-affini-pmi-unionchimica-double-read"
               }
             }
           },
@@ -1125,27 +1197,29 @@
             "valid_until": "2028-12-01",
             "value": "2609.35",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
-                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "document_id": "chimica-affini-pmi-unionchimica-src-25943682",
+                  "title": "chimica-affini-pmi-unionchimica: accordo-2026-02-23.pdf",
                   "kind": "associazione",
                   "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
-                  "published_on": "2026-03-02",
                   "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
                 },
                 "page": "18",
-                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' to '01/06/2028', row E",
-                "quote": "E 150,91 2.380,54 € 63,49 € 63,10 € 26,50 € 75,72 € 20,19 € 249,00 €"
+                "section": "Tabelle retributive — Chimica - Concia e Settori accorpati, Minimi al 31/12/2025 + incrementi per data (somma cumulata, non totale stampato)",
+                "quote": "E | 150,91 | 2.380,54 € | 63,49 € | 63,10 € | 26,50 € | 75,72 € | 20,19 € | 249,00 €"
               },
               "transformation": "2444.03 (minimo from 01/01/2026) + the increases to 01/06/2028 (63.10 + 26.50 + 75.72) = 2609.35. The tranches are added as printed: their sum differs by one cent from the 'Aumento a regime' column on rows A, B, F and H.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T13:00:32Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2028-06-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-chimica-affini-pmi-unionchimica-double-read"
               }
             }
           },
@@ -1154,27 +1228,29 @@
             "valid_until": null,
             "value": "2629.54",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
-                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "document_id": "chimica-affini-pmi-unionchimica-src-25943682",
+                  "title": "chimica-affini-pmi-unionchimica: accordo-2026-02-23.pdf",
                   "kind": "associazione",
                   "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
-                  "published_on": "2026-03-02",
                   "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
                 },
                 "page": "18",
-                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' to '01/12/2028', row E",
-                "quote": "E 150,91 2.380,54 € 63,49 € 63,10 € 26,50 € 75,72 € 20,19 € 249,00 €"
+                "section": "Tabelle retributive — Chimica - Concia e Settori accorpati, Minimi al 31/12/2025 + incrementi per data (somma cumulata, non totale stampato)",
+                "quote": "E | 150,91 | 2.380,54 € | 63,49 € | 63,10 € | 26,50 € | 75,72 € | 20,19 € | 249,00 €"
               },
               "transformation": "2444.03 (minimo from 01/01/2026) + the increases to 01/12/2028 (63.10 + 26.50 + 75.72 + 20.19) = 2629.54. The tranches are added as printed: their sum differs by one cent from the 'Aumento a regime' column on rows A, B, F and H.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T13:00:32Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2028-12-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-chimica-affini-pmi-unionchimica-double-read"
               }
             }
           }
@@ -1244,27 +1320,29 @@
             "valid_until": "2027-04-01",
             "value": "2703.06",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
-                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "document_id": "chimica-affini-pmi-unionchimica-src-25943682",
+                  "title": "chimica-affini-pmi-unionchimica: accordo-2026-02-23.pdf",
                   "kind": "associazione",
                   "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
-                  "published_on": "2026-03-02",
                   "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
                 },
                 "page": "18",
-                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' and '01/01/2026', row F",
-                "quote": "F 159,39 2.636,01 € 67,05 € 66,64 € 27,99 € 79,97 € 21,33 € 262,99 €"
+                "section": "Tabelle retributive — Chimica - Concia e Settori accorpati, Minimi al 31/12/2025 + incrementi per data (somma cumulata, non totale stampato)",
+                "quote": "F | 159,39 | 2.636,01 € | 67,05 € | 66,64 € | 27,99 € | 79,97 € | 21,33 € | 262,99 €"
               },
               "transformation": "2.636,01 (minimo al 31/12/2025) + 67,05 (increase from 01/01/2026) = 2703.06",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-18T11:51:45Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2026-01-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-chimica-affini-pmi-unionchimica-double-read"
               }
             }
           },
@@ -1273,27 +1351,29 @@
             "valid_until": "2027-12-01",
             "value": "2769.70",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
-                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "document_id": "chimica-affini-pmi-unionchimica-src-25943682",
+                  "title": "chimica-affini-pmi-unionchimica: accordo-2026-02-23.pdf",
                   "kind": "associazione",
                   "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
-                  "published_on": "2026-03-02",
                   "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
                 },
                 "page": "18",
-                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' to '01/04/2027', row F",
-                "quote": "F 159,39 2.636,01 € 67,05 € 66,64 € 27,99 € 79,97 € 21,33 € 262,99 €"
+                "section": "Tabelle retributive — Chimica - Concia e Settori accorpati, Minimi al 31/12/2025 + incrementi per data (somma cumulata, non totale stampato)",
+                "quote": "F | 159,39 | 2.636,01 € | 67,05 € | 66,64 € | 27,99 € | 79,97 € | 21,33 € | 262,99 €"
               },
               "transformation": "2703.06 (minimo from 01/01/2026) + the increases to 01/04/2027 (66.64) = 2769.70. The tranches are added as printed: their sum differs by one cent from the 'Aumento a regime' column on rows A, B, F and H.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T13:00:32Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2027-04-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-chimica-affini-pmi-unionchimica-double-read"
               }
             }
           },
@@ -1302,27 +1382,29 @@
             "valid_until": "2028-06-01",
             "value": "2797.69",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
-                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "document_id": "chimica-affini-pmi-unionchimica-src-25943682",
+                  "title": "chimica-affini-pmi-unionchimica: accordo-2026-02-23.pdf",
                   "kind": "associazione",
                   "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
-                  "published_on": "2026-03-02",
                   "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
                 },
                 "page": "18",
-                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' to '01/12/2027', row F",
-                "quote": "F 159,39 2.636,01 € 67,05 € 66,64 € 27,99 € 79,97 € 21,33 € 262,99 €"
+                "section": "Tabelle retributive — Chimica - Concia e Settori accorpati, Minimi al 31/12/2025 + incrementi per data (somma cumulata, non totale stampato)",
+                "quote": "F | 159,39 | 2.636,01 € | 67,05 € | 66,64 € | 27,99 € | 79,97 € | 21,33 € | 262,99 €"
               },
               "transformation": "2703.06 (minimo from 01/01/2026) + the increases to 01/12/2027 (66.64 + 27.99) = 2797.69. The tranches are added as printed: their sum differs by one cent from the 'Aumento a regime' column on rows A, B, F and H.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T13:00:32Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2027-12-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-chimica-affini-pmi-unionchimica-double-read"
               }
             }
           },
@@ -1331,27 +1413,29 @@
             "valid_until": "2028-12-01",
             "value": "2877.66",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
-                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "document_id": "chimica-affini-pmi-unionchimica-src-25943682",
+                  "title": "chimica-affini-pmi-unionchimica: accordo-2026-02-23.pdf",
                   "kind": "associazione",
                   "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
-                  "published_on": "2026-03-02",
                   "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
                 },
                 "page": "18",
-                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' to '01/06/2028', row F",
-                "quote": "F 159,39 2.636,01 € 67,05 € 66,64 € 27,99 € 79,97 € 21,33 € 262,99 €"
+                "section": "Tabelle retributive — Chimica - Concia e Settori accorpati, Minimi al 31/12/2025 + incrementi per data (somma cumulata, non totale stampato)",
+                "quote": "F | 159,39 | 2.636,01 € | 67,05 € | 66,64 € | 27,99 € | 79,97 € | 21,33 € | 262,99 €"
               },
               "transformation": "2703.06 (minimo from 01/01/2026) + the increases to 01/06/2028 (66.64 + 27.99 + 79.97) = 2877.66. The tranches are added as printed: their sum differs by one cent from the 'Aumento a regime' column on rows A, B, F and H.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T13:00:32Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2028-06-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-chimica-affini-pmi-unionchimica-double-read"
               }
             }
           },
@@ -1360,27 +1444,29 @@
             "valid_until": null,
             "value": "2898.99",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
-                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "document_id": "chimica-affini-pmi-unionchimica-src-25943682",
+                  "title": "chimica-affini-pmi-unionchimica: accordo-2026-02-23.pdf",
                   "kind": "associazione",
                   "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
-                  "published_on": "2026-03-02",
                   "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
                 },
                 "page": "18",
-                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' to '01/12/2028', row F",
-                "quote": "F 159,39 2.636,01 € 67,05 € 66,64 € 27,99 € 79,97 € 21,33 € 262,99 €"
+                "section": "Tabelle retributive — Chimica - Concia e Settori accorpati, Minimi al 31/12/2025 + incrementi per data (somma cumulata, non totale stampato)",
+                "quote": "F | 159,39 | 2.636,01 € | 67,05 € | 66,64 € | 27,99 € | 79,97 € | 21,33 € | 262,99 €"
               },
               "transformation": "2703.06 (minimo from 01/01/2026) + the increases to 01/12/2028 (66.64 + 27.99 + 79.97 + 21.33) = 2898.99. The tranches are added as printed: their sum differs by one cent from the 'Aumento a regime' column on rows A, B, F and H.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T13:00:32Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2028-12-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-chimica-affini-pmi-unionchimica-double-read"
               }
             }
           }
@@ -1450,27 +1536,29 @@
             "valid_until": "2027-04-01",
             "value": "2973.58",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
-                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "document_id": "chimica-affini-pmi-unionchimica-src-25943682",
+                  "title": "chimica-affini-pmi-unionchimica: accordo-2026-02-23.pdf",
                   "kind": "associazione",
                   "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
-                  "published_on": "2026-03-02",
                   "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
                 },
                 "page": "18",
-                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' and '01/01/2026', row G",
-                "quote": "G 173,33 2.900,66 € 72,92 € 72,47 € 30,44 € 86,97 € 23,19 € 285,99 €"
+                "section": "Tabelle retributive — Chimica - Concia e Settori accorpati, Minimi al 31/12/2025 + incrementi per data (somma cumulata, non totale stampato)",
+                "quote": "G | 173,33 | 2.900,66 € | 72,92 € | 72,47 € | 30,44 € | 86,97 € | 23,19 € | 285,99 €"
               },
               "transformation": "2.900,66 (minimo al 31/12/2025) + 72,92 (increase from 01/01/2026) = 2973.58",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-18T11:51:45Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2026-01-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-chimica-affini-pmi-unionchimica-double-read"
               }
             }
           },
@@ -1479,27 +1567,29 @@
             "valid_until": "2027-12-01",
             "value": "3046.05",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
-                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "document_id": "chimica-affini-pmi-unionchimica-src-25943682",
+                  "title": "chimica-affini-pmi-unionchimica: accordo-2026-02-23.pdf",
                   "kind": "associazione",
                   "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
-                  "published_on": "2026-03-02",
                   "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
                 },
                 "page": "18",
-                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' to '01/04/2027', row G",
-                "quote": "G 173,33 2.900,66 € 72,92 € 72,47 € 30,44 € 86,97 € 23,19 € 285,99 €"
+                "section": "Tabelle retributive — Chimica - Concia e Settori accorpati, Minimi al 31/12/2025 + incrementi per data (somma cumulata, non totale stampato)",
+                "quote": "G | 173,33 | 2.900,66 € | 72,92 € | 72,47 € | 30,44 € | 86,97 € | 23,19 € | 285,99 €"
               },
               "transformation": "2973.58 (minimo from 01/01/2026) + the increases to 01/04/2027 (72.47) = 3046.05. The tranches are added as printed: their sum differs by one cent from the 'Aumento a regime' column on rows A, B, F and H.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T13:00:32Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2027-04-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-chimica-affini-pmi-unionchimica-double-read"
               }
             }
           },
@@ -1508,27 +1598,29 @@
             "valid_until": "2028-06-01",
             "value": "3076.49",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
-                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "document_id": "chimica-affini-pmi-unionchimica-src-25943682",
+                  "title": "chimica-affini-pmi-unionchimica: accordo-2026-02-23.pdf",
                   "kind": "associazione",
                   "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
-                  "published_on": "2026-03-02",
                   "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
                 },
                 "page": "18",
-                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' to '01/12/2027', row G",
-                "quote": "G 173,33 2.900,66 € 72,92 € 72,47 € 30,44 € 86,97 € 23,19 € 285,99 €"
+                "section": "Tabelle retributive — Chimica - Concia e Settori accorpati, Minimi al 31/12/2025 + incrementi per data (somma cumulata, non totale stampato)",
+                "quote": "G | 173,33 | 2.900,66 € | 72,92 € | 72,47 € | 30,44 € | 86,97 € | 23,19 € | 285,99 €"
               },
               "transformation": "2973.58 (minimo from 01/01/2026) + the increases to 01/12/2027 (72.47 + 30.44) = 3076.49. The tranches are added as printed: their sum differs by one cent from the 'Aumento a regime' column on rows A, B, F and H.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T13:00:32Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2027-12-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-chimica-affini-pmi-unionchimica-double-read"
               }
             }
           },
@@ -1537,27 +1629,29 @@
             "valid_until": "2028-12-01",
             "value": "3163.46",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
-                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "document_id": "chimica-affini-pmi-unionchimica-src-25943682",
+                  "title": "chimica-affini-pmi-unionchimica: accordo-2026-02-23.pdf",
                   "kind": "associazione",
                   "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
-                  "published_on": "2026-03-02",
                   "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
                 },
                 "page": "18",
-                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' to '01/06/2028', row G",
-                "quote": "G 173,33 2.900,66 € 72,92 € 72,47 € 30,44 € 86,97 € 23,19 € 285,99 €"
+                "section": "Tabelle retributive — Chimica - Concia e Settori accorpati, Minimi al 31/12/2025 + incrementi per data (somma cumulata, non totale stampato)",
+                "quote": "G | 173,33 | 2.900,66 € | 72,92 € | 72,47 € | 30,44 € | 86,97 € | 23,19 € | 285,99 €"
               },
               "transformation": "2973.58 (minimo from 01/01/2026) + the increases to 01/06/2028 (72.47 + 30.44 + 86.97) = 3163.46. The tranches are added as printed: their sum differs by one cent from the 'Aumento a regime' column on rows A, B, F and H.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T13:00:32Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2028-06-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-chimica-affini-pmi-unionchimica-double-read"
               }
             }
           },
@@ -1566,27 +1660,29 @@
             "valid_until": null,
             "value": "3186.65",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
-                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "document_id": "chimica-affini-pmi-unionchimica-src-25943682",
+                  "title": "chimica-affini-pmi-unionchimica: accordo-2026-02-23.pdf",
                   "kind": "associazione",
                   "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
-                  "published_on": "2026-03-02",
                   "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
                 },
                 "page": "18",
-                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' to '01/12/2028', row G",
-                "quote": "G 173,33 2.900,66 € 72,92 € 72,47 € 30,44 € 86,97 € 23,19 € 285,99 €"
+                "section": "Tabelle retributive — Chimica - Concia e Settori accorpati, Minimi al 31/12/2025 + incrementi per data (somma cumulata, non totale stampato)",
+                "quote": "G | 173,33 | 2.900,66 € | 72,92 € | 72,47 € | 30,44 € | 86,97 € | 23,19 € | 285,99 €"
               },
               "transformation": "2973.58 (minimo from 01/01/2026) + the increases to 01/12/2028 (72.47 + 30.44 + 86.97 + 23.19) = 3186.65. The tranches are added as printed: their sum differs by one cent from the 'Aumento a regime' column on rows A, B, F and H.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T13:00:32Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2028-12-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-chimica-affini-pmi-unionchimica-double-read"
               }
             }
           }
@@ -1656,27 +1752,29 @@
             "valid_until": "2027-04-01",
             "value": "3168.51",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
-                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "document_id": "chimica-affini-pmi-unionchimica-src-25943682",
+                  "title": "chimica-affini-pmi-unionchimica: accordo-2026-02-23.pdf",
                   "kind": "associazione",
                   "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
-                  "published_on": "2026-03-02",
                   "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
                 },
                 "page": "18",
-                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' and '01/01/2026', row H",
-                "quote": "H 178,79 3.093,29 € 75,22 € 74,76 € 31,40 € 89,71 € 23,92 € 295,00 €"
+                "section": "Tabelle retributive — Chimica - Concia e Settori accorpati, Minimi al 31/12/2025 + incrementi per data (somma cumulata, non totale stampato)",
+                "quote": "H | 178,79 | 3.093,29 € | 75,22 € | 74,76 € | 31,40 € | 89,71 € | 23,92 € | 295,00 €"
               },
               "transformation": "3.093,29 (minimo al 31/12/2025) + 75,22 (increase from 01/01/2026) = 3168.51",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-18T11:51:45Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2026-01-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-chimica-affini-pmi-unionchimica-double-read"
               }
             }
           },
@@ -1685,27 +1783,29 @@
             "valid_until": "2027-12-01",
             "value": "3243.27",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
-                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "document_id": "chimica-affini-pmi-unionchimica-src-25943682",
+                  "title": "chimica-affini-pmi-unionchimica: accordo-2026-02-23.pdf",
                   "kind": "associazione",
                   "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
-                  "published_on": "2026-03-02",
                   "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
                 },
                 "page": "18",
-                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' to '01/04/2027', row H",
-                "quote": "H 178,79 3.093,29 € 75,22 € 74,76 € 31,40 € 89,71 € 23,92 € 295,00 €"
+                "section": "Tabelle retributive — Chimica - Concia e Settori accorpati, Minimi al 31/12/2025 + incrementi per data (somma cumulata, non totale stampato)",
+                "quote": "H | 178,79 | 3.093,29 € | 75,22 € | 74,76 € | 31,40 € | 89,71 € | 23,92 € | 295,00 €"
               },
               "transformation": "3168.51 (minimo from 01/01/2026) + the increases to 01/04/2027 (74.76) = 3243.27. The tranches are added as printed: their sum differs by one cent from the 'Aumento a regime' column on rows A, B, F and H.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T13:00:32Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2027-04-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-chimica-affini-pmi-unionchimica-double-read"
               }
             }
           },
@@ -1714,27 +1814,29 @@
             "valid_until": "2028-06-01",
             "value": "3274.67",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
-                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "document_id": "chimica-affini-pmi-unionchimica-src-25943682",
+                  "title": "chimica-affini-pmi-unionchimica: accordo-2026-02-23.pdf",
                   "kind": "associazione",
                   "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
-                  "published_on": "2026-03-02",
                   "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
                 },
                 "page": "18",
-                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' to '01/12/2027', row H",
-                "quote": "H 178,79 3.093,29 € 75,22 € 74,76 € 31,40 € 89,71 € 23,92 € 295,00 €"
+                "section": "Tabelle retributive — Chimica - Concia e Settori accorpati, Minimi al 31/12/2025 + incrementi per data (somma cumulata, non totale stampato)",
+                "quote": "H | 178,79 | 3.093,29 € | 75,22 € | 74,76 € | 31,40 € | 89,71 € | 23,92 € | 295,00 €"
               },
               "transformation": "3168.51 (minimo from 01/01/2026) + the increases to 01/12/2027 (74.76 + 31.40) = 3274.67. The tranches are added as printed: their sum differs by one cent from the 'Aumento a regime' column on rows A, B, F and H.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T13:00:32Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2027-12-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-chimica-affini-pmi-unionchimica-double-read"
               }
             }
           },
@@ -1743,27 +1845,29 @@
             "valid_until": "2028-12-01",
             "value": "3364.38",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
-                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "document_id": "chimica-affini-pmi-unionchimica-src-25943682",
+                  "title": "chimica-affini-pmi-unionchimica: accordo-2026-02-23.pdf",
                   "kind": "associazione",
                   "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
-                  "published_on": "2026-03-02",
                   "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
                 },
                 "page": "18",
-                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' to '01/06/2028', row H",
-                "quote": "H 178,79 3.093,29 € 75,22 € 74,76 € 31,40 € 89,71 € 23,92 € 295,00 €"
+                "section": "Tabelle retributive — Chimica - Concia e Settori accorpati, Minimi al 31/12/2025 + incrementi per data (somma cumulata, non totale stampato)",
+                "quote": "H | 178,79 | 3.093,29 € | 75,22 € | 74,76 € | 31,40 € | 89,71 € | 23,92 € | 295,00 €"
               },
               "transformation": "3168.51 (minimo from 01/01/2026) + the increases to 01/06/2028 (74.76 + 31.40 + 89.71) = 3364.38. The tranches are added as printed: their sum differs by one cent from the 'Aumento a regime' column on rows A, B, F and H.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T13:00:32Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2028-06-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-chimica-affini-pmi-unionchimica-double-read"
               }
             }
           },
@@ -1772,27 +1876,29 @@
             "valid_until": null,
             "value": "3388.30",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "confapi-varese-unionchimica-ipotesi-2026-02-23",
-                  "title": "Ipotesi di accordo 23 febbraio 2026 per il rinnovo del CCNL Unionchimica Confapi (chimica, concia e settori accorpati, plastica e gomma, abrasivi, ceramica, vetro), signed scan with the tabelle retributive (copy published by Confapi Varese)",
+                  "document_id": "chimica-affini-pmi-unionchimica-src-25943682",
+                  "title": "chimica-affini-pmi-unionchimica: accordo-2026-02-23.pdf",
                   "kind": "associazione",
                   "url": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
-                  "published_on": "2026-03-02",
                   "sha256": "25943682585c00199c06bfdc8e6310e32d2d2742e5e61aa766176deca9f5a2c1"
                 },
                 "page": "18",
-                "section": "Tabelle retributive, table 'Chimica - Concia e Settori accorpati', columns 'Minimi al 31/12/2025' to '01/12/2028', row H",
-                "quote": "H 178,79 3.093,29 € 75,22 € 74,76 € 31,40 € 89,71 € 23,92 € 295,00 €"
+                "section": "Tabelle retributive — Chimica - Concia e Settori accorpati, Minimi al 31/12/2025 + incrementi per data (somma cumulata, non totale stampato)",
+                "quote": "H | 178,79 | 3.093,29 € | 75,22 € | 74,76 € | 31,40 € | 89,71 € | 23,92 € | 295,00 €"
               },
               "transformation": "3168.51 (minimo from 01/01/2026) + the increases to 01/12/2028 (74.76 + 31.40 + 89.71 + 23.92) = 3388.30. The tranches are added as printed: their sum differs by one cent from the 'Aumento a regime' column on rows A, B, F and H.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-01T13:00:32Z",
+                "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2028-12-01",
-                "verification_status": "unverified"
+                "verified_by": "gpt-6-sol",
+                "verified_at": "2026-11-07T23:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-gpt-chimica-affini-pmi-unionchimica-double-read"
               }
             }
           }
@@ -1807,7 +1913,32 @@
               {
                 "valid_from": "2026-01-01",
                 "valid_until": null,
-                "value": "160.00"
+                "value": "160.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "chimica-affini-pmi-unionchimica-src-91b7444b",
+                      "title": "chimica-affini-pmi-unionchimica: cnel-1831.pdf",
+                      "kind": "associazione",
+                      "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/1831",
+                      "sha256": "91b7444b9d8c2e7b621f0d0a90d6e0e8d79103c83c1b23f7e6599a156da44028"
+                    },
+                    "page": "188",
+                    "section": "Art. 22 — Trattamento economico, Chimica–Concia e Settori accorpati; elemento aggiuntivo ad personam / indennità di funzione",
+                    "quote": "Con decorrenza dal 01.01.2007, ai lavoratori di cui al Gruppo 1 dell’art. 11 l’indennità di funzione è elevata ad € 160,00."
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T23:00:00Z",
+                    "effective_from": "2026-01-01",
+                    "verified_by": "gpt-6-sol",
+                    "verified_at": "2026-11-07T23:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-gpt-chimica-affini-pmi-unionchimica-double-read"
+                  }
+                }
               }
             ]
           },
