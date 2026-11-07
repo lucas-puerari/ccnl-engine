@@ -4132,7 +4132,7 @@
     "effective_until": null,
     "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "486af63200e44c0f1aff7e171f821709c7d48f354c2bfb20b217c9d44f9c166e",
+    "source_hash": "a6355b510685d288d8531d9b1a01b84a19acb01c38ca39928df1fb22257849ab",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -13754,9 +13754,9 @@
           },
           "page": "50",
           "section": "Art. 21 Apprendistato",
-          "quote": "Durante il periodo di malattia l'apprendista ha diritto alla corresponsione della retribuzione normale, per un massimo di sei mesi per ogni anno e nei limiti del periodo di durata dell'apprendistato."
+          "quote": "Durante il periodo di malattia l'apprendista ha diritto alla corresponsione della retribuzione normale, per un massimo di sei mesi per ogni anno e nei limiti del periodo di durata dell'apprendistato. In caso di più assenze il periodo di conservazione del posto ed il trattamento economico si intendono riferiti all'arco temporale di durata del contratto."
         },
-        "transformation": "100% of the normal (gross) pay from the first day, at most 180 days (six 30-day months) in a calendar year; the end of the apprenticeship is the end of the employment period.",
+        "transformation": "100% of the normal (gross) pay from the first day, at most 180 days (six 30-day months) in each calendar year; the end of the apprenticeship is the end of the employment period. 'per ogni anno' is read as the calendar year (Commercio convention); the text does not say whether the year is the calendar year or the year of the contract.",
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
