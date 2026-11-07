@@ -131,7 +131,7 @@
       },
       {
         "kind": "simplification",
-        "text": "Art. 9 punti 9-11: the premiums of pluriperiodale work and Saturday work (10%) and of the first 120 hours past the 2,024 of a year (30%), which the engine has no work for. The holiday (50%), night (50%), shift (4%, 34%, 46% in 3x7) and 3x7 Sunday (33%) premiums are modelled (supplement_bands CHIM_*).",
+        "text": "Art. 9 punti 9 and 11: the premiums of pluriperiodale work (10% beyond the 8th hour and on Saturday) and of the first 120 hours past the 2,024 of a year (30%), which the engine has no work for. The Saturday of a 4- or 6-day week (point 10, 10%) is modelled (CHIM_SABATO, HolidayWorkKind.SATURDAY_SIXTH_DAY); holiday, night, shift and 3x7 Sunday premiums are modelled.",
         "capability": "overtime",
         "monetary_impact": "yes",
         "limitation": {
@@ -4826,7 +4826,7 @@
     "effective_until": null,
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/chimico_farmaceutico/250415-_CHIMICO-FARMACEUTICO_RINNOVO%20CCNL_%201-7-2025__30-6-2028.pdf",
     "verification_status": "unverified",
-    "source_hash": "ceb4667a13296ade2a5f96c7617d1870fe993e57d872a8a10ba9e24925f31bcb",
+    "source_hash": "9748836fe6a9fdf90908fb25138fadf60f48d674e7d9b567e3116005ee0d844f",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -5592,6 +5592,47 @@
               "review_id": "2026-11-02-ai-ordinary-premiums"
             }
           }
+        },
+        {
+          "code": "CHIM_SABATO",
+          "description": "Lavoro prestato nella giornata di sabato con orari settimanali su 4 o 6 giorni (art. 9 punto 10)",
+          "work": "saturday_sixth_day",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2006-05-10",
+                "valid_until": null,
+                "value": "0.10"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "role": "turno_3x7",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "cnel-579-chimica-2006",
+                "title": "CCNL chimico-farmaceutico 2006, testo firmato (CNEL 579)",
+                "kind": "cnel",
+                "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/579",
+                "sha256": "a9926705b06590a6d8fbe2e6ab683c75d56dfd9e898e7b0f71fb377d7edef3d6"
+              },
+              "page": null,
+              "section": "Art. 9 punto 10",
+              "quote": "10) Lavoro prestato nella giornata di sabato nel caso di orari settimanali realizzati su un arco di 4 o 6 giorni (lettera C, punto 1, dell’articolo 8)\t10%"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T12:00:00Z",
+              "effective_from": "2006-05-10",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-08T12:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-08-ai-chimica-farmaceutica-federchimica-saturday"
+            }
+          }
         }
       ]
     },
@@ -6157,6 +6198,27 @@
         ],
         "findings": [
           "Art. 9 punti 4, 5 b-c, 6: supplement_bands CHIM_NOTTURNO 50%, CHIM_TURNO_NOTTURNO 34%, CHIM_TURNO_NOTTURNO_3X7 46% and CHIM_DOMENICA_3X7 33% (role turno_3x7); punti 9-11 left as the narrowed limitation."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.time_supplements.supplement_bands"
+        ]
+      },
+      {
+        "id": "2026-11-08-ai-chimica-farmaceutica-federchimica-saturday",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Saturday premium of the signed text, found verbatim in the source (analysis by a separate model session, quote rechecked).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/579",
+            "sha256": "a9926705b06590a6d8fbe2e6ab683c75d56dfd9e898e7b0f71fb377d7edef3d6"
+          }
+        ],
+        "findings": [
+          "Added supplement band CHIM_SABATO."
         ],
         "independence": "same_process",
         "checked": [

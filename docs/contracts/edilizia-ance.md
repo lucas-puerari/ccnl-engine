@@ -44,7 +44,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 42 verified / 7 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 43 verified / 7 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🟢 Verified | The confidence the ruleset declares as a whole |
 | **Readiness** | 👁 Reviewed | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -75,6 +75,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-02 | claude-opus-5-5 (ai) | The premiums on ordinary hours of Art. 19 (PDF p. 40) and the hourly base of Art. 24 point 3 (p. 49). | corrected | Art. 19 nn. 2, 4-8, 12: supplement_bands ANCE_* (festivo 45%, night 28%, guardiano 8%, continuous night 16%, day shift 9%, night shift 12%, Sunday with compensatory rest 8%).<br>Art. 24 point 3: the base of the premiums is paga base di fatto, ex contingenza and indennità territoriale di settore: the EDR was in the hourly base of the overtime bands and is now excluded (hourly_base_excluded); the superminimo enters (individual_elements included). |
 | 2026-11-02 | claude-opus-5-5 (ai) | Art. 19 n. 10 (PDF p. 40). | corrected | Art. 19 n. 10: festivo notturno 50% (HolidayWorkKind.NIGHT_HOLIDAY). |
 | 2026-11-08 | gpt-6-sol (ai) | CCNL top-ups of maternity and work injury, read from the signed text by a separate model session; every quote found on the PDF text layer. | confirmed | Added work_rules.insured_absence.maternity. |
+| 2026-11-08 | claude-opus-5-5 (ai) | Saturday premium of the signed text, found verbatim in the source (analysis by a separate model session, quote rechecked). | corrected | Added supplement band ANCE_SABATO_SEI_GIORNI. |
 
 ## Salary table
 
@@ -156,7 +157,7 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Model the APE as a Cassa Edile payment.
 
 !!! warning "edilizia-ance/ordinary_hours_premiums · overtime · impact yes · open"
-    Art. 19 n. 12 and Art. 5: the exclusion of the shift workers from the 8% of Sunday work with compensatory rest, and the 8% of a Saturday in a six-day week. The other premiums on ordinary hours are modelled (supplement_bands ANCE_*).
+    Art. 19 n. 12: the exclusion of the shift workers from the 8% of Sunday work with compensatory rest. The 8% of a Saturday in a six-day week (art. 5) is modelled (ANCE_SABATO_SEI_GIORNI, HolidayWorkKind.SATURDAY_SIXTH_DAY); the other premiums on ordinary hours are modelled (supplement_bands ANCE_*).
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 

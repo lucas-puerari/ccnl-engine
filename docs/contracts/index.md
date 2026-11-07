@@ -167,7 +167,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 48 | F015 | [CCNL Edilizia e Affini Artigianato](edilizia-artigianato-cna.md) | edilizia | ~350k | — | ⚠️ | bilateral_funds, inps_employer, seniority | 28 / 45 / 1 / 0 | 🧪 | 🤖 |
 | 49 | F016 | [CCNL Edilizia — Cooperative (ANCPL/Legacoop/Confcooperative/AGCI)](edilizia-cooperative-ancpl.md) | Edilizia | ~90000 | 2025 | ⚠️ | bilateral_funds, seniority | 25 / 33 / 1 / 0 | 🧪 | 🤖 |
 | 50 | F012 | [CCNL Edilizia — Industria (ANCE), impiegati e quadri](edilizia-ance-impiegati.md) | edilizia | — | — | ⚠️ | base_salary, overtime, seniority, sickness, territorial_supplement | 37 / 23 / 0 / 0 | 🏭 | 🤖✓ |
-| 51 | F012 | [CCNL Edilizia — Industria (ANCE), operai](edilizia-ance.md) | edilizia | ~550k | 2025 | ⚠️ | base_salary, bilateral_funds, overtime, sickness, territorial_supplement | 42 / 7 / 0 / 0 | 👁 | 🤖✓ |
+| 51 | F012 | [CCNL Edilizia — Industria (ANCE), operai](edilizia-ance.md) | edilizia | ~550k | 2025 | ⚠️ | base_salary, bilateral_funds, overtime, sickness, territorial_supplement | 43 / 7 / 0 / 0 | 👁 | 🤖✓ |
 | 52 | B254 | [CCNL Energia e Petrolio (Confindustria Energia)](energia-petrolio-confindustria.md) | energia | ~38k | — | ✅ | — | 115 / 56 / 1 / 0 | 🧪 | 🤖 |
 | 53 | G211 | [CCNL Esercizi Cinematografici e Cinema-Teatrali (ANEC)](esercizi-cinematografici-anec.md) | cinema | ~6k | — | ⚠️ | inps_employer, sickness | 61 / 9 / 1 / 0 | 🧪 | 🤖 |
 | 54 | H201 | [CCNL Fiori Freschi Recisi, Verde e Piante Ornamentali (ANCEF)](fiori-recisi-ancef.md) | Fiori recisi, verde e piante ornamentali (import-export) | ~1.3k | 2023 | ⚠️ | seniority | 31 / 8 / 1 / 0 | 🧪 | 🤖 |
@@ -179,7 +179,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 60 | K540 | [CCNL Igiene Ambientale — Servizi Ambientali e di Igiene Urbana](igiene-ambientale-utilitalia.md) | servizi ambientali | ~65k | 2025 | ⚠️ | inps_employer, pension_fund_contribution, seniority | 68 / 76 / 1 / 0 | 🧪 | 🤖 |
 | 61 | H077 | [CCNL Impianti e Attività Sportive Profit e No-profit](impianti-sportivi-sport.md) | impianti sportivi, palestre e attività sportive | 35533 | 2024 | ⚠️ | base_salary, sickness | 28 / 4 / 1 / 1 | 🧪 | 🤖 |
 | 62 | A021 | [CCNL Impiegati e Tecnici Agricoli — Confagricoltura/CIA/Coldiretti](impiegati-tecnici-agricoli.md) | agricoltura | ~80k | 2024 | ✅ | bilateral_funds | 7 / 8 / 1 / 1 | 🧪 | 🤖 |
-| 63 | B011 | [CCNL Industria Chimica e Farmaceutica (Federchimica-Farmindustria-Assistal)](chimica-farmaceutica-federchimica.md) | chimica | ~210k | — | ⚠️ | base_salary, leave, overtime, sickness, workplace_injury | 120 / 6 / 0 / 0 | 👁 | 🤖✓ |
+| 63 | B011 | [CCNL Industria Chimica e Farmaceutica (Federchimica-Farmindustria-Assistal)](chimica-farmaceutica-federchimica.md) | chimica | ~210k | — | ⚠️ | base_salary, leave, overtime, sickness, workplace_injury | 121 / 6 / 0 / 0 | 👁 | 🤖✓ |
 | 64 | H05B | [CCNL Industria Turistica (Federturismo Confindustria)](industria-turistica-federturismo.md) | turismo — alberghi, campeggi, villaggi e strutture ricettive | ~40k | 2025 | ⚠️ | base_salary | 36 / 10 / 1 / 0 | 🧪 | 🤖 |
 | 65 | G111 | [CCNL Industrie Cineaudiovisive (ANICA)](cinema-audiovisivi-industria.md) | Cinema e audiovisivo | ~2.3k | 2025 | ⚠️ | bilateral_funds, inps_employer | 57 / 6 / 1 / 0 | 🧪 | 🤖 |
 | 66 | HV17 | [CCNL Istituti e Imprese di Vigilanza Privata e Servizi Fiduciari — ASSIV/ANIVP/UNIV (GPG)](vigilanza-privata-assiv.md) | vigilanza-privata | ~85k | 2023 | ⚠️ | inps_employer, seniority | 42 / 7 / 1 / 0 | 🧪 | 🤖 |

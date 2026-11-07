@@ -59,3 +59,24 @@ def test_the_tables_that_print_a_saturday_row(
 ) -> None:
     """Only birra e malto and avicoli print a Saturday or sixth-day row."""
     assert _saturday_rates(subsector, category) == rates
+
+
+@pytest.mark.parametrize(
+    ("ccnl_id", "code", "rate"),
+    [
+        ("chimica-farmaceutica-federchimica", "CHIM_SABATO", Decimal("0.10")),
+        ("edilizia-ance", "ANCE_SABATO_SEI_GIORNI", Decimal("0.08")),
+    ],
+)
+def test_saturday_of_a_four_or_six_day_week(
+    ccnl_id: str, code: str, rate: Decimal
+) -> None:
+    """Chimica art. 9 point 10 (10%), Edilizia ANCE art. 5 (8%)."""
+    ccnl = load_ccnl(ccnl_id)
+    assert ccnl.work_rules is not None
+    supplements = ccnl.work_rules.time_supplements
+    assert supplements is not None
+    (band,) = (b for b in supplements.supplement_bands if b.code == code)
+
+    assert band.work is SupplementWork.SATURDAY_SIXTH_DAY
+    assert band.rate.value_at(date(2026, 3, 1)) == rate
