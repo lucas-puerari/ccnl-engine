@@ -67,6 +67,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | gpt-6-sol (ai) | CCNL top-ups of maternity and work injury, read from the signed text by a separate model session; every quote found on the PDF text layer. | confirmed | Added work_rules.insured_absence.maternity.<br>Added work_rules.insured_absence.injury. |
 | 2026-11-08 | claude-opus-5-5 (ai) | The monthly values of the levels against the primary tables (text layer). | confirmed | 84 values found verbatim on the cited pages and marked verified; 16 left as they were (derived or not on a text page). |
 | 2026-11-08 | gpt-6-sol (ai) | Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim. | confirmed | fasda_health_fund: The agreement already has parameters.health_funds[code=fasda]: employer annual EUR 338 from 2023-10-01 and EUR 404 from 2026-10-01 (EUR 84.50 and EUR 101 per quarter), 10% solidarity, 12-month fixed-term minimum, 19-hour weekly minimum, and probation exclusion. fund.health.servic |
+| 2026-11-08 | gpt-6-sol (ai) | Employer top-up of the INAIL indemnity, read from the signed text by a separate model session (audit of the injury rules); quote checked on the text layer or the page image. | corrected | The injury rule had no top-up of the INAIL indemnity; added: {"integration_rate": "1", "net_basis": true, "carenza_rate": "1"} |
 
 ## Salary table
 

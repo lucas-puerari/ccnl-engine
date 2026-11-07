@@ -2987,7 +2987,7 @@
     "effective_until": null,
     "source": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
     "verification_status": "unverified",
-    "source_hash": "c6c4dc0954b6df280b7e985d8139311c356b2e841e96025ca5055bfc76e10860",
+    "source_hash": "05aaf711dc15e28f92939717c911c19d086f2c021dbc2f2239e78c35b2bf8c13",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3472,12 +3472,23 @@
             "model": "gpt-6-sol",
             "extraction_timestamp": "2026-11-08T03:00:00Z",
             "effective_from": null,
-            "verified_by": "claude-opus-5-5",
-            "verified_at": "2026-11-08T03:00:00Z",
+            "verified_by": "gpt-6-sol",
+            "verified_at": "2026-11-08T14:00:00Z",
             "verification_status": "verified",
-            "review_id": "2026-11-08-gpt-cooperative-sociali-insured-absence"
+            "review_id": "2026-11-08-gpt-cooperative-sociali-injury-top-up"
+          },
+          "transformation": "Art. 72: top-up to 100% from the 1st to the 180th day of absence; the INAIL indemnity alone after."
+        },
+        "integration_bands": [
+          {
+            "day_from": 4,
+            "rate": "1"
+          },
+          {
+            "day_from": 180,
+            "rate": "0"
           }
-        }
+        ]
       }
     }
   },
@@ -3618,6 +3629,27 @@
         "independence": "separate_model",
         "checked": [
           "coverage.notes"
+        ]
+      },
+      {
+        "id": "2026-11-08-gpt-cooperative-sociali-injury-top-up",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Employer top-up of the INAIL indemnity, read from the signed text by a separate model session (audit of the injury rules); quote checked on the text layer or the page image.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+            "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+          }
+        ],
+        "findings": [
+          "The injury rule had no top-up of the INAIL indemnity; added: {\"integration_bands\": [{\"day_from\": 4, \"rate\": \"1\"}, {\"day_from\": 180, \"rate\": \"0\"}], \"carenza_rate\": \"1\"}"
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.insured_absence.injury"
         ]
       }
     ],

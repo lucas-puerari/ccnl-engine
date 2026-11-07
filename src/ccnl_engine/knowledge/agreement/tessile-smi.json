@@ -1946,7 +1946,7 @@
     "effective_until": null,
     "source": "https://www.sistemamodaitalia.com/",
     "verification_status": "unverified",
-    "source_hash": "a2617b982625533395742ef11a92f4ffd6bc1f491da7d1527a566b778de40a5a",
+    "source_hash": "52ac7f41d1d9f1ef2db053764acebced51b0877e0c767ee0a38528b851199e42",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2187,19 +2187,21 @@
             "section": "Art. 61, integrazione e anticipazione",
             "quote": "Al lavoratore sarà riconosciuto inoltre, a partire dal primo giorno di assenza e fino a guarigione clinica, un trattamento assistenziale a integrazione dell’indennità corrisposta dall’INAIL, fino a raggiungere il 100% della retribuzione netta. Per la determinazione della stessa si fa riferimento a quanto disposto dall’art. 44 del presente contratto. Gli elementi di cui al punto 2.2 si prendono in considerazione se corrisposti mensilmente e comunque fatte salve diverse pattuizioni aziendali."
           },
-          "transformation": "From first day of absence through clinical recovery, up to 100% net, hence covers absence during carenza; advance on worker request per separate clause quoted in notes.",
+          "transformation": "From first day of absence through clinical recovery, up to 100% net, hence covers absence during carenza; advance on worker request per separate clause quoted in notes. Top-up of the INAIL indemnity to 100% of the pay from the first day of absence.",
           "note": "2024 signed renewal (PDF p. 34 for maternity) checked by OCR because it has no text layer; quotes from selectable 2022 signed text.",
           "extraction": {
             "method": "ai",
             "model": "gpt-6-sol",
             "extraction_timestamp": "2026-11-08T03:00:00Z",
             "effective_from": null,
-            "verified_by": "claude-opus-5-5",
-            "verified_at": "2026-11-08T03:00:00Z",
+            "verified_by": "gpt-6-sol",
+            "verified_at": "2026-11-08T14:00:00Z",
             "verification_status": "verified",
-            "review_id": "2026-11-08-gpt-tessile-smi-insured-absence"
+            "review_id": "2026-11-08-gpt-tessile-smi-injury-top-up"
           }
-        }
+        },
+        "integration_rate": "1",
+        "net_basis": true
       }
     }
   },
@@ -2269,6 +2271,27 @@
         "independence": "separate_model",
         "checked": [
           "work_rules.insured_absence.maternity",
+          "work_rules.insured_absence.injury"
+        ]
+      },
+      {
+        "id": "2026-11-08-gpt-tessile-smi-injury-top-up",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Employer top-up of the INAIL indemnity, read from the signed text by a separate model session (audit of the injury rules); quote checked on the text layer or the page image.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/187819",
+            "sha256": "77c269b3fa0d3d87efeb86e44ecd7b344f55cb3d125205d283e6ac58b97fb2b1"
+          }
+        ],
+        "findings": [
+          "The injury rule had no top-up of the INAIL indemnity; added: {\"integration_rate\": \"1\", \"net_basis\": true}"
+        ],
+        "independence": "separate_model",
+        "checked": [
           "work_rules.insured_absence.injury"
         ]
       }

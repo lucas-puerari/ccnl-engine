@@ -209,6 +209,27 @@
         "checked": [
           "work_rules.insured_absence.injury"
         ]
+      },
+      {
+        "id": "2026-11-08-gpt-vigilanza-privata-assiv-injury-top-up",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Employer top-up of the INAIL indemnity, read from the signed text by a separate model session (audit of the injury rules); quote checked on the text layer or the page image.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.bollettinoadapt.it/wp-content/uploads/2019/10/ccnl2013.pdf",
+            "sha256": "c6b3a6176dee20e6a727e4da153bd3511850275e991e0e344f92e1d1b4c0df79"
+          }
+        ],
+        "findings": [
+          "The injury rule had no top-up of the INAIL indemnity; added: {\"integration_rate\": \"1\", \"net_basis\": true}"
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.insured_absence.injury"
+        ]
       }
     ]
   },
@@ -1881,7 +1902,7 @@
     "effective_until": null,
     "source": "https://lavoro.gov.it/temi-e-priorita-rapporti-di-lavoro-e-relazioni-industriali/focus/decreto-direttoriale-n.-50-dell8",
     "verification_status": "unverified",
-    "source_hash": "a71522699cddfc60d8925717e22d4b8269e6006c2708ee803e18528563d8df5a",
+    "source_hash": "256d13b7422467e1e12ed2c4324fd7234964ad64050b9fdbcf45649eb8c7d2dd",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },
@@ -2089,19 +2110,21 @@
             "section": "Art. 127 - Conservazione del posto - Retribuzione",
             "quote": "Il datore di lavoro corrisponderà al lavoratore assente per infortunio sul lavoro alle normali scadenze di paga, una indennità pari alla normale retribuzione netta mensile di cui all’art. 105 comprensiva dell’indennità di infortunio a carico dell’INAIL."
           },
-          "transformation": "Normal NET monthly pay inclusive of INAIL applies during recognized-injury absence; no separate carenza percentage stated. Employer advances combined amount and later reconciles.",
+          "transformation": "Normal NET monthly pay inclusive of INAIL applies during recognized-injury absence; no separate carenza percentage stated. Employer advances combined amount and later reconciles. Top-up of the INAIL indemnity to 100% of the pay from the first day of absence.",
           "note": "CNEL signed 2013 scan has no text layer; quoted from searchable 2013 counterpart, checked against CNEL page image. 2023/2024 signatory renewals have no text layer; OCR found no Art. 127 amendment.",
           "extraction": {
             "method": "ai",
             "model": "gpt-6-sol",
             "extraction_timestamp": "2026-11-08T03:00:00Z",
             "effective_from": null,
-            "verified_by": "claude-opus-5-5",
-            "verified_at": "2026-11-08T03:00:00Z",
+            "verified_by": "gpt-6-sol",
+            "verified_at": "2026-11-08T14:00:00Z",
             "verification_status": "verified",
-            "review_id": "2026-11-08-gpt-vigilanza-privata-assiv-insured-absence"
+            "review_id": "2026-11-08-gpt-vigilanza-privata-assiv-injury-top-up"
           }
-        }
+        },
+        "integration_rate": "1",
+        "net_basis": true
       }
     }
   }

@@ -156,19 +156,6 @@
       {
         "kind": "info",
         "text": "ORDINARY HOUR PREMIUMS (Testo Unico 29 September 2025, pp. 43-44): ordinary night 15% (art. 134), Sunday 30% (art. 136 c. 7, without a better second-level treatment), weekly rest day 30% (art. 139), holidays as straordinario festivo 30% with the hour paid apart (art. 138): work_rules.time_supplements.supplement_bands DMO_*."
-      },
-      {
-        "kind": "simplification",
-        "text": "INJURY (Art. 172 c. 2): the top-up reaches 100% of the net daily pay from day 21; the model applies one rate, 90% (the rate of days 5-20), so from day 21 the injury pay is 10 points short.",
-        "capability": "workplace_injury",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "injury_integration_bands",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Model day bands for the injury top-up (60/90/100% of Art. 172)."
-        }
       }
     ]
   },
@@ -3928,7 +3915,7 @@
     "effective_until": null,
     "source": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
     "verification_status": "unverified",
-    "source_hash": "2dbe4d3cb86b20215b3694e749c8417436bc492b3a9389b080d443a983bd09c4",
+    "source_hash": "26f63babce5d1e6b150d0d19fdfa88fb3ab1f8d4c2222b6fdf53ff41b702d3d4",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -5288,15 +5275,24 @@
             "model": "gpt-6-sol",
             "extraction_timestamp": "2026-11-08T03:00:00Z",
             "effective_from": null,
-            "verified_by": "claude-opus-5-5",
-            "verified_at": "2026-11-08T03:00:00Z",
+            "verified_by": "gpt-6-sol",
+            "verified_at": "2026-11-08T14:00:00Z",
             "verification_status": "verified",
-            "review_id": "2026-11-08-gpt-dmo-federdistribuzione-insured-absence"
+            "review_id": "2026-11-08-gpt-dmo-federdistribuzione-injury-top-up"
           },
-          "transformation": "Art. 172 c. 2 (testo unico 29/9/2025, p. 53): integration of the INAIL indemnity to 60% for the three carenza days, 90% for days 5-20, 100% from day 21, of the net daily pay; the model holds one rate: 90% (exact for days 5-20, 10 points short from day 21)."
+          "transformation": "Art. 172 c. 2 (testo unico 29/9/2025, p. 53): integration of the INAIL indemnity to 60% for the three carenza days, 90% for days 5-20, 100% from day 21, of the net daily pay; the model holds one rate: 90% (exact for days 5-20, 10 points short from day 21). Art. 172 c. 2: 60% for the three carenza days, 90% from the 5th to the 20th day, 100% from the 21st, of the net daily pay, counting the injury day as the first: bands from day 4 and day 20 after the injury."
         },
-        "integration_rate": "0.90",
-        "net_basis": true
+        "net_basis": true,
+        "integration_bands": [
+          {
+            "day_from": 4,
+            "rate": "0.90"
+          },
+          {
+            "day_from": 20,
+            "rate": "1"
+          }
+        ]
       }
     }
   },
@@ -5591,6 +5587,27 @@
         "independence": "separate_model",
         "checked": [
           "coverage.notes"
+        ]
+      },
+      {
+        "id": "2026-11-08-gpt-dmo-federdistribuzione-injury-top-up",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Employer top-up of the INAIL indemnity, read from the signed text by a separate model session (audit of the injury rules); quote checked on the text layer or the page image.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.federdistribuzione.it/wp-content/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+            "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
+          }
+        ],
+        "findings": [
+          "The injury rule had no top-up of the INAIL indemnity; added: {\"integration_bands\": [{\"day_from\": 4, \"rate\": \"0.90\"}, {\"day_from\": 20, \"rate\": \"1\"}], \"net_basis\": true}"
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.insured_absence.injury"
         ]
       }
     ],
