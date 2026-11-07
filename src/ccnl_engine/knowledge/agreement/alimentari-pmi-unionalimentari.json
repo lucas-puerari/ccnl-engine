@@ -116,6 +116,32 @@
         "findings": [
           "Art. 48 - Tredicesima mensilità (p. 127): \"Nel caso di inizio o di cessazione del rapporto di lavoro durante il corso dell’anno, il lavoratore ha diritto a tanti dodicesimi della gratifica natalizia quanti sono i mesi di anzianità di servizio presso l’azienda. La frazione di mese superiore ai 15 giorni viene considerata a questi effetti mese intero.\". Added: more_than 15 (the file applied the engine default, at least 15 days)."
         ]
+      },
+      {
+        "id": "2026-11-07-ai-alimentari-pmi-unionalimentari-tables",
+        "date": "2026-11-07",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The monthly values of the levels against the primary tables (text layer).",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.unionalimentari.com/wp-content/uploads/2025/06/Circolare-illustrativa-accordo-28-maggio-2025.pdf",
+            "sha256": "85fbb0242738a0d34e7549a302c9c4002b5ff257146b3c3aeee10b8a945b7ba6"
+          },
+          {
+            "url": "https://www.faicisl.it/attachments/article/2354/CCNL%20Piccola%20e%20media%20industria%20alimentare%202013.pdf",
+            "sha256": "55e1579703ca5cadfc56c4ae079da0820d4f760fa2812fd842a2fcd9f4e34418"
+          }
+        ],
+        "findings": [
+          "54 values found verbatim on the cited pages and marked verified; 18 left as they were (derived or not on a text page)."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels.base_salary",
+          "levels.fixed_allowances"
+        ]
       }
     ]
   },
@@ -333,21 +359,28 @@
             "valid_until": "2026-01-01",
             "value": "2753.34",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "alimentari-pmi-unionalimentari",
-                  "title": "alimentari-pmi-unionalimentari",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.unionalimentari.com/"
+                  "document_id": "alimentari-pmi-unionalimentari-tables-85fbb024",
+                  "title": "alimentari-pmi-unionalimentari: tabelle retributive (circular-2025.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.unionalimentari.com/wp-content/uploads/2025/06/Circolare-illustrativa-accordo-28-maggio-2025.pdf",
+                  "sha256": "85fbb0242738a0d34e7549a302c9c4002b5ff257146b3c3aeee10b8a945b7ba6"
                 },
-                "section": "Tabella retributiva"
+                "page": "7",
+                "section": "§ 19 Tabella minimi mensili (esclusa panificazione), colonna Minimi dal 1.6.2025",
+                "quote": "Quadri      2635,82        117,52      2.753,34        117,52      2.870,86        117,52      2.988,37        117,52       3.105,89         470,07            230"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-alimentari-pmi-unionalimentari-tables"
               }
             }
           },
@@ -356,21 +389,28 @@
             "valid_until": null,
             "value": "2870.86",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "alimentari-pmi-unionalimentari",
-                  "title": "alimentari-pmi-unionalimentari",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.unionalimentari.com/"
+                  "document_id": "alimentari-pmi-unionalimentari-tables-85fbb024",
+                  "title": "alimentari-pmi-unionalimentari: tabelle retributive (circular-2025.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.unionalimentari.com/wp-content/uploads/2025/06/Circolare-illustrativa-accordo-28-maggio-2025.pdf",
+                  "sha256": "85fbb0242738a0d34e7549a302c9c4002b5ff257146b3c3aeee10b8a945b7ba6"
                 },
-                "section": "Tabella retributiva"
+                "page": "7",
+                "section": "§ 19 Tabella minimi mensili (esclusa panificazione), colonna Minimi dal 1.1.2026",
+                "quote": "Quadri      2635,82        117,52      2.753,34        117,52      2.870,86        117,52      2.988,37        117,52       3.105,89         470,07            230"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-alimentari-pmi-unionalimentari-tables"
               }
             }
           }
@@ -385,7 +425,32 @@
               {
                 "valid_from": "2025-06-01",
                 "valid_until": null,
-                "value": "546.43"
+                "value": "546.43",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "alimentari-pmi-unionalimentari-tables-55e15797",
+                      "title": "alimentari-pmi-unionalimentari: tabelle retributive (ccnl-2013.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.faicisl.it/attachments/article/2354/CCNL%20Piccola%20e%20media%20industria%20alimentare%202013.pdf",
+                      "sha256": "55e1579703ca5cadfc56c4ae079da0820d4f760fa2812fd842a2fcd9f4e34418"
+                    },
+                    "page": "122",
+                    "section": "Art. 46 Indennità di contingenza (al 1.11.1991)",
+                    "quote": "Quadri                 1.058.029                      546,43"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2025-06-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-alimentari-pmi-unionalimentari-tables"
+                  }
+                }
               }
             ]
           },
@@ -447,17 +512,92 @@
               {
                 "valid_from": "2011-01-01",
                 "valid_until": "2023-11-01",
-                "value": "36.93"
+                "value": "36.93",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "alimentari-pmi-unionalimentari-tables-55e15797",
+                      "title": "alimentari-pmi-unionalimentari: tabelle retributive (ccnl-2013.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.faicisl.it/attachments/article/2354/CCNL%20Piccola%20e%20media%20industria%20alimentare%202013.pdf",
+                      "sha256": "55e1579703ca5cadfc56c4ae079da0820d4f760fa2812fd842a2fcd9f4e34418"
+                    },
+                    "page": "134",
+                    "section": "Elemento di garanzia retributiva, Importi dal 1.1.2011",
+                    "quote": "Quadri              30,32                 36,93"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2011-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-alimentari-pmi-unionalimentari-tables"
+                  }
+                }
               },
               {
                 "valid_from": "2023-11-01",
                 "valid_until": "2027-01-01",
-                "value": "41.97"
+                "value": "41.97",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "alimentari-pmi-unionalimentari-tables-85fbb024",
+                      "title": "alimentari-pmi-unionalimentari: tabelle retributive (circular-2025.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.unionalimentari.com/wp-content/uploads/2025/06/Circolare-illustrativa-accordo-28-maggio-2025.pdf",
+                      "sha256": "85fbb0242738a0d34e7549a302c9c4002b5ff257146b3c3aeee10b8a945b7ba6"
+                    },
+                    "page": "8",
+                    "section": "Elemento di garanzia retributiva, Importi dal 1.11.2023",
+                    "quote": "230         Quadri               30,32                36,93               41,97               58,76"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2023-11-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-alimentari-pmi-unionalimentari-tables"
+                  }
+                }
               },
               {
                 "valid_from": "2027-01-01",
                 "valid_until": null,
-                "value": "58.76"
+                "value": "58.76",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "alimentari-pmi-unionalimentari-tables-85fbb024",
+                      "title": "alimentari-pmi-unionalimentari: tabelle retributive (circular-2025.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.unionalimentari.com/wp-content/uploads/2025/06/Circolare-illustrativa-accordo-28-maggio-2025.pdf",
+                      "sha256": "85fbb0242738a0d34e7549a302c9c4002b5ff257146b3c3aeee10b8a945b7ba6"
+                    },
+                    "page": "8",
+                    "section": "Elemento di garanzia retributiva, Importi dal 1.1.2027",
+                    "quote": "230         Quadri               30,32                36,93               41,97               58,76"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2027-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-alimentari-pmi-unionalimentari-tables"
+                  }
+                }
               }
             ]
           },
@@ -519,21 +659,28 @@
             "valid_until": "2026-01-01",
             "value": "2653.34",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "alimentari-pmi-unionalimentari",
-                  "title": "alimentari-pmi-unionalimentari",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.unionalimentari.com/"
+                  "document_id": "alimentari-pmi-unionalimentari-tables-85fbb024",
+                  "title": "alimentari-pmi-unionalimentari: tabelle retributive (circular-2025.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.unionalimentari.com/wp-content/uploads/2025/06/Circolare-illustrativa-accordo-28-maggio-2025.pdf",
+                  "sha256": "85fbb0242738a0d34e7549a302c9c4002b5ff257146b3c3aeee10b8a945b7ba6"
                 },
-                "section": "Tabella retributiva"
+                "page": "7",
+                "section": "§ 19 Tabella minimi mensili (esclusa panificazione), colonna Minimi dal 1.6.2025",
+                "quote": "1°        2535,82        117,52      2.653,34        117,52      2.770,86        117,52      2.888,37        117,52       3.005,89         470,07            230"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-alimentari-pmi-unionalimentari-tables"
               }
             }
           },
@@ -542,21 +689,28 @@
             "valid_until": null,
             "value": "2770.86",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "alimentari-pmi-unionalimentari",
-                  "title": "alimentari-pmi-unionalimentari",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.unionalimentari.com/"
+                  "document_id": "alimentari-pmi-unionalimentari-tables-85fbb024",
+                  "title": "alimentari-pmi-unionalimentari: tabelle retributive (circular-2025.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.unionalimentari.com/wp-content/uploads/2025/06/Circolare-illustrativa-accordo-28-maggio-2025.pdf",
+                  "sha256": "85fbb0242738a0d34e7549a302c9c4002b5ff257146b3c3aeee10b8a945b7ba6"
                 },
-                "section": "Tabella retributiva"
+                "page": "7",
+                "section": "§ 19 Tabella minimi mensili (esclusa panificazione), colonna Minimi dal 1.1.2026",
+                "quote": "1°        2535,82        117,52      2.653,34        117,52      2.770,86        117,52      2.888,37        117,52       3.005,89         470,07            230"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-alimentari-pmi-unionalimentari-tables"
               }
             }
           }
@@ -571,7 +725,32 @@
               {
                 "valid_from": "2025-06-01",
                 "valid_until": null,
-                "value": "544.42"
+                "value": "544.42",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "alimentari-pmi-unionalimentari-tables-55e15797",
+                      "title": "alimentari-pmi-unionalimentari: tabelle retributive (ccnl-2013.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.faicisl.it/attachments/article/2354/CCNL%20Piccola%20e%20media%20industria%20alimentare%202013.pdf",
+                      "sha256": "55e1579703ca5cadfc56c4ae079da0820d4f760fa2812fd842a2fcd9f4e34418"
+                    },
+                    "page": "122",
+                    "section": "Art. 46 Indennità di contingenza (al 1.11.1991)",
+                    "quote": "1°                   1.054.148                      544,42"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2025-06-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-alimentari-pmi-unionalimentari-tables"
+                  }
+                }
               }
             ]
           },
@@ -633,17 +812,92 @@
               {
                 "valid_from": "2011-01-01",
                 "valid_until": "2023-11-01",
-                "value": "36.93"
+                "value": "36.93",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "alimentari-pmi-unionalimentari-tables-55e15797",
+                      "title": "alimentari-pmi-unionalimentari: tabelle retributive (ccnl-2013.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.faicisl.it/attachments/article/2354/CCNL%20Piccola%20e%20media%20industria%20alimentare%202013.pdf",
+                      "sha256": "55e1579703ca5cadfc56c4ae079da0820d4f760fa2812fd842a2fcd9f4e34418"
+                    },
+                    "page": "134",
+                    "section": "Elemento di garanzia retributiva, Importi dal 1.1.2011",
+                    "quote": "Quadri              30,32                 36,93"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2011-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-alimentari-pmi-unionalimentari-tables"
+                  }
+                }
               },
               {
                 "valid_from": "2023-11-01",
                 "valid_until": "2027-01-01",
-                "value": "41.97"
+                "value": "41.97",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "alimentari-pmi-unionalimentari-tables-85fbb024",
+                      "title": "alimentari-pmi-unionalimentari: tabelle retributive (circular-2025.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.unionalimentari.com/wp-content/uploads/2025/06/Circolare-illustrativa-accordo-28-maggio-2025.pdf",
+                      "sha256": "85fbb0242738a0d34e7549a302c9c4002b5ff257146b3c3aeee10b8a945b7ba6"
+                    },
+                    "page": "8",
+                    "section": "Elemento di garanzia retributiva, Importi dal 1.11.2023",
+                    "quote": "230         Quadri               30,32                36,93               41,97               58,76"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2023-11-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-alimentari-pmi-unionalimentari-tables"
+                  }
+                }
               },
               {
                 "valid_from": "2027-01-01",
                 "valid_until": null,
-                "value": "58.76"
+                "value": "58.76",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "alimentari-pmi-unionalimentari-tables-85fbb024",
+                      "title": "alimentari-pmi-unionalimentari: tabelle retributive (circular-2025.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.unionalimentari.com/wp-content/uploads/2025/06/Circolare-illustrativa-accordo-28-maggio-2025.pdf",
+                      "sha256": "85fbb0242738a0d34e7549a302c9c4002b5ff257146b3c3aeee10b8a945b7ba6"
+                    },
+                    "page": "8",
+                    "section": "Elemento di garanzia retributiva, Importi dal 1.1.2027",
+                    "quote": "230         Quadri               30,32                36,93               41,97               58,76"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2027-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-alimentari-pmi-unionalimentari-tables"
+                  }
+                }
               }
             ]
           },
@@ -705,21 +959,28 @@
             "valid_until": "2026-01-01",
             "value": "2307.23",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "alimentari-pmi-unionalimentari",
-                  "title": "alimentari-pmi-unionalimentari",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.unionalimentari.com/"
+                  "document_id": "alimentari-pmi-unionalimentari-tables-85fbb024",
+                  "title": "alimentari-pmi-unionalimentari: tabelle retributive (circular-2025.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.unionalimentari.com/wp-content/uploads/2025/06/Circolare-illustrativa-accordo-28-maggio-2025.pdf",
+                  "sha256": "85fbb0242738a0d34e7549a302c9c4002b5ff257146b3c3aeee10b8a945b7ba6"
                 },
-                "section": "Tabella retributiva"
+                "page": "7",
+                "section": "§ 19 Tabella minimi mensili (esclusa panificazione), colonna Minimi dal 1.6.2025",
+                "quote": "2°        2205,04        102,19      2.307,23        102,19      2.409,42        102,19       2.511,61       102,19       2.613,80         408,76            200"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-alimentari-pmi-unionalimentari-tables"
               }
             }
           },
@@ -728,21 +989,28 @@
             "valid_until": null,
             "value": "2409.42",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "alimentari-pmi-unionalimentari",
-                  "title": "alimentari-pmi-unionalimentari",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.unionalimentari.com/"
+                  "document_id": "alimentari-pmi-unionalimentari-tables-85fbb024",
+                  "title": "alimentari-pmi-unionalimentari: tabelle retributive (circular-2025.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.unionalimentari.com/wp-content/uploads/2025/06/Circolare-illustrativa-accordo-28-maggio-2025.pdf",
+                  "sha256": "85fbb0242738a0d34e7549a302c9c4002b5ff257146b3c3aeee10b8a945b7ba6"
                 },
-                "section": "Tabella retributiva"
+                "page": "7",
+                "section": "§ 19 Tabella minimi mensili (esclusa panificazione), colonna Minimi dal 1.1.2026",
+                "quote": "2°        2205,04        102,19      2.307,23        102,19      2.409,42        102,19       2.511,61       102,19       2.613,80         408,76            200"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-alimentari-pmi-unionalimentari-tables"
               }
             }
           }
@@ -757,7 +1025,32 @@
               {
                 "valid_from": "2025-06-01",
                 "valid_until": null,
-                "value": "537.57"
+                "value": "537.57",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "alimentari-pmi-unionalimentari-tables-55e15797",
+                      "title": "alimentari-pmi-unionalimentari: tabelle retributive (ccnl-2013.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.faicisl.it/attachments/article/2354/CCNL%20Piccola%20e%20media%20industria%20alimentare%202013.pdf",
+                      "sha256": "55e1579703ca5cadfc56c4ae079da0820d4f760fa2812fd842a2fcd9f4e34418"
+                    },
+                    "page": "122",
+                    "section": "Art. 46 Indennità di contingenza (al 1.11.1991)",
+                    "quote": "2°                   1.040.887                      537,57"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2025-06-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-alimentari-pmi-unionalimentari-tables"
+                  }
+                }
               }
             ]
           },
@@ -819,17 +1112,92 @@
               {
                 "valid_from": "2011-01-01",
                 "valid_until": "2023-11-01",
-                "value": "32.11"
+                "value": "32.11",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "alimentari-pmi-unionalimentari-tables-55e15797",
+                      "title": "alimentari-pmi-unionalimentari: tabelle retributive (ccnl-2013.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.faicisl.it/attachments/article/2354/CCNL%20Piccola%20e%20media%20industria%20alimentare%202013.pdf",
+                      "sha256": "55e1579703ca5cadfc56c4ae079da0820d4f760fa2812fd842a2fcd9f4e34418"
+                    },
+                    "page": "134",
+                    "section": "Elemento di garanzia retributiva, Importi dal 1.1.2011",
+                    "quote": "2°                24,83                 32,11"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2011-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-alimentari-pmi-unionalimentari-tables"
+                  }
+                }
               },
               {
                 "valid_from": "2023-11-01",
                 "valid_until": "2027-01-01",
-                "value": "36.49"
+                "value": "36.49",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "alimentari-pmi-unionalimentari-tables-85fbb024",
+                      "title": "alimentari-pmi-unionalimentari: tabelle retributive (circular-2025.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.unionalimentari.com/wp-content/uploads/2025/06/Circolare-illustrativa-accordo-28-maggio-2025.pdf",
+                      "sha256": "85fbb0242738a0d34e7549a302c9c4002b5ff257146b3c3aeee10b8a945b7ba6"
+                    },
+                    "page": "8",
+                    "section": "Elemento di garanzia retributiva, Importi dal 1.11.2023",
+                    "quote": "200           2°                 24,83                32,11               36,49               51,09"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2023-11-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-alimentari-pmi-unionalimentari-tables"
+                  }
+                }
               },
               {
                 "valid_from": "2027-01-01",
                 "valid_until": null,
-                "value": "51.09"
+                "value": "51.09",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "alimentari-pmi-unionalimentari-tables-85fbb024",
+                      "title": "alimentari-pmi-unionalimentari: tabelle retributive (circular-2025.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.unionalimentari.com/wp-content/uploads/2025/06/Circolare-illustrativa-accordo-28-maggio-2025.pdf",
+                      "sha256": "85fbb0242738a0d34e7549a302c9c4002b5ff257146b3c3aeee10b8a945b7ba6"
+                    },
+                    "page": "8",
+                    "section": "Elemento di garanzia retributiva, Importi dal 1.1.2027",
+                    "quote": "200           2°                 24,83                32,11               36,49               51,09"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2027-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-alimentari-pmi-unionalimentari-tables"
+                  }
+                }
               }
             ]
           },
@@ -891,21 +1259,28 @@
             "valid_until": "2026-01-01",
             "value": "1903.50",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "alimentari-pmi-unionalimentari",
-                  "title": "alimentari-pmi-unionalimentari",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.unionalimentari.com/"
+                  "document_id": "alimentari-pmi-unionalimentari-tables-85fbb024",
+                  "title": "alimentari-pmi-unionalimentari: tabelle retributive (circular-2025.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.unionalimentari.com/wp-content/uploads/2025/06/Circolare-illustrativa-accordo-28-maggio-2025.pdf",
+                  "sha256": "85fbb0242738a0d34e7549a302c9c4002b5ff257146b3c3aeee10b8a945b7ba6"
                 },
-                "section": "Tabella retributiva"
+                "page": "7",
+                "section": "§ 19 Tabella minimi mensili (esclusa panificazione), colonna Minimi dal 1.6.2025",
+                "quote": "3°         1819,19        84,31      1.903,50        84,31       1.987,80         84,31      2.072,11        84,31        2.156,42         337,23            165"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-alimentari-pmi-unionalimentari-tables"
               }
             }
           },
@@ -914,21 +1289,28 @@
             "valid_until": null,
             "value": "1987.80",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "alimentari-pmi-unionalimentari",
-                  "title": "alimentari-pmi-unionalimentari",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.unionalimentari.com/"
+                  "document_id": "alimentari-pmi-unionalimentari-tables-85fbb024",
+                  "title": "alimentari-pmi-unionalimentari: tabelle retributive (circular-2025.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.unionalimentari.com/wp-content/uploads/2025/06/Circolare-illustrativa-accordo-28-maggio-2025.pdf",
+                  "sha256": "85fbb0242738a0d34e7549a302c9c4002b5ff257146b3c3aeee10b8a945b7ba6"
                 },
-                "section": "Tabella retributiva"
+                "page": "7",
+                "section": "§ 19 Tabella minimi mensili (esclusa panificazione), colonna Minimi dal 1.1.2026",
+                "quote": "3°         1819,19        84,31      1.903,50        84,31       1.987,80         84,31      2.072,11        84,31        2.156,42         337,23            165"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-alimentari-pmi-unionalimentari-tables"
               }
             }
           }
@@ -943,7 +1325,32 @@
               {
                 "valid_from": "2025-06-01",
                 "valid_until": null,
-                "value": "529.58"
+                "value": "529.58",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "alimentari-pmi-unionalimentari-tables-55e15797",
+                      "title": "alimentari-pmi-unionalimentari: tabelle retributive (ccnl-2013.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.faicisl.it/attachments/article/2354/CCNL%20Piccola%20e%20media%20industria%20alimentare%202013.pdf",
+                      "sha256": "55e1579703ca5cadfc56c4ae079da0820d4f760fa2812fd842a2fcd9f4e34418"
+                    },
+                    "page": "122",
+                    "section": "Art. 46 Indennità di contingenza (al 1.11.1991)",
+                    "quote": "3°                   1.025.416                      529,58"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2025-06-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-alimentari-pmi-unionalimentari-tables"
+                  }
+                }
               }
             ]
           },
@@ -1005,17 +1412,92 @@
               {
                 "valid_from": "2011-01-01",
                 "valid_until": "2023-11-01",
-                "value": "26.49"
+                "value": "26.49",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "alimentari-pmi-unionalimentari-tables-55e15797",
+                      "title": "alimentari-pmi-unionalimentari: tabelle retributive (ccnl-2013.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.faicisl.it/attachments/article/2354/CCNL%20Piccola%20e%20media%20industria%20alimentare%202013.pdf",
+                      "sha256": "55e1579703ca5cadfc56c4ae079da0820d4f760fa2812fd842a2fcd9f4e34418"
+                    },
+                    "page": "134",
+                    "section": "Elemento di garanzia retributiva, Importi dal 1.1.2011",
+                    "quote": "3°                20,48                 26,49"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2011-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-alimentari-pmi-unionalimentari-tables"
+                  }
+                }
               },
               {
                 "valid_from": "2023-11-01",
                 "valid_until": "2027-01-01",
-                "value": "30.10"
+                "value": "30.10",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "alimentari-pmi-unionalimentari-tables-85fbb024",
+                      "title": "alimentari-pmi-unionalimentari: tabelle retributive (circular-2025.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.unionalimentari.com/wp-content/uploads/2025/06/Circolare-illustrativa-accordo-28-maggio-2025.pdf",
+                      "sha256": "85fbb0242738a0d34e7549a302c9c4002b5ff257146b3c3aeee10b8a945b7ba6"
+                    },
+                    "page": "8",
+                    "section": "Elemento di garanzia retributiva, Importi dal 1.11.2023",
+                    "quote": "165           3°                 20,48                26,49               30,10               42,14"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2023-11-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-alimentari-pmi-unionalimentari-tables"
+                  }
+                }
               },
               {
                 "valid_from": "2027-01-01",
                 "valid_until": null,
-                "value": "42.14"
+                "value": "42.14",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "alimentari-pmi-unionalimentari-tables-85fbb024",
+                      "title": "alimentari-pmi-unionalimentari: tabelle retributive (circular-2025.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.unionalimentari.com/wp-content/uploads/2025/06/Circolare-illustrativa-accordo-28-maggio-2025.pdf",
+                      "sha256": "85fbb0242738a0d34e7549a302c9c4002b5ff257146b3c3aeee10b8a945b7ba6"
+                    },
+                    "page": "8",
+                    "section": "Elemento di garanzia retributiva, Importi dal 1.1.2027",
+                    "quote": "165           3°                 20,48                26,49               30,10               42,14"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2027-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-alimentari-pmi-unionalimentari-tables"
+                  }
+                }
               }
             ]
           },
@@ -1077,21 +1559,28 @@
             "valid_until": "2026-01-01",
             "value": "1672.78",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "alimentari-pmi-unionalimentari",
-                  "title": "alimentari-pmi-unionalimentari",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.unionalimentari.com/"
+                  "document_id": "alimentari-pmi-unionalimentari-tables-85fbb024",
+                  "title": "alimentari-pmi-unionalimentari: tabelle retributive (circular-2025.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.unionalimentari.com/wp-content/uploads/2025/06/Circolare-illustrativa-accordo-28-maggio-2025.pdf",
+                  "sha256": "85fbb0242738a0d34e7549a302c9c4002b5ff257146b3c3aeee10b8a945b7ba6"
                 },
-                "section": "Tabella retributiva"
+                "page": "7",
+                "section": "§ 19 Tabella minimi mensili (esclusa panificazione), colonna Minimi dal 1.6.2025",
+                "quote": "4°        1598,69        74,09        1.672,78       74,09        1.746,87        74,09      1.820,95        74,09        1.895,04         296,35            145"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-alimentari-pmi-unionalimentari-tables"
               }
             }
           },
@@ -1100,21 +1589,28 @@
             "valid_until": null,
             "value": "1746.87",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "alimentari-pmi-unionalimentari",
-                  "title": "alimentari-pmi-unionalimentari",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.unionalimentari.com/"
+                  "document_id": "alimentari-pmi-unionalimentari-tables-85fbb024",
+                  "title": "alimentari-pmi-unionalimentari: tabelle retributive (circular-2025.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.unionalimentari.com/wp-content/uploads/2025/06/Circolare-illustrativa-accordo-28-maggio-2025.pdf",
+                  "sha256": "85fbb0242738a0d34e7549a302c9c4002b5ff257146b3c3aeee10b8a945b7ba6"
                 },
-                "section": "Tabella retributiva"
+                "page": "7",
+                "section": "§ 19 Tabella minimi mensili (esclusa panificazione), colonna Minimi dal 1.1.2026",
+                "quote": "4°        1598,69        74,09        1.672,78       74,09        1.746,87        74,09      1.820,95        74,09        1.895,04         296,35            145"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-alimentari-pmi-unionalimentari-tables"
               }
             }
           }
@@ -1129,7 +1625,32 @@
               {
                 "valid_from": "2025-06-01",
                 "valid_until": null,
-                "value": "525.02"
+                "value": "525.02",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "alimentari-pmi-unionalimentari-tables-55e15797",
+                      "title": "alimentari-pmi-unionalimentari: tabelle retributive (ccnl-2013.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.faicisl.it/attachments/article/2354/CCNL%20Piccola%20e%20media%20industria%20alimentare%202013.pdf",
+                      "sha256": "55e1579703ca5cadfc56c4ae079da0820d4f760fa2812fd842a2fcd9f4e34418"
+                    },
+                    "page": "122",
+                    "section": "Art. 46 Indennità di contingenza (al 1.11.1991)",
+                    "quote": "4°                   1.016.571                      525,02"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2025-06-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-alimentari-pmi-unionalimentari-tables"
+                  }
+                }
               }
             ]
           },
@@ -1191,17 +1712,92 @@
               {
                 "valid_from": "2011-01-01",
                 "valid_until": "2023-11-01",
-                "value": "23.28"
+                "value": "23.28",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "alimentari-pmi-unionalimentari-tables-55e15797",
+                      "title": "alimentari-pmi-unionalimentari: tabelle retributive (ccnl-2013.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.faicisl.it/attachments/article/2354/CCNL%20Piccola%20e%20media%20industria%20alimentare%202013.pdf",
+                      "sha256": "55e1579703ca5cadfc56c4ae079da0820d4f760fa2812fd842a2fcd9f4e34418"
+                    },
+                    "page": "134",
+                    "section": "Elemento di garanzia retributiva, Importi dal 1.1.2011",
+                    "quote": "4°                18,00                 23,28"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2011-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-alimentari-pmi-unionalimentari-tables"
+                  }
+                }
               },
               {
                 "valid_from": "2023-11-01",
                 "valid_until": "2027-01-01",
-                "value": "26.46"
+                "value": "26.46",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "alimentari-pmi-unionalimentari-tables-85fbb024",
+                      "title": "alimentari-pmi-unionalimentari: tabelle retributive (circular-2025.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.unionalimentari.com/wp-content/uploads/2025/06/Circolare-illustrativa-accordo-28-maggio-2025.pdf",
+                      "sha256": "85fbb0242738a0d34e7549a302c9c4002b5ff257146b3c3aeee10b8a945b7ba6"
+                    },
+                    "page": "8",
+                    "section": "Elemento di garanzia retributiva, Importi dal 1.11.2023",
+                    "quote": "145           4°                 18,00                23,28               26,46               37,04"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2023-11-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-alimentari-pmi-unionalimentari-tables"
+                  }
+                }
               },
               {
                 "valid_from": "2027-01-01",
                 "valid_until": null,
-                "value": "37.04"
+                "value": "37.04",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "alimentari-pmi-unionalimentari-tables-85fbb024",
+                      "title": "alimentari-pmi-unionalimentari: tabelle retributive (circular-2025.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.unionalimentari.com/wp-content/uploads/2025/06/Circolare-illustrativa-accordo-28-maggio-2025.pdf",
+                      "sha256": "85fbb0242738a0d34e7549a302c9c4002b5ff257146b3c3aeee10b8a945b7ba6"
+                    },
+                    "page": "8",
+                    "section": "Elemento di garanzia retributiva, Importi dal 1.1.2027",
+                    "quote": "145           4°                 18,00                23,28               26,46               37,04"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2027-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-alimentari-pmi-unionalimentari-tables"
+                  }
+                }
               }
             ]
           },
@@ -1263,21 +1859,28 @@
             "valid_until": "2026-01-01",
             "value": "1499.72",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "alimentari-pmi-unionalimentari",
-                  "title": "alimentari-pmi-unionalimentari",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.unionalimentari.com/"
+                  "document_id": "alimentari-pmi-unionalimentari-tables-85fbb024",
+                  "title": "alimentari-pmi-unionalimentari: tabelle retributive (circular-2025.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.unionalimentari.com/wp-content/uploads/2025/06/Circolare-illustrativa-accordo-28-maggio-2025.pdf",
+                  "sha256": "85fbb0242738a0d34e7549a302c9c4002b5ff257146b3c3aeee10b8a945b7ba6"
                 },
-                "section": "Tabella retributiva"
+                "page": "7",
+                "section": "§ 19 Tabella minimi mensili (esclusa panificazione), colonna Minimi dal 1.6.2025",
+                "quote": "5°        1433,30        66,42       1.499,72        66,42        1.566,15        66,42      1.632,57        66,42           1.698,99      265,69            130"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-alimentari-pmi-unionalimentari-tables"
               }
             }
           },
@@ -1286,21 +1889,28 @@
             "valid_until": null,
             "value": "1566.15",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "alimentari-pmi-unionalimentari",
-                  "title": "alimentari-pmi-unionalimentari",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.unionalimentari.com/"
+                  "document_id": "alimentari-pmi-unionalimentari-tables-85fbb024",
+                  "title": "alimentari-pmi-unionalimentari: tabelle retributive (circular-2025.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.unionalimentari.com/wp-content/uploads/2025/06/Circolare-illustrativa-accordo-28-maggio-2025.pdf",
+                  "sha256": "85fbb0242738a0d34e7549a302c9c4002b5ff257146b3c3aeee10b8a945b7ba6"
                 },
-                "section": "Tabella retributiva"
+                "page": "7",
+                "section": "§ 19 Tabella minimi mensili (esclusa panificazione), colonna Minimi dal 1.1.2026",
+                "quote": "5°        1433,30        66,42       1.499,72        66,42        1.566,15        66,42      1.632,57        66,42           1.698,99      265,69            130"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-alimentari-pmi-unionalimentari-tables"
               }
             }
           }
@@ -1315,7 +1925,32 @@
               {
                 "valid_from": "2025-06-01",
                 "valid_until": null,
-                "value": "521.59"
+                "value": "521.59",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "alimentari-pmi-unionalimentari-tables-55e15797",
+                      "title": "alimentari-pmi-unionalimentari: tabelle retributive (ccnl-2013.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.faicisl.it/attachments/article/2354/CCNL%20Piccola%20e%20media%20industria%20alimentare%202013.pdf",
+                      "sha256": "55e1579703ca5cadfc56c4ae079da0820d4f760fa2812fd842a2fcd9f4e34418"
+                    },
+                    "page": "122",
+                    "section": "Art. 46 Indennità di contingenza (al 1.11.1991)",
+                    "quote": "5°                   1.009.944                      521,59"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2025-06-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-alimentari-pmi-unionalimentari-tables"
+                  }
+                }
               }
             ]
           },
@@ -1377,17 +2012,92 @@
               {
                 "valid_from": "2011-01-01",
                 "valid_until": "2023-11-01",
-                "value": "20.88"
+                "value": "20.88",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "alimentari-pmi-unionalimentari-tables-55e15797",
+                      "title": "alimentari-pmi-unionalimentari: tabelle retributive (ccnl-2013.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.faicisl.it/attachments/article/2354/CCNL%20Piccola%20e%20media%20industria%20alimentare%202013.pdf",
+                      "sha256": "55e1579703ca5cadfc56c4ae079da0820d4f760fa2812fd842a2fcd9f4e34418"
+                    },
+                    "page": "134",
+                    "section": "Elemento di garanzia retributiva, Importi dal 1.1.2011",
+                    "quote": "5°                16,14                 20,88"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2011-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-alimentari-pmi-unionalimentari-tables"
+                  }
+                }
               },
               {
                 "valid_from": "2023-11-01",
                 "valid_until": "2027-01-01",
-                "value": "23.73"
+                "value": "23.73",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "alimentari-pmi-unionalimentari-tables-85fbb024",
+                      "title": "alimentari-pmi-unionalimentari: tabelle retributive (circular-2025.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.unionalimentari.com/wp-content/uploads/2025/06/Circolare-illustrativa-accordo-28-maggio-2025.pdf",
+                      "sha256": "85fbb0242738a0d34e7549a302c9c4002b5ff257146b3c3aeee10b8a945b7ba6"
+                    },
+                    "page": "8",
+                    "section": "Elemento di garanzia retributiva, Importi dal 1.11.2023",
+                    "quote": "130           5°                 16,14                20,88               23,73               33,22"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2023-11-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-alimentari-pmi-unionalimentari-tables"
+                  }
+                }
               },
               {
                 "valid_from": "2027-01-01",
                 "valid_until": null,
-                "value": "33.22"
+                "value": "33.22",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "alimentari-pmi-unionalimentari-tables-85fbb024",
+                      "title": "alimentari-pmi-unionalimentari: tabelle retributive (circular-2025.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.unionalimentari.com/wp-content/uploads/2025/06/Circolare-illustrativa-accordo-28-maggio-2025.pdf",
+                      "sha256": "85fbb0242738a0d34e7549a302c9c4002b5ff257146b3c3aeee10b8a945b7ba6"
+                    },
+                    "page": "8",
+                    "section": "Elemento di garanzia retributiva, Importi dal 1.1.2027",
+                    "quote": "130           5°                 16,14                20,88               23,73               33,22"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2027-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-alimentari-pmi-unionalimentari-tables"
+                  }
+                }
               }
             ]
           },
@@ -1449,21 +2159,28 @@
             "valid_until": "2026-01-01",
             "value": "1384.33",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "alimentari-pmi-unionalimentari",
-                  "title": "alimentari-pmi-unionalimentari",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.unionalimentari.com/"
+                  "document_id": "alimentari-pmi-unionalimentari-tables-85fbb024",
+                  "title": "alimentari-pmi-unionalimentari: tabelle retributive (circular-2025.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.unionalimentari.com/wp-content/uploads/2025/06/Circolare-illustrativa-accordo-28-maggio-2025.pdf",
+                  "sha256": "85fbb0242738a0d34e7549a302c9c4002b5ff257146b3c3aeee10b8a945b7ba6"
                 },
-                "section": "Tabella retributiva"
+                "page": "7",
+                "section": "§ 19 Tabella minimi mensili (esclusa panificazione), colonna Minimi dal 1.6.2025",
+                "quote": "6°        1323,02         61,31      1.384,33        61,31       1.445,65         61,31      1.506,96        61,31           1.568,28      245,26            120"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-alimentari-pmi-unionalimentari-tables"
               }
             }
           },
@@ -1472,21 +2189,28 @@
             "valid_until": null,
             "value": "1445.65",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "alimentari-pmi-unionalimentari",
-                  "title": "alimentari-pmi-unionalimentari",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.unionalimentari.com/"
+                  "document_id": "alimentari-pmi-unionalimentari-tables-85fbb024",
+                  "title": "alimentari-pmi-unionalimentari: tabelle retributive (circular-2025.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.unionalimentari.com/wp-content/uploads/2025/06/Circolare-illustrativa-accordo-28-maggio-2025.pdf",
+                  "sha256": "85fbb0242738a0d34e7549a302c9c4002b5ff257146b3c3aeee10b8a945b7ba6"
                 },
-                "section": "Tabella retributiva"
+                "page": "7",
+                "section": "§ 19 Tabella minimi mensili (esclusa panificazione), colonna Minimi dal 1.1.2026",
+                "quote": "6°        1323,02         61,31      1.384,33        61,31       1.445,65         61,31      1.506,96        61,31           1.568,28      245,26            120"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-alimentari-pmi-unionalimentari-tables"
               }
             }
           }
@@ -1501,7 +2225,32 @@
               {
                 "valid_from": "2025-06-01",
                 "valid_until": null,
-                "value": "519.31"
+                "value": "519.31",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "alimentari-pmi-unionalimentari-tables-55e15797",
+                      "title": "alimentari-pmi-unionalimentari: tabelle retributive (ccnl-2013.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.faicisl.it/attachments/article/2354/CCNL%20Piccola%20e%20media%20industria%20alimentare%202013.pdf",
+                      "sha256": "55e1579703ca5cadfc56c4ae079da0820d4f760fa2812fd842a2fcd9f4e34418"
+                    },
+                    "page": "122",
+                    "section": "Art. 46 Indennità di contingenza (al 1.11.1991)",
+                    "quote": "6°                   1.005.524                      519,31"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2025-06-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-alimentari-pmi-unionalimentari-tables"
+                  }
+                }
               }
             ]
           },
@@ -1563,17 +2312,92 @@
               {
                 "valid_from": "2011-01-01",
                 "valid_until": "2023-11-01",
-                "value": "19.27"
+                "value": "19.27",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "alimentari-pmi-unionalimentari-tables-55e15797",
+                      "title": "alimentari-pmi-unionalimentari: tabelle retributive (ccnl-2013.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.faicisl.it/attachments/article/2354/CCNL%20Piccola%20e%20media%20industria%20alimentare%202013.pdf",
+                      "sha256": "55e1579703ca5cadfc56c4ae079da0820d4f760fa2812fd842a2fcd9f4e34418"
+                    },
+                    "page": "134",
+                    "section": "Elemento di garanzia retributiva, Importi dal 1.1.2011",
+                    "quote": "6°                14,90                 19,27"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2011-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-alimentari-pmi-unionalimentari-tables"
+                  }
+                }
               },
               {
                 "valid_from": "2023-11-01",
                 "valid_until": "2027-01-01",
-                "value": "21.90"
+                "value": "21.90",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "alimentari-pmi-unionalimentari-tables-85fbb024",
+                      "title": "alimentari-pmi-unionalimentari: tabelle retributive (circular-2025.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.unionalimentari.com/wp-content/uploads/2025/06/Circolare-illustrativa-accordo-28-maggio-2025.pdf",
+                      "sha256": "85fbb0242738a0d34e7549a302c9c4002b5ff257146b3c3aeee10b8a945b7ba6"
+                    },
+                    "page": "8",
+                    "section": "Elemento di garanzia retributiva, Importi dal 1.11.2023",
+                    "quote": "120           6°                 14,90                19,27               21,90               30,66"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2023-11-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-alimentari-pmi-unionalimentari-tables"
+                  }
+                }
               },
               {
                 "valid_from": "2027-01-01",
                 "valid_until": null,
-                "value": "30.66"
+                "value": "30.66",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "alimentari-pmi-unionalimentari-tables-85fbb024",
+                      "title": "alimentari-pmi-unionalimentari: tabelle retributive (circular-2025.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.unionalimentari.com/wp-content/uploads/2025/06/Circolare-illustrativa-accordo-28-maggio-2025.pdf",
+                      "sha256": "85fbb0242738a0d34e7549a302c9c4002b5ff257146b3c3aeee10b8a945b7ba6"
+                    },
+                    "page": "8",
+                    "section": "Elemento di garanzia retributiva, Importi dal 1.1.2027",
+                    "quote": "120           6°                 14,90                19,27               21,90               30,66"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2027-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-alimentari-pmi-unionalimentari-tables"
+                  }
+                }
               }
             ]
           },
@@ -1635,21 +2459,28 @@
             "valid_until": "2026-01-01",
             "value": "1268.99",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "alimentari-pmi-unionalimentari",
-                  "title": "alimentari-pmi-unionalimentari",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.unionalimentari.com/"
+                  "document_id": "alimentari-pmi-unionalimentari-tables-85fbb024",
+                  "title": "alimentari-pmi-unionalimentari: tabelle retributive (circular-2025.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.unionalimentari.com/wp-content/uploads/2025/06/Circolare-illustrativa-accordo-28-maggio-2025.pdf",
+                  "sha256": "85fbb0242738a0d34e7549a302c9c4002b5ff257146b3c3aeee10b8a945b7ba6"
                 },
-                "section": "Tabella retributiva"
+                "page": "7",
+                "section": "§ 19 Tabella minimi mensili (esclusa panificazione), colonna Minimi dal 1.6.2025",
+                "quote": "7°         1212,79       56,20       1.268,99        56,20       1.325,20         56,20      1.381,40        56,20           1.437,61      224,82            110"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-alimentari-pmi-unionalimentari-tables"
               }
             }
           },
@@ -1658,21 +2489,28 @@
             "valid_until": null,
             "value": "1325.20",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "alimentari-pmi-unionalimentari",
-                  "title": "alimentari-pmi-unionalimentari",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.unionalimentari.com/"
+                  "document_id": "alimentari-pmi-unionalimentari-tables-85fbb024",
+                  "title": "alimentari-pmi-unionalimentari: tabelle retributive (circular-2025.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.unionalimentari.com/wp-content/uploads/2025/06/Circolare-illustrativa-accordo-28-maggio-2025.pdf",
+                  "sha256": "85fbb0242738a0d34e7549a302c9c4002b5ff257146b3c3aeee10b8a945b7ba6"
                 },
-                "section": "Tabella retributiva"
+                "page": "7",
+                "section": "§ 19 Tabella minimi mensili (esclusa panificazione), colonna Minimi dal 1.1.2026",
+                "quote": "7°         1212,79       56,20       1.268,99        56,20       1.325,20         56,20      1.381,40        56,20           1.437,61      224,82            110"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-alimentari-pmi-unionalimentari-tables"
               }
             }
           }
@@ -1687,7 +2525,32 @@
               {
                 "valid_from": "2025-06-01",
                 "valid_until": null,
-                "value": "517.03"
+                "value": "517.03",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "alimentari-pmi-unionalimentari-tables-55e15797",
+                      "title": "alimentari-pmi-unionalimentari: tabelle retributive (ccnl-2013.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.faicisl.it/attachments/article/2354/CCNL%20Piccola%20e%20media%20industria%20alimentare%202013.pdf",
+                      "sha256": "55e1579703ca5cadfc56c4ae079da0820d4f760fa2812fd842a2fcd9f4e34418"
+                    },
+                    "page": "122",
+                    "section": "Art. 46 Indennità di contingenza (al 1.11.1991)",
+                    "quote": "7°                   1.001.104                      517,03"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2025-06-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-alimentari-pmi-unionalimentari-tables"
+                  }
+                }
               }
             ]
           },
@@ -1749,17 +2612,92 @@
               {
                 "valid_from": "2011-01-01",
                 "valid_until": "2023-11-01",
-                "value": "17.66"
+                "value": "17.66",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "alimentari-pmi-unionalimentari-tables-55e15797",
+                      "title": "alimentari-pmi-unionalimentari: tabelle retributive (ccnl-2013.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.faicisl.it/attachments/article/2354/CCNL%20Piccola%20e%20media%20industria%20alimentare%202013.pdf",
+                      "sha256": "55e1579703ca5cadfc56c4ae079da0820d4f760fa2812fd842a2fcd9f4e34418"
+                    },
+                    "page": "134",
+                    "section": "Elemento di garanzia retributiva, Importi dal 1.1.2011",
+                    "quote": "7°                13,66                 17,66"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2011-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-alimentari-pmi-unionalimentari-tables"
+                  }
+                }
               },
               {
                 "valid_from": "2023-11-01",
                 "valid_until": "2027-01-01",
-                "value": "20.07"
+                "value": "20.07",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "alimentari-pmi-unionalimentari-tables-85fbb024",
+                      "title": "alimentari-pmi-unionalimentari: tabelle retributive (circular-2025.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.unionalimentari.com/wp-content/uploads/2025/06/Circolare-illustrativa-accordo-28-maggio-2025.pdf",
+                      "sha256": "85fbb0242738a0d34e7549a302c9c4002b5ff257146b3c3aeee10b8a945b7ba6"
+                    },
+                    "page": "8",
+                    "section": "Elemento di garanzia retributiva, Importi dal 1.11.2023",
+                    "quote": "110           7°                 13,66                17,66               20,07               28,10"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2023-11-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-alimentari-pmi-unionalimentari-tables"
+                  }
+                }
               },
               {
                 "valid_from": "2027-01-01",
                 "valid_until": null,
-                "value": "28.10"
+                "value": "28.10",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "alimentari-pmi-unionalimentari-tables-85fbb024",
+                      "title": "alimentari-pmi-unionalimentari: tabelle retributive (circular-2025.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.unionalimentari.com/wp-content/uploads/2025/06/Circolare-illustrativa-accordo-28-maggio-2025.pdf",
+                      "sha256": "85fbb0242738a0d34e7549a302c9c4002b5ff257146b3c3aeee10b8a945b7ba6"
+                    },
+                    "page": "8",
+                    "section": "Elemento di garanzia retributiva, Importi dal 1.1.2027",
+                    "quote": "110           7°                 13,66                17,66               20,07               28,10"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2027-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-alimentari-pmi-unionalimentari-tables"
+                  }
+                }
               }
             ]
           },
@@ -1821,21 +2759,28 @@
             "valid_until": "2026-01-01",
             "value": "1153.63",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "alimentari-pmi-unionalimentari",
-                  "title": "alimentari-pmi-unionalimentari",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.unionalimentari.com/"
+                  "document_id": "alimentari-pmi-unionalimentari-tables-85fbb024",
+                  "title": "alimentari-pmi-unionalimentari: tabelle retributive (circular-2025.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.unionalimentari.com/wp-content/uploads/2025/06/Circolare-illustrativa-accordo-28-maggio-2025.pdf",
+                  "sha256": "85fbb0242738a0d34e7549a302c9c4002b5ff257146b3c3aeee10b8a945b7ba6"
                 },
-                "section": "Tabella retributiva"
+                "page": "7",
+                "section": "§ 19 Tabella minimi mensili (esclusa panificazione), colonna Minimi dal 1.6.2025",
+                "quote": "8°        1102,54         51,09       1.153,63       51,09       1.204,73         51,09      1.255,82        51,09        1.306,92         204,38            100"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2025-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-alimentari-pmi-unionalimentari-tables"
               }
             }
           },
@@ -1844,21 +2789,28 @@
             "valid_until": null,
             "value": "1204.73",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "alimentari-pmi-unionalimentari",
-                  "title": "alimentari-pmi-unionalimentari",
-                  "kind": "tabella_retributiva",
-                  "url": "https://www.unionalimentari.com/"
+                  "document_id": "alimentari-pmi-unionalimentari-tables-85fbb024",
+                  "title": "alimentari-pmi-unionalimentari: tabelle retributive (circular-2025.pdf)",
+                  "kind": "associazione",
+                  "url": "https://www.unionalimentari.com/wp-content/uploads/2025/06/Circolare-illustrativa-accordo-28-maggio-2025.pdf",
+                  "sha256": "85fbb0242738a0d34e7549a302c9c4002b5ff257146b3c3aeee10b8a945b7ba6"
                 },
-                "section": "Tabella retributiva"
+                "page": "7",
+                "section": "§ 19 Tabella minimi mensili (esclusa panificazione), colonna Minimi dal 1.1.2026",
+                "quote": "8°        1102,54         51,09       1.153,63       51,09       1.204,73         51,09      1.255,82        51,09        1.306,92         204,38            100"
               },
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-07T20:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-07-ai-alimentari-pmi-unionalimentari-tables"
               }
             }
           }
@@ -1873,7 +2825,32 @@
               {
                 "valid_from": "2025-06-01",
                 "valid_until": null,
-                "value": "514.74"
+                "value": "514.74",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "alimentari-pmi-unionalimentari-tables-55e15797",
+                      "title": "alimentari-pmi-unionalimentari: tabelle retributive (ccnl-2013.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.faicisl.it/attachments/article/2354/CCNL%20Piccola%20e%20media%20industria%20alimentare%202013.pdf",
+                      "sha256": "55e1579703ca5cadfc56c4ae079da0820d4f760fa2812fd842a2fcd9f4e34418"
+                    },
+                    "page": "122",
+                    "section": "Art. 46 Indennità di contingenza (al 1.11.1991)",
+                    "quote": "8°                    996.683                       514,74"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2025-06-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-alimentari-pmi-unionalimentari-tables"
+                  }
+                }
               }
             ]
           },
@@ -1935,17 +2912,92 @@
               {
                 "valid_from": "2011-01-01",
                 "valid_until": "2023-11-01",
-                "value": "16.06"
+                "value": "16.06",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "alimentari-pmi-unionalimentari-tables-55e15797",
+                      "title": "alimentari-pmi-unionalimentari: tabelle retributive (ccnl-2013.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.faicisl.it/attachments/article/2354/CCNL%20Piccola%20e%20media%20industria%20alimentare%202013.pdf",
+                      "sha256": "55e1579703ca5cadfc56c4ae079da0820d4f760fa2812fd842a2fcd9f4e34418"
+                    },
+                    "page": "134",
+                    "section": "Elemento di garanzia retributiva, Importi dal 1.1.2011",
+                    "quote": "8°                12,41                 16,06"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2011-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-alimentari-pmi-unionalimentari-tables"
+                  }
+                }
               },
               {
                 "valid_from": "2023-11-01",
                 "valid_until": "2027-01-01",
-                "value": "18.25"
+                "value": "18.25",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "alimentari-pmi-unionalimentari-tables-85fbb024",
+                      "title": "alimentari-pmi-unionalimentari: tabelle retributive (circular-2025.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.unionalimentari.com/wp-content/uploads/2025/06/Circolare-illustrativa-accordo-28-maggio-2025.pdf",
+                      "sha256": "85fbb0242738a0d34e7549a302c9c4002b5ff257146b3c3aeee10b8a945b7ba6"
+                    },
+                    "page": "8",
+                    "section": "Elemento di garanzia retributiva, Importi dal 1.11.2023",
+                    "quote": "100           8°                 12,41                16,06               18,25               25,55"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2023-11-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-alimentari-pmi-unionalimentari-tables"
+                  }
+                }
               },
               {
                 "valid_from": "2027-01-01",
                 "valid_until": null,
-                "value": "25.55"
+                "value": "25.55",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "alimentari-pmi-unionalimentari-tables-85fbb024",
+                      "title": "alimentari-pmi-unionalimentari: tabelle retributive (circular-2025.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.unionalimentari.com/wp-content/uploads/2025/06/Circolare-illustrativa-accordo-28-maggio-2025.pdf",
+                      "sha256": "85fbb0242738a0d34e7549a302c9c4002b5ff257146b3c3aeee10b8a945b7ba6"
+                    },
+                    "page": "8",
+                    "section": "Elemento di garanzia retributiva, Importi dal 1.1.2027",
+                    "quote": "100           8°                 12,41                16,06               18,25               25,55"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-07T20:00:00Z",
+                    "effective_from": "2027-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-07T20:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-07-ai-alimentari-pmi-unionalimentari-tables"
+                  }
+                }
               }
             ]
           },
@@ -2004,7 +3056,7 @@
     "effective_until": null,
     "source": "https://www.unionalimentari.com/",
     "verification_status": "unverified",
-    "source_hash": "5dadd0ff0facaf742788bd18ae10964abd30f7d02e9a1135c8fd801e385c1ada",
+    "source_hash": "4976228c183ba42cfceac48a05466618b83cc9d35252158defe5801389d472f3",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

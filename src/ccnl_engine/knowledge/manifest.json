@@ -133,7 +133,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/alimentari-pmi-unionalimentari",
       "ruleset_version": "2026.2",
-      "source_hash": "5dadd0ff0facaf742788bd18ae10964abd30f7d02e9a1135c8fd801e385c1ada",
+      "source_hash": "4976228c183ba42cfceac48a05466618b83cc9d35252158defe5801389d472f3",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/alimentari-pmi-unionalimentari.json.gz"
@@ -711,7 +711,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/distribuzione-cooperativa-ancc",
       "ruleset_version": "2026.2",
-      "source_hash": "d446cf05d19e8c2d3d7b0d5c576f9a703aae8c5a260013c0bd1a6a4345be4939",
+      "source_hash": "c75356563977ace024c69cbd2d4cd83d3d99577761e295e56c7ff176b37cd09c",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/distribuzione-cooperativa-ancc.json.gz"
@@ -779,7 +779,7 @@
       "valid_to": "2028-09-30",
       "ruleset_id": "ccnl/edilizia-artigianato-cna",
       "ruleset_version": "2026.2",
-      "source_hash": "d43e0a43481ce2f4e7d16ff79441174ddbe6624f99dfce1ac43942b289a39321",
+      "source_hash": "ebeb2c65e04ac7e93ec9ab8b239acf8edd9793cb5e951c30086780d1829fb867",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/edilizia-artigianato-cna.json.gz"
@@ -796,7 +796,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/edilizia-cooperative-ancpl",
       "ruleset_version": "2026.1",
-      "source_hash": "8989bc3bb215afab7020e4b7830bac7f5a71d651cb86c532d651f741183ec05e",
+      "source_hash": "733e91eaf4c41f2f32e64b2cc695f3a8c2dcd0e1e9ff33e17ba26b41c559e513",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/edilizia-cooperative-ancpl.json.gz"
@@ -881,7 +881,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/esercizi-cinematografici-anec",
       "ruleset_version": "2026.2",
-      "source_hash": "b26d1b654a928f14c88614ce691cbd8423e27a33c7ba7fe4691011a2d3285bbd",
+      "source_hash": "7164599ae177a2bcf49b366eb0cd32a02be47caafff1adc2c9e193b11ada7001",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/esercizi-cinematografici-anec.json.gz"
@@ -2125,7 +2125,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/tessile-smi",
       "ruleset_version": "2026.2",
-      "source_hash": "b4cc6f75d665edaedce8410e105233505346584a8d61fac64ba499b6384919e2",
+      "source_hash": "bdc8f359d4803bbbf24b0f9eea9fa9547b7ec6e17d2250e3532beacb0899ebdd",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/tessile-smi.json.gz"
@@ -2193,7 +2193,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/turismo-federalberghi-alberghi-minori",
       "ruleset_version": "2026.2",
-      "source_hash": "0cfb36abff08498e9891699cc676391f342a635ee94bc3d479b1d3fc43426b5c",
+      "source_hash": "6658f3d40ac706583c243f19a0ce7b19253b624f4916c764d3b1d3a3bdf78a3b",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/turismo-federalberghi-alberghi-minori.json.gz"
