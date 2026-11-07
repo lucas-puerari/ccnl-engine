@@ -94,19 +94,6 @@
       },
       {
         "kind": "simplification",
-        "text": "Art. 73: the EDR enters the TFR base only from 1 March 2024; the file counts it for every period.",
-        "capability": "base_salary",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "edr_tfr_from_march_2024",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Date the TFR relevance of the EDR from 1 March 2024."
-        }
-      },
-      {
-        "kind": "simplification",
         "text": "Art. 21 B-C: the pay of the first-level and alta formazione apprentices.",
         "capability": "base_salary",
         "monetary_impact": "yes",
@@ -870,7 +857,7 @@
               "section": "Art. 52 - E.D.R.",
               "quote": "i lavoratori una somma forfettaria a titolo di Elemento Distinto dalla Retribuzione di euro 10,33 [...] mensili per 13 mensilità a copertura dell’intero periodo 1992-1993, che resterà allo stesso titolo"
             },
-            "transformation": "EUR 10.33 a month for 13 monthly payments since 1 January 1993 (Protocollo 31 luglio 1992): months_per_year 13, no quattordicesima.",
+            "transformation": "EUR 10.33 a month for 13 monthly payments since 1 January 1993 (Protocollo 31 luglio 1992): months_per_year 13, no quattordicesima. Art. 73: the EDR counts for the TFR from 1 March 2024 (tfr_relevant_from).",
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
@@ -882,7 +869,8 @@
               "review_id": "2026-10-13-ai-production"
             }
           },
-          "months_per_year": 13
+          "months_per_year": 13,
+          "tfr_relevant_from": "2024-03-01"
         },
         {
           "code": "IAR",
@@ -1277,7 +1265,7 @@
               "section": "Art. 52 - E.D.R.",
               "quote": "i lavoratori una somma forfettaria a titolo di Elemento Distinto dalla Retribuzione di euro 10,33 [...] mensili per 13 mensilità a copertura dell’intero periodo 1992-1993, che resterà allo stesso titolo"
             },
-            "transformation": "EUR 10.33 a month for 13 monthly payments since 1 January 1993 (Protocollo 31 luglio 1992): months_per_year 13, no quattordicesima.",
+            "transformation": "EUR 10.33 a month for 13 monthly payments since 1 January 1993 (Protocollo 31 luglio 1992): months_per_year 13, no quattordicesima. Art. 73: the EDR counts for the TFR from 1 March 2024 (tfr_relevant_from).",
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
@@ -1289,7 +1277,8 @@
               "review_id": "2026-10-13-ai-production"
             }
           },
-          "months_per_year": 13
+          "months_per_year": 13,
+          "tfr_relevant_from": "2024-03-01"
         },
         {
           "code": "IAR",
@@ -1684,7 +1673,7 @@
               "section": "Art. 52 - E.D.R.",
               "quote": "i lavoratori una somma forfettaria a titolo di Elemento Distinto dalla Retribuzione di euro 10,33 [...] mensili per 13 mensilità a copertura dell’intero periodo 1992-1993, che resterà allo stesso titolo"
             },
-            "transformation": "EUR 10.33 a month for 13 monthly payments since 1 January 1993 (Protocollo 31 luglio 1992): months_per_year 13, no quattordicesima.",
+            "transformation": "EUR 10.33 a month for 13 monthly payments since 1 January 1993 (Protocollo 31 luglio 1992): months_per_year 13, no quattordicesima. Art. 73: the EDR counts for the TFR from 1 March 2024 (tfr_relevant_from).",
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
@@ -1696,7 +1685,8 @@
               "review_id": "2026-10-13-ai-production"
             }
           },
-          "months_per_year": 13
+          "months_per_year": 13,
+          "tfr_relevant_from": "2024-03-01"
         },
         {
           "code": "IAR",
@@ -2091,7 +2081,7 @@
               "section": "Art. 52 - E.D.R.",
               "quote": "i lavoratori una somma forfettaria a titolo di Elemento Distinto dalla Retribuzione di euro 10,33 [...] mensili per 13 mensilità a copertura dell’intero periodo 1992-1993, che resterà allo stesso titolo"
             },
-            "transformation": "EUR 10.33 a month for 13 monthly payments since 1 January 1993 (Protocollo 31 luglio 1992): months_per_year 13, no quattordicesima.",
+            "transformation": "EUR 10.33 a month for 13 monthly payments since 1 January 1993 (Protocollo 31 luglio 1992): months_per_year 13, no quattordicesima. Art. 73: the EDR counts for the TFR from 1 March 2024 (tfr_relevant_from).",
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
@@ -2103,7 +2093,8 @@
               "review_id": "2026-10-13-ai-production"
             }
           },
-          "months_per_year": 13
+          "months_per_year": 13,
+          "tfr_relevant_from": "2024-03-01"
         },
         {
           "code": "IAR",
@@ -2498,7 +2489,7 @@
               "section": "Art. 52 - E.D.R.",
               "quote": "i lavoratori una somma forfettaria a titolo di Elemento Distinto dalla Retribuzione di euro 10,33 [...] mensili per 13 mensilità a copertura dell’intero periodo 1992-1993, che resterà allo stesso titolo"
             },
-            "transformation": "EUR 10.33 a month for 13 monthly payments since 1 January 1993 (Protocollo 31 luglio 1992): months_per_year 13, no quattordicesima.",
+            "transformation": "EUR 10.33 a month for 13 monthly payments since 1 January 1993 (Protocollo 31 luglio 1992): months_per_year 13, no quattordicesima. Art. 73: the EDR counts for the TFR from 1 March 2024 (tfr_relevant_from).",
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
@@ -2510,7 +2501,8 @@
               "review_id": "2026-10-13-ai-production"
             }
           },
-          "months_per_year": 13
+          "months_per_year": 13,
+          "tfr_relevant_from": "2024-03-01"
         },
         {
           "code": "IAR",
@@ -2905,7 +2897,7 @@
               "section": "Art. 52 - E.D.R.",
               "quote": "i lavoratori una somma forfettaria a titolo di Elemento Distinto dalla Retribuzione di euro 10,33 [...] mensili per 13 mensilità a copertura dell’intero periodo 1992-1993, che resterà allo stesso titolo"
             },
-            "transformation": "EUR 10.33 a month for 13 monthly payments since 1 January 1993 (Protocollo 31 luglio 1992): months_per_year 13, no quattordicesima.",
+            "transformation": "EUR 10.33 a month for 13 monthly payments since 1 January 1993 (Protocollo 31 luglio 1992): months_per_year 13, no quattordicesima. Art. 73: the EDR counts for the TFR from 1 March 2024 (tfr_relevant_from).",
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
@@ -2917,7 +2909,8 @@
               "review_id": "2026-10-13-ai-production"
             }
           },
-          "months_per_year": 13
+          "months_per_year": 13,
+          "tfr_relevant_from": "2024-03-01"
         },
         {
           "code": "IAR",
@@ -3312,7 +3305,7 @@
               "section": "Art. 52 - E.D.R.",
               "quote": "i lavoratori una somma forfettaria a titolo di Elemento Distinto dalla Retribuzione di euro 10,33 [...] mensili per 13 mensilità a copertura dell’intero periodo 1992-1993, che resterà allo stesso titolo"
             },
-            "transformation": "EUR 10.33 a month for 13 monthly payments since 1 January 1993 (Protocollo 31 luglio 1992): months_per_year 13, no quattordicesima.",
+            "transformation": "EUR 10.33 a month for 13 monthly payments since 1 January 1993 (Protocollo 31 luglio 1992): months_per_year 13, no quattordicesima. Art. 73: the EDR counts for the TFR from 1 March 2024 (tfr_relevant_from).",
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
@@ -3324,7 +3317,8 @@
               "review_id": "2026-10-13-ai-production"
             }
           },
-          "months_per_year": 13
+          "months_per_year": 13,
+          "tfr_relevant_from": "2024-03-01"
         },
         {
           "code": "IAR",
@@ -3719,7 +3713,7 @@
               "section": "Art. 52 - E.D.R.",
               "quote": "i lavoratori una somma forfettaria a titolo di Elemento Distinto dalla Retribuzione di euro 10,33 [...] mensili per 13 mensilità a copertura dell’intero periodo 1992-1993, che resterà allo stesso titolo"
             },
-            "transformation": "EUR 10.33 a month for 13 monthly payments since 1 January 1993 (Protocollo 31 luglio 1992): months_per_year 13, no quattordicesima.",
+            "transformation": "EUR 10.33 a month for 13 monthly payments since 1 January 1993 (Protocollo 31 luglio 1992): months_per_year 13, no quattordicesima. Art. 73: the EDR counts for the TFR from 1 March 2024 (tfr_relevant_from).",
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
@@ -3731,7 +3725,8 @@
               "review_id": "2026-10-13-ai-production"
             }
           },
-          "months_per_year": 13
+          "months_per_year": 13,
+          "tfr_relevant_from": "2024-03-01"
         },
         {
           "code": "IAR",
@@ -4146,7 +4141,7 @@
     "effective_until": null,
     "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "5d0c8b0eb5672249695e799901dfef296e3f5c5b9e57a4b97209463a1288501e",
+    "source_hash": "ac40f84abf911b956812b46c7a1c7821b4e52a61562b7666bf1d947928d6ec4f",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

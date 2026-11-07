@@ -35,22 +35,6 @@
       }
     },
     {
-      "id": "edr_tfr_from_march_2024",
-      "institute": "base_salary",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Art. 73: the EDR enters the TFR base only from 1 March 2024; the file counts it for every period.",
-      "calculation": "ccnl/alimentari-federalimentare:coverage.notes",
-      "state": "absent",
-      "remediation": "Date the TFR relevance of the EDR from 1 March 2024.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "alimentari-federalimentare/edr_tfr_from_march_2024"
-        ]
-      }
-    },
-    {
       "id": "first_level_apprentice_pay",
       "institute": "base_salary",
       "variant": "all",
