@@ -7,8 +7,8 @@ output, so the same data always yields the same files.
 
 Rules of every example:
 
-- level: the middle entry of the ``levels`` list of the CCNL JSON,
-  ``levels[len(levels) // 2]``;
+- level: the middle entry of the levels of every sub-sector (no
+  ``subsectors``) of the CCNL JSON, ``levels[len(levels) // 2]``;
 - run: the regular run of September 2026, paid on 25 September 2026; every
   2026 salary tranche of the bundle starts on or before that month;
 - employment: full-time, permanent;
@@ -169,7 +169,7 @@ def build_spec(path: Path) -> ExampleSpec:
     """
     data = _read_json(path)
     meta = data.get("meta", {})
-    levels = data.get("levels", [])
+    levels = [lv for lv in data.get("levels", []) if not lv.get("subsectors")]
     if not levels:
         msg = f"{path.name} has no level"
         raise ValueError(msg)

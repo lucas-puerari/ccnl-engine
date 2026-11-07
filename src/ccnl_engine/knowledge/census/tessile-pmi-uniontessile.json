@@ -51,6 +51,22 @@
       }
     },
     {
+      "id": "level_4s_seniority",
+      "institute": "seniority",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "LEVEL 4s (pelli e cuoio, occhiali, giocattoli): the seniority table of the file has no 4s row and the art. 46 tables read do not set one, so a 4s worker accrues no seniority increments. Its category is left to Employment.category.",
+      "calculation": "ccnl/tessile-pmi-uniontessile:coverage.notes",
+      "state": "absent",
+      "remediation": "Source the seniority increment of level 4s, add it to amount_by_level, then remove this note.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "tessile-pmi-uniontessile/level_4s_seniority"
+        ]
+      }
+    },
+    {
       "id": "level_8_function_allowance",
       "institute": "base_salary",
       "variant": "all",
@@ -151,10 +167,10 @@
       "institute": "base_salary",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "SUB-SECTORS (Art. 46 of the renewal 2024-2027 signed 18 February 2025, pp. 21-25): the calzature table is modelled as the base_salary_by_subsector calzature (EmployerProfile.subsector), page 21 read on its image. Not modelled: the pelli e cuoio, occhiali and giocattoli tables (pp. 21-25, the first two replaced by the verbale of 21 February 2025), whose levels (4s; no 2bis, 3bis, 8) differ from the file's.",
+      "rule": "SUB-SECTORS (Art. 46 of the renewal 2024-2027 signed 18 February 2025, pp. 21-22; verbale of 21 February 2025, pp. 24-25): the calzature, giocattoli, occhiali and pelli e cuoio tables are modelled as the base_salary_by_subsector calzature, giocattoli, occhiali and pelli_cuoio (EmployerProfile.subsector), the occhiali and pelli e cuoio ones from the replacement tables of the verbale; level 4s exists only in the last three. Not modelled: the penne, spazzole e pennarelli table (pp. 22 and 24, with a 4S level). The levels the tables of giocattoli, occhiali and pelli e cuoio do not print (2bis, 3bis and 8; 7 also for occhiali and pelli e cuoio) are paid the tessile table when requested with those sub-sectors, and every level of the four sub-sectors takes the tessile seniority amounts.",
       "calculation": "ccnl/tessile-pmi-uniontessile:coverage.notes",
       "state": "absent",
-      "remediation": "Model the pelli e cuoio, occhiali and giocattoli tables with their own levels, then remove this note.",
+      "remediation": "Model the penne, spazzole e pennarelli table, source the seniority of the sub-sectors and reject the levels their tables lack, then remove this note.",
       "origin": "seeded",
       "links": {
         "limitations": [
