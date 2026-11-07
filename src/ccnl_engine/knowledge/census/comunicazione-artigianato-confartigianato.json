@@ -438,10 +438,10 @@
       "institute": "base_salary",
       "variant": "apprentice",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Centraliniste (switchboard operators) have a 2-year apprenticeship track per the 2024 rinnovo. Modelled as the general 3-year amministrativi track (overstates duration by 1 year for that role).",
+      "rule": "APPRENTICESHIP (art. 36 Parte I, art. 3 Parte II, renewal 18 November 2024): each row of the table is a track (artigiane groups 1-3 with their 'figure a 2/3 anni', impiegati amministrativi, PMI); the caller picks the track with Apprentice.track where a level has several. The end of the apprenticeship at its maximum duration (2-5 years) is not modelled: the last percentage holds open-ended. Level 6 is not apprenticeable.",
       "calculation": "ccnl/comunicazione-artigianato-confartigianato:coverage.notes",
       "state": "absent",
-      "remediation": "Add the 2-year apprenticeship track for centraliniste.",
+      "remediation": "Model the end of the apprenticeship at the maximum duration of its track.",
       "origin": "seeded",
       "links": {
         "limitations": [

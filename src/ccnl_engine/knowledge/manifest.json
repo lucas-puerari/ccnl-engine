@@ -507,7 +507,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/comunicazione-artigianato-confartigianato",
       "ruleset_version": "2026.2",
-      "source_hash": "0c0fc276bdd9125246a558d63a846449d61a025fd62aa5fe6cca7389ee443799",
+      "source_hash": "385af2e6880e4709da9a535243bb71259acd5221eba1a18e148ff1881af15aa8",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/comunicazione-artigianato-confartigianato.json.gz"
@@ -3001,7 +3001,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "d346d7d397870d78e401acc555c13939bb3e103ff11e25a468609741e23c715e",
+      "source_hash": "676f7b168da6f3a6de6687d1e0d429a3056f439a5433bb6ecbc07e054750fd8c",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/comunicazione-artigianato-confartigianato.json.gz",

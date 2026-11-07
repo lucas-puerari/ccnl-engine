@@ -216,19 +216,27 @@ class TestLoadComunicazioneArtigianatoConfartigianato:
     def test_comunicazione_artigianato_confartigianato_apprenticeship_tracks(
         self,
     ) -> None:
-        """Two percentage tracks: operai_tecnici (5y) and amministrativi (3y)."""
+        """One track a row of art. 36 and art. 3 Parte II (renewal 2024)."""
         ccnl = load_ccnl("comunicazione-artigianato-confartigianato")
-        assert len(ccnl.apprenticeship) == 2
         by_name = {t.name: t for t in ccnl.apprenticeship}
-        ot = by_name["operai_tecnici"]
-        assert isinstance(ot, ApprenticeshipPercentage)
-        assert ot.periods[0].percentage == Decimal("0.70")
-        assert ot.periods[-1].percentage == Decimal("1.00")
-        assert ot.periods[-1].months_until is None
-        adm = by_name["amministrativi"]
+        assert sorted(by_name) == [
+            "artigiane_gruppo_1",
+            "artigiane_gruppo_2",
+            "artigiane_gruppo_2_figure_3_anni",
+            "artigiane_gruppo_3",
+            "artigiane_gruppo_3_figure_2_anni",
+            "impiegati_amministrativi",
+            "pmi",
+            "pmi_figure_2_anni",
+        ]
+        adm = by_name["impiegati_amministrativi"]
         assert isinstance(adm, ApprenticeshipPercentage)
-        assert adm.periods[0].percentage == Decimal("0.70")
-        assert adm.periods[-1].percentage == Decimal("0.90")
+        assert [p.percentage for p in adm.periods] == [
+            Decimal("0.60"),
+            Decimal("0.70"),
+            Decimal("0.90"),
+        ]
+        assert all("6" not in t.destination_levels for t in ccnl.apprenticeship)
 
 
 class TestLoadCeramicaIndustriaConfindustria:

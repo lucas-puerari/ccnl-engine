@@ -62,6 +62,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|---|---|
 | 2026-11-08 | gpt-6-sol (ai) | Monthly values on scanned pages, each read twice from the page image by two independent sessions of another model, the second without being told the expected value. | confirmed | 28 values read identically by both readings and equal to the file. |
 | 2026-11-08 | claude-opus-5-5 (ai) | FSBA ordinary contribution, art. 3 of the 2024 regulation, read on the text layer (analysis by a separate model session). | corrected | Added parameters.solidarity_fund FSBA: 0.45%+0.15% up to 15 employees, 0.75%+0.25% above, on the INPS base, fixed terms included. |
+| 2026-11-08 | claude-opus-5-5 (ai) | Apprenticeship tracks against art. 36 and art. 3 Parte II of the signed 2024 renewal, read on the page images (pp. 7-9, 20). | corrected | The file had two generic tracks (operai_tecnici 70-100% over four years, amministrativi 70/80/90%) and level 6 as a destination; the text prints one row per group, figures and PMI: impiegati amministrativi are 60/70/90%, so the file overpaid the first two years by 10 points.<br>Tracks replaced: operai_tecnici, amministrativi -> artigiane_gruppo_1, artigiane_gruppo_2, artigiane_gruppo_2_figure_3_anni, artigiane_gruppo_3, artigiane_gruppo_3_figure_2_anni, impiegati_amministrativi, pmi, pmi_figure_2_anni. |
 
 ## Salary table
 
@@ -96,13 +97,37 @@ Latest effective values per level (monthly gross, EUR).
 
 ## Apprenticeship
 
-**operai_tecnici** (type: `percentage`)  
-Destination levels: `1A`, `1B`, `2`, `3`, `4`, `5bis`, `5`, `6`  
+**artigiane_gruppo_1** (type: `percentage`)  
+Destination levels: `1A`, `1B`, `2`, `3`  
 percentage: 1.00
 
-**amministrativi** (type: `percentage`)  
-Destination levels: `1A`, `1B`, `2`, `3`, `4`, `5bis`, `5`, `6`  
+**artigiane_gruppo_2** (type: `percentage`)  
+Destination levels: `4`, `5bis`  
+percentage: 1.00
+
+**artigiane_gruppo_2_figure_3_anni** (type: `percentage`)  
+Destination levels: `5bis`  
 percentage: 0.90
+
+**artigiane_gruppo_3** (type: `percentage`)  
+Destination levels: `5`  
+percentage: 1.00
+
+**artigiane_gruppo_3_figure_2_anni** (type: `percentage`)  
+Destination levels: `5`  
+percentage: 0.95
+
+**impiegati_amministrativi** (type: `percentage`)  
+Destination levels: `1A`, `1B`, `2`, `3`, `4`, `5bis`, `5`  
+percentage: 0.90
+
+**pmi** (type: `percentage`)  
+Destination levels: `1A`, `1B`, `2`, `3`, `4`, `5bis`, `5`  
+percentage: 0.90
+
+**pmi_figure_2_anni** (type: `percentage`)  
+Destination levels: `5`  
+percentage: 0.95
 
 ## Known simplifications
 
@@ -130,11 +155,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Model the pre-18/11/2024 percentage tables gated on the apprenticeship start date, or open a limitation.
 
 !!! warning "comunicazione-artigianato-confartigianato/switchboard_apprenticeship_duration · base_salary · impact yes · open"
-    Centraliniste (switchboard operators) have a 2-year apprenticeship track per the 2024 rinnovo. Modelled as the general 3-year amministrativi track (overstates duration by 1 year for that role).
+    APPRENTICESHIP (art. 36 Parte I, art. 3 Parte II, renewal 18 November 2024): each row of the table is a track (artigiane groups 1-3 with their 'figure a 2/3 anni', impiegati amministrativi, PMI); the caller picks the track with Apprentice.track where a level has several. The end of the apprenticeship at its maximum duration (2-5 years) is not modelled: the last percentage holds open-ended. Level 6 is not apprenticeable.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Add the 2-year apprenticeship track for centraliniste.
+    **Remediation:** Model the end of the apprenticeship at the maximum duration of its track.
 
 !!! warning "comunicazione-artigianato-confartigianato/level_category_not_declared · worker_category · impact unknown · open"
     LEVEL CATEGORY: all levels left null. Multiple levels map to both operai and impiegati roles — a genuine one-to-many mapping the schema cannot represent as a single category value.
