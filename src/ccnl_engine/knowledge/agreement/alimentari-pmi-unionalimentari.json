@@ -90,18 +90,8 @@
         "monetary_impact": "no"
       },
       {
-        "kind": "simplification",
-        "text": "TRANCHES 2027-2028 (art. 47 of the verbale signed 28 May 2025, p. 26): 70.00 EUR at parametro 137 from 1 April 2027 and again from 1 January 2028, modelled per level as printed (e.g. level 8 1,255.82 and 1,306.92). The association circular's prose giving 32 EUR for the third tranche is wrong; its table matches the verbale.",
-        "capability": "base_salary",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "tranches_2027_2028",
-          "applies_when": {
-            "effective_from": "2027-04-01"
-          },
-          "remediation": "Resolved: the signed table of art. 47, read on 2026-11-07.",
-          "status": "resolved"
-        }
+        "kind": "info",
+        "text": "TRANCHES 2027-2028 (art. 47 of the verbale signed 28 May 2025, p. 26): 70.00 EUR at parametro 137 from 1 April 2027 and again from 1 January 2028, modelled per level as printed (e.g. level 8 1,255.82 and 1,306.92). The association circular's prose giving 32 EUR for the third tranche is wrong; its table matches the verbale."
       }
     ]
   },
@@ -3667,7 +3657,7 @@
     "effective_until": null,
     "source": "https://www.unionalimentari.com/",
     "verification_status": "unverified",
-    "source_hash": "b3ada3f2f047d4957ed6793d98f20622f66693ba4bb1661b7452e01b5cde2008",
+    "source_hash": "e344705e9b906e31bc1c2dc62739a32cfa97072cee6b098fe15c3a9b4ba383c0",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

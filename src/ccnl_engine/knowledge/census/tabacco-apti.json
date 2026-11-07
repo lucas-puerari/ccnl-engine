@@ -3,22 +3,6 @@
   "ccnl_id": "tabacco-apti",
   "requirements": [
     {
-      "id": "alifond_before_july_2025",
-      "institute": "pension_fund_contribution",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "ALIFOND employer contribution (1.50%) modeled from 01/07/2025 (renewal Art. 47). Pre-July-2025 ALIFOND contribution not modeled.",
-      "calculation": "ccnl/tabacco-apti:coverage.notes",
-      "state": "absent",
-      "remediation": "Model the ALIFOND employer rate in force before 1 July 2025.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "tabacco-apti/alifond_before_july_2025"
-        ]
-      }
-    },
-    {
       "id": "arrears_unused_deductions",
       "institute": "contract_renewal_arrears",
       "variant": "all",
@@ -290,6 +274,21 @@
       }
     },
     {
+      "id": "rule_employer_funds_alifond_employee_min_rate_2025_01_01",
+      "institute": "pension_fund_contribution",
+      "variant": "all",
+      "rule": "agreement/tabacco-apti.json#employer_funds[ALIFOND].employee_min_rate[2025-01-01]",
+      "calculation": "pension_fund_contribution",
+      "state": "unverified",
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "agreement/tabacco-apti.json#employer_funds[ALIFOND].employee_min_rate[2025-01-01]"
+        ]
+      }
+    },
+    {
       "id": "rule_employer_funds_alifond_employee_min_rate_2025_07_01",
       "institute": "pension_fund_contribution",
       "variant": "all",
@@ -301,6 +300,21 @@
       "links": {
         "rules": [
           "agreement/tabacco-apti.json#employer_funds[ALIFOND].employee_min_rate[2025-07-01]"
+        ]
+      }
+    },
+    {
+      "id": "rule_employer_funds_alifond_rate_2025_01_01",
+      "institute": "pension_fund_contribution",
+      "variant": "all",
+      "rule": "agreement/tabacco-apti.json#employer_funds[ALIFOND].rate[2025-01-01]",
+      "calculation": "pension_fund_contribution",
+      "state": "unverified",
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "agreement/tabacco-apti.json#employer_funds[ALIFOND].rate[2025-01-01]"
         ]
       }
     },

@@ -35,22 +35,6 @@
       }
     },
     {
-      "id": "level_1_entry_rate",
-      "institute": "base_salary",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "LEVEL 1 sub-level: the CCNL provides automatic advancement from entry sub-level (L1 ingresso) to L1 standard after 6 months. The file models only the post-advance minimum throughout, which is the relevant value for permanent workers and for workers beyond their 6th month. The entry sub-level undervaluation during the first 6 months is a deliberate structural simplification.",
-      "calculation": "ccnl/occhiali-occhialeria-industria:coverage.notes",
-      "state": "absent",
-      "remediation": "Model the L1 ingresso minimum for the first 6 months of service (a level or a seniority-gated reduction), or record the limitation.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "occhiali-occhialeria-industria/level_1_entry_rate"
-        ]
-      }
-    },
-    {
       "id": "maternity_daily_base",
       "institute": "maternity_leave",
       "variant": "all",

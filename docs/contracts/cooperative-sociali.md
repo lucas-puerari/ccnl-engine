@@ -35,7 +35,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, inps_employer |
 
-4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -64,6 +64,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-17 | claude-opus-5-5 (ai) | The INPS class of the employers of the CCNL against the INPS classification manual. | flagged | The activities of the social cooperatives of type A are classified by INPS in the terziario: CSC 70704 for 87.30.00, 88.10.00 and 88.91.00, 70706 for 87.20.00 (manual of May 2021, ATECO 2007, PDF pp. 265-266). The file applies the terziario rates: the class is confirmed.<br>The 28.03% of the Ministry cost tables (D.D. 30/2024) is still unexplained: no composition of the 2026 terziario rates gives it, and the tables state none. inps_rate_not_reconciled stays open; a cooperative may also fall in the DPR 602/1970 regime for its members, which the file does not model. |
 | 2026-11-06 | claude-opus-5-5 (ai) | Art. 87 health contribution in the 2025 coordinated text (p. 114). Art. 28 c. 1 apprenticeship (p. 55). | confirmed | 5 EUR a month from 1 May 2013 and 10 EUR from 1 January 2025, employer only, for the permanent workers.<br>Art. 28 calls apprenticeship 'contratto di lavoro a tempo indeterminato': the apprentices are owed the contribution. |
 | 2026-11-08 | gpt-6-sol (ai) | CCNL top-ups of maternity and work injury, read from the signed text by a separate model session; every quote found on the PDF text layer. | confirmed | Added work_rules.insured_absence.maternity.<br>Added work_rules.insured_absence.injury. |
+| 2026-11-08 | gpt-6-sol (ai) | Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim. | confirmed | asi_health_contribution: Art. 87 covers permanent employees from 2013-05-01 at €5 employer/month, increased by €5 to €10 from 2025-01-01; Art. 28(A)(1), PDF p. 55, calls apprenticeship an open-ended contract. cooperative-sociali.json already specifies these periods and amounts, permanent_only=true and ap |
 
 ## Salary table
 
@@ -150,13 +151,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Model the ETDR, the night, shift and availability allowances, the professional allowances and the prova exclusion of sickness.
-
-!!! note "cooperative-sociali/asi_health_contribution · bilateral_funds · impact yes · resolved"
-    HEALTH CONTRIBUTION (Art. 87, p. 114 of the 2025 coordinated text): 5 EUR a month from May 2013, 10 EUR from January 2025, on the employer, for the workers 'assunti a tempo indeterminato', apprentices included: art. 28 (p. 55) calls apprenticeship 'contratto di lavoro a tempo indeterminato'. Modelled as health_funds sanita_integrativa.
-
-    **Applies when:** `bilateral_funds` applies.
-
-    **Remediation:** Resolved: art. 87 with the apprentices of art. 28, read on 2026-11-06.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

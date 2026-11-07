@@ -33,7 +33,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, sickness, territorial_supplement, workplace_injury |
 
-8 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+7 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -70,6 +70,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-05 | claude-opus-5-5 (ai) | Artt. 18-20 (PDF pp. 15-16), 191 and 233 of the Testo Unico of 29 September 2025, text layer. | corrected | The three funds and their alternative elements were not modelled: employer cost, worker shares and the EDR of an employer that does not pay them were missing. |
 | 2026-11-06 | claude-opus-5-5 (ai) | Apprentice seniority: artt. 186 and 188 of the testo unico of 29 September 2025 (p. 56). | corrected | The apprentice is classified two then one level below with 'il conseguente trattamento economico'; 'il personale ha diritto a dieci scatti triennali' of fixed amounts per level, counting seniority 'dal giorno in cui il lavoratore è entrato a far parte dell'azienda, quali che siano le mansioni': the increments of the level the apprentice is paid at. |
 | 2026-11-08 | gpt-6-sol (ai) | CCNL top-ups of maternity and work injury, read from the signed text by a separate model session; every quote found on the PDF text layer. | confirmed | Added work_rules.insured_absence.maternity.<br>Added work_rules.insured_absence.injury. |
+| 2026-11-08 | gpt-6-sol (ai) | Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim. | confirmed | cashier_allowance: All eight levels have IND_CASSA gated by role cassiere; all 48 dated amounts equal 5% of the corresponding stored base_salary rounded to cents. compensation/element/rules.py activates the allowance for that role. The employer must supply cassiere only when continuous cash assignm |
 
 ## Salary table
 
@@ -133,13 +134,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `sickness` applies.
 
     **Remediation:** Model the net daily pay of Art. 170.
-
-!!! note "dmo-federdistribuzione/cashier_allowance · base_salary · impact yes · resolved"
-    Art. 202: the indennità di cassa of 5%.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Resolved: every level carries IND_CASSA, 5% of its paga base nazionale conglobata, for the role cassiere of Employment.roles.
 
 !!! warning "dmo-federdistribuzione/sales_operators · base_salary · impact yes · open"
     The pay rows of the operatori di vendita.

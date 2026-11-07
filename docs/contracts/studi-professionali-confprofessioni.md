@@ -33,7 +33,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, sickness |
 
-9 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+8 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-02-16 |
-| **Last review** | 2026-11-05 |
+| **Last review** | 2026-11-08 |
 | **Latest salary tranche** | 2026-12-01 |
 
 ## Review history
@@ -71,6 +71,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-01 | claude-opus-5-5 (ai) | The notice of Artt. 146-148 (pp. 74-75). | corrected | Artt. 146-148 (pp. 74-75): notice in calendar days by level and seniority for dismissal and resignation, from the 1st or the 16th, indemnity with the 13th and 14th ratei, out of the TFR base: work_rules.notice. Found by a delegated search and checked again on the PDF text. |
 | 2026-11-05 | claude-opus-5-5 (ai) | The ferie days of the six-day week, Art. 99 c. 1 - Misura del periodo di ferie (PDF p. 51), read by a separate research session and checked again on the text layer. | corrected | Art. 99 c. 1 - Misura del periodo di ferie: 22 working days in the five-day week, 26 in the six-day week: work_rules.leave_rules.week_days_annual_days 6/26, read when Employment.full_time_week_days is 6. |
 | 2026-11-05 | claude-opus-5-5 (ai) | The permits of the six-day week, Art. 91 c.2 lett. B (PDF p. 47). | corrected | Art. 91 c.2: 40 hours of reduced time on five days, 66 on six: work_rules.leave_rules.week_days_annual_days[6].permit_hours rol 66. |
+| 2026-11-08 | gpt-6-sol (ai) | Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim. | confirmed | six_day_week_leave: Art. 99 grants 26 working days including Saturday for six days, 22 for Monday–Friday. Existing default_annual_days=22 and week_days_annual_days[6]=26 are selected through Employment.full_time_week_days by load_contract/with_week_days and credited by accrue_month. The six-day enti |
 
 ## Salary table
 
@@ -124,13 +125,6 @@ percentage: 0.60
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
-
-!!! note "studi-professionali-confprofessioni/six_day_week_leave · leave · impact yes · resolved"
-    LEAVE: 22 working days for the settimana corta (Monday to Friday), 26 for a six-day week (Art. 99 CCNL 2024, p. 51). The file carries the 22 days and accrues 26 when Employment.full_time_week_days is 6 (leave_rules.week_days_annual_days).
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Resolved: work_rules.leave_rules.week_days_annual_days holds 26 days for the six-day week, read for an employment whose full_time_week_days is 6.
 
 !!! warning "studi-professionali-confprofessioni/rolling_comporto_and_serious_illness · sickness · impact yes · open"
     Artt. 120-121: the comporto counted over the episodes of the 365 days before the last one, and the +90 days for serious illnesses paid 100% in months 7-8 and 70% in month 9.

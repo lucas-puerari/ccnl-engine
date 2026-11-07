@@ -33,7 +33,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary |
 
-3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -60,6 +60,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-05 | claude-opus-5-5 (ai) | The seniority increments of the apprentices, Artt. 126, 127, 128 c. 3 - Scatti di anzianità (profili B, C, D) (PDF p. 76-78), found by a separate research session and checked again on the page. | corrected | No increment during the apprenticeship: seniority_increments.apprentice_amount 0. |
 | 2026-11-06 | claude-opus-5-5 (ai) | Art. 36 cc. 5-6 apprenticeship of the ipotesi of 30 October 2025 (p. 36, OCR). | corrected | The 24-month profiles run thirds of 8 months, not the 12-month periods of the 36-month track. |
 | 2026-11-08 | gpt-6-sol (ai) | Monthly values on scanned pages, each read twice from the page image by two independent sessions of another model, the second without being told the expected value. | confirmed | 33 values read identically by both readings and equal to the file. |
+| 2026-11-08 | gpt-6-sol (ai) | Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim. | confirmed | apprenticeship_24_month_profiles: Art. 36(5–6), PDF p. 36, requires 24 months for B2/B4/C4/D1/D3, with 80/85/90% of the qualified worker’s salario conglobato in equal thirds. The existing professionalizzante_24 track has precisely these destination levels and 0–8/8–16/16–24 month percentages; the engine selects t |
 
 ## Salary table
 
@@ -118,13 +119,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Model the C4 primo impiego entry rate (EUR 1290.52 in 2026) as a separate level or a role-gated variant, or record a limitation.
-
-!!! note "portieri-fabbricati-confedilizia/apprenticeship_24_month_profiles · base_salary · impact yes · resolved"
-    APPRENTICESHIP (Art. 36 cc. 5-6, p. 36 of the ipotesi of 30 October 2025): 36 months for B1 and C3, 24 for B2, B4, C4, D1 and D3, each split in thirds at 80%, 85% and 90% of the salario conglobato (8 months each for the 24-month profiles). B3, B5, D2 and D4 admit no apprenticeship.
-
-    **Applies when:** `base_salary` applies; level in B2, B4, C4, D1, D3.
-
-    **Remediation:** Resolved: two tracks of art. 36, read on 2026-11-06.
 
 !!! warning "portieri-fabbricati-confedilizia/b5_short_schedule_premium · base_salary · impact yes · open"
     B5 PART-TIME NOTE: Art. 122 provides a 15% hourly premium for B5 (pulitori/lavascale) with weekly schedule below 8 hours. Not modelled (SIMPLIFICATION).

@@ -141,16 +141,6 @@
       },
       {
         "kind": "simplification",
-        "text": "INPS CONTRIBUTION BASE. Agricultural OTI INPS contributions are legally computed on the 'retribuzione convenzionale' (set annually by INPS decree per DL 338/1989 Art. 1), NOT on the actual contractual salary. This engine applies rates to actual gross salary. The net INPS amounts will differ from statutory computations. Figures are indicative only.",
-        "capability": "inps_employee",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "inps_on_actual_not_conventional_pay",
-          "remediation": "Compute agricultural INPS contributions on the retribuzione convenzionale set by INPS decree."
-        }
-      },
-      {
-        "kind": "simplification",
         "text": "INAIL NOT MODELLED. INAIL agricultural premium (8.50% unified from 2026 per new tariff) is not modelled. The engine does not track INAIL.",
         "capability": "inail",
         "monetary_impact": "yes",
@@ -199,20 +189,6 @@
             "trigger": "owed"
           },
           "remediation": "Pass the provincial EBAN, FISA and Agrifondo contributions as bilateral fund events."
-        }
-      },
-      {
-        "kind": "simplification",
-        "text": "TERRITORIAL REDUCTIONS. INPS reductions for mountain/disadvantaged zones (75%/68%) are not modelled.",
-        "capability": "inps_employer",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "mountain_zone_reductions",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Resolved (review of 2026-10-30): EmployerProfile.agricultural_zone and contribution/zone/models.py with_zone_reduction apply the mountain and disadvantaged zone cuts of INPS circ. 43/2026 par. 7 (zone_reduction in contribution/2026/agricoltura.json); an unknown zone blocks the run. Tests: tests/integration/ccnl_engine/period/context/agreement/services/test_contract_agricultural_zone.py::test_mountain_zone_cuts_the_employer_contributions, ::test_unknown_zone_charges_the_full_rates_and_blocks.",
-          "status": "resolved"
         }
       },
       {
@@ -816,7 +792,7 @@
     "effective_until": null,
     "source": "https://ebta.it/documenti/CCNL_operai_agricoli_e_florovivaisti_2022-2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "f899fcf252717318b934cf5c64094970005f6a268cb2fb74a491d75cc2d5d17e",
+    "source_hash": "2eb340536167d1479a276bd2c4c4d6948982ffa678e1e65344d85294cf4f9451",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1409,6 +1385,40 @@
         "independence": "separate_session",
         "checked": [
           "work_rules.notice"
+        ]
+      },
+      {
+        "id": "2026-11-08-gpt-operai-agricoli-florovivaisti-stale-limitations",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.inps.it/content/dam/inps-site/it/scorporati/circolari-e-messaggi/2024/11/Circolare_14697/Allegati/15379_Circolare-numero-94-del-13-11-2024_Allegato-n-1.pdf",
+            "sha256": "dec0afe6d0268be0e1a92730bf4f1aeda5b7ed9dd18900bd6e0d249d9888838a"
+          },
+          {
+            "url": "https://ascom.bo.it/wp-content/uploads/2026/02/Allegato-1-CIRCO-23-26_Circolare-INPS-n.-6-del-30-01-2026.pdf",
+            "sha256": "ec8fce75b98095d5b7de3d7ba725a403e1c487e1c75512567066650b88118992"
+          },
+          {
+            "url": "https://www.flai.it/wp-content/uploads/2023/11/CCNL-Operai-Agricoli-e-Florovivaisti-2022-2025.pdf",
+            "sha256": "49ae5803f2081985a0e1a10f64e9019e1b999e808da9d3681eaab24c3dee674c"
+          },
+          {
+            "url": "https://www.inps.it/content/dam/inps-site/it/scorporati/circolari-e-messaggi/2026/04/Circolare_15228/Allegati/16697_Circolare-numero-43-del-07-04-2026.pdf",
+            "sha256": "34b25b4d6a64e96becf723f548fd2f129e4ccb26026bccb0bba6e8077e8e575b"
+          }
+        ],
+        "findings": [
+          "inps_on_actual_not_conventional_pay: The cited DL 338/1989 rule establishes a minimum contributory base, not a fixed annual conventional base replacing actual contractual pay; the cited INPS annex tabulates CCNL minima. The engine calculates INPS on monthly_gross + event_inps_base, raised to any configured minimum. ",
+          "mountain_zone_reductions: INPS 43/2026 §7 sets 75% ex-mountain and 68% disadvantaged, excluding the article 25(4) contribution. The 2026 agricultural contribution JSON sets mountain=0.75, disadvantaged=0.68 and excluded_rate=0.0030; EmployerProfile.agricultural_zone feeds with_zone_reduction, which reduce"
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "coverage.notes"
         ]
       }
     ],

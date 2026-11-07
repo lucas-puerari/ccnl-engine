@@ -76,23 +76,6 @@
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: Q indennità di funzione (Art. 162 footnote) not modelled. Amount: 250 EUR/month × 12 mensilità, for quadri with responsibility over operational or local units ('nei casi di responsabilità di unità operative o di unità locali'). The schema can express it (Allowance.role, Allowance.months_per_year); the conglobated file keeps fixed_allowances empty. employer_cost_annual may be understated by up to 3000 EUR/year for qualifying Q employees (review of 2026-10-30).",
-        "capability": "base_salary",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "quadri_function_allowance",
-          "applies_when": {
-            "trigger": "outside_input",
-            "levels": [
-              "Q"
-            ]
-          },
-          "remediation": "Resolved: level Q carries IND_FUNZIONE, 250.00 for 12 months, for the role responsabile_unita of Employment.roles.",
-          "status": "resolved"
-        }
-      },
-      {
-        "kind": "simplification",
         "text": "SIMPLIFICATION: QSC and Quota Forfettaria (Art. 11) not modelled. QSC: 1.90% of monthly retribuzione × 14 mensilità (0.30% employee + 1.60% employer), paid to EBNAIP. Quota Forfettaria: 12 EUR/month × 12 mensilità, employer only. Both go to the bilateral entity; the QSC constitutes retribuzione ordinaria for TFR purposes (Art. 11). Modelling would require percentage-based bilateral fund logic not yet implemented. employer_cost_annual understated by (QSC employer portion + 144 EUR/year).",
         "capability": "bilateral_funds",
         "monetary_impact": "yes",
@@ -264,6 +247,35 @@
         "independence": "same_process",
         "checked": [
           "parameters.seniority_increments"
+        ]
+      },
+      {
+        "id": "2026-11-08-gpt-agenti-immobiliari-fiaip-stale-limitations",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.fiaip.it/wp-content/uploads/2021/07/CCNL-AGENTI-IMMOBILIARI-07.06.2021-testo-ufficiale-2.pdf",
+            "sha256": "05a5fbadbf7f36a072f0ab19c698ccc8585f6d4d9631c1b8a56ee7567802d762"
+          },
+          {
+            "url": "https://www.ebnaip.it/download.aspx?file=/public/ccnl/1_CCNL_CONTRATTO_COLLETTIVO_NAZIONALE_LAVORO_2025.pdf",
+            "sha256": "560d16410d3e41dc0bfb00bfe2a40ef65f2cd900234aeaee92018ed9fa21ead5"
+          },
+          {
+            "url": "https://www.fiaip.it/wp-content/uploads/2025/06/250519-Ipotesi-di-accordo-Fiaip-OOSS-firmata-1.pdf",
+            "sha256": "c23e46430f114b6a69a86a03fc461a16c1f417d8cc46c27e044135787fd8aaee"
+          }
+        ],
+        "findings": [
+          "quadri_function_allowance: The agreement's Q fixed_allowances already contains IND_FUNZIONE at EUR 250.00/month from 2025-05-01, restricted to role responsabile_unita and months_per_year=12. compensation/element/rules.py gates on the worker's roles; element/types.py excludes 12-month allowances from extra-"
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "coverage.notes"
         ]
       }
     ]
@@ -1704,7 +1716,7 @@
     "source": "https://www.fiaip.it/wp-content/uploads/2025/06/250519-Ipotesi-di-accordo-Fiaip-OOSS-firmata-1.pdf",
     "source_type": "contracting_party",
     "verification_status": "unverified",
-    "source_hash": "c11e37755166ebb6b38dcd41c1fac3f61daf6b64e9bfbb746d258a5893aab398"
+    "source_hash": "5581c753b8274f211ca2845a70645278655252729dd2ffdb8cf93282ef1f5fd9"
   },
   "work_rules": {
     "notice": {

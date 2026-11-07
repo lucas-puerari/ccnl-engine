@@ -32,9 +32,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, inps_employer, seniority |
+| **Limits of this contract** | base_salary, inps_employer |
 
-3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -51,7 +51,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-11-06 |
-| **Last review** | 2026-10-18 |
+| **Last review** | 2026-11-08 |
 | **Latest salary tranche** | 2024-12-01 |
 
 ## Review history
@@ -59,6 +59,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | Date | Reviewer | Scope | Outcome | Findings |
 |---|---|---|---|---|
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | confirmed | Art. 76 - Tredicesima e quattordicesima mensilità (p. 68): "In tali casi il lavoratore non in prova ha diritto a tanti dodicesimi dell'ammontare delle predette mensilità quanti sono i mesi interi di servizio prestato. Le frazioni di mese superiore a quindici giorni vanno computate come un mese intero.". Match: more_than 15. |
+| 2026-11-08 | gpt-6-sol (ai) | Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim. | confirmed | pre_2018_seniority_cohort: Art. 73(4) preserves increments matured before 01/01/2018 at their full amounts; later increments use the 10%-reduced column. federcasa.json has 24-month cadence, maximum 14, and the reduced amounts (A1 €25.20). The existing SeniorityFact.earned (count, monthly, as_of) is paid un |
 
 ## Salary table
 
@@ -117,13 +118,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `inps_employer` applies.
 
     **Remediation:** Source the INPS classification of the Federcasa entities and its rates.
-
-!!! warning "federcasa/pre_2018_seniority_cohort · seniority · impact yes · open"
-    Seniority amounts use the 10%-reduced values (post-01/01/2018 cohort per Art. 73.4). Workers hired before ~1990 may still have pre-2018 grandfathered scatti at full amounts (engine cannot model the two cohorts separately). New-hire case is exact; long-tenure pre-2018 cohort is understated by ~10%. Structural engine limitation.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Pay the scatti matured before 01/01/2018 at the full amount (Art. 73.4), from the seniority start date or a worker fact.
 
 !!! warning "federcasa/ivc_renewal_gap · base_salary · impact yes · open"
     CCNL expired 31/12/2024. Art. 4 B.5-8 mandates IVC (Indennità Vacanza Contrattuale) at 30% of IPCA (~Mar 2025) and 50% (~Sep 2025) during the renewal gap. Engine models tabellare only; IVC during the gap is not included. This is a structural out-of-scope element (ultrattività compensation, not a tabellare change).

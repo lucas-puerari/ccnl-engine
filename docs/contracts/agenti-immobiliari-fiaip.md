@@ -33,7 +33,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, bilateral_funds, pension_fund_contribution |
 
-6 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-05-19 |
-| **Last review** | 2026-11-06 |
+| **Last review** | 2026-11-08 |
 | **Latest salary tranche** | 2027-05-01 |
 
 ## Review history
@@ -62,6 +62,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-01 | claude-opus-5-5 (ai) | The una tantum of Art. 163 (pp. 97-98). | corrected | Art. 163 (pp. 97-98): two installments of the table (Q 149.47 ... IV 100.00 ... VI 87.28) from 1 September 2025 and 1 May 2026, full for a hire before 1 January 2024, by the months worked to 1 May 2025 for a hire from 1 January 2024: parameters.una_tantum[UT_2025]. |
 | 2026-11-01 | claude-opus-5-5 (ai) | The notice clause (Art. 176 (table); art. 177 (indemnity); art. 178 (TFR); art. 181 (resignations), p. 102-104). | corrected | Notice bands by level and service checked against the PDF by a separate session (delegated search and independent verification): work_rules.notice. |
 | 2026-11-06 | claude-opus-5-5 (ai) | Apprentice seniority: the CCNL Agenti immobiliari 2025 (apprenticeship and seniority articles). | corrected | The apprentice is classified one level below with 'lo stesso trattamento normativo'; 'Per l'anzianità di servizio maturata presso lo stesso datore di lavoro, il personale ha diritto a dieci scatti triennali': the increments of the level the apprentice is paid at. |
+| 2026-11-08 | gpt-6-sol (ai) | Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim. | confirmed | quadri_function_allowance: The agreement's Q fixed_allowances already contains IND_FUNZIONE at EUR 250.00/month from 2025-05-01, restricted to role responsabile_unita and months_per_year=12. compensation/element/rules.py gates on the worker's roles; element/types.py excludes 12-month allowances from extra- |
 
 ## Salary table
 
@@ -109,13 +110,6 @@ Destination levels: `V`
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
-
-!!! note "agenti-immobiliari-fiaip/quadri_function_allowance · base_salary · impact yes · resolved"
-    SIMPLIFICATION: Q indennità di funzione (Art. 162 footnote) not modelled. Amount: 250 EUR/month × 12 mensilità, for quadri with responsibility over operational or local units ('nei casi di responsabilità di unità operative o di unità locali'). The schema can express it (Allowance.role, Allowance.months_per_year); the conglobated file keeps fixed_allowances empty. employer_cost_annual may be understated by up to 3000 EUR/year for qualifying Q employees (review of 2026-10-30).
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Resolved: level Q carries IND_FUNZIONE, 250.00 for 12 months, for the role responsabile_unita of Employment.roles.
 
 !!! warning "agenti-immobiliari-fiaip/ebnaip_qsc_and_flat_quota · bilateral_funds · impact yes · open"
     SIMPLIFICATION: QSC and Quota Forfettaria (Art. 11) not modelled. QSC: 1.90% of monthly retribuzione × 14 mensilità (0.30% employee + 1.60% employer), paid to EBNAIP. Quota Forfettaria: 12 EUR/month × 12 mensilità, employer only. Both go to the bilateral entity; the QSC constitutes retribuzione ordinaria for TFR purposes (Art. 11). Modelling would require percentage-based bilateral fund logic not yet implemented. employer_cost_annual understated by (QSC employer portion + 144 EUR/year).

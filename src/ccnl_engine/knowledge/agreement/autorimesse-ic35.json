@@ -102,20 +102,6 @@
       },
       {
         "kind": "simplification",
-        "text": "Art. 40 (2022 text, p. 86): the hourly pay is the monthly pay over 173 for the 40-hour week, 182 for the drivers (42 hours, art. 19 b) and 191 for the custodians and night watchmen (44 hours, art. 19 a). The engine reads 182 or 191 when Employment.full_time_weekly_hours is 42 or 44 (week_divisors); a 40-hour week keeps 173.",
-        "capability": "workplace_injury",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "long_week_divisors",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Resolved: work_rules.time_supplements.week_divisors holds 182 and 191, read for an employment whose full_time_weekly_hours is 42 or 44.",
-          "status": "resolved"
-        }
-      },
-      {
-        "kind": "simplification",
         "text": "APPRENTICESHIP (Art. 32, p. 65 of the text of 15 December 2022): at most 24 months; pay 'nel primo anno: 85% della retribuzione globale; nel secondo anno: 90%'. The renewal of 9 December 2025 does not amend art. 32; after 24 months the full pay of the level.",
         "capability": "base_salary",
         "monetary_impact": "unknown",
@@ -4147,7 +4133,7 @@
     "effective_until": null,
     "source": "https://www.filtcgil.it/images/Contratti/Mobilita/ic35-verbale-accordo-09122025.pdf",
     "verification_status": "unverified",
-    "source_hash": "45e7e9c44ed3808736e1de435a0181e0772f59a69bdb89dd30d67687d95c21ab",
+    "source_hash": "9d0d929f908aa590929f04a1140c123b31f037803389cd121738027f55856f68",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -4503,6 +4489,27 @@
         "checked": [
           "levels.base_salary",
           "levels.fixed_allowances"
+        ]
+      },
+      {
+        "id": "2026-11-08-gpt-autorimesse-ic35-stale-limitations",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL-AUTONOLEGGIO-ANIASA_2022-2024.pdf",
+            "sha256": "fafa013d5843ab750bb1f6e0ccad3b3c60e560ada3a07e576793f68e4d40196e"
+          }
+        ],
+        "findings": [
+          "long_week_divisors: Art. 19 assigns 42 hours to car drivers and 44 to custodians/night watchmen (mixed duties: 40); art. 40 sets hourly divisors 182, 191, and 173 respectively. autorimesse-ic35.json already has 40/173 and week_divisors 42/182 and 44/191. load_contract calls with_week_divisor using r"
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "coverage.notes"
         ]
       }
     ]

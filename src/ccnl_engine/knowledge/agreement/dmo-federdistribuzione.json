@@ -98,20 +98,6 @@
       },
       {
         "kind": "simplification",
-        "text": "Art. 202: the indennità di cassa of 5%.",
-        "capability": "base_salary",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "cashier_allowance",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Resolved: every level carries IND_CASSA, 5% of its paga base nazionale conglobata, for the role cassiere of Employment.roles.",
-          "status": "resolved"
-        }
-      },
-      {
-        "kind": "simplification",
         "text": "The pay rows of the operatori di vendita.",
         "capability": "base_salary",
         "monetary_impact": "yes",
@@ -3942,7 +3928,7 @@
     "effective_until": null,
     "source": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
     "verification_status": "unverified",
-    "source_hash": "8071b9fd26d595874098e6c1d0a7c0ff6a8326952449061e9388621a700965f3",
+    "source_hash": "2dbe4d3cb86b20215b3694e749c8417436bc492b3a9389b080d443a983bd09c4",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -5584,6 +5570,27 @@
         "checked": [
           "work_rules.insured_absence.maternity",
           "work_rules.insured_absence.injury"
+        ]
+      },
+      {
+        "id": "2026-11-08-gpt-dmo-federdistribuzione-stale-limitations",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.federdistribuzione.it/wp-content/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+            "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
+          }
+        ],
+        "findings": [
+          "cashier_allowance: All eight levels have IND_CASSA gated by role cassiere; all 48 dated amounts equal 5% of the corresponding stored base_salary rounded to cents. compensation/element/rules.py activates the allowance for that role. The employer must supply cassiere only when continuous cash assignm"
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "coverage.notes"
         ]
       }
     ],

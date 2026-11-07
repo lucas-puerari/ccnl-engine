@@ -76,24 +76,6 @@
         "text": "TABLE: the paga base of the Farmacie rurali sussidiate (Tabella B, PDF p. 67); every other rule is that of farmacie-private-h121 (Tabella A, the urban and non-subsidised rural pharmacies)."
       },
       {
-        "kind": "simplification",
-        "text": "ISQ (Art. 3 and Tabella C, p. 59 of the CCNL of 7 September 2021): Q2 and Q3 are paid 100 EUR and, after 12 years of 'anzianità complessiva maturata nel Livello 1° e nell'Area Q', 130 EUR (isq up to 144 months, isq_12 from 144), on the career months SeniorityFact.career_months states, or on the months of service when it is not stated.",
-        "capability": "base_salary",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "isq_twelve_year_tier",
-          "applies_when": {
-            "trigger": "run",
-            "levels": [
-              "Q2",
-              "Q3"
-            ]
-          },
-          "remediation": "Resolved: SeniorityFact.career_months carries the years in level 1 and Area Q.",
-          "status": "resolved"
-        }
-      },
-      {
         "kind": "info",
         "text": "SIMPLIFICATION: Tabella D groups Q2, Q3, and 1o into a single scatto amount of 25.30 EUR. Q1 uses 25.82 EUR."
       },
@@ -228,6 +210,31 @@
         "independence": "same_process",
         "checked": [
           "levels.fixed_allowances"
+        ]
+      },
+      {
+        "id": "2026-11-08-gpt-farmacie-rurali-sussidiate-h121-stale-limitations",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://uiltucs.it/wp-content/uploads/2023/07/CCNL-per-i-Dipendenti-da-Farmacia-Privata-7-settembre-2021.pdf",
+            "sha256": "dfc1fc57234cb43fb5ab7a4a7e22d89c464b7784b344cedd288de560f170cea4"
+          },
+          {
+            "url": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf",
+            "sha256": "b6798989a01293d9629dc61f8cb56faeb07f4f5eb4d447526b911c761ac40214"
+          }
+        ],
+        "findings": [
+          "isq_twelve_year_tier: The rural agreement already defines mutually exclusive Q2 and Q3 ISQ allowances: EUR 100.00 for career seniority below 144 months and EUR 130.00 from 144 months, effective 2021-11-01. _allowance_active selects the latter at >=144 months and the former at <144; the period calculat"
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "coverage.notes"
         ]
       }
     ]
@@ -1725,7 +1732,7 @@
     "effective_until": null,
     "source": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf",
     "verification_status": "unverified",
-    "source_hash": "5f00671d31748ad5a5897481d4889b3a02c6131d435d559348b96d749057c921",
+    "source_hash": "e6843553f720f7fd3c0734fec63a00a7d3cd338bdc80e7eeb9a9e6f173540b43",
     "published_at": "2026-11-01",
     "source_type": "contracting_party"
   },

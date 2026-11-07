@@ -10,10 +10,10 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 |---|---:|---:|---:|---:|---:|---:|---|
 | pubblica-amministrazione | 14 | 7 548 000 | 14 | 229 | 182 | 0 | `funzioni-centrali-aran` |
 | terziario | 46 | 5 257 055 | 53 | 964 | 1733 | 4 | `commercio-confcommercio`, `sanita-privata-aiop-aris` |
-| industria | 49 | 4 969 900 | 153 | 1166 | 2279 | 15 | `logistica-trasporto-confetra`, `metalmeccanico-federmeccanica` |
+| industria | 49 | 4 969 900 | 155 | 1166 | 2279 | 15 | `logistica-trasporto-confetra`, `metalmeccanico-federmeccanica` |
 | lavoro-domestico | 3 | 1 800 000 | 0 | 3 | 60 | 0 | `lavoro-domestico-non-convivente` |
 | artigianato | 8 | 1 244 505 | 34 | 151 | 300 | 2 | `metalmeccanico-artigianato` |
-| agricoltura | 9 | 752 860 | 12 | 95 | 245 | 5 | `operai-agricoli-florovivaisti` |
+| agricoltura | 9 | 752 860 | 12 | 95 | 239 | 5 | `operai-agricoli-florovivaisti` |
 | edilizia | 4 | 710 000 | 2 | 93 | 119 | 0 | `edilizia-ance` |
 | credito | 3 | 348 000 | 2 | 19 | 99 | 0 | `bancari-abi` |
 
@@ -137,7 +137,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | [`materiali-costruzione-lapidei-confapi`](../contracts/materiali-costruzione-lapidei-confapi.md) | 5 000 | exploratory | 21 | 8 | 41 | party or official | none | none |
 | [`attivita-minerarie-assorisorse`](../contracts/attivita-minerarie-assorisorse.md) | 3 000 | exploratory | 3 | 0 | 36 | party or official | none | none |
 | [`cinema-audiovisivi-industria`](../contracts/cinema-audiovisivi-industria.md) | 2 300 | exploratory | 1 | 6 | 57 | aggregator | none | none |
-| [`tabacco-apti`](../contracts/tabacco-apti.md) | 2 000 | exploratory | 22 | 0 | 38 | party or official | none | none |
+| [`tabacco-apti`](../contracts/tabacco-apti.md) | 2 000 | exploratory | 24 | 0 | 38 | party or official | none | none |
 | [`radiotelevisive-televisivo`](../contracts/radiotelevisive-televisivo.md) | none | exploratory | 11 | 0 | 28 | party or official | none | none |
 | [`radiotelevisive-radiofonico`](../contracts/radiotelevisive-radiofonico.md) | none | exploratory | 8 | 0 | 13 | party or official | none | none |
 
@@ -171,7 +171,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | [`cooperative-consorzi-agricoli`](../contracts/cooperative-consorzi-agricoli.md) | 60 000 | exploratory | 0 | 8 | 34 | party or official | maintainer | 2027-02-01 |
 | [`consorzi-di-bonifica-snebi`](../contracts/consorzi-di-bonifica-snebi.md) | 4 000 | exploratory | 2 | 10 | 50 | party or official | none | none |
 | [`contoterzismo-caiagromec`](../contracts/contoterzismo-caiagromec.md) | 4 000 | exploratory | 1 | 24 | 25 | party or official | none | none |
-| [`consorzi-agrari-assocap`](../contracts/consorzi-agrari-assocap.md) | 2 000 | exploratory | 1 | 21 | 40 | aggregator | none | none |
+| [`consorzi-agrari-assocap`](../contracts/consorzi-agrari-assocap.md) | 2 000 | exploratory | 1 | 21 | 34 | aggregator | none | none |
 | [`organizzazioni-allevatori-aia`](../contracts/organizzazioni-allevatori-aia.md) | 2 000 | exploratory | 1 | 7 | 40 | aggregator | none | none |
 | [`sistemazioni-idraulico-forestali-impiegati`](../contracts/sistemazioni-idraulico-forestali-impiegati.md) | 430 | exploratory | 2 | 6 | 22 | aggregator | none | none |
 | [`sistemazioni-idraulico-forestali-operai`](../contracts/sistemazioni-idraulico-forestali-operai.md) | 430 | exploratory | 2 | 5 | 16 | party or official | none | none |

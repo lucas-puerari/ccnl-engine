@@ -92,20 +92,6 @@
       },
       {
         "kind": "simplification",
-        "text": "BASE SALARY (Allegato A, p. 47 of the CCNL of 12 December 2023): the stipendi base from 1 January 2025, 2026 and 2027 (6th level 1,040.26 / 1,070.87 / 1,101.48 EUR); the quadri take the 1st level.",
-        "capability": "base_salary",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "tranche_2027_01_missing",
-          "applies_when": {
-            "effective_from": "2027-01-01"
-          },
-          "remediation": "Resolved: the 2027 column of Allegato A, read on 2026-11-06.",
-          "status": "resolved"
-        }
-      },
-      {
-        "kind": "simplification",
         "text": "HEALTH FUND (Art. 37, p. 37): FILCOOP SANITARIO, 186 EUR a year for each permanent worker, two thirds the employer and one third the worker, modelled as health_funds filcoop_sanitario; a worker who opted out in writing owes none.",
         "capability": "contractual_funds",
         "monetary_impact": "yes",
@@ -201,6 +187,27 @@
         ]
       },
       {
+        "id": "2026-11-08-gpt-consorzi-agrari-assocap-stale-limitations",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.faicisl.it/attachments/article/2385/CCNL%20CONSORZI%20AGRARI%202024%20-%202027.pdf",
+            "sha256": "592a52c168c4c1724cc49e7d01c1b010723c5673c5ee88ae06cf60a9074b04ea"
+          }
+        ],
+        "findings": [
+          "tranche_2027_01_missing: Allegato A gives the 2027-01-01 base salary for levels 1–6 (including 3S/4S); every value and effective date is already in levels[].base_salary.periods. Q also has the 1st-level value, but the table has no distinct Q row; this verdict does not independently validate Q equivalence"
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "coverage.notes"
+        ]
+      },
+      {
         "id": "2026-11-08-gpt-consorzi-agrari-assocap-data-fixes",
         "date": "2026-11-08",
         "reviewer": "gpt-6-sol",
@@ -218,9 +225,7 @@
         ],
         "independence": "separate_model",
         "checked": [
-          "levels",
-          "parameters",
-          "work_rules"
+          "levels"
         ]
       }
     ]
@@ -1297,45 +1302,6 @@
               "review_id": "2026-11-06-ai-consorzi-agrari-allegato-a"
             }
           }
-        },
-        {
-          "code": "IND_CASSA",
-          "role": "cassiere",
-          "description": "Indennità di cassa (Art. 35)",
-          "monthly": {
-            "periods": [
-              {
-                "valid_from": "2024-01-01",
-                "valid_until": null,
-                "value": "55.00"
-              }
-            ]
-          },
-          "provenance": {
-            "status": "verified",
-            "location": {
-              "source_document": {
-                "document_id": "consorzi-agrari-assocap-cashier_allowance_missing",
-                "title": "consorzi-agrari-assocap: cashier_allowance_missing",
-                "kind": "associazione",
-                "url": "https://www.faicisl.it/attachments/article/2385/CCNL%20CONSORZI%20AGRARI%202024%20-%202027.pdf",
-                "sha256": "592a52c168c4c1724cc49e7d01c1b010723c5673c5ee88ae06cf60a9074b04ea"
-              },
-              "page": "3",
-              "section": "Art. 35 Indennità di cassa",
-              "quote": "3) Il presente contratto, che sostituisce in ogni sua parte quello stipula-\nto il 4 maggio 2022 e contestualmente sottoscritto dalle medesime\nparti contraenti, fatte salve le specifiche decorrenze espressamente\npreviste, decorre dal 1° gennaio 2024 e scade il 31 dicembre 2027."
-            },
-            "extraction": {
-              "method": "ai",
-              "model": "gpt-6-sol",
-              "extraction_timestamp": "2026-11-08T11:00:00Z",
-              "effective_from": null,
-              "verified_by": "gpt-6-sol",
-              "verified_at": "2026-11-08T11:00:00Z",
-              "verification_status": "verified",
-              "review_id": "2026-11-08-gpt-consorzi-agrari-assocap-data-fixes"
-            }
-          }
         }
       ],
       "provenance": {
@@ -1528,45 +1494,6 @@
               "verified_at": "2026-11-06T17:00:00Z",
               "verification_status": "verified",
               "review_id": "2026-11-06-ai-consorzi-agrari-allegato-a"
-            }
-          }
-        },
-        {
-          "code": "IND_CASSA",
-          "role": "cassiere",
-          "description": "Indennità di cassa (Art. 35)",
-          "monthly": {
-            "periods": [
-              {
-                "valid_from": "2024-01-01",
-                "valid_until": null,
-                "value": "55.00"
-              }
-            ]
-          },
-          "provenance": {
-            "status": "verified",
-            "location": {
-              "source_document": {
-                "document_id": "consorzi-agrari-assocap-cashier_allowance_missing",
-                "title": "consorzi-agrari-assocap: cashier_allowance_missing",
-                "kind": "associazione",
-                "url": "https://www.faicisl.it/attachments/article/2385/CCNL%20CONSORZI%20AGRARI%202024%20-%202027.pdf",
-                "sha256": "592a52c168c4c1724cc49e7d01c1b010723c5673c5ee88ae06cf60a9074b04ea"
-              },
-              "page": "3",
-              "section": "Art. 35 Indennità di cassa",
-              "quote": "3) Il presente contratto, che sostituisce in ogni sua parte quello stipula-\nto il 4 maggio 2022 e contestualmente sottoscritto dalle medesime\nparti contraenti, fatte salve le specifiche decorrenze espressamente\npreviste, decorre dal 1° gennaio 2024 e scade il 31 dicembre 2027."
-            },
-            "extraction": {
-              "method": "ai",
-              "model": "gpt-6-sol",
-              "extraction_timestamp": "2026-11-08T11:00:00Z",
-              "effective_from": null,
-              "verified_by": "gpt-6-sol",
-              "verified_at": "2026-11-08T11:00:00Z",
-              "verification_status": "verified",
-              "review_id": "2026-11-08-gpt-consorzi-agrari-assocap-data-fixes"
             }
           }
         }
@@ -1763,45 +1690,6 @@
               "review_id": "2026-11-06-ai-consorzi-agrari-allegato-a"
             }
           }
-        },
-        {
-          "code": "IND_CASSA",
-          "role": "cassiere",
-          "description": "Indennità di cassa (Art. 35)",
-          "monthly": {
-            "periods": [
-              {
-                "valid_from": "2024-01-01",
-                "valid_until": null,
-                "value": "55.00"
-              }
-            ]
-          },
-          "provenance": {
-            "status": "verified",
-            "location": {
-              "source_document": {
-                "document_id": "consorzi-agrari-assocap-cashier_allowance_missing",
-                "title": "consorzi-agrari-assocap: cashier_allowance_missing",
-                "kind": "associazione",
-                "url": "https://www.faicisl.it/attachments/article/2385/CCNL%20CONSORZI%20AGRARI%202024%20-%202027.pdf",
-                "sha256": "592a52c168c4c1724cc49e7d01c1b010723c5673c5ee88ae06cf60a9074b04ea"
-              },
-              "page": "3",
-              "section": "Art. 35 Indennità di cassa",
-              "quote": "3) Il presente contratto, che sostituisce in ogni sua parte quello stipula-\nto il 4 maggio 2022 e contestualmente sottoscritto dalle medesime\nparti contraenti, fatte salve le specifiche decorrenze espressamente\npreviste, decorre dal 1° gennaio 2024 e scade il 31 dicembre 2027."
-            },
-            "extraction": {
-              "method": "ai",
-              "model": "gpt-6-sol",
-              "extraction_timestamp": "2026-11-08T11:00:00Z",
-              "effective_from": null,
-              "verified_by": "gpt-6-sol",
-              "verified_at": "2026-11-08T11:00:00Z",
-              "verification_status": "verified",
-              "review_id": "2026-11-08-gpt-consorzi-agrari-assocap-data-fixes"
-            }
-          }
         }
       ],
       "provenance": {
@@ -1994,45 +1882,6 @@
               "verified_at": "2026-11-06T17:00:00Z",
               "verification_status": "verified",
               "review_id": "2026-11-06-ai-consorzi-agrari-allegato-a"
-            }
-          }
-        },
-        {
-          "code": "IND_CASSA",
-          "role": "cassiere",
-          "description": "Indennità di cassa (Art. 35)",
-          "monthly": {
-            "periods": [
-              {
-                "valid_from": "2024-01-01",
-                "valid_until": null,
-                "value": "55.00"
-              }
-            ]
-          },
-          "provenance": {
-            "status": "verified",
-            "location": {
-              "source_document": {
-                "document_id": "consorzi-agrari-assocap-cashier_allowance_missing",
-                "title": "consorzi-agrari-assocap: cashier_allowance_missing",
-                "kind": "associazione",
-                "url": "https://www.faicisl.it/attachments/article/2385/CCNL%20CONSORZI%20AGRARI%202024%20-%202027.pdf",
-                "sha256": "592a52c168c4c1724cc49e7d01c1b010723c5673c5ee88ae06cf60a9074b04ea"
-              },
-              "page": "3",
-              "section": "Art. 35 Indennità di cassa",
-              "quote": "3) Il presente contratto, che sostituisce in ogni sua parte quello stipula-\nto il 4 maggio 2022 e contestualmente sottoscritto dalle medesime\nparti contraenti, fatte salve le specifiche decorrenze espressamente\npreviste, decorre dal 1° gennaio 2024 e scade il 31 dicembre 2027."
-            },
-            "extraction": {
-              "method": "ai",
-              "model": "gpt-6-sol",
-              "extraction_timestamp": "2026-11-08T11:00:00Z",
-              "effective_from": null,
-              "verified_by": "gpt-6-sol",
-              "verified_at": "2026-11-08T11:00:00Z",
-              "verification_status": "verified",
-              "review_id": "2026-11-08-gpt-consorzi-agrari-assocap-data-fixes"
             }
           }
         }
@@ -2229,45 +2078,6 @@
               "review_id": "2026-11-06-ai-consorzi-agrari-allegato-a"
             }
           }
-        },
-        {
-          "code": "IND_CASSA",
-          "role": "cassiere",
-          "description": "Indennità di cassa (Art. 35)",
-          "monthly": {
-            "periods": [
-              {
-                "valid_from": "2024-01-01",
-                "valid_until": null,
-                "value": "55.00"
-              }
-            ]
-          },
-          "provenance": {
-            "status": "verified",
-            "location": {
-              "source_document": {
-                "document_id": "consorzi-agrari-assocap-cashier_allowance_missing",
-                "title": "consorzi-agrari-assocap: cashier_allowance_missing",
-                "kind": "associazione",
-                "url": "https://www.faicisl.it/attachments/article/2385/CCNL%20CONSORZI%20AGRARI%202024%20-%202027.pdf",
-                "sha256": "592a52c168c4c1724cc49e7d01c1b010723c5673c5ee88ae06cf60a9074b04ea"
-              },
-              "page": "3",
-              "section": "Art. 35 Indennità di cassa",
-              "quote": "3) Il presente contratto, che sostituisce in ogni sua parte quello stipula-\nto il 4 maggio 2022 e contestualmente sottoscritto dalle medesime\nparti contraenti, fatte salve le specifiche decorrenze espressamente\npreviste, decorre dal 1° gennaio 2024 e scade il 31 dicembre 2027."
-            },
-            "extraction": {
-              "method": "ai",
-              "model": "gpt-6-sol",
-              "extraction_timestamp": "2026-11-08T11:00:00Z",
-              "effective_from": null,
-              "verified_by": "gpt-6-sol",
-              "verified_at": "2026-11-08T11:00:00Z",
-              "verification_status": "verified",
-              "review_id": "2026-11-08-gpt-consorzi-agrari-assocap-data-fixes"
-            }
-          }
         }
       ],
       "provenance": {
@@ -2462,45 +2272,6 @@
               "review_id": "2026-11-06-ai-consorzi-agrari-allegato-a"
             }
           }
-        },
-        {
-          "code": "IND_CASSA",
-          "role": "cassiere",
-          "description": "Indennità di cassa (Art. 35)",
-          "monthly": {
-            "periods": [
-              {
-                "valid_from": "2024-01-01",
-                "valid_until": null,
-                "value": "55.00"
-              }
-            ]
-          },
-          "provenance": {
-            "status": "verified",
-            "location": {
-              "source_document": {
-                "document_id": "consorzi-agrari-assocap-cashier_allowance_missing",
-                "title": "consorzi-agrari-assocap: cashier_allowance_missing",
-                "kind": "associazione",
-                "url": "https://www.faicisl.it/attachments/article/2385/CCNL%20CONSORZI%20AGRARI%202024%20-%202027.pdf",
-                "sha256": "592a52c168c4c1724cc49e7d01c1b010723c5673c5ee88ae06cf60a9074b04ea"
-              },
-              "page": "3",
-              "section": "Art. 35 Indennità di cassa",
-              "quote": "3) Il presente contratto, che sostituisce in ogni sua parte quello stipula-\nto il 4 maggio 2022 e contestualmente sottoscritto dalle medesime\nparti contraenti, fatte salve le specifiche decorrenze espressamente\npreviste, decorre dal 1° gennaio 2024 e scade il 31 dicembre 2027."
-            },
-            "extraction": {
-              "method": "ai",
-              "model": "gpt-6-sol",
-              "extraction_timestamp": "2026-11-08T11:00:00Z",
-              "effective_from": null,
-              "verified_by": "gpt-6-sol",
-              "verified_at": "2026-11-08T11:00:00Z",
-              "verification_status": "verified",
-              "review_id": "2026-11-08-gpt-consorzi-agrari-assocap-data-fixes"
-            }
-          }
         }
       ],
       "provenance": {
@@ -2530,7 +2301,7 @@
     "effective_until": null,
     "source": "https://www.wolterskluwer.it/",
     "verification_status": "unverified",
-    "source_hash": "9960438338f3f8f29bd8f0063dfaf08fbb0e87c7a5aa530a6fdd0abff4b9214a",
+    "source_hash": "f3210364857ed47938ed9c81a52efb26ffe257855fcfce0636e8711ae97ee2e9",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

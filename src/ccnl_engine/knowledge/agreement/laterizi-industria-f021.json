@@ -89,24 +89,6 @@
       },
       {
         "kind": "simplification",
-        "text": "APPRENTICESHIP — level E period 1: the CCNL Art. 9 prescribes 2 levels below destination for period 1 in all tracks. For destination E (order=2), 2 below would reach order=0 which does not exist. Engine level_by_order raises ValueError for missing orders. SIMPLIFICATION: E track period 1 uses levels_below=1 (pay at level F, order=1), the lowest available level below E. Duration: 6+6 months.",
-        "capability": "base_salary",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "level_e_first_period_one_below",
-          "applies_when": {
-            "contract_types": [
-              "apprentice"
-            ],
-            "levels": [
-              "E"
-            ]
-          },
-          "remediation": "Confirm the level E first period against Art. 9 and model it once a level two below exists."
-        }
-      },
-      {
-        "kind": "simplification",
         "text": "ASQ SENIORITY: thaler.it seniority table lists AS, A, B, CS, C, D, E, F amounts but not ASQ separately. SIMPLIFICATION: ASQ uses the same scatto amount as AS (14.72 EUR/biennio).",
         "capability": "seniority",
         "monetary_impact": "unknown",
@@ -218,6 +200,35 @@
         "checked": [
           "levels.base_salary",
           "levels.fixed_allowances"
+        ]
+      },
+      {
+        "id": "2026-11-08-gpt-laterizi-industria-f021-stale-limitations",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.filleacgil.net/images/MORELLO/CCNL12.2.2020laterizi-manufatti-industria.pdf",
+            "sha256": "d26fb2b0ebd79c0562f7e786d77cc25d97b894369b0a34841163a46acd6e1e0b"
+          },
+          {
+            "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf",
+            "sha256": "dccfdf857610cec1aeabeddda4eaf60d8b0214a3f632c8fe87dd1464143a0bf6"
+          },
+          {
+            "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/LATERIZI/Ipotesi_di_Accordo_Rinnovo_CCNL_Laterizi_e_manufatti_31.10.2025.pdf",
+            "sha256": "2c8ca55ef522d7bea3f402755f97a1dcb3400355731724feab75f4d77302e191"
+          }
+        ],
+        "findings": [
+          "level_e_first_period_one_below: Art. 9 expressly specifies F pay for E-destination apprentices in the first 6 months and E pay in the next 6 months; the general two-level rule is expressly qualified for E. The existing professionalizzante_12 track uses levels_below=1 then 0, and level_below selects F (order 1) "
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "coverage.notes"
         ]
       }
     ]
@@ -3694,7 +3705,7 @@
     "effective_until": null,
     "source": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf",
     "verification_status": "unverified",
-    "source_hash": "c119027b60639cf259b5a50b274817fea76317f86fe014a7eaf411b49ff7b16a",
+    "source_hash": "ebb94a8f6cb52d8aec4755eb891b3141a4d1ee5722786c9551a17b5d5780dc16",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

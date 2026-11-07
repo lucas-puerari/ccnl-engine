@@ -51,23 +51,6 @@
       },
       {
         "kind": "simplification",
-        "text": "SENIORITY (artt. 49, 61): impiegati and operai have their own amounts and maxima (12 and 5 biennial increments), read by Employment.category; an impiegato of level 5 has no amount in art. 49.",
-        "capability": "seniority",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "operai_seniority_over_five",
-          "applies_when": {
-            "worker_categories": [
-              "operaio"
-            ],
-            "seniority_months_from": 144
-          },
-          "remediation": "Resolved: seniority_increments.amount_by_level_by_category and maximum_count_by_category, read on 2026-11-05.",
-          "status": "resolved"
-        }
-      },
-      {
-        "kind": "simplification",
         "text": "Apprendistato: regola non reperita nel PDF 2024. Modellato come 100% passthrough.",
         "capability": "base_salary",
         "monetary_impact": "unknown",
@@ -1678,7 +1661,7 @@
     "effective_until": null,
     "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "270209ed3766bb445f6e775ed1c07d291645e5dc4178eb82a5cc21e92e209655",
+    "source_hash": "727f96304cc62cf8b7fe2bd174dfed2adfc5880604d4a532efaa83c720cf2acd",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1952,6 +1935,27 @@
         "independence": "separate_session",
         "checked": [
           "parameters.seniority_increments"
+        ]
+      },
+      {
+        "id": "2026-11-08-gpt-cooperative-consorzi-agricoli-stale-limitations",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/03_08_2022-STESURA-CCNL-COOPERATIVE-AGRICOLE-2019-2023.pdf",
+            "sha256": "586ec86c279b9cf2484217d15e0e663985d32c3ed31a4e649e1574a1f594004b"
+          }
+        ],
+        "findings": [
+          "operai_seniority_over_five: Art. 61 caps permanent operai at five biennial increments, not six at 144 months. The agreement already specifies cadence_months=24, maximum_count_by_category.operaio=5 and the 2006-07-01 category-specific amounts for levels 3–7. compensation/element/services.py passes worker_cat"
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "coverage.notes"
         ]
       }
     ],

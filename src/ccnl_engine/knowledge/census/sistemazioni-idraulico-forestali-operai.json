@@ -323,22 +323,6 @@
       }
     },
     {
-      "id": "regional_seniority_cirl",
-      "institute": "territorial_supplement",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Seniority operai: nessuno scatto di anzianita previsto a livello CCNL nazionale. Gli scatti sono disciplinati dai CIRL (contratti integrativi regionali). Modellati con importo zero e maximum_count=0.",
-      "calculation": "ccnl/sistemazioni-idraulico-forestali-operai:coverage.notes",
-      "state": "absent",
-      "remediation": "Add the CIRL regional scatti outside the engine and record the limitation (as ert_veneto / provincial_third_elements).",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "sistemazioni-idraulico-forestali-operai/regional_seniority_cirl"
-        ]
-      }
-    },
-    {
       "id": "rule_additional_months_2026_01_01",
       "institute": "base_salary",
       "variant": "all",

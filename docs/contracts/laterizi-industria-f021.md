@@ -32,9 +32,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, seniority |
+| **Limits of this contract** | seniority |
 
-3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -61,6 +61,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | confirmed | Art. 26 - Tredicesima mensilità (p. 42): "Nel caso di inizio o di cessazione del rapporto di lavoro nel corso dell'anno, saranno corrisposti tanti dodicesimi della 13ª mensilità per quanti sono i mesi di servizio prestato presso l'azienda. La frazione di mese superiore ai 15 giorni sarà considerata agli effetti della 13ª mensilità come un mese intero.". Match: more_than 15. |
 | 2026-11-08 | claude-opus-5-5 (ai) | The monthly values of the levels against the primary tables (text layer). | confirmed | 19 values found verbatim on the cited pages and marked verified; 66 left as they were (derived or not on a text page). |
 | 2026-11-08 | gpt-6-sol (ai) | Monthly values on scanned pages, each read twice from the page image by two independent sessions of another model, the second without being told the expected value. | confirmed | 32 values read identically by both readings and equal to the file. |
+| 2026-11-08 | gpt-6-sol (ai) | Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim. | confirmed | level_e_first_period_one_below: Art. 9 expressly specifies F pay for E-destination apprentices in the first 6 months and E pay in the next 6 months; the general two-level rule is expressly qualified for E. The existing professionalizzante_12 track uses levels_below=1 then 0, and level_below selects F (order 1)  |
 
 ## Salary table
 
@@ -112,13 +113,6 @@ Destination levels: `E`
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
-
-!!! warning "laterizi-industria-f021/level_e_first_period_one_below · base_salary · impact yes · open"
-    APPRENTICESHIP — level E period 1: the CCNL Art. 9 prescribes 2 levels below destination for period 1 in all tracks. For destination E (order=2), 2 below would reach order=0 which does not exist. Engine level_by_order raises ValueError for missing orders. SIMPLIFICATION: E track period 1 uses levels_below=1 (pay at level F, order=1), the lowest available level below E. Duration: 6+6 months.
-
-    **Applies when:** `base_salary` applies; contract type in apprentice; level in E.
-
-    **Remediation:** Confirm the level E first period against Art. 9 and model it once a level two below exists.
 
 !!! warning "laterizi-industria-f021/asq_seniority_from_as · seniority · impact unknown · open"
     ASQ SENIORITY: thaler.it seniority table lists AS, A, B, CS, C, D, E, F amounts but not ASQ separately. SIMPLIFICATION: ASQ uses the same scatto amount as AS (14.72 EUR/biennio).
