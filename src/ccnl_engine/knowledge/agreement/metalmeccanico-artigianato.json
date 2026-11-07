@@ -162,22 +162,6 @@
       },
       {
         "kind": "simplification",
-        "text": "SICKNESS OF THE IMPIEGATI: Art. 73 (p. 147) pays the impiegati the whole pay for 2 months and half for the next 4 up to 5 years of service, the whole for 3 months and half for the next 5 above; the file applies the operai rule of Art. 61.",
-        "capability": "sickness",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "artisan_impiegati_sickness",
-          "applies_when": {
-            "worker_categories": [
-              "impiegato",
-              "quadro"
-            ]
-          },
-          "remediation": "Model the Art. 73 bands for the impiegati by category."
-        }
-      },
-      {
-        "kind": "simplification",
         "text": "FIRST- AND THIRD-LEVEL APPRENTICES (Art. 26, accordo interconfederale 1 febbraio 2018): modelled in dual_apprenticeship (first level 45/55/60/70% by year at the conventional level, third level 70% then 80% of the tabellare by half, or 80%; training at the employer 10% of the work pay, school hours unpaid). Not modelled: the INPS contributions of the first-level apprentice.",
         "capability": "inps_employer",
         "monetary_impact": "yes",
@@ -191,6 +175,10 @@
           },
           "remediation": "Source the INPS contribution regime of the first-level apprentice."
         }
+      },
+      {
+        "kind": "info",
+        "text": "SICKNESS OF THE IMPIEGATI (Art. 73, PDF p. 147): the whole gross pay for 2 months and half for the next 4 up to 5 years of seniority, the whole for 3 months and half for the next 5 above, per illness; job kept 6 or 8 months for one illness and 10 months in the 24 before (work_rules.sickness_rules_by_category). The operai keep the rule of Art. 61."
       }
     ]
   },
@@ -2991,7 +2979,7 @@
     "effective_until": null,
     "source": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf",
     "verification_status": "unverified",
-    "source_hash": "0cff7698b9dcbf0cda30d91f6ac6dd349a4834b14e9b56b16396794f7228a131",
+    "source_hash": "f0f3f4093a9a290201872477e0b7ae7ed5981e77ce07aa044dadf2069824e56c",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3363,6 +3351,136 @@
           "review_id": "2026-10-31-ai-sickness-comporto"
         }
       }
+    },
+    "sickness_rules_by_category": {
+      "impiegato": {
+        "carenza_integration_rate": "1",
+        "full_pay_integration_rate": "1",
+        "net_basis": false,
+        "cumulation": {
+          "window_years": 2,
+          "reset_after_days": 1,
+          "reduced_integration_rate": "0",
+          "bands": [
+            {
+              "seniority_months_from": 0,
+              "full_pay_days": 60,
+              "comporto_days": 300,
+              "single_comporto_days": 180,
+              "steps": [
+                {
+                  "day_from": 61,
+                  "day_until": 181,
+                  "integration_rate": "0.5"
+                }
+              ]
+            },
+            {
+              "seniority_months_from": 61,
+              "full_pay_days": 90,
+              "comporto_days": 300,
+              "single_comporto_days": 240,
+              "steps": [
+                {
+                  "day_from": 91,
+                  "day_until": 241,
+                  "integration_rate": "0.5"
+                }
+              ]
+            }
+          ]
+        },
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-area-meccanica-artigianato-ebna",
+              "title": "CCNL Area Meccanica artigianato, testo EBNA del CCNL 17 dicembre 2021 (EBAT Trentino)",
+              "kind": "associazione",
+              "url": "https://www.ebat.tn.it/wp-content/uploads/2024/02/EBNA-Contratto-CCNL-Area-Meccanica_web_LR_compressed-1.pdf",
+              "published_on": "2024-02-01",
+              "sha256": "f8cd3c42582324aa4484bb2bb9465a5a0a442467aae64e3ea3a1c57e089f3151"
+            },
+            "page": "147",
+            "section": "Art. 73 Trattamento di malattia ed infortunio (impiegati)",
+            "quote": "In caso di interruzione del servizio, dovuto a malattia, l'impiegato non in prova ha diritto alla conservazione del posto per un periodo di: a) 6 mesi per anzianità di servizio fino a 5 anni compiuti; b) 8 mesi di anzianità di servizio oltre i 5 anni compiuti. Per le anzianità di cui al punto a): intera retribuzione globale per i primi 2 mesi, metà per i 4 mesi successivi; per le anzianità di cui al punto b): intera retribuzione globale per i primi 3 mesi, metà retribuzione globale per i 5 mesi successivi. In caso di più malattie l'impiegato avrà diritto alla conservazione del posto per 10 mesi nell'arco dei 24 mesi precedenti."
+          },
+          "transformation": "Months of 30 days. Each illness (an episode after at least a day of work) pays the whole gross pay for 60 days, then half up to day 180, nothing after (up to 5 years of seniority); 90 days, then half up to day 240 (above 5 years, from 61 completed months). The job is kept for 180 or 240 days of one illness and 300 days (10 months) of sickness in the 24 months before. The 'non in prova' condition is not modelled.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-08T00:40:00Z",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-08T00:40:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-08-ai-metalmeccanico-artigianato-impiegati-sickness"
+          }
+        }
+      },
+      "quadro": {
+        "carenza_integration_rate": "1",
+        "full_pay_integration_rate": "1",
+        "net_basis": false,
+        "cumulation": {
+          "window_years": 2,
+          "reset_after_days": 1,
+          "reduced_integration_rate": "0",
+          "bands": [
+            {
+              "seniority_months_from": 0,
+              "full_pay_days": 60,
+              "comporto_days": 300,
+              "single_comporto_days": 180,
+              "steps": [
+                {
+                  "day_from": 61,
+                  "day_until": 181,
+                  "integration_rate": "0.5"
+                }
+              ]
+            },
+            {
+              "seniority_months_from": 61,
+              "full_pay_days": 90,
+              "comporto_days": 300,
+              "single_comporto_days": 240,
+              "steps": [
+                {
+                  "day_from": 91,
+                  "day_until": 241,
+                  "integration_rate": "0.5"
+                }
+              ]
+            }
+          ]
+        },
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-area-meccanica-artigianato-ebna",
+              "title": "CCNL Area Meccanica artigianato, testo EBNA del CCNL 17 dicembre 2021 (EBAT Trentino)",
+              "kind": "associazione",
+              "url": "https://www.ebat.tn.it/wp-content/uploads/2024/02/EBNA-Contratto-CCNL-Area-Meccanica_web_LR_compressed-1.pdf",
+              "published_on": "2024-02-01",
+              "sha256": "f8cd3c42582324aa4484bb2bb9465a5a0a442467aae64e3ea3a1c57e089f3151"
+            },
+            "page": "147",
+            "section": "Art. 73 Trattamento di malattia ed infortunio (impiegati)",
+            "quote": "In caso di interruzione del servizio, dovuto a malattia, l'impiegato non in prova ha diritto alla conservazione del posto per un periodo di: a) 6 mesi per anzianità di servizio fino a 5 anni compiuti; b) 8 mesi di anzianità di servizio oltre i 5 anni compiuti. Per le anzianità di cui al punto a): intera retribuzione globale per i primi 2 mesi, metà per i 4 mesi successivi; per le anzianità di cui al punto b): intera retribuzione globale per i primi 3 mesi, metà retribuzione globale per i 5 mesi successivi. In caso di più malattie l'impiegato avrà diritto alla conservazione del posto per 10 mesi nell'arco dei 24 mesi precedenti."
+          },
+          "transformation": "Months of 30 days. Each illness (an episode after at least a day of work) pays the whole gross pay for 60 days, then half up to day 180, nothing after (up to 5 years of seniority); 90 days, then half up to day 240 (above 5 years, from 61 completed months). The job is kept for 180 or 240 days of one illness and 300 days (10 months) of sickness in the 24 months before. The 'non in prova' condition is not modelled.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-08T00:40:00Z",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-08T00:40:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-08-ai-metalmeccanico-artigianato-impiegati-sickness"
+          }
+        }
+      }
     }
   },
   "verification": {
@@ -3688,6 +3806,27 @@
         "independence": "separate_model",
         "checked": [
           "dual_apprenticeship"
+        ]
+      },
+      {
+        "id": "2026-11-08-ai-metalmeccanico-artigianato-impiegati-sickness",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 73 of the CCNL 17 December 2021 (PDF p. 147), text layer.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.ebat.tn.it/wp-content/uploads/2024/02/EBNA-Contratto-CCNL-Area-Meccanica_web_LR_compressed-1.pdf",
+            "sha256": "f8cd3c42582324aa4484bb2bb9465a5a0a442467aae64e3ea3a1c57e089f3151"
+          }
+        ],
+        "findings": [
+          "Added work_rules.sickness_rules_by_category for impiegati and quadri."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.sickness_rules_by_category"
         ]
       }
     ],
