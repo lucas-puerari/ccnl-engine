@@ -261,12 +261,12 @@
     {
       "id": "other_apprenticeship_types",
       "institute": "base_salary",
-      "variant": "all",
+      "variant": "apprentice",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "APPRENTICESHIP: Art. 92 (ANCE text of 4 April 2019): 72/72/78/78/85/90% by semester for 36 months towards levels 2-4 of the operai, and the lavorazioni artistiche (48 months, semesters 7-8 at 90%) as the track lavorazioni_artistiche. The apprendistato duale and the alta formazione are not modelled: their training hours in the institution are unpaid and those at the company paid 10%, hours the request does not state.",
+      "rule": "FIRST- AND THIRD-LEVEL APPRENTICES (Art. 92, ANCE text of 4 April 2019): modelled in dual_apprenticeship (first level at the conventional level 2 or 1, 65-90% by semester; third level 70-90% by semester for six semesters; on minimo, ex contingenza and EDR; training at the employer 10% of the work pay, school hours unpaid). Not modelled: the provincial elements of the base (indennità territoriale, premio di produzione, elemento variabile) and the INPS contributions of the first-level apprentice.",
       "calculation": "ccnl/edilizia-ance:coverage.notes",
       "state": "absent",
-      "remediation": "Add the duale and alta formazione pay with the training hours of the month, then resolve this limitation.",
+      "remediation": "Source the INPS contribution regime of the first-level apprentice.",
       "origin": "seeded",
       "links": {
         "limitations": [

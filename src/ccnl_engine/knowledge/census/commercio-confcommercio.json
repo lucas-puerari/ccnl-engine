@@ -35,6 +35,22 @@
       }
     },
     {
+      "id": "first_level_apprentice_contributions",
+      "institute": "inps_employer",
+      "variant": "apprentice",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "FIRST- AND THIRD-LEVEL APPRENTICES (Art. 69): modelled in dual_apprenticeship (first level 50/50/65/70% of the qualified worker's pay by year of the contract, third level two then one level below the destination by half of the programme; training at the employer 10%, school hours unpaid). Not modelled: the INPS contributions of the first-level apprentice (the engine applies the apprentice rates of the professionalising contract).",
+      "calculation": "ccnl/commercio-confcommercio:coverage.notes",
+      "state": "absent",
+      "remediation": "Source the INPS contribution regime of the first-level apprentice.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "commercio-confcommercio/first_level_apprentice_contributions"
+        ]
+      }
+    },
+    {
       "id": "maternity_daily_base",
       "institute": "maternity_leave",
       "variant": "all",

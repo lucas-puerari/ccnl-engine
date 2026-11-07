@@ -114,6 +114,22 @@
       {
         "kind": "info",
         "text": "APPRENTICE INPS RATES (contribution/2026/agricoltura.json): employer 10% plus NASpI 1.61% (INPS circ. 108/2018 par. 3.2, applied to the agricultural contribution by circ. 116/2013 par. 1) plus CISOA 1.50% (circ. 1/2023; 'CIS operai agricoli 1,5000' of circ. 43/2026 allegato 1) = 13.11% (4.61% and 6.11% in the first two years up to nine employees); worker 5.84%."
+      },
+      {
+        "kind": "simplification",
+        "text": "FIRST- AND THIRD-LEVEL APPRENTICES (Allegato F): modelled in dual_apprenticeship (first level 45/55/60/70% by year at the conventional level, third level 70% or 80% by length; training at the employer 10% of the work pay, school hours unpaid). Not modelled: the INPS contributions of the first-level apprentice.",
+        "capability": "inps_employer",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "first_level_apprentice_contributions",
+          "applies_when": {
+            "trigger": "outside_input",
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Source the INPS contribution regime of the first-level apprentice."
+        }
       }
     ]
   },
@@ -186,6 +202,27 @@
         "independence": "separate_model",
         "checked": [
           "coverage.notes"
+        ]
+      },
+      {
+        "id": "2026-11-08-gpt-impiegati-tecnici-agricoli-dual-apprenticeship",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Allegato F (accordo 19 giugno 2018) of the CCNL 18 June 2024, pp. 85-88. Every row of the extraction re-checked by a separate model session on the saved PDFs (verdict CONFIRMED).",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-quadri-e-impiegati-agricoli-2024-2027.pdf",
+            "sha256": "94fba8a7cda3856266ed91ab8eec45264803a5396179772d67fbc995b7f7f076"
+          }
+        ],
+        "findings": [
+          "Added dual_apprenticeship for the first- and third-level apprentices."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "dual_apprenticeship"
         ]
       }
     ]
@@ -771,7 +808,7 @@
     "effective_until": "2027-12-31",
     "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-quadri-e-impiegati-agricoli-2024-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "8379459355e7c15cad1c82aecb78cf28282f8d71ab5df35d5894530ee303bd1b",
+    "source_hash": "2d299768c593b40c9d4b35ae0fea4a34bc63bfdde35b1ef715bffe96db1eb90c",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1072,5 +1109,119 @@
         }
       }
     }
-  }
+  },
+  "dual_apprenticeship": [
+    {
+      "name": "primo_livello",
+      "programme": "first_level",
+      "destination_levels": [
+        "6",
+        "5",
+        "4",
+        "3",
+        "2",
+        "1",
+        "1Q"
+      ],
+      "periods": [
+        {
+          "work_rate": "0.45",
+          "months_until": 12
+        },
+        {
+          "work_rate": "0.55",
+          "months_from": 12,
+          "months_until": 24
+        },
+        {
+          "work_rate": "0.60",
+          "months_from": 24,
+          "months_until": 36
+        },
+        {
+          "work_rate": "0.70",
+          "months_from": 36
+        }
+      ],
+      "company_training_rate": "0.10",
+      "company_training_on": "work",
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "flai-ccnl-quadri-impiegati-agricoli-2024-2027",
+            "title": "CCNL per i Quadri e gli Impiegati Agricoli 18 giugno 2024 (1 gennaio 2024 - 31 dicembre 2027), testo firmato (copia FLAI-CGIL)",
+            "kind": "associazione",
+            "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-quadri-e-impiegati-agricoli-2024-2027.pdf",
+            "published_on": "2024-06-18",
+            "sha256": "94fba8a7cda3856266ed91ab8eec45264803a5396179772d67fbc995b7f7f076"
+          },
+          "page": "86-88",
+          "section": "Allegato F, punti 2-4",
+          "quote": "va attribuito un livello di inquadramento contrattuale “convenzionale” - coerente con il percorso formativo ai sensi dell'art. 4 del D.M. 12 ottobre 2015 - al solo fine di determinare la retribuzione di riferimento. [...] 1° anno 45% della retribuzione di inquadramento contrattuale convenzionale; 2° anno 55 % della retribuzione di inquadramento contrattuale convenzionale; 3° anno 60 % della retribuzione di inquadramento contrattuale convenzionale; 4° anno 70 % della retribuzione di inquadramento contrattuale convenzionale [...] Resta fermo che per le ore di formazione esterne svolte dall'apprendista nell'istituzione formativa, il datore di lavoro è esonerato da ogni obbligo retributivo (art. 43, c.7, del d.lgs. n. 81/2015), con riferimento a tutti gli istituti contrattuali e di legge diretti, indiretti e differiti. Per le ore di formazione a carico del datore di lavoro è riconosciuta al lavoratore una retribuzione pari al 10 per cento, calcolata su quella spettante per la prestazione lavorativa."
+        },
+        "transformation": "The level of the request is the conventional level the employer attributes. Work hours by year of the apprenticeship (column 'Durata apprendistato'): 45, 55, 60, 70%; training at the employer 10% of the work pay; school hours unpaid.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-08T00:10:00Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-08T00:10:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-08-gpt-impiegati-tecnici-agricoli-dual-apprenticeship"
+        }
+      }
+    },
+    {
+      "name": "alta_formazione_ricerca",
+      "programme": "third_level",
+      "destination_levels": [
+        "6",
+        "5",
+        "4",
+        "3",
+        "2",
+        "1",
+        "1Q"
+      ],
+      "periods": [
+        {
+          "programme_months_up_to": 12,
+          "work_rate": "0.80"
+        },
+        {
+          "programme_months_over": 12,
+          "work_rate": "0.70"
+        }
+      ],
+      "company_training_rate": "0.10",
+      "company_training_on": "work",
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "flai-ccnl-quadri-impiegati-agricoli-2024-2027",
+            "title": "CCNL per i Quadri e gli Impiegati Agricoli 18 giugno 2024 (1 gennaio 2024 - 31 dicembre 2027), testo firmato (copia FLAI-CGIL)",
+            "kind": "associazione",
+            "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-quadri-e-impiegati-agricoli-2024-2027.pdf",
+            "published_on": "2024-06-18",
+            "sha256": "94fba8a7cda3856266ed91ab8eec45264803a5396179772d67fbc995b7f7f076"
+          },
+          "page": "88",
+          "section": "Allegato F, punto 5",
+          "quote": "per i contratti di apprendistato di terzo livello (art. 45, d.lgs. n. 81/2015) la retribuzione è stabilita in percentuale rispetto al livello di inquadramento attribuito, secondo quanto stabilito nella seguente tabella: Percorsi di durata superiore all'anno Pari al 70 % della retribuzione di riferimento; Percorsi di durata non superiore all'anno Pari al 80 % della retribuzione di riferimento."
+        },
+        "transformation": "70% of the pay of the attributed level for a programme longer than 12 months, 80% for one of at most 12; training at the employer 10% of the work pay (the CCNL's own reading of the statute for the first level); school hours unpaid.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-08T00:10:00Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-08T00:10:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-08-gpt-impiegati-tecnici-agricoli-dual-apprenticeship"
+        }
+      }
+    }
+  ]
 }

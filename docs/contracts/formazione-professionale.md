@@ -55,12 +55,14 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-03-01 |
-| **Last review** | — |
+| **Last review** | 2026-11-08 |
 | **Latest salary tranche** | 2025-09-01 |
 
 ## Review history
 
-No review is recorded.
+| Date | Reviewer | Scope | Outcome | Findings |
+|---|---|---|---|---|
+| 2026-11-08 | gpt-6-sol (ai) | Allegato 13 of the CCNL 2024-2027 signed 1 March 2024 (CNEL 236584), pp. 177-181. Every row of the extraction re-checked by a separate model session on the saved PDFs (verdict CONFIRMED). | confirmed | Added dual_apprenticeship for the first- and third-level apprentices. |
 
 ## Salary table
 
@@ -288,6 +290,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     LEAVE (Art. 43, p. 30): 32 giorni lavorativi of ferie plus 4 giornate di ferie in place of the festività soppresse, 36 days counted on a 6-day week (on a 5-day week each day of ferie is 1.2 working days); twelfths, a month over 15 calendar days counting whole. The text sets no payment of the days not taken.
     
     DAILY DIVISOR (Art. 29 c. 5, p. 23): 'La quota giornaliera si determina convenzionalmente, dividendo la retribuzione mensile per 26'; the hourly quota is the monthly pay over 156 (c. 6, Art. 37: 36 hours a week, 156 a month).
+    
+    FIRST- AND THIRD-LEVEL APPRENTICES (Allegato 13): modelled in dual_apprenticeship (first level 50/55/60/70%, third level 70/80/90/100% of the tabellare by year; training at the employer 10% of the work pay, school hours unpaid).
     
 
 ## Raw data

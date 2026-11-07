@@ -726,6 +726,7 @@
       "cinema-audiovisivi-industria/fpls_rates_approximated"
     ],
     "agreement/commercio-confcommercio.json": [
+      "commercio-confcommercio/first_level_apprentice_contributions",
       "commercio-confcommercio/profile_specific_apprenticeship",
       "commercio-confcommercio/sickness_net_basis"
     ],
@@ -902,7 +903,8 @@
       "impianti-sportivi-sport/sickness_net_basis"
     ],
     "agreement/impiegati-tecnici-agricoli.json": [
-      "impiegati-tecnici-agricoli/eban_agrifondo_missing"
+      "impiegati-tecnici-agricoli/eban_agrifondo_missing",
+      "impiegati-tecnici-agricoli/first_level_apprentice_contributions"
     ],
     "agreement/industria-turistica-federturismo.json": [
       "industria-turistica-federturismo/apprenticeship_under_classification"
@@ -993,6 +995,7 @@
       "metalmeccanico-artigianato/apprentice_inps_rates_unsourced",
       "metalmeccanico-artigianato/artisan_impiegati_sickness",
       "metalmeccanico-artigianato/centralinisti_apprenticeship",
+      "metalmeccanico-artigianato/first_level_apprentice_contributions",
       "metalmeccanico-artigianato/inps_sector_rates_unsourced"
     ],
     "agreement/metalmeccanico-confapi.json": [
@@ -1168,6 +1171,7 @@
     ],
     "agreement/terziario-confesercenti.json": [
       "terziario-confesercenti/apprentice_sickness",
+      "terziario-confesercenti/first_level_apprentice_contributions",
       "terziario-confesercenti/provincial_third_elements",
       "terziario-confesercenti/sales_operators",
       "terziario-confesercenti/sickness_net_basis",
