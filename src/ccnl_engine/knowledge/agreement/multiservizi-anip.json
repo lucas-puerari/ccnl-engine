@@ -5654,7 +5654,7 @@
     "effective_until": null,
     "source": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/139292",
     "verification_status": "unverified",
-    "source_hash": "c898154fee39d59bff5e7b260e2cb5694c41f65921b94c6f664efe1df4238aab",
+    "source_hash": "cdb187887df90269c53da9dd07f2b32be5db7cc118ec9e02b47aac360d6c3f65",
     "published_at": "2026-09-07",
     "source_type": "official_primary"
   },
@@ -6096,6 +6096,68 @@
           "comporto_days": 360
         }
       ]
+    },
+    "insured_absence": {
+      "maternity": {
+        "integration_rate": "1",
+        "integration_days": 150,
+        "net_basis": false,
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "cnel-105782",
+              "title": "CCNL Pulizia e Multiservizi 31 maggio 2011 (testo)",
+              "kind": "cnel",
+              "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+              "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+            },
+            "page": "69",
+            "section": "Articolo 52 - CONGEDO DI MATERNITA' E CONGEDO PARENTALE",
+            "quote": "Per le lavoratrici con mansioni impiegatizie si applica, qualora più favorevole rispetto a quanto\nprevisto dalla legge, il seguente trattamento:\ncorresponsione della retribuzione intera per i primi 4 mesi di assenza e di quanto previsto dalla\nnormativa di legge di cui al precedente comma nel mese successivo, fatta deduzione di quanto le\nlavoratrici percepiscono a titolo di indennità a carico dell'ente di previdenza, per disposizioni di\nlegge."
+          },
+          "transformation": "Only the quoted contractual entitlement is encoded; qualifications and unmodelled distinctions are in notes. integration_days 150: the compulsory leave of art. 16 D.Lgs. 151/2001 (five months) the clause refers to; net_basis false: the clause measures the retribuzione without saying netta",
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-08T03:00:00Z",
+            "effective_from": null,
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-08T03:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-08-gpt-multiservizi-anip-insured-absence"
+          }
+        }
+      },
+      "injury": {
+        "carenza_rate": "1",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "cnel-139292",
+              "title": "Ipotesi di accordo 8 giugno 2021, ANIP e altri firmatari",
+              "kind": "cnel",
+              "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/139292",
+              "sha256": "4a87d6d51d2c4ccf7d28a9e2708cd45ee122fdebea7d8f8420cdb38e448f6167"
+            },
+            "page": "24",
+            "section": "Articolo 51 - TRATTAMENTO DI MALATTIA ED INFORTUNIO; TRATTAMENTO ECONOMICO PER MALATTIA E INFORTUNIO PER GLI OPERAI",
+            "quote": "Nei casi di infortuni sul lavoro indennizzabili dall’INAIL, all’operaio sarà corrisposto il 100%\ndella retribuzione globale a decorrere dal 2° giorno e fino a guarigione clinica."
+          },
+          "transformation": "Only the quoted contractual entitlement is encoded; qualifications and unmodelled distinctions are in notes.",
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-08T03:00:00Z",
+            "effective_from": null,
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-08T03:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-08-gpt-multiservizi-anip-insured-absence"
+          }
+        }
+      }
     }
   },
   "verification": {
@@ -6245,6 +6307,33 @@
         "checked": [
           "levels.base_salary",
           "levels.fixed_allowances"
+        ]
+      },
+      {
+        "id": "2026-11-08-gpt-multiservizi-anip-insured-absence",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "CCNL top-ups of maternity and work injury, read from the signed text by a separate model session; every quote found on the PDF text layer.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+            "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+          },
+          {
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/139292",
+            "sha256": "4a87d6d51d2c4ccf7d28a9e2708cd45ee122fdebea7d8f8420cdb38e448f6167"
+          }
+        ],
+        "findings": [
+          "Added work_rules.insured_absence.maternity.",
+          "Added work_rules.insured_absence.injury."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.insured_absence.maternity",
+          "work_rules.insured_absence.injury"
         ]
       }
     ]
