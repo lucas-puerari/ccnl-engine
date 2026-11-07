@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2017-07-03 |
-| **Last review** | 2026-11-02 |
+| **Last review** | 2026-11-07 |
 | **Latest salary tranche** | 2028-06-01 |
 
 ## Review history
@@ -66,6 +66,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-31 | claude-opus-5-5 (ai) | The basis of the indemnity for the leave not taken at the end of the employment, searched for a divisor of the daily pay in the CCNL of 3 July 2017 (Artt. 15, 29, 32, 33, 40) and in the OCR of the 2025-2028 renewal. | confirmed | Art. 33 pays a day of ferie at the 'retribuzione giornaliera globale di fatto' and no text read divides the monthly pay into it for the generality of workers. No termination basis is recorded. |
 | 2026-11-02 | claude-opus-5-5 (ai) | Art. 29 row h (PDF p. 101). | corrected | Art. 29 row h: notturno e festivo 60%, 55% for shift workers (role turnista). |
 | 2026-11-02 | claude-opus-5-5 (ai) | Art. 29 row b (PDF p. 101). | corrected | Art. 29 row b: ordinary night 25% until 22 (NightShiftEvent.before_22) and 35% after for the workers not on shifts, 25% for shift workers (role turnista). |
+| 2026-11-07 | claude-opus-5-5 (ai) | Art. 48 (PDF p. 122) and the renewals of 26 May 2021 and 4 June 2026 for amendments to it. | confirmed | Art. 48: 485 EUR a year with the June pay, to the workers in service on 1 January in firms without second-level bargaining with economic content, prorated by the months of the year before (a fraction above 15 days a month), reduced up to its amount by the pay above the CCNL, out of the TFR base, paid at the settlement on an earlier termination, of the competence of the year of payment.<br>The ipotesi of 26 May 2021 and the renewal of 4 June 2026 do not mention the element (OCR of their 23 and 41 pages). |
 
 ## Salary table
 
@@ -123,11 +124,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Model the quadri of the 8th and 9th categories with the indennità di funzione of Art. 98 and add it to the Fondapi base, then remove this note.
 
 !!! warning "metalmeccanico-confapi/elemento_perequativo · base_salary · impact yes · open"
-    Art. 48: the elemento perequativo of 485 EUR a year with the June pay in firms without second-level bargaining.
+    Art. 48 (p. 122): the elemento perequativo of 485 EUR a year with the June pay to the worker in service on 1 January of a firm without second-level bargaining with economic content (EmployerProfile.second_level_premium false), for the months of the year before over twelve; the engine pays it (parameters.equalisation_element). Left open: the pay above the CCNL the worker received in the year before (superminimi, premi annui, other pay subject to contributions) has no field in the request; the engine reads it from the individual elements of the run, each amount on 31 December of the year before at the part-time fraction, for each month served, on twelve monthly payments, so an element agreed since, the share of the extra months or a yearly premium of the year before is not seen. A run without the employment period pays none; a second-level element the employer states counts when in force in the year before.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Add an employer fact for the second-level bargaining and pay the element.
+    **Remediation:** State the pay above the CCNL of the year before as a fact of the run, or pass the element as a bonus and leave the employer flag true.
 
 !!! warning "metalmeccanico-confapi/quadri_allowance · base_salary · impact yes · open"
     Art. 98: the indennità di funzione of the quadri.

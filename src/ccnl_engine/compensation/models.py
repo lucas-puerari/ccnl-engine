@@ -8,6 +8,7 @@ from typing import Literal, Self
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from ccnl_engine.agreement.validity.rules import TimeSeries
+from ccnl_engine.compensation.equalisation.models import EqualisationElement
 from ccnl_engine.compensation.hourly.models import HourlyPay
 from ccnl_engine.compensation.renewal_minimum.models import RenewalAgreement
 from ccnl_engine.compensation.una_tantum.models import UnaTantum
@@ -290,6 +291,7 @@ class CCNLParameters(BaseModel):
     ``hourly_pay``: the worker categories paid by the hour worked and the
     percentages on those hours (the operai of the CCNL edilizia).
     ``una_tantum``: the one-off amounts of its renewals for their vacancy.
+    ``equalisation_element``: its elemento perequativo, paid once a year.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -311,15 +313,14 @@ class CCNLParameters(BaseModel):
     renewals: tuple[RenewalAgreement, ...] = ()
     health_funds: tuple[ContractualFund, ...] = ()
     una_tantum: tuple[UnaTantum, ...] = ()
+    equalisation_element: EqualisationElement | None = None
 
     @model_validator(mode="after")
     def _check_positive_params(self) -> Self:
-        """Reject non-positive hourly_divisor or additional_months values.
-
-        Both divide the pay: a zero or negative value is a data-entry error.
+        """Reject a non-positive hourly_divisor or additional_months: both divide.
 
         Returns:
-            The validated instance (required by Pydantic model_validator).
+            The validated instance.
 
         Raises:
             ValueError: If any non-gap period in either series has value <= 0.
