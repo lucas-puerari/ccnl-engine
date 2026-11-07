@@ -613,7 +613,32 @@
               {
                 "valid_from": "2025-03-01",
                 "valid_until": null,
-                "value": "22.86"
+                "value": "22.86",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "autoferrotranvieri-internavigatori-tables-eb9da875",
+                      "title": "autoferrotranvieri-internavigatori: tabelle retributive (table25.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.agens.it/wp-content/uploads/2025/03/Inf.-003_25-All.-4.pdf",
+                      "sha256": "eb9da8754a054188c81000196da7c1e1d513fc35f5817cd9bc9751032577078a"
+                    },
+                    "page": "1",
+                    "section": "Tabella n. 1 col. F; S3 PDF p.5 §2 for commencement",
+                    "quote": "100       684,43               34,29              718,72               57,14              775,86               22,86               524,20               285,71               40              20"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2025-03-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-autoferrotranvieri-internavigatori-tables"
+                  }
+                }
               }
             ]
           },
@@ -748,7 +773,32 @@
               {
                 "valid_from": "2025-03-01",
                 "valid_until": null,
-                "value": "25.14"
+                "value": "25.14",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "autoferrotranvieri-internavigatori-tables-eb9da875",
+                      "title": "autoferrotranvieri-internavigatori: tabelle retributive (table25.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.agens.it/wp-content/uploads/2025/03/Inf.-003_25-All.-4.pdf",
+                      "sha256": "eb9da8754a054188c81000196da7c1e1d513fc35f5817cd9bc9751032577078a"
+                    },
+                    "page": "1",
+                    "section": "Tabella n. 1 col. F; S3 PDF p.5 §2 for commencement",
+                    "quote": "110       752,89               37,71              790,60               62,86              853,46               25,14               527,56               314,29               40              20"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2025-03-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-autoferrotranvieri-internavigatori-tables"
+                  }
+                }
               }
             ]
           },
@@ -883,7 +933,32 @@
               {
                 "valid_from": "2025-03-01",
                 "valid_until": null,
-                "value": "26.51"
+                "value": "26.51",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "autoferrotranvieri-internavigatori-tables-eb9da875",
+                      "title": "autoferrotranvieri-internavigatori: tabelle retributive (table25.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.agens.it/wp-content/uploads/2025/03/Inf.-003_25-All.-4.pdf",
+                      "sha256": "eb9da8754a054188c81000196da7c1e1d513fc35f5817cd9bc9751032577078a"
+                    },
+                    "page": "1",
+                    "section": "Tabella n. 1 col. F; S3 PDF p.5 §2 for commencement",
+                    "quote": "116       793,97               39,77              833,74               66,29              900,03               26,51               527,56               331,43               40              20"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2025-03-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-autoferrotranvieri-internavigatori-tables"
+                  }
+                }
               }
             ]
           },
@@ -1018,7 +1093,32 @@
               {
                 "valid_from": "2025-03-01",
                 "valid_until": null,
-                "value": "27.66"
+                "value": "27.66",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "autoferrotranvieri-internavigatori-tables-eb9da875",
+                      "title": "autoferrotranvieri-internavigatori: tabelle retributive (table25.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.agens.it/wp-content/uploads/2025/03/Inf.-003_25-All.-4.pdf",
+                      "sha256": "eb9da8754a054188c81000196da7c1e1d513fc35f5817cd9bc9751032577078a"
+                    },
+                    "page": "1",
+                    "section": "Tabella n. 1 col. F; S3 PDF p.5 §2 for commencement",
+                    "quote": "121       828,17               41,49              869,66               69,14              938,80               27,66               527,56               345,71               40              20"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2025-03-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-autoferrotranvieri-internavigatori-tables"
+                  }
+                }
               }
             ]
           },
@@ -1153,7 +1253,32 @@
               {
                 "valid_from": "2025-03-01",
                 "valid_until": null,
-                "value": "28.11"
+                "value": "28.11",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "autoferrotranvieri-internavigatori-tables-eb9da875",
+                      "title": "autoferrotranvieri-internavigatori: tabelle retributive (table25.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.agens.it/wp-content/uploads/2025/03/Inf.-003_25-All.-4.pdf",
+                      "sha256": "eb9da8754a054188c81000196da7c1e1d513fc35f5817cd9bc9751032577078a"
+                    },
+                    "page": "1",
+                    "section": "Tabella n. 1 col. F; S3 PDF p.5 §2 for commencement",
+                    "quote": "123       841,88               42,17              884,05               70,29              954,34               28,11               530,19               351,43               40              20"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2025-03-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-autoferrotranvieri-internavigatori-tables"
+                  }
+                }
               }
             ]
           },
@@ -1288,7 +1413,32 @@
               {
                 "valid_from": "2025-03-01",
                 "valid_until": null,
-                "value": "29.49"
+                "value": "29.49",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "autoferrotranvieri-internavigatori-tables-eb9da875",
+                      "title": "autoferrotranvieri-internavigatori: tabelle retributive (table25.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.agens.it/wp-content/uploads/2025/03/Inf.-003_25-All.-4.pdf",
+                      "sha256": "eb9da8754a054188c81000196da7c1e1d513fc35f5817cd9bc9751032577078a"
+                    },
+                    "page": "1",
+                    "section": "Tabella n. 1 col. F; S3 PDF p.5 §2 for commencement",
+                    "quote": "129       882,92               44,23              927,15               73,71             1.000,86              29,49               530,19               368,57               40              20"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2025-03-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-autoferrotranvieri-internavigatori-tables"
+                  }
+                }
               }
             ]
           },
@@ -1423,7 +1573,32 @@
               {
                 "valid_from": "2025-03-01",
                 "valid_until": null,
-                "value": "29.71"
+                "value": "29.71",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "autoferrotranvieri-internavigatori-tables-eb9da875",
+                      "title": "autoferrotranvieri-internavigatori: tabelle retributive (table25.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.agens.it/wp-content/uploads/2025/03/Inf.-003_25-All.-4.pdf",
+                      "sha256": "eb9da8754a054188c81000196da7c1e1d513fc35f5817cd9bc9751032577078a"
+                    },
+                    "page": "1",
+                    "section": "Tabella n. 1 col. F; S3 PDF p.5 §2 for commencement",
+                    "quote": "130       889,79               44,57              934,36               74,29             1.008,65              29,71               530,19               371,43               40              20"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2025-03-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-autoferrotranvieri-internavigatori-tables"
+                  }
+                }
               }
             ]
           },
@@ -1558,7 +1733,32 @@
               {
                 "valid_from": "2025-03-01",
                 "valid_until": null,
-                "value": "30.86"
+                "value": "30.86",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "autoferrotranvieri-internavigatori-tables-eb9da875",
+                      "title": "autoferrotranvieri-internavigatori: tabelle retributive (table25.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.agens.it/wp-content/uploads/2025/03/Inf.-003_25-All.-4.pdf",
+                      "sha256": "eb9da8754a054188c81000196da7c1e1d513fc35f5817cd9bc9751032577078a"
+                    },
+                    "page": "1",
+                    "section": "Tabella n. 1 col. F; S3 PDF p.5 §2 for commencement",
+                    "quote": "135       923,99               46,29              970,28               77,14             1.047,42              30,86               530,19               385,71               40              20"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2025-03-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-autoferrotranvieri-internavigatori-tables"
+                  }
+                }
               }
             ]
           },
@@ -1693,7 +1893,32 @@
               {
                 "valid_from": "2025-03-01",
                 "valid_until": null,
-                "value": "31.54"
+                "value": "31.54",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "autoferrotranvieri-internavigatori-tables-eb9da875",
+                      "title": "autoferrotranvieri-internavigatori: tabelle retributive (table25.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.agens.it/wp-content/uploads/2025/03/Inf.-003_25-All.-4.pdf",
+                      "sha256": "eb9da8754a054188c81000196da7c1e1d513fc35f5817cd9bc9751032577078a"
+                    },
+                    "page": "1",
+                    "section": "Tabella n. 1 col. F; S3 PDF p.5 §2 for commencement",
+                    "quote": "138       944,54               47,31              991,85               78,86             1.070,71              31,54               533,58               394,29               40              20"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2025-03-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-autoferrotranvieri-internavigatori-tables"
+                  }
+                }
               }
             ]
           },
@@ -1828,7 +2053,32 @@
               {
                 "valid_from": "2025-03-01",
                 "valid_until": null,
-                "value": "31.77"
+                "value": "31.77",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "autoferrotranvieri-internavigatori-tables-eb9da875",
+                      "title": "autoferrotranvieri-internavigatori: tabelle retributive (table25.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.agens.it/wp-content/uploads/2025/03/Inf.-003_25-All.-4.pdf",
+                      "sha256": "eb9da8754a054188c81000196da7c1e1d513fc35f5817cd9bc9751032577078a"
+                    },
+                    "page": "1",
+                    "section": "Tabella n. 1 col. F; S3 PDF p.5 §2 for commencement",
+                    "quote": "139       951,38               47,66              999,04               79,43             1.078,47              31,77               533,58               397,14               40              20"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2025-03-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-autoferrotranvieri-internavigatori-tables"
+                  }
+                }
               }
             ]
           },
@@ -1963,7 +2213,32 @@
               {
                 "valid_from": "2025-03-01",
                 "valid_until": null,
-                "value": "32.00"
+                "value": "32.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "autoferrotranvieri-internavigatori-tables-eb9da875",
+                      "title": "autoferrotranvieri-internavigatori: tabelle retributive (table25.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.agens.it/wp-content/uploads/2025/03/Inf.-003_25-All.-4.pdf",
+                      "sha256": "eb9da8754a054188c81000196da7c1e1d513fc35f5817cd9bc9751032577078a"
+                    },
+                    "page": "1",
+                    "section": "Tabella n. 1 col. F; S3 PDF p.5 §2 for commencement",
+                    "quote": "140       958,22               48,00             1.006,22              80,00             1.086,22              32,00               533,58               400,00               40              20"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2025-03-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-autoferrotranvieri-internavigatori-tables"
+                  }
+                }
               }
             ]
           },
@@ -2098,7 +2373,32 @@
               {
                 "valid_from": "2025-03-01",
                 "valid_until": null,
-                "value": "32.69"
+                "value": "32.69",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "autoferrotranvieri-internavigatori-tables-eb9da875",
+                      "title": "autoferrotranvieri-internavigatori: tabelle retributive (table25.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.agens.it/wp-content/uploads/2025/03/Inf.-003_25-All.-4.pdf",
+                      "sha256": "eb9da8754a054188c81000196da7c1e1d513fc35f5817cd9bc9751032577078a"
+                    },
+                    "page": "1",
+                    "section": "Tabella n. 1 col. F; S3 PDF p.5 §2 for commencement",
+                    "quote": "143       978,74               49,03             1.027,77              81,71             1.109,48              32,69               533,58               408,57               40              20"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2025-03-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-autoferrotranvieri-internavigatori-tables"
+                  }
+                }
               }
             ]
           },
@@ -2233,7 +2533,32 @@
               {
                 "valid_from": "2025-03-01",
                 "valid_until": null,
-                "value": "33.14"
+                "value": "33.14",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "autoferrotranvieri-internavigatori-tables-eb9da875",
+                      "title": "autoferrotranvieri-internavigatori: tabelle retributive (table25.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.agens.it/wp-content/uploads/2025/03/Inf.-003_25-All.-4.pdf",
+                      "sha256": "eb9da8754a054188c81000196da7c1e1d513fc35f5817cd9bc9751032577078a"
+                    },
+                    "page": "1",
+                    "section": "Tabella n. 1 col. F; S3 PDF p.5 §2 for commencement",
+                    "quote": "145       992,45               49,71             1.042,16              82,86             1.125,02              33,14               533,58               414,29               40              20"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2025-03-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-autoferrotranvieri-internavigatori-tables"
+                  }
+                }
               }
             ]
           },
@@ -2368,7 +2693,32 @@
               {
                 "valid_from": "2025-03-01",
                 "valid_until": null,
-                "value": "34.51"
+                "value": "34.51",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "autoferrotranvieri-internavigatori-tables-eb9da875",
+                      "title": "autoferrotranvieri-internavigatori: tabelle retributive (table25.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.agens.it/wp-content/uploads/2025/03/Inf.-003_25-All.-4.pdf",
+                      "sha256": "eb9da8754a054188c81000196da7c1e1d513fc35f5817cd9bc9751032577078a"
+                    },
+                    "page": "1",
+                    "section": "Tabella n. 1 col. F; S3 PDF p.5 §2 for commencement",
+                    "quote": "151      1.033,52              51,77             1.085,29              86,29             1.171,58              34,51               533,58               431,43               40              20"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2025-03-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-autoferrotranvieri-internavigatori-tables"
+                  }
+                }
               }
             ]
           },
@@ -2503,7 +2853,32 @@
               {
                 "valid_from": "2025-03-01",
                 "valid_until": null,
-                "value": "34.97"
+                "value": "34.97",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "autoferrotranvieri-internavigatori-tables-eb9da875",
+                      "title": "autoferrotranvieri-internavigatori: tabelle retributive (table25.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.agens.it/wp-content/uploads/2025/03/Inf.-003_25-All.-4.pdf",
+                      "sha256": "eb9da8754a054188c81000196da7c1e1d513fc35f5817cd9bc9751032577078a"
+                    },
+                    "page": "1",
+                    "section": "Tabella n. 1 col. F; S3 PDF p.5 §2 for commencement",
+                    "quote": "153      1.047,20              52,46             1.099,66              87,43             1.187,09              34,97               533,58               437,14               40              20"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2025-03-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-autoferrotranvieri-internavigatori-tables"
+                  }
+                }
               }
             ]
           },
@@ -2638,7 +3013,32 @@
               {
                 "valid_from": "2025-03-01",
                 "valid_until": null,
-                "value": "35.20"
+                "value": "35.20",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "autoferrotranvieri-internavigatori-tables-eb9da875",
+                      "title": "autoferrotranvieri-internavigatori: tabelle retributive (table25.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.agens.it/wp-content/uploads/2025/03/Inf.-003_25-All.-4.pdf",
+                      "sha256": "eb9da8754a054188c81000196da7c1e1d513fc35f5817cd9bc9751032577078a"
+                    },
+                    "page": "1",
+                    "section": "Tabella n. 1 col. F; S3 PDF p.5 §2 for commencement",
+                    "quote": "154      1.054,04              52,80             1.106,84              88,00             1.194,84              35,20               533,58               440,00               40              20"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2025-03-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-autoferrotranvieri-internavigatori-tables"
+                  }
+                }
               }
             ]
           },
@@ -2773,7 +3173,32 @@
               {
                 "valid_from": "2025-03-01",
                 "valid_until": null,
-                "value": "35.43"
+                "value": "35.43",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "autoferrotranvieri-internavigatori-tables-eb9da875",
+                      "title": "autoferrotranvieri-internavigatori: tabelle retributive (table25.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.agens.it/wp-content/uploads/2025/03/Inf.-003_25-All.-4.pdf",
+                      "sha256": "eb9da8754a054188c81000196da7c1e1d513fc35f5817cd9bc9751032577078a"
+                    },
+                    "page": "1",
+                    "section": "Tabella n. 1 col. F; S3 PDF p.5 §2 for commencement",
+                    "quote": "155      1.060,88              53,14             1.114,02              88,57             1.202,59              35,43               533,58               442,86               40              20"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2025-03-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-autoferrotranvieri-internavigatori-tables"
+                  }
+                }
               }
             ]
           },
@@ -2908,7 +3333,32 @@
               {
                 "valid_from": "2025-03-01",
                 "valid_until": null,
-                "value": "36.11"
+                "value": "36.11",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "autoferrotranvieri-internavigatori-tables-eb9da875",
+                      "title": "autoferrotranvieri-internavigatori: tabelle retributive (table25.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.agens.it/wp-content/uploads/2025/03/Inf.-003_25-All.-4.pdf",
+                      "sha256": "eb9da8754a054188c81000196da7c1e1d513fc35f5817cd9bc9751032577078a"
+                    },
+                    "page": "1",
+                    "section": "Tabella n. 1 col. F; S3 PDF p.5 §2 for commencement",
+                    "quote": "158      1.081,43              54,17             1.135,60              90,29             1.225,89              36,11               536,60               451,43               40              20"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2025-03-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-autoferrotranvieri-internavigatori-tables"
+                  }
+                }
               }
             ]
           },
@@ -3043,7 +3493,32 @@
               {
                 "valid_from": "2025-03-01",
                 "valid_until": null,
-                "value": "36.57"
+                "value": "36.57",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "autoferrotranvieri-internavigatori-tables-eb9da875",
+                      "title": "autoferrotranvieri-internavigatori: tabelle retributive (table25.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.agens.it/wp-content/uploads/2025/03/Inf.-003_25-All.-4.pdf",
+                      "sha256": "eb9da8754a054188c81000196da7c1e1d513fc35f5817cd9bc9751032577078a"
+                    },
+                    "page": "1",
+                    "section": "Tabella n. 1 col. F; S3 PDF p.5 §2 for commencement",
+                    "quote": "160      1.095,11              54,86             1.149,97              91,43             1.241,40              36,57               536,60               457,14               40              20"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2025-03-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-autoferrotranvieri-internavigatori-tables"
+                  }
+                }
               }
             ]
           },
@@ -3178,7 +3653,32 @@
               {
                 "valid_from": "2025-03-01",
                 "valid_until": null,
-                "value": "37.71"
+                "value": "37.71",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "autoferrotranvieri-internavigatori-tables-eb9da875",
+                      "title": "autoferrotranvieri-internavigatori: tabelle retributive (table25.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.agens.it/wp-content/uploads/2025/03/Inf.-003_25-All.-4.pdf",
+                      "sha256": "eb9da8754a054188c81000196da7c1e1d513fc35f5817cd9bc9751032577078a"
+                    },
+                    "page": "1",
+                    "section": "Tabella n. 1 col. F; S3 PDF p.5 §2 for commencement",
+                    "quote": "165      1.129,34              56,57             1.185,91              94,29             1.280,20              37,71               536,60               471,43               40              20"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2025-03-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-autoferrotranvieri-internavigatori-tables"
+                  }
+                }
               }
             ]
           },
@@ -3313,7 +3813,32 @@
               {
                 "valid_from": "2025-03-01",
                 "valid_until": null,
-                "value": "38.86"
+                "value": "38.86",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "autoferrotranvieri-internavigatori-tables-eb9da875",
+                      "title": "autoferrotranvieri-internavigatori: tabelle retributive (table25.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.agens.it/wp-content/uploads/2025/03/Inf.-003_25-All.-4.pdf",
+                      "sha256": "eb9da8754a054188c81000196da7c1e1d513fc35f5817cd9bc9751032577078a"
+                    },
+                    "page": "1",
+                    "section": "Tabella n. 1 col. F; S3 PDF p.5 §2 for commencement",
+                    "quote": "170      1.163,54              58,29             1.221,83              97,14             1.318,97              38,86               539,62               485,71               40              20"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2025-03-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-autoferrotranvieri-internavigatori-tables"
+                  }
+                }
               }
             ]
           },
@@ -3448,7 +3973,32 @@
               {
                 "valid_from": "2025-03-01",
                 "valid_until": null,
-                "value": "40.00"
+                "value": "40.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "autoferrotranvieri-internavigatori-tables-eb9da875",
+                      "title": "autoferrotranvieri-internavigatori: tabelle retributive (table25.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.agens.it/wp-content/uploads/2025/03/Inf.-003_25-All.-4.pdf",
+                      "sha256": "eb9da8754a054188c81000196da7c1e1d513fc35f5817cd9bc9751032577078a"
+                    },
+                    "page": "1",
+                    "section": "Tabella n. 1 col. F; S3 PDF p.5 §2 for commencement",
+                    "quote": "175      1.197,77              60,00             1.257,77             100,00             1.357,77              40,00               539,62               500,00               40              20"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2025-03-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-autoferrotranvieri-internavigatori-tables"
+                  }
+                }
               }
             ]
           },
@@ -3583,7 +4133,32 @@
               {
                 "valid_from": "2025-03-01",
                 "valid_until": null,
-                "value": "40.69"
+                "value": "40.69",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "autoferrotranvieri-internavigatori-tables-eb9da875",
+                      "title": "autoferrotranvieri-internavigatori: tabelle retributive (table25.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.agens.it/wp-content/uploads/2025/03/Inf.-003_25-All.-4.pdf",
+                      "sha256": "eb9da8754a054188c81000196da7c1e1d513fc35f5817cd9bc9751032577078a"
+                    },
+                    "page": "1",
+                    "section": "Tabella n. 1 col. F; S3 PDF p.5 §2 for commencement",
+                    "quote": "178      1.218,29              61,03             1.279,32             101,71             1.381,03              40,69               539,62               508,57               40              20"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2025-03-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-autoferrotranvieri-internavigatori-tables"
+                  }
+                }
               }
             ]
           },
@@ -3718,7 +4293,32 @@
               {
                 "valid_from": "2025-03-01",
                 "valid_until": null,
-                "value": "41.14"
+                "value": "41.14",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "autoferrotranvieri-internavigatori-tables-eb9da875",
+                      "title": "autoferrotranvieri-internavigatori: tabelle retributive (table25.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.agens.it/wp-content/uploads/2025/03/Inf.-003_25-All.-4.pdf",
+                      "sha256": "eb9da8754a054188c81000196da7c1e1d513fc35f5817cd9bc9751032577078a"
+                    },
+                    "page": "1",
+                    "section": "Tabella n. 1 col. F; S3 PDF p.5 §2 for commencement",
+                    "quote": "180      1.232,00              61,71             1.293,71             102,86             1.396,57              41,14               539,62               514,29               40              20"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2025-03-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-autoferrotranvieri-internavigatori-tables"
+                  }
+                }
               }
             ]
           },
@@ -3853,7 +4453,32 @@
               {
                 "valid_from": "2025-03-01",
                 "valid_until": null,
-                "value": "41.83"
+                "value": "41.83",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "autoferrotranvieri-internavigatori-tables-eb9da875",
+                      "title": "autoferrotranvieri-internavigatori: tabelle retributive (table25.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.agens.it/wp-content/uploads/2025/03/Inf.-003_25-All.-4.pdf",
+                      "sha256": "eb9da8754a054188c81000196da7c1e1d513fc35f5817cd9bc9751032577078a"
+                    },
+                    "page": "1",
+                    "section": "Tabella n. 1 col. F; S3 PDF p.5 §2 for commencement",
+                    "quote": "183      1.252,52              62,74             1.315,26             104,57             1.419,83              41,83               540,51               522,86               40              20"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2025-03-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-autoferrotranvieri-internavigatori-tables"
+                  }
+                }
               }
             ]
           },
@@ -3988,7 +4613,32 @@
               {
                 "valid_from": "2025-03-01",
                 "valid_until": null,
-                "value": "42.97"
+                "value": "42.97",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "autoferrotranvieri-internavigatori-tables-eb9da875",
+                      "title": "autoferrotranvieri-internavigatori: tabelle retributive (table25.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.agens.it/wp-content/uploads/2025/03/Inf.-003_25-All.-4.pdf",
+                      "sha256": "eb9da8754a054188c81000196da7c1e1d513fc35f5817cd9bc9751032577078a"
+                    },
+                    "page": "1",
+                    "section": "Tabella n. 1 col. F; S3 PDF p.5 §2 for commencement",
+                    "quote": "188      1.286,76              64,46             1.351,22             107,43             1.458,65              42,97               540,51               537,14               40              20"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2025-03-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-autoferrotranvieri-internavigatori-tables"
+                  }
+                }
               }
             ]
           },
@@ -4123,7 +4773,32 @@
               {
                 "valid_from": "2025-03-01",
                 "valid_until": null,
-                "value": "43.43"
+                "value": "43.43",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "autoferrotranvieri-internavigatori-tables-eb9da875",
+                      "title": "autoferrotranvieri-internavigatori: tabelle retributive (table25.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.agens.it/wp-content/uploads/2025/03/Inf.-003_25-All.-4.pdf",
+                      "sha256": "eb9da8754a054188c81000196da7c1e1d513fc35f5817cd9bc9751032577078a"
+                    },
+                    "page": "1",
+                    "section": "Tabella n. 1 col. F; S3 PDF p.5 §2 for commencement",
+                    "quote": "190      1.300,44              65,14             1.365,58             108,57             1.474,15              43,43               542,39               542,86               40              20"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2025-03-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-autoferrotranvieri-internavigatori-tables"
+                  }
+                }
               }
             ]
           },
@@ -4258,7 +4933,32 @@
               {
                 "valid_from": "2025-03-01",
                 "valid_until": null,
-                "value": "44.11"
+                "value": "44.11",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "autoferrotranvieri-internavigatori-tables-eb9da875",
+                      "title": "autoferrotranvieri-internavigatori: tabelle retributive (table25.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.agens.it/wp-content/uploads/2025/03/Inf.-003_25-All.-4.pdf",
+                      "sha256": "eb9da8754a054188c81000196da7c1e1d513fc35f5817cd9bc9751032577078a"
+                    },
+                    "page": "1",
+                    "section": "Tabella n. 1 col. F; S3 PDF p.5 §2 for commencement",
+                    "quote": "193      1.320,99              66,17             1.387,16             110,29             1.497,45              44,11               542,39               551,43               40              20"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2025-03-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-autoferrotranvieri-internavigatori-tables"
+                  }
+                }
               }
             ]
           },
@@ -4393,7 +5093,32 @@
               {
                 "valid_from": "2025-03-01",
                 "valid_until": null,
-                "value": "46.17"
+                "value": "46.17",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "autoferrotranvieri-internavigatori-tables-eb9da875",
+                      "title": "autoferrotranvieri-internavigatori: tabelle retributive (table25.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.agens.it/wp-content/uploads/2025/03/Inf.-003_25-All.-4.pdf",
+                      "sha256": "eb9da8754a054188c81000196da7c1e1d513fc35f5817cd9bc9751032577078a"
+                    },
+                    "page": "1",
+                    "section": "Tabella n. 1 col. F; S3 PDF p.5 §2 for commencement",
+                    "quote": "202      1.382,58              69,26             1.451,84             115,43             1.567,27              46,17               546,39               577,14               40              20"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2025-03-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-autoferrotranvieri-internavigatori-tables"
+                  }
+                }
               }
             ]
           },
@@ -4528,7 +5253,32 @@
               {
                 "valid_from": "2025-03-01",
                 "valid_until": null,
-                "value": "46.86"
+                "value": "46.86",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "autoferrotranvieri-internavigatori-tables-eb9da875",
+                      "title": "autoferrotranvieri-internavigatori: tabelle retributive (table25.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.agens.it/wp-content/uploads/2025/03/Inf.-003_25-All.-4.pdf",
+                      "sha256": "eb9da8754a054188c81000196da7c1e1d513fc35f5817cd9bc9751032577078a"
+                    },
+                    "page": "1",
+                    "section": "Tabella n. 1 col. F; S3 PDF p.5 §2 for commencement",
+                    "quote": "205      1.403,10              70,29             1.473,39             117,14             1.590,53              46,86               546,39               585,71               40              20"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2025-03-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-autoferrotranvieri-internavigatori-tables"
+                  }
+                }
               }
             ]
           },
@@ -4663,7 +5413,32 @@
               {
                 "valid_from": "2025-03-01",
                 "valid_until": null,
-                "value": "48.00"
+                "value": "48.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "autoferrotranvieri-internavigatori-tables-eb9da875",
+                      "title": "autoferrotranvieri-internavigatori: tabelle retributive (table25.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.agens.it/wp-content/uploads/2025/03/Inf.-003_25-All.-4.pdf",
+                      "sha256": "eb9da8754a054188c81000196da7c1e1d513fc35f5817cd9bc9751032577078a"
+                    },
+                    "page": "1",
+                    "section": "Tabella n. 1 col. F; S3 PDF p.5 §2 for commencement",
+                    "quote": "210      1.437,33              72,00             1.509,33             120,00             1.629,33              48,00               546,39               600,00               40              20"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2025-03-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-autoferrotranvieri-internavigatori-tables"
+                  }
+                }
               }
             ]
           },
@@ -4798,7 +5573,32 @@
               {
                 "valid_from": "2025-03-01",
                 "valid_until": null,
-                "value": "52.57"
+                "value": "52.57",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "autoferrotranvieri-internavigatori-tables-eb9da875",
+                      "title": "autoferrotranvieri-internavigatori: tabelle retributive (table25.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.agens.it/wp-content/uploads/2025/03/Inf.-003_25-All.-4.pdf",
+                      "sha256": "eb9da8754a054188c81000196da7c1e1d513fc35f5817cd9bc9751032577078a"
+                    },
+                    "page": "1",
+                    "section": "Tabella n. 1 col. F; S3 PDF p.5 §2 for commencement",
+                    "quote": "230      1.574,22              78,86            1.653,080             131,43             1.784,51              52,57               550,41               657,14               40              20"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2025-03-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-autoferrotranvieri-internavigatori-tables"
+                  }
+                }
               }
             ]
           },
@@ -4933,7 +5733,32 @@
               {
                 "valid_from": "2025-03-01",
                 "valid_until": null,
-                "value": "57.14"
+                "value": "57.14",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "autoferrotranvieri-internavigatori-tables-eb9da875",
+                      "title": "autoferrotranvieri-internavigatori: tabelle retributive (table25.pdf)",
+                      "kind": "associazione",
+                      "url": "https://www.agens.it/wp-content/uploads/2025/03/Inf.-003_25-All.-4.pdf",
+                      "sha256": "eb9da8754a054188c81000196da7c1e1d513fc35f5817cd9bc9751032577078a"
+                    },
+                    "page": "1",
+                    "section": "Tabella n. 1 col. F; S3 PDF p.5 §2 for commencement",
+                    "quote": "250      1.711,11              85,71             1.796,82             142,86             1.939,68              57,14               554,80               714,29               40              20"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T05:00:00Z",
+                    "effective_from": "2025-03-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T05:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-autoferrotranvieri-internavigatori-tables"
+                  }
+                }
               }
             ]
           },
@@ -5033,7 +5858,7 @@
     "effective_until": null,
     "source": "https://www.uiltrasporti.it/wp-content/uploads/2025/03/TABELLA-AUTOFERRO.pdf",
     "verification_status": "unverified",
-    "source_hash": "2b40f0431a30e9632636c8eef6aaee23f1b3ab1ae4552093cdbf0667299a1438",
+    "source_hash": "dc5699d5c4d6da05a3d8b205d46e7fb88f3c747bdf9b5f7f0efd636ee2f85e6a",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -5271,6 +6096,28 @@
         ],
         "independence": "same_process",
         "checked": [
+          "levels.fixed_allowances"
+        ]
+      },
+      {
+        "id": "2026-11-08-ai-autoferrotranvieri-internavigatori-tables",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The monthly values of the levels against the primary tables (text layer).",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.agens.it/wp-content/uploads/2025/03/Inf.-003_25-All.-4.pdf",
+            "sha256": "eb9da8754a054188c81000196da7c1e1d513fc35f5817cd9bc9751032577078a"
+          }
+        ],
+        "findings": [
+          "33 values found verbatim on the cited pages and marked verified; 75 left as they were (derived or not on a text page)."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels.base_salary",
           "levels.fixed_allowances"
         ]
       }

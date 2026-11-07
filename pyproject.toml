@@ -36,7 +36,7 @@ Releases = "https://github.com/lucas-puerari/ccnl-engine/releases"
 [dependency-groups]
 docs = [
     "mkdocstrings[python]>=1.0.8",
-    "zensical>=0.0.73",
+    "zensical>=0.0.74",
 ]
 dev = [
     "bandit>=1.9.4",
@@ -44,9 +44,9 @@ dev = [
     "hatchling>=1.33.0",
     "hypothesis>=6.170.14",
     "mutmut>=3.8.1",
-    "mypy>=2.3.1",
+    "mypy>=2.4.1",
     "pip-audit>=2.10.1",
-    "pytest>=9.1.1",
+    "pytest>=9.2.0",
     "pytest-cov>=7.1.0",
     "pytest-xdist>=3.8.0",
     "ruff>=0.17.3",

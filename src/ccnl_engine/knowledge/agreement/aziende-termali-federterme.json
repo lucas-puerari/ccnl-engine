@@ -443,7 +443,32 @@
               {
                 "valid_from": "2024-10-01",
                 "valid_until": null,
-                "value": "510.89"
+                "value": "510.89",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aziende-termali-federterme-src-5032131e",
+                      "title": "aziende-termali-federterme: AziendeTermali_CCNL_2024_2027_08102024.pdf",
+                      "kind": "associazione",
+                      "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/AziendeTermali_CCNL_2024_2027_08102024.pdf",
+                      "sha256": "5032131e3e3742dabdea2ad11a074fb602c965cb9e0b34c77d73d04e9623c0a5"
+                    },
+                    "page": "69",
+                    "section": "Art. 83.I — Indennità di contingenza",
+                    "quote": "6° | 510,89"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "effective_from": "2024-10-01",
+                    "verified_by": "gpt-6-sol",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-gpt-aziende-termali-federterme-double-read"
+                  }
+                }
               }
             ]
           },
@@ -675,7 +700,32 @@
               {
                 "valid_from": "2024-10-01",
                 "valid_until": null,
-                "value": "513.32"
+                "value": "513.32",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aziende-termali-federterme-src-5032131e",
+                      "title": "aziende-termali-federterme: AziendeTermali_CCNL_2024_2027_08102024.pdf",
+                      "kind": "associazione",
+                      "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/AziendeTermali_CCNL_2024_2027_08102024.pdf",
+                      "sha256": "5032131e3e3742dabdea2ad11a074fb602c965cb9e0b34c77d73d04e9623c0a5"
+                    },
+                    "page": "69",
+                    "section": "Art. 83.I — Indennità di contingenza",
+                    "quote": "5° | 513,32"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "effective_from": "2024-10-01",
+                    "verified_by": "gpt-6-sol",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-gpt-aziende-termali-federterme-double-read"
+                  }
+                }
               }
             ]
           },
@@ -907,7 +957,32 @@
               {
                 "valid_from": "2024-10-01",
                 "valid_until": null,
-                "value": "514.86"
+                "value": "514.86",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aziende-termali-federterme-src-5032131e",
+                      "title": "aziende-termali-federterme: AziendeTermali_CCNL_2024_2027_08102024.pdf",
+                      "kind": "associazione",
+                      "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/AziendeTermali_CCNL_2024_2027_08102024.pdf",
+                      "sha256": "5032131e3e3742dabdea2ad11a074fb602c965cb9e0b34c77d73d04e9623c0a5"
+                    },
+                    "page": "69",
+                    "section": "Art. 83.I — Indennità di contingenza",
+                    "quote": "4° | 514,86"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "effective_from": "2024-10-01",
+                    "verified_by": "gpt-6-sol",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-gpt-aziende-termali-federterme-double-read"
+                  }
+                }
               }
             ]
           },
@@ -1139,7 +1214,32 @@
               {
                 "valid_from": "2024-10-01",
                 "valid_until": null,
-                "value": "515.01"
+                "value": "515.01",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aziende-termali-federterme-src-5032131e",
+                      "title": "aziende-termali-federterme: AziendeTermali_CCNL_2024_2027_08102024.pdf",
+                      "kind": "associazione",
+                      "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/AziendeTermali_CCNL_2024_2027_08102024.pdf",
+                      "sha256": "5032131e3e3742dabdea2ad11a074fb602c965cb9e0b34c77d73d04e9623c0a5"
+                    },
+                    "page": "69",
+                    "section": "Art. 83.I — Indennità di contingenza",
+                    "quote": "4°S | 515,01"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "effective_from": "2024-10-01",
+                    "verified_by": "gpt-6-sol",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-gpt-aziende-termali-federterme-double-read"
+                  }
+                }
               }
             ]
           },
@@ -1371,7 +1471,32 @@
               {
                 "valid_from": "2024-10-01",
                 "valid_until": null,
-                "value": "516.42"
+                "value": "516.42",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aziende-termali-federterme-src-5032131e",
+                      "title": "aziende-termali-federterme: AziendeTermali_CCNL_2024_2027_08102024.pdf",
+                      "kind": "associazione",
+                      "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/AziendeTermali_CCNL_2024_2027_08102024.pdf",
+                      "sha256": "5032131e3e3742dabdea2ad11a074fb602c965cb9e0b34c77d73d04e9623c0a5"
+                    },
+                    "page": "69",
+                    "section": "Art. 83.I — Indennità di contingenza",
+                    "quote": "3° | 516,42"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "effective_from": "2024-10-01",
+                    "verified_by": "gpt-6-sol",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-gpt-aziende-termali-federterme-double-read"
+                  }
+                }
               }
             ]
           },
@@ -1603,7 +1728,32 @@
               {
                 "valid_from": "2024-10-01",
                 "valid_until": null,
-                "value": "521.47"
+                "value": "521.47",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aziende-termali-federterme-src-5032131e",
+                      "title": "aziende-termali-federterme: AziendeTermali_CCNL_2024_2027_08102024.pdf",
+                      "kind": "associazione",
+                      "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/AziendeTermali_CCNL_2024_2027_08102024.pdf",
+                      "sha256": "5032131e3e3742dabdea2ad11a074fb602c965cb9e0b34c77d73d04e9623c0a5"
+                    },
+                    "page": "69",
+                    "section": "Art. 83.I — Indennità di contingenza",
+                    "quote": "2° | 521,47"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "effective_from": "2024-10-01",
+                    "verified_by": "gpt-6-sol",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-gpt-aziende-termali-federterme-double-read"
+                  }
+                }
               }
             ]
           },
@@ -1835,7 +1985,32 @@
               {
                 "valid_from": "2024-10-01",
                 "valid_until": null,
-                "value": "528.99"
+                "value": "528.99",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aziende-termali-federterme-src-5032131e",
+                      "title": "aziende-termali-federterme: AziendeTermali_CCNL_2024_2027_08102024.pdf",
+                      "kind": "associazione",
+                      "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/AziendeTermali_CCNL_2024_2027_08102024.pdf",
+                      "sha256": "5032131e3e3742dabdea2ad11a074fb602c965cb9e0b34c77d73d04e9623c0a5"
+                    },
+                    "page": "69",
+                    "section": "Art. 83.I — Indennità di contingenza",
+                    "quote": "1° | 528,99"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "effective_from": "2024-10-01",
+                    "verified_by": "gpt-6-sol",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-gpt-aziende-termali-federterme-double-read"
+                  }
+                }
               }
             ]
           },
@@ -2067,7 +2242,32 @@
               {
                 "valid_from": "2024-10-01",
                 "valid_until": null,
-                "value": "531.38"
+                "value": "531.38",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aziende-termali-federterme-src-5032131e",
+                      "title": "aziende-termali-federterme: AziendeTermali_CCNL_2024_2027_08102024.pdf",
+                      "kind": "associazione",
+                      "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/AziendeTermali_CCNL_2024_2027_08102024.pdf",
+                      "sha256": "5032131e3e3742dabdea2ad11a074fb602c965cb9e0b34c77d73d04e9623c0a5"
+                    },
+                    "page": "69",
+                    "section": "Art. 83.I — Indennità di contingenza",
+                    "quote": "1° SB | 531,38"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "effective_from": "2024-10-01",
+                    "verified_by": "gpt-6-sol",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-gpt-aziende-termali-federterme-double-read"
+                  }
+                }
               }
             ]
           },
@@ -2299,7 +2499,32 @@
               {
                 "valid_from": "2024-10-01",
                 "valid_until": null,
-                "value": "531.96"
+                "value": "531.96",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aziende-termali-federterme-src-5032131e",
+                      "title": "aziende-termali-federterme: AziendeTermali_CCNL_2024_2027_08102024.pdf",
+                      "kind": "associazione",
+                      "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/AziendeTermali_CCNL_2024_2027_08102024.pdf",
+                      "sha256": "5032131e3e3742dabdea2ad11a074fb602c965cb9e0b34c77d73d04e9623c0a5"
+                    },
+                    "page": "69",
+                    "section": "Art. 83.I — Indennità di contingenza",
+                    "quote": "1° SA | 531,96"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "effective_from": "2024-10-01",
+                    "verified_by": "gpt-6-sol",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-gpt-aziende-termali-federterme-double-read"
+                  }
+                }
               }
             ]
           },
@@ -2490,7 +2715,7 @@
     "effective_until": null,
     "source": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/AziendeTermali_CCNL_2024_2027_08102024.pdf",
     "verification_status": "unverified",
-    "source_hash": "61ccb08c2e460bb9f091906ba3d27b9eac4f57f54c11210e5c6af916c70b3192",
+    "source_hash": "e0cc043a309babc08a87294a25a9946717e65eef53e36e8ff3970110895a8dcd",
     "published_at": "2026-09-12",
     "source_type": "commercial_secondary"
   },
@@ -2514,6 +2739,28 @@
           "9 values corrected to the amounts printed on the cited pages."
         ],
         "independence": "same_process",
+        "checked": [
+          "levels.base_salary",
+          "levels.fixed_allowances"
+        ]
+      },
+      {
+        "id": "2026-11-08-gpt-aziende-termali-federterme-double-read",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Monthly values on scanned pages, each read twice from the page image by two independent sessions of another model, the second without being told the expected value.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/AziendeTermali_CCNL_2024_2027_08102024.pdf",
+            "sha256": "5032131e3e3742dabdea2ad11a074fb602c965cb9e0b34c77d73d04e9623c0a5"
+          }
+        ],
+        "findings": [
+          "9 values read identically by both readings and equal to the file."
+        ],
+        "independence": "separate_model",
         "checked": [
           "levels.base_salary",
           "levels.fixed_allowances"

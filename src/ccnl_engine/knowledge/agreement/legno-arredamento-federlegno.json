@@ -217,6 +217,29 @@
         ]
       },
       {
+        "id": "2026-11-08-gpt-legno-arredamento-federlegno-insured-absence",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "CCNL top-ups of maternity and work injury, read from the signed text by a separate model session; every quote found on the PDF text layer.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/04/Ccnl-Legno-Industria-definitivo1.pdf",
+            "sha256": "591296abac43a018b9ffe08f60a521584129d9717e87a46583b8125a58d067bf"
+          }
+        ],
+        "findings": [
+          "Added work_rules.insured_absence.maternity.",
+          "Added work_rules.insured_absence.injury."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.insured_absence.maternity",
+          "work_rules.insured_absence.injury"
+        ]
+      },
+      {
         "id": "2026-11-08-gpt-legno-arredamento-federlegno-double-read",
         "date": "2026-11-08",
         "reviewer": "gpt-6-sol",
@@ -4865,7 +4888,7 @@
     "effective_until": null,
     "source": "https://www.filleacgil.net/images/DAL-2024/MATERIALI_dipartimento/LEGNO-ARREDO/Verbale_di_accordo_Adeguamento_minimi_anno_2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "151999011b7f2485a1426694c227ec1ba8e342630639b44eb18d968348bb3dcc",
+    "source_hash": "79cec6e633819379ac4393ee91141c556b1da94f16299cc51cb0be3494e3f8c6",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -5088,6 +5111,69 @@
           "extraction_timestamp": "2026-09-08T00:00:00",
           "verification_status": "unverified",
           "effective_from": "2022-01-01"
+        }
+      }
+    },
+    "insured_absence": {
+      "maternity": {
+        "integration_rate": "1",
+        "net_basis": true,
+        "integration_days": 150,
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-legno-industria-2010-signed",
+              "title": "CCNL Legno industria 12 maggio 2010, testo sottoscritto (Filca-CISL)",
+              "kind": "associazione",
+              "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/04/Ccnl-Legno-Industria-definitivo1.pdf",
+              "sha256": "591296abac43a018b9ffe08f60a521584129d9717e87a46583b8125a58d067bf"
+            },
+            "page": "92",
+            "section": "Art. 43 (ex 25) - Trattamento in caso di gravidanza e puerperio",
+            "quote": "Ferme restando le disposizioni di cui alla L. 30 dicembre 1971, n. 1204, sul trattamento delle lavoratrici durante lo stato di gravidanza e puerperio, l’azienda integrerà alla lavoratrice il trattamento corrisposto dall’Istituto assicuratore fino al raggiungimento della normale retribuzione netta per il periodo di astensione obbligatoria."
+          },
+          "transformation": "Top-up to normal net remuneration throughout compulsory maternity leave; no fixed number of days specified. integration_days 150: the compulsory leave of art. 16 D.Lgs. 151/2001 (five months) the clause refers to",
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-08T03:00:00Z",
+            "effective_from": null,
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-08T03:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-08-gpt-legno-arredamento-federlegno-insured-absence"
+          }
+        }
+      },
+      "injury": {
+        "carenza_rate": "1",
+        "advanced": true,
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-legno-industria-2010-signed",
+              "title": "CCNL Legno industria 12 maggio 2010, testo sottoscritto (Filca-CISL)",
+              "kind": "associazione",
+              "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/04/Ccnl-Legno-Industria-definitivo1.pdf",
+              "sha256": "591296abac43a018b9ffe08f60a521584129d9717e87a46583b8125a58d067bf"
+            },
+            "page": "112",
+            "section": "Art. 75 (ex 12), B) Trattamento economico",
+            "quote": "a partire dal giorno seguente l’infortunio e per un massimo di 12 mesi, una integrazione dell’indennità, percepita in forza di disposizioni legislative e/o di altre norme, fino a raggiungere il 100% della normale retribuzione."
+          },
+          "transformation": "100% normal remuneration from the day following injury for up to 12 months, including the initial waiting days; INAIL indemnity paid by employer each payroll period subject to conditions on contributions and prompt reimbursement (Art. 75 p. 113).",
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-08T03:00:00Z",
+            "effective_from": null,
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-08T03:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-08-gpt-legno-arredamento-federlegno-insured-absence"
+          }
         }
       }
     }

@@ -7251,7 +7251,7 @@
     "effective_until": null,
     "source": "https://www.redigo.info/2025/08/06/tabelle-retributive-ccnl-energia-e-petrolio/",
     "verification_status": "unverified",
-    "source_hash": "3f47144235909a7215957896c76f8cc17fda34876bf35e733f9b93da990a7d2a",
+    "source_hash": "64bf7a23dfcd5074e91d172b3cd2714a3bf235c974712217d9e1bb83bc835061",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -7481,6 +7481,68 @@
           "effective_from": "2023-01-01"
         }
       }
+    },
+    "insured_absence": {
+      "maternity": {
+        "integration_rate": "1",
+        "integration_days": 150,
+        "net_basis": false,
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "cnel-b254-239758",
+              "title": "CCNL Energia e Petrolio 16 aprile 2025, testo coordinato depositato CNEL",
+              "kind": "associazione",
+              "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/239758",
+              "sha256": "129ad0c91a836a05cdcdbcb8a8f1d4a7a920521459adc98f6995bab0c4af12de"
+            },
+            "page": "115",
+            "section": "Art. 59 - Genitorialità",
+            "quote": "La lavoratrice madre o il lavoratore padre, nei casi previsti dalla legge, riceveranno un\n            trattamento di assistenza, ad integrazione di quello di legge, fino al raggiungimento del 100%\n            della normale retribuzione globale di fatto per i mesi di assenza obbligatoria."
+          },
+          "transformation": "100% della normale retribuzione globale di fatto durante i mesi di assenza obbligatoria; il testo non specifica lordo/netto né quantifica i mesi. integration_days 150: the compulsory leave of art. 16 D.Lgs. 151/2001 (five months) the clause refers to; net_basis false: the clause measures the retribuzione without saying netta",
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-08T03:00:00Z",
+            "effective_from": null,
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-08T03:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-08-gpt-energia-petrolio-confindustria-insured-absence"
+          }
+        }
+      },
+      "injury": {
+        "carenza_rate": "1",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "cnel-b254-239758",
+              "title": "CCNL Energia e Petrolio 16 aprile 2025, testo coordinato depositato CNEL",
+              "kind": "associazione",
+              "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/239758",
+              "sha256": "129ad0c91a836a05cdcdbcb8a8f1d4a7a920521459adc98f6995bab0c4af12de"
+            },
+            "page": "105",
+            "section": "Art. 47 - Trattamento economico durante l’assenza per malattia o infortunio",
+            "quote": "Durante i periodi di conservazione del posto di lavoro di cui all’articolo precedente, è assicurato\n            al lavoratore non in prova, assente per malattia o infortunio, un trattamento economico pari ad\n            anzianità:\n\n                                                     Anzianità fino a              Anzianità oltre               Anzianità oltre\n                                                         5 anni                 i 5 e fino a 10 anni                10 anni\n\n                                                 Primi 4 mesi al 100% RGM    Primi 6 mesi al 100% RGM      Primi 8 mesi al 100% RGM\n             Periodo di comporto\n                                                     Successivi 3 mesi           Successivi 4 mesi             Successivi 4 mesi\n             continuativo\n                                                        al 50% RGM                  al 50% RGM                    al 50% RGM\n\n             Periodo di comporto             5,5 mensilità nell’arco di 9    8 mensilità nell’arco di 12   10 mensilità nell’arco di 18\n             non continuativo                     mesi consecutivi               mesi consecutivi              mesi consecutivi"
+          },
+          "transformation": "Il trattamento del lavoratore non in prova include l’infortunio dall’inizio del periodo: 100% RGM nei primi 4/6/8 mesi per anzianità fino a 5/oltre 5 fino a 10/oltre 10 anni, poi 50% per 3/4/4 mesi. Il testo non prevede una specifica aliquota per i giorni di carenza; 100% è conseguenza del periodo iniziale, non una clausola autonoma sulla carenza.",
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-08T03:00:00Z",
+            "effective_from": null,
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-08T03:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-08-gpt-energia-petrolio-confindustria-insured-absence"
+          }
+        }
+      }
     }
   },
   "verification": {
@@ -7505,6 +7567,29 @@
         "checked": [
           "levels.base_salary",
           "levels.fixed_allowances"
+        ]
+      },
+      {
+        "id": "2026-11-08-gpt-energia-petrolio-confindustria-insured-absence",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "CCNL top-ups of maternity and work injury, read from the signed text by a separate model session; every quote found on the PDF text layer.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/239758",
+            "sha256": "129ad0c91a836a05cdcdbcb8a8f1d4a7a920521459adc98f6995bab0c4af12de"
+          }
+        ],
+        "findings": [
+          "Added work_rules.insured_absence.maternity.",
+          "Added work_rules.insured_absence.injury."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.insured_absence.maternity",
+          "work_rules.insured_absence.injury"
         ]
       }
     ]

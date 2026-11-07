@@ -188,6 +188,27 @@
           "levels.base_salary",
           "levels.fixed_allowances"
         ]
+      },
+      {
+        "id": "2026-11-08-gpt-vigilanza-privata-assiv-insured-absence",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "CCNL top-ups of maternity and work injury, read from the signed text by a separate model session; every quote found on the PDF text layer.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.bollettinoadapt.it/wp-content/uploads/2019/10/ccnl2013.pdf",
+            "sha256": "c6b3a6176dee20e6a727e4da153bd3511850275e991e0e344f92e1d1b4c0df79"
+          }
+        ],
+        "findings": [
+          "Added work_rules.insured_absence.injury."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.insured_absence.injury"
+        ]
       }
     ]
   },
@@ -1860,7 +1881,7 @@
     "effective_until": null,
     "source": "https://lavoro.gov.it/temi-e-priorita-rapporti-di-lavoro-e-relazioni-industriali/focus/decreto-direttoriale-n.-50-dell8",
     "verification_status": "unverified",
-    "source_hash": "e8a0799778549baf481a60f573f51b0fe4b6ed2ec9c3284295472eaac43a6354",
+    "source_hash": "a71522699cddfc60d8925717e22d4b8269e6006c2708ee803e18528563d8df5a",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },
@@ -2047,6 +2068,39 @@
           "extraction_timestamp": "2026-09-08T00:00:00",
           "verification_status": "unverified",
           "effective_from": "2023-05-04"
+        }
+      }
+    },
+    "insured_absence": {
+      "injury": {
+        "carenza_rate": "1",
+        "advanced": true,
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-vigilanza-2013-adapt",
+              "title": "CCNL Istituti e Imprese di Vigilanza Privata e Servizi Fiduciari 8 aprile 2013 (testo ricercabile)",
+              "kind": "altro",
+              "url": "https://www.bollettinoadapt.it/wp-content/uploads/2019/10/ccnl2013.pdf",
+              "sha256": "c6b3a6176dee20e6a727e4da153bd3511850275e991e0e344f92e1d1b4c0df79"
+            },
+            "page": "85",
+            "section": "Art. 127 - Conservazione del posto - Retribuzione",
+            "quote": "Il datore di lavoro corrisponderà al lavoratore assente per infortunio sul lavoro alle normali scadenze di paga, una indennità pari alla normale retribuzione netta mensile di cui all’art. 105 comprensiva dell’indennità di infortunio a carico dell’INAIL."
+          },
+          "transformation": "Normal NET monthly pay inclusive of INAIL applies during recognized-injury absence; no separate carenza percentage stated. Employer advances combined amount and later reconciles.",
+          "note": "CNEL signed 2013 scan has no text layer; quoted from searchable 2013 counterpart, checked against CNEL page image. 2023/2024 signatory renewals have no text layer; OCR found no Art. 127 amendment.",
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-08T03:00:00Z",
+            "effective_from": null,
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-08T03:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-08-gpt-vigilanza-privata-assiv-insured-absence"
+          }
         }
       }
     }

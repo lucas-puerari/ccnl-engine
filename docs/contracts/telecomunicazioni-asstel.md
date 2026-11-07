@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-11-11 |
-| **Last review** | 2026-11-07 |
+| **Last review** | 2026-11-08 |
 | **Latest salary tranche** | 2028-12-01 |
 
 ## Review history
@@ -62,6 +62,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-06 | claude-opus-5-5 (ai) | Apprentice seniority: artt. 20 and 41 of the CCNL of 12 November 2020 (pp. 32, 82). | corrected | Art. 20: apprenticeship is 'un contratto a tempo indeterminato', the apprentice classified two then one level below; art. 41 c. 1: 'Il lavoratore ha diritto, per ogni biennio di servizio maturato [...] al riconoscimento di un importo in cifra fissa [...] per ciascun livello retributivo [...] a partire dalla data di assunzione': the increments of the level the apprentice is paid at. |
 | 2026-11-07 | claude-opus-5-5 (ai) | The monthly values of the levels against the primary tables (text layer). | confirmed | 11 values found verbatim on the cited pages and marked verified; 27 left as they were (derived or not on a text page). |
 | 2026-11-07 | gpt-6-sol (ai) | Monthly values of tabella b, Allegato 1, read from the page by an independent session of another model without being told the expected value. | confirmed | 27 values equal to the printed minimum plus the Elemento retributivo di settore of the same row (the reader returned the minimum column; the file stores the conglobated amount). |
+| 2026-11-08 | gpt-6-sol (ai) | CCNL top-ups of maternity and work injury, read from the signed text by a separate model session; every quote found on the PDF text layer. | confirmed | Added work_rules.insured_absence.maternity.<br>Added work_rules.insured_absence.injury. |
 
 ## Salary table
 
