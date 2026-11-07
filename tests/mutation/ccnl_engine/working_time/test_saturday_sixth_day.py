@@ -80,3 +80,29 @@ def test_saturday_of_a_four_or_six_day_week(
 
     assert band.work is SupplementWork.SATURDAY_SIXTH_DAY
     assert band.rate.value_at(date(2026, 3, 1)) == rate
+
+
+def _day_shift_rates(subsector: str, category: WorkerCategory) -> list[Decimal]:
+    ccnl, unknown = with_subsector(_CCNL, subsector, category)
+    assert not unknown
+    assert ccnl.work_rules is not None
+    supplements = ccnl.work_rules.time_supplements
+    assert supplements is not None
+    return [
+        band.rate.value_at(date(2026, 3, 1))
+        for band in supplements.supplement_bands
+        if band.work is SupplementWork.DAY_SHIFT
+    ]
+
+
+@pytest.mark.parametrize(
+    ("subsector", "rates"),
+    [("alimenti_zootecnici", [Decimal("0.05")]), ("carni", []), ("dolciari", [])],
+)
+def test_the_day_shifts_of_the_zootecnici(subsector: str, rates: list[Decimal]) -> None:
+    """Art. 31, terza nota a verbale (PDF p. 86): 5% on the day shifts.
+
+    Only the two day shifts of three continuous alternating shifts of the
+    alimenti zootecnici.
+    """
+    assert _day_shift_rates(subsector, WorkerCategory.OPERAIO) == rates

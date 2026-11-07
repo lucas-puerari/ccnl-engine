@@ -31,7 +31,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, overtime |
+| **Limits of this contract** | base_salary, bilateral_funds |
 
 3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 274 verified / 0 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 275 verified / 0 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🟢 Verified | The confidence the ruleset declares as a whole |
 | **Readiness** | 👁 Reviewed | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -69,6 +69,8 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-02 | claude-opus-5-5 (ai) | The 'Lavoro notturno festivo' rows of the Art. 31 tables (PDF pp. 87-92). | corrected | Art. 31: the notturno festivo rows of carni group, vini-liquori, acque minerali, conserve vegetali and avicoli (HolidayWorkKind.NIGHT_HOLIDAY). |
 | 2026-11-05 | claude-opus-5-5 (ai) | Artt. 74 bis-quinquies (PDF pp. 155-158) and Allegato 38 (p. 424) of the CCNL of 1 March 2024, text layer. | corrected | The four contributions and the EDR of art. 74 bis were not modelled: employer cost, and the net pay with the EDR, were short. |
 | 2026-11-07 | claude-opus-5-5 (ai) | Art. 21 of the 2024 text (PDF p. 50), text layer. | corrected | Added work_rules.apprentice_sickness_rules: normal pay up to six months a year. |
+| 2026-11-07 | claude-opus-5-5 (ai) | Art. 31 terza nota a verbale of the 2024 text (PDF p. 86), text layer. | corrected | Added supplement band ALIM_TURNO_DIURNO_ZOOTECNICI (5% on the day shifts). |
+| 2026-11-07 | claude-opus-5-5 (ai) | Art. 74 quinquies and its prima dichiarazione comune of the 2024 text (PDF p. 158), text layer. | corrected | Added health fund bilateralita_aspettativa_sindacale (EUR 1.50, 2.00 from 2025) in the bilateralita group. |
 | 2026-11-08 | gpt-6-sol (ai) | CCNL top-ups of maternity and work injury, read from the signed text by a separate model session; every quote found on the PDF text layer. | confirmed | Added work_rules.insured_absence.maternity.<br>Added work_rules.insured_absence.injury. |
 | 2026-11-08 | gpt-6-sol (ai) | Employer top-up of the INAIL indemnity, read from the signed text by a separate model session (audit of the injury rules); quote checked on the text layer or the page image. | corrected | The injury rule had no top-up of the INAIL indemnity; added: {"integration_rate": "1", "net_basis": true} |
 | 2026-11-08 | claude-opus-5-5 (ai) | FASA coverage of art. 74 quater (PDF p. 157), text layer. | corrected | FASA was permanent-only; the text covers fixed terms of at least nine months in the calendar year: permanent_only false, minimum_fixed_term_months 9, fixed_term_months_in_year. |
@@ -122,13 +124,6 @@ Destination levels: `5`
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning "alimentari-federalimentare/ordinary_hours_premiums · overtime · impact yes · open"
-    Art. 31, terza nota a verbale: for alimenti zootecnici on three continuous alternating shifts, the two day shifts are paid 5% more; the condition (the shift pattern) is not an engine input, so the 5% is not paid. The Saturday or sixth-day work of birra e malto (50%) and avicoli (65%) is modelled (HolidayWorkKind.SATURDAY_SIXTH_DAY).
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Model the 5% of the two day shifts of zootecnici three-shift operations once the shift pattern is an input.
-
 !!! warning "alimentari-federalimentare/first_level_apprentice_pay · base_salary · impact yes · open"
     Art. 21 B-C: the pay of the first-level and alta formazione apprentices.
 
@@ -136,12 +131,19 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Model the first-level and alta formazione apprenticeship tracks.
 
-!!! note "alimentari-federalimentare/health_and_bilateral_funds · bilateral_funds · impact yes · resolved"
-    HEALTH AND BILATERAL FUNDS (artt. 74 bis-quinquies, pp. 155-158): FASA EUR 12 (16 from 2025) for the permanent workers and the fixed terms of at least nine months in the calendar year, Cassa maternità EUR 3.50 (4.50), Cassa rischio vita EUR 30 a year and bilateralità EUR 2 (2.50) a month are modelled, with the EDR of EUR 20 of an employer outside the bilateralità. Not modelled: the reduced bilateralità of EUR 1.50 for companies with better union-leave terms, the optional worker contribution of EUR 2 to FASA from June 2029, the cover of family members.
+!!! warning "alimentari-federalimentare/health_and_bilateral_funds · bilateral_funds · impact yes · open"
+    HEALTH AND BILATERAL FUNDS (artt. 74 bis-quinquies, pp. 155-158): FASA EUR 12 (16 from 2025) for the permanent workers and the fixed terms of at least nine months in the calendar year, Cassa maternità EUR 3.50 (4.50), Cassa rischio vita EUR 30 a year and bilateralità EUR 2 (2.50) a month are modelled, with the EDR of EUR 20 of an employer outside the bilateralità, and the reduced bilateralità of EUR 1.50 (2.00 from 2025) of a company with better union-leave terms (fund bilateralita_aspettativa_sindacale). Not modelled: from 1 June 2029 the worker's optional EUR 2 a month to FASA, without which the enrolment and the company contribution end (art. 74 quater).
 
-    **Applies when:** `bilateral_funds` applies.
+    **Applies when:** `bilateral_funds` applies; from 2029-06-01.
 
-    **Remediation:** Model the reduced bilateralità of EUR 1.50 of art. 74 quinquies (company union-leave terms) and the optional FASA worker contribution from June 2029.
+    **Remediation:** Model the FASA worker opt-in of 1 June 2029 as a worker fact.
+
+!!! warning "alimentari-federalimentare/fasa_family_members · bilateral_funds · impact yes · open"
+    FASA FAMILY MEMBERS (art. 74 quater): each dependent family member may be enrolled in FASA with EUR 2 a month from 1 January 2022; the request has no field for the enrolled family members, so the payment is not computed.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the family members enrolled in FASA as a worker fact.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
@@ -333,6 +335,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     SICKNESS (Art. 47): the 100% and 50% bands of the net normal pay and the comporto of 186 days in 17 months (up to 5 years) and 365 days in 24 months (over 5) are counted over the sickness of every episode in the window. Modelled: the apprentice's 'retribuzione normale, per un massimo di sei mesi per ogni anno' (Art. 21, PDF p. 50), 100% of the gross pay for 180 days a calendar year; the comporto of a fixed-term worker 'limitata al periodo massimo di 4 mesi' (prima nota a verbale, PDF p. 111), 120 days. Already right without a model: the fixed-term integration stops with the INPS indemnity (the days past the D.L. 463/1983 limit are unpaid), and the 90 more days of comporto of a disabled worker (L. 68/99) carry 'non decorrerà retribuzione né si avrà decorrenza di anzianità', which is what a day past the comporto already pays. The net pay is computed by grossing up the INPS indemnity by the worker's INPS rate, as for the Commercio file.
     
     OVERTIME (Art. 31): the overtime rates above 40 hours (day, weekday night, holiday) of each sub-sector table, by EmployerProfile.subsector (carni, dolciari, alimenti_zootecnici, lattiero_caseari, vini_liquori, bevande_gassate, acque_minerali, distillatori, birra_malto, conserve_vegetali, alimentari_varie, risiera, molitoria_pastificazione, conserve_ittiche, avicoli) and category (the operai column, the impiegati column for impiegati and quadri). The intermedi, the involucri of p. 287 and the non-overtime rows (night not in shifts, shifts, Sunday with compensatory rest) are not modelled: the caller states those rates.
+    
+    ORDINARY HOURS PREMIUMS (Art. 31): the Saturday or sixth-day work of birra e malto (50%) and avicoli (65%) is paid on HolidayWorkEvent of kind saturday_sixth_day; the 5% of the two day shifts of the alimenti zootecnici on three continuous alternating shifts (terza nota a verbale, p. 86) on ShiftWorkEvent of kind day.
     
     SENIORITY: five biennial increments (Art. 53); the per-level amounts of the table 'Importi singolo scatto dal 1/8/1998' are consolidated and not recalculated, in force for the whole ruleset. Apprentices accrue none; on confirmation half the apprenticeship counts (Art. 21).
     
