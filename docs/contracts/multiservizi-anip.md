@@ -37,7 +37,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary |
 
-3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -45,7 +45,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 59 verified / 94 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 90 verified / 63 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -54,7 +54,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2021-06-08 |
-| **Last review** | 2026-11-05 |
+| **Last review** | 2026-11-07 |
 | **Latest salary tranche** | 2029-03-01 |
 
 ## Review history
@@ -67,6 +67,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-05 | claude-opus-5-5 (ai) | The ferie days of the six-day week, Art. 42 Ferie (PDF p. 61), read by a separate research session and checked again on the text layer. | corrected | Art. 42 Ferie: 22 working days in the five-day week, 26 in the six-day week: work_rules.leave_rules.week_days_annual_days 6/26, read when Employment.full_time_week_days is 6. |
 | 2026-11-05 | claude-opus-5-5 (ai) | Ferie accrual, permits and their settlement: arts. 19 (PDF p. 40), 41 and 42 (pp. 60-61) of the 2011 definitive text, read by a separate research session and checked again on the text layer; the 2021 renewal read for amendments. | corrected | Art. 42: twelfths with the month over 15 days, 40 hours of reduced time a year: work_rules.leave_rules.ferie_accrual and permits.<br>Art. 41: the ex festività are compensatory permits for the days worked, not a yearly bank.<br>The 2025 renewal (72 hours according to the union summary) was not read in a primary text. |
 | 2026-11-05 | claude-opus-5-5 (ai) | Art. 66 (PDF p. 29) of the ipotesi of 8 June 2021, OCR of the scan. | corrected | ONBSI was not modelled: the contractual funds held no reduced worker share; the model now has reduced_employee. |
+| 2026-11-07 | claude-opus-5-5 (ai) | Values a primary-text verification found different from the printed tables (text layer). | corrected | 31 values corrected to the amounts printed on the cited pages. |
 
 ## Salary table
 
@@ -74,10 +75,10 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `Q` | Quadri with high-responsibility managerial duties | € 2,006.64 | 2029-03-01 |
-| `7` | Employees with managerial functions | € 1,833.35 | 2029-03-01 |
-| `6` | Workers with specialist duties / Senior white-collar employees | € 1,587.07 | 2029-03-01 |
-| `5` | Expert workers / White-collar employees | € 1,276.96 | 2029-03-01 |
+| `Q` | Quadri with high-responsibility managerial duties | € 2,006.65 | 2029-03-01 |
+| `7` | Employees with managerial functions | € 1,833.34 | 2029-03-01 |
+| `6` | Workers with specialist duties / Senior white-collar employees | € 1,587.08 | 2029-03-01 |
+| `5` | Expert workers / White-collar employees | € 1,276.94 | 2029-03-01 |
 | `4` | Specialist workers / Junior clerical employees | € 1,167.51 | 2029-03-01 |
 | `4par125` | Skilled workers on painting booths and lines in service on 1 June 2001: level IV at parameter 125, closed group (nota a verbale) | € 1,140.15 | 2029-03-01 |
 | `3` | Skilled workers / Clerical employees | € 1,076.30 | 2029-03-01 |
@@ -135,6 +136,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `bilateral_funds` applies.
 
     **Remediation:** Resolved: parameters.health_funds onbsi with reduced_employer and reduced_employee below 20 weekly hours, read on 2026-11-05.
+
+!!! warning "multiservizi-anip/renewal_not_signed_by_anip · base_salary · impact unknown · open"
+    SIGNATORIES: the minimums from 1 July 2025 are those of the renewal of 13 June 2025 and of its integrative agreement of 6 August 2025 (CNEL 234754, 234752), signed by AGCI Servizi, Confcooperative Lavoro e Servizi, Legacoop Produzione e Servizi, Unionservizi Confapi and the three unions, not by ANIP-Confindustria. The last tables ANIP signed are those of the 8 June 2021 renewal (CNEL 139292: fifth tranche July 2025, level 2 779.21), with the IPCA consuntivo of art. 73 and arts. 73-bis/ter. The 2025 tables are kept because the sector applies them; whether an ANIP member must pay them is not established.
+
+    **Applies when:** `base_salary` applies.
+
+    **Remediation:** Source an ANIP accession to the 2025 renewal, or an ANIP agreement with its own tables, and remove this note or replace the 2025 tables.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

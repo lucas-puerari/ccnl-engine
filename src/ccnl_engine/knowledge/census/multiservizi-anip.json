@@ -291,6 +291,22 @@
       }
     },
     {
+      "id": "renewal_not_signed_by_anip",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "SIGNATORIES: the minimums from 1 July 2025 are those of the renewal of 13 June 2025 and of its integrative agreement of 6 August 2025 (CNEL 234754, 234752), signed by AGCI Servizi, Confcooperative Lavoro e Servizi, Legacoop Produzione e Servizi, Unionservizi Confapi and the three unions, not by ANIP-Confindustria. The last tables ANIP signed are those of the 8 June 2021 renewal (CNEL 139292: fifth tranche July 2025, level 2 779.21), with the IPCA consuntivo of art. 73 and arts. 73-bis/ter. The 2025 tables are kept because the sector applies them; whether an ANIP member must pay them is not established.",
+      "calculation": "ccnl/multiservizi-anip:coverage.notes",
+      "state": "unverified",
+      "remediation": "Source an ANIP accession to the 2025 renewal, or an ANIP agreement with its own tables, and remove this note or replace the 2025 tables.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "multiservizi-anip/renewal_not_signed_by_anip"
+        ]
+      }
+    },
+    {
       "id": "sunday_holiday_ccnl_clause",
       "institute": "sunday_holiday",
       "variant": "all",
