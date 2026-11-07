@@ -77,6 +77,7 @@ class SupplementWork(StrEnum):
             rest falls on another day.
         REST_DAY: Hours worked on the weekly rest day.
         NIGHT_HOLIDAY: Hours worked on a public holiday at night.
+        SATURDAY_SIXTH_DAY: Ordinary hours worked on Saturday or the sixth day.
         DAY_SHIFT: Hours of a rotating day shift.
         NIGHT_SHIFT: Hours of a rotating night shift.
     """
@@ -88,6 +89,7 @@ class SupplementWork(StrEnum):
     SUNDAY = "sunday"
     REST_DAY = "rest_day"
     NIGHT_HOLIDAY = "night_holiday"
+    SATURDAY_SIXTH_DAY = "saturday_sixth_day"
     DAY_SHIFT = "day_shift"
     NIGHT_SHIFT = "night_shift"
 

@@ -25,6 +25,8 @@ if TYPE_CHECKING:
 
 _OPERAIO, _IMPIEGATO = WorkerCategory.OPERAIO, WorkerCategory.IMPIEGATO
 _CCNL = load_ccnl("alimentari-federalimentare")
+#: Tables printing "lavoro effettuato il sabato o il sesto giorno".
+_SATURDAY = {"birra_malto": "0.50", "avicoli": "0.65"}
 
 
 def _rates(subsector: str, category: WorkerCategory) -> dict[WorkKind, Decimal]:
@@ -211,6 +213,8 @@ def test_the_ordinary_hour_premiums_of_the_table_and_column(
     }
     if night_holiday is not None:
         expected["night_holiday"] = Decimal(night_holiday)
+    if subsector in _SATURDAY:
+        expected["saturday_sixth_day"] = Decimal(_SATURDAY[subsector])
     assert _supplements(subsector, category) == expected
 
 

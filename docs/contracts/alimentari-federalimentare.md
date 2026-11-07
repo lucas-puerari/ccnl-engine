@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 272 verified / 0 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 274 verified / 0 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🟢 Verified | The confidence the ruleset declares as a whole |
 | **Readiness** | 👁 Reviewed | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -127,11 +127,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Pay the apprentice the normal pay for up to six months a year (Art. 21), then resolve this limitation.
 
 !!! warning "alimentari-federalimentare/ordinary_hours_premiums · overtime · impact yes · open"
-    Art. 31: Saturday or sixth-day work (birra e malto, avicoli), the 5% of the two day shifts of the alimenti zootecnici on three continuous shifts (terza nota a verbale), and the ordinary night holiday work of the sub-sectors whose table has no such row. The other premiums on ordinary hours of each table are modelled (supplement_bands ALIM_*).
+    Art. 31, terza nota a verbale: for alimenti zootecnici on three continuous alternating shifts, the two day shifts are paid 5% more; the condition (the shift pattern) is not an engine input, so the 5% is not paid. The Saturday or sixth-day work of birra e malto (50%) and avicoli (65%) is modelled (HolidayWorkKind.SATURDAY_SIXTH_DAY).
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Model the Saturday premiums of the Art. 31 tables and the zootecnici day-shift 5%.
+    **Remediation:** Model the 5% of the two day shifts of zootecnici three-shift operations once the shift pattern is an input.
 
 !!! warning "alimentari-federalimentare/first_level_apprentice_pay · base_salary · impact yes · open"
     Art. 21 B-C: the pay of the first-level and alta formazione apprentices.
