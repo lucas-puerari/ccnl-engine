@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-07-23 |
-| **Last review** | 2026-11-01 |
+| **Last review** | 2026-11-07 |
 | **Latest salary tranche** | 2027-12-01 |
 
 ## Review history
@@ -59,6 +59,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|---|---|
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | confirmed | Art. 67 - Tredicesima mensilità (p. 141): "quanti sono i mesi di servizio prestati presso la Società, computando come mese intero la frazione di mese pari o superiore a 15 giorni.". Match: at_least 15. |
 | 2026-11-01 | claude-opus-5-5 (ai) | The notice clause (Art. 83 - Preavviso, p. 151). | corrected | Notice bands by level and service checked against the PDF by a separate session (delegated search and independent verification): work_rules.notice. |
+| 2026-11-07 | gpt-6-sol (ai) | Annual minimi tabellari of Allegato 9 read from the page image by an independent session of another model without being told the expected value; divisor from art. 65 read by a separate session. | confirmed | 35 monthly minimums equal one twelfth of the printed annual amount (art. 65 I: monthly base pay is one twelfth of the minimum; 13th and 14th are separate payments, arts. 67-68). |
 
 ## Salary table
 

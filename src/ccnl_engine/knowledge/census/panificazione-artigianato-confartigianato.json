@@ -51,22 +51,6 @@
       }
     },
     {
-      "id": "err_unsourced",
-      "institute": "base_salary",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "ERR: an Elemento Retributivo Residuo of 0.44 EUR a month is folded into every base_salary. The signed text of 6 June 2024 (Art. 32-33, pp. 45-48) states the tabellare and the indennità speciale but no ERR, and no party source was found for it: the base_salary records stay derived until the 0.44 is sourced or dropped.",
-      "calculation": "ccnl/panificazione-artigianato-confartigianato:coverage.notes",
-      "state": "unverified",
-      "remediation": "Source the 0.44 EUR ERR or drop it from every base_salary.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "panificazione-artigianato-confartigianato/err_unsourced"
-        ]
-      }
-    },
-    {
       "id": "ert_veneto",
       "institute": "territorial_supplement",
       "variant": "all",

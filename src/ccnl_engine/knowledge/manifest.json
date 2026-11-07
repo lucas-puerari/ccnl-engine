@@ -99,7 +99,7 @@
       "valid_to": "2027-12-31",
       "ruleset_id": "ccnl/agenzie-viaggio-fiavet",
       "ruleset_version": "2026.2",
-      "source_hash": "77dda4de7ab40f2396e59ebcdd941939f54ea0efefc77eb52f72736e401ff989",
+      "source_hash": "2cc259900eb4466b0548958aa7ef70095ef5148ea65ff6d3e97aedf23192925a",
       "source_type": "institutional_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/agenzie-viaggio-fiavet.json.gz"
@@ -269,7 +269,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/autostrade-trafori",
       "ruleset_version": "2026.2",
-      "source_hash": "49644e081d20fcd007810c59cc0d901aef25d3a89b5912e6e21f2992e6d61a35",
+      "source_hash": "59f3757058b9471c2bedb8396658ba80ecc746f34de621febb384aa3838b5068",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/autostrade-trafori.json.gz"
@@ -473,7 +473,7 @@
       "valid_to": "2027-12-31",
       "ruleset_id": "ccnl/cinema-audiovisivi-industria",
       "ruleset_version": "2025.1",
-      "source_hash": "9a81791524e27188a3d86139c6cfa6bca4bc306b1cd38bdb3e084d6912b9f851",
+      "source_hash": "69efde20ac5cb10e595cf3fdbf3857c4288a428e7503310de9e21e2a63774a32",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/cinema-audiovisivi-industria.json.gz"
@@ -847,7 +847,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/energia-petrolio-confindustria",
       "ruleset_version": "2026.2",
-      "source_hash": "f699cc0a677db3b6d45754a8d963ebb25d24b743fb862c04be425ffc500dd9df",
+      "source_hash": "3f47144235909a7215957896c76f8cc17fda34876bf35e733f9b93da990a7d2a",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/energia-petrolio-confindustria.json.gz"
@@ -1683,7 +1683,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/panificazione-artigianato-confartigianato",
       "ruleset_version": "2026.2",
-      "source_hash": "96c3579353bf0708f3c645fe31238a93c9989c6781096f648ff9785560cc56c9",
+      "source_hash": "db3ce34bbda5b898fef73f434e42710f36b570a8c1208d9ce9bb2ecbc287e5e2",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/panificazione-artigianato-confartigianato.json.gz"
@@ -1751,7 +1751,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/poste-italiane-k700",
       "ruleset_version": "2026.2",
-      "source_hash": "4027c055cf523e4cd5bf493bd9e477399bceb119b115fe55ce83c61bd0289744",
+      "source_hash": "d9601804dfc9d3fff1320d093d65767ee773e213f9a2620a3bf0be0a3677b28c",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/poste-italiane-k700.json.gz"
@@ -4361,7 +4361,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "eb1cbbc6e048bdab0a7537cf59b772acb1c0ad9ab72b08e1539a624bad89b482",
+      "source_hash": "8c5976f5b633492bc6261a4a5371087916a1b4d72b5a14b22cbb8450f42f18c3",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/panificazione-artigianato-confartigianato.json.gz",

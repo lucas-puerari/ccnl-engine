@@ -58,13 +58,13 @@ class TestLoadEnergiaPetrolioConfindustria:
         """Group 4/2 paga_base at 2025-07-01 first modelled tranche."""
         ccnl = load_ccnl("energia-petrolio-confindustria")
         lv = ccnl.level_by_code("4-2")
-        assert lv.base_salary.value_at(date(2025, 7, 1)) == Decimal("2546.61")
+        assert lv.base_salary.value_at(date(2025, 7, 1)) == Decimal("2556.61")
 
     def test_energia_petrolio_confindustria_level_4_2_salary_2026(self) -> None:
         """Group 4/2 paga_base at 2026-07-01 fourth tranche."""
         ccnl = load_ccnl("energia-petrolio-confindustria")
         lv = ccnl.level_by_code("4-2")
-        assert lv.base_salary.value_at(date(2026, 7, 1)) == Decimal("2651.61")
+        assert lv.base_salary.value_at(date(2026, 7, 1)) == Decimal("2661.61")
 
     def test_energia_petrolio_confindustria_level_ordering(self) -> None:
         """6-0 is the lowest order; 1-5 is the highest order."""

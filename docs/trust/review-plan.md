@@ -10,7 +10,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 |---|---:|---:|---:|---:|---:|---:|---|
 | pubblica-amministrazione | 14 | 7 548 000 | 14 | 229 | 182 | 0 | `funzioni-centrali-aran` |
 | terziario | 46 | 5 257 055 | 53 | 1372 | 1257 | 4 | `commercio-confcommercio`, `sanita-privata-aiop-aris` |
-| industria | 49 | 4 969 900 | 153 | 1690 | 1742 | 15 | `logistica-trasporto-confetra`, `metalmeccanico-federmeccanica` |
+| industria | 49 | 4 969 900 | 153 | 1495 | 1948 | 15 | `logistica-trasporto-confetra`, `metalmeccanico-federmeccanica` |
 | lavoro-domestico | 3 | 1 800 000 | 0 | 3 | 60 | 0 | `lavoro-domestico-non-convivente` |
 | artigianato | 8 | 1 244 505 | 34 | 197 | 253 | 2 | `metalmeccanico-artigianato` |
 | agricoltura | 9 | 752 860 | 12 | 140 | 194 | 5 | `operai-agricoli-florovivaisti` |
@@ -112,7 +112,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | [`chimica-affini-pmi-unionchimica`](../contracts/chimica-affini-pmi-unionchimica.md) | 56 000 | exploratory | 2 | 13 | 40 | aggregator | none | none |
 | [`tessile-pmi-uniontessile`](../contracts/tessile-pmi-uniontessile.md) | 48 000 | exploratory | 6 | 0 | 42 | aggregator | none | none |
 | [`trasporto-aereo-assaeroporti`](../contracts/trasporto-aereo-assaeroporti.md) | 40 000 | exploratory | 1 | 50 | 45 | party or official | none | none |
-| [`energia-petrolio-confindustria`](../contracts/energia-petrolio-confindustria.md) | 38 000 | exploratory | 1 | 171 | 0 | party or official | none | none |
+| [`energia-petrolio-confindustria`](../contracts/energia-petrolio-confindustria.md) | 38 000 | exploratory | 1 | 56 | 115 | party or official | none | none |
 | [`alimentari-pmi-unionalimentari`](../contracts/alimentari-pmi-unionalimentari.md) | 35 000 | exploratory | 1 | 35 | 37 | party or official | none | none |
 | [`carta-cartone-assocarta`](../contracts/carta-cartone-assocarta.md) | 35 000 | exploratory | 1 | 61 | 14 | aggregator | none | none |
 | [`vetro-meccanizzato-assovetro`](../contracts/vetro-meccanizzato-assovetro.md) | 28 000 | exploratory | 36 | 0 | 0 | aggregator | none | none |
@@ -129,14 +129,14 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | [`lavanderie-industriali-assosistema`](../contracts/lavanderie-industriali-assosistema.md) | 17 000 | exploratory | 2 | 37 | 0 | party or official | none | none |
 | [`pelli-cuoio-industria-assopellettieri`](../contracts/pelli-cuoio-industria-assopellettieri.md) | 17 000 | exploratory | 2 | 35 | 0 | party or official | none | none |
 | [`laterizi-industria-f021`](../contracts/laterizi-industria-f021.md) | 17 000 | exploratory | 1 | 98 | 1 | party or official | none | none |
-| [`autostrade-trafori`](../contracts/autostrade-trafori.md) | 15 000 | exploratory | 2 | 140 | 0 | party or official | none | none |
+| [`autostrade-trafori`](../contracts/autostrade-trafori.md) | 15 000 | exploratory | 2 | 96 | 55 | party or official | none | none |
 | [`funivie-anef`](../contracts/funivie-anef.md) | 15 000 | exploratory | 2 | 15 | 34 | party or official | none | none |
 | [`alimentaristi-cooperative-e016`](../contracts/alimentaristi-cooperative-e016.md) | 15 000 | exploratory | 1 | 29 | 42 | aggregator | none | none |
 | [`marittimi-industria-armatoriale`](../contracts/marittimi-industria-armatoriale.md) | 15 000 | exploratory | 1 | 39 | 2 | party or official | none | none |
 | [`anas`](../contracts/anas.md) | 7 000 | exploratory | 1 | 42 | 1 | party or official | none | none |
 | [`materiali-costruzione-lapidei-confapi`](../contracts/materiali-costruzione-lapidei-confapi.md) | 5 000 | exploratory | 21 | 8 | 41 | party or official | none | none |
 | [`attivita-minerarie-assorisorse`](../contracts/attivita-minerarie-assorisorse.md) | 3 000 | exploratory | 3 | 0 | 36 | party or official | none | none |
-| [`cinema-audiovisivi-industria`](../contracts/cinema-audiovisivi-industria.md) | 2 300 | exploratory | 1 | 61 | 2 | aggregator | none | none |
+| [`cinema-audiovisivi-industria`](../contracts/cinema-audiovisivi-industria.md) | 2 300 | exploratory | 1 | 25 | 38 | aggregator | none | none |
 | [`tabacco-apti`](../contracts/tabacco-apti.md) | 2 000 | exploratory | 22 | 0 | 37 | party or official | none | none |
 | [`radiotelevisive-televisivo`](../contracts/radiotelevisive-televisivo.md) | none | exploratory | 11 | 0 | 28 | party or official | none | none |
 | [`radiotelevisive-radiofonico`](../contracts/radiotelevisive-radiofonico.md) | none | exploratory | 8 | 0 | 13 | party or official | none | none |

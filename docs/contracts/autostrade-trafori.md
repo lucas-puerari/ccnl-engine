@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 0 verified / 140 derived / 1 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 55 verified / 96 derived / 1 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2023-01-01 |
-| **Last review** | 2026-11-06 |
+| **Last review** | 2026-11-07 |
 | **Latest salary tranche** | 2028-01-01 |
 
 ## Review history
@@ -58,6 +58,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | Date | Reviewer | Scope | Outcome | Findings |
 |---|---|---|---|---|
 | 2026-11-06 | claude-opus-5-5 (ai) | Art. 10 apprenticeship of the stesura of 5 July 2024 (pp. 20-21, OCR). Art. 32 c. 1 elements of the retribuzione (p. 54, OCR). | corrected | Apprentices are paid 80/85/95% over 36 months, not 100% and not by under-classification as the note claimed.<br>Apprentices accrue the level seniority increments, scaled by the apprenticeship percentage (art. 32 c. 1 a) puts them in the stipendio). |
+| 2026-11-07 | claude-opus-5-5 (ai) | Minimi tabellari 2023-2025 (p. 168) and I.D.R. 2021 (p. 169) of the 5 July 2024 text, read on the page image. | corrected | The 2023-2024 minimums were shifted by one tranche (the 1/8/2023 amounts dated 1 January 2023, and so on) and the August tranches were missing: periods rebuilt on the printed dates 31/07/2023, 1/8/2023, 1/1/2024, 1/8/2024, 1/1/2025.<br>Cent errors on C plus, B1 plus and B plus corrected to the printed amounts.<br>I.D.R. 2021 is due from December 2021: before January 2024 it is the printed amount of the level, not zero (D 10,14, not 10,13). |
 
 ## Salary table
 

@@ -135,7 +135,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 16 | I320 | [CCNL Attività Ferroviarie — AGENS](trasporto-ferroviario-agens.md) | trasporto | ~75k | 2025 | ⚠️ | base_salary, inps_employer, seniority | 50 / 6 / 1 / 0 | 🧪 | 🤖 |
 | 17 | I022 | [CCNL Autoferrotranvieri e Internavigatori (Mobilita/TPL)](autoferrotranvieri-internavigatori.md) | trasporti | ~120k | 2024 | ⚠️ | inps_employer, pension_fund_contribution | 0 / 139 / 1 / 0 | 🧪 | 🤖 |
 | 18 | IC35 | [CCNL Autorimesse, Noleggio Automezzi e Parcheggi (ANIASA)](autorimesse-ic35.md) | Autorimesse e noleggio automezzi | ~41k | 2025 | ✅ | welfare | 0 / 95 / 1 / 1 | 🧪 | 🤖 |
-| 19 | I192 | [CCNL Autostrade e Trafori Concessionari](autostrade-trafori.md) | autostrade e trafori — addetti alle concessionarie autostradali | ~15k | 2023 | ✅ | — | 0 / 140 / 1 / 1 | 🧪 | 🤖 |
+| 19 | I192 | [CCNL Autostrade e Trafori Concessionari](autostrade-trafori.md) | autostrade e trafori — addetti alle concessionarie autostradali | ~15k | 2023 | ✅ | — | 55 / 96 / 1 / 1 | 🧪 | 🤖 |
 | 20 | H601 | [CCNL CED, ICT, Professioni Digitali e STP (Assoced-UGL)](ced-assoced.md) | Terziario | ~22k | 2025 | ⚠️ | base_salary, inps_employer, seniority | 0 / 44 / 1 / 1 | 🧪 | 🤖 |
 | 21 | G022 | [CCNL Carta e Cartone — Aziende Industriali (Assocarta)](carta-cartone-assocarta.md) | carta-cartone | ~35k | 2026 | ⚠️ | base_salary | 14 / 61 / 1 / 0 | 🧪 | 🤖 |
 | 22 | T011 | [CCNL Case di Cura Private - Personale Non Medico (AIOP/ARIS)](sanita-privata-aiop-aris.md) | Sanità privata | ~150k | 2020 | ⚠️ | base_salary, overtime, seniority | 36 / 2 / 0 / 0 | 🧪 | 🤖 |
@@ -168,7 +168,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 49 | F016 | [CCNL Edilizia — Cooperative (ANCPL/Legacoop/Confcooperative/AGCI)](edilizia-cooperative-ancpl.md) | Edilizia | ~90000 | 2025 | ⚠️ | bilateral_funds, seniority | 1 / 57 / 1 / 0 | 🧪 | 🤖 |
 | 50 | F012 | [CCNL Edilizia — Industria (ANCE), impiegati e quadri](edilizia-ance-impiegati.md) | edilizia | — | — | ⚠️ | base_salary, overtime, seniority, sickness, territorial_supplement | 37 / 23 / 0 / 0 | 🏭 | 🤖✓ |
 | 51 | F012 | [CCNL Edilizia — Industria (ANCE), operai](edilizia-ance.md) | edilizia | ~550k | 2025 | ⚠️ | base_salary, bilateral_funds, overtime, sickness, territorial_supplement | 42 / 7 / 0 / 0 | 👁 | 🤖✓ |
-| 52 | B254 | [CCNL Energia e Petrolio (Confindustria Energia)](energia-petrolio-confindustria.md) | energia | ~38k | — | ✅ | — | 0 / 171 / 1 / 0 | 🧪 | 🤖 |
+| 52 | B254 | [CCNL Energia e Petrolio (Confindustria Energia)](energia-petrolio-confindustria.md) | energia | ~38k | — | ✅ | — | 115 / 56 / 1 / 0 | 🧪 | 🤖 |
 | 53 | G211 | [CCNL Esercizi Cinematografici e Cinema-Teatrali (ANEC)](esercizi-cinematografici-anec.md) | cinema | ~6k | — | ⚠️ | inps_employer, sickness | 61 / 9 / 1 / 0 | 🧪 | 🤖 |
 | 54 | H201 | [CCNL Fiori Freschi Recisi, Verde e Piante Ornamentali (ANCEF)](fiori-recisi-ancef.md) | Fiori recisi, verde e piante ornamentali (import-export) | ~1.3k | 2023 | ⚠️ | seniority | 1 / 38 / 1 / 0 | 🧪 | 🤖 |
 | 55 | T261 | [CCNL Formazione Professionale (CNOS-FAP/CIOFS-FP/FORMA/CNF)](formazione-professionale.md) | formazione professionale | ~19.8k | — | ✅ | — | 0 / 34 / 1 / 1 | 🧪 | 🤖 |
@@ -181,7 +181,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 62 | A021 | [CCNL Impiegati e Tecnici Agricoli — Confagricoltura/CIA/Coldiretti](impiegati-tecnici-agricoli.md) | agricoltura | ~80k | 2024 | ✅ | bilateral_funds | 7 / 8 / 1 / 1 | 🧪 | 🤖 |
 | 63 | B011 | [CCNL Industria Chimica e Farmaceutica (Federchimica-Farmindustria-Assistal)](chimica-farmaceutica-federchimica.md) | chimica | ~210k | — | ⚠️ | base_salary, leave, overtime, sickness, workplace_injury | 120 / 6 / 0 / 0 | 👁 | 🤖✓ |
 | 64 | H05B | [CCNL Industria Turistica (Federturismo Confindustria)](industria-turistica-federturismo.md) | turismo — alberghi, campeggi, villaggi e strutture ricettive | ~40k | 2025 | ⚠️ | base_salary | 36 / 10 / 1 / 0 | 🧪 | 🤖 |
-| 65 | G111 | [CCNL Industrie Cineaudiovisive (ANICA)](cinema-audiovisivi-industria.md) | Cinema e audiovisivo | ~2.3k | 2025 | ⚠️ | bilateral_funds, inps_employer | 2 / 61 / 1 / 0 | 🧪 | 🤖 |
+| 65 | G111 | [CCNL Industrie Cineaudiovisive (ANICA)](cinema-audiovisivi-industria.md) | Cinema e audiovisivo | ~2.3k | 2025 | ⚠️ | bilateral_funds, inps_employer | 38 / 25 / 1 / 0 | 🧪 | 🤖 |
 | 66 | HV17 | [CCNL Istituti e Imprese di Vigilanza Privata e Servizi Fiduciari — ASSIV/ANIVP/UNIV (GPG)](vigilanza-privata-assiv.md) | vigilanza-privata | ~85k | 2023 | ⚠️ | inps_employer, seniority | 42 / 7 / 1 / 0 | 🧪 | 🤖 |
 | 67 | HV17 | [CCNL Istituti e Imprese di Vigilanza Privata e Servizi Fiduciari — ASSIV/ANIVP/UNIV (Servizi fiduciari)](vigilanza-privata-assiv-sf.md) | vigilanza privata — servizi fiduciari (SF) | ~40k | 2023 | ⚠️ | base_salary, seniority | 1 / 45 / 2 / 1 | 🧪 | 🤖 |
 | 68 | T241 | [CCNL Istituzioni Formative Private (Scuole Private Religiose) — AGIDAE](scuole-private-agidae.md) | istruzione privata | ~50k | — | ⚠️ | seniority | 1 / 43 / 1 / 0 | 🧪 | 🤖 |
