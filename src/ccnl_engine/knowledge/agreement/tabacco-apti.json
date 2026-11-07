@@ -73,7 +73,7 @@
       },
       {
         "kind": "simplification",
-        "text": "SICKNESS (Art. 34, renewal 2 July 2025 p. 8, CCNL 2021-2024 p. 44-45): modelled the operai rule (100% of the retribuzione normale from day 1 to day 180, comporto 180 days). Not modelled: impiegati (12 months, full and half stipendio 4+4, 5+5 or 6+6 months by seniority, interruptions summed unless one year apart); serious illness extending the comporto to 12 months unpaid; +90 days unpaid for certified disability (L. 68/99); life-saving therapy days outside the comporto; apprentices 100% for at most 6 months a year (art. 6). The sentence 'per le malattie che superano i sei giorni ... 100% della retribuzione normale netta anche per i giorni di carenza' was left unchanged by the renewal, while the main clause dropped 'netta': the gross basis of the main clause is used.",
+        "text": "SICKNESS (Art. 34, renewal 2 July 2025 p. 8, CCNL 2021-2024 p. 44-45): modelled the operai rule (100% of the retribuzione normale from day 1 to day 180, comporto 180 days) and the impiegati and quadri rule (12 months, full and half stipendio 4+4, 5+5 or 6+6 months by seniority, interruptions summed unless one year apart). Not modelled: serious illness extending the comporto to 12 months unpaid; +90 days unpaid for certified disability (L. 68/99); life-saving therapy days outside the comporto. The sentence 'per le malattie che superano i sei giorni ... 100% della retribuzione normale netta anche per i giorni di carenza' was left unchanged by the renewal, while the main clause dropped 'netta': the gross basis of the main clause is used.",
         "capability": "sickness",
         "monetary_impact": "yes",
         "limitation": {
@@ -158,6 +158,27 @@
         "independence": "same_process",
         "checked": [
           "work_rules.sickness_rules"
+        ]
+      },
+      {
+        "id": "2026-11-07-ai-tabacco-apti-impiegati-sickness",
+        "date": "2026-11-07",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 34 impiegati of the CCNL 2021-2024 (p. 45), kept by the 2025 renewal.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.flai.it/wp-content/uploads/2023/07/CCNL-Industria-Tabacco-2021-2024.pdf",
+            "sha256": "45297ea8fa28431034b7b1c979f06b02fb69647d01312c5fa596fba53df37ae5"
+          }
+        ],
+        "findings": [
+          "Added work_rules.sickness_rules_by_category for impiegati and quadri."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.sickness_rules_by_category"
         ]
       }
     ]
@@ -2478,7 +2499,7 @@
     "source": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf",
     "source_type": "contracting_party",
     "verification_status": "unverified",
-    "source_hash": "c687bf8fe24cec4e84eab107c2776598adea9b98b93b2aa2c2f29c1ccc2ec005"
+    "source_hash": "0527aec87d988e962cc5ba2522b221889eba5827dad9f2057e94b9a09e181622"
   },
   "work_rules": {
     "sunday_holidays": {
@@ -2551,6 +2572,156 @@
           "verified_at": "2026-11-08T02:00:00Z",
           "verification_status": "verified",
           "review_id": "2026-11-07-ai-tabacco-apti-sickness"
+        }
+      }
+    },
+    "sickness_rules_by_category": {
+      "impiegato": {
+        "carenza_integration_rate": "1",
+        "full_pay_integration_rate": "1",
+        "net_basis": false,
+        "cumulation": {
+          "window_years": 1,
+          "reset_after_days": 365,
+          "comporto_over_chain": true,
+          "reduced_integration_rate": "0",
+          "bands": [
+            {
+              "seniority_months_from": 0,
+              "full_pay_days": 120,
+              "comporto_days": 365,
+              "steps": [
+                {
+                  "day_from": 121,
+                  "day_until": 241,
+                  "integration_rate": "0.5"
+                }
+              ]
+            },
+            {
+              "seniority_months_from": 60,
+              "full_pay_days": 150,
+              "comporto_days": 365,
+              "steps": [
+                {
+                  "day_from": 151,
+                  "day_until": 301,
+                  "integration_rate": "0.5"
+                }
+              ]
+            },
+            {
+              "seniority_months_from": 121,
+              "full_pay_days": 180,
+              "comporto_days": 365,
+              "steps": [
+                {
+                  "day_from": 181,
+                  "day_until": 361,
+                  "integration_rate": "0.5"
+                }
+              ]
+            }
+          ]
+        },
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "flai-ccnl-tabacco-2021-2024",
+              "title": "CCNL Industria del tabacco 2021-2024 (FLAI-CGIL)",
+              "kind": "associazione",
+              "url": "https://www.flai.it/wp-content/uploads/2023/07/CCNL-Industria-Tabacco-2021-2024.pdf",
+              "sha256": "45297ea8fa28431034b7b1c979f06b02fb69647d01312c5fa596fba53df37ae5"
+            },
+            "page": "45",
+            "section": "Art. 34 Impiegati",
+            "quote": "l'impiegato con rapporto a tempo indeterminato ha diritto alla conservazione del posto per 12 mesi, col seguente trattamento: a) quattro mesi di stipendio intero e quattro mesi di mezzo stipendio in caso di anzianità di servizio inferiore a 5 anni; b) cinque mesi di stipendio intero e cinque di mezzo stipendio in caso di anzianità di servizio da 5 a 10 anni; c) sei mesi di stipendio intero e sei mesi di mezzo stipendio in caso di anzianità di servizio di oltre 10 anni."
+          },
+          "transformation": "Months of 30 days: full pay for 120/150/180 days, half pay for as many days after, nothing after until the 12-month (365-day) comporto; bands from 0, 60 and 121 completed months of seniority ('da 5 a 10', 'oltre 10'). The interruptions are summed unless a year apart: the treatment chain and the comporto restart after 365 days of work. Kept by the renewal of 2 July 2025.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-07T18:00:00Z",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-07T18:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-07-ai-tabacco-apti-impiegati-sickness"
+          }
+        }
+      },
+      "quadro": {
+        "carenza_integration_rate": "1",
+        "full_pay_integration_rate": "1",
+        "net_basis": false,
+        "cumulation": {
+          "window_years": 1,
+          "reset_after_days": 365,
+          "comporto_over_chain": true,
+          "reduced_integration_rate": "0",
+          "bands": [
+            {
+              "seniority_months_from": 0,
+              "full_pay_days": 120,
+              "comporto_days": 365,
+              "steps": [
+                {
+                  "day_from": 121,
+                  "day_until": 241,
+                  "integration_rate": "0.5"
+                }
+              ]
+            },
+            {
+              "seniority_months_from": 60,
+              "full_pay_days": 150,
+              "comporto_days": 365,
+              "steps": [
+                {
+                  "day_from": 151,
+                  "day_until": 301,
+                  "integration_rate": "0.5"
+                }
+              ]
+            },
+            {
+              "seniority_months_from": 121,
+              "full_pay_days": 180,
+              "comporto_days": 365,
+              "steps": [
+                {
+                  "day_from": 181,
+                  "day_until": 361,
+                  "integration_rate": "0.5"
+                }
+              ]
+            }
+          ]
+        },
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "flai-ccnl-tabacco-2021-2024",
+              "title": "CCNL Industria del tabacco 2021-2024 (FLAI-CGIL)",
+              "kind": "associazione",
+              "url": "https://www.flai.it/wp-content/uploads/2023/07/CCNL-Industria-Tabacco-2021-2024.pdf",
+              "sha256": "45297ea8fa28431034b7b1c979f06b02fb69647d01312c5fa596fba53df37ae5"
+            },
+            "page": "45",
+            "section": "Art. 34 Impiegati",
+            "quote": "l'impiegato con rapporto a tempo indeterminato ha diritto alla conservazione del posto per 12 mesi, col seguente trattamento: a) quattro mesi di stipendio intero e quattro mesi di mezzo stipendio in caso di anzianità di servizio inferiore a 5 anni; b) cinque mesi di stipendio intero e cinque di mezzo stipendio in caso di anzianità di servizio da 5 a 10 anni; c) sei mesi di stipendio intero e sei mesi di mezzo stipendio in caso di anzianità di servizio di oltre 10 anni."
+          },
+          "transformation": "Months of 30 days: full pay for 120/150/180 days, half pay for as many days after, nothing after until the 12-month (365-day) comporto; bands from 0, 60 and 121 completed months of seniority ('da 5 a 10', 'oltre 10'). The interruptions are summed unless a year apart: the treatment chain and the comporto restart after 365 days of work. Kept by the renewal of 2 July 2025.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-07T18:00:00Z",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-07T18:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-07-ai-tabacco-apti-impiegati-sickness"
+          }
         }
       }
     }

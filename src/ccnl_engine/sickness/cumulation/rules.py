@@ -233,9 +233,12 @@ class CumulativeTreatment:
         """Return the first day of the window of the band that ends on ``day``.
 
         Returns:
-            The start of the band's own window in months when it has one,
-            else of the ``window_years`` of the cumulation.
+            The first day of the treatment chain for a comporto over the
+            chain; else the start of the band's own window in months when
+            it has one, else of the ``window_years`` of the cumulation.
         """
+        if self.cumulation.comporto_over_chain:
+            return self.chain[1]
         months = self.band.window_months
         if months is None:
             return window_start(day, self.cumulation.window_years)

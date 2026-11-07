@@ -26,6 +26,7 @@ from ccnl_engine.fund.solidarity.models import (
     with_solidarity_tiers,
 )
 from ccnl_engine.sickness.counting.rules import with_window_counting
+from ccnl_engine.sickness.variant.rules import with_sickness_variant
 from ccnl_engine.working_time.flat_pay.rules import flat_pay_divisor
 from ccnl_engine.working_time.rota.rules import with_rota
 from ccnl_engine.working_time.subsector.rules import with_subsector
@@ -172,6 +173,7 @@ def load_contract(
         _category(ccnl, request),
         level_code=request.level_code,
     )
+    ccnl = with_sickness_variant(ccnl, _category(ccnl, request), request.contract_type)
     tctx = TemporalContext.from_period(
         period_id.year, period_id.month, request.payment_date
     )
