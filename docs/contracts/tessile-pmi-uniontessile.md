@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-02-18 |
-| **Last review** | 2026-10-17 |
+| **Last review** | 2026-11-07 |
 | **Latest salary tranche** | 2027-01-01 |
 
 ## Review history
@@ -59,6 +59,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|---|---|
 | 2026-09-17 | maintainer (human) | Whole file. The values checked were not recorded. | flagged | The review recorded no list of the documents it read.<br>Confidence set to needs_review: values to re-check. |
 | 2026-10-17 | claude-opus-5-5 (ai) | The minimi of the ten levels of the settore tessili e abbigliamento against the signed renewal of 18 February 2025. | confirmed | Settore tessili e abbigliamento (PDF p. 21 of the signed scan, checked on the page image): the 38 minimi of the file, from the minimi of 1/02/2022 to 1/01/2027, match and move from assumed to verified. Level 1 is a flat 1.558,00 from 2025 with no increment printed. The errata of 21/2/2025 (pp. 24-25) does not touch this table.<br>The ruleset names this source, published by FILCTEM-CGIL, a signatory: source_type contracting_party instead of estimated. |
+| 2026-11-07 | claude-opus-5-5 (ai) | Art. 46 calzature table of the renewal 2024-2027 (p. 21, page image). | corrected | The calzature employers pay their own minimi (level 8 2,431.61 from 2025, not the tessile 2,421.56). |
 
 ## Salary table
 
@@ -100,11 +101,11 @@ Latest effective values per level (monthly gross, EUR).
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
 !!! warning "tessile-pmi-uniontessile/other_subsectors_tables · base_salary · impact yes · open"
-    SCOPE: tessile/abbigliamento/moda sub-sector only. Calzature, pelli, occhiali, giocattoli have separate salary tables not modelled.
+    SUB-SECTORS (Art. 46 of the renewal 2024-2027 signed 18 February 2025, pp. 21-25): the calzature table is modelled as the base_salary_by_subsector calzature (EmployerProfile.subsector), page 21 read on its image. Not modelled: the pelli e cuoio, occhiali and giocattoli tables (pp. 21-25, the first two replaced by the verbale of 21 February 2025), whose levels (4s; no 2bis, 3bis, 8) differ from the file's.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Model the calzature, pelli, occhiali and giocattoli salary tables with a sub-sector input.
+    **Remediation:** Model the pelli e cuoio, occhiali and giocattoli tables with their own levels, then remove this note.
 
 !!! warning "tessile-pmi-uniontessile/level_8_function_allowance · base_salary · impact yes · open"
     LEVEL 8 IDF: indennità di funzione 51.65 EUR modelled as fixed_allowance (unverified for period before Jan 2026). Function-conditional, not automatic for all L8 workers.
