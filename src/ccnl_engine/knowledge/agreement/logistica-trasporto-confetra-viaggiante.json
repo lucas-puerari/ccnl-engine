@@ -52,6 +52,19 @@
   "coverage": {
     "notes": [
       {
+        "kind": "simplification",
+        "text": "Art. 71(5): the INAIL holiday top-up during injury and the local patron saint holiday are not calculated. Art. 60(2-3) additionally pays a coincident Saturday, Sunday or other holiday during sickness; this separate additional payment is not calculated.",
+        "capability": "sickness",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "holiday_during_injury",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Calculate the INAIL offset, local patron saint and the distinct coincident-holiday payment."
+        }
+      },
+      {
         "kind": "info",
         "text": "STAFF: travelling staff (personale viaggiante) of the CCNL Logistica: drivers of qualifiche 3 (C, B, A), 2 (F, E, D) and 1 (H, G) and riders of letters I (bicycle) and L (moped or motorcycle), art. 2 pp. 25-26, tables pp. 81-82. The non-travelling staff is logistica-trasporto-confetra. Every level is an operaio."
       },
@@ -132,6 +145,19 @@
       {
         "kind": "source",
         "text": "INPS SECTOR OF THE EMPLOYER: INPS classifies an employer by the activity it carries out (art. 49 L. 88/1989), not by the CCNL it applies. The Manuale di classificazione dei datori di lavoro of May 2021 (ATECO 2007, PDF pp. 199-206) gives CSC 11501 (industria, trasporti) to 49.41.00 trasporto di merci su strada and 49.42.00 traslochi, 11505 (industria) to 52.24 movimento merci and 52.21.90, 11506 to 52.21.40 interporti, 11507 to 53.20.00 corrieri, and 70401 (terziario, intermediari) to 52.10.10 magazzini di custodia e deposito, 52.29.10 spedizionieri, 52.29.21 intermediari dei trasporti and 52.29.22 servizi logistici. The employers of this CCNL are therefore in the industria or in the terziario: meta.inps_sectors lists both and EmployerProfile.inps_sector chooses; without it the run reads the industria and has a missing_fact inps_sector blocker. INPS circ. 71/2025 moved the classification to ATECO 2025 from 1 April 2025 and announced a new edition of the manual, not found in this review: the CSC above are those of the 2021 edition."
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 71 c. 5 (Parte speciale, Sezione seconda, PDF p. 92): the top-up to 100% of the holidays in a sickness or injury applies only to the employers that came from the CCNL Magazzini Generali, a fact the request does not state: not applied.",
+        "capability": "sickness",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "magazzini_generali_holiday_in_sickness",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "State whether the employer applies the Sezione seconda (ex Magazzini Generali) and apply the holiday target of art. 71 c. 5 then."
+        }
       }
     ]
   },
@@ -3465,7 +3491,7 @@
     "effective_until": null,
     "source": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
     "verification_status": "unverified",
-    "source_hash": "0171d9f3edd75f343bd07f7e90615578996d9612489fbd83cae6f8a9c5249dc5",
+    "source_hash": "a8b12b2a081b85244827d37d8046439d737f684f19ef4716deacd172821c6d54",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -4294,6 +4320,28 @@
         "independence": "same_process",
         "checked": [
           "parameters.seniority_increments"
+        ]
+      },
+      {
+        "id": "2026-11-08-ai-logistica-confetra-viaggiante-holiday",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 71(1)(b,c), (5), cached PDF p. 93; Art. 60(2-3), p. 85.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+            "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+          }
+        ],
+        "findings": [
+          "National weekday holidays are within art. 71(b,c); reduced sickness pay reaches full daily actual pay. Injury, patron saint and art. 60 coincident-holiday payment remain outside this rule.",
+          "A separate review found art. 71 c. 5 restricted to the Sezione seconda (ex Magazzini Generali): the holiday target is removed and kept as a limitation."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.sickness_rules.holiday"
         ]
       }
     ],

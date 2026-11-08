@@ -28,6 +28,7 @@ from ccnl_engine.errors import DataIntegrityError
 from ccnl_engine.run.models import RunKind
 from ccnl_engine.sickness.cumulation.rules import SicknessWorker
 from ccnl_engine.sickness.day.models import SickPayRules
+from ccnl_engine.sickness.holiday.rules import covered_holidays
 from ccnl_engine.sickness.models import SicknessHistory
 from ccnl_engine.sickness.term.rules import (
     DailyQuota,
@@ -40,7 +41,6 @@ if TYPE_CHECKING:
     from ccnl_engine.period.context.services import RunContext
     from ccnl_engine.sickness.base.models import RegimeDailyBase
     from ccnl_engine.sickness.indemnity.models import InpsSickPayRates
-    from ccnl_engine.sickness.integration.models import SicknessRules
 
 __all__ = ["sickness_rules", "sickness_terms"]
 
@@ -157,7 +157,9 @@ def sickness_terms(ctx: RunContext) -> SicknessTerms:
             ccnl=ccnl_rules,
             worker=_worker(ctx),
             fixed_term=ctx.request.contract_type.type == "fixed_term",
-            holidays=_holidays(ctx, ccnl_rules),
+            holidays=covered_holidays(
+                ccnl_rules, ctx.repo.load_national_holidays(), competence.year
+            ),
         )
         cover_fact = _CATEGORY if cover is None and category is None else None
     provenance = None if ccnl_rules is None else ccnl_rules.provenance
@@ -183,20 +185,6 @@ def sickness_terms(ctx: RunContext) -> SicknessTerms:
         daily_base=_daily_base(ctx, regime),
         holidays=ctx.repo.load_national_holidays(),
     )
-
-
-def _holidays(ctx: RunContext, rules: SicknessRules) -> frozenset[date]:
-    """Return the national holidays around the run, for a holiday target.
-
-    Returns:
-        The weekday holidays of the year of the run and of the two before,
-        the span an episode of the run can reach; none without a target.
-    """
-    if rules.holiday is None:
-        return frozenset()
-    year = ctx.contract.tctx.competence.year
-    calendar = ctx.repo.load_national_holidays()
-    return frozenset().union(*(calendar.in_year(y) for y in range(year - 2, year + 1)))
 
 
 def _daily_base(ctx: RunContext, regime: str | None) -> RegimeDailyBase | None:
