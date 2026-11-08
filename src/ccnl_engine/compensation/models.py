@@ -276,11 +276,9 @@ class CCNLParameters(BaseModel):
     ``accrual_rule``: threshold counting a month of an extra-month window;
     ``thirteenth_payment_day``, ``fourteenth_payment_day``: their pay days.
     ``assistance_contribution``, ``contractual_fund_contribution``: charged
-    per paid hour and per month to a fund, ``None`` when it charges none.
+    to a fund; ``additional_months_by_category``: the payments of a category.
     ``flat_pay_max_weekly_hours``: hours paid at the full minimum (domestic: 30).
-    ``raccordo_element``: the ERC the CCNL pays with the tredicesima.
-    ``enam_levels``: the levels whose permanent workers owe the contribution
-    of the Gestione Assistenza Magistrale (ex ENAM, L. 93/1957 art. 3).
+    ``raccordo_element``: the ERC; ``enam_levels``: those owing ex ENAM.
     ``solidarity_fund``: its fund of D.Lgs. 148/2015 art. 26, if modelled.
     ``renewals``: the renewals that raised the minimo, with signing date and
     first tranche day (renewal regime of L. 199/2025).
@@ -288,14 +286,16 @@ class CCNLParameters(BaseModel):
     with the elemento distinto owed when the employer does not pay them.
     ``hourly_pay``: the categories paid by the hour and the percentages on
     those hours (operai edilizia); ``fixed_term_pay``: that of OTD workers.
-    ``una_tantum``: the one-off amounts of its renewals for their vacancy.
-    ``equalisation_element``: its elemento perequativo, paid once a year.
+    ``una_tantum``, ``equalisation_element``: one-off and yearly amounts.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
 
     hourly_divisor: TimeSeries
     additional_months: TimeSeries
+    additional_months_by_category: dict[WorkerCategory, TimeSeries] = Field(
+        default_factory=dict
+    )
     seniority_increments: SeniorityIncrements
     employer_funds: tuple[EmployerFund, ...] = Field(default=())
     accrual_rule: ExtraMonthAccrualRule | None = None
