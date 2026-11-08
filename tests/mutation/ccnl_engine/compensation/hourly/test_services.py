@@ -24,6 +24,7 @@ from typing import TYPE_CHECKING
 import pytest
 
 from ccnl_engine import Employment, InvalidInputError
+from ccnl_engine.compensation.individual.inputs import IndividualElement
 from ccnl_engine.events import AbsenceEvent, SicknessEpisode
 from ccnl_engine.inputs import (
     Apprentice,
@@ -270,17 +271,62 @@ def test_projection_counts_the_percentages_of_the_months_to_come() -> None:
     assert _account(result, "credits") == 0
 
 
-def test_a_caposquadra_is_paid_ten_percent_more() -> None:
-    """Caposquadra (CCNL 2010, p. 103): 10% of paga base and contingenza.
+@pytest.mark.parametrize(
+    ("level", "individual", "salary", "integration", "supplement", "riposi"),
+    [
+        ("1", "0", "1067.36", "185.01", "158.02", "86.04"),
+        ("1", "100", "1067.36", "85.01", "168.02", "91.49"),
+        ("1", "300", "1067.36", "0", "188.02", "102.38"),
+        ("2", "0", "1248.81", "0", "176.52", "96.12"),
+        ("3", "0", "1387.56", "0", "190.67", "103.82"),
+    ],
+)
+def test_caposquadra_base_and_qualified_worker_floor(
+    level: str,
+    individual: str,
+    salary: str,
+    integration: str,
+    supplement: str,
+    riposi: str,
+) -> None:
+    """173 hours, Jan 2026: L2 ordinary 1248.81+516.43=1765.24.
 
-    Level 1, January 2026: (1,067.36 + 512.87) x 10% = 158.02 a month, on
-    the 173 hours in full; the riposi annui take it in their base (Art. 24
-    point 4): (1,580.23 + 158.02) x 4.95% = 86.04.
+    L1 ordinary 1067.36+512.87=1580.23: integration 185.01, or
+    85.01 with 100 superminimum, zero with 300. Its supplement is
+    10% of 1580.23 plus individual pay: 158.02/168.02/188.02.
+    L3 ordinary 1387.56+519.16=1906.72, supplement 190.67.
+    Riposi: 4.95% of own ordinary elements plus the supplement, not
+    the distinct integration (Art. 24(4)); L1 without individual 86.04.
     """
-    capo = replace(_OPERAIO, roles=frozenset({"caposquadra"}))
+    capo = replace(
+        _OPERAIO,
+        level_code=level,
+        roles=frozenset({"caposquadra"}),
+        individual_elements=(IndividualElement("superminimo", Decimal(individual)),)
+        if Decimal(individual)
+        else (),
+    )
     result = _january(Decimal(173), capo)
-    assert _item(result, "allowance_CAPOSQUADRA") == Decimal("158.02")
-    assert _item(result, "riposi_annui") == Decimal("86.04")
+    assert _kind(result, "base_salary_earning") == Decimal(salary)
+    assert sum(
+        (
+            i.amount
+            for i in result.pay_items
+            if i.item_id.startswith("allowance_CAPOSQUADRA_")
+            and not i.item_id.startswith("allowance_CAPOSQUADRA_QUALIFIED_INTEGRATION")
+        ),
+        Decimal(0),
+    ) == Decimal(supplement)
+    assert _kind(result, "fixed_allowance_earning") >= Decimal(integration)
+    assert sum(
+        (
+            i.amount
+            for i in result.pay_items
+            if i.item_id.startswith("allowance_CAPOSQUADRA_QUALIFIED_INTEGRATION")
+        ),
+        Decimal(0),
+    ) == Decimal(integration)
+    assert _item(result, "riposi_annui") == Decimal(riposi)
     assert "allowance_CAPOSQUADRA" not in {
         i.item_id.rsplit("_", 1)[0] for i in _january(Decimal(173)).pay_items
     }
