@@ -169,14 +169,18 @@ def _level_chain(
             if _allowance_active(a, roles, seniority_months, as_of, career_months)
         )
         base = level.base_salary.value_at(as_of)
-        # Keep the role supplement separate from the base-pay floor: only the
-        # supplement itself enters percentage bases that name its allowance.
+        # Keep the ordinary-pay integration separate from contractual base pay
+        # and the special supplement named in Art. 24(4) percentage bases.
         for index, (allowance, _) in enumerate(allowances):
             if allowance.percentage_rate is None:
                 continue
             named = allowance.percentage_base_allowances
             own_elements = base + sum(
-                (value for item, value in allowances if item.code in named),
+                (
+                    value
+                    for item, value in allowances
+                    if item.code in named or item.individual
+                ),
                 start=base * 0,
             )
             supplement = money(own_elements * allowance.percentage_rate)
@@ -197,7 +201,20 @@ def _level_chain(
                     ),
                     start=base * 0,
                 )
-                base += max(base * 0, floor_elements - own_elements)
+                shortfall = max(base * 0, floor_elements - own_elements)
+                if shortfall:
+                    integration = allowance.model_copy(
+                        update={
+                            "code": f"{allowance.code}_QUALIFIED_INTEGRATION",
+                            "description": (
+                                "Qualified-worker ordinary remuneration integration"
+                            ),
+                            "percentage_rate": None,
+                            "percentage_base_allowances": (),
+                            "floor_level": None,
+                        }
+                    )
+                    allowances = (*allowances, (integration, shortfall))
     excluded = ccnl.parameters.seniority_increments.excluded_from_extra_months
     return MonthlyPayChain(
         base=base,

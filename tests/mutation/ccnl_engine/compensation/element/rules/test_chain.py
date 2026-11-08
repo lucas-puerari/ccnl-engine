@@ -242,12 +242,12 @@ def test_percentage_allowance_without_floor(
     assert {a.code: value for a, value in chain.allowances}["SUPPLEMENT"] == 25
 
 
-def test_percentage_allowance_uses_current_elements_before_base_floor(
+def test_percentage_allowance_uses_current_elements_before_separate_floor(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
-    """200+50 earns 25, while a 300+60 qualified floor adds 110 to base.
+    """200+50 earns 25, while a 300+60 qualified floor adds 110 separately.
 
-    A higher 400+70 level earns 47 without a base uplift; the fixed monthly
+    A higher 400+70 level earns 47 without an integration; the fixed monthly
     placeholder is deliberately 1 in both cases, not the computed supplement.
     """
     monkeypatch.setattr(rules, "_seniority_amount", lambda *args, **kwargs: Decimal(0))
@@ -277,7 +277,7 @@ def test_percentage_allowance_uses_current_elements_before_base_floor(
     ccnl = _ccnl()
     ccnl.levels = (low, floor, high)
     for level, expected_base, expected_supplement in (
-        (low, Decimal(310), Decimal(25)),
+        (low, Decimal(200), Decimal(25)),
         (floor, Decimal(300), Decimal(36)),
         (high, Decimal(400), Decimal(47)),
     ):
@@ -285,9 +285,11 @@ def test_percentage_allowance_uses_current_elements_before_base_floor(
             ccnl, level, 0, frozenset({"caposquadra"}), _DAY, is_apprentice=False
         )
         assert chain.base == expected_base
-        assert {a.code: value for a, value in chain.allowances}[
-            "CAPOSQUADRA"
-        ] == expected_supplement
+        amounts = {a.code: value for a, value in chain.allowances}
+        assert amounts["CAPOSQUADRA"] == expected_supplement
+        assert amounts.get("CAPOSQUADRA_QUALIFIED_INTEGRATION", Decimal(0)) == (
+            Decimal(110) if level is low else Decimal(0)
+        )
 
 
 def test_the_chain_passes_the_worker_to_the_seniority_rule(

@@ -49,6 +49,8 @@ class HourlyPercentage(BaseModel):
         rate: Share of the base it pays.
         base_allowances: Codes of the fixed allowances that join the base
             salary in its base, as the run pays them by the hour.
+        include_individual: Whether individual ordinary-pay elements (including
+            superminimum) join the named allowances in the percentage base.
         settlement: Who it is paid to.
         net_rate: Share of the base withheld from the pay and accrued with
             the Cassa Edile; set for ``cassa_edile`` alone.
@@ -67,6 +69,7 @@ class HourlyPercentage(BaseModel):
     description: str
     rate: TimeSeries
     base_allowances: tuple[str, ...] = ()
+    include_individual: bool = False
     settlement: PercentageSettlement
     net_rate: TimeSeries | None = None
     tfr_relevant: bool = True
