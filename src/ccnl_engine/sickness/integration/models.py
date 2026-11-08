@@ -14,6 +14,7 @@ from ccnl_engine.sickness.comporto.models import (
     HospitalComportoRule,
     check_windows,
 )
+from ccnl_engine.sickness.holiday.models import SicknessHoliday
 from ccnl_engine.sickness.integration.condition.models import (
     CarenzaByEvent,
     HospitalStayRule,
@@ -303,11 +304,9 @@ class SicknessRules(BaseModel):
             CCNL (:class:`~ccnl_engine.sickness.indemnity.models.SickPayRegime`),
             e.g. ``pubblici_esercizi`` (80% for the whole sickness);
             ``None`` for the general bands.
-        daily_divisor_method: Daily quota of a sick day when it differs
-            from the one of the absence rules (CCNL lavoro domestico,
-            chiarimento a verbale 2: sickness counts calendar days, in
-            thirtieths, absences working days, in twenty-sixths); ``None``
-            takes the absence rules'.
+        daily_divisor_method: Daily quota of a sick day when not the
+            absence rules' (lavoro domestico: calendar days, in thirtieths).
+        holiday: The target of a national holiday in the sickness.
         provenance: Links this rule to its CCNL article.
     """
 
@@ -332,6 +331,7 @@ class SicknessRules(BaseModel):
     employer_share: Decimal | None = Field(default=None, ge=0, le=1)
     inps_regime: str | None = None
     daily_divisor_method: DailyDivisorMethod | None = None
+    holiday: SicknessHoliday | None = None
     provenance: RuleProvenance | None = None
 
     @model_validator(mode="after")
