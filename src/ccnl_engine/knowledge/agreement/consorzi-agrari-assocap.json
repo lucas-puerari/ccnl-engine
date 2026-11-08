@@ -116,6 +116,19 @@
           },
           "remediation": "Source the apprentice rates of agricoltura (an INPS circular or an association table of 2026), mark the apprentice block of contribution/2026/agricoltura.json derived, then remove this note."
         }
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 43 (2024–2027 CCNL, PDF p. 40): employees already in service on 22 December 1997 retain a one-off, three-month award at 25 years with the same consorzio (including apprenticeship), excluded from TFR. Non-disciplinary termination after starting year 21 or 25 instead attracts two or three months; a qualifying short employer-initiated break may preserve prior service. Annual loyalty_premium would repeatedly overpay and cannot enforce the grandfathering.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "grandfathered_consorzio_award",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Implement a one-off cohort-gated three-month award with the Art. 43 termination and service rules."
+        }
       }
     ]
   },
@@ -2301,7 +2314,7 @@
     "effective_until": null,
     "source": "https://www.wolterskluwer.it/",
     "verification_status": "unverified",
-    "source_hash": "f3210364857ed47938ed9c81a52efb26ffe257855fcfce0636e8711ae97ee2e9",
+    "source_hash": "7547e8105881c85ddf61a3fa4790a44b9db986c1dc784e51d183c6ca190b5579",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

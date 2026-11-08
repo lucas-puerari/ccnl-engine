@@ -60,20 +60,6 @@
       },
       {
         "kind": "simplification",
-        "text": "Seniority: CCNL RSA-AIOP provides a flat EUR 40/month after 5 years of service (levels A-E3 only; F/G/H excluded). Modelled as cadence_months=60, maximum_count=1 — correct for new hires (single increment at month 60). Oct 2023 'premio di anzianita' (EUR 40 one-time for 10+ year workers) is a one-time payment, out_of_scope.",
-        "capability": "una_tantum",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "seniority_premium_2023",
-          "applies_when": {
-            "trigger": "outside_input",
-            "effective_from": "2023-10-01"
-          },
-          "remediation": "Model or track the Oct 2023 one-time premio di anzianità (EUR 40 to workers with 10+ years) as an una tantum."
-        }
-      },
-      {
-        "kind": "simplification",
         "text": "Apprenticeship: CCNL RSA-AIOP specifies sotto-inquadramento up to 2 levels below destination (levels A-F eligible, 36 months). Modelled as 100% passthrough (overstates pay for apprentices); the engine supports under_classification tracks with levels_below, not yet used here. (review of 2026-10-30)",
         "capability": "base_salary",
         "monetary_impact": "yes",
@@ -99,6 +85,20 @@
             ]
           },
           "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Seniority: CCNL RSA-AIOP provides a flat EUR 40/month after 5 years of service (levels A-E3 only; F/G/H excluded). Modelled as cadence_months=60, maximum_count=1 — correct for new hires (single increment at month 60). The Oct 2023 'premio di anzianità' is EUR 40 gross on each of thirteen monthly payments, TFR-relevant, for levels A–E3 with ten years at the same employer or group already completed on 3 October 2023; ratification was a condition. It is not the five-year increment and is not modelled: an in_service_on allowance alone cannot establish ten years of service on the signing date.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "seniority_premium_2023",
+          "applies_when": {
+            "trigger": "outside_input",
+            "effective_from": "2023-10-01"
+          },
+          "remediation": "Verify ratification and add a monthly EUR 40 allowance for levels A–E3 gated by service of at least ten years on 3 October 2023 and employment on that date; include thirteen payments and TFR."
         }
       }
     ]
@@ -1378,7 +1378,7 @@
     "effective_until": null,
     "source": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf",
     "verification_status": "unverified",
-    "source_hash": "cdd48d41e2583c9c5740530c4b2938a014175230db8fcd08806e0bbf7dc04f9e",
+    "source_hash": "380d9ccb8fc3e6b80d6df277861785a15ef24fefc2f9d66ba4eee4064a57576f",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

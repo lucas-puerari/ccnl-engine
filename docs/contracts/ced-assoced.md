@@ -64,6 +64,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | gpt-6-sol (ai) | The maternity holiday clause against the encoding, by a separate model session. | corrected | Confirmed the 100% target net of the INPS share on the holidays of the compulsory leave.<br>Recorded as limitation maternity_holiday_scope: the Sunday holidays, the patron saint and 4 October, the optional leave. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Holiday pay during work injury, including the applicable holiday calendar and the offset against statutory and contractual daily pay. | confirmed | Covered weekday holiday target reaches full daily pay after INAIL and ordinary CCNL integration; employer-specific holidays remain outside the national calendar. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 147 - Injury pay, ordinary injury integration and waiting days against the cached PDF. | corrected | The explicit numerical 75% is used rather than the contradictory parenthetical words (100%). The three days after the injury are paid at 60%; from offset 4 the INAIL benefit is topped up to 75% of net daily pay. The conflicting wording requires a clarification before a 100% target can be asserted. |
+| 2026-11-08 | gpt-6-sol (ai) | Art. 147 against the injury integration bands, by a separate model session. | flagged | Confirmed the waiting days at 60%, the bands from the INAIL indemnity and the day mapping from the injury day.<br>Flagged, kept as limitations: the 75% of the numeral against the '(cento per cento)' in words. |
 
 ## Salary table
 

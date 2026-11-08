@@ -82,6 +82,19 @@
       {
         "kind": "info",
         "text": "TRATTAMENTO INTEGRATIVO SPECIALE (L. 199/2025 art. 1 cc. 18-21): for the work of 1 January - 30 September 2026 of a worker who asked for it (PriorYearTaxFacts.special_supplement_requested) with 2025 employment income up to 40,000 EUR, in an employer of food service, tourism or thermal establishments (EmployerProfile.activity), the engine pays 15% of the gross pay of the night hours and of the holiday overtime (AdE circ. 26/E/2023 par. 2: 'calcolata sulla retribuzione lorda'), outside income, as a credit the employer recovers in F24 (capability special_supplement)."
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 182 (PDF p. 160) abolished the seniority prize on 31 May 1986 except for rights of workers then in service. Annex 9 (PDF p. 316) specifies hotel-sector awards after 10, 15, 20 and 30 continuous years of respectively 1, 1.5, 2 and 3 monthly pays, with departure fractions after year 10. This archival entitlement requires confirmation in a current text; annual loyalty_premium would repeat distinct milestone awards and extend them to new hires.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "federturismo_legacy_awards",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Verify continued rights and implement grandfathered, non-recurring hotel milestones and departure fractions."
+        }
       }
     ]
   },
@@ -1829,7 +1842,7 @@
     "effective_until": null,
     "source": "https://www.federturismo.it/it/documenti/documenti/12210-circolare-tabelle-retributive-ccnl-news-16-gennaio-2025/file.html",
     "verification_status": "unverified",
-    "source_hash": "545f38dfb19116c0ae3cb0941579863355bccdda7d2877552ad3893d0f221574",
+    "source_hash": "83f6e83285735fd0912bd533a4d0ffbc249f7a1d73d999db73c96cab98f460e1",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

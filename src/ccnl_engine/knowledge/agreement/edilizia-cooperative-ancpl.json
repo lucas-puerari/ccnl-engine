@@ -135,6 +135,19 @@
           },
           "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
         }
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 98 of the cached 2000 CCNL (PDF p. 97) preserves an annual one-month loyalty award only for clerical employees who had already completed 20 years of actual uninterrupted service at the same company or group by 30 April 1982. It uses Art. 80 items 1–14 frozen at their 30 April 1982 values, and whole-month fractions on non-disciplinary departure. The present-day scope of this archival text is unverified. Annual loyalty_premium cannot enforce the historical eligibility and frozen valuation.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "cooperative_legacy_loyalty",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Verify continued validity against a current text and implement historical cohort eligibility, frozen award base, and departure pro rata."
+        }
       }
     ]
   },
@@ -2342,7 +2355,7 @@
     "effective_until": null,
     "source": "https://www.studiocani.com/ccnl-edilizia-industria-e-cooperative-aumento-dei-minimi-dal-1-marzo/",
     "verification_status": "unverified",
-    "source_hash": "80708b8798c29eea9149a5bff8645b097ef0beeaa0e5610382bdcb920e4d2aa1",
+    "source_hash": "6dd712c9ff4fbbe72c1ab34a8a05d72357f331c032496cf23fb9615e350b71cc",
     "published_at": "2026-09-18",
     "source_type": "contracting_party"
   },

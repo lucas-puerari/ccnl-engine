@@ -108,6 +108,19 @@
       {
         "kind": "info",
         "text": "ORDINARY HOURS PREMIUMS (Art. 31): the Saturday or sixth-day work of birra e malto (50%) and avicoli (65%) is paid on HolidayWorkEvent of kind saturday_sixth_day; the 5% of the two day shifts of the alimenti zootecnici on three continuous alternating shifts (terza nota a verbale, p. 86) on ShiftWorkEvent of kind day."
+      },
+      {
+        "kind": "simplification",
+        "text": "Sugar-industry supplementary rule 25 (PDF p. 230): at 25 uninterrupted years with the same company or group, a one-off minimum award of one normal monthly pay for clerical staff or 200 normal hourly wages for manual workers. This does not apply to the other food-industry branches. Death or permanent incapacity before the threshold and direct transfers have separate rules. An annual clerical-only loyalty_premium would wrongly repeat and extend this award.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "sugar_twenty_five_year_award",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Gate the sugar subsector and pay the once-only clerical or hourly award, including early departure and transfer rules."
+        }
       }
     ]
   },
@@ -4179,7 +4192,7 @@
     "effective_until": null,
     "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "2fe8ec7bac5dde7dc3404c1d01eb56a877512c3d2730a45149541a38c51e5df7",
+    "source_hash": "3b4a89e4a8038b81c259e0a843cbee4ef92622845411d07e25e72cd4297e7506",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

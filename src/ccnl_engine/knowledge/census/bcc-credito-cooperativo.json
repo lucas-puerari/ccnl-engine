@@ -99,6 +99,22 @@
       }
     },
     {
+      "id": "movement_loyalty_award",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Art. 102 (2024 CCNL, PDF p. 117): a single loyalty award at 25 years of cumulative cooperative-banking movement service, only for managerial grades 3 and 4, at 90.66% of one month of the enumerated salary items. The annual hire-anniversary loyalty_premium cannot represent the one-off award, cross-employer service, or the restricted pay base.",
+      "calculation": "ccnl/bcc-credito-cooperativo:coverage.notes",
+      "state": "absent",
+      "remediation": "Implement a once-only award using cumulative movement service and the Art. 102 grade and pay-base restrictions.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "bcc-credito-cooperativo/movement_loyalty_award"
+        ]
+      }
+    },
+    {
       "id": "notice_indemnity_day_measure",
       "institute": "termination_notice",
       "variant": "all",
