@@ -147,22 +147,6 @@
       }
     },
     {
-      "id": "par_conto_ore_payout",
-      "institute": "leave",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "LEAVE, CONTO ORE (Art. 5): the PAR not taken in the year go to an individual conto ore for 24 more months and are then paid with the retribuzione in atto. The engine carries the balances and does not pay them at the end of the window.",
-      "calculation": "ccnl/metalmeccanico-federmeccanica:coverage.notes",
-      "state": "absent",
-      "remediation": "Pay the residual PAR of a year at the end of its 24-month conto ore window.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "metalmeccanico-federmeccanica/par_conto_ore_payout"
-        ]
-      }
-    },
-    {
       "id": "par_sector_and_shift_hours",
       "institute": "leave",
       "variant": "all",

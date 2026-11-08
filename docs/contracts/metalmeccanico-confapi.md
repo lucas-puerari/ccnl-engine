@@ -69,6 +69,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-07 | claude-opus-5-5 (ai) | Art. 48 (PDF p. 122) and the renewals of 26 May 2021 and 4 June 2026 for amendments to it. | confirmed | Art. 48: 485 EUR a year with the June pay, to the workers in service on 1 January in firms without second-level bargaining with economic content, prorated by the months of the year before (a fraction above 15 days a month), reduced up to its amount by the pay above the CCNL, out of the TFR base, paid at the settlement on an earlier termination, of the competence of the year of payment.<br>The ipotesi of 26 May 2021 and the renewal of 4 June 2026 do not mention the element (OCR of their 23 and 41 pages). |
 | 2026-11-08 | gpt-6-sol (ai) | CCNL top-ups of maternity and work injury, read from the signed text by a separate model session; every quote found on the PDF text layer. | confirmed | Added work_rules.insured_absence.maternity.<br>Added work_rules.insured_absence.injury. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 98 (printed p. 182), Premesse p. 12 and the renewals of 26 May 2021, 24 July 2025 and 4 June 2026 for amendments to it. | corrected | Art. 98 sets 69.72 (quadri A) and 49.06 (quadri B) from 1 January 1991 and 32.75 for the quadri B of the oreficeria sector, without a date.<br>No renewal of 2021, 2025 or 2026 amends Art. 98 (an independent reading of the three signed texts found none).<br>Art. 50 p. 123 counts the indennità di funzione quadri in the 'retribuzione FONDAPI': added to the base of the fund.<br>An independent reading flagged that the 9th category also holds workers outside the declaratoria of the quadri A: the 69.72 is paid with the role 'quadro' on level 9 too; it confirmed Art. 50 (both contributions on the retribuzione FONDAPI) and found no absorption or 13th-month clause on Art. 98. |
+| 2026-11-08 | claude-opus-5-5 (ai) | Art. 22: the conto ore of the PAR not taken (p. 93-94). | confirmed | The PAR not taken in the year go to an individual conto ore for 24 more months; the residual is paid at the pay in force at the expiry, the run of the payment not named: the December pay of the second year after. |
 
 ## Salary table
 
@@ -196,11 +197,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Add employment facts for the sector, the shift pattern and the size of the unità produttiva, and the 2027 hours.
 
 !!! warning "metalmeccanico-confapi/par_conto_ore_payout · leave · impact yes · open"
-    LEAVE, CONTO ORE (Art. 22): the PAR not taken in the year go to an individual conto ore for 24 more months and are then paid with the retribuzione in atto. The engine carries the balances and does not pay them at the end of the window.
+    LEAVE, CONTO ORE (Art. 22, p. 94): the residual PAR of a year are paid with the December pay two years later (work_rules.leave_rules.permit_deadline). Not modelled: 'L’attivazione del Conto ore individuale avverrà previo accertamento presso gli Enti previdenziali competenti' of the contributions on the hours set aside; the engine treats the conto ore as active.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Pay the residual PAR of a year at the end of its 24-month conto ore window.
+    **Remediation:** State whether the conto ore of the firm is active (the INPS check of art. 22) and, if not, pay the residual PAR at the end of their year.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

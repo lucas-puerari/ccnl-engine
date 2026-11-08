@@ -34,7 +34,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, leave, overtime |
 
-6 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -76,6 +76,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-20 | claude-opus-5-5 (ai) | Whether the individual elements of the worker (superminimi, aumenti di merito, assegni ad personam) enter the hourly base of overtime and supplements (Sez. Quarta, Titolo IV, Art. 3 - Mensilizzazione; Titolo III, Art. 7). | corrected | Sez. Quarta, Titolo IV, Art. 3 - Mensilizzazione; Titolo III, Art. 7: individual elements included in the hourly base: work_rules.time_supplements.individual_elements. |
 | 2026-10-31 | claude-opus-5-5 (ai) | The basis of the indemnity for the leave not taken at the end of the employment, searched for a divisor of the daily pay in the CCNL of 5 February 2021 (Sez. IV, Tit. III, Artt. 9, 10; Tit. IV, Art. 3) and in the OCR of the ipotesi of 22 November 2025. | confirmed | Art. 10 pays a day of ferie not taken at the 'retribuzione giornaliera globale di fatto' and no text read divides the monthly pay into it: the 1/26 of Art. 9 is limited to a festività on a Sunday. No termination basis is recorded. |
 | 2026-11-08 | gpt-6-sol (ai) | CCNL top-ups of maternity and work injury, read from the signed text by a separate model session; every quote found on the PDF text layer. | confirmed | Added work_rules.insured_absence.maternity.<br>Added work_rules.insured_absence.injury. |
+| 2026-11-08 | gpt-6-sol (ai) | Art. 5: the conto ore of the PAR not taken (p. 156). | confirmed | The PAR not taken in the year go to an individual conto ore for 24 more months; the residual is paid at the pay in force at the expiry, the run of the payment not named: the December pay of the second year after. |
 
 ## Salary table
 
@@ -162,13 +163,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Add employment facts for the settore siderurgico, the shift pattern and the sottosettori.
-
-!!! warning "metalmeccanico-federmeccanica/par_conto_ore_payout · leave · impact yes · open"
-    LEAVE, CONTO ORE (Art. 5): the PAR not taken in the year go to an individual conto ore for 24 more months and are then paid with the retribuzione in atto. The engine carries the balances and does not pay them at the end of the window.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Pay the residual PAR of a year at the end of its 24-month conto ore window.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
@@ -378,6 +372,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     LEAVE AT TERMINATION (Sez. IV, Tit. III, Art. 10, p. 166 of the CCNL of 5 February 2021): 'L’indennità dovuta al lavoratore per le giornate di ferie non godute è costituita dalla retribuzione giornaliera globale di fatto'. No clause of the 2021 text or of the ipotesi of 22 November 2025 (OCR) defines that daily pay as a fraction of the monthly pay: the only daily quota stated (1/26 of the retribuzione mensile fissa, Art. 9, p. 164) is the pay of a festività falling on a Sunday, and the divisor 173 (Tit. IV, Art. 3, p. 173) gives the hourly pay. The engine pays no residual (termination_residual_leave incomplete, termination_basis_not_sourced).
     
     APPRENTICE SENIORITY (Disciplina dell'apprendistato professionalizzante, Art. 13, p. 272 of the CCNL 5 February 2021): the apprenticeship counts for the aumenti periodici of the worker kept in service for 65% of its length; no increment during it (seniority_increments.apprentice_amount 0.00).
+    
+    LEAVE, CONTO ORE (Sez. IV Tit. III Art. 5, p. 156): the PAR not taken in their year are carried 24 more months and the residual is paid with the December pay of the second year after, at the pay of that run (work_rules.leave_rules.permit_deadline, carry_years 2).
     
 
 ## Raw data

@@ -271,7 +271,7 @@ def _deadline_payout(
         )
     if period.month != (deadline.carry_until_month if carry else 12):
         return None
-    year = period.year - 1 if carry else period.year
+    year = period.year - deadline.carry_years if carry else period.year
     lapsing = tuple(
         b
         for b in account.unsettled()

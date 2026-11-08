@@ -175,12 +175,16 @@ class PermitDeadline(BaseModel):
             dell'anno successivo; qualora ciò non avvenga decadranno e
             saranno pagati"); ``EmployerProfile.permit_carryover`` is then
             not read.
+        carry_years: Years after the year of the permits whose
+            ``carry_until_month`` ends the carry (Federmeccanica Sez. IV Tit.
+            III art. 5: "un ulteriore periodo di 24 mesi", 2).
         provenance: Source of the clause.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
 
     carry_until_month: int = Field(ge=1, le=12)
+    carry_years: int = Field(default=1, ge=1, le=3)
     buckets: tuple[LeaveBucket, ...] = Field(min_length=1)
     carry_fixed: bool = False
     provenance: RuleProvenance | None = None
