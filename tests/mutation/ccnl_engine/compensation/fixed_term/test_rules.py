@@ -158,6 +158,8 @@ def test_a_cooperative_otd_is_paid_the_hours_and_the_terzo_elemento() -> None:
     assert pay["terzo_elemento_2026-01"] == (paid * Decimal("0.3044")).quantize(
         Decimal("0.01")
     )
+    # Art. 66: 8.63% of the minimo of the hours, without the terzo elemento.
+    assert pay["tfr_2026-01"] == (paid * Decimal("0.0863")).quantize(Decimal("0.01"))
 
 
 def test_the_terzo_elemento_is_paid_on_the_overtime_hours() -> None:
