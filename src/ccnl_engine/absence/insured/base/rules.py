@@ -14,7 +14,7 @@ from datetime import date, timedelta
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.absence.insured.rules import maternity_daily_base
+from ccnl_engine.absence.insured.maternity_base import maternity_daily_base
 from ccnl_engine.decision.models import CalculationIssue, CalculationStatus
 
 if TYPE_CHECKING:
