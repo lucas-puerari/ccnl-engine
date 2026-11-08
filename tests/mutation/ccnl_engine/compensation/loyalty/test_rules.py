@@ -126,6 +126,34 @@ def test_later_anniversary_still_pays() -> None:
     assert loyalty_premium(_context(start=date(2005, 4, 15))).amount == 2000
 
 
+def test_cna_agreement_anniversary_is_posted_only_for_clerical_worker() -> None:
+    """A 20-year hire anniversary pays one run-chain monthly award, not zero."""
+
+    def run(month: int) -> PeriodResult:
+        return calculate_period(
+            PeriodCalculationRequest(
+                employer=EmployerProfile(headcount=Headcount(20)),
+                period_id=PeriodId(2026, month),
+                payment_date=date(2026, month, 27),
+                ccnl_id="edilizia-artigianato-cna",
+                level_code="7",
+                opening_state=PeriodState.zero(),
+                roles=frozenset(),
+                events=(),
+                employment_period=EmploymentPeriod(started_on=date(2006, 4, 15)),
+            ),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
+
+    april = run(4)
+    may = run(5)
+    award = [i for i in april.pay_items if i.kind == "loyalty_premium_earning"]
+    assert len(award) == 1
+    assert award[0].amount > 0
+    assert not [i for i in may.pay_items if i.kind == "loyalty_premium_earning"]
+
+
 def test_ance_impiegato_twentieth_anniversary_amount_and_timing() -> None:
     """The 20-year award is EUR 2,143.99; the preceding month pays zero.
 
@@ -159,31 +187,3 @@ def test_ance_impiegato_twentieth_anniversary_amount_and_timing() -> None:
     assert len(award) == 1
     assert award[0].amount == Decimal("2143.99")
     assert not [i for i in march.pay_items if i.kind == "loyalty_premium_earning"]
-
-
-def test_cna_agreement_anniversary_is_posted_only_for_clerical_worker() -> None:
-    """A 20-year hire anniversary pays one run-chain monthly award, not zero."""
-
-    def run(month: int) -> PeriodResult:
-        return calculate_period(
-            PeriodCalculationRequest(
-                employer=EmployerProfile(headcount=Headcount(20)),
-                period_id=PeriodId(2026, month),
-                payment_date=date(2026, month, 27),
-                ccnl_id="edilizia-artigianato-cna",
-                level_code="7",
-                opening_state=PeriodState.zero(),
-                roles=frozenset(),
-                events=(),
-                employment_period=EmploymentPeriod(started_on=date(2006, 4, 15)),
-            ),
-            repo=bundled_repository(),
-            resolver=bundled_policies(),
-        )
-
-    april = run(4)
-    may = run(5)
-    award = [i for i in april.pay_items if i.kind == "loyalty_premium_earning"]
-    assert len(award) == 1
-    assert award[0].amount > 0
-    assert not [i for i in may.pay_items if i.kind == "loyalty_premium_earning"]
