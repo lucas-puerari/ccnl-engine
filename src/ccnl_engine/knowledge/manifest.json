@@ -1224,7 +1224,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/istituzioni-servizi-socio-assistenziali-anaste",
       "ruleset_version": "2026.2",
-      "source_hash": "43e478000540f50fa91071f500d82575b684adf7575312f36a167d3e8ea68821",
+      "source_hash": "0391628657bb41b2291def691dfc167038d807e849f6e03df123c688e79433d0",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/istituzioni-servizi-socio-assistenziali-anaste.json.gz"
@@ -1751,7 +1751,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/poste-italiane-k700",
       "ruleset_version": "2026.2",
-      "source_hash": "d9601804dfc9d3fff1320d093d65767ee773e213f9a2620a3bf0be0a3677b28c",
+      "source_hash": "8e320bc6b2c7ce028f96ac67e78fda51fb39ff8e7c7f7cd22b1579593ff47010",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/poste-italiane-k700.json.gz"
@@ -4441,7 +4441,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "380f2796023ef98dc7a13388d16cad004705c6bdccd4cc1117f9693cc4f5c9ca",
+      "source_hash": "182ba95335c7e5a0d6663822318115d7fd24e940f5ea9f934961a95f51733e4d",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/poste-italiane-k700.json.gz",
