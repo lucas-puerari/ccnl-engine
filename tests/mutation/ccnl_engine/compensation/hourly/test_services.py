@@ -270,17 +270,27 @@ def test_projection_counts_the_percentages_of_the_months_to_come() -> None:
     assert _account(result, "credits") == 0
 
 
-def test_a_caposquadra_is_paid_ten_percent_more() -> None:
-    """Caposquadra (CCNL 2010, p. 103): 10% of paga base and contingenza.
+@pytest.mark.parametrize(
+    ("level", "salary", "supplement", "riposi"),
+    [
+        ("1", "1252.37", "158.02", "95.20"),
+        ("2", "1248.81", "176.52", "96.12"),
+        ("3", "1387.56", "190.67", "103.82"),
+    ],
+)
+def test_caposquadra_base_and_qualified_worker_floor(
+    level: str, salary: str, supplement: str, riposi: str
+) -> None:
+    """173 hours, Jan 2026: L2 1248.81+516.43=1765.24, 10%=176.52.
 
-    Level 1, January 2026: (1,067.36 + 512.87) x 10% = 158.02 a month, on
-    the 173 hours in full; the riposi annui take it in their base (Art. 24
-    point 4): (1,580.23 + 158.02) x 4.95% = 86.04.
+    L3 1387.56+519.16=1906.72, 10%=190.67. L1 1067.36+512.87
+    gains 185.01 base floor, then 158.02 supplement; riposi L1 95.20.
     """
-    capo = replace(_OPERAIO, roles=frozenset({"caposquadra"}))
+    capo = replace(_OPERAIO, level_code=level, roles=frozenset({"caposquadra"}))
     result = _january(Decimal(173), capo)
-    assert _item(result, "allowance_CAPOSQUADRA") == Decimal("158.02")
-    assert _item(result, "riposi_annui") == Decimal("86.04")
+    assert _kind(result, "base_salary_earning") == Decimal(salary)
+    assert _item(result, "allowance_CAPOSQUADRA") == Decimal(supplement)
+    assert _item(result, "riposi_annui") == Decimal(riposi)
     assert "allowance_CAPOSQUADRA" not in {
         i.item_id.rsplit("_", 1)[0] for i in _january(Decimal(173)).pay_items
     }

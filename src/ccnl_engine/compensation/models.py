@@ -30,29 +30,21 @@ from ccnl_engine.seniority.models import SeniorityIncrements
 class Allowance(BaseModel):
     """A named fixed monthly allowance attached to a CCNL level.
 
-    ``role`` restricts the allowance to workers holding that role (``None``
-    means every worker at the level). ``months_per_year`` overrides the
-    contract-wide ``additional_months`` for this allowance only. The
-    relevance flags exclude the allowance from the TFR base (with the
-    end-of-service base of a public employee and the fund bases on it) or the
-    apprenticeship-percentage base.  ``contribution_relevant`` false is
-    rejected: the engine does not take an allowance out of the INPS base.
-    ``apprenticeship_pct_relevant=False`` means the allowance is paid at full
-    value even for percentage-based apprentices (e.g. the EDR, which Italian
-    CCNL commonly leave out of the elements the apprenticeship percentage
-    applies to).  The default ``True`` reduces the allowance by the
-    percentage together with the base salary; a CCNL that lists the reduced
-    elements exempts every allowance it does not list.
+    ``role`` restricts the allowance to holders; ``months_per_year`` overrides
+    contract-wide additional months. ``percentage_rate`` applies to the base
+    salary and ``percentage_base_allowances``; ``floor_level`` lifts ordinary
+    base pay to that level before adding the supplement. Relevance flags
+    control TFR and apprenticeship bases; contribution exclusion is unsupported.
+    ``apprenticeship_pct_relevant=False`` keeps the allowance at full value
+    for apprentices (e.g. EDR); the default reduces it with the base salary.
 
     ``individual=True`` marks an element of the worker, not of the CCNL
     (:class:`~ccnl_engine.compensation.individual.inputs.IndividualElement`):
     the hourly base counts it as the CCNL says
     (:class:`~ccnl_engine.working_time.supplement.models.IndividualElementsRule`).
 
-    ``in_service_on`` limits the allowance to the workers in service on
-    that day (Logistica Confetra art. 60 c. 8: the EDR of the workers "in
-    servizio alla data del 26 gennaio 2011"): it is paid only when the
-    employment started on or before it, and not when the start is unknown.
+    ``in_service_on`` requires employment by that date; unknown start dates
+    do not qualify (Logistica Confetra art. 60 c. 8).
     ``service_months_threshold`` includes the allowance only when the
     recognised seniority (``Employment.seniority``) is known and at least
     this many months on the run; unknown, the run names the missing fact.
@@ -81,6 +73,9 @@ class Allowance(BaseModel):
     description: str
     monthly: TimeSeries
     role: str | None = None
+    percentage_rate: Decimal | None = Field(default=None, ge=0, le=1)
+    percentage_base_allowances: tuple[str, ...] = ()
+    floor_level: str | None = None
     months_per_year: int | None = Field(default=None, ge=1)
     tfr_relevant: bool = True
     tfr_relevant_from: date | None = None
@@ -98,6 +93,11 @@ class Allowance(BaseModel):
 
     @model_validator(mode="after")
     def _check_contribution_relevant(self) -> Self:
+        if self.percentage_rate is None and (
+            self.percentage_base_allowances or self.floor_level is not None
+        ):
+            msg = f"allowance {self.code}: percentage base needs a rate"
+            raise ValueError(msg)
         if not self.contribution_relevant:
             msg = (
                 f"allowance {self.code}: contribution_relevant false is not "

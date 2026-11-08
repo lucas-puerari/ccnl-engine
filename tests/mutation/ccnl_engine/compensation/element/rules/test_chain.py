@@ -206,6 +206,90 @@ class _Seniority:
         return Decimal(10) if kwargs["is_apprentice"] else Decimal(30)
 
 
+def test_percentage_base_requires_a_rate() -> None:
+    """A named percentage base cannot be calculated without its rate."""
+    with pytest.raises(ValueError, match="percentage base needs a rate"):
+        Allowance(
+            code="INVALID",
+            description="invalid",
+            monthly=_time_series("1"),
+            percentage_base_allowances=("CONTINGENZA",),
+        )
+
+
+def test_percentage_allowance_without_floor(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """200 base plus 50 contingency pays 25, with no floor adjustment."""
+    monkeypatch.setattr(rules, "_seniority_amount", lambda *args, **kwargs: Decimal(0))
+    level: Any = SimpleNamespace(
+        code="1",
+        base_salary=_time_series("200"),
+        fixed_allowances=(
+            _allowance(code="CONTINGENZA", monthly="50"),
+            _allowance(code="SUPPLEMENT", monthly="1", role="caposquadra").model_copy(
+                update={
+                    "percentage_rate": Decimal("0.10"),
+                    "percentage_base_allowances": ("CONTINGENZA",),
+                }
+            ),
+        ),
+    )
+    chain = _level_chain(
+        _ccnl(), level, 0, frozenset({"caposquadra"}), _DAY, is_apprentice=False
+    )
+    assert chain.base == Decimal(200)
+    assert {a.code: value for a, value in chain.allowances}["SUPPLEMENT"] == 25
+
+
+def test_percentage_allowance_uses_current_elements_before_base_floor(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """200+50 earns 25, while a 300+60 qualified floor adds 110 to base.
+
+    A higher 400+70 level earns 47 without a base uplift; the fixed monthly
+    placeholder is deliberately 1 in both cases, not the computed supplement.
+    """
+    monkeypatch.setattr(rules, "_seniority_amount", lambda *args, **kwargs: Decimal(0))
+    supplement = _allowance(
+        code="CAPOSQUADRA", monthly="1", role="caposquadra"
+    ).model_copy(
+        update={
+            "percentage_rate": Decimal("0.10"),
+            "percentage_base_allowances": ("CONTINGENZA",),
+            "floor_level": "2",
+        }
+    )
+
+    def worker(code: str, base: str, contingency: str) -> Any:  # noqa: ANN401
+        return SimpleNamespace(
+            code=code,
+            base_salary=_time_series(base),
+            fixed_allowances=(
+                _allowance(code="CONTINGENZA", monthly=contingency),
+                supplement,
+            ),
+        )
+
+    floor = worker("2", "300", "60")
+    low = worker("1", "200", "50")
+    high = worker("3", "400", "70")
+    ccnl = _ccnl()
+    ccnl.levels = (low, floor, high)
+    for level, expected_base, expected_supplement in (
+        (low, Decimal(310), Decimal(25)),
+        (floor, Decimal(300), Decimal(36)),
+        (high, Decimal(400), Decimal(47)),
+    ):
+        chain = _level_chain(
+            ccnl, level, 0, frozenset({"caposquadra"}), _DAY, is_apprentice=False
+        )
+        assert chain.base == expected_base
+        assert {a.code: value for a, value in chain.allowances}[
+            "CAPOSQUADRA"
+        ] == expected_supplement
+
+
 def test_the_chain_passes_the_worker_to_the_seniority_rule(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
