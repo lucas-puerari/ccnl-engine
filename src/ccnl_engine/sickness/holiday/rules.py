@@ -11,9 +11,22 @@ if TYPE_CHECKING:
     from ccnl_engine.sickness.holiday.models import SicknessHoliday
     from ccnl_engine.sickness.integration.models import SicknessRules
 
-__all__ = ["covered_holidays", "covered_target_holidays"]
+__all__ = ["covered_holidays", "covered_target_holidays", "gross_holiday_boundary"]
 
 _SUNDAY = 6
+
+
+def gross_holiday_boundary(
+    target: SicknessHoliday | None, holidays: frozenset[date], day: date, previous: date
+) -> bool:
+    """Keep gross-basis holiday pay separate from adjacent ordinary sick pay.
+
+    Returns:
+        Whether a segment must end at this day boundary.
+    """
+    return bool(
+        target and target.gross_basis and (day in holidays or previous in holidays)
+    )
 
 
 def covered_holidays(

@@ -142,17 +142,41 @@ def test_federmeccanica_easter_monday_receives_holiday_top_up() -> None:
     }
 
 
-def test_confcommercio_may_first_net_basis_cannot_meet_gross_holiday_pay() -> None:
-    """May 1, 2026: 68.52 gross, INPS 34.26, existing integration 13.43.
+def test_confcommercio_may_first_gross_holiday_pay() -> None:
+    """May 1: gross quota 68.52, INPS 34.26, employer 34.26 = 68.52.
 
-    If rate 1 were encoded, grossed INPS = 34.26 / 0.9024333 = 37.96,
-    integration = 68.52 - 37.96 = 30.56; total 64.82, not 68.52.
-    Therefore the holiday target is deliberately absent; the gap remains.
+    Without the target the employer pays 13.43; using the net basis with
+    rate one would pay 30.56, yielding only 64.82 combined.
     """
     assert _holiday_case(
         "commercio-confcommercio", "4", date(2026, 4, 27), date(2026, 5, 1)
     ) == {
         "abs": Decimal("68.52"),
         "inps": Decimal("34.26"),
-        "intg": Decimal("13.43"),
+        "intg": Decimal("34.26"),
     }
+
+
+def test_confcommercio_holiday_splits_equal_rate_days() -> None:
+    """June 1 pays 45.68 + 17.90 = 63.58 on the net basis.
+
+    June 2 pays 45.68 + 22.85 = 68.53 gross, after the two-day
+    137.05 deduction rounds once; both days have rate one.
+    """
+    assert _holiday_case(
+        "commercio-confcommercio", "4", date(2026, 4, 1), date(2026, 6, 2)
+    ) == {
+        "abs": Decimal("137.05"),
+        "inps": Decimal("91.36"),
+        "intg": Decimal("40.75"),
+    }
+
+
+def test_confcommercio_holiday_calendar_excludes_october_fourth() -> None:
+    """Art. 154 omits October 4 but includes May 1, 2026."""
+    work = load_ccnl("commercio-confcommercio").work_rules
+    assert work is not None
+    assert work.sickness_rules is not None
+    days = covered_holidays(work.sickness_rules, load_national_holidays(), 2026)
+    assert date(2026, 5, 1) in days
+    assert date(2026, 10, 4) not in days

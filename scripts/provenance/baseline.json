@@ -725,7 +725,7 @@
       "cinema-audiovisivi-industria/fpls_rates_approximated"
     ],
     "agreement/commercio-confcommercio.json": [
-      "commercio-confcommercio/holiday_during_injury",
+      "commercio-confcommercio/local_patron_holiday",
       "commercio-confcommercio/profile_specific_apprenticeship",
       "commercio-confcommercio/sickness_net_basis"
     ],
