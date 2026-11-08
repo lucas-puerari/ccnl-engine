@@ -238,8 +238,7 @@ class InjuryRules(BaseModel):
             indemnity up to, ``None`` for no top-up.
         integration_bands: The top-up by day, in place of one
             ``integration_rate`` (DMO art. 172: 90% to the 20th day, then 100%).
-        apprentice_bands: The top-up by day of an apprentice, in place of
-            ``integration_bands`` (Confesercenti art. 189: 80% and 90%).
+        apprentice_bands: An apprentice's ``integration_bands`` (art. 189: 80%, 90%).
         net_basis: Whether the measures are of the net pay.
         advanced: Whether the employer advances the INAIL indemnity on the
             payslip (and claims it back from INAIL).
