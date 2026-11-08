@@ -39,9 +39,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | absence, base_salary, overtime, sickness |
+| **Limits of this contract** | absence, base_salary, overtime, parental_leave, sickness |
 
-8 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+9 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -190,6 +190,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** State whether the employer applies the Sezione seconda (ex Magazzini Generali) and apply the holiday target of art. 71 c. 5 then.
+
+!!! warning "logistica-trasporto-confetra/sixth_month_parental_leave · parental_leave · impact yes · open"
+    MATERNITY (Art. 64 c. 1 b, p. 90): the 50% top-up of the sixth month of absence is applied only to the days of a maternity leave event beyond day 150 (e.g. after an early interdiction). When the sixth month of absence is a parental leave (congedo parentale) after the five months of compulsory leave, no top-up is paid: the parental leave event does not carry the months of absence already elapsed.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Top up a parental leave that falls in the sixth month of absence from the start of the maternity leave to 50% of the monthly global pay.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

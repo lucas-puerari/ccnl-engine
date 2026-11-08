@@ -207,6 +207,19 @@
           },
           "remediation": "State whether the employer applies the Sezione seconda (ex Magazzini Generali) and apply the holiday target of art. 71 c. 5 then."
         }
+      },
+      {
+        "kind": "simplification",
+        "text": "MATERNITY (Art. 64 c. 1 b, p. 90): the 50% top-up of the sixth month of absence is applied only to the days of a maternity leave event beyond day 150 (e.g. after an early interdiction). When the sixth month of absence is a parental leave (congedo parentale) after the five months of compulsory leave, no top-up is paid: the parental leave event does not carry the months of absence already elapsed.",
+        "capability": "parental_leave",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "sixth_month_parental_leave",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Top up a parental leave that falls in the sixth month of absence from the start of the maternity leave to 50% of the monthly global pay."
+        }
       }
     ]
   },
@@ -2744,7 +2757,7 @@
     "effective_until": null,
     "source": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
     "verification_status": "unverified",
-    "source_hash": "2555d8aac6c7a223c645a840f1edf3cd290a6f5ecca6940b07fb5d3f1dcfea01",
+    "source_hash": "1550ff0520e7fbf0134491384c3d076154d9b7dc770fcecfce8e272d9f340dc7",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

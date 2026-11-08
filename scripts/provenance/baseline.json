@@ -990,7 +990,8 @@
       "logistica-trasporto-confetra/holiday_during_injury",
       "logistica-trasporto-confetra/level_6j_2025",
       "logistica-trasporto-confetra/magazzini_generali_holiday_in_sickness",
-      "logistica-trasporto-confetra/sixth_day_overtime"
+      "logistica-trasporto-confetra/sixth_day_overtime",
+      "logistica-trasporto-confetra/sixth_month_parental_leave"
     ],
     "agreement/marittimi-industria-armatoriale.json": [
       "marittimi-industria-armatoriale/level_years_from_service",
