@@ -1411,7 +1411,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/logistica-trasporto-confetra",
       "ruleset_version": "2026.2",
-      "source_hash": "fa4e0e546466990ca92893c6780cee8f0f30bbfbc63b003a0aac8798206f5d80",
+      "source_hash": "21d59560de4264f7012999f5e950c8ab9bfc1c18b940a149c08f3851f00e272a",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/logistica-trasporto-confetra.json.gz"
@@ -4041,7 +4041,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "e3dd8e92b1524bc1a5994ba977fb0c1af01f7f28baaed1be5f90b2f8044edb27",
+      "source_hash": "dcd50b67ee9712a13d5c0b24f53c5abd3a7b81145410fc23be7a76415f850052",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/logistica-trasporto-confetra.json.gz",
