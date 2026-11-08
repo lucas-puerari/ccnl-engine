@@ -131,22 +131,6 @@
       }
     },
     {
-      "id": "maternity_sixth_month",
-      "institute": "maternity_leave",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "MATERNITY (Art. 64 c. 1 b, testo unico 25 September 2025, p. 90): the employer tops up to the full retribuzione globale for the first five months (modelled, 150 days) and to 50% in the sixth month (not modelled).",
-      "calculation": "ccnl/logistica-trasporto-confetra:coverage.notes",
-      "state": "absent",
-      "remediation": "Model the 50% top-up of the sixth month of Art. 64.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "logistica-trasporto-confetra/maternity_sixth_month"
-        ]
-      }
-    },
-    {
       "id": "mid_month_level_change",
       "institute": "base_salary",
       "variant": "all",

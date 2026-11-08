@@ -39,9 +39,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | absence, base_salary, maternity_leave, overtime, sickness |
+| **Limits of this contract** | absence, base_salary, overtime, sickness |
 
-9 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+8 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -86,6 +86,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-06 | claude-opus-5-5 (ai) | Apprentice seniority: artt. 17 and 57 of the testo unico of 25 September 2025 (pp. 40-41, 73, 75). | corrected | Apprentices accrue the level increments in full: art. 17 c. 1 (pp. 40-41 of the testo unico of 25 September 2025) gives 'Ai lavoratori, per l'anzianità di servizio maturata presso la stessa azienda' a fixed amount of the level each biennio; art. 57 c. 7 (p. 73) counts the apprentice's probation 'agli effetti dell'anzianità di servizio'; cc. 8-9 and tables A-B (pp. 73, 75) apply the percentage to the 'minimo contrattuale' only. |
 | 2026-11-08 | gpt-6-sol (ai) | CCNL top-ups of maternity and work injury, read from the signed text by a separate model session; every quote found on the PDF text layer. | confirmed | Added work_rules.insured_absence.maternity.<br>Added work_rules.insured_absence.injury. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 71(1)(b,c), (5), cached PDF p. 93; Art. 60(2-3), p. 85. | confirmed | National weekday holidays are within art. 71(b,c); reduced sickness pay reaches full daily actual pay. Injury, patron saint and art. 60 coincident-holiday payment remain outside this rule.<br>A separate review found art. 71 c. 5 restricted to the Sezione seconda (ex Magazzini Generali): the holiday target is removed and kept as a limitation. |
+| 2026-11-08 | claude-opus-5-5 (ai) | Art. 64 c. 1(b), cached Confetra PDF p. 90; maternity integration periods. | corrected | The sixth-month target is 50% inclusive of statutory indemnity, not an additional payment. |
 
 ## Salary table
 
@@ -182,13 +183,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `inps_employer` applies.
 
     **Remediation:** Resolved: the employer states its INPS sector (EmployerProfile.inps_sector, industria or terziario by the CSC of its ATECO in the INPS manual); without it the run has a missing_fact inps_sector blocker. Tested in tests/integration/ccnl_engine/api/test_engine_modes.py.
-
-!!! warning "logistica-trasporto-confetra/maternity_sixth_month · maternity_leave · impact yes · open"
-    MATERNITY (Art. 64 c. 1 b, testo unico 25 September 2025, p. 90): the employer tops up to the full retribuzione globale for the first five months (modelled, 150 days) and to 50% in the sixth month (not modelled).
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Model the 50% top-up of the sixth month of Art. 64.
 
 !!! warning "logistica-trasporto-confetra/magazzini_generali_holiday_in_sickness · sickness · impact yes · open"
     Art. 71 c. 5 (Parte speciale, Sezione seconda, PDF p. 92): the top-up to 100% of the holidays in a sickness or injury applies only to the employers that came from the CCNL Magazzini Generali, a fact the request does not state: not applied.
