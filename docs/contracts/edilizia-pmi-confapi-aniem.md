@@ -60,6 +60,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-14 | claude-opus-5-5 (ai) | Second review of the edilizia group: minimi of the seven levels in the two tranches and the monthly payments, against the testo armonizzato of the renewal of 15 April 2025. | corrected | The 14 minimi match Allegato A (operai, p. 187) and Allegato B (impiegati, p. 188) from 1 April 2025 and 1 March 2027: verified.<br>Monthly payments: the single file pays 13 to all levels, but the impiegati are owed 14 (Art. 63-64) and the operai a 18.5% to the Edilcassa instead of a tredicesima (Art. 16, 18). Both gaps were info notes; they are now limitations that block the runs they concern. The 13 stays assumed. |
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | confirmed | Articolo 63 - Tredicesima mensilita' (Parte II, impiegati) (p. 95): "La frazione di mese non superiore ai quindici giorni non va considerata mentre deve essere considerata come mese intero la frazione di mese superiore ai quindici giorni.". Match: more_than 15. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Artt. 63-64 of the harmonised text of 15 April 2025 (printed p. 95), via a research report; the quote checked on the text layer. | corrected | Added 14 monthly payments for impiegati and quadri; the premio annuo is the fourteenth, run in June (30 June is past the 1-28 range of PaymentDay). |
+| 2026-11-08 | claude-opus-5-5 (ai) | Art. 65 loyalty premium on cached harmonised text PDF page 96. | corrected | Annual anniversary award for clerical employees after twenty years; termination pro rata remains unmodelled. |
 
 ## Salary table
 
@@ -127,11 +128,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Model the operai in a file of their own with 12 monthly payments and the 18.5% Edilcassa accrual, as edilizia-ance does.
 
 !!! warning "edilizia-pmi-confapi-aniem/impiegati_premio_fedelta · base_salary · impact yes · open"
-    ADDITIONAL_MONTHS: the operai are paid 13 monthly payments; the impiegati and quadri 14, the tredicesima (Art. 63) and the premio annuo of one monthly payment accrued from 1 July to 30 June and paid on 30 June (Art. 64, p. 95; parameters.additional_months_by_category). Not modelled: the premio di fedeltà after twenty years with the employer (Art. 65).
+    The Art. 65 loyalty award is paid on the hire anniversary after twenty years, but non-disciplinary dismissal pro rata (whole-month twelfths since the last award) is not calculated on a termination run.
 
-    **Applies when:** `base_salary` applies; category in impiegato, quadro.
+    **Applies when:** `base_salary` applies; category in impiegato, quadro; run kind in termination; seniority of at least 240 months.
 
-    **Remediation:** Model the premio di fedeltà of Art. 65.
+    **Remediation:** Calculate the full-month twelfths due on non-disciplinary dismissal after entitlement.
 
 !!! warning "edilizia-pmi-confapi-aniem/operai_seniority_ape · seniority · impact yes · open"
     SENIORITY: Art. 49 (testo armonizzato 15/04/2025, p. 87) gives the scatti to 'L'impiegato' only, by category; the operai accrue the Anzianità professionale edile of Art. 29 (p. 64) through the Fondo Unico APE, out of an employer contribution 'nella misura stabilita per ciascuna circoscrizione territoriale'. The engine pays no scatti to a worker stated as operaio (seniority excluded_categories); the territorial APE contribution is not modelled, a run of levels 1-4 that does not state the category still pays the Art. 49 amounts, and level 1 has no Art. 49 amount (8.22 of the Impiegati 4a is used).

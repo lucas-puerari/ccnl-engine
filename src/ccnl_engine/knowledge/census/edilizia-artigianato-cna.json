@@ -131,6 +131,22 @@
       }
     },
     {
+      "id": "loyalty_dismissal_pro_rata",
+      "institute": "base_salary",
+      "variant": "impiegato_quadro",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "Art. 65 annual loyalty award is paid at the hire anniversary after twenty years, but whole-month twelfths on non-disciplinary dismissal are not calculated on a termination run.",
+      "calculation": "ccnl/edilizia-artigianato-cna:coverage.notes",
+      "state": "absent",
+      "remediation": "Calculate the full-month twelfths owed on non-disciplinary dismissal after entitlement.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "edilizia-artigianato-cna/loyalty_dismissal_pro_rata"
+        ]
+      }
+    },
+    {
       "id": "maternity_daily_base",
       "institute": "maternity_leave",
       "variant": "all",

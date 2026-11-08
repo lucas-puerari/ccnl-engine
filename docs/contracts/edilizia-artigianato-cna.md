@@ -33,9 +33,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | bilateral_funds, inps_employer, seniority |
+| **Limits of this contract** | base_salary, bilateral_funds, inps_employer, seniority |
 
-5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+6 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -63,6 +63,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-07 | claude-opus-5-5 (ai) | The monthly values of the levels against the primary tables (text layer). | confirmed | 28 values found verbatim on the cited pages and marked verified; 1 left as they were (derived or not on a text page). |
 | 2026-11-08 | gpt-6-sol (ai) | Data fixes proposed by one session from the signed text and confirmed by a second independent session. | corrected | Closed contractual_fund_uncovered. |
 | 2026-11-08 | claude-opus-5-5 (ai) | FSBA ordinary contribution, art. 3 of the 2024 regulation, read on the text layer (analysis by a separate model session). | corrected | Added parameters.solidarity_fund FSBA: 0.45%+0.15% up to 15 employees, 0.75%+0.25% above, on the INPS base, fixed terms included. |
+| 2026-11-08 | claude-opus-5-5 (ai) | Art. 65 loyalty premium on cached consolidated PDF page 93. | corrected | Annual anniversary award for clerical employees after twenty years; termination pro rata remains unmodelled. |
 
 ## Salary table
 
@@ -120,6 +121,13 @@ percentage: 1.00
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
+
+!!! warning "edilizia-artigianato-cna/loyalty_dismissal_pro_rata · base_salary · impact yes · open"
+    Art. 65 annual loyalty award is paid at the hire anniversary after twenty years, but whole-month twelfths on non-disciplinary dismissal are not calculated on a termination run.
+
+    **Applies when:** `base_salary` applies; category in impiegato, quadro; run kind in termination; seniority of at least 240 months.
+
+    **Remediation:** Calculate the full-month twelfths owed on non-disciplinary dismissal after entitlement.
 
 !!! warning "edilizia-artigianato-cna/cassa_edile_accruals_missing · bilateral_funds · impact yes · open"
     For blue-collar workers in construction the Cassa Edile / EPR bilateral system provides additional accrual benefits (annual leave, Christmas bonus, seniority) that are separate from INPS seniority increments. These are not modelled; only the tabular seniority increments are implemented.

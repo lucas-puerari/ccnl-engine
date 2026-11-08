@@ -119,10 +119,10 @@
       "institute": "base_salary",
       "variant": "impiegato_quadro",
       "discriminant": "applies_when.trigger = run",
-      "rule": "ADDITIONAL_MONTHS: the operai are paid 13 monthly payments; the impiegati and quadri 14, the tredicesima (Art. 63) and the premio annuo of one monthly payment accrued from 1 July to 30 June and paid on 30 June (Art. 64, p. 95; parameters.additional_months_by_category). Not modelled: the premio di fedeltà after twenty years with the employer (Art. 65).",
+      "rule": "The Art. 65 loyalty award is paid on the hire anniversary after twenty years, but non-disciplinary dismissal pro rata (whole-month twelfths since the last award) is not calculated on a termination run.",
       "calculation": "ccnl/edilizia-pmi-confapi-aniem:coverage.notes",
       "state": "absent",
-      "remediation": "Model the premio di fedeltà of Art. 65.",
+      "remediation": "Calculate the full-month twelfths due on non-disciplinary dismissal after entitlement.",
       "origin": "seeded",
       "links": {
         "limitations": [

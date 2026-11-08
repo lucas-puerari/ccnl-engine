@@ -81,7 +81,7 @@
       },
       {
         "kind": "simplification",
-        "text": "ADDITIONAL_MONTHS: the operai are paid 13 monthly payments; the impiegati and quadri 14, the tredicesima (Art. 63) and the premio annuo of one monthly payment accrued from 1 July to 30 June and paid on 30 June (Art. 64, p. 95; parameters.additional_months_by_category). Not modelled: the premio di fedeltà after twenty years with the employer (Art. 65).",
+        "text": "The Art. 65 loyalty award is paid on the hire anniversary after twenty years, but non-disciplinary dismissal pro rata (whole-month twelfths since the last award) is not calculated on a termination run.",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
@@ -90,9 +90,13 @@
             "worker_categories": [
               "impiegato",
               "quadro"
-            ]
+            ],
+            "run_kinds": [
+              "termination"
+            ],
+            "seniority_months_from": 240
           },
-          "remediation": "Model the premio di fedeltà of Art. 65."
+          "remediation": "Calculate the full-month twelfths due on non-disciplinary dismissal after entitlement."
         }
       },
       {
@@ -199,6 +203,35 @@
     ]
   },
   "parameters": {
+    "loyalty_premium": {
+      "service_years": 20,
+      "months": "1",
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-aniem-armonizzato-15042025",
+            "title": "CCNL Edilizia CONFAPI ANIEM harmonised text 15 April 2025",
+            "kind": "associazione",
+            "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf",
+            "sha256": "25828567c377c4892c46d6e1c47734aef275933f4a3619ee74dc424fd080dcba"
+          },
+          "page": "96",
+          "section": "Art. 65, Loyalty premium",
+          "quote": "All’impiegato in servizio quando abbia presso la stessa azienda o gruppo aziendale (intendendosi per tale il complesso industriale facente capo alla stessa società) una anzianità ininterrotta ed effettiva di servizio di vent’anni, va corrisposto, annualmente, un premio di fedeltà pari ad una mensilità degli elementi di cui ai nn. dall’1 al 14 dell’art. 45."
+        },
+        "transformation": "Twenty actual uninterrupted years; one monthly payment each hire anniversary. The run-chain monthly pay approximates Art. 45 items 1–14; no termination pro rata.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-08T10:37:56Z",
+          "verification_status": "verified",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-08T10:37:56Z",
+          "review_id": "2026-11-08-ai-aniem-loyalty"
+        }
+      }
+    },
     "hourly_divisor": {
       "periods": [
         {
@@ -1849,7 +1882,7 @@
     "effective_until": null,
     "source": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf",
     "verification_status": "verified",
-    "source_hash": "15015dca179217f4523b6852867c76d1f330df8d9879a669e0476ea0779edf16",
+    "source_hash": "80b49a7facf7c07bef2405c377349cff6bdeb29182c14fc997eec41005ba404e",
     "published_at": "2026-09-18",
     "source_type": "contracting_party"
   },
@@ -2249,6 +2282,27 @@
         "independence": "same_process",
         "checked": [
           "parameters.additional_months_by_category"
+        ]
+      },
+      {
+        "id": "2026-11-08-ai-aniem-loyalty",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 65 loyalty premium on cached harmonised text PDF page 96.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf",
+            "sha256": "25828567c377c4892c46d6e1c47734aef275933f4a3619ee74dc424fd080dcba"
+          }
+        ],
+        "findings": [
+          "Annual anniversary award for clerical employees after twenty years; termination pro rata remains unmodelled."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "parameters.loyalty_premium"
         ]
       }
     ],
