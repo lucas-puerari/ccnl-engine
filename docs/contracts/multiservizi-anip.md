@@ -37,7 +37,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary |
 
-3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -133,12 +133,19 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Key seniority and sickness by worker category, model the second sickness band, the /22 divisor as the default, the art. 38 and art. 24 premiums, the funds and the apprenticeship durations of the 2012 accord.
 
-!!! warning "multiservizi-anip/renewal_not_signed_by_anip · base_salary · impact unknown · open"
-    SIGNATORIES: the 13 June 2025 renewal and 6 August 2025 tables (CNEL 234754, 234752) were not signed by ANIP. The ANIP-signed 8 June 2021 renewal (CNEL 139292) provides the fifth tranche from July 2025. The later unsigned minima and any unverified IPCA adjustment are excluded.
+!!! warning "multiservizi-anip/renewal_not_signed_by_anip · base_salary · impact yes · open"
+    SIGNATORIES: ANIP is not among the original signatories of the 13 June 2025 renewal and the 6 August 2025 tables (CNEL 234754, 234752); a later ANIP accession or a separate ANIP agreement was not found but is not excluded. From July 2025 the file applies the ANIP-signed fifth tranche of the 8 June 2021 renewal (CNEL 139292 p. 34); with an accession the 2025 renewal minima (level 2 819.21 from July 2025) would apply instead.
 
-    **Applies when:** `base_salary` applies; from 2026-05-01.
+    **Applies when:** `base_salary` applies; from 2025-07-01.
 
     **Remediation:** Source an ANIP accession or an ANIP-signed later agreement before adding later minima.
+
+!!! warning "multiservizi-anip/anip_ipca_consuntivo · base_salary · impact unknown · open"
+    IPCA CONSUNTIVO: CNEL 139292 p. 34 makes the July 2025 table provisional, subject to the 2021-2024 IPCA consuntivo of June 2025 (and pp. 35-36 provide the 2025-2026 IPCA mechanism). No consuntivo adjustment has been found, so the printed provisional amounts are paid from July 2025.
+
+    **Applies when:** `base_salary` applies; from 2025-07-01.
+
+    **Remediation:** Source the IPCA consuntivo of June 2025 and any later IPCA adjustment for ANIP and adjust the July 2025 minima.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
