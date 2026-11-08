@@ -246,6 +246,7 @@ def _handle_work_injury(event: WorkInjuryEvent, ctx: _EventHandlerCtx) -> EventE
             None if rules is None else rules.holiday,
             load_national_holidays(),
             span[0].year,
+            terms.employer,
         ),
     )
     advanced = (
