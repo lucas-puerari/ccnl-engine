@@ -99,22 +99,6 @@
       }
     },
     {
-      "id": "fondapi_base_elements",
-      "institute": "pension_fund_contribution",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "The Fondapi base ('retribuzione FONDAPI', Art. 50 p. 123) counts, besides the minimi conglobati, the EDR, the indennità di funzione of the quadri and the elemento retributivo of the 8th and 9th categories. The CCNL text sets no EDR amount and no elemento retributivo; the indennità di funzione (Art. 98 p. 182: 69.72 quadri A, 49.06 quadri B, 32.75 quadri B oreficeria) is not held by the bundle pay, so the fund contributions of an enrolled quadro are understated.",
-      "calculation": "ccnl/metalmeccanico-confapi:coverage.notes",
-      "state": "absent",
-      "remediation": "Model the quadri of the 8th and 9th categories with the indennità di funzione of Art. 98 and add it to the Fondapi base, then remove this note.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "metalmeccanico-confapi/fondapi_base_elements"
-        ]
-      }
-    },
-    {
       "id": "ipca_top_up",
       "institute": "base_salary",
       "variant": "all",
@@ -399,22 +383,6 @@
       "links": {
         "limitations": [
           "provisional_ruleset"
-        ]
-      }
-    },
-    {
-      "id": "quadri_allowance",
-      "institute": "base_salary",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Art. 98: the indennità di funzione of the quadri.",
-      "calculation": "ccnl/metalmeccanico-confapi:coverage.notes",
-      "state": "absent",
-      "remediation": "Model the quadri allowance with a role.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "metalmeccanico-confapi/quadri_allowance"
         ]
       }
     },

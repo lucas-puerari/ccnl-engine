@@ -182,14 +182,18 @@ class TestLoadMetalmeccanicoConfapi:
         value = ccnl.parameters.additional_months.value_at(date(2026, 1, 1))
         assert value == Decimal(13)
 
-    def test_confapi_no_fixed_allowances(self) -> None:
-        """All levels have empty fixed_allowances (minimi conglobati)."""
+    def test_confapi_fixed_allowances_are_the_quadri_allowance(self) -> None:
+        """Minimi conglobati: only the quadri of levels 8 and 9 (Art. 98)."""
         ccnl = load_ccnl("metalmeccanico-confapi")
-        for level in ccnl.levels:
-            assert level.fixed_allowances == (), (
-                f"Level {level.code} should have no fixed_allowances "
-                "(base_salary is already the minimo conglobato)"
-            )
+        codes = {
+            level.code: tuple(a.code for a in level.fixed_allowances)
+            for level in ccnl.levels
+            if level.fixed_allowances
+        }
+        assert codes == {
+            "8": ("IND_FUNZIONE_QUADRO", "IND_FUNZIONE_QUADRO_OREFICERIA"),
+            "9": ("IND_FUNZIONE_QUADRO",),
+        }
 
 
 # ---------------------------------------------------------------------------

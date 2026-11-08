@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, leave, overtime, pension_fund_contribution, sickness |
+| **Limits of this contract** | base_salary, leave, overtime, sickness |
 
-14 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+12 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 69 verified / 7 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 69 verified / 10 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🟢 Verified | The confidence the ruleset declares as a whole |
 | **Readiness** | 👁 Reviewed | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -68,6 +68,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-02 | claude-opus-5-5 (ai) | Art. 29 row b (PDF p. 101). | corrected | Art. 29 row b: ordinary night 25% until 22 (NightShiftEvent.before_22) and 35% after for the workers not on shifts, 25% for shift workers (role turnista). |
 | 2026-11-07 | claude-opus-5-5 (ai) | Art. 48 (PDF p. 122) and the renewals of 26 May 2021 and 4 June 2026 for amendments to it. | confirmed | Art. 48: 485 EUR a year with the June pay, to the workers in service on 1 January in firms without second-level bargaining with economic content, prorated by the months of the year before (a fraction above 15 days a month), reduced up to its amount by the pay above the CCNL, out of the TFR base, paid at the settlement on an earlier termination, of the competence of the year of payment.<br>The ipotesi of 26 May 2021 and the renewal of 4 June 2026 do not mention the element (OCR of their 23 and 41 pages). |
 | 2026-11-08 | gpt-6-sol (ai) | CCNL top-ups of maternity and work injury, read from the signed text by a separate model session; every quote found on the PDF text layer. | confirmed | Added work_rules.insured_absence.maternity.<br>Added work_rules.insured_absence.injury. |
+| 2026-11-08 | claude-opus-5-5 (ai) | Art. 98 (printed p. 182), Premesse p. 12 and the renewals of 26 May 2021, 24 July 2025 and 4 June 2026 for amendments to it. | confirmed | Art. 98 sets 69.72 (quadri A) and 49.06 (quadri B) from 1 January 1991 and 32.75 for the quadri B of the oreficeria sector, without a date.<br>No renewal of 2021, 2025 or 2026 amends Art. 98 (an independent reading of the three signed texts found none).<br>Art. 50 p. 123 counts the indennità di funzione quadri in the 'retribuzione FONDAPI': added to the base of the fund. |
 
 ## Salary table
 
@@ -117,26 +118,12 @@ Destination levels: `3`
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning "metalmeccanico-confapi/fondapi_base_elements · pension_fund_contribution · impact yes · open"
-    The Fondapi base ('retribuzione FONDAPI', Art. 50 p. 123) counts, besides the minimi conglobati, the EDR, the indennità di funzione of the quadri and the elemento retributivo of the 8th and 9th categories. The CCNL text sets no EDR amount and no elemento retributivo; the indennità di funzione (Art. 98 p. 182: 69.72 quadri A, 49.06 quadri B, 32.75 quadri B oreficeria) is not held by the bundle pay, so the fund contributions of an enrolled quadro are understated.
-
-    **Applies when:** `pension_fund_contribution` applies.
-
-    **Remediation:** Model the quadri of the 8th and 9th categories with the indennità di funzione of Art. 98 and add it to the Fondapi base, then remove this note.
-
 !!! warning "metalmeccanico-confapi/elemento_perequativo · base_salary · impact yes · open"
     Art. 48 (p. 122): the elemento perequativo of 485 EUR a year with the June pay to the worker in service on 1 January of a firm without second-level bargaining with economic content (EmployerProfile.second_level_premium false), for the months of the year before over twelve; the engine pays it (parameters.equalisation_element). Left open: the pay above the CCNL the worker received in the year before (superminimi, premi annui, other pay subject to contributions) has no field in the request; the engine reads it from the individual elements of the run, each amount on 31 December of the year before at the part-time fraction, for each month served, on twelve monthly payments, so an element agreed since, the share of the extra months or a yearly premium of the year before is not seen. A run without the employment period pays none; a second-level element the employer states counts when in force in the year before.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** State the pay above the CCNL of the year before as a fact of the run, or pass the element as a bonus and leave the employer flag true.
-
-!!! warning "metalmeccanico-confapi/quadri_allowance · base_salary · impact yes · open"
-    Art. 98: the indennità di funzione of the quadri.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Model the quadri allowance with a role.
 
 !!! warning "metalmeccanico-confapi/standby_and_travel · base_salary · impact yes · open"
     Art. 28: reperibilità (amounts by group of levels adjusted each June) and trasferta.
@@ -414,9 +401,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     SICKNESS (Art. 55 pp. 136-139): integration up to the normal net pay, full for 2/3/4 months and half for 4/6/8 more by seniority, over the sickness of the three years before each episode; comporto breve 6/9/12 months. The INPS share is grossed up by the worker's INPS rate (net_basis), a payroll practice the CCNL does not spell out.
     
+    The Fondapi base ('retribuzione FONDAPI', Art. 50 p. 123) counts, besides the minimi conglobati, the EDR, the indennità di funzione of the quadri and the elemento retributivo of the 8th and 9th categories. The CCNL text sets no EDR amount and no elemento retributivo; the indennità di funzione (Art. 98 p. 182: 69.72 quadri A, 49.06 quadri B, 32.75 quadri B oreficeria) is paid on levels 8 and 9 and counted in the Fondapi base (minimum_allowances).
+    
     HOURLY RATE AND SUPPLEMENTS (Art. 29 of the CCNL of 3 July 2017 (rates untouched by the renewals of 2021 and 2026)): without a caller value the engine derives the hourly base (minimi, scatti and fixed allowances over 173) and the supplements on holiday hours (55%) and on holiday hours with a compensatory rest (10%), equal in both columns. Whether those hours are also paid on top of the monthly pay is not settled: a derived holiday supplement is provisional. Not derived, the caller states the amount: ordinary night work (25% until 22 and 35% after (shift column 25%)), because its window starts 12 hours after the morning shift of each work group and its rate depends on the hour and on the shift column, facts the request does not carry; night holiday work and Sunday work. Individual elements (merito, superminimi, cottimi) are not in the hourly base. Absences: no clause sets the divisor of an absence deduction (work_rules.absence_rules is derived from the 1/26 of art. 32): the caller states AbsenceEvent.hourly_rate.
     
     LEAVE AT TERMINATION (Art. 33, p. 106 of the CCNL of 3 July 2017): 'Per ogni giornata di ferie la retribuzione dovuta al lavoratore è costituita dalla retribuzione giornaliera globale di fatto'. No clause of the 2017 text or of the 2025-2028 renewal (OCR) defines that daily pay as a fraction of the monthly pay: the 1/26 of the retribuzione mensile fissa (Art. 32, p. 104) is the pay of a festività falling on a Sunday, the 1/6 of the weekly pay (Art. 15, p. 87) is the ferie of the discontinuous workers only, and the divisor 173 gives the hourly pay. The engine pays no residual (termination_residual_leave incomplete, termination_basis_not_sourced).
+    
+    Art. 98: the indennità di funzione of the quadri is paid as a fixed allowance: 69.72 on the 9th category (quadri A), 49.06 with the role 'quadro' and 32.75 with the role 'quadro_oreficeria' on the 8th category (quadri B). Art. 98 does not say whether superminimi absorb it: the caller states a superminimo net of any part an individual agreement absorbs.
     
 
 ## Raw data

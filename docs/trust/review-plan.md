@@ -10,7 +10,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 |---|---:|---:|---:|---:|---:|---:|---|
 | pubblica-amministrazione | 14 | 7 548 000 | 14 | 229 | 182 | 0 | `funzioni-centrali-aran` |
 | terziario | 46 | 5 257 055 | 53 | 963 | 1734 | 4 | `commercio-confcommercio`, `sanita-privata-aiop-aris` |
-| industria | 49 | 4 969 900 | 155 | 1166 | 2288 | 15 | `logistica-trasporto-confetra`, `metalmeccanico-federmeccanica` |
+| industria | 49 | 4 969 900 | 155 | 1169 | 2288 | 15 | `logistica-trasporto-confetra`, `metalmeccanico-federmeccanica` |
 | lavoro-domestico | 3 | 1 800 000 | 0 | 3 | 60 | 0 | `lavoro-domestico-non-convivente` |
 | artigianato | 8 | 1 244 505 | 34 | 151 | 309 | 2 | `metalmeccanico-artigianato` |
 | agricoltura | 9 | 752 860 | 12 | 95 | 239 | 5 | `operai-agricoli-florovivaisti` |
@@ -94,7 +94,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | [`metalmeccanico-federmeccanica`](../contracts/metalmeccanico-federmeccanica.md) (anchor) | 1 700 000 | production | 0 | 1 | 90 | party or official | maintainer | 2027-06-01 |
 | [`logistica-trasporto-confetra`](../contracts/logistica-trasporto-confetra.md) (anchor) | 430 000 | reviewed | 0 | 3 | 65 | party or official | maintainer | 2027-06-01 |
 | [`logistica-trasporto-confetra-viaggiante`](../contracts/logistica-trasporto-confetra-viaggiante.md) | 430 000 | reviewed | 0 | 30 | 56 | party or official | maintainer | 2027-06-01 |
-| [`metalmeccanico-confapi`](../contracts/metalmeccanico-confapi.md) | 350 000 | reviewed | 0 | 7 | 69 | party or official | maintainer | 2027-05-01 |
+| [`metalmeccanico-confapi`](../contracts/metalmeccanico-confapi.md) | 350 000 | reviewed | 0 | 10 | 69 | party or official | maintainer | 2027-05-01 |
 | [`chimica-farmaceutica-federchimica`](../contracts/chimica-farmaceutica-federchimica.md) | 210 000 | reviewed | 0 | 6 | 126 | party or official | maintainer | 2027-04-30 |
 | [`tessile-smi`](../contracts/tessile-smi.md) | 160 000 | exploratory | 2 | 7 | 40 | party or official | none | none |
 | [`alimentari-federalimentare`](../contracts/alimentari-federalimentare.md) | 145 000 | reviewed | 0 | 0 | 275 | party or official | maintainer | 2027-04-30 |
