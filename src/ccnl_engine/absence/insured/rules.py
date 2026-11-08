@@ -158,7 +158,7 @@ def maternity_pay(
     Args:
         first: First day of the leave in the month.
         last: Last day of the leave in the month.
-        leave_started_on: First day of the leave, for the top-up limit.
+        leave_started_on: First day of the leave, for the top-up periods.
         pay: The pay of the month.
         rates: The INPS indemnity.
         rules: The CCNL top-up, ``None`` for none.
@@ -194,6 +194,17 @@ def maternity_pay(
             target = rules.integration_rate * deduction * share
             insurer = pay.grossed(indemnity * share, net_basis=rules.net_basis)
             integration = money(max(target - insurer, _ZERO))
+        if (
+            rules.next_integration_rate is not None
+            and rules.next_integration_days is not None
+        ):
+            next_end = end + timedelta(days=rules.next_integration_days)
+            next_days = _days(max(first, end + timedelta(days=1)), min(last, next_end))
+            if next_days:
+                share = Decimal(next_days) / Decimal(days)
+                target = rules.next_integration_rate * deduction * share
+                insurer = pay.grossed(indemnity * share, net_basis=rules.net_basis)
+                integration += money(max(target - insurer, _ZERO))
     if rules is not None and rules.holiday is not None and days:
         integration += holiday_top_up(
             rules.holiday.rate,

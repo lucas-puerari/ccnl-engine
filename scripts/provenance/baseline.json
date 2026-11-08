@@ -691,7 +691,7 @@
     ],
     "agreement/ced-assoced.json": [
       "ced-assoced/conditional_allowances_title_xxiii",
-      "ced-assoced/injury_integration_missing",
+      "ced-assoced/injury_rate_text_conflict",
       "ced-assoced/local_holiday_during_absence",
       "ced-assoced/maternity_holiday_scope",
       "ced-assoced/terziario_inps_rates_unverified"
@@ -902,7 +902,7 @@
       "igiene-ambientale-utilitalia/industria_rates_proxy"
     ],
     "agreement/impianti-sportivi-sport.json": [
-      "impianti-sportivi-sport/injury_integration_missing",
+      "impianti-sportivi-sport/injury_apprentice_rates",
       "impianti-sportivi-sport/level_v_first_semester_overpaid",
       "impianti-sportivi-sport/level_vi_whole_track_at_destination",
       "impianti-sportivi-sport/local_holiday_during_absence",
@@ -946,10 +946,10 @@
     "agreement/lavoro-domestico-convivente-orario-ridotto.json": [
       "lavoro-domestico-convivente-orario-ridotto/annual_minimi_not_updated",
       "lavoro-domestico-convivente-orario-ridotto/art34_role_conditions",
-      "lavoro-domestico-convivente-orario-ridotto/babysitter_and_certification_allowances",
       "lavoro-domestico-convivente-orario-ridotto/extra_month_hours",
       "lavoro-domestico-convivente-orario-ridotto/hourly_inps_bracket_unvalidated",
-      "lavoro-domestico-convivente-orario-ridotto/hours_within_arrangement"
+      "lavoro-domestico-convivente-orario-ridotto/hours_within_arrangement",
+      "lavoro-domestico-convivente-orario-ridotto/students_other_levels"
     ],
     "agreement/lavoro-domestico-convivente.json": [
       "lavoro-domestico-convivente/annual_minimi_not_updated",
@@ -991,8 +991,8 @@
       "logistica-trasporto-confetra/holiday_during_injury",
       "logistica-trasporto-confetra/level_6j_2025",
       "logistica-trasporto-confetra/magazzini_generali_holiday_in_sickness",
-      "logistica-trasporto-confetra/maternity_sixth_month",
-      "logistica-trasporto-confetra/sixth_day_overtime"
+      "logistica-trasporto-confetra/sixth_day_overtime",
+      "logistica-trasporto-confetra/sixth_month_parental_leave"
     ],
     "agreement/marittimi-industria-armatoriale.json": [
       "marittimi-industria-armatoriale/level_years_from_service",
@@ -1041,6 +1041,7 @@
       "metalmeccanico-federmeccanica/shift_and_multiweek_premiums"
     ],
     "agreement/multiservizi-anip.json": [
+      "multiservizi-anip/anip_ipca_consuntivo",
       "multiservizi-anip/anip_unsigned_renewal",
       "multiservizi-anip/multiservizi_unmodelled_rules",
       "multiservizi-anip/renewal_not_signed_by_anip"
@@ -1185,7 +1186,7 @@
     ],
     "agreement/terziario-confesercenti.json": [
       "terziario-confesercenti/apprentice_sickness",
-      "terziario-confesercenti/injury_integration_missing",
+      "terziario-confesercenti/injury_apprentice_rates",
       "terziario-confesercenti/local_holiday_during_absence",
       "terziario-confesercenti/provincial_third_elements",
       "terziario-confesercenti/sales_operators",

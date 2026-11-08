@@ -54,18 +54,15 @@
       },
       {
         "kind": "simplification",
-        "text": "NOT MODELLED: students aged 16 to 40 (art. 14 c. 2) at levels other than C, B and B super, for whom Tabella B has no value. The indennità of art. 34 cc. 3 and 7 (Tabelle H 97.06 and L 30.27) are role allowances.",
+        "text": "NOT MODELLED: students aged 16 to 40 (art. 14 c. 2) at levels other than C, B and B super, for whom Tabella B has no value. The 2026 monthly allowances of Tables H (BS, 97.06) and L (B and BS, 30.27) are encoded for caller-attested eligible roles; child age, certification validity and absorption by better individual pay cannot be inferred from the role alone.",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
-          "variant": "babysitter_and_certification_allowances",
+          "variant": "students_other_levels",
           "applies_when": {
-            "trigger": "outside_input",
-            "levels": [
-              "BS"
-            ]
+            "trigger": "outside_input"
           },
-          "remediation": "Source the Tabella B values of the other levels."
+          "remediation": "Source the Tabella B values for the other student levels. For modeled levels, supply eligible roles only after checking child age, certification conditions and any offset against individual pay."
         }
       },
       {
@@ -996,7 +993,7 @@
     "effective_until": null,
     "source": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
     "verification_status": "unverified",
-    "source_hash": "e3296a353a22ee24fade850af3485c1d7f1cb9bfa72022e315f7ff76a67f9088",
+    "source_hash": "56d7e9b105fc060f3d467db00ae0f13ad5512042740454eb187832342aab5715",
     "published_at": "2026-10-08",
     "source_type": "commercial_secondary"
   },
@@ -1421,6 +1418,29 @@
         "independence": "same_process",
         "checked": [
           "levels[].fixed_allowances"
+        ]
+      },
+      {
+        "id": "2026-11-08-ai-babysitter-limitation-review",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Verified the existing 2026 Table H and L allowances and narrowed the obsolete limitation to missing student levels and caller-attested eligibility.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
+            "sha256": "122ca6a72196a835976abac7fb988dc1502973941d52891a546512347fdc9dcf"
+          }
+        ],
+        "findings": [
+          "The cached signed PDF page 59 gives 97.06 monthly for BS in Table H and 30.27 monthly for B and BS in Table L; the existing level-local allowances already implement these values.",
+          "Child age and certification evidence are caller-attested roles; offsets against individual pay remain outside the fixed allowance model."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels[].fixed_allowances",
+          "coverage.notes"
         ]
       },
       {
