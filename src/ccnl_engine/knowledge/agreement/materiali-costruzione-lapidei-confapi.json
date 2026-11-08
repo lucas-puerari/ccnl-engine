@@ -107,6 +107,10 @@
           },
           "remediation": "Model the CIGO of D.Lgs. 148/2015 art. 13 c. 1 by activity (edile, lapidei) apart from the tax sector, then remove this note."
         }
+      },
+      {
+        "kind": "info",
+        "text": "Art. 32 of the cached materials-construction PDF (pp. 112–114) awards cemento workers a non-recurring seniority payment: operai one listed monthly pay at 15 years, intermedi five-sixths at 15 and 23 years, and clerical staff/managers one month at 15 and 23 years. This agreement file covers lapidei only; these cemento terms must not be applied to its levels."
       }
     ]
   },
@@ -2413,6 +2417,6 @@
     "source": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf",
     "source_type": "contracting_party",
     "verification_status": "unverified",
-    "source_hash": "d701f7d01dec9078e6aa8ac092e9d48891606986fb56bb6c27685c33b60ff59b"
+    "source_hash": "441c0232f7af6805bec70f8c3cdc0dc3c0d0046436fb58ef304e2f220f370214"
   }
 }
