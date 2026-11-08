@@ -35,7 +35,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, leave, overtime, sickness, workplace_injury |
 
-14 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+13 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -43,7 +43,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 121 verified / 6 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 126 verified / 6 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🟢 Verified | The confidence the ruleset declares as a whole |
 | **Readiness** | 👁 Reviewed | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -69,6 +69,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-31 | claude-opus-5-5 (ai) | The basis of the indemnity for the leave not taken at the end of the employment, searched for a divisor of the daily pay in the testo definitivo of 10 May 2006 (Artt. 13, 14, 20) and in the OCR of the renewals of 2010, 2019 and 2025. | confirmed | The daily coefficient 1/25 of Art. 20 is restricted by its chiarimento a verbale to the festività on a Sunday and to the clauses that refer to it expressly; Art. 14 does not. No termination basis is recorded. |
 | 2026-11-02 | claude-opus-5-5 (ai) | The premiums on ordinary hours of Art. 9 punti 4-6 in the CNEL text 579 (Word file). | corrected | Art. 9 punti 4, 5 b-c, 6: supplement_bands CHIM_NOTTURNO 50%, CHIM_TURNO_NOTTURNO 34%, CHIM_TURNO_NOTTURNO_3X7 46% and CHIM_DOMENICA_3X7 33% (role turno_3x7); punti 9-11 left as the narrowed limitation. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Saturday premium of the signed text, found verbatim in the source (analysis by a separate model session, quote rechecked). | corrected | Added supplement band CHIM_SABATO. |
+| 2026-11-08 | claude-opus-5-5 (ai) | Art. 15 punti 1-2, art. 20 punto 4 and art. 9 of the CCNL of 10 May 2006 (CNEL 579), via a research report; the EAR amounts as already read in the base salaries. | corrected | Moved the EAR of categories A (190) and B (100) out of the base salary into the allowance EAR, outside the hourly quota. |
 
 ## Salary table
 
@@ -76,11 +77,11 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `A1` | A (Quadri) — QA/HSE/IT manager, senior scientist, plant manager, 1st grade | € 3,643.48 | 2028-06-01 |
-| `A2` | A (Quadri) — laboratory manager, complex systems expert, 2nd grade | € 3,362.59 | 2028-06-01 |
-| `A3` | A (Quadri) — area coordinator, department head, 3rd grade | € 3,292.22 | 2028-06-01 |
-| `B1` | B — ISF, product manager, safety officer, 1st grade | € 3,048.98 | 2028-06-01 |
-| `B2` | B — researcher, maintenance manager, senior programmer, 2nd grade | € 2,938.61 | 2028-06-01 |
+| `A1` | A (Quadri) — QA/HSE/IT manager, senior scientist, plant manager, 1st grade | € 3,453.48 | 2028-06-01 |
+| `A2` | A (Quadri) — laboratory manager, complex systems expert, 2nd grade | € 3,172.59 | 2028-06-01 |
+| `A3` | A (Quadri) — area coordinator, department head, 3rd grade | € 3,102.22 | 2028-06-01 |
+| `B1` | B — ISF, product manager, safety officer, 1st grade | € 2,948.98 | 2028-06-01 |
+| `B2` | B — researcher, maintenance manager, senior programmer, 2nd grade | € 2,838.61 | 2028-06-01 |
 | `C1` | C — shift supervisor, administrative coordinator, specialist technician, 1st grade | € 2,680.65 | 2028-06-01 |
 | `C2` | C — specialist clerk, QC officer, senior accountant, 2nd grade | € 2,576.86 | 2028-06-01 |
 | `D1` | D — team leader, senior multi-skilled operator, 1st grade | € 2,496.26 | 2028-06-01 |
@@ -149,13 +150,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Model the withholding of July 2025 for non-member workers.
-
-!!! warning "chimica-farmaceutica-federchimica/overtime_base_and_categories · overtime · impact yes · open"
-    The CCNL applies the overtime premiums to the art. 15 punto 1 elements, superminimi included, and categories A and B get none. The overtime bands are limited to levels F to C1 and the individual elements count in the hourly base; still open: the hourly quota of art. 20 excludes the EAR, which base_salary holds for category B, and the holiday and shift supplement bands apply to every level (review of 2026-10-30).
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Exclude the EAR of category B from the hourly base and limit the supplement bands to the levels the CCNL pays them to.
 
 !!! warning "chimica-farmaceutica-federchimica/edr_absences · base_salary · impact yes · open"
     The EDR is paid whatever the absences of the month and has no effect on other institutes, while the engine reduces it with the month and counts it in the sickness quota.
@@ -387,6 +381,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     INPS: tax_sector industria (CNEL B011, ATECO C20 and C21).
     
     FONCHIM: employer 2.35% of the TFR base (2.10% plus the 0.25% insurance contribution) and worker minimum 1.20%, from the fund's opuscolo 2026; from 1/1/2027 the employer rate is 2.3% (2025 renewal p. 47), 2.55% with the insurance share (derived).
+    
+    The CCNL applies the overtime premiums to the art. 15 punto 1 elements, superminimi included, and categories A and B get none: the overtime bands are limited to levels F to C1 and the individual elements count in the hourly base. The EAR of categories A and B (art. 15 punto 2) is an allowance outside the hourly quota of art. 20. The holiday and shift supplements of art. 9 set no level limit and apply to every level.
     
     HOURLY RATE AND SUPPLEMENTS (artt. 9, 15 punto 1, 20 of the 2006 text): without a caller value the engine derives the hourly base (minimo + IPO + scatti over 175), the 50% on holiday hours (art. 9 punto 3) and the 4% on rotating day shifts (punto 5 a). Not derived, the caller states the amount: ordinary night work of non-shift workers (50%, punto 4), whose 9-hour window the company fixes between 20 and 8 (art. 8 H); Sunday work (50% with compensatory rest, 33% for 3x7 continuous cycles under punto 6, a fact the request does not carry); night shifts (34%, 46% for 3x7, punto 5 b-c), because the fixed amount per 8 hours of art. 9 H in force after the 2022 renewal is unconfirmed (6.50 EUR from 2007, 13.50 from 1 April 2019, 15.50 from 1 July 2027). Art. 9 does not say whether the holiday hours themselves are paid on top of the monthly pay: a derived holiday supplement is provisional. Not modelled: the 5% on hours 37h45m to 40 and the 30% beyond 2,024 annual hours (punti 1 and 11). Absences: art. 20 punti 2-3 deduct 1/175 of the same elements per hour, but work_rules.absence_rules stays derived (its 8-hour day is not in the text), so the engine derives no absence deduction: the caller states AbsenceEvent.hourly_rate.
     
