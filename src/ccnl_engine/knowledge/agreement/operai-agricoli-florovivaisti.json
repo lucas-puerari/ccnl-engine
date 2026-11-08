@@ -228,15 +228,15 @@
       },
       {
         "kind": "simplification",
-        "text": "FLOROVIVAISTI OVERTIME AND HOLIDAY WORK: the operai florovivaisti are paid 29% overtime, 40% holiday work, 48% night work, 50% holiday overtime and 55% night holiday work (Art. 44, p. 49), against the 25, 35, 40, 40 and 45% of the operai agricoli (Art. 43) the file pays; ordinary holiday work (35% and 40%) has no band. The request does not say whether the operaio is a florovivaista. The rates apply to the provincial salario contrattuale.",
+        "text": "The agricultural and floriculture overtime and ordinary holiday/night premiums are selected by EmployerProfile.subsector. Remaining: regular night shifts attract a 10% exception (Arts. 43–44) not routed by these bands; provincial contractual wages and special-work tariffs require local inputs.",
         "capability": "overtime",
         "monetary_impact": "yes",
         "limitation": {
-          "variant": "florovivaisti_overtime_rates",
+          "variant": "regular_night_shift_and_local_tariffs",
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Split the florovivaisti into their own levels or file with the Art. 44 rates."
+          "remediation": "Select the regular night-shift exception separately and supply the provincial contractual wage and any applicable local special-work tariff."
         }
       },
       {
@@ -939,7 +939,7 @@
     "effective_until": null,
     "source": "https://ebta.it/documenti/CCNL_operai_agricoli_e_florovivaisti_2022-2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "673e6c73c938a8c7e06f5ac196242647922f0f618755bcae027f6422aa3dba9e",
+    "source_hash": "2beef6f377640b2d87fb6f2aefe33ced4e99775b60834dff8bc50dd4b9aac79a",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -988,7 +988,10 @@
               "verified_at": "2026-10-15T11:24:45Z",
               "review_id": "2026-10-15-ai-texts-overtime"
             }
-          }
+          },
+          "subsectors": [
+            "agricoli"
+          ]
         },
         {
           "code": "OT_NOTTURNO",
@@ -1031,7 +1034,10 @@
               "verified_at": "2026-10-15T11:24:45Z",
               "review_id": "2026-10-15-ai-texts-overtime"
             }
-          }
+          },
+          "subsectors": [
+            "agricoli"
+          ]
         },
         {
           "code": "OT_FESTIVO",
@@ -1074,7 +1080,10 @@
               "verified_at": "2026-10-15T11:24:45Z",
               "review_id": "2026-10-15-ai-texts-overtime"
             }
-          }
+          },
+          "subsectors": [
+            "agricoli"
+          ]
         },
         {
           "code": "OT_NOTTURNO_FESTIVO",
@@ -1117,9 +1126,499 @@
               "verified_at": "2026-10-15T11:24:45Z",
               "review_id": "2026-10-15-ai-texts-overtime"
             }
+          },
+          "subsectors": [
+            "agricoli"
+          ]
+        },
+        {
+          "code": "OT_FLORO_DIURNO",
+          "description": "Floriculture weekday overtime",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "0.29"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "subsectors": [
+            "florovivaisti"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-operai-agricoli-2022-2025-flai",
+                "title": "CCNL operai agricoli e florovivaisti 23 maggio 2022 (FLAI CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2023/11/CCNL-Operai-Agricoli-e-Florovivaisti-2022-2025.pdf",
+                "published_on": "2022-05-23",
+                "sha256": "49ae5803f2081985a0e1a10f64e9019e1b999e808da9d3681eaab24c3dee674c"
+              },
+              "page": "49",
+              "section": "Art. 44 (Lavoro straordinario, festivo, notturno operai florovivaisti)",
+              "quote": "lavoro straordinario 28 %"
+            },
+            "transformation": "Apply the printed premium to the contractual hourly wage for this sub-sector and work kind; the ordinary hour is accounted for separately.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T15:45:12Z",
+              "verification_status": "verified",
+              "effective_from": "2026-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-08T15:45:12Z",
+              "review_id": "2026-11-08-floriculture-time-premiums"
+            }
+          }
+        },
+        {
+          "code": "OT_FLORO_NOTTURNO",
+          "description": "Floriculture night overtime",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "0.48"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night"
+          ],
+          "subsectors": [
+            "florovivaisti"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-operai-agricoli-2022-2025-flai",
+                "title": "CCNL operai agricoli e florovivaisti 23 maggio 2022 (FLAI CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2023/11/CCNL-Operai-Agricoli-e-Florovivaisti-2022-2025.pdf",
+                "published_on": "2022-05-23",
+                "sha256": "49ae5803f2081985a0e1a10f64e9019e1b999e808da9d3681eaab24c3dee674c"
+              },
+              "page": "49",
+              "section": "Art. 44 (Lavoro straordinario, festivo, notturno operai florovivaisti)",
+              "quote": "lavoro notturno 48 %"
+            },
+            "transformation": "Apply the printed premium to the contractual hourly wage for this sub-sector and work kind; the ordinary hour is accounted for separately.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T15:45:12Z",
+              "verification_status": "verified",
+              "effective_from": "2026-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-08T15:45:12Z",
+              "review_id": "2026-11-08-floriculture-time-premiums"
+            }
+          }
+        },
+        {
+          "code": "OT_FLORO_FESTIVO",
+          "description": "Floriculture holiday overtime",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "0.50"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "holiday"
+          ],
+          "subsectors": [
+            "florovivaisti"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-operai-agricoli-2022-2025-flai",
+                "title": "CCNL operai agricoli e florovivaisti 23 maggio 2022 (FLAI CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2023/11/CCNL-Operai-Agricoli-e-Florovivaisti-2022-2025.pdf",
+                "published_on": "2022-05-23",
+                "sha256": "49ae5803f2081985a0e1a10f64e9019e1b999e808da9d3681eaab24c3dee674c"
+              },
+              "page": "49",
+              "section": "Art. 44 (Lavoro straordinario, festivo, notturno operai florovivaisti)",
+              "quote": "lavoro straordinario festivo 50 %"
+            },
+            "transformation": "Apply the printed premium to the contractual hourly wage for this sub-sector and work kind; the ordinary hour is accounted for separately.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T15:45:12Z",
+              "verification_status": "verified",
+              "effective_from": "2026-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-08T15:45:12Z",
+              "review_id": "2026-11-08-floriculture-time-premiums"
+            }
+          }
+        },
+        {
+          "code": "OT_FLORO_NOTTURNO_FESTIVO",
+          "description": "Floriculture night holiday overtime",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "0.55"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night_holiday"
+          ],
+          "subsectors": [
+            "florovivaisti"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-operai-agricoli-2022-2025-flai",
+                "title": "CCNL operai agricoli e florovivaisti 23 maggio 2022 (FLAI CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2023/11/CCNL-Operai-Agricoli-e-Florovivaisti-2022-2025.pdf",
+                "published_on": "2022-05-23",
+                "sha256": "49ae5803f2081985a0e1a10f64e9019e1b999e808da9d3681eaab24c3dee674c"
+              },
+              "page": "49",
+              "section": "Art. 44 (Lavoro straordinario, festivo, notturno operai florovivaisti)",
+              "quote": "lavoro festivo notturno 55 %"
+            },
+            "transformation": "Apply the printed premium to the contractual hourly wage for this sub-sector and work kind; the ordinary hour is accounted for separately.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T15:45:12Z",
+              "verification_status": "verified",
+              "effective_from": "2026-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-08T15:45:12Z",
+              "review_id": "2026-11-08-floriculture-time-premiums"
+            }
           }
         }
-      ]
+      ],
+      "supplement_bands": [
+        {
+          "code": "ORD_AGRICOLI_HOLIDAY",
+          "description": "Ordinary agricultural holiday work",
+          "work": "holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "0.35"
+              }
+            ]
+          },
+          "hours_paid_apart": true,
+          "subsectors": [
+            "agricoli"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-operai-agricoli-2022-2025-flai",
+                "title": "CCNL operai agricoli e florovivaisti 23 maggio 2022 (FLAI CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2023/11/CCNL-Operai-Agricoli-e-Florovivaisti-2022-2025.pdf",
+                "published_on": "2022-05-23",
+                "sha256": "49ae5803f2081985a0e1a10f64e9019e1b999e808da9d3681eaab24c3dee674c"
+              },
+              "page": "48",
+              "section": "Art. 43 (Lavoro straordinario, festivo, notturno operai agricoli)",
+              "quote": "lavoro festivo 35 %"
+            },
+            "transformation": "Apply the printed 35% premium to ordinary agricultural holiday hours; the holiday wage itself is paid separately.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T15:45:12Z",
+              "verification_status": "verified",
+              "effective_from": "2026-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-08T15:45:12Z",
+              "review_id": "2026-11-08-floriculture-time-premiums"
+            }
+          }
+        },
+        {
+          "code": "ORD_AGRICOLI_NIGHT",
+          "description": "Ordinary agricultural night work",
+          "work": "night",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "0.40"
+              }
+            ]
+          },
+          "hours_paid_apart": null,
+          "subsectors": [
+            "agricoli"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-operai-agricoli-2022-2025-flai",
+                "title": "CCNL operai agricoli e florovivaisti 23 maggio 2022 (FLAI CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2023/11/CCNL-Operai-Agricoli-e-Florovivaisti-2022-2025.pdf",
+                "published_on": "2022-05-23",
+                "sha256": "49ae5803f2081985a0e1a10f64e9019e1b999e808da9d3681eaab24c3dee674c"
+              },
+              "page": "48",
+              "section": "Art. 43 (Lavoro straordinario, festivo, notturno operai agricoli)",
+              "quote": "lavoro notturno 40 %"
+            },
+            "transformation": "Premium on contractual hourly wage for ordinary hours of this work kind; only the premium is posted here. Holiday work may also be paid separately from the paid holiday; the separate hourly wage is outside this supplement.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T15:45:12Z",
+              "verification_status": "verified",
+              "effective_from": "2026-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-08T15:45:12Z",
+              "review_id": "2026-11-08-floriculture-time-premiums"
+            }
+          }
+        },
+        {
+          "code": "ORD_AGRICOLI_NIGHT_HOLIDAY",
+          "description": "Ordinary agricultural night holiday work",
+          "work": "night_holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "0.45"
+              }
+            ]
+          },
+          "hours_paid_apart": null,
+          "subsectors": [
+            "agricoli"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-operai-agricoli-2022-2025-flai",
+                "title": "CCNL operai agricoli e florovivaisti 23 maggio 2022 (FLAI CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2023/11/CCNL-Operai-Agricoli-e-Florovivaisti-2022-2025.pdf",
+                "published_on": "2022-05-23",
+                "sha256": "49ae5803f2081985a0e1a10f64e9019e1b999e808da9d3681eaab24c3dee674c"
+              },
+              "page": "48",
+              "section": "Art. 43 (Lavoro straordinario, festivo, notturno operai agricoli)",
+              "quote": "lavoro festivo notturno 45 %"
+            },
+            "transformation": "Premium on contractual hourly wage for ordinary hours of this work kind; only the premium is posted here. Holiday work may also be paid separately from the paid holiday; the separate hourly wage is outside this supplement.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T15:45:12Z",
+              "verification_status": "verified",
+              "effective_from": "2026-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-08T15:45:12Z",
+              "review_id": "2026-11-08-floriculture-time-premiums"
+            }
+          }
+        },
+        {
+          "code": "ORD_FLOROVIVAISTI_HOLIDAY",
+          "description": "Ordinary floriculture holiday work",
+          "work": "holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "0.40"
+              }
+            ]
+          },
+          "hours_paid_apart": true,
+          "subsectors": [
+            "florovivaisti"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-operai-agricoli-2022-2025-flai",
+                "title": "CCNL operai agricoli e florovivaisti 23 maggio 2022 (FLAI CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2023/11/CCNL-Operai-Agricoli-e-Florovivaisti-2022-2025.pdf",
+                "published_on": "2022-05-23",
+                "sha256": "49ae5803f2081985a0e1a10f64e9019e1b999e808da9d3681eaab24c3dee674c"
+              },
+              "page": "49",
+              "section": "Art. 44 (Lavoro straordinario, festivo, notturno operai florovivaisti)",
+              "quote": "lavoro festivo 40 %"
+            },
+            "transformation": "Premium on contractual hourly wage for ordinary hours of this work kind; only the premium is posted here. Holiday work may also be paid separately from the paid holiday; the separate hourly wage is outside this supplement.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T15:45:12Z",
+              "verification_status": "verified",
+              "effective_from": "2026-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-08T15:45:12Z",
+              "review_id": "2026-11-08-floriculture-time-premiums"
+            }
+          }
+        },
+        {
+          "code": "ORD_FLOROVIVAISTI_NIGHT",
+          "description": "Ordinary floriculture night work",
+          "work": "night",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "0.48"
+              }
+            ]
+          },
+          "hours_paid_apart": null,
+          "subsectors": [
+            "florovivaisti"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-operai-agricoli-2022-2025-flai",
+                "title": "CCNL operai agricoli e florovivaisti 23 maggio 2022 (FLAI CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2023/11/CCNL-Operai-Agricoli-e-Florovivaisti-2022-2025.pdf",
+                "published_on": "2022-05-23",
+                "sha256": "49ae5803f2081985a0e1a10f64e9019e1b999e808da9d3681eaab24c3dee674c"
+              },
+              "page": "49",
+              "section": "Art. 44 (Lavoro straordinario, festivo, notturno operai florovivaisti)",
+              "quote": "lavoro notturno 48 %"
+            },
+            "transformation": "Premium on contractual hourly wage for ordinary hours of this work kind; only the premium is posted here. Holiday work may also be paid separately from the paid holiday; the separate hourly wage is outside this supplement.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T15:45:12Z",
+              "verification_status": "verified",
+              "effective_from": "2026-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-08T15:45:12Z",
+              "review_id": "2026-11-08-floriculture-time-premiums"
+            }
+          }
+        },
+        {
+          "code": "ORD_FLOROVIVAISTI_NIGHT_HOLIDAY",
+          "description": "Ordinary floriculture night holiday work",
+          "work": "night_holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "0.55"
+              }
+            ]
+          },
+          "hours_paid_apart": null,
+          "subsectors": [
+            "florovivaisti"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-operai-agricoli-2022-2025-flai",
+                "title": "CCNL operai agricoli e florovivaisti 23 maggio 2022 (FLAI CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2023/11/CCNL-Operai-Agricoli-e-Florovivaisti-2022-2025.pdf",
+                "published_on": "2022-05-23",
+                "sha256": "49ae5803f2081985a0e1a10f64e9019e1b999e808da9d3681eaab24c3dee674c"
+              },
+              "page": "49",
+              "section": "Art. 44 (Lavoro straordinario, festivo, notturno operai florovivaisti)",
+              "quote": "lavoro festivo notturno 55 %"
+            },
+            "transformation": "Premium on contractual hourly wage for ordinary hours of this work kind; only the premium is posted here. Holiday work may also be paid separately from the paid holiday; the separate hourly wage is outside this supplement.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T15:45:12Z",
+              "verification_status": "verified",
+              "effective_from": "2026-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-08T15:45:12Z",
+              "review_id": "2026-11-08-floriculture-time-premiums"
+            }
+          }
+        }
+      ],
+      "hourly_base_provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-operai-agricoli-2022-2025-flai",
+            "title": "CCNL operai agricoli e florovivaisti 23 maggio 2022 (FLAI CGIL)",
+            "kind": "associazione",
+            "url": "https://www.flai.it/wp-content/uploads/2023/11/CCNL-Operai-Agricoli-e-Florovivaisti-2022-2025.pdf",
+            "published_on": "2022-05-23",
+            "sha256": "49ae5803f2081985a0e1a10f64e9019e1b999e808da9d3681eaab24c3dee674c"
+          },
+          "page": "52",
+          "section": "Art. 50 (Retribuzione), with Arts. 43–44",
+          "quote": "Quella oraria si ottiene dividendo la paga mensile per 169."
+        },
+        "transformation": "The contractual wage divided by 169 is the hourly base for the premiums. National area minima are a fallback, not a substitute for the provincial contractual salary or any in-kind wage of agricultural workers.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-08T15:45:12Z",
+          "verification_status": "verified",
+          "effective_from": "2026-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-08T15:45:12Z",
+          "review_id": "2026-11-08-floriculture-time-premiums"
+        }
+      }
     },
     "absence_rules": {
       "daily_divisor_method": "by_26",
@@ -1591,6 +2090,25 @@
           "parameters.fixed_term_pay",
           "parameters.fixed_term_pay.tfr_rate",
           "parameters.fixed_term_pay.overtime_tfr_rate"
+        ]
+      },
+      {
+        "id": "2026-11-08-floriculture-time-premiums",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "independence": "same_process",
+        "scope": "Art. 43–44 overtime and ordinary night/holiday premiums by sub-sector against cached FLAI PDF pp. 48–49.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.flai.it/wp-content/uploads/2023/11/CCNL-Operai-Agricoli-e-Florovivaisti-2022-2025.pdf",
+            "sha256": "49ae5803f2081985a0e1a10f64e9019e1b999e808da9d3681eaab24c3dee674c"
+          }
+        ],
+        "findings": [
+          "Selected agricultural and floriculture time premiums with the existing sub-sector mechanism.",
+          "Regular night-shift exception and provincial salary inputs remain limited."
         ]
       }
     ],

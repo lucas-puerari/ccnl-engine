@@ -115,22 +115,6 @@
       }
     },
     {
-      "id": "florovivaisti_overtime_rates",
-      "institute": "overtime",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "FLOROVIVAISTI OVERTIME AND HOLIDAY WORK: the operai florovivaisti are paid 29% overtime, 40% holiday work, 48% night work, 50% holiday overtime and 55% night holiday work (Art. 44, p. 49), against the 25, 35, 40, 40 and 45% of the operai agricoli (Art. 43) the file pays; ordinary holiday work (35% and 40%) has no band. The request does not say whether the operaio is a florovivaista. The rates apply to the provincial salario contrattuale.",
-      "calculation": "ccnl/operai-agricoli-florovivaisti:coverage.notes",
-      "state": "absent",
-      "remediation": "Split the florovivaisti into their own levels or file with the Art. 44 rates.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "operai-agricoli-florovivaisti/florovivaisti_overtime_rates"
-        ]
-      }
-    },
-    {
       "id": "florovivaisti_sickness_integration",
       "institute": "sickness",
       "variant": "all",
@@ -431,6 +415,22 @@
       "links": {
         "limitations": [
           "provisional_ruleset"
+        ]
+      }
+    },
+    {
+      "id": "regular_night_shift_and_local_tariffs",
+      "institute": "overtime",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "The agricultural and floriculture overtime and ordinary holiday/night premiums are selected by EmployerProfile.subsector. Remaining: regular night shifts attract a 10% exception (Arts. 43–44) not routed by these bands; provincial contractual wages and special-work tariffs require local inputs.",
+      "calculation": "ccnl/operai-agricoli-florovivaisti:coverage.notes",
+      "state": "absent",
+      "remediation": "Select the regular night-shift exception separately and supply the provincial contractual wage and any applicable local special-work tariff.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "operai-agricoli-florovivaisti/regular_night_shift_and_local_tariffs"
         ]
       }
     },
