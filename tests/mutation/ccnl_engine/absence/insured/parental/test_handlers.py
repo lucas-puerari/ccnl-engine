@@ -349,3 +349,78 @@ def test_the_leave_ends_before_the_child_is_fourteen() -> None:
 
     with pytest.raises(InvalidInputError, match="14th birthday"):
         _run(leave)
+
+
+def _autorimesse(prior: int | None, *, born: date = date(2022, 1, 1)) -> PeriodResult:
+    leave = ParentalLeaveEvent(
+        date(2026, 3, 1),
+        date(2026, 3, 10),
+        born,
+        _NOTHING,
+        parental_base_pay=_FEBRUARY,
+        topped_up_days_before=prior,
+    )
+    return _run(leave, ccnl_id="autorimesse-ic35", level_code="C4")
+
+
+def _reason_of(result: PeriodResult) -> str:
+    (decision,) = (d for d in result.decisions if d.capability == "parental_leave")
+    return decision.reason_code
+
+
+@pytest.mark.parametrize("prior", [30, 31], ids=["used-up", "beyond"])
+def test_a_used_up_cap_tops_up_nothing(prior: int) -> None:
+    """30 days already topped up by earlier leaves: none left."""
+    result = _autorimesse(prior)
+    assert "absence_integration_item" not in _amounts(result)
+    assert _reason_of(result) == "ccnl_treatment_applied"
+
+
+def test_the_counter_is_a_missing_fact_only_where_the_ccnl_tops_up() -> None:
+    """Autorimesse without the counter: an incomplete issue naming the fact."""
+    result = _autorimesse(None)
+    (issue,) = (i for i in result.issues if i.code == "parental_top_up_history_unknown")
+    assert (issue.status, issue.capability, issue.fact, issue.cause) == (
+        "incomplete",
+        "parental_leave",
+        "topped_up_days_before",
+        "fact",
+    )
+    assert issue.message.startswith(
+        "ParentalLeaveEvent.topped_up_days_before is required to cap "
+    )
+    assert _reason_of(result) == "statutory_only"
+    plain = _run(
+        ParentalLeaveEvent(
+            date(2026, 3, 2),
+            date(2026, 3, 13),
+            _BORN,
+            _NOTHING,
+            parental_base_pay=_FEBRUARY,
+        )
+    )
+    assert "parental_top_up_history_unknown" not in {i.code for i in plain.issues}
+    assert "absence_integration_item" not in _amounts(plain)
+
+
+def test_an_enhanced_day_at_eighty_percent_needs_no_top_up() -> None:
+    """A child born in 2025: INPS already pays 80%, the top-up adds nothing."""
+    result = _autorimesse(0, born=_BORN)
+    assert "absence_integration_item" not in _amounts(result)
+
+
+def test_the_cohort_issue_explains_the_eighty_percent_months() -> None:
+    """The message of the unstated end of the maternity leave."""
+    leave = ParentalLeaveEvent(
+        date(2026, 3, 2),
+        date(2026, 3, 13),
+        date(2022, 6, 1),
+        _NOTHING,
+        parental_base_pay=_FEBRUARY,
+    )
+    (issue,) = (
+        i for i in _run(leave).issues if i.code == "parental_protection_end_unknown"
+    )
+    assert issue.message.startswith(
+        "the months INPS pays at 80% depend on the day the last maternity "
+    )
