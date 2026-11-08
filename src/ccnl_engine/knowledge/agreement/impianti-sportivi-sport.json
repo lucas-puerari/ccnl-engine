@@ -181,19 +181,6 @@
           },
           "remediation": "Provide the employer-specific patron saint holiday."
         }
-      },
-      {
-        "kind": "simplification",
-        "text": "Art. 105 - Injury pay: the 80% target on days 5–20 and 90% target from day 21 for apprentices are not selectable; the general 90%/100% targets are encoded for all workers.",
-        "capability": "workplace_injury",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "injury_apprentice_rates",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Add apprentice-specific injury integration targets."
-        }
       }
     ]
   },
@@ -1454,7 +1441,7 @@
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=13",
     "verification_status": "unverified",
     "published_at": "2026-09-11",
-    "source_hash": "0a93a0bf08e6b85b80aadd856d2f93542994c2d0269231ea5396c48feaddec3c",
+    "source_hash": "c5f942fba66cc28a9ded4f906c58ae160637b45617dd394e2b9a221227289dac",
     "source_type": "commercial_secondary"
   },
   "work_rules": {
@@ -2011,16 +1998,16 @@
             },
             "page": "84-85",
             "section": "Art. 105 - Injury pay",
-            "quote": "2) il 90% (novanta per cento) per i giorni dal 5º al 20º;\n3) il 100% (cento per cento) per i giorni dal 21º in poi, della retribuzione giornaliera netta cui il\nlavoratore avrebbe avuto diritto in caso di normale svolgimento del rapporto. Per retribuzione\ngiornaliera si intende la quota della retribuzione di fatto di cui all'art. 117.\n\n\nPer gli apprendisti le misure previste dai punti 2) e 3) del precedente comma sono fissate\nrispettivamente nell'80 e nel 90%."
+            "quote": "2) il 90% (novanta per cento) per i giorni dal 5º al 20º;\n3) il 100% (cento per cento) per i giorni dal 21º in poi, della retribuzione giornaliera netta cui il\nlavoratore avrebbe avuto diritto in caso di normale svolgimento del rapporto. Per retribuzione\ngiornaliera si intende la quota della retribuzione di fatto di cui all'art. 117.\n\n\nPer gli apprendisti le misure previste dai punti 2) e 3) del precedente comma sono fissate\nrispettivamente nell'80 e nel 90%.\n[...]\nPer gli apprendisti le misure previste dai punti 2) e 3) del precedente comma sono fissate\nrispettivamente nell'80 e nel 90%."
           },
-          "transformation": "The first three days following the injury are paid at 60%; the ordinary non-apprentice net-pay target is 90% on calendar days 5–20 (offsets 4–19) and 100% from day 21 (offset 20). Apprentices have different targets and are not distinguished by the injury model.",
+          "transformation": "The first three days following the injury are paid at 60%; the ordinary net-pay target is 90% on calendar days 5–20 (offsets 4–19) and 100% from day 21 (offset 20). For apprentices the targets of points 2) and 3) are 80% and 90% (apprentice_bands, same offsets); the waiting days stay at 60%.",
           "extraction": {
             "method": "ai",
             "model": "claude-opus-5-5",
-            "extraction_timestamp": "2026-11-08T12:41:14Z",
-            "verified_at": "2026-11-08T12:41:14Z",
+            "extraction_timestamp": "2026-11-08T13:36:42Z",
+            "verified_at": "2026-11-08T13:36:42Z",
             "verification_status": "verified",
-            "review_id": "2026-11-08-ai-impianti-sportivi-sport-injury-integration",
+            "review_id": "2026-11-08-ai-impianti-sportivi-sport-injury-apprentice-bands",
             "verified_by": "claude-opus-5-5"
           }
         },
@@ -2066,7 +2053,17 @@
             "rate": "1"
           }
         ],
-        "net_basis": true
+        "net_basis": true,
+        "apprentice_bands": [
+          {
+            "day_from": 4,
+            "rate": "0.80"
+          },
+          {
+            "day_from": 20,
+            "rate": "0.90"
+          }
+        ]
       }
     }
   },
@@ -2243,6 +2240,28 @@
         "independence": "separate_model",
         "checked": [
           "work_rules.insured_absence.injury"
+        ]
+      },
+      {
+        "id": "2026-11-08-ai-impianti-sportivi-sport-injury-apprentice-bands",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 105 - Injury pay, PDF pp. 84-85: the integration targets of apprentices.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
+            "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
+          }
+        ],
+        "findings": [
+          "The clause sets the targets of points 2) and 3) at 80% and 90% for apprentices; point 1) (60% for the waiting days) is unchanged.",
+          "Encoded as apprentice_bands at offsets 4 and 20, selected when the contract is an apprenticeship."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.insured_absence.injury.apprentice_bands"
         ]
       }
     ]
