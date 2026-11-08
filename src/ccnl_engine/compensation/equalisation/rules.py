@@ -37,6 +37,7 @@ from ccnl_engine.variable_pay.inputs import BonusEvent
 if TYPE_CHECKING:
     from ccnl_engine.agreement.facade import CCNL
     from ccnl_engine.compensation.equalisation.models import EqualisationElement
+    from ccnl_engine.employment.period.inputs import EmploymentPeriod
     from ccnl_engine.period.requests import PeriodCalculationRequest
 
 __all__ = ["EqualisationOutcome", "equalisation_outcome"]
@@ -67,10 +68,16 @@ def _pays(
         ``True`` for the regular run of its month and a termination run of
         an earlier month of the year.
     """
-    month = request.period_id.month
+    month, year = request.period_id.month, request.period_id.year
+    if element.paid_in_year not in {None, year}:
+        return False
     if kind is RunKind.REGULAR:
         return month == element.paid_in_month
-    return kind is RunKind.TERMINATION and month < element.paid_in_month
+    return (
+        kind is RunKind.TERMINATION
+        and month < element.paid_in_month
+        and not element.in_service_month_before
+    )
 
 
 def _served(element: EqualisationElement, request: PeriodCalculationRequest) -> int:
@@ -83,12 +90,34 @@ def _served(element: EqualisationElement, request: PeriodCalculationRequest) -> 
     """
     period, year = request.employment_period, request.period_id.year
     january = date(year, 1, 1)
-    if period is None or period.started_on > january:
+    if period is None or not _eligible(element, period, request, january):
         return 0
     if period.ended_on is not None and period.ended_on < january:
         return 0
     first = max(period.started_on, date(year - 1, 1, 1))
     return len(_months(first, date(year - 1, 12, 31), element.month_min_days))
+
+
+def _eligible(
+    element: EqualisationElement,
+    period: EmploymentPeriod,
+    request: PeriodCalculationRequest,
+    january: date,
+) -> bool:
+    """Return whether the worker of ``period`` is owed the element.
+
+    Returns:
+        In service on 1 January; or, for ``in_service_month_before``, in
+        service with six months of service by the first day of the month
+        before the month that pays it.
+    """
+    if not element.in_service_month_before:
+        return period.started_on <= january
+    year, month = request.period_id.year, request.period_id.month
+    before = date(year - (month == 1), (month - 2) % 12 + 1, 1)
+    six = date(before.year - (before.month <= 6), (before.month - 7) % 12 + 1, 1)
+    ended = period.ended_on
+    return period.started_on <= six and (ended is None or ended >= before)
 
 
 def _ratio(request: PeriodCalculationRequest) -> Decimal:
@@ -126,7 +155,12 @@ def _amount(
         elements of the run, at their amount on 31 December of the year
         before, paid over the same months, not below zero.
     """
-    owed = element.yearly * months / _MONTHS
+    yearly = element.yearly or element.yearly_by_level.get(request.level_code)
+    if yearly is None:
+        return Decimal(0)
+    owed = yearly * months / _MONTHS
+    if element.part_time_proportional:
+        owed *= _ratio(request)
     if not request.individual_elements:
         return money(owed)
     level = ccnl.level_by_code(request.level_code)

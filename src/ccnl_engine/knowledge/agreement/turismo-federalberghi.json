@@ -620,7 +620,52 @@
           "note": "Not in the repo coverage note. Annual amount; payment schedule set by the QuAS regulation (not checked)."
         }
       }
-    ]
+    ],
+    "equalisation_element": {
+      "code": "ELEMENTO_GARANZIA_2027",
+      "yearly_by_level": {
+        "A": "186",
+        "B": "186",
+        "1": "158",
+        "2": "158",
+        "3": "158",
+        "4": "140",
+        "5": "140",
+        "6s": "112",
+        "6": "112",
+        "7": "112"
+      },
+      "paid_in_month": 11,
+      "paid_in_year": 2027,
+      "in_service_month_before": true,
+      "part_time_proportional": true,
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-turismo-2024-07-05",
+            "title": "Ipotesi di accordo 5 luglio 2024 per il rinnovo del CCNL Turismo (Federalberghi, Faita, Confcommercio, Filcams, Fisascat, UILTuCS), scansione firmata, copia Federalberghi",
+            "kind": "associazione",
+            "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
+            "published_on": "2024-07-05",
+            "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
+          },
+          "page": "11-12",
+          "section": "Art. 13 commi 5-10",
+          "quote": "(5) Il premio compete ai lavoratori qualificati in forza nel mese precedente la scadenza stabilita nei sopraindicati contratti e che risultino iscritti nel libro unico del lavoro da almeno sei mesi. L'azienda calcolerà l'importo spettante in proporzione alle giornate di effettiva prestazione lavorativa prestate alle proprie dipendenze nell'anno precedente. (6) Per i lavoratori a tempo parziale, l'ammontare del premio sarà calcolato in proporzione all'entità della prestazione lavorativa. (7) Il premio non è utile ai fini del calcolo di nessun istituto di legge o contrattuale [...] ivi compreso il trattamento di fine rapporto. (8) Il premio è assorbito, sino a concorrenza, da ogni trattamento economico individuale o collettivo aggiuntivo rispetto a quanto previsto dal presente Contratto, che venga riconosciuto successivamente al 1° luglio 2024. [...] (10) Qualora, nonostante la presentazione di una piattaforma integrativa ai sensi delle disposizioni dei precedenti articoli non venga definito un accordo integrativo entro il 31 ottobre 2026, il datore di lavoro erogherà, con la retribuzione del mese di novembre 2027, i seguenti importi: A, B 186,00; 1, 2, 3 158,00; 4, 5 140,00; 6S, 6, 7 112,00. Si applicano a tali importi le disposizioni di cui ai commi 5, 6, 7 e 8 del presente articolo."
+        },
+        "transformation": "Paid with the November 2027 pay to the worker in service in October 2027 with six months of service (commi 5 and 10), in proportion to a part-time (comma 6), outside the TFR and every institute (comma 7). Approximations, kept under the limitation guarantee_element_2027: the condition 'non venga definito un accordo integrativo entro il 31 ottobre 2026' is read from the employer's second-level facts of 2026 (EmployerProfile.second_level_premium, second_level_elements); the proportion 'alle giornate di effettiva prestazione' of 2026 is counted in months with more than 15 days of service; the absorption of comma 8 deducts only the individual elements of the run.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-08T14:00:00Z",
+          "verified_by": "gpt-6-sol",
+          "verified_at": "2026-11-08T14:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-08-gpt-turismo-federalberghi-guarantee-element-2027"
+        }
+      }
+    }
   },
   "levels": [
     {
@@ -3097,15 +3142,17 @@
       },
       {
         "kind": "simplification",
-        "text": "Art. 13 c. 10, pp. 11-12: the elemento economico di garanzia paid with the November 2027 pay without an integrative agreement by 31 October 2026 (A and B 186, 1-3 158, 4-5 140, 6s-7 112).",
+        "text": "Art. 13 c. 10 (ipotesi 5 July 2024, pp. 11-12, read on the page images): the amounts of November 2027 (A and B 186, 1-3 158, 4-5 140, 6s-7 112) are parameters.equalisation_element. Approximated: the trigger, read from the second-level facts of 2026 where the text asks whether an integrative agreement was defined by 31 October 2026 after a platform was presented; the proportion to the days actually worked in 2026, counted in months of more than 15 days; the absorption of comma 8, which takes any individual or collective treatment granted after 1 July 2024, the engine deducting only the individual elements. Not modelled: the welfare alternative of comma 11, the crisis exemption of comma 13 and the territorial agreements of comma 14.",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
           "variant": "guarantee_element_2027",
           "applies_when": {
-            "trigger": "outside_input"
+            "trigger": "outside_input",
+            "effective_from": "2027-11-01",
+            "effective_until": "2027-12-01"
           },
-          "remediation": "Model the 2027 guarantee element as a conditional allowance."
+          "remediation": "State the comma 10 condition and the days worked in 2026 as facts, take every treatment granted after 1 July 2024 into the absorption, and model commi 11, 13 and 14."
         }
       },
       {
@@ -3224,7 +3271,7 @@
     "effective_until": null,
     "source": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
     "verification_status": "unverified",
-    "source_hash": "a9fb075123b8cb9962effc163095a8062eb2cf8e335965cec1985b435de54485",
+    "source_hash": "898480e2f5928e6f0420647334f6d55efafaef0bc9d41867f800deade3cafbbd",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -4414,6 +4461,28 @@
         "independence": "separate_session",
         "checked": [
           "work_rules.time_supplements.week_divisors"
+        ]
+      },
+      {
+        "id": "2026-11-08-gpt-turismo-federalberghi-guarantee-element-2027",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Art. 13 commi 5-14 of the ipotesi of 5 July 2024 (scanned pp. 10-12), the encoding checked against the page images by a separate model session.",
+        "outcome": "flagged",
+        "sources": [
+          {
+            "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
+            "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
+          }
+        ],
+        "findings": [
+          "Confirmed the amounts by level, the November 2027 payment, the eligibility of comma 5 and the part-time of comma 6.",
+          "Flagged as approximations, kept under the limitation: the trigger of comma 10, the days worked of comma 5, the absorption of comma 8."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "parameters.equalisation_element"
         ]
       }
     ],
