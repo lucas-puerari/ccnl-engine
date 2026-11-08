@@ -4074,7 +4074,7 @@
             "verified_by": "claude-opus-5-5",
             "verified_at": "2026-11-08T12:42:01Z",
             "verification_status": "verified",
-            "review_id": "2026-11-08-ai-metalmeccanico-federmeccanica-patron-holiday"
+            "review_id": "2026-11-08-gpt-metalmeccanico-federmeccanica-patron-holiday"
           }
         },
         "includes_patron_saint": true
@@ -5659,7 +5659,7 @@
               "extraction_timestamp": "2026-11-08T12:42:01Z",
               "verified_at": "2026-11-08T12:42:01Z",
               "verification_status": "verified",
-              "review_id": "2026-11-08-ai-metalmeccanico-federmeccanica-patron-holiday",
+              "review_id": "2026-11-08-gpt-metalmeccanico-federmeccanica-patron-holiday",
               "verified_by": "claude-opus-5-5"
             }
           },
@@ -6120,12 +6120,12 @@
         ]
       },
       {
-        "id": "2026-11-08-ai-metalmeccanico-federmeccanica-patron-holiday",
+        "id": "2026-11-08-gpt-metalmeccanico-federmeccanica-patron-holiday",
         "date": "2026-11-08",
-        "reviewer": "claude-opus-5-5",
+        "reviewer": "gpt-6-sol",
         "reviewer_kind": "ai",
-        "scope": "Local patron saint day in sickness and work injury holiday clauses; independent confirmation is still outstanding.",
-        "outcome": "flagged",
+        "scope": "Art. 5 sez. IV tit. III (PDF pp. 164-165), patron saint day of letter c against the sickness and injury holiday target, by a separate model session.",
+        "outcome": "confirmed",
         "sources": [
           {
             "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
@@ -6133,9 +6133,11 @@
           }
         ],
         "findings": [
-          "Sez. Quarta, Titolo III, Art. 9 - Festività (p. 164-165): Qualora le festività di cui ai punti b) e c) ricorrano nel periodo di assenza dovuta a malattia, gravidanza e puerperio, o ad infortunio compensati con retribuzione ridotta, l’azienda integrerà tale trattamento fino a raggiungere per la giornata festiva l’intera retribuzione globale. The stated local patron saint day is covered when the target opts in; unstated days leave other holidays unchanged. Independent confirmation of this incremental date selection remains outstanding."
+          "Confirmed: letter c (patron of the place of work) is in the absence top-up of p. 165, letter a is not.",
+          "Confirmed: a stated patron_saint_day adds one weekday holiday; a day coinciding with a national holiday or a Sunday adds nothing.",
+          "Kept as limitation: the substitute holiday agreed in place of the patron is not modelled."
         ],
-        "independence": "same_process",
+        "independence": "separate_model",
         "checked": [
           "work_rules.sickness_rules.holiday",
           "work_rules.insured_absence.injury.holiday"
