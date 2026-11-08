@@ -1428,7 +1428,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/marittimi-industria-armatoriale",
       "ruleset_version": "2026.2",
-      "source_hash": "39d9cb519224cc52f2441639aba4a0b9481c17b4df46731f2787e4719d0f1e79",
+      "source_hash": "f6a854d825c3d67b276550a91f7547a533c8aaa5b234cb1ab5505810860eb1d9",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/marittimi-industria-armatoriale.json.gz"
@@ -4061,7 +4061,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "acc0ecf719ddd7806b1f199b64b0743dcca93c953e10a3c6388b17f8146bb65d",
+      "source_hash": "38aad2a7fb2be451ae6ffd20e225fb3e994860afd638c59ad86b27f0f8714860",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/marittimi-industria-armatoriale.json.gz",
