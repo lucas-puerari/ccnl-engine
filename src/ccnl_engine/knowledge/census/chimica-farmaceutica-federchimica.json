@@ -259,22 +259,6 @@
       }
     },
     {
-      "id": "overtime_base_and_categories",
-      "institute": "overtime",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "The CCNL applies the overtime premiums to the art. 15 punto 1 elements, superminimi included, and categories A and B get none. The overtime bands are limited to levels F to C1 and the individual elements count in the hourly base; still open: the hourly quota of art. 20 excludes the EAR, which base_salary holds for category B, and the holiday and shift supplement bands apply to every level (review of 2026-10-30).",
-      "calculation": "ccnl/chimica-farmaceutica-federchimica:coverage.notes",
-      "state": "absent",
-      "remediation": "Exclude the EAR of category B from the hourly base and limit the supplement bands to the levels the CCNL pays them to.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "chimica-farmaceutica-federchimica/overtime_base_and_categories"
-        ]
-      }
-    },
-    {
       "id": "parental_daily_base",
       "institute": "parental_leave",
       "variant": "all",

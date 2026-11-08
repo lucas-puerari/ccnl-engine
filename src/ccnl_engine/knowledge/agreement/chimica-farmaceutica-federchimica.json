@@ -195,17 +195,8 @@
         }
       },
       {
-        "kind": "simplification",
-        "text": "The CCNL applies the overtime premiums to the art. 15 punto 1 elements, superminimi included, and categories A and B get none. The overtime bands are limited to levels F to C1 and the individual elements count in the hourly base; still open: the hourly quota of art. 20 excludes the EAR, which base_salary holds for category B, and the holiday and shift supplement bands apply to every level (review of 2026-10-30).",
-        "capability": "overtime",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "overtime_base_and_categories",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Exclude the EAR of category B from the hourly base and limit the supplement bands to the levels the CCNL pays them to."
-        }
+        "kind": "info",
+        "text": "The CCNL applies the overtime premiums to the art. 15 punto 1 elements, superminimi included, and categories A and B get none: the overtime bands are limited to levels F to C1 and the individual elements count in the hourly base. The EAR of categories A and B (art. 15 punto 2) is an allowance outside the hourly quota of art. 20. The holiday and shift supplements of art. 9 set no level limit and apply to every level."
       },
       {
         "kind": "simplification",
@@ -3408,7 +3399,7 @@
           {
             "valid_from": "2024-07-01",
             "valid_until": "2025-07-01",
-            "value": "2640.61",
+            "value": "2540.61",
             "provenance": {
               "status": "verified",
               "location": {
@@ -3424,7 +3415,7 @@
                 "section": "Trattamento Economico Minimo (TEM) mensile alle diverse scadenze e EDR, column 'Dal 1° luglio 2024', row B2",
                 "quote": "B2 2.238,22 199,39 26,00 2.304,22 211,39 0,00 2.325,22 215,39 0,00"
               },
-              "transformation": "Minimo 2325.22 + IPO 215.39 + EAR 100.00 (art. 15 B 3, renewal 19/7/2018 p. 14) = 2640.61, column 'Dal 1° luglio 2024'.",
+              "transformation": "Minimo 2325.22 + IPO 215.39 + EAR 100.00 (art. 15 B 3, renewal 19/7/2018 p. 14) = 2640.61, column 'Dal 1° luglio 2024'. The EAR of 100.00 is the allowance EAR, outside the base salary since 2026-11-08.",
               "note": "In force until 30 June 2025: the 2025 renewal (p. 46) pays the last tranche of the 2022 renewal with the tranche of July 2025.",
               "extraction": {
                 "method": "ai",
@@ -3441,7 +3432,7 @@
           {
             "valid_from": "2025-07-01",
             "valid_until": "2025-12-01",
-            "value": "2757.61",
+            "value": "2657.61",
             "provenance": {
               "status": "verified",
               "location": {
@@ -3457,7 +3448,7 @@
                 "section": "Allegato 'Trattamento Economico Minimo (TEM) mensile alle diverse scadenze', column 01/07/2025, row B2",
                 "quote": "2.425,22 232,39"
               },
-              "transformation": "Minimo + IPO + EAR 100.00 (art. 15 B 3, renewal 19/7/2018 p. 14) = 2757.61, column 01/07/2025.",
+              "transformation": "Minimo + IPO + EAR 100.00 (art. 15 B 3, renewal 19/7/2018 p. 14) = 2757.61, column 01/07/2025. The EAR of 100.00 is the allowance EAR, outside the base salary since 2026-11-08.",
               "note": "Scanned PDF without text layer: the quote is the OCR text of the page (tesseract, Italian, 300 dpi); every figure was read on the page image. OCR text: ocr/250415_p48.txt.",
               "extraction": {
                 "method": "ai",
@@ -3474,7 +3465,7 @@
           {
             "valid_from": "2025-12-01",
             "valid_until": "2026-07-01",
-            "value": "2780.61",
+            "value": "2680.61",
             "provenance": {
               "status": "verified",
               "location": {
@@ -3490,7 +3481,7 @@
                 "section": "Allegato 'Trattamento Economico Minimo (TEM) mensile alle diverse scadenze', column 01/12/2025, row B2",
                 "quote": "2.444,22, 236,39"
               },
-              "transformation": "Minimo + IPO + EAR 100.00 (art. 15 B 3, renewal 19/7/2018 p. 14) = 2780.61, column 01/12/2025.",
+              "transformation": "Minimo + IPO + EAR 100.00 (art. 15 B 3, renewal 19/7/2018 p. 14) = 2780.61, column 01/12/2025. The EAR of 100.00 is the allowance EAR, outside the base salary since 2026-11-08.",
               "note": "Scanned PDF without text layer: the quote is the OCR text of the page (tesseract, Italian, 300 dpi); every figure was read on the page image. OCR text: ocr/250415_p48.txt.",
               "extraction": {
                 "method": "ai",
@@ -3507,7 +3498,7 @@
           {
             "valid_from": "2026-07-01",
             "valid_until": "2027-07-01",
-            "value": "2849.61",
+            "value": "2749.61",
             "provenance": {
               "status": "verified",
               "location": {
@@ -3523,7 +3514,7 @@
                 "section": "Allegato 'Trattamento Economico Minimo (TEM) mensile alle diverse scadenze', column 01/07/2026, row B2",
                 "quote": "2.504,22 | 245,39"
               },
-              "transformation": "Minimo + IPO + EAR 100.00 (art. 15 B 3, renewal 19/7/2018 p. 14) = 2849.61, column 01/07/2026.",
+              "transformation": "Minimo + IPO + EAR 100.00 (art. 15 B 3, renewal 19/7/2018 p. 14) = 2849.61, column 01/07/2026. The EAR of 100.00 is the allowance EAR, outside the base salary since 2026-11-08.",
               "note": "Scanned PDF without text layer: the quote is the OCR text of the page (tesseract, Italian, 300 dpi); every figure was read on the page image. OCR text: ocr/250415_p48.txt.",
               "extraction": {
                 "method": "ai",
@@ -3540,7 +3531,7 @@
           {
             "valid_from": "2027-07-01",
             "valid_until": "2028-06-01",
-            "value": "2918.61",
+            "value": "2818.61",
             "provenance": {
               "status": "verified",
               "location": {
@@ -3556,7 +3547,7 @@
                 "section": "Allegato 'Trattamento Economico Minimo (TEM) mensile alle diverse scadenze', column 01/07/2027, row B2",
                 "quote": "2.564,22, 254,39"
               },
-              "transformation": "Minimo + IPO + EAR 100.00 (art. 15 B 3, renewal 19/7/2018 p. 14) = 2918.61, column 01/07/2027. The EDR of art. 15 B 2 is the allowance EDR, not part of it.",
+              "transformation": "Minimo + IPO + EAR 100.00 (art. 15 B 3, renewal 19/7/2018 p. 14) = 2918.61, column 01/07/2027. The EDR of art. 15 B 2 is the allowance EDR, not part of it. The EAR of 100.00 is the allowance EAR, outside the base salary since 2026-11-08.",
               "note": "Scanned PDF without text layer: the quote is the OCR text of the page (tesseract, Italian, 300 dpi); every figure was read on the page image. OCR text: ocr/250415_p48.txt.",
               "extraction": {
                 "method": "ai",
@@ -3573,7 +3564,7 @@
           {
             "valid_from": "2028-06-01",
             "valid_until": null,
-            "value": "2938.61",
+            "value": "2838.61",
             "provenance": {
               "status": "verified",
               "location": {
@@ -3589,7 +3580,7 @@
                 "section": "Allegato 'Trattamento Economico Minimo (TEM) mensile alle diverse scadenze', column 01/06/2028, row B2",
                 "quote": "2.581,22. 257,39"
               },
-              "transformation": "Minimo + IPO + EAR 100.00 (art. 15 B 3, renewal 19/7/2018 p. 14) = 2938.61, column 01/06/2028. The EDR of art. 15 B 2 is the allowance EDR, not part of it.",
+              "transformation": "Minimo + IPO + EAR 100.00 (art. 15 B 3, renewal 19/7/2018 p. 14) = 2938.61, column 01/06/2028. The EDR of art. 15 B 2 is the allowance EDR, not part of it. The EAR of 100.00 is the allowance EAR, outside the base salary since 2026-11-08.",
               "note": "Scanned PDF without text layer: the quote is the OCR text of the page (tesseract, Italian, 300 dpi); every figure was read on the page image. OCR text: ocr/250415_p48.txt.",
               "extraction": {
                 "method": "ai",
@@ -3652,6 +3643,48 @@
               "review_id": "2026-10-13-ai-production"
             }
           }
+        },
+        {
+          "code": "EAR",
+          "description": "Elemento aggiuntivo della retribuzione, categoria B (art. 15 B 3)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-07-01",
+                "valid_until": null,
+                "value": "100.00"
+              }
+            ]
+          },
+          "apprenticeship_pct_relevant": true,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "cnel-178786-intesa-2024-01-08",
+                "title": "Intesa 8 gennaio 2024, CCNL industria chimica e chimico-farmaceutica: anticipazione del TEM, tabelle dal 1 gennaio e dal 1 luglio 2024 (CNEL n. 178786)",
+                "kind": "cnel",
+                "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/178786",
+                "published_on": "2024-01-08",
+                "sha256": "88d0b9af3d0bdb975a5c3316dafeacba36523d5444cb98726f3518905db63383"
+              },
+              "page": "2",
+              "section": "Trattamento Economico Minimo (TEM) mensile alle diverse scadenze e EDR, column 'Dal 1° luglio 2024', row B2",
+              "quote": "B2 2.238,22 199,39 26,00 2.304,22 211,39 0,00 2.325,22 215,39 0,00"
+            },
+            "transformation": "Elemento aggiuntivo della retribuzione (art. 15 B 3, renewal of 19 July 2018 p. 14) of category B: 100.00 a month. An art. 15 punto 2 element, not of punto 1: outside the hourly quota of art. 20 and its maggiorazioni (art. 9), in the monthly pay, the extra months and the TFR.",
+            "note": "In force until 30 June 2025: the 2025 renewal (p. 46) pays the last tranche of the 2022 renewal with the tranche of July 2025.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T11:00:00Z",
+              "effective_from": "2024-07-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-08T11:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-08-ai-federchimica-ear-hourly-quota"
+            }
+          }
         }
       ],
       "provenance": {
@@ -3691,7 +3724,7 @@
           {
             "valid_from": "2024-07-01",
             "valid_until": "2025-07-01",
-            "value": "2733.98",
+            "value": "2633.98",
             "provenance": {
               "status": "verified",
               "location": {
@@ -3707,7 +3740,7 @@
                 "section": "Trattamento Economico Minimo (TEM) mensile alle diverse scadenze e EDR, column 'Dal 1° luglio 2024', row B1",
                 "quote": "B1 2.238,22 286,76 27,00 2.304,22 303,76 0,00 2.325,22 308,76 0,00"
               },
-              "transformation": "Minimo 2325.22 + IPO 308.76 + EAR 100.00 (art. 15 B 3, renewal 19/7/2018 p. 14) = 2733.98, column 'Dal 1° luglio 2024'.",
+              "transformation": "Minimo 2325.22 + IPO 308.76 + EAR 100.00 (art. 15 B 3, renewal 19/7/2018 p. 14) = 2733.98, column 'Dal 1° luglio 2024'. The EAR of 100.00 is the allowance EAR, outside the base salary since 2026-11-08.",
               "note": "In force until 30 June 2025: the 2025 renewal (p. 46) pays the last tranche of the 2022 renewal with the tranche of July 2025.",
               "extraction": {
                 "method": "ai",
@@ -3724,7 +3757,7 @@
           {
             "valid_from": "2025-07-01",
             "valid_until": "2025-12-01",
-            "value": "2857.98",
+            "value": "2757.98",
             "provenance": {
               "status": "verified",
               "location": {
@@ -3740,7 +3773,7 @@
                 "section": "Allegato 'Trattamento Economico Minimo (TEM) mensile alle diverse scadenze', column 01/07/2025, row B1",
                 "quote": "2.425,22 332,76"
               },
-              "transformation": "Minimo + IPO + EAR 100.00 (art. 15 B 3, renewal 19/7/2018 p. 14) = 2857.98, column 01/07/2025.",
+              "transformation": "Minimo + IPO + EAR 100.00 (art. 15 B 3, renewal 19/7/2018 p. 14) = 2857.98, column 01/07/2025. The EAR of 100.00 is the allowance EAR, outside the base salary since 2026-11-08.",
               "note": "Scanned PDF without text layer: the quote is the OCR text of the page (tesseract, Italian, 300 dpi); every figure was read on the page image. OCR text: ocr/250415_p48.txt.",
               "extraction": {
                 "method": "ai",
@@ -3757,7 +3790,7 @@
           {
             "valid_from": "2025-12-01",
             "valid_until": "2026-07-01",
-            "value": "2881.98",
+            "value": "2781.98",
             "provenance": {
               "status": "verified",
               "location": {
@@ -3773,7 +3806,7 @@
                 "section": "Allegato 'Trattamento Economico Minimo (TEM) mensile alle diverse scadenze', column 01/12/2025, row B1",
                 "quote": "2.444,22 337,76"
               },
-              "transformation": "Minimo + IPO + EAR 100.00 (art. 15 B 3, renewal 19/7/2018 p. 14) = 2881.98, column 01/12/2025.",
+              "transformation": "Minimo + IPO + EAR 100.00 (art. 15 B 3, renewal 19/7/2018 p. 14) = 2881.98, column 01/12/2025. The EAR of 100.00 is the allowance EAR, outside the base salary since 2026-11-08.",
               "note": "Scanned PDF without text layer: the quote is the OCR text of the page (tesseract, Italian, 300 dpi); every figure was read on the page image. OCR text: ocr/250415_p48.txt.",
               "extraction": {
                 "method": "ai",
@@ -3790,7 +3823,7 @@
           {
             "valid_from": "2026-07-01",
             "valid_until": "2027-07-01",
-            "value": "2954.98",
+            "value": "2854.98",
             "provenance": {
               "status": "verified",
               "location": {
@@ -3806,7 +3839,7 @@
                 "section": "Allegato 'Trattamento Economico Minimo (TEM) mensile alle diverse scadenze', column 01/07/2026, row B1",
                 "quote": "2.504,22 350,76"
               },
-              "transformation": "Minimo + IPO + EAR 100.00 (art. 15 B 3, renewal 19/7/2018 p. 14) = 2954.98, column 01/07/2026.",
+              "transformation": "Minimo + IPO + EAR 100.00 (art. 15 B 3, renewal 19/7/2018 p. 14) = 2954.98, column 01/07/2026. The EAR of 100.00 is the allowance EAR, outside the base salary since 2026-11-08.",
               "note": "Scanned PDF without text layer: the quote is the OCR text of the page (tesseract, Italian, 300 dpi); every figure was read on the page image. OCR text: ocr/250415_p48.txt.",
               "extraction": {
                 "method": "ai",
@@ -3823,7 +3856,7 @@
           {
             "valid_from": "2027-07-01",
             "valid_until": "2028-06-01",
-            "value": "3026.98",
+            "value": "2926.98",
             "provenance": {
               "status": "verified",
               "location": {
@@ -3839,7 +3872,7 @@
                 "section": "Allegato 'Trattamento Economico Minimo (TEM) mensile alle diverse scadenze', column 01/07/2027, row B1",
                 "quote": "2.56422 362,76"
               },
-              "transformation": "Minimo + IPO + EAR 100.00 (art. 15 B 3, renewal 19/7/2018 p. 14) = 3026.98, column 01/07/2027. The EDR of art. 15 B 2 is the allowance EDR, not part of it.",
+              "transformation": "Minimo + IPO + EAR 100.00 (art. 15 B 3, renewal 19/7/2018 p. 14) = 3026.98, column 01/07/2027. The EDR of art. 15 B 2 is the allowance EDR, not part of it. The EAR of 100.00 is the allowance EAR, outside the base salary since 2026-11-08.",
               "note": "Scanned PDF without text layer: the quote is the OCR text of the page (tesseract, Italian, 300 dpi); every figure was read on the page image. OCR text: ocr/250415_p48.txt.",
               "extraction": {
                 "method": "ai",
@@ -3856,7 +3889,7 @@
           {
             "valid_from": "2028-06-01",
             "valid_until": null,
-            "value": "3048.98",
+            "value": "2948.98",
             "provenance": {
               "status": "verified",
               "location": {
@@ -3872,7 +3905,7 @@
                 "section": "Allegato 'Trattamento Economico Minimo (TEM) mensile alle diverse scadenze', column 01/06/2028, row B1",
                 "quote": "2.581,22 367,76"
               },
-              "transformation": "Minimo + IPO + EAR 100.00 (art. 15 B 3, renewal 19/7/2018 p. 14) = 3048.98, column 01/06/2028. The EDR of art. 15 B 2 is the allowance EDR, not part of it.",
+              "transformation": "Minimo + IPO + EAR 100.00 (art. 15 B 3, renewal 19/7/2018 p. 14) = 3048.98, column 01/06/2028. The EDR of art. 15 B 2 is the allowance EDR, not part of it. The EAR of 100.00 is the allowance EAR, outside the base salary since 2026-11-08.",
               "note": "Scanned PDF without text layer: the quote is the OCR text of the page (tesseract, Italian, 300 dpi); every figure was read on the page image. OCR text: ocr/250415_p48.txt.",
               "extraction": {
                 "method": "ai",
@@ -3935,6 +3968,48 @@
               "review_id": "2026-10-13-ai-production"
             }
           }
+        },
+        {
+          "code": "EAR",
+          "description": "Elemento aggiuntivo della retribuzione, categoria B (art. 15 B 3)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-07-01",
+                "valid_until": null,
+                "value": "100.00"
+              }
+            ]
+          },
+          "apprenticeship_pct_relevant": true,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "cnel-178786-intesa-2024-01-08",
+                "title": "Intesa 8 gennaio 2024, CCNL industria chimica e chimico-farmaceutica: anticipazione del TEM, tabelle dal 1 gennaio e dal 1 luglio 2024 (CNEL n. 178786)",
+                "kind": "cnel",
+                "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/178786",
+                "published_on": "2024-01-08",
+                "sha256": "88d0b9af3d0bdb975a5c3316dafeacba36523d5444cb98726f3518905db63383"
+              },
+              "page": "2",
+              "section": "Trattamento Economico Minimo (TEM) mensile alle diverse scadenze e EDR, column 'Dal 1° luglio 2024', row B1",
+              "quote": "B1 2.238,22 286,76 27,00 2.304,22 303,76 0,00 2.325,22 308,76 0,00"
+            },
+            "transformation": "Elemento aggiuntivo della retribuzione (art. 15 B 3, renewal of 19 July 2018 p. 14) of category B: 100.00 a month. An art. 15 punto 2 element, not of punto 1: outside the hourly quota of art. 20 and its maggiorazioni (art. 9), in the monthly pay, the extra months and the TFR.",
+            "note": "In force until 30 June 2025: the 2025 renewal (p. 46) pays the last tranche of the 2022 renewal with the tranche of July 2025.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T11:00:00Z",
+              "effective_from": "2024-07-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-08T11:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-08-ai-federchimica-ear-hourly-quota"
+            }
+          }
         }
       ],
       "provenance": {
@@ -3974,7 +4049,7 @@
           {
             "valid_from": "2024-07-01",
             "valid_until": "2025-07-01",
-            "value": "2961.22",
+            "value": "2771.22",
             "provenance": {
               "status": "verified",
               "location": {
@@ -3990,7 +4065,7 @@
                 "section": "Trattamento Economico Minimo (TEM) mensile alle diverse scadenze e EDR, column 'Dal 1° luglio 2024', row A3",
                 "quote": "A3 2.425,52 229,70 28,00 2.496,52 245,70 0,00 2.520,52 250,70 0,00"
               },
-              "transformation": "Minimo 2520.52 + IPO 250.70 + EAR 190.00 (art. 15 B 3, renewal 19/7/2018 p. 14) = 2961.22, column 'Dal 1° luglio 2024'.",
+              "transformation": "Minimo 2520.52 + IPO 250.70 + EAR 190.00 (art. 15 B 3, renewal 19/7/2018 p. 14) = 2961.22, column 'Dal 1° luglio 2024'. The EAR of 190.00 is the allowance EAR, outside the base salary since 2026-11-08.",
               "note": "In force until 30 June 2025: the 2025 renewal (p. 46) pays the last tranche of the 2022 renewal with the tranche of July 2025.",
               "extraction": {
                 "method": "ai",
@@ -4007,7 +4082,7 @@
           {
             "valid_from": "2025-07-01",
             "valid_until": "2025-12-01",
-            "value": "3092.22",
+            "value": "2902.22",
             "provenance": {
               "status": "verified",
               "location": {
@@ -4023,7 +4098,7 @@
                 "section": "Allegato 'Trattamento Economico Minimo (TEM) mensile alle diverse scadenze', column 01/07/2025, row A3",
                 "quote": "2.627,52 274,70"
               },
-              "transformation": "Minimo + IPO + EAR 190.00 (art. 15 B 3, renewal 19/7/2018 p. 14) = 3092.22, column 01/07/2025.",
+              "transformation": "Minimo + IPO + EAR 190.00 (art. 15 B 3, renewal 19/7/2018 p. 14) = 3092.22, column 01/07/2025. The EAR of 190.00 is the allowance EAR, outside the base salary since 2026-11-08.",
               "note": "Scanned PDF without text layer: the quote is the OCR text of the page (tesseract, Italian, 300 dpi); every figure was read on the page image. OCR text: ocr/250415_p48.txt.",
               "extraction": {
                 "method": "ai",
@@ -4040,7 +4115,7 @@
           {
             "valid_from": "2025-12-01",
             "valid_until": "2026-07-01",
-            "value": "3117.22",
+            "value": "2927.22",
             "provenance": {
               "status": "verified",
               "location": {
@@ -4056,7 +4131,7 @@
                 "section": "Allegato 'Trattamento Economico Minimo (TEM) mensile alle diverse scadenze', column 01/12/2025, row A3",
                 "quote": "2.648,52 278,70"
               },
-              "transformation": "Minimo + IPO + EAR 190.00 (art. 15 B 3, renewal 19/7/2018 p. 14) = 3117.22, column 01/12/2025.",
+              "transformation": "Minimo + IPO + EAR 190.00 (art. 15 B 3, renewal 19/7/2018 p. 14) = 3117.22, column 01/12/2025. The EAR of 190.00 is the allowance EAR, outside the base salary since 2026-11-08.",
               "note": "Scanned PDF without text layer: the quote is the OCR text of the page (tesseract, Italian, 300 dpi); every figure was read on the page image. OCR text: ocr/250415_p48.txt.",
               "extraction": {
                 "method": "ai",
@@ -4073,7 +4148,7 @@
           {
             "valid_from": "2026-07-01",
             "valid_until": "2027-07-01",
-            "value": "3193.22",
+            "value": "3003.22",
             "provenance": {
               "status": "verified",
               "location": {
@@ -4089,7 +4164,7 @@
                 "section": "Allegato 'Trattamento Economico Minimo (TEM) mensile alle diverse scadenze', column 01/07/2026, row A3",
                 "quote": "2.711,52 291,70"
               },
-              "transformation": "Minimo + IPO + EAR 190.00 (art. 15 B 3, renewal 19/7/2018 p. 14) = 3193.22, column 01/07/2026.",
+              "transformation": "Minimo + IPO + EAR 190.00 (art. 15 B 3, renewal 19/7/2018 p. 14) = 3193.22, column 01/07/2026. The EAR of 190.00 is the allowance EAR, outside the base salary since 2026-11-08.",
               "note": "Scanned PDF without text layer: the quote is the OCR text of the page (tesseract, Italian, 300 dpi); every figure was read on the page image. OCR text: ocr/250415_p48.txt.",
               "extraction": {
                 "method": "ai",
@@ -4106,7 +4181,7 @@
           {
             "valid_from": "2027-07-01",
             "valid_until": "2028-06-01",
-            "value": "3269.22",
+            "value": "3079.22",
             "provenance": {
               "status": "verified",
               "location": {
@@ -4122,7 +4197,7 @@
                 "section": "Allegato 'Trattamento Economico Minimo (TEM) mensile alle diverse scadenze', column 01/07/2027, row A3",
                 "quote": "2.774,52 304,70"
               },
-              "transformation": "Minimo + IPO + EAR 190.00 (art. 15 B 3, renewal 19/7/2018 p. 14) = 3269.22, column 01/07/2027. The EDR of art. 15 B 2 is the allowance EDR, not part of it.",
+              "transformation": "Minimo + IPO + EAR 190.00 (art. 15 B 3, renewal 19/7/2018 p. 14) = 3269.22, column 01/07/2027. The EDR of art. 15 B 2 is the allowance EDR, not part of it. The EAR of 190.00 is the allowance EAR, outside the base salary since 2026-11-08.",
               "note": "Scanned PDF without text layer: the quote is the OCR text of the page (tesseract, Italian, 300 dpi); every figure was read on the page image. OCR text: ocr/250415_p48.txt.",
               "extraction": {
                 "method": "ai",
@@ -4139,7 +4214,7 @@
           {
             "valid_from": "2028-06-01",
             "valid_until": null,
-            "value": "3292.22",
+            "value": "3102.22",
             "provenance": {
               "status": "verified",
               "location": {
@@ -4155,7 +4230,7 @@
                 "section": "Allegato 'Trattamento Economico Minimo (TEM) mensile alle diverse scadenze', column 01/06/2028, row A3",
                 "quote": "2.793,52 308,70"
               },
-              "transformation": "Minimo + IPO + EAR 190.00 (art. 15 B 3, renewal 19/7/2018 p. 14) = 3292.22, column 01/06/2028. The EDR of art. 15 B 2 is the allowance EDR, not part of it.",
+              "transformation": "Minimo + IPO + EAR 190.00 (art. 15 B 3, renewal 19/7/2018 p. 14) = 3292.22, column 01/06/2028. The EDR of art. 15 B 2 is the allowance EDR, not part of it. The EAR of 190.00 is the allowance EAR, outside the base salary since 2026-11-08.",
               "note": "Scanned PDF without text layer: the quote is the OCR text of the page (tesseract, Italian, 300 dpi); every figure was read on the page image. OCR text: ocr/250415_p48.txt.",
               "extraction": {
                 "method": "ai",
@@ -4218,6 +4293,48 @@
               "review_id": "2026-10-13-ai-production"
             }
           }
+        },
+        {
+          "code": "EAR",
+          "description": "Elemento aggiuntivo della retribuzione, categoria A (art. 15 B 3)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-07-01",
+                "valid_until": null,
+                "value": "190.00"
+              }
+            ]
+          },
+          "apprenticeship_pct_relevant": true,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "cnel-178786-intesa-2024-01-08",
+                "title": "Intesa 8 gennaio 2024, CCNL industria chimica e chimico-farmaceutica: anticipazione del TEM, tabelle dal 1 gennaio e dal 1 luglio 2024 (CNEL n. 178786)",
+                "kind": "cnel",
+                "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/178786",
+                "published_on": "2024-01-08",
+                "sha256": "88d0b9af3d0bdb975a5c3316dafeacba36523d5444cb98726f3518905db63383"
+              },
+              "page": "2",
+              "section": "Trattamento Economico Minimo (TEM) mensile alle diverse scadenze e EDR, column 'Dal 1° luglio 2024', row A3",
+              "quote": "A3 2.425,52 229,70 28,00 2.496,52 245,70 0,00 2.520,52 250,70 0,00"
+            },
+            "transformation": "Elemento aggiuntivo della retribuzione (art. 15 B 3, renewal of 19 July 2018 p. 14) of category A: 190.00 a month. An art. 15 punto 2 element, not of punto 1: outside the hourly quota of art. 20 and its maggiorazioni (art. 9), in the monthly pay, the extra months and the TFR.",
+            "note": "In force until 30 June 2025: the 2025 renewal (p. 46) pays the last tranche of the 2022 renewal with the tranche of July 2025.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T11:00:00Z",
+              "effective_from": "2024-07-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-08T11:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-08-ai-federchimica-ear-hourly-quota"
+            }
+          }
         }
       ],
       "category": "quadro",
@@ -4258,7 +4375,7 @@
           {
             "valid_from": "2024-07-01",
             "valid_until": "2025-07-01",
-            "value": "3023.59",
+            "value": "2833.59",
             "provenance": {
               "status": "verified",
               "location": {
@@ -4274,7 +4391,7 @@
                 "section": "Trattamento Economico Minimo (TEM) mensile alle diverse scadenze e EDR, column 'Dal 1° luglio 2024', row A2",
                 "quote": "A2 2.425,52 288,07 31,00 2.496,52 306,07 0,00 2.520,52 313,07 0,00"
               },
-              "transformation": "Minimo 2520.52 + IPO 313.07 + EAR 190.00 (art. 15 B 3, renewal 19/7/2018 p. 14) = 3023.59, column 'Dal 1° luglio 2024'.",
+              "transformation": "Minimo 2520.52 + IPO 313.07 + EAR 190.00 (art. 15 B 3, renewal 19/7/2018 p. 14) = 3023.59, column 'Dal 1° luglio 2024'. The EAR of 190.00 is the allowance EAR, outside the base salary since 2026-11-08.",
               "note": "In force until 30 June 2025: the 2025 renewal (p. 46) pays the last tranche of the 2022 renewal with the tranche of July 2025.",
               "extraction": {
                 "method": "ai",
@@ -4291,7 +4408,7 @@
           {
             "valid_from": "2025-07-01",
             "valid_until": "2025-12-01",
-            "value": "3157.59",
+            "value": "2967.59",
             "provenance": {
               "status": "verified",
               "location": {
@@ -4307,7 +4424,7 @@
                 "section": "Allegato 'Trattamento Economico Minimo (TEM) mensile alle diverse scadenze', column 01/07/2025, row A2",
                 "quote": "2.627,52 340,07"
               },
-              "transformation": "Minimo + IPO + EAR 190.00 (art. 15 B 3, renewal 19/7/2018 p. 14) = 3157.59, column 01/07/2025.",
+              "transformation": "Minimo + IPO + EAR 190.00 (art. 15 B 3, renewal 19/7/2018 p. 14) = 3157.59, column 01/07/2025. The EAR of 190.00 is the allowance EAR, outside the base salary since 2026-11-08.",
               "note": "Scanned PDF without text layer: the quote is the OCR text of the page (tesseract, Italian, 300 dpi); every figure was read on the page image. OCR text: ocr/250415_p48.txt.",
               "extraction": {
                 "method": "ai",
@@ -4324,7 +4441,7 @@
           {
             "valid_from": "2025-12-01",
             "valid_until": "2026-07-01",
-            "value": "3183.59",
+            "value": "2993.59",
             "provenance": {
               "status": "verified",
               "location": {
@@ -4340,7 +4457,7 @@
                 "section": "Allegato 'Trattamento Economico Minimo (TEM) mensile alle diverse scadenze', column 01/12/2025, row A2",
                 "quote": "2.648,52 345,07"
               },
-              "transformation": "Minimo + IPO + EAR 190.00 (art. 15 B 3, renewal 19/7/2018 p. 14) = 3183.59, column 01/12/2025.",
+              "transformation": "Minimo + IPO + EAR 190.00 (art. 15 B 3, renewal 19/7/2018 p. 14) = 3183.59, column 01/12/2025. The EAR of 190.00 is the allowance EAR, outside the base salary since 2026-11-08.",
               "note": "Scanned PDF without text layer: the quote is the OCR text of the page (tesseract, Italian, 300 dpi); every figure was read on the page image. OCR text: ocr/250415_p48.txt.",
               "extraction": {
                 "method": "ai",
@@ -4357,7 +4474,7 @@
           {
             "valid_from": "2026-07-01",
             "valid_until": "2027-07-01",
-            "value": "3261.59",
+            "value": "3071.59",
             "provenance": {
               "status": "verified",
               "location": {
@@ -4373,7 +4490,7 @@
                 "section": "Allegato 'Trattamento Economico Minimo (TEM) mensile alle diverse scadenze', column 01/07/2026, row A2",
                 "quote": "2.711,52 360,07"
               },
-              "transformation": "Minimo + IPO + EAR 190.00 (art. 15 B 3, renewal 19/7/2018 p. 14) = 3261.59, column 01/07/2026.",
+              "transformation": "Minimo + IPO + EAR 190.00 (art. 15 B 3, renewal 19/7/2018 p. 14) = 3261.59, column 01/07/2026. The EAR of 190.00 is the allowance EAR, outside the base salary since 2026-11-08.",
               "note": "Scanned PDF without text layer: the quote is the OCR text of the page (tesseract, Italian, 300 dpi); every figure was read on the page image. OCR text: ocr/250415_p48.txt.",
               "extraction": {
                 "method": "ai",
@@ -4390,7 +4507,7 @@
           {
             "valid_from": "2027-07-01",
             "valid_until": "2028-06-01",
-            "value": "3339.59",
+            "value": "3149.59",
             "provenance": {
               "status": "verified",
               "location": {
@@ -4406,7 +4523,7 @@
                 "section": "Allegato 'Trattamento Economico Minimo (TEM) mensile alle diverse scadenze', column 01/07/2027, row A2",
                 "quote": "2.774,52 375,07"
               },
-              "transformation": "Minimo + IPO + EAR 190.00 (art. 15 B 3, renewal 19/7/2018 p. 14) = 3339.59, column 01/07/2027. The EDR of art. 15 B 2 is the allowance EDR, not part of it.",
+              "transformation": "Minimo + IPO + EAR 190.00 (art. 15 B 3, renewal 19/7/2018 p. 14) = 3339.59, column 01/07/2027. The EDR of art. 15 B 2 is the allowance EDR, not part of it. The EAR of 190.00 is the allowance EAR, outside the base salary since 2026-11-08.",
               "note": "Scanned PDF without text layer: the quote is the OCR text of the page (tesseract, Italian, 300 dpi); every figure was read on the page image. OCR text: ocr/250415_p48.txt.",
               "extraction": {
                 "method": "ai",
@@ -4423,7 +4540,7 @@
           {
             "valid_from": "2028-06-01",
             "valid_until": null,
-            "value": "3362.59",
+            "value": "3172.59",
             "provenance": {
               "status": "verified",
               "location": {
@@ -4439,7 +4556,7 @@
                 "section": "Allegato 'Trattamento Economico Minimo (TEM) mensile alle diverse scadenze', column 01/06/2028, row A2",
                 "quote": "2.793,52 379,07"
               },
-              "transformation": "Minimo + IPO + EAR 190.00 (art. 15 B 3, renewal 19/7/2018 p. 14) = 3362.59, column 01/06/2028. The EDR of art. 15 B 2 is the allowance EDR, not part of it.",
+              "transformation": "Minimo + IPO + EAR 190.00 (art. 15 B 3, renewal 19/7/2018 p. 14) = 3362.59, column 01/06/2028. The EDR of art. 15 B 2 is the allowance EDR, not part of it. The EAR of 190.00 is the allowance EAR, outside the base salary since 2026-11-08.",
               "note": "Scanned PDF without text layer: the quote is the OCR text of the page (tesseract, Italian, 300 dpi); every figure was read on the page image. OCR text: ocr/250415_p48.txt.",
               "extraction": {
                 "method": "ai",
@@ -4502,6 +4619,48 @@
               "review_id": "2026-10-13-ai-production"
             }
           }
+        },
+        {
+          "code": "EAR",
+          "description": "Elemento aggiuntivo della retribuzione, categoria A (art. 15 B 3)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-07-01",
+                "valid_until": null,
+                "value": "190.00"
+              }
+            ]
+          },
+          "apprenticeship_pct_relevant": true,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "cnel-178786-intesa-2024-01-08",
+                "title": "Intesa 8 gennaio 2024, CCNL industria chimica e chimico-farmaceutica: anticipazione del TEM, tabelle dal 1 gennaio e dal 1 luglio 2024 (CNEL n. 178786)",
+                "kind": "cnel",
+                "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/178786",
+                "published_on": "2024-01-08",
+                "sha256": "88d0b9af3d0bdb975a5c3316dafeacba36523d5444cb98726f3518905db63383"
+              },
+              "page": "2",
+              "section": "Trattamento Economico Minimo (TEM) mensile alle diverse scadenze e EDR, column 'Dal 1° luglio 2024', row A2",
+              "quote": "A2 2.425,52 288,07 31,00 2.496,52 306,07 0,00 2.520,52 313,07 0,00"
+            },
+            "transformation": "Elemento aggiuntivo della retribuzione (art. 15 B 3, renewal of 19 July 2018 p. 14) of category A: 190.00 a month. An art. 15 punto 2 element, not of punto 1: outside the hourly quota of art. 20 and its maggiorazioni (art. 9), in the monthly pay, the extra months and the TFR.",
+            "note": "In force until 30 June 2025: the 2025 renewal (p. 46) pays the last tranche of the 2022 renewal with the tranche of July 2025.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T11:00:00Z",
+              "effective_from": "2024-07-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-08T11:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-08-ai-federchimica-ear-hourly-quota"
+            }
+          }
         }
       ],
       "category": "quadro",
@@ -4542,7 +4701,7 @@
           {
             "valid_from": "2024-07-01",
             "valid_until": "2025-07-01",
-            "value": "3258.48",
+            "value": "3068.48",
             "provenance": {
               "status": "verified",
               "location": {
@@ -4558,7 +4717,7 @@
                 "section": "Trattamento Economico Minimo (TEM) mensile alle diverse scadenze e EDR, column 'Dal 1° luglio 2024', row A1",
                 "quote": "A1 2.425,52 507,96 34,00 2.496,52 537,96 0,00 2.520,52 547,96 0,00"
               },
-              "transformation": "Minimo 2520.52 + IPO 547.96 + EAR 190.00 (art. 15 B 3, renewal 19/7/2018 p. 14) = 3258.48, column 'Dal 1° luglio 2024'.",
+              "transformation": "Minimo 2520.52 + IPO 547.96 + EAR 190.00 (art. 15 B 3, renewal 19/7/2018 p. 14) = 3258.48, column 'Dal 1° luglio 2024'. The EAR of 190.00 is the allowance EAR, outside the base salary since 2026-11-08.",
               "note": "In force until 30 June 2025: the 2025 renewal (p. 46) pays the last tranche of the 2022 renewal with the tranche of July 2025.",
               "extraction": {
                 "method": "ai",
@@ -4575,7 +4734,7 @@
           {
             "valid_from": "2025-07-01",
             "valid_until": "2025-12-01",
-            "value": "3408.48",
+            "value": "3218.48",
             "provenance": {
               "status": "verified",
               "location": {
@@ -4591,7 +4750,7 @@
                 "section": "Allegato 'Trattamento Economico Minimo (TEM) mensile alle diverse scadenze', column 01/07/2025, row A1",
                 "quote": "2.627,52 590,96"
               },
-              "transformation": "Minimo + IPO + EAR 190.00 (art. 15 B 3, renewal 19/7/2018 p. 14) = 3408.48, column 01/07/2025.",
+              "transformation": "Minimo + IPO + EAR 190.00 (art. 15 B 3, renewal 19/7/2018 p. 14) = 3408.48, column 01/07/2025. The EAR of 190.00 is the allowance EAR, outside the base salary since 2026-11-08.",
               "note": "Scanned PDF without text layer: the quote is the OCR text of the page (tesseract, Italian, 300 dpi); every figure was read on the page image. OCR text: ocr/250415_p48.txt.",
               "extraction": {
                 "method": "ai",
@@ -4608,7 +4767,7 @@
           {
             "valid_from": "2025-12-01",
             "valid_until": "2026-07-01",
-            "value": "3438.48",
+            "value": "3248.48",
             "provenance": {
               "status": "verified",
               "location": {
@@ -4624,7 +4783,7 @@
                 "section": "Allegato 'Trattamento Economico Minimo (TEM) mensile alle diverse scadenze', column 01/12/2025, row A1",
                 "quote": "2.648,52 599,96"
               },
-              "transformation": "Minimo + IPO + EAR 190.00 (art. 15 B 3, renewal 19/7/2018 p. 14) = 3438.48, column 01/12/2025.",
+              "transformation": "Minimo + IPO + EAR 190.00 (art. 15 B 3, renewal 19/7/2018 p. 14) = 3438.48, column 01/12/2025. The EAR of 190.00 is the allowance EAR, outside the base salary since 2026-11-08.",
               "note": "Scanned PDF without text layer: the quote is the OCR text of the page (tesseract, Italian, 300 dpi); every figure was read on the page image. OCR text: ocr/250415_p48.txt.",
               "extraction": {
                 "method": "ai",
@@ -4641,7 +4800,7 @@
           {
             "valid_from": "2026-07-01",
             "valid_until": "2027-07-01",
-            "value": "3528.48",
+            "value": "3338.48",
             "provenance": {
               "status": "verified",
               "location": {
@@ -4657,7 +4816,7 @@
                 "section": "Allegato 'Trattamento Economico Minimo (TEM) mensile alle diverse scadenze', column 01/07/2026, row A1",
                 "quote": "2.711,52 626,96"
               },
-              "transformation": "Minimo + IPO + EAR 190.00 (art. 15 B 3, renewal 19/7/2018 p. 14) = 3528.48, column 01/07/2026.",
+              "transformation": "Minimo + IPO + EAR 190.00 (art. 15 B 3, renewal 19/7/2018 p. 14) = 3528.48, column 01/07/2026. The EAR of 190.00 is the allowance EAR, outside the base salary since 2026-11-08.",
               "note": "Scanned PDF without text layer: the quote is the OCR text of the page (tesseract, Italian, 300 dpi); every figure was read on the page image. OCR text: ocr/250415_p48.txt.",
               "extraction": {
                 "method": "ai",
@@ -4674,7 +4833,7 @@
           {
             "valid_from": "2027-07-01",
             "valid_until": "2028-06-01",
-            "value": "3618.48",
+            "value": "3428.48",
             "provenance": {
               "status": "verified",
               "location": {
@@ -4690,7 +4849,7 @@
                 "section": "Allegato 'Trattamento Economico Minimo (TEM) mensile alle diverse scadenze', column 01/07/2027, row A1",
                 "quote": "2.774,52 653,96"
               },
-              "transformation": "Minimo + IPO + EAR 190.00 (art. 15 B 3, renewal 19/7/2018 p. 14) = 3618.48, column 01/07/2027. The EDR of art. 15 B 2 is the allowance EDR, not part of it.",
+              "transformation": "Minimo + IPO + EAR 190.00 (art. 15 B 3, renewal 19/7/2018 p. 14) = 3618.48, column 01/07/2027. The EDR of art. 15 B 2 is the allowance EDR, not part of it. The EAR of 190.00 is the allowance EAR, outside the base salary since 2026-11-08.",
               "note": "Scanned PDF without text layer: the quote is the OCR text of the page (tesseract, Italian, 300 dpi); every figure was read on the page image. OCR text: ocr/250415_p48.txt.",
               "extraction": {
                 "method": "ai",
@@ -4707,7 +4866,7 @@
           {
             "valid_from": "2028-06-01",
             "valid_until": null,
-            "value": "3643.48",
+            "value": "3453.48",
             "provenance": {
               "status": "verified",
               "location": {
@@ -4723,7 +4882,7 @@
                 "section": "Allegato 'Trattamento Economico Minimo (TEM) mensile alle diverse scadenze', column 01/06/2028, row A1",
                 "quote": "2.793,52 659,96"
               },
-              "transformation": "Minimo + IPO + EAR 190.00 (art. 15 B 3, renewal 19/7/2018 p. 14) = 3643.48, column 01/06/2028. The EDR of art. 15 B 2 is the allowance EDR, not part of it.",
+              "transformation": "Minimo + IPO + EAR 190.00 (art. 15 B 3, renewal 19/7/2018 p. 14) = 3643.48, column 01/06/2028. The EDR of art. 15 B 2 is the allowance EDR, not part of it. The EAR of 190.00 is the allowance EAR, outside the base salary since 2026-11-08.",
               "note": "Scanned PDF without text layer: the quote is the OCR text of the page (tesseract, Italian, 300 dpi); every figure was read on the page image. OCR text: ocr/250415_p48.txt.",
               "extraction": {
                 "method": "ai",
@@ -4786,6 +4945,48 @@
               "review_id": "2026-10-13-ai-production"
             }
           }
+        },
+        {
+          "code": "EAR",
+          "description": "Elemento aggiuntivo della retribuzione, categoria A (art. 15 B 3)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-07-01",
+                "valid_until": null,
+                "value": "190.00"
+              }
+            ]
+          },
+          "apprenticeship_pct_relevant": true,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "cnel-178786-intesa-2024-01-08",
+                "title": "Intesa 8 gennaio 2024, CCNL industria chimica e chimico-farmaceutica: anticipazione del TEM, tabelle dal 1 gennaio e dal 1 luglio 2024 (CNEL n. 178786)",
+                "kind": "cnel",
+                "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/178786",
+                "published_on": "2024-01-08",
+                "sha256": "88d0b9af3d0bdb975a5c3316dafeacba36523d5444cb98726f3518905db63383"
+              },
+              "page": "2",
+              "section": "Trattamento Economico Minimo (TEM) mensile alle diverse scadenze e EDR, column 'Dal 1° luglio 2024', row A1",
+              "quote": "A1 2.425,52 507,96 34,00 2.496,52 537,96 0,00 2.520,52 547,96 0,00"
+            },
+            "transformation": "Elemento aggiuntivo della retribuzione (art. 15 B 3, renewal of 19 July 2018 p. 14) of category A: 190.00 a month. An art. 15 punto 2 element, not of punto 1: outside the hourly quota of art. 20 and its maggiorazioni (art. 9), in the monthly pay, the extra months and the TFR.",
+            "note": "In force until 30 June 2025: the 2025 renewal (p. 46) pays the last tranche of the 2022 renewal with the tranche of July 2025.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T11:00:00Z",
+              "effective_from": "2024-07-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-08T11:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-08-ai-federchimica-ear-hourly-quota"
+            }
+          }
         }
       ],
       "category": "quadro",
@@ -4826,7 +5027,7 @@
     "effective_until": null,
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/chimico_farmaceutico/250415-_CHIMICO-FARMACEUTICO_RINNOVO%20CCNL_%201-7-2025__30-6-2028.pdf",
     "verification_status": "unverified",
-    "source_hash": "9748836fe6a9fdf90908fb25138fadf60f48d674e7d9b567e3116005ee0d844f",
+    "source_hash": "f4b74df26b9bbc4273155574b16cd382e8c3a7f909019a67b5a5d5ea620382d6",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -6223,6 +6424,28 @@
         "independence": "same_process",
         "checked": [
           "work_rules.time_supplements.supplement_bands"
+        ]
+      },
+      {
+        "id": "2026-11-08-ai-federchimica-ear-hourly-quota",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 15 punti 1-2, art. 20 punto 4 and art. 9 of the CCNL of 10 May 2006 (CNEL 579), via a research report; the EAR amounts as already read in the base salaries.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/579",
+            "sha256": "a9926705b06590a6d8fbe2e6ab683c75d56dfd9e898e7b0f71fb377d7edef3d6"
+          }
+        ],
+        "findings": [
+          "Moved the EAR of categories A (190) and B (100) out of the base salary into the allowance EAR, outside the hourly quota."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels.base_salary",
+          "levels.fixed_allowances[EAR]"
         ]
       }
     ],
