@@ -65,3 +65,23 @@ def test_without_a_subsector_the_tessile_rules_hold() -> None:
         "gruppo_2_abb",
         "gruppo_3_abb",
     ]
+
+
+def test_the_balneari_take_their_sickness_and_divisor() -> None:
+    """Pubblici esercizi arts. 245, 250: 28% over INPS; operai over 190."""
+    fipe = load_ccnl("pubblici-esercizi-fipe-angem")
+    operaio, _ = with_subsector(fipe, "stabilimenti_balneari", WorkerCategory.OPERAIO)
+    impiegato, _ = with_subsector(
+        fipe, "stabilimenti_balneari", WorkerCategory.IMPIEGATO
+    )
+    diurni, _ = with_subsector(fipe, "alberghi_diurni", WorkerCategory.OPERAIO)
+    assert operaio.parameters.hourly_divisor.value_at(_DAY) == 190
+    assert impiegato.parameters.hourly_divisor.value_at(_DAY) == 172
+    for ccnl in (operaio, diurni):
+        assert ccnl.work_rules is not None
+        assert ccnl.work_rules.sickness_rules is not None
+        assert ccnl.work_rules.sickness_rules.employer_share == Decimal("0.28")
+    general, _ = with_subsector(fipe, None, WorkerCategory.OPERAIO)
+    assert general.work_rules is not None
+    assert general.work_rules.sickness_rules is not None
+    assert general.work_rules.sickness_rules.employer_share is None

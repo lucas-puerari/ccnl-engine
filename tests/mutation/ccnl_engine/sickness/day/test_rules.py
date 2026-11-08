@@ -293,3 +293,30 @@ def test_units_follow_the_ccnl_divisor(
 def test_no_segment_has_no_unit() -> None:
     """An empty classification is worth nothing."""
     assert segment_units((), DailyDivisorMethod.BY_26, Decimal(26)) == ()
+
+
+def test_an_employer_share_adds_to_the_inps_rate() -> None:
+    """Pubblici esercizi art. 250: 28% over the INPS indemnity, none without it.
+
+    From Monday 2 March: days 1-3 carenza at the full pay, days 4-20 INPS
+    50% + 28% = 78%, day 21 on 66.66% + 28% = 94.66%.
+    """
+    share = SicknessRules(
+        carenza_integration_rate=_ONE,
+        full_pay_integration_rate=_ZERO,
+        employer_share=Decimal("0.28"),
+    )
+    episode = _episode("a", date(2026, 3, 2), date(2026, 3, 23))
+    span = (date(2026, 3, 2), date(2026, 3, 23))
+    segments = classify_days(episode, span, SicknessHistory(), _rules(share))
+    assert [(s.kind, s.worker_rate) for s in segments] == [
+        (SickDayKind.CARENZA, _ONE),
+        (SickDayKind.INDEMNIFIED, Decimal("0.78")),
+        (SickDayKind.INDEMNIFIED, Decimal("0.9466")),
+    ]
+    uncovered = classify_days(
+        episode, span, SicknessHistory(), _rules(share, cover=False)
+    )
+    assert {s.worker_rate for s in uncovered if s.kind is SickDayKind.INDEMNIFIED} == {
+        _ZERO
+    }

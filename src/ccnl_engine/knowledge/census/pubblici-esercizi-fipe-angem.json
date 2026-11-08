@@ -39,10 +39,10 @@
       "institute": "sickness",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "BALNEARI AND ALBERGHI DIURNI: art. 190 c. 5 (PDF p. 134) leaves the stabilimenti balneari and the alberghi diurni out of the sickness rule of the file: they pay the supplements of arts. 250 and 266 over the INPS 50%/66.66%, and the balneari non impiegati work 44 hours a week. Not modelled.",
+      "rule": "BALNEARI AND ALBERGHI DIURNI (artt. 245, 250, 266 of the text of 8 February 2018): for an employer of the sub-sector stabilimenti_balneari or alberghi_diurni (EmployerProfile.subsector) the sickness pays the whole pay for the three days of carenza and 28% of the pay from the employer over the INPS indemnity (work_rules.subsector_rules); the non impiegati of the balneari have the hourly divisor 190 of the 44-hour week. Not modelled: the overtime threshold of the 44-hour week, and the INPS indemnity reduced by INPS (the 28% is added to the rate the engine computes).",
       "calculation": "ccnl/pubblici-esercizi-fipe-angem:coverage.notes",
       "state": "absent",
-      "remediation": "Model the special parts of the stabilimenti balneari and alberghi diurni in a sibling file.",
+      "remediation": "Model the 44-hour week of the balneari non impiegati in the overtime threshold.",
       "origin": "seeded",
       "links": {
         "limitations": [

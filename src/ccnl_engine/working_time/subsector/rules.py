@@ -53,6 +53,7 @@ def subsectors_of(ccnl: CCNL) -> frozenset[str]:
     }
     tiers = {code for p in permits for h in p.annual_hours for code in h.subsectors}
     named = {code for band in bands for code in band.subsectors}
+    named |= set(() if rules is None else rules.subsector_rules)
     tables = {
         code
         for level in ccnl.levels
@@ -97,7 +98,7 @@ def with_subsector(
             msg, field="EmployerProfile.subsector", feature="employer_facts"
         )
     _check_level(ccnl, subsector, level_code)
-    ccnl = _with_sector_rules(_with_levels(ccnl, subsector), subsector)
+    ccnl = _with_sector_rules(_with_levels(ccnl, subsector), subsector, category)
     rules = ccnl.work_rules
     supplements = None if rules is None else rules.time_supplements
     bands: tuple[OvertimeBand | SupplementBand, ...] = (
@@ -196,7 +197,9 @@ def _with_levels(ccnl: CCNL, subsector: str | None) -> CCNL:
     return ccnl.model_copy(update={"levels": levels})
 
 
-def _with_sector_rules(ccnl: CCNL, subsector: str | None) -> CCNL:
+def _with_sector_rules(
+    ccnl: CCNL, subsector: str | None, category: WorkerCategory | None
+) -> CCNL:
     """Return the CCNL with the seniority and apprenticeship of the sub-sector.
 
     Tessile-moda artigianato art. 67-68: the chimica and ceramica sectors
@@ -211,11 +214,21 @@ def _with_sector_rules(ccnl: CCNL, subsector: str | None) -> CCNL:
     own = parameters.seniority_increments_by_subsector.get(subsector or "")
     named = [t for t in ccnl.apprenticeship if subsector in t.subsectors]
     tracks = tuple(named or [t for t in ccnl.apprenticeship if not t.subsectors])
-    if own is None and tracks == ccnl.apprenticeship:
+    work = ccnl.work_rules
+    rules = None if work is None else work.subsector_rules.get(subsector or "")
+    if own is None and rules is None and tracks == ccnl.apprenticeship:
         return ccnl
-    update: dict[str, object] = {"apprenticeship": tracks}
+    changed: dict[str, object] = {}
     if own is not None:
-        update["parameters"] = parameters.model_copy(
-            update={"seniority_increments": own}
+        changed["seniority_increments"] = own
+    if rules is not None and category in rules.hourly_divisor_by_category:
+        changed["hourly_divisor"] = rules.hourly_divisor_by_category[category]
+    update: dict[str, object] = {
+        "apprenticeship": tracks,
+        "parameters": parameters.model_copy(update=changed),
+    }
+    if work is not None and rules is not None and rules.sickness_rules is not None:
+        update["work_rules"] = work.model_copy(
+            update={"sickness_rules": rules.sickness_rules}
         )
     return ccnl.model_copy(update=update)

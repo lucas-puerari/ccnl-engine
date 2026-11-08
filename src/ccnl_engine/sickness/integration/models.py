@@ -292,6 +292,10 @@ class SicknessRules(BaseModel):
             worker's INPS rate before the company tops it up.
         apprentices_excluded: The company owes apprentices no integration
             and no carenza (Commercio Art. 187: "né agli apprendisti").
+        employer_share: Share of the daily pay the employer adds to the
+            INPS indemnity it pays, in place of a target rate (Pubblici
+            esercizi art. 250: 'una integrazione [...] pari al 28 per cento
+            della retribuzione'); none when INPS pays nothing.
         permanent_only: As a rule of a worker category, it covers only the
             permanent contracts (Tabacco art. 34: "l'impiegato con rapporto
             a tempo indeterminato"); the others keep the general rule.
@@ -325,6 +329,7 @@ class SicknessRules(BaseModel):
     net_basis: bool = False
     apprentices_excluded: bool = False
     permanent_only: bool = False
+    employer_share: Decimal | None = Field(default=None, ge=0, le=1)
     inps_regime: str | None = None
     daily_divisor_method: DailyDivisorMethod | None = None
     provenance: RuleProvenance | None = None
