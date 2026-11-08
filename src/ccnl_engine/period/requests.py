@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field, replace
+from dataclasses import dataclass, field
 from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
@@ -29,6 +29,8 @@ from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.irpef.declaration.inputs import PriorYearTaxFacts
 from ccnl_engine.irpef.other_income.inputs import CurrentYearTaxFacts
 from ccnl_engine.pension_fund.inputs import PENSION_FUND_TYPES
+from ccnl_engine.period.request.meal import validate_meal_days
+from ccnl_engine.period.request.opening import stated_opening
 from ccnl_engine.period.request.validators import employment_gap
 from ccnl_engine.regime.models import EmploymentSector
 from ccnl_engine.run.types import PeriodId
@@ -77,6 +79,9 @@ class PeriodCalculationRequest:
             is derived from.  ``None`` means not known: a run whose INPS base
             crosses the massimale gives a ``missing_fact`` blocker.
         events: Variable work events of the period (overtime, absences...).
+        meal_benefit_days: Verified eligible days for electronic meal vouchers,
+            excluding absences. ``None`` does not declare entitlement. Do not
+            use for paper vouchers, whose tax threshold differs.
         regione: ISO 3166-2:IT region code for the regional surtax, e.g.
             ``"IT-45"``, with ``"IT-BZ"`` / ``"IT-TN"`` for the autonomous
             provinces (:data:`~ccnl_engine.surtax.jurisdiction.types.REGION_CODES`).
@@ -154,6 +159,7 @@ class PeriodCalculationRequest:
     contract_type: Permanent | Apprentice | FixedTerm = field(default_factory=Permanent)
     contribution_history: ContributionHistory | None = None
     events: tuple[WorkEvent, ...] = field(default_factory=tuple)
+    meal_benefit_days: int | None = None
     regione: str | None = None
     comune_belfiore: str | None = None
     family_composition: FamilyComposition | None = None
@@ -212,6 +218,9 @@ class PeriodCalculationRequest:
         check_week_days(self.full_time_week_days)
         check_pattern_hours(self.weekly_hours, self.work_pattern)
         check_surtax_codes(self.regione, self.comune_belfiore)
+        validate_meal_days(
+            self.meal_benefit_days, self.period_id.year, self.period_id.month
+        )
         competence = date(self.period_id.year, self.period_id.month, 1)
         tax_year = TaxYearPolicy().attribute(competence, self.payment_date).tax_year
         opening_year = self.opening_state.tax_year
@@ -247,14 +256,7 @@ class PeriodCalculationRequest:
             ``opening_state``, with the INPS base of other employments of
             ``current_year`` when it is of the competence year.
         """
-        year, facts = self.period_id.year, self.current_year
-        if facts is None or facts.tax_year != year:
-            return self.opening_state
-        accrual = self.opening_state.accrual
-        base = accrual.inps_base(year).stating_other_employers(
-            facts.other_employment_inps_base
-        )
-        return replace(self.opening_state, accrual=accrual.with_inps_base(base))
+        return stated_opening(self)
 
     def _field_specs(self) -> tuple[FieldSpec, ...]:
         """Return the fields an untyped caller may supply with a wrong type.

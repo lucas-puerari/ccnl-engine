@@ -18,6 +18,7 @@ from ccnl_engine.compensation.hourly.services import (
 )
 from ccnl_engine.compensation.individual.rules import individual_element_decisions
 from ccnl_engine.compensation.loyalty.rules import loyalty_premium
+from ccnl_engine.compensation.meal.services import meal_benefit_decisions
 from ccnl_engine.compensation.raccordo.services import erc_settlement
 from ccnl_engine.compensation.renewal_minimum.services import (
     renewal_minimum,
@@ -289,6 +290,7 @@ def run_decisions(
         + individual_element_decisions(ctx)
         + second_level_decisions(ctx)
         + totals.decisions
+        + meal_benefit_decisions(ctx)
         + amounts.decisions
         + caller_supplied_decisions(
             request.events, contract.ccnl, request.level_code, hourly_terms(ctx)

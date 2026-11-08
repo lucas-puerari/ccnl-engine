@@ -14,6 +14,7 @@ from ccnl_engine.compensation.equalisation.models import EqualisationElement
 from ccnl_engine.compensation.fixed_term.models import FixedTermPay
 from ccnl_engine.compensation.hourly.models import HourlyPay
 from ccnl_engine.compensation.loyalty.models import LoyaltyPremium
+from ccnl_engine.compensation.payment_day.models import PaymentDay
 from ccnl_engine.compensation.renewal_minimum.models import RenewalAgreement
 from ccnl_engine.compensation.una_tantum.models import UnaTantum
 from ccnl_engine.employment.category.models import WorkerCategory
@@ -26,6 +27,16 @@ from ccnl_engine.fund.models import (
 from ccnl_engine.fund.solidarity.models import SolidarityFund
 from ccnl_engine.provenance.source.rule.models import ProvenanceStatus, RuleProvenance
 from ccnl_engine.seniority.models import SeniorityIncrements
+
+__all__ = [
+    "AccrualComparison",
+    "Allowance",
+    "CCNLParameters",
+    "ExtraMonthAccrualRule",
+    "Level",
+    "PaymentDay",
+    "RaccordoElement",
+]
 
 
 class Allowance(BaseModel):
@@ -228,33 +239,6 @@ class ExtraMonthAccrualRule(BaseModel):
         return self
 
 
-class PaymentDay(BaseModel):
-    """Calendar day on which the CCNL pays an extra month.
-
-    Attributes:
-        month: Month of the payment, 1-12.
-        day: Day of the month, 1-28 so that every month has it.
-        provenance: Source of the clause; ``missing`` is not allowed, a
-            day without a source is left out of the data instead.
-
-    Raises:
-        ValueError: When the provenance is ``missing``.
-    """
-
-    model_config = ConfigDict(extra="forbid", frozen=True)
-
-    month: int = Field(ge=1, le=12)
-    day: int = Field(ge=1, le=28)
-    provenance: RuleProvenance
-
-    @model_validator(mode="after")
-    def _check_source(self) -> Self:
-        if self.provenance.status is ProvenanceStatus.MISSING:
-            msg = "a stored payment day needs a source; omit it when missing"
-            raise ValueError(msg)
-        return self
-
-
 class RaccordoElement(BaseModel):
     """Frozen annual amount the CCNL pays with the tredicesima.
 
@@ -280,7 +264,8 @@ class CCNLParameters(BaseModel):
     ``solidarity_fund``: D.Lgs. 148/2015 art. 26; ``raccordo_element``: ERC;
     ``enam_levels``: ex ENAM; ``renewals``: raising the minimo (L. 199/2025);
     ``health_funds``, with their elemento distinto; ``hourly_pay``,
-    ``fixed_term_pay`` (operai edilizia, OTD); ``loyalty_premium`` (fedeltà).
+    ``fixed_term_pay`` (operai edilizia, OTD); ``loyalty_premium`` (fedeltà);
+    ``meal_benefit_daily``: non-remunerative voucher value per eligible day.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -311,6 +296,7 @@ class CCNLParameters(BaseModel):
     una_tantum: tuple[UnaTantum, ...] = ()
     equalisation_element: EqualisationElement | None = None
     loyalty_premium: LoyaltyPremium | None = None
+    meal_benefit_daily: TimeSeries | None = None
 
     @model_validator(mode="after")
     def _check_positive_params(self) -> Self:
