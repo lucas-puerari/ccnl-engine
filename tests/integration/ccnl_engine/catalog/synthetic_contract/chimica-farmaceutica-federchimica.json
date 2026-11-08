@@ -55,27 +55,27 @@
     {
       "level_code": "B2",
       "as_of": "2024-07-01",
-      "expected_monthly": "2640.61"
+      "expected_monthly": "2540.61"
     },
     {
       "level_code": "B1",
       "as_of": "2024-07-01",
-      "expected_monthly": "2733.98"
+      "expected_monthly": "2633.98"
     },
     {
       "level_code": "A3",
       "as_of": "2024-07-01",
-      "expected_monthly": "2961.22"
+      "expected_monthly": "2771.22"
     },
     {
       "level_code": "A2",
       "as_of": "2024-07-01",
-      "expected_monthly": "3023.59"
+      "expected_monthly": "2833.59"
     },
     {
       "level_code": "A1",
       "as_of": "2024-07-01",
-      "expected_monthly": "3258.48"
+      "expected_monthly": "3068.48"
     },
     {
       "level_code": "F",
@@ -130,27 +130,27 @@
     {
       "level_code": "B2",
       "as_of": "2028-06-01",
-      "expected_monthly": "2938.61"
+      "expected_monthly": "2838.61"
     },
     {
       "level_code": "B1",
       "as_of": "2028-06-01",
-      "expected_monthly": "3048.98"
+      "expected_monthly": "2948.98"
     },
     {
       "level_code": "A3",
       "as_of": "2028-06-01",
-      "expected_monthly": "3292.22"
+      "expected_monthly": "3102.22"
     },
     {
       "level_code": "A2",
       "as_of": "2028-06-01",
-      "expected_monthly": "3362.59"
+      "expected_monthly": "3172.59"
     },
     {
       "level_code": "A1",
       "as_of": "2028-06-01",
-      "expected_monthly": "3643.48"
+      "expected_monthly": "3453.48"
     }
   ]
 }
