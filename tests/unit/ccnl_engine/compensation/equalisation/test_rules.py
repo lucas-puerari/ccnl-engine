@@ -384,3 +384,36 @@ def test_the_egr_reads_the_bargaining_of_the_year_of_payment(
 ) -> None:
     """'Aziende prive della contrattazione aziendale': in the year it is paid."""
     assert bool(_egr(_request(company=(company,)))) is owed
+
+
+@pytest.mark.parametrize(
+    "slug",
+    [
+        "pubblici-esercizi-fipe-angem",
+        "pubblici-esercizi-fipe-angem-ristorazione-collettiva",
+    ],
+)
+@pytest.mark.parametrize(
+    ("level", "amount"),
+    [("Qa", "186.00"), ("3", "158.00"), ("4", "140.00"), ("6s", "112.00")],
+)
+def test_the_fipe_guarantee_premium_of_november_2027(
+    slug: str, level: str, amount: str
+) -> None:
+    """FIPE art. 13 c. 10: the amounts of the table, a full 2026 of service."""
+    request = cast(
+        "PeriodCalculationRequest",
+        SimpleNamespace(
+            period_id=PeriodId(year=2027, month=11),
+            level_code=level,
+            employment_period=EmploymentPeriod(date(2025, 1, 1)),
+            individual_elements=(),
+            weekly_hours=None,
+            full_time_weekly_hours=None,
+            employer=SimpleNamespace(
+                second_level_premium=False, second_level_elements=()
+            ),
+        ),
+    )
+    outcome = equalisation_outcome(request, load_ccnl(slug), RunKind.REGULAR)
+    assert [e.amount for e in outcome.events] == [Decimal(amount)]
