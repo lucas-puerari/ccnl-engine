@@ -41,6 +41,8 @@ _DECLARED_GAPS: dict[tuple[str, SalaryGapKind, date], int] = {
     # Indennità di struttura complessa before 2022 (art. 90 CCNL 2019) not read.
     ("dirigenza-sanitaria-medico-veterinaria-aran", _MISSING, date(2022, 1, 1)): 1,
     ("dirigenza-sanitaria-area-sanita-aran", _MISSING, date(2022, 1, 1)): 1,
+    # Art. 46: the salario di anzianità from 1 September 2025 (8 levels).
+    ("scuole-materne-fism", _NOT_APPLICABLE, date(2025, 9, 1)): 8,
 }
 
 

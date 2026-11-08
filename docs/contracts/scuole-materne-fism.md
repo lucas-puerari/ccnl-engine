@@ -42,7 +42,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🟢 Verified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 41 verified / 7 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 41 verified / 15 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -51,7 +51,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-05-28 |
-| **Last review** | 2026-11-07 |
+| **Last review** | 2026-11-08 |
 | **Latest salary tranche** | 2027-09-01 |
 
 ## Review history
@@ -60,6 +60,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|---|---|
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | confirmed | Art. 49 Tredicesima mensilità (p. 37): "Le frazioni di mese vengono prese in considerazione solo se superiori a 15 giorni ed in tal caso equiparate ad un mese intero.". Match: more_than 15. |
 | 2026-11-07 | gpt-6-sol (ai) | Monthly values on scanned pages, each read twice from the page image by two independent sessions of another model, the second without being told the expected value. | confirmed | 40 values read identically by both readings and equal to the file. |
+| 2026-11-08 | claude-opus-5-5 (ai) | Art. 40, 44, 46 of the CCNL FISM of 28 May 2025 (PDF pp. 32-36, page images) and the economic agreement 2026-2027 (p. 2) for amendments. | confirmed | Art. 46: from 1 September 2025, 15 EUR (levels I-IV) or 20 EUR (V-VIII) a month for 13 payments to the staff with two years of uninterrupted service with the Ente on that day, added to the salario di anzianità of earlier renewals.<br>The agreement of 7 July 2026 does not amend art. 46. |
 
 ## Salary table
 
@@ -103,11 +104,11 @@ percentage: 1.00
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
 !!! warning "scuole-materne-fism/salario_di_anzianita · seniority · impact yes · open"
-    SENIORITY (Arts. 44-46): periodic scatti (Arts. 35 CCNL 2006-2009) were frozen at 31/12/2015 and consolidated by CCNL 2016-2018. Salario di anzianita (Art. 46): 15 EUR/month (livelli I-II-III-IV) or 20 EUR/month (livelli V-VI-VII-VIII) as at 01/09/2025. Engine seniority model cannot express the milestone/hire-date nature; maximum_count=0 models new-hire case correctly but understates cost for long-tenure workers.
+    SENIORITY (Arts. 40, 44-46): the scatti were frozen at 31/12/2015 and consolidated by the CCNL 2016-2018; those amounts and the salario di anzianità of the earlier renewals are the worker's own (the caller states them as individual elements). The salario di anzianità of Art. 46 from 1 September 2025 (15 EUR levels I-IV, 20 EUR levels V-VIII, 13 payments, two years of uninterrupted service on that day) is a fixed allowance of every level (in_service_on 2023-09-01). Approximated: an interruption of the service before 1 September 2025 is not read, and the amount follows the level of the run instead of the level held on 1 September 2025.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Model the Art. 46 salario di anzianita with a hire-date or milestone input.
+    **Remediation:** State the level held and whether the service was uninterrupted on 1 September 2025.
 
 !!! warning "scuole-materne-fism/apprenticeship_identity_track · base_salary · impact unknown · open"
     APPRENTICESHIP: no apprenticeship clause found in main CCNL text. Sector primarily employs teachers on permanent contracts. Modelled as single percentage period at 100% (identity transform) for all levels; correct for permanent staff.
