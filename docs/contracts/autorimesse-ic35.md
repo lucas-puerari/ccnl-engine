@@ -61,6 +61,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-07 | claude-opus-5-5 (ai) | Allegato 1 of the verbale of 9 December 2025 (p. 20, page image): the dates of the new minimi. | corrected | The third tranche runs 'dal mese di mar-27', not May 2027: the file missed March and April 2027 for every level; the amounts match. |
 | 2026-11-08 | gpt-6-sol (ai) | Monthly values on scanned pages, each read twice from the page image by two independent sessions of another model, the second without being told the expected value. | confirmed | 88 values read identically by both readings and equal to the file. |
 | 2026-11-08 | gpt-6-sol (ai) | Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim. | confirmed | long_week_divisors: Art. 19 assigns 42 hours to car drivers and 44 to custodians/night watchmen (mixed duties: 40); art. 40 sets hourly divisors 182, 191, and 173 respectively. autorimesse-ic35.json already has 40/173 and week_divisors 42/182 and 44/191. load_contract calls with_week_divisor using r |
+| 2026-11-08 | claude-opus-5-5 (ai) | Parental indemnity supplement, Art. 68, PDF p. 113. | confirmed | Added work_rules.insured_absence.parental: 0.8 up to 30 eligible days. |
 
 ## Salary table
 

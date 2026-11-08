@@ -33,6 +33,9 @@ from ccnl_engine import (
     PeriodFacts,
     PeriodInput,
 )
+from ccnl_engine.absence.insured.parental.handlers import _top_up_days
+from ccnl_engine.absence.insured.parental.rules import ParentalDays
+from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.employment.category.models import WorkerCategory
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.events import (
@@ -75,7 +78,12 @@ def _march(
 
 
 def _run(
-    *events: WorkEvent, category: WorkerCategory = WorkerCategory.IMPIEGATO
+    *events: WorkEvent,
+    category: WorkerCategory = WorkerCategory.IMPIEGATO,
+    ccnl_id: str = "metalmeccanico-federmeccanica",
+    level_code: str = "C3",
+    year: int = 2026,
+    month: int = 3,
 ) -> PeriodResult:
     """Return March 2026 with ``events``.
 
@@ -84,11 +92,11 @@ def _run(
     """
     return PayrollEngine.bundled().calculate_period(
         PeriodInput(
-            run=PayrollRun.regular(2026, 3),
-            payment_date=date(2026, 3, 27),
+            run=PayrollRun.regular(year, month),
+            payment_date=date(year, month, 27),
             employment=Employment(
-                ccnl_id="metalmeccanico-federmeccanica",
-                level_code="C3",
+                ccnl_id=ccnl_id,
+                level_code=level_code,
                 category=category,
                 contract_type=Permanent(),
                 employment_period=EmploymentPeriod(_HIRED, None),
@@ -207,6 +215,105 @@ def test_the_leave_keeps_the_13th_and_the_leave_accrual_not_the_tfr() -> None:
     assert away.closing_state.accrual.leave == worked.closing_state.accrual.leave
     (tfr,) = (d.amount for d in away.decisions if d.capability == "tfr")
     assert tfr == Decimal(0)
+
+
+def test_autorimesse_forty_days_cap_and_later_run() -> None:
+    """At 93.333333/day: 30 * (80%-30%) = 1400; nine April days add zero."""
+    leave = ParentalLeaveEvent(
+        date(2026, 3, 1),
+        date(2026, 4, 9),
+        date(2022, 1, 1),
+        _NOTHING,
+        parental_base_pay=_FEBRUARY,
+        topped_up_days_before=0,
+    )
+    march = _run(leave, ccnl_id="autorimesse-ic35", level_code="C4")
+    april = _run(leave, ccnl_id="autorimesse-ic35", level_code="C4", month=4)
+    assert _amounts(march)["absence_integration_item"] == ("intg", Decimal("1400.00"))
+    assert "absence_integration_item" not in _amounts(april)
+    assert _amounts(march)["maternity_item"] == ("inps", Decimal("868.00"))
+    assert "insured_absence_ccnl_not_modelled" not in {i.code for i in march.issues}
+
+
+def test_autorimesse_prior_pieces_and_unknown_history() -> None:
+    """With 25 used, five at 93.333333 * 50% add 233.33; unknown adds zero."""
+
+    def leave(prior: int | None) -> ParentalLeaveEvent:
+        return ParentalLeaveEvent(
+            date(2026, 3, 1),
+            date(2026, 3, 10),
+            date(2022, 1, 1),
+            _NOTHING,
+            parental_base_pay=_FEBRUARY,
+            topped_up_days_before=prior,
+        )
+
+    result = _run(leave(25), ccnl_id="autorimesse-ic35", level_code="C4")
+    assert _amounts(result)["absence_integration_item"] == ("intg", Decimal("233.33"))
+    unknown = _run(leave(None), ccnl_id="autorimesse-ic35", level_code="C4")
+    assert "absence_integration_item" not in _amounts(unknown)
+    assert "parental_top_up_history_unknown" in {i.code for i in unknown.issues}
+
+
+def test_lapidei_starts_in_july_and_excludes_enhanced_months() -> None:
+    """On July 1 the 30% becomes eligible; enhanced months never qualify."""
+
+    def leave(year: int, month: int, born: date) -> ParentalLeaveEvent:
+        return ParentalLeaveEvent(
+            date(year, month, 1),
+            date(year, month, 10),
+            born,
+            _NOTHING,
+            parental_base_pay=_FEBRUARY,
+            topped_up_days_before=0,
+        )
+
+    clause = load_ccnl("materiali-costruzione-lapidei-confapi").work_rules
+    assert clause is not None
+    assert clause.insured_absence is not None
+    rule = clause.insured_absence.parental
+    assert rule is not None
+    june_day, july_day = date(2025, 6, 30), date(2025, 7, 1)
+    days = ParentalDays(rates={june_day: Decimal("0.3"), july_day: Decimal("0.3")})
+    assert _top_up_days(
+        leave(2025, 6, date(2022, 1, 1)),
+        days,
+        (june_day, july_day),
+        rule,
+        Decimal("0.3"),
+    ) == [july_day]
+
+    def lapidei(event: ParentalLeaveEvent) -> PeriodResult:
+        return _run(
+            event,
+            year=2026,
+            month=7,
+            ccnl_id="materiali-costruzione-lapidei-confapi",
+            level_code="8",
+        )
+
+    enhanced_days = ParentalDays(rates={july_day: Decimal("0.8")})
+    assert (
+        _top_up_days(
+            leave(2025, 7, date(2025, 1, 1)),
+            enhanced_days,
+            (july_day, july_day),
+            rule,
+            Decimal("0.3"),
+        )
+        == []
+    )
+    single = ParentalLeaveEvent(
+        july_day,
+        july_day,
+        date(2022, 1, 1),
+        _NOTHING,
+        single_parent=True,
+        topped_up_days_before=0,
+    )
+    assert _top_up_days(single, days, (july_day, july_day), rule, Decimal("0.3")) == []
+    july = lapidei(leave(2026, 7, date(2022, 1, 1)))
+    assert "insured_absence_without_daily_quota" in {i.code for i in july.issues}
 
 
 def test_the_leave_ends_before_the_child_is_fourteen() -> None:

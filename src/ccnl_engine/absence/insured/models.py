@@ -16,6 +16,7 @@ from typing import Annotated, Self
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from ccnl_engine.absence.insured.parental.models import ParentalRates
+from ccnl_engine.absence.insured.parental.top_up import ParentalTopUp
 from ccnl_engine.provenance.ruleset.models import RulesetIdentity
 from ccnl_engine.provenance.source.rule.models import RuleProvenance
 
@@ -28,6 +29,7 @@ __all__ = [
     "InsuredAbsenceRules",
     "MaternityRates",
     "MaternityRules",
+    "ParentalTopUp",
     "RestPermitRates",
     "YearCeiling",
 ]
@@ -285,16 +287,10 @@ class InjuryRules(BaseModel):
 
 
 class InsuredAbsenceRules(BaseModel):
-    """The CCNL treatment of the absences an insurer pays.
-
-    Attributes:
-        maternity: The top-up of the maternity indemnity, ``None`` when the
-            CCNL adds nothing.
-        injury: The treatment of a work injury, ``None`` when the CCNL adds
-            nothing.
-    """
+    """Optional maternity, injury and parental CCNL treatments."""
 
     model_config = ConfigDict(extra="forbid", frozen=True)
 
     maternity: MaternityRules | None = None
     injury: InjuryRules | None = None
+    parental: ParentalTopUp | None = None

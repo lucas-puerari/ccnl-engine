@@ -93,6 +93,7 @@ class ParentalLeaveEvent:
     protection_ended_on: date | None = None
     single_parent: bool = False
     parental_base_pay: InpsSicknessBase | None = None
+    topped_up_days_before: int | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
         for name in ("started_on", "ended_on", "child_born_on"):
@@ -114,6 +115,13 @@ class ParentalLeaveEvent:
         require_bool(
             self.single_parent, "ParentalLeaveEvent.single_parent", feature=_PARENTAL
         )
+        if self.topped_up_days_before is not None:
+            require_int(
+                self.topped_up_days_before,
+                "ParentalLeaveEvent.topped_up_days_before",
+                feature=_PARENTAL,
+                minimum=0,
+            )
         require_instance(
             self.parental_base_pay,
             InpsSicknessBase,

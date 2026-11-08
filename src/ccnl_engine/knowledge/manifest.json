@@ -235,7 +235,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/autorimesse-ic35",
       "ruleset_version": "2026.2",
-      "source_hash": "9d0d929f908aa590929f04a1140c123b31f037803389cd121738027f55856f68",
+      "source_hash": "c1e6e50a2796d8540b73cddf3a70822c5487cfefb251847df67682a07a43c12a",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/autorimesse-ic35.json.gz"
@@ -1445,7 +1445,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/materiali-costruzione-lapidei-confapi",
       "ruleset_version": "2026.2",
-      "source_hash": "d701f7d01dec9078e6aa8ac092e9d48891606986fb56bb6c27685c33b60ff59b",
+      "source_hash": "8a720a7799120cf3bd713b018bad0438d1ceb8a7034223e4afdd6b879eda7138",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/materiali-costruzione-lapidei-confapi.json.gz"
