@@ -38,10 +38,9 @@ class Allowance(BaseModel):
     apprenticeship-percentage base.  ``contribution_relevant`` false is
     rejected: the engine does not take an allowance out of the INPS base.
     ``apprenticeship_pct_relevant=False`` means the allowance is paid at full
-    value even for percentage-based apprentices (e.g. the EDR, which Italian
-    CCNL commonly leave out of the elements the apprenticeship percentage
-    applies to).  The default ``True`` reduces the allowance by the
-    percentage together with the base salary; a CCNL that lists the reduced
+    value even for percentage-based apprentices (e.g. the EDR, which CCNL often
+    leave out of the percentage base).  The default ``True`` reduces the
+    allowance by the percentage with the base salary; a CCNL that lists the reduced
     elements exempts every allowance it does not list.
 
     ``absorbed_by_individual_excess`` offsets paid individual excess (capped).
@@ -57,7 +56,8 @@ class Allowance(BaseModel):
     ``service_months_threshold`` includes the allowance only when the
     recognised seniority (``Employment.seniority``) is known and at least
     this many months on the run; unknown, the run names the missing fact.
-    ``career_service`` gates on ``SeniorityFact.career_months`` when stated.
+    ``service_months_until`` closes the band (AFAM RPD); ``career_service`` gates on
+    ``SeniorityFact.career_months`` when stated (Farmacie Tabella C).
 
     ``part_time_proportionable=False`` marks allowances paid at their full
     contractual value whatever the part-time fraction (fixed welfare
