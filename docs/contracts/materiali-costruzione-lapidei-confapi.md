@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | inps_employer, pension_fund_contribution |
+| **Limits of this contract** | inps_employer, parental_leave, pension_fund_contribution |
 
-4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-09-09 |
-| **Last review** | 2026-10-18 |
+| **Last review** | 2026-11-08 |
 | **Latest salary tranche** | 2025-01-01 |
 
 ## Review history
@@ -59,6 +59,8 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|---|---|
 | 2026-10-17 | claude-opus-5-5 (ai) | The minimi of the eight Lapidei levels against the testo definitivo of 9 September 2025. | confirmed | 40 minimi (eight levels, April 2019, September 2020, February 2021, January 2022 and January 2025) are printed in Art. 25 (PDF p. 96) and in the tables of Allegato V (PDF pp. 219-220): verified.<br>8 minimi of 1 January 2024 are not printed: the verbale of 25 January 2024 (Allegato V, PDF p. 219) prints the totals at 31 December 2023 and the increments; the minimo is the total plus the increment less the EDR (and the superminimo collettivo of level 8). Derived; every one matches the file.<br>The table of the verbale prints level 6 'a regime' at 1.935,75, the Art. 25 table at 1.935,76 (1.925,43 + 10,33): a one-cent misprint of the verbale; the file follows Art. 25.<br>The ruleset now names its source, the testo definitivo published by FENEAL-UIL, a signatory: source_type contracting_party instead of estimated. |
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | confirmed | Art. 28 - Tredicesima mensilità (o gratifica natalizia) (p. 103): "Nel caso di inizio o cessazione del rapporto durante il corso dell'anno, l'impiegato avrà diritto a tanti dodicesimi dell'ammontare della tredicesima mensilità per quanti sono i mesi interi di servizio prestato presso l'azienda. La frazione di mese superiore ai 15 giorni va considerata a questi effetti come mese intero.". Match: more_than 15. |
+| 2026-11-08 | claude-opus-5-5 (ai) | Parental indemnity supplement, Art. 52 - Genitorialità, PDF p. 151. | confirmed | Added work_rules.insured_absence.parental: 0.5 up to 90 eligible days. |
+| 2026-11-08 | gpt-6-sol (ai) | The parental leave clause against the CCNL top-up encoding, by a separate model session. | corrected | Confirmed the rate and the cap of the clause.<br>Corrected: the counter of the days already topped up holds only the earlier leave events (documented and tested); the hourly leave, the pay base and the three months read as 90 days are recorded as limitation parental_top_up_scope. |
 
 ## Salary table
 
@@ -108,6 +110,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `inps_employer` applies; category in operaio.
 
     **Remediation:** Model the CIGO of D.Lgs. 148/2015 art. 13 c. 1 by activity (edile, lapidei) apart from the tax sector, then remove this note.
+
+!!! warning "materiali-costruzione-lapidei-confapi/parental_top_up_scope · parental_leave · impact yes · open"
+    Art. 52 also allows the leave by the hour, which gets no top-up; 'un periodo non superiore a tre mesi' is read as 90 days of leave; the company provisions it lets the employer absorb are not read. The top-up is computed on the INPS daily base of the leave (art. 23 D.Lgs. 151/2001), as the text gives no pay base of its own. The days already topped up by earlier leave events of the child are a fact of the event (ParentalLeaveEvent.topped_up_days_before).
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Top up the hourly leave, read the pay base the CCNL means, and carry the days topped up per child in the state.
 
 !!! warning "provisional_ruleset · irpef · impact unknown · open"
     The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.

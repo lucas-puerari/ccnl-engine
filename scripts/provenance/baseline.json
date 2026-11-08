@@ -664,7 +664,8 @@
       "autoferrotranvieri-internavigatori/public_operator_inps_scheme"
     ],
     "agreement/autorimesse-ic35.json": [
-      "autorimesse-ic35/meal_voucher"
+      "autorimesse-ic35/meal_voucher",
+      "autorimesse-ic35/parental_top_up_scope"
     ],
     "agreement/aziende-termali-federterme.json": [
       "aziende-termali-federterme/apprentice_seniority",
@@ -690,7 +691,7 @@
     ],
     "agreement/ced-assoced.json": [
       "ced-assoced/conditional_allowances_title_xxiii",
-      "ced-assoced/injury_integration_missing",
+      "ced-assoced/injury_rate_text_conflict",
       "ced-assoced/local_holiday_during_absence",
       "ced-assoced/maternity_holiday_scope",
       "ced-assoced/terziario_inps_rates_unverified"
@@ -724,7 +725,7 @@
       "cinema-audiovisivi-industria/fpls_rates_approximated"
     ],
     "agreement/commercio-confcommercio.json": [
-      "commercio-confcommercio/holiday_during_injury",
+      "commercio-confcommercio/local_patron_holiday",
       "commercio-confcommercio/profile_specific_apprenticeship",
       "commercio-confcommercio/sickness_net_basis"
     ],
@@ -901,7 +902,7 @@
       "igiene-ambientale-utilitalia/industria_rates_proxy"
     ],
     "agreement/impianti-sportivi-sport.json": [
-      "impianti-sportivi-sport/injury_integration_missing",
+      "impianti-sportivi-sport/injury_apprentice_rates",
       "impianti-sportivi-sport/level_v_first_semester_overpaid",
       "impianti-sportivi-sport/level_vi_whole_track_at_destination",
       "impianti-sportivi-sport/local_holiday_during_absence",
@@ -999,7 +1000,8 @@
     ],
     "agreement/materiali-costruzione-lapidei-confapi.json": [
       "materiali-costruzione-lapidei-confapi/cigo_rate_by_activity",
-      "materiali-costruzione-lapidei-confapi/contractual_fund_partial"
+      "materiali-costruzione-lapidei-confapi/contractual_fund_partial",
+      "materiali-costruzione-lapidei-confapi/parental_top_up_scope"
     ],
     "agreement/metalmeccanica-cooperative.json": [
       "metalmeccanica-cooperative/apprenticeship_from_federmeccanica",
@@ -1184,7 +1186,7 @@
     ],
     "agreement/terziario-confesercenti.json": [
       "terziario-confesercenti/apprentice_sickness",
-      "terziario-confesercenti/injury_integration_missing",
+      "terziario-confesercenti/injury_apprentice_rates",
       "terziario-confesercenti/local_holiday_during_absence",
       "terziario-confesercenti/provincial_third_elements",
       "terziario-confesercenti/sales_operators",

@@ -4164,15 +4164,15 @@
       },
       {
         "kind": "simplification",
-        "text": "Art. 189 (PDF p. 144): the ordinary integration of the INAIL indemnity (90% from the 5th to the 20th day, 100% from the 21st; apprentices 80% and 90%) is not modelled: the injury rules of the ruleset hold only the holiday target, so the ordinary injury days are paid at the INAIL share; the holiday reaches 100% net of that share.",
+        "text": "Art. 189 - Injury pay: the 80% target on days 5–20 and 90% target from day 21 for apprentices are not selectable; the general 90%/100% targets are encoded for all workers.",
         "capability": "workplace_injury",
         "monetary_impact": "yes",
         "limitation": {
-          "variant": "injury_integration_missing",
+          "variant": "injury_apprentice_rates",
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Encode the integration bands of the injury article (insured_absence.injury.integration_bands)."
+          "remediation": "Add apprentice-specific injury integration targets."
         }
       }
     ]
@@ -4184,7 +4184,7 @@
     "effective_until": "2027-03-31",
     "source": "https://www.confesercenti.it/wp-content/uploads/2023/01/CCNL_contratto-collettivo-nazionale.pdf",
     "verification_status": "unverified",
-    "source_hash": "ef775022c75abce81d8ec799b207fa864ad4f72cd4fb4908d68d77ae9bd48dcf",
+    "source_hash": "7645e63414ed20c1219fc92db39ea5e52438899321f908166bc2fd20d4596aaf",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -5562,24 +5562,24 @@
           "status": "verified",
           "location": {
             "source_document": {
-              "document_id": "terziario-confesercenti-holiday-clause",
+              "document_id": "terziario-confesercenti-injury-integration",
               "title": "CCNL Terziario, distribuzione e servizi (Confesercenti), testo",
               "kind": "associazione",
               "url": "https://www.confesercenti.it/wp-content/uploads/2023/01/CCNL_contratto-collettivo-nazionale.pdf",
               "sha256": "18a2f10cf41209a56523473660321348214c1d8d54900257cf805ad8488f7ec0"
             },
-            "page": "145",
-            "section": "Art. 191 - Festività nel periodo di malattia o infortunio",
-            "quote": "Ai sensi della Legge 31 marzo 1954, n. 90, per le festività cadenti nel periodo di malattia o infortunio, il lavoratore ha diritto ad un’indennità integrativa di quella a carico rispettivamente dell’INPS e dell’INAIL, da corrispondersi a carico del datore di lavoro, in modo da raggiungere complessivamente il 100% (cento per cento) della retribuzione di fatto di cui all’art. 208."
+            "page": "144-145",
+            "section": "Art. 189 - Injury pay",
+            "quote": "1)    60% (sessanta per cento) per i primi tre giorni (periodo di carenza);\n2)    90% (novanta per cento), per i giorni dal 5° al 20°;\n3)    100% (cento per cento) per i giorni dal 21° in poi della retribuzione giornaliera\n      netta cui il lavoratore avrebbe avuto diritto in caso di normale svolgimento del rap-\n      porto. Per retribuzione giornaliera si intende la quota giornaliera della retribuzione\n      di fatto di cui all’art. 208."
           },
-          "transformation": "On a covered national weekday holiday during a work injury, employer integration reaches 100% of the daily pay after subtracting INAIL indemnity and the ordinary CCNL integration already due on that day; the clause also covers sickness. The local patron saint is outside the national calendar.",
+          "transformation": "The first three days following the injury are paid at 60%; the ordinary non-apprentice net-pay target is 90% on calendar days 5–20 (offsets 4–19) and 100% from day 21 (offset 20). Apprentices have different targets and are not distinguished by the injury model.",
           "extraction": {
             "method": "ai",
             "model": "claude-opus-5-5",
-            "extraction_timestamp": "2026-11-08T12:05:09Z",
-            "verified_at": "2026-11-08T12:05:09Z",
+            "extraction_timestamp": "2026-11-08T12:41:14Z",
+            "verified_at": "2026-11-08T12:41:14Z",
             "verification_status": "verified",
-            "review_id": "2026-11-08-ai-terziario-confesercenti-injury-holiday",
+            "review_id": "2026-11-08-ai-terziario-confesercenti-injury-integration",
             "verified_by": "claude-opus-5-5"
           }
         },
@@ -5613,7 +5613,19 @@
           "excluded_days": [
             "10-04"
           ]
-        }
+        },
+        "carenza_rate": "0.60",
+        "integration_bands": [
+          {
+            "day_from": 4,
+            "rate": "0.90"
+          },
+          {
+            "day_from": 20,
+            "rate": "1"
+          }
+        ],
+        "net_basis": true
       }
     }
   },
@@ -5885,6 +5897,50 @@
         "independence": "same_process",
         "checked": [
           "work_rules.insured_absence.injury.holiday"
+        ]
+      },
+      {
+        "id": "2026-11-08-ai-terziario-confesercenti-injury-integration",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 189 - Injury pay, ordinary injury integration and waiting days against the cached PDF.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.confesercenti.it/wp-content/uploads/2023/01/CCNL_contratto-collettivo-nazionale.pdf",
+            "sha256": "18a2f10cf41209a56523473660321348214c1d8d54900257cf805ad8488f7ec0"
+          }
+        ],
+        "findings": [
+          "The first three days following the injury are paid at 60%; the ordinary non-apprentice net-pay target is 90% on calendar days 5–20 (offsets 4–19) and 100% from day 21 (offset 20). Apprentices have different targets and are not distinguished by the injury model."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.insured_absence.injury",
+          "coverage.notes"
+        ]
+      },
+      {
+        "id": "2026-11-08-gpt-terziario-confesercenti-injury-integration",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Art. 189 against the injury integration bands, by a separate model session.",
+        "outcome": "flagged",
+        "sources": [
+          {
+            "url": "https://www.confesercenti.it/wp-content/uploads/2023/01/CCNL_contratto-collettivo-nazionale.pdf",
+            "sha256": "18a2f10cf41209a56523473660321348214c1d8d54900257cf805ad8488f7ec0"
+          }
+        ],
+        "findings": [
+          "Confirmed the waiting days at 60%, the bands from the INAIL indemnity and the day mapping from the injury day.",
+          "Flagged, kept as limitations: the apprentice rates of 80% and 90% are not selected; the general bands apply to them."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.insured_absence.injury"
         ]
       }
     ],

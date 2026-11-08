@@ -5,13 +5,13 @@ an unpaid absence: out of the INPS and TFR bases, since art. 2120 c. 3
 c.c. keeps in the TFR base only the absences of art. 2110 c.c. and the
 wage integration.  It pays back the INPS indemnity of each day at its
 rate (art. 34 D.Lgs. 151/2001), on the pay of the month before the leave
-(art. 23), advanced by the employer and posted as ``maternity_item``.  The
-bundle holds no CCNL treatment of the leave: the run pays the statutory
-amounts only.
+(art. 23), advanced by the employer and posted as ``maternity_item``.
+A configured CCNL rule supplements eligible days up to its cap.
 """
 
 from __future__ import annotations
 
+from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
@@ -25,10 +25,13 @@ from ccnl_engine.absence.insured.handlers import (
 from ccnl_engine.absence.insured.parental.rules import allocate, indemnity
 from ccnl_engine.absence.insured.posting.services import post_lines
 from ccnl_engine.absence.insured.rules import InsuredPay
-from ccnl_engine.decision.models import CalculationIssue, CalculationStatus
+from ccnl_engine.decision.models import CalculationIssue, CalculationStatus, IssueCause
+from ccnl_engine.pay_item.rounding.policies import money
 
 if TYPE_CHECKING:
+    from ccnl_engine.absence.insured.models import ParentalTopUp
     from ccnl_engine.absence.insured.parental.inputs import ParentalLeaveEvent
+    from ccnl_engine.absence.insured.parental.rules import ParentalDays
     from ccnl_engine.event.handlers import EventEffect, _EventHandlerCtx
 
 __all__ = [
@@ -74,6 +77,34 @@ def _cohort_issue() -> CalculationIssue:
     )
 
 
+def _top_up_days(
+    event: ParentalLeaveEvent,
+    days: ParentalDays,
+    span: tuple[date, date],
+    rules: ParentalTopUp | None,
+    standard_rate: Decimal,
+) -> list[date]:
+    """Select qualifying days, counting previous months of this event.
+
+    Returns:
+        Days within the run's span that remain under the cap.
+    """
+    if rules is None or event.topped_up_days_before is None:
+        return []
+    if rules.only_standard_rate and event.single_parent:
+        return []
+    eligible = [
+        day
+        for day, rate in days.rates.items()
+        if day <= span[1]
+        and (rules.valid_from is None or day >= rules.valid_from)
+        and rate is not None
+        and (not rules.only_standard_rate or rate == standard_rate)
+    ]
+    remaining = max(0, rules.max_days - event.topped_up_days_before)
+    return [day for day in eligible[:remaining] if day >= span[0]]
+
+
 def _handle_parental_leave(
     event: ParentalLeaveEvent, ctx: _EventHandlerCtx
 ) -> EventEffect:
@@ -103,18 +134,66 @@ def _handle_parental_leave(
         daily = run_daily_base(terms.pay, rates.daily_divisor)
     units, deduction = terms.pay.deducted(*span)
     in_span = [day for day in days.rates if span[0] <= day <= span[1]]
-    pay = InsuredPay(units, deduction, indemnity(days, *span, daily), len(in_span))
+    rules = None if terms.rules is None else terms.rules.parental
+    missing_counter = rules is not None and event.topped_up_days_before is None
+    eligible = _top_up_days(event, days, span, rules, rates.indemnity_rate)
+    integration = (
+        money(
+            sum(
+                (
+                    max(Decimal(0), rules.rate * daily - (days.rates[day] or 0) * daily)
+                    for day in eligible
+                ),
+                Decimal(0),
+            )
+        )
+        if rules is not None
+        else Decimal(0)
+    )
+    pay = InsuredPay(
+        units, deduction, indemnity(days, *span, daily), len(in_span), integration
+    )
     effect = post_lines(
         (
             ("abs", -pay.deduction, _DEDUCTION, pay.units),
             ("inps", pay.indemnity, "maternity_item", Decimal(pay.days)),
+            (
+                "intg",
+                pay.integration,
+                "absence_integration_item",
+                Decimal(len(eligible)),
+            ),
         ),
         ctx,
     )
     effect.decisions = [
-        _decision(PARENTAL, terms, span, pay, modelled=False, advanced=True)
+        _decision(
+            PARENTAL,
+            terms,
+            span,
+            pay,
+            modelled=rules is not None and not missing_counter,
+            advanced=True,
+        )
     ]
-    effect.issues = [_not_modelled(PARENTAL), *base.issues]
+    effect.issues = [
+        *([] if rules is not None else [_not_modelled(PARENTAL)]),
+        *base.issues,
+    ]
+    if missing_counter:
+        effect.issues.append(
+            CalculationIssue(
+                code="parental_top_up_history_unknown",
+                message=(
+                    "ParentalLeaveEvent.topped_up_days_before is required to cap "
+                    "the CCNL supplement across runs; no top-up is posted"
+                ),
+                status=CalculationStatus.INCOMPLETE,
+                capability=PARENTAL,
+                fact="topped_up_days_before",
+                cause=IssueCause.FACT,
+            )
+        )
     if days.cohort_unknown:
         effect.issues.append(_cohort_issue())
     limitations = [*base.limitations, PARENTAL_EXTRA_MONTH_LIMITATION]
