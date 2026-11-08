@@ -113,7 +113,7 @@
       },
       {
         "kind": "simplification",
-        "text": "OTD (Art. 50, p. 52): a fixed-term operaio is paid the hours worked (PeriodFacts.ordinary_hours_worked, salario over 169) with the terzo elemento of 30.44% on them (festività 5.45%, ferie 8.33%, tredicesima 8.33%, quattordicesima 8.33%), outside the TFR base; no extra month and no leave accrue (parameters.fixed_term_pay). Not modelled: the terzo elemento on the overtime, holiday and night hours 'nella misura in atto per le ore ordinarie' (Art. 44, p. 48), and the TFR of the OTD, 8.63% of the salario on the ordinary hours and 10% on the non-ordinary ones (p. 58), where the engine accrues the TFR of the civil code on the salario.",
+        "text": "OTD (Art. 50, p. 52): a fixed-term operaio is paid the hours worked (PeriodFacts.ordinary_hours_worked, salario over 169) with the terzo elemento of 30.44% on them (festività 5.45%, ferie 8.33%, tredicesima 8.33%, quattordicesima 8.33%), outside the TFR base; no extra month and no leave accrue (parameters.fixed_term_pay). Not modelled: the terzo elemento on the overtime, holiday and night hours 'nella misura in atto per le ore ordinarie' (Art. 44, p. 48), and the TFR of 10% on the non-ordinary hours worked 'a titolo non occasionale' (p. 58): the OTD accrues 8.63% of the salario of the hours paid (parameters.fixed_term_pay.tfr_rate).",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
@@ -123,7 +123,7 @@
               "fixed_term"
             ]
           },
-          "remediation": "Pay the terzo elemento on the overtime hours at the ordinary rate and accrue the TFR of the OTD at 8.63% and 10%."
+          "remediation": "Pay the terzo elemento on the overtime hours at the ordinary rate and accrue 10% TFR on the non-ordinary hours."
         }
       },
       {
@@ -501,7 +501,7 @@
           "section": "Art. 50 Retribuzione",
           "quote": "Il terzo elemento compete agli operai a tempo determinato quale corrispettivo dei seguenti istituti riconosciuti agli operai a tempo indeterminato e calcolati su 312 giorni lavorativi: festività nazionali e infrasettimanali 5,45%; ferie 8,33%; tredicesima mensilità 8,33%; quattordicesima mensilità 8,33%; totale 30,44%. La misura del terzo elemento, in percentuale, è calcolata sul salario contrattuale così come definito dal contratto provinciale."
         },
-        "transformation": "A fixed-term operaio (OTD) is paid by the hour with the terzo elemento; the festività, ferie, tredicesima and quattordicesima of the operai a tempo indeterminato are in it: twelve monthly payments and no leave accrued (art. 52, 53: 'Per gli operai a tempo determinato la tredicesima [quattordicesima] mensilità è compresa nella percentuale relativa al terzo elemento').",
+        "transformation": "A fixed-term operaio (OTD) is paid by the hour with the terzo elemento; the festività, ferie, tredicesima and quattordicesima of the operai a tempo indeterminato are in it: twelve monthly payments and no leave accrued (art. 52, 53: 'Per gli operai a tempo determinato la tredicesima [quattordicesima] mensilità è compresa nella percentuale relativa al terzo elemento'). TFR: 8.63% of the salario of the ordinary hours ('All'operaio a tempo determinato compete il TFR per l'effettivo lavoro ordinario svolto, pari all'8,63 per cento calcolato sul salario contrattuale', p. 58), in place of the divisor 13.5.",
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
@@ -511,6 +511,15 @@
           "verification_status": "verified",
           "review_id": "2026-11-08-ai-operai-agricoli-otd"
         }
+      },
+      "tfr_rate": {
+        "periods": [
+          {
+            "valid_from": "2022-06-01",
+            "valid_until": null,
+            "value": "0.0863"
+          }
+        ]
       }
     }
   },
@@ -906,7 +915,7 @@
     "effective_until": null,
     "source": "https://ebta.it/documenti/CCNL_operai_agricoli_e_florovivaisti_2022-2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "622b2a97906f54b3bf45558e57fcab3906a0dfc76b1fa69fe7b7a5a84abafa41",
+    "source_hash": "a40ddc2fe9c09335aff0cf4ccbddae5c9c9f66c68fa85efda9bf5298f65369bc",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1549,11 +1558,13 @@
           }
         ],
         "findings": [
-          "Added parameters.fixed_term_pay: hourly pay with the 30.44% terzo elemento, twelve monthly payments and no leave for the OTD."
+          "Added parameters.fixed_term_pay: hourly pay with the 30.44% terzo elemento, twelve monthly payments and no leave for the OTD.",
+          "Added parameters.fixed_term_pay.tfr_rate: 8.63% TFR of the OTD (Allegato 14)."
         ],
         "independence": "same_process",
         "checked": [
-          "parameters.fixed_term_pay"
+          "parameters.fixed_term_pay",
+          "parameters.fixed_term_pay.tfr_rate"
         ]
       }
     ],
