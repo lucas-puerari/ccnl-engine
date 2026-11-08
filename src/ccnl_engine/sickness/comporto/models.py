@@ -46,12 +46,18 @@ class ComportoBand(BaseModel):
         comporto_days: Sick days of the illness and the relapses it
             continues the job is kept for; a day past them is outside what
             the CCNL integrates.
+        serious_comporto_days: Extended limit for a documented serious
+            illness (ABI Art. 66 c. 4 or Studi Art. 120).
+        oncological_comporto_days: Different oncological limit when the
+            agreement distinguishes it from other serious diagnoses (ABI).
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
 
     seniority_months_from: int = Field(ge=0)
     comporto_days: int = Field(ge=1)
+    serious_comporto_days: int | None = Field(default=None, ge=1)
+    oncological_comporto_days: int | None = Field(default=None, ge=1)
 
 
 class ComportoWindow(ComportoBand):

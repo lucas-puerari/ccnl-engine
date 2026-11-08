@@ -3,6 +3,22 @@
   "ccnl_id": "bancari-abi",
   "requirements": [
     {
+      "id": "abi_remaining_sickness_exceptions",
+      "institute": "sickness",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "SICKNESS COUNTING (Art. 66, CCNL 23 November 2023, p. 101): c. 1 keeps the job and the whole pay for 6, 8, 12, 15, 18 or 22 months of each illness by seniority (comporto_bands, 180 to 660 days); an employer that counts by c. 2 'con riferimento ai 48 mesi precedenti l'ultimo giorno di assenza considerato' (EmployerProfile.sickness_window_counting) has 8, 10, 14, 18, 22 or 24 months over that window (window_alternative, 240 to 720 days). The 50% extension (12 to 30 months) for tuberculosis requiring sanatorium admission or care, AIDS or severe disability, and the oncological double period (up to 36 months) apply when the episode states the qualifying diagnosis. Dialysis days must be stated to be excluded.",
+      "calculation": "ccnl/bancari-abi:coverage.notes",
+      "state": "absent",
+      "remediation": "The last-period statutory minimum (c. 3), pension-eligible over-sixty ending (c. 8) and requested unpaid leave (c. 12) remain outside this calculation.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "bancari-abi/abi_remaining_sickness_exceptions"
+        ]
+      }
+    },
+    {
       "id": "abi_saturday_overtime_and_hourly_base",
       "institute": "overtime",
       "variant": "all",
@@ -15,22 +31,6 @@
       "links": {
         "limitations": [
           "bancari-abi/abi_saturday_overtime_and_hourly_base"
-        ]
-      }
-    },
-    {
-      "id": "abi_sickness_counting",
-      "institute": "sickness",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "SICKNESS COUNTING (Art. 66, CCNL 23 November 2023, p. 101): c. 1 keeps the job and the whole pay for 6, 8, 12, 15, 18 or 22 months of each illness by seniority (comporto_bands, 180 to 660 days); an employer that counts by c. 2 'con riferimento ai 48 mesi precedenti l'ultimo giorno di assenza considerato' (EmployerProfile.sickness_window_counting) has 8, 10, 14, 18, 22 or 24 months over that window (window_alternative, 240 to 720 days). The periods rise by 50% (at least 12, at most 30 months) for tbc, AIDS and disabilità grave (c. 4) and double for an oncological illness, at most 36 months (c. 5): not modelled.",
-      "calculation": "ccnl/bancari-abi:coverage.notes",
-      "state": "absent",
-      "remediation": "Apply the increases of Art. 66 cc. 4-5 to a serious or oncological episode.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "bancari-abi/abi_sickness_counting"
         ]
       }
     },
