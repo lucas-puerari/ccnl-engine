@@ -34,6 +34,9 @@ class Allowance(BaseModel):
     The integration is not the special supplement listed in Art. 24(4)
     for the Art. 17-18 percentage bases.
 
+    ``absorbed_by_individual_excess`` reduces the allowance by the worker's paid
+    individual elements, down to zero, leaving those elements whole (ANASTE
+    art. 70 c. 2: the nurse allowance absorbed "fino a concorrenza").
     ``individual=True`` marks an element of the worker, not of the CCNL
     (:class:`~ccnl_engine.compensation.individual.inputs.IndividualElement`):
     the hourly base counts it as the CCNL says
@@ -87,6 +90,7 @@ class Allowance(BaseModel):
     career_service: bool = False
     in_service_on: date | None = None
     individual: bool = False
+    absorbed_by_individual_excess: bool = False
     provenance: RuleProvenance | None = None
 
     @model_validator(mode="after")

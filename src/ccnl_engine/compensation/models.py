@@ -10,6 +10,7 @@ from pydantic import BaseModel, ConfigDict, Field, model_validator
 from ccnl_engine.agreement.validity.rules import TimeSeries
 from ccnl_engine.compensation.allowance.models import Allowance as Allowance  # noqa: PLC0414
 from ccnl_engine.compensation.cohort.models import ClassTable, CohortSalary
+from ccnl_engine.compensation.entry.models import TransitionHireBand
 from ccnl_engine.compensation.equalisation.models import EqualisationElement
 from ccnl_engine.compensation.fixed_term.models import FixedTermPay
 from ccnl_engine.compensation.hourly.models import HourlyPay
@@ -125,10 +126,7 @@ class ExtraMonthAccrualRule(BaseModel):
         days = self.min_days
         if self.comparison.by_days:
             if days is not None or self.working_days:
-                msg = (
-                    f"{self.comparison.value} has no threshold; "
-                    "leave min_days and working_days out"
-                )
+                msg = f"{self.comparison.value}: omit min_days and working_days"
                 raise ValueError(msg)
             return self
         more_than = self.comparison is AccrualComparison.MORE_THAN
@@ -263,13 +261,11 @@ class Level(BaseModel):
     Attributes:
         code, order, description: Code (``"D3"``), rank (1 = lowest), name.
         base_salary: Time-series of monthly base salaries for this level.
-        base_salary_by_subsector: The table of an employer's sub-sector.
-        base_salary_by_cohort, class_tables: Tables of the workers hired by a
-            date, the second by seniority class in place of the increments.
-        subsectors: The only sub-sectors the level exists in, empty for all.
-        fixed_allowances: Fixed monthly allowances of the level (EDR...).
-        category: Worker category fixed by this level, ``None`` when it
-            hosts more than one (``Employment.category`` then states it).
+        base_salary_by_subsector, subsectors: Sub-sector pay and eligibility.
+        base_salary_by_cohort, class_tables: Hired-worker or seniority-class tables.
+        transition_to, transition_after_months, transition_hire_bands,
+            transition_by: Entry promotion.
+        fixed_allowances, category: Fixed allowances and optional worker category.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -284,6 +280,10 @@ class Level(BaseModel):
     subsectors: tuple[str, ...] = ()
     fixed_allowances: tuple[Allowance, ...] = Field(default=())
     category: WorkerCategory | None = None
+    transition_to: str | None = None
+    transition_after_months: int | None = Field(default=None, gt=0)
+    transition_hire_bands: tuple[TransitionHireBand, ...] = ()
+    transition_by: date | None = None
     provenance: RuleProvenance | None = None
 
     @model_validator(mode="after")
