@@ -33,9 +33,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, inps_employer, seniority |
+| **Limits of this contract** | base_salary, inps_employer |
 
-5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -61,6 +61,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|---|---|
 | 2026-11-06 | claude-opus-5-5 (ai) | Apprentice seniority: art. 113 (p. 81) and Allegato 18 cap. 3 artt. 5, 8 and 9 (pp. 250, 253, OCR) of the CCNL of 22 February 2017. | corrected | The apprentice is classified up to two levels below, then one; the period 'è computato integralmente nella maturazione dell'anzianità e degli automatismi' (art. 8), the general CCNL applies to what the accordo does not settle (art. 9) and art. 113 counts the seniority of the scatto from the hire month: the increments of the level the apprentice is paid at. |
 | 2026-11-08 | gpt-6-sol (ai) | Monthly values on scanned pages, each read twice from the page image by two independent sessions of another model, the second without being told the expected value. | confirmed | 24 values read identically by both readings and equal to the file. |
+| 2026-11-08 | gpt-6-sol (ai) | Allegati 2/A and 2/B (tranches 1.1.2026, 1.1.2027, 1.1.2028) of the signed annex, scanned pp. 3, 5, 7, 9, transcribed cell by cell by a separate model session; art. 113 of the CCNL 2017 (CNEL 224217, p. 81). Class 1 of 2/B checked against the base salaries of the file and on the page image (L5 2027). | corrected | Added Level.class_tables for both cohorts.<br>Corrected the 2027 base salary of L5 to the printed 2391.48 (was 2391.49). |
 
 ## Salary table
 
@@ -109,26 +110,12 @@ under-level: `1`
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning "assicurazioni-ania/pre_1999_hire_table · base_salary · impact yes · open"
-    Covers personale amministrativo assunto dal 18/12/1999 (Allegato 2/B — tabella omnicomprensiva). Pre-1999 hires (Allegato 2/A) are out of scope.
-
-    **Applies when:** `base_salary` applies.
-
-    **Remediation:** Model Allegato 2/A for the staff hired before 18/12/1999, gated on the hire date, or open a limitation.
-
 !!! warning "assicurazioni-ania/funzionari_economic_allowance · base_salary · impact yes · open"
     Indennità economica funzionari (Allegato 2/D) — L7 only, six sub-grade variants (Ex 3°/2°/1° Grado, Funz. Senior, Funz. Business, Ass. ex F2) with distinct amounts. Monthly amounts not found in publicly accessible sources (Allegato 2/D not published). Not modelled.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Model Allegato 2/D: the indennità economica of the six L7 funzionari sub-grades as role-keyed fixed_allowances on L7 (like IND_PROFILO_J), once the amounts are sourced.
-
-!!! warning "assicurazioni-ania/seniority_modal_class_difference · seniority · impact yes · open"
-    Seniority increment = modal per-class difference in the 1/14 monthly table (Allegato 2/B); classes above CL01 may differ from the official table by ±0.02. Source: Allegato 2/B, Rinnovo 13/05/2026.
-
-    **Applies when:** `seniority` applies.
-
-    **Remediation:** Replace the modal per-class difference with the official Allegato 2/B amounts per class.
 
 !!! note "assicurazioni-ania/inps_credit_rate_unverified · inps_employer · impact unknown · resolved"
     INPS employer_rate 26.76% flat from kitech.it (Credito e Assicurazioni 2026); reuses 2026-credito.json. Verify against the annual INPS circular.
@@ -344,6 +331,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     Indennità economica 6° livello quadro (Allegato 2/F) — modelled as fixed_allowance IND_QUADRO_6 on L6 with role 'quadro_6'. Amount: €74.09/mese dal 01/01/2026. Set Employment.roles=quadro_6 to include it (review of 2026-10-30).
     
     SOLIDARITY FUND: Fondo di solidarietà del settore assicurativo (accord ANIA of 20 May 2013, D.I. 78459 of 17 January 2014): ordinary contribution 0.30% of the INPS taxable pay of permanent workers, 0.20% employer and 0.10% worker, dirigenti excluded (INPS circ. 56/2015 p. 11); collected by INPS in the overall rate.
+    
+    CLASS TABLES (art. 113; Allegati 2/A and 2/B of the renewal 2026, signed annex pp. 3, 5, 7, 9): the salary of the personale amministrativo is the cell of its level and seniority class, in Allegato 2/A for the staff in service on 18 December 1999 and 2/B for the later hires (Level.class_tables, by the hire date and the months of service); the increments of parameters.seniority_increments are then not paid. Classes of 2/A: two years each up to cl 6, three after, cl 13 'oltre'; of 2/B: four years, then three, cl 12 'oltre'. The art. 113 rule that counts the service from the first of the month of hire (hired by the 15th) or of the next month is read off SeniorityFact.months.
     
     Salary tables: FirstCISL Gruppo Unipol, Allegato 2/B — Tabella omnicomprensiva post-1999, decorrenza 01/01/2026, 01/01/2027, 01/01/2028.
     
