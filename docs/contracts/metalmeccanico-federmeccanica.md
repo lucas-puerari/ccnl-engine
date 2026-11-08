@@ -78,6 +78,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | gpt-6-sol (ai) | CCNL top-ups of maternity and work injury, read from the signed text by a separate model session; every quote found on the PDF text layer. | confirmed | Added work_rules.insured_absence.maternity.<br>Added work_rules.insured_absence.injury. |
 | 2026-11-08 | gpt-6-sol (ai) | The conto ore of the PAR not taken, the hourly pay of Tit. IV art. 3 and the leave settlement code path, by a separate model session in two rounds. | flagged | Round 1 found the payout blocked by the missing termination basis: the deadline now values the hours by the hour (PermitDeadline.permits_hourly), the termination path unchanged.<br>Round 2 confirmed the year offset (December of the second year after), the hourly valuation as the general hourly pay 'ai fini dei vari istituti contrattuali', and the test amounts (C3 131.27, level 5 132.42).<br>Flagged: the hourly pay of Tit. IV art. 3 adds the hourly elements (incentivi, cottimo), which the engine leaves out; kept under par_conto_ore_hourly_elements. |
 | 2026-11-08 | gpt-6-sol (ai) | Sez. IV Tit. III art. 9 against the holiday target in sickness, by a separate model session. | flagged | Confirmed: the holidays of letters b and c in a sickness compensated with reduced pay reach 100%; excluded_days leaves exactly the national letter b days (04-25, 05-01, 06-02 and 10-04 out); Easter Monday 2026 adds 16.60.<br>Flagged: 29 June (Rome only) and the patron saint are outside the national calendar; injury and pregnancy holidays not topped up. |
+| 2026-11-08 | gpt-6-sol (ai) | Sez. IV Tit. III art. 9 (PDF pp. 164-165) against the holiday target in a work injury, by a separate model session. | flagged | Confirmed: the holidays of letter b in an injury compensated with reduced pay reach the whole daily pay; letter a (25 April, 1 May, 2 June) and 4 October excluded; the extra nets the INAIL share and the employer integration of the day; the waiting days and the injury day are not paid twice.<br>Flagged: 29 June (Rome) and the letter c holidays (patron saint, substitute) are outside the national calendar. |
 
 ## Salary table
 
@@ -130,12 +131,12 @@ percentage: 1.00
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning "metalmeccanico-federmeccanica/holiday_during_injury · sickness · impact yes · open"
-    Art. 9 tops up reduced sickness pay on holidays in letters b) and c) to full global daily pay (sickness_rules.holiday). The INAIL top-up for injury, the holiday top-up during maternity or puerperium, and the local patron saint or substitute holiday are not calculated; 29 June, a letter b holiday in Rome only, is outside the national calendar.
+!!! warning "metalmeccanico-federmeccanica/holiday_outside_calendar · sickness · impact yes · open"
+    Art. 9 (Sez. IV Tit. III): the holidays of letters b and c in a sickness or a work injury reach 100% (sickness_rules.holiday and insured_absence.injury.holiday). Not calculated: the holiday top-up during pregnancy and puerperium, the local patron saint or its substitute, and 29 June, a letter b holiday in Rome only, outside the national calendar.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Integrate the INAIL indemnity on injury holidays, add the maternity/puerperium holiday top-up, and supply the local patron saint or substitute as an employer fact.
+    **Remediation:** Top up the holidays of pregnancy and puerperium, and the local holidays, as employer facts.
 
 !!! warning "metalmeccanico-federmeccanica/overtime_exempt_quota_supplement · overtime · impact yes · open"
     OVERTIME, QUOTE ESENTI: the 2025 ipotesi (p. 35) adds 8% to the overtime hours worked beyond the exempt quota of 40 or 48 hours a year; the engine does not count the overtime hours of the year, so it does not add it.
