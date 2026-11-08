@@ -256,10 +256,12 @@ class TestLoadChimicaFederchimica:
         assert by_order[-1].code == "A1"
 
     def test_chimica_a1_tem_july_2026(self) -> None:
-        """A1 TEM from 2026-07-01 must be 3528.48 (base + EAR 190 + IPO 626.96)."""
+        """A1 from 2026-07-01: base + IPO 3338.48, and the EAR of 190 apart."""
         ccnl = load_ccnl("chimica-farmaceutica-federchimica")
         a1 = next(lv for lv in ccnl.levels if lv.code == "A1")
-        assert a1.base_salary.value_at(date(2026, 7, 1)) == Decimal("3528.48")
+        assert a1.base_salary.value_at(date(2026, 7, 1)) == Decimal("3338.48")
+        (ear,) = (a for a in a1.fixed_allowances if a.code == "EAR")
+        assert ear.monthly.value_at(date(2026, 7, 1)) == Decimal("190.00")
 
     def test_chimica_no_seniority_increments(self) -> None:
         """Scatti di anzianita are abolished: maximum_count=0, amount_by_level empty."""
@@ -283,8 +285,7 @@ class TestLoadChimicaFederchimica:
         """Each level has the 2025 EDR, outside the TFR base, from July 2027."""
         ccnl = load_ccnl("chimica-farmaceutica-federchimica")
         for level in ccnl.levels:
-            (edr,) = level.fixed_allowances
-            assert edr.code == "EDR"
+            (edr,) = (a for a in level.fixed_allowances if a.code == "EDR")
             assert edr.tfr_relevant is False
             assert edr.monthly.periods[0].value is None
             assert edr.monthly.value_at(date(2027, 7, 1)) > 0
