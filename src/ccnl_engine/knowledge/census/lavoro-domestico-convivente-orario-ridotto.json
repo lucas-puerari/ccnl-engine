@@ -51,22 +51,6 @@
       }
     },
     {
-      "id": "babysitter_and_certification_allowances",
-      "institute": "base_salary",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "NOT MODELLED: students aged 16 to 40 (art. 14 c. 2) at levels other than C, B and B super, for whom Tabella B has no value. The indennità of art. 34 cc. 3 and 7 (Tabelle H 97.06 and L 30.27) are role allowances.",
-      "calculation": "ccnl/lavoro-domestico-convivente-orario-ridotto:coverage.notes",
-      "state": "absent",
-      "remediation": "Source the Tabella B values of the other levels.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "lavoro-domestico-convivente-orario-ridotto/babysitter_and_certification_allowances"
-        ]
-      }
-    },
-    {
       "id": "disability_permit_tfr",
       "institute": "disability_permits",
       "variant": "all",
@@ -351,6 +335,22 @@
       "links": {
         "limitations": [
           "provisional_ruleset"
+        ]
+      }
+    },
+    {
+      "id": "students_other_levels",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "NOT MODELLED: students aged 16 to 40 (art. 14 c. 2) at levels other than C, B and B super, for whom Tabella B has no value. The 2026 monthly allowances of Tables H (BS, 97.06) and L (B and BS, 30.27) are encoded for caller-attested eligible roles; child age, certification validity and absorption by better individual pay cannot be inferred from the role alone.",
+      "calculation": "ccnl/lavoro-domestico-convivente-orario-ridotto:coverage.notes",
+      "state": "absent",
+      "remediation": "Source the Tabella B values for the other student levels. For modeled levels, supply eligible roles only after checking child age, certification conditions and any offset against individual pay.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "lavoro-domestico-convivente-orario-ridotto/students_other_levels"
         ]
       }
     },
