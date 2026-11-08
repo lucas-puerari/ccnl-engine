@@ -160,3 +160,51 @@ def test_pulizia_carries_the_ex_festivita_to_september(
 
     assert _paid(result) == paid
     assert "permit_carryover" not in {b.detail for b in result.blockers}
+
+
+def _metalmeccanico(slug: str, level: str, year: int) -> PeriodResult:
+    opening = PeriodState.zero()
+    balance = LeaveBalance(LeaveBucket.ROL, 2025, Decimal(120), Decimal(0))
+    opening = replace(
+        opening, accrual=replace(opening.accrual, leave=LeaveAccount((balance,)))
+    )
+    result = calculate_period(
+        PeriodCalculationRequest(
+            employer=EmployerProfile(headcount=Headcount(10)),
+            period_id=PeriodId(year, 12),
+            payment_date=date(year, 12, 27),
+            ccnl_id=slug,
+            level_code=level,
+            opening_state=opening,
+            roles=frozenset(),
+            employment_period=EmploymentPeriod(date(2020, 1, 1)),
+        ),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
+    )
+    assert isinstance(result, PeriodResult)
+    return result
+
+
+@pytest.mark.parametrize(
+    ("slug", "level", "amount"),
+    [
+        ("metalmeccanico-federmeccanica", "C3", Decimal("131.27")),
+        ("metalmeccanico-confapi", "5", Decimal("132.42")),
+    ],
+    ids=["federmeccanica", "confapi"],
+)
+def test_the_par_conto_ore_is_paid_two_years_after(
+    slug: str, level: str, amount: Decimal
+) -> None:
+    """Art. 5 / art. 22: 24 more months, then paid at the hourly pay (/173).
+
+    The 10 hours left of 2025 are carried through 2026 and paid with the
+    December pay of 2027, at the monthly pay over 173, though the CCNL gives
+    no basis for the leave left at the end of the employment.
+    """
+    assert _paid(_metalmeccanico(slug, level, 2026)) == {}
+    december = _metalmeccanico(slug, level, 2027)
+    assert _paid(december) == {"rol": Decimal(10)}
+    (item,) = (i for i in december.pay_items if i.item_id.startswith("leave_"))
+    assert item.amount == amount
