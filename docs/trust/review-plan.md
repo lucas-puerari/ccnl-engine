@@ -9,7 +9,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | Group | CCNLs | Workers | Weak | Derived | Verified | Aggregator | Anchor |
 |---|---:|---:|---:|---:|---:|---:|---|
 | pubblica-amministrazione | 14 | 7 548 000 | 14 | 231 | 182 | 0 | `funzioni-centrali-aran` |
-| terziario | 46 | 5 257 055 | 53 | 963 | 1734 | 4 | `commercio-confcommercio`, `sanita-privata-aiop-aris` |
+| terziario | 46 | 5 257 055 | 53 | 965 | 1734 | 4 | `commercio-confcommercio`, `sanita-privata-aiop-aris` |
 | industria | 49 | 4 969 900 | 155 | 1169 | 2288 | 15 | `logistica-trasporto-confetra`, `metalmeccanico-federmeccanica` |
 | lavoro-domestico | 3 | 1 800 000 | 0 | 3 | 60 | 0 | `lavoro-domestico-non-convivente` |
 | artigianato | 8 | 1 244 505 | 34 | 151 | 309 | 2 | `metalmeccanico-artigianato` |
@@ -53,7 +53,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | [`sanita-privata-aiop-aris`](../contracts/sanita-privata-aiop-aris.md) (anchor) | 150 000 | exploratory | 0 | 2 | 36 | party or official | maintainer | 2027-06-30 |
 | [`uneba-uneba`](../contracts/uneba-uneba.md) | 130 000 | exploratory | 1 | 8 | 34 | party or official | none | none |
 | [`autoferrotranvieri-internavigatori`](../contracts/autoferrotranvieri-internavigatori.md) | 120 000 | exploratory | 1 | 139 | 0 | party or official | none | none |
-| [`istituzioni-servizi-socio-assistenziali-anaste`](../contracts/istituzioni-servizi-socio-assistenziali-anaste.md) | 120 000 | exploratory | 1 | 9 | 59 | party or official | none | none |
+| [`istituzioni-servizi-socio-assistenziali-anaste`](../contracts/istituzioni-servizi-socio-assistenziali-anaste.md) | 120 000 | exploratory | 1 | 11 | 59 | party or official | none | none |
 | [`vigilanza-privata-assiv`](../contracts/vigilanza-privata-assiv.md) | 85 000 | exploratory | 1 | 7 | 42 | party or official | none | none |
 | [`distribuzione-cooperativa-ancc`](../contracts/distribuzione-cooperativa-ancc.md) | 63 000 | exploratory | 1 | 53 | 10 | aggregator | none | none |
 | [`ortofrutticoli-agrumari`](../contracts/ortofrutticoli-agrumari.md) | 60 000 | exploratory | 7 | 0 | 47 | aggregator | none | none |
