@@ -33,7 +33,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, sickness |
 
-8 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+7 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -72,6 +72,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-05 | claude-opus-5-5 (ai) | The ferie days of the six-day week, Art. 99 c. 1 - Misura del periodo di ferie (PDF p. 51), read by a separate research session and checked again on the text layer. | corrected | Art. 99 c. 1 - Misura del periodo di ferie: 22 working days in the five-day week, 26 in the six-day week: work_rules.leave_rules.week_days_annual_days 6/26, read when Employment.full_time_week_days is 6. |
 | 2026-11-05 | claude-opus-5-5 (ai) | The permits of the six-day week, Art. 91 c.2 lett. B (PDF p. 47). | corrected | Art. 91 c.2: 40 hours of reduced time on five days, 66 on six: work_rules.leave_rules.week_days_annual_days[6].permit_hours rol 66. |
 | 2026-11-08 | gpt-6-sol (ai) | Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim. | confirmed | six_day_week_leave: Art. 99 grants 26 working days including Saturday for six days, 22 for Monday–Friday. Existing default_annual_days=22 and week_days_annual_days[6]=26 are selected through Employment.full_time_week_days by load_contract/with_week_days and credited by accrue_month. The six-day enti |
+| 2026-11-08 | claude-opus-5-5 (ai) | Art. 110(8), PDF p. 56: weekday holiday top-up during compulsory maternity and paternity. | confirmed | Verified the quoted clause against the cached PDF; encoded only the compulsory maternity holiday target. |
 
 ## Salary table
 
@@ -139,13 +140,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Pay the festività during sickness at 100%.
-
-!!! warning "studi-professionali-confprofessioni/maternity_holiday_top_up · base_salary · impact yes · open"
-    Art. 110 c. 8: the employer top-up to 100% of the holidays during compulsory maternity or paternity leave.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Model the top-up of Art. 110.
 
 !!! warning "studi-professionali-confprofessioni/unused_leave_hours · base_salary · impact yes · open"
     Artt. 91, 92, 97 C, 98: the ROL (40 or 66 hours) and the 32 hours of ex festività paid when not taken, the festività falling on Sunday and the flexibility hours not recovered.
@@ -388,6 +382,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     PART-TIME SUPPLEMENTARY HOURS (Art. 42, text of 16 February 2024, p. 36): the quota oraria of the retribuzione di fatto with a 40% maggiorazione (band OT_SUPPLEMENTARE). C. 4 leaves that pay out of 'ogni Istituto retributivo differito, compreso il Trattamento di fine rapporto': an overtime event enters neither the TFR base nor the extra months of the engine.
     
     INJURY (Art. 123, p. 66): the injury day in full and 60% for the three days of carenza (art. 73 DPR 1124/1965); from the fourth day the employer tops the INAIL indemnity up to 75% of the retribuzione media giornaliera (work_rules.insured_absence.injury). The indemnity is not due when INAIL pays none.
+    
+    Art. 110(8): compulsory maternity and paternity holiday top-ups are modelled for leave days.
     
     ENTRY PAY (Art. 56, p. 40): an over 50 or long-term unemployed hired a tempo indeterminato may be paid two levels below for 9 months and one for the 6 after (Permanent.entry_pay, CCNL entry_pay); not for level 5. The engine applies the largest reduction the clause allows ('fino a').
     

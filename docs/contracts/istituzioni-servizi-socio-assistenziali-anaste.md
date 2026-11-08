@@ -61,6 +61,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-07 | claude-opus-5-5 (ai) | Art. 69 of the CCNL ANASTE 2026-2028 signed 9 October 2026: the tabellare from 1 October 2026, 1 January 2027 and 1 January 2028 (p. 64, page image). | corrected | Three tranches of the 2026-2028 renewal; the 'tabellare vigente' column equals the August 2025 values of the file. |
 | 2026-11-08 | claude-opus-5-5 (ai) | The monthly values of the levels against the primary tables (text layer). | confirmed | 52 values found verbatim on the cited pages and marked verified; 6 left as they were (derived or not on a text page). |
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 70 c. 2 (p. 55), the declaratorie of levels 6 and 7 (p. 31), artt. 68, 74, 75 and 99 of the CCNL ANASTE 2023-2025. | confirmed | Art. 70 c. 2: 155 EUR a month for 12 months to the staff 'con qualifica e mansioni di infermiere', absorbable by an individual pay above the CCNL; no starting date of its own.<br>The infermiere is named in the declaratorie of levels 6 and 7; art. 99 does not exclude the allowance from the TFR. |
+| 2026-11-08 | claude-opus-5-5 (ai) | Art. 45(23), PDF p. 43: holiday top-up during compulsory maternity. | confirmed | Verified the quoted clause against the cached PDF; encoded only the compulsory maternity holiday target. |
 
 ## Salary table
 

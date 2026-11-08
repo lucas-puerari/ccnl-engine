@@ -59,6 +59,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|---|---|
 | 2026-11-08 | claude-opus-5-5 (ai) | The monthly values of the levels against the primary tables (text layer). | confirmed | 42 values found verbatim on the cited pages and marked verified; 0 left as they were (derived or not on a text page). |
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 166 of the stesura of 9 March 2022 (PDF p. 106), text layer. | corrected | Modelled the scatti of the staff in service on 31 December 2018 (were none). |
+| 2026-11-08 | claude-opus-5-5 (ai) | Art. 157, PDF p. 102: holiday top-up during compulsory maternity. | confirmed | Verified the quoted clause against the cached PDF; encoded only the compulsory maternity holiday target. |
 
 ## Salary table
 

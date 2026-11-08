@@ -115,22 +115,6 @@
       }
     },
     {
-      "id": "maternity_holiday_top_up",
-      "institute": "base_salary",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Art. 110 c. 8: the employer top-up to 100% of the holidays during compulsory maternity or paternity leave.",
-      "calculation": "ccnl/studi-professionali-confprofessioni:coverage.notes",
-      "state": "absent",
-      "remediation": "Model the top-up of Art. 110.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "studi-professionali-confprofessioni/maternity_holiday_top_up"
-        ]
-      }
-    },
-    {
       "id": "mid_month_level_change",
       "institute": "base_salary",
       "variant": "all",

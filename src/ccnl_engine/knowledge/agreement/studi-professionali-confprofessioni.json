@@ -121,17 +121,8 @@
         "text": "INJURY (Art. 123, p. 66): the injury day in full and 60% for the three days of carenza (art. 73 DPR 1124/1965); from the fourth day the employer tops the INAIL indemnity up to 75% of the retribuzione media giornaliera (work_rules.insured_absence.injury). The indemnity is not due when INAIL pays none."
       },
       {
-        "kind": "simplification",
-        "text": "Art. 110 c. 8: the employer top-up to 100% of the holidays during compulsory maternity or paternity leave.",
-        "capability": "base_salary",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "maternity_holiday_top_up",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Model the top-up of Art. 110."
-        }
+        "kind": "info",
+        "text": "Art. 110(8): compulsory maternity and paternity holiday top-ups are modelled for leave days."
       },
       {
         "kind": "simplification",
@@ -2382,7 +2373,7 @@
     "effective_until": null,
     "source": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
     "verification_status": "unverified",
-    "source_hash": "af67cccbca5392024dd7f81fe95e2b37787218b0ed7b417594ba8bea537c0a29",
+    "source_hash": "edb59000ec089e6c40160317282ad6bc89ea9519c6d693b1d0aa2b794cf2895d",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3155,6 +3146,95 @@
             "effective_from": "2024-02-16"
           }
         }
+      },
+      "maternity": {
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "confprofessioni-eu-wp-content-uploads-2025-11-ccnl-studi-2024-integrale-definiti",
+              "title": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+              "kind": "altro",
+              "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+              "pages": [],
+              "published_on": "2024-02-16",
+              "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
+            },
+            "page": "56",
+            "section": "Art. 110(8)",
+            "quote": "Per le festività cadenti nel periodo di assenza obbligatoria per maternità o paternità, la lavoratrice o il lavoratore padre hanno diritto ad una indennità integrativa, da corrispondersi a carico del datore di lavoro, in modo da raggiungere complessivamente il 100% (cento per cento) della retribuzione giornaliera, comprensiva degli eventuali superminimi, così come previsto dal presente contratto."
+          },
+          "transformation": "Top up weekday national holidays during compulsory maternity leave to 100% of daily pay, net of INPS and ordinary CCNL integration; no ordinary maternity integration is inferred. Paternity and optional leave are not handled by this rule.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-08T10:36:13Z",
+            "verified_at": "2026-11-08T10:36:13Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-08-ai-studi-professionali-confprofessioni-maternity-holiday",
+            "verified_by": "claude-opus-5-5"
+          }
+        },
+        "holiday": {
+          "rate": "1",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "confprofessioni-eu-wp-content-uploads-2025-11-ccnl-studi-2024-integrale-definiti",
+                "title": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+                "kind": "altro",
+                "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+                "pages": [],
+                "published_on": "2024-02-16",
+                "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
+              },
+              "page": "56",
+              "section": "Art. 110(8)",
+              "quote": "Per le festività cadenti nel periodo di assenza obbligatoria per maternità o paternità, la lavoratrice o il lavoratore padre hanno diritto ad una indennità integrativa, da corrispondersi a carico del datore di lavoro, in modo da raggiungere complessivamente il 100% (cento per cento) della retribuzione giornaliera, comprensiva degli eventuali superminimi, così come previsto dal presente contratto."
+            },
+            "transformation": "Top up weekday national holidays during compulsory maternity leave to 100% of daily pay, net of INPS and ordinary CCNL integration; no ordinary maternity integration is inferred. Paternity and optional leave are not handled by this rule.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T10:36:13Z",
+              "verified_at": "2026-11-08T10:36:13Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-08-ai-studi-professionali-confprofessioni-maternity-holiday",
+              "verified_by": "claude-opus-5-5"
+            }
+          }
+        },
+        "paternity_holiday": {
+          "rate": "1",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "confprofessioni-eu-wp-content-uploads-2025-11-ccnl-studi-2024-integrale-definiti",
+                "title": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+                "kind": "altro",
+                "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+                "pages": [],
+                "published_on": "2024-02-16",
+                "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
+              },
+              "page": "56",
+              "section": "Art. 110(8)",
+              "quote": "Per le festività cadenti nel periodo di assenza obbligatoria per maternità o paternità, la lavoratrice o il lavoratore padre hanno diritto ad una indennità integrativa, da corrispondersi a carico del datore di lavoro, in modo da raggiungere complessivamente il 100% (cento per cento) della retribuzione giornaliera, comprensiva degli eventuali superminimi, così come previsto dal presente contratto."
+            },
+            "transformation": "For a national weekday holiday taken as compulsory paternity leave, top up the INPS 100% daily indemnity to the CCNL daily pay when that is higher; no payment for a holiday outside the leave days.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T10:44:41Z",
+              "verified_at": "2026-11-08T10:44:41Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-08-ai-studi-professionali-confprofessioni-maternity-holiday",
+              "verified_by": "claude-opus-5-5"
+            }
+          }
+        }
       }
     },
     "notice": {
@@ -3839,6 +3919,28 @@
         "independence": "separate_model",
         "checked": [
           "coverage.notes"
+        ]
+      },
+      {
+        "id": "2026-11-08-ai-studi-professionali-confprofessioni-maternity-holiday",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 110(8), PDF p. 56: weekday holiday top-up during compulsory maternity and paternity.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+            "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
+          }
+        ],
+        "findings": [
+          "Verified the quoted clause against the cached PDF; encoded only the compulsory maternity holiday target."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.insured_absence.maternity.holiday",
+          "work_rules.insured_absence.maternity.paternity_holiday"
         ]
       }
     ],
