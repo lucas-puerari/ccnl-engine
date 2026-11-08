@@ -47,12 +47,7 @@ def _paid(name: str, first: date, last: date, injury_on: date) -> InsuredPay:
 
 @pytest.mark.parametrize(
     "name",
-    [
-        "terziario-confesercenti",
-        "ced-assoced",
-        "impianti-sportivi-sport",
-        "esercizi-cinematografici-anec",
-    ],
+    ["esercizi-cinematografici-anec"],
 )
 def test_holiday_only_clause_nets_waiting_pay_and_inail(name: str) -> None:
     """Jan 1 waiting pays 60; Jan 6 INAIL pays 60.
@@ -165,13 +160,30 @@ def test_sunday_and_excluded_code_are_not_topped_up() -> None:
     """No extra is due on Sundays or excluded holiday codes.
 
     Nov 1, 2026 is Sunday; Oct 4, 2027 is excluded by the clause:
-    neither increases the baseline zero integration of a holiday-only rule.
+    neither increases the ordinary integration due on those days.
     """
     for first, last, injury_on in [
         (date(2026, 11, 1), date(2026, 11, 2), date(2026, 10, 28)),
         (date(2027, 10, 4), date(2027, 10, 5), date(2027, 9, 30)),
     ]:
-        assert _paid("ced-assoced", first, last, injury_on).integration == 0
+        paid = _paid("ced-assoced", first, last, injury_on)
+        rules = load_ccnl("ced-assoced").work_rules
+        assert rules is not None
+        assert rules.insured_absence is not None
+        injury = rules.insured_absence.injury
+        assert injury is not None
+        without_holiday = injury.model_copy(update={"holiday": None})
+        baseline = injury_pay(
+            first,
+            last,
+            injury_on,
+            _PAY,
+            Decimal(200),
+            Decimal(40),
+            load_insured_absence_rates().injury,
+            without_holiday,
+        )
+        assert paid.integration == baseline.integration
 
 
 def test_no_clause_keeps_statutory_injury_unchanged() -> None:
@@ -192,3 +204,47 @@ def test_no_clause_keeps_statutory_injury_unchanged() -> None:
         frozenset({date(2026, 1, 6)}),
     )
     assert (paid.indemnity, paid.integration) == (Decimal(60), Decimal(0))
+
+
+@pytest.mark.parametrize(
+    ("name", "target", "integration"),
+    [
+        ("ced-assoced", Decimal("0.75"), Decimal("197.13")),
+        ("terziario-confesercenti", Decimal("0.90"), Decimal("672.13")),
+        ("impianti-sportivi-sport", Decimal("0.90"), Decimal("672.13")),
+    ],
+)
+def test_ordinary_injury_month_crosses_waiting_and_integration_bands(
+    name: str, target: Decimal, integration: Decimal
+) -> None:
+    """January injury: 2-4 waiting = 3*60 = 180; INAIL 5-31 = 27*60 = 1620.
+
+    With the BY_30 pay quota (January 31 is excluded), the employer target
+    is 26*75=1950 for CED, or 16*90+10*100=2440 for the other
+    contracts. The net-basis INAIL
+    offset is 1620 / .9081 = 1783.94; the January 6 holiday adds
+    100-(60+75-60/.9081)=31.07 for CED, or
+    100-(60+90-60/.9081)=16.07 otherwise. January 1 is paid in full.
+    Before ordinary integration, the paid replacement was 180+1620+40
+    (the holiday only); after it is 180+1620+integration.
+    """
+    clause = load_ccnl(name).work_rules
+    assert clause is not None
+    assert clause.insured_absence is not None
+    injury = clause.insured_absence.injury
+    assert injury is not None
+    assert injury.integration_bands[0].day_from == 4
+    assert injury.integration_bands[0].rate == target
+    if name != "ced-assoced":
+        assert [(b.day_from, b.rate) for b in injury.integration_bands] == [
+            (4, Decimal("0.90")),
+            (20, Decimal(1)),
+        ]
+    paid = _paid(name, date(2026, 1, 1), date(2026, 1, 31), date(2026, 1, 1))
+    assert (paid.deduction, paid.carenza, paid.indemnity, paid.integration) == (
+        Decimal("2900.00"),
+        Decimal("180.00"),
+        Decimal("1620.00"),
+        integration,
+    )
+    assert paid.carenza_units == 3
