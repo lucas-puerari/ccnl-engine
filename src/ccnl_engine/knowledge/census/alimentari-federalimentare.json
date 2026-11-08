@@ -307,6 +307,22 @@
       }
     },
     {
+      "id": "sugar_twenty_five_year_award",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Sugar-industry supplementary rule 25 (PDF p. 230): at 25 uninterrupted years with the same company or group, a one-off minimum award of one normal monthly pay for clerical staff or 200 normal hourly wages for manual workers. This does not apply to the other food-industry branches. Death or permanent incapacity before the threshold and direct transfers have separate rules. An annual clerical-only loyalty_premium would wrongly repeat and extend this award.",
+      "calculation": "ccnl/alimentari-federalimentare:coverage.notes",
+      "state": "absent",
+      "remediation": "Gate the sugar subsector and pay the once-only clerical or hourly award, including early departure and transfer rules.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "alimentari-federalimentare/sugar_twenty_five_year_award"
+        ]
+      }
+    },
+    {
       "id": "sunday_holiday_ccnl_clause",
       "institute": "sunday_holiday",
       "variant": "all",

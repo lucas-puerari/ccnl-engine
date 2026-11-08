@@ -652,7 +652,8 @@
     ],
     "agreement/alimentari-federalimentare.json": [
       "alimentari-federalimentare/fasa_family_members",
-      "alimentari-federalimentare/health_and_bilateral_funds"
+      "alimentari-federalimentare/health_and_bilateral_funds",
+      "alimentari-federalimentare/sugar_twenty_five_year_award"
     ],
     "agreement/assicurazioni-ania.json": [
       "assicurazioni-ania/funzionari_economic_allowance",
@@ -681,6 +682,7 @@
     "agreement/bcc-credito-cooperativo.json": [
       "bcc-credito-cooperativo/art3_derogation_apprenticeship",
       "bcc-credito-cooperativo/inps_sector_rates_unsourced",
+      "bcc-credito-cooperativo/movement_loyalty_award",
       "bcc-credito-cooperativo/pre_1998_cohort_scatti"
     ],
     "agreement/carta-cartone-assocarta.json": [
@@ -737,7 +739,8 @@
       "concia-unic/higher_overtime_bands"
     ],
     "agreement/consorzi-agrari-assocap.json": [
-      "consorzi-agrari-assocap/apprentice_inps_rates_unsourced"
+      "consorzi-agrari-assocap/apprentice_inps_rates_unsourced",
+      "consorzi-agrari-assocap/grandfathered_consorzio_award"
     ],
     "agreement/consorzi-di-bonifica-snebi.json": [
       "consorzi-di-bonifica-snebi/apprentice_inps_rates_unsourced",
@@ -824,6 +827,7 @@
     "agreement/edilizia-cooperative-ancpl.json": [
       "edilizia-cooperative-ancpl/apprentice_seniority",
       "edilizia-cooperative-ancpl/cassa_edile_accruals_missing",
+      "edilizia-cooperative-ancpl/cooperative_legacy_loyalty",
       "edilizia-cooperative-ancpl/operai_seniority_ape"
     ],
     "agreement/edilizia-pmi-confapi-aniem.json": [
@@ -907,7 +911,8 @@
       "impiegati-tecnici-agricoli/eban_agrifondo_missing"
     ],
     "agreement/industria-turistica-federturismo.json": [
-      "industria-turistica-federturismo/apprenticeship_under_classification"
+      "industria-turistica-federturismo/apprenticeship_under_classification",
+      "industria-turistica-federturismo/federturismo_legacy_awards"
     ],
     "agreement/informatica-pmi-unimatica.json": [
       "informatica-pmi-unimatica/apprentice_seniority",
@@ -1218,7 +1223,8 @@
       "turismo-federalberghi-alberghi-minori/guarantee_element_2027",
       "turismo-federalberghi-alberghi-minori/hires_2016_ramp",
       "turismo-federalberghi-alberghi-minori/quadri_absorption",
-      "turismo-federalberghi-alberghi-minori/sickness_net_basis"
+      "turismo-federalberghi-alberghi-minori/sickness_net_basis",
+      "turismo-federalberghi-alberghi-minori/small_hotel_legacy_award"
     ],
     "agreement/turismo-federalberghi.json": [
       "turismo-federalberghi/apprentice_net_cap",
@@ -1226,6 +1232,7 @@
       "turismo-federalberghi/extra_months_during_leave",
       "turismo-federalberghi/extras_hourly_table",
       "turismo-federalberghi/guarantee_element_2027",
+      "turismo-federalberghi/hotel_legacy_award",
       "turismo-federalberghi/quadri_absorption",
       "turismo-federalberghi/sickness_net_basis"
     ],

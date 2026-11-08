@@ -33,7 +33,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary |
 
-2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -116,6 +116,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `base_salary` applies.
 
     **Remediation:** Source the periods of the under-classification (Art. on apprendistato professionalizzante) and model them as an under_classification track with levels_below 2 (and 1 where due); until then record the limitation on the apprentice path (contract_types apprentice).
+
+!!! warning "industria-turistica-federturismo/federturismo_legacy_awards · base_salary · impact yes · open"
+    Art. 182 (PDF p. 160) abolished the seniority prize on 31 May 1986 except for rights of workers then in service. Annex 9 (PDF p. 316) specifies hotel-sector awards after 10, 15, 20 and 30 continuous years of respectively 1, 1.5, 2 and 3 monthly pays, with departure fractions after year 10. This archival entitlement requires confirmation in a current text; annual loyalty_premium would repeat distinct milestone awards and extend them to new hires.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Verify continued rights and implement grandfathered, non-recurring hotel milestones and departure fractions.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
