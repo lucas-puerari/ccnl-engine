@@ -368,22 +368,6 @@
           "una_tantum_readings"
         ]
       }
-    },
-    {
-      "id": "vacanza_contrattuale_2024",
-      "institute": "una_tantum",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "VACANZA CONTRATTUALE 2024 (Allegato 10, p. 178): the 'competenze contrattuali arretrate' for the first half of 2024 (A1 397.79 to F 244.92), paid with the September 2024 pay to the permanent workers in service on 23 July 2024 'nella misura di 1/12 per ogni mese di servizio', are not paid: twelfths of a six-month period leave the full amount unsettled.",
-      "calculation": "ccnl/poste-italiane-k700:coverage.notes",
-      "state": "absent",
-      "remediation": "Pay the arretrate of Allegato 10 once the share of the six months is settled (six twelfths or the whole amount).",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "poste-italiane-k700/vacanza_contrattuale_2024"
-        ]
-      }
     }
   ]
 }

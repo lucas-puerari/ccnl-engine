@@ -94,6 +94,13 @@ EMPLOYER_DEFAULTS: Mapping[str, FieldDefault] = {
         "runs of December and of the deadline pay nothing, with a "
         "missing_fact permit_carryover blocker",
     ),
+    "EmployerProfile.patron_saint_day": requires_fact(
+        "sickness",
+        "employer.patron_saint_day",
+        FactEnforcement.PENDING,
+        "unknown local holiday: no patron saint holiday target or blocker; "
+        "other holidays are unchanged",
+    ),
     "EmployerProfile.second_level_elements": absence_is_fact("none agreed"),
     "EmployerProfile.sickness_window_counting": absence_is_fact(
         "the comporto of each illness the CCNL sets"

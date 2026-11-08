@@ -158,7 +158,10 @@ def sickness_terms(ctx: RunContext) -> SicknessTerms:
             worker=_worker(ctx),
             fixed_term=ctx.request.contract_type.type == "fixed_term",
             holidays=covered_holidays(
-                ccnl_rules, ctx.repo.load_national_holidays(), competence.year
+                ccnl_rules,
+                ctx.repo.load_national_holidays(),
+                competence.year,
+                ctx.request.employer,
             ),
         )
         cover_fact = _CATEGORY if cover is None and category is None else None

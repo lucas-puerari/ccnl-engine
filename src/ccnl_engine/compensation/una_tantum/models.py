@@ -43,7 +43,8 @@ class UnaTantum(BaseModel):
 
     The worker in service when an installment is paid is owed it in full
     when hired before :attr:`covers_from`, and a share of it, the months of
-    service in the covered period over its months, when hired within it; a
+    service in the covered period over its months (or the explicit accrual
+    denominator), when hired within it; a
     worker hired after :attr:`covers_until` is owed nothing.  Part-time
     workers are owed it in proportion to their hours.  The share of the
     covered months of earlier years is taxed apart (art. 17 c. 1 lett. b
@@ -55,6 +56,9 @@ class UnaTantum(BaseModel):
         covers_until: Last day of the vacancy it pays for.
         month_min_days: Days of service that make a month of the covered
             period (ANAV: "la frazione superiore ai 15 giorni", 16).
+        accrual_denominator: Divisor for each qualifying month, when the
+            clause specifies fixed twelfths instead of the covered-month share.
+            ``None`` uses the number of covered months.
         in_service_on: Day the worker must be in service on (the signing
             of the agreement), ``None`` when the text sets none.
         permanent_only: Whether only a permanent worker is owed it (Poste
@@ -70,6 +74,7 @@ class UnaTantum(BaseModel):
     covers_from: date
     covers_until: date
     month_min_days: int = Field(default=15, ge=1, le=31)
+    accrual_denominator: int | None = Field(default=None, ge=1)
     in_service_on: date | None = None
     permanent_only: bool = False
     installments: tuple[UnaTantumInstallment, ...] = Field(min_length=1)
