@@ -285,8 +285,8 @@
         ]
       },
       {
-        "id": "2026-11-09-ai-ancc-half-hour-weeks",
-        "date": "2026-11-09",
+        "id": "2026-11-08-ai-ancc-half-hour-weeks",
+        "date": "2026-11-08",
         "reviewer": "claude-opus-5-5",
         "reviewer_kind": "ai",
         "scope": "Art. 187 c. 2 of the 2011 official text (PDF p. 201, text layer).",
@@ -2949,7 +2949,7 @@
     "effective_until": null,
     "source": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/183889",
     "verification_status": "unverified",
-    "source_hash": "673112b5b43843cdf24c8922ec9596c06048f3360c428432160df01676cd8af9",
+    "source_hash": "75c9b36f5ffdfbdd5cfb23684b9c2c0cfc975006a7b178c52d40732a69ccc37a",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

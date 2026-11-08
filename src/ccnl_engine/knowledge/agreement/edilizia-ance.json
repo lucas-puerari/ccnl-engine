@@ -1926,7 +1926,7 @@
     "effective_until": null,
     "source": "https://ance.it/wp-content/uploads/allegati/Tabella_nuovi_minimi_orari-_CCNL_2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "b9fbdb9c53099d78fd4e69779bd0411d788d7bed4961383fb4b15313ba8e721c",
+    "source_hash": "5baf99e7cd3742974cdb0d49b337fcdfa344644dde7884ba60265c1d38ec7430",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2585,10 +2585,10 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-08T12:00:00Z",
+              "extraction_timestamp": "2026-11-08T09:00:00Z",
               "effective_from": "2025-02-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-08T12:00:00Z",
+              "verified_at": "2026-11-08T09:00:00Z",
               "verification_status": "verified",
               "review_id": "2026-11-08-ai-edilizia-ance-saturday"
             }

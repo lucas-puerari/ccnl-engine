@@ -658,9 +658,9 @@
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-11-08T14:00:00Z",
+          "extraction_timestamp": "2026-11-08T09:00:00Z",
           "verified_by": "gpt-6-sol",
-          "verified_at": "2026-11-08T14:00:00Z",
+          "verified_at": "2026-11-08T09:00:00Z",
           "verification_status": "verified",
           "review_id": "2026-11-08-gpt-turismo-federalberghi-guarantee-element-2027"
         }
@@ -3271,7 +3271,7 @@
     "effective_until": null,
     "source": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
     "verification_status": "unverified",
-    "source_hash": "898480e2f5928e6f0420647334f6d55efafaef0bc9d41867f800deade3cafbbd",
+    "source_hash": "e5b7c111438d6787aaae4d68f485af94bba0edf9eefef9f7c20a458c6fcbb2c0",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

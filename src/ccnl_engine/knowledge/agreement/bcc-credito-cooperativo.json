@@ -1775,7 +1775,7 @@
     "effective_until": null,
     "source": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "6f3a63a3ce07be7a8b912077dcf61d17ee02803d07408bd7fe069b8eb3d67ef6",
+    "source_hash": "ddfabc27fb50a24b82b6b9478c00829445b101352403cc50d3215d86ca5442e6",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2176,8 +2176,8 @@
         ]
       },
       {
-        "id": "2026-11-09-ai-bcc-1997-cohort",
-        "date": "2026-11-09",
+        "id": "2026-11-08-ai-bcc-1997-cohort",
+        "date": "2026-11-08",
         "reviewer": "claude-opus-5-5",
         "reviewer_kind": "ai",
         "scope": "Artt. 101 and 113 (PDF pp. 117, 128) of the testo coordinato of 19 December 2024, text layer.",

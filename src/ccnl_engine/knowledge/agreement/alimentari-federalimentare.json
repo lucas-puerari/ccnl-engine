@@ -4179,7 +4179,7 @@
     "effective_until": null,
     "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "5d83e4ab767c02c444c45a672316c0b75b7e2c6465031293e4c63b0dd1fbb385",
+    "source_hash": "2fe8ec7bac5dde7dc3404c1d01eb56a877512c3d2730a45149541a38c51e5df7",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -13817,7 +13817,7 @@
             "extraction_timestamp": "2026-11-08T03:00:00Z",
             "effective_from": null,
             "verified_by": "gpt-6-sol",
-            "verified_at": "2026-11-08T14:00:00Z",
+            "verified_at": "2026-11-08T09:00:00Z",
             "verification_status": "verified",
             "review_id": "2026-11-08-gpt-alimentari-federalimentare-injury-top-up"
           }

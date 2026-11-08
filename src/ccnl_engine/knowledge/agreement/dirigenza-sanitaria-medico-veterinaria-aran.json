@@ -280,10 +280,10 @@
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-08T20:00:00Z",
+                    "extraction_timestamp": "2026-11-08T09:00:00Z",
                     "effective_from": "2022-01-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-08T20:00:00Z",
+                    "verified_at": "2026-11-08T09:00:00Z",
                     "verification_status": "verified",
                     "review_id": "2026-11-08-ai-dirigenza-sanitaria-medico-veterinaria-aran-complex-structure"
                   }
@@ -312,10 +312,10 @@
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-08T20:00:00Z",
+                    "extraction_timestamp": "2026-11-08T09:00:00Z",
                     "effective_from": "2024-01-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-08T20:00:00Z",
+                    "verified_at": "2026-11-08T09:00:00Z",
                     "verification_status": "verified",
                     "review_id": "2026-11-08-ai-dirigenza-sanitaria-medico-veterinaria-aran-complex-structure"
                   }
@@ -346,10 +346,10 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-08T20:00:00Z",
+              "extraction_timestamp": "2026-11-08T09:00:00Z",
               "effective_from": "2022-01-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-08T20:00:00Z",
+              "verified_at": "2026-11-08T09:00:00Z",
               "verification_status": "verified",
               "review_id": "2026-11-08-ai-dirigenza-sanitaria-medico-veterinaria-aran-complex-structure"
             }
@@ -494,7 +494,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf",
     "verification_status": "unverified",
-    "source_hash": "20d624e7a08f20d17a665be45801727943288d48faaa27a6a127ee1edaf6f525",
+    "source_hash": "e9a36c9cafa42decf90db71be042fba6c15465b2e5405e4b088b317399581eb4",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },

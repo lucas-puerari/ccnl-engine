@@ -39,7 +39,7 @@
       "institute": "base_salary",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Art. 34 cc. 3, 4, 7: the role allowances hold while their condition does, which the caller states: 'baby_sitter_under_6' until each child assisted turns six, 'assistenza_piu_non_autosufficienti' while more than one non self-sufficient person is assisted, 'certificazione_uni_11766' while the UNI 11766:2019 certification is valid and was communicated in writing. Each is absorbable by a superminimo of better favour.",
+      "rule": "Art. 34 cc. 3, 4, 7: the role allowances hold while their condition does, which the caller states: 'baby_sitter_under_6' until each child assisted turns six, 'assistenza_piu_non_autosufficienti' while more than one non self-sufficient person is assisted, 'certificazione_uni_11766' while the UNI 11766:2019 certification is valid, communicated in writing and a copy handed over. The allowances of cc. 3 and 4 are absorbable by an individual superminimo, that of c. 7 by any better treatment received overall.",
       "calculation": "ccnl/lavoro-domestico-convivente:coverage.notes",
       "state": "absent",
       "remediation": "State the age of the children, the persons assisted and the certification as worker facts.",

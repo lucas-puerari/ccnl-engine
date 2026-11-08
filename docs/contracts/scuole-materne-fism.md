@@ -51,7 +51,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-05-28 |
-| **Last review** | 2026-11-09 |
+| **Last review** | 2026-11-08 |
 | **Latest salary tranche** | 2027-09-01 |
 
 ## Review history
@@ -61,7 +61,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | confirmed | Art. 49 Tredicesima mensilità (p. 37): "Le frazioni di mese vengono prese in considerazione solo se superiori a 15 giorni ed in tal caso equiparate ad un mese intero.". Match: more_than 15. |
 | 2026-11-07 | gpt-6-sol (ai) | Monthly values on scanned pages, each read twice from the page image by two independent sessions of another model, the second without being told the expected value. | confirmed | 40 values read identically by both readings and equal to the file. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 40, 44, 46 of the CCNL FISM of 28 May 2025 (PDF pp. 32-36, page images) and the economic agreement 2026-2027 (p. 2) for amendments. | confirmed | Art. 46: from 1 September 2025, 15 EUR (levels I-IV) or 20 EUR (V-VIII) a month for 13 payments to the staff with two years of uninterrupted service with the Ente on that day, added to the salario di anzianità of earlier renewals.<br>The agreement of 7 July 2026 does not amend art. 46. |
-| 2026-11-09 | gpt-6-sol (ai) | Art. 46 (PDF pp. 35-36) against the encoding of the salario di anzianità, by a separate model session. | corrected | Confirmed the amounts, the date, the 13 payments and the two years of service.<br>Corrected: 'a tutto il personale' does not say whether the apprentice percentage applies: the declaration is removed and the ruleset joins the engine limitation of undeclared apprenticeship components.<br>Flagged: the level held on 1 September 2025 and the continuity with the same Ente are approximations, in the limitation. |
+| 2026-11-08 | gpt-6-sol (ai) | Art. 46 (PDF pp. 35-36) against the encoding of the salario di anzianità, by a separate model session. | corrected | Confirmed the amounts, the date, the 13 payments and the two years of service.<br>Corrected: 'a tutto il personale' does not say whether the apprentice percentage applies: the declaration is removed and the ruleset joins the engine limitation of undeclared apprenticeship components.<br>Flagged: the level held on 1 September 2025 and the continuity with the same Ente are approximations, in the limitation. |
 
 ## Salary table
 

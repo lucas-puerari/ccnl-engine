@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-05-19 |
-| **Last review** | 2026-11-09 |
+| **Last review** | 2026-11-08 |
 | **Latest salary tranche** | 2027-05-01 |
 
 ## Review history
@@ -64,7 +64,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-06 | claude-opus-5-5 (ai) | Apprentice seniority: the CCNL Agenti immobiliari 2025 (apprenticeship and seniority articles). | corrected | The apprentice is classified one level below with 'lo stesso trattamento normativo'; 'Per l'anzianità di servizio maturata presso lo stesso datore di lavoro, il personale ha diritto a dieci scatti triennali': the increments of the level the apprentice is paid at. |
 | 2026-11-08 | gpt-6-sol (ai) | Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim. | confirmed | quadri_function_allowance: The agreement's Q fixed_allowances already contains IND_FUNZIONE at EUR 250.00/month from 2025-05-01, restricted to role responsabile_unita and months_per_year=12. compensation/element/rules.py gates on the worker's roles; element/types.py excludes 12-month allowances from extra- |
 | 2026-11-08 | claude-opus-5-5 (ai) | EBNAIP contributions of art. 11 of the 2025 text, read on the text layer (analysis by a separate model session). | corrected | Added the QSC (1.60% employer, 0.30% worker of the monthly pay on 14 months; 2.40% E.A.R. to the worker when the employer does not pay, on 14 months, in the TFR) and the employer's flat quota of 12 EUR on twelve months. |
-| 2026-11-09 | claude-opus-5-5 (ai) | Art. 15 of the CCNL FIAIP 2025 (PDF p. 26, text layer). | corrected | Fon.Te.: employer 1.55% and worker 0.55% of the TFR base, the 0.05 quota associativa included (the old note added it on top); TFR 50% or 100% at the worker's choice; una tantum 15.50 EUR at enrolment. |
+| 2026-11-08 | claude-opus-5-5 (ai) | Art. 15 of the CCNL FIAIP 2025 (PDF p. 26, text layer). | corrected | Fon.Te.: employer 1.55% and worker 0.55% of the TFR base, the 0.05 quota associativa included (the old note added it on top); TFR 50% or 100% at the worker's choice; una tantum 15.50 EUR at enrolment. |
 
 ## Salary table
 

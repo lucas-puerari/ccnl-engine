@@ -221,7 +221,7 @@
       },
       {
         "kind": "simplification",
-        "text": "Art. 34 cc. 3, 4, 7: the role allowances hold while their condition does, which the caller states: 'baby_sitter_under_6' until each child assisted turns six, 'assistenza_piu_non_autosufficienti' while more than one non self-sufficient person is assisted, 'certificazione_uni_11766' while the UNI 11766:2019 certification is valid and was communicated in writing. Each is absorbable by a superminimo of better favour.",
+        "text": "Art. 34 cc. 3, 4, 7: the role allowances hold while their condition does, which the caller states: 'baby_sitter_under_6' until each child assisted turns six, 'assistenza_piu_non_autosufficienti' while more than one non self-sufficient person is assisted, 'certificazione_uni_11766' while the UNI 11766:2019 certification is valid, communicated in writing and a copy handed over. The allowances of cc. 3 and 4 are absorbable by an individual superminimo, that of c. 7 by any better treatment received overall.",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
@@ -801,18 +801,18 @@
                     },
                     "page": "44, 59",
                     "section": "Art. 34 c. 7; Tabella L (minimi dal 1° gennaio 2026)",
-                    "quote": "Al lavoratore inquadrato nei livelli B), B super) e C super) in possesso della certificazione di qualità di cui alla norma tecnica UNI 11766:2019 in corso di validità, è dovuta l’indennità mensile di cui alla tabella L). Tale indennità è assorbibile da eventuali trattamenti retributivi di miglior favore complessivamente percepiti dal lavoratore. [Tabella L: 30,27]"
+                    "quote": "Al lavoratore inquadrato nei livelli B), B super) e C super) in possesso della certificazione di qualità di cui alla norma tecnica UNI 11766:2019 in corso di validità, è dovuta l’indennità mensile di cui alla tabella L). Tale indennità è assorbibile da eventuali trattamenti retributivi di miglior favore complessivamente percepiti dal lavoratore."
                   },
-                  "transformation": "EUR 30.27 a month (Tabella L) with the role 'certificazione_uni_11766' while the certification is valid and communicated. Absorbable by an individual superminimo: the caller states the superminimo net of the absorbed part.",
+                  "transformation": "EUR 30.27 a month (Tabella L) with the role 'certificazione_uni_11766' while the certification is valid and was communicated in writing with a copy handed over. Absorbable by any better treatment the worker receives overall: the caller states that treatment net of the absorbed part. The amount is read on p. 59, Tabella L: 30,27.",
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-09T03:30:00Z",
+                    "extraction_timestamp": "2026-11-08T09:00:00Z",
                     "effective_from": "2026-01-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-09T03:30:00Z",
+                    "verified_at": "2026-11-08T09:00:00Z",
                     "verification_status": "verified",
-                    "review_id": "2026-11-09-ai-lavoro-domestico-convivente-art34-allowances"
+                    "review_id": "2026-11-08-ai-lavoro-domestico-convivente-art34-allowances"
                   }
                 }
               }
@@ -831,18 +831,18 @@
               },
               "page": "44, 59",
               "section": "Art. 34 c. 7; Tabella L (minimi dal 1° gennaio 2026)",
-              "quote": "Al lavoratore inquadrato nei livelli B), B super) e C super) in possesso della certificazione di qualità di cui alla norma tecnica UNI 11766:2019 in corso di validità, è dovuta l’indennità mensile di cui alla tabella L). Tale indennità è assorbibile da eventuali trattamenti retributivi di miglior favore complessivamente percepiti dal lavoratore. [Tabella L: 30,27]"
+              "quote": "Al lavoratore inquadrato nei livelli B), B super) e C super) in possesso della certificazione di qualità di cui alla norma tecnica UNI 11766:2019 in corso di validità, è dovuta l’indennità mensile di cui alla tabella L). Tale indennità è assorbibile da eventuali trattamenti retributivi di miglior favore complessivamente percepiti dal lavoratore."
             },
-            "transformation": "EUR 30.27 a month (Tabella L) with the role 'certificazione_uni_11766' while the certification is valid and communicated. Absorbable by an individual superminimo: the caller states the superminimo net of the absorbed part.",
+            "transformation": "EUR 30.27 a month (Tabella L) with the role 'certificazione_uni_11766' while the certification is valid and was communicated in writing with a copy handed over. Absorbable by any better treatment the worker receives overall: the caller states that treatment net of the absorbed part. The amount is read on p. 59, Tabella L: 30,27.",
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-09T03:30:00Z",
+              "extraction_timestamp": "2026-11-08T09:00:00Z",
               "effective_from": "2026-01-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-09T03:30:00Z",
+              "verified_at": "2026-11-08T09:00:00Z",
               "verification_status": "verified",
-              "review_id": "2026-11-09-ai-lavoro-domestico-convivente-art34-allowances"
+              "review_id": "2026-11-08-ai-lavoro-domestico-convivente-art34-allowances"
             }
           }
         }
@@ -975,18 +975,18 @@
                     },
                     "page": "44, 59",
                     "section": "Art. 34 c. 3; Tabella H (minimi dal 1° gennaio 2026)",
-                    "quote": "Sino al compimento del sesto anno di età di ciascun bambino assistito, l’assistente familiare inquadrata nel profilo B Super), lett. b) (baby sitter) avrà diritto a percepire, oltre al minimo retributivo di cui all’art. 35, anche l’indennità mensile di cui alla successiva tabella H). Tale indennità è assorbibile da eventuali superminimi individuali di miglior favore percepiti dal lavoratore. [Tabella H: 138,54]"
+                    "quote": "Sino al compimento del sesto anno di età di ciascun bambino assistito, l’assistente familiare inquadrata nel profilo B Super), lett. b) (baby sitter) avrà diritto a percepire, oltre al minimo retributivo di cui all’art. 35, anche l’indennità mensile di cui alla successiva tabella H). Tale indennità è assorbibile da eventuali superminimi individuali di miglior favore percepiti dal lavoratore."
                   },
-                  "transformation": "EUR 138.54 a month (Tabella H, live-in workers) with the role 'baby_sitter_under_6', while a child assisted is under six. Absorbable by an individual superminimo: the caller states the superminimo net of the absorbed part.",
+                  "transformation": "EUR 138.54 a month (Tabella H, live-in workers) with the role 'baby_sitter_under_6', while a child assisted is under six. Absorbable by an individual superminimo: the caller states the superminimo net of the absorbed part. The amount is read on p. 59, Tabella H: 138,54.",
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-09T03:30:00Z",
+                    "extraction_timestamp": "2026-11-08T09:00:00Z",
                     "effective_from": "2026-01-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-09T03:30:00Z",
+                    "verified_at": "2026-11-08T09:00:00Z",
                     "verification_status": "verified",
-                    "review_id": "2026-11-09-ai-lavoro-domestico-convivente-art34-allowances"
+                    "review_id": "2026-11-08-ai-lavoro-domestico-convivente-art34-allowances"
                   }
                 }
               }
@@ -1005,18 +1005,18 @@
               },
               "page": "44, 59",
               "section": "Art. 34 c. 3; Tabella H (minimi dal 1° gennaio 2026)",
-              "quote": "Sino al compimento del sesto anno di età di ciascun bambino assistito, l’assistente familiare inquadrata nel profilo B Super), lett. b) (baby sitter) avrà diritto a percepire, oltre al minimo retributivo di cui all’art. 35, anche l’indennità mensile di cui alla successiva tabella H). Tale indennità è assorbibile da eventuali superminimi individuali di miglior favore percepiti dal lavoratore. [Tabella H: 138,54]"
+              "quote": "Sino al compimento del sesto anno di età di ciascun bambino assistito, l’assistente familiare inquadrata nel profilo B Super), lett. b) (baby sitter) avrà diritto a percepire, oltre al minimo retributivo di cui all’art. 35, anche l’indennità mensile di cui alla successiva tabella H). Tale indennità è assorbibile da eventuali superminimi individuali di miglior favore percepiti dal lavoratore."
             },
-            "transformation": "EUR 138.54 a month (Tabella H, live-in workers) with the role 'baby_sitter_under_6', while a child assisted is under six. Absorbable by an individual superminimo: the caller states the superminimo net of the absorbed part.",
+            "transformation": "EUR 138.54 a month (Tabella H, live-in workers) with the role 'baby_sitter_under_6', while a child assisted is under six. Absorbable by an individual superminimo: the caller states the superminimo net of the absorbed part. The amount is read on p. 59, Tabella H: 138,54.",
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-09T03:30:00Z",
+              "extraction_timestamp": "2026-11-08T09:00:00Z",
               "effective_from": "2026-01-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-09T03:30:00Z",
+              "verified_at": "2026-11-08T09:00:00Z",
               "verification_status": "verified",
-              "review_id": "2026-11-09-ai-lavoro-domestico-convivente-art34-allowances"
+              "review_id": "2026-11-08-ai-lavoro-domestico-convivente-art34-allowances"
             }
           }
         },
@@ -1041,18 +1041,18 @@
                     },
                     "page": "44, 59",
                     "section": "Art. 34 c. 7; Tabella L (minimi dal 1° gennaio 2026)",
-                    "quote": "Al lavoratore inquadrato nei livelli B), B super) e C super) in possesso della certificazione di qualità di cui alla norma tecnica UNI 11766:2019 in corso di validità, è dovuta l’indennità mensile di cui alla tabella L). Tale indennità è assorbibile da eventuali trattamenti retributivi di miglior favore complessivamente percepiti dal lavoratore. [Tabella L: 30,27]"
+                    "quote": "Al lavoratore inquadrato nei livelli B), B super) e C super) in possesso della certificazione di qualità di cui alla norma tecnica UNI 11766:2019 in corso di validità, è dovuta l’indennità mensile di cui alla tabella L). Tale indennità è assorbibile da eventuali trattamenti retributivi di miglior favore complessivamente percepiti dal lavoratore."
                   },
-                  "transformation": "EUR 30.27 a month (Tabella L) with the role 'certificazione_uni_11766' while the certification is valid and communicated. Absorbable by an individual superminimo: the caller states the superminimo net of the absorbed part.",
+                  "transformation": "EUR 30.27 a month (Tabella L) with the role 'certificazione_uni_11766' while the certification is valid and was communicated in writing with a copy handed over. Absorbable by any better treatment the worker receives overall: the caller states that treatment net of the absorbed part. The amount is read on p. 59, Tabella L: 30,27.",
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-09T03:30:00Z",
+                    "extraction_timestamp": "2026-11-08T09:00:00Z",
                     "effective_from": "2026-01-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-09T03:30:00Z",
+                    "verified_at": "2026-11-08T09:00:00Z",
                     "verification_status": "verified",
-                    "review_id": "2026-11-09-ai-lavoro-domestico-convivente-art34-allowances"
+                    "review_id": "2026-11-08-ai-lavoro-domestico-convivente-art34-allowances"
                   }
                 }
               }
@@ -1071,18 +1071,18 @@
               },
               "page": "44, 59",
               "section": "Art. 34 c. 7; Tabella L (minimi dal 1° gennaio 2026)",
-              "quote": "Al lavoratore inquadrato nei livelli B), B super) e C super) in possesso della certificazione di qualità di cui alla norma tecnica UNI 11766:2019 in corso di validità, è dovuta l’indennità mensile di cui alla tabella L). Tale indennità è assorbibile da eventuali trattamenti retributivi di miglior favore complessivamente percepiti dal lavoratore. [Tabella L: 30,27]"
+              "quote": "Al lavoratore inquadrato nei livelli B), B super) e C super) in possesso della certificazione di qualità di cui alla norma tecnica UNI 11766:2019 in corso di validità, è dovuta l’indennità mensile di cui alla tabella L). Tale indennità è assorbibile da eventuali trattamenti retributivi di miglior favore complessivamente percepiti dal lavoratore."
             },
-            "transformation": "EUR 30.27 a month (Tabella L) with the role 'certificazione_uni_11766' while the certification is valid and communicated. Absorbable by an individual superminimo: the caller states the superminimo net of the absorbed part.",
+            "transformation": "EUR 30.27 a month (Tabella L) with the role 'certificazione_uni_11766' while the certification is valid and was communicated in writing with a copy handed over. Absorbable by any better treatment the worker receives overall: the caller states that treatment net of the absorbed part. The amount is read on p. 59, Tabella L: 30,27.",
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-09T03:30:00Z",
+              "extraction_timestamp": "2026-11-08T09:00:00Z",
               "effective_from": "2026-01-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-09T03:30:00Z",
+              "verified_at": "2026-11-08T09:00:00Z",
               "verification_status": "verified",
-              "review_id": "2026-11-09-ai-lavoro-domestico-convivente-art34-allowances"
+              "review_id": "2026-11-08-ai-lavoro-domestico-convivente-art34-allowances"
             }
           }
         }
@@ -1323,18 +1323,18 @@
                     },
                     "page": "44, 59",
                     "section": "Art. 34 c. 4; Tabella I (minimi dal 1° gennaio 2026)",
-                    "quote": "Al lavoratore inquadrato nel livello C Super) o D Super) addetto all’assistenza di più di una persona non autosufficiente, è altresì dovuta l’indennità mensile nella misura di cui alla tabella I). Tale indennità è assorbibile da eventuali superminimi individuali di miglior favore percepiti dal lavoratore. [Tabella I: 119,66]"
+                    "quote": "Al lavoratore inquadrato nel livello C Super) o D Super) addetto all’assistenza di più di una persona non autosufficiente, è altresì dovuta l’indennità mensile nella misura di cui alla tabella I). Tale indennità è assorbibile da eventuali superminimi individuali di miglior favore percepiti dal lavoratore."
                   },
-                  "transformation": "EUR 119.66 a month (Tabella I) with the role 'assistenza_piu_non_autosufficienti'. Absorbable by an individual superminimo: the caller states the superminimo net of the absorbed part.",
+                  "transformation": "EUR 119.66 a month (Tabella I) with the role 'assistenza_piu_non_autosufficienti'. Absorbable by an individual superminimo: the caller states the superminimo net of the absorbed part. The amount is read on p. 59, Tabella I: 119,66.",
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-09T03:30:00Z",
+                    "extraction_timestamp": "2026-11-08T09:00:00Z",
                     "effective_from": "2026-01-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-09T03:30:00Z",
+                    "verified_at": "2026-11-08T09:00:00Z",
                     "verification_status": "verified",
-                    "review_id": "2026-11-09-ai-lavoro-domestico-convivente-art34-allowances"
+                    "review_id": "2026-11-08-ai-lavoro-domestico-convivente-art34-allowances"
                   }
                 }
               }
@@ -1353,18 +1353,18 @@
               },
               "page": "44, 59",
               "section": "Art. 34 c. 4; Tabella I (minimi dal 1° gennaio 2026)",
-              "quote": "Al lavoratore inquadrato nel livello C Super) o D Super) addetto all’assistenza di più di una persona non autosufficiente, è altresì dovuta l’indennità mensile nella misura di cui alla tabella I). Tale indennità è assorbibile da eventuali superminimi individuali di miglior favore percepiti dal lavoratore. [Tabella I: 119,66]"
+              "quote": "Al lavoratore inquadrato nel livello C Super) o D Super) addetto all’assistenza di più di una persona non autosufficiente, è altresì dovuta l’indennità mensile nella misura di cui alla tabella I). Tale indennità è assorbibile da eventuali superminimi individuali di miglior favore percepiti dal lavoratore."
             },
-            "transformation": "EUR 119.66 a month (Tabella I) with the role 'assistenza_piu_non_autosufficienti'. Absorbable by an individual superminimo: the caller states the superminimo net of the absorbed part.",
+            "transformation": "EUR 119.66 a month (Tabella I) with the role 'assistenza_piu_non_autosufficienti'. Absorbable by an individual superminimo: the caller states the superminimo net of the absorbed part. The amount is read on p. 59, Tabella I: 119,66.",
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-09T03:30:00Z",
+              "extraction_timestamp": "2026-11-08T09:00:00Z",
               "effective_from": "2026-01-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-09T03:30:00Z",
+              "verified_at": "2026-11-08T09:00:00Z",
               "verification_status": "verified",
-              "review_id": "2026-11-09-ai-lavoro-domestico-convivente-art34-allowances"
+              "review_id": "2026-11-08-ai-lavoro-domestico-convivente-art34-allowances"
             }
           }
         },
@@ -1389,18 +1389,18 @@
                     },
                     "page": "44, 59",
                     "section": "Art. 34 c. 7; Tabella L (minimi dal 1° gennaio 2026)",
-                    "quote": "Al lavoratore inquadrato nei livelli B), B super) e C super) in possesso della certificazione di qualità di cui alla norma tecnica UNI 11766:2019 in corso di validità, è dovuta l’indennità mensile di cui alla tabella L). Tale indennità è assorbibile da eventuali trattamenti retributivi di miglior favore complessivamente percepiti dal lavoratore. [Tabella L: 30,27]"
+                    "quote": "Al lavoratore inquadrato nei livelli B), B super) e C super) in possesso della certificazione di qualità di cui alla norma tecnica UNI 11766:2019 in corso di validità, è dovuta l’indennità mensile di cui alla tabella L). Tale indennità è assorbibile da eventuali trattamenti retributivi di miglior favore complessivamente percepiti dal lavoratore."
                   },
-                  "transformation": "EUR 30.27 a month (Tabella L) with the role 'certificazione_uni_11766' while the certification is valid and communicated. Absorbable by an individual superminimo: the caller states the superminimo net of the absorbed part.",
+                  "transformation": "EUR 30.27 a month (Tabella L) with the role 'certificazione_uni_11766' while the certification is valid and was communicated in writing with a copy handed over. Absorbable by any better treatment the worker receives overall: the caller states that treatment net of the absorbed part. The amount is read on p. 59, Tabella L: 30,27.",
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-09T03:30:00Z",
+                    "extraction_timestamp": "2026-11-08T09:00:00Z",
                     "effective_from": "2026-01-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-09T03:30:00Z",
+                    "verified_at": "2026-11-08T09:00:00Z",
                     "verification_status": "verified",
-                    "review_id": "2026-11-09-ai-lavoro-domestico-convivente-art34-allowances"
+                    "review_id": "2026-11-08-ai-lavoro-domestico-convivente-art34-allowances"
                   }
                 }
               }
@@ -1419,18 +1419,18 @@
               },
               "page": "44, 59",
               "section": "Art. 34 c. 7; Tabella L (minimi dal 1° gennaio 2026)",
-              "quote": "Al lavoratore inquadrato nei livelli B), B super) e C super) in possesso della certificazione di qualità di cui alla norma tecnica UNI 11766:2019 in corso di validità, è dovuta l’indennità mensile di cui alla tabella L). Tale indennità è assorbibile da eventuali trattamenti retributivi di miglior favore complessivamente percepiti dal lavoratore. [Tabella L: 30,27]"
+              "quote": "Al lavoratore inquadrato nei livelli B), B super) e C super) in possesso della certificazione di qualità di cui alla norma tecnica UNI 11766:2019 in corso di validità, è dovuta l’indennità mensile di cui alla tabella L). Tale indennità è assorbibile da eventuali trattamenti retributivi di miglior favore complessivamente percepiti dal lavoratore."
             },
-            "transformation": "EUR 30.27 a month (Tabella L) with the role 'certificazione_uni_11766' while the certification is valid and communicated. Absorbable by an individual superminimo: the caller states the superminimo net of the absorbed part.",
+            "transformation": "EUR 30.27 a month (Tabella L) with the role 'certificazione_uni_11766' while the certification is valid and was communicated in writing with a copy handed over. Absorbable by any better treatment the worker receives overall: the caller states that treatment net of the absorbed part. The amount is read on p. 59, Tabella L: 30,27.",
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-09T03:30:00Z",
+              "extraction_timestamp": "2026-11-08T09:00:00Z",
               "effective_from": "2026-01-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-09T03:30:00Z",
+              "verified_at": "2026-11-08T09:00:00Z",
               "verification_status": "verified",
-              "review_id": "2026-11-09-ai-lavoro-domestico-convivente-art34-allowances"
+              "review_id": "2026-11-08-ai-lavoro-domestico-convivente-art34-allowances"
             }
           }
         }
@@ -1747,18 +1747,18 @@
                     },
                     "page": "44, 59",
                     "section": "Art. 34 c. 4; Tabella I (minimi dal 1° gennaio 2026)",
-                    "quote": "Al lavoratore inquadrato nel livello C Super) o D Super) addetto all’assistenza di più di una persona non autosufficiente, è altresì dovuta l’indennità mensile nella misura di cui alla tabella I). Tale indennità è assorbibile da eventuali superminimi individuali di miglior favore percepiti dal lavoratore. [Tabella I: 119,66]"
+                    "quote": "Al lavoratore inquadrato nel livello C Super) o D Super) addetto all’assistenza di più di una persona non autosufficiente, è altresì dovuta l’indennità mensile nella misura di cui alla tabella I). Tale indennità è assorbibile da eventuali superminimi individuali di miglior favore percepiti dal lavoratore."
                   },
-                  "transformation": "EUR 119.66 a month (Tabella I) with the role 'assistenza_piu_non_autosufficienti'. Absorbable by an individual superminimo: the caller states the superminimo net of the absorbed part.",
+                  "transformation": "EUR 119.66 a month (Tabella I) with the role 'assistenza_piu_non_autosufficienti'. Absorbable by an individual superminimo: the caller states the superminimo net of the absorbed part. The amount is read on p. 59, Tabella I: 119,66.",
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-09T03:30:00Z",
+                    "extraction_timestamp": "2026-11-08T09:00:00Z",
                     "effective_from": "2026-01-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-09T03:30:00Z",
+                    "verified_at": "2026-11-08T09:00:00Z",
                     "verification_status": "verified",
-                    "review_id": "2026-11-09-ai-lavoro-domestico-convivente-art34-allowances"
+                    "review_id": "2026-11-08-ai-lavoro-domestico-convivente-art34-allowances"
                   }
                 }
               }
@@ -1777,18 +1777,18 @@
               },
               "page": "44, 59",
               "section": "Art. 34 c. 4; Tabella I (minimi dal 1° gennaio 2026)",
-              "quote": "Al lavoratore inquadrato nel livello C Super) o D Super) addetto all’assistenza di più di una persona non autosufficiente, è altresì dovuta l’indennità mensile nella misura di cui alla tabella I). Tale indennità è assorbibile da eventuali superminimi individuali di miglior favore percepiti dal lavoratore. [Tabella I: 119,66]"
+              "quote": "Al lavoratore inquadrato nel livello C Super) o D Super) addetto all’assistenza di più di una persona non autosufficiente, è altresì dovuta l’indennità mensile nella misura di cui alla tabella I). Tale indennità è assorbibile da eventuali superminimi individuali di miglior favore percepiti dal lavoratore."
             },
-            "transformation": "EUR 119.66 a month (Tabella I) with the role 'assistenza_piu_non_autosufficienti'. Absorbable by an individual superminimo: the caller states the superminimo net of the absorbed part.",
+            "transformation": "EUR 119.66 a month (Tabella I) with the role 'assistenza_piu_non_autosufficienti'. Absorbable by an individual superminimo: the caller states the superminimo net of the absorbed part. The amount is read on p. 59, Tabella I: 119,66.",
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-09T03:30:00Z",
+              "extraction_timestamp": "2026-11-08T09:00:00Z",
               "effective_from": "2026-01-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-09T03:30:00Z",
+              "verified_at": "2026-11-08T09:00:00Z",
               "verification_status": "verified",
-              "review_id": "2026-11-09-ai-lavoro-domestico-convivente-art34-allowances"
+              "review_id": "2026-11-08-ai-lavoro-domestico-convivente-art34-allowances"
             }
           }
         }
@@ -1829,7 +1829,7 @@
     "effective_until": null,
     "source": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "76e0ea4e5b999c3b8417f120815e1c65bc95ea5bb5bad54dfee62a7d573a1b49",
+    "source_hash": "166baf979ba54ec70ce6a9dc8fb29d3b6e3fa998356fca2a135472fa214d35b9",
     "published_at": "2026-10-07",
     "source_type": "commercial_secondary"
   },
@@ -2237,8 +2237,8 @@
         ]
       },
       {
-        "id": "2026-11-09-ai-lavoro-domestico-convivente-art34-allowances",
-        "date": "2026-11-09",
+        "id": "2026-11-08-ai-lavoro-domestico-convivente-art34-allowances",
+        "date": "2026-11-08",
         "reviewer": "claude-opus-5-5",
         "reviewer_kind": "ai",
         "scope": "Art. 34 cc. 3, 4, 7 (PDF pp. 44-45) and the Tabelle H, I, L of the minimi from 1 January 2026 (PDF p. 59), text layer.",
@@ -2253,6 +2253,28 @@
           "Tabella H: B super baby sitter 138.54 a month (live-in), 97.06 (Tabella B workers), 0.84 an hour; Tabella I: C super and D super assisting more than one non self-sufficient person 119.66 a month, 0.70 an hour; Tabella L: B, B super and C super with the UNI 11766:2019 certification 30.27 a month: role allowances of the levels of this ruleset."
         ],
         "independence": "same_process",
+        "checked": [
+          "levels[].fixed_allowances"
+        ]
+      },
+      {
+        "id": "2026-11-08-gpt-lavoro-domestico-convivente-art34-allowances",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Art. 34 cc. 3, 4, 7 and the Tabelle H, I, L (PDF pp. 44-45, 59) against the role allowances, by a separate model session.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
+            "sha256": "122ca6a72196a835976abac7fb988dc1502973941d52891a546512347fdc9dcf"
+          }
+        ],
+        "findings": [
+          "Confirmed the amounts, levels and roles of the Tabelle H, I and L.",
+          "Corrected: the quotes now hold the article text alone (the table amounts are in the transformation); the certification needs a copy handed over; the allowance of c. 7 is absorbed by any better treatment received overall, not only a superminimo."
+        ],
+        "independence": "separate_model",
         "checked": [
           "levels[].fixed_allowances"
         ]
