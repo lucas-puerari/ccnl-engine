@@ -20,9 +20,10 @@ from datetime import date, timedelta
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.sickness.agricultural.inputs import AgriculturalDays
 from ccnl_engine.sickness.base.inputs import InpsSicknessBase, SpettacoloSicknessBase
+from ccnl_engine.sickness.diagnosis import SeriousIllnessKind
 from ccnl_engine.sickness.validators import validate_episode
 
-__all__ = ["SicknessEpisode", "SicknessHistory"]
+__all__ = ["SeriousIllnessKind", "SicknessEpisode", "SicknessHistory"]
 
 _FEATURE = "sickness"
 _OWNER = "SicknessEpisode"
@@ -98,7 +99,7 @@ class SicknessEpisode:
     prior_worked_days: int | None = None
     hospital_stays: tuple[tuple[date, date], ...] | None = None
     serious_illness: bool | None = None
-    serious_illness_kind: str | None = None
+    serious_illness_kind: SeriousIllnessKind | None = None
     excluded_comporto_days: tuple[date, ...] | None = None
     periodic_check: bool | None = None
     daily_contributions: int | None = None

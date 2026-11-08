@@ -32,6 +32,7 @@ from typing import TYPE_CHECKING
 
 from ccnl_engine.sickness.comporto.models import window_of
 from ccnl_engine.sickness.cumulation.rules import CcnlDay
+from ccnl_engine.sickness.diagnosis import SeriousIllnessKind
 from ccnl_engine.sickness.window.rules import window_start
 
 if TYPE_CHECKING:
@@ -158,13 +159,12 @@ class YearTreatment:
         Returns:
             The qualifying limit, otherwise the ordinary limit.
         """
-        if self.episode.serious_illness_kind == "oncological":
-            return band.oncological_comporto_days or band.comporto_days
-        if self.episode.serious_illness_kind in {
-            "tuberculosis_care",
-            "aids",
-            "severe_disability",
-        } or (band.oncological_comporto_days is None and self.episode.serious_illness):
+        kind = self.episode.serious_illness_kind
+        if kind is SeriousIllnessKind.ONCOLOGICAL and band.oncological_comporto_days:
+            return band.oncological_comporto_days
+        if kind is not None or (
+            band.oncological_comporto_days is None and self.episode.serious_illness
+        ):
             return band.serious_comporto_days or band.comporto_days
         return band.comporto_days
 
@@ -267,7 +267,7 @@ class YearTreatment:
         previous = self.episode.relapse_of
         while previous is not None:
             found = next((e for e in self.earlier if e.episode_id == previous), None)
-            if found is None:
+            if found is None or found.episode_id in chain:
                 break
             chain.add(found.episode_id)
             previous = found.relapse_of

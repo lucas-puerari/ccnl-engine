@@ -11,7 +11,7 @@ from ccnl_engine.sickness.counting.rules import with_window_counting
 from ccnl_engine.sickness.cumulation.rules import SicknessWorker
 from ccnl_engine.sickness.cumulation.year.rules import YearTreatment
 from ccnl_engine.sickness.integration.models import SicknessRules
-from ccnl_engine.sickness.models import SicknessEpisode
+from ccnl_engine.sickness.models import SeriousIllnessKind, SicknessEpisode
 
 
 def _rules(ccnl_id: str, *, window: bool = False) -> SicknessRules:
@@ -65,14 +65,18 @@ def test_abi_oncological_vs_ordinary_and_other_qualifying_diagnoses() -> None:
     end = start + timedelta(days=360)
     ordinary = SicknessEpisode("ordinary", start, end)
     oncology = SicknessEpisode(
-        "oncology", start, end, serious_illness_kind="oncological"
+        "oncology", start, end, serious_illness_kind=SeriousIllnessKind.ONCOLOGICAL
     )
     assert _day(rules, ordinary, 181)[0]
     assert _day(rules, oncology, 181) == (False, Decimal(1))
     assert Decimal(10) * _day(rules, oncology, 181)[1] == Decimal(10)
     assert _day(rules, oncology, 360)[0] is False
     assert _day(rules, oncology, 361)[0] is True
-    for kind in ("tuberculosis_care", "aids", "severe_disability"):
+    for kind in (
+        SeriousIllnessKind.TUBERCULOSIS_CARE,
+        SeriousIllnessKind.AIDS,
+        SeriousIllnessKind.SEVERE_DISABILITY,
+    ):
         case = SicknessEpisode(kind, start, end, serious_illness_kind=kind)
         assert _day(rules, case, 360)[0] is False
         assert _day(rules, case, 361)[0] is True
@@ -105,7 +109,7 @@ def test_abi_alternative_window_keeps_diagnosis_specific_limits() -> None:
     end = start + timedelta(days=480)
     ordinary = SicknessEpisode("ordinary", start, end)
     oncology = SicknessEpisode(
-        "oncology", start, end, serious_illness_kind="oncological"
+        "oncology", start, end, serious_illness_kind=SeriousIllnessKind.ONCOLOGICAL
     )
     assert _day(rules, ordinary, 241)[0]
     assert _day(rules, oncology, 241) == (False, Decimal(1))
@@ -179,7 +183,12 @@ def test_invalid_diagnosis_and_excluded_dates_are_rejected() -> None:
     """An unverified diagnosis or out-of-episode date cannot extend the job."""
     start = date(2026, 1, 1)
     with pytest.raises(InvalidInputError, match="serious_illness_kind"):
-        SicknessEpisode("invalid", start, start, serious_illness_kind="serious")
+        SicknessEpisode(
+            "invalid",
+            start,
+            start,
+            serious_illness_kind="serious",  # type: ignore[arg-type]
+        )
     with pytest.raises(InvalidInputError, match="excluded_comporto_days"):
         SicknessEpisode(
             "invalid", start, start, excluded_comporto_days=(start + timedelta(days=1),)

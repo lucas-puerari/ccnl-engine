@@ -7,6 +7,7 @@ from typing import TYPE_CHECKING
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.sickness.agricultural.inputs import AgriculturalDays
 from ccnl_engine.sickness.base.inputs import InpsSicknessBase, SpettacoloSicknessBase
+from ccnl_engine.sickness.diagnosis import SeriousIllnessKind
 from ccnl_engine.validators import (
     require_bool,
     require_date,
@@ -112,20 +113,13 @@ def _validate_serious(episode: SicknessEpisode) -> None:
     Raises:
         InvalidInputError: If either fact is not valid for the episode.
     """
-    if (
-        episode.serious_illness_kind is not None
-        and episode.serious_illness_kind
-        not in {
-            "oncological",
-            "tuberculosis_care",
-            "aids",
-            "severe_disability",
-        }
-    ):
-        msg = "SicknessEpisode.serious_illness_kind: unrecognized diagnosis"
-        raise InvalidInputError(
-            msg, field=f"{_OWNER}.serious_illness_kind", feature=_FEATURE
-        )
+    require_instance(
+        episode.serious_illness_kind,
+        SeriousIllnessKind,
+        f"{_OWNER}.serious_illness_kind",
+        feature=_FEATURE,
+        optional=True,
+    )
     excluded = episode.excluded_comporto_days or ()
     for day in excluded:
         require_date(day, f"{_OWNER}.excluded_comporto_days", feature=_FEATURE)
