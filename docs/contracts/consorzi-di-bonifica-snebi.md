@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, inps_employer, seniority |
+| **Limits of this contract** | inps_employer, seniority |
 
-5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -60,6 +60,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-31 | claude-opus-5-5 (ai) | The sick pay and the comporto of the CCNL (work_rules.sickness_rules), read on the signed text. | corrected | Art. 98 (pp. 92-93): the whole pay for the first ten months of absence and half of it for the next five, as an integration of the INPS indemnity. The file kept the INPS indemnity alone (0/0) from a secondary summary: corrected to 100% for days 1-300 and 50% to day 450, the comporto paid. The continuation of an illness within three months of the end of the last is not modelled (note). |
 | 2026-11-01 | claude-opus-5-5 (ai) | The indennità di funzione of the quadri, Art. 78 (p. 83). | corrected | Art. 78 (p. 83): 140.00 for 14 months to the quadri; p. 11: the Area Quadri is the parametri 162, 164, 185, 187: levels[AQ*].fixed_allowances[IND_FUNZIONE_QUADRI]. Found by a delegated search, checked again on the PDF text. |
 | 2026-11-08 | claude-opus-5-5 (ai) | The monthly values of the levels against the primary tables (text layer). | confirmed | 45 values found verbatim on the cited pages and marked verified; 4 left as they were (derived or not on a text page). |
+| 2026-11-08 | claude-opus-5-5 (ai) | Allegato A (PDF pp. 157, 159) and Allegato Q (p. 230) of the text of 21 May 2025, text layer. | corrected | Added the table of the staff in service on 15 July 2000 as base_salary_by_cohort.<br>Corrected the post-2000 base salaries that differed by a cent from the printed table: D115 2026-01-01 1764.29->1764.28; D116 2026-01-01 1779.62->1779.63; C127 2026-01-01 1948.38->1948.39; A157 2026-01-01 2408.65->2408.64; AQ164 2026-01-01 2516.04->2516.03 |
 
 ## Salary table
 
@@ -71,23 +72,23 @@ Latest effective values per level (monthly gross, EUR).
 | `AQ185` | AQ185 — quadro | € 2,838.21 | 2026-01-01 |
 | `A184` | A184 | € 2,822.87 | 2026-01-01 |
 | `A170` | A170 | € 2,608.08 | 2026-01-01 |
-| `AQ164` | AQ164 — quadro | € 2,516.04 | 2026-01-01 |
+| `AQ164` | AQ164 — quadro | € 2,516.03 | 2026-01-01 |
 | `AQ162` | AQ162 — quadro | € 2,485.35 | 2026-01-01 |
 | `A160` | A160 | € 2,454.67 | 2026-01-01 |
 | `A159` | A159 | € 2,439.32 | 2026-01-01 |
-| `A157` | A157 | € 2,408.65 | 2026-01-01 |
+| `A157` | A157 | € 2,408.64 | 2026-01-01 |
 | `A135` | A135 | € 2,071.13 | 2026-01-01 |
 | `A134` | A134 | € 2,055.79 | 2026-01-01 |
 | `B132_ex51` | B132 — ex cat. 5/1 (alternate scatto 47.73) | € 2,025.10 | 2026-01-01 |
 | `B132` | B132 — ex cat. 4/1 (best-guess scatto 50.05) | € 2,025.10 | 2026-01-01 |
 | `B128_ex52` | B128 — ex cat. 5/2 (alternate scatto 44.44) | € 1,963.73 | 2026-01-01 |
 | `B128` | B128 — ex cat. 4/2 (best-guess scatto 47.92) | € 1,963.73 | 2026-01-01 |
-| `C127` | C127 | € 1,948.38 | 2026-01-01 |
+| `C127` | C127 | € 1,948.39 | 2026-01-01 |
 | `C122` | C122 | € 1,871.68 | 2026-01-01 |
 | `C118` | C118 | € 1,810.32 | 2026-01-01 |
 | `D117` | D117 | € 1,794.97 | 2026-01-01 |
-| `D116` | D116 | € 1,779.62 | 2026-01-01 |
-| `D115` | D115 | € 1,764.29 | 2026-01-01 |
+| `D116` | D116 | € 1,779.63 | 2026-01-01 |
+| `D115` | D115 | € 1,764.28 | 2026-01-01 |
 | `D112` | D112 | € 1,718.28 | 2026-01-01 |
 | `D107` | D107 | € 1,641.56 | 2026-01-01 |
 | `D104` | D104 | € 1,595.53 | 2026-01-01 |
@@ -101,13 +102,6 @@ Latest effective values per level (monthly gross, EUR).
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
-
-!!! warning "consorzi-di-bonifica-snebi/pre_2000_cohort_table_missing · base_salary · impact yes · open"
-    Dual-cohort: workers hired by 15-07-2000 have a lower salary table (~1.4% below post-2000) not modeled here. Those workers are a declining cohort (tenure 25+ years); new hires always enter the post-2000 table.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Model the lower salary table for workers hired by 15-07-2000 behind a hire-date fact.
 
 !!! warning "consorzi-di-bonifica-snebi/ex_sublevel_scatto_mapping · seniority · impact unknown · open"
     B128 and B132 each contain two ex-classification sub-levels (B128: ex-4/2 and ex-5/2; B132: ex-4/1 and ex-5/1) sharing the same base salary but with different scatto amounts. Modeled as B128/B128_ex52 and B132/B132_ex51. Plain codes carry the ex-4 (higher) scatto as best-guess; _ex52/_ex51 codes carry the ex-5 (lower) scatto. Mapping is unverifiable from public sources (B128: 47.92 vs 44.44; B132: 50.05 vs 47.73).
@@ -323,6 +317,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     Additional months: 14 — tredicesima (dicembre) + quattordicesima (giugno). Source: ilccnl.it ('quattordici mensilitA').
     
     Tranches: 2025-07-01 (+3%) and 2026-01-01 (+2.2%). Both sourced from redigo.info primary table. No pre-July-2025 salary is modeled; engine returns no result for as_of before 2025-07-01.
+    
+    DUAL COHORT (Allegato A, PDF pp. 157 and 159; Allegato Q p. 230): the 'dipendenti in servizio al 15 luglio 2000' are paid a lower table than those 'assunti a decorrere dal 15/7/2000'; modelled as Level.base_salary_by_cohort, chosen by the hire date (EmploymentPeriod.started_on, else the start of the stated seniority). Tables from 1 July 2025.
     
     layer_2 out_of_scope: no apprenticeship data found in available public sources. Full CCNL PDF required.
     
