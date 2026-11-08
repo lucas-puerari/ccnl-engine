@@ -71,10 +71,10 @@
       "institute": "base_salary",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Art. 13 c. 10 of the renewal of 5 June 2024 (p. 7): the amounts of November 2027 (A and B 186, 1-3 158, 4-5 140, 6S-7 112) are parameters.equalisation_element. Approximated: the trigger, read from the second-level facts of 2026 where the text asks whether an agreement on the premio di risultato was defined by 31 October 2026 after a platform was presented; the proportion to the days actually worked in 2026, counted in months of more than 15 days; the absorption of comma 8, which takes any individual or collective treatment granted after 1 June 2024, the engine deducting only the individual elements. Not modelled: the welfare alternative of comma 11 and the crisis exemption of comma 13.",
+      "rule": "Art. 13 c. 10 of the renewal of 5 June 2024 (p. 7), with commi 5-8 of the CCNL 2018 (p. 29): the amounts of November 2027 (A and B 186, 1-3 158, 4-5 140, 6S-7 112) are parameters.equalisation_element. Approximated: the trigger, read from the second-level facts of 2026 where the text asks whether an agreement on the premio di risultato was defined by 31 October 2026 after a platform was presented; the eligibility of comma 5, read as in service in October 2027 with six months of service; the proportion to the days actually worked in 2026, counted in months of more than 15 days; the absorption of comma 8, which takes any individual or collective treatment granted after 1 June 2024 except the fixed amounts of collective agreements signed before 1 July 1993, the engine deducting only the individual elements. Not modelled: the welfare alternative of comma 11, the worker's choice to pay the amount to Fon.Te. (comma 12) and the crisis exemption of comma 13. Unlike the Federalberghi clause, art. 13 has no territorial floor.",
       "calculation": "ccnl/pubblici-esercizi-fipe-angem:coverage.notes",
       "state": "absent",
-      "remediation": "State the comma 10 condition and the days worked in 2026 as facts, take every treatment granted after 1 June 2024 into the absorption, and model commi 11 and 13.",
+      "remediation": "State the comma 10 condition, the eligibility date and the days worked in 2026 as facts, take every treatment granted after 1 June 2024 (but the pre-1993 fixed amounts) into the absorption, and model commi 11, 12 and 13.",
       "origin": "seeded",
       "links": {
         "limitations": [
