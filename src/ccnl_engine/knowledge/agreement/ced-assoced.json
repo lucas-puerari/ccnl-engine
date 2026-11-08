@@ -142,6 +142,19 @@
           },
           "remediation": "Provide the employer-specific patron saint holiday."
         }
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 147 (PDF p. 97): the ordinary integration of the INAIL indemnity (60% on the first three days, then '75% (cento per cento)' from the 4th: the text is inconsistent) is not modelled: the injury rules of the ruleset hold only the holiday target, so the ordinary injury days are paid at the INAIL share; the holiday reaches 100% net of that share.",
+        "capability": "workplace_injury",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "injury_integration_missing",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Encode the integration bands of the injury article (insured_absence.injury.integration_bands)."
+        }
       }
     ]
   },
@@ -1907,7 +1920,7 @@
     "effective_until": null,
     "source": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
     "verification_status": "unverified",
-    "source_hash": "258f8fb5c8f6c9f7eda3497fa4ed92720448b7191a71d8e69be2e1da1595c972",
+    "source_hash": "097045a4149fb8a642344b5fdbb9f996da024774662d95a505ccbe6e307f51a6",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

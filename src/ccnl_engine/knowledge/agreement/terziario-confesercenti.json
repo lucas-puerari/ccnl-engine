@@ -4161,6 +4161,19 @@
           },
           "remediation": "Provide the employer-specific patron saint holiday."
         }
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 189 (PDF p. 144): the ordinary integration of the INAIL indemnity (90% from the 5th to the 20th day, 100% from the 21st; apprentices 80% and 90%) is not modelled: the injury rules of the ruleset hold only the holiday target, so the ordinary injury days are paid at the INAIL share; the holiday reaches 100% net of that share.",
+        "capability": "workplace_injury",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "injury_integration_missing",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Encode the integration bands of the injury article (insured_absence.injury.integration_bands)."
+        }
       }
     ]
   },
@@ -4171,7 +4184,7 @@
     "effective_until": "2027-03-31",
     "source": "https://www.confesercenti.it/wp-content/uploads/2023/01/CCNL_contratto-collettivo-nazionale.pdf",
     "verification_status": "unverified",
-    "source_hash": "4da8713461c337b80c127f7d537f6da7a07d240a99319590a5ed9075ea401189",
+    "source_hash": "ef775022c75abce81d8ec799b207fa864ad4f72cd4fb4908d68d77ae9bd48dcf",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, inps_employer, maternity_leave, sickness |
+| **Limits of this contract** | base_salary, inps_employer, maternity_leave, sickness, workplace_injury |
 
-4 documented simplification(s) and 1 missing feature(s): see [Known simplifications](#known-simplifications).
+5 documented simplification(s) and 1 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -138,6 +138,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Provide the employer-specific patron saint holiday.
+
+!!! warning "ced-assoced/injury_integration_missing · workplace_injury · impact yes · open"
+    Art. 147 (PDF p. 97): the ordinary integration of the INAIL indemnity (60% on the first three days, then '75% (cento per cento)' from the 4th: the text is inconsistent) is not modelled: the injury rules of the ruleset hold only the holiday target, so the ordinary injury days are paid at the INAIL share; the holiday reaches 100% net of that share.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Encode the integration bands of the injury article (insured_absence.injury.integration_bands).
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
