@@ -1751,7 +1751,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/poste-italiane-k700",
       "ruleset_version": "2026.2",
-      "source_hash": "8e320bc6b2c7ce028f96ac67e78fda51fb39ff8e7c7f7cd22b1579593ff47010",
+      "source_hash": "fb51f01db3b614db1109cc178e2bd3e99afd2c0e622414611b3d8133302281cd",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/poste-italiane-k700.json.gz"
@@ -4441,7 +4441,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "182ba95335c7e5a0d6663822318115d7fd24e940f5ea9f934961a95f51733e4d",
+      "source_hash": "2fdb80bda994a27f9ebc211b58da0aadff92c6d14bc8f937ee3a12e968345e69",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/poste-italiane-k700.json.gz",
