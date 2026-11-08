@@ -83,22 +83,6 @@
       }
     },
     {
-      "id": "local_holiday_during_absence",
-      "institute": "sickness",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "The local patron saint holiday during sickness or injury is not calculated: the national holiday calendar does not contain employer-specific holidays.",
-      "calculation": "ccnl/terziario-confesercenti:coverage.notes",
-      "state": "absent",
-      "remediation": "Provide the employer-specific patron saint holiday.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "terziario-confesercenti/local_holiday_during_absence"
-        ]
-      }
-    },
-    {
       "id": "maternity_daily_base",
       "institute": "maternity_leave",
       "variant": "all",

@@ -365,6 +365,11 @@ _RECORDED: dict[str, object] = {
             ["review r2: production reviewed by the process that extracted it"],
         ),
         (
+            "production",
+            _RECORDED | {"independence": "same_process", "outcome": "flagged"},
+            [],
+        ),
+        (
             "reviewed",
             {k: v for k, v in _RECORDED.items() if k not in {"checked", "sources"}},
             ["review r2 without sources", "review r2 without checked"],

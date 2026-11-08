@@ -12,6 +12,7 @@ from ccnl_engine.absence.models import DailyDivisorMethod
 from ccnl_engine.calendar.holiday.loaders import load_national_holidays
 from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.compensation.element.types import MonthlyPayChain
+from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.sickness.holiday.rules import covered_target_holidays
 from ccnl_engine.sickness.term.rules import DailyQuota
 
@@ -23,14 +24,20 @@ _PAY = MonthPay(
 )
 
 
-def _paid(name: str, first: date, last: date, injury_on: date) -> InsuredPay:
+def _paid(
+    name: str,
+    first: date,
+    last: date,
+    injury_on: date,
+    employer: EmployerProfile | None = None,
+) -> InsuredPay:
     contract = load_ccnl(name)
     assert contract.work_rules is not None
     assert contract.work_rules.insured_absence is not None
     rules = contract.work_rules.insured_absence.injury
     assert rules is not None
     holidays = covered_target_holidays(
-        rules.holiday, load_national_holidays(), first.year
+        rules.holiday, load_national_holidays(), first.year, employer
     )
     return injury_pay(
         first,
@@ -43,6 +50,26 @@ def _paid(name: str, first: date, last: date, injury_on: date) -> InsuredPay:
         rules,
         holidays,
     )
+
+
+def test_patron_day_in_work_injury_needs_a_stated_employer_day() -> None:
+    """March 19: INAIL pays 60 of daily 100; the stated patron adds 40.
+
+    Without the employer fact there is no additional holiday payment.
+    """
+    first = last = date(2026, 3, 19)
+    injury_on = date(2026, 3, 15)
+    name = "metalmeccanico-federmeccanica"
+    absent = _paid(name, first, last, injury_on)
+    stated = _paid(
+        name,
+        first,
+        last,
+        injury_on,
+        EmployerProfile(headcount=Headcount(50), patron_saint_day="03-19"),
+    )
+    assert (absent.indemnity, absent.integration) == (Decimal(60), Decimal(0))
+    assert (stated.indemnity, stated.integration) == (Decimal(60), Decimal(40))
 
 
 @pytest.mark.parametrize(

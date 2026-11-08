@@ -205,19 +205,6 @@
           },
           "remediation": "Top up the holidays the clause covers beyond the weekday national calendar, and the items above."
         }
-      },
-      {
-        "kind": "simplification",
-        "text": "The local patron saint holiday during sickness or injury is not calculated: the national holiday calendar does not contain employer-specific holidays.",
-        "capability": "sickness",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "local_holiday_during_absence",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Provide the employer-specific patron saint holiday."
-        }
       }
     ]
   },
@@ -2386,7 +2373,7 @@
     "effective_until": null,
     "source": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
     "verification_status": "unverified",
-    "source_hash": "359aed91e8db595057c54b1031aa1fe35335eb898856419dc92aaa0a7f73395b",
+    "source_hash": "b15662857dafc65590144dee60f37cb720a6a7f0f9b7b51d9b978ce52c047602",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3147,20 +3134,21 @@
             "section": "Art. 124 - Festività nel periodo di malattia o infortunio",
             "quote": "Ai sensi della Legge 31 Marzo 1954, n° 90, per le festività cadenti nel periodo di malattia o infortunio, il lavoratore ha diritto ad una indennità integrativa di quella a carico rispettivamente dell’INPS e dell’INAIL, da corrispondersi a carico del datore di lavoro, in modo da raggiungere complessivamente il 100% (cento per cento) della retribuzione di cui al Titolo XXVIII (Trattamento Economico)."
           },
-          "transformation": "On a national holiday (not a Sunday) falling in a sickness within the comporto, the integration target of the day is 100% of the daily pay, the INPS share of the day netted (sickness_rules.holiday). Not modelled: the same top-up on the INAIL indemnity of an injury. The national calendar adds 4 October from 2026 (L. 151/2025), which this text, signed before, does not list: excluded (excluded_days 10-04).",
+          "transformation": "On a national holiday (not a Sunday) falling in a sickness within the comporto, the integration target of the day is 100% of the daily pay, the INPS share of the day netted (sickness_rules.holiday). The injury holiday target nets the INAIL indemnity and ordinary daily integration. The national calendar adds 4 October from 2026 (L. 151/2025), which this text, signed before, does not list: excluded (excluded_days 10-04). The stated local patron saint day is covered on weekdays.",
           "extraction": {
             "method": "ai",
             "model": "claude-opus-5-5",
-            "extraction_timestamp": "2026-11-08T10:25:37Z",
+            "extraction_timestamp": "2026-11-08T12:42:01Z",
             "verified_by": "claude-opus-5-5",
-            "verified_at": "2026-11-08T10:25:37Z",
+            "verified_at": "2026-11-08T12:42:01Z",
             "verification_status": "verified",
-            "review_id": "2026-11-08-ai-studi-professionali-confprofessioni-holiday-in-sickness"
+            "review_id": "2026-11-08-ai-studi-professionali-confprofessioni-patron-holiday"
           }
         },
         "excluded_days": [
           "10-04"
-        ]
+        ],
+        "includes_patron_saint": true
       }
     },
     "insured_absence": {
@@ -3206,20 +3194,21 @@
               "section": "Art. 124 - Festività nel periodo di malattia o infortunio",
               "quote": "Ai sensi della Legge 31 Marzo 1954, n° 90, per le festività cadenti nel periodo di malattia o infortunio, il lavoratore ha diritto ad una indennità integrativa di quella a carico rispettivamente dell’INPS e dell’INAIL, da corrispondersi a carico del datore di lavoro, in modo da raggiungere complessivamente il 100% (cento per cento) della retribuzione di cui al Titolo XXVIII (Trattamento Economico)."
             },
-            "transformation": "On a covered national weekday holiday during a work injury, employer integration reaches 100% of the daily pay after subtracting INAIL indemnity and the ordinary CCNL integration already due on that day; the clause also covers sickness. The local patron saint is outside the national calendar.",
+            "transformation": "On a covered national weekday holiday during a work injury, employer integration reaches 100% of the daily pay after subtracting INAIL indemnity and the ordinary CCNL integration already due on that day; the clause also covers sickness. The stated local patron saint day is covered on weekdays.",
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-08T12:05:09Z",
-              "verified_at": "2026-11-08T12:05:09Z",
+              "extraction_timestamp": "2026-11-08T12:42:01Z",
+              "verified_at": "2026-11-08T12:42:01Z",
               "verification_status": "verified",
-              "review_id": "2026-11-08-ai-studi-professionali-confprofessioni-injury-holiday",
+              "review_id": "2026-11-08-ai-studi-professionali-confprofessioni-patron-holiday",
               "verified_by": "claude-opus-5-5"
             }
           },
           "excluded_days": [
             "10-04"
-          ]
+          ],
+          "includes_patron_saint": true
         }
       },
       "maternity": {
@@ -4085,6 +4074,28 @@
         ],
         "independence": "same_process",
         "checked": [
+          "work_rules.insured_absence.injury.holiday"
+        ]
+      },
+      {
+        "id": "2026-11-08-ai-studi-professionali-confprofessioni-patron-holiday",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Local patron saint day in sickness and work injury holiday clauses.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+            "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
+          }
+        ],
+        "findings": [
+          "Art. 124 - Festività nel periodo di malattia o infortunio (p. 67): Ai sensi della Legge 31 Marzo 1954, n° 90, per le festività cadenti nel periodo di malattia o infortunio, il lavoratore ha diritto ad una indennità integrativa di quella a carico rispettivamente dell’INPS e dell’INAIL, da corrispondersi a carico del datore di lavoro, in modo da raggiungere complessivamente il 100% (cento per cento) della retribuzione di cui al Titolo XXVIII (Trattamento Economico). The stated local patron saint day is covered when the target opts in; unstated days leave other holidays unchanged."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.sickness_rules.holiday",
           "work_rules.insured_absence.injury.holiday"
         ]
       }

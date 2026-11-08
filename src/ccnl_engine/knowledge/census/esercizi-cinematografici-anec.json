@@ -135,7 +135,7 @@
       "institute": "sickness",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Art. 61: pregnancy and puerperium holiday top-ups, Easter Sunday and the local patron saint are not calculated; national weekday holidays during sickness and injury are covered.",
+      "rule": "Art. 61: pregnancy and puerperium holiday top-ups, Easter Sunday are not calculated; national weekday holidays during sickness and injury are covered.",
       "calculation": "ccnl/esercizi-cinematografici-anec:coverage.notes",
       "state": "absent",
       "remediation": "Provide employer-specific holidays and the remaining absence treatments.",

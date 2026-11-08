@@ -75,11 +75,15 @@ def test_confapi_excluded_national_holiday_is_not_topped_up() -> None:
 
 
 def _holiday_case(
-    slug: str, level: str, start: date, holiday: date
+    slug: str,
+    level: str,
+    start: date,
+    holiday: date,
+    patron: str | None = None,
 ) -> dict[str, Decimal]:
     result = calculate_period(
         PeriodCalculationRequest(
-            employer=EmployerProfile(headcount=Headcount(50)),
+            employer=EmployerProfile(headcount=Headcount(50), patron_saint_day=patron),
             period_id=PeriodId(holiday.year, holiday.month),
             payment_date=date(holiday.year, holiday.month, 27),
             ccnl_id=slug,
@@ -97,6 +101,30 @@ def _holiday_case(
         for i in result.pay_items
         if "_evt" in i.item_id
     }
+
+
+def test_stated_patron_day_tops_up_sickness_but_unknown_does_not() -> None:
+    """Eight days at 65.63: first three pay 196.89 in waiting pay.
+
+    Five INPS days pay about 26.25 each. Ordinary integration is 65.63;
+    the patron day reaches the full 65.63 instead of the ordinary 75%,
+    adding 16.40 (with a one-cent INPS allocation rounding difference).
+    """
+    first = date(2026, 3, 12)
+    last = date(2026, 3, 19)
+    ordinary = {
+        "abs": Decimal("459.41"),
+        "crnz": Decimal("196.89"),
+        "inps": Decimal("131.26"),
+        "intg": Decimal("65.63"),
+    }
+    assert (
+        _holiday_case("studi-professionali-confprofessioni", "3", first, last)
+        == ordinary
+    )
+    assert _holiday_case(
+        "studi-professionali-confprofessioni", "3", first, last, "03-19"
+    ) == {**ordinary, "inps": Decimal("131.27"), "intg": Decimal("82.03")}
 
 
 def test_federmeccanica_target_covers_only_letter_b_national_holidays() -> None:

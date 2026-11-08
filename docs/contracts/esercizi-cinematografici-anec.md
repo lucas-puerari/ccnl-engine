@@ -61,6 +61,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-07 | claude-opus-5-5 (ai) | The monthly values of the levels against the primary tables (text layer). | confirmed | 60 values found verbatim on the cited pages and marked verified; 0 left as they were (derived or not on a text page). |
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 61, cached PDF pp. 46-47, national weekday holidays and sickness paragraph. | confirmed | Art. 61 tops up sickness treatment to full daily pay on national weekday holidays; injury, maternity, Easter Sunday and the patron saint remain unmodelled. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Holiday pay during work injury, including the applicable holiday calendar and the offset against statutory and contractual daily pay. | confirmed | Covered weekday holiday target reaches full daily pay after INAIL and ordinary CCNL integration; employer-specific holidays remain outside the national calendar. |
+| 2026-11-08 | claude-opus-5-5 (ai) | Local patron saint day in sickness and work injury holiday clauses. | confirmed | Art. 61 - Festività, sickness paragraph (p. 47): In caso di assenza dovuta a malattia, infortunio, gravidanza e puerperio, nei giorni festivi innanzi elencati l'azienda integrerà il trattamento economico corrisposto dagli istituti assistenziali ed assicurativi fino a raggiungere l'intera retribuzione giornaliera prevista dal 2° comma del presente articolo. The stated local patron saint day is covered when the target opts in; unstated days leave other holidays unchanged. |
 
 ## Salary table
 
@@ -118,7 +119,7 @@ percentage: 0.90
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
 !!! warning "esercizi-cinematografici-anec/other_holiday_during_absence · sickness · impact yes · open"
-    Art. 61: pregnancy and puerperium holiday top-ups, Easter Sunday and the local patron saint are not calculated; national weekday holidays during sickness and injury are covered.
+    Art. 61: pregnancy and puerperium holiday top-ups, Easter Sunday are not calculated; national weekday holidays during sickness and injury are covered.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 

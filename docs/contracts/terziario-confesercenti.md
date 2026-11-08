@@ -33,7 +33,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, overtime, sickness, territorial_supplement, una_tantum, workplace_injury |
 
-13 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+12 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -70,6 +70,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | gpt-6-sol (ai) | Art. 69 of the testo unico 12 dicembre 2019 and the agreement of 2016 it incorporates. Final encoding (dual_apprenticeship JSON) checked against the PDFs by a separate model session (.private flv2). | confirmed | The percentages and the halves of the third level match; the year is read as the contract year and the 10% training share on the qualified-worker pay, which art. 69 and the 2016 agreement do not define.<br>Ambiguous in the text, kept as read: the base of the 10% training share ('di quella che gli sarebbe dovuta'). |
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 191 (PDF p. 145, text layer). | confirmed | Art. 191: the festività in a sickness or injury are topped up to 100% of the pay, net of the INPS and INAIL indemnity: sickness_rules.holiday rate 1; the injury part stays a limitation. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Holiday pay during work injury, including the applicable holiday calendar and the offset against statutory and contractual daily pay. | confirmed | Covered weekday holiday target reaches full daily pay after INAIL and ordinary CCNL integration; employer-specific holidays remain outside the national calendar. |
+| 2026-11-08 | claude-opus-5-5 (ai) | Local patron saint day in sickness and work injury holiday clauses. | confirmed | Art. 191 - Festività nel periodo di malattia o infortunio (p. 145): Ai sensi della Legge 31 marzo 1954, n. 90, per le festività cadenti nel periodo di malattia o infortunio, il lavoratore ha diritto ad un’indennità integrativa di quella a carico rispettivamente dell’INPS e dell’INAIL, da corrispondersi a carico del datore di lavoro, in modo da raggiungere complessivamente il 100% (cento per cento) della retribuzione di fatto di cui all’art. 208. The stated local patron saint day is covered when the target opts in; unstated days leave other holidays unchanged. |
 
 ## Salary table
 
@@ -182,13 +183,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Resolved: leave_rules.permit_deadline with the employer fact permit_carryover, read on 2026-11-06.
-
-!!! warning "terziario-confesercenti/local_holiday_during_absence · sickness · impact yes · open"
-    The local patron saint holiday during sickness or injury is not calculated: the national holiday calendar does not contain employer-specific holidays.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Provide the employer-specific patron saint holiday.
 
 !!! warning "terziario-confesercenti/injury_integration_missing · workplace_injury · impact yes · open"
     Art. 189 (PDF p. 144): the ordinary integration of the INAIL indemnity (90% from the 5th to the 20th day, 100% from the 21st; apprentices 80% and 90%) is not modelled: the injury rules of the ruleset hold only the holiday target, so the ordinary injury days are paid at the INAIL share; the holiday reaches 100% net of that share.

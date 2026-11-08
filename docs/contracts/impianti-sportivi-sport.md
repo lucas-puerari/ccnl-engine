@@ -33,7 +33,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, sickness, workplace_injury |
 
-10 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+9 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -63,6 +63,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | gpt-6-sol (ai) | Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim. | confirmed | integration_75_days_4_20: JSON sickness_rules.day_bands is [4,21) at 0.75 and [21,infinity) at 1; carenza_integration_rate=1, net_basis=true and apprentices_excluded=true. SickPayRules.target_rate(index) selects the matching band and _segment_pay() tops up INPS to that target (does not add 75% on top). Th |
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 107 (PDF p. 85, text layer). | confirmed | Art. 107: the festività in a sickness or injury are topped up to 100% of the pay, net of the INPS and INAIL indemnity: sickness_rules.holiday rate 1; the injury part stays a limitation. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Holiday pay during work injury, including the applicable holiday calendar and the offset against statutory and contractual daily pay. | confirmed | Covered weekday holiday target reaches full daily pay after INAIL and ordinary CCNL integration; employer-specific holidays remain outside the national calendar. |
+| 2026-11-08 | claude-opus-5-5 (ai) | Local patron saint day in sickness and work injury holiday clauses. | confirmed | Art. 107 - Festività nel periodo di malattia o infortunio (p. 85): Ai sensi della legge 31 marzo 1954, n. 90, per le festività cadenti nel periodo di malattia o infortunio, il lavoratore ha diritto a un'indennità integrativa di quella a carico rispettivamente dell'INPS e dell'INAIL da corrispondersi a carico del datore di lavoro in modo da raggiungere complessivamente il 100% (cento per cento) della retribuzione di fatto di cui all'art. 117. The stated local patron saint day is covered when the target opts in; unstated days leave other holidays unchanged. |
 
 ## Salary table
 
@@ -155,13 +156,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `sickness` applies.
 
     **Remediation:** Find a source (an interpretation of the parties, an INPS or Ministry text) that defines the net daily pay of Art. 103, align the computation, then resolve this limitation.
-
-!!! warning "impianti-sportivi-sport/local_holiday_during_absence · sickness · impact yes · open"
-    The local patron saint holiday during sickness or injury is not calculated: the national holiday calendar does not contain employer-specific holidays.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Provide the employer-specific patron saint holiday.
 
 !!! warning "impianti-sportivi-sport/injury_integration_missing · workplace_injury · impact yes · open"
     Art. 105 (PDF pp. 84-85): the ordinary integration of the INAIL indemnity (90% from the 5th to the 20th day, 100% from the 21st; apprentices 80% and 90%) is not modelled: the injury rules of the ruleset hold only the holiday target, so the ordinary injury days are paid at the INAIL share; the holiday reaches 100% net of that share.

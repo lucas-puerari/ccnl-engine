@@ -18,6 +18,7 @@ if TYPE_CHECKING:
         InsuredAbsenceRules,
     )
     from ccnl_engine.agreement.validity.rules import TimeSeries
+    from ccnl_engine.employer.inputs import EmployerProfile
     from ccnl_engine.employment.category.models import WorkerCategory
     from ccnl_engine.period.context.services import RunContext
     from ccnl_engine.provenance.source.models import SourceLocation
@@ -64,6 +65,7 @@ class InsuredTerms:
     category: WorkerCategory | None = None
     monthly_payments: TimeSeries | None = None
     vertical: bool = False
+    employer: EmployerProfile | None = None
 
 
 def insured_terms(ctx: RunContext) -> InsuredTerms:
@@ -109,4 +111,5 @@ def insured_terms(ctx: RunContext) -> InsuredTerms:
         category=sick.category,
         monthly_payments=sick.monthly_payments,
         vertical=ctx.request.work_pattern is not None,
+        employer=ctx.request.employer,
     )
