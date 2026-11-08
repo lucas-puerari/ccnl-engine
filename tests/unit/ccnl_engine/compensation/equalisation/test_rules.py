@@ -252,3 +252,82 @@ def test_the_element_rejects_invalid_values(fields: dict[str, Any]) -> None:
 def test_the_month_threshold_defaults_to_more_than_fifteen_days() -> None:
     """'La frazione di mese superiore a 15 giorni': 16."""
     assert _element().month_min_days == 16
+
+
+_TURISMO = load_ccnl("turismo-federalberghi")
+
+
+def _turismo(
+    hired: date = date(2025, 1, 1),
+    *,
+    year: int = 2027,
+    month: int = 11,
+    ended: date | None = None,
+    level: str = "2",
+    hours: tuple[int, int] | None = None,
+    kind: RunKind = RunKind.REGULAR,
+) -> list[Decimal]:
+    weekly = full = None
+    if hours is not None:
+        weekly, full = (WeeklyHours(Decimal(h)) for h in hours)
+    request = cast(
+        "PeriodCalculationRequest",
+        SimpleNamespace(
+            period_id=PeriodId(year=year, month=month),
+            level_code=level,
+            employment_period=EmploymentPeriod(hired, ended),
+            individual_elements=(),
+            weekly_hours=weekly,
+            full_time_weekly_hours=full,
+            employer=SimpleNamespace(
+                second_level_premium=False, second_level_elements=()
+            ),
+        ),
+    )
+    return [e.amount for e in equalisation_outcome(request, _TURISMO, kind).events]
+
+
+@pytest.mark.parametrize(
+    ("level", "amount"),
+    [("A", "186.00"), ("2", "158.00"), ("5", "140.00"), ("7", "112.00")],
+)
+def test_the_guarantee_element_of_november_2027(level: str, amount: str) -> None:
+    """A full 2026 of service pays the amount of the level."""
+    assert _turismo(level=level) == [Decimal(amount)]
+
+
+def test_the_guarantee_element_follows_the_part_time() -> None:
+    """C. 6: 20 of 40 hours, half of 158."""
+    assert _turismo(hours=(20, 40)) == [Decimal("79.00")]
+
+
+@pytest.mark.parametrize(
+    ("hired", "ended", "year", "kind"),
+    [
+        (date(2027, 5, 1), None, 2027, RunKind.REGULAR),  # less than six months
+        (date(2025, 1, 1), date(2027, 9, 30), 2027, RunKind.REGULAR),  # gone
+        (date(2025, 1, 1), None, 2026, RunKind.REGULAR),  # not 2026
+        (date(2025, 1, 1), date(2027, 6, 30), 2027, RunKind.TERMINATION),
+    ],
+)
+def test_the_guarantee_element_is_not_owed(
+    hired: date, ended: date | None, year: int, kind: RunKind
+) -> None:
+    """In service in October with six months; paid only in November 2027."""
+    month = 6 if kind is RunKind.TERMINATION else 11
+    assert _turismo(hired, year=year, month=month, ended=ended, kind=kind) == []
+
+
+def test_an_element_has_one_amount_rule() -> None:
+    """Either a yearly amount or one by level."""
+    with pytest.raises(ValidationError, match="set yearly or yearly_by_level"):
+        EqualisationElement.model_validate({
+            "code": "X",
+            "paid_in_month": 6,
+            "provenance": _ELEMENT.model_dump()["provenance"] if _ELEMENT else {},
+        })
+
+
+def test_a_level_without_an_amount_is_owed_nothing() -> None:
+    """A level the table does not name pays no guarantee element."""
+    assert _turismo(level="Z") == []

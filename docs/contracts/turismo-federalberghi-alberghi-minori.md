@@ -51,7 +51,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-07-05 |
-| **Last review** | 2026-11-07 |
+| **Last review** | 2026-11-08 |
 | **Latest salary tranche** | 2027-11-01 |
 
 ## Review history
@@ -71,6 +71,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-06 | claude-opus-5-5 (ai) | Apprentice seniority: artt. 58, 148 and 158 of the 2010 text (pp. 90, 134, 140, OCR). | corrected | APPRENTICE SENIORITY (CCNL Turismo of 20 February 2010: art. 58 c. 1, p. 90; art. 148 c. 1 d), p. 134; art. 158, p. 140): the apprentice is paid a percentage of 'la normale retribuzione dei lavoratori qualificati di pari livello', whose voci include 'eventuali scatti di anzianità', and the six triennial increments count 'l'anzianità di servizio prestata senza interruzione': the level increments, scaled by the percentage. |
 | 2026-11-07 | claude-opus-5-5 (ai) | The monthly values of the levels against the primary tables (text layer). | confirmed | 2 values found verbatim on the cited pages and marked verified; 50 left as they were (derived or not on a text page). |
 | 2026-11-07 | gpt-6-sol (ai) | Monthly values on scanned pages, each read twice from the page image by two independent sessions of another model, the second without being told the expected value. | confirmed | 50 values read identically by both readings and equal to the file. |
+| 2026-11-08 | gpt-6-sol (ai) | Art. 13 commi 5-14 of the ipotesi of 5 July 2024 (scanned pp. 10-12), the encoding checked against the page images by a separate model session. | flagged | Confirmed the amounts by level, the November 2027 payment, the eligibility of comma 5 and the part-time of comma 6.<br>Flagged as approximations, kept under the limitation: the trigger of comma 10, the days worked of comma 5, the absorption of comma 8. |
 
 ## Salary table
 
@@ -125,11 +126,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Model the net daily pay of art. 228 and the end of a fixed-term contract.
 
 !!! warning "turismo-federalberghi-alberghi-minori/guarantee_element_2027 · base_salary · impact yes · open"
-    Art. 13 c. 10, pp. 11-12: the elemento economico di garanzia paid with the November 2027 pay without an integrative agreement by 31 October 2026 (A and B 186, 1-3 158, 4-5 140, 6s-7 112).
+    Art. 13 c. 10 (ipotesi 5 July 2024, pp. 11-12, read on the page images): the amounts of November 2027 (A and B 186, 1-3 158, 4-5 140, 6s-7 112) are parameters.equalisation_element. Approximated: the trigger, read from the second-level facts of 2026 where the text asks whether an integrative agreement was defined by 31 October 2026 after a platform was presented; the proportion to the days actually worked in 2026, counted in months of more than 15 days; the absorption of comma 8, which takes any individual or collective treatment granted after 1 July 2024, the engine deducting only the individual elements. Not modelled: the welfare alternative of comma 11, the crisis exemption of comma 13 and the territorial agreements of comma 14.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Model the 2027 guarantee element as a conditional allowance.
+    **Remediation:** State the comma 10 condition and the days worked in 2026 as facts, take every treatment granted after 1 July 2024 into the absorption, and model commi 11, 13 and 14.
 
 !!! warning "turismo-federalberghi-alberghi-minori/extras_hourly_table · base_salary · impact yes · open"
     Art. 155 c. 3, p. 44: the hourly table of the extra workers.
