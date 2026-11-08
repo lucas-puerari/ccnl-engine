@@ -720,6 +720,7 @@
       "cinema-audiovisivi-industria/fpls_rates_approximated"
     ],
     "agreement/commercio-confcommercio.json": [
+      "commercio-confcommercio/holiday_during_injury",
       "commercio-confcommercio/profile_specific_apprenticeship",
       "commercio-confcommercio/sickness_net_basis"
     ],
@@ -1017,6 +1018,7 @@
     ],
     "agreement/metalmeccanico-federmeccanica.json": [
       "metalmeccanico-federmeccanica/elemento_perequativo",
+      "metalmeccanico-federmeccanica/holiday_during_injury",
       "metalmeccanico-federmeccanica/overtime_exempt_quota_supplement",
       "metalmeccanico-federmeccanica/par_conto_ore_hourly_elements",
       "metalmeccanico-federmeccanica/par_sector_and_shift_hours",
