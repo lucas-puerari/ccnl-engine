@@ -45,7 +45,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 0 verified / 10 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 0 verified / 11 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -275,6 +275,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     Malattia: 100% mesi 1-9, 90% mesi 10-12, 50% mesi 13-18, comporto max 18 mesi (540 gg) — Art. 38 CCNL 23.01.2024 Area Sanità. Modellato con SicknessTier; ogni giorno di malattia riceve il tasso del mese dell'episodio in cui cade, anche in un periodo di paga a cavallo di una soglia.
     
     PENSION FUND. Perseo Sirio (1% + 1% of the retribuzione utile ai fini del TFR). Enrolment is a fact: the silenzio-assenso of the hires from 2 January 2019 (accordo ARAN 16/09/2021) is not inferred, nor the three months a fixed term needs to enrol. The TFR conferred stays a notional INPS accrual.
+    
+    Art. 16 CCNL 27.2.2026 (art. 80 CCNL 23.1.2024): the indennità di direzione di struttura complessa, 11,157 EUR a year on 13 payments from 2024 (10,525 from 2022), is paid with the role 'direttore_sc' at 858.23 a month (809.62 before 2024); the yearly amount differs from 13 payments by 1 cent of rounding.
     
     Stipendio tabellare da Art. 11 CCNL 27.02.2026: incremento +230€/mese da 1/1/2024, valore a regime 50.005,77€/anno per 13 mensilità = 3.846,60€/mese.
     

@@ -131,22 +131,6 @@
       }
     },
     {
-      "id": "nurses_professional_allowance",
-      "institute": "base_salary",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "NURSES ALLOWANCE: indennita professionale infermieri 155 EUR/month (12 months) not included — qualifica-specific, not level-specific.",
-      "calculation": "ccnl/istituzioni-servizi-socio-assistenziali-anaste:coverage.notes",
-      "state": "absent",
-      "remediation": "Model the indennita professionale infermieri (155 EUR x 12) as a fixed allowance with role 'infermiere' (Allowance.role, months_per_year 12).",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "istituzioni-servizi-socio-assistenziali-anaste/nurses_professional_allowance"
-        ]
-      }
-    },
-    {
       "id": "parental_daily_base",
       "institute": "parental_leave",
       "variant": "all",

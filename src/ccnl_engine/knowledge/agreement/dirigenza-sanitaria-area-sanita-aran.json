@@ -292,6 +292,111 @@
               "effective_from": "2020-01-01"
             }
           }
+        },
+        {
+          "code": "IND_DIREZIONE_STRUTTURA_COMPLESSA",
+          "description": "Indennità di direzione di struttura complessa (art. 80 CCNL 23.1.2024, art. 16 CCNL 27.2.2026), with the role 'direttore_sc'",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2019-12-19",
+                "valid_until": "2022-01-01",
+                "gap_kind": "missing"
+              },
+              {
+                "valid_from": "2022-01-01",
+                "valid_until": "2024-01-01",
+                "value": "809.62",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aran-ccnl-area-sanita-2019-2021",
+                      "title": "CCNL Area Sanità 2019-2021, sottoscritto il 23 gennaio 2024 (ARAN)",
+                      "kind": "associazione",
+                      "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_23_AREA-SANITA_2019-2021.pdf",
+                      "published_on": "2024-01-23",
+                      "sha256": "de9efc25f0ca29ea4fedf8ff7d9e3fa893a672c62f628dbb96d7cfa18bcd6375"
+                    },
+                    "page": "114",
+                    "section": "Art. 80 - Indennità di direzione di struttura complessa",
+                    "quote": "A decorrere dal 31.12.2021 ed a valere dal 2022, il valore annuo lordo per tredici mensilità dell’indennità di direzione di struttura complessa di cui all’art. 90 del CCNL 19.12.2019, è rideterminato in € 10.525,00."
+                  },
+                  "transformation": "EUR 10,525.00 a year over 13 payments from 2022: 809.62 a month (10,525 / 13 = 809.615, to the cent).",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T20:00:00Z",
+                    "effective_from": "2022-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T20:00:00Z",
+                    "verification_status": "verified"
+                  }
+                }
+              },
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": null,
+                "value": "858.23",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aran-ccnl-area-sanita-2022-2024",
+                      "title": "CCNL Area Sanità 2022-2024, sottoscritto il 27 febbraio 2026 (ARAN)",
+                      "kind": "associazione",
+                      "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf",
+                      "published_on": "2026-02-27",
+                      "sha256": "78f817dd3665df879f652b9778aeb634037664143ae195c2278d608efce4513a"
+                    },
+                    "page": "23",
+                    "section": "Art. 16 - Indennità di direzione di struttura complessa",
+                    "quote": "A decorrere dall’1.1.2024, il valore annuo lordo per tredici mensilità dell’indennità di direzione di struttura complessa di cui all’art. 80 del CCNL 23.1.2024, è rideterminato in € 11.157,00."
+                  },
+                  "transformation": "EUR 11,157.00 a year over 13 payments from 1 January 2024: 858.23 a month (11,157 / 13 = 858.230, to the cent).",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T20:00:00Z",
+                    "effective_from": "2024-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T20:00:00Z",
+                    "verification_status": "verified"
+                  }
+                }
+              }
+            ]
+          },
+          "role": "direttore_sc",
+          "months_per_year": 13,
+          "tfr_relevant": false,
+          "contribution_relevant": true,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "aran-ccnl-area-sanita-2022-2024",
+                "title": "CCNL Area Sanità 2022-2024, sottoscritto il 27 febbraio 2026 (ARAN)",
+                "kind": "associazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf",
+                "published_on": "2026-02-27",
+                "sha256": "78f817dd3665df879f652b9778aeb634037664143ae195c2278d608efce4513a"
+              },
+              "page": "23",
+              "section": "Art. 16 - Indennità di direzione di struttura complessa",
+              "quote": "A decorrere dall’1.1.2024, il valore annuo lordo per tredici mensilità dell’indennità di direzione di struttura complessa di cui all’art. 80 del CCNL 23.1.2024, è rideterminato in € 11.157,00."
+            },
+            "transformation": "Paid with the role 'direttore_sc', the dirigente with an incarico di direzione di struttura complessa (art. 22 c. 1 par. I lett. a CCNL 23.1.2024), on 13 payments; TFR relevance as the indennità di specificità of the same ruleset.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T20:00:00Z",
+              "effective_from": "2022-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-08T20:00:00Z",
+              "verification_status": "verified"
+            }
+          }
         }
       ],
       "provenance": {
@@ -399,6 +504,11 @@
       {
         "kind": "info",
         "text": "PENSION FUND. Perseo Sirio (1% + 1% of the retribuzione utile ai fini del TFR). Enrolment is a fact: the silenzio-assenso of the hires from 2 January 2019 (accordo ARAN 16/09/2021) is not inferred, nor the three months a fixed term needs to enrol. The TFR conferred stays a notional INPS accrual."
+      },
+      {
+        "kind": "info",
+        "text": "Art. 16 CCNL 27.2.2026 (art. 80 CCNL 23.1.2024): the indennità di direzione di struttura complessa, 11,157 EUR a year on 13 payments from 2024 (10,525 from 2022), is paid with the role 'direttore_sc' at 858.23 a month (809.62 before 2024); the yearly amount differs from 13 payments by 1 cent of rounding.",
+        "capability": "base_salary"
       }
     ]
   },
@@ -409,7 +519,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf",
     "verification_status": "unverified",
-    "source_hash": "ba12c744c7de202200e762f0a8fa4f7d84ea69f0917ab98026bd62b382e67b89",
+    "source_hash": "7b2ad0bd1d557085a11ce5e9c5fb578eafe1460d9176eb07df3a77409a753913",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },
