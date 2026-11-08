@@ -275,8 +275,8 @@ class RaccordoElement(BaseModel):
 class CCNLParameters(BaseModel):
     """Contract-wide parameters.
 
-    ``accrual_rule``: threshold for extra-month accrual; payment days govern
-    extra months. Fund contributions and category-specific months follow.
+    ``accrual_rule``: month threshold of an extra-month window; ``*_payment_day``: their
+    pay days; ``additional_months_by_category``: the payments of a category.
     ``flat_pay_max_weekly_hours``: hours at the full minimum (domestic: 30);
     ``solidarity_fund``: D.Lgs. 148/2015 art. 26; ``raccordo_element``: ERC;
     ``enam_levels``: ex ENAM; ``renewals``: raising the minimo (L. 199/2025);
