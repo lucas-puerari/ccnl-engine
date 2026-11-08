@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, pension_fund_contribution |
+| **Limits of this contract** | base_salary |
 
-4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 29 verified / 1 derived / 2 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 31 verified / 1 derived / 2 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-05-19 |
-| **Last review** | 2026-11-08 |
+| **Last review** | 2026-11-09 |
 | **Latest salary tranche** | 2027-05-01 |
 
 ## Review history
@@ -64,6 +64,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-06 | claude-opus-5-5 (ai) | Apprentice seniority: the CCNL Agenti immobiliari 2025 (apprenticeship and seniority articles). | corrected | The apprentice is classified one level below with 'lo stesso trattamento normativo'; 'Per l'anzianità di servizio maturata presso lo stesso datore di lavoro, il personale ha diritto a dieci scatti triennali': the increments of the level the apprentice is paid at. |
 | 2026-11-08 | gpt-6-sol (ai) | Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim. | confirmed | quadri_function_allowance: The agreement's Q fixed_allowances already contains IND_FUNZIONE at EUR 250.00/month from 2025-05-01, restricted to role responsabile_unita and months_per_year=12. compensation/element/rules.py gates on the worker's roles; element/types.py excludes 12-month allowances from extra- |
 | 2026-11-08 | claude-opus-5-5 (ai) | EBNAIP contributions of art. 11 of the 2025 text, read on the text layer (analysis by a separate model session). | corrected | Added the QSC (1.60% employer, 0.30% worker of the monthly pay on 14 months; 2.40% E.A.R. to the worker when the employer does not pay, on 14 months, in the TFR) and the employer's flat quota of 12 EUR on twelve months. |
+| 2026-11-09 | claude-opus-5-5 (ai) | Art. 15 of the CCNL FIAIP 2025 (PDF p. 26, text layer). | corrected | Fon.Te.: employer 1.55% and worker 0.55% of the TFR base, the 0.05 quota associativa included (the old note added it on top); TFR 50% or 100% at the worker's choice; una tantum 15.50 EUR at enrolment. |
 
 ## Salary table
 
@@ -125,13 +126,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Resolved: parameters.una_tantum holds the installments of 1 September 2025 and 1 May 2026, paid by the engine as arrears of the covered months.
-
-!!! warning "agenti-immobiliari-fiaip/fonte_pension_fund · pension_fund_contribution · impact yes · open"
-    SIMPLIFICATION: Fondo Fon.Te. supplementary pension (Art. 15) not modelled. Voluntary adhesion. Employee: 0.55% of TFR-eligible retribuzione; employer: 1.55% + 0.05% quota associativa. employer_cost_annual understated by approximately 1.60% of annual retribuzione for adherents.
-
-    **Applies when:** `pension_fund_contribution` applies.
-
-    **Remediation:** Add the Fon.Te. employee and employer rates to the CCNL pension fund data.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
@@ -325,6 +319,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     first valid_from is 2025-05-01 (decorrenza del rinnovo per le tabelle retributive). agreement_date 2025-05-19 is the signature date; these differ per precedent (IC91: agreement_date 2023-02-28, first tranche 2021-01-01). April 2025 table from Art. 162 is the previgente table — not modelled as a period.
     
     Source provenance: values extracted from signed CCNL 19/05/2025 PDF distributed by FIAIP/EBNAIP. The direct PDF download URL was not recorded; the homepage https://www.ebnaip.it/ was used as the source anchor. All values verified page-by-page against the original document.
+    
+    Art. 15 (p. 26): Fon.Te., employer 1.55% and worker minimum 0.55% of the TFR base, the 0.05 quota associativa included in each (parameters.employer_funds FONTE); the TFR share, 50% or 100%, is the worker's choice. The una tantum of 15.50 EUR at enrolment is not paid by the engine.
     
 
 ## Raw data
