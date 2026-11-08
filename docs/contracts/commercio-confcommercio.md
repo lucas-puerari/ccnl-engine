@@ -77,7 +77,8 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | gpt-6-sol (ai) | Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim. | confirmed | permit_deadline_payout: Art. 158 provides year-end payment at then-current retribuzione di fatto OR later use no later than 30 June of the next year. commercio-confcommercio.json already has permit_deadline carry_until_month=6 for ex_festivita and rol and marks this limitation resolved. leave/services.p |
 | 2026-11-08 | gpt-6-sol (ai) | Employer top-up of the INAIL indemnity, read from the signed text by a separate model session (audit of the injury rules); quote checked on the text layer or the page image. | corrected | The injury rule had no top-up of the INAIL indemnity; added: {"integration_bands": [{"day_from": 4, "rate": "0.90"}, {"day_from": 20, "rate": "1"}], "net_basis": true} |
 | 2026-11-08 | gpt-6-sol (ai) | Art. 69 of the testo unico 30 luglio 2019 and the agreement of 2016 it incorporates. Final encoding (dual_apprenticeship JSON) checked against the PDFs by a separate model session (.private flv2). | confirmed | The percentages, the qualified-worker reference and the halves of the third level match; the year of art. 69 ('primo e secondo anno') is read as the contract year, which the text does not define.<br>Ambiguous in the text, kept as read: the base of the 10% training share ('di quella che gli sarebbe dovuta'). |
-| 2026-11-08 | gpt-6-sol (ai) | Art. 187 and art. 191 of the testo unico 2019 against the decision not to encode the holiday target, by a separate model session. | confirmed | Confirmed: with the net-basis integration of art. 187, a 100% target pays 64.82 where the gross holiday pay of art. 191 is 68.52; the clause is kept as a limitation. |
+| 2026-11-08 | gpt-6-sol (ai) | Art. 187 and art. 191 of the testo unico 2019 against the decision not to encode the holiday target, by a separate model session. | confirmed | Confirmed: a net-basis 100% target alone pays 64.82 where the gross holiday pay of art. 191 is 68.52; this finding preceded the separate gross-basis target. |
+| 2026-11-08 | gpt-6-sol (ai) | Holiday target of the sickness and injury absence on the gross daily quota, against the net-basis integration, by a separate model session. | flagged | Confirmed: the holiday target of the encoded days is computed on the gross daily quota, not the net basis of the ordinary integration.<br>Confirmed: holidays of a year-crossing absence are classified by their own year.<br>Flagged: the injury path is confirmed for the tested day only; general claims beyond the tested cases are unsupported. |
 
 ## Salary table
 
@@ -142,12 +143,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Find a source (an interpretation of the parties, an INPS or Ministry text) that defines the net daily pay of Art. 187, align the computation, then resolve this limitation.
 
-!!! warning "commercio-confcommercio/holiday_during_injury · sickness · impact yes · open"
-    Art. 191 requires the INPS sickness benefit plus employer integration to reach 100% of the actual daily pay on a holiday, but no sickness_rules.holiday target is encoded: the net-basis integration of art. 187 grosses up the INPS benefit before subtracting it from the gross target, leaving the worker below 100%. Art. 154 lists all national-calendar holidays except 4 October (added in 2026); the patron saint is not in the national calendar. Injury holiday integration with INAIL is also not calculated.
+!!! warning "commercio-confcommercio/local_patron_holiday · sickness · impact yes · open"
+    Art. 191 also covers the local patron saint holiday of art. 154, which cannot be determined from the national calendar without the workplace location.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Provide a gross-pay holiday target distinct from the net-basis art. 187 sickness integration and calculate the INAIL holiday top-up and local patron saint holiday.
+    **Remediation:** Provide a location-aware holiday calendar for the local patron saint.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
