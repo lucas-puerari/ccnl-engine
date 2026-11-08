@@ -9,7 +9,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | Group | CCNLs | Workers | Weak | Derived | Verified | Aggregator | Anchor |
 |---|---:|---:|---:|---:|---:|---:|---|
 | pubblica-amministrazione | 14 | 7 548 000 | 14 | 231 | 182 | 0 | `funzioni-centrali-aran` |
-| terziario | 46 | 5 257 055 | 53 | 973 | 1736 | 4 | `commercio-confcommercio`, `sanita-privata-aiop-aris` |
+| terziario | 46 | 5 257 055 | 53 | 1019 | 1736 | 4 | `commercio-confcommercio`, `sanita-privata-aiop-aris` |
 | industria | 49 | 4 969 900 | 155 | 1173 | 2288 | 15 | `logistica-trasporto-confetra`, `metalmeccanico-federmeccanica` |
 | lavoro-domestico | 3 | 1 800 000 | 0 | 3 | 60 | 0 | `lavoro-domestico-non-convivente` |
 | artigianato | 8 | 1 244 505 | 34 | 151 | 309 | 2 | `metalmeccanico-artigianato` |
@@ -43,7 +43,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | [`commercio-confcommercio`](../contracts/commercio-confcommercio.md) (anchor) | 800 000 | production | 0 | 2 | 86 | party or official | maintainer | 2027-03-31 |
 | [`multiservizi-anip`](../contracts/multiservizi-anip.md) | 580 000 | exploratory | 0 | 63 | 90 | party or official | none | none |
 | [`dmo-federdistribuzione`](../contracts/dmo-federdistribuzione.md) | 460 000 | reviewed | 0 | 3 | 93 | party or official | maintainer | 2027-04-01 |
-| [`cooperative-sociali`](../contracts/cooperative-sociali.md) | 380 000 | reviewed | 0 | 1 | 62 | party or official | maintainer | 2027-01-31 |
+| [`cooperative-sociali`](../contracts/cooperative-sociali.md) | 380 000 | reviewed | 0 | 47 | 62 | party or official | maintainer | 2027-01-31 |
 | [`pubblici-esercizi-fipe-angem`](../contracts/pubblici-esercizi-fipe-angem.md) | 350 000 | production | 0 | 4 | 68 | party or official | maintainer | 2027-06-01 |
 | [`pubblici-esercizi-fipe-angem-ristorazione-collettiva`](../contracts/pubblici-esercizi-fipe-angem-ristorazione-collettiva.md) | 350 000 | production | 0 | 6 | 62 | party or official | maintainer | 2027-06-01 |
 | [`studi-professionali-confprofessioni`](../contracts/studi-professionali-confprofessioni.md) | 350 000 | reviewed | 0 | 2 | 53 | party or official | maintainer | 2027-04-30 |

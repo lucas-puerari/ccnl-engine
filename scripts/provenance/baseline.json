@@ -750,6 +750,7 @@
     "agreement/cooperative-sociali.json": [
       "cooperative-sociali/coop_sociali_unmodelled_elements",
       "cooperative-sociali/inps_rate_not_reconciled",
+      "cooperative-sociali/role_conditions_caller_stated",
       "cooperative-sociali/type_b_disadvantaged_exemption"
     ],
     "agreement/dirigenza-funzioni-locali-aran.json": [
