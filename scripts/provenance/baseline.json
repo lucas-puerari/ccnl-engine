@@ -688,6 +688,7 @@
     ],
     "agreement/ced-assoced.json": [
       "ced-assoced/conditional_allowances_title_xxiii",
+      "ced-assoced/holiday_during_injury",
       "ced-assoced/terziario_inps_rates_unverified"
     ],
     "agreement/cemento-calce-gesso-industria.json": [
@@ -889,6 +890,7 @@
       "igiene-ambientale-utilitalia/industria_rates_proxy"
     ],
     "agreement/impianti-sportivi-sport.json": [
+      "impianti-sportivi-sport/holiday_during_injury",
       "impianti-sportivi-sport/level_v_first_semester_overpaid",
       "impianti-sportivi-sport/level_vi_whole_track_at_destination",
       "impianti-sportivi-sport/pre_2015_fourteenth_missing",
@@ -1144,7 +1146,7 @@
     ],
     "agreement/studi-professionali-confprofessioni.json": [
       "studi-professionali-confprofessioni/fourteenth_exclusion",
-      "studi-professionali-confprofessioni/holiday_during_sickness",
+      "studi-professionali-confprofessioni/holiday_during_injury",
       "studi-professionali-confprofessioni/intermittent_availability",
       "studi-professionali-confprofessioni/rolling_comporto_and_serious_illness",
       "studi-professionali-confprofessioni/travel_diaria",
@@ -1159,6 +1161,7 @@
     ],
     "agreement/terziario-confesercenti.json": [
       "terziario-confesercenti/apprentice_sickness",
+      "terziario-confesercenti/holiday_during_injury",
       "terziario-confesercenti/provincial_third_elements",
       "terziario-confesercenti/sales_operators",
       "terziario-confesercenti/sickness_net_basis",

@@ -54,6 +54,8 @@ class SickPayRules:
             a cumulated CCNL treatment.
         fixed_term: Whether the contract is fixed-term, whose sickness pay
             is limited by D.L. 463/1983 art. 5.
+        holidays: The national holidays the CCNL holiday target applies on
+            (``SicknessRules.holiday``), Sundays not included.
     """
 
     inps: InpsSickPayRates
@@ -61,6 +63,7 @@ class SickPayRules:
     ccnl: SicknessRules
     worker: SicknessWorker = field(default_factory=SicknessWorker)
     fixed_term: bool = False
+    holidays: frozenset[date] = frozenset()
 
     @property
     def paid_directly(self) -> bool:
@@ -164,7 +167,7 @@ class SickPayRules:
         Returns:
             A function of the relapse-chain index and the date of a day.
         """
-        treatment = self._treatment(episode, history)
+        treatment = self._with_holidays(self._treatment(episode, history))
         length = (episode.ended_on - episode.started_on).days
         unpaid_from = _unpaid_carenza_from(self.ccnl, length)
         if unpaid_from is None:
@@ -177,6 +180,30 @@ class SickPayRules:
             return replace(ccnl_day, carenza_rate=Decimal(0))
 
         return unpaid_carenza
+
+    def _with_holidays(self, treatment: DayTreatment) -> DayTreatment:
+        """Return ``treatment`` with the holiday target on the holidays.
+
+        Returns:
+            The treatment, the target of a holiday within the comporto
+            raised to the CCNL holiday rate.
+        """
+        holiday = self.ccnl.holiday
+        if holiday is None or not self.holidays:
+            return treatment
+        rate = holiday.rate
+
+        def on_holiday(index: int, day: date) -> CcnlDay:
+            ccnl_day = treatment(index, day)
+            if day not in self.holidays or ccnl_day.beyond_comporto:
+                return ccnl_day
+            return replace(
+                ccnl_day,
+                rate=max(ccnl_day.rate, rate),
+                carenza_rate=max(ccnl_day.carenza_rate, rate),
+            )
+
+        return on_holiday
 
     def _treatment(
         self, episode: SicknessEpisode, history: SicknessHistory

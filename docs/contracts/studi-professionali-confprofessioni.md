@@ -72,6 +72,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-05 | claude-opus-5-5 (ai) | The ferie days of the six-day week, Art. 99 c. 1 - Misura del periodo di ferie (PDF p. 51), read by a separate research session and checked again on the text layer. | corrected | Art. 99 c. 1 - Misura del periodo di ferie: 22 working days in the five-day week, 26 in the six-day week: work_rules.leave_rules.week_days_annual_days 6/26, read when Employment.full_time_week_days is 6. |
 | 2026-11-05 | claude-opus-5-5 (ai) | The permits of the six-day week, Art. 91 c.2 lett. B (PDF p. 47). | corrected | Art. 91 c.2: 40 hours of reduced time on five days, 66 on six: work_rules.leave_rules.week_days_annual_days[6].permit_hours rol 66. |
 | 2026-11-08 | gpt-6-sol (ai) | Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim. | confirmed | six_day_week_leave: Art. 99 grants 26 working days including Saturday for six days, 22 for Monday–Friday. Existing default_annual_days=22 and week_days_annual_days[6]=26 are selected through Employment.full_time_week_days by load_contract/with_week_days and credited by accrue_month. The six-day enti |
+| 2026-11-08 | claude-opus-5-5 (ai) | Art. 124 (PDF p. 67, text layer). | confirmed | Art. 124: the festività in a sickness or injury are topped up to 100% of the pay, net of the INPS and INAIL indemnity: sickness_rules.holiday rate 1; the injury part stays a limitation. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 110(8), PDF p. 56: weekday holiday top-up during compulsory maternity and paternity. | confirmed | Verified the quoted clause against the cached PDF; encoded only the compulsory maternity holiday target. |
 
 ## Salary table
@@ -134,13 +135,6 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Model the rolling comporto and the serious-illness extension.
 
-!!! warning "studi-professionali-confprofessioni/holiday_during_sickness · sickness · impact yes · open"
-    Art. 124: the 100% of festività during sickness.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Pay the festività during sickness at 100%.
-
 !!! warning "studi-professionali-confprofessioni/unused_leave_hours · base_salary · impact yes · open"
     Artt. 91, 92, 97 C, 98: the ROL (40 or 66 hours) and the 32 hours of ex festività paid when not taken, the festività falling on Sunday and the flexibility hours not recovered.
 
@@ -175,6 +169,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Resolved: rol entry_ramp of art. 91 c.4 for the contratto di reimpiego (Permanent.entry_pay), read on 2026-11-06.
+
+!!! warning "studi-professionali-confprofessioni/holiday_during_injury · sickness · impact yes · open"
+    Art. 124 (p. 67): a festività falling in a sickness is topped up to 100% of the daily pay net of the INPS share (sickness_rules.holiday). Not modelled: the same top-up on the INAIL indemnity of an injury, and the holidays the CCNL adds to the national calendar (the patron saint).
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Top up the INAIL indemnity of a holiday falling in an injury to 100%, and add the patron saint as an employer fact.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
@@ -383,8 +384,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     INJURY (Art. 123, p. 66): the injury day in full and 60% for the three days of carenza (art. 73 DPR 1124/1965); from the fourth day the employer tops the INAIL indemnity up to 75% of the retribuzione media giornaliera (work_rules.insured_absence.injury). The indemnity is not due when INAIL pays none.
     
-    Art. 110(8): compulsory maternity and paternity holiday top-ups are modelled for leave days.
-    
     ENTRY PAY (Art. 56, p. 40): an over 50 or long-term unemployed hired a tempo indeterminato may be paid two levels below for 9 months and one for the 6 after (Permanent.entry_pay, CCNL entry_pay); not for level 5. The engine applies the largest reduction the clause allows ('fino a').
     
     HOURLY RATE AND SUPPLEMENTS (artt. 93-97, 135, 137 of the CCNL of 16 February 2024): without a caller value the engine derives the hourly base (the art. 135 normale retribuzione over 170) and the 30% on festività hours paid as straordinario festivo (art. 97 lett. E with art. 95); art. 97 also pays the hours themselves, which the engine does not post: the run is provisional. Not derived, the caller states the amount: ordinary night work, which art. 93 leaves to the Area Professionale or second-level bargaining (the 30% of art. 95 is a night overtime rate); work on the weekly rest day ('la relativa sola maggiorazione', art. 97 lett. F, names no percentage).
@@ -392,6 +391,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     LEAVE AT TERMINATION (Art. 137, p. 70): the indemnity for the ferie not taken is the monthly pay divided by 26 ('il computo dell’indennità sostitutiva delle ferie, si ottiene dividendo l’importo mensile per il divisore convenzionale 26'), for any weekly schedule, while the file accrues the 22 days of the settimana corta. The 32 hours of ex festività left are paid by the day, 8 hours at the monthly pay / 26 (the 'retribuzione normale giornaliera' of Art. 98); the 40 hours of ROL of the five-day week (Art. 91) at the monthly pay / 170.
     
     APPRENTICE SENIORITY (Art. 129, p. 119 of the CCNL completo 10 April 2026, https://www.confprofessioni.eu/wp-content/uploads/2026/07/00274046_CCNL_Studi_Professionali_2026.04.10_completo.pdf, sha256 35cc1ec44a282f39fa401949828f180897872a8c7907eb39d4f7a51420e04477): 'la disciplina sull’anzianità di servizio e sugli scatti di anzianità (di cui all’art. 134 del presente CCNL) è applicabile anche agli apprendisti e la decorrenza di questi istituti è quella della data di assunzione': the apprentice takes the scatti of art. 134 at the amounts of the level (seniority_increments.apprentice_level_amount).
+    
+    Art. 110(8): compulsory maternity and paternity holiday top-ups are modelled for leave days.
     
 
 ## Raw data
