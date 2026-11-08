@@ -116,15 +116,15 @@
       },
       {
         "kind": "simplification",
-        "text": "Art. 191 requires the INPS sickness benefit plus employer integration to reach 100% of the actual daily pay on a holiday, but no sickness_rules.holiday target is encoded: the net-basis integration of art. 187 grosses up the INPS benefit before subtracting it from the gross target, leaving the worker below 100%. Art. 154 lists all national-calendar holidays except 4 October (added in 2026); the patron saint is not in the national calendar. Injury holiday integration with INAIL is also not calculated.",
+        "text": "Art. 191 also covers the local patron saint holiday of art. 154, which cannot be determined from the national calendar without the workplace location.",
         "capability": "sickness",
         "monetary_impact": "yes",
         "limitation": {
-          "variant": "holiday_during_injury",
+          "variant": "local_patron_holiday",
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Provide a gross-pay holiday target distinct from the net-basis art. 187 sickness integration and calculate the INAIL holiday top-up and local patron saint holiday."
+          "remediation": "Provide a location-aware holiday calendar for the local patron saint."
         }
       },
       {
@@ -3708,7 +3708,7 @@
     "effective_until": null,
     "source": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
     "verification_status": "unverified",
-    "source_hash": "4845ca4390dc94b5d714bba233a594c47e2b894126657c5410c993571b5e2ae5",
+    "source_hash": "f9b5d46d1c74ef7bcf6c450252256762aea14bf9cbaea4b9a9c4f96569b9a156",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -4714,6 +4714,38 @@
         }
       ],
       "comporto_calendar_year": true,
+      "holiday": {
+        "rate": "1",
+        "gross_basis": true,
+        "excluded_days": [
+          "10-04"
+        ],
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "uiltucs-tu2019",
+              "title": "CCNL per i dipendenti da aziende del Terziario della Distribuzione e dei Servizi, Testo Unico 30 luglio 2019",
+              "kind": "associazione",
+              "url": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
+              "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016"
+            },
+            "page": "182",
+            "section": "Art. 191 - Festività",
+            "quote": "per le festività cadenti nel periodo di malattia o infortunio, il lavoratore ha diritto ad un’indennità integrativa di quella a carico rispettivamente dell’INPS e dell’INAIL, da corrispondersi a carico del datore di lavoro, in modo da raggiungere complessivamente il 100% (cento per cento) della retribuzione di fatto di cui all’art. 208."
+          },
+          "transformation": "For national weekday holidays listed in art. 154 during sickness, top up the INPS share to 100% of the gross daily pay rather than the net-basis art. 187 target. The local patron saint is not in the national calendar; art. 154 does not list 4 October, so exclude 10-04.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-08T12:40:50Z",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-08T12:40:50Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-08-ai-commercio-gross-holiday"
+          }
+        }
+      },
       "carenza_by_event": {
         "from_event": 3,
         "rates": [
@@ -5097,7 +5129,39 @@
             "rate": "1"
           }
         ],
-        "net_basis": true
+        "net_basis": true,
+        "holiday": {
+          "rate": "1",
+          "gross_basis": true,
+          "excluded_days": [
+            "10-04"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "uiltucs-tu2019",
+                "title": "CCNL per i dipendenti da aziende del Terziario della Distribuzione e dei Servizi, Testo Unico 30 luglio 2019",
+                "kind": "associazione",
+                "url": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
+                "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016"
+              },
+              "page": "182",
+              "section": "Art. 191 - Festività",
+              "quote": "per le festività cadenti nel periodo di malattia o infortunio, il lavoratore ha diritto ad un’indennità integrativa di quella a carico rispettivamente dell’INPS e dell’INAIL, da corrispondersi a carico del datore di lavoro, in modo da raggiungere complessivamente il 100% (cento per cento) della retribuzione di fatto di cui all’art. 208."
+            },
+            "transformation": "For national weekday holidays listed in art. 154 during injury, top up the INAIL share and ordinary employer integration to 100% of the gross daily pay. The local patron saint is not in the national calendar; art. 154 does not list 4 October, so exclude 10-04.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T12:40:50Z",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-08T12:40:50Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-08-ai-commercio-gross-holiday"
+            }
+          }
+        }
       },
       "maternity": {
         "integration_rate": "1",
@@ -5565,11 +5629,33 @@
           }
         ],
         "findings": [
-          "Confirmed: with the net-basis integration of art. 187, a 100% target pays 64.82 where the gross holiday pay of art. 191 is 68.52; the clause is kept as a limitation."
+          "Confirmed: a net-basis 100% target alone pays 64.82 where the gross holiday pay of art. 191 is 68.52; this finding preceded the separate gross-basis target."
         ],
         "independence": "separate_model",
         "checked": [
           "work_rules.sickness_rules"
+        ]
+      },
+      {
+        "id": "2026-11-08-ai-commercio-gross-holiday",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 191 gross holiday target for sickness and injury, art. 154 national holiday list and engine basis handling.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
+            "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016"
+          }
+        ],
+        "findings": [
+          "May 1 sickness pays 34.26 INPS plus 34.26 employer on a 68.52 gross quota; the national calendar cannot identify the local patron saint."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.sickness_rules",
+          "work_rules.insured_absence.injury"
         ]
       }
     ],

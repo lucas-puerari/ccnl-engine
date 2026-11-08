@@ -84,7 +84,11 @@ def test_units_past_the_month_are_dropped(
 
 def _rules(*, net_basis: bool) -> SickPayRules:
     return cast(
-        "SickPayRules", SimpleNamespace(ccnl=SimpleNamespace(net_basis=net_basis))
+        "SickPayRules",
+        SimpleNamespace(
+            ccnl=SimpleNamespace(net_basis=net_basis, holiday=None),
+            holidays=frozenset(),
+        ),
     )
 
 
