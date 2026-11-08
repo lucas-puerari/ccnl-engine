@@ -118,6 +118,22 @@
       {
         "kind": "info",
         "text": "FIRST- AND THIRD-LEVEL APPRENTICES (Allegato F): modelled in dual_apprenticeship (first level 45/55/60/70% by year at the conventional level, third level 70% or 80% by length; training at the employer 10% of the work pay, school hours unpaid). The contributions of these apprentices are the engine limitation dual_apprenticeship_contributions."
+      },
+      {
+        "kind": "simplification",
+        "text": "FIRST-LEVEL PERIOD (All. F, p. 86): 'la retribuzione, in ragione del titolo da conseguire e dell'anno scolastico/formativo di effettiva frequenza, è stabilita in percentuale'; the table of pp. 86-87 maps the school years of each course to the 45/55/60/70% rows. The data keys the rows by year of the contract, which differs for an apprentice hired after the first school year of the course.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "dual_apprenticeship_school_year",
+          "applies_when": {
+            "trigger": "outside_input",
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Key the first-level rows by the course and the school year attended (Apprentice.school_year)."
+        }
       }
     ]
   },
@@ -197,8 +213,8 @@
         "date": "2026-11-08",
         "reviewer": "gpt-6-sol",
         "reviewer_kind": "ai",
-        "scope": "Allegato F (accordo 19 giugno 2018) of the CCNL 18 June 2024, pp. 85-88. Every row of the extraction re-checked by a separate model session on the saved PDFs (verdict CONFIRMED).",
-        "outcome": "confirmed",
+        "scope": "Allegato F (accordo 19 giugno 2018) of the CCNL 18 June 2024, pp. 85-88. Final encoding (dual_apprenticeship JSON) checked against the PDFs by a separate model session (.private flv2).",
+        "outcome": "flagged",
         "sources": [
           {
             "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-quadri-e-impiegati-agricoli-2024-2027.pdf",
@@ -206,7 +222,9 @@
           }
         ],
         "findings": [
-          "Added dual_apprenticeship for the first- and third-level apprentices."
+          "The third level (70% above 12 months, 80% up to 12) matches.",
+          "The first level follows 'l'anno scolastico/formativo di effettiva frequenza' (All. F p. 86) through the correspondence table of pp. 86-87, not the year of the contract the data keys it by: recorded as dual_apprenticeship_school_year.",
+          "Ambiguous in the text, kept as read: the base of the 10% training share ('di quella che gli sarebbe dovuta')."
         ],
         "independence": "separate_model",
         "checked": [
@@ -796,7 +814,7 @@
     "effective_until": "2027-12-31",
     "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-quadri-e-impiegati-agricoli-2024-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "6d728537a63f837806202f41829c20677634543423a394f2a39ae5c1fb348f04",
+    "source_hash": "0cb084f26eccb1f87c60b3608ed3dc4890662e2a2d72039dfc7d643e854d1954",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

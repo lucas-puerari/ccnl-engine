@@ -3695,7 +3695,7 @@
     "effective_until": null,
     "source": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
     "verification_status": "unverified",
-    "source_hash": "e39ad3baa9264516454b2443675c6ea60b34965819d4721c0ad1de42677dfc52",
+    "source_hash": "f81a92a207bef8fb68a8c2e9d160150ff8392b14d7fedfde04c22b1aa8dd6bf9",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -5521,7 +5521,7 @@
         "date": "2026-11-08",
         "reviewer": "gpt-6-sol",
         "reviewer_kind": "ai",
-        "scope": "Art. 69 of the testo unico 30 luglio 2019 and the agreement of 2016 it incorporates. Every row of the extraction re-checked by a separate model session on the saved PDFs (verdict CONFIRMED).",
+        "scope": "Art. 69 of the testo unico 30 luglio 2019 and the agreement of 2016 it incorporates. Final encoding (dual_apprenticeship JSON) checked against the PDFs by a separate model session (.private flv2).",
         "outcome": "confirmed",
         "sources": [
           {
@@ -5530,7 +5530,8 @@
           }
         ],
         "findings": [
-          "Added dual_apprenticeship for the first- and third-level apprentices."
+          "The percentages, the qualified-worker reference and the halves of the third level match; the year of art. 69 ('primo e secondo anno') is read as the contract year, which the text does not define.",
+          "Ambiguous in the text, kept as read: the base of the 10% training share ('di quella che gli sarebbe dovuta')."
         ],
         "independence": "separate_model",
         "checked": [

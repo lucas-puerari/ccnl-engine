@@ -36,7 +36,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, inps_employer |
 
-3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -76,7 +76,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-07 | gpt-6-sol (ai) | Monthly values on scanned pages, each read twice from the page image by two independent sessions of another model, the second without being told the expected value. | confirmed | 31 values read identically by both readings and equal to the file. |
 | 2026-11-08 | claude-opus-5-5 (ai) | FSBA ordinary contribution, art. 3 of the 2024 regulation, read on the text layer (analysis by a separate model session). | corrected | Added parameters.solidarity_fund FSBA: 0.45%+0.15% up to 15 employees, 0.75%+0.25% above, on the INPS base, fixed terms included.<br>Closed health_and_bilateral_funds (FSBA was its only remediation). |
 | 2026-11-08 | claude-opus-5-5 (ai) | Saturday overtime of the consolidated 2021 text (unchanged by the 2024 renewal), read on the text layer. | corrected | Added OT_SABATO (25%, first 3 hours) and OT_SABATO_OLTRE_3_ORE (50% beyond 3 hours a day) on the new OvertimeKind.SATURDAY; closed artisan_saturday_overtime. |
-| 2026-11-08 | gpt-6-sol (ai) | Art. 26 of the CCNL 17 December 2021 and the interconfederal agreement of 1 February 2018 it reproduces (pp. 89-93), not changed by the 2024 renewal. Every row of the extraction re-checked by a separate model session on the saved PDFs (verdict CONFIRMED). | confirmed | Added dual_apprenticeship for the first- and third-level apprentices. |
+| 2026-11-08 | gpt-6-sol (ai) | Art. 26 of the CCNL 17 December 2021 and the interconfederal agreement of 1 February 2018 it reproduces (pp. 89-93), not changed by the 2024 renewal. Final encoding (dual_apprenticeship JSON) checked against the PDFs by a separate model session (.private flv2). | flagged | The first-level percentages and the third-level halves on the tabellare match.<br>Point 9 (p. 95): when the school objectives are not met, the next year keeps the previous year's percentage; not expressible, recorded as dual_apprenticeship_prorogation.<br>Ambiguous in the text, kept as read: the base of the 10% training share ('di quella che gli sarebbe dovuta'). |
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 73 of the CCNL 17 December 2021 (PDF p. 147), text layer. | corrected | Added work_rules.sickness_rules_by_category for impiegati and quadri. |
 
 ## Salary table
@@ -144,6 +144,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Add an 'impiegati_centralinisti' track (70, 70, 75, 80% by semester, then 100%) selectable by Apprentice.track.
+
+!!! warning "metalmeccanico-artigianato/dual_apprenticeship_prorogation · base_salary · impact yes · open"
+    SCHOOL OBJECTIVES NOT MET (accordo interconfederale 1 febbraio 2018, point 9, PDF p. 95): 'nel caso di mancato raggiungimento degli obiettivi formativi scolastici, all'apprendista non spetta, per il successivo anno di apprendistato, l'avanzamento delle percentuali retributive'. The engine pays the year of Apprentice.months_elapsed.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Let the caller state the objectives not met, and keep the previous year's percentage.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
