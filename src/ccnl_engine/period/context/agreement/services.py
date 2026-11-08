@@ -11,6 +11,7 @@ from typing import TYPE_CHECKING
 
 from ccnl_engine.agreement.validity.rules import rule_scope
 from ccnl_engine.catalog.services import resolve_ccnl
+from ccnl_engine.compensation.category_months.rules import with_category_months
 from ccnl_engine.compensation.fixed_term.rules import (
     with_fixed_term_pay,
     with_fixed_term_tfr,
@@ -178,6 +179,7 @@ def load_contract(
         level_code=request.level_code,
     )
     ccnl = with_sickness_variant(ccnl, _category(ccnl, request), request.contract_type)
+    ccnl = with_category_months(ccnl, _category(ccnl, request))
     ccnl = with_fixed_term_pay(ccnl, _category(ccnl, request), request.contract_type)
     tctx = TemporalContext.from_period(
         period_id.year, period_id.month, request.payment_date

@@ -834,7 +834,7 @@
       "edilizia-pmi-confapi-aniem/apprentice_seniority",
       "edilizia-pmi-confapi-aniem/cassa_edile_accruals_missing",
       "edilizia-pmi-confapi-aniem/contractual_fund_partial",
-      "edilizia-pmi-confapi-aniem/impiegati_premio_annuo_missing",
+      "edilizia-pmi-confapi-aniem/impiegati_premio_fedelta",
       "edilizia-pmi-confapi-aniem/operai_gruppo_3_track_merged",
       "edilizia-pmi-confapi-aniem/operai_seniority_ape",
       "edilizia-pmi-confapi-aniem/provincial_evr",
@@ -914,8 +914,7 @@
       "informatica-pmi-unimatica/apprenticeship_duration_by_agreement"
     ],
     "agreement/istituzioni-servizi-socio-assistenziali-anaste.json": [
-      "istituzioni-servizi-socio-assistenziali-anaste/nurses_professional_allowance",
-      "istituzioni-servizi-socio-assistenziali-anaste/una_tantum_2025"
+      "istituzioni-servizi-socio-assistenziali-anaste/nurses_professional_allowance"
     ],
     "agreement/istruzione-ricerca-aran.json": [
       "istruzione-ricerca-aran/docenti_function_allowance",
