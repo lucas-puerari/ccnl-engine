@@ -69,6 +69,7 @@ def validate_episode(episode: SicknessEpisode) -> None:
         value = getattr(episode, flag)
         if value is not None:
             require_bool(value, f"{_OWNER}.{flag}", feature=_FEATURE)
+    _validate_serious(episode)
     for first, last in episode.hospital_stays or ():
         require_date(first, f"{_OWNER}.hospital_stays", feature=_FEATURE)
         require_date(last, f"{_OWNER}.hospital_stays", feature=_FEATURE)
@@ -103,3 +104,38 @@ def validate_episode(episode: SicknessEpisode) -> None:
         feature=_FEATURE,
         optional=True,
     )
+
+
+def _validate_serious(episode: SicknessEpisode) -> None:
+    """Validate the documented diagnosis and treatment dates.
+
+    Raises:
+        InvalidInputError: If either fact is not valid for the episode.
+    """
+    if (
+        episode.serious_illness_kind is not None
+        and episode.serious_illness_kind
+        not in {
+            "oncological",
+            "tuberculosis_care",
+            "aids",
+            "severe_disability",
+        }
+    ):
+        msg = "SicknessEpisode.serious_illness_kind: unrecognized diagnosis"
+        raise InvalidInputError(
+            msg, field=f"{_OWNER}.serious_illness_kind", feature=_FEATURE
+        )
+    excluded = episode.excluded_comporto_days or ()
+    for day in excluded:
+        require_date(day, f"{_OWNER}.excluded_comporto_days", feature=_FEATURE)
+        if not episode.started_on <= day <= episode.ended_on:
+            msg = "SicknessEpisode.excluded_comporto_days: day outside episode"
+            raise InvalidInputError(
+                msg, field=f"{_OWNER}.excluded_comporto_days", feature=_FEATURE
+            )
+    if len(set(excluded)) != len(excluded):
+        msg = "SicknessEpisode.excluded_comporto_days: duplicate day"
+        raise InvalidInputError(
+            msg, field=f"{_OWNER}.excluded_comporto_days", feature=_FEATURE
+        )

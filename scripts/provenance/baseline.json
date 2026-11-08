@@ -674,8 +674,8 @@
       "aziende-termali-federterme/terziario_inps_rates_unverified"
     ],
     "agreement/bancari-abi.json": [
+      "bancari-abi/abi_remaining_sickness_exceptions",
       "bancari-abi/abi_saturday_overtime_and_hourly_base",
-      "bancari-abi/abi_sickness_counting",
       "bancari-abi/apprentice_net_equivalent_allowance",
       "bancari-abi/inps_sector_rates_unsourced",
       "bancari-abi/scatti_freeze_2013_2014"
@@ -1173,7 +1173,7 @@
       "studi-professionali-confprofessioni/intermittent_availability",
       "studi-professionali-confprofessioni/local_holiday_during_absence",
       "studi-professionali-confprofessioni/maternity_holiday_scope",
-      "studi-professionali-confprofessioni/rolling_comporto_and_serious_illness",
+      "studi-professionali-confprofessioni/rolling_comporto_365_day_boundary",
       "studi-professionali-confprofessioni/travel_diaria",
       "studi-professionali-confprofessioni/unused_leave_hours"
     ],
