@@ -1,15 +1,11 @@
 """Percentages a run pays on the ordinary hours worked of an hourly worker.
 
-The base of each percentage is the base salary and the allowances it names,
-as the run pays them on the hours worked
-(:class:`~ccnl_engine.compensation.proration.services.HourlyBasis`).  Each
-percentage is a gross earning (``hourly_percentage_earning``, policy
-``it/earning/hourly_percentage``) in the INPS, IRPEF and TFR bases, the
-TFR base only when ``tfr_relevant``.  One settled with the Cassa Edile is
-not paid to the worker: CCNL edilizia, Allegato D, taxes the gross, then
-withholds ``net_rate`` of the base as the accrual the employer remits to
-the Cassa, on the account of the worker's bilateral fund contributions.
-The net pay is the gross less contributions, taxes and that accrual; the
+Each is on the base salary and the allowances it names, as paid on the
+hours (``HourlyBasis``), a gross earning (policy
+``it/earning/hourly_percentage``) in the INPS, IRPEF and, when
+``tfr_relevant``, TFR bases.  One settled with the Cassa Edile (CCNL
+edilizia, Allegato D) is taxed on the gross, then ``net_rate`` of the base
+is withheld from the net pay as the accrual remitted to the Cassa.  The
 IRPEF projection adds them to each regular payment to come.
 """
 
@@ -20,6 +16,7 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.agreement.validity.rules import rule_scope
+from ccnl_engine.compensation.fixed_term.rules import overtime_hours
 from ccnl_engine.compensation.hourly.models import PercentageSettlement
 from ccnl_engine.decision.models import CalculationDecision, CalculationStatus
 from ccnl_engine.decision.rules import _ccnl_rule
@@ -105,18 +102,20 @@ def run_percentages(ctx: RunContext) -> tuple[PercentageAmount, ...]:
     """Return the percentages the run pays on the hours worked.
 
     Returns:
-        One amount per percentage of the CCNL; none unless the run pays
-        the worker by the hour on stated hours.
+        One amount per percentage, on the hours worked and the overtime
+        hours of a fixed-term worker; none unless paid by stated hours.
     """
     spec = ctx.contract.ccnl.parameters.hourly_pay
     hourly = ctx.proration.hourly
     if spec is None or hourly is None or hourly.hours is None:
         return ()
     chain, day = ctx.chain, ctx.contract.tctx.competence
+    extra = overtime_hours(ctx.contract.ccnl, ctx.request.events)
+    scale = (hourly.hours + extra) / hourly.hours if hourly.hours else _ONE
     amounts: list[PercentageAmount] = []
     with rule_scope(ruleset=ctx.contract.ccnl.meta.ccnl_id, feature="base_salary"):
         for percentage in spec.percentages:
-            base = _base(chain, percentage)
+            base = money(_base(chain, percentage) * scale)
             rate = percentage.rate.value_at(day)
             series = percentage.net_rate
             net = None if series is None else series.value_at(day)
