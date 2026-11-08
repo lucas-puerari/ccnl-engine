@@ -78,19 +78,6 @@
         "text": "Indennita di funzione (Tabella A note, 2025 renewal): QDIR 287/296/306 EUR, Q 250/258/266 EUR per 14 mensilita. Tranche dates: 01/09/2025, 01/09/2026, 01/09/2027, distinct from base salary tranches."
       },
       {
-        "kind": "simplification",
-        "text": "Scatti di anzianita (Art. 166, 2022 stesura): abrogated from 01/01/2019. Grandfathered for personale in forza al 31-12-2018 only. New hires (post-2018): maximum_count=0. Per-level 2009 amounts: QDIR=52, Q=47, L1=44, L2=40, L3S=36, L3=33, L4=30, L5=27, L6=24 (frozen, not updated since 2009 across 2022 and 2025 renewals).",
-        "capability": "seniority",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "grandfathered_scatti",
-          "applies_when": {
-            "trigger": "run"
-          },
-          "remediation": "Model the scatti frozen at 31/12/2018 for the staff then in service (amounts listed in the note) gated on the hire date, or tell the caller to pass them as Employment.individual_elements (absorbable false) as chimica-farmaceutica-federchimica does."
-        }
-      },
-      {
         "kind": "info",
         "text": "Apprenticeship (Art. 23-24, 2022 stesura, ccnlced.it allegato): under_classification. First half 2 levels below, second half 1 level below. Level 5 exception: stays at Level 6 throughout 24-month track. Destination L2 duration 36 months (studiocerbone.com: 240 h/36 months for 2° livello). Source ccnlced.it showed '6 months' for L2 — treated as parsing artifact; 36 months adopted from studiocerbone.com."
       },
@@ -125,6 +112,10 @@
           "variant": "terziario_inps_rates_unverified",
           "remediation": "Verify the H601 sub-sector INPS rate against the annual INPS circular."
         }
+      },
+      {
+        "kind": "info",
+        "text": "SCATTI (Art. 166, stesura 9 March 2022, p. 106): abrogated from 1 January 2019, they keep maturing for the staff in service on 31 December 2018: five biennial increments from the hire date, QDIR 52, Q 47, 1° 44, 2° 40, 3°S 36, 3° 33, 4° 30, 5° 27, 6° 24 EUR (parameters.seniority_increments.hired_until)."
       }
     ]
   },
@@ -154,26 +145,118 @@
     },
     "seniority_increments": {
       "cadence_months": 24,
-      "maximum_count": 0,
-      "amount_by_level": {},
+      "maximum_count": 5,
+      "hired_until": "2018-12-31",
+      "amount_by_level": {
+        "QDIR": {
+          "periods": [
+            {
+              "valid_from": "2019-01-01",
+              "valid_until": null,
+              "value": "52.00"
+            }
+          ]
+        },
+        "Q": {
+          "periods": [
+            {
+              "valid_from": "2019-01-01",
+              "valid_until": null,
+              "value": "47.00"
+            }
+          ]
+        },
+        "1": {
+          "periods": [
+            {
+              "valid_from": "2019-01-01",
+              "valid_until": null,
+              "value": "44.00"
+            }
+          ]
+        },
+        "2": {
+          "periods": [
+            {
+              "valid_from": "2019-01-01",
+              "valid_until": null,
+              "value": "40.00"
+            }
+          ]
+        },
+        "3S": {
+          "periods": [
+            {
+              "valid_from": "2019-01-01",
+              "valid_until": null,
+              "value": "36.00"
+            }
+          ]
+        },
+        "3": {
+          "periods": [
+            {
+              "valid_from": "2019-01-01",
+              "valid_until": null,
+              "value": "33.00"
+            }
+          ]
+        },
+        "4": {
+          "periods": [
+            {
+              "valid_from": "2019-01-01",
+              "valid_until": null,
+              "value": "30.00"
+            }
+          ]
+        },
+        "5": {
+          "periods": [
+            {
+              "valid_from": "2019-01-01",
+              "valid_until": null,
+              "value": "27.00"
+            }
+          ]
+        },
+        "6": {
+          "periods": [
+            {
+              "valid_from": "2019-01-01",
+              "valid_until": null,
+              "value": "24.00"
+            }
+          ]
+        }
+      },
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
             "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
-            "title": "stesura-ccnl-ced-09-marzo-2022-pdf",
+            "title": "CCNL CED, ICT, Professioni Digitali e STP, stesura 9 marzo 2022 (Fondo EASI)",
             "kind": "associazione",
-            "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf"
+            "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
+            "published_on": "2022-03-09",
+            "sha256": "1ee460e786c76ced31b09153adf30a99ccb59c8587b4080b5cfb7045d150661e"
           },
-          "section": "Scatti di anzianità"
+          "page": "106",
+          "section": "Art. 166 Scatti di anzianità",
+          "quote": "L'istituto degli scatti di anzianità è abrogato a decorrere dal 1° Gennaio 2019. La normativa sulla maturazione degli scatti di anzianità, disciplinata nel presente articolo, continuerà viceversa ad essere applicata esclusivamente per il personale in forza al 31-12-2018. [...] Per l'anzianità di servizio maturata presso la stessa azienda il personale ha diritto a cinque scatti biennali. Ai fini della maturazione degli scatti, l'anzianità di servizio decorre dalla data di assunzione. [...] Quadri di Direzione 52.00 €; Quadri 47.00 €; 1 livello 44.00 €; 2 livello 40.00 €; 3 livello Super 36.00 €; 3 livello 33.00 €; 4 livello 30.00 €; 5 livello 27.00 €; 6 livello 24.00 €"
         },
+        "transformation": "Five biennial increments from the hire date at the amounts of the level, matured only by the staff in service on 31 December 2018 (hired_until); a worker hired later has none. The article covers 'il personale' at the amounts of each 'livello di inquadramento': an apprentice in service on 31 December 2018 takes those of the level he is classified at.",
         "extraction": {
-          "method": "manual",
-          "extraction_timestamp": "2026-09-07T15:03:36",
-          "verification_status": "unverified",
-          "effective_from": "2020-01-01"
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-08T05:00:00Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-08T05:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-08-ai-ced-assoced-grandfathered-scatti"
         }
-      }
+      },
+      "apprentice_level_amount": true
     }
   },
   "apprenticeship": [
@@ -1798,7 +1881,7 @@
     "effective_until": null,
     "source": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
     "verification_status": "unverified",
-    "source_hash": "169c4317700124ddf5a6292366529d68996a99d42998f40ad7c76b8e3b7565ae",
+    "source_hash": "e2e25ad88f941344a8e0b18e1b164b553f5432092ac99df9fbd3bc50553d2583",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2013,6 +2096,27 @@
         "checked": [
           "levels.base_salary",
           "levels.fixed_allowances"
+        ]
+      },
+      {
+        "id": "2026-11-08-ai-ced-assoced-grandfathered-scatti",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 166 of the stesura of 9 March 2022 (PDF p. 106), text layer.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
+            "sha256": "1ee460e786c76ced31b09153adf30a99ccb59c8587b4080b5cfb7045d150661e"
+          }
+        ],
+        "findings": [
+          "Modelled the scatti of the staff in service on 31 December 2018 (were none)."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "parameters.seniority_increments"
         ]
       }
     ]

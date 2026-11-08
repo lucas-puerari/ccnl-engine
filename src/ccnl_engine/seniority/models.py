@@ -112,7 +112,8 @@ class SeniorityIncrements(BaseModel):
     ``on_promotion`` states when the increments matured before a promotion
     take the amounts of the new level; ``None`` reprices them at once.
     ``counted_from_age`` counts the service only after an age; ``freezes``
-    leave periods out of it (Bancari ABI art. 103 c. 3).
+    leave periods out of it (Bancari ABI art. 103 c. 3); ``hired_until``
+    keeps the increments to the staff in service on that day (CED art. 166).
     ``apprentice_level_amount`` pays an apprentice the amounts of the level
     he is classified at (Autoscuole: "nelle misure previste dal livello di
     appartenenza") instead of ``apprentice_amount``;
@@ -145,6 +146,7 @@ class SeniorityIncrements(BaseModel):
     on_promotion: PromotionRepricing | None = None
     counted_from_age: SeniorityAge | None = None
     freezes: tuple[SeniorityFreeze, ...] = ()
+    hired_until: date | None = None
     apprentice_level_amount: bool = False
     apprentice_pct_scaled: bool = False
     provenance: RuleProvenance | None = None
