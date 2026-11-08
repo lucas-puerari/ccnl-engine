@@ -11,7 +11,10 @@ from typing import TYPE_CHECKING
 
 from ccnl_engine.agreement.validity.rules import rule_scope
 from ccnl_engine.catalog.services import resolve_ccnl
-from ccnl_engine.compensation.fixed_term.rules import with_fixed_term_pay
+from ccnl_engine.compensation.fixed_term.rules import (
+    with_fixed_term_pay,
+    with_fixed_term_tfr,
+)
 from ccnl_engine.compensation.individual.rules import with_individual_elements
 from ccnl_engine.compensation.provincial_element.services import (
     without_replaced_elements,
@@ -225,6 +228,13 @@ def load_contract(
         ),
         ccnl.parameters.solidarity_fund,
         headcount,
+    )
+    year_rules = with_fixed_term_tfr(
+        year_rules,
+        ccnl,
+        _category(ccnl, request),
+        request.contract_type,
+        tctx.competence,
     )
     if year_rules.inps is not None:
         inps = with_cigs_indotto(

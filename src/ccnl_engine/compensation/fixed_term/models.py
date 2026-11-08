@@ -31,6 +31,9 @@ class FixedTermPay(BaseModel):
         categories: Worker categories the rule covers.
         hourly_pay: Pay by the hour worked and its percentages.
         additional_months: Monthly payments a year (12: no extra month).
+        tfr_rate: Share of the TFR pay accrued as TFR, in place of the
+            divisor of art. 2120 c.c. (OTD: 'pari all'8,63 per cento
+            calcolato sul salario contrattuale'); ``None`` keeps the divisor.
         provenance: Source of the clause.
     """
 
@@ -39,4 +42,5 @@ class FixedTermPay(BaseModel):
     categories: tuple[WorkerCategory, ...] = Field(min_length=1)
     hourly_pay: HourlyPay
     additional_months: TimeSeries
+    tfr_rate: TimeSeries | None = None
     provenance: RuleProvenance

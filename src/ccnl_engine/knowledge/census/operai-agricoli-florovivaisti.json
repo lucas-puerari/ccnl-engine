@@ -279,10 +279,10 @@
       "institute": "base_salary",
       "variant": "all",
       "discriminant": "applies_when.trigger = run",
-      "rule": "OTD (Art. 50, p. 52): a fixed-term operaio is paid the hours worked (PeriodFacts.ordinary_hours_worked, salario over 169) with the terzo elemento of 30.44% on them (festività 5.45%, ferie 8.33%, tredicesima 8.33%, quattordicesima 8.33%), outside the TFR base; no extra month and no leave accrue (parameters.fixed_term_pay). Not modelled: the terzo elemento on the overtime, holiday and night hours 'nella misura in atto per le ore ordinarie' (Art. 44, p. 48), and the TFR of the OTD, 8.63% of the salario on the ordinary hours and 10% on the non-ordinary ones (p. 58), where the engine accrues the TFR of the civil code on the salario.",
+      "rule": "OTD (Art. 50, p. 52): a fixed-term operaio is paid the hours worked (PeriodFacts.ordinary_hours_worked, salario over 169) with the terzo elemento of 30.44% on them (festività 5.45%, ferie 8.33%, tredicesima 8.33%, quattordicesima 8.33%), outside the TFR base; no extra month and no leave accrue (parameters.fixed_term_pay). Not modelled: the terzo elemento on the overtime, holiday and night hours 'nella misura in atto per le ore ordinarie' (Art. 44, p. 48), and the TFR of 10% on the non-ordinary hours worked 'a titolo non occasionale' (p. 58): the OTD accrues 8.63% of the salario of the hours paid (parameters.fixed_term_pay.tfr_rate).",
       "calculation": "ccnl/operai-agricoli-florovivaisti:coverage.notes",
       "state": "absent",
-      "remediation": "Pay the terzo elemento on the overtime hours at the ordinary rate and accrue the TFR of the OTD at 8.63% and 10%.",
+      "remediation": "Pay the terzo elemento on the overtime hours at the ordinary rate and accrue 10% TFR on the non-ordinary hours.",
       "origin": "seeded",
       "links": {
         "limitations": [

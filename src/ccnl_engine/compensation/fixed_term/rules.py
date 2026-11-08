@@ -7,10 +7,13 @@ from typing import TYPE_CHECKING
 from ccnl_engine.employment.inputs import FixedTerm
 
 if TYPE_CHECKING:
+    from datetime import date
+
     from ccnl_engine.agreement.facade import CCNL
     from ccnl_engine.employment.category.models import WorkerCategory
+    from ccnl_engine.sector.models import YearRules
 
-__all__ = ["covers", "with_fixed_term_pay"]
+__all__ = ["covers", "with_fixed_term_pay", "with_fixed_term_tfr"]
 
 
 def covers(ccnl: CCNL, category: WorkerCategory | None, contract_type: object) -> bool:
@@ -59,3 +62,31 @@ def with_fixed_term_pay(
             else work.model_copy(update={"leave_rules": None}),
         }
     )
+
+
+def with_fixed_term_tfr(
+    year_rules: YearRules,
+    ccnl: CCNL,
+    category: WorkerCategory | None,
+    contract_type: object,
+    day: date,
+) -> YearRules:
+    """Return ``year_rules`` with the TFR rate of a fixed-term worker.
+
+    The quota of a worker covered by a ``tfr_rate`` is that share of the
+    TFR pay: the divisor becomes its inverse.
+
+    Returns:
+        ``year_rules`` unchanged, or a copy whose TFR accrual divisor is
+        one over the rate in force on ``day``.
+    """
+    rule = ccnl.parameters.fixed_term_pay
+    if (
+        rule is None
+        or rule.tfr_rate is None
+        or not covers(ccnl, category, contract_type)
+    ):
+        return year_rules
+    rate = rule.tfr_rate.value_at(day)
+    tfr = year_rules.tfr.model_copy(update={"accrual_divisor": 1 / rate})
+    return year_rules.model_copy(update={"tfr": tfr})

@@ -64,11 +64,11 @@ def _pay(contract: object) -> dict[str, Decimal]:
 
 
 def test_an_otd_is_paid_the_hours_and_the_terzo_elemento() -> None:
-    """944.56 for the hours, 287.52 of terzo elemento, TFR on the hours."""
+    """944.56 for the hours, 287.52 of terzo elemento, TFR 8.63% of the hours."""
     pay = _pay(FixedTerm())
     assert pay["base_salary_2026-01"] == Decimal("944.56")
     assert pay["terzo_elemento_2026-01"] == Decimal("287.52")
-    assert pay["tfr_2026-01"] == Decimal("69.97")  # 944.56 / 13.5
+    assert pay["tfr_2026-01"] == Decimal("81.52")  # 944.56 x 8.63%
 
 
 def test_an_oti_keeps_the_monthly_pay() -> None:
