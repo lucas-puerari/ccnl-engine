@@ -153,11 +153,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Cap the apprentice net pay.
 
 !!! warning "turismo-federalberghi-alberghi-minori/extra_months_during_leave · base_salary · impact yes · open"
-    Artt. 160 c. 4 and 161 c. 6: the ratei of the tredicesima and quattordicesima during maternity, paternity and parental leave. The caller can suspend the accrual of an absence (AbsenceEvent.suspends_accrual); the engine does not apply the CCNL rule itself (review of 2026-10-30).
+    Artt. 160 c. 4 and 161 c. 6 (ipotesi of 5 July 2024, pp. 45-46): from 1 July 2024 the maternity, paternity and parental leave count 'ai fini dell'integrale maturazione e corresponsione' of the tredicesima, and maternity and paternity of the quattordicesima; the engine accrues every extra month in full during these leaves, as D.Lgs. 151/2001 art. 34 c. 5 does for the tredicesima. Not settled: the quattordicesima during the parental leave before 1 December 2027, which the renewal guarantees only from that date ('Solo dal 1° dicembre 2027'); the engine accrues it in full.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Accrue the ratei during the leaves.
+    **Remediation:** Read whether the parental leave reduces the quattordicesima before 1 December 2027 and, if it does, take its days out of the accrual.
 
 !!! warning "turismo-federalberghi-alberghi-minori/hires_2016_ramp · base_salary · impact yes · open"
     Verbale of 30 November 2016: the lower ramp of the hires of 14 November 2016. The caller pays these amounts as variable items.
