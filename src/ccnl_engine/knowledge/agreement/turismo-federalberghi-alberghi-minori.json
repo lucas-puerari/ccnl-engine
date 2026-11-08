@@ -2829,15 +2829,16 @@
       },
       {
         "kind": "simplification",
-        "text": "Artt. 160 c. 4 and 161 c. 6: the ratei of the tredicesima and quattordicesima during maternity, paternity and parental leave. The caller can suspend the accrual of an absence (AbsenceEvent.suspends_accrual); the engine does not apply the CCNL rule itself (review of 2026-10-30).",
+        "text": "Artt. 160 c. 4 and 161 c. 6 (ipotesi of 5 July 2024, pp. 45-46): from 1 July 2024 the maternity, paternity and parental leave count 'ai fini dell'integrale maturazione e corresponsione' of the tredicesima, and maternity and paternity of the quattordicesima; the engine accrues every extra month in full during these leaves, as D.Lgs. 151/2001 art. 34 c. 5 does for the tredicesima. Not settled: the quattordicesima during the parental leave before 1 December 2027, which the renewal guarantees only from that date ('Solo dal 1° dicembre 2027'); the engine accrues it in full.",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
           "variant": "extra_months_during_leave",
           "applies_when": {
-            "trigger": "outside_input"
+            "trigger": "outside_input",
+            "effective_until": "2027-12-01"
           },
-          "remediation": "Accrue the ratei during the leaves."
+          "remediation": "Read whether the parental leave reduces the quattordicesima before 1 December 2027 and, if it does, take its days out of the accrual."
         }
       },
       {
@@ -2912,7 +2913,7 @@
     "effective_until": null,
     "source": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
     "verification_status": "unverified",
-    "source_hash": "23d944c2439f09c77e487b98015e2610f7bf06f62074b30e5bba246ec73f82a3",
+    "source_hash": "843fb75e6d59d5207253c32a3e454cac86d81b46764a2863d647b57780985976",
     "published_at": "2026-11-01",
     "source_type": "contracting_party"
   },
