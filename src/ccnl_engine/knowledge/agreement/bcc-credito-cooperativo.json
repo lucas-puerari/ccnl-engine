@@ -125,6 +125,19 @@
       {
         "kind": "info",
         "text": "APPRENTICE SENIORITY (Art. 30 - Apprendistato professionalizzante, punto 4 Anzianità, p. 39): no increment during the apprenticeship; half of it counts for the increments when the employment continues, which the caller states in Employment.seniority."
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 102 (2024 CCNL, PDF p. 117): a single loyalty award at 25 years of cumulative cooperative-banking movement service, only for managerial grades 3 and 4, at 90.66% of one month of the enumerated salary items. The annual hire-anniversary loyalty_premium cannot represent the one-off award, cross-employer service, or the restricted pay base.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "movement_loyalty_award",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Implement a once-only award using cumulative movement service and the Art. 102 grade and pay-base restrictions."
+        }
       }
     ]
   },
@@ -1775,7 +1788,7 @@
     "effective_until": null,
     "source": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "ddfabc27fb50a24b82b6b9478c00829445b101352403cc50d3215d86ca5442e6",
+    "source_hash": "6eb2ed74d70a99098a08c97329ab2e148914aa225798f1003865192db515f18c",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

@@ -34,7 +34,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, seniority, una_tantum |
+| **Limits of this contract** | base_salary, seniority |
 
 3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
@@ -111,13 +111,6 @@ percentage: 1.00
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning "rsa-aiop/seniority_premium_2023 · una_tantum · impact yes · open"
-    Seniority: CCNL RSA-AIOP provides a flat EUR 40/month after 5 years of service (levels A-E3 only; F/G/H excluded). Modelled as cadence_months=60, maximum_count=1 — correct for new hires (single increment at month 60). Oct 2023 'premio di anzianita' (EUR 40 one-time for 10+ year workers) is a one-time payment, out_of_scope.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Model or track the Oct 2023 one-time premio di anzianità (EUR 40 to workers with 10+ years) as an una tantum.
-
 !!! warning "rsa-aiop/apprenticeship_under_classification · base_salary · impact yes · open"
     Apprenticeship: CCNL RSA-AIOP specifies sotto-inquadramento up to 2 levels below destination (levels A-F eligible, 36 months). Modelled as 100% passthrough (overstates pay for apprentices); the engine supports under_classification tracks with levels_below, not yet used here. (review of 2026-10-30)
 
@@ -131,6 +124,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
 
     **Remediation:** Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.
+
+!!! warning "rsa-aiop/seniority_premium_2023 · base_salary · impact yes · open"
+    Seniority: CCNL RSA-AIOP provides a flat EUR 40/month after 5 years of service (levels A-E3 only; F/G/H excluded). Modelled as cadence_months=60, maximum_count=1 — correct for new hires (single increment at month 60). The Oct 2023 'premio di anzianità' is EUR 40 gross on each of thirteen monthly payments, TFR-relevant, for levels A–E3 with ten years at the same employer or group already completed on 3 October 2023; ratification was a condition. It is not the five-year increment and is not modelled: an in_service_on allowance alone cannot establish ten years of service on the signing date.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Verify ratification and add a monthly EUR 40 allowance for levels A–E3 gated by service of at least ten years on 3 October 2023 and employment on that date; include thirteen payments and TFR.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

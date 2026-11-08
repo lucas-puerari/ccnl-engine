@@ -33,9 +33,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | bilateral_funds, seniority |
+| **Limits of this contract** | base_salary, bilateral_funds, seniority |
 
-4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -129,6 +129,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
 
     **Remediation:** Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.
+
+!!! warning "edilizia-cooperative-ancpl/cooperative_legacy_loyalty · base_salary · impact yes · open"
+    Art. 98 of the cached 2000 CCNL (PDF p. 97) preserves an annual one-month loyalty award only for clerical employees who had already completed 20 years of actual uninterrupted service at the same company or group by 30 April 1982. It uses Art. 80 items 1–14 frozen at their 30 April 1982 values, and whole-month fractions on non-disciplinary departure. The present-day scope of this archival text is unverified. Annual loyalty_premium cannot enforce the historical eligibility and frozen valuation.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Verify continued validity against a current text and implement historical cohort eligibility, frozen award base, and departure pro rata.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

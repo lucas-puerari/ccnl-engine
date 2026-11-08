@@ -30,10 +30,10 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Core payroll path** | ✅ |
-| **Limits of this contract** | bilateral_funds |
+| **Core payroll path** | ⚠️ |
+| **Limits of this contract** | base_salary, bilateral_funds |
 
-2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -138,6 +138,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Model the family members enrolled in FASA as a worker fact.
+
+!!! warning "alimentari-federalimentare/sugar_twenty_five_year_award · base_salary · impact yes · open"
+    Sugar-industry supplementary rule 25 (PDF p. 230): at 25 uninterrupted years with the same company or group, a one-off minimum award of one normal monthly pay for clerical staff or 200 normal hourly wages for manual workers. This does not apply to the other food-industry branches. Death or permanent incapacity before the threshold and direct transfers have separate rules. An annual clerical-only loyalty_premium would wrongly repeat and extend this award.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Gate the sugar subsector and pay the once-only clerical or hourly award, including early departure and transfer rules.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

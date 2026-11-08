@@ -34,7 +34,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, sickness |
 
-9 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+10 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -180,6 +180,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Resolved: rol annual_hours tier of 108 hours for the sub-sector stabilimenti_balneari, read on 2026-11-06.
+
+!!! warning "turismo-federalberghi-alberghi-minori/small_hotel_legacy_award · base_salary · impact unknown · open"
+    Art. 227 of the cached 2010 hotel-sector scan (PDF p. 183) abolishes the former seniority prize effective 31 May 1986 but preserves acquired rights of workers then in service. The referenced Annex G is missing from the cached scan, so its amounts cannot be verified for smaller hotels; the different Federturismo agreement cannot establish them. No legacy prize is encoded.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Obtain Annex G and verify current applicability and cohort amounts for smaller hotels before modelling.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
