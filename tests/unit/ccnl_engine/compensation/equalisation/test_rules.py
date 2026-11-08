@@ -331,3 +331,41 @@ def test_an_element_has_one_amount_rule() -> None:
 def test_a_level_without_an_amount_is_owed_nothing() -> None:
     """A level the table does not name pays no guarantee element."""
     assert _turismo(level="Z") == []
+
+
+_UNIONTESSILE = load_ccnl("tessile-pmi-uniontessile")
+
+
+def _egr(
+    request: PeriodCalculationRequest, kind: RunKind = RunKind.REGULAR
+) -> list[Decimal]:
+    outcome = equalisation_outcome(request, _UNIONTESSILE, kind)
+    return [e.amount for e in outcome.events]
+
+
+@pytest.mark.parametrize(
+    ("hired", "hours", "amount"),
+    [
+        (date(2020, 1, 1), None, "240.00"),
+        (date(2025, 3, 10), None, "200.00"),
+        (date(2020, 1, 1), (20, 40), "120.00"),
+    ],
+    ids=["full-year", "ten-months", "part-time"],
+)
+def test_the_egr_in_twelfths_and_part_time(
+    hired: date, hours: tuple[int, int] | None, amount: str
+) -> None:
+    """Art. 12 bis: 240 in June, in twelfths, in proportion to the hours."""
+    assert _egr(_request(hired, hours=hours)) == [Decimal(amount)]
+
+
+def test_any_individual_treatment_closes_the_egr() -> None:
+    """'Che non percepiscono altri trattamenti economici individuali'."""
+    element = IndividualElement("superminimo", Decimal(1))
+    assert _egr(_request(individual=(element,))) == []
+
+
+def test_a_termination_before_june_does_not_settle_the_egr() -> None:
+    """The text is silent: only the regular June run pays it."""
+    request = _request(month=3, ended=date(2026, 3, 10))
+    assert _egr(request, RunKind.TERMINATION) == []

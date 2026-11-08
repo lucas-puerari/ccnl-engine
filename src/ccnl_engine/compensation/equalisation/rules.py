@@ -76,6 +76,7 @@ def _pays(
     return (
         kind is RunKind.TERMINATION
         and month < element.paid_in_month
+        and element.settled_on_termination
         and not element.in_service_month_before
     )
 
@@ -163,6 +164,8 @@ def _amount(
         owed *= _ratio(request)
     if not request.individual_elements:
         return money(owed)
+    if element.individual_excludes:
+        return Decimal(0)
     level = ccnl.level_by_code(request.level_code)
     day = date(request.period_id.year - 1, 12, 31)
     monthly = sum(

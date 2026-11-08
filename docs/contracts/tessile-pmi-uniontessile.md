@@ -33,7 +33,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, pension_fund_contribution, seniority |
 
-6 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+8 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-02-18 |
-| **Last review** | 2026-11-07 |
+| **Last review** | 2026-11-08 |
 | **Latest salary tranche** | 2027-01-01 |
 
 ## Review history
@@ -61,6 +61,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-17 | claude-opus-5-5 (ai) | The minimi of the ten levels of the settore tessili e abbigliamento against the signed renewal of 18 February 2025. | confirmed | Settore tessili e abbigliamento (PDF p. 21 of the signed scan, checked on the page image): the 38 minimi of the file, from the minimi of 1/02/2022 to 1/01/2027, match and move from assumed to verified. Level 1 is a flat 1.558,00 from 2025 with no increment printed. The errata of 21/2/2025 (pp. 24-25) does not touch this table.<br>The ruleset names this source, published by FILCTEM-CGIL, a signatory: source_type contracting_party instead of estimated. |
 | 2026-11-07 | claude-opus-5-5 (ai) | Art. 46 calzature table of the renewal 2024-2027 (p. 21, page image). | corrected | The calzature employers pay their own minimi (level 8 2,431.61 from 2025, not the tessile 2,421.56). |
 | 2026-11-07 | claude-opus-5-5 (ai) | The giocattoli table of art. 46 (p. 22) and the occhiali and pelli e cuoio replacement tables of the verbale of 21 February 2025 (pp. 24-25), page images. | confirmed | Giocattoli (p. 22), occhiali (p. 24) and pelli e cuoio (p. 25): the 88 minimi, from the minimi of 1/02/2022 to 1/01/2027, read on the page images and added as the base_salary_by_subsector of levels 1-7 and the new sub-sector level 4s.<br>The verbale moves the last occhiali tranche to 1/01/2027 (p. 22 printed 1/02/2027) and corrects the pelli e cuoio level 6; pelli e cuoio level 1 is printed 1.557,00 in 2025 and 1.558,00 from 2026, kept as printed. |
+| 2026-11-08 | claude-opus-5-5 (ai) | Art. 12 bis and 12 ter of the renewal of 24 January 2020 (CNEL deposito 118136, PDF p. 12), the renewal of 18 February 2025 (deposito 216349) for amendments. | confirmed | Art. 12 bis: 240 EUR a year from 2017, with the June pay from 2021, to the worker in service on 1 January without company bargaining or individual treatment; twelfths of the year before, part-time proportional, all-inclusive including the TFR.<br>The text is silent on a termination before June: limitation egr_termination_before_june.<br>Art. 12 ter (110 EUR, firms without art. 12 C) left as limitation art_12_ter_element.<br>The renewal of 18 February 2025 does not amend art. 12, 12 bis or 12 ter. |
 
 ## Salary table
 
@@ -129,6 +130,20 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `seniority` applies; level in 4s.
 
     **Remediation:** Source the seniority increment of level 4s, add it to amount_by_level, then remove this note.
+
+!!! warning "tessile-pmi-uniontessile/egr_termination_before_june · base_salary · impact yes · open"
+    Art. 12 bis: the elemento di garanzia retributiva is owed to the worker in service on 1 January and paid with the June pay; the text does not say whether a worker who leaves between January and June is paid it with the final settlement. The engine pays it only in the regular run of June.
+
+    **Applies when:** `base_salary` applies; run kind in termination.
+
+    **Remediation:** Read an authoritative interpretation of art. 12 bis for a termination before June and settle the element there if owed.
+
+!!! warning "tessile-pmi-uniontessile/art_12_ter_element · base_salary · impact yes · open"
+    Art. 12 ter: from 2020, in the firms that have not applied art. 12 letter C (a company premio di risultato), 110 EUR gross with the June pay to every worker in service in that month, in twelfths, a company agreement paying less topped up to 110. Not modelled: the bundle holds one yearly element per CCNL (the EGR of art. 12 bis).
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model a second yearly element with eligibility in the month of payment and a top-up of a lower company amount.
 
 !!! warning "provisional_ruleset · irpef · impact unknown · open"
     The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.
