@@ -116,6 +116,19 @@
       {
         "kind": "info",
         "text": "SCATTI (Art. 166, stesura 9 March 2022, p. 106): abrogated from 1 January 2019, they keep maturing for the staff in service on 31 December 2018: five biennial increments from the hire date, QDIR 52, Q 47, 1° 44, 2° 40, 3°S 36, 3° 33, 4° 30, 5° 27, 6° 24 EUR (parameters.seniority_increments.hired_until)."
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 149 (p. 97): a festività falling in a sickness is topped up to 100% of the daily pay net of the INPS share (sickness_rules.holiday). Not modelled: the same top-up on the INAIL indemnity of an injury, and the holidays the CCNL adds to the national calendar (the patron saint).",
+        "capability": "sickness",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "holiday_during_injury",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Top up the INAIL indemnity of a holiday falling in an injury to 100%, and add the patron saint as an employer fact."
+        }
       }
     ]
   },
@@ -1881,7 +1894,7 @@
     "effective_until": null,
     "source": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
     "verification_status": "unverified",
-    "source_hash": "e2e25ad88f941344a8e0b18e1b164b553f5432092ac99df9fbd3bc50553d2583",
+    "source_hash": "089bb9c335043dfec4c6a1005d03dd2e0e69397f0017fcfd52ef35b19261af8f",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2071,7 +2084,35 @@
         },
         "transformation": "Comporto of several illnesses (2026-11-01): the comporto of 180 days counts the sick days of every episode of the calendar year. Source: https://www.ccnlced.it/ccnl-ced-ict-professioni-digitali-stp/ccnlced-ict-professioni-digitali-stp/stesura-ccnl-ced,-imprese-ict,-professioni-digitali-e-s.t.p.-del-09-marzo-2022.pdf, p. 96 (sha256 1ee460e786c76ced31b09153adf30a99ccb59c8587b4080b5cfb7045d150661e): 'per un periodo massimo di comporto pari a 180 giorni in un anno solare, calcolato per sommatoria di eventi conglobando all’interno del suddetto periodo sia gli eventi di malattia che gli eventi di infortunio'"
       },
-      "comporto_calendar_year": true
+      "comporto_calendar_year": true,
+      "holiday": {
+        "rate": "1",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ced-assoced-holiday-clause",
+              "title": "CCNL CED, ICT, professioni digitali e STP, stesura 9 marzo 2022",
+              "kind": "associazione",
+              "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
+              "sha256": "1ee460e786c76ced31b09153adf30a99ccb59c8587b4080b5cfb7045d150661e"
+            },
+            "page": "97",
+            "section": "Art. 149 - Festività nel periodo di malattia o infortunio",
+            "quote": "Ai sensi della L. 31 marzo 1954, n. 90, per le festività cadenti nel periodo di malattia o infortunio, il lavoratore ha diritto ad un'indennità integrativa di quella a carico rispettivamente dell'INPS e dell'INAIL, da corrispondersi a carico del datore di lavoro, in modo da raggiungere complessivamente il 100% (cento per cento) della retribuzione di fatto di cui all'art. 168."
+          },
+          "transformation": "On a national holiday (not a Sunday) falling in a sickness within the comporto, the integration target of the day is 100% of the daily pay, the INPS share of the day netted (sickness_rules.holiday). Not modelled: the same top-up on the INAIL indemnity of an injury.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-08T10:25:37Z",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-08T10:25:37Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-08-ai-ced-assoced-holiday-in-sickness"
+          }
+        }
+      }
     }
   },
   "verification": {
@@ -2117,6 +2158,27 @@
         "independence": "same_process",
         "checked": [
           "parameters.seniority_increments"
+        ]
+      },
+      {
+        "id": "2026-11-08-ai-ced-assoced-holiday-in-sickness",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 149 (PDF p. 97, text layer).",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
+            "sha256": "1ee460e786c76ced31b09153adf30a99ccb59c8587b4080b5cfb7045d150661e"
+          }
+        ],
+        "findings": [
+          "Art. 149: the festività in a sickness or injury are topped up to 100% of the pay, net of the INPS and INAIL indemnity: sickness_rules.holiday rate 1; the injury part stays a limitation."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.sickness_rules.holiday"
         ]
       }
     ]

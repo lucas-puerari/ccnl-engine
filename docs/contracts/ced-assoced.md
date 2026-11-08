@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, inps_employer |
+| **Limits of this contract** | base_salary, inps_employer, sickness |
 
-2 documented simplification(s) and 1 missing feature(s): see [Known simplifications](#known-simplifications).
+3 documented simplification(s) and 1 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -59,6 +59,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|---|---|
 | 2026-11-08 | claude-opus-5-5 (ai) | The monthly values of the levels against the primary tables (text layer). | confirmed | 42 values found verbatim on the cited pages and marked verified; 0 left as they were (derived or not on a text page). |
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 166 of the stesura of 9 March 2022 (PDF p. 106), text layer. | corrected | Modelled the scatti of the staff in service on 31 December 2018 (were none). |
+| 2026-11-08 | claude-opus-5-5 (ai) | Art. 149 (PDF p. 97, text layer). | confirmed | Art. 149: the festività in a sickness or injury are topped up to 100% of the pay, net of the INPS and INAIL indemnity: sickness_rules.holiday rate 1; the injury part stays a limitation. |
 
 ## Salary table
 
@@ -120,6 +121,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `inps_employer` applies.
 
     **Remediation:** Verify the H601 sub-sector INPS rate against the annual INPS circular.
+
+!!! warning "ced-assoced/holiday_during_injury · sickness · impact yes · open"
+    Art. 149 (p. 97): a festività falling in a sickness is topped up to 100% of the daily pay net of the INPS share (sickness_rules.holiday). Not modelled: the same top-up on the INAIL indemnity of an injury, and the holidays the CCNL adds to the national calendar (the patron saint).
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Top up the INAIL indemnity of a holiday falling in an injury to 100%, and add the patron saint as an employer fact.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
