@@ -121,7 +121,7 @@
       },
       {
         "kind": "simplification",
-        "text": "BALNEARI AND ALBERGHI DIURNI (artt. 245, 250, 266 of the text of 8 February 2018): for an employer of the sub-sector stabilimenti_balneari or alberghi_diurni (EmployerProfile.subsector) the sickness pays the whole pay for the three days of carenza and 28% of the pay from the employer over the INPS indemnity (work_rules.subsector_rules); the non impiegati of the balneari have the hourly divisor 190 of the 44-hour week. Not modelled: the overtime threshold of the 44-hour week, and the INPS indemnity reduced by INPS (the 28% is added to the rate the engine computes).",
+        "text": "BALNEARI AND ALBERGHI DIURNI (artt. 245, 250, 266 of the text of 8 February 2018): for an employer of the sub-sector stabilimenti_balneari or alberghi_diurni (EmployerProfile.subsector) the sickness pays the whole pay for the three days of carenza and 28% of the pay from the employer over the INPS indemnity (work_rules.subsector_rules); the non impiegati of the balneari have the hourly divisor 190 of the 44-hour week. The 44-hour week reaches the engine through the divisor alone: the caller states the overtime hours (OvertimeEvent). Not modelled: an INPS indemnity that INPS itself reduces (art. 250 c. 3: the employer does not make up the difference); the 28% is added to the rate the engine computes.",
         "capability": "sickness",
         "monetary_impact": "yes",
         "limitation": {
@@ -129,7 +129,7 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Model the 44-hour week of the balneari non impiegati in the overtime threshold."
+          "remediation": "Let the caller state an INPS indemnity reduced by INPS and leave the difference unpaid."
         }
       },
       {
@@ -4333,7 +4333,7 @@
     "effective_until": null,
     "source": "https://www.fipe.it/wp-content/uploads/2025/02/Tabelle-retributive-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "3d3c58915ce19fce89beb61c9877e05f74b2dc25bdfe617acf0415bd6438b7f0",
+    "source_hash": "e18b9cc948fb584b6f932d8a965c4e7448d84458791cc9b67f87af0c46ebff94",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
