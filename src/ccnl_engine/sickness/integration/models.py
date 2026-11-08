@@ -14,6 +14,7 @@ from ccnl_engine.sickness.comporto.models import (
     HospitalComportoRule,
     check_windows,
 )
+from ccnl_engine.sickness.diagnosis import SeriousIllnessKind
 from ccnl_engine.sickness.holiday.models import SicknessHoliday
 from ccnl_engine.sickness.integration.condition.models import (
     CarenzaByEvent,
@@ -177,8 +178,8 @@ class SicknessCumulation(BaseModel):
             art. 60 C: "assenza per malattia iniziata dopo dodici mesi dal
             giorno in cui è cessato il diritto al trattamento economico del
             100%"); ``None`` without such a rule.
-        poste_special_eligibility: Select Art. 41 II documented eligibility
-            instead of the general serious-illness flag for extended limits.
+        qualifying_kinds: Documented conditions eligible for extended limits;
+            when empty, the general serious-illness flag decides as before.
         periodic_checks_outside_comporto: Whether the episodes of periodic
             checks (``SicknessEpisode.periodic_check``) are left out of the
             comporto (Concia art. 60 B).
@@ -198,7 +199,7 @@ class SicknessCumulation(BaseModel):
     fixed_term_comporto_days: int | None = Field(default=None, ge=1)
     restart_after_full_pay_months: int | None = Field(default=None, ge=1)
     periodic_checks_outside_comporto: bool = False
-    poste_special_eligibility: bool = False
+    qualifying_kinds: frozenset[SeriousIllnessKind] = frozenset()
     comporto_over_chain: bool = False
 
     @model_validator(mode="after")

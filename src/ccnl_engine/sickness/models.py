@@ -57,12 +57,11 @@ class SicknessEpisode:
         serious_illness: Whether the illness is one the CCNL treats as
             particularly serious (Logistica: INPS circ. 95/2016); ``None``
             when not stated.  Read only by a CCNL with such a treatment.
-        serious_illness_kind: The documented diagnosis qualifying for ABI Art. 66
-            c. 4 or 5; ``None`` applies the ordinary rule.
-        poste_special_eligible: Whether Art. 41 II Poste eligibility is documented:
-            a listed grave pathology with current certification, certified
-            L. 68/99 disability, or certified life-saving therapy related to
-            either condition. ``None`` does not assert eligibility.
+        serious_illness_kind: A documented condition qualifying for the
+            agreement's extended sickness limits (ABI Art. 66 c. 4 or 5, or
+            Art. 41 II: a listed grave pathology with current certification,
+            certified L. 68/99 disability, or certified life-saving therapy
+            related to either condition); ``None`` applies the ordinary rule.
         excluded_comporto_days: Dates of day hospital or life-saving therapy
             (Studi) or necessary dialysis (ABI), within this episode. ``None``
             means no such days have been stated.
@@ -104,7 +103,6 @@ class SicknessEpisode:
     hospital_stays: tuple[tuple[date, date], ...] | None = None
     serious_illness: bool | None = None
     serious_illness_kind: SeriousIllnessKind | None = None
-    poste_special_eligible: bool | None = None
     excluded_comporto_days: tuple[date, ...] | None = None
     periodic_check: bool | None = None
     daily_contributions: int | None = None

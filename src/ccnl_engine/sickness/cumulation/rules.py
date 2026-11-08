@@ -267,8 +267,8 @@ class CumulativeTreatment:
         Returns:
             Whether the episode qualifies for the extended limits.
         """
-        if self.cumulation.poste_special_eligibility:
-            return self.episode.poste_special_eligible is True
+        if self.cumulation.qualifying_kinds:
+            return self.episode.serious_illness_kind in self.cumulation.qualifying_kinds
         return self.episode.serious_illness is True
 
     def full_pay_limit(self) -> int:

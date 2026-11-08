@@ -32,9 +32,11 @@ SICKNESS_DEFAULTS: Mapping[str, FieldDefault] = {
         "the episode as an ordinary one, with a provisional "
         "sickness_serious_illness_unknown issue",
     ),
-    "SicknessEpisode.serious_illness_kind": absence_is_fact("the ordinary comporto"),
-    "SicknessEpisode.poste_special_eligible": absence_is_fact(
-        "the ordinary Poste comporto and sick-pay limit; eligibility must be documented"
+    "SicknessEpisode.serious_illness_kind": absence_is_fact(
+        "the ordinary comporto and sick-pay limit; extended eligibility requires "
+        "a documented qualifying condition (including a current specialist "
+        "certificate for a listed grave pathology, certified L. 68/99 civil "
+        "disability, or certified life-saving therapy related to either condition)"
     ),
     "SicknessEpisode.excluded_comporto_days": absence_is_fact("every sick day counts"),
     "SicknessEpisode.prior_worked_days": requires_fact(

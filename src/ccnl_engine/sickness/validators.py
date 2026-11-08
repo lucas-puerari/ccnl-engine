@@ -66,7 +66,7 @@ def validate_episode(episode: SicknessEpisode) -> None:
         maximum=366,
         optional=True,
     )
-    for flag in ("serious_illness", "periodic_check", "poste_special_eligible"):
+    for flag in ("serious_illness", "periodic_check"):
         value = getattr(episode, flag)
         if value is not None:
             require_bool(value, f"{_OWNER}.{flag}", feature=_FEATURE)

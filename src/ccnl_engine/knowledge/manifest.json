@@ -1751,7 +1751,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/poste-italiane-k700",
       "ruleset_version": "2026.2",
-      "source_hash": "0cca7273b1b964169faf029762056077e971e98b8bb3a6ec3cc88b13a24caa6d",
+      "source_hash": "03f34b16ee63971c4ea61e1972d4f4cb61155f9686bf06bf8f9da3e3c126e185",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/poste-italiane-k700.json.gz"
