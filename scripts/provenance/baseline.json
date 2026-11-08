@@ -790,6 +790,7 @@
     ],
     "agreement/edilizia-ance-impiegati.json": [
       "edilizia-ance-impiegati/apprentice_seniority",
+      "edilizia-ance-impiegati/dual_apprenticeship_prorogation",
       "edilizia-ance-impiegati/edilizia_impiegati_sickness",
       "edilizia-ance-impiegati/loyalty_premium",
       "edilizia-ance-impiegati/november_4_holiday",
@@ -805,6 +806,7 @@
       "edilizia-ance/capisquadra_supplement",
       "edilizia-ance/cassa_edile_contribution",
       "edilizia-ance/contribution_reduction",
+      "edilizia-ance/dual_apprenticeship_prorogation",
       "edilizia-ance/edilizia_operai_sickness",
       "edilizia-ance/entry_premium_2022",
       "edilizia-ance/hardship_allowances",
@@ -865,6 +867,9 @@
     "agreement/fiori-recisi-ancef.json": [
       "fiori-recisi-ancef/apprentice_seniority"
     ],
+    "agreement/formazione-professionale.json": [
+      "formazione-professionale/dual_apprenticeship_entry_floor"
+    ],
     "agreement/forze-polizia-ordinamento-civile.json": [
       "forze-polizia-ordinamento-civile/assegno_funzionale_missing",
       "forze-polizia-ordinamento-civile/renewal_2025_2027_pending_dpr"
@@ -898,6 +903,7 @@
       "impianti-sportivi-sport/sickness_net_basis"
     ],
     "agreement/impiegati-tecnici-agricoli.json": [
+      "impiegati-tecnici-agricoli/dual_apprenticeship_school_year",
       "impiegati-tecnici-agricoli/eban_agrifondo_missing"
     ],
     "agreement/industria-turistica-federturismo.json": [
@@ -988,6 +994,7 @@
     "agreement/metalmeccanico-artigianato.json": [
       "metalmeccanico-artigianato/apprentice_inps_rates_unsourced",
       "metalmeccanico-artigianato/centralinisti_apprenticeship",
+      "metalmeccanico-artigianato/dual_apprenticeship_prorogation",
       "metalmeccanico-artigianato/inps_sector_rates_unsourced"
     ],
     "agreement/metalmeccanico-confapi.json": [

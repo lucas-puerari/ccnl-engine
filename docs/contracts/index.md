@@ -171,14 +171,14 @@ on unverified sources, or be well sourced and not cleared for production.
 | 52 | B254 | [CCNL Energia e Petrolio (Confindustria Energia)](energia-petrolio-confindustria.md) | energia | ~38k | — | ✅ | — | 115 / 56 / 1 / 0 | 🧪 | 🤖 |
 | 53 | G211 | [CCNL Esercizi Cinematografici e Cinema-Teatrali (ANEC)](esercizi-cinematografici-anec.md) | cinema | ~6k | — | ⚠️ | inps_employer, sickness | 61 / 9 / 1 / 0 | 🧪 | 🤖 |
 | 54 | H201 | [CCNL Fiori Freschi Recisi, Verde e Piante Ornamentali (ANCEF)](fiori-recisi-ancef.md) | Fiori recisi, verde e piante ornamentali (import-export) | ~1.3k | 2023 | ⚠️ | seniority | 31 / 8 / 1 / 0 | 🧪 | 🤖 |
-| 55 | T261 | [CCNL Formazione Professionale (CNOS-FAP/CIOFS-FP/FORMA/CNF)](formazione-professionale.md) | formazione professionale | ~19.8k | — | ✅ | — | 0 / 34 / 1 / 1 | 🧪 | 🤖 |
+| 55 | T261 | [CCNL Formazione Professionale (CNOS-FAP/CIOFS-FP/FORMA/CNF)](formazione-professionale.md) | formazione professionale | ~19.8k | — | ⚠️ | base_salary | 0 / 34 / 1 / 1 | 🧪 | 🤖 |
 | 56 | K321 | [CCNL Gas e Acqua — Utilitalia/Proxigas/Anfida/Assogas](gas-acqua-utilitalia.md) | gas e acqua | ~65k | 2025 | ⚠️ | inps_employer | 45 / 18 / 1 / 0 | 🧪 | 🤖 |
 | 57 | B371 | [CCNL Gomma e Plastica Industria (Federazione Gomma Plastica)](gomma-plastica-federazione-gomma-plastica.md) | gomma-plastica | ~90k | — | ⚠️ | base_salary | 70 / 7 / 1 / 1 | 🧪 | 🤖 |
 | 58 | G011 | [CCNL Grafica e Editoria Industria (AIEG-Acigraf)](grafica-editoria-aieg.md) | grafica-editoria | ~70k | — | ⚠️ | seniority | 2 / 70 / 1 / 0 | 🧪 | 🤖 |
 | 59 | T511 | [CCNL Gruppo ANAS](anas.md) | anas spa - personale non dirigente | ~7k | 2025 | ✅ | — | 29 / 14 / 1 / 0 | 🧪 | 🤖 |
 | 60 | K540 | [CCNL Igiene Ambientale — Servizi Ambientali e di Igiene Urbana](igiene-ambientale-utilitalia.md) | servizi ambientali | ~65k | 2025 | ⚠️ | inps_employer, pension_fund_contribution, seniority | 68 / 76 / 1 / 0 | 🧪 | 🤖 |
 | 61 | H077 | [CCNL Impianti e Attività Sportive Profit e No-profit](impianti-sportivi-sport.md) | impianti sportivi, palestre e attività sportive | 35533 | 2024 | ⚠️ | base_salary, sickness | 28 / 4 / 1 / 1 | 🧪 | 🤖 |
-| 62 | A021 | [CCNL Impiegati e Tecnici Agricoli — Confagricoltura/CIA/Coldiretti](impiegati-tecnici-agricoli.md) | agricoltura | ~80k | 2024 | ✅ | bilateral_funds | 7 / 8 / 1 / 1 | 🧪 | 🤖 |
+| 62 | A021 | [CCNL Impiegati e Tecnici Agricoli — Confagricoltura/CIA/Coldiretti](impiegati-tecnici-agricoli.md) | agricoltura | ~80k | 2024 | ⚠️ | base_salary, bilateral_funds | 7 / 8 / 1 / 1 | 🧪 | 🤖 |
 | 63 | B011 | [CCNL Industria Chimica e Farmaceutica (Federchimica-Farmindustria-Assistal)](chimica-farmaceutica-federchimica.md) | chimica | ~210k | — | ⚠️ | base_salary, leave, overtime, sickness, workplace_injury | 121 / 6 / 0 / 0 | 👁 | 🤖✓ |
 | 64 | H05B | [CCNL Industria Turistica (Federturismo Confindustria)](industria-turistica-federturismo.md) | turismo — alberghi, campeggi, villaggi e strutture ricettive | ~40k | 2025 | ⚠️ | base_salary | 36 / 10 / 1 / 0 | 🧪 | 🤖 |
 | 65 | G111 | [CCNL Industrie Cineaudiovisive (ANICA)](cinema-audiovisivi-industria.md) | Cinema e audiovisivo | ~2.3k | 2025 | ⚠️ | bilateral_funds, inps_employer | 57 / 6 / 1 / 0 | 🧪 | 🤖 |
