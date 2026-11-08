@@ -123,20 +123,8 @@
         "text": "LEAVE, WEEKLY SCHEDULE: a 39-hour full-time week absorbs 36 hours of ROL and a 38-hour week 16 hours of ex festività and 56 of ROL, read from Employment.full_time_weekly_hours. The grandi magazzini, magazzini a prezzo unico, supermercati alimentari, cash&carry and ipermercati (Art. 134, EmployerProfile.subsector 'grande_distribuzione') on a 38-hour average absorb instead the 56 hours of Art. 158 c. 3 and the 16 of c. 4 and keep the ex festività."
       },
       {
-        "kind": "simplification",
-        "text": "FIRST- AND THIRD-LEVEL APPRENTICES (Art. 69): modelled in dual_apprenticeship (first level 50/50/65/70% of the qualified worker's pay by year of the contract, third level two then one level below the destination by half of the programme; training at the employer 10%, school hours unpaid). Not modelled: the INPS contributions of the first-level apprentice (the engine applies the apprentice rates of the professionalising contract).",
-        "capability": "inps_employer",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "first_level_apprentice_contributions",
-          "applies_when": {
-            "trigger": "outside_input",
-            "contract_types": [
-              "apprentice"
-            ]
-          },
-          "remediation": "Source the INPS contribution regime of the first-level apprentice."
-        }
+        "kind": "info",
+        "text": "FIRST- AND THIRD-LEVEL APPRENTICES (Art. 69): modelled in dual_apprenticeship (first level 50/50/65/70% of the qualified worker's pay by year of the contract, third level two then one level below the destination by half of the programme; training at the employer 10%, school hours unpaid). The contributions of these apprentices are the engine limitation dual_apprenticeship_contributions."
       }
     ]
   },
@@ -3707,7 +3695,7 @@
     "effective_until": null,
     "source": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
     "verification_status": "unverified",
-    "source_hash": "d2de2961bc6568861156bc402bb9bc51fbd9f0b038cccd5c43107723346be11b",
+    "source_hash": "e39ad3baa9264516454b2443675c6ea60b34965819d4721c0ad1de42677dfc52",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

@@ -71,20 +71,8 @@
         "text": "SICKNESS (Art. 47): the 100% and 50% bands of the net normal pay and the comporto of 186 days in 17 months (up to 5 years) and 365 days in 24 months (over 5) are counted over the sickness of every episode in the window. Modelled: the apprentice's 'retribuzione normale, per un massimo di sei mesi per ogni anno' (Art. 21, PDF p. 50), 100% of the gross pay for 180 days a calendar year; the comporto of a fixed-term worker 'limitata al periodo massimo di 4 mesi' (prima nota a verbale, PDF p. 111), 120 days. Already right without a model: the fixed-term integration stops with the INPS indemnity (the days past the D.L. 463/1983 limit are unpaid), and the 90 more days of comporto of a disabled worker (L. 68/99) carry 'non decorrerà retribuzione né si avrà decorrenza di anzianità', which is what a day past the comporto already pays. The net pay is computed by grossing up the INPS indemnity by the worker's INPS rate, as for the Commercio file."
       },
       {
-        "kind": "simplification",
-        "text": "FIRST- AND THIRD-LEVEL APPRENTICES (Art. 21 B-C, PDF pp. 56-58): modelled in dual_apprenticeship (school hours unpaid, 20% of T.E.M. and I.A.R. for the training at the employer, the table percentages at the conventional level 3A for the first level, one or two levels below the destination for the third). Not modelled: the INPS contributions of the first-level apprentice (the engine applies the apprentice rates of the professionalising contract), and the first school year of qualifica and diploma, which the table leaves out (the run is refused).",
-        "capability": "base_salary",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "first_level_apprentice_pay",
-          "applies_when": {
-            "trigger": "outside_input",
-            "contract_types": [
-              "apprentice"
-            ]
-          },
-          "remediation": "Source the INPS contribution regime of the first-level apprentice."
-        }
+        "kind": "info",
+        "text": "FIRST- AND THIRD-LEVEL APPRENTICES (Art. 21 B-C, PDF pp. 56-58): modelled in dual_apprenticeship (school hours unpaid, 20% of T.E.M. and I.A.R. for the training at the employer, the table percentages at the conventional level 3A for the first level, one or two levels below the destination for the third). The contributions of these apprentices are the engine limitation dual_apprenticeship_contributions. The first school year of qualifica and diploma, which the table leaves out, is refused."
       },
       {
         "kind": "simplification",
@@ -4191,7 +4179,7 @@
     "effective_until": null,
     "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "eee73613ae16940fa70d923de86fc15586cd9b1e02d6fcd8e06e0dd6ca602826",
+    "source_hash": "5d83e4ab767c02c444c45a672316c0b75b7e2c6465031293e4c63b0dd1fbb385",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

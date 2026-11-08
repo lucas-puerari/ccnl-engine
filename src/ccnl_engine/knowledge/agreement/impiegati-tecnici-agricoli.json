@@ -116,20 +116,8 @@
         "text": "APPRENTICE INPS RATES (contribution/2026/agricoltura.json): employer 10% plus NASpI 1.61% (INPS circ. 108/2018 par. 3.2, applied to the agricultural contribution by circ. 116/2013 par. 1) plus CISOA 1.50% (circ. 1/2023; 'CIS operai agricoli 1,5000' of circ. 43/2026 allegato 1) = 13.11% (4.61% and 6.11% in the first two years up to nine employees); worker 5.84%."
       },
       {
-        "kind": "simplification",
-        "text": "FIRST- AND THIRD-LEVEL APPRENTICES (Allegato F): modelled in dual_apprenticeship (first level 45/55/60/70% by year at the conventional level, third level 70% or 80% by length; training at the employer 10% of the work pay, school hours unpaid). Not modelled: the INPS contributions of the first-level apprentice.",
-        "capability": "inps_employer",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "first_level_apprentice_contributions",
-          "applies_when": {
-            "trigger": "outside_input",
-            "contract_types": [
-              "apprentice"
-            ]
-          },
-          "remediation": "Source the INPS contribution regime of the first-level apprentice."
-        }
+        "kind": "info",
+        "text": "FIRST- AND THIRD-LEVEL APPRENTICES (Allegato F): modelled in dual_apprenticeship (first level 45/55/60/70% by year at the conventional level, third level 70% or 80% by length; training at the employer 10% of the work pay, school hours unpaid). The contributions of these apprentices are the engine limitation dual_apprenticeship_contributions."
       }
     ]
   },
@@ -808,7 +796,7 @@
     "effective_until": "2027-12-31",
     "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-quadri-e-impiegati-agricoli-2024-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "2d299768c593b40c9d4b35ae0fea4a34bc63bfdde35b1ef715bffe96db1eb90c",
+    "source_hash": "6d728537a63f837806202f41829c20677634543423a394f2a39ae5c1fb348f04",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

@@ -85,20 +85,8 @@
         "text": "IMPIEGATI E QUADRI: fourteen monthly payments, the tredicesima (Art. 63, by 20 December) and the premio annuo of one month (Art. 64, paid on 30 June for the service from 1 July to 30 June, stored as 28 June). Five biennial scatti (Art. 49). Quadri: indennità di funzione of EUR 140 a month (Art. 76), by Employment.roles 'quadro'. Prevedi: a monthly contractual contribution by level, also on the extra months."
       },
       {
-        "kind": "simplification",
-        "text": "FIRST- AND THIRD-LEVEL APPRENTICES (Art. 92, ANCE text of 4 April 2019): modelled in dual_apprenticeship (first level at the conventional level 2 or 1, 65-90% by semester; third level 70-90% by semester for six semesters; on minimo, ex contingenza and EDR; training at the employer 10% of the work pay, school hours unpaid). Not modelled: the provincial elements of the base (indennità territoriale, premio di produzione, elemento variabile) and the INPS contributions of the first-level apprentice.",
-        "capability": "base_salary",
-        "monetary_impact": "unknown",
-        "limitation": {
-          "variant": "other_apprenticeship_types",
-          "applies_when": {
-            "trigger": "outside_input",
-            "contract_types": [
-              "apprentice"
-            ]
-          },
-          "remediation": "Source the INPS contribution regime of the first-level apprentice."
-        }
+        "kind": "info",
+        "text": "FIRST- AND THIRD-LEVEL APPRENTICES (Art. 92, ANCE text of 4 April 2019): modelled in dual_apprenticeship (first level at the conventional level 2 or 1, 65-90% by semester; third level 70-90% by semester for six semesters; on minimo, ex contingenza and EDR; training at the employer 10% of the work pay, school hours unpaid). Not modelled: the provincial elements of the base (indennità territoriale, premio di produzione, elemento variabile). The contributions of these apprentices are the engine limitation dual_apprenticeship_contributions."
       },
       {
         "kind": "simplification",
@@ -2428,7 +2416,7 @@
     "effective_until": null,
     "source": "https://ance.it/wp-content/uploads/allegati/Tabella_nuovi_minimi_orari-_CCNL_2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "b0e328acfb29719c04820354144af6234adf57b5862b30a26df919bc182d4397",
+    "source_hash": "318c64c82e5a17b8d757a517eeecd26117fc276037b41660042eb79c80d71bbf",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
