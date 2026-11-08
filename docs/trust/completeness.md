@@ -14,7 +14,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 0/136 CCNLs.** Bundle: 272 weak rules, 417 open limitations (417 with a monetary impact).
+**Complete: 0/136 CCNLs.** Bundle: 272 weak rules, 419 open limitations (419 with a monetary impact).
 
 ## Declared window
 
@@ -76,7 +76,7 @@ Future data, registered apart from the gaps: a contract whose validity ends insi
 | [chimica-affini-pmi-unionchimica](../contracts/chimica-affini-pmi-unionchimica.md) | `chimica` | exploratory | — | 22 rows | 22 open requirements; 2 weak rules; 18 monetary limitations; 18 non-native capabilities |
 | [chimica-farmaceutica-federchimica](../contracts/chimica-farmaceutica-federchimica.md) | `chimica` | reviewed | — | 32 rows | 32 open requirements; 18 monetary limitations; 12 outside_input limitations; 22 non-native capabilities |
 | [cinema-audiovisivi-industria](../contracts/cinema-audiovisivi-industria.md) | `spettacolo-media` | exploratory | — | 22 rows | 22 open requirements; 1 weak rule; 18 monetary limitations; 1 outside_input limitation; 19 non-native capabilities |
-| [commercio-confcommercio](../contracts/commercio-confcommercio.md) | `commercio` | production | 2027-03-31 | 22 rows | 22 open requirements; 19 monetary limitations; 1 outside_input limitation; 20 non-native capabilities |
+| [commercio-confcommercio](../contracts/commercio-confcommercio.md) | `commercio` | production | 2027-03-31 | 23 rows | 23 open requirements; 19 monetary limitations; 2 outside_input limitations; 20 non-native capabilities |
 | [comunicazione-artigianato-confartigianato](../contracts/comunicazione-artigianato-confartigianato.md) | `carta-grafica` | exploratory | — | 29 rows | 29 open requirements; 1 weak rule; 25 monetary limitations; 1 outside_input limitation; 21 non-native capabilities |
 | [concia-unic](../contracts/concia-unic.md) | `pelli-calzature` | reviewed | — | 20 rows | 20 open requirements; 18 monetary limitations; 18 non-native capabilities |
 | [consorzi-agrari-assocap](../contracts/consorzi-agrari-assocap.md) | `agricoltura` | exploratory | — | 22 rows | 22 open requirements; 1 weak rule; 19 monetary limitations; 19 non-native capabilities |
@@ -136,7 +136,7 @@ Future data, registered apart from the gaps: a contract whose validity ends insi
 | [metalmeccanico-artigianato](../contracts/metalmeccanico-artigianato.md) | `metalmeccanica` | exploratory | 2026-12-31 | 24 rows | 24 open requirements; 20 monetary limitations; 2 outside_input limitations; 20 non-native capabilities |
 | [metalmeccanico-confapi](../contracts/metalmeccanico-confapi.md) | `metalmeccanica` | reviewed | — | 33 rows | 33 open requirements; 17 monetary limitations; 14 outside_input limitations; 21 non-native capabilities |
 | [metalmeccanico-confimi-pmi](../contracts/metalmeccanico-confimi-pmi.md) | `metalmeccanica` | exploratory | — | 21 rows | tables from 2026-06-01; 21 open requirements; 18 monetary limitations; 1 outside_input limitation; 18 non-native capabilities |
-| [metalmeccanico-federmeccanica](../contracts/metalmeccanico-federmeccanica.md) | `metalmeccanica` | production | — | 24 rows | 24 open requirements; 18 monetary limitations; 4 outside_input limitations; 20 non-native capabilities |
+| [metalmeccanico-federmeccanica](../contracts/metalmeccanico-federmeccanica.md) | `metalmeccanica` | production | — | 25 rows | 25 open requirements; 18 monetary limitations; 5 outside_input limitations; 21 non-native capabilities |
 | [multiservizi-anip](../contracts/multiservizi-anip.md) | `pulizia-multiservizi` | exploratory | — | 22 rows | 22 open requirements; 19 monetary limitations; 1 outside_input limitation; 19 non-native capabilities |
 | [noleggio-autobus-conducente-anav](../contracts/noleggio-autobus-conducente-anav.md) | `trasporti-logistica` | exploratory | — | 28 rows | 28 open requirements; 4 weak rules; 22 monetary limitations; 20 non-native capabilities |
 | [occhiali-occhialeria-industria](../contracts/occhiali-occhialeria-industria.md) | `tessile-moda` | exploratory | — | 22 rows | 22 open requirements; 2 weak rules; 18 monetary limitations; 18 non-native capabilities |

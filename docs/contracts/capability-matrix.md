@@ -224,7 +224,7 @@ never grow.
 | 83 | [CCNL Metalmeccanica e Installazione di Impianti — Artigianato](metalmeccanico-artigianato.md) | ⚠️ | base_salary, inps_employer | 71 / 12 / 0 / 0 |
 | 84 | [CCNL Metalmeccanici Piccola Industria (CONFIMI IMPRESA MECCANICA)](metalmeccanico-confimi-pmi.md) | ✅ | overtime | 25 / 22 / 0 / 0 |
 | 85 | [CCNL Metalmeccanici Piccola Industria (Unionmeccanica-Confapi)](metalmeccanico-confapi.md) | ⚠️ | base_salary, leave, overtime, sickness | 69 / 10 / 0 / 0 |
-| 86 | [CCNL Metalmeccanici e Installatori di Impianti (Federmeccanica-Assistal)](metalmeccanico-federmeccanica.md) | ⚠️ | base_salary, leave, overtime | 90 / 1 / 0 / 0 |
+| 86 | [CCNL Metalmeccanici e Installatori di Impianti (Federmeccanica-Assistal)](metalmeccanico-federmeccanica.md) | ⚠️ | base_salary, leave, overtime, sickness | 90 / 1 / 0 / 0 |
 | 87 | [CCNL Noleggio Autobus con Conducente (ANAV)](noleggio-autobus-conducente-anav.md) | ⚠️ | base_salary, seniority | 34 / 33 / 4 / 0 |
 | 88 | [CCNL Occhiali e Occhialeria — Industria (ANFAO)](occhiali-occhialeria-industria.md) | ✅ | — | 77 / 11 / 1 / 1 |
 | 89 | [CCNL Operai Agricoli e Florovivaisti — Coldiretti/Confagricoltura/CIA](operai-agricoli-florovivaisti.md) | ⚠️ | base_salary, bilateral_funds, inail, overtime, seniority, sickness, territorial_supplement | 11 / 6 / 1 / 0 |
