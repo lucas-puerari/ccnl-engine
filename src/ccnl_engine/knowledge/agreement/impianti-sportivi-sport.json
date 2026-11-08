@@ -168,6 +168,19 @@
           "variant": "sickness_net_basis",
           "remediation": "Find a source (an interpretation of the parties, an INPS or Ministry text) that defines the net daily pay of Art. 103, align the computation, then resolve this limitation."
         }
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 107 (p. 85): a festività falling in a sickness is topped up to 100% of the daily pay net of the INPS share (sickness_rules.holiday). Not modelled: the same top-up on the INAIL indemnity of an injury, and the holidays the CCNL adds to the national calendar (the patron saint).",
+        "capability": "sickness",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "holiday_during_injury",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Top up the INAIL indemnity of a holiday falling in an injury to 100%, and add the patron saint as an employer fact."
+        }
       }
     ]
   },
@@ -1428,7 +1441,7 @@
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=13",
     "verification_status": "unverified",
     "published_at": "2026-09-11",
-    "source_hash": "75f285b0c9c460f65e12d0a64ae49e022c95f9916560310afcace864636f2867",
+    "source_hash": "5d8a4d10e1e4a23d1ab6fbc6721dd2df6e7f8f9539de7d299dd2f47cf4ed32f9",
     "source_type": "commercial_secondary"
   },
   "work_rules": {
@@ -1746,6 +1759,34 @@
           "effective_from": "2024-01-01"
         },
         "transformation": "Art. 103 b): 100% for the three days of carenza, 75% for days 4-20 and 100% from day 21 of the net daily pay, stored as day_bands of the episode; no employer integration for apprentices; comporto of 180 days in the calendar year (Art. 102), counted over every episode of the year. Read on 2026-10-30."
+      },
+      "holiday": {
+        "rate": "1",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "impianti-sportivi-sport-holiday-clause",
+              "title": "CCNL Sport 2024-2026",
+              "kind": "associazione",
+              "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
+              "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
+            },
+            "page": "85",
+            "section": "Art. 107 - Festività nel periodo di malattia o infortunio",
+            "quote": "Ai sensi della legge 31 marzo 1954, n. 90, per le festività cadenti nel periodo di malattia o infortunio, il lavoratore ha diritto a un'indennità integrativa di quella a carico rispettivamente dell'INPS e dell'INAIL da corrispondersi a carico del datore di lavoro in modo da raggiungere complessivamente il 100% (cento per cento) della retribuzione di fatto di cui all'art. 117."
+          },
+          "transformation": "On a national holiday (not a Sunday) falling in a sickness within the comporto, the integration target of the day is 100% of the daily pay, the INPS share of the day netted (sickness_rules.holiday). Not modelled: the same top-up on the INAIL indemnity of an injury.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-08T10:25:37Z",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-08T10:25:37Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-08-ai-impianti-sportivi-sport-holiday-in-sickness"
+          }
+        }
       }
     },
     "notice": {
@@ -2028,6 +2069,27 @@
         "independence": "separate_model",
         "checked": [
           "coverage.notes"
+        ]
+      },
+      {
+        "id": "2026-11-08-ai-impianti-sportivi-sport-holiday-in-sickness",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 107 (PDF p. 85, text layer).",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
+            "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
+          }
+        ],
+        "findings": [
+          "Art. 107: the festività in a sickness or injury are topped up to 100% of the pay, net of the INPS and INAIL indemnity: sickness_rules.holiday rate 1; the injury part stays a limitation."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.sickness_rules.holiday"
         ]
       }
     ]

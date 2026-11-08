@@ -51,6 +51,22 @@
       }
     },
     {
+      "id": "holiday_during_injury",
+      "institute": "sickness",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Art. 149 (p. 97): a festività falling in a sickness is topped up to 100% of the daily pay net of the INPS share (sickness_rules.holiday). Not modelled: the same top-up on the INAIL indemnity of an injury, and the holidays the CCNL adds to the national calendar (the patron saint).",
+      "calculation": "ccnl/ced-assoced:coverage.notes",
+      "state": "absent",
+      "remediation": "Top up the INAIL indemnity of a holiday falling in an injury to 100%, and add the patron saint as an employer fact.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "ced-assoced/holiday_during_injury"
+        ]
+      }
+    },
+    {
       "id": "maternity_daily_base",
       "institute": "maternity_leave",
       "variant": "all",
