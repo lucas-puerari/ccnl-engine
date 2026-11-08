@@ -11,6 +11,7 @@ from ccnl_engine.employment.category.models import WorkerCategory
 from ccnl_engine.extra_month.schedule.models import ExtraMonthKind
 from ccnl_engine.provenance.source.rule.models import RuleProvenance
 from ccnl_engine.seniority.age.models import SeniorityAge
+from ccnl_engine.seniority.cohort.models import InServiceCohort
 from ccnl_engine.seniority.freeze.models import SeniorityFreeze
 from ccnl_engine.types import FrozenDict
 
@@ -114,6 +115,8 @@ class SeniorityIncrements(BaseModel):
     ``counted_from_age`` counts the service only after an age; ``freezes``
     leave periods out of it (Bancari ABI art. 103 c. 3); ``hired_until``
     keeps the increments to the staff in service on that day (CED art. 166).
+    ``in_service_cohort`` raises the maximum of the staff in service on a day
+    (BCC artt. 101, 113: 12 instead of 8).
     ``apprentice_level_amount`` pays an apprentice the amounts of the level
     he is classified at (Autoscuole: "nelle misure previste dal livello di
     appartenenza") instead of ``apprentice_amount``;
@@ -147,6 +150,7 @@ class SeniorityIncrements(BaseModel):
     counted_from_age: SeniorityAge | None = None
     freezes: tuple[SeniorityFreeze, ...] = ()
     hired_until: date | None = None
+    in_service_cohort: InServiceCohort | None = None
     apprentice_level_amount: bool = False
     apprentice_pct_scaled: bool = False
     provenance: RuleProvenance | None = None
