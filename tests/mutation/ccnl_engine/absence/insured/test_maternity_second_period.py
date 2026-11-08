@@ -70,3 +70,17 @@ def test_following_period_requires_complete_first_period() -> None:
         type(rules).model_validate(rules.model_dump(exclude={"next_integration_days"}))
     with pytest.raises(ValidationError):
         type(rules).model_validate(rules.model_dump(exclude={"integration_days"}))
+
+
+def test_parental_sixth_month_requires_a_following_period() -> None:
+    """A parental target without a sixth-month rate must not pass validation."""
+    agreement = load_ccnl("logistica-trasporto-confetra")
+    assert agreement.work_rules is not None
+    assert agreement.work_rules.insured_absence is not None
+    rules = agreement.work_rules.insured_absence.maternity
+    assert rules is not None
+    data = rules.model_dump()
+    data["next_integration_rate"] = None
+    data["next_integration_days"] = None
+    with pytest.raises(ValidationError, match="parental sixth month"):
+        type(rules).model_validate(data)

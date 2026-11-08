@@ -6,7 +6,9 @@ c.c. keeps in the TFR base only the absences of art. 2110 c.c. and the
 wage integration.  It pays back the INPS indemnity of each day at its
 rate (art. 34 D.Lgs. 151/2001), on the pay of the month before the leave
 (art. 23), advanced by the employer and posted as ``maternity_item``.
-A configured CCNL rule supplements eligible days up to its cap.
+A configured CCNL rule supplements eligible days up to its cap. Where the
+maternity rule explicitly covers parental leave in the sixth month of absence,
+its target also applies to days in the thirty-day window after compulsory leave.
 """
 
 from __future__ import annotations
@@ -23,6 +25,10 @@ from ccnl_engine.absence.insured.handlers import (
     _span,
 )
 from ccnl_engine.absence.insured.parental.rules import allocate, indemnity
+from ccnl_engine.absence.insured.parental.top_up import (
+    sixth_month_days,
+    sixth_month_integration,
+)
 from ccnl_engine.absence.insured.posting.services import post_lines
 from ccnl_engine.absence.insured.rules import InsuredPay
 from ccnl_engine.decision.models import CalculationIssue, CalculationStatus, IssueCause
@@ -135,6 +141,11 @@ def _handle_parental_leave(
     units, deduction = terms.pay.deducted(*span)
     in_span = [day for day in days.rates if span[0] <= day <= span[1]]
     rules = None if terms.rules is None else terms.rules.parental
+    maternity = None if terms.rules is None else terms.rules.maternity
+    sixth = (
+        maternity if maternity is not None and maternity.parental_sixth_month else None
+    )
+    sixth_days, missing_sixth_end = sixth_month_days(event, in_span, sixth)
     missing_counter = rules is not None and event.topped_up_days_before is None
     eligible = _top_up_days(event, days, span, rules, rates.indemnity_rate)
     integration = (
@@ -150,6 +161,7 @@ def _handle_parental_leave(
         if rules is not None
         else Decimal(0)
     )
+    integration += sixth_month_integration(sixth_days, days.rates, daily, sixth)
     pay = InsuredPay(
         units, deduction, indemnity(days, *span, daily), len(in_span), integration
     )
@@ -161,7 +173,7 @@ def _handle_parental_leave(
                 "intg",
                 pay.integration,
                 "absence_integration_item",
-                Decimal(len(eligible)),
+                Decimal(len(eligible) + len(sixth_days)),
             ),
         ),
         ctx,
@@ -172,16 +184,50 @@ def _handle_parental_leave(
             terms,
             span,
             pay,
-            modelled=rules is not None and not missing_counter,
+            modelled=(rules is not None or sixth is not None)
+            and not missing_counter
+            and not missing_sixth_end,
             advanced=True,
         )
     ]
     effect.issues = [
-        *([] if rules is not None else [_not_modelled(PARENTAL)]),
+        *([] if rules is not None or sixth is not None else [_not_modelled(PARENTAL)]),
         *base.issues,
     ]
+    effect.issues.extend(
+        _fact_issues(missing_counter, missing_sixth_end, days.cohort_unknown)
+    )
+    effect.limitations = _parental_limitations(base.limitations, days, in_span)
+    return effect
+
+
+def _parental_limitations(
+    base: tuple[str, ...], days: ParentalDays, in_span: list[date]
+) -> tuple[str, ...]:
+    """Keep the base and parental leave limitations on the covered days.
+
+    Returns:
+        Limitations of the run's portion of the parental leave.
+    """
+    limitations = [*base, PARENTAL_EXTRA_MONTH_LIMITATION]
+    if any(days.rates[day] is None for day in in_span):
+        limitations.append(PARENTAL_INCOME_LIMITATION)
+    if days.split.intersection(in_span):
+        limitations.append(PARENTAL_SPLIT_LIMITATION)
+    return tuple(limitations)
+
+
+def _fact_issues(
+    missing_counter: bool, missing_sixth_end: bool, cohort_unknown: bool
+) -> list[CalculationIssue]:
+    """Report the absent facts needed to determine parental integration.
+
+    Returns:
+        Issues for an unknown supplement history or protected leave end.
+    """
+    issues: list[CalculationIssue] = []
     if missing_counter:
-        effect.issues.append(
+        issues.append(
             CalculationIssue(
                 code="parental_top_up_history_unknown",
                 message=(
@@ -194,12 +240,20 @@ def _handle_parental_leave(
                 cause=IssueCause.FACT,
             )
         )
-    if days.cohort_unknown:
-        effect.issues.append(_cohort_issue())
-    limitations = [*base.limitations, PARENTAL_EXTRA_MONTH_LIMITATION]
-    if any(days.rates[day] is None for day in in_span):
-        limitations.append(PARENTAL_INCOME_LIMITATION)
-    if days.split.intersection(in_span):
-        limitations.append(PARENTAL_SPLIT_LIMITATION)
-    effect.limitations = tuple(limitations)
-    return effect
+    if missing_sixth_end:
+        issues.append(
+            CalculationIssue(
+                code="parental_sixth_month_end_unknown",
+                message=(
+                    "ParentalLeaveEvent.protection_ended_on is required to determine "
+                    "whether this leave falls in the sixth month of maternity absence"
+                ),
+                status=CalculationStatus.INCOMPLETE,
+                capability=PARENTAL,
+                fact="protection_ended_on",
+                cause=IssueCause.FACT,
+            )
+        )
+    if cohort_unknown:
+        issues.append(_cohort_issue())
+    return issues
