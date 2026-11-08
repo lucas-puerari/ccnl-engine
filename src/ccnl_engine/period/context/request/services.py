@@ -38,7 +38,10 @@ from ccnl_engine.period.context.agreement.services import load_contract
 from ccnl_engine.period.context.services import RunContext
 from ccnl_engine.period.payslip.services import resolve_payment
 from ccnl_engine.seniority.age.rules import months_from_age
-from ccnl_engine.seniority.freeze.rules import months_without_freeze
+from ccnl_engine.seniority.freeze.rules import (
+    months_in_cohort,
+    months_without_freeze,
+)
 from ccnl_engine.seniority.services import seniority_months_at
 from ccnl_engine.withholding.plan.services import (
     resolve_withholding_schedule,
@@ -95,6 +98,12 @@ def _base_chain(
             increments.freezes,
             request.seniority.as_of,
             contract.tctx.competence,
+        )
+        months = months_in_cohort(
+            months,
+            increments.hired_until,
+            contract.tctx.competence,
+            None if period is None else period.started_on,
         )
     return _resolve_chain(
         contract.ccnl,

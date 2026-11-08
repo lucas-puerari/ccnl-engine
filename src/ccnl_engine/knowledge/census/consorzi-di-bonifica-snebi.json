@@ -291,22 +291,6 @@
       }
     },
     {
-      "id": "pre_2000_cohort_table_missing",
-      "institute": "base_salary",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Dual-cohort: workers hired by 15-07-2000 have a lower salary table (~1.4% below post-2000) not modeled here. Those workers are a declining cohort (tenure 25+ years); new hires always enter the post-2000 table.",
-      "calculation": "ccnl/consorzi-di-bonifica-snebi:coverage.notes",
-      "state": "absent",
-      "remediation": "Model the lower salary table for workers hired by 15-07-2000 behind a hire-date fact.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "consorzi-di-bonifica-snebi/pre_2000_cohort_table_missing"
-        ]
-      }
-    },
-    {
       "id": "provisional_inps_ruleset",
       "institute": "inps_employer",
       "variant": "all",

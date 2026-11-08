@@ -8,6 +8,7 @@ from typing import Literal, Self
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from ccnl_engine.agreement.validity.rules import TimeSeries
+from ccnl_engine.compensation.cohort.models import CohortSalary
 from ccnl_engine.compensation.equalisation.models import EqualisationElement
 from ccnl_engine.compensation.fixed_term.models import FixedTermPay
 from ccnl_engine.compensation.hourly.models import HourlyPay
@@ -272,10 +273,8 @@ class RaccordoElement(BaseModel):
 class CCNLParameters(BaseModel):
     """Contract-wide parameters.
 
-    ``accrual_rule`` is the CCNL threshold for counting a month of an
-    extra-month window, ``None`` when the bundle has no sourced clause.
-    ``thirteenth_payment_day``, ``fourteenth_payment_day``: the days the CCNL
-    pays the extra months, ``None`` without a sourced clause.
+    ``accrual_rule``: threshold counting a month of an extra-month window;
+    ``thirteenth_payment_day``, ``fourteenth_payment_day``: their pay days.
     ``assistance_contribution``, ``contractual_fund_contribution``: charged
     to a fund; ``additional_months_by_category``: the payments of a category.
     ``flat_pay_max_weekly_hours``: hours paid at the full minimum (domestic: 30).
@@ -347,8 +346,8 @@ class Level(BaseModel):
         order: Ranking from lowest to highest pay (1 = lowest).
         description: Human-readable name of the classification level.
         base_salary: Time-series of monthly base salaries for this level.
-        base_salary_by_subsector: The base salary of an employer of a
-            sub-sector (``EmployerProfile.subsector``) that pays another table.
+        base_salary_by_subsector: The table of an employer's sub-sector.
+        base_salary_by_cohort: The tables of the workers hired by a date.
         subsectors: The only sub-sectors the level exists in, empty for all.
         fixed_allowances: Fixed monthly allowances of the level (EDR...).
         category: Worker category fixed by this level, ``None`` when it
@@ -362,6 +361,7 @@ class Level(BaseModel):
     description: str
     base_salary: TimeSeries
     base_salary_by_subsector: dict[str, TimeSeries] = Field(default_factory=dict)
+    base_salary_by_cohort: tuple[CohortSalary, ...] = ()
     subsectors: tuple[str, ...] = ()
     fixed_allowances: tuple[Allowance, ...] = Field(default=())
     category: WorkerCategory | None = None

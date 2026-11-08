@@ -44,10 +44,10 @@ class TestLoadConsorziDiBonificaSnebi:
         assert lv.base_salary.value_at(date(2025, 7, 1)) == Decimal("1906.71")
 
     def test_consorzi_di_bonifica_snebi_level_c127_salary_jan2026(self) -> None:
-        """C127 post-2000 Jan 2026 salary is 1948.38 (redigo.info)."""
+        """C127 post-2000 Jan 2026 salary is 1948.39 (Allegato A, PDF p. 159)."""
         ccnl = load_ccnl("consorzi-di-bonifica-snebi")
         lv = ccnl.level_by_code("C127")
-        assert lv.base_salary.value_at(date(2026, 1, 1)) == Decimal("1948.38")
+        assert lv.base_salary.value_at(date(2026, 1, 1)) == Decimal("1948.39")
 
     def test_consorzi_di_bonifica_snebi_level_ordering(self) -> None:
         """D100 has lowest order (1); AQ187 has highest order (25)."""

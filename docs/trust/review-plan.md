@@ -9,7 +9,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | Group | CCNLs | Workers | Weak | Derived | Verified | Aggregator | Anchor |
 |---|---:|---:|---:|---:|---:|---:|---|
 | pubblica-amministrazione | 14 | 7 548 000 | 14 | 229 | 182 | 0 | `funzioni-centrali-aran` |
-| terziario | 46 | 5 257 055 | 53 | 964 | 1733 | 4 | `commercio-confcommercio`, `sanita-privata-aiop-aris` |
+| terziario | 46 | 5 257 055 | 53 | 963 | 1734 | 4 | `commercio-confcommercio`, `sanita-privata-aiop-aris` |
 | industria | 49 | 4 969 900 | 155 | 1166 | 2283 | 15 | `logistica-trasporto-confetra`, `metalmeccanico-federmeccanica` |
 | lavoro-domestico | 3 | 1 800 000 | 0 | 3 | 60 | 0 | `lavoro-domestico-non-convivente` |
 | artigianato | 8 | 1 244 505 | 34 | 151 | 309 | 2 | `metalmeccanico-artigianato` |
@@ -69,7 +69,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | [`scuole-materne-fism`](../contracts/scuole-materne-fism.md) | 30 000 | exploratory | 1 | 7 | 41 | party or official | none | none |
 | [`agenzie-viaggio-fiavet`](../contracts/agenzie-viaggio-fiavet.md) | 25 000 | exploratory | 1 | 59 | 10 | party or official | none | none |
 | [`scuole-private-laiche-aninsei`](../contracts/scuole-private-laiche-aninsei.md) | 25 000 | exploratory | 1 | 71 | 36 | party or official | none | none |
-| [`ced-assoced`](../contracts/ced-assoced.md) | 22 000 | exploratory | 2 | 8 | 36 | party or official | none | none |
+| [`ced-assoced`](../contracts/ced-assoced.md) | 22 000 | exploratory | 2 | 7 | 37 | party or official | none | none |
 | [`formazione-professionale`](../contracts/formazione-professionale.md) | 19 800 | exploratory | 2 | 34 | 0 | party or official | none | none |
 | [`rsa-aiop`](../contracts/rsa-aiop.md) | 17 000 | exploratory | 1 | 8 | 24 | party or official | none | none |
 | [`ooss-unsic-confsal`](../contracts/ooss-unsic-confsal.md) | 7 000 | exploratory | 1 | 19 | 1 | party or official | none | none |

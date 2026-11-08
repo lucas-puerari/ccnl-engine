@@ -692,7 +692,6 @@
     ],
     "agreement/ced-assoced.json": [
       "ced-assoced/conditional_allowances_title_xxiii",
-      "ced-assoced/grandfathered_scatti",
       "ced-assoced/terziario_inps_rates_unverified"
     ],
     "agreement/cemento-calce-gesso-industria.json": [
@@ -746,8 +745,7 @@
     "agreement/consorzi-di-bonifica-snebi.json": [
       "consorzi-di-bonifica-snebi/apprentice_inps_rates_unsourced",
       "consorzi-di-bonifica-snebi/ex_sublevel_scatto_mapping",
-      "consorzi-di-bonifica-snebi/higher_tier_scatto_amounts",
-      "consorzi-di-bonifica-snebi/pre_2000_cohort_table_missing"
+      "consorzi-di-bonifica-snebi/higher_tier_scatto_amounts"
     ],
     "agreement/cooperative-consorzi-agricoli.json": [
       "cooperative-consorzi-agricoli/apprenticeship_passthrough",
@@ -1219,7 +1217,6 @@
       "turismo-federalberghi/extra_months_during_leave",
       "turismo-federalberghi/extras_hourly_table",
       "turismo-federalberghi/guarantee_element_2027",
-      "turismo-federalberghi/hires_2016_ramp",
       "turismo-federalberghi/quadri_absorption",
       "turismo-federalberghi/sickness_net_basis"
     ],
