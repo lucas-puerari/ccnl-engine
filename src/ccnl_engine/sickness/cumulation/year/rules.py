@@ -160,13 +160,14 @@ class YearTreatment:
             The qualifying limit, otherwise the ordinary limit.
         """
         kind = self.episode.serious_illness_kind
-        if kind is SeriousIllnessKind.ONCOLOGICAL and band.oncological_comporto_days:
+        if band.oncological_comporto_days is None:  # Studi: the stated illness
+            serious = bool(self.episode.serious_illness)
+        elif kind is SeriousIllnessKind.ONCOLOGICAL:  # ABI c. 5
             return band.oncological_comporto_days
-        if kind is not None or (
-            band.oncological_comporto_days is None and self.episode.serious_illness
-        ):
-            return band.serious_comporto_days or band.comporto_days
-        return band.comporto_days
+        else:  # ABI c. 4: a documented diagnosis only
+            serious = kind is not None
+        extended = band.serious_comporto_days or band.comporto_days
+        return extended if serious else band.comporto_days
 
     @property
     def seniority_reach(self) -> bool:
@@ -248,10 +249,11 @@ class YearTreatment:
         summed = window is not None and self.window_days(window, day) > self._limit(
             window
         )
+        serious = self._serious_rate(day, count)
         return CcnlDay(
             beyond_comporto=count > limit or summed,
-            rate=self._rate(index, day, count),
-            carenza_rate=self.carenza_rate,
+            rate=self.target_rate(index) if serious is None else serious,
+            carenza_rate=self.carenza_rate if serious is None else serious,
         )
 
     def _count(self, index: int, day: date) -> int:
@@ -278,18 +280,16 @@ class YearTreatment:
             for excluded in e.excluded_comporto_days or ()
         )
 
-    def _rate(self, index: int, day: date, count: int) -> Decimal:
-        """Apply the serious-illness pay bands to the counted days.
+    def _serious_rate(self, day: date, count: int) -> Decimal | None:
+        """Rate of the additional days (Studi art. 121), carenza days included.
 
         Returns:
-            The qualifying rate, or the ordinary day rate.
+            The rate of the serious-illness band holding on the day, if any.
         """
-        rate = self.target_rate(index)
         if not self.episode.serious_illness:
-            return rate
+            return None
         window = self.window
         paid_count = self.window_days(window, day) if window is not None else count
-        band = next(
-            (b for b in self.rules.serious_day_bands if b.holds(paid_count)), None
-        )
-        return band.integration_rate if band is not None else rate
+        bands = self.rules.serious_day_bands
+        band = next((b for b in bands if b.holds(paid_count)), None)
+        return None if band is None else band.integration_rate

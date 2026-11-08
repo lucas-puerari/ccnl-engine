@@ -197,3 +197,50 @@ def test_invalid_diagnosis_and_excluded_dates_are_rejected() -> None:
         SicknessEpisode(
             "duplicate", start, start, excluded_comporto_days=(start, start)
         )
+
+
+def test_an_abi_diagnosis_does_not_extend_the_studi_comporto() -> None:
+    """Studi art. 120 lists its own illnesses, not those of ABI.
+
+    A tuberculosis-care kind alone leaves day 181 past the 180 days.
+    """
+    rules = _rules("studi-professionali-confprofessioni")
+    start = date(2026, 1, 1)
+    end = start + timedelta(days=200)
+    abi_only = SicknessEpisode(
+        "tbc", start, end, serious_illness_kind=SeriousIllnessKind.TUBERCULOSIS_CARE
+    )
+    assert _day(rules, abi_only, 181)[0]
+
+
+def test_new_serious_episode_in_month_nine_pays_its_waiting_days_at_70() -> None:
+    """A new serious episode in month nine pays its carenza day at 70%.
+
+    After a 240-day serious illness the next day is in month nine (70%), not
+    at the carenza 100%.
+    """
+    rules = _rules("studi-professionali-confprofessioni")
+    first = SicknessEpisode(
+        "first",
+        date(2026, 1, 1),
+        date(2026, 1, 1) + timedelta(days=239),
+        serious_illness=True,
+    )
+    again = date(2026, 8, 30)
+    second = SicknessEpisode("second", again, again, serious_illness=True)
+    year = YearTreatment(
+        rules,
+        second,
+        (first,),
+        SicknessWorker(),
+        lambda i: next(
+            (b.integration_rate for b in rules.day_bands if b.holds(i)),
+            rules.full_pay_integration_rate,
+        ),
+    )
+    treatment = year.day(1, again)
+    assert (treatment.beyond_comporto, treatment.rate, treatment.carenza_rate) == (
+        False,
+        Decimal("0.7"),
+        Decimal("0.7"),
+    )
