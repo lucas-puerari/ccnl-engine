@@ -115,6 +115,19 @@
         }
       },
       {
+        "kind": "simplification",
+        "text": "Art. 191 requires the INPS sickness benefit plus employer integration to reach 100% of the actual daily pay on a holiday, but no sickness_rules.holiday target is encoded: the net-basis integration of art. 187 grosses up the INPS benefit before subtracting it from the gross target, leaving the worker below 100%. Art. 154 lists all national-calendar holidays except 4 October (added in 2026); the patron saint is not in the national calendar. Injury holiday integration with INAIL is also not calculated.",
+        "capability": "sickness",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "holiday_during_injury",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Provide a gross-pay holiday target distinct from the net-basis art. 187 sickness integration and calculate the INAIL holiday top-up and local patron saint holiday."
+        }
+      },
+      {
         "kind": "info",
         "text": "HOURLY RATE AND SUPPLEMENTS (Testo Unico 30 July 2019, unchanged by the 2024 renewal, artt. 149-157, 206-211): without a caller value the engine derives the hourly base (the normale retribuzione of art. 206 over 168), the 15% on ordinary night hours from 22 to 6 (art. 151), the 30% on festività hours paid as straordinario festivo (art. 155 with art. 149), the 30% on ordinary Sunday hours (art. 153; 10% at the motorway fuel stations of art. 157, role impianto_carburante_autostradale: Employment.roles must be stated) and the 30% on the hours of the weekly rest day (art. 156). Art. 155 also pays the festività hours themselves: the engine posts the 30% only and the run is provisional. Second-level agreements may replace the Sunday and night rules (art. 153). Not derived: the divisors 182 and 195 of the 42- and 45-hour weeks; shift work, left to second-level bargaining."
       },
@@ -3695,7 +3708,7 @@
     "effective_until": null,
     "source": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
     "verification_status": "unverified",
-    "source_hash": "37630bdf2e9da2df6ec70aa6683c988428eb4983214814cb9eaa91117ac654ce",
+    "source_hash": "4845ca4390dc94b5d714bba233a594c47e2b894126657c5410c993571b5e2ae5",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -5536,6 +5549,27 @@
         "independence": "separate_model",
         "checked": [
           "dual_apprenticeship"
+        ]
+      },
+      {
+        "id": "2026-11-08-gpt-commercio-confcommercio-holiday-in-sickness",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Art. 187 and art. 191 of the testo unico 2019 against the decision not to encode the holiday target, by a separate model session.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
+            "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016"
+          }
+        ],
+        "findings": [
+          "Confirmed: with the net-basis integration of art. 187, a 100% target pays 64.82 where the gross holiday pay of art. 191 is 68.52; the clause is kept as a limitation."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.sickness_rules"
         ]
       }
     ],
