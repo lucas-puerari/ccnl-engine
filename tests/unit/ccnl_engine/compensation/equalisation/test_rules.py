@@ -369,3 +369,18 @@ def test_a_termination_before_june_does_not_settle_the_egr() -> None:
     """The text is silent: only the regular June run pays it."""
     request = _request(month=3, ended=date(2026, 3, 10))
     assert _egr(request, RunKind.TERMINATION) == []
+
+
+@pytest.mark.parametrize(
+    ("company", "owed"),
+    [
+        (_company(date(2026, 1, 1)), False),
+        (_company(date(2020, 1, 1), date(2025, 12, 31)), True),
+    ],
+    ids=["this-year", "ended-last-year"],
+)
+def test_the_egr_reads_the_bargaining_of_the_year_of_payment(
+    company: SecondLevelElement, *, owed: bool
+) -> None:
+    """'Aziende prive della contrattazione aziendale': in the year it is paid."""
+    assert bool(_egr(_request(company=(company,)))) is owed

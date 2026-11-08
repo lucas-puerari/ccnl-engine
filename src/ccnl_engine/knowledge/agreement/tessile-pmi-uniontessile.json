@@ -255,7 +255,7 @@
         "reviewer": "claude-opus-5-5",
         "reviewer_kind": "ai",
         "scope": "Art. 12 bis and 12 ter of the renewal of 24 January 2020 (CNEL deposito 118136, PDF p. 12), the renewal of 18 February 2025 (deposito 216349) for amendments.",
-        "outcome": "confirmed",
+        "outcome": "corrected",
         "sources": [
           {
             "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/118136",
@@ -266,7 +266,8 @@
           "Art. 12 bis: 240 EUR a year from 2017, with the June pay from 2021, to the worker in service on 1 January without company bargaining or individual treatment; twelfths of the year before, part-time proportional, all-inclusive including the TFR.",
           "The text is silent on a termination before June: limitation egr_termination_before_june.",
           "Art. 12 ter (110 EUR, firms without art. 12 C) left as limitation art_12_ter_element.",
-          "The renewal of 18 February 2025 does not amend art. 12, 12 bis or 12 ter."
+          "The renewal of 18 February 2025 does not amend art. 12, 12 bis or 12 ter.",
+          "An independent reading confirmed amount, months, part-time, exclusion and the termination limitation, and found that the text tests the company bargaining in the present ('aziende prive'), not in the year before: the element is closed by bargaining in force in the year of payment."
         ],
         "independence": "same_process",
         "checked": [
@@ -477,7 +478,7 @@
           "section": "Art. 12 bis - Elemento di garanzia retributiva",
           "quote": "a favore dei lavoratori dipendenti da aziende prive della contrattazione aziendale stessa e che non percepiscono altri trattamenti economici individuali o collettivi oltre a quanto spettante in base al presente contratto nazionale, sarà riconosciuto un importo a titolo di \"elemento di garanzia retributiva\". Tale importo, pari a 220 euro lordi ed elevato ad euro 240 dal 1° gennaio 2017, uguale per tutti i lavoratori, sarà erogato con la retribuzione del mese di gennaio di ogni anno ai lavoratori in forza il 1° gennaio dello stesso anno di erogazione ed aventi titolo in base alla situazione retributiva individuale. Con decorrenza dall'anno 2021, tale importo sarà erogato con la retribuzione del mese di giugno di ogni anno. L'importo del E.G.R., che è da intendersi omnicomprensivo di ogni incidenza su tutti gli istituti legali e contrattuali, compreso il TFR, sarà corrisposto interamente ai lavoratori in forza dal 1° gennaio al 31 dicembre di ogni anno precedente l'erogazione e proporzionalmente ridotto in dodicesimi per gli altri lavoratori, considerando come mese intero la frazione di mese superiore a 15 giorni. Sarà altresì riproporzionato per i lavoratori a tempo parziale in base al minor orario contrattuale."
         },
-        "transformation": "EUR 240 a year with the June pay to the worker in service on 1 January, in twelfths of the months of the year before (more than 15 days a whole month), in proportion to the part-time hours; all-inclusive, out of the TFR. A firm with company bargaining (EmployerProfile.second_level_premium or second_level_elements) or any individual element of the worker (Employment.individual_elements) closes it. The 2025 renewal (CNEL deposito 216349) does not amend art. 12 bis. A termination before June does not pay it: limitation egr_termination_before_june.",
+        "transformation": "EUR 240 a year with the June pay to the worker in service on 1 January, in twelfths of the months of the year before (more than 15 days a whole month), in proportion to the part-time hours; all-inclusive, out of the TFR. A firm with company bargaining in the year of payment (EmployerProfile.second_level_premium or second_level_elements in force in that year) or any individual element of the worker (Employment.individual_elements) closes it. The 2025 renewal (CNEL deposito 216349) does not amend art. 12 bis. A termination before June does not pay it: limitation egr_termination_before_june.",
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
@@ -488,7 +489,8 @@
           "verification_status": "verified",
           "review_id": "2026-11-08-ai-uniontessile-egr"
         }
-      }
+      },
+      "bargaining_year_before": false
     }
   },
   "apprenticeship": [],
@@ -6081,6 +6083,6 @@
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
     "source_type": "contracting_party",
     "verification_status": "unverified",
-    "source_hash": "5c94e74e18f27572f2198f0e17466103648ad9cb7516ff142cf51361b8f719cf"
+    "source_hash": "64cbbc42571a594bdd64abef0579df21240e22205a457857ec93221c76f048f2"
   }
 }

@@ -41,6 +41,10 @@ class EqualisationElement(BaseModel):
         individual_excludes: Whether any individual element of the worker
             closes it instead of reducing it (Uniontessile art. 12 bis: "che
             non percepiscono altri trattamenti economici individuali").
+        bargaining_year_before: Whether the second-level bargaining that
+            closes it is the one in force in the year before (Confapi art.
+            48), ``False`` for the year it is paid in (Uniontessile art. 12
+            bis: "aziende prive della contrattazione aziendale").
         settled_on_termination: Whether a termination run before its month
             pays it with the final settlement; ``False`` pays it only in the
             regular run of its month.
@@ -57,6 +61,7 @@ class EqualisationElement(BaseModel):
     part_time_proportional: bool = False
     individual_excludes: bool = False
     settled_on_termination: bool = True
+    bargaining_year_before: bool = True
     paid_in_month: int = Field(ge=1, le=12)
     month_min_days: int = Field(default=16, ge=1, le=31)
     provenance: RuleProvenance

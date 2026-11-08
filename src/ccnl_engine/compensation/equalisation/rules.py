@@ -128,14 +128,14 @@ def _ratio(request: PeriodCalculationRequest) -> Decimal:
     return weekly.value / full.value
 
 
-def _company(request: PeriodCalculationRequest) -> bool:
-    """Return whether a stated second-level element was in force last year.
+def _company(request: PeriodCalculationRequest, *, before: bool) -> bool:
+    """Return whether a stated second-level element was in force.
 
     Returns:
         ``True`` when an element of the employer covers a day of the year
-        before the run.
+        before the run, or of its year when not ``before``.
     """
-    year = request.period_id.year - 1
+    year = request.period_id.year - before
     first, last = date(year, 1, 1), date(year, 12, 31)
     return any(
         e.valid_from <= last and (e.valid_until is None or e.valid_until >= first)
@@ -188,7 +188,7 @@ def equalisation_outcome(
     if element is None or not _pays(element, request, kind):
         return EqualisationOutcome()
     premium = request.employer.second_level_premium
-    if premium or _company(request):
+    if premium or _company(request, before=element.bargaining_year_before):
         return EqualisationOutcome()
     months = _served(element, request)
     amount = _amount(element, request, ccnl, months) if months else Decimal(0)
