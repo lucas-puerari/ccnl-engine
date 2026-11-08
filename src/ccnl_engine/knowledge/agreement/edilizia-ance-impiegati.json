@@ -138,7 +138,7 @@
         "limitation": {
           "variant": "loyalty_premium",
           "applies_when": {
-            "trigger": "outside_input",
+            "trigger": "run",
             "worker_categories": [
               "impiegato",
               "quadro"
@@ -271,7 +271,7 @@
           "verification_status": "verified",
           "verified_by": "claude-opus-5-5",
           "verified_at": "2026-11-08T11:31:30Z",
-          "review_id": "2026-11-08-ai-ance-loyalty"
+          "review_id": "2026-11-08-gpt-ance-loyalty"
         }
       }
     },
@@ -2467,7 +2467,7 @@
     "effective_until": null,
     "source": "https://ance.it/wp-content/uploads/allegati/Tabella_nuovi_minimi_orari-_CCNL_2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "ba1b5423df1b7945389cc346c07b26d755d479b32165bcceb4034e62aff0fb1a",
+    "source_hash": "61c3bf66e442d04e4345c059318b662b2098684dec9f595709035a647bafc886",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3273,13 +3273,13 @@
         ]
       },
       {
-        "id": "2026-11-08-ai-ance-loyalty",
+        "id": "2026-11-08-gpt-ance-loyalty",
         "date": "2026-11-08",
-        "reviewer": "claude-opus-5-5",
+        "reviewer": "gpt-6-sol",
         "reviewer_kind": "ai",
-        "independence": "same_process",
-        "scope": "Art. 65 loyalty award for ANCE clerical workers; Art. 44 monthly elements, Art. 72 TFR treatment, Art. 63 thirteenth month, Art. 76 quadro allowance, and renewal-text searches for amendments through 2025.",
-        "outcome": "corrected",
+        "independence": "separate_model",
+        "scope": "Art. 65, 44, 63, 72 and 76 of the CCNL 19 April 2010 against the loyalty premium encoding, by a separate model session.",
+        "outcome": "flagged",
         "sources": [
           {
             "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL_EDILIZIA_INDUSTRIA_2010_TESTO_COMPLETO.pdf",
@@ -3287,8 +3287,8 @@
           }
         ],
         "findings": [
-          "One monthly Art. 44 items 1-15 award on each qualifying hire anniversary after twenty uninterrupted actual years; included in TFR, not in the 13th base.",
-          "The engine approximates the enumerated monthly elements and does not pay dismissal pro rata or establish qualifying service across interruptions or group companies."
+          "Confirmed: one month of the art. 44 elements 1-15 on the hire anniversary after 20 years of uninterrupted actual service, then every year; impiegati and quadri (art. 76, with the function allowance); in the TFR base (art. 72); out of the 13th (art. 63, item 18 of art. 44).",
+          "Flagged, kept in the limitation loyalty_premium: the run chain stands for the elements 1-15, the employment start for the qualifying service, the anniversary month for the date; the pro rata at a non-disciplinary dismissal is not paid."
         ],
         "checked": [
           "parameters.loyalty_premium",

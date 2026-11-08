@@ -102,7 +102,7 @@
       "id": "loyalty_premium",
       "institute": "base_salary",
       "variant": "impiegato_quadro",
-      "discriminant": "applies_when.trigger = outside_input",
+      "discriminant": "applies_when.trigger = run",
       "rule": "Art. 65: the annual loyalty award is paid on the hire-anniversary month after 20 years of uninterrupted actual service, using the run-chain monthly pay as an approximation of Art. 44 items 1-15. Not modelled: the whole-month twelfths due after a non-disciplinary dismissal, conventional seniority and interruptions or group-company service not represented by the hire date, and the exact Art. 44 elements (including territorial and individual components) actually summed in the award.",
       "calculation": "ccnl/edilizia-ance-impiegati:coverage.notes",
       "state": "absent",
