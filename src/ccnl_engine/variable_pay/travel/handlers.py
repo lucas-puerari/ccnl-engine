@@ -18,7 +18,7 @@ from ccnl_engine.pay_item.services import _ZERO, _require_resolution
 if TYPE_CHECKING:
     from ccnl_engine.variable_pay.inputs import TravelAllowanceEvent
     from ccnl_engine.variable_pay.models import TravelAllowanceRules
-    from ccnl_engine.working_time.models import CcnlTravelAllowance
+    from ccnl_engine.working_time.travel.models import CcnlTravelAllowance
 
 __all__ = ["TravelAllowanceAssessment", "TravelTerms", "_handle_travel_allowance"]
 

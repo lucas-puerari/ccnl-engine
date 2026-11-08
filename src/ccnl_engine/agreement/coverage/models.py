@@ -32,12 +32,10 @@ from ccnl_engine.limitation.models import (
 )
 from ccnl_engine.sickness.integration.models import SicknessRules
 from ccnl_engine.termination.notice.models import NoticeRules
-from ccnl_engine.working_time.models import (
-    CcnlTravelAllowance,
-    TimeSupplements,
-)
+from ccnl_engine.working_time.models import TimeSupplements
 from ccnl_engine.working_time.standby.models import StandbyRules
 from ccnl_engine.working_time.subsector.models import SubsectorRules
+from ccnl_engine.working_time.travel.models import CcnlTravelAllowance
 
 if TYPE_CHECKING:
     from collections.abc import Iterator, Sequence
