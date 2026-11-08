@@ -2,9 +2,9 @@
 
 Allegato 1 nn. 2-5 of the Sezione of 11 July 2024 (PDF p. 32): 7 EUR in
 level IV after 8 years; 7 EUR in level III after 4 years with a diploma, or
-after 8 years, never both; 11 EUR in level II after 10 years for a worker
-without a further promotion.  The years in the level are
-``SeniorityFact.career_months``.
+after 8 years for the others ('altri impiegati'), never both; 11 EUR in
+level II after 10 years for a worker without a further promotion.  The
+years in the level are ``SeniorityFact.career_months``.
 """
 
 from __future__ import annotations
@@ -43,6 +43,7 @@ def _superminimi(
 
 _DIPLOMA = frozenset({"diplomato"})
 _NO_PROMOTION = frozenset({"senza_passaggio"})
+_OTHER = frozenset({"non_diplomato"})
 
 
 @pytest.mark.parametrize(
@@ -51,7 +52,9 @@ _NO_PROMOTION = frozenset({"senza_passaggio"})
         ("IV", 96, None, [("SUPERMINIMO_LIVELLO", Decimal("7.00"))]),
         ("IV", 95, None, []),
         ("III", 48, _DIPLOMA, [("SUPERMINIMO_LIVELLO_DIPLOMA", Decimal("7.00"))]),
-        ("III", 96, _DIPLOMA, [("SUPERMINIMO_LIVELLO", Decimal("7.00"))]),
+        ("III", 96, _DIPLOMA, [("SUPERMINIMO_LIVELLO_DIPLOMA", Decimal("7.00"))]),
+        ("III", 96, _OTHER, [("SUPERMINIMO_LIVELLO", Decimal("7.00"))]),
+        ("III", 95, _OTHER, []),
         ("III", 48, None, []),
         ("II", 120, _NO_PROMOTION, [("SUPERMINIMO_LIVELLO", Decimal("11.00"))]),
         ("II", 120, None, []),
@@ -61,6 +64,8 @@ _NO_PROMOTION = frozenset({"senza_passaggio"})
         "iv-short",
         "iii-diploma-4-years",
         "iii-diploma-8-years-not-twice",
+        "iii-other-8-years",
+        "iii-other-short",
         "iii-no-diploma-4-years",
         "ii-no-promotion",
         "ii-promotion-foreseen",
