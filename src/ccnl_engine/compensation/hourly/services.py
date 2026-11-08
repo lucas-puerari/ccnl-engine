@@ -17,6 +17,7 @@ from typing import TYPE_CHECKING
 
 from ccnl_engine.agreement.validity.rules import rule_scope
 from ccnl_engine.compensation.fixed_term.rules import overtime_hours
+from ccnl_engine.compensation.hourly.base import percentage_base
 from ccnl_engine.compensation.hourly.models import PercentageSettlement
 from ccnl_engine.decision.models import CalculationDecision, CalculationStatus
 from ccnl_engine.decision.rules import _ccnl_rule
@@ -88,16 +89,6 @@ class PercentageAmount:
     accrual: Decimal = _ZERO
 
 
-def _base(chain: MonthlyPayChain, percentage: HourlyPercentage) -> Decimal:
-    """Return the base salary and the named allowances of ``chain``.
-
-    Returns:
-        The base of ``percentage`` on the pay of ``chain``.
-    """
-    named = percentage.base_allowances
-    return chain.base + sum((v for a, v in chain.allowances if a.code in named), _ZERO)
-
-
 def run_percentages(ctx: RunContext) -> tuple[PercentageAmount, ...]:
     """Return the percentages the run pays on the hours worked.
 
@@ -115,7 +106,7 @@ def run_percentages(ctx: RunContext) -> tuple[PercentageAmount, ...]:
     amounts: list[PercentageAmount] = []
     with rule_scope(ruleset=ctx.contract.ccnl.meta.ccnl_id, feature="base_salary"):
         for percentage in spec.percentages:
-            base = money(_base(chain, percentage) * scale)
+            base = money(percentage_base(chain, percentage) * scale)
             rate = percentage.rate.value_at(day)
             series = percentage.net_rate
             net = None if series is None else series.value_at(day)
@@ -292,7 +283,10 @@ def upcoming_percentages(
     percentages = () if spec is None else spec.percentages
     with rule_scope(ruleset=ccnl.meta.ccnl_id, feature="base_salary"):
         monthly = sum(
-            (money(_base(chain, p) * p.rate.value_at(day)) for p in percentages),
+            (
+                money(percentage_base(chain, p) * p.rate.value_at(day))
+                for p in percentages
+            ),
             _ZERO,
         )
     regular = sum(1 for slot in upcoming if slot.run.run_kind == RunKind.REGULAR)

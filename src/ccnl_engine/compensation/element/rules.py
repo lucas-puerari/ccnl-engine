@@ -6,6 +6,7 @@ from typing import TYPE_CHECKING
 
 from ccnl_engine.agreement.validity.rules import SeriesGapError, rule_scope
 from ccnl_engine.compensation.element.types import MonthlyPayChain
+from ccnl_engine.pay_item.rounding.policies import money
 from ccnl_engine.seniority.rules import (
     APPRENTICE_SENIORITY_VARIANT,
     _seniority_amount,
@@ -168,6 +169,52 @@ def _level_chain(
             if _allowance_active(a, roles, seniority_months, as_of, career_months)
         )
         base = level.base_salary.value_at(as_of)
+        # Keep the ordinary-pay integration separate from contractual base pay
+        # and the special supplement named in Art. 24(4) percentage bases.
+        for index, (allowance, _) in enumerate(allowances):
+            if allowance.percentage_rate is None:
+                continue
+            named = allowance.percentage_base_allowances
+            own_elements = base + sum(
+                (
+                    value
+                    for item, value in allowances
+                    if item.code in named or item.individual
+                ),
+                start=base * 0,
+            )
+            supplement = money(own_elements * allowance.percentage_rate)
+            allowances = (
+                *allowances[:index],
+                (allowance, supplement),
+                *allowances[index + 1 :],
+            )
+            if allowance.floor_level is not None:
+                floor = next(
+                    lv for lv in ccnl.levels if lv.code == allowance.floor_level
+                )
+                floor_elements = floor.base_salary.value_at(as_of) + sum(
+                    (
+                        item.monthly.value_at(as_of)
+                        for item in floor.fixed_allowances
+                        if item.code in named
+                    ),
+                    start=base * 0,
+                )
+                shortfall = max(base * 0, floor_elements - own_elements)
+                if shortfall:
+                    integration = allowance.model_copy(
+                        update={
+                            "code": f"{allowance.code}_QUALIFIED_INTEGRATION",
+                            "description": (
+                                "Qualified-worker ordinary remuneration integration"
+                            ),
+                            "percentage_rate": None,
+                            "percentage_base_allowances": (),
+                            "floor_level": None,
+                        }
+                    )
+                    allowances = (*allowances, (integration, shortfall))
     excluded = ccnl.parameters.seniority_increments.excluded_from_extra_months
     return MonthlyPayChain(
         base=base,
