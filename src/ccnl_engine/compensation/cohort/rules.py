@@ -32,6 +32,7 @@ def with_hire_cohort(
         ``ccnl`` unchanged without a hire date or a cohort table, else a
         copy whose levels carry the cohort salaries.
     """
+    ccnl = _with_in_service_cohort(ccnl, period)
     hired_on = hire_date(period, seniority)
     if hired_on is None or not any(
         lv.base_salary_by_cohort or lv.class_tables for lv in ccnl.levels
@@ -52,6 +53,39 @@ def with_hire_cohort(
             update={"seniority_increments": increments}
         )
     return ccnl.model_copy(update=update)
+
+
+def _with_in_service_cohort(ccnl: CCNL, period: EmploymentPeriod | None) -> CCNL:
+    """Return ``ccnl`` with the maximum of increments of its in-service cohort.
+
+    Only a stated employment period in force on the day of the cohort puts
+    the worker in it: a seniority credited from another employment does not.
+
+    Returns:
+        ``ccnl`` with the cohort maxima, or unchanged.
+    """
+    increments = ccnl.parameters.seniority_increments
+    cohort = increments.in_service_cohort
+    if cohort is None or period is None:
+        return ccnl
+    day = cohort.in_service_on
+    if period.started_on > day or (
+        period.ended_on is not None and period.ended_on < day
+    ):
+        return ccnl
+    increments = increments.model_copy(
+        update={
+            "maximum_count": cohort.maximum_count,
+            "maximum_count_by_level": dict(cohort.maximum_count_by_level),
+        }
+    )
+    return ccnl.model_copy(
+        update={
+            "parameters": ccnl.parameters.model_copy(
+                update={"seniority_increments": increments}
+            )
+        }
+    )
 
 
 def _cohort_level(level: Level, hired_on: date, months: int | None) -> Level:

@@ -52,7 +52,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-07-09 |
-| **Last review** | 2026-10-31 |
+| **Last review** | 2026-11-08 |
 | **Latest salary tranche** | 2026-01-01 |
 
 ## Review history
@@ -61,6 +61,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|---|---|
 | 2026-10-14 | claude-opus-5-5 (ai) | Second review of the credito group: stipendio of the eleven levels in the three tranches, scatti, number of monthly payments, against the testo coordinato signed on 19 December 2024. | corrected | The 33 stipendi match Allegato A (p. 149) except two 2026 values, one cent off: 3ª Area 1° livello 2742.35 corrected to 2742.34, 2ª Area 2° livello 2572.10 corrected to 2572.11.<br>13 monthly payments: verified (Art. 46, tredicesima; no further monthly payment in the text).<br>Scatti: amounts match Allegato A; at most 8 for the 1st and 2nd level of the quadri, not 12: the 12 apply only to staff in service on 31 December 1997 (Art. 101). Corrected; the 1997 cohort is noted.<br>The FABI URL of the text no longer serves the PDF; the same signed text is cited from its Eutekne reproduction.<br>Not reviewed here: the hourly pay of Art. 114 (90.66% of one twelfth of the annual pay, divided by 160) and the overtime rates, which stay derived. |
 | 2026-10-31 | claude-opus-5-5 (ai) | The comporto and the sick pay of the CCNL counted over several illnesses (work_rules.sickness_rules), read on the signed text. | corrected | Art. 55 (p. 75) of the testo coordinato signed on 19.12.2024: the job and the whole pay are kept 6, 8, 12, one month per year up to 18, or 22 months by seniority, summing the absences of the 18 months before. The file kept 180 days of one illness: corrected to a cumulation over 18 months with ten seniority bands. The FABI copy cited before returns 404; the Eutekne copy of the same signed text is cited. |
+| 2026-11-08 | claude-opus-5-5 (ai) | Artt. 101 and 113 (PDF pp. 117, 128) of the testo coordinato of 19 December 2024, text layer. | corrected | Art. 101: 'al personale in servizio alla data del 31.12.1997, gli scatti di anzianità competono nel numero massimo di 12 più un ulteriore aumento periodico'; for the 3rd and 4th level 'resta confermato il numero complessivo di 9 scatti'. Art. 113: 12 for the aree professionali. Encoded as seniority_increments.in_service_cohort. |
 
 ## Salary table
 
@@ -123,11 +124,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Source the credito rates of 2026 on an INPS or association table, mark the inps block of contribution/2026/credito.json derived, then remove this note.
 
 !!! warning "bcc-credito-cooperativo/pre_1998_cohort_scatti · seniority · impact yes · open"
-    SCATTI: at most 8 for the 1st and 2nd level of the quadri direttivi and for the aree professionali, 7 for the 3rd and 4th level of the quadri (Art. 101, Art. 113). Staff in service on 31 December 1997 keep 12 scatti (9 for the 3rd and 4th level of the quadri) plus a further periodic increase: the engine applies the limits of later hires, so a run for that cohort past the 8th (7th) scatto needs the extra amounts as a fixed input.
+    SCATTI: at most 8 for the 1st and 2nd level of the quadri direttivi and for the aree professionali, 7 for the 3rd and 4th level of the quadri (Art. 101, Art. 113); 12 (9 for the 3rd and 4th level of the quadri) for the staff in service on 31 December 1997 (seniority_increments.in_service_cohort), read from the stated employment period (the caller states a period covering 31 December 1997 only for a worker in service on that day). Not modelled: the 'ulteriore aumento periodico' after the 12th scatto (Allegato A §5: 8.68 for the quadri and the 3a area, 7.35, 6.19 and 6.69 for the 2a and 1a), reached at the earliest in mid-2033 by a worker hired in 1997 (48 months, a 30-month scatto in progress in 2001, then every 36); the 30-month scatto in progress at the change of cadence of 2001.
 
-    **Applies when:** `seniority` applies.
+    **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Model the 12 (9) scatti and the further periodic increase of staff in service on 31/12/1997 as a hire-date-gated maximum, or open a limitation naming the individual-element workaround.
+    **Remediation:** Pay the further increase of Allegato A §5 from the 12th scatto of the 1997 cohort.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

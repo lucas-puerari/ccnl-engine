@@ -307,6 +307,14 @@ class TestYearDecisions:
         funds = 12 + 1
         # The holidays on a Sunday of October and November, left unpaid.
         sunday_holidays = 2
+        # The PAR of 2024 left in the conto ore, paid in December (art. 5):
+        # incomplete, the plan imports no leave history.
+        conto_ore = 1
         assert len(year.decisions) == (
-            15 * len(runs) + 2 - before_the_renewal + funds + sunday_holidays
+            15 * len(runs)
+            + 2
+            - before_the_renewal
+            + funds
+            + sunday_holidays
+            + conto_ore
         )

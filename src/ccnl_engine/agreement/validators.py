@@ -58,10 +58,15 @@ def _assert_level_provenance(level: Any) -> None:  # noqa: ANN401
 
 
 def _check_flat_level_codes(existing: set[str], si: SeniorityIncrements) -> None:
+    cohort = si.in_service_cohort
     for field_name, mapping in (
         ("amount_by_level", si.amount_by_level),
         ("maximum_count_by_level", si.maximum_count_by_level),
         ("first_cadence_months_by_level", si.first_cadence_months_by_level),
+        (
+            "in_service_cohort.maximum_count_by_level",
+            {} if cohort is None else cohort.maximum_count_by_level,
+        ),
     ):
         for code in mapping:
             if code not in existing:

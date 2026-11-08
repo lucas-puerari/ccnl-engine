@@ -111,15 +111,15 @@
       },
       {
         "kind": "simplification",
-        "text": "SCATTI: at most 8 for the 1st and 2nd level of the quadri direttivi and for the aree professionali, 7 for the 3rd and 4th level of the quadri (Art. 101, Art. 113). Staff in service on 31 December 1997 keep 12 scatti (9 for the 3rd and 4th level of the quadri) plus a further periodic increase: the engine applies the limits of later hires, so a run for that cohort past the 8th (7th) scatto needs the extra amounts as a fixed input.",
+        "text": "SCATTI: at most 8 for the 1st and 2nd level of the quadri direttivi and for the aree professionali, 7 for the 3rd and 4th level of the quadri (Art. 101, Art. 113); 12 (9 for the 3rd and 4th level of the quadri) for the staff in service on 31 December 1997 (seniority_increments.in_service_cohort), read from the stated employment period (the caller states a period covering 31 December 1997 only for a worker in service on that day). Not modelled: the 'ulteriore aumento periodico' after the 12th scatto (Allegato A §5: 8.68 for the quadri and the 3a area, 7.35, 6.19 and 6.69 for the 2a and 1a), reached at the earliest in mid-2033 by a worker hired in 1997 (48 months, a 30-month scatto in progress in 2001, then every 36); the 30-month scatto in progress at the change of cadence of 2001.",
         "capability": "seniority",
         "monetary_impact": "yes",
         "limitation": {
           "variant": "pre_1998_cohort_scatti",
           "applies_when": {
-            "trigger": "run"
+            "trigger": "outside_input"
           },
-          "remediation": "Model the 12 (9) scatti and the further periodic increase of staff in service on 31/12/1997 as a hire-date-gated maximum, or open a limitation naming the individual-element workaround."
+          "remediation": "Pay the further increase of Allegato A §5 from the 12th scatto of the 1997 cohort."
         }
       },
       {
@@ -340,6 +340,14 @@
             }
           }
         ]
+      },
+      "in_service_cohort": {
+        "in_service_on": "1997-12-31",
+        "maximum_count": 12,
+        "maximum_count_by_level": {
+          "QD3": 9,
+          "QD4": 9
+        }
       }
     },
     "solidarity_fund": {
@@ -1767,7 +1775,7 @@
     "effective_until": null,
     "source": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "1193a8ebd43922a2a1db9cde650497f23f3b2693bc0226b9e51bcf0e3d965e91",
+    "source_hash": "ddfabc27fb50a24b82b6b9478c00829445b101352403cc50d3215d86ca5442e6",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2165,6 +2173,27 @@
         ],
         "findings": [
           "Art. 55 (p. 75) of the testo coordinato signed on 19.12.2024: the job and the whole pay are kept 6, 8, 12, one month per year up to 18, or 22 months by seniority, summing the absences of the 18 months before. The file kept 180 days of one illness: corrected to a cumulation over 18 months with ten seniority bands. The FABI copy cited before returns 404; the Eutekne copy of the same signed text is cited."
+        ]
+      },
+      {
+        "id": "2026-11-08-ai-bcc-1997-cohort",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Artt. 101 and 113 (PDF pp. 117, 128) of the testo coordinato of 19 December 2024, text layer.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://apilavoro.eutekne.it/v1/notizie/allegato/f571390d-5db7-457d-bde1-59ed2112e1e9/CCNL%2009.07.2024.pdf/download",
+            "sha256": "be1e545e3a7e3525cb249ac69c4a70c479f6816d968c7b0d2c9ed5902108b113"
+          }
+        ],
+        "findings": [
+          "Art. 101: 'al personale in servizio alla data del 31.12.1997, gli scatti di anzianità competono nel numero massimo di 12 più un ulteriore aumento periodico'; for the 3rd and 4th level 'resta confermato il numero complessivo di 9 scatti'. Art. 113: 12 for the aree professionali. Encoded as seniority_increments.in_service_cohort."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "parameters.seniority_increments.in_service_cohort"
         ]
       }
     ],
