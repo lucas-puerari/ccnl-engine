@@ -35,6 +35,22 @@
       }
     },
     {
+      "id": "art34_hourly_allowances",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Art. 34 cc. 3, 4, 7 and Tabelle H, I, L (PDF pp. 44, 59): the non live-in worker is owed 0.84 an hour as baby sitter of level B super for children under six, 0.70 an hour at levels C super and D super assisting more than one non self-sufficient person, and the indennità of the UNI 11766:2019 certification (Tabella L prints a monthly 30.27). Not modelled: the ruleset pays a monthly equivalent of the hourly minimi and the hourly allowances would need the hours worked.",
+      "calculation": "ccnl/lavoro-domestico-non-convivente:coverage.notes",
+      "state": "absent",
+      "remediation": "Pay the Tabella H and I hourly allowances on the hours worked, and the Tabella L monthly amount, with role gates.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "lavoro-domestico-non-convivente/art34_hourly_allowances"
+        ]
+      }
+    },
+    {
       "id": "disability_permit_tfr",
       "institute": "disability_permits",
       "variant": "all",

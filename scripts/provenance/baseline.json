@@ -925,6 +925,7 @@
     ],
     "agreement/lavoro-domestico-convivente-orario-ridotto.json": [
       "lavoro-domestico-convivente-orario-ridotto/annual_minimi_not_updated",
+      "lavoro-domestico-convivente-orario-ridotto/art34_role_conditions",
       "lavoro-domestico-convivente-orario-ridotto/babysitter_and_certification_allowances",
       "lavoro-domestico-convivente-orario-ridotto/extra_month_hours",
       "lavoro-domestico-convivente-orario-ridotto/hourly_inps_bracket_unvalidated",
@@ -932,6 +933,7 @@
     ],
     "agreement/lavoro-domestico-convivente.json": [
       "lavoro-domestico-convivente/annual_minimi_not_updated",
+      "lavoro-domestico-convivente/art34_role_conditions",
       "lavoro-domestico-convivente/extra_month_hours",
       "lavoro-domestico-convivente/hourly_inps_bracket_unvalidated",
       "lavoro-domestico-convivente/part_time_scaling",
@@ -940,6 +942,7 @@
     ],
     "agreement/lavoro-domestico-non-convivente.json": [
       "lavoro-domestico-non-convivente/annual_minimi_not_updated",
+      "lavoro-domestico-non-convivente/art34_hourly_allowances",
       "lavoro-domestico-non-convivente/extra_month_hours",
       "lavoro-domestico-non-convivente/hourly_inps_bracket_unvalidated",
       "lavoro-domestico-non-convivente/meal_indennity",
