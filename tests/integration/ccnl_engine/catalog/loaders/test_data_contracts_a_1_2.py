@@ -63,11 +63,11 @@ class TestLoadEdiliziaAnce:
         assert ccnl.parameters.hourly_divisor.periods[0].value == Decimal(173)
 
     def test_edilizia_contingenza_and_edr(self) -> None:
-        """Every operai level carries the contingenza and the EDR."""
+        """Every operai level carries the contingenza, the EDR and the caposquadra."""
         ccnl = load_ccnl("edilizia-ance")
         for level in ccnl.levels:
             codes = [a.code for a in level.fixed_allowances]
-            assert codes == ["CONTINGENZA", "EDR"], level.code
+            assert codes == ["CONTINGENZA", "EDR", "CAPOSQUADRA"], level.code
 
     def test_edilizia_operai_have_no_scatti(self) -> None:
         """Operai accrue no seniority increments."""

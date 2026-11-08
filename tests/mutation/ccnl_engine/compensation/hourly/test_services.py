@@ -268,3 +268,19 @@ def test_projection_counts_the_percentages_of_the_months_to_come() -> None:
     assert Decimal(irpef.inputs["projected_taxable"]) > Decimal(20_000)
     assert somma.reason_code == "not_due"
     assert _account(result, "credits") == 0
+
+
+def test_a_caposquadra_is_paid_ten_percent_more() -> None:
+    """Caposquadra (CCNL 2010, p. 103): 10% of paga base and contingenza.
+
+    Level 1, January 2026: (1,067.36 + 512.87) x 10% = 158.02 a month, on
+    the 173 hours in full; the riposi annui take it in their base (Art. 24
+    point 4): (1,580.23 + 158.02) x 4.95% = 86.04.
+    """
+    capo = replace(_OPERAIO, roles=frozenset({"caposquadra"}))
+    result = _january(Decimal(173), capo)
+    assert _item(result, "allowance_CAPOSQUADRA") == Decimal("158.02")
+    assert _item(result, "riposi_annui") == Decimal("86.04")
+    assert "allowance_CAPOSQUADRA" not in {
+        i.item_id.rsplit("_", 1)[0] for i in _january(Decimal(173)).pay_items
+    }
