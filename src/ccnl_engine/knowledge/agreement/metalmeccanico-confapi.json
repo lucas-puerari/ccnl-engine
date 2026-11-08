@@ -181,7 +181,7 @@
       },
       {
         "kind": "simplification",
-        "text": "The Sunday holiday quota is modelled. Art. 32 former legal operai holiday hours and Art. 38 December annual payment are modelled separately; local patron holidays, hourly elements beyond the fixed monthly pay and nonstandard company holiday arrangements not specified by the caller remain outside the calculation.",
+        "text": "The Sunday holiday quota is modelled. Art. 32 former legal operai hours cover national and stated local patron weekday holidays from 2009; Art. 38 December annual payment is separate. Unstated patron days, hourly elements beyond fixed monthly pay and nonstandard company holiday arrangements not specified by the caller remain outside the calculation.",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
@@ -189,7 +189,7 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Supply the local holiday calendar and non-monthly hourly elements when applicable; state the company offset for former-worker holidays."
+          "remediation": "State the local patron day and company holiday offset when applicable; supply non-monthly hourly elements when available."
         }
       },
       {
@@ -3298,7 +3298,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260604-CCNL-Unionmeccanica-Confapi-2025-2028.pdf",
     "verification_status": "unverified",
-    "source_hash": "c4c76c058b8ed5e8497c8e0d71850f48f720f9e94e9de02933028ff841122a9e",
+    "source_hash": "de614444b8a9b36178c05c5fd611bf90a6a03bf61abb93ad64364bdb79943501",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -4372,14 +4372,14 @@
           },
           "page": "104",
           "section": "Art. 32 - Festività",
-          "quote": "ai soli lavoratori appartenenti alla categoria giuridica operaia [...] in occasione di ciascuna festività infrasettimanale una erogazione pari ad 1 ora e 20’. [...] qualora la predetta festività cada di sabato o di domenica. Tale erogazione avverrà con la retribuzione del mese di gennaio. Eventuali diverse modalità aziendalmente in atto per la determinazione del compenso per festività assorbiranno, in tutto o in parte, tale erogazione."
+          "quote": "c) il giorno del S. Patrono del luogo ove è ubicata la sede di lavoro o un’altra festività da concordarsi all’inizio di ogni anno tra le organizzazioni locali competenti in sostituzione di quella del S. Patrono, fatto salvo il punto 4 della lett. b). [...] A decorrere dal 1° gennaio 2009, ai soli lavoratori appartenenti alla categoria giuridica operaia [...] in occasione di ciascuna festività infrasettimanale una erogazione pari ad 1 ora e 20’. [...] qualora la predetta festività cada di sabato o di domenica. Tale erogazione avverrà con la retribuzione del mese di gennaio. Eventuali diverse modalità aziendalmente in atto per la determinazione del compenso per festività assorbiranno, in tutto o in parte, tale erogazione."
         },
-        "transformation": "Each national weekday holiday earns 80 minutes for the former legal operaia category; Epiphany on Saturday or Sunday earns 80 minutes with January wages. Company holiday compensation stated by the caller absorbs the sum, no further than the amount due. The local patron holiday is outside the national calendar.",
+        "transformation": "From 1 January 2009, each national weekday holiday and the employer-stated weekday local patron day within service earns 80 minutes for the former legal operaia category; avoid counting a patron date already national. Epiphany on Saturday or Sunday earns 80 minutes with January wages. Company holiday compensation stated by the caller absorbs the sum, no further than the amount due. A termination run pays holiday hours within service.",
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-11-08T14:54:23Z",
-          "verified_at": "2026-11-08T14:54:23Z",
+          "extraction_timestamp": "2026-11-08T15:25:11Z",
+          "verified_at": "2026-11-08T15:25:11Z",
           "verification_status": "verified",
           "review_id": "2026-11-08-ai-confapi-legacy-holidays"
         }
@@ -4399,12 +4399,12 @@
           "section": "Art. 38 - Mensilizzazione, Dichiarazione delle parti",
           "quote": "Ai lavoratori in forza al 31 dicembre 2008 a cui si applicava la Disciplina Speciale, Parte Prima, a partire dall’anno 2009, con la retribuzione del mese di dicembre, verrà riconosciuta una erogazione annua ragguagliata a 11 ore e 10 minuti a titolo di superminimo individuale non assorbibile ex CCNL 25 gennaio 2008."
         },
-        "transformation": "An employee in service on 31 December 2008 under former Special Discipline Part One receives 11 hours 10 minutes of the Art. 38 monthly-pay hourly rate in December only, without absorption. The worker's former discipline and 2008 service cohort are stated together by the former_part_one_2008 role.",
+        "transformation": "An employee in service on 31 December 2008 under former Special Discipline Part One receives 11 hours 10 minutes of the Art. 38 monthly-pay hourly rate with December wages, including a December termination run, without absorption. An exit before December receives no advance annual payment: the clause specifies payment 'con la retribuzione del mese di dicembre' and does not state a termination advance or proration. The worker's former discipline and 2008 service cohort are stated together by the former_part_one_2008 role.",
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-11-08T14:54:23Z",
-          "verified_at": "2026-11-08T14:54:23Z",
+          "extraction_timestamp": "2026-11-08T15:25:11Z",
+          "verified_at": "2026-11-08T15:25:11Z",
           "verification_status": "verified",
           "review_id": "2026-11-08-ai-confapi-legacy-holidays"
         }
@@ -4822,6 +4822,27 @@
         ],
         "findings": [
           "The Sunday daily quota already exists. Former legal operai receive 80 minutes for weekday holidays and January weekend Epiphany, subject to company offset; former Part One workers in service on 2008-12-31 receive a non-absorbable 11h10 December annual payment."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.legacy_holiday_payment"
+        ]
+      },
+      {
+        "id": "2026-11-08-ai-confapi-legacy-followup",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 32 p. 104 and Art. 38 p. 112: local patron, 2009 effective date and termination settlement.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-Unionmeccanica.pdf",
+            "sha256": "c3e694dc561879c0b5ef510d0e931a16e3562f073a88e8a06a210fbf00451fad"
+          }
+        ],
+        "findings": [
+          "Local patron is letter c of Art. 32; the 80-minute entitlement starts in 2009. Art. 38 pays the annual amount with December wages, without an express earlier termination advance. Hourly cottimo and other hourly elements remain outside the computed base."
         ],
         "independence": "same_process",
         "checked": [

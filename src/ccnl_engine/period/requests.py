@@ -20,6 +20,7 @@ from ccnl_engine.employment.fact.inputs import (
     check_within_full_time,
 )
 from ccnl_engine.employment.inputs import Apprentice, FixedTerm, Permanent
+from ccnl_engine.employment.level_start import check_level_start
 from ccnl_engine.employment.period.inputs import EmploymentPeriod
 from ccnl_engine.employment.rest_day.inputs import Weekday
 from ccnl_engine.employment.rota.inputs import Rota
@@ -28,6 +29,7 @@ from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.irpef.declaration.inputs import PriorYearTaxFacts
 from ccnl_engine.irpef.other_income.inputs import CurrentYearTaxFacts
 from ccnl_engine.pension_fund.inputs import PENSION_FUND_TYPES
+from ccnl_engine.period.request.field_specs import contract_field_specs
 from ccnl_engine.period.request.opening_state import stated_opening
 from ccnl_engine.period.request.validators import employment_gap
 from ccnl_engine.regime.models import EmploymentSector
@@ -35,7 +37,7 @@ from ccnl_engine.run.types import PeriodId
 from ccnl_engine.seniority.inputs import SeniorityFact
 from ccnl_engine.severance.provision.models import TfrFundBalance
 from ccnl_engine.surtax.jurisdiction.types import check_surtax_codes
-from ccnl_engine.validators import FieldSpec, require_instances
+from ccnl_engine.validators import FieldSpec, require_decimal, require_instances
 
 if TYPE_CHECKING:
     from ccnl_engine.calendar.payment.models import PaymentId
@@ -63,21 +65,19 @@ class PeriodCalculationRequest:
             (:class:`~ccnl_engine.calendar.tax_year.rules.TaxYearPolicy`),
             and is propagated to every ledger entry and pay item.
         ccnl_id: Slug (``metalmeccanico-federmeccanica``) or CNEL code (``E042``).
-        level_code: Worker's contractual level code, e.g. ``C3``.
+        level_code: Contractual level code, e.g. ``C3``.
+        level_started_on: Date the worker entered the level, if known.
         opening_state: State entering this period, with the history of
             the employment.  :meth:`PeriodState.zero` is the fact only for
             the first run of an employment whose start is stated; use
             :func:`~ccnl_engine.year.tax_year.closing.rules.close_tax_year` for the
-            first run of a later tax year.  A state that
-            misses the history gives a ``missing_fact opening_state`` issue
-            (:mod:`~ccnl_engine.balance.opening.rules`).
+            first run of a later tax year.  Missing history gives a
+            ``missing_fact opening_state`` issue.
         employer: The employer; its headcount resolves INPS rates (some
-            rates differ by firm size) and its activity the regimes that
-            exclude some activities.
+            rates differ by firm size) and its activity the applicable regimes.
         contribution_history: Pension history the IVS massimale eligibility
             is derived from.  ``None`` means not known: a run whose INPS base
-            crosses the massimale is then incomplete, with a ``missing_fact``
-            blocker for ``contribution_history``.
+            crosses the massimale gives a ``missing_fact`` blocker.
         events: Variable work events of the period (overtime, absences...).
         regione: ISO 3166-2:IT region code for the regional surtax, e.g.
             ``"IT-45"``, with ``"IT-BZ"`` / ``"IT-TN"`` for the autonomous
@@ -171,6 +171,7 @@ class PeriodCalculationRequest:
     work_pattern: WorkPattern | None = None
     weekly_rest_day: Weekday = Weekday.SUNDAY
     employment_period: EmploymentPeriod | None = None
+    level_started_on: date | None = None
     seniority: SeniorityFact | None = None
     roles: frozenset[str] | None = None
     individual_elements: tuple[IndividualElement, ...] = ()
@@ -194,23 +195,27 @@ class PeriodCalculationRequest:
     def __post_init__(self) -> None:
         """Guard dates, cross-year state or schedule and hours above full time.
 
-        The tax year of the run is attributed from ``payment_date`` by
-        :class:`~ccnl_engine.calendar.tax_year.rules.TaxYearPolicy`; a set
-        ``opening_state.tax_year`` (a calculated state always carries it)
-        must match it.
+        Payment date determines the tax year; the opening state must match.
 
         Raises:
-            InvalidInputError: When a field is not of its declared type (for
-                example a raw ``int`` for ``weekly_hours``), when a regular
-                run falls in a month without a day of employment, when
-                ``payment_date`` is before the start of
-                the competence period, when ``opening_state.tax_year`` is not
-                ``None`` and differs from the attributed tax year, or when
-                ``withholding_schedule`` belongs to another tax year, or
-                when ``regione`` or ``comune_belfiore`` is malformed.
+            InvalidInputError: On malformed fields, absent employment in a
+                regular run, invalid level start, payment before competence,
+                conflicting tax years or malformed jurisdiction codes.
         """
         require_instances(
             "PeriodCalculationRequest", self._field_specs(), feature="period_request"
+        )
+        require_decimal(
+            self.holiday_company_offset,
+            "PeriodCalculationRequest.holiday_company_offset",
+            feature="period_request",
+            minimum=Decimal(0),
+            optional=True,
+        )
+        check_level_start(
+            self.level_started_on,
+            self.employment_period,
+            (self.period_id.year, self.period_id.month),
         )
         gap = employment_gap(self.period_id, self.run, self.employment_period)
         if gap is not None:
@@ -267,21 +272,9 @@ class PeriodCalculationRequest:
             ("payment_date", self.payment_date, date, False),
             ("ccnl_id", self.ccnl_id, str, False),
             ("level_code", self.level_code, str, False),
+            ("level_started_on", self.level_started_on, date, True),
             ("opening_state", self.opening_state, PeriodState, False),
-            (
-                "contract_type",
-                self.contract_type,
-                (Permanent, Apprentice, FixedTerm),
-                False,
-            ),
-            ("employer", self.employer, EmployerProfile, False),
-            (
-                "contribution_history",
-                self.contribution_history,
-                ContributionHistory,
-                True,
-            ),
-            ("events", self.events, (tuple, list), False),
+            *contract_field_specs(self),
             ("weekly_hours", self.weekly_hours, WeeklyHours, True),
             ("contributable_hours", self.contributable_hours, ContributableHours, True),
             (

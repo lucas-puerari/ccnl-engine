@@ -86,6 +86,7 @@ class CCNL(BaseModel):
     def _validate_cross_fields(self) -> Self:
         self._assert_unique_orders()
         self._assert_unique_codes()
+        self._assert_level_transitions()
         self._assert_seniority_level_codes()
         self._assert_salary_order_non_decreasing()
         self._assert_apprenticeship_tracks()
@@ -149,6 +150,28 @@ class CCNL(BaseModel):
 
     def _assert_unique_codes(self) -> None:
         _assert_unique("code", [lv.code for lv in self.levels])
+
+    def _assert_level_transitions(self) -> None:
+        """Reject dangling or backwards entry-level transitions.
+
+        Raises:
+            ValueError: If a transition is incomplete or targets a level
+                that is not above its source.
+        """
+        levels = {level.code: level for level in self.levels}
+        for level in self.levels:
+            target = levels.get(level.transition_to) if level.transition_to else None
+            if level.transition_to is None:
+                if (
+                    level.transition_by is not None
+                    or level.transition_after_months is not None
+                    or level.transition_hire_bands
+                ):
+                    msg = f"level {level.code} has a transition without a target"
+                    raise ValueError(msg)
+            elif target is None or target.order <= level.order:
+                msg = f"level {level.code} has an invalid transition target"
+                raise ValueError(msg)
 
     def _assert_seniority_level_codes(self) -> None:
         existing = {lv.code for lv in self.levels}

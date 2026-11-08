@@ -81,7 +81,7 @@ def _pay(
 
 
 def _holiday_count(ctx: RunContext) -> int:
-    """Count weekday civil holidays, plus Epiphany on a weekend in January.
+    """Count weekday national and stated patron holidays, plus weekend Epiphany.
 
     Returns:
         The number of eligible holidays within this worker's service.
@@ -102,7 +102,36 @@ def _holiday_count(ctx: RunContext) -> int:
             continue
         if day.weekday() < 5 or (holiday.day == "01-06" and day.weekday() >= 5):
             count += 1
-    return count
+    return count + _patron_count(ctx)
+
+
+def _patron_count(ctx: RunContext) -> int:
+    """Count a stated local patron day when it is a distinct weekday in service.
+
+    Returns:
+        One for an eligible local holiday, otherwise zero.
+    """
+    patron = ctx.request.employer.patron_saint_day
+    year, month = ctx.request.period_id.year, ctx.request.period_id.month
+    if patron is None or int(patron[:2]) != month:
+        return 0
+    try:
+        patron_day = date(year, month, int(patron[3:]))
+    except ValueError:  # A February 29 patron day in a non-leap year.
+        return 0
+    period = ctx.request.employment_period
+    in_service = period is None or (
+        period.started_on <= patron_day
+        and (period.ended_on is None or patron_day <= period.ended_on)
+    )
+    if patron_day.weekday() >= 5 or not in_service:
+        return 0
+    if any(
+        holiday.on(year) == patron_day
+        for holiday in ctx.repo.load_national_holidays().holidays
+    ):
+        return 0
+    return 1
 
 
 def _holiday(
@@ -113,6 +142,8 @@ def _holiday(
     Returns:
         An earning, an issue for the missing role or offset, or nothing.
     """
+    if (ctx.request.period_id.year, ctx.request.period_id.month) < (2009, 1):
+        return ExtraMonthSettlement()
     count = _holiday_count(ctx)
     if not count:
         return ExtraMonthSettlement()
@@ -168,7 +199,7 @@ def legacy_holiday_payment(ctx: RunContext) -> tuple[ExtraMonthSettlement, ...]:
     """
     rules = ctx.contract.ccnl.work_rules
     clause = None if rules is None else rules.legacy_holiday_payment
-    if clause is None or ctx.run_kind is not RunKind.REGULAR:
+    if clause is None or ctx.run_kind not in {RunKind.REGULAR, RunKind.TERMINATION}:
         return ()
     divisor = ctx.contract.ccnl.parameters.hourly_divisor.value_at(
         ctx.contract.tctx.competence

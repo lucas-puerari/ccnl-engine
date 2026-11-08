@@ -14,7 +14,11 @@ if TYPE_CHECKING:
 
 
 def _rules(excluded: tuple[str, ...] | None) -> SicknessRules:
-    holiday = None if excluded is None else SimpleNamespace(excluded_days=excluded)
+    holiday = (
+        None
+        if excluded is None
+        else SimpleNamespace(excluded_days=excluded, includes_patron_saint=False)
+    )
     return cast("SicknessRules", SimpleNamespace(holiday=holiday))
 
 

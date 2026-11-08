@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 from ccnl_engine.default.models import FactEnforcement, absence_is_fact, requires_fact
+from ccnl_engine.default.request.role_policies import ROLE_DEFAULTS
 
 if TYPE_CHECKING:
     from collections.abc import Mapping
@@ -180,29 +181,20 @@ REQUEST_DEFAULTS: Mapping[str, FieldDefault] = {
         _PENDING,
         "the service months stand for the career of a career-gated allowance",
     ),
+    "Employment.level_started_on": requires_fact(
+        "base_salary",
+        "employment.level_started_on",
+        _REPORTED,
+        "an entry-level transition needs the level entry date; missing in "
+        "Confetra 6J before 2026, the pay is provisional and blocked",
+    ),
     "Employment.seniority": requires_fact(
         "seniority",
         "employment.seniority",
         _REPORTED,
         "unknown recognised seniority: a missing_fact seniority blocker",
     ),
-    "Employment.holiday_company_offset": requires_fact(
-        "base_salary",
-        "employment.holiday_company_offset",
-        _REPORTED,
-        "unknown company holiday compensation: a Confapi former legal operaio "
-        "with an eligible weekday holiday or weekend Epiphany has a "
-        "missing_fact holiday_company_offset blocker; zero states none",
-    ),
-    "Employment.roles": requires_fact(
-        "base_salary",
-        "employment.roles",
-        _REPORTED,
-        "unknown roles: a run whose level has an allowance restricted to a role "
-        "in force leaves it out and has a missing_fact roles blocker; a "
-        "supplement the CCNL pays apart for a role is not derived; an empty "
-        "set states that the worker holds no role",
-    ),
+    **ROLE_DEFAULTS,
     "Employment.contribution_history": requires_fact(
         "inps_employee",
         "employment.contribution_history",

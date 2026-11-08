@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
+import re
 from dataclasses import dataclass
+from datetime import date
 
 from ccnl_engine.agreement.types import TaxSector
 from ccnl_engine.compensation.second_level.inputs import (
@@ -48,6 +50,27 @@ class Headcount:
 
     def __post_init__(self) -> None:  # noqa: D105
         require_int(self.value, "Headcount.value", feature=_FEATURE, minimum=1)
+
+
+def _validate_patron_day(day: str | None) -> None:
+    """Reject non-calendar dates and non-zero-padded local holiday codes.
+
+    Raises:
+        InvalidInputError: When the code is not a valid MM-DD date.
+    """
+    if day is None:
+        return
+    field = "EmployerProfile.patron_saint_day"
+    require_str(day, field, feature=_FEATURE)
+    valid = re.fullmatch(r"[0-9]{2}-[0-9]{2}", day) is not None
+    if valid:
+        try:
+            date(2024, int(day[:2]), int(day[3:]))
+        except ValueError:
+            valid = False
+    if not valid:
+        msg = f"{field} must be a valid MM-DD; got {day!r}"
+        raise InvalidInputError(msg, field=field, feature=_FEATURE)
 
 
 @dataclass(frozen=True, slots=True)
@@ -127,6 +150,9 @@ class EmployerProfile:
             elemento distinto instead.  ``None`` means not known: a run on a
             CCNL with such funds posts neither and has a ``missing_fact``
             blocker; an empty set states that the employer pays none.
+        patron_saint_day: Local patron saint holiday as ``MM-DD``. ``None``
+            means not stated; a clause that covers it then does not apply
+            to that day.
         permit_carryover: How the employer settles the permits not taken
             within their year, on a CCNL that leaves the choice
             (``LeaveRules.permit_deadline``, Commercio Art. 158): ``True``
@@ -160,6 +186,7 @@ class EmployerProfile:
     contractual_funds: frozenset[str] | None = None
     sickness_window_counting: bool = False
     permit_carryover: bool | None = None
+    patron_saint_day: str | None = None
     second_level_elements: tuple[SecondLevelElement, ...] = ()
 
     def __post_init__(self) -> None:  # noqa: D105
@@ -216,6 +243,7 @@ class EmployerProfile:
                 self.second_level_elements, "EmployerProfile.second_level_elements"
             ),
         )
+        _validate_patron_day(self.patron_saint_day)
         require_str(
             self.subsector,
             "EmployerProfile.subsector",
