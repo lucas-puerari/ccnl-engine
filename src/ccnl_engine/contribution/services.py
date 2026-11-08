@@ -306,7 +306,7 @@ def tfr_accrual(inp: _AmountsInput, breakdown: ContributionBreakdown) -> TfrAccr
     """
     tfr = inp.rules.tfr
     base = inp.tfr_pay
-    quota = money(base / tfr.accrual_divisor)
+    quota = money(base / tfr.accrual_divisor) + inp.extra_tfr_quota
     public = inp.public.end_of_service
     accrual = TfrAccrual(
         quota=_ZERO if public is PublicEndOfService.TFS else quota,

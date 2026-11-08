@@ -113,6 +113,7 @@ def _tfr_inp(public: PublicEndOfService | None = None) -> Any:  # noqa: ANN401
     return SimpleNamespace(
         rules=SimpleNamespace(tfr=tfr),
         tfr_pay=Decimal(2000),
+        extra_tfr_quota=Decimal(0),
         public=SimpleNamespace(end_of_service=public),
         pension=None,
         tfr_treasury_fund=False,
