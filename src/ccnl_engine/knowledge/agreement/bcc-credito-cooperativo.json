@@ -111,7 +111,7 @@
       },
       {
         "kind": "simplification",
-        "text": "SCATTI: at most 8 for the 1st and 2nd level of the quadri direttivi and for the aree professionali, 7 for the 3rd and 4th level of the quadri (Art. 101, Art. 113); 12 (9 for the 3rd and 4th level of the quadri) for the staff in service on 31 December 1997 (seniority_increments.in_service_cohort), read from the stated employment period. Not modelled: the 'ulteriore aumento periodico' after the 12th scatto (Allegato A §5: 8.68 for the quadri and the 3a area, 7.35, 6.19 and 6.69 for the 2a and 1a), not reached before 2034 by a worker hired in 1997; the 30-month scatto in progress at the change of cadence of 2001.",
+        "text": "SCATTI: at most 8 for the 1st and 2nd level of the quadri direttivi and for the aree professionali, 7 for the 3rd and 4th level of the quadri (Art. 101, Art. 113); 12 (9 for the 3rd and 4th level of the quadri) for the staff in service on 31 December 1997 (seniority_increments.in_service_cohort), read from the stated employment period (the caller states a period covering 31 December 1997 only for a worker in service on that day). Not modelled: the 'ulteriore aumento periodico' after the 12th scatto (Allegato A §5: 8.68 for the quadri and the 3a area, 7.35, 6.19 and 6.69 for the 2a and 1a), reached at the earliest in mid-2033 by a worker hired in 1997 (48 months, a 30-month scatto in progress in 2001, then every 36); the 30-month scatto in progress at the change of cadence of 2001.",
         "capability": "seniority",
         "monetary_impact": "yes",
         "limitation": {
@@ -1775,7 +1775,7 @@
     "effective_until": null,
     "source": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "707a07404c6dda56cb8dfe7750eea9bd3ae595bd3bc2ecc13a067c1759f61f48",
+    "source_hash": "6f3a63a3ce07be7a8b912077dcf61d17ee02803d07408bd7fe069b8eb3d67ef6",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
