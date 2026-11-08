@@ -45,7 +45,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 90 verified / 63 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 67 verified / 16 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -55,7 +55,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|
 | **Last renewal** | 2021-06-08 |
 | **Last review** | 2026-11-08 |
-| **Latest salary tranche** | 2029-03-01 |
+| **Latest salary tranche** | 2025-07-01 |
 
 ## Review history
 
@@ -70,6 +70,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-07 | claude-opus-5-5 (ai) | Values a primary-text verification found different from the printed tables (text layer). | corrected | 31 values corrected to the amounts printed on the cited pages. |
 | 2026-11-08 | gpt-6-sol (ai) | CCNL top-ups of maternity and work injury, read from the signed text by a separate model session; every quote found on the PDF text layer. | confirmed | Added work_rules.insured_absence.maternity.<br>Added work_rules.insured_absence.injury. |
 | 2026-11-08 | gpt-6-sol (ai) | Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim. | confirmed | health_and_bilateral_funds: For modeled runs from July 2021, parameters.health_funds already contains ASIM employer EUR 4/month through 28 weekly hours and EUR 6 above, permanent workers only, and ONBSI EUR 0.25 per party under 20 weekly hours and EUR 0.50 per party otherwise, on ordinary months only (12, n |
+| 2026-11-08 | claude-opus-5-5 (ai) | Cached CNEL 139292 PDF page 34, July 2025 tabellare for all eight printed levels; two parametric positions derived; later unsigned salary periods excluded. | corrected | Verified all eight printed monthly minima against PDF page 34; derived two unprinted parametric positions from prior signed periods and signed tranche increments.<br>Excluded all unsigned salary periods from May 2026 onward; the signed July 2025 tranche remains in force until further ANIP evidence. |
 
 ## Salary table
 
@@ -77,16 +78,16 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `Q` | Quadri with high-responsibility managerial duties | € 2,006.65 | 2029-03-01 |
-| `7` | Employees with managerial functions | € 1,833.34 | 2029-03-01 |
-| `6` | Workers with specialist duties / Senior white-collar employees | € 1,587.08 | 2029-03-01 |
-| `5` | Expert workers / White-collar employees | € 1,276.94 | 2029-03-01 |
-| `4` | Specialist workers / Junior clerical employees | € 1,167.51 | 2029-03-01 |
-| `4par125` | Skilled workers on painting booths and lines in service on 1 June 2001: level IV at parameter 125, closed group (nota a verbale) | € 1,140.15 | 2029-03-01 |
-| `3` | Skilled workers / Clerical employees | € 1,076.30 | 2029-03-01 |
-| `2par115` | Common workers on auxiliary support activities in school and healthcare settings: level 2 at parameter 115 (nota a verbale, profile 1.9) | € 1,048.93 | 2029-03-01 |
-| `2` | General workers / Clerical employees (first 18 months) | € 994.21 | 2029-03-01 |
-| `1` | General labourers | € 912.12 | 2029-03-01 |
+| `Q` | Quadri with high-responsibility managerial duties | € 1,572.70 | 2025-07-01 |
+| `7` | Employees with managerial functions | € 1,436.88 | 2025-07-01 |
+| `6` | Workers with specialist duties / Senior white-collar employees | € 1,243.86 | 2025-07-01 |
+| `5` | Expert workers / White-collar employees | € 1,000.81 | 2025-07-01 |
+| `4` | Specialist workers / Junior clerical employees | € 915.03 | 2025-07-01 |
+| `4par125` | Skilled workers on painting booths and lines in service on 1 June 2001: level IV at parameter 125, closed group (nota a verbale) | € 893.60 | 2025-07-01 |
+| `3` | Skilled workers / Clerical employees | € 843.55 | 2025-07-01 |
+| `2par115` | Common workers on auxiliary support activities in school and healthcare settings: level 2 at parameter 115 (nota a verbale, profile 1.9) | € 822.11 | 2025-07-01 |
+| `2` | General workers / Clerical employees (first 18 months) | € 779.21 | 2025-07-01 |
+| `1` | General labourers | € 714.87 | 2025-07-01 |
 
 ## Seniority increments
 
@@ -101,10 +102,10 @@ Latest effective values per level (monthly gross, EUR).
 | `3` | € 58.18 |
 | `4par125` | € 62.59 |
 | `4` | € 63.15 |
-| `5` | € 97.29 |
-| `6` | € 116.67 |
-| `7` | € 132.06 |
-| `Q` | € 142.89 |
+| `5` | € 80.03 |
+| `6` | € 95.22 |
+| `7` | € 107.28 |
+| `Q` | € 115.77 |
 
 ## Apprenticeship
 
@@ -119,11 +120,11 @@ Destination levels: `4`
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
 !!! warning "multiservizi-anip/anip_unsigned_renewal · base_salary · impact yes · open"
-    UNSIGNED RENEWAL: the salary periods from 1 July 2025 come from the renewal of 13 June 2025 and its tables of 6 August 2025 (CNEL K511, deposits 234754 and 234752), signed by AGCI, Confcooperative, Legacoop and Confapi but not by ANIP. For an ANIP member the last signed amount is the fifth tranche of July 2025 of the 2021 renewal (deposit 139292, p. 34, level 2 779.21 against 819.21 here); no ANIP amount after it was found. Runs from July 2025 may overpay an ANIP employer's workers.
+    LATER UNSIGNED TRANCHES: the May 2026 and later minima of the renewal of 13 June 2025 (CNEL K511, deposits 234754 and 234752) were not signed by ANIP and are excluded. The signed July 2025 fifth tranche of the 2021 renewal (CNEL 139292 p. 34) is applied; no subsequent ANIP minimum or actual IPCA adjustment has been verified.
 
-    **Applies when:** `base_salary` applies; from 2025-07-01.
+    **Applies when:** `base_salary` applies; from 2026-05-01.
 
-    **Remediation:** Use the 2021 renewal values for ANIP members, or the 2025 renewal once ANIP signs or joins it.
+    **Remediation:** Source an ANIP-signed later minimum or verified IPCA adjustment before adding subsequent tranches.
 
 !!! warning "multiservizi-anip/multiservizi_unmodelled_rules · base_salary · impact yes · open"
     NOT MODELLED (CNEL 105782 and 139292): (1) worker type: levels 2 to 6 hold both impiegati and operai (art. 10), but the file keys seniority and category by level, so impiegati of levels 2-4 get the operai forfettaria instead of the biennial scatti of art. 22 and operai of levels 5-6 get scatti instead of the forfettaria (66.77, 82.99, p. 90); each scatto is priced on the tabellare in force at its maturation and capped at 50% of tabellare + 279.60, while the engine prices it at the run date. (2) Sickness (art. 51 as replaced in 2021, CNEL 139292 pp. 22-24): operai are topped up to 100% of the net retribuzione globale for days 1-180 and paid 50% of the gross one for days 181-270 (the file stops at day 180); impiegati get 100% for 5 months and 50% for 7; comporto 12 months in 36. (3) Absence: the daily quota is the monthly pay /22 on a 5-day week (art. 19, the norm of art. 30); the file divides by 26 unless Employment.full_time_week_days states 5. (4) Overtime is paid on quote of the retribuzione globale and its premiums on the retribuzione base, tabellare plus contingenza (art. 38); the premiums for holiday work (50%) and night work (20% in rotating shifts, 30% otherwise), the part-time supplementary hours (+28%, elastic clauses +10%, art. 33 as amended in 2021) and the 40 ROL hours (art. 42). (5) The allowances of art. 24 (disagio 15% of tabellare a day, maneggio denaro 3%, riscossione 5%, hourly allowances) and the EDAR ad personam. (6) Funds: Previambiente 1% + 1% of tabellare and contingenza for members (art. 54); ASIM and ONBSI are the limitation health_and_bilateral_funds. (7) Apprenticeship durations of the accord of 19 July 2012 (destination 5 lasts 36 months, destinations 2, 3, 6 and 7 are missing).
@@ -133,11 +134,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Key seniority and sickness by worker category, model the second sickness band, the /22 divisor as the default, the art. 38 and art. 24 premiums, the funds and the apprenticeship durations of the 2012 accord.
 
 !!! warning "multiservizi-anip/renewal_not_signed_by_anip · base_salary · impact unknown · open"
-    SIGNATORIES: the minimums from 1 July 2025 are those of the renewal of 13 June 2025 and of its integrative agreement of 6 August 2025 (CNEL 234754, 234752), signed by AGCI Servizi, Confcooperative Lavoro e Servizi, Legacoop Produzione e Servizi, Unionservizi Confapi and the three unions, not by ANIP-Confindustria. The last tables ANIP signed are those of the 8 June 2021 renewal (CNEL 139292: fifth tranche July 2025, level 2 779.21), with the IPCA consuntivo of art. 73 and arts. 73-bis/ter. The 2025 tables are kept because the sector applies them; whether an ANIP member must pay them is not established.
+    SIGNATORIES: the 13 June 2025 renewal and 6 August 2025 tables (CNEL 234754, 234752) were not signed by ANIP. The ANIP-signed 8 June 2021 renewal (CNEL 139292) provides the fifth tranche from July 2025. The later unsigned minima and any unverified IPCA adjustment are excluded.
 
-    **Applies when:** `base_salary` applies.
+    **Applies when:** `base_salary` applies; from 2026-05-01.
 
-    **Remediation:** Source an ANIP accession to the 2025 renewal, or an ANIP agreement with its own tables, and remove this note or replace the 2025 tables.
+    **Remediation:** Source an ANIP accession or an ANIP-signed later agreement before adding later minima.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
@@ -317,7 +318,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 | https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752 | cnel | 2025-08-06 | [↗](https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752) |
 
 ??? note "Coverage notes"
-    Salary model: SPLIT. The tabellare is a time series; contingenza and EDR are frozen fixed_allowances. Tranches of July 2021 to July 2024: art. 73 tables of the renewal of 8 June 2021 (CNEL 139292, pp. 32-34, signed by ANIP). Tranches from July 2025: tables of 6 August 2025 (CNEL 234752), not signed by ANIP (see anip_unsigned_renewal). No table prints the tabellare of 2par115 and 4par125 after April 2013: it is the April 2013 amount (CNEL 105782 pp. 30-31) plus the parametric increments.
+    Salary model: SPLIT. The tabellare is a time series; contingenza and EDR are frozen fixed_allowances. Tranches of July 2021 to July 2024: art. 73 tables of the renewal of 8 June 2021 (CNEL 139292, pp. 32-34, signed by ANIP). From July 2025: the ANIP-signed fifth tranche of CNEL 139292 p. 34. Later unsigned tables of 6 August 2025 (CNEL 234752) are excluded (see anip_unsigned_renewal). No table prints the tabellare of 2par115 and 4par125 after April 2013: it is the April 2013 amount (CNEL 105782 pp. 30-31) plus the parametric increments.
     
     hourly_divisor 173: 'Ai fini della determinazione della retribuzione oraria, il divisore mensile è 173' (art. 19, CNEL 105782 p. 40).
     
@@ -331,7 +332,7 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     Apprenticeship: two levels below the destination for the first half and one below for the second, destination II at level I throughout (art. 12, CNEL 105782 p. 37; the parametric positions are skipped). Durations come from the accord of 19 July 2012, read only in a third-party copy of the 2021 text: II 24, III 30, IV 30, V 36, VI 36, VII 36 months. The file models destinations 4 and 5 with 30 months each: destination 5 should last 36 and the other destinations are missing. Declared in multiservizi_unmodelled_rules.
     
-    July 2025 values: the renewal of 8 June 2021 (CNEL 139292, signed by ANIP) sets a fifth tranche from 1 July 2025 (level 2 +10.00, tabellare 779.21, p. 34), provisional under the art. 73 consuntivo. The renewal of 13 June 2025 (CNEL 234754) and its tables of 6 August 2025 (CNEL 234752) raise level 2 to 819.21 from the same date, but ANIP signed neither. The file carries the 2025 renewal from July 2025, so for an ANIP member the operative amount is the 2021 tranche, not the file's (see anip_unsigned_renewal). No ANIP amount for the art. 73 consuntivo or the IPCA increments of art. 73-bis and 73-ter was found.
+    July 2025 values: the renewal of 8 June 2021 (CNEL 139292, signed by ANIP) sets a fifth tranche from 1 July 2025 (level 2 +10.00, tabellare 779.21, p. 34), provisional under the art. 73 consuntivo. The renewal of 13 June 2025 (CNEL 234754) and its tables of 6 August 2025 (CNEL 234752) raise level 2 to 819.21 from the same date, but ANIP signed neither. The file applies the ANIP-signed 2021 fifth tranche from July 2025 and excludes the later unsigned tranches (see anip_unsigned_renewal). No ANIP amount for the art. 73 consuntivo or the IPCA increments of art. 73-bis and 73-ter was found.
     
     ANIP CONTRACT STATUS (2025): the renewal of 13 June 2025 (CNEL 234754) and its tables of 6 August 2025 (CNEL 234752) are signed by AGCI Servizi, Confcooperative Lavoro e Servizi, Legacoop Produzione e Servizi and Unionservizi Confapi with Filcams-CGIL, Fisascat-CISL and Uiltrasporti-UIL; ANIP-Confindustria signed neither. ANIP companies keep the renewal of 8 June 2021 (this file). A separate file would cover the 2025-2028 renewal (levels 1-7 and Q, retribuzione base 1,296.39 to 2,256.14 EUR from May 2026, 14 mensilità).
     
