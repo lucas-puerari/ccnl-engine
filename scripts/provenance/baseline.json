@@ -653,7 +653,6 @@
     ],
     "agreement/alimentari-federalimentare.json": [
       "alimentari-federalimentare/fasa_family_members",
-      "alimentari-federalimentare/first_level_apprentice_pay",
       "alimentari-federalimentare/health_and_bilateral_funds"
     ],
     "agreement/assicurazioni-ania.json": [
@@ -726,7 +725,6 @@
       "cinema-audiovisivi-industria/fpls_rates_approximated"
     ],
     "agreement/commercio-confcommercio.json": [
-      "commercio-confcommercio/first_level_apprentice_contributions",
       "commercio-confcommercio/profile_specific_apprenticeship",
       "commercio-confcommercio/sickness_net_basis"
     ],
@@ -796,7 +794,6 @@
       "edilizia-ance-impiegati/loyalty_premium",
       "edilizia-ance-impiegati/november_4_holiday",
       "edilizia-ance-impiegati/ordinary_hours_premiums",
-      "edilizia-ance-impiegati/other_apprenticeship_types",
       "edilizia-ance-impiegati/provincial_evr",
       "edilizia-ance-impiegati/provincial_meals_transport_travel",
       "edilizia-ance-impiegati/provincial_production_premium",
@@ -813,7 +810,6 @@
       "edilizia-ance/hardship_allowances",
       "edilizia-ance/holiday_hours",
       "edilizia-ance/ordinary_hours_premiums",
-      "edilizia-ance/other_apprenticeship_types",
       "edilizia-ance/part_time_supplementary_rate",
       "edilizia-ance/provincial_evr",
       "edilizia-ance/provincial_meals_transport_travel",
@@ -902,8 +898,7 @@
       "impianti-sportivi-sport/sickness_net_basis"
     ],
     "agreement/impiegati-tecnici-agricoli.json": [
-      "impiegati-tecnici-agricoli/eban_agrifondo_missing",
-      "impiegati-tecnici-agricoli/first_level_apprentice_contributions"
+      "impiegati-tecnici-agricoli/eban_agrifondo_missing"
     ],
     "agreement/industria-turistica-federturismo.json": [
       "industria-turistica-federturismo/apprenticeship_under_classification"
@@ -993,7 +988,6 @@
     "agreement/metalmeccanico-artigianato.json": [
       "metalmeccanico-artigianato/apprentice_inps_rates_unsourced",
       "metalmeccanico-artigianato/centralinisti_apprenticeship",
-      "metalmeccanico-artigianato/first_level_apprentice_contributions",
       "metalmeccanico-artigianato/inps_sector_rates_unsourced"
     ],
     "agreement/metalmeccanico-confapi.json": [
@@ -1169,7 +1163,6 @@
     ],
     "agreement/terziario-confesercenti.json": [
       "terziario-confesercenti/apprentice_sickness",
-      "terziario-confesercenti/first_level_apprentice_contributions",
       "terziario-confesercenti/provincial_third_elements",
       "terziario-confesercenti/sales_operators",
       "terziario-confesercenti/sickness_net_basis",
@@ -1259,6 +1252,7 @@
       "apprenticeship_pct_undeclared_components",
       "arrears_unused_deductions",
       "disability_permit_tfr",
+      "dual_apprenticeship_contributions",
       "inps_minimum_base_exempt_category",
       "maternity_daily_base",
       "mid_month_level_change",

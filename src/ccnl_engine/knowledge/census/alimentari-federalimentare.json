@@ -35,6 +35,22 @@
       }
     },
     {
+      "id": "dual_apprenticeship_contributions",
+      "institute": "inps_employer",
+      "variant": "apprentice",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "A first- or third-level apprentice (D.Lgs. 81/2015 artt. 43 and 45) is paid by the CCNL dual_apprenticeship tracks, but the INPS contributions and the other rates of the run are those of the professionalising apprentice: the contribution regime of these apprentices is not sourced. On a final-settlement run that pays both its month and the ratei, Apprentice.hours splits both by one set of hours.",
+      "calculation": "ccnl_engine.apprenticeship.dual.rules.dual_chain",
+      "state": "unverified",
+      "remediation": "Source the INPS contribution regime of first- and third-level apprentices and apply it; give a final-settlement run separate hours for its month and its ratei.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "dual_apprenticeship_contributions"
+        ]
+      }
+    },
+    {
       "id": "fasa_family_members",
       "institute": "bilateral_funds",
       "variant": "all",
@@ -47,22 +63,6 @@
       "links": {
         "limitations": [
           "alimentari-federalimentare/fasa_family_members"
-        ]
-      }
-    },
-    {
-      "id": "first_level_apprentice_pay",
-      "institute": "base_salary",
-      "variant": "apprentice",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "FIRST- AND THIRD-LEVEL APPRENTICES (Art. 21 B-C, PDF pp. 56-58): modelled in dual_apprenticeship (school hours unpaid, 20% of T.E.M. and I.A.R. for the training at the employer, the table percentages at the conventional level 3A for the first level, one or two levels below the destination for the third). Not modelled: the INPS contributions of the first-level apprentice (the engine applies the apprentice rates of the professionalising contract), and the first school year of qualifica and diploma, which the table leaves out (the run is refused).",
-      "calculation": "ccnl/alimentari-federalimentare:coverage.notes",
-      "state": "absent",
-      "remediation": "Source the INPS contribution regime of the first-level apprentice.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "alimentari-federalimentare/first_level_apprentice_pay"
         ]
       }
     },

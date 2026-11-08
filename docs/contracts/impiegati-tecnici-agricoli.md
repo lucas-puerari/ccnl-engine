@@ -33,10 +33,10 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Core payroll path** | ⚠️ |
-| **Limits of this contract** | bilateral_funds, inps_employer |
+| **Core payroll path** | ✅ |
+| **Limits of this contract** | bilateral_funds |
 
-2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -104,13 +104,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `bilateral_funds` applies.
 
     **Remediation:** Pass the EBAN and Agrifondo contributions as bilateral fund events, or model them.
-
-!!! warning "impiegati-tecnici-agricoli/first_level_apprentice_contributions · inps_employer · impact yes · open"
-    FIRST- AND THIRD-LEVEL APPRENTICES (Allegato F): modelled in dual_apprenticeship (first level 45/55/60/70% by year at the conventional level, third level 70% or 80% by length; training at the employer 10% of the work pay, school hours unpaid). Not modelled: the INPS contributions of the first-level apprentice.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Source the INPS contribution regime of the first-level apprentice.
 
 !!! note "sickness_inps_daily_base · sickness · impact unknown · resolved"
     The INPS share of a sick day is computed on the INPS daily base of the episode, on the days INPS pays (the weekdays of an operaio, every day but the national holidays on a Sunday of an impiegato, point 7.3 of INPS circ. 134368/1981): the retribuzione media globale giornaliera of the month before the illness (INPS circ. 134368/1981 point 11; circ. 55/2024 Allegato 1), whole or partial month, impiegato or operaio, or for the lavoratori dello spettacolo the average pay of the last 40 daily contributions, capped for a fixed-term worker (INPS circ. 132/2021 par. 2.4). The base is a fact of the payroll history the episode states (SicknessEpisode.inps_base).
@@ -280,6 +273,13 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Source the CCNL clause on the holidays falling on a Sunday and record it as work_rules.sunday_holidays.
 
+!!! warning "dual_apprenticeship_contributions · inps_employer · impact unknown · open"
+    A first- or third-level apprentice (D.Lgs. 81/2015 artt. 43 and 45) is paid by the CCNL dual_apprenticeship tracks, but the INPS contributions and the other rates of the run are those of the professionalising apprentice: the contribution regime of these apprentices is not sourced. On a final-settlement run that pays both its month and the ratei, Apprentice.hours splits both by one set of hours.
+
+    **Applies when:** `inps_employer` applies; the run takes the engine code path; contract type in apprentice.
+
+    **Remediation:** Source the INPS contribution regime of first- and third-level apprentices and apply it; give a final-settlement run separate hours for its month and its ratei.
+
 ## Sources
 
 | Document | Kind | Date | URL |
@@ -311,6 +311,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     INPS CONTRIBUTION BASE. The retribuzione convenzionale regime (INPS annual decree) applies to operai agricoli OTD/OTI (braccianti), NOT to impiegati agricoli. For impiegati OTI, contributions are computed on actual contractual salary pursuant to DL 338/1989 Art. 1 minimale (contribution base cannot fall below CCNL minimum). The engine applies rates to actual gross salary, which is correct for impiegati. Source: INPS Circ. 43/2026 covers operai only; standard regime applies to impiegati. (Confirmed by confagricolturapadova.it/wp-content/uploads/2020/02/Contributi_minimi_2020.pdf, laprevidenza.it.)
     
     APPRENTICE INPS RATES (contribution/2026/agricoltura.json): employer 10% plus NASpI 1.61% (INPS circ. 108/2018 par. 3.2, applied to the agricultural contribution by circ. 116/2013 par. 1) plus CISOA 1.50% (circ. 1/2023; 'CIS operai agricoli 1,5000' of circ. 43/2026 allegato 1) = 13.11% (4.61% and 6.11% in the first two years up to nine employees); worker 5.84%.
+    
+    FIRST- AND THIRD-LEVEL APPRENTICES (Allegato F): modelled in dual_apprenticeship (first level 45/55/60/70% by year at the conventional level, third level 70% or 80% by length; training at the employer 10% of the work pay, school hours unpaid). The contributions of these apprentices are the engine limitation dual_apprenticeship_contributions.
     
 
 ## Raw data

@@ -51,6 +51,22 @@
       }
     },
     {
+      "id": "dual_apprenticeship_contributions",
+      "institute": "inps_employer",
+      "variant": "apprentice",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "A first- or third-level apprentice (D.Lgs. 81/2015 artt. 43 and 45) is paid by the CCNL dual_apprenticeship tracks, but the INPS contributions and the other rates of the run are those of the professionalising apprentice: the contribution regime of these apprentices is not sourced. On a final-settlement run that pays both its month and the ratei, Apprentice.hours splits both by one set of hours.",
+      "calculation": "ccnl_engine.apprenticeship.dual.rules.dual_chain",
+      "state": "unverified",
+      "remediation": "Source the INPS contribution regime of first- and third-level apprentices and apply it; give a final-settlement run separate hours for its month and its ratei.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "dual_apprenticeship_contributions"
+        ]
+      }
+    },
+    {
       "id": "edilizia_impiegati_sickness",
       "institute": "sickness",
       "variant": "all",
@@ -191,22 +207,6 @@
       "links": {
         "limitations": [
           "edilizia-ance-impiegati/ordinary_hours_premiums"
-        ]
-      }
-    },
-    {
-      "id": "other_apprenticeship_types",
-      "institute": "base_salary",
-      "variant": "apprentice",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "FIRST- AND THIRD-LEVEL APPRENTICES (Art. 92, ANCE text of 4 April 2019): modelled in dual_apprenticeship (first level at the conventional level 2 or 1, 65-90% by semester; third level 70-90% by semester for six semesters; on minimo, ex contingenza and EDR; training at the employer 10% of the work pay, school hours unpaid). Not modelled: the provincial elements of the base (indennità territoriale, premio di produzione, elemento variabile) and the INPS contributions of the first-level apprentice.",
-      "calculation": "ccnl/edilizia-ance-impiegati:coverage.notes",
-      "state": "unverified",
-      "remediation": "Source the INPS contribution regime of the first-level apprentice.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "edilizia-ance-impiegati/other_apprenticeship_types"
         ]
       }
     },

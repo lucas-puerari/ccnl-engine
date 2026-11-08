@@ -262,6 +262,13 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Source the CCNL clause on the holidays falling on a Sunday and record it as work_rules.sunday_holidays.
 
+!!! warning "dual_apprenticeship_contributions · inps_employer · impact unknown · open"
+    A first- or third-level apprentice (D.Lgs. 81/2015 artt. 43 and 45) is paid by the CCNL dual_apprenticeship tracks, but the INPS contributions and the other rates of the run are those of the professionalising apprentice: the contribution regime of these apprentices is not sourced. On a final-settlement run that pays both its month and the ratei, Apprentice.hours splits both by one set of hours.
+
+    **Applies when:** `inps_employer` applies; the run takes the engine code path; contract type in apprentice.
+
+    **Remediation:** Source the INPS contribution regime of first- and third-level apprentices and apply it; give a final-settlement run separate hours for its month and its ratei.
+
 ## Sources
 
 | Document | Kind | Date | URL |

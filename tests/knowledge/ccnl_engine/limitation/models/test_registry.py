@@ -28,6 +28,7 @@ from ccnl_engine.absence.insured.parental.hourly.handlers import (
 from ccnl_engine.absence.insured.paternity.handlers import PATERNITY_BASE_LIMITATION
 from ccnl_engine.absence.insured.permit.handlers import PERMIT_TFR_LIMITATION
 from ccnl_engine.agreement.facade import NoteKind
+from ccnl_engine.apprenticeship.dual.rules import CONTRIBUTIONS_LIMITATION
 from ccnl_engine.apprenticeship.models import (
     ApprenticeshipPercentage,
     ApprenticeshipUnderClassification,
@@ -128,6 +129,7 @@ def test_engine_limitations_are_raised_by_their_code() -> None:
     }
     assert by_status[LimitationStatus.OPEN] == {
         PCT_UNDECLARED,
+        CONTRIBUTIONS_LIMITATION,
         CUMULATION_LIMITATION,
         PROVISIONAL_RULESET,
         PROVISIONAL_INPS_RULESET,

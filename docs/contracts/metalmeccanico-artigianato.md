@@ -36,7 +36,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, inps_employer |
 
-4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -144,13 +144,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Add an 'impiegati_centralinisti' track (70, 70, 75, 80% by semester, then 100%) selectable by Apprentice.track.
-
-!!! warning "metalmeccanico-artigianato/first_level_apprentice_contributions · inps_employer · impact yes · open"
-    FIRST- AND THIRD-LEVEL APPRENTICES (Art. 26, accordo interconfederale 1 febbraio 2018): modelled in dual_apprenticeship (first level 45/55/60/70% by year at the conventional level, third level 70% then 80% of the tabellare by half, or 80%; training at the employer 10% of the work pay, school hours unpaid). Not modelled: the INPS contributions of the first-level apprentice.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Source the INPS contribution regime of the first-level apprentice.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
@@ -320,6 +313,13 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Source the CCNL clause on the holidays falling on a Sunday and record it as work_rules.sunday_holidays.
 
+!!! warning "dual_apprenticeship_contributions · inps_employer · impact unknown · open"
+    A first- or third-level apprentice (D.Lgs. 81/2015 artt. 43 and 45) is paid by the CCNL dual_apprenticeship tracks, but the INPS contributions and the other rates of the run are those of the professionalising apprentice: the contribution regime of these apprentices is not sourced. On a final-settlement run that pays both its month and the ratei, Apprentice.hours splits both by one set of hours.
+
+    **Applies when:** `inps_employer` applies; the run takes the engine code path; contract type in apprentice.
+
+    **Remediation:** Source the INPS contribution regime of first- and third-level apprentices and apply it; give a final-settlement run separate hours for its month and its ratei.
+
 ## Sources
 
 | Document | Kind | Date | URL |
@@ -353,6 +353,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     APPRENTICE SENIORITY: apprentices accrue no scatti before 1 January 2025; from that date they accrue scatti of 10 euro each, not scaled by the apprentice percentage, on the cadence of the other workers, and those in service on that date accrue from it ('la maturazione dell'anzianità di servizio ai fini del riconoscimento degli scatti decorre da pari data', Art. 27 as renewed on 19 November 2024, signed scan p. 6). At the end of the apprenticeship the matured scatti are revalued to the amount of the final level.
     
     TERM: the renewal of 19 November 2024 runs from 1 January 2023 to 31 December 2026 (Art. 2, signed scan) and keeps applying until the next renewal takes effect; the tabellare of 1 November 2026 stays in force after 2026 until a renewal is read.
+    
+    FIRST- AND THIRD-LEVEL APPRENTICES (Art. 26, accordo interconfederale 1 febbraio 2018): modelled in dual_apprenticeship (first level 45/55/60/70% by year at the conventional level, third level 70% then 80% of the tabellare by half, or 80%; training at the employer 10% of the work pay, school hours unpaid). The contributions of these apprentices are the engine limitation dual_apprenticeship_contributions.
     
     SICKNESS OF THE IMPIEGATI (Art. 73, PDF p. 147): the whole gross pay for 2 months and half for the next 4 up to 5 years of seniority, the whole for 3 months and half for the next 5 above, per illness; job kept 6 or 8 months for one illness and 10 months in the 24 before (work_rules.sickness_rules_by_category). The operai keep the rule of Art. 61.
     
